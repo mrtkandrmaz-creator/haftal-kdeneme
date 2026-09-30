@@ -2,8 +2,8 @@ import io
 import os
 import sys
 import time
-from google.generativeai import GenerativeModel
 import google.generativeai as genai
+from google.generativeai import GenerativeModel
 from groq import Groq
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
@@ -144,10 +144,12 @@ HAFTALIK_ICERIKLER = {
 }
 
 
-# --- Hibrit Model Çağrı Fonksiyonu (st.secrets entegreli) ---
+# --- Güvenli Hibrit Model Çağrı Fonksiyonu ---
 def ai_icerik_uret(prompt: str) -> str:
   groq_key = st.secrets["GROQ_API_KEY"]
   gemini_key = st.secrets["GEMINI_API_KEY"]
+
+  groq_hata_mesaji = None
 
   # 1. Adım: Önce Groq ile hızlı yanıt almayı dene
   try:
@@ -158,11 +160,10 @@ def ai_icerik_uret(prompt: str) -> str:
         temperature=0.7,
     )
     return completion.choices[0].message.content
-  except Exception as groq_hata:
+  except Exception as e:
+    groq_hata_mesaji = str(e)
     st.toast(
-        f"⚠️ Groq yanıt vermedi, Gemini yedek gücüne geçiliyor... (Hata:"
-        f" {str(groq_hata)[:40]})",
-        icon="🔄",
+        "⚠️ Groq yanıt vermedi, Gemini yedek gücüne geçiliyor...", icon="🔄"
     )
 
   # 2. Adım: Groq başarısız olursa Gemini API'ye bağlan
@@ -174,7 +175,7 @@ def ai_icerik_uret(prompt: str) -> str:
   except Exception as gemini_hata:
     raise RuntimeError(
         f"Kritik Hata: Her iki yapay zeka servisi de yanıt vermedi.\n- Groq"
-        f" Hatası: {groq_hata}\n- Gemini Hatası: {gemini_hata}"
+        f" Hatası: {groq_hata_mesaji}\n- Gemini Hatası: {gemini_hata}"
     )
 
 
