@@ -173,7 +173,7 @@ async def _async_ai_icerik_uret(prompt: str) -> str:
         client_gemini = genai.Client(api_key=gemini_key)
         def call_gemini():
             res = client_gemini.models.generate_content(
-                model="gemini-2.5-flash",
+                model="gemini-3.8-flash",
                 contents=prompt,
             )
             return res.text
