@@ -1,72 +1,55 @@
 import asyncio
-import time
+import streamlit as st
 from groq import Groq
 from google import genai
-import streamlit as st
 
-# --- Akıllı ve Dayanıklı AI İçerik Üretim Altyapısı ---
-async def _async_ai_icerik_uret(prompt: str) -> str:
+st.title("Sınav Üreteci")
+
+# Güvenli AI Fonksiyonu
+def ai_icerik_uret(prompt: str) -> str:
     groq_key = st.secrets.get("GROQ_API_KEY", "")
     gemini_key = st.secrets.get("GEMINI_API_KEY", "")
 
-    groq_hata_mesaji = None
-    loop = asyncio.get_running_loop()
-
-    # 1. Adım: Önce Groq ile yanıt almayı dene (Eğer 403 verirse hemen Gemini'ye geçer)
+    # 1. Groq Dene
     if groq_key:
         try:
             client_groq = Groq(api_key=groq_key)
-            def call_groq():
-                res = client_groq.chat.completions.create(
-                    model="llama-3.3-70b-versatile",
-                    messages=[{"role": "user", "content": prompt}],
-                    temperature=0.7,
-                )
-                return res.choices[0].message.content
-            
-            return await loop.run_in_executor(None, call_groq)
+            res = client_groq.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.7,
+            )
+            return res.choices[0].message.content
         except Exception as e:
-            groq_hata_mesaji = str(e)
+            print(f"Groq atlandı: {e}")
 
-    # 2. Adım: Gemini için Yedekli ve Tekrarlamalı (Retry) Bağlantı
-    # Farklı modelleri sırayla dener, 503 alsa bile bekleyip tekrar dener.
-    denenecek_modeller = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-2.5-flash']
-    gemini_hata_mesaji = ""
+    # 2. Gemini Dene (Güncel google-genai kütüphanesi standart yapısı)
+    if gemini_key:
+        try:
+            client_gemini = genai.Client(api_key=gemini_key)
+            # En kararlı çalışan güncel model
+            response = client_gemini.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt,
+            )
+            return response.text
+        except Exception as e:
+            raise RuntimeError(f"Tüm yapay zeka servisleri hata verdi. Detay: {e}")
+    else:
+        raise RuntimeError("Hiçbir API anahtarı (Groq veya Gemini) bulunamadı!")
 
-    client_gemini = genai.Client(api_key=gemini_key)
+# Arayüz Kısımları ve Hata Gösterimi (Boş sayfa kalmasını önler)
+user_prompt = st.text_area("Sınav için konu veya talimat girin:")
 
-    for model_adi in denenecek_modeller:
-        for deneme in range(2): # Her model için 2 kez şans ver
+if st.button("Sınav Üret"):
+    if not user_prompt:
+        st.warning("Lütfen bir talimat girin.")
+    else:
+        with st.spinner("Yapay zeka sınavı hazırlıyor..."):
             try:
-                def call_gemini():
-                    response = client_gemini.models.generate_content(
-                        model=model_adi,
-                        contents=prompt,
-                    )
-                    return response.text
-                
-                return await loop.run_in_executor(None, call_gemini)
-            except Exception as e:
-                gemini_hata_mesaji = str(e)
-                # Eğer hata 503 (yoğunluk) ise 2 saniye bekleyip tekrar dene
-                if "503" in str(e) or "UNAVAILABLE" in str(e):
-                    await asyncio.sleep(2)
-                    continue
-                else:
-                    # Başka tür bir hataysa (örn. model adı geçersizse) direkt sonraki modele geç
-                    break
-
-    # Tüm denemeler başarısız olursa detaylı hata fırlat
-    raise RuntimeError(
-        f"Kritik Hata: Yapay zeka servisleri yanıt vermedi.\n"
-        f"- Groq Hatası: {groq_hata_mesaji}\n"
-        f"- Gemini Son Hatası: {gemini_hata_mesaji}"
-    )
-
-def ai_icerik_uret(prompt: str) -> str:
-    try:
-        return asyncio.run(_async_ai_icerik_uret(prompt))
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        return loop.run_until_complete(_async_ai_icerik_uret(prompt))
+                sonuc = ai_icerik_uret(user_prompt)
+                st.success("Sınav başarıyla üretildi!")
+                st.write(sonuc)
+            except Exception as ex:
+                # Boş sayfa yerine hatayı ekranda açıkça gösterir
+                st.error(f"Bir hata oluştu:\n\n `{ex}`")
