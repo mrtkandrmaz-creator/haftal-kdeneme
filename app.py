@@ -2,9 +2,9 @@ import io
 import os
 import sys
 import time
-import google.generativeai as genai
-from google.generativeai import GenerativeModel
+import asyncio
 from groq import Groq
+from google import genai
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
@@ -13,13 +13,13 @@ import streamlit.components.v1 as components
 
 # --- PyInstaller için SSL ve Dosya Yolu Sabitleme ---
 if getattr(sys, "frozen", False):
-  os.environ["SSL_CERT_FILE"] = os.path.join(
-      sys._MEIPASS, "certifi", "cacert.pem"
-  )
+    os.environ["SSL_CERT_FILE"] = os.path.join(
+        sys._MEIPASS, "certifi", "cacert.pem"
+    )
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul dan LGS Deneme Sınavı Üretici (Hibrit Mod)",
+    page_title="Ortaokuldan LGS Deneme Sınavı Üretici (Hibrit Mod)",
     page_icon="🎯",
     layout="centered",
 )
@@ -144,155 +144,168 @@ HAFTALIK_ICERIKLER = {
 }
 
 
-# --- Güvenli Hibrit Model Çağrı Fonksiyonu (Güncellendi) ---
-def ai_icerik_uret(prompt: str) -> str:
-  groq_key = st.secrets.get("GROQ_API_KEY", "")
-  gemini_key = st.secrets.get("GEMINI_API_KEY", "")
+# --- Asenkron Hibrit Model Çağrı Altyapısı ---
+async def _async_ai_icerik_uret(prompt: str) -> str:
+    groq_key = st.secrets.get("GROQ_API_KEY", "")
+    gemini_key = st.secrets.get("GEMINI_API_KEY", "")
 
-  groq_hata_mesaji = None
+    groq_hata_mesaji = None
+    loop = asyncio.get_running_loop()
 
-  # 1. Adım: Önce Groq ile yanıt almayı dene (Eğer anahtar tanımlıysa)
-  if groq_key:
+    # 1. Adım: Önce Groq ile yanıt almayı dene
+    if groq_key:
+        try:
+            client_groq = Groq(api_key=groq_key)
+            def call_groq():
+                res = client_groq.chat.completions.create(
+                    model="llama-3.3-70b-versatile",
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.7,
+                )
+                return res.choices[0].message.content
+            
+            return await loop.run_in_executor(None, call_groq)
+        except Exception as e:
+            groq_hata_mesaji = str(e)
+
+    # 2. Adım: Groq başarısız olursa modern google-genai SDK ile Gemini'ye bağlan
     try:
-      client_groq = Groq(api_key=groq_key)
-      completion = client_groq.chat.completions.create(
-          model="llama-3.3-70b-versatile",
-          messages=[{"role": "user", "content": prompt}],
-          temperature=0.7,
-      )
-      return completion.choices[0].message.content
-    except Exception as e:
-      groq_hata_mesaji = str(e)
-      st.toast(
-          "⚠️ Groq erişim hatası, Gemini modeline geçiliyor...", icon="🔄"
-      )
+        client_gemini = genai.Client(api_key=gemini_key)
+        def call_gemini():
+            res = client_gemini.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt,
+            )
+            return res.text
+            
+        return await loop.run_in_executor(None, call_gemini)
+    except Exception as gemini_hata:
+        raise RuntimeError(
+            f"Kritik Hata: Yapay zeka servisleri yanıt vermedi.\n- Groq Hatası: {groq_hata_mesaji}\n- Gemini Hatası: {gemini_hata}"
+        )
 
-  # 2. Adım: Groq başarısız olursa veya anahtar yoksa Gemini API'ye bağlan
-  try:
-    genai.configure(api_key=gemini_key)
-    # Güncel ve kararlı Gemini modeli kullanılıyor
-    model = GenerativeModel("gemini-3.5-flash")
-    response = model.generate_content(prompt)
-    return response.text
-  except Exception as gemini_hata:
-    raise RuntimeError(
-        f"Kritik Hata: Yapay zeka servisleri yanıt vermedi.\n- Groq Hatası:"
-        f" {groq_hata_mesaji}\n- Gemini Hatası: {gemini_hata}"
-    )
+
+def ai_icerik_uret(prompt: str) -> str:
+    """Streamlit senkron yapısı içerisinden asenkron fonksiyonu güvenle çalıştırır."""
+    try:
+        return asyncio.run(_async_ai_icerik_uret(prompt))
+    except RuntimeError:
+        # Eğer event loop halihazırda çalışıyorsa (özel durumlar için güvenli fallback)
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        return loop.run_until_complete(_async_ai_icerik_uret(prompt))
 
 
 # Standart PDF Dönüştürücü
 def create_pdf(text, sinif_adi):
-  buffer = io.BytesIO()
-  doc = SimpleDocTemplate(
-      buffer,
-      pagesize=A4,
-      rightMargin=40,
-      leftMargin=40,
-      topMargin=40,
-      bottomMargin=40,
-  )
-  styles = getSampleStyleSheet()
-  normal_style = styles["Normal"]
-  normal_style.fontSize = 9
-  normal_style.leading = 13
+    buffer = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buffer,
+        pagesize=A4,
+        rightMargin=40,
+        leftMargin=40,
+        topMargin=40,
+        bottomMargin=40,
+    )
+    styles = getSampleStyleSheet()
+    normal_style = styles["Normal"]
+    normal_style.fontSize = 9
+    normal_style.leading = 13
 
-  title_style = ParagraphStyle(
-      "TitleStyle",
-      parent=styles["Heading1"],
-      fontSize=13,
-      leading=16,
-      alignment=1,
-      spaceAfter=15,
-  )
+    title_style = ParagraphStyle(
+        "TitleStyle",
+        parent=styles["Heading1"],
+        fontSize=13,
+        leading=16,
+        alignment=1,
+        spaceAfter=15,
+    )
 
-  story = [
-      Paragraph(
-          f"<b>{sinif_adi.upper()} MERKEZİ SİSTEM DENEME SINAVI</b>",
-          title_style,
-      ),
-      Spacer(1, 10),
-  ]
+    story = [
+        Paragraph(
+            f"<b>{sinif_adi.upper()} MERKEZİ SİSTEM DENEME SINAVI</b>",
+            title_style,
+        ),
+        Spacer(1, 10),
+    ]
 
-  for line in text.split("\n"):
-    if line.strip():
-      safe_line = (
-          line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-      )
-      story.append(Paragraph(safe_line, normal_style))
-      story.append(Spacer(1, 3))
-    else:
-      story.append(Spacer(1, 6))
+    for line in text.split("\n"):
+        if line.strip():
+            safe_line = (
+                line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            )
+            story.append(Paragraph(safe_line, normal_style))
+            story.append(Spacer(1, 3))
+        else:
+            story.append(Spacer(1, 6))
 
-  doc.build(story)
-  buffer.seek(0)
-  return buffer.getvalue()
+    doc.build(story)
+    buffer.seek(0)
+    return buffer.getvalue()
 
 
 # Resmi Kitapçık Formatında PDF Üretici
 def create_official_booklet_pdf(text, sinif_adi, donem, hafta_str):
-  buffer = io.BytesIO()
-  doc = SimpleDocTemplate(
-      buffer,
-      pagesize=A4,
-      rightMargin=35,
-      leftMargin=35,
-      topMargin=35,
-      bottomMargin=35,
-  )
-  styles = getSampleStyleSheet()
+    buffer = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buffer,
+        pagesize=A4,
+        rightMargin=35,
+        leftMargin=35,
+        topMargin=35,
+        bottomMargin=35,
+    )
+    styles = getSampleStyleSheet()
 
-  cover_title_style = ParagraphStyle(
-      "CoverTitle",
-      parent=styles["Heading1"],
-      fontSize=14,
-      leading=18,
-      alignment=1,
-      spaceAfter=6,
-      fontName="Helvetica-Bold",
-  )
-  cover_sub_style = ParagraphStyle(
-      "CoverSub",
-      parent=styles["Normal"],
-      fontSize=10,
-      leading=14,
-      alignment=1,
-      spaceAfter=20,
-      fontName="Helvetica",
-  )
-  question_style = ParagraphStyle(
-      "QuestionStyle",
-      parent=styles["Normal"],
-      fontSize=8.5,
-      leading=12,
-      spaceAfter=8,
-      fontName="Helvetica",
-  )
+    cover_title_style = ParagraphStyle(
+        "CoverTitle",
+        parent=styles["Heading1"],
+        fontSize=14,
+        leading=18,
+        alignment=1,
+        spaceAfter=6,
+        fontName="Helvetica-Bold",
+    )
+    cover_sub_style = ParagraphStyle(
+        "CoverSub",
+        parent=styles["Normal"],
+        fontSize=10,
+        leading=14,
+        alignment=1,
+        spaceAfter=20,
+        fontName="Helvetica",
+    )
+    question_style = ParagraphStyle(
+        "QuestionStyle",
+        parent=styles["Normal"],
+        fontSize=8.5,
+        leading=12,
+        spaceAfter=8,
+        fontName="Helvetica",
+    )
 
-  story = [
-      Paragraph(
-          f"T.C. MİLLÎ EĞİTİM BAKANLIĞI<br/><b>{sinif_adi.upper()} DÜZEYİ"
-          f" ÖRNEK SORU KİTAPÇIĞI</b>",
-          cover_title_style,
-      ),
-      Paragraph(
-          f"<b>{donem} - {hafta_str}</b><br/>Bu kitapçık resmi sınav formatına"
-          " uygun olarak hazırlanmıştır.",
-          cover_sub_style,
-      ),
-      Spacer(1, 10),
-  ]
+    story = [
+        Paragraph(
+            f"T.C. MİLLÎ EĞİTİM BAKANLIĞI<br/><b>{sinif_adi.upper()} DÜZEYİ ÖRNEK SORU KİTAPÇIĞI</b>",
+            cover_title_style,
+        ),
+        Paragraph(
+            f"<b>{donem} - {hafta_str}</b><br/>Bu kitapçık resmi sınav formatına uygun olarak hazırlanmıştır.",
+            cover_sub_style,
+        ),
+        Spacer(1, 10),
+    ]
 
-  for line in text.split("\n"):
-    if line.strip():
-      safe_line = (
-          line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-      )
-      story.append(Paragraph(safe_line, question_style))
+    for line in text.split("\n"):
+        if line.strip():
+            safe_line = (
+                line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            )
+            story.append(Paragraph(safe_line, question_style))
 
-  doc.build(story)
-  buffer.seek(0)
-  return buffer.getvalue()
+    doc.build(story)
+    buffer.seek(0)
+    return buffer.getvalue()
 
 
 # --- Streamlit Arayüzü ---
@@ -340,40 +353,38 @@ if st.sidebar.button(
     type="primary",
     use_container_width=True,
 ):
-  is_tarama = (
-      secilen_hafta_num in [4, 8, 12, 16, 18]
-      or "TARAMA" in ilgili_kazanimlar
-  )
-  sinav_tip_str = (
-      "AYLIK GENEL TARAMA VE TEKRAR SINAVI"
-      if is_tarama
-      else f"HAFTALIK DENEME SINAVI ({hafta_secimi_str})"
-  )
+    is_tarama = (
+        secilen_hafta_num in [4, 8, 12, 16, 18]
+        or "TARAMA" in ilgili_kazanimlar
+    )
+    sinav_tip_str = (
+        "AYLIK GENEL TARAMA VE TEKRAR SINAVI"
+        if is_tarama
+        else f"HAFTALIK DENEME SINAVI ({hafta_secimi_str})"
+    )
 
-  dersler = secilen_bilgi["soru_dagilimi"]
-  toplam_ders_sayisi = len(dersler)
+    dersler = secilen_bilgi["soru_dagilimi"]
+    toplam_ders_sayisi = len(dersler)
 
-  st.session_state["sinav_parcalari"] = {}
-  st.session_state["aktif_sinif"] = sinif_secimi
+    st.session_state["sinav_parcalari"] = {}
+    st.session_state["aktif_sinif"] = sinif_secimi
 
-  progress_bar = st.progress(0)
-  status_text = st.empty()
+    progress_bar = st.progress(0)
+    status_text = st.empty()
 
-  try:
-    uretilen_metinler = [
-        f"=== {sinif_secimi.upper()} - {donem_secimi} {hafta_secimi_str} ==="
-        f" ({sinav_tip_str}) ===\n"
-    ]
+    try:
+        uretilen_metinler = [
+            f"=== {sinif_secimi.upper()} - {donem_secimi} {hafta_secimi_str} ({sinav_tip_str}) ===\n"
+        ]
 
-    adim = 0
-    for ders_adi, soru_adedi in dersler.items():
-      adim += 1
-      status_text.text(
-          f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi ({soru_adedi}"
-          " soru) yapay zeka ile üretiliyor..."
-      )
+        adim = 0
+        for ders_adi, soru_adedi in dersler.items():
+            adim += 1
+            status_text.text(
+                f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi ({soru_adedi} soru) yapay zeka ile üretiliyor..."
+            )
 
-      prompt = f"""
+            prompt = f"""
             Sen uzman bir MEB müfredat rehber öğretmeni ve soru yazarısın. 
             {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
             Kazanım/İçerik: {ilgili_kazanimlar}
@@ -382,63 +393,62 @@ if st.sidebar.button(
             Soruların numaralandırmasını 1'den {soru_adedi}'ne kadar yap. Başka hiçbir dersin sorusunu ekleme.
             """
 
-      ders_yaniti = ai_icerik_uret(prompt)
+            ders_yaniti = ai_icerik_uret(prompt)
 
-      uretilen_metinler.append(
-          f"\n\n--- {ders_adi.upper()} ({soru_adedi} SORU) ---\n" + ders_yaniti
-      )
-      progress_bar.progress(adim / toplam_ders_sayisi)
-      time.sleep(0.3)
+            uretilen_metinler.append(
+                f"\n\n--- {ders_adi.upper()} ({soru_adedi} SORU) ---\n" + ders_yaniti
+            )
+            progress_bar.progress(adim / toplam_ders_sayisi)
+            time.sleep(0.3)
 
-    status_text.text(
-        "📝 Tüm dersler tamamlandı, detaylı çözüm ve cevap anahtarı ekleniyor..."
-    )
-    cozum_prompt = f"""
+        status_text.text(
+            "📝 Tüm dersler tamamlandı, detaylı çözüm ve cevap anahtarı ekleniyor..."
+        )
+        cozum_prompt = f"""
         Yukarıda soruları hazırlanan {sinif_secimi} {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
         Tüm derslerin soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
         """
-    cozum_yaniti = ai_icerik_uret(cozum_prompt)
-    uretilen_metinler.append(
-        "\n\n--- CEVAP ANAHTARI VE ÇÖZÜMLER ---\n" + cozum_yaniti
-    )
+        cozum_yaniti = ai_icerik_uret(cozum_prompt)
+        uretilen_metinler.append(
+            "\n\n--- CEVAP ANAHTARI VE ÇÖZÜMLER ---\n" + cozum_yaniti
+        )
 
-    progress_bar.progress(1.0)
-    status_text.empty()
+        progress_bar.progress(1.0)
+        status_text.empty()
 
-    st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
-    st.session_state["sinav_baslatildi"] = False
-    st.success(
-        f"🎉 {sinif_secimi} - {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
-    )
+        st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
+        st.session_state["sinav_baslatildi"] = False
+        st.success(
+            f"🎉 {sinif_secimi} - {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
+        )
 
-  except Exception as e:
-    st.error(f"Sınav üretilirken bir hata oluştu: {e}")
+    except Exception as e:
+        st.error(f"Sınav üretilirken bir hata oluştu: {e}")
 
 # Sınav İçeriğini ve Başlatma Mantığını Yönetme
 if "sinav_metni" in st.session_state:
-  aktif_sinif = st.session_state.get("aktif_sinif", sinif_secimi)
-  sure_dk = SINIF_MUFREDATLARI[aktif_sinif]["sure_dakika"]
-  total_seconds = sure_dk * 60
+    aktif_sinif = st.session_state.get("aktif_sinif", sinif_secimi)
+    sure_dk = SINIF_MUFREDATLARI[aktif_sinif]["sure_dakika"]
+    total_seconds = sure_dk * 60
 
-  if not st.session_state.get("sinav_baslatildi", False):
-    st.markdown("---")
-    col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
-    with col_b2:
-      if st.button(
-          "🚀 Sınavı Başlat ve Süreyi Başlat",
-          type="primary",
-          use_container_width=True,
-      ):
-        st.session_state["sinav_baslatildi"] = True
-        st.rerun()
+    if not st.session_state.get("sinav_baslatildi", False):
+        st.markdown("---")
+        col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
+        with col_b2:
+            if st.button(
+                "🚀 Sınavı Başlat ve Süreyi Başlat",
+                type="primary",
+                use_container_width=True,
+            ):
+                st.session_state["sinav_baslatildi"] = True
+                st.rerun()
 
-    st.info(
-        "💡 Sınavınız hazır! Süreyi ve soruları görüntülemek için yukarıdaki"
-        " **Sınavı Başlat** butonuna tıklayın."
-    )
+        st.info(
+            "💡 Sınavınız hazır! Süreyi ve soruları görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
+        )
 
-  if st.session_state.get("sinav_baslatildi", False):
-    timer_html = f"""
+    if st.session_state.get("sinav_baslatildi", False):
+        timer_html = f"""
         <!DOCTYPE html>
         <html>
         <head>
@@ -553,39 +563,39 @@ if "sinav_metni" in st.session_state:
         </html>
         """
 
-    components.html(timer_html, height=195)
+        components.html(timer_html, height=195)
 
-    st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-    st.subheader(
-        f"📝 Oluşturulan {aktif_sinif} Sınavı ({hafta_secimi_str})"
-    )
-    st.markdown(st.session_state["sinav_metni"])
-    st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
+        st.subheader(
+            f"📝 Oluşturulan {aktif_sinif} Sınavı ({hafta_secimi_str})"
+        )
+        st.markdown(st.session_state["sinav_metni"])
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    st.markdown("### 📥 Sınav Çıktı Seçenekleri")
-    col1, col2 = st.columns(2)
+        st.markdown("### 📥 Sınav Çıktı Seçenekleri")
+        col1, col2 = st.columns(2)
 
-    with col1:
-      pdf_bytes = create_pdf(st.session_state["sinav_metni"], aktif_sinif)
-      st.download_button(
-          label="📄 Standart Sınav PDF İndir",
-          data=pdf_bytes,
-          file_name=f"{aktif_sinif.replace(' ', '_')}_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-          mime="application/pdf",
-          use_container_width=True,
-      )
+        with col1:
+            pdf_bytes = create_pdf(st.session_state["sinav_metni"], aktif_sinif)
+            st.download_button(
+                label="📄 Standart Sınav PDF İndir",
+                data=pdf_bytes,
+                file_name=f"{aktif_sinif.replace(' ', '_')}_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+                mime="application/pdf",
+                use_container_width=True,
+            )
 
-    with col2:
-      booklet_bytes = create_official_booklet_pdf(
-          st.session_state["sinav_metni"],
-          aktif_sinif,
-          donem_secimi,
-          hafta_secimi_str,
-      )
-      st.download_button(
-          label="📘 Resmi Sınav Kitapçığı PDF İndir",
-          data=booklet_bytes,
-          file_name=f"{aktif_sinif.replace(' ', '_')}_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-          mime="application/pdf",
-          use_container_width=True,
-      )
+        with col2:
+            booklet_bytes = create_official_booklet_pdf(
+                st.session_state["sin_metni"] if "sin_metni" in st.session_state else st.session_state["sinav_metni"],
+                aktif_sinif,
+                donem_secimi,
+                hafta_secimi_str,
+            )
+            st.download_button(
+                label="📘 Resmi Sınav Kitapçığı PDF İndir",
+                data=booklet_bytes,
+                file_name=f"{aktif_sinif.replace(' ', '_')}_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+                mime="application/pdf",
+                use_container_width=True,
+            )
