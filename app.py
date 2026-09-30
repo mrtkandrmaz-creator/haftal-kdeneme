@@ -142,7 +142,7 @@ HAFTALIK_ICERIKLER = {
 }
 
 
-# --- Güvenli ve Kararlı AI Bağlantısı (google-generativeai) ---
+# --- Otomatik Model Tarayan ve Uygun Olanı Seçen Akıllı Bağlantı ---
 def ai_icerik_uret(prompt: str) -> str:
     gemini_key = st.secrets.get("GEMINI_API_KEY", "")
     if not gemini_key:
@@ -150,22 +150,45 @@ def ai_icerik_uret(prompt: str) -> str:
 
     genai.configure(api_key=gemini_key)
     
-    # Kararlı çalışan model yelpazesi
-    denenecek_modeller = ["gemini-1.5-flash", "gemini-1.5-pro"]
+    # 1. Adım: API'nin desteklediği ve içerik üretmeye uygun (generateContent) modelleri otomatik listelet
+    uygun_modeller = []
+    try:
+        for m in genai.list_models():
+            if 'generateContent' in m.supported_generation_methods:
+                uygun_modeller.append(m.name)
+    except Exception:
+        pass
+
+    # Eğer otomatik liste alınamazsa manuel güvenli öncelikli yedek havuzu
+    yedek_liste = [
+        "gemini-2.5-flash",
+        "gemini-3.8-flash",
+        "gemini-3.6-flash",
+        "gemini-1.5-flash",
+        "gemini-1.5-pro",
+        "gemini-pro"
+    ]
+    
+    # Otomatik bulunanları başa koy, yedekleri arkasına ekle (benzersiz olacak şekilde)
+    tum_denenecekler = []
+    for mod in uygun_modeller + yedek_liste:
+        if mod not in tum_denenecekler:
+            tum_denenecekler.append(mod)
+
     son_hata = None
 
-    for model_adi in denenecek_modeller:
-        for _ in range(2):  # Her model için 2 deneme şansı
-            try:
-                model = genai.GenerativeModel(model_adi)
-                response = model.generate_content(prompt)
-                if response and response.text:
-                    return response.text
-            except Exception as e:
-                son_hata = e
-                time.sleep(1) # Kısa bir bekleme süresi
+    # 2. Adım: Havuzdaki modelleri sırayla deneyerek ilk çalışanla içerik üret
+    for model_adi in tum_denenecekler:
+        try:
+            model = genai.GenerativeModel(model_adi)
+            response = model.generate_content(prompt)
+            if response and response.text:
+                return response.text
+        except Exception as e:
+            son_hata = e
+            continue
 
-    raise RuntimeError(f"Yapay zeka yanıt veremedi. Hata detayı: {son_hata}")
+    raise RuntimeError(f"Hesabınızın erişebileceği uygun Gemini modeli bulunamadı veya tüm denemeler başarısız oldu. Son Hata: {son_hata}")
 
 
 # Standart PDF Dönüştürücü
@@ -368,7 +391,7 @@ if st.sidebar.button(
                 f"\n\n--- {ders_adi.upper()} ({soru_adedi} SORU) ---\n" + ders_yaniti
             )
             progress_bar.progress(adim / toplam_ders_sayisi)
-            time.sleep(0.5)
+            time.sleep(0.3)
 
         status_text.text(
             "📝 Tüm dersler tamamlandı, cevap anahtarı ve çözümler ekleniyor..."
