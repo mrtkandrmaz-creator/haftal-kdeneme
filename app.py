@@ -19,7 +19,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul ve LGS Deneme Sınavı Üretici (Hibrit Mod)",
+    page_title="Ortaokul dan LGS Deneme Sınavı Üretici (Hibrit Mod)",
     page_icon="🎯",
     layout="centered",
 )
@@ -144,38 +144,40 @@ HAFTALIK_ICERIKLER = {
 }
 
 
-# --- Güvenli Hibrit Model Çağrı Fonksiyonu ---
+# --- Güvenli Hibrit Model Çağrı Fonksiyonu (Güncellendi) ---
 def ai_icerik_uret(prompt: str) -> str:
-  groq_key = st.secrets["GROQ_API_KEY"]
-  gemini_key = st.secrets["GEMINI_API_KEY"]
+  groq_key = st.secrets.get("GROQ_API_KEY", "")
+  gemini_key = st.secrets.get("GEMINI_API_KEY", "")
 
   groq_hata_mesaji = None
 
-  # 1. Adım: Önce Groq ile hızlı yanıt almayı dene
-  try:
-    client_groq = Groq(api_key=groq_key)
-    completion = client_groq.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.7,
-    )
-    return completion.choices[0].message.content
-  except Exception as e:
-    groq_hata_mesaji = str(e)
-    st.toast(
-        "⚠️ Groq yanıt vermedi, Gemini yedek gücüne geçiliyor...", icon="🔄"
-    )
+  # 1. Adım: Önce Groq ile yanıt almayı dene (Eğer anahtar tanımlıysa)
+  if groq_key:
+    try:
+      client_groq = Groq(api_key=groq_key)
+      completion = client_groq.chat.completions.create(
+          model="llama-3.3-70b-versatile",
+          messages=[{"role": "user", "content": prompt}],
+          temperature=0.7,
+      )
+      return completion.choices[0].message.content
+    except Exception as e:
+      groq_hata_mesaji = str(e)
+      st.toast(
+          "⚠️ Groq erişim hatası, Gemini modeline geçiliyor...", icon="🔄"
+      )
 
-  # 2. Adım: Groq başarısız olursa Gemini API'ye bağlan
+  # 2. Adım: Groq başarısız olursa veya anahtar yoksa Gemini API'ye bağlan
   try:
     genai.configure(api_key=gemini_key)
-    model = GenerativeModel("gemini-1.5-flash")
+    # Güncel ve kararlı Gemini modeli kullanılıyor
+    model = GenerativeModel("gemini-3.5-flash")
     response = model.generate_content(prompt)
     return response.text
   except Exception as gemini_hata:
     raise RuntimeError(
-        f"Kritik Hata: Her iki yapay zeka servisi de yanıt vermedi.\n- Groq"
-        f" Hatası: {groq_hata_mesaji}\n- Gemini Hatası: {gemini_hata}"
+        f"Kritik Hata: Yapay zeka servisleri yanıt vermedi.\n- Groq Hatası:"
+        f" {groq_hata_mesaji}\n- Gemini Hatası: {gemini_hata}"
     )
 
 
@@ -299,7 +301,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Groq hız ve Gemini kararlılığı bir arada.</p>",
+    "<p class='subtext'>Groq ve güncel Gemini altyapısı bir arada.</p>",
     unsafe_allow_html=True,
 )
 
@@ -368,7 +370,7 @@ if st.sidebar.button(
       adim += 1
       status_text.text(
           f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi ({soru_adedi}"
-          " soru) hibrit yapıyla üretiliyor..."
+          " soru) yapay zeka ile üretiliyor..."
       )
 
       prompt = f"""
@@ -406,8 +408,7 @@ if st.sidebar.button(
     st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
     st.session_state["sinav_baslatildi"] = False
     st.success(
-        f"🎉 {sinif_secimi} - {hafta_secimi_str} Sınavı hibrit sistemle başarıyla"
-        " oluşturuldu!"
+        f"🎉 {sinif_secimi} - {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
     )
 
   except Exception as e:
