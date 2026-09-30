@@ -2,7 +2,8 @@ import io
 import os
 import sys
 import time
-from google import genai
+from google.generativeai import GenerativeModel
+import google.generativeai as genai
 from groq import Groq
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
@@ -145,7 +146,6 @@ HAFTALIK_ICERIKLER = {
 
 # --- Hibrit Model Çağrı Fonksiyonu (st.secrets entegreli) ---
 def ai_icerik_uret(prompt: str) -> str:
-  # Secrets üzerinden anahtarları al
   groq_key = st.secrets["GROQ_API_KEY"]
   gemini_key = st.secrets["GEMINI_API_KEY"]
 
@@ -153,7 +153,7 @@ def ai_icerik_uret(prompt: str) -> str:
   try:
     client_groq = Groq(api_key=groq_key)
     completion = client_groq.chat.completions.create(
-        model="llama-3.3-70b-versatile",  # Güncel ve kararlı Groq modeli
+        model="llama-3.3-70b-versatile",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7,
     )
@@ -165,12 +165,11 @@ def ai_icerik_uret(prompt: str) -> str:
         icon="🔄",
     )
 
-  # 2. Adım: Groq başarısız olursa otomatik olarak Gemini API'ye bağlan
+  # 2. Adım: Groq başarısız olursa Gemini API'ye bağlan
   try:
-    client_gemini = genai.Client(api_key=gemini_key)
-    response = client_gemini.models.generate_content(
-        model="gemini-2.5-flash", contents=prompt
-    )
+    genai.configure(api_key=gemini_key)
+    model = GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content(prompt)
     return response.text
   except Exception as gemini_hata:
     raise RuntimeError(
