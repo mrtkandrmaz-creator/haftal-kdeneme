@@ -132,7 +132,7 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Kesin Çözümlü, Güncel 2026 Modelleri İçeren Akıllı API Fonksiyonu ---
+# --- Kesin Çözümlü, Güncel Modelleri İçeren Akıllı API Fonksiyonu ---
 def ai_icerik_uret(prompt: str) -> str:
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY_DIRECT}",
@@ -146,13 +146,11 @@ def ai_icerik_uret(prompt: str) -> str:
             data = models_res.json()
             for m in data.get("data", []):
                 model_id = m["id"].lower()
-                # Yalnızca metin/sohbet modellerini al; guard, embed, whisper gibi araçları hariç tut
                 if not any(x in model_id for x in ["guard", "embed", "whisper", "vision-preview", "safeguard"]):
                     aktif_modeller.append(m["id"])
     except Exception:
         pass
         
-    # Dinamik çekilemezse veya filtrelendiyse %100 güncel yedek liste
     if not aktif_modeller:
         aktif_modeller = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.8-27b"]
 
@@ -406,8 +404,6 @@ if st.sidebar.button(
 
         st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
         st.session_state["aktif_sinif"] = sinif_secimi
-        st.session_state["sinav_baslatildi"] = False
-        st.session_state["aktif_soru_index"] = 0
         st.success(
             f"🎉 {sinif_secimi} - 60 Soruluk {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
         )
@@ -415,109 +411,44 @@ if st.sidebar.button(
     except Exception as e:
         st.error(f"Sınav üretilirken bir hata oluştu: {e}")
 
-# Sınav İçeriğini ve Her Sayfada Tek Soru Gösteren Paneli Yönetme
+# Sınav İçeriğini Doğrudan Ekrana Basma ve PDF İndirme Alanı
 if "sinav_metni" in st.session_state:
     aktif_sinif = st.session_state.get("aktif_sinif", sinif_secimi)
-    sure_dk = SINIF_MUFREDATLARI[aktif_sinif]["sure_dakika"]
-    total_seconds = sure_dk * 60
+    
+    st.markdown("---")
+    st.markdown("### 📋 Üretilen Sınav İçeriği ve Sorular")
+    
+    # Tüm sınav metnini kutu içerisinde sorunsuz göster
+    st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
+    st.text_area(
+        "Sınav Metni (Tüm Sorular ve Cevap Anahtarı)",
+        value=st.session_state["sinav_metni"],
+        height=500,
+        disabled=True
+    )
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    if not st.session_state.get("sinav_baslatildi", False):
-        st.markdown("---")
-        col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
-        with col_b2:
-            if st.button(
-                "🚀 Sınavı Başlat ve Soruları Çöz",
-                type="primary",
-                use_container_width=True,
-            ):
-                st.session_state["sinav_baslatildi"] = True
-                st.session_state["aktif_soru_index"] = 0
-                st.rerun()
+    # Sınav Çıktı Seçenekleri
+    st.markdown("---")
+    st.markdown("### 📥 Sınav Çıktı Seçenekleri")
+    col1, col2 = st.columns(2)
 
-        st.info(
-            "💡 60 soruluk sınavınız hazır! Soruları ekranda her sayfada tek soru olacak şekilde çözmek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
+    with col1:
+        pdf_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
+        st.download_button(
+            label="📄 Standart 60 Soru PDF İndir (İki Sütunlu Kitapçık)",
+            data=pdf_bytes,
+            file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+            mime="application/pdf",
+            use_container_width=True,
         )
 
-    if st.session_state.get("sinav_baslatildi", False):
-        metin = st.session_state["sinav_metni"]
-        bulunan_sorular = soruları_ayristir(metin)
-
-        if bulunan_sorular:
-            if "aktif_soru_index" not in st.session_state:
-                st.session_state["aktif_soru_index"] = 0
-
-            toplam_bulunan = len(bulunan_sorular)
-            
-            if st.session_state["aktif_soru_index"] >= toplam_bulunan:
-                st.session_state["aktif_soru_index"] = toplam_bulunan - 1
-
-            current_idx = st.session_state["aktif_soru_index"]
-            soru_obj = bulunan_sorular[current_idx]
-
-            # Her sayfada tek soru görünümü
-            st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-            st.subheader(f"📝 Soru {current_idx + 1} / {toplam_bulunan}")
-            st.markdown(f"**Soru {soru_obj['no']}**")
-            st.markdown(soru_obj['metin'])
-            
-            # Doğrudan şıklardan işaretleme (A, B, C, D butonları)
-            secim_kolar = st.columns(4)
-            secilen_cevap_key = f"user_cevap_{current_idx}"
-            
-            if secilen_cevap_key not in st.session_state:
-                st.session_state[secilen_cevap_key] = None
-
-            for idx, harf in enumerate(["A", "B", "C", "D"]):
-                with secim_kolar[idx]:
-                    is_selected = st.session_state[secilen_cevap_key] == harf
-                    btn_type = "primary" if is_selected else "secondary"
-                    if st.button(f"{harf}", key=f"btn_{current_idx}_{harf}", type=btn_type, use_container_width=True):
-                        st.session_state[secilen_cevap_key] = harf
-                        st.rerun()
-
-            st.markdown("</div>", unsafe_allow_html=True)
-
-            # İlerleme / Navigasyon Butonları
-            col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
-            with col_nav1:
-                if current_idx > 0:
-                    if st.button("⬅ Önceki Soru", use_container_width=True):
-                        st.session_state["aktif_soru_index"] -= 1
-                        st.rerun()
-            with col_nav3:
-                if current_idx < toplam_bulunan - 1:
-                    if st.button("Sonraki Soru ➡️", use_container_width=True):
-                        st.session_state["aktif_soru_index"] += 1
-                        st.rerun()
-                else:
-                    if st.button("🏁 Sınavı Tamamla", type="primary", use_container_width=True):
-                        st.success("60 soruluk sınavı tamamladınız! Aşağıdan sınav kağıdını PDF olarak indirebilirsiniz.")
-        else:
-            st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-            st.markdown(st.session_state["sinav_metni"])
-            st.markdown("</div>", unsafe_allow_html=True)
-
-        # Sınav Çıktı Seçenekleri
-        st.markdown("---")
-        st.markdown("### 📥 Sınav Çıktı Seçenekleri")
-        col1, col2 = st.columns(2)
-
-        with col1:
-            pdf_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
-            st.download_button(
-                label="📄 Standart 60 Soru PDF İndir (İki Sütunlu Kitapçık)",
-                data=pdf_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-                mime="application/pdf",
-                use_container_width=True,
-            )
-
-        with col2:
-            booklet_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
-            st.download_button(
-                label="📘 Resmi 60 Soru Kitapçığı PDF İndir (İki Sütunlu Kitapçık)",
-                data=booklet_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-                mime="application/pdf",
-                use_container_width=True,
-            )
+    with col2:
+        booklet_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
+        st.download_button(
+            label="📘 Resmi 60 Soru Kitapçığı PDF İndir (İki Sütunlu Kitapçık)",
+            data=booklet_bytes,
+            file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+            mime="application/pdf",
+            use_container_width=True,
+        )
