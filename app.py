@@ -1,654 +1,361 @@
-import io
+import tkinter as tk
+from tkinter import messagebox, ttk
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import json
 import os
-import re
-import sys
-import time
-import google.generativeai as genai
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
-import streamlit as st
-import streamlit.components.v1 as components
 
-# --- PyInstaller için SSL ve Dosya Yolu Sabitleme ---
-if getattr(sys, "frozen", False):
-    os.environ["SSL_CERT_FILE"] = os.path.join(
-        sys._MEIPASS, "certifi", "cacert.pem"
-    )
+DATA_FILE = "sinav_verileri.json"
 
-# Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
-st.set_page_config(
-    page_title="Ortaokuldan LGS Deneme Sınavı Üretici",
-    page_icon="🎯",
-    layout="centered",
-)
+class SinavMerkeziApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Sınav Merkezi - Kullanıcı Değerlendirme Sistemi")
+        self.root.geometry("900x650")
+        self.root.config(bg="#f0f2f5")
 
-st.markdown(
-    """
-    <style>
-    .main {
-        background-color: #f8f9fa;
-    }
-    h1 {
-        color: #1e3d59;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    .subtext {
-        text-align: center;
-        color: #6c757d;
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-    }
-    .exam-card {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e1e4e8;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+        self.current_user = ""
+        self.data = self.load_data()
 
-# MEB 5, 6, 7, 8. Sınıf Müfredat ve Soru Dağılımı Veritabanı
-SINIF_MUFREDATLARI = {
-    "5. Sınıf": {
-        "aciklama": (
-            "5. Sınıf Normal Dönem Deneme Sınavı (Türkçe, Matematik, Fen,"
-            " Sosyal, Din, İngilizce - 10'ar Soru)"
-        ),
-        "soru_dagilimi": {
-            "Turkce": 10,
-            "Matematik": 10,
-            "Fen Bilimleri": 10,
-            "Sosyal Bilgiler": 10,
-            "Din Kültürü": 10,
-            "İngilizce": 10,
-        },
-        "sure_dakika": 60,
-    },
-    "6. Sınıf": {
-        "aciklama": (
-            "6. Sınıf Normal Dönem Deneme Sınavı (Türkçe, Matematik, Fen,"
-            " Sosyal, Din, İngilizce - 10'ar Soru)"
-        ),
-        "soru_dagilimi": {
-            "Turkce": 10,
-            "Matematik": 10,
-            "Fen Bilimleri": 10,
-            "Sosyal Bilgiler": 10,
-            "Din Kültürü": 10,
-            "İngilizce": 10,
-        },
-        "sure_dakika": 60,
-    },
-    "7. Sınıf": {
-        "aciklama": (
-            "7. Sınıf Normal Dönem Deneme Sınavı (Türkçe, Matematik, Fen,"
-            " Sosyal, Din, İngilizce - 15'er Soru)"
-        ),
-        "soru_dagilimi": {
-            "Turkce": 15,
-            "Matematik": 15,
-            "Fen Bilimleri": 15,
-            "Sosyal Bilgiler": 15,
-            "Din Kültürü": 15,
-            "İngilizce": 15,
-        },
-        "sure_dakika": 90,
-    },
-    "8. Sınıf (LGS)": {
-        "aciklama": (
-            "Resmi LGS Soru Dağılımı (Türkçe:20, Matematik:20, Fen:20, İnkılap:10,"
-            " Din:10, İngilizce:10 - Toplam 90 Soru)"
-        ),
-        "soru_dagilimi": {
-            "Turkce": 20,
-            "Matematik": 20,
-            "Fen Bilimleri": 20,
-            "T.C. İnkılap Tarihi": 10,
-            "Din Kültürü": 10,
-            "İngilizce": 10,
-        },
-        "sure_dakika": 155,
-    },
-}
+        self.show_login_screen()
 
-# Haftalık Konu / Kazanım Veritabanı
-HAFTALIK_ICERIKLER = {
-    1: "1. Hafta Kazanımları: Temel kavramlara giriş, metin türleri, doğal sayılar/işlemler, güneşin yapısı ve özellikleri, birey ve toplum, ilahi kitaplar inancı, karşılama ve tanışma kalıpları.",
-    2: "2. Hafta Kazanımları: Sözcükte anlam, kesirler, dünyamızın hareketi, sosyal rollerimiz, melekler ve ahiret inancı, günlük rutinler.",
-    3: "3. Hafta Kazanımları: Cümlede anlam, ondalık gösterimler, canlılar ve yaşam, kültürel mirasımız, ibadet esasları, hava durumu ve doğa.",
-    4: "🌟 4. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (1., 2. ve 3. haftaların tüm kazanımlarını kapsayan kapsamlı genel tekrar sınavı).",
-    5: "5. Hafta Kazanımları: Paragrafta anlam, oran-orantı, kuvvetin ölçülmesi, hak ve sorumluluklar, peygamberlik inancı, hobiler ve yetenekler.",
-    6: "6. Hafta Kazanımları: Yazım kuralları, yüzdeler, madde ve ısı, afetler ve çevre, zekat ve sadaka ibadeti, sağlık ve rahatsızlıklar.",
-    7: "7. Hafta Kazanımları: Noktalama işaretleri, cebirsel ifadeler, ışığın yayılması, üretim teknolojisi, Hz. Muhammed'in hayatı, yiyecekler ve içecekler.",
-    8: "🌟 8. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (5., 6. ve 7. haftaların tüm kazanımlarını kapsayan kapsamlı genel tekrar sınavı).",
-    9: "9. Hafta Kazanımları: Metnin yapı taşları, üçgenler ve dörtgenler, ses özellikleri, Türk tarihi, Kur'an-ı Kerim ve özellikleri, seyahat ve ulaşım.",
-    10: "10. Hafta Kazanımları: Anlatım bozuklukları, veri analizi, çözeltiler ve karışımlar, demokrasi tarihi, din ve ahlak ilişkisi, teknolojik aletler.",
-    11: "11. Hafta Kazanımları: Sözel mantık becerileri, doğrusal denklemler, elektrik devreleri, uluslararası ilişkiler, İslam düşünce yorumları, çevre bilinci.",
-    12: "🌟 12. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (9., 10. ve 11. haftaların tüm kazanımlarını kapsayan kapsamlı genel tekrar sınavı).",
-    13: "13. Hafta Kazanımları: İleri düzey okuma ve yorumlama, eşitsizlikler, basit makineler, küresel sorunlar, ahlaki erdemler, kariyer ve meslekler.",
-    14: "14. Hafta Kazanımları: Görsel okuma ve grafik yorumlama, dönüşüm geometrisi, DNA ve genetik kod, ekonomi ve ticaret, inanç esasları derinlemesine, gelecek planları.",
-    15: "15. Hafta Kazanımları: Mantıksal muhakeme, katı cisimler, iklim ve hava olayları, hukuk devleti bilinci, evrensel değerler, popüler kültür.",
-    16: "🌟 16. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (13., 14. ve 15. haftaların tüm kazanımlarını kapsayan kapsamlı genel tekrar sınavı).",
-    17: "17. Hafta Kazanımları: LGS beceri temelli karma soru provası, genel deneme hazırlık ve eksik giderme çalışmaları.",
-    18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI (Tüm dönemin kazanımlarını kapsayan final düzeyinde deneme).",
-}
+    def load_data(self):
+        if os.path.exists(DATA_FILE):
+            try:
+                with open(DATA_FILE, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except:
+                return {}
+        return {}
 
+    def save_data(self):
+        with open(DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(self.data, f, ensure_ascii=False, indent=4)
 
-# --- Otomatik Model Tarayan ve Uygun Olanı Seçen Akıllı Bağlantı ---
-def ai_icerik_uret(prompt: str) -> str:
-    gemini_key = st.secrets.get("GEMINI_API_KEY", "")
-    if not gemini_key:
-        raise RuntimeError("GEMINI_API_KEY anahtarı Streamlit Secrets içinde bulunamadı!")
+    def clear_window(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
 
-    genai.configure(api_key=gemini_key)
-    
-    uygun_modeller = []
-    try:
-        for m in genai.list_models():
-            if 'generateContent' in m.supported_generation_methods:
-                uygun_modeller.append(m.name)
-    except Exception:
-        pass
+    # --- 1. GİRİŞ EKRANI ---
+    def show_login_screen(self):
+        self.clear_window()
 
-    yedek_liste = [
-        "gemini-2.5-flash",
-        "gemini-3.8-flash",
-        "gemini-3.6-flash",
-        "gemini-1.5-flash",
-        "gemini-1.5-pro",
-        "gemini-pro"
-    ]
-    
-    tum_denenecekler = []
-    for mod in uygun_modeller + yedek_liste:
-        if mod not in tum_denenecekler:
-            tum_denenecekler.append(mod)
+        frame = tk.Frame(self.root, bg="white", padx=40, pady=40, relief=tk.RAISED, borderwidth=1)
+        frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
-    son_hata = None
-    for model_adi in tum_denenecekler:
-        try:
-            model = genai.GenerativeModel(model_adi)
-            response = model.generate_content(prompt)
-            if response and response.text:
-                return response.text
-        except Exception as e:
-            son_hata = e
-            continue
+        tk.Label(frame, text="🎓 Sınav Merkezi Giriş", font=("Arial", 18, "bold"), bg="white", fg="#333").pack(pady=10)
+        tk.Label(frame, text="Lütfen kullanıcı adınızı giriniz:", font=("Arial", 11), bg="white", fg="#666").pack(anchor=tk.W, pady=5)
 
-    raise RuntimeError(f"Hesabınızın erişebileceği uygun Gemini modeli bulunamadı veya tüm denemeler başarısız oldu. Son Hata: {son_hata}")
+        self.username_entry = tk.Entry(frame, font=("Arial", 14), width=25, relief=tk.SOLID, borderwidth=1)
+        self.username_entry.pack(pady=10)
+        self.username_entry.focus()
+        self.username_entry.bind("<Return>", lambda event: self.login())
 
+        btn = tk.Button(frame, text="Giriş Yap / Devam Et", font=("Arial", 12, "bold"), bg="#4a90e2", fg="white", relief=tk.FLAT, padx=10, pady=5, command=self.login)
+        btn.pack(pady=15, fill=tk.X)
 
-# Soru Ayrıştırma Yardımcısı (Her sayfada 1 soru gösterebilmek için metni parçalar)
-def soruları_ayristir(tam_metin):
-    # Ders başlıklarını ve soruları regex ile ayıklama
-    parcalar = []
-    # Örnek soru formatı: "1. Soru metni..." veya "1-) ..."
-    soru_bloklari = re.split(r'\n(?=\d+[\.\)]\s)', tam_metin)
-    
-    for blok in soru_bloklari:
-        match = re.match(r'^(\d+)[\.\)]\s*(.*)', blok.strip(), re.DOTALL)
-        if match:
-            soru_no = int(match.group(1))
-            soru_icerik = match.group(2)
-            parcalar.append({"no": soru_no, "metin": soru_icerik})
-    return parcalar
+    def login(self):
+        username = self.username_entry.get().strip()
+        if not username:
+            messagebox.showerror("Hata", "Kullanıcı adı boş olamaz!")
+            return
+        
+        self.current_user = username
+        if self.current_user not in self.data:
+            self.data[self.current_user] = []
 
+        self.show_main_dashboard()
 
-# Standart PDF Dönüştürücü
-def create_pdf(text, sinif_adi):
-    buffer = io.BytesIO()
-    doc = SimpleDocTemplate(
-        buffer,
-        pagesize=A4,
-        rightMargin=40,
-        leftMargin=40,
-        topMargin=40,
-        bottomMargin=40,
-    )
-    styles = getSampleStyleSheet()
-    normal_style = styles["Normal"]
-    normal_style.fontSize = 9
-    normal_style.leading = 13
+    # --- 2. ANA PANEL & SINAV MERKEZİ ---
+    def show_main_dashboard(self):
+        self.clear_window()
 
-    title_style = ParagraphStyle(
-        "TitleStyle",
-        parent=styles["Heading1"],
-        fontSize=13,
-        leading=16,
-        alignment=1,
-        spaceAfter=15,
-    )
+        # Üst Bilgi Çubuğu
+        top_bar = tk.Frame(self.root, bg="#2c3e50", height=60, padx=20)
+        top_bar.pack(side=tk.TOP, fill=tk.X)
 
-    story = [
-        Paragraph(
-            f"<b>{sinif_adi.upper()} MERKEZİ SİSTEM DENEME SINAVI</b>",
-            title_style,
-        ),
-        Spacer(1, 10),
-    ]
+        tk.Label(top_bar, text=f"Hoş Geldiniz, {self.current_user} (Sınav Merkezi)", font=("Arial", 14, "bold"), bg="#2c3e50", fg="white").pack(side=tk.LEFT, pady=15)
+        tk.Button(top_bar, text="Çıkış Yap", font=("Arial", 10), bg="#e74c3c", fg="white", relief=tk.FLAT, command=self.show_login_screen).pack(side=tk.RIGHT, pady=15)
 
-    for line in text.split("\n"):
-        if line.strip():
-            safe_line = (
-                line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-            )
-            story.append(Paragraph(safe_line, normal_style))
-            story.append(Spacer(1, 3))
-        else:
-            story.append(Spacer(1, 6))
+        # Sekme (Notebook) Yapısı
+        notebook = ttk.Notebook(self.root)
+        notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-    doc.build(story)
-    buffer.seek(0)
-    return buffer.getvalue()
+        self.tab_list = tk.Frame(notebook, bg="#f0f2f5")
+        self.tab_add = tk.Frame(notebook, bg="#f0f2f5")
+        self.tab_compare = tk.Frame(notebook, bg="#f0f2f5")
+        self.tab_general = tk.Frame(notebook, bg="#f0f2f5")
 
+        notebook.add(self.tab_list, text="📋 Sınavlarım & Tekil İnceleme")
+        notebook.add(self.tab_add, text="➕ Yeni Sınav Ekle")
+        notebook.add(self.tab_compare, text="⚖️️ Sınav Karşılaştırma")
+        notebook.add(self.tab_general, text="📊 Genel Değerlendirme")
 
-# Resmi Kitapçık Formatında PDF Üretici
-def create_official_booklet_pdf(text, sinif_adi, donem, hafta_str):
-    buffer = io.BytesIO()
-    doc = SimpleDocTemplate(
-        buffer,
-        pagesize=A4,
-        rightMargin=35,
-        leftMargin=35,
-        topMargin=35,
-        bottomMargin=35,
-    )
-    styles = getSampleStyleSheet()
+        self.setup_list_tab()
+        self.setup_add_tab()
+        self.setup_compare_tab()
+        self.setup_general_tab()
 
-    cover_title_style = ParagraphStyle(
-        "CoverTitle",
-        parent=styles["Heading1"],
-        fontSize=14,
-        leading=18,
-        alignment=1,
-        spaceAfter=6,
-        fontName="Helvetica-Bold",
-    )
-    cover_sub_style = ParagraphStyle(
-        "CoverSub",
-        parent=styles["Normal"],
-        fontSize=10,
-        leading=14,
-        alignment=1,
-        spaceAfter=20,
-        fontName="Helvetica",
-    )
-    question_style = ParagraphStyle(
-        "QuestionStyle",
-        parent=styles["Normal"],
-        fontSize=8.5,
-        leading=12,
-        spaceAfter=8,
-        fontName="Helvetica",
-    )
+    # Sınav Listesi ve Tekil İnceleme Sekmesi
+    def setup_list_tab(self):
+        for widget in self.tab_list.winfo_children():
+            widget.destroy()
 
-    story = [
-        Paragraph(
-            f"T.C. MİLLÎ EĞİTİM BAKANLIĞI<br/><b>{sinif_adi.upper()} DÜZEYİ ÖRNEK SORU KİTAPÇIĞI</b>",
-            cover_title_style,
-        ),
-        Paragraph(
-            f"<b>{donem} - {hafta_str}</b><br/>Bu kitapçık resmi sınav formatına uygun olarak hazırlanmıştır.",
-            cover_sub_style,
-        ),
-        Spacer(1, 10),
-    ]
+        tk.Label(self.tab_list, text="Yapılan Sınavların Listesi", font=("Arial", 12, "bold"), bg="#f0f2f5").pack(anchor=tk.W, padx=10, pady=10)
 
-    for line in text.split("\n"):
-        if line.strip():
-            safe_line = (
-                line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-            )
-            story.append(Paragraph(safe_line, question_style))
+        columns = ("Sınav Adı", "Tarih", "Net / Puan", "Doğru", "Yanlış", "Boş")
+        self.tree = ttk.Treeview(self.tab_list, columns=columns, show="headings", height=12)
+        
+        for col in columns:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, width=120, anchor=tk.CENTER)
 
-    doc.build(story)
-    buffer.seek(0)
-    return buffer.getvalue()
+        self.tree.pack(fill=tk.BOTH, expand=True, padx=10)
 
+        # Verileri doldur
+        self.refresh_exam_list()
 
-# --- Streamlit Arayüzü ---
-st.markdown(
-    "<h1>🎯 Ortaokul ve LGS Deneme Sınavı Üretici</h1>",
-    unsafe_allow_html=True,
-)
-st.markdown(
-    "<p class='subtext'>MEB Müfredatına ve Kazanımlarına Uygun Sınav Sistemi.</p>",
-    unsafe_allow_html=True,
-)
+        btn_frame = tk.Frame(self.tab_list, bg="#f0f2f5")
+        btn_frame.pack(fill=tk.X, padx=10, pady=10)
 
-# Sol Menü (Sidebar) Ayarları
-st.sidebar.header("🗓️ Sınav Kriterleri")
+        tk.Button(btn_frame, text="Seçilen Sınavı Detaylı İncele", bg="#3498db", fg="white", font=("Arial", 10, "bold"), command=self.show_exam_detail).pack(side=tk.LEFT, padx=5)
+        tk.Button(btn_frame, text="Seçilen Sınavı Sil", bg="#e74c3c", fg="white", font=("Arial", 10, "bold"), command=self.delete_exam).pack(side=tk.LEFT, padx=5)
 
-sinif_secimi = st.sidebar.selectbox(
-    "Sınıf Düzeyi Seçin", list(SINIF_MUFREDATLARI.keys())
-)
-donem_secimi = st.sidebar.selectbox("Dönem Seçin", ["1. Dönem", "2. Dönem"])
+    def refresh_exam_list(self):
+        if hasattr(self, 'tree'):
+            for item in self.tree.get_children():
+                self.tree.delete(item)
+            
+            user_exams = self.data.get(self.current_user, [])
+            for idx, exam in enumerate(user_exams):
+                self.tree.insert("", tk.END, iid=idx, values=(
+                    exam.get("name"),
+                    exam.get("date"),
+                    exam.get("score"),
+                    exam.get("correct"),
+                    exam.get("wrong"),
+                    exam.get("empty")
+                ))
 
-hafta_secenekleri = [f"{i}. Hafta" for i in range(1, 19)]
-hafta_secimi_str = st.sidebar.selectbox(
-    "Hafta / Tarama Seçin", hafta_secenekleri
-)
+    def show_exam_detail(self):
+        selected = self.tree.selection()
+        if not selected:
+            messagebox.showwarning("Uyarı", "Lütfen incelenecek bir sınav seçin!")
+            return
+        
+        idx = int(selected[0])
+        exam = self.data[self.current_user][idx]
 
-secilen_hafta_num = int(hafta_secimi_str.split(".")[0])
-ilgili_kazanimlar = HAFTALIK_ICERIKLER.get(
-    secilen_hafta_num, "Standart müfredat kazanımları."
-)
+        detail_win = tk.Toplevel(self.root)
+        detail_win.title(f"Sınav Detayı: {exam['name']}")
+        detail_win.geometry("400x350")
+        detail_win.config(bg="white")
 
-st.sidebar.markdown("---")
-st.sidebar.markdown(f"### 📚 Seçilen Sınav Yapısı ({sinif_secimi})")
-secilen_bilgi = SINIF_MUFREDATLARI[sinif_secimi]
-st.sidebar.markdown(f"📌 **Format:** {secilen_bilgi['aciklama']}")
-st.sidebar.markdown(f"📖 **Haftalık Kapsam:** {ilgili_kazanimlar}")
-st.sidebar.markdown(f"⏱ **Süre:** {secilen_bilgi['sure_dakika']} Dakika")
-
-st.sidebar.markdown("---")
-toplam_soru = sum(secilen_bilgi["soru_dagilimi"].values())
-st.sidebar.markdown(f"🎯 **Toplam Soru Sayısı:** {toplam_soru} Soru")
-
-# Üretim Butonu
-if st.sidebar.button(
-    f"✨ {sinif_secimi} Sınavını Üret",
-    type="primary",
-    use_container_width=True,
-):
-    is_tarama = (
-        secilen_hafta_num in [4, 8, 12, 16, 18]
-        or "TARAMA" in ilgili_kazanimlar
-    )
-    sinav_tip_str = (
-        "AYLIK GENEL TARAMA VE TEKRAR SINAVI"
-        if is_tarama
-        else f"HAFTALIK DENEME SINAVI ({hafta_secimi_str})"
-    )
-
-    dersler = secilen_bilgi["soru_dagilimi"]
-    toplam_ders_sayisi = len(dersler)
-
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-
-    try:
-        uretilen_metinler = [
-            f"=== {sinif_secimi.upper()} - {donem_secimi} {hafta_secimi_str} ({sinav_tip_str}) ===\n"
+        tk.Label(detail_win, text=f"📄 {exam['name']}", font=("Arial", 14, "bold"), bg="white", fg="#2c3e50").pack(pady=15)
+        
+        details = [
+            f"Tarih: {exam.get('date', 'Belirtilmemiş')}",
+            f"Toplam Puan / Net: {exam.get('score')}",
+            f"Doğru Sayısı: {exam.get('correct')}",
+            f"Yanlış Sayısı: {exam.get('wrong')}",
+            f"Boş Sayısı: {exam.get('empty')}",
+            f"Notlar / Açıklama:\n{exam.get('notes', 'Yok')}"
         ]
 
-        adim = 0
-        for ders_adi, soru_adedi in dersler.items():
-            adim += 1
-            status_text.text(
-                f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi ({soru_adedi} soru) hazırlanıyor..."
-            )
+        for d in details:
+            tk.Label(detail_win, text=d, font=("Arial", 11), bg="white", anchor="w").pack(fill=tk.X, padx=30, pady=3)
 
-            prompt = f"""
-            Sen uzman bir MEB müfredat rehber öğretmeni ve soru yazarısın. 
-            {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
-            Kazanım/İçerik: {ilgili_kazanimlar}
-            
-            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, MEB yeni nesil mantık-muhakeme çoktan seçmeli (A, B, C, D şıklı) soru hazırla.
-            Soruların numaralandırmasını 1'den {soru_adedi}'ne kadar yap. Başka hiçbir dersin sorusunu ekleme.
-            """
+    def delete_exam(self):
+        selected = self.tree.selection()
+        if not selected:
+            messagebox.showwarning("Uyarı", "Lütfen silinecek bir sınav seçin!")
+            return
+        
+        if messagebox.askyesno("Onay", "Seçilen sınavı silmek istediğinize emin misiniz?"):
+            idx = int(selected[0])
+            del self.data[self.current_user][idx]
+            self.save_data()
+            self.refresh_exam_list()
+            self.setup_compare_tab()
+            self.setup_general_tab()
+            messagebox.showinfo("Başarılı", "Sınav silindi.")
 
-            ders_yaniti = ai_icerik_uret(prompt)
+    # --- 3. YENİ SINAV EKLEME SEKMESİ ---
+    def setup_add_tab(self):
+        for widget in self.tab_add.winfo_children():
+            widget.destroy()
 
-            uretilen_metinler.append(
-                f"\n\n--- {ders_adi.upper()} ({soru_adedi} SORU) ---\n" + ders_yaniti
-            )
-            progress_bar.progress(adim / toplam_ders_sayisi)
-            time.sleep(0.3)
+        form_frame = tk.Frame(self.tab_add, bg="white", padx=30, pady=30, relief=tk.RAISED, borderwidth=1)
+        form_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER, width=500, height=450)
 
-        status_text.text(
-            "📝 Tüm dersler tamamlandı, cevap anahtarı ve çözümler ekleniyor..."
-        )
-        cozum_prompt = f"""
-        Yukarıda soruları hazırlanan {sinif_secimi} {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
-        Tüm derslerin soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
-        """
-        cozum_yaniti = ai_icerik_uret(cozum_prompt)
-        uretilen_metinler.append(
-            "\n\n--- CEVAP ANAHTARI VE ÇÖZÜMLER ---\n" + cozum_yaniti
-        )
+        tk.Label(form_frame, text="Yeni Sınav Sonucu Ekle", font=("Arial", 14, "bold"), bg="white", fg="#333").pack(pady=10)
 
-        progress_bar.progress(1.0)
-        status_text.empty()
+        fields = [
+            ("Sınav Adı (Örn: TYT Deneme 1)", "name"),
+            ("Tarih (Örn: 01.10.2026)", "date"),
+            ("Net / Puan", "score"),
+            ("Doğru Sayısı", "correct"),
+            ("Yanlış Sayısı", "wrong"),
+            ("Boş Sayısı", "empty")
+        ]
 
-        st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
-        st.session_state["aktif_sinif"] = sinif_secimi
-        st.session_state["sinav_baslatildi"] = False
-        st.session_state["aktif_soru_index"] = 0
-        st.success(
-            f"🎉 {sinif_secimi} - {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
-        )
+        self.entries = {}
+        for label_text, key in fields:
+            f = tk.Frame(form_frame, bg="white")
+            f.pack(fill=tk.X, pady=5)
+            tk.Label(f, text=label_text, font=("Arial", 10), bg="white", width=20, anchor="w").pack(side=tk.LEFT)
+            e = tk.Entry(f, font=("Arial", 10), relief=tk.SOLID, borderwidth=1)
+            e.pack(side=tk.RIGHT, expand=True, fill=tk.X)
+            self.entries[key] = e
 
-    except Exception as e:
-        st.error(f"Sınav üretilirken bir hata oluştu: {e}")
+        tk.Button(form_frame, text="Sınavı Kaydet", font=("Arial", 11, "bold"), bg="#27ae60", fg="white", relief=tk.FLAT, command=self.save_exam).pack(pady=20, fill=tk.X)
 
-# Sınav İçeriğini ve Başlatma Mantığını Yönetme
-if "sinav_metni" in st.session_state:
-    aktif_sinif = st.session_state.get("aktif_sinif", sinif_secimi)
-    sure_dk = SINIF_MUFREDATLARI[aktif_sinif]["sure_dakika"]
-    total_seconds = sure_dk * 60
+    def save_exam(self):
+        exam_data = {}
+        for key, entry in self.entries.items():
+            val = entry.get().strip()
+            if not val and key in ["name", "score"]:
+                messagebox.showerror("Hata", "Sınav adı ve Puan/Net alanları zorunludur!")
+                return
+            exam_data[key] = val
 
-    if not st.session_state.get("sinav_baslatildi", False):
-        st.markdown("---")
-        col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
-        with col_b2:
-            if st.button(
-                "🚀 Sınavı Başlat ve Süreyi Başlat",
-                type="primary",
-                use_container_width=True,
-            ):
-                st.session_state["sinav_baslatildi"] = True
-                st.session_state["aktif_soru_index"] = 0
-                st.rerun()
+        self.data[self.current_user].append(exam_data)
+        self.save_data()
+        messagebox.showinfo("Başarılı", "Sınav başarıyla Sınav Merkezi'ne eklendi!")
 
-        st.info(
-            "💡 Sınavınız hazır! Süreyi ve soruları her sayfada tek soru olacak şekilde görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
-        )
+        # Formu temizle
+        for entry in self.entries.values():
+            entry.delete(0, tk.END)
 
-    if st.session_state.get("sinav_baslatildi", False):
-        timer_html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <style>
-          .timer-container {{
-              background: linear-gradient(135deg, #1e3d59 0%, #17b978 100%);
-              color: white;
-              padding: 22px;
-              border-radius: 14px;
-              text-align: center;
-              font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-              box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-              margin-bottom: 25px;
-          }}
-          .timer-title {{
-              font-size: 1.15rem;
-              font-weight: 600;
-              margin-bottom: 8px;
-              letter-spacing: 0.5px;
-              text-transform: uppercase;
-          }}
-          .timer-display {{
-              font-size: 3.2rem;
-              font-weight: 800;
-              letter-spacing: 3px;
-              font-variant-numeric: tabular-nums;
-              text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-          }}
-          .timer-controls {{
-              margin-top: 15px;
-          }}
-          .btn {{
-              background-color: white;
-              color: #1e3d59;
-              border: none;
-              padding: 8px 18px;
-              border-radius: 6px;
-              font-weight: bold;
-              cursor: pointer;
-              margin: 0 6px;
-              transition: 0.2s;
-              font-size: 0.95rem;
-          }}
-          .btn:hover {{
-              background-color: #f1f3f5;
-              transform: translateY(-1px);
-          }}
-        </style>
-        </head>
-        <body>
-          <div class="timer-container">
-            <div class="timer-title">⏱️ Resmi Sınav Simülasyon Süresi ({sure_dk} Dakika)</div>
-            <div class="timer-display" id="clock">00:00:00</div>
-            <div class="timer-controls">
-              <button class="btn" onclick="toggleTimer()" id="startBtn">Başlat / Durdur</button>
-              <button class="btn" onclick="resetTimer()">Sıfırla</button>
-            </div>
-          </div>
+        # Diğer sekmeleri güncelle
+        self.refresh_exam_list()
+        self.setup_compare_tab()
+        self.setup_general_tab()
 
-          <script>
-            let totalSeconds = {total_seconds};
-            let timeLeft = totalSeconds;
-            let timerId = null;
-            let isRunning = false;
+    # --- 4. SINAV KARŞILAŞTIRMA SEKMESİ ---
+    def setup_compare_tab(self):
+        for widget in self.tab_compare.winfo_children():
+            widget.destroy()
 
-            function updateDisplay() {{
-                let hours = Math.floor(timeLeft / 3600);
-                let minutes = Math.floor((timeLeft % 3600) / 60);
-                let secs = timeLeft % 60;
-                document.getElementById('clock').innerText = 
-                    String(hours).padStart(2, '0') + ':' + 
-                    String(minutes).padStart(2, '0') + ':' + 
-                    String(secs).padStart(2, '0');
-            }}
+        user_exams = self.data.get(self.current_user, [])
+        if not user_exams:
+            tk.Label(self.tab_compare, text="Karşılaştırma için henüz kayıtlı sınavınız bulunmuyor.", font=("Arial", 11), bg="#f0f2f5").pack(pady=50)
+            return
 
-            function startTimer() {{
-                if (!isRunning) {{
-                    isRunning = true;
-                    timerId = setInterval(() => {{
-                        if (timeLeft > 0) {{
-                            timeLeft--;
-                            updateDisplay();
-                        }} else {{
-                            clearInterval(timerId);
-                            alert("Sınav Süresi Bitti!");
-                            isRunning = false;
-                        }}
-                    }}, 1000);
-                }}
-            }}
+        tk.Label(self.tab_compare, text="Sınav Karşılaştırma Paneli", font=("Arial", 12, "bold"), bg="#f0f2f5").pack(anchor=tk.W, padx=10, pady=10)
 
-            function toggleTimer() {{
-                if (isRunning) {{
-                    clearInterval(timerId);
-                    isRunning = false;
-                }} else {{
-                    startTimer();
-                }}
-            }}
+        select_frame = tk.Frame(self.tab_compare, bg="#f0f2f5")
+        select_frame.pack(fill=tk.X, padx=10)
 
-            function resetTimer() {{
-                clearInterval(timerId);
-                isRunning = false;
-                timeLeft = totalSeconds;
-                updateDisplay();
-            }}
+        tk.Label(select_frame, text="1. Sınav:", bg="#f0f2f5", font=("Arial", 10, "bold")).pack(side=tk.LEFT, padx=5)
+        exam_names = [e["name"] for e in user_exams]
+        
+        self.cb1 = ttk.Combobox(select_frame, values=exam_names, state="readonly", width=25)
+        self.cb1.pack(side=tk.LEFT, padx=5)
+        if exam_names: self.cb1.current(0)
 
-            updateDisplay();
-            startTimer();
-          </script>
-        </body>
-        </html>
-        """
+        tk.Label(select_frame, text="2. Sınav:", bg="#f0f2f5", font=("Arial", 10, "bold")).pack(side=tk.LEFT, padx=5)
+        self.cb2 = ttk.Combobox(select_frame, values=exam_names, state="readonly", width=25)
+        self.cb2.pack(side=tk.LEFT, padx=5)
+        if len(exam_names) > 1: self.cb2.current(1)
+        elif exam_names: self.cb2.current(0)
 
-        components.html(timer_html, height=195)
+        tk.Button(select_frame, text="Karşılaştır", bg="#2980b9", fg="white", font=("Arial", 10, "bold"), command=self.run_comparison).pack(side=tk.LEFT, padx=15)
 
-        # Soruları ve Bölümleri Ayıkla
-        metin = st.session_state["sinav_metni"]
-        bulunan_sorular = soruları_ayristir(metin)
+        self.compare_result_frame = tk.Frame(self.tab_compare, bg="white", relief=tk.RAISED, borderwidth=1)
+        self.compare_result_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=15)
 
-        if bulunan_sorular:
-            if "aktif_soru_index" not in st.session_state:
-                st.session_state["aktif_soru_index"] = 0
+    def run_comparison(self):
+        for widget in self.compare_result_frame.winfo_children():
+            widget.destroy()
 
-            toplam_bulunan = len(bulunan_sorular)
-            
-            # Güvenli index kontrolü
-            if st.session_state["aktif_soru_index"] >= toplam_bulunan:
-                st.session_state["aktif_soru_index"] = toplam_bulunan - 1
+        idx1 = self.cb1.current()
+        idx2 = self.cb2.current()
+        user_exams = self.data.get(self.current_user, [])
 
-            current_idx = st.session_state["aktif_soru_index"]
-            soru_obj = bulunan_sorular[current_idx]
+        if idx1 < 0 or idx2 < 0 or idx1 >= len(user_exams) or idx2 >= len(user_exams):
+            return
 
-            st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-            st.subheader(f"📝 Soru {current_idx + 1} / {toplam_bulunan}")
-            st.markdown(f"**Soru {soru_obj['no']}**")
-            st.markdown(soru_obj['metin'])
-            
-            # Öğrencinin interaktif cevap verebilmesi için şık seçimi
-            st.radio(
-                "Cevabınız:", 
-                ["Seçiniz...", "A", "B", "C", "D"], 
-                key=f"cevap_{current_idx}",
-                horizontal=True
-            )
-            st.markdown("</div>", unsafe_allow_html=True)
+        e1 = user_exams[idx1]
+        e2 = user_exams[idx2]
 
-            # İlerleme Butonları
-            col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
-            with col_nav1:
-                if current_idx > 0:
-                    if st.button("⬅️ Önceki Soru", use_container_width=True):
-                        st.session_state["aktif_soru_index"] -= 1
-                        st.rerun()
-            with col_nav3:
-                if current_idx < toplam_bulunan - 1:
-                    if st.button("Sonraki Soru ➡️", use_container_width=True):
-                        st.session_state["aktif_soru_index"] += 1
-                        st.rerun()
-                else:
-                    if st.button("🏁 Sınavı Bitir", type="primary", use_container_width=True):
-                        st.success("Sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
-        else:
-            # Yedek görünüm (Eğer ayrıştırılamazsa tüm metin gösterilir)
-            st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-            st.subheader(f"📝 Oluşturulan {aktif_sinif} Sınavı ({hafta_secimi_str})")
-            st.markdown(st.session_state["sinav_metni"])
-            st.markdown("</div>", unsafe_allow_html=True)
+        # Grafik oluşturma
+        fig, ax = plt.subplots(figsize=(6, 3.5))
+        categories = ['Puan/Net', 'Doğru', 'Yanlış', 'Boş']
+        
+        try:
+            val1 = [float(e1.get('score', 0)), float(e1.get('correct', 0)), float(e1.get('wrong', 0)), float(e1.get('empty', 0))]
+            val2 = [float(e2.get('score', 0)), float(e2.get('correct', 0)), float(e2.get('wrong', 0)), float(e2.get('empty', 0))]
+        except ValueError:
+            val1 = [0, 0, 0, 0]
+            val2 = [0, 0, 0, 0]
 
-        st.markdown("### 📥 Sınav Çıktı Seçenekleri")
-        col1, col2 = st.columns(2)
+        x = range(len(categories))
+        width = 0.35
 
-        with col1:
-            pdf_bytes = create_pdf(st.session_state["sinav_metni"], aktif_sinif)
-            st.download_button(
-                label="📄 Standart Sınav PDF İndir",
-                data=pdf_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-                mime="application/pdf",
-                use_container_width=True,
-            )
+        ax.bar([i - width/2 for i in x], val1, width, label=e1['name'], color="#3498db")
+        ax.bar([i + width/2 for i in x], val2, width, label=e2['name'], color="#e67e22")
 
-        with col2:
-            booklet_bytes = create_official_booklet_pdf(
-                st.session_state["sinav_metni"],
-                aktif_sinif,
-                donem_secimi,
-                hafta_secimi_str,
-            )
-            st.download_button(
-                label="📘 Resmi Sınav Kitapçığı PDF İndir",
-                data=booklet_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-                mime="application/pdf",
-                use_container_width=True,
-            )
+        ax.set_ylabel('Değerler')
+        ax.set_title('Sınav Karşılaştırması')
+        ax.set_xticks(x)
+        ax.set_xticklabels(categories)
+        ax.legend()
+
+        canvas = FigureCanvasTkAgg(fig, master=self.compare_result_frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+    # --- 5. GENEL DEĞERLENDİRME SEKMESİ ---
+    def setup_general_tab(self):
+        for widget in self.tab_general.winfo_children():
+            widget.destroy()
+
+        user_exams = self.data.get(self.current_user, [])
+        if not user_exams:
+            tk.Label(self.tab_general, text="Genel değerlendirme için henüz kayıtlı sınavınız bulunmuyor.", font=("Arial", 11), bg="#f0f2f5").pack(pady=50)
+            return
+
+        tk.Label(self.tab_general, text="Genel Değerlendirme & Gelişim Grafiği", font=("Arial", 12, "bold"), bg="#f0f2f5").pack(anchor=tk.W, padx=10, pady=10)
+
+        # Özet İstatistikler
+        try:
+            scores = [float(e.get('score', 0)) for e in user_exams]
+            avg_score = sum(scores) / len(scores) if scores else 0
+            max_score = max(scores) if scores else 0
+        except:
+            avg_score, max_score = 0, 0
+
+        stats_frame = tk.Frame(self.tab_general, bg="white", padx=15, pady=10, relief=tk.RAISED, borderwidth=1)
+        stats_frame.pack(fill=tk.X, padx=10, pady=5)
+
+        tk.Label(stats_frame, text=f"Toplam Sınav: {len(user_exams)}", font=("Arial", 10, "bold"), bg="white").pack(side=tk.LEFT, padx=15)
+        tk.Label(stats_frame, text=f"Ortalama Puan/Net: {avg_score:.2f}", font=("Arial", 10, "bold"), bg="white", fg="#2980b9").pack(side=tk.LEFT, padx=15)
+        tk.Label(stats_frame, text=f"En Yüksek Puan/Net: {max_score}", font=("Arial", 10, "bold"), bg="white", fg="#27ae60").pack(side=tk.LEFT, padx=15)
+
+        # Çizgi Grafik (Gelişim Trendi)
+        graph_frame = tk.Frame(self.tab_general, bg="white", relief=tk.RAISED, borderwidth=1)
+        graph_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+
+        fig, ax = plt.subplots(figsize=(7, 3.5))
+        names = [e.get('name', f"Sınav {i+1}") for i, e in enumerate(user_exams)]
+        
+        try:
+            y_vals = [float(e.get('score', 0)) for e in user_exams]
+        except:
+            y_vals = [0] * len(user_exams)
+
+        ax.plot(names, y_vals, marker='o', color='#2ecc71', linewidth=2, markersize=8)
+        ax.set_title("Zamana Göre Sınav Puan / Net Gelişimi")
+        ax.set_ylabel("Puan / Net")
+        plt.xticks(rotation=15, ha='right')
+        fig.tight_layout()
+
+        canvas = FigureCanvasTkAgg(fig, master=graph_frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = SinavMerkeziApp(root)
+    root.mainloop()
