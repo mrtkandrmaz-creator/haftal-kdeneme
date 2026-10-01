@@ -79,14 +79,18 @@ if not GROQ_KEYS and not GEMINI_KEYS:
     st.stop()
 
 # Oturum Durumları
-if "quiz_started" not in st.session_state:
-    st.session_state.quiz_started = False
 if "questions" not in st.session_state:
     st.session_state.questions = []
+if "quiz_ready" not in st.session_state:
+    st.session_state.quiz_ready = False
+if "quiz_started" not in st.session_state:
+    st.session_state.quiz_started = False
 if "start_time" not in st.session_state:
     st.session_state.start_time = None
 if "selected_answers" not in st.session_state:
     st.session_state.selected_answers = {}
+if "current_page" not in st.session_state:
+    st.session_state.current_page = 0
 
 # Yan Menü - Kapsam ve Dönem Seçimi
 st.sidebar.markdown("## ⚙️ Müfredat & Çoklu API Havuzu")
@@ -114,7 +118,7 @@ st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>�
 st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Tanımlı çoklu Groq ve Gemini anahtarları arasında arka planda akıllı geçiş yapan 80 soruluk LGS sistemi.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# Groq Çağrı Fonksiyonu (Güncel Model: openai/gpt-oss-120b)
+# Groq Çağrı Fonksiyonu
 def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
     client = Groq(api_key=api_key)
@@ -129,7 +133,7 @@ def call_groq_with_key(api_key, prompt_text):
     )
     return completion.choices[0].message.content
 
-# Gemini Çağrı Fonksiyonu (Güncel ve Kararlı Model: gemini-1.5-flash)
+# Gemini Çağrı Fonksiyonu
 def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
@@ -144,7 +148,7 @@ def call_gemini_with_key(api_key, prompt_text):
         text = text.split("```")[1].split("```")[0].strip()
     return text
 
-# Arka Planda Çalışan Akıllı Dağıtıcı (Silent Load Balancer & Fallback)
+# Arka Planda Çalışan Akıllı Dağıtıcı
 def multi_pool_generate(prompt_text):
     attempts = []
     for i, key in enumerate(GROQ_KEYS):
@@ -161,7 +165,6 @@ def multi_pool_generate(prompt_text):
     last_error = None
     for provider, index, key, func in attempts:
         try:
-            # Hatalar arayüzü kirletmemesi için arka planda sessiz denenir
             result = func(key, prompt_text)
             if result:
                 return result, None
@@ -204,18 +207,30 @@ if generate_btn:
             try:
                 data = json.loads(raw_json)
                 st.session_state.questions = data.get("questions", [])
-                st.session_state.quiz_started = True
-                st.session_state.start_time = time.time()
-                experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
-                if experimental_rerun:
-                    experimental_rerun()
+                st.session_state.quiz_ready = True
+                st.session_state.quiz_started = False
+                st.session_state.selected_answers = {}
+                st.session_state.current_page = 0
+                st.success("✅ Sorular başarıyla üretildi! Aşağıdan sınavı başlatabilirsiniz.")
             except json.JSONDecodeError:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
         else:
             st.error(f"❌ Tanımlı tüm API anahtarları arka planda denendi fakat yanıt alınamadı. Detay: {error_message}")
 
-# Sınav Ekranı ve Büyük Puntolu Arayüz
+# Sorular Üretildikten Sonra Görünen "Sınavı Başlat" Butonu
+if st.session_state.quiz_ready and not st.session_state.quiz_started:
+    st.markdown("---")
+    sc1, sc2, sc3 = st.columns([1, 2, 1])
+    with sc2:
+        if st.button("🎯 Sınavı Şimdi Başlat"):
+            st.session_state.quiz_started = True
+            st.session_state.start_time = time.time()
+            experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
+            if experimental_rerun:
+                experimental_rerun()
+
+# Sınav Ekranı (Her Sayfada 1 Soru)
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
     total_time_seconds = total_questions * 80  
@@ -231,31 +246,62 @@ if st.session_state.quiz_started and st.session_state.questions:
     header_col1, header_col2 = st.columns([2, 1])
     with header_col1:
         st.markdown(f"### 📋 {term} - {selected_scope} Deneme Sınavı")
-        st.markdown(f"<span class='badge'>Toplam Soru: {total_questions}</span> <span class='badge'>Soru Başı Süre: 80 Saniye</span>", unsafe_allow_html=True)
+        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Soru Başı Süre: 80 Saniye</span>", unsafe_allow_html=True)
     with header_col2:
         st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
 
     st.markdown("---")
 
-    for idx, q in enumerate(st.session_state.questions):
-        st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
-        sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
-        st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}: {q['question']}</p>", unsafe_allow_html=True)
-        
-        options = q['options']
-        choice = st.radio(
-            f"**Soru {idx + 1} Şıkları:**",
-            options=list(options.keys()),
-            format_func=lambda x: f"{x}) {options[x]}",
-            key=f"q_{idx}"
-        )
-        st.session_state.selected_answers[idx] = choice
-        st.markdown(f"</div>", unsafe_allow_html=True)
+    idx = st.session_state.current_page
+    q = st.session_state.questions[idx]
 
+    st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
+    sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
+    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}: {q['question']}</p>", unsafe_allow_html=True)
+    
+    options = q['options']
+    
+    # Mevcut sorunun daha önce verilmiş bir cevabı var mı kontrol et
+    current_val = st.session_state.selected_answers.get(idx)
+    default_index = None
+    if current_val in list(options.keys()):
+        default_index = list(options.keys()).index(current_val)
+
+    choice = st.radio(
+        f"**Soru {idx + 1} Şıkları:**",
+        options=list(options.keys()),
+        index=default_index,
+        format_func=lambda x: f"{x}) {options[x]}",
+        key=f"q_{idx}"
+    )
+    if choice:
+        st.session_state.selected_answers[idx] = choice
+        
+    st.markdown(f"</div>", unsafe_allow_html=True)
+
+    # İleri / Geri Navigasyon Butonları
+    nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
+    with nav_col1:
+        if st.session_state.current_page > 0:
+            if st.button("⬅️ Önceki Soru"):
+                st.session_state.current_page -= 1
+                experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
+                if experimental_rerun:
+                    experimental_rerun()
+                    
+    with nav_col3:
+        if st.session_state.current_page < total_questions - 1:
+            if st.button("Sonraki Soru ➡️"):
+                st.session_state.current_page += 1
+                experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
+                if experimental_rerun:
+                    experimental_rerun()
+
+    st.markdown("---")
     if st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör"):
         correct_count, wrong_count = 0, 0
-        for idx, q in enumerate(st.session_state.questions):
-            if st.session_state.selected_answers.get(idx) == q['answer']:
+        for i, q_item in enumerate(st.session_state.questions):
+            if st.session_state.selected_answers.get(i) == q_item['answer']:
                 correct_count += 1
             else:
                 wrong_count += 1
@@ -270,11 +316,11 @@ if st.session_state.quiz_started and st.session_state.questions:
         res_col3.metric("🎯 Genel Başarı Puanı", f"{score:.1f} Puan")
 
         with st.expander("📖 Detaylı Soru Çözüm ve Cevap Anahtarını İncele"):
-            for idx, q in enumerate(st.session_state.questions):
-                user_ans = st.session_state.selected_answers.get(idx)
-                status = "✅" if user_ans == q['answer'] else "❌"
-                st.markdown(f"**Soru {idx + 1} ({q.get('subject', '')}):** {q['question']}")
-                st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q['answer']}** {status}")
+            for i, q_item in enumerate(st.session_state.questions):
+                user_ans = st.session_state.selected_answers.get(i, "Boş")
+                status = "✅" if user_ans == q_item['answer'] else "❌"
+                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):** {q_item['question']}")
+                st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
 
     if remaining_time > 0:
