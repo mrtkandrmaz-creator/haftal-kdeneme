@@ -244,7 +244,7 @@ if "selected_answers" not in st.session_state:
 if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 
-# Yan Menü - Sınıf, Dönem, Kapsam ve Zorluk Ayarları
+# Yan Menü - Sınıf, Dönem, Kapsam ve Zorluk Ayarları (Zorluklar 2+ kademe artırıldı)
 st.sidebar.markdown("## ⚙️ MEB Müfredat & Sınav Ayarları")
 st.sidebar.markdown("---")
 
@@ -263,12 +263,12 @@ weeks_options.extend([
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
 
 difficulty_level = st.sidebar.selectbox(
-    "📊 Soru Zorluk Derecesi",
+    "📊 Soru Zorluk Derecesi (Gelişmiş Seviye)",
     [
-        "Orta / MEB Beceri Temelli (Dengeli)",
-        "Kolay / Temel Düzey (Kazanım Pekiştirme)",
-        "Zor / LGS Seçici (Üst Düzey Muhakeme)",
-        "Karma / Çeşitlendirilmiş Zorluk Dağılımı"
+        "🚀 Üst Düzey Zor / LGS Seçici (2 Kademe Artırılmış - Çok Aşamalı Muhakeme)",
+        "⚡ Çok Zor / Olimpiyat & Beceri Odaklı (En Üst Sınır Zorluk)",
+        "🎯 Zorlaştırılmış Orta / MEB Beceri Temelli (Güçlendirilmiş)",
+        "🔥 Karma / Çok Katmanlı Zorluk Dağılımı (Tüm Seviyelerin 2 Kademe Üstü)"
     ]
 )
 
@@ -280,7 +280,7 @@ generate_btn = st.sidebar.button("Soruları Üret")
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b> | Zorluk: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
+st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b> | Zorluk Modu: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -293,7 +293,7 @@ def call_groq_with_key(api_key, prompt_text):
             {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve LGS soru hazırlama uzmanısın. Eksiksiz JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
-        temperature=0.7,
+        temperature=0.8,
         max_tokens=8000,
         response_format={"type": "json_object"}
     )
@@ -342,20 +342,21 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için eksiksiz paragraf/öncüllü, LGS ağırlıklı 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için **en az 2 kademe daha zorlaştırılmış**, çok aşamalı yeni nesil 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
-            f"ZORLUK SEVİYESİ: '{difficulty_level}'.\n\n"
+            f"ZORLUK SEVİYESİ VE KALİTE TALİMATI: '{difficulty_level}'.\n"
+            "DİKKAT: Sorular standart müfredat sorularından **en az ikişer kademe daha zor**, üst düzey bilişsel becerilere (analiz, sentez, mantık yürüttürme, çeldirici eleme) dayalı, çok aşamalı ve LGS Türkiye dereceleri hedefleyen öğrencileri zorlayacak nitelikte olmalıdır!\n\n"
             "LGS VE MERKEZİ SINAV DERS DAĞILIMI (80 SORU TOPLAMI):\n"
-            "1. Türkçe: 20 Soru (1-20 arası)\n"
-            "2. Matematik: 20 Soru (21-40 arası)\n"
-            "3. Fen Bilimleri: 20 Soru (41-60 arası)\n"
-            "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (61-70 arası)\n"
-            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (71-80 arası)\n\n"
+            "1. Türkçe: 20 Soru (1-20 arası) - Uzun metinli, eleştirel okuma, görsel yorumlama ve mantık muhakemesi ağırlıklı.\n"
+            "2. Matematik: 20 Soru (21-40 arası) - Günlük hayat problemleri, çok katmanlı formül/bağıntı gerektiren, şekil yorumlama ve işlem yoğun.\n"
+            "3. Fen Bilimleri: 20 Soru (41-60 arası) - Deney yorumlama, grafik analizi, değişken bulma ve hipotez test etme odaklı.\n"
+            "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (61-70 arası) - Öncüllü yorum, harita/belge analizi ve kavram bilgisi ağır.\n"
+            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (71-80 arası) - Ayet/hadis yorumu ve bağlam temelli çıkarım yapma.\n\n"
             "HAYATİ ÖNEM TAŞIYAN GEOMETRİ VE GÖRSEL KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
             "1. GEOMETRİK ŞEKİL GEREKTİREN SORULAR: Çember, dik üçgen, eşkenar üçgen, ikizkenar üçgen, kare veya dikdörtgen içeren matematik/geometri sorularında `shape` alanı ASLA boş bırakılmamalıdır! Soruya uygun görsel nesne JSON formatına eklenmelidir.\n"
-            "2. CEVAP SIZDIRMA YASAĞI: Şekiller üzerinde sorunun çözümü olan bilinmeyen değerler (örneğin sorulan açı veya kenar uzunluğu) kesinlikle yazılmamalıdır; şekil yalnızca bilinen dış ipuçlarını (merkez noktası, yarıçap etiketi vb.) içermelidir.\n"
+            "2. CEVAP SIZDIRMA YASAĞI: Şekiller üzerinde sorunun çözümü olan bilinmeyen değerler (örneğin sorulan açı veya kenار uzunluğu) kesinlikle yazılmamalıdır; şekil yalnızca bilinen dış ipuçlarını içermelidir.\n"
             "   - Üçgen formatı: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
             "   - Çember formatı: `{\"type\": \"circle\", \"center\": \"O\", \"radius\": \"...\", \"show_diameter\": true/false}`\n"
             "   - Kare / Dikdörtgen formatı: `{\"type\": \"square\" (veya \"rectangle\"), \"title\": \"...\", \"width\": \"...\", \"height\": \"...\"}`\n"
@@ -391,7 +392,7 @@ if generate_btn:
                 st.session_state.quiz_started = False
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
-                st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
+                st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} üst düzey zorlukta soru başarıyla üretildi!")
             except json.JSONDecodeError:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
@@ -411,7 +412,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
 # Sınav Ekranı
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
-    total_time_seconds = total_questions * 80  
+    total_time_seconds = total_questions * 90  # Daha zor sorular için süre optimize edildi
     
     elapsed_time = int(time.time() - st.session_state.start_time)
     remaining_time = max(0, total_time_seconds - elapsed_time)
@@ -424,7 +425,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     header_col1, header_col2 = st.columns([2, 1])
     with header_col1:
         st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) 80 Soruluk LGS Denemesi")
-        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Zorluk: {difficulty_level}</span>", unsafe_allow_html=True)
+        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Zorluk Modu: {difficulty_level}</span>", unsafe_allow_html=True)
     with header_col2:
         st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
 
