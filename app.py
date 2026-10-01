@@ -114,12 +114,12 @@ st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>�
 st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Tanımlı çoklu Groq ve Gemini anahtarları arasında akıllı geçiş yapan 80 soruluk LGS sistemi.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# Groq Çağrı Fonksiyonu
+# Groq Çağrı Fonksiyonu (Güncel Model: llama-3.1-70b-versatile)
 def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
     client = Groq(api_key=api_key)
     completion = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-70b-versatile",
         messages=[
             {"role": "system", "content": "Sen kıdemli bir 5. sınıf MEB müfredat ve LGS soru hazırlama uzmanısın. Yalnızca geçerli JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
@@ -129,12 +129,12 @@ def call_groq_with_key(api_key, prompt_text):
     )
     return completion.choices[0].message.content
 
-# Gemini Çağrı Fonksiyonu (Yeni Google GenAI SDK Uyumu)
+# Gemini Çağrı Fonksiyonu (Güncel Model: gemini-3.8-flash)
 def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents=prompt_text,
     )
     text = response.text
