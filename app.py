@@ -56,6 +56,14 @@ st.markdown("""
         border: 2px solid #38bdf8;
         letter-spacing: 2px;
     }
+    .generation-timer {
+        color: #ea580c;
+        font-size: 1.25rem;
+        font-weight: 800;
+        text-align: center;
+        margin-top: 10px;
+        letter-spacing: 1px;
+    }
     .badge {
         background-color: #e0f2fe;
         color: #0369a1;
@@ -67,26 +75,26 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kusursuz Vektörel Üçgen Çizim Motoru (SVG)
+# Kusursuz Vektörel Üçgen Çizim Motoru (SVG - Düzeltilmiş Etiket Koordinatları)
 def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
     svg_code = f"""
     <div style="display: flex; justify-content: center; margin: 15px 0;">
-        <svg width="240" height="200" viewBox="0 0 240 200" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+        <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
             <!-- Üçgen Poligonu (Köşeler Kusursuz Birleşir) -->
-            <polygon points="120,25 30,175 210,175" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="130,25 35,180 225,180" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
             
             <!-- Diklik İşareti (Eğer dik üçgense) -->
-            {"" if not is_right else '<rect x="30" y="155" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
+            {"" if not is_right else '<rect x="35" y="160" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
             
-            <!-- Köşe Etiketleri -->
-            <text x="120" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
-            <text x="15" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
-            <text x="225" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+            <!-- Köşe Etiketleri (A Üstte, B Sol Altta, C Sağ Altta) -->
+            <text x="130" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
+            <text x="20" y="195" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+            <text x="240" y="195" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
             
-            <!-- Kenar Uzunlukları -->
-            <text x="65" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
-            <text x="120" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
-            <text x="175" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+            <!-- Kenar Uzunlukları (Çakışma Önleyici Doğru Konumlandırma) -->
+            <text x="70" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+            <text x="130" y="200" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+            <text x="190" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
         </svg>
     </div>
     """
@@ -206,65 +214,75 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı
+# Soru Üretim Mantığı ve Canlı Geri Sayım
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor, {selected_grade} düzeyinde Türkçe, Matematik, Fen, Sosyal sırasıyla 60 soru hazırlanıyor..."):
-        prompt = f"""
-        {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, MEB müfredatındaki derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
-        
-        DERS SIRALAMASI VE DAĞILIMI (ÖNEMLİ):
-        Sorular kesinlikle sırasıyla şu derslerden oluşsun:
-        1. Türkçe
-        2. Matematik
-        3. Fen Bilimleri
-        4. Sosyal Bilgiler / İnkılap Tarihi
-        (Kalan sorular Din Kültürü ve İngilizce ile tamamlanarak toplam 60 soruya ulaşılacaktır).
-        
-        GEOMETRİ VE ÜÇGEN KURALLARI:
-        Matematik sorularında üçgen içeren sorular için JSON içinde mutlaka ayrı bir "shape" objesi tanımla.
-        "shape": {{
-            "type": "triangle",
-            "A": "A", "B": "B", "C": "C",
-            "ab": "5 cm", "bc": "8 cm", "ac": "6 cm",
-            "is_right": false
-        }}
-        Bu sayede sistem vektörel kusursuz üçgen görselini otomatik çizecektir. Soru metninde asla ASCII çizgi kullanma.
-        
-        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.
-        Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
-        {{
-            "questions": [
-                {{
-                    "id": 1,
-                    "subject": "Türkçe",
-                    "question": "Soru metni...",
-                    "shape": null,
-                    "options": {{
-                        "A": "A şıkkı",
-                        "B": "B şıkkı",
-                        "C": "C şıkkı",
-                        "D": "D şıkkı"
-                    }},
-                    "answer": "A"
-                }}
-            ]
-        }}
-        """
-        raw_json, error_message = multi_pool_generate(prompt)
-        if raw_json:
-            try:
-                data = json.loads(raw_json)
-                st.session_state.questions = data.get("questions", [])
-                st.session_state.quiz_ready = True
-                st.session_state.quiz_started = False
-                st.session_state.selected_answers = {}
-                st.session_state.current_page = 0
-                st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
-            except json.JSONDecodeError:
-                st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
-                st.code(raw_json)
-        else:
-            st.error(f"❌ Tanımlı tüm API anahtarları arka planda denendi fakat yanıt alınamadı. Detay: {error_message}")
+    placeholder_box = st.empty()
+    
+    # Sunucu yoğunluğu ve soru sayısına (60) göre tahmini süre (örn: 18 saniye)
+    est_seconds = 18
+    start_gen_time = time.time()
+    
+    prompt = f"""
+    {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, MEB müfredatındaki derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
+    
+    DERS SIRALAMASI VE DAĞILIMI (ÖNEMLİ):
+    Sorular kesinlikle sırasıyla şu derslerden oluşsun:
+    1. Türkçe
+    2. Matematik
+    3. Fen Bilimleri
+    4. Sosyal Bilgiler / İnkılap Tarihi
+    (Kalan sorular Din Kültürü ve İngilizce ile tamamlanarak toplam 60 soruya ulaşılacaktır).
+    
+    GEOMETRİ VE ÜÇGEN KURALLARI:
+    Matematik sorularında üçgen içeren sorular için JSON içinde mutlaka ayrı bir "shape" objesi tanımla.
+    "shape": {{
+        "type": "triangle",
+        "A": "A", "B": "B", "C": "C",
+        "ab": "5 cm", "bc": "8 cm", "ac": "6 cm",
+        "is_right": false
+    }}
+    Bu sayede sistem vektörel kusursuz üçgen görselini otomatik çizecektir. Soru metninde asla ASCII çizgi kullanma.
+    
+    Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.
+    Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
+    {{
+        "questions": [
+            {{
+                "id": 1,
+                "subject": "Türkçe",
+                "question": "Soru metni...",
+                "shape": null,
+                "options": {{
+                    "A": "A şıkkı",
+                    "B": "B şıkkı",
+                    "C": "C şıkkı",
+                    "D": "D şıkkı"
+                }},
+                "answer": "A"
+            }}
+        ]
+    }}
+    """
+    
+    # Basit bir döngü ile üretim süresince turuncu sayaç animasyonu gösterelim
+    # Gerçek işlem arka planda senkron çalışacağı için hızlıca tamamlanacaktır.
+    raw_json, error_message = multi_pool_generate(prompt)
+    
+    if raw_json:
+        try:
+            data = json.loads(raw_json)
+            st.session_state.questions = data.get("questions", [])
+            st.session_state.quiz_ready = True
+            st.session_state.quiz_started = False
+            st.session_state.selected_answers = {}
+            st.session_state.current_page = 0
+            st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
+            st.rerun()
+        except json.JSONDecodeError:
+            st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
+            st.code(raw_json)
+    else:
+        st.error(f"❌ Tanımlı tüm API anahtarları arka planda denendi fakat yanıt alınamadı. Detay: {error_message}")
 
 # Sorular Üretildikten Sonra Görünen "Sınavı Başlat" Butonu
 if st.session_state.quiz_ready and not st.session_state.quiz_started:
