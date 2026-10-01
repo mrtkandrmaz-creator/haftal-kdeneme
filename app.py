@@ -67,12 +67,42 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kusursuz Vektörel Üçgen Çizim Motoru (Kesin Düzeltilmiş ve HTML Render Garantili)
+# Kusursuz Vektörel Üçgen Çizim Motoru (Dik Üçgen ve Çeşitkenar Üçgen Ayrımı Düzeltildi)
 def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
-    right_angle_svg = '<rect x="30" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>' if is_right else ''
-    
-    # Çok satırlı metin hatasını önlemek için tek satırlık XML string yapısı
-    svg_code = f'<div style="display: flex; justify-content: center; margin: 15px 0;"><svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;"><polygon points="130,25 30,170 230,170" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>{right_angle_svg}<text x="130" y="18" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text><text x="15" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text><text x="245" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text><text x="68" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text><text x="130" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text><text x="192" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text></svg></div>'
+    if is_right:
+        # Gerçek Dik Üçgen Poligonu (B köşesi 90 derece sol altta: 40,30 | 40,170 | 210,170)
+        polygon_points = "40,30 40,170 210,170"
+        right_angle_svg = '<rect x="40" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
+        # Etiket Konumları (Dik Üçgene Göre Hizalı)
+        a_pos = (40, 20)
+        b_pos = (25, 185)
+        c_pos = (215, 185)
+        ab_pos = (25, 100)
+        bc_pos = (125, 192)
+        ac_pos = (135, 92)
+    else:
+        # İkizkenar / Çeşitkenar Üçgen Poligonu
+        polygon_points = "130,25 30,170 230,170"
+        right_angle_svg = ''
+        a_pos = (130, 18)
+        b_pos = (15, 188)
+        c_pos = (245, 188)
+        ab_pos = (68, 90)
+        bc_pos = (130, 193)
+        ac_pos = (192, 90)
+
+    svg_code = f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
+        <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+            <polygon points="{polygon_points}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+            {right_angle_svg}
+            <text x="{a_pos[0]}" y="{a_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
+            <text x="{b_pos[0]}" y="{b_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+            <text x="{c_pos[0]}" y="{c_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+            <text x="{ab_pos[0]}" y="{ab_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+            <text x="{bc_pos[0]}" y="{bc_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+            <text x="{ac_pos[0]}" y="{ac_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+        </svg>
+    </div>'''
     return svg_code
 
 # API Anahtarlarını secrets.toml'dan Güvenli Okuma
@@ -129,7 +159,7 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen haftaya ait MEB konu kazanımları ve eşit oranlı (%25) yeni nesil beceri temelli soru tipleriyle.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Ders bazlı sıralı soru akışı ve MEB beceri temelli soru tipleriyle.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -153,7 +183,7 @@ def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-3.6-flash",
+        model="gemini-1.5-flash",
         contents=prompt_text,
     )
     text = response.text
@@ -189,29 +219,37 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı
+# Soru Üretim Mantığı (Derslere Göre Kesin Gruplanmış ve Sıralı)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için '{selected_scope}' kazanımlarına tam uygun, %25 eşit oranlı 60 yeni nesil soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için '{selected_scope}' kazanımlarına uygun, ders ders gruplanmış 60 yeni nesil soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi '{selected_scope}' resmi öğretim programı "
             f"ve kazanımlarına birebir uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
+            "DERSLERİN SIRASI VE KESİN GRUPLANMASI (ÖNEMLİ):\n"
+            "Sorular karışık olmamalıdır. Kesinlikle şu ders sırasına ve gruplamasına uyulmalıdır:\n"
+            "1. Türkçe (1. sorudan itibaren ilgili sayıda)\n"
+            "2. Matematik (Türkçe soruları tamamen bitince)\n"
+            "3. Fen Bilimleri (Matematik soruları tamamen bitince)\n"
+            "4. Sosyal Bilgiler / İnkılap Tarihi\n"
+            "5. Din Kültürü ve Ahlak Bilgisi\n"
+            "6. İngilizce\n"
+            "Toplam soru sayısı 60 olacak şekilde derslere eşit/orantılı paylaştırılmalıdır.\n\n"
             "ZORUNLU SORU TİPİ DAĞILIMI (%25 EŞİT ORAN):\n"
-            "60 sorunun tamamı şu 4 soru tipine tam olarak eşit (15'er adet) oranla dağıtılmalıdır:\n"
-            "1. Günlük Hayat Bağlamı / Gerçek Yaşam Problemi Kurma (%25)\n"
-            "2. Grafik, Tablo ve Görsel Okuma / Veri Yorumlama (%25)\n"
-            "3. Sözel Mantık / Muhakeme ve Eleştirel Düşünme (%25)\n"
-            "4. Deney / Hipotez Analizi ve Çıkarım Yapma / Mantıksal Çözümleme (%25)\n\n"
-            "DERS DAĞILIMI:\n"
-            "Sorular sırasıyla Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler (veya İnkılap Tarihi), Din Kültürü ve İngilizce derslerinden oluşsun.\n\n"
+            "Soruların tamamı şu 4 soru tipine eşit oranda dağıtılmalıdır:\n"
+            "1. Günlük Hayat Bağlamı / Gerçek Yaşam Problemi Kurma\n"
+            "2. Grafik, Tablo ve Görsel Okuma / Veri Yorumlama\n"
+            "3. Sözel Mantık / Muhakeme ve Eleştirel Düşünme\n"
+            "4. Deney / Hipotez Analizi ve Çıkarım Yapma / Mantıksal Çözümleme\n\n"
             "GEOMETRİ VE ÜÇGEN KURALLARI:\n"
-            "Eğer matematik/geometri sorularında üçgen bulunuyorsa, metin içinde asla ASCII çizim kullanılmamalı ve JSON içinde mutlaka şu formatta bir 'shape' nesnesi tanımlanmalıdır:\n"
+            "Eğer matematik/geometri sorularında üçgen bulunuyorsa, metin içinde asla ASCII çizim kullanılmamalı ve JSON içinde şu formatta 'shape' nesnesi tanımlanmalıdır:\n"
+            "Eğer dik üçgense `is_right: true`, değilse `is_right: false` yapın:\n"
             "{\n"
             "    \"type\": \"triangle\",\n"
             "    \"A\": \"A\", \"B\": \"B\", \"C\": \"C\",\n"
             "    \"ab\": \"3 cm\", \"bc\": \"4 cm\", \"ac\": \"5 cm\",\n"
             "    \"is_right\": true\n"
             "}\n\n"
-            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını yaz.\n"
+            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:\n"
             "{\n"
             "    \"questions\": [\n"
@@ -258,7 +296,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
             st.session_state.start_time = time.time()
             st.rerun()
 
-# Sınav Ekranı (Her Sayfada 1 Soru)
+# Sınav Ekranı (Her Sayfada 1 Soru - Ders Gruplaması Korunur)
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
     total_time_seconds = total_questions * 80  
@@ -288,7 +326,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     
     st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
-    # Geometrik şekil (üçgen vb.) varsa düzeltilmiş SVG fonksiyonu ile çağır
+    # Geometrik şekil (üçgen vb.) varsa düzeltilmiş SVG fonksiyonu ile çağır (dik üçgen ise is_right=True dik üçgen çizer)
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
         s = q['shape']
         if s.get('type') == 'triangle':
