@@ -111,15 +111,15 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Çoklu API Havuzlu Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Tanımlı çoklu Groq ve Gemini anahtarları arasında akıllı geçiş yapan 80 soruluk LGS sistemi.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Tanımlı çoklu Groq ve Gemini anahtarları arasında arka planda akıllı geçiş yapan 80 soruluk LGS sistemi.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# Groq Çağrı Fonksiyonu (Güncel Model: llama-3.1-70b-versatile)
+# Groq Çağrı Fonksiyonu (Güncel Model: openai/gpt-oss-120b)
 def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
     client = Groq(api_key=api_key)
     completion = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[
             {"role": "system", "content": "Sen kıdemli bir 5. sınıf MEB müfredat ve LGS soru hazırlama uzmanısın. Yalnızca geçerli JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
@@ -129,12 +129,12 @@ def call_groq_with_key(api_key, prompt_text):
     )
     return completion.choices[0].message.content
 
-# Gemini Çağrı Fonksiyonu (Güncel Model: gemini-3.8-flash)
+# Gemini Çağrı Fonksiyonu (Güncel ve Kararlı Model: gemini-1.5-flash)
 def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-3.8-flash",
+        model="gemini-1.5-flash",
         contents=prompt_text,
     )
     text = response.text
@@ -144,7 +144,7 @@ def call_gemini_with_key(api_key, prompt_text):
         text = text.split("```")[1].split("```")[0].strip()
     return text
 
-# Çoklu Anahtar Havuzunu Yöneten Akıllı Dağıtıcı (Load Balancer & Fallback)
+# Arka Planda Çalışan Akıllı Dağıtıcı (Silent Load Balancer & Fallback)
 def multi_pool_generate(prompt_text):
     attempts = []
     for i, key in enumerate(GROQ_KEYS):
@@ -156,24 +156,20 @@ def multi_pool_generate(prompt_text):
             attempts.append(("Gemini", i+1, key, call_gemini_with_key))
 
     if not attempts:
-        st.error("❌ Havuzda geçerli API anahtarı bulunamadı!")
-        return None
+        return None, "Havuzda geçerli API anahtarı bulunamadı!"
 
     last_error = None
     for provider, index, key, func in attempts:
         try:
-            st.info(f"🔄 Havuzdan **{provider} (#{index})** deneniyor...")
+            # Hatalar arayüzü kirletmemesi için arka planda sessiz denenir
             result = func(key, prompt_text)
             if result:
-                st.success(f"✅ Başarıyla **{provider} (#{index})** kullanılarak sorular oluşturuldu!")
-                return result
+                return result, None
         except Exception as e:
             last_error = e
-            st.warning(f"⚠️ {provider} (#{index}) hata verdi: {e}. Havuzdaki sonraki anahtara geçiliyor...")
             continue
 
-    st.error(f"❌ Tanımlı tüm API anahtarları havuzu denendi fakat yanıt alınamadı. Son Hata: {last_error}")
-    return None
+    return None, str(last_error)
 
 # Soru Üretim Butonu
 col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
@@ -181,7 +177,7 @@ with col_b2:
     generate_btn = st.button("🚀 Havuzdaki API'lerle 80 Soruluk Deneme Üret")
 
 if generate_btn:
-    with st.spinner("✨ Çoklu API havuzu kullanılarak 80 soruluk MEB LGS denemesi hazırlanıyor..."):
+    with st.spinner("✨ Çoklu API havuzu arka planda taranıyor ve 80 soruluk MEB LGS denemesi hazırlanıyor..."):
         prompt = f"""
         5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki tüm ana derslerin (Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler vb.) o haftaya kadar işlenen kazanımlarını kapsayan tam {question_count} adet yeni nesil beceri temelli çoktan seçmeli soru hazırla.
         Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır.
@@ -203,7 +199,7 @@ if generate_btn:
             ]
         }}
         """
-        raw_json = multi_pool_generate(prompt)
+        raw_json, error_message = multi_pool_generate(prompt)
         if raw_json:
             try:
                 data = json.loads(raw_json)
@@ -216,6 +212,8 @@ if generate_btn:
             except json.JSONDecodeError:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
+        else:
+            st.error(f"❌ Tanımlı tüm API anahtarları arka planda denendi fakat yanıt alınamadı. Detay: {error_message}")
 
 # Sınav Ekranı ve Büyük Puntolu Arayüz
 if st.session_state.quiz_started and st.session_state.questions:
