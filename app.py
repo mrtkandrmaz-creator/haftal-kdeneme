@@ -19,7 +19,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul ve LGS 80 Soruluk Deneme Sınavı Üretici",
+    page_title="Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -57,74 +57,75 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# MEB Müfredatına Uygun 80 Soruluk Sınav Dağılımı Veritabanı
+# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı (10'ar Soru: Türkçe, Matematik, Fen, Sosyal, Din, İngilizce)
 SINIF_MUFREDATLARI = {
     "5. Sınıf": {
-        "aciklama": "5. Sınıf 80 Soruluk Kapsamlı Deneme Sınavı (Türkçe:15, Matematik:15, Fen:15, Sosyal:15, Din:10, İngilizce:10)",
+        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce - 10'ar Soru)",
         "soru_dagilimi": {
-            "Turkce": 15,
-            "Matematik": 15,
-            "Fen Bilimleri": 15,
-            "Sosyal Bilgiler": 15,
+            "Turkce": 10,
+            "Matematik": 10,
+            "Fen Bilimleri": 10,
+            "Sosyal Bilgiler": 10,
             "Din Kültürü": 10,
             "İngilizce": 10,
         },
-        "sure_dakika": 120,
+        "sure_dakika": 90,
     },
     "6. Sınıf": {
-        "aciklama": "6. Sınıf 80 Soruluk Kapsamlı Deneme Sınavı (Türkçe:15, Matematik:15, Fen:15, Sosyal:15, Din:10, İngilizce:10)",
+        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce - 10'ar Soru)",
         "soru_dagilimi": {
-            "Turkce": 15,
-            "Matematik": 15,
-            "Fen Bilimleri": 15,
-            "Sosyal Bilgiler": 15,
+            "Turkce": 10,
+            "Matematik": 10,
+            "Fen Bilimleri": 10,
+            "Sosyal Bilgiler": 10,
             "Din Kültürü": 10,
             "İngilizce": 10,
         },
-        "sure_dakika": 120,
+        "sure_dakika": 90,
     },
     "7. Sınıf": {
-        "aciklama": "7. Sınıf 80 Soruluk Kapsamlı Deneme Sınavı (Türkçe:15, Matematik:15, Fen:15, Sosyal:15, Din:10, İngilizce:10)",
+        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce - 10'ar Soru)",
         "soru_dagilimi": {
-            "Turkce": 15,
-            "Matematik": 15,
-            "Fen Bilimleri": 15,
-            "Sosyal Bilgiler": 15,
+            "Turkce": 10,
+            "Matematik": 10,
+            "Fen Bilimleri": 10,
+            "Sosyal Bilgiler": 10,
             "Din Kültürü": 10,
             "İngilizce": 10,
         },
-        "sure_dakika": 135,
+        "sure_dakika": 100,
     },
     "8. Sınıf (LGS)": {
-        "aciklama": "8. Sınıf 80 Soruluk LGS Özel Deneme Sınavı (Türkçe:20, Matematik:20, Fen:20, İnkılap:10, Din:10)",
+        "aciklama": "60 Soruluk LGS Deneme Sınavı (Türkçe, Matematik, Fen, İnkılap, Din, İngilizce - 10'ar Soru)",
         "soru_dagilimi": {
-            "Turkce": 20,
-            "Matematik": 20,
-            "Fen Bilimleri": 20,
+            "Turkce": 10,
+            "Matematik": 10,
+            "Fen Bilimleri": 10,
             "T.C. İnkılap Tarihi": 10,
             "Din Kültürü": 10,
+            "İngilizce": 10,
         },
-        "sure_dakika": 135,
+        "sure_dakika": 100,
     },
 }
 
 HAFTALIK_ICERIKLER = {
-    1: "1. Hafta Kazanımları: Temel kavramlara giriş, metin türleri, doğal sayılar/işlemler, güneşin yapısı ve özellikleri, birey ve toplum, ilahi kitaplar inancı.",
+    1: "1. Hafta Kazanımları: Temel kavramlara giriş, metin türleri, doğal sayılar/işlemler, güneşin yapısı ve özellikleri.",
     2: "2. Hafta Kazanımları: Sözcükte anlam, kesirler, dünyamızın hareketi, sosyal rollerimiz, melekler ve ahiret inancı.",
-    3: "3. Hafta Kazanımları: Cümlede anlam, ondalık gösterimler, canlılar ve yaşam, kültürel mirasımız, ibadet esasları.",
-    4: "🌟 4. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (1, 2 ve 3. hafta kazanımları).",
+    3: "3. Hafta Kazanımları: Cümlede anlam, ondalık gösterimler, canlılar ve yaşam, ibadet esasları.",
+    4: "🌟 4. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
     5: "5. Hafta Kazanımları: Paragrafta anlam, oran-orantı, kuvvetin ölçülmesi, hak ve sorumluluklar.",
-    6: "6. Hafta Kazanımları: Yazım kuralları, yüzdeler, madde ve ısı, afetler ve çevre, zekat ve sadaka.",
+    6: "6. Hafta Kazanımları: Yazım kuralları, yüzdeler, madde ve ısı, afetler ve çevre.",
     7: "7. Hafta Kazanımları: Noktalama işaretleri, cebirsel ifadeler, ışığın yayılması, Hz. Muhammed'in hayatı.",
-    8: "🌟 8. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (5, 6 ve 7. hafta kazanımları).",
-    9: "9. Hafta Kazanımları: Üçgenler, üçgen çeşitleri, açı ölçüleri, veri analizi, grafik yorumlama, metnin yapı taşları.",
+    8: "🌟 8. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
+    9: "9. Hafta Kazanımları: Üçgenler, dik açı, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri, veri analizi ve grafik yorumlama.",
     10: "10. Hafta Kazanımları: Anlatım bozuklukları, veri analizi, çözeltiler ve karışımlar, demokrasi tarihi.",
     11: "11. Hafta Kazanımları: Sözel mantık, doğrusal denklemler, elektrik devreleri, uluslararası ilişkiler.",
-    12: "🌟 12. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (9, 10 ve 11. hafta kazanımları).",
+    12: "🌟 12. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
     13: "13. Hafta Kazanımları: Okuma yorumlama, eşitsizlikler, basit makineler, küresel sorunlar.",
     14: "14. Hafta Kazanımları: Görsel okuma, dönüşüm geometrisi, DNA ve genetik kod, ekonomi ve ticaret.",
     15: "15. Hafta Kazanımları: Mantıksal muhakeme, katı cisimler, iklim ve hava olayları, hukuk bilinci.",
-    16: "🌟 16. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (13, 14 ve 15. hafta kazanımları).",
+    16: "🌟 16. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
     17: "17. Hafta Kazanımları: LGS beceri temelli karma soru provası.",
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
@@ -173,7 +174,6 @@ def ai_icerik_uret(prompt: str) -> str:
 
 def soruları_ayristir(tam_metin):
     parcalar = []
-    # Soru numarası ile başlayan satırları yakalar (Örn: "1.", "1)", "1-")
     soru_bloklari = re.split(r'\n(?=\d+[\.\)]\s)', tam_metin)
     
     for blok in soru_bloklari:
@@ -184,7 +184,7 @@ def soruları_ayristir(tam_metin):
             parcalar.append({"no": soru_no, "metin": soru_icerik})
     return parcalar
 
-def build_exam_pdf(text, sinif_adi, booklet_mode=False):
+def build_exam_pdf(text, sinif_adi):
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
         buffer,
@@ -209,14 +209,14 @@ def build_exam_pdf(text, sinif_adi, booklet_mode=False):
     q_style = ParagraphStyle(
         "ExamQuestionStyle",
         parent=styles["Normal"],
-        fontSize=8.5,
-        leading=11.5,
-        spaceAfter=4,
+        fontSize=8,
+        leading=11,
+        spaceAfter=2,
         fontName="Helvetica-Bold",
     )
 
     story = [
-        Paragraph(f"<b>{sinif_adi.upper()} 80 SORULUK MERKEZİ SİSTEM DENEME SINAVI</b>", title_style),
+        Paragraph(f"<b>{sinif_adi.upper()} 60 SORULUK MERKEZİ SİSTEM DENEME SINAVI</b>", title_style),
         Spacer(1, 5),
     ]
 
@@ -231,15 +231,18 @@ def build_exam_pdf(text, sinif_adi, booklet_mode=False):
         buffer.seek(0)
         return buffer.getvalue()
 
-    # LayoutError önlemek için küçük tablolar (her defasında 10-12 soru / 5-6 satır) halinde ekleyip sayfa taşmalarını güvenli yönetiyoruz
-    chunk_size = 12
+    # LayoutError önlemek için her seferinde 8 soru (4 satır) işleyip araya PageBreak ekliyoruz
+    chunk_size = 8
+    total_chunks = (len(sorular) + chunk_size - 1) // chunk_size
+    chunk_counter = 0
+
     for chunk_start in range(0, len(sorular), chunk_size):
+        chunk_counter += 1
         chunk_sorular = sorular[chunk_start:chunk_start + chunk_size]
         row_data = []
         for i in range(0, len(chunk_sorular), 2):
             s1 = chunk_sorular[i]
             s1_text = f"<b>{s1['no']}.</b> {s1['metin']}"
-            # Şıkların alt alta düzgün görünmesi için A), B), C), D) öncesine <br/> ekleyelim
             s1_text = re.sub(r'([A-D]\))', r'<br/>\1', s1_text)
             s1_text = s1_text.replace("\n", " ").replace("<br/><br/>", "<br/>")
             s1_text = s1_text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
@@ -259,18 +262,18 @@ def build_exam_pdf(text, sinif_adi, booklet_mode=False):
             row_data.append([p1, p2])
 
         if row_data:
-            # A4 genişliği 595 - 50 margin = 545 pt (2 sütun için 270şer pt)
             t = Table(row_data, colWidths=[270, 270])
             t.setStyle(TableStyle([
                 ('VALIGN', (0,0), (-1,-1), 'TOP'),
                 ('LEFTPADDING', (0,0), (-1,-1), 4),
                 ('RIGHTPADDING', (0,0), (-1,-1), 4),
                 ('TOPPADDING', (0,0), (-1,-1), 2),
-                ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 4),
                 ('LINEAFTER', (0,0), (-2,-1), 0.5, colors.lightgrey),
             ]))
             story.append(t)
-            story.append(Spacer(1, 10))
+            if chunk_counter < total_chunks:
+                story.append(PageBreak())
 
     doc.build(story)
     buffer.seek(0)
@@ -279,11 +282,11 @@ def build_exam_pdf(text, sinif_adi, booklet_mode=False):
 
 # --- Streamlit Arayüzü ---
 st.markdown(
-    "<h1>🎯 Ortaokul ve LGS 80 Soruluk Deneme Sınavı Üretici</h1>",
+    "<h1>🎯 Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Gerçek MEB Müfredatına Uygun, Tamamen Özgün, Eksiksiz A-B-C-D Şıklı ve Bold Font Yapılı Sınav Sistemi.</p>",
+    "<p class='subtext'>Gerçek Sıralı Müfredat (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce), Özgün Görsel/Üçgen Destekli ve Eksiksiz Şıklı Sınav Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
@@ -318,7 +321,7 @@ st.sidebar.markdown(f"🎯 **Toplam Soru Sayısı:** {toplam_soru} Soru")
 
 # Üretim Butonu
 if st.sidebar.button(
-    f"✨ {sinif_secimi} 80 Soruluk Sınavı Üret",
+    f"✨ {sinif_secimi} 60 Soruluk Sınavı Üret",
     type="primary",
     use_container_width=True,
 ):
@@ -340,7 +343,7 @@ if st.sidebar.button(
 
     try:
         uretilen_metinler = [
-            f"=== {sinif_secimi.upper()} - 80 SORULUK DENEME ({donem_secimi} {hafta_secimi_str} - {sinav_tip_str}) ===\n"
+            f"=== {sinif_secimi.upper()} - 60 SORULUK DENEME ({donem_secimi} {hafta_secimi_str} - {sinav_tip_str}) ===\n"
         ]
 
         global_soru_sayaci = 1
@@ -356,12 +359,12 @@ if st.sidebar.button(
             {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
             Kazanım/İçerik: {ilgili_kazanimlar}
             
-            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, MEB gerçek kazanımlarına tam uygun yeni nesil soru hazırla.
+            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, MEB yeni nesil beceri temelli soru hazırla.
             
             KATI KURALLAR VE FORMAT:
-            1. Soru numaralarını {global_soru_sayaci}'den başlat ve sırayla {global_soru_sayaci + soru_adedi - 1}'e kadar numaralandır (Örn: {global_soru_sayaci}. ...).
+            1. Soru numaralarını {global_soru_sayaci}'den başlat ve sırayla {global_soru_sayaci + soru_adedi - 1}'e kadar numaralandır (Örn: {global_soru_sayaci}. Soru metni...).
             2. HER BİR SORU mutlak surette A) ... B) ... C) ... D) ... şıklarının tamamını eksiksiz içermelidir. Şıklar asla eksik bırakılmamalıdır.
-            3. Matematik ve fen sorularında üçgenler, açı ölçüleri, üçgen çeşitleri ve grafik verileri içeren görsel senaryolara yer ver.
+            3. EĞER DERS MATEMATİK İSE; soruların en az yarısında üçgenler (eşkenar üçgen, ikizkenar üçgen, dik üçgen), dik açı, açı ölçüleri, grafikler ve tablolar gibi görsel/geometrik öğeler ASCII sembolleri, şekil açıklamaları veya koordinat şemalarıyla desteklenmelidir.
             4. Başka hiçbir dersin sorusunu bu bloğa karıştırma. Yalnızca {ders_adi} dersinin sorularını yaz.
             """
 
@@ -378,8 +381,8 @@ if st.sidebar.button(
             "📝 Tüm dersler tamamlandı, detaylı cevap anahtarı ve çözüm açıklamaları ekleniyor..."
         )
         cozum_prompt = f"""
-        Yukarıda soruları hazırlanan {sinif_secimi} 80 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
-        1'den 80'e kadar tüm soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve adım adım kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
+        Yukarıda soruları hazırlanan {sinif_secimi} 60 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
+        1'den 60'a kadar tüm soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve adım adım kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
         """
         cozum_yaniti = ai_icerik_uret(cozum_prompt)
         uretilen_metinler.append(
@@ -394,7 +397,7 @@ if st.sidebar.button(
         st.session_state["sinav_baslatildi"] = False
         st.session_state["aktif_soru_index"] = 0
         st.success(
-            f"🎉 {sinif_secimi} - 80 Soruluk {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
+            f"🎉 {sinif_secimi} - 60 Soruluk {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
         )
 
     except Exception as e:
@@ -420,7 +423,7 @@ if "sinav_metni" in st.session_state:
                 st.rerun()
 
         st.info(
-            "💡 80 soruluk sınavınız hazır! Süreyi ve soruları tek tek görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
+            "💡 60 soruluk sınavınız hazır! Süreyi ve soruları tek tek görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
         )
 
     if st.session_state.get("sinav_baslatildi", False):
@@ -476,7 +479,7 @@ if "sinav_metni" in st.session_state:
         </head>
         <body>
           <div class="timer-container">
-            <div class="timer-title">⏱️ 80 Soruluk Resmi Sınav Simülasyon Süresi ({sure_dk} Dakika)</div>
+            <div class="timer-title">⏱️ 60 Soruluk Resmi Sınav Simülasyon Süresi ({sure_dk} Dakika)</div>
             <div class="timer-display" id="clock">00:00:00</div>
             <div class="timer-controls">
               <button class="btn" onclick="toggleTimer()" id="startBtn">Başlat / Durdur</button>
@@ -582,10 +585,10 @@ if "sinav_metni" in st.session_state:
                         st.rerun()
                 else:
                     if st.button("🏁 Sınavı Bitir", type="primary", use_container_width=True):
-                        st.success("80 soruluk sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
+                        st.success("60 soruluk sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
         else:
             st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-            st.subheader(f"📝 Oluşturulan 80 Soruluk {aktif_sinif} Sınavı ({hafta_secimi_str})")
+            st.subheader(f"📝 Oluşturulan 60 Soruluk {aktif_sinif} Sınavı ({hafta_secimi_str})")
             st.markdown(st.session_state["sinav_metni"])
             st.markdown("</div>", unsafe_allow_html=True)
 
@@ -595,19 +598,19 @@ if "sinav_metni" in st.session_state:
         with col1:
             pdf_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
             st.download_button(
-                label="📄 Standart 80 Soru PDF İndir (İki Sütunlu)",
+                label="📄 Standart 60 Soru PDF İndir (İki Sütunlu)",
                 data=pdf_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_80_Soruluk_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+                file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
                 use_container_width=True,
             )
 
         with col2:
-            booklet_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif, booklet_mode=True)
+            booklet_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
             st.download_button(
-                label="📘 Resmi 80 Soru Kitapçığı PDF İndir (İki Sütunlu)",
+                label="📘 Resmi 60 Soru Kitapçığı PDF İndir (İki Sütunlu)",
                 data=booklet_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_80_Soruluk_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+                file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
                 use_container_width=True,
             )
