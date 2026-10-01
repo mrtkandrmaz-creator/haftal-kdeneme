@@ -59,7 +59,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı (Her derse kesinlikle tam 10 soru)
+# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı
 SINIF_MUFREDATLARI = {
     "5. Sınıf": {
         "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, Sosyal:10, Din:10, İngilizce:10)",
@@ -132,32 +132,46 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Kesin Çözüm: Kesintisiz ve Kararlı Groq REST API Üretici (llama-3.1-8b-instant) ---
+# --- Otomatik Modeli Bulan ve Hata Engelleme Yapan Akıllı API Fonksiyonu ---
 def ai_icerik_uret(prompt: str) -> str:
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY_DIRECT}",
         "Content-Type": "application/json"
     }
-    payload = {
-        "model": "llama-3.1-8b-instant",
-        "messages": [
-            {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.7,
-        "max_tokens": 4000
-    }
+    
+    # Otomatik olarak sırayla denenecek aktif Groq model havuzu (En güncelden eskiye)
+    denenecek_modeller = [
+        "llama-3.1-8b-instant",
+        "llama-3.3-70b-versatile",
+        "llama3-70b-8192",
+        "llama3-8b-8192",
+        "mixtral-8x7b-32768"
+    ]
+    
+    son_hata = ""
+    for model_adi in denenecek_modeller:
+        payload = {
+            "model": model_adi,
+            "messages": [
+                {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 0.7,
+            "max_tokens": 4000
+        }
 
-    try:
-        response = requests.post(url, json=payload, headers=headers, timeout=60)
-        if response.status_code == 200:
-            data = response.json()
-            return data["choices"][0]["message"]["content"]
-        else:
-            raise RuntimeError(f"Groq API Hatası ({response.status_code}): {response.text}")
-    except Exception as e:
-        raise RuntimeError(f"Bağlantı Hatası: {e}")
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=60)
+            if response.status_code == 200:
+                data = response.json()
+                return data["choices"][0]["message"]["content"]
+            else:
+                son_hata = f"Model ({model_adi}) HTTP {response.status_code}: {response.text}"
+        except Exception as e:
+            son_hata = str(e)
+            
+    raise RuntimeError(f"Tüm Groq modelleri denendi ancak erişilemedi. Son hata: {son_hata}")
 
 def soruları_ayristir(tam_metin):
     parcalar = []
@@ -272,7 +286,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Groq (llama-3.1-8b-instant) Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
+    "<p class='subtext'>Otomatik Model Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
@@ -305,7 +319,7 @@ st.sidebar.markdown("---")
 toplam_soru = sum(secilen_bilgi["soru_dagilimi"].values())
 st.sidebar.markdown(f"🎯 **Toplam Soru Sayısı:** {toplam_soru} Soru")
 
-# Üretim Butonu (Döngüsel eksiksiz üretim mimarisi)
+# Üretim Butonu
 if st.sidebar.button(
     f"✨ {sinif_secimi} 60 Soruluk Sınavı Üret",
     type="primary",
