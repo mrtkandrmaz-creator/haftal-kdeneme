@@ -6,7 +6,8 @@ import time
 import google.generativeai as genai
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.lib import colors
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -120,7 +121,6 @@ SINIF_MUFREDATLARI = {
     },
 }
 
-# Haftalık Konu / Kazanım Veritabanı
 HAFTALIK_ICERIKLER = {
     1: "1. Hafta Kazanımları: Temel kavramlara giriş, metin türleri, doğal sayılar/işlemler, güneşin yapısı ve özellikleri, birey ve toplum, ilahi kitaplar inancı, karşılama ve tanışma kalıpları.",
     2: "2. Hafta Kazanımları: Sözcükte anlam, kesirler, dünyamızın hareketi, sosyal rollerimiz, melekler ve ahiret inancı, günlük rutinler.",
@@ -137,13 +137,11 @@ HAFTALIK_ICERIKLER = {
     13: "13. Hafta Kazanımları: İleri düzey okuma ve yorumlama, eşitsizlikler, basit makineler, küresel sorunlar, ahlaki erdemler, kariyer ve meslekler.",
     14: "14. Hafta Kazanımları: Görsel okuma ve grafik yorumlama, dönüşüm geometrisi, DNA ve genetik kod, ekonomi ve ticaret, inanç esasları derinlemesine, gelecek planları.",
     15: "15. Hafta Kazanımları: Mantıksal muhakeme, katı cisimler, iklim ve hava olayları, hukuk devleti bilinci, evrensel değerler, popüler kültür.",
-    16: "🌟 16. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (13., 14. ve 15. haftaların tüm kazanımlarını kapsayan kapsamlı genel tekrar sınavı).",
+    16: "🌟 16. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (13., 14. ve 15. haftaların tüm kazanımlarını kapsayan final düzeyinde deneme).",
     17: "17. Hafta Kazanımları: LGS beceri temelli karma soru provası, genel deneme hazırlık ve eksik giderme çalışmaları.",
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI (Tüm dönemin kazanımlarını kapsayan final düzeyinde deneme).",
 }
 
-
-# --- Otomatik Model Tarayan ve Uygun Olanı Seçen Akıllı Bağlantı ---
 def ai_icerik_uret(prompt: str) -> str:
     gemini_key = st.secrets.get("GEMINI_API_KEY", "")
     if not gemini_key:
@@ -186,12 +184,8 @@ def ai_icerik_uret(prompt: str) -> str:
 
     raise RuntimeError(f"Hesabınızın erişebileceği uygun Gemini modeli bulunamadı veya tüm denemeler başarısız oldu. Son Hata: {son_hata}")
 
-
-# Soru Ayrıştırma Yardımcısı (Her sayfada 1 soru gösterebilmek için metni parçalar)
 def soruları_ayristir(tam_metin):
-    # Ders başlıklarını ve soruları regex ile ayıklama
     parcalar = []
-    # Örnek soru formatı: "1. Soru metni..." veya "1-) ..."
     soru_bloklari = re.split(r'\n(?=\d+[\.\)]\s)', tam_metin)
     
     for blok in soru_bloklari:
@@ -202,93 +196,130 @@ def soruları_ayristir(tam_metin):
             parcalar.append({"no": soru_no, "metin": soru_icerik})
     return parcalar
 
-
-# Standart PDF Dönüştürücü
 def create_pdf(text, sinif_adi):
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
         buffer,
         pagesize=A4,
-        rightMargin=40,
-        leftMargin=40,
-        topMargin=40,
-        bottomMargin=40,
+        rightMargin=30,
+        leftMargin=30,
+        topMargin=30,
+        bottomMargin=30,
     )
     styles = getSampleStyleSheet()
-    normal_style = styles["Normal"]
-    normal_style.fontSize = 9
-    normal_style.leading = 13
-
+    
     title_style = ParagraphStyle(
         "TitleStyle",
         parent=styles["Heading1"],
-        fontSize=13,
-        leading=16,
+        fontSize=12,
+        leading=14,
         alignment=1,
-        spaceAfter=15,
+        spaceAfter=10,
+        fontName="Helvetica-Bold",
+    )
+    
+    q_style = ParagraphStyle(
+        "ExamQuestionStyle",
+        parent=styles["Normal"],
+        fontSize=10,
+        leading=13,
+        spaceAfter=6,
+        fontName="Helvetica-Bold",
     )
 
     story = [
-        Paragraph(
-            f"<b>{sinif_adi.upper()} MERKEZİ SİSTEM DENEME SINAVI</b>",
-            title_style,
-        ),
-        Spacer(1, 10),
+        Paragraph(f"<b>{sinif_adi.upper()} MERKEZİ SİSTEM DENEME SINAVI</b>", title_style),
+        Spacer(1, 5),
     ]
 
-    for line in text.split("\n"):
-        if line.strip():
-            safe_line = (
-                line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-            )
-            story.append(Paragraph(safe_line, normal_style))
-            story.append(Spacer(1, 3))
-        else:
-            story.append(Spacer(1, 6))
+    # Soruları ve şıkları kusursuz işlemek için ayrıştırıyoruz
+    sorular = soruları_ayristir(text)
+    if not sorular:
+        # Yedek düz metin basımı
+        for line in text.split("\n"):
+            if line.strip():
+                safe_line = line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                story.append(Paragraph(safe_line, q_style))
+                story.append(Spacer(1, 3))
+        doc.build(story)
+        buffer.seek(0)
+        return buffer.getvalue()
+
+    # Gerçek sınav formatı: Her satırda 2 soru (2 Sütunlu Yapı)
+    row_data = []
+    for i in range(0, len(sorular), 2):
+        s1 = sorular[i]
+        s1_text = f"<b>{s1['no']}.</b> {s1['metin']}"
+        s1_text = s1_text.replace("\n", "<br/>").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        # < ve > işaretlerini güvenli escape yaptıktan sonra etiketleri düzeltelim
+        s1_text = s1_text.replace("&lt;br/&gt;", "<br/>").replace("&lt;b&gt;", "<b>").replace("&lt;/b&gt;", "</b>")
+        p1 = Paragraph(s1_text, q_style)
+
+        p2 = ""
+        if i + 1 < len(sorular):
+            s2 = sorular[i + 1]
+            s2_text = f"<b>{s2['no']}.</b> {s2['metin']}"
+            s2_text = s2_text.replace("\n", "<br/>").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            s2_text = s2_text.replace("&lt;br/&gt;", "<br/>").replace("&lt;b&gt;", "<b>").replace("&lt;/b&gt;", "</b>")
+            p2 = Paragraph(s2_text, q_style)
+
+        row_data.append([p1, p2])
+
+    if row_data:
+        # A4 Genişliği ~ 595 pt, kenar boşlukları 30'ar pt -> Net genişlik = 535 pt (~267 pt her sütun)
+        t = Table(row_data, colWidths=[265, 265])
+        t.setStyle(TableStyle([
+            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+            ('LEFTPADDING', (0,0), (-1,-1), 6),
+            ('RIGHTPADDING', (0,0), (-1,-1), 6),
+            ('TOPPADDING', (0,0), (-1,-1), 4),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 8),
+            ('LINEAFTER', (0,0), (-2,-1), 0.5, colors.lightgrey),
+        ]))
+        story.append(t)
 
     doc.build(story)
     buffer.seek(0)
     return buffer.getvalue()
 
 
-# Resmi Kitapçık Formatında PDF Üretici
 def create_official_booklet_pdf(text, sinif_adi, donem, hafta_str):
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
         buffer,
         pagesize=A4,
-        rightMargin=35,
-        leftMargin=35,
-        topMargin=35,
-        bottomMargin=35,
+        rightMargin=30,
+        leftMargin=30,
+        topMargin=30,
+        bottomMargin=30,
     )
     styles = getSampleStyleSheet()
 
     cover_title_style = ParagraphStyle(
         "CoverTitle",
         parent=styles["Heading1"],
-        fontSize=14,
-        leading=18,
+        fontSize=13,
+        leading=16,
         alignment=1,
-        spaceAfter=6,
+        spaceAfter=4,
         fontName="Helvetica-Bold",
     )
     cover_sub_style = ParagraphStyle(
         "CoverSub",
         parent=styles["Normal"],
-        fontSize=10,
-        leading=14,
+        fontSize=9.5,
+        leading=13,
         alignment=1,
-        spaceAfter=20,
+        spaceAfter=15,
         fontName="Helvetica",
     )
     question_style = ParagraphStyle(
-        "QuestionStyle",
+        "BookletQuestionStyle",
         parent=styles["Normal"],
-        fontSize=8.5,
-        leading=12,
-        spaceAfter=8,
-        fontName="Helvetica",
+        fontSize=9.5,
+        leading=12.5,
+        spaceAfter=6,
+        fontName="Helvetica-Bold",
     )
 
     story = [
@@ -297,18 +328,51 @@ def create_official_booklet_pdf(text, sinif_adi, donem, hafta_str):
             cover_title_style,
         ),
         Paragraph(
-            f"<b>{donem} - {hafta_str}</b><br/>Bu kitapçık resmi sınav formatına uygun olarak hazırlanmıştır.",
+            f"<b>{donem} - {hafta_str}</b> | Resmi LGS / Kazanım Değerlendirme Formatı",
             cover_sub_style,
         ),
-        Spacer(1, 10),
+        Spacer(1, 5),
     ]
 
-    for line in text.split("\n"):
-        if line.strip():
-            safe_line = (
-                line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-            )
-            story.append(Paragraph(safe_line, question_style))
+    sorular = soruları_ayristir(text)
+    if not sorular:
+        for line in text.split("\n"):
+            if line.strip():
+                safe_line = line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                story.append(Paragraph(safe_line, question_style))
+        doc.build(story)
+        buffer.seek(0)
+        return buffer.getvalue()
+
+    row_data = []
+    for i in range(0, len(sorular), 2):
+        s1 = sorular[i]
+        s1_text = f"<b>{s1['no']}.</b> {s1['metin']}"
+        s1_text = s1_text.replace("\n", "<br/>").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        s1_text = s1_text.replace("&lt;br/&gt;", "<br/>").replace("&lt;b&gt;", "<b>").replace("&lt;/b&gt;", "</b>")
+        p1 = Paragraph(s1_text, question_style)
+
+        p2 = ""
+        if i + 1 < len(sorular):
+            s2 = sorular[i + 1]
+            s2_text = f"<b>{s2['no']}.</b> {s2['metin']}"
+            s2_text = s2_text.replace("\n", "<br/>").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            s2_text = s2_text.replace("&lt;br/&gt;", "<br/>").replace("&lt;b&gt;", "<b>").replace("&lt;/b&gt;", "</b>")
+            p2 = Paragraph(s2_text, question_style)
+
+        row_data.append([p1, p2])
+
+    if row_data:
+        t = Table(row_data, colWidths=[265, 265])
+        t.setStyle(TableStyle([
+            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+            ('LEFTPADDING', (0,0), (-1,-1), 6),
+            ('RIGHTADDING', (0,0), (-1,-1), 6),
+            ('TOPPADDING', (0,0), (-1,-1), 4),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 8),
+            ('LINEAFTER', (0,0), (-2,-1), 0.5, colors.lightgrey),
+        ]))
+        story.append(t)
 
     doc.build(story)
     buffer.seek(0)
@@ -321,7 +385,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>MEB Müfredatına ve Kazanımlarına Uygun Sınav Sistemi.</p>",
+    "<p class='subtext'>MEB Müfredatına, LGS Yeni Nesil Görsel/Grafik/Üçgen Soru Formatına ve Bold Font Yapısına Uygun Sınav Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
@@ -389,12 +453,16 @@ if st.sidebar.button(
             )
 
             prompt = f"""
-            Sen uzman bir MEB müfredat rehber öğretmeni ve soru yazarısın. 
+            Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın. 
             {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
             Kazanım/İçerik: {ilgili_kazanimlar}
             
-            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, MEB yeni nesil mantık-muhakeme çoktan seçmeli (A, B, C, D şıklı) soru hazırla.
-            Soruların numaralandırmasını 1'den {soru_adedi}'ne kadar yap. Başka hiçbir dersin sorusunu ekleme.
+            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, LGS yeni nesil mantık-muhakeme çoktan seçmeli (A, B, C, D şıklı) soru hazırla.
+            
+            KRİTİK KURALLAR:
+            1. Soruların tamamı A, B, C, D seçenekleriyle birlikte eksiksiz yazılmalıdır (Örn: A) ... B) ... C) ... D) ...). Şıklar kesinlikle eksik kalmamalıdır.
+            2. Özellikle Matematik ve geometri sorularında (üçgenler, üçgen çeşitleri, açılar, grafik ve veri analizi içeren konularda) metin içerisinde ASCII grafikler, tablo yapıları veya şekil açıklamaları ile zenginleştirilmiş LGS görsel beceri temelli format kullan.
+            3. Soruların numaralandırmasını 1'den {soru_adedi}'ne kadar yap. Başka hiçbir dersin sorusunu ekleme.
             """
 
             ders_yaniti = ai_icerik_uret(prompt)
@@ -572,7 +640,6 @@ if "sinav_metni" in st.session_state:
 
         components.html(timer_html, height=195)
 
-        # Soruları ve Bölümleri Ayıkla
         metin = st.session_state["sinav_metni"]
         bulunan_sorular = soruları_ayristir(metin)
 
@@ -582,7 +649,6 @@ if "sinav_metni" in st.session_state:
 
             toplam_bulunan = len(bulunan_sorular)
             
-            # Güvenli index kontrolü
             if st.session_state["aktif_soru_index"] >= toplam_bulunan:
                 st.session_state["aktif_soru_index"] = toplam_bulunan - 1
 
@@ -594,7 +660,6 @@ if "sinav_metni" in st.session_state:
             st.markdown(f"**Soru {soru_obj['no']}**")
             st.markdown(soru_obj['metin'])
             
-            # Öğrencinin interaktif cevap verebilmesi için şık seçimi
             st.radio(
                 "Cevabınız:", 
                 ["Seçiniz...", "A", "B", "C", "D"], 
@@ -603,7 +668,6 @@ if "sinav_metni" in st.session_state:
             )
             st.markdown("</div>", unsafe_allow_html=True)
 
-            # İlerleme Butonları
             col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
             with col_nav1:
                 if current_idx > 0:
@@ -619,7 +683,6 @@ if "sinav_metni" in st.session_state:
                     if st.button("🏁 Sınavı Bitir", type="primary", use_container_width=True):
                         st.success("Sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
         else:
-            # Yedek görünüm (Eğer ayrıştırılamazsa tüm metin gösterilir)
             st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
             st.subheader(f"📝 Oluşturulan {aktif_sinif} Sınavı ({hafta_secimi_str})")
             st.markdown(st.session_state["sinav_metni"])
@@ -631,7 +694,7 @@ if "sinav_metni" in st.session_state:
         with col1:
             pdf_bytes = create_pdf(st.session_state["sinav_metni"], aktif_sinif)
             st.download_button(
-                label="📄 Standart Sınav PDF İndir",
+                label="📄 Standart Sınav PDF İndir (İki Sütunlu)",
                 data=pdf_bytes,
                 file_name=f"{aktif_sinif.replace(' ', '_')}_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
@@ -640,13 +703,13 @@ if "sinav_metni" in st.session_state:
 
         with col2:
             booklet_bytes = create_official_booklet_pdf(
-                st.session_state["sinav_metni"],
+                st.session_state["sinav_sinif_metni"] if "sinav_sinif_metni" in st.session_state else st.session_state["sinav_metni"],
                 aktif_sinif,
                 donem_secimi,
                 hafta_secimi_str,
             )
             st.download_button(
-                label="📘 Resmi Sınav Kitapçığı PDF İndir",
+                label="📘 Resmi Sınav Kitapçığı PDF İndir (İki Sütunlu)",
                 data=booklet_bytes,
                 file_name=f"{aktif_sinif.replace(' ', '_')}_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
