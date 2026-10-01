@@ -67,26 +67,29 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kusursuz Vektörel Üçgen Çizim Motoru (SVG)
+# Kusursuz Vektörel Üçgen Çizim Motoru (SVG - Düzeltilmiş ve Hizalanmış)
 def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
+    # Dik üçgen durumunda B köşesinde kusursuz 90 derece diklik sembolü ve hizalanmış kenar etiketleri
+    right_angle_svg = '<rect x="30" y="150" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2.5"/>' if is_right else ''
+    
     svg_code = f"""
     <div style="display: flex; justify-content: center; margin: 15px 0;">
         <svg width="240" height="200" viewBox="0 0 240 200" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
             <!-- Üçgen Poligonu (Köşeler Kusursuz Birleşir) -->
-            <polygon points="120,25 30,175 210,175" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="120,25 30,170 210,170" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
             
             <!-- Diklik İşareti (Eğer dik üçgense) -->
-            {"[&nbsp;]" if not is_right else '<rect x="30" y="155" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
+            {right_angle_svg}
             
             <!-- Köşe Etiketleri -->
             <text x="120" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
-            <text x="15" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
-            <text x="225" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+            <text x="18" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+            <text x="222" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
             
             <!-- Kenar Uzunlukları -->
-            <text x="65" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
-            <text x="120" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
-            <text x="175" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+            <text x="62" y="92" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+            <text x="120" y="190" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+            <text x="178" y="92" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
         </svg>
     </div>
     """
@@ -206,7 +209,7 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (Sözdizimi Hatasını Önleyen Düzenlenmiş Prompt)
+# Soru Üretim Mantığı (MEB Soru Tipleri ve Denge Dağılımı Dahil)
 if generate_btn:
     with st.spinner(f"✨ Çoklu API havuzu taranıyor, MEB soru tiplerine (günlük hayat bağlamlı, grafik/tablo okuma, sözel mantık, analitik) dengeli dağıtılmış {selected_grade} 60 soru hazırlanıyor..."):
         prompt = (
@@ -230,10 +233,10 @@ if generate_btn:
             "{\n"
             "    \"type\": \"triangle\",\n"
             "    \"A\": \"A\", \"B\": \"B\", \"C\": \"C\",\n"
-            "    \"ab\": \"5 cm\", \"bc\": \"8 cm\", \"ac\": \"6 cm\",\n"
-            "    \"is_right\": false\n"
+            "    \"ab\": \"3 cm\", \"bc\": \"4 cm\", \"ac\": \"5 cm\",\n"
+            "    \"is_right\": true\n"
             "}\n"
-            "Bu sayede sistem vektörel kusursuz üçgen görselini otomatik çizecektir. Soru metninde asla ASCII çizgi kullanma.\n\n"
+            "Bu sayede sistem vektörel kusursuz üçgen görselini ve diklik işaretini otomatik çizecektir. Soru metninde asla ASCII çizgi kullanma.\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:\n"
             "{\n"
