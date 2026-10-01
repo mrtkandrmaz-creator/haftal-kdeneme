@@ -1,4 +1,5 @@
 import time
+import streamlit as json_or_streamlit_placeholder # yer tutucu
 import streamlit as st
 import json
 
@@ -76,7 +77,7 @@ def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="
             <polygon points="120,25 30,175 210,175" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
             
             <!-- Diklik İşareti (Eğer dik üçgense) -->
-            {"" if not is_right else '<rect x="30" y="155" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
+            {"[&nbsp;]" if not is_right else '<rect x="30" y="155" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
             
             <!-- Köşe Etiketleri -->
             <text x="120" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
@@ -146,7 +147,7 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe, Matematik, Fen, Sosyal sıralaması ve kusursuz vektörel üçgen çizimleriyle yeni nesil deneme.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>MEB beceri temelli soru tipleri dengesiyle Türkçe, Matematik, Fen, Sosyal sıralaması ve kusursuz vektörel üçgen çizimleriyle yeni nesil deneme.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -156,7 +157,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
+            {"role": "system", "content": "Sen kıdemli bir MEB müfredat, Ölçme-Değerlendirme ve LGS sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
@@ -206,11 +207,18 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı
+# Soru Üretim Mantığı (MEB Soru Tiplerine Göre Eşit Dağılım Dahil Edildi)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor, {selected_grade} düzeyinde Türkçe, Matematik, Fen, Sosyal sırasıyla 60 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor, MEB soru tiplerine (günlük hayat bağlamlı, grafik/tablo okuma, sözel mantık, analitik) dengeli dağıtılmış {selected_grade} 60 soru hazırlanıyor..."):
         prompt = f"""
         {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, MEB müfredatındaki derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
+        
+        MEB SORU TİPLERİ DAĞILIM İLKESİ:
+        Sorular üretilirken MEB beceri temelli sınav formatına uygun olarak şu soru tipleri dengeli ve eşit oranlarda dağıtılmalıdır:
+        1. Günlük hayat bağlamı / Gerçek yaşam problemleri kurma
+        2. Grafik, tablo ve görsel okuma / Veri yorumlama
+        3. Sözel mantık / Muhakeme ve eleştirel düşünme
+        4. Deney / Hipotez analizi ve çıkarım yapma (Fen ve Matematik ağırlıklı)
         
         DERS SIRALAMASI VE DAĞILIMI (ÖNEMLİ):
         Sorular kesinlikle sırasıyla şu derslerden oluşsun:
@@ -234,19 +242,19 @@ if generate_btn:
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
         {{
             "questions": [
-                {{
+                {
                     "id": 1,
                     "subject": "Türkçe",
                     "question": "Soru metni...",
                     "shape": null,
-                    "options": {{
+                    "options": {
                         "A": "A şıkkı",
                         "B": "B şıkkı",
                         "C": "C şıkkı",
                         "D": "D şıkkı"
-                    }},
+                    },
                     "answer": "A"
-                }}
+                }
             ]
         }}
         """
@@ -347,10 +355,10 @@ if st.session_state.quiz_started and st.session_state.questions:
             if st.button("⬅️ Önceki Soru"):
                 st.session_state.current_page -= 1
                 st.rerun()
-                    
+                
     with nav_col3:
         if st.session_state.current_page < total_questions - 1:
-            if st.button("Sonraki Soru ➡️"):
+            if st.button("Sonraki Soru ➡️️"):
                 st.session_state.current_page += 1
                 st.rerun()
 
