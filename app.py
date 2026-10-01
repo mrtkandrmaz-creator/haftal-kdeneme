@@ -67,32 +67,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kusursuz Vektörel Üçgen Çizim Motoru (Güncellenmiş Hizalama ve Diklik İşareti)
+# Kusursuz Vektörel Üçgen Çizim Motoru (Kesin Düzeltilmiş ve HTML Render Garantili)
 def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
-    # Dik üçgen durumunda B köşesindeki (30,170 noktası) köşe hizasına oturtulmuş 90 derece diklik sembolü
     right_angle_svg = '<rect x="30" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>' if is_right else ''
     
-    svg_code = f"""
-    <div style="display: flex; justify-content: center; margin: 15px 0;">
-        <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
-            <!-- Üçgen Poligonu (A:130,25 | B:30,170 | C:230,170) -->
-            <polygon points="130,25 30,170 230,170" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
-            
-            <!-- Diklik İşareti (Eğer dik üçgense) -->
-            {right_angle_svg}
-            
-            <!-- Köşe Etiketleri (A üstte, B sol altta, C sağ altta) -->
-            <text x="130" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
-            <text x="15" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
-            <text x="245" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
-            
-            <!-- Kenar Uzunluk Etiketleri (Tam orta noktalarına hizalı) -->
-            <text x="65" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
-            <text x="130" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
-            <text x="195" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
-        </svg>
-    </div>
-    """
+    # Çok satırlı metin hatasını önlemek için tek satırlık XML string yapısı
+    svg_code = f'<div style="display: flex; justify-content: center; margin: 15px 0;"><svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;"><polygon points="130,25 30,170 230,170" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>{right_angle_svg}<text x="130" y="18" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text><text x="15" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text><text x="245" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text><text x="68" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text><text x="130" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text><text x="192" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text></svg></div>'
     return svg_code
 
 # API Anahtarlarını secrets.toml'dan Güvenli Okuma
@@ -209,13 +189,13 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (MEB Soru Tipleri %25 Eşit Dağılım ve Hafta Uygunluğu)
+# Soru Üretim Mantığı
 if generate_btn:
     with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için '{selected_scope}' kazanımlarına tam uygun, %25 eşit oranlı 60 yeni nesil soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi '{selected_scope}' resmi öğretim programı "
             f"ve kazanımlarına birebir uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
-            "ZORUNLU SORU TİPİ DAĞILIMI (HER BİRİ TOPLAM SORULARIN %25'İNİ OLUŞTURACAKTIR):\n"
+            "ZORUNLU SORU TİPİ DAĞILIMI (%25 EŞİT ORAN):\n"
             "60 sorunun tamamı şu 4 soru tipine tam olarak eşit (15'er adet) oranla dağıtılmalıdır:\n"
             "1. Günlük Hayat Bağlamı / Gerçek Yaşam Problemi Kurma (%25)\n"
             "2. Grafik, Tablo ve Görsel Okuma / Veri Yorumlama (%25)\n"
@@ -308,7 +288,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     
     st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
-    # Geometrik şekil (üçgen vb.) varsa güncellenmiş SVG çizim motoru ile render et
+    # Geometrik şekil (üçgen vb.) varsa düzeltilmiş SVG fonksiyonu ile çağır
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
         s = q['shape']
         if s.get('type') == 'triangle':
