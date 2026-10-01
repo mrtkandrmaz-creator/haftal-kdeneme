@@ -132,7 +132,7 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Güvenli Groq REST API Üretici (llama-3.3-70b-versatile) ---
+# --- Kesin Çözüm: Kesintisiz ve Kararlı Groq REST API Üretici (llama-3.1-8b-instant) ---
 def ai_icerik_uret(prompt: str) -> str:
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
@@ -140,7 +140,7 @@ def ai_icerik_uret(prompt: str) -> str:
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "llama-3.3-70b-versatile",
+        "model": "llama-3.1-8b-instant",
         "messages": [
             {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
             {"role": "user", "content": prompt}
@@ -272,7 +272,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Groq Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
+    "<p class='subtext'>Groq (llama-3.1-8b-instant) Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
