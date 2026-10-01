@@ -4,30 +4,31 @@ import json
 
 # Sayfa Yapılandırması
 st.set_page_config(
-    page_title="MEB Müfredatı 80 Soruluk Çoklu API Deneme Paneli",
+    page_title="MEB Müfredatı 50 Soruluk Çoklu API Deneme Paneli",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Modern UI ve Şık Tasarım İçin Özel CSS
+# Modern UI ve Turuncu Buton Tasarımı İçin Özel CSS
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
-    .stButton>button {
+    /* Sol menüdeki soruları üret butonu için turuncu özel stil */
+    div.stButton > button:first-child {
         width: 100%;
         border-radius: 12px;
         font-weight: 700;
         padding: 0.85rem 1rem;
-        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
         color: white;
         border: none;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
     }
-    .stButton>button:hover {
+    div.stButton > button:first-child:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 15px -3px rgba(79, 70, 229, 0.4);
+        box-shadow: 0 6px 15px -3px rgba(249, 115, 22, 0.4);
     }
     .question-card {
         background: white;
@@ -75,7 +76,7 @@ except Exception:
     GEMINI_KEYS = []
 
 if not GROQ_KEYS and not GEMINI_KEYS:
-    st.error("⚠️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
+    st.error("⚠️️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
     st.stop()
 
 # Oturum Durumları
@@ -92,7 +93,7 @@ if "selected_answers" not in st.session_state:
 if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 
-# Yan Menü - Kapsam ve Dönem Seçimi
+# Yan Menü - Kapsam, Dönem ve Soru Üretme Butonu
 st.sidebar.markdown("## ⚙️ Müfredat & Çoklu API Havuzu")
 st.sidebar.markdown("---")
 
@@ -108,14 +109,18 @@ weeks_options.extend([
 ])
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
-question_count = 80
+question_count = 50
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🚀 Soru İşlemleri")
+generate_btn = st.sidebar.button("Soruları Üret")
 
 st.sidebar.markdown("---")
 st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI_KEYS)} Gemini anahtarı yüklendi.")
 
 # Ana Ekran Başlığı
-st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Çoklu API Havuzlu Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Tanımlı çoklu Groq ve Gemini anahtarları arasında arka planda akıllı geçiş yapan 80 soruluk LGS sistemi.</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Orantılı 50 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (10), Matematik (10), Fen (10), Sosyal (7), Din (6), İngilizce (7) oranlarına uygun LGS sistemi.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -174,22 +179,25 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Butonu
-col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
-with col_b2:
-    generate_btn = st.button("🚀 Havuzdaki API'lerle 80 Soruluk Deneme Üret")
-
+# Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner("✨ Çoklu API havuzu arka planda taranıyor ve 80 soruluk MEB LGS denemesi hazırlanıyor..."):
+    with st.spinner("✨ Çoklu API havuzu taranıyor ve LGS oranlarına uygun 50 soruluk deneme hazırlanıyor..."):
         prompt = f"""
-        5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki tüm ana derslerin (Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler vb.) o haftaya kadar işlenen kazanımlarını kapsayan tam {question_count} adet yeni nesil beceri temelli çoktan seçmeli soru hazırla.
-        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır.
+        5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki şu derslerden toplamda KESİNLİKLE {question_count} adet yeni nesil beceri temelli soru hazırla:
+        - Türkçe: 10 soru
+        - Matematik: 10 soru
+        - Fen Bilimleri: 10 soru
+        - Sosyal Bilgiler: 7 soru
+        - Din Kültürü ve Ahlak Bilgisi: 6 soru
+        - İngilizce: 7 soru
+        
+        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına mutlaka ilgili dersin adını yaz.
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
         {{
             "questions": [
                 {{
                     "id": 1,
-                    "subject": "Ders Adı (Örn: Matematik)",
+                    "subject": "Türkçe",
                     "question": "Soru metni burada yer alacak...",
                     "options": {{
                         "A": "A şıkkı",
@@ -211,7 +219,7 @@ if generate_btn:
                 st.session_state.quiz_started = False
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
-                st.success("✅ Sorular başarıyla üretildi! Aşağıdan sınavı başlatabilirsiniz.")
+                st.sidebar.success("✅ Sorular başarıyla üretildi!")
             except json.JSONDecodeError:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
@@ -261,7 +269,6 @@ if st.session_state.quiz_started and st.session_state.questions:
     
     options = q['options']
     
-    # Mevcut sorunun daha önce verilmiş bir cevabı var mı kontrol et
     current_val = st.session_state.selected_answers.get(idx)
     default_index = None
     if current_val in list(options.keys()):
