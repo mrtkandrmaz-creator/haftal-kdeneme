@@ -21,7 +21,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul dan LGS 60 Soruluk Deneme Sınavı Üretici",
+    page_title="Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -132,7 +132,7 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Güvenli Doğrudan Groq REST API Üretici ---
+# --- Güvenli Groq REST API Üretici (llama-3.1-8b-instant) ---
 def ai_icerik_uret(prompt: str) -> str:
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
@@ -140,7 +140,7 @@ def ai_icerik_uret(prompt: str) -> str:
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "llama-3.3-70b-versatile",
+        "model": "llama-3.1-8b-instant",
         "messages": [
             {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
             {"role": "user", "content": prompt}
