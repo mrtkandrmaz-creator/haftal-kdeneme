@@ -16,7 +16,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici",
+    page_title="Ortaokul ve LGS 80 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -54,55 +54,63 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı
+# MEB Müfredatına Uygun 80 Soruluk Sınav Dağılımı Veritabanı (Her ders 10 soru x 8 ders = 80 Soru)
 SINIF_MUFREDATLARI = {
     "5. Sınıf": {
-        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, Sosyal:10, Din:10, İngilizce:10)",
+        "aciklama": "80 Soruluk Kapsamlı Deneme Sınavı (8 Ders x 10 Soru)",
         "soru_dagilimi": {
             "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
             "Sosyal Bilgiler": 10,
-            "Din Kültürü": 10,
+            "Din Kültürü ve Ahlak Bilgisi": 10,
             "İngilizce": 10,
+            "Bilişim Teknolojileri": 10,
+            "Görsel Sanatlar / Müzik Kültürü": 10,
         },
-        "sure_dakika": 90,
+        "sure_dakika": 120,
     },
     "6. Sınıf": {
-        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, Sosyal:10, Din:10, İngilizce:10)",
+        "aciklama": "80 Soruluk Kapsamlı Deneme Sınavı (8 Ders x 10 Soru)",
         "soru_dagilimi": {
             "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
             "Sosyal Bilgiler": 10,
-            "Din Kültürü": 10,
+            "Din Kültürü ve Ahlak Bilgisi": 10,
             "İngilizce": 10,
+            "Bilişim Teknolojileri": 10,
+            "Trafik Güvenliği": 10,
         },
-        "sure_dakika": 90,
+        "sure_dakika": 120,
     },
     "7. Sınıf": {
-        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, Sosyal:10, Din:10, İngilizce:10)",
+        "aciklama": "80 Soruluk Kapsamlı Deneme Sınavı (8 Ders x 10 Soru)",
         "soru_dagilimi": {
             "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
             "Sosyal Bilgiler": 10,
-            "Din Kültürü": 10,
+            "Din Kültürü ve Ahlak Bilgisi": 10,
             "İngilizce": 10,
+            "Seçmeli Matematik ve Bilim Uygulamaları": 10,
+            "Seçmeli Okuma Becerileri": 10,
         },
-        "sure_dakika": 100,
+        "sure_dakika": 130,
     },
     "8. Sınıf (LGS)": {
-        "aciklama": "60 Soruluk LGS Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, T.C. İnkılap:10, Din:10, İngilizce:10)",
+        "aciklama": "80 Soruluk LGS Kapsamlı Deneme Sınavı (8 Ders x 10 Soru)",
         "soru_dagilimi": {
             "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
-            "T.C. İnkılap Tarihi": 10,
-            "Din Kültürü": 10,
+            "T.C. İnkılap Tarihi ve Atatürkçülük": 10,
+            "Din Kültürü ve Ahlak Bilgisi": 10,
             "İngilizce": 10,
+            "LGS Beceri Temelli Mantık Muhakeme": 10,
+            "LGS Sözel-Sayısal Karma Prova": 10,
         },
-        "sure_dakika": 100,
+        "sure_dakika": 130,
     },
 }
 
@@ -177,24 +185,45 @@ def ai_icerik_uret(prompt: str) -> str:
 
 def soruları_ayristir(tam_metin):
     parcalar = []
+    # Metni satır satır veya soru kalıplarına göre ayırıp soru metni ile şıkları birbirinden ayıralım
     soru_bloklari = re.split(r'\n(?=\d+[\.\)]\s)', tam_metin)
     
     for blok in soru_bloklari:
         match = re.match(r'^(\d+)[\.\)]\s*(.*)', blok.strip(), re.DOTALL)
         if match:
             soru_no = int(match.group(1))
-            soru_icerik = match.group(2)
-            parcalar.append({"no": soru_no, "metin": soru_icerik})
+            icerik = match.group(2)
+            
+            # Soru metni içindeki A), B), C), D) şıklarını ayıklayalım ki metin içinde tekrarlanmasınlar
+            # Şıkları bulmak için regex kalıbı
+            siklar_pattern = re.compile(r'([A-D][\.\)]\s.*?)(?=[A-D][\.\)]\s|$)', re.DOTALL)
+            bulunan_siklar = siklar_pattern.findall(icerik)
+            
+            # Asıl soru metnini şıklardan arındıralım
+            temiz_soru_metni = re.sub(r'[A-D][\.\)]\s.*', '', icerik).strip()
+            
+            if not bulunan_siklar:
+                # Alternatif şık bulma yöntemi
+                parts = re.split(r'(?=[A-D]\))', icerik)
+                if len(parts) > 1:
+                    temiz_soru_metni = parts[0].strip()
+                    bulunan_siklar = [p.strip() for p in parts[1:] if p.strip()]
+
+            parcalar.append({
+                "no": soru_no,
+                "metin": temiz_soru_metni if temiz_soru_metni else icerik,
+                "siklar": bulunan_siklar if bulunan_siklar else ["A) ...", "B) ...", "C) ...", "D) ..."]
+            })
     return parcalar
 
 
 # --- Streamlit Arayüzü ---
 st.markdown(
-    "<h1>🎯 Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici</h1>",
+    "<h1>🎯 Ortaokul ve LGS 80 Soruluk Deneme Sınavı Üretici</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Akıllı Model Filtreli, İnteraktif Soru Çözüm Paneli.</p>",
+    "<p class='subtext'>Sıralı Ders Akışlı, İnteraktif Soru Çözüm Paneli (80 Soru).</p>",
     unsafe_allow_html=True,
 )
 
@@ -229,7 +258,7 @@ st.sidebar.markdown(f"🎯 **Toplam Soru Sayısı:** {toplam_soru} Soru")
 
 # Üretim Butonu
 if st.sidebar.button(
-    f"✨ {sinif_secimi} 60 Soruluk Sınavı Üret",
+    f"✨ {sinif_secimi} 80 Soruluk Sınavı Üret",
     type="primary",
     use_container_width=True,
 ):
@@ -251,7 +280,7 @@ if st.sidebar.button(
 
     try:
         uretilen_metinler = [
-            f"=== {sinif_secimi.upper()} - 60 SORULUK DENEME ({donem_secimi} {hafta_secimi_str} - {sinav_tip_str}) ===\n"
+            f"=== {sinif_secimi.upper()} - 80 SORULUK DENEME ({donem_secimi} {hafta_secimi_str} - {sinav_tip_str}) ===\n"
         ]
 
         global_soru_sayaci = 1
@@ -262,7 +291,7 @@ if st.sidebar.button(
             bitis_no = global_soru_sayaci + soru_adedi - 1
             
             status_text.text(
-                f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi için {baslangic_no} ile {bitis_no} arası sorular üretiliyor..."
+                f"⚡ ({adim}/{toplam_ders_sayisi}) Sıralı Ders: {ders_adi} için {baslangic_no} ile {bitis_no} arası sorular üretiliyor..."
             )
 
             prompt = f"""
@@ -273,9 +302,9 @@ if st.sidebar.button(
             YALNIZCA VE SADECE **{ders_adi}** dersi için KESİNLİKLE VE TAM OLARAK **{soru_adedi}** adet özgün soru hazırla.
             
             Çok Önemli Kurallar:
-            1. Soru numaralarını KESİNLİKLE {baslangic_no}'den başlat ve sırayla tam {bitis_no}'e kadar git. Toplamda tam {soru_adedi} adet soru üretmelisin (Eksik soru asla kabul edilmez!).
+            1. Soru numaralarını KESİNLİKLE {baslangic_no}'den başlat ve sırayla tam {bitis_no}'e kadar git. Toplamda tam {soru_adedi} adet soru üretmelisin!
             2. HER BİR SORU mutlak surette A) ... B) ... C) ... D) ... şıklarının tamamını eksiksiz içermelidir.
-            3. EĞER DERS MATEMATİK İSE; soruların içinde üçgenler (eşkenar üçgen, ikizkenar üçgen, dik üçgen), dik açı, açı ölçüleri, grafikler ve tablolar gibi görsel/geometrik öğeler ASCII sembolleri, şekil açıklamaları veya koordinat şemalarıyla desteklenmelidir.
+            3. EĞER DERS MATEMATİK VEYA SAYISAL İSE; soruların içinde üçgenler, geometrik şekiller, grafikler ve tablolar ASCII sembolleri veya şekil açıklamalarıyla desteklenmelidir.
             4. Başka hiçbir dersin sorusunu bu bloğa karıştırma. Yalnızca {ders_adi} dersinin sorularını yaz.
             """
 
@@ -289,11 +318,11 @@ if st.sidebar.button(
             time.sleep(0.2)
 
         status_text.text(
-            "📝 Tüm dersler tamamlandı, detaylı cevap anahtarı ve çözüm açıklamaları ekleniyor..."
+            "📝 Tüm sıralı dersler tamamlandı, detaylı cevap anahtarı ve çözüm açıklamaları ekleniyor..."
         )
         cozum_prompt = f"""
-        Yukarıda hazırlanan {sinif_secimi} 60 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
-        1'den 60'a kadar tüm soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve adım adım kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
+        Yukarıda hazırlanan {sinif_secimi} 80 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
+        1'den 80'e kadar tüm soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve adım adım kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
         """
         cozum_yaniti = ai_icerik_uret(cozum_prompt)
         uretilen_metinler.append(
@@ -307,13 +336,13 @@ if st.sidebar.button(
         st.session_state["aktif_sinif"] = sinif_secimi
         st.session_state["aktif_soru_index"] = 0
         st.success(
-            f"🎉 {sinif_secimi} - 60 Soruluk {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
+            f"🎉 {sinif_secimi} - 80 Soruluk Sıralı Deneme Sınavı başarıyla oluşturuldu!"
         )
 
     except Exception as e:
         st.error(f"Sınav üretilirken bir hata oluştu: {e}")
 
-# --- İnteraktif Soru Çözüm Paneli (Her Sayfada Tek Soru ve Şık İşaretleme) ---
+# --- İnteraktif Soru Çözüm Paneli (Her Sayfada Tek Soru ve Düzgün Şık İşaretleme) ---
 if "sinav_metni" in st.session_state:
     metin = st.session_state["sinav_metni"]
     bulunan_sorular = soruları_ayristir(metin)
@@ -331,15 +360,23 @@ if "sinav_metni" in st.session_state:
         soru_obj = bulunan_sorular[current_idx]
 
         st.markdown("---")
-        st.markdown("### 📝 Soru Çözüm Paneli (Her Sayfada Tek Soru)")
+        st.markdown("### 📝 Soru Çözüm Paneli (Sıralı Ders Akışı - Her Sayfada Tek Soru)")
 
         # Soru Kartı
         st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
         st.markdown(f"#### Soru {current_idx + 1} / {toplam_bulunan} (Soru No: {soru_obj['no']})")
         
+        # Soru metni
         soru_icerik_metni = soru_obj['metin'].replace('\n', '<br>')
-        st.markdown(f"<div style='font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px;'>{soru_icerik_metni}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px;'>{soru_icerik_metni}</div>", unsafe_allow_html=True)
         
+        # Şıkların metin halleri varsa gösterelim
+        if soru_obj['siklar']:
+            st.markdown("<div style='background-color: #f1f3f5; padding: 15px; border-radius: 8px; margin-bottom: 20px;'>", unsafe_allow_html=True)
+            for sik in soru_obj['siklar']:
+                st.markdown(f"<p style='margin: 5px 0; font-size: 1rem;'>{sik}</p>", unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
+
         # Şık İşaretleme Alanı (A, B, C, D Butonları)
         st.markdown("**Cevabınızı İşaretleyin:**")
         secim_kolonlari = st.columns(4)
@@ -375,4 +412,4 @@ if "sinav_metni" in st.session_state:
                     st.rerun()
             else:
                 if st.button("🏁 Sınavı Tamamla", type="primary", use_container_width=True):
-                    st.success("Tebrikler! Sınav sorularının sonuna geldiniz ve cevaplarınızı kaydettiniz.")
+                    st.success("Tebrikler! 80 soruluk sıralı deneme sınavını tamamladınız ve cevaplarınızı kaydettiniz.")
