@@ -1,5 +1,4 @@
 import time
-import streamlit as json_or_streamlit_placeholder # yer tutucu
 import streamlit as st
 import json
 
@@ -207,57 +206,55 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (MEB Soru Tiplerine Göre Eşit Dağılım Dahil Edildi)
+# Soru Üretim Mantığı (Sözdizimi Hatasını Önleyen Düzenlenmiş Prompt)
 if generate_btn:
     with st.spinner(f"✨ Çoklu API havuzu taranıyor, MEB soru tiplerine (günlük hayat bağlamlı, grafik/tablo okuma, sözel mantık, analitik) dengeli dağıtılmış {selected_grade} 60 soru hazırlanıyor..."):
-        prompt = f"""
-        {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, MEB müfredatındaki derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
+        prompt = (
+            f"{selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, "
+            f"MEB müfredatındaki derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.\n\n"
+            "MEB SORU TİPLERİ DAĞILIM İLKESİ:\n"
+            "Sorular üretilirken MEB beceri temelli sınav formatına uygun olarak şu soru tipleri dengeli ve eşit oranlarda dağıtılmalıdır:\n"
+            "1. Günlük hayat bağlamı / Gerçek yaşam problemleri kurma\n"
+            "2. Grafik, tablo ve görsel okuma / Veri yorumlama\n"
+            "3. Sözel mantık / Muhakeme ve eleştirel düşünme\n"
+            "4. Deney / Hipotez analizi ve çıkarım yapma (Fen ve Matematik ağırlıklı)\n\n"
+            "DERS SIRALAMASI VE DAĞILIMI (ÖNEMLİ):\n"
+            "Sorular kesinlikle sırasıyla şu derslerden oluşsun:\n"
+            "1. Türkçe\n"
+            "2. Matematik\n"
+            "3. Fen Bilimleri\n"
+            "4. Sosyal Bilgiler / İnkılap Tarihi\n"
+            "(Kalan sorular Din Kültürü ve İngilizce ile tamamlanarak toplam 60 soruya ulaşılacaktır).\n\n"
+            "GEOMETRİ VE ÜÇGEN KURALLARI:\n"
+            "Matematik sorularında üçgen içeren sorular için JSON içinde mutlaka ayrı bir 'shape' objesi tanımla:\n"
+            "{\n"
+            "    \"type\": \"triangle\",\n"
+            "    \"A\": \"A\", \"B\": \"B\", \"C\": \"C\",\n"
+            "    \"ab\": \"5 cm\", \"bc\": \"8 cm\", \"ac\": \"6 cm\",\n"
+            "    \"is_right\": false\n"
+            "}\n"
+            "Bu sayede sistem vektörel kusursuz üçgen görselini otomatik çizecektir. Soru metninde asla ASCII çizgi kullanma.\n\n"
+            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.\n"
+            "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:\n"
+            "{\n"
+            "    \"questions\": [\n"
+            "        {\n"
+            "            \"id\": 1,\n"
+            "            \"subject\": \"Türkçe\",\n"
+            "            \"question\": \"Soru metni...\",\n"
+            "            \"shape\": null,\n"
+            "            \"options\": {\n"
+            "                \"A\": \"A şıkkı\",\n"
+            "                \"B\": \"B şıkkı\",\n"
+            "                \"C\": \"C şıkkı\",\n"
+            "                \"D\": \"D şıkkı\"\n"
+            "            },\n"
+            "            \"answer\": \"A\"\n"
+            "        }\n"
+            "    ]\n"
+            "}"
+        )
         
-        MEB SORU TİPLERİ DAĞILIM İLKESİ:
-        Sorular üretilirken MEB beceri temelli sınav formatına uygun olarak şu soru tipleri dengeli ve eşit oranlarda dağıtılmalıdır:
-        1. Günlük hayat bağlamı / Gerçek yaşam problemleri kurma
-        2. Grafik, tablo ve görsel okuma / Veri yorumlama
-        3. Sözel mantık / Muhakeme ve eleştirel düşünme
-        4. Deney / Hipotez analizi ve çıkarım yapma (Fen ve Matematik ağırlıklı)
-        
-        DERS SIRALAMASI VE DAĞILIMI (ÖNEMLİ):
-        Sorular kesinlikle sırasıyla şu derslerden oluşsun:
-        1. Türkçe
-        2. Matematik
-        3. Fen Bilimleri
-        4. Sosyal Bilgiler / İnkılap Tarihi
-        (Kalan sorular Din Kültürü ve İngilizce ile tamamlanarak toplam 60 soruya ulaşılacaktır).
-        
-        GEOMETRİ VE ÜÇGEN KURALLARI:
-        Matematik sorularında üçgen içeren sorular için JSON içinde mutlaka ayrı bir "shape" objesi tanımla.
-        "shape": {{
-            "type": "triangle",
-            "A": "A", "B": "B", "C": "C",
-            "ab": "5 cm", "bc": "8 cm", "ac": "6 cm",
-            "is_right": false
-        }}
-        Bu sayede sistem vektörel kusursuz üçgen görselini otomatik çizecektir. Soru metninde asla ASCII çizgi kullanma.
-        
-        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.
-        Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
-        {{
-            "questions": [
-                {
-                    "id": 1,
-                    "subject": "Türkçe",
-                    "question": "Soru metni...",
-                    "shape": null,
-                    "options": {
-                        "A": "A şıkkı",
-                        "B": "B şıkkı",
-                        "C": "C şıkkı",
-                        "D": "D şıkkı"
-                    },
-                    "answer": "A"
-                }
-            ]
-        }}
-        """
         raw_json, error_message = multi_pool_generate(prompt)
         if raw_json:
             try:
@@ -358,7 +355,7 @@ if st.session_state.quiz_started and st.session_state.questions:
                 
     with nav_col3:
         if st.session_state.current_page < total_questions - 1:
-            if st.button("Sonraki Soru ➡️️"):
+            if st.button("Sonraki Soru ➡️"):
                 st.session_state.current_page += 1
                 st.rerun()
 
