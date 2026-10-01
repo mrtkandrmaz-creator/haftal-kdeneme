@@ -16,6 +16,10 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from reportlab.lib import colors
 import streamlit as st
 
+# --- API Anahtarlarınız (Doğrudan Tanımlı) ---
+GROQ_API_KEY_DIRECT = "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"
+GEMINI_API_KEY_DIRECT = "AQ.Ab8RN6JTu73bBZfj3c1dhUwmm4cOHO3hFSIM3uUxrkIEc_uj-A"
+
 # --- PyInstaller için SSL ve Dosya Yolu Sabitleme ---
 if getattr(sys, "frozen", False):
     os.environ["SSL_CERT_FILE"] = os.path.join(
@@ -135,15 +139,12 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Streamlit Secrets'a göre Otomatik AI Karar Mekanizması ---
+# --- Doğrudan Anahtar Kullanan Akıllı Hibrit Üretici ---
 def ai_icerik_uret(prompt: str) -> str:
-    groq_key = st.secrets.get("GROQ_API_KEY", "")
-    gemini_key = st.secrets.get("GEMINI_API_KEY", "")
-
-    # 1. Eğer Groq Anahtarı Varsa ve Kütüphane Yüklüyse -> Groq Kullan
-    if groq_key and GROQ_AVAILABLE:
+    # 1. Önce Groq ile hızlı üretimi deneriz
+    if GROQ_AVAILABLE and GROQ_API_KEY_DIRECT:
         try:
-            client = Groq(api_key=groq_key)
+            client = Groq(api_key=GROQ_API_KEY_DIRECT)
             completion = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[
@@ -156,12 +157,12 @@ def ai_icerik_uret(prompt: str) -> str:
             if completion.choices and completion.choices[0].message.content:
                 return completion.choices[0].message.content
         except Exception:
-            pass # Groq hata verirse otomatik Gemini'ye düşer
+            pass # Groq hata verirse otomatik Gemini'ye geçer
 
-    # 2. Eğer Gemini Anahtarı Varsa -> Gemini Kullan
-    if gemini_key:
-        genai.configure(api_key=gemini_key)
-        yedek_liste = ["gemini-2.5-flash", "gemini-3.6-flash", "gemini-1.5-flash", "gemini-pro"]
+    # 2. Groq başarısız olursa veya kütüphane yoksa doğrudan Gemini API devreye girer
+    if GEMINI_API_KEY_DIRECT:
+        genai.configure(api_key=GEMINI_API_KEY_DIRECT)
+        yedek_liste = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-pro"]
         for model_adi in yedek_liste:
             try:
                 model = genai.GenerativeModel(model_adi)
@@ -171,7 +172,7 @@ def ai_icerik_uret(prompt: str) -> str:
             except Exception:
                 continue
 
-    raise RuntimeError("Streamlit Secrets içinde geçerli bir GROQ_API_KEY veya GEMINI_API_KEY bulunamadı veya her iki servis de yanıt vermedi!")
+    raise RuntimeError("Girilen GROQ_API_KEY veya GEMINI_API_KEY ile bağlantı kurulamadı. Lütfen internet bağlantınızı kontrol edin.")
 
 def soruları_ayristir(tam_metin):
     parcalar = []
@@ -286,7 +287,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Streamlit Secrets Üzerinden Otomatik Motor Seçimli (Groq / Gemini) Sınav Sistemi.</p>",
+    "<p class='subtext'>Groq ve Gemini Hibrit Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
