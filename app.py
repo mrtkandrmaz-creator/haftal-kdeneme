@@ -14,6 +14,8 @@ st.set_page_config(
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
+    
+    /* Genel Buton Tasarımı */
     div.stButton > button:first-child {
         width: 100%;
         border-radius: 14px;
@@ -30,19 +32,35 @@ st.markdown("""
         transform: translateY(-2px);
         box-shadow: 0 8px 20px -4px rgba(249, 115, 22, 0.5);
     }
+    
+    /* Navigasyon Butonları için Özel Vurgu Boyutlandırma */
+    .nav-btn-container div.stButton > button:first-child {
+        font-size: 1.25rem !important;
+        padding: 1.1rem 1.5rem !important;
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+        box-shadow: 0 6px 15px -2px rgba(2, 132, 199, 0.35) !important;
+    }
+    .nav-btn-container div.stButton > button:first-child:hover {
+        box-shadow: 0 8px 22px -4px rgba(2, 132, 199, 0.55) !important;
+    }
+
     .question-card {
         background: white;
-        padding: 2rem;
+        padding: 2.2rem;
         border-radius: 16px;
         box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         border: 1px solid #e2e8f0;
         margin-bottom: 1.5rem;
     }
+    
+    /* Soru Metni Daha Büyük ve Kalın */
     .question-title {
-        font-size: 1.35rem !important;
+        font-size: 1.45rem !important;
         font-weight: 800 !important;
         color: #1e293b !important;
-        line-height: 1.6 !important;
+        line-height: 1.65 !important;
+        margin-top: 1rem;
+        margin-bottom: 1.2rem;
     }
     .passage-box {
         background: #f1f5f9;
@@ -77,7 +95,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Vektörel Şekil Çizim Motoru (Dik, İkizkenar, Eşkenar Üçgen & Çubuk Grafik)
+# Düzeltilmiş Vektörel Şekil Çizim Motoru (Hatalar giderildi, cevap sızdırma önlendi)
 def draw_geometry_shape(shape_data):
     st_type = shape_data.get("type", "triangle")
     
@@ -93,26 +111,27 @@ def draw_geometry_shape(shape_data):
         angle_b = shape_data.get("angle_b", "")
         angle_c = shape_data.get("angle_c", "")
         
+        # Koordinatlar ve oranlar düzeltildi
         if sub_type == "right":
-            polygon_points = "40,30 40,170 210,170"
-            right_angle_svg = '<rect x="40" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
-            a_pos, b_pos, c_pos = (40, 20), (25, 185), (215, 185)
-            ab_pos, bc_pos, ac_pos = (25, 100), (125, 192), (135, 92)
+            polygon_points = "50,30 50,170 210,170"
+            right_angle_svg = '<rect x="50" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
+            a_pos, b_pos, c_pos = (50, 18), (35, 185), (218, 185)
+            ab_pos, bc_pos, ac_pos = (32, 100), (130, 192), (138, 92)
         elif sub_type == "equilateral":
-            polygon_points = "130,20 30,185 230,185"
+            polygon_points = "130,22 30,185 230,185"
             right_angle_svg = ''
             a_pos, b_pos, c_pos = (130, 12), (18, 195), (242, 195)
             ab_pos, bc_pos, ac_pos = (68, 95), (130, 202), (192, 95)
         elif sub_type == "isosceles":
-            polygon_points = "130,25 40,170 220,170"
+            polygon_points = "130,25 45,170 215,170"
             right_angle_svg = ''
-            a_pos, b_pos, c_pos = (130, 17), (30, 180), (230, 180)
-            ab_pos, bc_pos, ac_pos = (75, 90), (130, 187), (185, 90)
+            a_pos, b_pos, c_pos = (130, 15), (32, 180), (228, 180)
+            ab_pos, bc_pos, ac_pos = (78, 90), (130, 188), (182, 90)
         else:
-            polygon_points = "130,25 30,170 230,170"
+            polygon_points = "130,25 35,170 225,170"
             right_angle_svg = ''
-            a_pos, b_pos, c_pos = (130, 18), (15, 188), (245, 188)
-            ab_pos, bc_pos, ac_pos = (68, 90), (130, 193), (192, 90)
+            a_pos, b_pos, c_pos = (130, 15), (20, 182), (240, 182)
+            ab_pos, bc_pos, ac_pos = (70, 90), (130, 190), (188, 90)
 
         svg_code = f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
             <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
@@ -124,9 +143,9 @@ def draw_geometry_shape(shape_data):
                 <text x="{ab_pos[0]}" y="{ab_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
                 <text x="{bc_pos[0]}" y="{bc_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
                 <text x="{ac_pos[0]}" y="{ac_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
-                <text x="125" y="45" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_a}</text>
-                <text x="55" y="150" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_b}</text>
-                <text x="200" y="150" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_c}</text>
+                <text x="130" y="48" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_a}</text>
+                <text x="60" y="152" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_b}</text>
+                <text x="195" y="152" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_c}</text>
             </svg>
         </div>'''
         return svg_code
@@ -245,7 +264,7 @@ def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-3.6-flash",
         contents=prompt_text,
     )
     text = response.text
@@ -281,7 +300,7 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (80 Soru - Paragraf/Öncül Garantili, LGS Dağılımı ve Katı Ders İzolasyonu)
+# Soru Üretim Mantığı
 if generate_btn:
     with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için eksiksiz paragraf/öncüllü, LGS ağırlıklı 80 soru hazırlanıyor..."):
         prompt = (
@@ -294,20 +313,19 @@ if generate_btn:
             "3. Fen Bilimleri: 20 Soru (41-60 arası)\n"
             "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (61-70 arası)\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (71-80 arası)\n\n"
-            "HAYATİ ÖNEM TAŞIYAN İÇERİK DOĞRULUK KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
-            "1. ASLA EKSİK METİN YOK: Soru metninde 'Bu paragraftan hareketle...', 'Yukarıdaki metne göre...', 'Bu bilgilere dayanarak...' ifadeleri geçiyorsa, JSON içerisindeki `passage` alanına kesinlikle ilgili paragraf, metin veya öncül bilgisi eksiksiz yazılmalıdır. `passage` alanı asla boş bırakılamaz; soru metni ile uyumlu gerçek bir metin içermelidir.\n"
-            "2. KATI DERS İZOLASYONU: Türkçe sorularında asla matematiksel işlem veya fen terimleri olamaz; tamamen sözel mantık, dil bilgisi ve okuduğunu anlama odaklı olmalıdır.\n"
-            "3. GEOMETRİ VE GRAFİK KURALLARI:\n"
-            "   - Üçgen sorularında (dik, ikizkenar, eşkenar, çeşitkenar) metinde ASCII kullanılmaz, `shape` nesnesine şu format verilir: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
-            "   - Grafik sorularında: `{\"type\": \"bar_chart\", \"title\": \"Başlık\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
-            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam ve doğru yaz.\n"
+            "HAYATİ ÖNEM TAŞIYAN İÇERİK DOĞRULUK VE GEOMETRİ KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
+            "1. ASLA EKSİK METİN YOK: Soru metninde 'Bu paragraftan hareketle...', 'Yukarıdaki metne göre...' gibi ifadeler varsa, JSON içerisindeki `passage` alanına kesinlikle ilgili paragraf veya metin yazılmalıdır.\n"
+            "2. GEOMETRİ VE ÜÇGEN GÖRSELLERİNDE CEVAP SIZDIRMA YASAĞI: Üçgen sorularında (ikizkenar, eşkenar, dik vb.) sorunun cevabı olan açı veya kenar değerleri ASLA şekil üzerinde (ab, bc, ac, angle_a vb. alanlarda) doğrudan yazılmamalıdır! Şekil yalnızca bilinen dış ipuçlarını (örneğin ikizkenar ise eşit kenar işaretleri, eşkenar ise temel etiketler) içermeli, sorulan bilinmeyen değer şekle yazılmamalıdır.\n"
+            "   - Üçgen formatı: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
+            "   - Grafik formatı: `{\"type\": \"bar_chart\", \"title\": \"Başlık\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
+            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
             "{\n"
             "    \"questions\": [\n"
             "        {\n"
             "            \"id\": 1,\n"
             "            \"subject\": \"Türkçe\",\n"
-            "            \"passage\": \"Paragraf veya metin içeriği buraya yazılacak (eğer metin gerekiyorsa, aksi halde boş bırakılabilir).\",\n"
+            "            \"passage\": \"Paragraf veya metin içeriği (gerekmiyorsa boş bırakılabilir).\",\n"
             "            \"question\": \"Soru metni...\",\n"
             "            \"shape\": null,\n"
             "            \"options\": {\n"
@@ -338,7 +356,7 @@ if generate_btn:
         else:
             st.error(f"❌ Tanımlı API anahtarları ile bağlantı kurulamadı. Hata: {error_message}")
 
-# Sorular Üretildikten Sonra Görünen "Sınavı Başlat" Butonu
+# Sınavı Başlat Butonu
 if st.session_state.quiz_ready and not st.session_state.quiz_started:
     st.markdown("---")
     sc1, sc2, sc3 = st.columns([1, 2, 1])
@@ -348,7 +366,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
             st.session_state.start_time = time.time()
             st.rerun()
 
-# Sınav Ekranı (Her Sayfada 1 Soru - Paragraf Kutusu ve Görsel Desteği)
+# Sınav Ekranı
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
     total_time_seconds = total_questions * 80  
@@ -376,16 +394,17 @@ if st.session_state.quiz_started and st.session_state.questions:
     st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
     sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
     
-    # Paragraf/Öncül Metin Kutusu (Eğer varsa göster)
+    # Paragraf/Öncül Metin Kutusu
     if 'passage' in q and q['passage'] and str(q['passage']).strip() != "":
         st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül:</b><br>{q['passage']}</div>", unsafe_allow_html=True)
 
-    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
-    
-    # Şekil veya Grafik Varsa Çizdir
+    # Görsel Öncelikli Yerleşim
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
         shape_html = draw_geometry_shape(q['shape'])
         st.markdown(shape_html, unsafe_allow_html=True)
+
+    # Büyük ve Kalın Soru Metni
+    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
 
     options = q['options']
     
@@ -406,19 +425,21 @@ if st.session_state.quiz_started and st.session_state.questions:
         
     st.markdown(f"</div>", unsafe_allow_html=True)
 
-    # Navigasyon Butonları
+    # Önceki ve Sonraki Butonlarının Yer Değişmiş Hali (Sol: Sonraki / Sağ: Önceki)
+    st.markdown("<div class='nav-btn-container'>", unsafe_allow_html=True)
     nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
     with nav_col1:
+        if st.session_state.current_page < total_questions - 1:
+            if st.button("➡️ Sonraki Soru"):
+                st.session_state.current_page += 1
+                st.rerun()
+                
+    with nav_col3:
         if st.session_state.current_page > 0:
             if st.button("⬅️ Önceki Soru"):
                 st.session_state.current_page -= 1
                 st.rerun()
-                
-    with nav_col3:
-        if st.session_state.current_page < total_questions - 1:
-            if st.button("Sonraki Soru ➡️"):
-                st.session_state.current_page += 1
-                st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("---")
     if st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör"):
@@ -444,8 +465,8 @@ if st.session_state.quiz_started and st.session_state.questions:
                 status = "✅" if user_ans == q_item['answer'] else "❌"
                 if 'passage' in q_item and q_item['passage'] and str(q_item['passage']).strip() != "":
                     st.markdown(f"**Metin:** {q_item['passage']}")
-                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
                     st.markdown(draw_geometry_shape(q_item['shape']), unsafe_allow_html=True)
+                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
