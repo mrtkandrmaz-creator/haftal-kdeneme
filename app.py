@@ -95,10 +95,14 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Düzeltilmiş Vektörel Şekil Çizim Motoru (Hatalar giderildi, cevap sızdırma önlendi)
+# Kapsamlı Vektörel Geometri ve Grafik Çizim Motoru (Çember, Üçgenler, Kare, Dikdörtgen ve Grafikler)
 def draw_geometry_shape(shape_data):
+    if not isinstance(shape_data, dict):
+        return ""
+        
     st_type = shape_data.get("type", "triangle")
     
+    # 1. ÜÇGENLER (Dik, Eşkenar, İkizkenar, Çeşitkenar)
     if st_type == "triangle":
         sub_type = shape_data.get("sub_type", "scalene") 
         a_label = shape_data.get("A", "A")
@@ -111,7 +115,6 @@ def draw_geometry_shape(shape_data):
         angle_b = shape_data.get("angle_b", "")
         angle_c = shape_data.get("angle_c", "")
         
-        # Koordinatlar ve oranlar düzeltildi
         if sub_type == "right":
             polygon_points = "50,30 50,170 210,170"
             right_angle_svg = '<rect x="50" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
@@ -133,7 +136,7 @@ def draw_geometry_shape(shape_data):
             a_pos, b_pos, c_pos = (130, 15), (20, 182), (240, 182)
             ab_pos, bc_pos, ac_pos = (70, 90), (130, 190), (188, 90)
 
-        svg_code = f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
+        return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
             <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
                 <polygon points="{polygon_points}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
                 {right_angle_svg}
@@ -148,8 +151,46 @@ def draw_geometry_shape(shape_data):
                 <text x="195" y="152" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_c}</text>
             </svg>
         </div>'''
-        return svg_code
         
+    # 2. ÇEMBER / DAİRE
+    elif st_type == "circle":
+        center_label = shape_data.get("center", "O")
+        radius_label = shape_data.get("radius", "")
+        show_diameter = shape_data.get("show_diameter", False)
+        
+        diameter_line = f'<line x1="30" y1="105" x2="230" y2="105" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>' if show_diameter else ''
+        
+        return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
+            <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+                <circle cx="130" cy="105" r="80" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5"/>
+                <circle cx="130" cy="105" r="4" fill="#ea580c"/>
+                {diameter_line}
+                <line x1="130" y1="105" x2="210" y2="105" stroke="#0284c7" stroke-width="2.5"/>
+                <text x="135" y="98" font-family="sans-serif" font-size="15" font-weight="900" fill="#ea580c">{center_label}</text>
+                <text x="170" y="98" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{radius_label}</text>
+            </svg>
+        </div>'''
+
+    # 3. KARE VE DİKDÖRTGEN
+    elif st_type in ["square", "rectangle"]:
+        title = shape_data.get("title", "Geometrik Şekil")
+        w_label = shape_data.get("width", "")
+        h_label = shape_data.get("height", "")
+        is_square = (st_type == "square")
+        
+        rect_w, rect_h = (140, 140) if is_square else (180, 110)
+        rect_x, rect_y = (130 - rect_w//2), (105 - rect_h//2)
+        
+        return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
+            <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+                <rect x="{rect_x}" y="{rect_y}" width="{rect_w}" height="{rect_h}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" rx="4"/>
+                <text x="130" y="{rect_y - 10}" font-family="sans-serif" font-size="14" font-weight="800" fill="#ea580c" text-anchor="middle">{w_label}</text>
+                <text x="{rect_x - 18}" y="110" font-family="sans-serif" font-size="14" font-weight="800" fill="#0284c7" text-anchor="middle">{h_label}</text>
+                <text x="130" y="195" font-family="sans-serif" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">{title}</text>
+            </svg>
+        </div>'''
+        
+    # 4. ÇUBUK GRAFİK
     elif st_type == "bar_chart":
         labels = shape_data.get("labels", ["A", "B", "C", "D"])
         values = shape_data.get("values", [10, 25, 15, 30])
@@ -167,14 +208,13 @@ def draw_geometry_shape(shape_data):
                 <text x="{x_start + i * 45 + 15}" y="172" font-family="sans-serif" font-size="13" font-weight="800" fill="#334155" text-anchor="middle">{l}</text>
             '''
         
-        chart_svg = f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
+        return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
             <svg width="260" height="200" viewBox="0 0 260 200" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
                 <text x="130" y="22" font-family="sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">{title}</text>
                 <line x1="30" y1="150" x2="235" y2="150" stroke="#cbd5e1" stroke-width="2"/>
                 {bars_html}
             </svg>
         </div>'''
-        return chart_svg
         
     return ""
 
@@ -313,10 +353,12 @@ if generate_btn:
             "3. Fen Bilimleri: 20 Soru (41-60 arası)\n"
             "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (61-70 arası)\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (71-80 arası)\n\n"
-            "HAYATİ ÖNEM TAŞIYAN İÇERİK DOĞRULUK VE GEOMETRİ KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
-            "1. ASLA EKSİK METİN YOK: Soru metninde 'Bu paragraftan hareketle...', 'Yukarıdaki metne göre...' gibi ifadeler varsa, JSON içerisindeki `passage` alanına kesinlikle ilgili paragraf veya metin yazılmalıdır.\n"
-            "2. GEOMETRİ VE ÜÇGEN GÖRSELLERİNDE CEVAP SIZDIRMA YASAĞI: Üçgen sorularında (ikizkenar, eşkenar, dik vb.) sorunun cevabı olan açı veya kenar değerleri ASLA şekil üzerinde (ab, bc, ac, angle_a vb. alanlarda) doğrudan yazılmamalıdır! Şekil yalnızca bilinen dış ipuçlarını (örneğin ikizkenar ise eşit kenar işaretleri, eşkenar ise temel etiketler) içermeli, sorulan bilinmeyen değer şekle yazılmamalıdır.\n"
+            "HAYATİ ÖNEM TAŞIYAN GEOMETRİ VE GÖRSEL KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
+            "1. GEOMETRİK ŞEKİL GEREKTİREN SORULAR: Çember, dik üçgen, eşkenar üçgen, ikizkenar üçgen, kare veya dikdörtgen içeren matematik/geometri sorularında `shape` alanı ASLA boş bırakılmamalıdır! Soruya uygun görsel nesne JSON formatına eklenmelidir.\n"
+            "2. CEVAP SIZDIRMA YASAĞI: Şekiller üzerinde sorunun çözümü olan bilinmeyen değerler (örneğin sorulan açı veya kenar uzunluğu) kesinlikle yazılmamalıdır; şekil yalnızca bilinen dış ipuçlarını (merkez noktası, yarıçap etiketi vb.) içermelidir.\n"
             "   - Üçgen formatı: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
+            "   - Çember formatı: `{\"type\": \"circle\", \"center\": \"O\", \"radius\": \"...\", \"show_diameter\": true/false}`\n"
+            "   - Kare / Dikdörtgen formatı: `{\"type\": \"square\" (veya \"rectangle\"), \"title\": \"...\", \"width\": \"...\", \"height\": \"...\"}`\n"
             "   - Grafik formatı: `{\"type\": \"bar_chart\", \"title\": \"Başlık\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
@@ -398,7 +440,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     if 'passage' in q and q['passage'] and str(q['passage']).strip() != "":
         st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül:</b><br>{q['passage']}</div>", unsafe_allow_html=True)
 
-    # Görsel Öncelikli Yerleşim
+    # Görsel Öncelikli Yerleşim (Çember, Üçgen, Kare, Dikdörtgen veya Grafik)
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
         shape_html = draw_geometry_shape(q['shape'])
         st.markdown(shape_html, unsafe_allow_html=True)
@@ -425,7 +467,7 @@ if st.session_state.quiz_started and st.session_state.questions:
         
     st.markdown(f"</div>", unsafe_allow_html=True)
 
-    # Önceki ve Sonraki Butonlarının Yer Değişmiş Hali (Sol: Sonraki / Sağ: Önceki)
+    # Navigasyon Butonları (Sol: Sonraki / Sağ: Önceki)
     st.markdown("<div class='nav-btn-container'>", unsafe_allow_html=True)
     nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
     with nav_col1:
