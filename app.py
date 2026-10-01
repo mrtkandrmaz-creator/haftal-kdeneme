@@ -1,408 +1,301 @@
-import os
-import re
-import sys
 import time
-import requests
+import streamlit as json_lib
 import streamlit as st
+import json
 
-# --- Groq API Anahtarınız ---
-GROQ_API_KEY_DIRECT = "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"
-
-# --- PyInstaller için SSL ve Dosya Yolu Sabitleme ---
-if getattr(sys, "frozen", False):
-    os.environ["SSL_CERT_FILE"] = os.path.join(
-        sys._MEIPASS, "certifi", "cacert.pem"
-    )
-
-# Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
+# Sayfa Yapılandırması
 st.set_page_config(
-    page_title="Ortaokul ve LGS 50 Soruluk Deneme Sınavı Üretici",
-    page_icon="🎯",
-    layout="centered",
+    page_title="MEB Müfredatı 80 Soruluk LGS Deneme Paneli",
+    page_icon="🎓",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-st.markdown(
-    """
+# Modern UI ve Şık Tasarım İçin Özel CSS
+st.markdown("""
     <style>
-    .main {
-        background-color: #f8f9fa;
-    }
-    h1 {
-        color: #1e3d59;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    .subtext {
-        text-align: center;
-        color: #6c757d;
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-    }
-    .exam-card {
-        background-color: #ffffff;
-        padding: 30px;
+    .main { background-color: #f8fafc; }
+    .stButton>button {
+        width: 100%;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e1e4e8;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        font-weight: 700;
+        padding: 0.85rem 1rem;
+        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px -3px rgba(79, 70, 229, 0.4);
+    }
+    .question-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+        margin-bottom: 1.5rem;
+    }
+    .question-title {
+        font-size: 1.35rem !important;
+        font-weight: 800 !important;
+        color: #1e293b !important;
+        line-height: 1.6 !important;
+    }
+    .timer-box {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        color: #38bdf8;
+        padding: 1.2rem;
+        border-radius: 16px;
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 900;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3);
+        border: 2px solid #38bdf8;
+        letter-spacing: 2px;
+    }
+    .badge {
+        background-color: #e0f2fe;
+        color: #0369a1;
+        padding: 0.4rem 0.9rem;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
     }
     </style>
-    """,
-    unsafe_allow_html=True,
-)
+""", unsafe_allow_html=True)
 
-# MEB Müfredatına Uygun 50 Soruluk Sınav Dağılımı (5 Ders x 10 Soru = 50 Soru)
-SINIF_MUFREDATLARI = {
-    "5. Sınıf": {
-        "aciklama": "50 Soruluk Kapsamlı Deneme Sınavı (5 Ders x 10 Soru)",
-        "soru_dagilimi": {
-            "Türkçe": 10,
-            "Matematik": 10,
-            "Fen Bilimleri": 10,
-            "Sosyal Bilgiler": 10,
-            "Din Kültürü ve Ahlak Bilgisi": 10,
-        },
-        "sure_dakika": 90,
-    },
-    "6. Sınıf": {
-        "aciklama": "50 Soruluk Kapsamlı Deneme Sınavı (5 Ders x 10 Soru)",
-        "soru_dagilimi": {
-            "Türkçe": 10,
-            "Matematik": 10,
-            "Fen Bilimleri": 10,
-            "Sosyal Bilgiler": 10,
-            "Din Kültürü ve Ahlak Bilgisi": 10,
-        },
-        "sure_dakika": 90,
-    },
-    "7. Sınıf": {
-        "aciklama": "50 Soruluk Kapsamlı Deneme Sınavı (5 Ders x 10 Soru)",
-        "soru_dagilimi": {
-            "Türkçe": 10,
-            "Matematik": 10,
-            "Fen Bilimleri": 10,
-            "Sosyal Bilgiler": 10,
-            "Din Kültürü ve Ahlak Bilgisi": 10,
-        },
-        "sure_dakika": 100,
-    },
-    "8. Sınıf (LGS)": {
-        "aciklama": "50 Soruluk LGS Kapsamlı Deneme Sınavı (5 Ders x 10 Soru)",
-        "soru_dagilimi": {
-            "Türkçe": 10,
-            "Matematik": 10,
-            "Fen Bilimleri": 10,
-            "T.C. İnkılap Tarihi ve Atatürkçülük": 10,
-            "Din Kültürü ve Ahlak Bilgisi": 10,
-        },
-        "sure_dakika": 100,
-    },
-}
-
-HAFTALIK_ICERIKLER = {
-    1: "1. Hafta Kazanımları: Temel kavramlara giriş, metin türleri, doğal sayılar/işlemler, güneşin yapısı ve özellikleri.",
-    2: "2. Hafta Kazanımları: Sözcükte anlam, kesirler, dünyamızın hareketi, sosyal rollerimiz, melekler ve ahiret inancı.",
-    3: "3. Hafta Kazanımları: Cümlede anlam, ondalık gösterimler, canlılar ve yaşam, ibadet esasları.",
-    4: "🌟 4. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
-    5: "5. Hafta Kazanımları: Paragrafta anlam, oran-orantı, kuvvetin ölçülmesi, hak ve sorumluluklar.",
-    6: "6. Hafta Kazanımları: Yazım kuralları, yüzdeler, madde ve ısı, afetler ve çevre.",
-    7: "7. Hafta Kazanımları: Noktalama işaretleri, cebirsel ifadeler, ışığın yayılması, Hz. Muhammed'in hayatı.",
-    8: "🌟 8. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
-    9: "9. Hafta Kazanımları: Üçgenler, dik açı, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri, veri analizi ve grafik yorumlama.",
-    10: "10. Hafta Kazanımları: Anlatım bozuklukları, veri analizi, çözeltiler ve karışımlar, demokrasi tarihi.",
-    11: "11. Hafta Kazanımları: Sözel mantık, doğrusal denklemler, elektrik devreleri, uluslararası ilişkiler.",
-    12: "🌟 12. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
-    13: "13. Hafta Kazanımları: Okuma yorumlama, eşitsizlikler, basit makineler, küresel sorunlar.",
-    14: "14. Hafta Kazanımları: Görsel okuma, dönüşüm geometrisi, DNA ve genetik kod, ekonomi ve ticaret.",
-    15: "15. Hafta Kazanımları: Mantıksal muhakeme, katı cisimler, iklim ve hava olayları, hukuk bilinci.",
-    16: "🌟 16. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI.",
-    17: "17. Hafta Kazanımları: LGS beceri temelli karma soru provası.",
-    18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
-}
-
-# --- Kesin Çözümlü, Güncel Modelleri İçeren Akıllı API Fonksiyonu ---
-def ai_icerik_uret(prompt: str) -> str:
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY_DIRECT}",
-        "Content-Type": "application/json"
+# API Anahtarlarını Güvenli Okuma
+try:
+    API_KEYS = {
+        "Groq": st.secrets["api_keys"].get("groq_api_key", ""),
+        "Gemini": st.secrets["api_keys"].get("gemini_api_key", ""),
+        "OpenAI": st.secrets["api_keys"].get("openai_api_key", "")
     }
-    
-    aktif_modeller = []
-    try:
-        models_res = requests.get("https://api.groq.com/openai/v1/models", headers=headers, timeout=10)
-        if models_res.status_code == 200:
-            data = models_res.json()
-            for m in data.get("data", []):
-                model_id = m["id"].lower()
-                if not any(x in model_id for x in ["guard", "embed", "whisper", "vision-preview", "safeguard"]):
-                    aktif_modeller.append(m["id"])
-    except Exception:
-        pass
-        
-    if not aktif_modeller:
-        aktif_modeller = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.8-27b"]
+except Exception:
+    st.error("⚠️️ `.streamlit/secrets.toml` dosyanızda API yapılandırması eksik!")
+    st.stop()
 
-    chat_url = "https://api.groq.com/openai/v1/chat/completions"
-    son_hata = ""
-    
-    for model_adi in aktif_modeller:
-        payload = {
-            "model": model_adi,
-            "messages": [
-                {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
-                {"role": "user", "content": prompt}
-            ],
-            "temperature": 0.7,
-            "max_tokens": 4000
-        }
+# Oturum Durumları
+if "quiz_started" not in st.session_state:
+    st.session_state.quiz_started = False
+if "questions" not in st.session_state:
+    st.session_state.questions = []
+if "start_time" not in st.session_state:
+    st.session_state.start_time = None
+if "selected_answers" not in st.session_state:
+    st.session_state.selected_answers = {}
 
+# Yan Menü - Kapsam ve Dönem Seçimi (Ders Seçimi Kaldırıldı)
+st.sidebar.markdown("## ⚙️ Müfredat & Deneme Ayarları")
+st.sidebar.markdown("---")
+
+term = st.sidebar.selectbox("📚 Eğitim Dönemi", ["1. Dönem (18 Hafta)", "2. Dönem (18 Hafta)"])
+
+# 18 Hafta ve 4 Haftada Bir Kapsamlı Tekrar Yapısı
+weeks_options = [f"Hafta {i}" for i in range(1, 19)]
+weeks_options.extend([
+    "4. Hafta Kapsamlı Değerlendirme ve Tekrar", 
+    "8. Hafta Kapsamlı Değerlendirme ve Tekrar", 
+    "12. Hafta Kapsamlı Değerlendirme ve Tekrar", 
+    "16. Hafta Kapsamlı Değerlendirme ve Tekrar", 
+    "18. Hafta Genel Dönem Bitirme Sınavı"
+])
+
+selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
+
+# Soru sayısı LGS formatına uygun olarak doğrudan 80 sabitlendi (isterseniz değiştirilebilir)
+question_count = 80
+
+st.sidebar.markdown("---")
+st.sidebar.info("💡 **Otomatik API Modu:** Sistem, en verimli çalışan API'yi (Groq -> Gemini -> OpenAI) sırasıyla otomatik olarak seçer ve gerekirse yedekli devam eder.")
+
+# Ana Ekran Başlığı
+st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf MEB Müfredatı LGS 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen hafta kapsamındaki tüm MEB kazanım ve konularını tarayan, tam otomatik yapay zeka destekli deneme sınavı.</p>", unsafe_allow_html=True)
+st.markdown("---")
+
+# API Çağrı Fonksiyonları
+def call_groq(prompt_text):
+    if not API_KEYS["Groq"]: raise ValueError("Groq anahtarı yok.")
+    from groq import Groq
+    client = Groq(api_key=API_KEYS["Groq"])
+    completion = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": "Sen kıdemli bir 5. sınıf MEB müfredat ve LGS soru hazırlama uzmanısın. Yalnızca geçerli JSON formatında yanıt ver."},
+            {"role": "user", "content": prompt_text}
+        ],
+        temperature=0.7,
+        response_format={"type": "json_object"}
+    )
+    return completion.choices[0].message.content
+
+def call_gemini(prompt_text):
+    if not API_KEYS["Gemini"]: raise ValueError("Gemini anahtarı yok.")
+    from google import genai
+    client = genai.Client(api_key=API_KEYS["Gemini"])
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt_text,
+    )
+    text = response.text
+    if "```json" in text:
+        text = text.split("```json")[1].split("```")[0].strip()
+    elif "```" in text:
+        text = text.split("```")[1].split("```")[0].strip()
+    return text
+
+def call_openai(prompt_text):
+    if not API_KEYS["OpenAI"]: raise ValueError("OpenAI anahtarı yok.")
+    import openai
+    client = openai.OpenAI(api_key=API_KEYS["OpenAI"])
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt_text}],
+        response_format={"type": "json_object"}
+    )
+    return response.choices[0].message.content
+
+# Otomatik En Uygun API'yi Seçen ve Hata Durumunda Fallback Yapan Fonksiyon
+def auto_select_and_generate(prompt_text):
+    providers = [
+        ("Groq", call_groq),
+        ("Gemini", call_gemini),
+        ("OpenAI", call_openai)
+    ]
+    
+    last_error = None
+    for name, func in providers:
+        if not API_KEYS.get(name):
+            continue
         try:
-            response = requests.post(chat_url, json=payload, headers=headers, timeout=60)
-            if response.status_code == 200:
-                data = response.json()
-                return data["choices"][0]["message"]["content"]
-            else:
-                son_hata = f"Model ({model_adi}) HTTP {response.status_code}: {response.text}"
+            st.info(f"🔄 En uygun API olarak **{name}** seçildi ve sorular üretiliyor...")
+            result = func(prompt_text)
+            if result:
+                st.success(f"✅ Başarıyla **{name}** API üzerinden sorular oluşturuldu!")
+                return result
         except Exception as e:
-            son_hata = str(e)
+            last_error = e
+            st.warning(f"⚠️ {name} API yanıt vermedi veya limit doldu ({e}). Otomatik olarak bir sonraki API'ye geçiliyor...")
+            continue
             
-    raise RuntimeError(f"Tüm geçerli Groq dil modelleri denendi ancak erişilemedi. Son hata: {son_hata}")
+    st.error(f"❌ Tanımlı hiçbir API'den yanıt alınamadı. Hata: {last_error}")
+    return None
 
-def soruları_ayristir(tam_metin):
-    parcalar = []
-    soru_bloklari = re.split(r'\n(?=\d+[\.\)]\s)', tam_metin)
-    
-    for blok in soru_bloklari:
-        match = re.match(r'^(\d+)[\.\)]\s*(.*)', blok.strip(), re.DOTALL)
-        if match:
-            soru_no = int(match.group(1))
-            icerik = match.group(2)
-            
-            lines = icerik.split('\n')
-            soru_satirlari = []
-            siklar = []
+# Soru Üretim Butonu
+col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
+with col_b2:
+    generate_btn = st.button("🚀 80 Soruluk Kapsamlı Deneme Sınavını Üret ve Başlat")
 
-            for line in lines:
-                stripped = line.strip()
-                if re.match(r'^[A-Da-d][\.\)]\s', stripped):
-                    siklar.append(stripped)
-                else:
-                    if not siklar:
-                        soru_satirlari.append(line)
-                    else:
-                        if re.match(r'^[A-Da-d][\.\)]', stripped):
-                            siklar.append(stripped)
-                        else:
-                            if siklar:
-                                siklar[-1] += " " + stripped
-                            else:
-                                soru_satirlari.append(line)
-                                
-            temiz_soru = "\n".join(soru_satirlari).strip()
-            
-            if len(siklar) < 4:
-                siklar = ["A) Seçenek A", "B) Seçenek B", "C) Seçenek C", "D) Seçenek D"]
-
-            parcalar.append({
-                "no": soru_no,
-                "metin": temiz_soru if temiz_soru else icerik,
-                "siklar": siklar[:4]
-            })
-    return parcalar
-
-
-# --- Streamlit Arayüzü ---
-st.markdown(
-    "<h1>🎯 Ortaokul ve LGS 50 Soruluk Deneme Sınavı Üretici</h1>",
-    unsafe_allow_html=True,
-)
-st.markdown(
-    "<p class='subtext'>Sıralı Ders Akışlı, İnteraktif Soru ve Şık Seçim Paneli (50 Soru).</p>",
-    unsafe_allow_html=True,
-)
-
-# Sol Menü (Sidebar) Ayarları
-st.sidebar.header("🗓️ Sınav Kriterleri")
-
-sinif_secimi = st.sidebar.selectbox(
-    "Sınıf Düzeyi Seçin", list(SINIF_MUFREDATLARI.keys())
-)
-donem_secimi = st.sidebar.selectbox("Dönem Seçin", ["1. Dönem", "2. Dönem"])
-
-hafta_secenekleri = [f"{i}. Hafta" for i in range(1, 19)]
-hafta_secimi_str = st.sidebar.selectbox(
-    "Hafta / Tarama Seçin", hafta_secenekleri
-)
-
-secilen_hafta_num = int(hafta_secimi_str.split(".")[0])
-ilgili_kazanimlar = HAFTALIK_ICERIKLER.get(
-    secilen_hafta_num, "Standart müfredat kazanımları."
-)
-
-st.sidebar.markdown("---")
-st.sidebar.markdown(f"### 📚 Seçilen Sınav Yapısı ({sinif_secimi})")
-secilen_bilgi = SINIF_MUFREDATLARI[sinif_secimi]
-st.sidebar.markdown(f"📌 **Format:** {secilen_bilgi['aciklama']}")
-st.sidebar.markdown(f"📖 **Haftalık Kapsam:** {ilgili_kazanimlar}")
-st.sidebar.markdown(f"⏱ **Süre:** {secilen_bilgi['sure_dakika']} Dakika")
-
-st.sidebar.markdown("---")
-toplam_soru = sum(secilen_bilgi["soru_dagilimi"].values())
-st.sidebar.markdown(f"🎯 **Toplam Soru Sayısı:** {toplam_soru} Soru")
-
-# Üretim Butonu
-if st.sidebar.button(
-    f"✨ {sinif_secimi} 50 Soruluk Sınavı Üret",
-    type="primary",
-    use_container_width=True,
-):
-    is_tarama = (
-        secilen_hafta_num in [4, 8, 12, 16, 18]
-        or "TARAMA" in ilgili_kazanimlar
-    )
-    sinav_tip_str = (
-        "AYLIK GENEL TARAMA VE TEKRAR SINAVI"
-        if is_tarama
-        else f"HAFTALIK DENEME SINAVI ({hafta_secimi_str})"
-    )
-
-    dersler = secilen_bilgi["soru_dagilimi"]
-    toplam_ders_sayisi = len(dersler)
-
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-
-    try:
-        uretilen_metinler = [
-            f"=== {sinif_secimi.upper()} - 50 SORULUK DENEME ({donem_secimi} {hafta_secimi_str} - {sinav_tip_str}) ===\n"
-        ]
-
-        global_soru_sayaci = 1
-        adim = 0
-        for ders_adi, soru_adedi in dersler.items():
-            adim += 1
-            baslangic_no = global_soru_sayaci
-            bitis_no = global_soru_sayaci + soru_adedi - 1
-            
-            status_text.text(
-                f"⚡ ({adim}/{toplam_ders_sayisi}) Sıralı Ders: {ders_adi} için {baslangic_no} ile {bitis_no} arası sorular üretiliyor..."
-            )
-
-            prompt = f"""
-            Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın. 
-            {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
-            Kazanım/İçerik: {ilgili_kazanimlar}
-            
-            YALNIZCA VE SADECE **{ders_adi}** dersi için KESİNLİKLE VE TAM OLARAK **{soru_adedi}** adet özgün soru hazırla.
-            
-            Çok Önemli Kurallar:
-            1. Soru numaralarını KESİNLİKLE {baslangic_no}'den başlat ve sırayla tam {bitis_no}'e kadar git. Toplamda tam {soru_adedi} adet soru üretmelisin!
-            2. HER BİR SORU mutlak surette alt alta şu formatta A) ... B) ... C) ... D) ... şıklarını içermelidir:
-            1. Soru metni burada...
-            A) Şık bir
-            B) Şık iki
-            C) Şık üç
-            D) Şık dört
-            3. EĞER DERS MATEMATİK VEYA SAYISAL İSE; soruların içinde üçgenler, geometrik şekiller, grafikler ve tablolar ASCII sembolleri veya şekil açıklamalarıyla desteklenmelidir.
-            4. Başka hiçbir dersin sorusunu bu bloğa karıştırma. Yalnızca {ders_adi} dersinin sorularını yaz.
-            """
-
-            ders_yaniti = ai_icerik_uret(prompt)
-
-            uretilen_metinler.append(
-                f"\n\n--- {ders_adi.upper()} ({baslangic_no}-{bitis_no}. SORULAR) ---\n" + ders_yaniti
-            )
-            global_soru_sayaci += soru_adedi
-            progress_bar.progress(adim / toplam_ders_sayisi)
-            time.sleep(0.2)
-
-        status_text.text(
-            "📝 Tüm sıralı dersler tamamlandı, detaylı cevap anahtarı ve çözüm açıklamaları ekleniyor..."
-        )
-        cozum_prompt = f"""
-        Yukarıda hazırlanan {sinif_secimi} 50 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
-        1'den 50'ye kadar tüm soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve adım adım kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
+if generate_btn:
+    with st.spinner("✨ Seçilen dönem ve hafta aralığındaki MEB müfredatı konuları analiz ediliyor, LGS formatında 80 soru hazırlanıyor..."):
+        prompt = f"""
+        5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki tüm ana derslerin (Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler vb.) o haftaya kadar işlenen kazanımlarını kapsayan tam {question_count} adet yeni nesil beceri temelli çoktan seçmeli soru hazırla.
+        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır.
+        Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
+        {{
+            "questions": [
+                {{
+                    "id": 1,
+                    "subject": "Ders Adı (Örn: Matematik)",
+                    "question": "Soru metni burada yer alacak...",
+                    "options": {{
+                        "A": "A şıkkı",
+                        "B": "B şıkkı",
+                        "C": "C şıkkı",
+                        "D": "D şıkkı"
+                    }},
+                    "answer": "A"
+                }}
+            ]
+        }}
         """
-        cozum_yaniti = ai_icerik_uret(cozum_prompt)
-        uretilen_metinler.append(
-            "\n\n--- CEVAP ANAHTARI VE ÇÖZÜMLER ---\n" + cozum_yaniti
+        raw_json = auto_select_and_generate(prompt)
+        if raw_json:
+            try:
+                data = json.loads(raw_json)
+                st.session_state.questions = data.get("questions", [])
+                st.session_state.quiz_started = True
+                st.session_state.start_time = time.time()
+                experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
+                if experimental_rerun:
+                    experimental_rerun()
+            except json.JSONDecodeError:
+                st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi. Lütfen tekrar deneyin.")
+                st.code(raw_json)
+
+# Sınav Ekranı, Büyük Puntolu Sorular ve Sayaç (Soru Başı 80 Saniye)
+if st.session_state.quiz_started and st.session_state.questions:
+    total_questions = len(st.session_state.questions)
+    total_time_seconds = total_questions * 80  # 80 soru * 80 saniye = 6400 saniye (~1 saat 46 dk)
+    
+    elapsed_time = int(time.time() - st.session_state.start_time)
+    remaining_time = max(0, total_time_seconds - elapsed_time)
+    
+    hours = remaining_time // 3600
+    minutes = (remaining_time % 3600) // 60
+    seconds = remaining_time % 60
+
+    st.markdown("---")
+    header_col1, header_col2 = st.columns([2, 1])
+    with header_col1:
+        st.markdown(f"### 📋 {term} - {selected_scope} Deneme Sınavı")
+        st.markdown(f"<span class='badge'>Toplam Soru: {total_questions}</span> <span class='badge'>Soru Başı Süre: 80 Saniye</span>", unsafe_allow_html=True)
+    with header_col2:
+        st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # Soruları Listeleme (Kalın ve Büyük Puntolu Şekilde)
+    for idx, q in enumerate(st.session_state.questions):
+        st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
+        sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
+        st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}: {q['question']}</p>", unsafe_allow_html=True)
+        
+        options = q['options']
+        choice = st.radio(
+            f"**Soru {idx + 1} Şıkları:**",
+            options=list(options.keys()),
+            format_func=lambda x: f"{x}) {options[x]}",
+            key=f"q_{idx}"
         )
+        st.session_state.selected_answers[idx] = choice
+        st.markdown(f"</div>", unsafe_allow_html=True)
 
-        progress_bar.progress(1.0)
-        status_text.empty()
-
-        st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
-        st.session_state["aktif_sinif"] = sinif_secimi
-        st.session_state["aktif_soru_index"] = 0
-        st.success(
-            f"🎉 {sinif_secimi} - 50 Soruluk Sıralı Deneme Sınavı başarıyla oluşturuldu!"
-        )
-
-    except Exception as e:
-        st.error(f"Sınav üretilirken bir hata oluştu: {e}")
-
-# --- İnteraktif Soru Çözüm Paneli (Şıkların Üzerinde Doğrudan İşaretleme) ---
-if "sinav_metni" in st.session_state:
-    metin = st.session_state["sinav_metni"]
-    bulunan_sorular = soruları_ayristir(metin)
-
-    if bulunan_sorular:
-        if "aktif_soru_index" not in st.session_state:
-            st.session_state["aktif_soru_index"] = 0
-
-        toplam_bulunan = len(bulunan_sorular)
-        
-        if st.session_state["aktif_soru_index"] >= toplam_bulunan:
-            st.session_state["aktif_soru_index"] = toplam_bulunan - 1
-
-        current_idx = st.session_state["aktif_soru_index"]
-        soru_obj = bulunan_sorular[current_idx]
-
-        st.markdown("---")
-        st.markdown("### 📝 Soru Çözüm Paneli (Sıralı Ders Akışı - 50 Soru)")
-
-        # Soru Kartı
-        st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-        st.markdown(f"#### Soru {current_idx + 1} / {toplam_bulunan} (Soru No: {soru_obj['no']})")
-        
-        # Soru metni
-        soru_icerik_metni = soru_obj['metin'].replace('\n', '<br>')
-        st.markdown(f"<div style='font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px;'>{soru_icerik_metni}</div>", unsafe_allow_html=True)
-        
-        # Şıkların olduğu yerde doğrudan işaretleme (st.radio kullanımı)
-        secilen_cevap_key = f"user_cevap_{current_idx}"
-        
-        # Daha önce verilmiş bir cevap varsa indexini bulalım
-        secenekler_listesi = soru_obj['siklar']
-        mevcut_cevap = st.session_state.get(secilen_cevap_key, None)
-        
-        secilen_option = st.radio(
-            "Cevap Şıkkını Seçin:",
-            options=secenekler_listesi,
-            index=secenekler_listesi.index(mevcut_cevap) if mevcut_cevap in secenekler_listesi else None,
-            key=f"radio_{current_idx}"
-        )
-        
-        if secilen_option:
-            st.session_state[secilen_cevap_key] = secilen_option
-
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        # Navigasyon / İlerleme Butonları
-        col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
-        with col_nav1:
-            if current_idx > 0:
-                if st.button("⬅ Önceki Soru", use_container_width=True):
-                    st.session_state["aktif_soru_index"] -= 1
-                    st.rerun()
-        with col_nav3:
-            if current_idx < toplam_bulunan - 1:
-                if st.button("Sonraki Soru ➡️", use_container_width=True):
-                    st.session_state["aktif_soru_index"] += 1
-                    st.rerun()
+    # Sınavı Bitir ve Sonuçları Göster
+    if st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör"):
+        correct_count, wrong_count = 0, 0
+        for idx, q in enumerate(st.session_state.questions):
+            if st.session_state.selected_answers.get(idx) == q['answer']:
+                correct_count += 1
             else:
-                if st.button("🏁 Sınavı Tamamla", type="primary", use_container_width=True):
-                    st.success("Tebrikler! 50 soruluk sıralı deneme sınavını tamamladınız ve cevaplarınızı kaydettiniz.")
+                wrong_count += 1
+
+        score = (correct_count / total_questions) * 100
+        st.balloons()
+        st.success("🎉 Deneme sınavı başarıyla tamamlandı!")
+        
+        res_col1, res_col2, res_col3 = st.columns(3)
+        res_col1.metric("✅ Doğru Sayısı", correct_count)
+        res_col2.metric("❌ Yanlış Sayısı", wrong_count)
+        res_col3.metric("🎯 Genel Başarı Puanı", f"{score:.1f} Puan")
+
+        with st.expander("📖 Detaylı Soru Çözüm ve Cevap Anahtarını İncele"):
+            for idx, q in enumerate(st.session_state.questions):
+                user_ans = st.session_state.selected_answers.get(idx)
+                status = "✅" if user_ans == q['answer'] else "❌"
+                st.markdown(f"**Soru {idx + 1} ({q.get('subject', '')}):** {q['question']}")
+                st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q['answer']}** {status}")
+                st.markdown("---")
+
+    # Sayaç Güncellemesi için Sayfa Yenileme
+    if remaining_time > 0:
+        time.sleep(1)
+        experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
+        if experimental_rerun:
+            experimental_rerun()
+    else:
+        st.warning("⏰ Sınav süreniz doldu! Lütfen yanıtlarınızı kontrol edip sınavı tamamlayın.")
