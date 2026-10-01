@@ -404,6 +404,7 @@ if st.sidebar.button(
 
         st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
         st.session_state["aktif_sinif"] = sinif_secimi
+        st.session_state["aktif_soru_index"] = 0
         st.success(
             f"🎉 {sinif_secimi} - 60 Soruluk {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
         )
@@ -411,22 +412,52 @@ if st.sidebar.button(
     except Exception as e:
         st.error(f"Sınav üretilirken bir hata oluştu: {e}")
 
-# Sınav İçeriğini Doğrudan Ekrana Basma ve PDF İndirme Alanı
+# --- Soru Paneli (Her Sayfada Tek Soru Gösteren İnteraktif Sistem) ---
 if "sinav_metni" in st.session_state:
     aktif_sinif = st.session_state.get("aktif_sinif", sinif_secimi)
-    
-    st.markdown("---")
-    st.markdown("### 📋 Üretilen Sınav İçeriği ve Sorular")
-    
-    # Tüm sınav metnini kutu içerisinde sorunsuz göster
-    st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-    st.text_area(
-        "Sınav Metni (Tüm Sorular ve Cevap Anahtarı)",
-        value=st.session_state["sinav_metni"],
-        height=500,
-        disabled=True
-    )
-    st.markdown("</div>", unsafe_allow_html=True)
+    metin = st.session_state["sinav_metni"]
+    bulunan_sorular = soruları_ayristir(metin)
+
+    if bulunan_sorular:
+        if "aktif_soru_index" not in st.session_state:
+            st.session_state["aktif_soru_index"] = 0
+
+        toplam_bulunan = len(bulunan_sorular)
+        
+        if st.session_state["aktif_soru_index"] >= toplam_bulunan:
+            st.session_state["aktif_soru_index"] = toplam_bulunan - 1
+
+        current_idx = st.session_state["aktif_soru_index"]
+        soru_obj = bulunan_sorular[current_idx]
+
+        st.markdown("---")
+        st.markdown("### 📝 Soru Paneli (Her Sayfada Tek Soru)")
+
+        # Soru Kartı
+        st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
+        st.markdown(f"#### Soru {current_idx + 1} / {toplam_bulunan} (Soru No: {soru_obj['no']})")
+        
+        # Soru metnini ve varsa şıkları net bir şekilde göster
+        soru_icerik_metni = soru_obj['metin'].replace('\n', '<br>')
+        st.markdown(f"<div style='font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px;'>{soru_icerik_metni}</div>", unsafe_allow_html=True)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Navigasyon / İlerleme Butonları
+        col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
+        with col_nav1:
+            if current_idx > 0:
+                if st.button("⬅ Önceki Soru", use_container_width=True):
+                    st.session_state["aktif_soru_index"] -= 1
+                    st.rerun()
+        with col_nav3:
+            if current_idx < toplam_bulunan - 1:
+                if st.button("Sonraki Soru ➡️", use_container_width=True):
+                    st.session_state["aktif_soru_index"] += 1
+                    st.rerun()
+            else:
+                if st.button("🏁 Sınavı Tamamla", type="primary", use_container_width=True):
+                    st.success("Sınav sorularının sonuna geldiniz!")
 
     # Sınav Çıktı Seçenekleri
     st.markdown("---")
