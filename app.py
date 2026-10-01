@@ -1,11 +1,10 @@
 import time
-import streamlit as json_lib
 import streamlit as st
 import json
 
 # Sayfa Yapılandırması
 st.set_page_config(
-    page_title="MEB Müfredatı 80 Soruluk LGS Deneme Paneli",
+    page_title="MEB Müfredatı 80 Soruluk Çoklu API Deneme Paneli",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -67,15 +66,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# API Anahtarlarını Güvenli Okuma
+# API Anahtarlarını secrets.toml'dan Güvenli Okuma
 try:
-    API_KEYS = {
-        "Groq": st.secrets["api_keys"].get("groq_api_key", ""),
-        "Gemini": st.secrets["api_keys"].get("gemini_api_key", ""),
-        "OpenAI": st.secrets["api_keys"].get("openai_api_key", "")
-    }
+    GROQ_KEYS = st.secrets["api_keys"].get("groq_keys", [])
+    GEMINI_KEYS = st.secrets["api_keys"].get("gemini_keys", [])
 except Exception:
-    st.error("⚠️️ `.streamlit/secrets.toml` dosyanızda API yapılandırması eksik!")
+    GROQ_KEYS = []
+    GEMINI_KEYS = []
+
+if not GROQ_KEYS and not GEMINI_KEYS:
+    st.error("⚠️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
     st.stop()
 
 # Oturum Durumları
@@ -88,13 +88,12 @@ if "start_time" not in st.session_state:
 if "selected_answers" not in st.session_state:
     st.session_state.selected_answers = {}
 
-# Yan Menü - Kapsam ve Dönem Seçimi (Ders Seçimi Kaldırıldı)
-st.sidebar.markdown("## ⚙️ Müfredat & Deneme Ayarları")
+# Yan Menü - Kapsam ve Dönem Seçimi
+st.sidebar.markdown("## ⚙️ Müfredat & Çoklu API Havuzu")
 st.sidebar.markdown("---")
 
 term = st.sidebar.selectbox("📚 Eğitim Dönemi", ["1. Dönem (18 Hafta)", "2. Dönem (18 Hafta)"])
 
-# 18 Hafta ve 4 Haftada Bir Kapsamlı Tekrar Yapısı
 weeks_options = [f"Hafta {i}" for i in range(1, 19)]
 weeks_options.extend([
     "4. Hafta Kapsamlı Değerlendirme ve Tekrar", 
@@ -105,23 +104,20 @@ weeks_options.extend([
 ])
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
-
-# Soru sayısı LGS formatına uygun olarak doğrudan 80 sabitlendi (isterseniz değiştirilebilir)
 question_count = 80
 
 st.sidebar.markdown("---")
-st.sidebar.info("💡 **Otomatik API Modu:** Sistem, en verimli çalışan API'yi (Groq -> Gemini -> OpenAI) sırasıyla otomatik olarak seçer ve gerekirse yedekli devam eder.")
+st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI_KEYS)} Gemini anahtarı yüklendi.")
 
 # Ana Ekran Başlığı
-st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf MEB Müfredatı LGS 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen hafta kapsamındaki tüm MEB kazanım ve konularını tarayan, tam otomatik yapay zeka destekli deneme sınavı.</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Çoklu API Havuzlu Deneme Paneli</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Tanımlı çoklu Groq ve Gemini anahtarları arasında akıllı geçiş yapan 80 soruluk LGS sistemi.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# API Çağrı Fonksiyonları
-def call_groq(prompt_text):
-    if not API_KEYS["Groq"]: raise ValueError("Groq anahtarı yok.")
+# Groq Çağrı Fonksiyonu
+def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
-    client = Groq(api_key=API_KEYS["Groq"])
+    client = Groq(api_key=api_key)
     completion = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
@@ -133,10 +129,10 @@ def call_groq(prompt_text):
     )
     return completion.choices[0].message.content
 
-def call_gemini(prompt_text):
-    if not API_KEYS["Gemini"]: raise ValueError("Gemini anahtarı yok.")
+# Gemini Çağrı Fonksiyonu (Yeni Google GenAI SDK Uyumu)
+def call_gemini_with_key(api_key, prompt_text):
     from google import genai
-    client = genai.Client(api_key=API_KEYS["Gemini"])
+    client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt_text,
@@ -148,50 +144,44 @@ def call_gemini(prompt_text):
         text = text.split("```")[1].split("```")[0].strip()
     return text
 
-def call_openai(prompt_text):
-    if not API_KEYS["OpenAI"]: raise ValueError("OpenAI anahtarı yok.")
-    import openai
-    client = openai.OpenAI(api_key=API_KEYS["OpenAI"])
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt_text}],
-        response_format={"type": "json_object"}
-    )
-    return response.choices[0].message.content
+# Çoklu Anahtar Havuzunu Yöneten Akıllı Dağıtıcı (Load Balancer & Fallback)
+def multi_pool_generate(prompt_text):
+    attempts = []
+    for i, key in enumerate(GROQ_KEYS):
+        if key.strip():
+            attempts.append(("Groq", i+1, key, call_groq_with_key))
+            
+    for i, key in enumerate(GEMINI_KEYS):
+        if key.strip():
+            attempts.append(("Gemini", i+1, key, call_gemini_with_key))
 
-# Otomatik En Uygun API'yi Seçen ve Hata Durumunda Fallback Yapan Fonksiyon
-def auto_select_and_generate(prompt_text):
-    providers = [
-        ("Groq", call_groq),
-        ("Gemini", call_gemini),
-        ("OpenAI", call_openai)
-    ]
-    
+    if not attempts:
+        st.error("❌ Havuzda geçerli API anahtarı bulunamadı!")
+        return None
+
     last_error = None
-    for name, func in providers:
-        if not API_KEYS.get(name):
-            continue
+    for provider, index, key, func in attempts:
         try:
-            st.info(f"🔄 En uygun API olarak **{name}** seçildi ve sorular üretiliyor...")
-            result = func(prompt_text)
+            st.info(f"🔄 Havuzdan **{provider} (#{index})** deneniyor...")
+            result = func(key, prompt_text)
             if result:
-                st.success(f"✅ Başarıyla **{name}** API üzerinden sorular oluşturuldu!")
+                st.success(f"✅ Başarıyla **{provider} (#{index})** kullanılarak sorular oluşturuldu!")
                 return result
         except Exception as e:
             last_error = e
-            st.warning(f"⚠️ {name} API yanıt vermedi veya limit doldu ({e}). Otomatik olarak bir sonraki API'ye geçiliyor...")
+            st.warning(f"⚠️ {provider} (#{index}) hata verdi: {e}. Havuzdaki sonraki anahtara geçiliyor...")
             continue
-            
-    st.error(f"❌ Tanımlı hiçbir API'den yanıt alınamadı. Hata: {last_error}")
+
+    st.error(f"❌ Tanımlı tüm API anahtarları havuzu denendi fakat yanıt alınamadı. Son Hata: {last_error}")
     return None
 
 # Soru Üretim Butonu
 col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
 with col_b2:
-    generate_btn = st.button("🚀 80 Soruluk Kapsamlı Deneme Sınavını Üret ve Başlat")
+    generate_btn = st.button("🚀 Havuzdaki API'lerle 80 Soruluk Deneme Üret")
 
 if generate_btn:
-    with st.spinner("✨ Seçilen dönem ve hafta aralığındaki MEB müfredatı konuları analiz ediliyor, LGS formatında 80 soru hazırlanıyor..."):
+    with st.spinner("✨ Çoklu API havuzu kullanılarak 80 soruluk MEB LGS denemesi hazırlanıyor..."):
         prompt = f"""
         5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki tüm ana derslerin (Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler vb.) o haftaya kadar işlenen kazanımlarını kapsayan tam {question_count} adet yeni nesil beceri temelli çoktan seçmeli soru hazırla.
         Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır.
@@ -213,7 +203,7 @@ if generate_btn:
             ]
         }}
         """
-        raw_json = auto_select_and_generate(prompt)
+        raw_json = multi_pool_generate(prompt)
         if raw_json:
             try:
                 data = json.loads(raw_json)
@@ -224,13 +214,13 @@ if generate_btn:
                 if experimental_rerun:
                     experimental_rerun()
             except json.JSONDecodeError:
-                st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi. Lütfen tekrar deneyin.")
+                st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
 
-# Sınav Ekranı, Büyük Puntolu Sorular ve Sayaç (Soru Başı 80 Saniye)
+# Sınav Ekranı ve Büyük Puntolu Arayüz
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
-    total_time_seconds = total_questions * 80  # 80 soru * 80 saniye = 6400 saniye (~1 saat 46 dk)
+    total_time_seconds = total_questions * 80  
     
     elapsed_time = int(time.time() - st.session_state.start_time)
     remaining_time = max(0, total_time_seconds - elapsed_time)
@@ -249,7 +239,6 @@ if st.session_state.quiz_started and st.session_state.questions:
 
     st.markdown("---")
 
-    # Soruları Listeleme (Kalın ve Büyük Puntolu Şekilde)
     for idx, q in enumerate(st.session_state.questions):
         st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
         sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
@@ -265,7 +254,6 @@ if st.session_state.quiz_started and st.session_state.questions:
         st.session_state.selected_answers[idx] = choice
         st.markdown(f"</div>", unsafe_allow_html=True)
 
-    # Sınavı Bitir ve Sonuçları Göster
     if st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör"):
         correct_count, wrong_count = 0, 0
         for idx, q in enumerate(st.session_state.questions):
@@ -291,7 +279,6 @@ if st.session_state.quiz_started and st.session_state.questions:
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q['answer']}** {status}")
                 st.markdown("---")
 
-    # Sayaç Güncellemesi için Sayfa Yenileme
     if remaining_time > 0:
         time.sleep(1)
         experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
