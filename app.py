@@ -21,7 +21,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul dan LGS 60 Soruluk Deneme Sınavı Üretici",
+    page_title="Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -132,25 +132,27 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Dinamik Model Keşifli Akıllı API Fonksiyonu ---
+# --- Güvenlik / Sınıflandırıcı Filtreli Kesin Çözümlü Akıllı API Fonksiyonu ---
 def ai_icerik_uret(prompt: str) -> str:
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY_DIRECT}",
         "Content-Type": "application/json"
     }
     
-    # 1. Adım: Groq sunucusundan o an aktif olan modelleri dinamik olarak çek
     aktif_modeller = []
     try:
         models_res = requests.get("https://api.groq.com/openai/v1/models", headers=headers, timeout=10)
         if models_res.status_code == 200:
             data = models_res.json()
-            # Sadece geçerli metin/chat modellerini filtrele
-            aktif_modeller = [m["id"] for m in data.get("data", []) if any(k in m["id"] for k in ["llama", "mixtral", "gemma"])]
+            for m in data.get("data", []):
+                model_id = m["id"].lower()
+                # Yalnızca metin/sohbet modellerini al; guard, prompt-guard, embed, whisper gibi araçları hariç tut
+                if any(k in model_id for k in ["llama", "mixtral", "gemma"]) and not any(x in model_id for x in ["guard", "embed", "whisper", "vision-preview"]):
+                    aktif_modeller.append(m["id"])
     except Exception:
         pass
         
-    # Eğer dinamik çekilemezse varsayılan güvenli modeller
+    # Eğer dinamik çekilemezse veya filtrelendiyse güvenli yedek liste
     if not aktif_modeller:
         aktif_modeller = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-70b-8192"]
 
@@ -178,7 +180,7 @@ def ai_icerik_uret(prompt: str) -> str:
         except Exception as e:
             son_hata = str(e)
             
-    raise RuntimeError(f"Tüm aktif Groq modelleri denendi ancak erişilemedi. Son hata: {son_hata}")
+    raise RuntimeError(f"Tüm geçerli Groq dil modelleri denendi ancak erişilemedi. Son hata: {son_hata}")
 
 def soruları_ayristir(tam_metin):
     parcalar = []
@@ -293,7 +295,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Dinamik Model Keşifli, Kesintisiz 60 Soru Üretim Sistemi.</p>",
+    "<p class='subtext'>Akıllı Model Filtreli, Kesintisiz 60 Soru Üretim Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
