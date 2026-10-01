@@ -184,7 +184,7 @@ def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-3.8-flash",
         contents=prompt_text,
     )
     text = response.text
