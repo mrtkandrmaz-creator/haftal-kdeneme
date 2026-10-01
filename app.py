@@ -3,22 +3,15 @@ import os
 import re
 import sys
 import time
-import google.generativeai as genai
-try:
-    from groq import Groq
-    GROQ_AVAILABLE = True
-except ImportError:
-    GROQ_AVAILABLE = False
-
+import requests
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, PageBreak
 from reportlab.lib import colors
 import streamlit as st
 
-# --- API Anahtarlarınız (Doğrudan Tanımlı) ---
+# --- Groq API Anahtarınız ---
 GROQ_API_KEY_DIRECT = "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"
-GEMINI_API_KEY_DIRECT = "AQ.Ab8RN6JTu73bBZfj3c1dhUwmm4cOHO3hFSIM3uUxrkIEc_uj-A"
 
 # --- PyInstaller için SSL ve Dosya Yolu Sabitleme ---
 if getattr(sys, "frozen", False):
@@ -28,7 +21,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici",
+    page_title="Ortaokul dan LGS 60 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -139,40 +132,32 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Doğrudan Anahtar Kullanan Akıllı Hibrit Üretici ---
+# --- Güvenli Doğrudan Groq REST API Üretici ---
 def ai_icerik_uret(prompt: str) -> str:
-    # 1. Önce Groq ile hızlı üretimi deneriz
-    if GROQ_AVAILABLE and GROQ_API_KEY_DIRECT:
-        try:
-            client = Groq(api_key=GROQ_API_KEY_DIRECT)
-            completion = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
-                messages=[
-                    {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=4000,
-            )
-            if completion.choices and completion.choices[0].message.content:
-                return completion.choices[0].message.content
-        except Exception:
-            pass # Groq hata verirse otomatik Gemini'ye geçer
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY_DIRECT}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": [
+            {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.7,
+        "max_tokens": 4000
+    }
 
-    # 2. Groq başarısız olursa veya kütüphane yoksa doğrudan Gemini API devreye girer
-    if GEMINI_API_KEY_DIRECT:
-        genai.configure(api_key=GEMINI_API_KEY_DIRECT)
-        yedek_liste = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-pro"]
-        for model_adi in yedek_liste:
-            try:
-                model = genai.GenerativeModel(model_adi)
-                response = model.generate_content(prompt)
-                if response and response.text:
-                    return response.text
-            except Exception:
-                continue
-
-    raise RuntimeError("Girilen GROQ_API_KEY veya GEMINI_API_KEY ile bağlantı kurulamadı. Lütfen internet bağlantınızı kontrol edin.")
+    try:
+        response = requests.post(url, json=payload, headers=headers, timeout=60)
+        if response.status_code == 200:
+            data = response.json()
+            return data["choices"][0]["message"]["content"]
+        else:
+            raise RuntimeError(f"Groq API Hatası ({response.status_code}): {response.text}")
+    except Exception as e:
+        raise RuntimeError(f"Bağlantı Hatası: {e}")
 
 def soruları_ayristir(tam_metin):
     parcalar = []
@@ -287,7 +272,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Groq ve Gemini Hibrit Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
+    "<p class='subtext'>Groq Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
