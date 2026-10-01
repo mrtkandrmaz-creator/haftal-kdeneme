@@ -231,7 +231,6 @@ def build_exam_pdf(text, sinif_adi):
         buffer.seek(0)
         return buffer.getvalue()
 
-    # LayoutError önlemek için 8'erli gruplar halinde tablolar ve güvenli sayfa geçişleri
     chunk_size = 8
     total_chunks = (len(sorular) + chunk_size - 1) // chunk_size
     chunk_counter = 0
@@ -351,7 +350,7 @@ if st.sidebar.button(
         for ders_adi, soru_adedi in dersler.items():
             adim += 1
             status_text.text(
-                f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi ({soru_adedi} soru) hazırlanıyor..."
+                f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi için tam {soru_adedi} soru üretiliyor..."
             )
 
             prompt = f"""
@@ -359,10 +358,10 @@ if st.sidebar.button(
             {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
             Kazanım/İçerik: {ilgili_kazanimlar}
             
-            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, MEB yeni nesil beceri temelli soru hazırla.
+            YALNIZCA VE SADECE **{ders_adi}** dersi için KESİNLİKLE VE TAM OLARAK **{soru_adedi}** adet özgün, MEB yeni nesil beceri temelli soru hazırla. Soru adedini eksik bırakma, tam {soru_adedi} soru yazmalısın.
             
             KATI KURALLAR VE FORMAT:
-            1. Soru numaralarını {global_soru_sayaci}'den başlat ve sırayla {global_soru_sayaci + soru_adedi - 1}'e kadar numaralandır (Örn: {global_soru_sayaci}. Soru metni...).
+            1. Soru numaralarını {global_soru_sayaci}'den başlat ve sırayla {global_soru_sayaci + soru_adedi - 1}'e kadar eksiksiz numaralandır (Örn: {global_soru_sayaci}. Soru metni...).
             2. HER BİR SORU mutlak surette A) ... B) ... C) ... D) ... şıklarının tamamını eksiksiz içermelidir. Şıklar asla eksik bırakılmamalıdır.
             3. EĞER DERS MATEMATİK İSE; soruların en az yarısında üçgenler (eşkenar üçgen, ikizkenar üçgen, dik üçgen), dik açı, açı ölçüleri, grafikler ve tablolar gibi görsel/geometrik öğeler ASCII sembolleri, şekil açıklamaları veya koordinat şemalarıyla desteklenmelidir.
             4. Başka hiçbir dersin sorusunu bu bloğa karıştırma. Yalnızca {ders_adi} dersinin sorularını yaz.
@@ -564,12 +563,10 @@ if "sinav_metni" in st.session_state:
             st.markdown(f"**Soru {soru_obj['no']}**")
             st.markdown(soru_obj['metin'])
             
-            # Doğrudan şıklardan işaretleme (A, B, C, D butonları)
-            st.markdown("<b>Cevabınızı İşaretleyin:</b>", unsafe_allow_html=True)
+            # Doğrudan şıklardan işaretleme (A, B, C, D butonları - Ek yazı yok)
             secim_kolar = st.columns(4)
             secilen_cevap_key = f"user_cevap_{current_idx}"
             
-            # Oturumda daha önce seçildiyse alalım
             if secilen_cevap_key not in st.session_state:
                 st.session_state[secilen_cevap_key] = None
 
@@ -577,12 +574,9 @@ if "sinav_metni" in st.session_state:
                 with secim_kolar[idx]:
                     is_selected = st.session_state[secilen_cevap_key] == harf
                     btn_type = "primary" if is_selected else "secondary"
-                    if st.button(f"Şık: {harf}", key=f"btn_{current_idx}_{harf}", type=btn_type, use_container_width=True):
+                    if st.button(f"{harf}", key=f"btn_{current_idx}_{harf}", type=btn_type, use_container_width=True):
                         st.session_state[secilen_cevap_key] = harf
                         st.rerun()
-
-            if st.session_state[secilen_cevap_key]:
-                st.success(f"İşaretlenen Cevap: **{st.session_state[secilen_cevap_key]}**")
 
             st.markdown("</div>", unsafe_allow_html=True)
 
@@ -599,13 +593,14 @@ if "sinav_metni" in st.session_state:
                         st.rerun()
                 else:
                     if st.button("🏁 Sınavı Bitir", type="primary", use_container_width=True):
-                        st.success("60 soruluk sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
+                        st.success("60 soruluk sınavı tamamladınız! Çözümleri ve cevap anahtarını ana sayfadaki PDF çıktılarından inceleyebilirsiniz.")
         else:
             st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
             st.subheader(f"📝 Oluşturulan 60 Soruluk {aktif_sinif} Sınavı ({hafta_secimi_str})")
             st.markdown(st.session_state["sinav_metni"])
             st.markdown("</div>", unsafe_allow_html=True)
 
+        # Sınav Çıktı Seçenekleri (Sadece ana sayfada / sınav bittiğinde veya alt kısımda görünür)
         st.markdown("### 📥 Sınav Çıktı Seçenekleri")
         col1, col2 = st.columns(2)
 
