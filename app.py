@@ -4,7 +4,7 @@ import json
 
 # Sayfa Yapılandırması
 st.set_page_config(
-    page_title="MEB Müfredatı 60 Soruluk Deneme Paneli",
+    page_title="MEB Müfredatı 80 Soruluk Deneme Paneli",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -146,7 +146,7 @@ weeks_options.extend([
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
 
-# YENİ: Soru Zorluk Derecesi Seçim Menüsü
+# Soru Zorluk Derecesi Seçim Menüsü
 difficulty_level = st.sidebar.selectbox(
     "📊 Soru Zorluk Derecesi",
     [
@@ -157,7 +157,7 @@ difficulty_level = st.sidebar.selectbox(
     ]
 )
 
-question_count = 60
+question_count = 80
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🚀 Soru İşlemleri")
@@ -167,7 +167,7 @@ st.sidebar.markdown("---")
 st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI_KEYS)} Gemini anahtarı yüklendi.")
 
 # Ana Ekran Başlığı
-st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b> | Zorluk: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
 st.markdown("---")
 
@@ -228,25 +228,22 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (Müfredat ve Ders Sınırları Katı Şekilde Belirlenmiş)
+# Soru Üretim Mantığı (80 Soru - Katı Ders Sırası ve Gerçek Haftalık MEB Kazanımları)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için MEB gerçek müfredat kazanımlarına uygun, '{difficulty_level}' seviyesinde 60 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için gerçek haftalık MEB kazanım tablosuna uygun, '{difficulty_level}' seviyesinde 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
-            f"ve '{selected_scope}' kapsamındaki resmi kazanımlarına birebir ve kusursuz uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
+            f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına birebir ve kusursuz uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
             f"ZORLUK SEVİYESİ TALİMATI: Soru zorluk derecesi '{difficulty_level}' kriterine tam uygun olmalıdır.\n\n"
-            "DERS VE KAZANIM UYUMU KİTLENMESİ (ÇOK ÖNEMLİ):\n"
-            "1. Türkçe sorularında asla matematik veya fen konusu işlenemez. Türkçe soruları tamamen dil bilgisi, metin yorumlama, sözcükte anlam ve paragraf kazanımlarına uygun olmalıdır.\n"
-            "2. Matematik sorularında asla Türkçe metin analizi veya yabancı dil sorulamaz. Matematik soruları seçilen haftaya ait gerçek matematik ünite kazanımlarına (örn. kesirler, cebirsel ifadeler, üçgenler, oran-orantı vb.) dayanmalıdır.\n"
-            "3. Fen Bilimleri soruları sadece fen müfredatına ait olmalıdır.\n"
-            "4. Sorular karışık olmamalı, şu ders sırasına ve gruplamasına kesinlikle uyulmalıdır:\n"
-            "   - Türkçe (İlk 10 soru)\n"
-            "   - Matematik (Sonraki 10 soru)\n"
-            "   - Fen Bilimleri (Sonraki 10 soru)\n"
-            "   - Sosyal Bilgiler / İnkılap Tarihi (Sonraki 10 soru)\n"
-            "   - Din Kültürü ve Ahlak Bilgisi (Sonraki 10 soru)\n"
-            "   - İngilizce (Sonraki 10 soru)\n"
-            "   (Toplam 60 soru olacak şekilde ders paylaşımları eksiksiz yapılmalıdır).\n\n"
+            "DERSLERİN KATI SIRASI VE GRUPLANMASI (ASLA BOZULAMAZ):\n"
+            "80 sorunun tamamı şu sıra ve gruplama ile dizilmelidir:\n"
+            "1. Türkçe (İlk sorular - Tamamen Türkçe dersi ünite ve dil bilgisi kazanımları, asla matematik/fen karışamaz)\n"
+            "2. Matematik (Türkçe soruları tamamen bitince başlar - Tamamen seçilen haftaya ait matematik kazanımları)\n"
+            "3. Fen Bilimleri (Matematik soruları tamamen bitince başlar - Tamamen fen bilimleri kazanımları)\n"
+            "4. Sosyal Bilgiler / İnkılap Tarihi (Fen soruları tamamen bitince)\n"
+            "5. Din Kültürü ve Ahlak Bilgisi\n"
+            "6. İngilizce\n"
+            "Toplam soru sayısı 80 olacak şekilde bu dersler arasında dengeli ve eksiksiz paylaştırılmalıdır.\n\n"
             "ZORUNLU SORU TİPİ DAĞILIMI (%25 EŞİT ORAN):\n"
             "1. Günlük Hayat Bağlamı / Gerçek Yaşam Problemi Kurma\n"
             "2. Grafik, Tablo ve Görsel Okuma / Veri Yorumlama\n"
@@ -323,7 +320,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     st.markdown("---")
     header_col1, header_col2 = st.columns([2, 1])
     with header_col1:
-        st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) Deneme Sınavı")
+        st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) 80 Soruluk Deneme")
         st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Zorluk: {difficulty_level}</span>", unsafe_allow_html=True)
     with header_col2:
         st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
