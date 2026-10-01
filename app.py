@@ -1,13 +1,8 @@
-import io
 import os
 import re
 import sys
 import time
 import requests
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, PageBreak
-from reportlab.lib import colors
 import streamlit as st
 
 # --- Groq API Anahtarınız ---
@@ -192,100 +187,6 @@ def soruları_ayristir(tam_metin):
             parcalar.append({"no": soru_no, "metin": soru_icerik})
     return parcalar
 
-def build_exam_pdf(text, sinif_adi):
-    buffer = io.BytesIO()
-    doc = SimpleDocTemplate(
-        buffer,
-        pagesize=A4,
-        rightMargin=25,
-        leftMargin=25,
-        topMargin=25,
-        bottomMargin=25,
-    )
-    styles = getSampleStyleSheet()
-    
-    title_style = ParagraphStyle(
-        "TitleStyle",
-        parent=styles["Heading1"],
-        fontSize=12,
-        leading=14,
-        alignment=1,
-        spaceAfter=10,
-        fontName="Helvetica-Bold",
-    )
-    
-    q_style = ParagraphStyle(
-        "ExamQuestionStyle",
-        parent=styles["Normal"],
-        fontSize=8,
-        leading=11,
-        spaceAfter=2,
-        fontName="Helvetica-Bold",
-    )
-
-    story = [
-        Paragraph(f"<b>{sinif_adi.upper()} 60 SORULUK MERKEZİ SİSTEM DENEME SINAVI</b>", title_style),
-        Spacer(1, 5),
-    ]
-
-    sorular = soruları_ayristir(text)
-    if not sorular:
-        for line in text.split("\n"):
-            if line.strip():
-                safe_line = line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-                story.append(Paragraph(safe_line, q_style))
-                story.append(Spacer(1, 3))
-        doc.build(story)
-        buffer.seek(0)
-        return buffer.getvalue()
-
-    chunk_size = 8
-    total_chunks = (len(sorular) + chunk_size - 1) // chunk_size
-    chunk_counter = 0
-
-    for chunk_start in range(0, len(sorular), chunk_size):
-        chunk_counter += 1
-        chunk_sorular = sorular[chunk_start:chunk_start + chunk_size]
-        row_data = []
-        for i in range(0, len(chunk_sorular), 2):
-            s1 = chunk_sorular[i]
-            s1_text = f"<b>{s1['no']}.</b> {s1['metin']}"
-            s1_text = re.sub(r'([A-D]\))', r'<br/>\1', s1_text)
-            s1_text = s1_text.replace("\n", " ").replace("<br/><br/>", "<br/>")
-            s1_text = s1_text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-            s1_text = s1_text.replace("&lt;br/&gt;", "<br/>").replace("&lt;b&gt;", "<b>").replace("&lt;/b&gt;", "</b>")
-            p1 = Paragraph(s1_text, q_style)
-
-            p2 = ""
-            if i + 1 < len(chunk_sorular):
-                s2 = chunk_sorular[i + 1]
-                s2_text = f"<b>{s2['no']}.</b> {s2['metin']}"
-                s2_text = re.sub(r'([A-D]\))', r'<br/>\1', s2_text)
-                s2_text = s2_text.replace("\n", " ").replace("<br/><br/>", "<br/>")
-                s2_text = s2_text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-                s2_text = s2_text.replace("&lt;br/&gt;", "<br/>").replace("&lt;b&gt;", "<b>").replace("&lt;/b&gt;", "</b>")
-                p2 = Paragraph(s2_text, q_style)
-
-            row_data.append([p1, p2])
-
-        if row_data:
-            t = Table(row_data, colWidths=[270, 270])
-            t.setStyle(TableStyle([
-                ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                ('LEFTPADDING', (0,0), (-1,-1), 4),
-                ('RIGHTPADDING', (0,0), (-1,-1), 4),
-                ('TOPPADDING', (0,0), (-1,-1), 2),
-                ('BOTTOMPADDING', (0,0), (-1,-1), 4),
-                ('LINEAFTER', (0,0), (-2,-1), 0.5, colors.lightgrey),
-            ]))
-            story.append(t)
-            if chunk_counter < total_chunks:
-                story.append(PageBreak())
-
-    doc.build(story)
-    buffer.seek(0)
-    return buffer.getvalue()
-
 
 # --- Streamlit Arayüzü ---
 st.markdown(
@@ -293,7 +194,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Akıllı Model Filtreli, Kesintisiz 60 Soru Üretim Sistemi.</p>",
+    "<p class='subtext'>Akıllı Model Filtreli, İnteraktif Soru Çözüm Paneli.</p>",
     unsafe_allow_html=True,
 )
 
@@ -412,9 +313,8 @@ if st.sidebar.button(
     except Exception as e:
         st.error(f"Sınav üretilirken bir hata oluştu: {e}")
 
-# --- Soru Paneli (Her Sayfada Tek Soru Gösteren İnteraktif Sistem) ---
+# --- İnteraktif Soru Çözüm Paneli (Her Sayfada Tek Soru ve Şık İşaretleme) ---
 if "sinav_metni" in st.session_state:
-    aktif_sinif = st.session_state.get("aktif_sinif", sinif_secimi)
     metin = st.session_state["sinav_metni"]
     bulunan_sorular = soruları_ayristir(metin)
 
@@ -431,16 +331,34 @@ if "sinav_metni" in st.session_state:
         soru_obj = bulunan_sorular[current_idx]
 
         st.markdown("---")
-        st.markdown("### 📝 Soru Paneli (Her Sayfada Tek Soru)")
+        st.markdown("### 📝 Soru Çözüm Paneli (Her Sayfada Tek Soru)")
 
         # Soru Kartı
         st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
         st.markdown(f"#### Soru {current_idx + 1} / {toplam_bulunan} (Soru No: {soru_obj['no']})")
         
-        # Soru metnini ve varsa şıkları net bir şekilde göster
         soru_icerik_metni = soru_obj['metin'].replace('\n', '<br>')
-        st.markdown(f"<div style='font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px;'>{soru_icerik_metni}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px;'>{soru_icerik_metni}</div>", unsafe_allow_html=True)
         
+        # Şık İşaretleme Alanı (A, B, C, D Butonları)
+        st.markdown("**Cevabınızı İşaretleyin:**")
+        secim_kolonlari = st.columns(4)
+        secilen_cevap_key = f"user_cevap_{current_idx}"
+        
+        if secilen_cevap_key not in st.session_state:
+            st.session_state[secilen_cevap_key] = None
+
+        for idx, harf in enumerate(["A", "B", "C", "D"]):
+            with secim_kolonlari[idx]:
+                is_selected = st.session_state[secilen_cevap_key] == harf
+                btn_type = "primary" if is_selected else "secondary"
+                if st.button(f"Şık {harf}", key=f"btn_{current_idx}_{harf}", type=btn_type, use_container_width=True):
+                    st.session_state[secilen_cevap_key] = harf
+                    st.rerun()
+
+        if st.session_state[secilen_cevap_key]:
+            st.info(f"✨ Bu soru için işaretlediğiniz şık: **{st.session_state[secilen_cevap_key]}**")
+
         st.markdown("</div>", unsafe_allow_html=True)
 
         # Navigasyon / İlerleme Butonları
@@ -457,29 +375,4 @@ if "sinav_metni" in st.session_state:
                     st.rerun()
             else:
                 if st.button("🏁 Sınavı Tamamla", type="primary", use_container_width=True):
-                    st.success("Sınav sorularının sonuna geldiniz!")
-
-    # Sınav Çıktı Seçenekleri
-    st.markdown("---")
-    st.markdown("### 📥 Sınav Çıktı Seçenekleri")
-    col1, col2 = st.columns(2)
-
-    with col1:
-        pdf_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
-        st.download_button(
-            label="📄 Standart 60 Soru PDF İndir (İki Sütunlu Kitapçık)",
-            data=pdf_bytes,
-            file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-            mime="application/pdf",
-            use_container_width=True,
-        )
-
-    with col2:
-        booklet_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
-        st.download_button(
-            label="📘 Resmi 60 Soru Kitapçığı PDF İndir (İki Sütunlu Kitapçık)",
-            data=booklet_bytes,
-            file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
-            mime="application/pdf",
-            use_container_width=True,
-        )
+                    st.success("Tebrikler! Sınav sorularının sonuna geldiniz ve cevaplarınızı kaydettiniz.")
