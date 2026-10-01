@@ -21,7 +21,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici",
+    page_title="Ortaokul dan LGS 60 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -132,25 +132,32 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Otomatik Modeli Bulan ve Hata Engelleme Yapan Akıllı API Fonksiyonu ---
+# --- Dinamik Model Keşifli Akıllı API Fonksiyonu ---
 def ai_icerik_uret(prompt: str) -> str:
-    url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY_DIRECT}",
         "Content-Type": "application/json"
     }
     
-    # Otomatik olarak sırayla denenecek aktif Groq model havuzu (En güncelden eskiye)
-    denenecek_modeller = [
-        "llama-3.1-8b-instant",
-        "llama-3.3-70b-versatile",
-        "llama3-70b-8192",
-        "llama3-8b-8192",
-        "mixtral-8x7b-32768"
-    ]
-    
+    # 1. Adım: Groq sunucusundan o an aktif olan modelleri dinamik olarak çek
+    aktif_modeller = []
+    try:
+        models_res = requests.get("https://api.groq.com/openai/v1/models", headers=headers, timeout=10)
+        if models_res.status_code == 200:
+            data = models_res.json()
+            # Sadece geçerli metin/chat modellerini filtrele
+            aktif_modeller = [m["id"] for m in data.get("data", []) if any(k in m["id"] for k in ["llama", "mixtral", "gemma"])]
+    except Exception:
+        pass
+        
+    # Eğer dinamik çekilemezse varsayılan güvenli modeller
+    if not aktif_modeller:
+        aktif_modeller = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-70b-8192"]
+
+    chat_url = "https://api.groq.com/openai/v1/chat/completions"
     son_hata = ""
-    for model_adi in denenecek_modeller:
+    
+    for model_adi in aktif_modeller:
         payload = {
             "model": model_adi,
             "messages": [
@@ -162,7 +169,7 @@ def ai_icerik_uret(prompt: str) -> str:
         }
 
         try:
-            response = requests.post(url, json=payload, headers=headers, timeout=60)
+            response = requests.post(chat_url, json=payload, headers=headers, timeout=60)
             if response.status_code == 200:
                 data = response.json()
                 return data["choices"][0]["message"]["content"]
@@ -171,7 +178,7 @@ def ai_icerik_uret(prompt: str) -> str:
         except Exception as e:
             son_hata = str(e)
             
-    raise RuntimeError(f"Tüm Groq modelleri denendi ancak erişilemedi. Son hata: {son_hata}")
+    raise RuntimeError(f"Tüm aktif Groq modelleri denendi ancak erişilemedi. Son hata: {son_hata}")
 
 def soruları_ayristir(tam_metin):
     parcalar = []
@@ -286,7 +293,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Otomatik Model Destekli, Döngüsel Eksiksiz 60 Soru Üretim Sistemi.</p>",
+    "<p class='subtext'>Dinamik Model Keşifli, Kesintisiz 60 Soru Üretim Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
@@ -488,7 +495,7 @@ if "sinav_metni" in st.session_state:
             st.markdown(st.session_state["sinav_metni"])
             st.markdown("</div>", unsafe_allow_html=True)
 
-        # Sınav Çıktı Seçenekleri (Yalnızca sınav ekranının dışında / altında yer alır)
+        # Sınav Çıktı Seçenekleri
         st.markdown("---")
         st.markdown("### 📥 Sınav Çıktı Seçenekleri")
         col1, col2 = st.columns(2)
