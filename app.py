@@ -45,19 +45,19 @@ st.markdown(
     }
     .exam-card {
         background-color: #ffffff;
-        padding: 30px;
+        padding: 25px;
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         border: 1px solid #e1e4e8;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı (10'ar Soru: Türkçe, Matematik, Fen, Sosyal, Din, İngilizce)
+# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı (Her derse tam 10 soru)
 SINIF_MUFREDATLARI = {
     "5. Sınıf": {
         "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce - 10'ar Soru)",
@@ -231,7 +231,7 @@ def build_exam_pdf(text, sinif_adi):
         buffer.seek(0)
         return buffer.getvalue()
 
-    # LayoutError önlemek için her seferinde 8 soru (4 satır) işleyip araya PageBreak ekliyoruz
+    # LayoutError önlemek için 8'erli gruplar halinde tablolar ve güvenli sayfa geçişleri
     chunk_size = 8
     total_chunks = (len(sorular) + chunk_size - 1) // chunk_size
     chunk_counter = 0
@@ -286,7 +286,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Gerçek Sıralı Müfredat (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce), Özgün Görsel/Üçgen Destekli ve Eksiksiz Şıklı Sınav Sistemi.</p>",
+    "<p class='subtext'>Gerçek Sıralı Müfredat (Türkçe, Matematik, Fen, Sosyal/İnkılap, Din, İngilizce), Görsel/Üçgen Destekli ve Doğrudan Şıklı Sınav Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
@@ -564,12 +564,26 @@ if "sinav_metni" in st.session_state:
             st.markdown(f"**Soru {soru_obj['no']}**")
             st.markdown(soru_obj['metin'])
             
-            st.radio(
-                "Cevabınız:", 
-                ["Seçiniz...", "A", "B", "C", "D"], 
-                key=f"cevap_{current_idx}",
-                horizontal=True
-            )
+            # Doğrudan şıklardan işaretleme (A, B, C, D butonları)
+            st.markdown("<b>Cevabınızı İşaretleyin:</b>", unsafe_allow_html=True)
+            secim_kolar = st.columns(4)
+            secilen_cevap_key = f"user_cevap_{current_idx}"
+            
+            # Oturumda daha önce seçildiyse alalım
+            if secilen_cevap_key not in st.session_state:
+                st.session_state[secilen_cevap_key] = None
+
+            for idx, harf in enumerate(["A", "B", "C", "D"]):
+                with secim_kolar[idx]:
+                    is_selected = st.session_state[secilen_cevap_key] == harf
+                    btn_type = "primary" if is_selected else "secondary"
+                    if st.button(f"Şık: {harf}", key=f"btn_{current_idx}_{harf}", type=btn_type, use_container_width=True):
+                        st.session_state[secilen_cevap_key] = harf
+                        st.rerun()
+
+            if st.session_state[secilen_cevap_key]:
+                st.success(f"İşaretlenen Cevap: **{st.session_state[secilen_cevap_key]}**")
+
             st.markdown("</div>", unsafe_allow_html=True)
 
             col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
@@ -598,7 +612,7 @@ if "sinav_metni" in st.session_state:
         with col1:
             pdf_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
             st.download_button(
-                label="📄 Standart 60 Soru PDF İndir (İki Sütunlu)",
+                label="📄 Standart 60 Soru PDF İndir (İki Sütunlu Kitapçık)",
                 data=pdf_bytes,
                 file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
@@ -608,7 +622,7 @@ if "sinav_metni" in st.session_state:
         with col2:
             booklet_bytes = build_exam_pdf(st.session_state["sinav_metni"], aktif_sinif)
             st.download_button(
-                label="📘 Resmi 60 Soru Kitapçığı PDF İndir (İki Sütunlu)",
+                label="📘 Resmi 60 Soru Kitapçığı PDF İndir (İki Sütunlu Kitapçık)",
                 data=booklet_bytes,
                 file_name=f"{aktif_sinif.replace(' ', '_')}_60_Soruluk_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
