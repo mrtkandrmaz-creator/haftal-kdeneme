@@ -4,6 +4,12 @@ import re
 import sys
 import time
 import google.generativeai as genai
+try:
+    from groq import Groq
+    GROQ_AVAILABLE = True
+except ImportError:
+    GROQ_AVAILABLE = False
+
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, PageBreak
@@ -56,12 +62,12 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı (Her derse tam 10 soru)
+# MEB Müfredatına Uygun 60 Soruluk Sınav Dağılımı Veritabanı (Her derse kesinlikle tam 10 soru)
 SINIF_MUFREDATLARI = {
     "5. Sınıf": {
-        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce - 10'ar Soru)",
+        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, Sosyal:10, Din:10, İngilizce:10)",
         "soru_dagilimi": {
-            "Turkce": 10,
+            "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
             "Sosyal Bilgiler": 10,
@@ -71,9 +77,9 @@ SINIF_MUFREDATLARI = {
         "sure_dakika": 90,
     },
     "6. Sınıf": {
-        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce - 10'ar Soru)",
+        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, Sosyal:10, Din:10, İngilizce:10)",
         "soru_dagilimi": {
-            "Turkce": 10,
+            "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
             "Sosyal Bilgiler": 10,
@@ -83,9 +89,9 @@ SINIF_MUFREDATLARI = {
         "sure_dakika": 90,
     },
     "7. Sınıf": {
-        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe, Matematik, Fen, Sosyal, Din, İngilizce - 10'ar Soru)",
+        "aciklama": "60 Soruluk Kapsamlı Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, Sosyal:10, Din:10, İngilizce:10)",
         "soru_dagilimi": {
-            "Turkce": 10,
+            "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
             "Sosyal Bilgiler": 10,
@@ -95,9 +101,9 @@ SINIF_MUFREDATLARI = {
         "sure_dakika": 100,
     },
     "8. Sınıf (LGS)": {
-        "aciklama": "60 Soruluk LGS Deneme Sınavı (Türkçe, Matematik, Fen, İnkılap, Din, İngilizce - 10'ar Soru)",
+        "aciklama": "60 Soruluk LGS Deneme Sınavı (Türkçe:10, Matematik:10, Fen:10, T.C. İnkılap:10, Din:10, İngilizce:10)",
         "soru_dagilimi": {
-            "Turkce": 10,
+            "Türkçe": 10,
             "Matematik": 10,
             "Fen Bilimleri": 10,
             "T.C. İnkılap Tarihi": 10,
@@ -129,47 +135,43 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
+# --- Streamlit Secrets'a göre Otomatik AI Karar Mekanizması ---
 def ai_icerik_uret(prompt: str) -> str:
+    groq_key = st.secrets.get("GROQ_API_KEY", "")
     gemini_key = st.secrets.get("GEMINI_API_KEY", "")
-    if not gemini_key:
-        raise RuntimeError("GEMINI_API_KEY anahtarı Streamlit Secrets içinde bulunamadı!")
 
-    genai.configure(api_key=gemini_key)
-    
-    uygun_modeller = []
-    try:
-        for m in genai.list_models():
-            if 'generateContent' in m.supported_generation_methods:
-                uygun_modeller.append(m.name)
-    except Exception:
-        pass
-
-    yedek_liste = [
-        "gemini-2.5-flash",
-        "gemini-3.8-flash",
-        "gemini-3.6-flash",
-        "gemini-1.5-flash",
-        "gemini-1.5-pro",
-        "gemini-pro"
-    ]
-    
-    tum_denenecekler = []
-    for mod in uygun_modeller + yedek_liste:
-        if mod not in tum_denenecekler:
-            tum_denenecekler.append(mod)
-
-    son_hata = None
-    for model_adi in tum_denenecekler:
+    # 1. Eğer Groq Anahtarı Varsa ve Kütüphane Yüklüyse -> Groq Kullan
+    if groq_key and GROQ_AVAILABLE:
         try:
-            model = genai.GenerativeModel(model_adi)
-            response = model.generate_content(prompt)
-            if response and response.text:
-                return response.text
-        except Exception as e:
-            son_hata = e
-            continue
+            client = Groq(api_key=groq_key)
+            completion = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": "Sen uzman bir MEB müfredat rehber öğretmeni ve LGS soru yazarısın."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.7,
+                max_tokens=4000,
+            )
+            if completion.choices and completion.choices[0].message.content:
+                return completion.choices[0].message.content
+        except Exception:
+            pass # Groq hata verirse otomatik Gemini'ye düşer
 
-    raise RuntimeError(f"Hesabınızın erişebileceği uygun Gemini modeli bulunamadı veya tüm denemeler başarısız oldu. Son Hata: {son_hata}")
+    # 2. Eğer Gemini Anahtarı Varsa -> Gemini Kullan
+    if gemini_key:
+        genai.configure(api_key=gemini_key)
+        yedek_liste = ["gemini-2.5-flash", "gemini-3.6-flash", "gemini-1.5-flash", "gemini-pro"]
+        for model_adi in yedek_liste:
+            try:
+                model = genai.GenerativeModel(model_adi)
+                response = model.generate_content(prompt)
+                if response and response.text:
+                    return response.text
+            except Exception:
+                continue
+
+    raise RuntimeError("Streamlit Secrets içinde geçerli bir GROQ_API_KEY veya GEMINI_API_KEY bulunamadı veya her iki servis de yanıt vermedi!")
 
 def soruları_ayristir(tam_metin):
     parcalar = []
@@ -284,7 +286,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>Gerçek Sıralı Müfredat (Türkçe, Matematik, Fen, Sosyal/İnkılap, Din, İngilizce), Görsel/Üçgen Destekli ve Doğrudan Şıklı Sınav Sistemi.</p>",
+    "<p class='subtext'>Streamlit Secrets Üzerinden Otomatik Motor Seçimli (Groq / Gemini) Sınav Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
@@ -317,7 +319,7 @@ st.sidebar.markdown("---")
 toplam_soru = sum(secilen_bilgi["soru_dagilimi"].values())
 st.sidebar.markdown(f"🎯 **Toplam Soru Sayısı:** {toplam_soru} Soru")
 
-# Üretim Butonu
+# Üretim Butonu (Döngüsel eksiksiz üretim mimarisi)
 if st.sidebar.button(
     f"✨ {sinif_secimi} 60 Soruluk Sınavı Üret",
     type="primary",
@@ -348,8 +350,11 @@ if st.sidebar.button(
         adim = 0
         for ders_adi, soru_adedi in dersler.items():
             adim += 1
+            baslangic_no = global_soru_sayaci
+            bitis_no = global_soru_sayaci + soru_adedi - 1
+            
             status_text.text(
-                f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi için tam {soru_adedi} soru üretiliyor..."
+                f"⚡ ({adim}/{toplam_ders_sayisi}) {ders_adi} dersi için {baslangic_no} ile {bitis_no} arası sorular üretiliyor..."
             )
 
             prompt = f"""
@@ -357,29 +362,29 @@ if st.sidebar.button(
             {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
             Kazanım/İçerik: {ilgili_kazanimlar}
             
-            YALNIZCA VE SADECE **{ders_adi}** dersi için KESİNLİKLE VE TAM OLARAK **{soru_adedi}** adet özgün, MEB yeni nesil beceri temelli soru hazırla. Soru adedini eksik bırakma, tam {soru_adedi} soru yazmalısın.
+            YALNIZCA VE SADECE **{ders_adi}** dersi için KESİNLİKLE VE TAM OLARAK **{soru_adedi}** adet özgün soru hazırla.
             
-            KATI KURALLAR VE FORMAT:
-            1. Soru numaralarını {global_soru_sayaci}'den başlat ve sırayla {global_soru_sayaci + soru_adedi - 1}'e kadar eksiksiz numaralandır (Örn: {global_soru_sayaci}. Soru metni...).
-            2. HER BİR SORU mutlak surette A) ... B) ... C) ... D) ... şıklarının tamamını eksiksiz içermelidir. Şıklar asla eksik bırakılmamalıdır.
-            3. EĞER DERS MATEMATİK İSE; soruların en az yarısında üçgenler (eşkenar üçgen, ikizkenar üçgen, dik üçgen), dik açı, açı ölçüleri, grafikler ve tablolar gibi görsel/geometrik öğeler ASCII sembolleri, şekil açıklamaları veya koordinat şemalarıyla desteklenmelidir.
+            Çok Önemli Kurallar:
+            1. Soru numaralarını KESİNLİKLE {baslangic_no}'den başlat ve sırayla tam {bitis_no}'e kadar git. Toplamda tam {soru_adedi} adet soru üretmelisin (Eksik soru asla kabul edilmez!).
+            2. HER BİR SORU mutlak surette A) ... B) ... C) ... D) ... şıklarının tamamını eksiksiz içermelidir.
+            3. EĞER DERS MATEMATİK İSE; soruların içinde üçgenler (eşkenar üçgen, ikizkenar üçgen, dik üçgen), dik açı, açı ölçüleri, grafikler ve tablolar gibi görsel/geometrik öğeler ASCII sembolleri, şekil açıklamaları veya koordinat şemalarıyla desteklenmelidir.
             4. Başka hiçbir dersin sorusunu bu bloğa karıştırma. Yalnızca {ders_adi} dersinin sorularını yaz.
             """
 
             ders_yaniti = ai_icerik_uret(prompt)
 
             uretilen_metinler.append(
-                f"\n\n--- {ders_adi.upper()} ({soru_adedi} SORU) ---\n" + ders_yaniti
+                f"\n\n--- {ders_adi.upper()} ({baslangic_no}-{bitis_no}. SORULAR) ---\n" + ders_yaniti
             )
             global_soru_sayaci += soru_adedi
             progress_bar.progress(adim / toplam_ders_sayisi)
-            time.sleep(0.3)
+            time.sleep(0.2)
 
         status_text.text(
             "📝 Tüm dersler tamamlandı, detaylı cevap anahtarı ve çözüm açıklamaları ekleniyor..."
         )
         cozum_prompt = f"""
-        Yukarıda soruları hazırlanan {sinif_secimi} 60 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
+        Yukarıda hazırlanan {sinif_secimi} 60 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
         1'den 60'a kadar tüm soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve adım adım kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
         """
         cozum_yaniti = ai_icerik_uret(cozum_prompt)
@@ -446,7 +451,7 @@ if "sinav_metni" in st.session_state:
             st.markdown(f"**Soru {soru_obj['no']}**")
             st.markdown(soru_obj['metin'])
             
-            # Doğrudan şıklardan işaretleme (A, B, C, D butonları - Ek yazı veya buton yok)
+            # Doğrudan şıklardan işaretleme (A, B, C, D butonları)
             secim_kolar = st.columns(4)
             secilen_cevap_key = f"user_cevap_{current_idx}"
             
@@ -467,7 +472,7 @@ if "sinav_metni" in st.session_state:
             col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
             with col_nav1:
                 if current_idx > 0:
-                    if st.button("⬅️ Önceki Soru", use_container_width=True):
+                    if st.button("⬅ Önceki Soru", use_container_width=True):
                         st.session_state["aktif_soru_index"] -= 1
                         st.rerun()
             with col_nav3:
