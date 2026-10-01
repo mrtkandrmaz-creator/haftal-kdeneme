@@ -4,7 +4,7 @@ import json
 
 # Sayfa Yapılandırması
 st.set_page_config(
-    page_title="MEB Müfredatı 50 Soruluk Çoklu API Deneme Paneli",
+    page_title="MEB Müfredatı 60 Soruluk Çoklu API Deneme Paneli",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -14,7 +14,6 @@ st.set_page_config(
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
-    /* Sol menüdeki soruları üret butonu için turuncu özel stil */
     div.stButton > button:first-child {
         width: 100%;
         border-radius: 12px;
@@ -43,6 +42,7 @@ st.markdown("""
         font-weight: 800 !important;
         color: #1e293b !important;
         line-height: 1.6 !important;
+        white-space: pre-line; /* Şekillerin ve satırların düzgün görünmesi için */
     }
     .timer-box {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -76,7 +76,7 @@ except Exception:
     GEMINI_KEYS = []
 
 if not GROQ_KEYS and not GEMINI_KEYS:
-    st.error("⚠️️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
+    st.error("⚠️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
     st.stop()
 
 # Oturum Durumları
@@ -109,7 +109,7 @@ weeks_options.extend([
 ])
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
-question_count = 50
+question_count = 60
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🚀 Soru İşlemleri")
@@ -119,8 +119,8 @@ st.sidebar.markdown("---")
 st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI_KEYS)} Gemini anahtarı yüklendi.")
 
 # Ana Ekran Başlığı
-st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Orantılı 50 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (10), Matematik (10), Fen (10), Sosyal (7), Din (6), İngilizce (7) oranlarına uygun LGS sistemi.</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Orantılı 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (12), Matematik (12), Fen (12), Sosyal (8), Din (7), İngilizce (9) oranlarıyla ve görsel şemalı/üçgenli yeni nesil sorularla.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -181,15 +181,17 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner("✨ Çoklu API havuzu taranıyor ve LGS oranlarına uygun 50 soruluk deneme hazırlanıyor..."):
+    with st.spinner("✨ Çoklu API havuzu taranıyor, 60 soruluk görsel destekli LGS denemesi hazırlanıyor..."):
         prompt = f"""
         5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki şu derslerden toplamda KESİNLİKLE {question_count} adet yeni nesil beceri temelli soru hazırla:
-        - Türkçe: 10 soru
-        - Matematik: 10 soru
-        - Fen Bilimleri: 10 soru
-        - Sosyal Bilgiler: 7 soru
-        - Din Kültürü ve Ahlak Bilgisi: 6 soru
-        - İngilizce: 7 soru
+        - Türkçe: 12 soru
+        - Matematik: 12 soru (İçerisinde dik üçgen, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri, geometrik şekiller ve şemalar ASCII/Unicode çizimleriyle soru metnine mutlaka eklensin)
+        - Fen Bilimleri: 12 soru (Deney düzenekleri, grafikler, tablo ve şemalar soru içinde görsel olarak metne eklensin)
+        - Sosyal Bilgiler: 8 soru (Harita sembolleri, kroki veya tablo gösterimleri eklensin)
+        - Din Kültürü ve Ahlak Bilgisi: 7 soru
+        - İngilizce: 9 soru (Diyalog, tablo veya eşleştirme şemaları eklensin)
+        
+        ÖNEMLİ GÖRSEL KURALI: Matematik ve geometri sorularında (üçgenler vb.) ve diğer uygun derslerde soru metninin içinde ASCII/Unicode karakterler kullanarak (örneğin 📐, △, ∟, 📏, tablolar veya şemalar şeklinde) net görsel destekler ve şekiller bulundur.
         
         Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına mutlaka ilgili dersin adını yaz.
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
@@ -197,8 +199,8 @@ if generate_btn:
             "questions": [
                 {{
                     "id": 1,
-                    "subject": "Türkçe",
-                    "question": "Soru metni burada yer alacak...",
+                    "subject": "Matematik",
+                    "question": "Soru metni ve içinde yer alan şekil/üçgen görseli burada yer alacak...",
                     "options": {{
                         "A": "A şıkkı",
                         "B": "B şıkkı",
@@ -219,7 +221,7 @@ if generate_btn:
                 st.session_state.quiz_started = False
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
-                st.sidebar.success("✅ Sorular başarıyla üretildi!")
+                st.sidebar.success("✅ 60 Soru başarıyla üretildi!")
             except json.JSONDecodeError:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
@@ -265,7 +267,7 @@ if st.session_state.quiz_started and st.session_state.questions:
 
     st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
     sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
-    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}: {q['question']}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
     options = q['options']
     
@@ -326,7 +328,7 @@ if st.session_state.quiz_started and st.session_state.questions:
             for i, q_item in enumerate(st.session_state.questions):
                 user_ans = st.session_state.selected_answers.get(i, "Boş")
                 status = "✅" if user_ans == q_item['answer'] else "❌"
-                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):** {q_item['question']}")
+                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
 
