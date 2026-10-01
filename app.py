@@ -19,7 +19,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokuldan LGS Deneme Sınavı Üretici (80 Soru)",
+    page_title="Ortaokul ve LGS 80 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -57,10 +57,10 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# MEB 5, 6, 7, 8. Sınıf Müfredat ve Soru Dağılımı Veritabanı (Toplam 80 Soru)
+# MEB Müfredatına Uygun 80 Sorluk Sınav Dağılımı Veritabanı
 SINIF_MUFREDATLARI = {
     "5. Sınıf": {
-        "aciklama": "5. Sınıf Özelleştirilmiş 80 Soruluk Kapsamlı Deneme Sınavı (6 Ders Dağılımı)",
+        "aciklama": "5. Sınıf 80 Soruluk Kapsamlı Deneme Sınavı (Türkçe:15, Matematik:15, Fen:15, Sosyal:15, Din:10, İngilizce:10)",
         "soru_dagilimi": {
             "Turkce": 15,
             "Matematik": 15,
@@ -72,7 +72,7 @@ SINIF_MUFREDATLARI = {
         "sure_dakika": 120,
     },
     "6. Sınıf": {
-        "aciklama": "6. Sınıf Özelleştirilmiş 80 Soruluk Kapsamlı Deneme Sınavı (6 Ders Dağılımı)",
+        "aciklama": "6. Sınıf 80 Soruluk Kapsamlı Deneme Sınavı (Türkçe:15, Matematik:15, Fen:15, Sosyal:15, Din:10, İngilizce:10)",
         "soru_dagilimi": {
             "Turkce": 15,
             "Matematik": 15,
@@ -84,7 +84,7 @@ SINIF_MUFREDATLARI = {
         "sure_dakika": 120,
     },
     "7. Sınıf": {
-        "aciklama": "7. Sınıf Özelleştirilmiş 80 Soruluk Kapsamlı Deneme Sınavı (6 Ders Dağılımı)",
+        "aciklama": "7. Sınıf 80 Soruluk Kapsamlı Deneme Sınavı (Türkçe:15, Matematik:15, Fen:15, Sosyal:15, Din:10, İngilizce:10)",
         "soru_dagilimi": {
             "Turkce": 15,
             "Matematik": 15,
@@ -96,14 +96,13 @@ SINIF_MUFREDATLARI = {
         "sure_dakika": 135,
     },
     "8. Sınıf (LGS)": {
-        "aciklama": "8. Sınıf Özelleştirilmiş 80 Soruluk LGS Deneme Sınavı (MEB Orantılı 6 Ders Dağılımı)",
+        "aciklama": "8. Sınıf 80 Soruluk LGS Özel Deneme Sınavı (Türkçe:20, Matematik:20, Fen:20, İnkılap:10, Din:10)",
         "soru_dagilimi": {
-            "Turkce": 18,
-            "Matematik": 18,
-            "Fen Bilimleri": 18,
+            "Turkce": 20,
+            "Matematik": 20,
+            "Fen Bilimleri": 20,
             "T.C. İnkılap Tarihi": 10,
-            "Din Kültürü": 8,
-            "İngilizce": 8,
+            "Din Kültürü": 10,
         },
         "sure_dakika": 135,
     },
@@ -118,7 +117,7 @@ HAFTALIK_ICERIKLER = {
     6: "6. Hafta Kazanımları: Yazım kuralları, yüzdeler, madde ve ısı, afetler ve çevre, zekat ve sadaka ibadeti, sağlık ve rahatsızlıklar.",
     7: "7. Hafta Kazanımları: Noktalama işaretleri, cebirsel ifadeler, ışığın yayılması, üretim teknolojisi, Hz. Muhammed'in hayatı, yiyecekler ve içecekler.",
     8: "🌟 8. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (5., 6. ve 7. haftaların tüm kazanımlarını kapsayan kapsamlı genel tekrar sınavı).",
-    9: "9. Hafta Kazanımları: Metnin yapı taşları, üçgenler ve dörtgenler, ses özellikleri, Türk tarihi, Kur'an-ı Kerim ve özellikleri, seyahat ve ulaşım.",
+    9: "9. Hafta Kazanımları: Metnin yapı taşları, üçgenler ve dörtgenler, açı çeşitleri, üçgen türleri, veri analizi, grafik okuma, ses özellikleri, Türk tarihi, Kur'an-ı Kerim ve özellikleri.",
     10: "10. Hafta Kazanımları: Anlatım bozuklukları, veri analizi, çözeltiler ve karışımlar, demokrasi tarihi, din ve ahlak ilişkisi, teknolojik aletler.",
     11: "11. Hafta Kazanımları: Sözel mantık becerileri, doğrusal denklemler, elektrik devreleri, uluslararası ilişkiler, İslam düşünce yorumları, çevre bilinci.",
     12: "🌟 12. HAFTA: AYLIK GENEL TARAMA VE DEĞERLENDİRME SINAVI (9., 10. ve 11. haftaların tüm kazanımlarını kapsayan kapsamlı genel tekrar sınavı).",
@@ -231,6 +230,7 @@ def create_pdf(text, sinif_adi):
         buffer.seek(0)
         return buffer.getvalue()
 
+    # İki Sütunlu Düzen (Her satırda 2 soru)
     row_data = []
     for i in range(0, len(sorular), 2):
         s1 = sorular[i]
@@ -254,9 +254,9 @@ def create_pdf(text, sinif_adi):
         t.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'TOP'),
             ('LEFTPADDING', (0,0), (-1,-1), 6),
-            ('RIGHTADDING', (0,0), (-1,-1), 6),
-            ('TOPPADDING', (0,0), (-1,-1), 3),
-            ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+            ('RIGHTPADDING', (0,0), (-1,-1), 6),
+            ('TOPPADDING', (0,0), (-1,-1), 4),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 8),
             ('LINEAFTER', (0,0), (-2,-1), 0.5, colors.lightgrey),
         ]))
         story.append(t)
@@ -311,7 +311,7 @@ def create_official_booklet_pdf(text, sinif_adi, donem, hafta_str):
             cover_title_style,
         ),
         Paragraph(
-            f"<b>{donem} - {hafta_str}</b> | 80 Soru Kapsamlı Sınav Formatı",
+            f"<b>{donem} - {hafta_str}</b> | Gerçek MEB Müfredatına Uygun Soru Formatı",
             cover_sub_style,
         ),
         Spacer(1, 5),
@@ -350,9 +350,9 @@ def create_official_booklet_pdf(text, sinif_adi, donem, hafta_str):
         t.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'TOP'),
             ('LEFTPADDING', (0,0), (-1,-1), 6),
-            ('RIGHTADDING', (0,0), (-1,-1), 6),
-            ('TOPPADDING', (0,0), (-1,-1), 3),
-            ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+            ('RIGHTPADDING', (0,0), (-1,-1), 6),
+            ('TOPPADDING', (0,0), (-1,-1), 4),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 8),
             ('LINEAFTER', (0,0), (-2,-1), 0.5, colors.lightgrey),
         ]))
         story.append(t)
@@ -364,16 +364,16 @@ def create_official_booklet_pdf(text, sinif_adi, donem, hafta_str):
 
 # --- Streamlit Arayüzü ---
 st.markdown(
-    "<h1>🎯 Ortaokul ve LGS Deneme Sınavı Üretici (80 Soru)</h1>",
+    "<h1>🎯 Ortaokul ve LGS 80 Soruluk Deneme Sınavı Üretici</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
-    "<p class='subtext'>MEB Müfredatına Uygun, Tamamen Bağımsız, Özgün ve Tekrar İçermeyen 80 Soruluk Gelişmiş Sınav Sistemi.</p>",
+    "<p class='subtext'>Gerçek MEB Müfredatına Uygun, Tamamen Özgün, Eksiksiz A-B-C-D Şıklı ve Bold Font Yapılı Sınav Sistemi.</p>",
     unsafe_allow_html=True,
 )
 
 # Sol Menü (Sidebar) Ayarları
-st.sidebar.header("🗓️ Sınav Kriterleri (80 Soru)")
+st.sidebar.header("🗓️ Sınav Kriterleri")
 
 sinif_secimi = st.sidebar.selectbox(
     "Sınıf Düzeyi Seçin", list(SINIF_MUFREDATLARI.keys())
@@ -425,12 +425,11 @@ if st.sidebar.button(
 
     try:
         uretilen_metinler = [
-            f"=== {sinif_secimi.upper()} - {donem_secimi} {hafta_secimi_str} (80 SORULUK {sinav_tip_str}) ===\n"
+            f"=== {sinif_secimi.upper()} - 80 SORULUK DENEME ({donem_secimi} {hafta_secimi_str} - {sinav_tip_str}) ===\n"
         ]
 
+        global_soru_sayaci = 1
         adim = 0
-        onceki_soru_ozetleri = [] # Katı kural için önceki soruların içerik özeti takibi
-
         for ders_adi, soru_adedi in dersler.items():
             adim += 1
             status_text.text(
@@ -438,18 +437,17 @@ if st.sidebar.button(
             )
 
             prompt = f"""
-            Sen çok sıkı kuralları olan profesyonel bir MEB müfredat başmüfettişi ve soru yazarısın.
+            Sen uzman bir MEB müfredat rehber öğretmeni, müfettiş ve LGS soru yazarısın. 
             {sinif_secimi} seviyesi, {donem_secimi} {hafta_secimi_str} kapsamı ve şu kazanımlar için:
             Kazanım/İçerik: {ilgili_kazanimlar}
             
-            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, LGS yeni nesil mantık-muhakeme çoktan seçmeli (A, B, C, D şıklı) soru hazırla.
+            YALNIZCA VE SADECE **{ders_adi}** dersi için tam olarak **{soru_adedi}** adet özgün, MEB gerçek kazanımlarına tam uygun mantık-muhakeme yeni nesil çoktan seçmeli soru hazırla.
             
-            KATI BAĞIMSIZLIK VE ÖZGÜNLÜK KURALLARI:
-            1. Sınavdaki tüm sorular birbirinden TAMAMEN BAĞIMSIZ, farklı alt kazanımlara ve farklı senaryolara dayalı olmalıdır. Asla birbirinin benzeri, kopya veya aynı kalıbın sayıları değiştirilmiş versiyonu sorular üretilemez.
-            2. Daha önce üretilmiş olabilecek soru tiplerinden tamamen farklı senaryolar, günlük hayat problemleri ve grafik/görsel veriler kurgula.
-            3. Her sorunun A, B, C, D seçenekleri eksiksiz ve net bir şekilde yazılmalıdır.
-            4. Matematik ve geometri sorularında üçgen çeşitleri, açılar, grafik ve veri analizleri için farklı sayısal değerler ve görsel kurgular kullan.
-            5. Soruların numaralandırmasını 1'den {soru_adedi}'ne kadar yap. Başka hiçbir dersin sorusunu bu bloğa karıştırma.
+            KATI KURALLAR VE FORMAT:
+            1. Soru numaralarını {global_soru_sayaci}'den başlat ve sırayla {global_soru_sayaci + soru_adedi - 1}'e kadar numaralandır.
+            2. HER BİR SORU mutlak surette A), B), C), D) şıklarının tamamını eksiksiz içermelidir. Şıklar asla boş veya eksik bırakılmamalıdır.
+            3. Sorular kesinlikle birbirinin kopyası olmamalı, her biri farklı bir senaryo, farklı öncüller, grafik verileri veya geometrik şekiller (üçgen açıları, üçgen çeşitleri, kenar özellikleri) içermelidir.
+            4. Başka hiçbir dersin sorusunu bu bloğa karıştırma. Yalnızca {ders_adi} dersinin sorularını yaz.
             """
 
             ders_yaniti = ai_icerik_uret(prompt)
@@ -457,15 +455,16 @@ if st.sidebar.button(
             uretilen_metinler.append(
                 f"\n\n--- {ders_adi.upper()} ({soru_adedi} SORU) ---\n" + ders_yaniti
             )
+            global_soru_sayaci += soru_adedi
             progress_bar.progress(adim / toplam_ders_sayisi)
             time.sleep(0.3)
 
         status_text.text(
-            "📝 Tüm dersler tamamlandı, cevap anahtarı ve çözümler ekleniyor..."
+            "📝 Tüm dersler tamamlandı, detaylı cevap anahtarı ve çözüm açıklamaları ekleniyor..."
         )
         cozum_prompt = f"""
-        Yukarıda soruları hazırlanan {sinif_secimi} {hafta_secimi_str} ({donem_secimi}) 80 soruluk deneme sınavı için;
-        Tüm derslerin soru numaralarına karşılık gelen eksiksiz bir **CEVAP ANAHTARI** ve kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
+        Yukarıda soruları hazırlanan {sinif_secimi} 80 soruluk {hafta_secimi_str} ({donem_secimi}) deneme sınavı için;
+        1'den 80'e kadar tüm soru numaralarına karşılık gelen net bir **CEVAP ANAHTARI** ve adım adım kısa **ÇÖZÜM AÇIKLAMALARI** hazırla.
         """
         cozum_yaniti = ai_icerik_uret(cozum_prompt)
         uretilen_metinler.append(
@@ -506,7 +505,7 @@ if "sinav_metni" in st.session_state:
                 st.rerun()
 
         st.info(
-            f"💡 80 Soruluk sınavınız hazır! {sure_dk} dakikalık resmi süreyi başlatmak için **Sınavı Başlat** butonuna tıklayın."
+            "💡 80 soruluk sınavınız hazır! Süreyi ve soruları tek tek görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
         )
 
     if st.session_state.get("sinav_baslatildi", False):
@@ -562,7 +561,7 @@ if "sinav_metni" in st.session_state:
         </head>
         <body>
           <div class="timer-container">
-            <div class="timer-title">⏱️ Resmi Sınav Simülasyon Süresi ({sure_dk} Dakika)</div>
+            <div class="timer-title">⏱️ 80 Soruluk Resmi Sınav Simülasyon Süresi ({sure_dk} Dakika)</div>
             <div class="timer-display" id="clock">00:00:00</div>
             <div class="timer-controls">
               <button class="btn" onclick="toggleTimer()" id="startBtn">Başlat / Durdur</button>
@@ -668,10 +667,10 @@ if "sinav_metni" in st.session_state:
                         st.rerun()
                 else:
                     if st.button("🏁 Sınavı Bitir", type="primary", use_container_width=True):
-                        st.success("Sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
+                        st.success("80 soruluk sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
         else:
             st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-            st.subheader(f"📝 Oluşturulan {aktif_sinif} Sınavı ({hafta_secimi_str})")
+            st.subheader(f"📝 Oluşturulan 80 Soruluk {aktif_sinif} Sınavı ({hafta_secimi_str})")
             st.markdown(st.session_state["sinav_metni"])
             st.markdown("</div>", unsafe_allow_html=True)
 
@@ -681,9 +680,9 @@ if "sinav_metni" in st.session_state:
         with col1:
             pdf_bytes = create_pdf(st.session_state["sinav_metni"], aktif_sinif)
             st.download_button(
-                label="📄 Standart Sınav PDF İndir (İki Sütunlu - 80 Soru)",
+                label="📄 Standart 80 Soru PDF İndir (İki Sütunlu)",
                 data=pdf_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_80Soru_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+                file_name=f"{aktif_sinif.replace(' ', '_')}_80_Soruluk_Deneme_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
                 use_container_width=True,
             )
@@ -696,9 +695,9 @@ if "sinav_metni" in st.session_state:
                 hafta_secimi_str,
             )
             st.download_button(
-                label="📘 Resmi Sınav Kitapçığı PDF İndir (İki Sütunlu - 80 Soru)",
+                label="📘 Resmi 80 Soru Kitapçığı PDF İndir (İki Sütunlu)",
                 data=booklet_bytes,
-                file_name=f"{aktif_sinif.replace(' ', '_')}_80Soru_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
+                file_name=f"{aktif_sinif.replace(' ', '_')}_80_Soruluk_Resmi_Kitapcik_{donem_secimi}_{hafta_secimi_str.replace(' ', '_')}.pdf",
                 mime="application/pdf",
                 use_container_width=True,
             )
