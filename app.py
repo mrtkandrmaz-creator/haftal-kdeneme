@@ -1,5 +1,6 @@
 import io
 import os
+import re
 import sys
 import time
 import google.generativeai as genai
@@ -150,7 +151,6 @@ def ai_icerik_uret(prompt: str) -> str:
 
     genai.configure(api_key=gemini_key)
     
-    # 1. Adım: API'nin desteklediği ve içerik üretmeye uygun (generateContent) modelleri otomatik listelet
     uygun_modeller = []
     try:
         for m in genai.list_models():
@@ -159,7 +159,6 @@ def ai_icerik_uret(prompt: str) -> str:
     except Exception:
         pass
 
-    # Eğer otomatik liste alınamazsa manuel güvenli öncelikli yedek havuzu
     yedek_liste = [
         "gemini-2.5-flash",
         "gemini-3.8-flash",
@@ -169,15 +168,12 @@ def ai_icerik_uret(prompt: str) -> str:
         "gemini-pro"
     ]
     
-    # Otomatik bulunanları başa koy, yedekleri arkasına ekle (benzersiz olacak şekilde)
     tum_denenecekler = []
     for mod in uygun_modeller + yedek_liste:
         if mod not in tum_denenecekler:
             tum_denenecekler.append(mod)
 
     son_hata = None
-
-    # 2. Adım: Havuzdaki modelleri sırayla deneyerek ilk çalışanla içerik üret
     for model_adi in tum_denenecekler:
         try:
             model = genai.GenerativeModel(model_adi)
@@ -189,6 +185,22 @@ def ai_icerik_uret(prompt: str) -> str:
             continue
 
     raise RuntimeError(f"Hesabınızın erişebileceği uygun Gemini modeli bulunamadı veya tüm denemeler başarısız oldu. Son Hata: {son_hata}")
+
+
+# Soru Ayrıştırma Yardımcısı (Her sayfada 1 soru gösterebilmek için metni parçalar)
+def soruları_ayristir(tam_metin):
+    # Ders başlıklarını ve soruları regex ile ayıklama
+    parcalar = []
+    # Örnek soru formatı: "1. Soru metni..." veya "1-) ..."
+    soru_bloklari = re.split(r'\n(?=\d+[\.\)]\s)', tam_metin)
+    
+    for blok in soru_bloklari:
+        match = re.match(r'^(\d+)[\.\)]\s*(.*)', blok.strip(), re.DOTALL)
+        if match:
+            soru_no = int(match.group(1))
+            soru_icerik = match.group(2)
+            parcalar.append({"no": soru_no, "metin": soru_icerik})
+    return parcalar
 
 
 # Standart PDF Dönüştürücü
@@ -411,6 +423,7 @@ if st.sidebar.button(
         st.session_state["sinav_metni"] = "\n".join(uretilen_metinler)
         st.session_state["aktif_sinif"] = sinif_secimi
         st.session_state["sinav_baslatildi"] = False
+        st.session_state["aktif_soru_index"] = 0
         st.success(
             f"🎉 {sinif_secimi} - {hafta_secimi_str} Sınavı başarıyla oluşturuldu!"
         )
@@ -434,10 +447,11 @@ if "sinav_metni" in st.session_state:
                 use_container_width=True,
             ):
                 st.session_state["sinav_baslatildi"] = True
+                st.session_state["aktif_soru_index"] = 0
                 st.rerun()
 
         st.info(
-            "💡 Sınavınız hazır! Süreyi ve soruları görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
+            "💡 Sınavınız hazır! Süreyi ve soruları her sayfada tek soru olacak şekilde görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
         )
 
     if st.session_state.get("sinav_baslatildi", False):
@@ -558,12 +572,58 @@ if "sinav_metni" in st.session_state:
 
         components.html(timer_html, height=195)
 
-        st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-        st.subheader(
-            f"📝 Oluşturulan {aktif_sinif} Sınavı ({hafta_secimi_str})"
-        )
-        st.markdown(st.session_state["sinav_metni"])
-        st.markdown("</div>", unsafe_allow_html=True)
+        # Soruları ve Bölümleri Ayıkla
+        metin = st.session_state["sinav_metni"]
+        bulunan_sorular = soruları_ayristir(metin)
+
+        if bulunan_sorular:
+            if "aktif_soru_index" not in st.session_state:
+                st.session_state["aktif_soru_index"] = 0
+
+            toplam_bulunan = len(bulunan_sorular)
+            
+            # Güvenli index kontrolü
+            if st.session_state["aktif_soru_index"] >= toplam_bulunan:
+                st.session_state["aktif_soru_index"] = toplam_bulunan - 1
+
+            current_idx = st.session_state["aktif_soru_index"]
+            soru_obj = bulunan_sorular[current_idx]
+
+            st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
+            st.subheader(f"📝 Soru {current_idx + 1} / {toplam_bulunan}")
+            st.markdown(f"**Soru {soru_obj['no']}**")
+            st.markdown(soru_obj['metin'])
+            
+            # Öğrencinin interaktif cevap verebilmesi için şık seçimi
+            st.radio(
+                "Cevabınız:", 
+                ["Seçiniz...", "A", "B", "C", "D"], 
+                key=f"cevap_{current_idx}",
+                horizontal=True
+            )
+            st.markdown("</div>", unsafe_allow_html=True)
+
+            # İlerleme Butonları
+            col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
+            with col_nav1:
+                if current_idx > 0:
+                    if st.button("⬅️ Önceki Soru", use_container_width=True):
+                        st.session_state["aktif_soru_index"] -= 1
+                        st.rerun()
+            with col_nav3:
+                if current_idx < toplam_bulunan - 1:
+                    if st.button("Sonraki Soru ➡️", use_container_width=True):
+                        st.session_state["aktif_soru_index"] += 1
+                        st.rerun()
+                else:
+                    if st.button("🏁 Sınavı Bitir", type="primary", use_container_width=True):
+                        st.success("Sınavı tamamladınız! Çözümleri ve cevap anahtarını aşağıdan kontrol edebilirsiniz.")
+        else:
+            # Yedek görünüm (Eğer ayrıştırılamazsa tüm metin gösterilir)
+            st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
+            st.subheader(f"📝 Oluşturulan {aktif_sinif} Sınavı ({hafta_secimi_str})")
+            st.markdown(st.session_state["sinav_metni"])
+            st.markdown("</div>", unsafe_allow_html=True)
 
         st.markdown("### 📥 Sınav Çıktı Seçenekleri")
         col1, col2 = st.columns(2)
