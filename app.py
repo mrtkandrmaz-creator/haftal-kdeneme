@@ -9,7 +9,6 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, PageBreak
 from reportlab.lib import colors
 import streamlit as st
-import streamlit.components.v1 as components
 
 # --- PyInstaller için SSL ve Dosya Yolu Sabitleme ---
 if getattr(sys, "frozen", False):
@@ -45,12 +44,12 @@ st.markdown(
     }
     .exam-card {
         background-color: #ffffff;
-        padding: 25px;
+        padding: 30px;
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         border: 1px solid #e1e4e8;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     </style>
     """,
@@ -402,7 +401,7 @@ if st.sidebar.button(
     except Exception as e:
         st.error(f"Sınav üretilirken bir hata oluştu: {e}")
 
-# Sınav İçeriğini ve Başlatma Mantığını Yönetme
+# Sınav İçeriğini ve Her Sayfada Tek Soru Gösteren Paneli Yönetme
 if "sinav_metni" in st.session_state:
     aktif_sinif = st.session_state.get("aktif_sinif", sinif_secimi)
     sure_dk = SINIF_MUFREDATLARI[aktif_sinif]["sure_dakika"]
@@ -413,7 +412,7 @@ if "sinav_metni" in st.session_state:
         col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
         with col_b2:
             if st.button(
-                "🚀 Sınavı Başlat ve Süreyi Başlat",
+                "🚀 Sınavı Başlat ve Soruları Çöz",
                 type="primary",
                 use_container_width=True,
             ):
@@ -422,127 +421,10 @@ if "sinav_metni" in st.session_state:
                 st.rerun()
 
         st.info(
-            "💡 60 soruluk sınavınız hazır! Süreyi ve soruları tek tek görüntülemek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
+            "💡 60 soruluk sınavınız hazır! Soruları ekranda her sayfada tek soru olacak şekilde çözmek için yukarıdaki **Sınavı Başlat** butonuna tıklayın."
         )
 
     if st.session_state.get("sinav_baslatildi", False):
-        timer_html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <style>
-          .timer-container {{
-              background: linear-gradient(135deg, #1e3d59 0%, #17b978 100%);
-              color: white;
-              padding: 22px;
-              border-radius: 14px;
-              text-align: center;
-              font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-              box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-              margin-bottom: 25px;
-          }}
-          .timer-title {{
-              font-size: 1.15rem;
-              font-weight: 600;
-              margin-bottom: 8px;
-              letter-spacing: 0.5px;
-              text-transform: uppercase;
-          }}
-          .timer-display {{
-              font-size: 3.2rem;
-              font-weight: 800;
-              letter-spacing: 3px;
-              font-variant-numeric: tabular-nums;
-              text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-          }}
-          .timer-controls {{
-              margin-top: 15px;
-          }}
-          .btn {{
-              background-color: white;
-              color: #1e3d59;
-              border: none;
-              padding: 8px 18px;
-              border-radius: 6px;
-              font-weight: bold;
-              cursor: pointer;
-              margin: 0 6px;
-              transition: 0.2s;
-              font-size: 0.95rem;
-          }}
-          .btn:hover {{
-              background-color: #f1f3f5;
-              transform: translateY(-1px);
-          }}
-        </style>
-        </head>
-        <body>
-          <div class="timer-container">
-            <div class="timer-title">⏱️ 60 Soruluk Resmi Sınav Simülasyon Süresi ({sure_dk} Dakika)</div>
-            <div class="timer-display" id="clock">00:00:00</div>
-            <div class="timer-controls">
-              <button class="btn" onclick="toggleTimer()" id="startBtn">Başlat / Durdur</button>
-              <button class="btn" onclick="resetTimer()">Sıfırla</button>
-            </div>
-          </div>
-
-          <script>
-            let totalSeconds = {total_seconds};
-            let timeLeft = totalSeconds;
-            let timerId = null;
-            let isRunning = false;
-
-            function updateDisplay() {{
-                let hours = Math.floor(timeLeft / 3600);
-                let minutes = Math.floor((timeLeft % 3600) / 60);
-                let secs = timeLeft % 60;
-                document.getElementById('clock').innerText = 
-                    String(hours).padStart(2, '0') + ':' + 
-                    String(minutes).padStart(2, '0') + ':' + 
-                    String(secs).padStart(2, '0');
-            }}
-
-            function startTimer() {{
-                if (!isRunning) {{
-                    isRunning = true;
-                    timerId = setInterval(() => {{
-                        if (timeLeft > 0) {{
-                            timeLeft--;
-                            updateDisplay();
-                        }} else {{
-                            clearInterval(timerId);
-                            alert("Sınav Süresi Bitti!");
-                            isRunning = false;
-                        }}
-                    }}, 1000);
-                }}
-            }}
-
-            function toggleTimer() {{
-                if (isRunning) {{
-                    clearInterval(timerId);
-                    isRunning = false;
-                }} else {{
-                    startTimer();
-                }}
-            }}
-
-            function resetTimer() {{
-                clearInterval(timerId);
-                isRunning = false;
-                timeLeft = totalSeconds;
-                updateDisplay();
-            }}
-
-            updateDisplay();
-            startTimer();
-          </script>
-        </body>
-        </html>
-        """
-
-        components.html(timer_html, height=195)
-
         metin = st.session_state["sinav_metni"]
         bulunan_sorular = soruları_ayristir(metin)
 
@@ -558,12 +440,13 @@ if "sinav_metni" in st.session_state:
             current_idx = st.session_state["aktif_soru_index"]
             soru_obj = bulunan_sorular[current_idx]
 
+            # Her sayfada tek soru görünümü
             st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
             st.subheader(f"📝 Soru {current_idx + 1} / {toplam_bulunan}")
             st.markdown(f"**Soru {soru_obj['no']}**")
             st.markdown(soru_obj['metin'])
             
-            # Doğrudan şıklardan işaretleme (A, B, C, D butonları - Ek yazı yok)
+            # Doğrudan şıklardan işaretleme (A, B, C, D butonları - Ek yazı veya buton yok)
             secim_kolar = st.columns(4)
             secilen_cevap_key = f"user_cevap_{current_idx}"
             
@@ -580,6 +463,7 @@ if "sinav_metni" in st.session_state:
 
             st.markdown("</div>", unsafe_allow_html=True)
 
+            # İlerleme / Navigasyon Butonları
             col_nav1, col_nav2, col_nav3 = st.columns([1, 2, 1])
             with col_nav1:
                 if current_idx > 0:
@@ -592,15 +476,15 @@ if "sinav_metni" in st.session_state:
                         st.session_state["aktif_soru_index"] += 1
                         st.rerun()
                 else:
-                    if st.button("🏁 Sınavı Bitir", type="primary", use_container_width=True):
-                        st.success("60 soruluk sınavı tamamladınız! Çözümleri ve cevap anahtarını ana sayfadaki PDF çıktılarından inceleyebilirsiniz.")
+                    if st.button("🏁 Sınavı Tamamla", type="primary", use_container_width=True):
+                        st.success("60 soruluk sınavı tamamladınız! Aşağıdan sınav kağıdını PDF olarak indirebilirsiniz.")
         else:
             st.markdown("<div class='exam-card'>", unsafe_allow_html=True)
-            st.subheader(f"📝 Oluşturulan 60 Soruluk {aktif_sinif} Sınavı ({hafta_secimi_str})")
             st.markdown(st.session_state["sinav_metni"])
             st.markdown("</div>", unsafe_allow_html=True)
 
-        # Sınav Çıktı Seçenekleri (Sadece ana sayfada / sınav bittiğinde veya alt kısımda görünür)
+        # Sınav Çıktı Seçenekleri (Yalnızca sınav ekranının dışında / altında yer alır)
+        st.markdown("---")
         st.markdown("### 📥 Sınav Çıktı Seçenekleri")
         col1, col2 = st.columns(2)
 
