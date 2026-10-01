@@ -44,6 +44,16 @@ st.markdown("""
         color: #1e293b !important;
         line-height: 1.6 !important;
     }
+    .passage-box {
+        background: #f1f5f9;
+        border-left: 5px solid #0284c7;
+        padding: 1.2rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        color: #334155;
+        margin-bottom: 1.2rem;
+        line-height: 1.7;
+    }
     .timer-box {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         color: #38bdf8;
@@ -67,12 +77,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Vektörel Şekil Çizim Motoru (Dik, İkizkenar, Eşkenar Üçgen & Açı/Çevre)
+# Gelişmiş Vektörel Şekil Çizim Motoru (Dik, İkizkenar, Eşkenar Üçgen & Çubuk Grafik)
 def draw_geometry_shape(shape_data):
     st_type = shape_data.get("type", "triangle")
     
     if st_type == "triangle":
-        sub_type = shape_data.get("sub_type", "scalene") # right, isosceles, equilateral, scalene
+        sub_type = shape_data.get("sub_type", "scalene") 
         a_label = shape_data.get("A", "A")
         b_label = shape_data.get("B", "B")
         c_label = shape_data.get("C", "C")
@@ -221,7 +231,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir MEB müfredat, Ölçme-Değerlendirme ve LGS sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
+            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve LGS soru hazırlama uzmanısın. Eksiksiz JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
@@ -235,7 +245,7 @@ def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-3.6-flash",
+        model="gemini-1.5-flash",
         contents=prompt_text,
     )
     text = response.text
@@ -271,9 +281,9 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (80 Soru - LGS Dağılımı, Katı Ders İzolasyonu ve Detaylı Şekil/Grafik Kuralları)
+# Soru Üretim Mantığı (80 Soru - Paragraf/Öncül Garantili, LGS Dağılımı ve Katı Ders İzolasyonu)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için LGS ağırlıklı ders dağılımına, katı ders izolasyonuna ve geometri/grafik kurallarına uygun 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için eksiksiz paragraf/öncüllü, LGS ağırlıklı 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
@@ -284,14 +294,12 @@ if generate_btn:
             "3. Fen Bilimleri: 20 Soru (41-60 arası)\n"
             "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (61-70 arası)\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (71-80 arası)\n\n"
-            "KATI DERS İZOLASYON KURALI (KESİNLİKLE İHLAL EDİLEMEZ):\n"
-            "- Her dersin sorusu yalnızca o dersin kendi kazanım alanına ait olmalıdır. 'Türkçe' dersi altında asla sayısal işlem, denklem, geometri veya fen terimi içeren matematiksel soru sorulamaz.\n"
-            "- 'Matematik' dersi altında yalnızca sayı, cebir, veri, geometri ve üçgen soruları yer almalıdır.\n\n"
-            "GEOMETRİ, ÜÇGEN VE GRAFİK ÇİZİM KURALLARI:\n"
-            "- Matematik sorularında üçgenler (dik, ikizkenar, eşkenar, çeşitkenar), çevre hesapları, açı ölçüleri, üçgen eşitsizliği veya benzerlikler bulunuyorsa, metin içinde asla ASCII çizim kullanılmamalı; JSON içinde şu formatta 'shape' nesnesi tanımlanmalıdır:\n"
-            "  - Üçgen için: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
-            "- Veri analizi ve istatistik sorularında grafik gerekiyorsa şu format kullanılmalıdır:\n"
-            "  - Grafik için: `{\"type\": \"bar_chart\", \"title\": \"Grafik Başlığı\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
+            "HAYATİ ÖNEM TAŞIYAN İÇERİK DOĞRULUK KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
+            "1. ASLA EKSİK METİN YOK: Soru metninde 'Bu paragraftan hareketle...', 'Yukarıdaki metne göre...', 'Bu bilgilere dayanarak...' ifadeleri geçiyorsa, JSON içerisindeki `passage` alanına kesinlikle ilgili paragraf, metin veya öncül bilgisi eksiksiz yazılmalıdır. `passage` alanı asla boş bırakılamaz; soru metni ile uyumlu gerçek bir metin içermelidir.\n"
+            "2. KATI DERS İZOLASYONU: Türkçe sorularında asla matematiksel işlem veya fen terimleri olamaz; tamamen sözel mantık, dil bilgisi ve okuduğunu anlama odaklı olmalıdır.\n"
+            "3. GEOMETRİ VE GRAFİK KURALLARI:\n"
+            "   - Üçgen sorularında (dik, ikizkenar, eşkenar, çeşitkenar) metinde ASCII kullanılmaz, `shape` nesnesine şu format verilir: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
+            "   - Grafik sorularında: `{\"type\": \"bar_chart\", \"title\": \"Başlık\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam ve doğru yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
             "{\n"
@@ -299,6 +307,7 @@ if generate_btn:
             "        {\n"
             "            \"id\": 1,\n"
             "            \"subject\": \"Türkçe\",\n"
+            "            \"passage\": \"Paragraf veya metin içeriği buraya yazılacak (eğer metin gerekiyorsa, aksi halde boş bırakılabilir).\",\n"
             "            \"question\": \"Soru metni...\",\n"
             "            \"shape\": null,\n"
             "            \"options\": {\n"
@@ -339,7 +348,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
             st.session_state.start_time = time.time()
             st.rerun()
 
-# Sınav Ekranı (Her Sayfada 1 Soru - Katı Ders Sınırları ve Görsel Motoru)
+# Sınav Ekranı (Her Sayfada 1 Soru - Paragraf Kutusu ve Görsel Desteği)
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
     total_time_seconds = total_questions * 80  
@@ -367,6 +376,10 @@ if st.session_state.quiz_started and st.session_state.questions:
     st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
     sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
     
+    # Paragraf/Öncül Metin Kutusu (Eğer varsa göster)
+    if 'passage' in q and q['passage'] and str(q['passage']).strip() != "":
+        st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül:</b><br>{q['passage']}</div>", unsafe_allow_html=True)
+
     st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
     # Şekil veya Grafik Varsa Çizdir
@@ -429,6 +442,8 @@ if st.session_state.quiz_started and st.session_state.questions:
             for i, q_item in enumerate(st.session_state.questions):
                 user_ans = st.session_state.selected_answers.get(i, "Boş")
                 status = "✅" if user_ans == q_item['answer'] else "❌"
+                if 'passage' in q_item and q_item['passage'] and str(q_item['passage']).strip() != "":
+                    st.markdown(f"**Metin:** {q_item['passage']}")
                 st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
                     st.markdown(draw_geometry_shape(q_item['shape']), unsafe_allow_html=True)
