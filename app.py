@@ -67,13 +67,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kusursuz Vektörel Üçgen Çizim Motoru (Dik Üçgen ve Çeşitkenar Üçgen Ayrımı Düzeltildi)
+# Kusursuz Vektörel Üçgen Çizim Motoru
 def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
     if is_right:
-        # Gerçek Dik Üçgen Poligonu (B köşesi 90 derece sol altta: 40,30 | 40,170 | 210,170)
         polygon_points = "40,30 40,170 210,170"
         right_angle_svg = '<rect x="40" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
-        # Etiket Konumları (Dik Üçgene Göre Hizalı)
         a_pos = (40, 20)
         b_pos = (25, 185)
         c_pos = (215, 185)
@@ -81,7 +79,6 @@ def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="
         bc_pos = (125, 192)
         ac_pos = (135, 92)
     else:
-        # İkizkenar / Çeşitkenar Üçgen Poligonu
         polygon_points = "130,25 30,170 230,170"
         right_angle_svg = ''
         a_pos = (130, 18)
@@ -131,8 +128,8 @@ if "selected_answers" not in st.session_state:
 if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 
-# Yan Menü - Sınıf, Dönem ve Kapsam Ayarları
-st.sidebar.markdown("## ⚙️ Müfredat & Çoklu API Havuzu")
+# Yan Menü - Sınıf, Dönem, Kapsam ve Zorluk Ayarları
+st.sidebar.markdown("## ⚙️ MEB Müfredat & Sınav Ayarları")
 st.sidebar.markdown("---")
 
 selected_grade = st.sidebar.selectbox("🎓 Sınıf Seviyesi", ["5. Sınıf", "6. Sınıf", "7. Sınıf", "8. Sınıf (LGS)"])
@@ -148,6 +145,18 @@ weeks_options.extend([
 ])
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
+
+# YENİ: Soru Zorluk Derecesi Seçim Menüsü
+difficulty_level = st.sidebar.selectbox(
+    "📊 Soru Zorluk Derecesi",
+    [
+        "Orta / MEB Beceri Temelli (Dengeli)",
+        "Kolay / Temel Düzey (Kazanım Pekiştirme)",
+        "Zor / LGS Seçici (Üst Düzey Muhakeme)",
+        "Karma / Çeşitlendirilmiş Zorluk Dağılımı"
+    ]
+)
+
 question_count = 60
 
 st.sidebar.markdown("---")
@@ -159,7 +168,7 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Ders bazlı sıralı soru akışı ve MEB beceri temelli soru tipleriyle.</p>", unsafe_allow_html=True)
+st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b> | Zorluk: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -183,7 +192,7 @@ def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-3.6-flash",
         contents=prompt_text,
     )
     text = response.text
@@ -219,37 +228,40 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (Derslere Göre Kesin Gruplanmış ve Sıralı)
+# Soru Üretim Mantığı (Müfredat ve Ders Sınırları Katı Şekilde Belirlenmiş)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için '{selected_scope}' kazanımlarına uygun, ders ders gruplanmış 60 yeni nesil soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için MEB gerçek müfredat kazanımlarına uygun, '{difficulty_level}' seviyesinde 60 soru hazırlanıyor..."):
         prompt = (
-            f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi '{selected_scope}' resmi öğretim programı "
-            f"ve kazanımlarına birebir uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
-            "DERSLERİN SIRASI VE KESİN GRUPLANMASI (ÖNEMLİ):\n"
-            "Sorular karışık olmamalıdır. Kesinlikle şu ders sırasına ve gruplamasına uyulmalıdır:\n"
-            "1. Türkçe (1. sorudan itibaren ilgili sayıda)\n"
-            "2. Matematik (Türkçe soruları tamamen bitince)\n"
-            "3. Fen Bilimleri (Matematik soruları tamamen bitince)\n"
-            "4. Sosyal Bilgiler / İnkılap Tarihi\n"
-            "5. Din Kültürü ve Ahlak Bilgisi\n"
-            "6. İngilizce\n"
-            "Toplam soru sayısı 60 olacak şekilde derslere eşit/orantılı paylaştırılmalıdır.\n\n"
+            f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
+            f"ve '{selected_scope}' kapsamındaki resmi kazanımlarına birebir ve kusursuz uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
+            f"ZORLUK SEVİYESİ TALİMATI: Soru zorluk derecesi '{difficulty_level}' kriterine tam uygun olmalıdır.\n\n"
+            "DERS VE KAZANIM UYUMU KİTLENMESİ (ÇOK ÖNEMLİ):\n"
+            "1. Türkçe sorularında asla matematik veya fen konusu işlenemez. Türkçe soruları tamamen dil bilgisi, metin yorumlama, sözcükte anlam ve paragraf kazanımlarına uygun olmalıdır.\n"
+            "2. Matematik sorularında asla Türkçe metin analizi veya yabancı dil sorulamaz. Matematik soruları seçilen haftaya ait gerçek matematik ünite kazanımlarına (örn. kesirler, cebirsel ifadeler, üçgenler, oran-orantı vb.) dayanmalıdır.\n"
+            "3. Fen Bilimleri soruları sadece fen müfredatına ait olmalıdır.\n"
+            "4. Sorular karışık olmamalı, şu ders sırasına ve gruplamasına kesinlikle uyulmalıdır:\n"
+            "   - Türkçe (İlk 10 soru)\n"
+            "   - Matematik (Sonraki 10 soru)\n"
+            "   - Fen Bilimleri (Sonraki 10 soru)\n"
+            "   - Sosyal Bilgiler / İnkılap Tarihi (Sonraki 10 soru)\n"
+            "   - Din Kültürü ve Ahlak Bilgisi (Sonraki 10 soru)\n"
+            "   - İngilizce (Sonraki 10 soru)\n"
+            "   (Toplam 60 soru olacak şekilde ders paylaşımları eksiksiz yapılmalıdır).\n\n"
             "ZORUNLU SORU TİPİ DAĞILIMI (%25 EŞİT ORAN):\n"
-            "Soruların tamamı şu 4 soru tipine eşit oranda dağıtılmalıdır:\n"
             "1. Günlük Hayat Bağlamı / Gerçek Yaşam Problemi Kurma\n"
             "2. Grafik, Tablo ve Görsel Okuma / Veri Yorumlama\n"
             "3. Sözel Mantık / Muhakeme ve Eleştirel Düşünme\n"
             "4. Deney / Hipotez Analizi ve Çıkarım Yapma / Mantıksal Çözümleme\n\n"
             "GEOMETRİ VE ÜÇGEN KURALLARI:\n"
             "Eğer matematik/geometri sorularında üçgen bulunuyorsa, metin içinde asla ASCII çizim kullanılmamalı ve JSON içinde şu formatta 'shape' nesnesi tanımlanmalıdır:\n"
-            "Eğer dik üçgense `is_right: true`, değilse `is_right: false` yapın:\n"
+            "Eğer dik üçgense `is_right: true`, çeşitkenar/ikizkenar ise `is_right: false` yapın:\n"
             "{\n"
             "    \"type\": \"triangle\",\n"
             "    \"A\": \"A\", \"B\": \"B\", \"C\": \"C\",\n"
             "    \"ab\": \"3 cm\", \"bc\": \"4 cm\", \"ac\": \"5 cm\",\n"
             "    \"is_right\": true\n"
             "}\n\n"
-            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.\n"
+            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam ve doğru yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:\n"
             "{\n"
             "    \"questions\": [\n"
@@ -312,7 +324,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     header_col1, header_col2 = st.columns([2, 1])
     with header_col1:
         st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) Deneme Sınavı")
-        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Soru Başı Süre: 80 Saniye</span>", unsafe_allow_html=True)
+        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Zorluk: {difficulty_level}</span>", unsafe_allow_html=True)
     with header_col2:
         st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
 
@@ -326,7 +338,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     
     st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
-    # Geometrik şekil (üçgen vb.) varsa düzeltilmiş SVG fonksiyonu ile çağır (dik üçgen ise is_right=True dik üçgen çizer)
+    # Geometrik şekil varsa SVG fonksiyonu ile çizdir
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
         s = q['shape']
         if s.get('type') == 'triangle':
