@@ -77,7 +77,7 @@ except Exception:
     GEMINI_KEYS = []
 
 if not GROQ_KEYS and not GEMINI_KEYS:
-    st.error("⚠️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
+    st.error("⚠️️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
     st.stop()
 
 # Oturum Durumları
@@ -122,7 +122,7 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>MEB müfredatına tam uyumlu, kusursuz geometrik çizimli yeni nesil sorular.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe, Matematik, Fen, Sosyal sıralaması ve kusursuz geometrik çizimlerle yeni nesil deneme.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -132,7 +132,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver. Asla HTML etiketi (örn: </p>) kullanma."},
+            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver. Asla HTML etiketi kullanma."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
@@ -184,23 +184,31 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor, {selected_grade} düzeyinde tam 60 adet kusursuz görsel üçgenli yeni nesil soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor, {selected_grade} düzeyinde Türkçe, Matematik, Fen, Sosyal sırasıyla 60 soru hazırlanıyor..."):
         prompt = f"""
-        {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, MEB müfredatındaki temel derslerden (Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler/İnkılap Tarihi, Din Kültürü, İngilizce) toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
+        {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, MEB müfredatındaki derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
+        
+        DERS SIRALAMASI VE DAĞILIMI (ÖNEMLİ):
+        Sorular kesinlikle sırasıyla şu derslerden oluşsun:
+        1. Türkçe
+        2. Matematik
+        3. Fen Bilimleri
+        4. Sosyal Bilgiler / İnkılap Tarihi
+        (Kalan sorular Din Kültürü ve İngilizce ile tamamlanarak toplam 60 soruya ulaşılacaktır).
         
         GEOMETRİ VE GÖRSEL ÇİZİM KURALLARI:
-        1. Matematik sorularında dik üçgen, eşkenar üçgen, ikizkenar üçgen, açılar ve geometrik şekiller yer alırken, şekillerin köşeleri ve bütünlüğü kusursuz olsun diye ÜÇGENLERİ MUTLAKA MARKDOWN KOD BLOĞU İÇİNDE ```text ... ``` formatında, A, B, C köşe harfleri, diklik simgeleri ve kenar uzunlukları net şekilde çiz.
+        1. Matematik sorularında üçgenler (dik, ikizkenar vb.) ve geometrik şekiller yer alırken, şekillerin köşeleri ve bütünlüğü kusursuz olması için MUTLAKA Markdown kod bloğu içinde ```text ... ``` formatında, gerçek alt alta satırlar (`\\n`) kullanarak A, B, C köşe harfleri ve kenar uzunluklarıyla net şekilde çizilsin.
         2. ASLA bozuk karakter, eksik çizgi veya HTML etiketleri (`</p>`, `<div>` vb.) kullanma.
         3. "Şema", "grafik şeması" veya "görsel aşağıdadır" kelimelerini asla kullanma, doğrudan çizimi metne entegre et.
         
-        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına ilgili dersin adını yaz.
+        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
         {{
             "questions": [
                 {{
                     "id": 1,
-                    "subject": "Matematik",
-                    "question": "Soru metni ve içinde Markdown kod bloğuyla çizilmiş kusursuz şekil burada yer alacak...",
+                    "subject": "Türkçe",
+                    "question": "Soru metni...",
                     "options": {{
                         "A": "A şıkkı",
                         "B": "B şıkkı",
@@ -265,7 +273,11 @@ if st.session_state.quiz_started and st.session_state.questions:
 
     st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
     sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
-    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
+    
+    # Yeni satır karakterlerinin düzgün render edilmesi için güvenli dönüşüm
+    question_text = q['question'].replace('\\n', '\n')
+    
+    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{question_text}</p>", unsafe_allow_html=True)
     
     options = q['options']
     
@@ -322,6 +334,7 @@ if st.session_state.quiz_started and st.session_state.questions:
             for i, q_item in enumerate(st.session_state.questions):
                 user_ans = st.session_state.selected_answers.get(i, "Boş")
                 status = "✅" if user_ans == q_item['answer'] else "❌"
-                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
+                exp_q_text = q_item['question'].replace('\\n', '\n')
+                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{exp_q_text}")
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
