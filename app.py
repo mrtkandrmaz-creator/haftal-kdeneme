@@ -67,40 +67,87 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kusursuz Vektörel Üçgen Çizim Motoru
-def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
-    if is_right:
-        polygon_points = "40,30 40,170 210,170"
-        right_angle_svg = '<rect x="40" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
-        a_pos = (40, 20)
-        b_pos = (25, 185)
-        c_pos = (215, 185)
-        ab_pos = (25, 100)
-        bc_pos = (125, 192)
-        ac_pos = (135, 92)
-    else:
-        polygon_points = "130,25 30,170 230,170"
-        right_angle_svg = ''
-        a_pos = (130, 18)
-        b_pos = (15, 188)
-        c_pos = (245, 188)
-        ab_pos = (68, 90)
-        bc_pos = (130, 193)
-        ac_pos = (192, 90)
+# Gelişmiş Vektörel Şekil Çizim Motoru (Dik, İkizkenar, Eşkenar Üçgen & Açı/Çevre)
+def draw_geometry_shape(shape_data):
+    st_type = shape_data.get("type", "triangle")
+    
+    if st_type == "triangle":
+        sub_type = shape_data.get("sub_type", "scalene") # right, isosceles, equilateral, scalene
+        a_label = shape_data.get("A", "A")
+        b_label = shape_data.get("B", "B")
+        c_label = shape_data.get("C", "C")
+        ab_len = shape_data.get("ab", "")
+        bc_len = shape_data.get("bc", "")
+        ac_len = shape_data.get("ac", "")
+        angle_a = shape_data.get("angle_a", "")
+        angle_b = shape_data.get("angle_b", "")
+        angle_c = shape_data.get("angle_c", "")
+        
+        if sub_type == "right":
+            polygon_points = "40,30 40,170 210,170"
+            right_angle_svg = '<rect x="40" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
+            a_pos, b_pos, c_pos = (40, 20), (25, 185), (215, 185)
+            ab_pos, bc_pos, ac_pos = (25, 100), (125, 192), (135, 92)
+        elif sub_type == "equilateral":
+            polygon_points = "130,20 30,185 230,185"
+            right_angle_svg = ''
+            a_pos, b_pos, c_pos = (130, 12), (18, 195), (242, 195)
+            ab_pos, bc_pos, ac_pos = (68, 95), (130, 202), (192, 95)
+        elif sub_type == "isosceles":
+            polygon_points = "130,25 40,170 220,170"
+            right_angle_svg = ''
+            a_pos, b_pos, c_pos = (130, 17), (30, 180), (230, 180)
+            ab_pos, bc_pos, ac_pos = (75, 90), (130, 187), (185, 90)
+        else:
+            polygon_points = "130,25 30,170 230,170"
+            right_angle_svg = ''
+            a_pos, b_pos, c_pos = (130, 18), (15, 188), (245, 188)
+            ab_pos, bc_pos, ac_pos = (68, 90), (130, 193), (192, 90)
 
-    svg_code = f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
-        <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
-            <polygon points="{polygon_points}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
-            {right_angle_svg}
-            <text x="{a_pos[0]}" y="{a_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
-            <text x="{b_pos[0]}" y="{b_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
-            <text x="{c_pos[0]}" y="{c_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
-            <text x="{ab_pos[0]}" y="{ab_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
-            <text x="{bc_pos[0]}" y="{bc_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
-            <text x="{ac_pos[0]}" y="{ac_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
-        </svg>
-    </div>'''
-    return svg_code
+        svg_code = f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
+            <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+                <polygon points="{polygon_points}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+                {right_angle_svg}
+                <text x="{a_pos[0]}" y="{a_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
+                <text x="{b_pos[0]}" y="{b_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+                <text x="{c_pos[0]}" y="{c_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+                <text x="{ab_pos[0]}" y="{ab_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+                <text x="{bc_pos[0]}" y="{bc_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+                <text x="{ac_pos[0]}" y="{ac_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+                <text x="125" y="45" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_a}</text>
+                <text x="55" y="150" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_b}</text>
+                <text x="200" y="150" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_c}</text>
+            </svg>
+        </div>'''
+        return svg_code
+        
+    elif st_type == "bar_chart":
+        labels = shape_data.get("labels", ["A", "B", "C", "D"])
+        values = shape_data.get("values", [10, 25, 15, 30])
+        title = shape_data.get("title", "Grafik Analizi")
+        max_v = max(values) if values else 30
+        
+        bars_html = ""
+        x_start = 45
+        for i, (l, v) in enumerate(zip(labels, values)):
+            h = int((v / max_v) * 110) if max_v > 0 else 10
+            y = 150 - h
+            bars_html += f'''
+                <rect x="{x_start + i * 45}" y="{y}" width="30" height="{h}" fill="#0284c7" rx="4"/>
+                <text x="{x_start + i * 45 + 15}" y="{y - 5}" font-family="sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">{v}</text>
+                <text x="{x_start + i * 45 + 15}" y="172" font-family="sans-serif" font-size="13" font-weight="800" fill="#334155" text-anchor="middle">{l}</text>
+            '''
+        
+        chart_svg = f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
+            <svg width="260" height="200" viewBox="0 0 260 200" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+                <text x="130" y="22" font-family="sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">{title}</text>
+                <line x1="30" y1="150" x2="235" y2="150" stroke="#cbd5e1" stroke-width="2"/>
+                {bars_html}
+            </svg>
+        </div>'''
+        return chart_svg
+        
+    return ""
 
 # API Anahtarlarını secrets.toml'dan Güvenli Okuma
 try:
@@ -146,7 +193,6 @@ weeks_options.extend([
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
 
-# Soru Zorluk Derecesi Seçim Menüsü
 difficulty_level = st.sidebar.selectbox(
     "📊 Soru Zorluk Derecesi",
     [
@@ -162,9 +208,6 @@ question_count = 80
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🚀 Soru İşlemleri")
 generate_btn = st.sidebar.button("Soruları Üret")
-
-st.sidebar.markdown("---")
-st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI_KEYS)} Gemini anahtarı yüklendi.")
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
@@ -228,38 +271,29 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (80 Soru - Katı Ders Sırası ve Gerçek Haftalık MEB Kazanımları)
+# Soru Üretim Mantığı (80 Soru - LGS Dağılımı, Katı Ders İzolasyonu ve Detaylı Şekil/Grafik Kuralları)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için gerçek haftalık MEB kazanım tablosuna uygun, '{difficulty_level}' seviyesinde 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için LGS ağırlıklı ders dağılımına, katı ders izolasyonuna ve geometri/grafik kurallarına uygun 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
-            f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına birebir ve kusursuz uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
-            f"ZORLUK SEVİYESİ TALİMATI: Soru zorluk derecesi '{difficulty_level}' kriterine tam uygun olmalıdır.\n\n"
-            "DERSLERİN KATI SIRASI VE GRUPLANMASI (ASLA BOZULAMAZ):\n"
-            "80 sorunun tamamı şu sıra ve gruplama ile dizilmelidir:\n"
-            "1. Türkçe (İlk sorular - Tamamen Türkçe dersi ünite ve dil bilgisi kazanımları, asla matematik/fen karışamaz)\n"
-            "2. Matematik (Türkçe soruları tamamen bitince başlar - Tamamen seçilen haftaya ait matematik kazanımları)\n"
-            "3. Fen Bilimleri (Matematik soruları tamamen bitince başlar - Tamamen fen bilimleri kazanımları)\n"
-            "4. Sosyal Bilgiler / İnkılap Tarihi (Fen soruları tamamen bitince)\n"
-            "5. Din Kültürü ve Ahlak Bilgisi\n"
-            "6. İngilizce\n"
-            "Toplam soru sayısı 80 olacak şekilde bu dersler arasında dengeli ve eksiksiz paylaştırılmalıdır.\n\n"
-            "ZORUNLU SORU TİPİ DAĞILIMI (%25 EŞİT ORAN):\n"
-            "1. Günlük Hayat Bağlamı / Gerçek Yaşam Problemi Kurma\n"
-            "2. Grafik, Tablo ve Görsel Okuma / Veri Yorumlama\n"
-            "3. Sözel Mantık / Muhakeme ve Eleştirel Düşünme\n"
-            "4. Deney / Hipotez Analizi ve Çıkarım Yapma / Mantıksal Çözümleme\n\n"
-            "GEOMETRİ VE ÜÇGEN KURALLARI:\n"
-            "Eğer matematik/geometri sorularında üçgen bulunuyorsa, metin içinde asla ASCII çizim kullanılmamalı ve JSON içinde şu formatta 'shape' nesnesi tanımlanmalıdır:\n"
-            "Eğer dik üçgense `is_right: true`, çeşitkenar/ikizkenar ise `is_right: false` yapın:\n"
-            "{\n"
-            "    \"type\": \"triangle\",\n"
-            "    \"A\": \"A\", \"B\": \"B\", \"C\": \"C\",\n"
-            "    \"ab\": \"3 cm\", \"bc\": \"4 cm\", \"ac\": \"5 cm\",\n"
-            "    \"is_right\": true\n"
-            "}\n\n"
+            f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
+            f"ZORLUK SEVİYESİ: '{difficulty_level}'.\n\n"
+            "LGS VE MERKEZİ SINAV DERS DAĞILIMI (80 SORU TOPLAMI):\n"
+            "1. Türkçe: 20 Soru (1-20 arası)\n"
+            "2. Matematik: 20 Soru (21-40 arası)\n"
+            "3. Fen Bilimleri: 20 Soru (41-60 arası)\n"
+            "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (61-70 arası)\n"
+            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (71-80 arası)\n\n"
+            "KATI DERS İZOLASYON KURALI (KESİNLİKLE İHLAL EDİLEMEZ):\n"
+            "- Her dersin sorusu yalnızca o dersin kendi kazanım alanına ait olmalıdır. 'Türkçe' dersi altında asla sayısal işlem, denklem, geometri veya fen terimi içeren matematiksel soru sorulamaz.\n"
+            "- 'Matematik' dersi altında yalnızca sayı, cebir, veri, geometri ve üçgen soruları yer almalıdır.\n\n"
+            "GEOMETRİ, ÜÇGEN VE GRAFİK ÇİZİM KURALLARI:\n"
+            "- Matematik sorularında üçgenler (dik, ikizkenar, eşkenar, çeşitkenar), çevre hesapları, açı ölçüleri, üçgen eşitsizliği veya benzerlikler bulunuyorsa, metin içinde asla ASCII çizim kullanılmamalı; JSON içinde şu formatta 'shape' nesnesi tanımlanmalıdır:\n"
+            "  - Üçgen için: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
+            "- Veri analizi ve istatistik sorularında grafik gerekiyorsa şu format kullanılmalıdır:\n"
+            "  - Grafik için: `{\"type\": \"bar_chart\", \"title\": \"Grafik Başlığı\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam ve doğru yaz.\n"
-            "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:\n"
+            "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
             "{\n"
             "    \"questions\": [\n"
             "        {\n"
@@ -293,7 +327,7 @@ if generate_btn:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
         else:
-            st.error(f"❌ Tanımlı tüm API anahtarları arka planda denendi fakat yanıt alınamadı. Detay: {error_message}")
+            st.error(f"❌ Tanımlı API anahtarları ile bağlantı kurulamadı. Hata: {error_message}")
 
 # Sorular Üretildikten Sonra Görünen "Sınavı Başlat" Butonu
 if st.session_state.quiz_ready and not st.session_state.quiz_started:
@@ -305,7 +339,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
             st.session_state.start_time = time.time()
             st.rerun()
 
-# Sınav Ekranı (Her Sayfada 1 Soru - Ders Gruplaması Korunur)
+# Sınav Ekranı (Her Sayfada 1 Soru - Katı Ders Sınırları ve Görsel Motoru)
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
     total_time_seconds = total_questions * 80  
@@ -320,7 +354,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     st.markdown("---")
     header_col1, header_col2 = st.columns([2, 1])
     with header_col1:
-        st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) 80 Soruluk Deneme")
+        st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) 80 Soruluk LGS Denemesi")
         st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Zorluk: {difficulty_level}</span>", unsafe_allow_html=True)
     with header_col2:
         st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
@@ -335,20 +369,10 @@ if st.session_state.quiz_started and st.session_state.questions:
     
     st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
-    # Geometrik şekil varsa SVG fonksiyonu ile çizdir
+    # Şekil veya Grafik Varsa Çizdir
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
-        s = q['shape']
-        if s.get('type') == 'triangle':
-            svg_html = draw_triangle_svg(
-                a_label=s.get('A', 'A'),
-                b_label=s.get('B', 'B'),
-                c_label=s.get('C', 'C'),
-                ab_len=s.get('ab', ''),
-                bc_len=s.get('bc', ''),
-                ac_len=s.get('ac', ''),
-                is_right=s.get('is_right', False)
-            )
-            st.markdown(svg_html, unsafe_allow_html=True)
+        shape_html = draw_geometry_shape(q['shape'])
+        st.markdown(shape_html, unsafe_allow_html=True)
 
     options = q['options']
     
@@ -369,7 +393,7 @@ if st.session_state.quiz_started and st.session_state.questions:
         
     st.markdown(f"</div>", unsafe_allow_html=True)
 
-    # İleri / Geri Navigasyon Butonları
+    # Navigasyon Butonları
     nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
     with nav_col1:
         if st.session_state.current_page > 0:
@@ -407,8 +431,6 @@ if st.session_state.quiz_started and st.session_state.questions:
                 status = "✅" if user_ans == q_item['answer'] else "❌"
                 st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
-                    s = q_item['shape']
-                    if s.get('type') == 'triangle':
-                        st.markdown(draw_triangle_svg(s.get('A', 'A'), s.get('B', 'B'), s.get('C', 'C'), s.get('ab', ''), s.get('bc', ''), s.get('ac', ''), s.get('is_right', False)), unsafe_allow_html=True)
+                    st.markdown(draw_geometry_shape(q_item['shape']), unsafe_allow_html=True)
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
