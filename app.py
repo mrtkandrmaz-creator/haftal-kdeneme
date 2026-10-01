@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Modern UI ve Özel CSS Stilleri (Tablo ve Çizim Uyumlu)
+# Modern UI ve Özel CSS Stilleri
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
@@ -92,7 +92,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# %100 Hata Korumalı ve Hassas SVG / Tablo Motoru (Güncellendi ve Güçlendirildi)
+# %100 Hata Korumalı ve Hassas SVG / Tablo Motoru
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return ""
@@ -221,21 +221,20 @@ def draw_geometry_shape(shape_data):
             </svg>
         </div>'''
 
-    # 5. FEN BİLİMLERİ TABLO / DENEY SONUÇ MATRİSİ (Tam Uyumlu ve Güvenli Tasarım)
+    # 5. FEN BİLİMLERİ TABLO / DENEY SONUÇ MATRİSİ
     elif st_type == "science_table":
         title = str(shape_data.get("title", "Deney Veri Tablosu"))
         headers = shape_data.get("headers", ["Grup", "Değişken 1", "Değişken 2"])
         rows = shape_data.get("rows", [["1. Grup", "Arttı", "Sabit"], ["2. Grup", "Azaldı", "Arttı"]])
         
-        th_html = "".join([f'<th style="border: 1px solid #cbd5e1; padding: 9px 12px; background: #0284c7; color: #ffffff; font-size: 13px; font-weight: 700; text-align: center;">{h}</th>' for h in headers])
+        th_html = "".join([f'<th style="border: 1px solid #cbd5e1; padding: 8px; background: #f1f5f9; color: #1e293b; font-size: 13px;">{h}</th>' for h in headers])
         tr_html = ""
-        for idx_row, row in enumerate(rows):
-            bg_color = "#f8fafc" if idx_row % 2 == 0 else "#ffffff"
-            tds = "".join([f'<td style="border: 1px solid #cbd5e1; padding: 8px 12px; text-align: center; color: #1e293b; font-size: 13px; font-weight: 600;">{cell}</td>' for cell in row])
-            tr_html += f'<tr style="background: {bg_color};">{tds}</tr>'
+        for row in rows:
+            tds = "".join([f'<td style="border: 1px solid #cbd5e1; padding: 7px; text-align: center; color: #334155; font-size: 12px;">{cell}</td>' for cell in row])
+            tr_html += f'<tr>{tds}</tr>'
             
-        return f'''<div style="margin: 20px auto; max-width: 450px; background: #ffffff; padding: 16px; border-radius: 14px; box-shadow: 0 6px 16px rgba(0,0,0,0.08); border: 1px solid #cbd5e1;">
-            <div style="font-weight: 800; text-align: center; color: #1e293b; margin-bottom: 10px; font-size: 14px; letter-spacing: 0.5px;">📊 {title}</div>
+        return f'''<div style="margin: 15px auto; max-width: 380px; background: #ffffff; padding: 12px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+            <div style="font-weight: 800; text-align: center; color: #1e293b; margin-bottom: 8px; font-size: 13px;">{title}</div>
             <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
                 <thead><tr>{th_html}</tr></thead>
                 <tbody>{tr_html}</tbody>
@@ -271,7 +270,7 @@ if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 
 # Yan Menü Ayarları
-st.sidebar.markdown("## ⚙ MEB Müfredat & Sınav Ayarları")
+st.sidebar.markdown("## ⚙️️ MEB Müfredat & Sınav Ayarları")
 st.sidebar.markdown("---")
 
 selected_grade = st.sidebar.selectbox("🎓 Sınıf Seviyesi", ["5. Sınıf", "6. Sınıf", "7. Sınıf", "8. Sınıf (LGS)"])
@@ -363,23 +362,23 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (80 Soru Sabit, Sosyal 15, İngilizce 10)
+# Soru Üretim Mantığı (80 Soru Sabit ve İngilizce Dahil)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için güncellenmiş tablo, grafik, üçgen motoru ile tam 80 yeni nesil soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için harita, grafik, tablo uyumlu tam 80 yeni nesil soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla.\n\n"
             f"ZORLUK SEVİYESİ VE KALİTE TALİMATI: '{difficulty_level}'. (Sorular standart müfredatın en az iki kademe üzerinde, üst düzey bilişsel becerilere dayalı olmalıdır!)\n\n"
             "LGS VE MERKEZİ SINAV DERS DAĞILIMI VE KESİN SORU SAYILARI (TOPLAM TAM 80 SORU):\n"
             "1. Türkçe: 15 Soru (1-15 arası) - Uzun metinli, eleştirel okuma, mantık muhakemesi.\n"
-            "2. Matematik: 15 Soru (16-30 arası) - Günlük hayat problemleri, şekil, geometri ve işlem yoğun.\n"
-            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Deney yorumlama, grafik analizi veya tablo matrisli (Tablo ve grafikler biçimsel hatalardan arındırılmış olmalıdır).\n"
-            "4. T.C. İnkılap Tarihi ve Atatürkçülük: 15 Soru (46-60 arası) - Öncüllü yorum, harita ve belge analizi.\n"
-            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Ayet/hadis yorumu ve kavram analizi.\n"
-            "6. İngilizce (English): 10 Soru (71-80 arası) - Diyalog tamamlama, paragraf okuma, görsel/durum analizi ve vocabulary (kelime bilgisi) ağırlıklı.\n\n"
+            "2. Matematik: 15 Soru (16-30 arası) - Günlük hayat problemleri, şekil ve işlem yoğun.\n"
+            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Deney yorumlama, grafik analizi veya tablo matrisli.\n"
+            "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (46-55 arası) - Öncüllü yorum, belge analizi.\n"
+            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (56-65 arası) - Ayet/hadis yorumu.\n"
+            "6. İngilizce (English): 15 Soru (66-80 arası) - Diyalog tamamlama, paragraf okuma, görsel/durum analizi ve vocabulary (kelime bilgisi) ağırlıklı.\n\n"
             "HAYATİ ÖNEM TAŞIYAN GÖRSEL VE TABLO KURALLARI (ASLA HATA YAPMA):\n"
             "1. Fen Bilimleri ve Matematik sorularında grafik veya tablo gerektiren durumlarda `shape` alanına eksiksiz JSON objesi ekle.\n"
-            "2. Çember/Üçgen/Kare/Dikdörtgen için `shape` formatları eksiksiz olmalıdır.\n"
+            "2. Çember/Üçgen/Kare/Dikdörtgen için `shape` formatları doğru olmalıdır.\n"
             "3. Fen Bilimleri Tablo formatı: `{\"type\": \"science_table\", \"title\": \"Deney Sonuçları\", \"headers\": [\"Kaplar\", \"Sıcaklık\", \"Süre\"], \"rows\": [[\"1. Kap\", \"20°C\", \"10 dk\"], [\"2. Kap\", \"40°C\", \"5 dk\"]]}`\n"
             "4. Grafik formatı: `{\"type\": \"bar_chart\", \"title\": \"Grafik Analizi\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
