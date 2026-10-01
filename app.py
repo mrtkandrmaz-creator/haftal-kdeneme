@@ -71,22 +71,22 @@ st.markdown("""
 def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
     svg_code = f"""
     <div style="display: flex; justify-content: center; margin: 15px 0;">
-        <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+        <svg width="240" height="200" viewBox="0 0 240 200" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
             <!-- Üçgen Poligonu (Köşeler Kusursuz Birleşir) -->
-            <polygon points="130,25 35,180 225,180" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="120,25 30,175 210,175" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
             
             <!-- Diklik İşareti (Eğer dik üçgense) -->
-            {"" if not is_right else '<rect x="35" y="160" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
+            {"" if not is_right else '<rect x="30" y="155" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
             
             <!-- Köşe Etiketleri -->
-            <text x="130" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
-            <text x="20" y="195" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
-            <text x="240" y="195" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+            <text x="120" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
+            <text x="15" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+            <text x="225" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
             
             <!-- Kenar Uzunlukları -->
-            <text x="70" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
-            <text x="130" y="200" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
-            <text x="190" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+            <text x="65" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+            <text x="120" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+            <text x="175" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
         </svg>
     </div>
     """
@@ -149,12 +149,12 @@ st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>
 st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe, Matematik, Fen, Sosyal sıralaması ve kusursuz vektörel üçgen çizimleriyle yeni nesil deneme.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# Groq Çağrı Fonksiyonu (Güncel ve Kararlı Model)
+# Groq Çağrı Fonksiyonu
 def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
     client = Groq(api_key=api_key)
     completion = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[
             {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
@@ -170,7 +170,7 @@ def call_gemini_with_key(api_key, prompt_text):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="gemini-3.8-flash",
+        model="gemini-1.5-flash",
         contents=prompt_text,
     )
     text = response.text
@@ -206,9 +206,9 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı ve Turuncu Sayaç
+# Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner("Sorular Üretiliyor... Lütfen bekleyin."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor, {selected_grade} düzeyinde Türkçe, Matematik, Fen, Sosyal sırasıyla 60 soru hazırlanıyor..."):
         prompt = f"""
         {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, MEB müfredatındaki derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
         
@@ -250,7 +250,6 @@ if generate_btn:
             ]
         }}
         """
-        
         raw_json, error_message = multi_pool_generate(prompt)
         if raw_json:
             try:
@@ -261,12 +260,11 @@ if generate_btn:
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
                 st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
-                st.rerun()
-            except json.JSONDecodeError as json_err:
-                st.error(f"Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi: {json_err}")
+            except json.JSONDecodeError:
+                st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
         else:
-            st.error(f"❌ Tanımlı tüm API anahtarları denendi fakat yanıt alınamadı. Detay: {error_message}")
+            st.error(f"❌ Tanımlı tüm API anahtarları arka planda denendi fakat yanıt alınamadı. Detay: {error_message}")
 
 # Sorular Üretildikten Sonra Görünen "Sınavı Başlat" Butonu
 if st.session_state.quiz_ready and not st.session_state.quiz_started:
