@@ -43,7 +43,6 @@ st.markdown("""
         font-weight: 800 !important;
         color: #1e293b !important;
         line-height: 1.6 !important;
-        white-space: pre-line;
     }
     .timer-box {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -68,6 +67,31 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Kusursuz Vektörel Üçgen Çizim Motoru (SVG)
+def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
+    svg_code = f"""
+    <div style="display: flex; justify-content: center; margin: 15px 0;">
+        <svg width="240" height="200" viewBox="0 0 240 200" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+            <!-- Üçgen Poligonu (Köşeler Kusursuz Birleşir) -->
+            <polygon points="120,25 30,175 210,175" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+            
+            <!-- Diklik İşareti (Eğer dik üçgense) -->
+            {"" if not is_right else '<rect x="30" y="155" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'}
+            
+            <!-- Köşe Etiketleri -->
+            <text x="120" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
+            <text x="15" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+            <text x="225" y="190" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+            
+            <!-- Kenar Uzunlukları -->
+            <text x="65" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+            <text x="120" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+            <text x="175" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+        </svg>
+    </div>
+    """
+    return svg_code
+
 # API Anahtarlarını secrets.toml'dan Güvenli Okuma
 try:
     GROQ_KEYS = st.secrets["api_keys"].get("groq_keys", [])
@@ -77,7 +101,7 @@ except Exception:
     GEMINI_KEYS = []
 
 if not GROQ_KEYS and not GEMINI_KEYS:
-    st.error("⚠️️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
+    st.error("⚠️ `.streamlit/secrets.toml` dosyasında `groq_keys` veya `gemini_keys` bulunamadı!")
     st.stop()
 
 # Oturum Durumları
@@ -122,7 +146,7 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe, Matematik, Fen, Sosyal sıralaması ve kusursuz geometrik çizimlerle yeni nesil deneme.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe, Matematik, Fen, Sosyal sıralaması ve kusursuz vektörel üçgen çizimleriyle yeni nesil deneme.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -132,7 +156,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver. Asla HTML etiketi kullanma."},
+            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
@@ -196,10 +220,15 @@ if generate_btn:
         4. Sosyal Bilgiler / İnkılap Tarihi
         (Kalan sorular Din Kültürü ve İngilizce ile tamamlanarak toplam 60 soruya ulaşılacaktır).
         
-        GEOMETRİ VE GÖRSEL ÇİZİM KURALLARI:
-        1. Matematik sorularında üçgenler (dik, ikizkenar vb.) ve geometrik şekiller yer alırken, şekillerin köşeleri ve bütünlüğü kusursuz olması için MUTLAKA Markdown kod bloğu içinde ```text ... ``` formatında, gerçek alt alta satırlar (`\\n`) kullanarak A, B, C köşe harfleri ve kenar uzunluklarıyla net şekilde çizilsin.
-        2. ASLA bozuk karakter, eksik çizgi veya HTML etiketleri (`</p>`, `<div>` vb.) kullanma.
-        3. "Şema", "grafik şeması" veya "görsel aşağıdadır" kelimelerini asla kullanma, doğrudan çizimi metne entegre et.
+        GEOMETRİ VE ÜÇGEN KURALLARI:
+        Matematik sorularında üçgen içeren sorular için JSON içinde mutlaka ayrı bir "shape" objesi tanımla.
+        "shape": {{
+            "type": "triangle",
+            "A": "A", "B": "B", "C": "C",
+            "ab": "5 cm", "bc": "8 cm", "ac": "6 cm",
+            "is_right": false
+        }}
+        Bu sayede sistem vektörel kusursuz üçgen görselini otomatik çizecektir. Soru metninde asla ASCII çizgi kullanma.
         
         Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
@@ -209,6 +238,7 @@ if generate_btn:
                     "id": 1,
                     "subject": "Türkçe",
                     "question": "Soru metni...",
+                    "shape": null,
                     "options": {{
                         "A": "A şıkkı",
                         "B": "B şıkkı",
@@ -274,11 +304,23 @@ if st.session_state.quiz_started and st.session_state.questions:
     st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
     sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
     
-    # Yeni satır karakterlerinin düzgün render edilmesi için güvenli dönüşüm
-    question_text = q['question'].replace('\\n', '\n')
+    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
-    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{question_text}</p>", unsafe_allow_html=True)
-    
+    # Eğer soruda geometrik şekil (üçgen vb.) varsa SVG olarak kusursuz çiz
+    if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
+        s = q['shape']
+        if s.get('type') == 'triangle':
+            svg_html = draw_triangle_svg(
+                a_label=s.get('A', 'A'),
+                b_label=s.get('B', 'B'),
+                c_label=s.get('C', 'C'),
+                ab_len=s.get('ab', ''),
+                bc_len=s.get('bc', ''),
+                ac_len=s.get('ac', ''),
+                is_right=s.get('is_right', False)
+            )
+            st.markdown(svg_html, unsafe_allow_html=True)
+
     options = q['options']
     
     current_val = st.session_state.selected_answers.get(idx)
@@ -334,7 +376,10 @@ if st.session_state.quiz_started and st.session_state.questions:
             for i, q_item in enumerate(st.session_state.questions):
                 user_ans = st.session_state.selected_answers.get(i, "Boş")
                 status = "✅" if user_ans == q_item['answer'] else "❌"
-                exp_q_text = q_item['question'].replace('\\n', '\n')
-                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{exp_q_text}")
+                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
+                if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
+                    s = q_item['shape']
+                    if s.get('type') == 'triangle':
+                        st.markdown(draw_triangle_svg(s.get('A', 'A'), s.get('B', 'B'), s.get('C', 'C'), s.get('ab', ''), s.get('bc', ''), s.get('ac', ''), s.get('is_right', False)), unsafe_allow_html=True)
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
