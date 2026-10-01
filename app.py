@@ -4,30 +4,32 @@ import json
 
 # Sayfa Yapılandırması
 st.set_page_config(
-    page_title="MEB Müfredatı 60 Soruluk Çoklu API Deneme Paneli",
+    page_title="MEB Müfredatı 60 Soruluk Deneme Paneli",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Modern UI ve Turuncu Buton Tasarımı İçin Özel CSS
+# Modern UI ve Daha Büyük Turuncu Buton Tasarımı İçin Özel CSS
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
+    /* Sol menüdeki soruları üret butonunu daha büyük ve belirgin yaptık */
     div.stButton > button:first-child {
         width: 100%;
-        border-radius: 12px;
-        font-weight: 700;
-        padding: 0.85rem 1rem;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        padding: 1rem 1.2rem;
         background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
         color: white;
         border: none;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 12px -2px rgba(249, 115, 22, 0.3);
         transition: all 0.3s ease;
     }
     div.stButton > button:first-child:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 15px -3px rgba(249, 115, 22, 0.4);
+        box-shadow: 0 8px 20px -4px rgba(249, 115, 22, 0.5);
     }
     .question-card {
         background: white;
@@ -42,7 +44,17 @@ st.markdown("""
         font-weight: 800 !important;
         color: #1e293b !important;
         line-height: 1.6 !important;
-        white-space: pre-line; /* Şekillerin ve satırların düzgün görünmesi için */
+        white-space: pre-line;
+    }
+    .shape-box {
+        background-color: #f1f5f9;
+        border-left: 4px solid #f97316;
+        padding: 1rem;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 1.1rem;
+        margin: 1rem 0;
+        color: #0f172a;
     }
     .timer-box {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -93,7 +105,7 @@ if "selected_answers" not in st.session_state:
 if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 
-# Yan Menü - Kapsam, Dönem ve Soru Üretme Butonu
+# Yan Menü - Kapsam, Dönem ve Büyük Turuncu Soru Üret Butonu
 st.sidebar.markdown("## ⚙️ Müfredat & Çoklu API Havuzu")
 st.sidebar.markdown("---")
 
@@ -120,20 +132,21 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Orantılı 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (12), Matematik (12), Fen (12), Sosyal (8), Din (7), İngilizce (9) oranlarıyla ve görsel şemalı/üçgenli yeni nesil sorularla.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (12), Matematik (12), Fen (12), Sosyal (8), Din (7), İngilizce (9) oranlarıyla ve kusursuz geometrik şekil/üçgen çizimleriyle.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# Groq Çağrı Fonksiyonu
+# Groq Çağrı Fonksiyonu (Max token artırıldı)
 def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
     client = Groq(api_key=api_key)
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir 5. sınıf MEB müfredat ve LGS soru hazırlama uzmanısın. Yalnızca geçerli JSON formatında yanıt ver."},
+            {"role": "system", "content": "Sen kıdemli bir 5. sınıf MEB müfredat ve LGS soru hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
+        max_tokens=8000,
         response_format={"type": "json_object"}
     )
     return completion.choices[0].message.content
@@ -181,17 +194,17 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner("✨ Çoklu API havuzu taranıyor, 60 soruluk görsel destekli LGS denemesi hazırlanıyor..."):
+    with st.spinner("✨ Çoklu API havuzu taranıyor, tam 60 adet görsel destekli yeni nesil soru hazırlanıyor..."):
         prompt = f"""
-        5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki şu derslerden toplamda KESİNLİKLE {question_count} adet yeni nesil beceri temelli soru hazırla:
+        5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki şu derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla:
         - Türkçe: 12 soru
-        - Matematik: 12 soru (İçerisinde dik üçgen, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri, geometrik şekiller ve şemalar ASCII/Unicode çizimleriyle soru metnine mutlaka eklensin)
-        - Fen Bilimleri: 12 soru (Deney düzenekleri, grafikler, tablo ve şemalar soru içinde görsel olarak metne eklensin)
+        - Matematik: 12 soru (Sorularda dik üçgen, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri, geometrik şekiller ve şemalar kullanılırken, şekillerin düzgün görünmesi için temiz bloklar veya blok harf çizimleri kullan)
+        - Fen Bilimleri: 12 soru (Deney düzenekleri, grafikler, tablo ve şemalar metne eklensin)
         - Sosyal Bilgiler: 8 soru (Harita sembolleri, kroki veya tablo gösterimleri eklensin)
         - Din Kültürü ve Ahlak Bilgisi: 7 soru
         - İngilizce: 9 soru (Diyalog, tablo veya eşleştirme şemaları eklensin)
         
-        ÖNEMLİ GÖRSEL KURALI: Matematik ve geometri sorularında (üçgenler vb.) ve diğer uygun derslerde soru metninin içinde ASCII/Unicode karakterler kullanarak (örneğin 📐, △, ∟, 📏, tablolar veya şemalar şeklinde) net görsel destekler ve şekiller bulundur.
+        GÖRSEL VE ÜÇGEN KURALI: Matematik ve geometri sorularında (üçgen çeşitleri vb.) üçgenlerin kenar uzunlukları ve açıları net görülecek şekilde tasarlanmalı, bozuk karakterler yerine temiz ve şık biçimlendirme uygulanmalıdır.
         
         Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına mutlaka ilgili dersin adını yaz.
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
@@ -200,7 +213,7 @@ if generate_btn:
                 {{
                     "id": 1,
                     "subject": "Matematik",
-                    "question": "Soru metni ve içinde yer alan şekil/üçgen görseli burada yer alacak...",
+                    "question": "Soru metni ve görsel şema burada yer alacak...",
                     "options": {{
                         "A": "A şıkkı",
                         "B": "B şıkkı",
@@ -221,7 +234,7 @@ if generate_btn:
                 st.session_state.quiz_started = False
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
-                st.sidebar.success("✅ 60 Soru başarıyla üretildi!")
+                st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
             except json.JSONDecodeError:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
