@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Modern UI ve Özel CSS Stilleri
+# Modern UI ve Şık Tasarım İçin Özel CSS
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
@@ -67,12 +67,43 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kusursuz Vektörel Üçgen Çizim Motoru (Kesin Düzeltilmiş ve HTML Render Garantili)
-def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", is_right=False):
-    right_angle_svg = '<rect x="30" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>' if is_right else ''
+# Soru Türüne Göre Tam Uyumlu Vektörel Üçgen Çizim Motoru (SVG)
+def draw_triangle_svg(a_label="A", b_label="B", c_label="C", ab_len="", bc_len="", ac_len="", shape_type="scalene"):
+    # shape_type seçenekleri: 'right' (dik), 'isosceles' (ikizkenar), 'equilateral' (eşkenar), 'scalene' (çeşitkenar)
     
-    # Çok satırlı metin hatasını önlemek için tek satırlık XML string yapısı
-    svg_code = f'<div style="display: flex; justify-content: center; margin: 15px 0;"><svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;"><polygon points="130,25 30,170 230,170" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>{right_angle_svg}<text x="130" y="18" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text><text x="15" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text><text x="245" y="188" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text><text x="68" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text><text x="130" y="193" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text><text x="192" y="90" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text></svg></div>'
+    if shape_type == 'right':
+        # Dik Üçgen (Sol alt köşe 90 derece)
+        points = "35,25 35,180 225,180"
+        right_angle = '<rect x="35" y="160" width="20" height="20" fill="none" stroke="#1e293b" stroke-width="2"/>'
+    elif shape_type == 'isosceles':
+        # İkizkenar Üçgen (Tepe noktası ortada)
+        points = "130,20 40,180 220,180"
+        right_angle = ''
+    elif shape_type == 'equilateral':
+        # Eşkenar Üçgen
+        points = "130,22 35,185 225,185"
+        right_angle = ''
+    else:
+        # Standart Çeşitkenar
+        points = "130,25 35,180 225,180"
+        right_angle = ''
+
+    svg_code = f"""
+    <div style="display: flex; justify-content: center; margin: 15px 0;">
+        <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+            <polygon points="{points}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+            {right_angle}
+            
+            <text x="130" y="15" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
+            <text x="20" y="195" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+            <text x="240" y="195" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+            
+            <text x="75" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+            <text x="130" y="200" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+            <text x="185" y="95" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+        </svg>
+    </div>
+    """
     return svg_code
 
 # API Anahtarlarını secrets.toml'dan Güvenli Okuma
@@ -129,7 +160,7 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen haftaya ait MEB konu kazanımları ve eşit oranlı (%25) yeni nesil beceri temelli soru tipleriyle.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe ➔ Matematik ➔ Fen ➔ Sosyal ➔ Din ➔ İngilizce sıralaması ve soruyla tam uyumlu geometrik çizimlerle yeni nesil deneme.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -137,9 +168,9 @@ def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
     client = Groq(api_key=api_key)
     completion = client.chat.completions.create(
-        model="openai/gpt-oss-120b",
+        model="llama-3.3-70b-versatile",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir MEB müfredat, Ölçme-Değerlendirme ve LGS sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
+            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve sınav hazırlama uzmanısın. Yalnızca eksiksiz ve geçerli JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
@@ -191,46 +222,49 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için '{selected_scope}' kazanımlarına tam uygun, %25 eşit oranlı 60 yeni nesil soru hazırlanıyor..."):
-        prompt = (
-            f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi '{selected_scope}' resmi öğretim programı "
-            f"ve kazanımlarına birebir uygun olacak şekilde toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
-            "ZORUNLU SORU TİPİ DAĞILIMI (%25 EŞİT ORAN):\n"
-            "60 sorunun tamamı şu 4 soru tipine tam olarak eşit (15'er adet) oranla dağıtılmalıdır:\n"
-            "1. Günlük Hayat Bağlamı / Gerçek Yaşam Problemi Kurma (%25)\n"
-            "2. Grafik, Tablo ve Görsel Okuma / Veri Yorumlama (%25)\n"
-            "3. Sözel Mantık / Muhakeme ve Eleştirel Düşünme (%25)\n"
-            "4. Deney / Hipotez Analizi ve Çıkarım Yapma / Mantıksal Çözümleme (%25)\n\n"
-            "DERS DAĞILIMI:\n"
-            "Sorular sırasıyla Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler (veya İnkılap Tarihi), Din Kültürü ve İngilizce derslerinden oluşsun.\n\n"
-            "GEOMETRİ VE ÜÇGEN KURALLARI:\n"
-            "Eğer matematik/geometri sorularında üçgen bulunuyorsa, metin içinde asla ASCII çizim kullanılmamalı ve JSON içinde mutlaka şu formatta bir 'shape' nesnesi tanımlanmalıdır:\n"
-            "{\n"
-            "    \"type\": \"triangle\",\n"
-            "    \"A\": \"A\", \"B\": \"B\", \"C\": \"C\",\n"
-            "    \"ab\": \"3 cm\", \"bc\": \"4 cm\", \"ac\": \"5 cm\",\n"
-            "    \"is_right\": true\n"
-            "}\n\n"
-            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını yaz.\n"
-            "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:\n"
-            "{\n"
-            "    \"questions\": [\n"
-            "        {\n"
-            "            \"id\": 1,\n"
-            "            \"subject\": \"Türkçe\",\n"
-            "            \"question\": \"Soru metni...\",\n"
-            "            \"shape\": null,\n"
-            "            \"options\": {\n"
-            "                \"A\": \"A şıkkı\",\n"
-            "                \"B\": \"B şıkkı\",\n"
-            "                \"C\": \"C şıkkı\",\n"
-            "                \"D\": \"D şıkkı\"\n"
-            "            },\n"
-            "            \"answer\": \"A\"\n"
-            "        }\n"
-            "    ]\n"
-            "}"
-        )
+    with st.spinner("Sorular Üretiliyor... Lütfen bekleyin."):
+        prompt = f"""
+        {selected_grade} {term} dönemi içinde yer alan '{selected_scope}' kazanımlarına uygun olarak, KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla.
+        
+        KESİN DERS SIRALAMASI VE DAĞILIMI (ÖNEMLİ):
+        Sorular kesinlikle sırasıyla şu derslerden oluşmalıdır ve bu sıraya tam uyulmalıdır:
+        1. Türkçe (İlk sorular)
+        2. Matematik (Matematik sorularında üçgen türü soru varsa soru metni ile şekil tipi birebir uyuşmalıdır)
+        3. Fen Bilimleri
+        4. Sosyal Bilgiler / İnkılap Tarihi
+        5. Din Kültürü ve Ahlak Bilgisi
+        6. İngilizce (Son sorular)
+        
+        GEOMETRİ VE ÜÇGEN KURALLARI:
+        Matematik sorularında üçgen içeren sorular için JSON içinde mutlaka ayrı bir "shape" objesi tanımla ve soru metnindeki üçgen türüyle ("dik üçgen", "ikizkenar üçgen", "eşkenar üçgen") birebir uyumlu yap:
+        "shape": {{
+            "type": "triangle",
+            "shape_type": "right" (seçenekler: "right" dik üçgen için, "isosceles" ikizkenar için, "equilateral" eşkenar için, "scalene" çeşitkenar için),
+            "A": "A", "B": "B", "C": "C",
+            "ab": "5 cm", "bc": "8 cm", "ac": "6 cm"
+        }}
+        Soru metninde asla ASCII çizgi kullanma.
+        
+        Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına ilgili dersin adını tam olarak yaz.
+        Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
+        {{
+            "questions": [
+                {{
+                    "id": 1,
+                    "subject": "Türkçe",
+                    "question": "Soru metni...",
+                    "shape": null,
+                    "options": {{
+                        "A": "A şıkkı",
+                        "B": "B şıkkı",
+                        "C": "C şıkkı",
+                        "D": "D şıkkı"
+                    }},
+                    "answer": "A"
+                }}
+            ]
+        }}
+        """
         
         raw_json, error_message = multi_pool_generate(prompt)
         if raw_json:
@@ -242,11 +276,12 @@ if generate_btn:
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
                 st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
-            except json.JSONDecodeError:
-                st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
+                st.rerun()
+            except json.JSONDecodeError as json_err:
+                st.error(f"Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi: {json_err}")
                 st.code(raw_json)
         else:
-            st.error(f"❌ Tanımlı tüm API anahtarları arka planda denendi fakat yanıt alınamadı. Detay: {error_message}")
+            st.error(f"❌ Tanımlı tüm API anahtarları denendi fakat yanıt alınamadı. Detay: {error_message}")
 
 # Sorular Üretildikten Sonra Görünen "Sınavı Başlat" Butonu
 if st.session_state.quiz_ready and not st.session_state.quiz_started:
@@ -258,7 +293,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
             st.session_state.start_time = time.time()
             st.rerun()
 
-# Sınav Ekranı (Her Sayfada 1 Soru)
+# Sınav Ekranı (Otomatik İlerlemeli)
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
     total_time_seconds = total_questions * 80  
@@ -274,7 +309,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     header_col1, header_col2 = st.columns([2, 1])
     with header_col1:
         st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) Deneme Sınavı")
-        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Soru Başı Süre: 80 Saniye</span>", unsafe_allow_html=True)
+        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span>", unsafe_allow_html=True)
     with header_col2:
         st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
 
@@ -288,7 +323,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     
     st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     
-    # Geometrik şekil (üçgen vb.) varsa düzeltilmiş SVG fonksiyonu ile çağır
+    # Soru ile tam uyumlu üçgen görseli çizimi
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
         s = q['shape']
         if s.get('type') == 'triangle':
@@ -299,26 +334,23 @@ if st.session_state.quiz_started and st.session_state.questions:
                 ab_len=s.get('ab', ''),
                 bc_len=s.get('bc', ''),
                 ac_len=s.get('ac', ''),
-                is_right=s.get('is_right', False)
+                shape_type=s.get('shape_type', 'scalene')
             )
             st.markdown(svg_html, unsafe_allow_html=True)
 
     options = q['options']
     
-    current_val = st.session_state.selected_answers.get(idx)
-    default_index = None
-    if current_val in list(options.keys()):
-        default_index = list(options.keys()).index(current_val)
-
-    choice = st.radio(
-        f"**Soru {idx + 1} Şıkları:**",
-        options=list(options.keys()),
-        index=default_index,
-        format_func=lambda x: f"{x}) {options[x]}",
-        key=f"q_{idx}"
-    )
-    if choice:
-        st.session_state.selected_answers[idx] = choice
+    # Otomatik İlerleme Sağlayan Modern Şık Seçim Butonları
+    st.markdown("#### **Şıklar:**")
+    opt_cols = st.columns(4)
+    
+    for i, (opt_key, opt_val) in enumerate(options.items()):
+        with opt_cols[i]:
+            if st.button(f"**{opt_key})** {opt_val}", key=f"opt_{idx}_{opt_key}"):
+                st.session_state.selected_answers[idx] = opt_key
+                if st.session_state.current_page < total_questions - 1:
+                    st.session_state.current_page += 1
+                st.rerun()
         
     st.markdown(f"</div>", unsafe_allow_html=True)
 
@@ -329,7 +361,7 @@ if st.session_state.quiz_started and st.session_state.questions:
             if st.button("⬅️ Önceki Soru"):
                 st.session_state.current_page -= 1
                 st.rerun()
-                
+                    
     with nav_col3:
         if st.session_state.current_page < total_questions - 1:
             if st.button("Sonraki Soru ➡️"):
@@ -362,6 +394,6 @@ if st.session_state.quiz_started and st.session_state.questions:
                 if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
                     s = q_item['shape']
                     if s.get('type') == 'triangle':
-                        st.markdown(draw_triangle_svg(s.get('A', 'A'), s.get('B', 'B'), s.get('C', 'C'), s.get('ab', ''), s.get('bc', ''), s.get('ac', ''), s.get('is_right', False)), unsafe_allow_html=True)
+                        st.markdown(draw_triangle_svg(s.get('A', 'A'), s.get('B', 'B'), s.get('C', 'C'), s.get('ab', ''), s.get('bc', ''), s.get('ac', ''), s.get('shape_type', 'scalene')), unsafe_allow_html=True)
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
