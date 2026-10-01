@@ -95,123 +95,137 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Kapsamlı Vektörel Geometri ve Grafik Çizim Motoru (Çember, Üçgenler, Kare, Dikdörtgen ve Grafikler)
+# Geliştirilmiş, Hata-Korumalı ve Esnek Vektörel Çizim ve Grafik Motoru
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return ""
         
-    st_type = shape_data.get("type", "triangle")
+    st_type = str(shape_data.get("type", "triangle")).strip().lower()
     
     # 1. ÜÇGENLER (Dik, Eşkenar, İkizkenar, Çeşitkenar)
     if st_type == "triangle":
-        sub_type = shape_data.get("sub_type", "scalene") 
-        a_label = shape_data.get("A", "A")
-        b_label = shape_data.get("B", "B")
-        c_label = shape_data.get("C", "C")
-        ab_len = shape_data.get("ab", "")
-        bc_len = shape_data.get("bc", "")
-        ac_len = shape_data.get("ac", "")
-        angle_a = shape_data.get("angle_a", "")
-        angle_b = shape_data.get("angle_b", "")
-        angle_c = shape_data.get("angle_c", "")
+        sub_type = str(shape_data.get("sub_type", "scalene")).strip().lower()
+        a_label = str(shape_data.get("A", "A"))
+        b_label = str(shape_data.get("B", "B"))
+        c_label = str(shape_data.get("C", "C"))
+        ab_len = str(shape_data.get("ab", ""))
+        bc_len = str(shape_data.get("bc", ""))
+        ac_len = str(shape_data.get("ac", ""))
+        angle_a = str(shape_data.get("angle_a", ""))
+        angle_b = str(shape_data.get("angle_b", ""))
+        angle_c = str(shape_data.get("angle_c", ""))
         
         if sub_type == "right":
-            polygon_points = "50,30 50,170 210,170"
-            right_angle_svg = '<rect x="50" y="145" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
-            a_pos, b_pos, c_pos = (50, 18), (35, 185), (218, 185)
-            ab_pos, bc_pos, ac_pos = (32, 100), (130, 192), (138, 92)
+            polygon_points = "60,35 60,180 230,180"
+            right_angle_svg = '<rect x="60" y="155" width="25" height="25" fill="none" stroke="#1e293b" stroke-width="2.5"/>'
+            a_pos, b_pos, c_pos = (60, 20), (45, 195), (238, 195)
+            ab_pos, bc_pos, ac_pos = (38, 107), (145, 202), (152, 98)
         elif sub_type == "equilateral":
-            polygon_points = "130,22 30,185 230,185"
+            polygon_points = "150,25 40,190 260,190"
             right_angle_svg = ''
-            a_pos, b_pos, c_pos = (130, 12), (18, 195), (242, 195)
-            ab_pos, bc_pos, ac_pos = (68, 95), (130, 202), (192, 95)
+            a_pos, b_pos, c_pos = (150, 12), (25, 202), (275, 202)
+            ab_pos, bc_pos, ac_pos = (82, 100), (150, 210), (218, 100)
         elif sub_type == "isosceles":
-            polygon_points = "130,25 45,170 215,170"
+            polygon_points = "150,25 50,180 250,180"
             right_angle_svg = ''
-            a_pos, b_pos, c_pos = (130, 15), (32, 180), (228, 180)
-            ab_pos, bc_pos, ac_pos = (78, 90), (130, 188), (182, 90)
+            a_pos, b_pos, c_pos = (150, 12), (35, 192), (265, 192)
+            ab_pos, bc_pos, ac_pos = (88, 95), (150, 200), (212, 95)
         else:
-            polygon_points = "130,25 35,170 225,170"
+            polygon_points = "150,25 45,180 255,180"
             right_angle_svg = ''
-            a_pos, b_pos, c_pos = (130, 15), (20, 182), (240, 182)
-            ab_pos, bc_pos, ac_pos = (70, 90), (130, 190), (188, 90)
+            a_pos, b_pos, c_pos = (150, 12), (30, 192), (270, 192)
+            ab_pos, bc_pos, ac_pos = (85, 95), (150, 200), (215, 95)
 
         return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
-            <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+            <svg width="300" height="220" viewBox="0 0 300 220" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
                 <polygon points="{polygon_points}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
                 {right_angle_svg}
-                <text x="{a_pos[0]}" y="{a_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
-                <text x="{b_pos[0]}" y="{b_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
-                <text x="{c_pos[0]}" y="{c_pos[1]}" font-family="sans-serif" font-size="16" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
-                <text x="{ab_pos[0]}" y="{ab_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
-                <text x="{bc_pos[0]}" y="{bc_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
-                <text x="{ac_pos[0]}" y="{ac_pos[1]}" font-family="sans-serif" font-size="14" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
-                <text x="130" y="48" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_a}</text>
-                <text x="60" y="152" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_b}</text>
-                <text x="195" y="152" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_c}</text>
+                <text x="{a_pos[0]}" y="{a_pos[1]}" font-family="sans-serif" font-size="15" font-weight="900" fill="#1e293b" text-anchor="middle">{a_label}</text>
+                <text x="{b_pos[0]}" y="{b_pos[1]}" font-family="sans-serif" font-size="15" font-weight="900" fill="#1e293b" text-anchor="middle">{b_label}</text>
+                <text x="{c_pos[0]}" y="{c_pos[1]}" font-family="sans-serif" font-size="15" font-weight="900" fill="#1e293b" text-anchor="middle">{c_label}</text>
+                <text x="{ab_pos[0]}" y="{ab_pos[1]}" font-family="sans-serif" font-size="13" font-weight="700" fill="#ea580c" text-anchor="middle">{ab_len}</text>
+                <text x="{bc_pos[0]}" y="{bc_pos[1]}" font-family="sans-serif" font-size="13" font-weight="700" fill="#ea580c" text-anchor="middle">{bc_len}</text>
+                <text x="{ac_pos[0]}" y="{ac_pos[1]}" font-family="sans-serif" font-size="13" font-weight="700" fill="#ea580c" text-anchor="middle">{ac_len}</text>
+                <text x="150" y="52" font-family="sans-serif" font-size="12" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_a}</text>
+                <text x="75" y="162" font-family="sans-serif" font-size="12" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_b}</text>
+                <text x="225" y="162" font-family="sans-serif" font-size="12" font-weight="700" fill="#0284c7" text-anchor="middle">{angle_c}</text>
             </svg>
         </div>'''
         
     # 2. ÇEMBER / DAİRE
     elif st_type == "circle":
-        center_label = shape_data.get("center", "O")
-        radius_label = shape_data.get("radius", "")
-        show_diameter = shape_data.get("show_diameter", False)
+        center_label = str(shape_data.get("center", "O"))
+        radius_label = str(shape_data.get("radius", ""))
+        show_diameter = bool(shape_data.get("show_diameter", False))
         
-        diameter_line = f'<line x1="30" y1="105" x2="230" y2="105" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>' if show_diameter else ''
+        diameter_line = f'<line x1="50" y1="110" x2="250" y2="110" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>' if show_diameter else ''
         
         return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
-            <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
-                <circle cx="130" cy="105" r="80" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5"/>
-                <circle cx="130" cy="105" r="4" fill="#ea580c"/>
+            <svg width="300" height="220" viewBox="0 0 300 220" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+                <circle cx="150" cy="110" r="85" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5"/>
+                <circle cx="150" cy="110" r="4.5" fill="#ea580c"/>
                 {diameter_line}
-                <line x1="130" y1="105" x2="210" y2="105" stroke="#0284c7" stroke-width="2.5"/>
-                <text x="135" y="98" font-family="sans-serif" font-size="15" font-weight="900" fill="#ea580c">{center_label}</text>
-                <text x="170" y="98" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{radius_label}</text>
+                <line x1="150" y1="110" x2="235" y2="110" stroke="#0284c7" stroke-width="2.5"/>
+                <text x="158" y="102" font-family="sans-serif" font-size="15" font-weight="900" fill="#ea580c">{center_label}</text>
+                <text x="192" y="102" font-family="sans-serif" font-size="13" font-weight="700" fill="#0284c7" text-anchor="middle">{radius_label}</text>
             </svg>
         </div>'''
 
     # 3. KARE VE DİKDÖRTGEN
     elif st_type in ["square", "rectangle"]:
-        title = shape_data.get("title", "Geometrik Şekil")
-        w_label = shape_data.get("width", "")
-        h_label = shape_data.get("height", "")
+        title = str(shape_data.get("title", "Geometrik Şekil"))
+        w_label = str(shape_data.get("width", ""))
+        h_label = str(shape_data.get("height", ""))
         is_square = (st_type == "square")
         
-        rect_w, rect_h = (140, 140) if is_square else (180, 110)
-        rect_x, rect_y = (130 - rect_w//2), (105 - rect_h//2)
+        rect_w, rect_h = (150, 150) if is_square else (200, 120)
+        rect_x, rect_y = (150 - rect_w//2), (110 - rect_h//2)
         
         return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
-            <svg width="260" height="210" viewBox="0 0 260 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+            <svg width="300" height="220" viewBox="0 0 300 220" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
                 <rect x="{rect_x}" y="{rect_y}" width="{rect_w}" height="{rect_h}" fill="#f8fafc" stroke="#1e293b" stroke-width="3.5" rx="4"/>
-                <text x="130" y="{rect_y - 10}" font-family="sans-serif" font-size="14" font-weight="800" fill="#ea580c" text-anchor="middle">{w_label}</text>
-                <text x="{rect_x - 18}" y="110" font-family="sans-serif" font-size="14" font-weight="800" fill="#0284c7" text-anchor="middle">{h_label}</text>
-                <text x="130" y="195" font-family="sans-serif" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">{title}</text>
+                <text x="150" y="{rect_y - 12}" font-family="sans-serif" font-size="14" font-weight="800" fill="#ea580c" text-anchor="middle">{w_label}</text>
+                <text x="{rect_x - 20}" y="115" font-family="sans-serif" font-size="14" font-weight="800" fill="#0284c7" text-anchor="middle">{h_label}</text>
+                <text x="150" y="202" font-family="sans-serif" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">{title}</text>
             </svg>
         </div>'''
         
-    # 4. ÇUBUK GRAFİK
-    elif st_type == "bar_chart":
+    # 4. ÇUBUK GRAFİK / FEN BİLİMLERİ GRAFİKLERİ
+    elif st_type in ["bar_chart", "science_chart"]:
         labels = shape_data.get("labels", ["A", "B", "C", "D"])
         values = shape_data.get("values", [10, 25, 15, 30])
-        title = shape_data.get("title", "Grafik Analizi")
-        max_v = max(values) if values else 30
+        title = str(shape_data.get("title", "Veri Analizi"))
+        
+        # Güvenli sayısal dönüştürme
+        clean_values = []
+        for v in values:
+            try:
+                clean_values.append(float(v))
+            except:
+                clean_values.append(10.0)
+                
+        max_v = max(clean_values) if clean_values and max(clean_values) > 0 else 30.0
         
         bars_html = ""
-        x_start = 45
-        for i, (l, v) in enumerate(zip(labels, values)):
-            h = int((v / max_v) * 110) if max_v > 0 else 10
-            y = 150 - h
+        x_start = 40
+        total_bars = len(labels) if len(labels) > 0 else 4
+        bar_width = min(45, max(20, int(220 / total_bars)))
+        spacing = bar_width + 12
+        
+        for i, (l, v) in enumerate(zip(labels, clean_values)):
+            h = int((v / max_v) * 115) if max_v > 0 else 10
+            y = 160 - h
+            bx = x_start + i * spacing
             bars_html += f'''
-                <rect x="{x_start + i * 45}" y="{y}" width="30" height="{h}" fill="#0284c7" rx="4"/>
-                <text x="{x_start + i * 45 + 15}" y="{y - 5}" font-family="sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">{v}</text>
-                <text x="{x_start + i * 45 + 15}" y="172" font-family="sans-serif" font-size="13" font-weight="800" fill="#334155" text-anchor="middle">{l}</text>
+                <rect x="{bx}" y="{y}" width="{bar_width}" height="{h}" fill="#0284c7" rx="4"/>
+                <text x="{bx + bar_width//2}" y="{y - 6}" font-family="sans-serif" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">{v:g}</text>
+                <text x="{bx + bar_width//2}" y="180" font-family="sans-serif" font-size="12" font-weight="800" fill="#334155" text-anchor="middle">{str(l)}</text>
             '''
         
         return f'''<div style="display: flex; justify-content: center; margin: 15px 0;">
-            <svg width="260" height="200" viewBox="0 0 260 200" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
-                <text x="130" y="22" font-family="sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">{title}</text>
-                <line x1="30" y1="150" x2="235" y2="150" stroke="#cbd5e1" stroke-width="2"/>
+            <svg width="320" height="210" viewBox="0 0 320 210" style="background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
+                <text x="160" y="24" font-family="sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">{title}</text>
+                <line x1="25" y1="160" x2="295" y2="160" stroke="#cbd5e1" stroke-width="2"/>
                 {bars_html}
             </svg>
         </div>'''
@@ -244,7 +258,7 @@ if "selected_answers" not in st.session_state:
 if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 
-# Yan Menü - Sınıf, Dönem, Kapsam ve Zorluk Ayarları (Zorluklar 2+ kademe artırıldı)
+# Yan Menü - Sınıf, Dönem, Kapsam ve Zorluk Ayarları
 st.sidebar.markdown("## ⚙️ MEB Müfredat & Sınav Ayarları")
 st.sidebar.markdown("---")
 
@@ -342,25 +356,25 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için **en az 2 kademe daha zorlaştırılmış**, çok aşamalı yeni nesil 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} - '{selected_scope}' için görsel ve grafik uyumlu 80 üst düzey soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil soru hazırla.\n\n"
             f"ZORLUK SEVİYESİ VE KALİTE TALİMATI: '{difficulty_level}'.\n"
-            "DİKKAT: Sorular standart müfredat sorularından **en az ikişer kademe daha zor**, üst düzey bilişsel becerilere (analiz, sentez, mantık yürüttürme, çeldirici eleme) dayalı, çok aşamalı ve LGS Türkiye dereceleri hedefleyen öğrencileri zorlayacak nitelikte olmalıdır!\n\n"
+            "DİKKAT: Sorular standart müfredat sorularından en az ikişer kademe daha zor, üst düzey bilişsel becerilere (analiz, sentez, mantık yürüttürme) dayalı olmalıdır!\n\n"
             "LGS VE MERKEZİ SINAV DERS DAĞILIMI (80 SORU TOPLAMI):\n"
             "1. Türkçe: 20 Soru (1-20 arası) - Uzun metinli, eleştirel okuma, görsel yorumlama ve mantık muhakemesi ağırlıklı.\n"
             "2. Matematik: 20 Soru (21-40 arası) - Günlük hayat problemleri, çok katmanlı formül/bağıntı gerektiren, şekil yorumlama ve işlem yoğun.\n"
-            "3. Fen Bilimleri: 20 Soru (41-60 arası) - Deney yorumlama, grafik analizi, değişken bulma ve hipotez test etme odaklı.\n"
+            "3. Fen Bilimleri: 20 Soru (41-60 arası) - Deney yorumlama, grafik/tablo analizi (bar_chart veya science_chart formatı ile), değişken bulma odaklı.\n"
             "4. T.C. İnkılap Tarihi ve Atatürkçülük: 10 Soru (61-70 arası) - Öncüllü yorum, harita/belge analizi ve kavram bilgisi ağır.\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (71-80 arası) - Ayet/hadis yorumu ve bağlam temelli çıkarım yapma.\n\n"
-            "HAYATİ ÖNEM TAŞIYAN GEOMETRİ VE GÖRSEL KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
-            "1. GEOMETRİK ŞEKİL GEREKTİREN SORULAR: Çember, dik üçgen, eşkenar üçgen, ikizkenar üçgen, kare veya dikdörtgen içeren matematik/geometri sorularında `shape` alanı ASLA boş bırakılmamalıdır! Soruya uygun görsel nesne JSON formatına eklenmelidir.\n"
-            "2. CEVAP SIZDIRMA YASAĞI: Şekiller üzerinde sorunun çözümü olan bilinmeyen değerler (örneğin sorulan açı veya kenار uzunluğu) kesinlikle yazılmamalıdır; şekil yalnızca bilinen dış ipuçlarını içermelidir.\n"
+            "HAYATİ ÖNEM TAŞIYAN GEOMETRİ, FEN VE GÖRSEL KURALLARI (ASLA İHLAL EDİLEMEZ):\n"
+            "1. Görsel veya şekil gerektiren tüm soruların `shape` alanına uygun JSON objesi kesinlikle eklenmelidir.\n"
+            "2. CEVAP SIZDIRMA YASAĞI: Şekiller veya grafikler üzerinde sorunun çözümü olan bilinmeyen değerler kesinlikle yazılmamalıdır.\n"
             "   - Üçgen formatı: `{\"type\": \"triangle\", \"sub_type\": \"right\" (veya \"isosceles\", \"equilateral\", \"scalene\"), \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"...\", \"bc\": \"...\", \"ac\": \"...\", \"angle_a\": \"...\", \"angle_b\": \"...\", \"angle_c\": \"...\"}`\n"
             "   - Çember formatı: `{\"type\": \"circle\", \"center\": \"O\", \"radius\": \"...\", \"show_diameter\": true/false}`\n"
             "   - Kare / Dikdörtgen formatı: `{\"type\": \"square\" (veya \"rectangle\"), \"title\": \"...\", \"width\": \"...\", \"height\": \"...\"}`\n"
-            "   - Grafik formatı: `{\"type\": \"bar_chart\", \"title\": \"Başlık\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
+            "   - Grafik formatı (Fen veya Matematik için): `{\"type\": \"bar_chart\" (veya \"science_chart\"), \"title\": \"Deney / Grafik Başlığı\", \"labels\": [\"1. Grup\", \"2. Grup\", \"3. Grup\", \"4. Grup\"], \"values\": [15, 30, 20, 40]}`\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
             "{\n"
@@ -392,7 +406,7 @@ if generate_btn:
                 st.session_state.quiz_started = False
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
-                st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} üst düzey zorlukta soru başarıyla üretildi!")
+                st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} görsel uyumlu soru başarıyla üretildi!")
             except json.JSONDecodeError:
                 st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
                 st.code(raw_json)
@@ -412,7 +426,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
 # Sınav Ekranı
 if st.session_state.quiz_started and st.session_state.questions:
     total_questions = len(st.session_state.questions)
-    total_time_seconds = total_questions * 90  # Daha zor sorular için süre optimize edildi
+    total_time_seconds = total_questions * 90
     
     elapsed_time = int(time.time() - st.session_state.start_time)
     remaining_time = max(0, total_time_seconds - elapsed_time)
@@ -441,7 +455,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     if 'passage' in q and q['passage'] and str(q['passage']).strip() != "":
         st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül:</b><br>{q['passage']}</div>", unsafe_allow_html=True)
 
-    # Görsel Öncelikli Yerleşim (Çember, Üçgen, Kare, Dikdörtgen veya Grafik)
+    # Görsel Öncelikli Yerleşim (Çember, Üçgen, Kare, Dikdörtgen veya Grafik/Tablo)
     if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
         shape_html = draw_geometry_shape(q['shape'])
         st.markdown(shape_html, unsafe_allow_html=True)
@@ -468,7 +482,7 @@ if st.session_state.quiz_started and st.session_state.questions:
         
     st.markdown(f"</div>", unsafe_allow_html=True)
 
-    # Navigasyon Butonları (Sol: Sonraki / Sağ: Önceki)
+    # Navigasyon Butonları
     st.markdown("<div class='nav-btn-container'>", unsafe_allow_html=True)
     nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
     with nav_col1:
