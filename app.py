@@ -14,7 +14,6 @@ st.set_page_config(
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
-    /* Sol menüdeki soruları üret butonunu daha büyük ve belirgin yaptık */
     div.stButton > button:first-child {
         width: 100%;
         border-radius: 14px;
@@ -45,16 +44,6 @@ st.markdown("""
         color: #1e293b !important;
         line-height: 1.6 !important;
         white-space: pre-line;
-    }
-    .shape-box {
-        background-color: #f1f5f9;
-        border-left: 4px solid #f97316;
-        padding: 1rem;
-        border-radius: 8px;
-        font-family: monospace;
-        font-size: 1.1rem;
-        margin: 1rem 0;
-        color: #0f172a;
     }
     .timer-box {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -132,10 +121,10 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Orantılı 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (12), Matematik (12), Fen (12), Sosyal (8), Din (7), İngilizce (9) oranlarıyla ve kusursuz geometrik şekil/üçgen çizimleriyle.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (12), Matematik (12), Fen (12), Sosyal (8), Din (7), İngilizce (9) oranlarıyla ve özel gerçek görsellerle.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# Groq Çağrı Fonksiyonu (Max token artırıldı)
+# Groq Çağrı Fonksiyonu
 def call_groq_with_key(api_key, prompt_text):
     from groq import Groq
     client = Groq(api_key=api_key)
@@ -194,17 +183,17 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner("✨ Çoklu API havuzu taranıyor, tam 60 adet görsel destekli yeni nesil soru hazırlanıyor..."):
+    with st.spinner("✨ Çoklu API havuzu taranıyor, tam 60 adet özel görsel destekli yeni nesil soru hazırlanıyor..."):
         prompt = f"""
         5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki şu derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla:
         - Türkçe: 12 soru
-        - Matematik: 12 soru (Sorularda dik üçgen, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri, geometrik şekiller ve şemalar kullanılırken, şekillerin düzgün görünmesi için temiz bloklar veya blok harf çizimleri kullan)
-        - Fen Bilimleri: 12 soru (Deney düzenekleri, grafikler, tablo ve şemalar metne eklensin)
-        - Sosyal Bilgiler: 8 soru (Harita sembolleri, kroki veya tablo gösterimleri eklensin)
+        - Matematik: 12 soru (Sorularda dik üçgen, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri ve geometrik şekiller doğrudan görsel biçimde, köşe ve kenar etiketleriyle çizilerek soru metnine eklensin. ASLA 'şema' veya 'grafik şeması' gibi ifadeler kullanılmasın, doğrudan şeklin kendisi görünsün.)
+        - Fen Bilimleri: 12 soru (Deney düzenekleri veya bilimsel nesne çizimleri doğrudan görsel olarak eklensin)
+        - Sosyal Bilgiler: 8 soru (Harita sembolleri, kroki veya tablo çizimleri eklensin)
         - Din Kültürü ve Ahlak Bilgisi: 7 soru
-        - İngilizce: 9 soru (Diyalog, tablo veya eşleştirme şemaları eklensin)
+        - İngilizce: 9 soru (Diyalog veya eşleştirme kutuları eklensin)
         
-        GÖRSEL VE ÜÇGEN KURALI: Matematik ve geometri sorularında (üçgen çeşitleri vb.) üçgenlerin kenar uzunlukları ve açıları net görülecek şekilde tasarlanmalı, bozuk karakterler yerine temiz ve şık biçimlendirme uygulanmalıdır.
+        GÖRSEL KURALI: Sorularda "şema", "grafik şeması" veya "görsel aşağıdadır" gibi ibarelere yer VERME. Doğrudan üçgeni, cismi veya yapıyı ASCII/Unicode çizimleriyle estetik bir şekilde sorunun içine yerleştir.
         
         Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına mutlaka ilgili dersin adını yaz.
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
@@ -213,7 +202,7 @@ if generate_btn:
                 {{
                     "id": 1,
                     "subject": "Matematik",
-                    "question": "Soru metni ve görsel şema burada yer alacak...",
+                    "question": "Soru metni ve doğrudan üçgen/şekil çizimi burada yer alacak...",
                     "options": {{
                         "A": "A şıkkı",
                         "B": "B şıkkı",
@@ -249,9 +238,7 @@ if st.session_state.quiz_ready and not st.session_state.quiz_started:
         if st.button("🎯 Sınavı Şimdi Başlat"):
             st.session_state.quiz_started = True
             st.session_state.start_time = time.time()
-            experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
-            if experimental_rerun:
-                experimental_rerun()
+            st.rerun()
 
 # Sınav Ekranı (Her Sayfada 1 Soru)
 if st.session_state.quiz_started and st.session_state.questions:
@@ -307,17 +294,13 @@ if st.session_state.quiz_started and st.session_state.questions:
         if st.session_state.current_page > 0:
             if st.button("⬅️ Önceki Soru"):
                 st.session_state.current_page -= 1
-                experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
-                if experimental_rerun:
-                    experimental_rerun()
+                st.rerun()
                     
     with nav_col3:
         if st.session_state.current_page < total_questions - 1:
             if st.button("Sonraki Soru ➡️"):
                 st.session_state.current_page += 1
-                experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
-                if experimental_rerun:
-                    experimental_rerun()
+                st.rerun()
 
     st.markdown("---")
     if st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör"):
@@ -344,11 +327,3 @@ if st.session_state.quiz_started and st.session_state.questions:
                 st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
-
-    if remaining_time > 0:
-        time.sleep(1)
-        experimental_rerun = getattr(st, "rerun", None) or getattr(st, "experimental_rerun", None)
-        if experimental_rerun:
-            experimental_rerun()
-    else:
-        st.warning("⏰ Sınav süreniz doldu! Lütfen yanıtlarınızı kontrol edip sınavı tamamlayın.")
