@@ -21,7 +21,7 @@ if getattr(sys, "frozen", False):
 
 # Sayfa Yapılandırması ve Modern UI CSS Enjeksiyonu
 st.set_page_config(
-    page_title="Ortaokul ve LGS 60 Soruluk Deneme Sınavı Üretici",
+    page_title="Ortaokul dan LGS 60 Soruluk Deneme Sınavı Üretici",
     page_icon="🎯",
     layout="centered",
 )
@@ -132,7 +132,7 @@ HAFTALIK_ICERIKLER = {
     18: "🌟 18. HAFTA: DÖNEM SONU GENEL KAPANIŞ VE GELİŞMİŞ TARAMA SINAVI.",
 }
 
-# --- Güvenlik / Sınıflandırıcı Filtreli Kesin Çözümlü Akıllı API Fonksiyonu ---
+# --- Güncellenmiş ve Temizlenmiş Akıllı API Fonksiyonu ---
 def ai_icerik_uret(prompt: str) -> str:
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY_DIRECT}",
@@ -146,15 +146,15 @@ def ai_icerik_uret(prompt: str) -> str:
             data = models_res.json()
             for m in data.get("data", []):
                 model_id = m["id"].lower()
-                # Yalnızca metin/sohbet modellerini al; guard, prompt-guard, embed, whisper gibi araçları hariç tut
-                if any(k in model_id for k in ["llama", "mixtral", "gemma"]) and not any(x in model_id for x in ["guard", "embed", "whisper", "vision-preview"]):
+                # Yalnızca güncel metin/sohbet modellerini al; guard, embed, whisper ve eski sürümleri hariç tut
+                if any(k in model_id for k in ["llama-3", "mixtral", "gemma"]) and not any(x in model_id for x in ["guard", "embed", "whisper", "vision-preview", "8192"]):
                     aktif_modeller.append(m["id"])
     except Exception:
         pass
         
-    # Eğer dinamik çekilemezse veya filtrelendiyse güvenli yedek liste
+    # Dinamik çekilemezse veya filtrelendiyse yalnızca %100 güncel ve aktif yedek liste
     if not aktif_modeller:
-        aktif_modeller = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-70b-8192"]
+        aktif_modeller = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
 
     chat_url = "https://api.groq.com/openai/v1/chat/completions"
     son_hata = ""
