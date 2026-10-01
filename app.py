@@ -317,7 +317,7 @@ def call_groq_with_key(api_key, prompt_text):
             {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve LGS soru hazırlama uzmanısın. Eksiksiz JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
-        temperature=0.8,
+        temperature=0.7,
         max_tokens=8000,
         response_format={"type": "json_object"}
     )
