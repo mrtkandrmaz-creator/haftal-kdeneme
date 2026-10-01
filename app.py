@@ -121,7 +121,7 @@ st.sidebar.info(f"🔑 **Aktif API Havuzu:** {len(GROQ_KEYS)} Groq | {len(GEMINI
 
 # Ana Ekran Başlığı
 st.markdown("<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 5. Sınıf LGS Orantılı 60 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (12), Matematik (12), Fen (12), Sosyal (8), Din (7), İngilizce (9) oranlarıyla ve özel gerçek görsellerle.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Türkçe (12), Matematik (12), Fen (12), Sosyal (8), Din (7), İngilizce (9) oranlarıyla ve kusursuz geometrik üçgen çizimleriyle.</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Groq Çağrı Fonksiyonu
@@ -183,17 +183,15 @@ def multi_pool_generate(prompt_text):
 
 # Soru Üretim Mantığı
 if generate_btn:
-    with st.spinner("✨ Çoklu API havuzu taranıyor, tam 60 adet özel görsel destekli yeni nesil soru hazırlanıyor..."):
+    with st.spinner("✨ Çoklu API havuzu taranıyor, tam 60 adet kusursuz görsel üçgenli yeni nesil soru hazırlanıyor..."):
         prompt = f"""
         5. sınıf {term} dönemi içinde yer alan '{selected_scope}' kriterine uygun olarak, MEB müfredatındaki şu derslerden toplamda KESİNLİKLE VE EKSİKSİZ olarak tam {question_count} adet yeni nesil beceri temelli soru hazırla:
         - Türkçe: 12 soru
-        - Matematik: 12 soru (Sorularda dik üçgen, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri ve geometrik şekiller doğrudan görsel biçimde, köşe ve kenar etiketleriyle çizilerek soru metnine eklensin. ASLA 'şema' veya 'grafik şeması' gibi ifadeler kullanılmasın, doğrudan şeklin kendisi görünsün.)
+        - Matematik: 12 soru (Sorularda dik üçgen, eşkenar üçgen, ikizkenar üçgen, açı ölçüleri ve geometrik şekiller kullanılırken, şekillerin köşeleri ve bütünlüğü kusursuz olsun diye ÜÇGENLERİ MUTLAKA MARKDOWN KOD BLOĞU İÇİNDE ```text ... ``` formatında, A, B, C köşe harfleri ve kenar uzunlukları net şekilde simetrik olarak çiz. Asla bozuk karakter veya eksik çizgi olmasın. "Şema" veya "grafik şeması" kelimesini asla kullanma, doğrudan görsel çizimi ver.)
         - Fen Bilimleri: 12 soru (Deney düzenekleri veya bilimsel nesne çizimleri doğrudan görsel olarak eklensin)
         - Sosyal Bilgiler: 8 soru (Harita sembolleri, kroki veya tablo çizimleri eklensin)
         - Din Kültürü ve Ahlak Bilgisi: 7 soru
         - İngilizce: 9 soru (Diyalog veya eşleştirme kutuları eklensin)
-        
-        GÖRSEL KURALI: Sorularda "şema", "grafik şeması" veya "görsel aşağıdadır" gibi ibarelere yer VERME. Doğrudan üçgeni, cismi veya yapıyı ASCII/Unicode çizimleriyle estetik bir şekilde sorunun içine yerleştir.
         
         Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ("A", "B", "C" veya "D") olmalıdır. 'subject' alanına mutlaka ilgili dersin adını yaz.
         Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama metni ekleme:
@@ -202,7 +200,7 @@ if generate_btn:
                 {{
                     "id": 1,
                     "subject": "Matematik",
-                    "question": "Soru metni ve doğrudan üçgen/şekil çizimi burada yer alacak...",
+                    "question": "Soru metni ve içinde Markdown kod bloğuyla çizilmiş kusursuz üçgen burada yer alacak...",
                     "options": {{
                         "A": "A şıkkı",
                         "B": "B şıkkı",
