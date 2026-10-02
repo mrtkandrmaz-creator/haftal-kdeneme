@@ -108,7 +108,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Dinamik Görselleştirme ve Şema Motoru
+# Gelişmiş Dinamik Görselleştirme ve Şema Motoru (Üst üste binmeleri ve boyut sorunlarını önleyen optimize sürüm)
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -117,13 +117,14 @@ def draw_geometry_shape(shape_data):
     if not st_type:
         return
 
-    fig, ax = plt.subplots(figsize=(6, 3.8))
+    # Boyut küçültülerek görsellerin devasa görünmesi engellendi
+    fig, ax = plt.subplots(figsize=(4.5, 3.2))
+    ax.set_aspect('equal')
+    ax.axis('off')
     
     try:
         # 1. GEOMETRİ / ÜÇGEN ÇİZİMİ
         if st_type == "triangle":
-            ax.set_aspect('equal')
-            ax.axis('off')
             sub_type = str(shape_data.get("sub_type", "scalene")).strip().lower()
             a_label = str(shape_data.get("A", "A"))
             b_label = str(shape_data.get("B", "B"))
@@ -159,13 +160,11 @@ def draw_geometry_shape(shape_data):
             if angle_a:
                 ax.text(2.0, 3.8, f"Â={angle_a}", fontsize=8.5, color='#ea580c', fontweight='bold', ha='center')
                 
-            ax.set_xlim(-2.5, 6.8)
-            ax.set_ylim(-2.0, 5.5)
+            ax.set_xlim(-3.0, 7.5)
+            ax.set_ylim(-2.5, 6.0)
 
         # 2. ÇEMBER VE DAİRE
         elif st_type == "circle":
-            ax.set_aspect('equal')
-            ax.axis('off')
             center_label = str(shape_data.get("center", "O"))
             radius_label = str(shape_data.get("radius", "r"))
             show_diameter = bool(shape_data.get("show_diameter", False))
@@ -190,37 +189,36 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.5, 3.5)
             ax.set_ylim(-3.5, 3.5)
 
-        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ
+        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ (Üst üste binmeleri önlemek için üst marj ve limitler artırıldı)
         elif st_type in ["bar_chart", "science_chart"]:
-            ax.set_aspect('auto')
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
             title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
-            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.42, edgecolor='#0369a1', linewidth=1.2, alpha=0.9, zorder=3)
+            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1)
             
-            ax.set_title(title, fontsize=11.5, fontweight='bold', color='#1e293b', pad=16)
+            # Başlık çakışmasını önlemek için pad artırıldı
+            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=28)
             
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
             ax.spines['left'].set_color('#cbd5e1')
             ax.spines['bottom'].set_color('#cbd5e1')
             
-            ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-            
+            max_val = max(clean_vals) if clean_vals else 10
             for bar in bars:
                 height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2., height + (max(clean_vals)*0.04), f'{height:g}',
-                        ha='center', va='bottom', fontsize=9.5, fontweight='bold', color='#1e293b')
+                # Değer etiketlerinin sütun tepesine yapışması veya taşması önlendi
+                ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.08), f'{height:g}',
+                        ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
             
-            max_y = max(clean_vals) if clean_vals else 10
-            ax.set_ylim(0, max_y * 1.35)
+            # Üst üste binmeyi kesin çözmek için üst marj payı büyütüldü (1.85 katı)
+            ax.set_ylim(0, max_val * 1.85)
+            ax.set_xlim(-0.8, len(labels) - 0.2)
 
         # 4. FEN BİLİMLERİ / UZAY / KUVVET ŞEMASI
         elif st_type in ["science_space", "space_orbit", "eclipse", "physics_force"]:
-            ax.set_aspect('equal')
-            ax.axis('off')
             title = str(shape_data.get("title", "Fen Bilimleri Sistem Şeması"))
             
             sun = plt.Circle((-2.2, 0), 0.85, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
@@ -238,15 +236,16 @@ def draw_geometry_shape(shape_data):
             ax.add_patch(moon)
             ax.text(1.4, 1.9, "Cisim 2", fontsize=8, fontweight='bold', color='#64748b', ha='center')
             
-            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=22)
-            ax.set_xlim(-4.0, 3.5)
-            ax.set_ylim(-2.8, 2.8)
+            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=28)
+            ax.set_xlim(-4.2, 3.8)
+            ax.set_ylim(-3.0, 3.0)
 
         plt.tight_layout()
         buf = io.BytesIO()
         plt.savefig(buf, format='png', bbox_inches='tight', dpi=180)
         buf.seek(0)
-        st.image(buf, width=440)
+        # Görsel boyutu arayüze uygun olarak (350 piksel) optimize edildi
+        st.image(buf, width=350)
         plt.close(fig)
     except Exception as e:
         plt.close(fig)
@@ -363,4 +362,229 @@ def call_gemini_with_key(api_key, prompt_text):
     if "```json" in text:
         text = text.split("```json")[1].split("```")[0].strip()
     elif "```" in text:
-        text = text.split(")
+        text = text.split("```")[1].split("```")[0].strip()
+    return text
+
+def multi_pool_generate(prompt_text):
+    attempts = []
+    for i, key in enumerate(GROQ_KEYS):
+        if key.strip():
+            attempts.append(("Groq", i+1, key, call_groq_with_key))
+            
+    for i, key in enumerate(GEMINI_KEYS):
+        if key.strip():
+            attempts.append(("Gemini", i+1, key, call_gemini_with_key))
+
+    if not attempts:
+        return None, "Geçerli API anahtarı bulunamadı!"
+
+    last_error = None
+    for provider, index, key, func in attempts:
+        try:
+            result = func(key, prompt_text)
+            if result:
+                return result, None
+        except Exception as e:
+            last_error = e
+            continue
+
+    return None, str(last_error)
+
+# Soru Üretim Mantığı
+if generate_btn:
+    current_topic_val = st.session_state.custom_topic_input
+    custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
+    
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler ve optimize edilmiş fen grafik şemalarıyla 80 soru hazırlanıyor..."):
+        prompt = (
+            f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
+            f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
+            f"{custom_prompt_addon}\n\n"
+            f"ZORLUK KADEMESİ VE KALİTE KRİTERİ: '{difficulty_level}'.\n\n"
+            "DERS DAĞILIMI VE KESİN SORU SAYILARI VE İÇERİK KURALLARI (TOPLAM TAM 80 SORU):\n"
+            "1. Türkçe: 15 Soru (1-15 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, uzun metinler, dil bilgisi, görsel okuma, deyimler/atasözleri). Metinleri ASLA KISALTMA, eksiksiz tam yaz.\n"
+            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, oran-orantı, problemler). Geometri ve veri sorularında mutlaka 'shape' json objesi ile şema görseli ekle.\n"
+            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet ve hareket, Güneş/Dünya/Ay, hücre, maddeler, elektrik devreleri, ekosistem). Grafik ve deney şemaları için mutlaka 'shape' json objesi kullan.\n"
+            "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Kesinlikle Sosyal Bilgiler dersine ait (Tarih, coğrafya, harita okuma, kültürel miras, hak ve sorumluluklar).\n"
+            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Kesinlikle Din Kültürü dersine ait (Ayet ve hadis yorumlama, İslam kültürü, değerler eğitimi).\n"
+            "6. İngilizce (English): 10 Soru (71-80 arası) - Kesinlikle İngilizce dersine ait (Diyalog tamamlama, kartlar, tablo eşleştirme, kelime bilgisi).\n\n"
+            "🚨 KESİN GÖRSEL VE ŞEMA KURALLARI (`shape` nesnesi):\n"
+            "Soruların matematik, fen ve bazı görsel okuma bölümlerinde 'shape' alanını boş bırakma; şemaya uygun parametreleri ekle:\n"
+            "- Üçgen için: {\"type\": \"triangle\", \"sub_type\": \"right/scalene/equilateral\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"side_ab\": \"...\", \"angle_a\": \"...\"}\n"
+            "- Çember için: {\"type\": \"circle\", \"center\": \"O\", \"radius\": \"5 cm\", \"show_diameter\": true}\n"
+            "- Grafik/Veri için: {\"type\": \"bar_chart\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [10, 25, 15, 30], \"title\": \"Grafik Başlığı\"}\n"
+            "- Fen/Sistem için: {\"type\": \"science_space\", \"title\": \"Deney / Sistem Şeması\"}\n"
+            "Görsel gerekmeyen metin/dil bilgisi sorularında 'shape' değerini null bırak.\n\n"
+            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
+            "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
+            "{\n"
+            "    \"questions\": [\n"
+            "        {\n"
+            "            \"id\": 1,\n"
+            "            \"subject\": \"Matematik\",\n"
+            "            \"passage\": \"Metin veya paragraf içeriği burada eksiksiz yer alacak...\",\n"
+            "            \"question\": \"Soru metni...\",\n"
+            "            \"shape\": {\"type\": \"triangle\", \"sub_type\": \"right\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\"},\n"
+            "            \"options\": {\n"
+            "                \"A\": \"A şıkkı\",\n"
+            "                \"B\": \"B şıkkı\",\n"
+            "                \"C\": \"C şıkkı\",\n"
+            "                \"D\": \"D şıkkı\"\n"
+            "            },\n"
+            "            \"answer\": \"A\"\n"
+            "        }\n"
+            "    ]\n"
+            "}"
+        )
+        
+        raw_json, error_message = multi_pool_generate(prompt)
+        if raw_json:
+            try:
+                data = json.loads(raw_json)
+                st.session_state.questions = data.get("questions", [])
+                st.session_state.quiz_ready = True
+                st.session_state.quiz_started = False
+                st.session_state.selected_answers = {}
+                st.session_state.current_page = 0
+                st.session_state.custom_topic_input = ""
+                st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
+                st.rerun()
+            except json.JSONDecodeError:
+                st.error("Yapay zeka yanıtı geçerli JSON formatına dönüştürülemedi.")
+                st.code(raw_json)
+        else:
+            st.error(f"❌ Bağlantı kurulamadı. Hata: {error_message}")
+
+# Sınavı Başlat Butonu
+if st.session_state.quiz_ready and not st.session_state.quiz_started:
+    st.markdown("---")
+    sc1, sc2, sc3 = st.columns([1, 2, 1])
+    with sc2:
+        if st.button("🎯 Sınavı Şimdi Başlat"):
+            st.session_state.quiz_started = True
+            st.session_state.start_time = time.time()
+            st.rerun()
+
+# Sınav Ekranı
+if st.session_state.quiz_started and st.session_state.questions:
+    total_questions = len(st.session_state.questions)
+    total_time_seconds = total_questions * 90
+    
+    elapsed_time = int(time.time() - st.session_state.start_time)
+    remaining_time = max(0, total_time_seconds - elapsed_time)
+    
+    hours = remaining_time // 3600
+    minutes = (remaining_time % 3600) // 60
+    seconds = remaining_time % 60
+
+    st.markdown("---")
+    header_col1, header_col2 = st.columns([2, 1])
+    with header_col1:
+        st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) 80 Soruluk Deneme")
+        st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Kademe: {difficulty_level}</span>", unsafe_allow_html=True)
+    with header_col2:
+        st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    idx = st.session_state.current_page
+    q = st.session_state.questions[idx]
+
+    st.markdown(f"<div class='question-card'>", unsafe_allow_html=True)
+    sub_badge = f"[{q.get('subject', 'Genel')}]" if 'subject' in q else ""
+    
+    passage_text = str(q.get('passage', '')).strip()
+    if passage_text and passage_text.lower() != "null" and passage_text != "":
+        st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül / Diyalog:</b><br>{passage_text}</div>", unsafe_allow_html=True)
+
+    if 'shape' in q and q['shape'] and isinstance(q['shape'], dict):
+        draw_geometry_shape(q['shape'])
+
+    st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
+
+    options = q['options']
+    
+    current_val = st.session_state.selected_answers.get(idx)
+    default_index = None
+    if current_val in list(options.keys()):
+        default_index = list(options.keys()).index(current_val)
+
+    choice = st.radio(
+        f"**Soru {idx + 1} Şıkları:**",
+        options=list(options.keys()),
+        index=default_index,
+        format_func=lambda x: f"{x}) {options[x]}",
+        key=f"q_{idx}"
+    )
+    if choice:
+        st.session_state.selected_answers[idx] = choice
+        
+    st.markdown(f"</div>", unsafe_allow_html=True)
+
+    # Navigasyon Butonları
+    st.markdown("<div class='nav-btn-container'>", unsafe_allow_html=True)
+    nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
+    with nav_col1:
+        if st.session_state.current_page < total_questions - 1:
+            if st.button("➡ Sonraki Soru"):
+                st.session_state.current_page += 1
+                st.rerun()
+                
+    with nav_col3:
+        if st.session_state.current_page > 0:
+            if st.button("⬅️ Önceki Soru"):
+                st.session_state.current_page -= 1
+                st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown("---")
+    if st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör"):
+        correct_count, wrong_count = 0, 0
+        for i, q_item in enumerate(st.session_state.questions):
+            if st.session_state.selected_answers.get(i) == q_item['answer']:
+                correct_count += 1
+            else:
+                wrong_count += 1
+
+        score = (correct_count / total_questions) * 100
+        st.balloons()
+        st.success("🎉 Deneme sınavı başarıyla tamamlandı!")
+        
+        res_col1, res_col2, res_col3 = st.columns(3)
+        res_col1.metric("✅ Doğru Sayısı", correct_count)
+        res_col2.metric("❌ Yanlış Sayısı", wrong_count)
+        res_col3.metric("🎯 Genel Başarı Puanı", f"{score:.1f} Puan")
+
+        with st.expander("📖 Detaylı Soru Çözüm, Cevap Anahtarı ve Tüm Şıkları İncele", expanded=True):
+            for i, q_item in enumerate(st.session_state.questions):
+                user_ans = st.session_state.selected_answers.get(i, "Boş")
+                correct_ans = q_item['answer']
+                status = "✅ Doğru" if user_ans == correct_ans else "❌ Yanlış / Boş"
+                
+                st.markdown(f"### Soru {i + 1} [{q_item.get('subject', '')}] — {status}")
+                
+                p_text = str(q_item.get('passage', '')).strip()
+                if p_text and p_text.lower() != "null" and p_text != "":
+                    st.markdown(f"**Metin / Öncül:** {p_text}")
+                    
+                if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
+                    draw_geometry_shape(q_item['shape'])
+                    
+                st.markdown(f"**Soru Kökü:** {q_item['question']}")
+                
+                # Tüm Şıkları Listeleme
+                st.markdown("**Tüm Şıklar:**")
+                opts = q_item.get('options', {})
+                for key_opt, text_opt in opts.items():
+                    is_correct_marker = " 🎯 **(Doğru Cevap)**" if key_opt == correct_ans else ""
+                    is_user_marker = " 👈 *(Sizin Cevabınız)*" if key_opt == user_ans else ""
+                    st.markdown(f"- **{key_opt})** {text_opt}{is_correct_marker}{is_user_marker}")
+                
+                # Çözüm / Açıklama Alanı
+                explanation = q_item.get('explanation', '')
+                if explanation:
+                    st.markdown(f"<div class='solution-box'>💡 <b>Çözüm Açıklaması:</b> {explanation}</div>", unsafe_allow_html=True)
+                else:
+                    st.markdown(f"<div class='solution-box'>💡 <b>Doğru Cevap:</b> {correct_ans} şıkkıdır. Sizin tercihiniz: <b>{user_ans}</b></div>", unsafe_allow_html=True)
+                
+                st.markdown("---")
