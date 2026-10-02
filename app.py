@@ -105,26 +105,33 @@ st.markdown("""
         margin-top: 0.8rem;
         margin-bottom: 1.2rem;
     }
+    
+    /* Geliştirilmiş Modern Tablo Stili */
+    .custom-table-container {
+        overflow-x: auto;
+        margin: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
+    }
     .custom-table {
         width: 100%;
         border-collapse: collapse;
-        margin: 15px 0;
-        font-size: 1rem;
+        font-size: 0.95rem;
         background-color: #ffffff;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        text-align: left;
     }
     .custom-table th {
-        background-color: #0284c7;
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
         color: white;
-        text-align: left;
-        padding: 12px 16px;
+        padding: 14px 18px;
         font-weight: 700;
+        letter-spacing: 0.3px;
+        border-bottom: 2px solid #0284c7;
     }
     .custom-table td {
-        padding: 10px 16px;
-        border-bottom: 1px solid #e2e8f0;
+        padding: 12px 18px;
+        border-bottom: 1px solid #f1f5f9;
         color: #334155;
     }
     .custom-table tr:last-child td {
@@ -133,10 +140,13 @@ st.markdown("""
     .custom-table tr:nth-child(even) {
         background-color: #f8fafc;
     }
+    .custom-table tr:hover {
+        background-color: #f1f5f9;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Dinamik Görselleştirme, Tablo ve Şema Motoru (Boyut ve üst üste binme sorunları giderilmiş sürüm)
+# Gelişmiş Dinamik Görselleştirme, Tablo ve Şema Motoru
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -145,14 +155,14 @@ def draw_geometry_shape(shape_data):
     if not st_type:
         return
 
-    # Eğer model tablo seçtiyse, Matplotlib yerine temiz bir HTML tablo çizdirilir (grafik çakışmalarını tamamen önler)
+    # Gelişmiş HTML Tablo Motoru
     if st_type == "table":
-        headers = shape_data.get("headers", ["Değişken", "Değer"])
+        headers = shape_data.get("headers", ["Veri", "Değer"])
         rows = shape_data.get("rows", [["Örnek 1", "10"], ["Örnek 2", "20"]])
         title = str(shape_data.get("title", "Veri Tablosu"))
         
-        st.markdown(f"<p style='font-weight: 700; color: #1e293b; margin-bottom: 0.3rem;'>📊 {title}</p>", unsafe_allow_html=True)
-        table_html = "<table class='custom-table'><thead><tr>"
+        st.markdown(f"<p style='font-weight: 700; color: #1e293b; margin-bottom: 0.4rem; font-size: 1.05rem;'>📊 {title}</p>", unsafe_allow_html=True)
+        table_html = "<div class='custom-table-container'><table class='custom-table'><thead><tr>"
         for h in headers:
             table_html += f"<th>{h}</th>"
         table_html += "</tr></thead><tbody>"
@@ -161,12 +171,12 @@ def draw_geometry_shape(shape_data):
             for cell in row:
                 table_html += f"<td>{cell}</td>"
             table_html += "</tr>"
-        table_html += "</tbody></table>"
+        table_html += "</tbody></table></div>"
         st.markdown(table_html, unsafe_allow_html=True)
         return
 
-    # Matplotlib görselleri için kompakt ve güvenli boyutlandırma (Sütun taşmalarını engeller)
-    fig, ax = plt.subplots(figsize=(4.0, 2.8))
+    # Matplotlib görselleri için profesyonel boyutlandırma ve layout optimizasyonu
+    fig, ax = plt.subplots(figsize=(4.5, 3.0))
     ax.set_aspect('equal')
     ax.axis('off')
     
@@ -237,17 +247,16 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
 
-        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ (Üst üste binmeleri engellemek için güvenlik marjları eklendi)
+        # 3. MATEMATİK & FEN ÇUBUK / GRAFİK ANALİZİ (Çakışmasız, profesyonel eksen tasarımı)
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
             title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
-            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.42, edgecolor='#1e293b', linewidth=1)
+            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
             
-            # Başlık çakışmasını tamamen önlemek için pad artırıldı
-            ax.set_title(title, fontsize=10, fontweight='bold', color='#1e293b', pad=32)
+            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
             
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
@@ -257,42 +266,120 @@ def draw_geometry_shape(shape_data):
             max_val = max(clean_vals) if clean_vals else 10
             for bar in bars:
                 height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.08), f'{height:g}',
+                ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.05), f'{height:g}',
                         ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1e293b')
             
-            # Üst sınır iki katına çıkarılarak etiketlerin kırpılması önlendi
-            ax.set_ylim(0, max_val * 2.0)
+            ax.set_ylim(0, max_val * 1.3)
             ax.set_xlim(-0.8, len(labels) - 0.2)
 
-        # 4. FEN BİLİMLERİ / UZAY / KUVVET ŞEMASI
-        elif st_type in ["science_space", "space_orbit", "eclipse", "physics_force"]:
+        # 4. MATEMATİK ÇİZGİ / TREND GRAFİĞİ (Gelişmiş kütüphane desteği ile eklenmiştir)
+        elif st_type == "line_chart":
+            labels = shape_data.get("labels", ["Oca", "Şub", "Mar", "Nis", "May"])
+            values = shape_data.get("values", [12, 18, 15, 22, 30])
+            title = str(shape_data.get("title", "Değişim ve Çizgi Grafiği"))
+            
+            clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
+            
+            ax.plot(labels, clean_vals, marker='o', color='#ea580c', linewidth=2.5, markersize=7, markerfacecolor='#0284c7', markeredgecolor='#ffffff')
+            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
+            
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax.spines['left'].set_color('#cbd5e1')
+            ax.spines['bottom'].set_color('#cbd5e1')
+            
+            max_val = max(clean_vals) if clean_vals else 10
+            for x_pos, y_val in enumerate(clean_vals):
+                ax.text(x_pos, y_val + (max_val * 0.06), f'{y_val:g}', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1e293b')
+                
+            ax.set_ylim(0, max_val * 1.35)
+            ax.set_xlim(-0.5, len(labels) - 0.5)
+
+        # 5. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ÇEŞİTLİLİĞİ (Sorunun alt tipine göre dinamik değişir)
+        elif st_type in ["science_space", "space_orbit", "eclipse", "moon_phases"]:
+            sub_sub = str(shape_data.get("sub_type", "orbit")).strip().lower()
             title = str(shape_data.get("title", "Fen Bilimleri Sistem Şeması"))
             
-            sun = plt.Circle((-2.2, 0), 0.85, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
-            ax.add_patch(sun)
-            ax.text(-2.2, -1.4, "Kaynak / Odak", fontsize=8, fontweight='bold', color='#d97706', ha='center')
-            
-            orbit = plt.Circle((0, 0), 2.0, fill=False, edgecolor='#94a3b8', linestyle='--', linewidth=1)
-            ax.add_patch(orbit)
-            
-            earth = plt.Circle((0, 0), 0.45, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
-            ax.add_patch(earth)
-            ax.text(0, -0.8, "Cisim 1", fontsize=8, fontweight='bold', color='#0284c7', ha='center')
-            
-            moon = plt.Circle((1.4, 1.4), 0.2, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
-            ax.add_patch(moon)
-            ax.text(1.4, 1.9, "Cisim 2", fontsize=7.5, fontweight='bold', color='#64748b', ha='center')
-            
-            ax.set_title(title, fontsize=10, fontweight='bold', color='#1e293b', pad=32)
-            ax.set_xlim(-4.0, 3.5)
-            ax.set_ylim(-2.8, 2.8)
+            if sub_sub == "moon_phases":
+                # Ay'ın Evreleri Gösterimi
+                sun_indicator = plt.Circle((-3.5, 0), 0.6, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.2)
+                ax.add_patch(sun_indicator)
+                ax.text(-3.5, -0.9, "Güneş Işığı", fontsize=7.5, fontweight='bold', color='#d97706', ha='center')
+                
+                earth_center = plt.Circle((0, 0), 0.7, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
+                ax.add_patch(earth_center)
+                ax.text(0, -0.2, "Dünya", fontsize=8, fontweight='bold', color='white', ha='center', va='center')
+                
+                # Çevredeki Ay Konumları
+                moon_positions = [
+                    (0, 1.8, "Yeni Ay"), (1.8, 0, "İlk Dördün"),
+                    (0, -1.8, "Dolunay"), (-1.8, 0, "Son Dördün")
+                ]
+                for mx, my, mlabel in moon_positions:
+                    m_circle = plt.Circle((mx, my), 0.3, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
+                    ax.add_patch(m_circle)
+                    ax.text(mx, my - 0.6, mlabel, fontsize=7, fontweight='bold', color='#334155', ha='center')
+                    
+                ax.set_xlim(-4.5, 4.5)
+                ax.set_ylim(-3.0, 3.0)
+                
+            elif sub_sub == "solar_eclipse":
+                # Güneş Tutulması: Güneş -> Ay -> Dünya
+                sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
+                ax.add_patch(sun_p)
+                ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
+                
+                moon_p = plt.Circle((-0.7, 0), 0.25, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
+                ax.add_patch(moon_p)
+                ax.text(-0.7, -0.5, "Ay", fontsize=8, fontweight='bold', color='#64748b', ha='center')
+                
+                earth_p = plt.Circle((1.5, 0), 0.55, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
+                ax.add_patch(earth_p)
+                ax.text(1.5, -0.8, "Dünya", fontsize=8, fontweight='bold', color='#0284c7', ha='center')
+                
+                ax.set_xlim(-3.8, 3.0)
+                ax.set_ylim(-2.0, 2.0)
+                
+            elif sub_sub == "lunar_eclipse":
+                # Ay Tutulması: Güneş -> Dünya -> Ay
+                sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
+                ax.add_patch(sun_p)
+                ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
+                
+                earth_p = plt.Circle((-0.5, 0), 0.55, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
+                ax.add_patch(earth_p)
+                ax.text(-0.5, -0.8, "Dünya", fontsize=8, fontweight='bold', color='#0284c7', ha='center')
+                
+                moon_p = plt.Circle((1.5, 0), 0.25, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
+                ax.add_patch(moon_p)
+                ax.text(1.5, -0.5, "Ay", fontsize=8, fontweight='bold', color='#64748b', ha='center')
+                
+                ax.set_xlim(-3.8, 3.0)
+                ax.set_ylim(-2.0, 2.0)
+                
+            else:
+                # Standart Dünya-Güneş Yörünge Gösterimi
+                sun = plt.Circle((-2.0, 0), 0.8, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
+                ax.add_patch(sun)
+                ax.text(-2.0, -1.2, "Güneş", fontsize=8.5, fontweight='bold', color='#d97706', ha='center')
+                
+                orbit = plt.Circle((0, 0), 2.1, fill=False, edgecolor='#94a3b8', linestyle='--', linewidth=1.2)
+                ax.add_patch(orbit)
+                
+                earth = plt.Circle((2.1, 0), 0.4, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.2)
+                ax.add_patch(earth)
+                ax.text(2.1, -0.7, "Dünya", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
+                
+                ax.set_xlim(-3.8, 3.5)
+                ax.set_ylim(-2.5, 2.5)
+
+            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
 
         plt.tight_layout()
         buf = io.BytesIO()
         plt.savefig(buf, format='png', bbox_inches='tight', dpi=180)
         buf.seek(0)
-        # Genişlik sabitlemesi yapılarak görsellerin devasa boyutlarda görünmesi engellendi
-        st.image(buf, width=320)
+        st.image(buf, width=340)
         plt.close(fig)
     except Exception as e:
         plt.close(fig)
@@ -389,7 +476,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen MEB müfredatı soru hazırlama uzmanısın. Paragraf, metin, tablo ve fen bilimleri grafik sorularında asla kesinti yapmaz, eksiksiz üretirsin."},
+            {"role": "system", "content": "Sen MEB müfredatı soru hazırlama uzmanısın. Paragraf, metin, tablo ve fen bilimleri grafik/şema sorularında asla kesinti yapmaz, eksiksiz üretirsin."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.75,
@@ -442,7 +529,7 @@ if generate_btn:
     current_topic_val = st.session_state.custom_topic_input
     custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
     
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, optimize edilmiş grafikler ve temiz HTML tablolarla 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, gelişmiş matematik grafik kütüphaneleri ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
@@ -450,18 +537,19 @@ if generate_btn:
             f"ZORLUK KADEMESİ VE KALİTE KRİTERİ: '{difficulty_level}'.\n\n"
             "DERS DAĞILIMI VE KESİN SORU SAYILARI VE İÇERİK KURALLARI (TOPLAM TAM 80 SORU):\n"
             "1. Türkçe: 15 Soru (1-15 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, uzun metinler, dil bilgisi, görsel okuma, deyimler/atasözleri). Metinleri ASLA KISALTMA, eksiksiz tam yaz.\n"
-            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, oran-orantı, problemler). Geometri ve veri sorularında mutlaka 'shape' json objesi ile şema görseli ekle.\n"
-            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet ve hareket, Güneş/Dünya/Ay, hücre, maddeler, elektrik devreleri, ekosistem). Karmaşık veya üst üste binme riski olan verilerde grafik yerine mutlaka 'table' tipi şema kullan.\n"
+            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, çizgi grafikleri, oran-orantı, problemler). Grafik sorularında çubuk ('bar_chart') veya çizgi grafiği ('line_chart') kütüphane şemalarını mutlaka kullan.\n"
+            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet ve hareket, Güneş/Dünya/Ay hareketleri, evreler, tutulmalar, hücre, maddeler). Dünya, Güneş, Ay sorularında hep aynı şemayı ASLA kullanma; sorunun konusuna göre 'moon_phases' (evrecikler), 'solar_eclipse' (güneş tutulması), 'lunar_eclipse' (ay tutulması) veya yörünge şemalarından soruya en uygun olanını seç.\n"
             "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Kesinlikle Sosyal Bilgiler dersine ait (Tarih, coğrafya, harita okuma, kültürel miras, hak ve sorumluluklar).\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Kesinlikle Din Kültürü dersine ait (Ayet ve hadis yorumlama, İslam kültürü, değerler eğitimi).\n"
             "6. İngilizce (English): 10 Soru (71-80 arası) - Kesinlikle İngilizce dersine ait (Diyalog tamamlama, kartlar, tablo eşleştirme, kelime bilgisi).\n\n"
             "🚨 KESİN GÖRSEL VE ŞEMA KURALLARI (`shape` nesnesi):\n"
-            "Soruların matematik, fen ve bazı veri okuma bölümlerinde 'shape' alanını boş bırakma; uygun şema parametresini ekle:\n"
+            "Soruların matematik, fen ve veri okuma bölümlerinde 'shape' alanını boş bırakma; uygun şema parametresini ekle:\n"
             "- Üçgen için: {\"type\": \"triangle\", \"sub_type\": \"right/scalene/equilateral\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"side_ab\": \"...\", \"angle_a\": \"...\"}\n"
             "- Çember için: {\"type\": \"circle\", \"center\": \"O\", \"radius\": \"5 cm\", \"show_diameter\": true}\n"
-            "- Grafik için: {\"type\": \"bar_chart\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [10, 25, 15, 30], \"title\": \"Grafik Başlığı\"}\n"
-            "- Tablo için (grafik yerine tercih edilebilir): {\"type\": \"table\", \"title\": \"Veri Tablosu Başlığı\", \"headers\": [\"Sütun 1\", \"Sütun 2\"], \"rows\": [[\"Satır 1A\", \"Satır 1B\"], [\"Satır 2A\", \"Satır 2B\"]]}\n"
-            "- Fen/Sistem için: {\"type\": \"science_space\", \"title\": \"Deney / Sistem Şeması\"}\n"
+            "- Çubuk Grafik için: {\"type\": \"bar_chart\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [10, 25, 15, 30], \"title\": \"Grafik Başlığı\"}\n"
+            "- Çizgi Grafik için: {\"type\": \"line_chart\", \"labels\": [\"Oca\", \"Şub\", \"Mar\", \"Nis\"], \"values\": [12, 18, 15, 22], \"title\": \"Trend Grafik Başlığı\"}\n"
+            "- Tablo için: {\"type\": \"table\", \"title\": \"Veri Tablosu Başlığı\", \"headers\": [\"Sütun 1\", \"Sütun 2\"], \"rows\": [[\"Satır 1A\", \"Satır 1B\"], [\"Satır 2A\", \"Satır 2B\"]]}\n"
+            "- Fen / Uzay / Ay Evreleri için: {\"type\": \"science_space\", \"sub_type\": \"moon_phases\" (veya solar_eclipse, lunar_eclipse, orbit), \"title\": \"Sistem Şeması Başlığı\"}\n"
             "Görsel gerekmeyen metin/dil bilgisi sorularında 'shape' değerini null bırak.\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
@@ -611,7 +699,7 @@ if st.session_state.quiz_started and st.session_state.questions:
                 
                 st.markdown(f"### Soru {i + 1} [{q_item.get('subject', '')}] — {status}")
                 
-                p_text = str(q_item.get('passage', '')).strip()
+                p_text = str(q_item.get('passage', '')).setItem('') if 'passage' not in q_item else str(q_item.get('passage', '')).strip()
                 if p_text and p_text.lower() != "null" and p_text != "":
                     st.markdown(f"**Metin / Öncül:** {p_text}")
                     
