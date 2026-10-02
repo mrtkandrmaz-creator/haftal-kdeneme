@@ -96,10 +96,19 @@ st.markdown("""
         font-weight: 700;
         font-size: 0.9rem;
     }
+    .solution-box {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-left: 4px solid #10b981;
+        padding: 1rem;
+        border-radius: 6px;
+        margin-top: 0.8rem;
+        color: #334155;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Dinamik Görselleştirme ve Şema Motoru
+# Üst üste binmeleri (overlapping) tamamen engelleyen izole Grafik ve Şema Motoru
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -108,13 +117,15 @@ def draw_geometry_shape(shape_data):
     if not st_type:
         return
 
-    fig, ax = plt.subplots(figsize=(4.5, 3.6))
-    ax.set_aspect('equal')
-    ax.axis('off')
+    # Her çizim için yalıtılmış figür ve eksen
+    fig, ax = plt.subplots(figsize=(5, 3.8))
+    ax.clear()
     
     try:
-        # 1. GEOMETRİ / ÜÇGEN ÇİZİMİ
+        # 1. GEOMETRİ / ÜÇGEN
         if st_type == "triangle":
+            ax.set_aspect('equal')
+            ax.axis('off')
             sub_type = str(shape_data.get("sub_type", "scalene")).strip().lower()
             a_label = str(shape_data.get("A", "A"))
             b_label = str(shape_data.get("B", "B"))
@@ -136,25 +147,27 @@ def draw_geometry_shape(shape_data):
             triangle = plt.Polygon(pts, closed=True, facecolor='#f8fafc', edgecolor='#1e293b', linewidth=2)
             ax.add_patch(triangle)
             
-            offsets = [[-0.45, -0.45], [0.35, -0.45], [0, 0.3]]
+            offsets = [[-0.5, -0.5], [0.4, -0.5], [0, 0.35]]
             labels = [b_label, c_label, a_label]
             for i, p in enumerate(pts):
                 ax.text(p[0] + offsets[i][0], p[1] + offsets[i][1], labels[i], fontsize=11, fontweight='bold', color='#1e293b')
             
             if side_ab:
-                ax.text(0.12, 1.6, f"AB: {side_ab}", fontsize=8.5, color='#0284c7', fontweight='bold')
+                ax.text(-0.35, 1.5, f"AB: {side_ab}", fontsize=8.5, color='#0284c7', fontweight='bold', ha='right')
             if side_bc:
-                ax.text(2.5, -0.55, f"BC: {side_bc}", fontsize=8.5, color='#0284c7', fontweight='bold', ha='center')
+                ax.text(2.5, -0.65, f"BC: {side_bc}", fontsize=8.5, color='#0284c7', fontweight='bold', ha='center')
             if side_ac:
-                ax.text(2.35, 2.3, f"AC: {side_ac}", fontsize=8.5, color='#0284c7', fontweight='bold')
+                ax.text(2.8, 2.3, f"AC: {side_ac}", fontsize=8.5, color='#0284c7', fontweight='bold')
             if angle_a:
-                ax.text(1.9, 3.5, f"Â={angle_a}", fontsize=8.5, color='#ea580c', fontweight='bold', ha='center')
+                ax.text(2.0, 3.6, f"Â={angle_a}", fontsize=9, color='#ea580c', fontweight='bold', ha='center')
                 
-            ax.set_xlim(-1.5, 6.2)
-            ax.set_ylim(-1.5, 5.2)
+            ax.set_xlim(-2.0, 6.5)
+            ax.set_ylim(-1.8, 5.0)
 
         # 2. ÇEMBER VE DAİRE
         elif st_type == "circle":
+            ax.set_aspect('equal')
+            ax.axis('off')
             center_label = str(shape_data.get("center", "O"))
             radius_label = str(shape_data.get("radius", "r"))
             show_diameter = bool(shape_data.get("show_diameter", False))
@@ -163,31 +176,31 @@ def draw_geometry_shape(shape_data):
             circle = plt.Circle((0, 0), 2.2, facecolor='#f8fafc', edgecolor='#1e293b', linewidth=2)
             ax.add_patch(circle)
             ax.plot(0, 0, 'o', color='#ea580c', markersize=6)
-            ax.text(0.18, -0.38, center_label, fontsize=11, fontweight='bold', color='#ea580c')
+            ax.text(0.2, -0.4, center_label, fontsize=11, fontweight='bold', color='#ea580c')
             
             if show_diameter:
                 ax.plot([-2.2, 2.2], [0, 0], linestyle='--', color='#94a3b8', linewidth=1.4)
-                ax.text(0, 0.22, f"Çap: {radius_label}", fontsize=9, fontweight='bold', color='#0284c7', ha='center')
+                ax.text(0, 0.25, f"Çap: {radius_label}", fontsize=9, fontweight='bold', color='#0284c7', ha='center')
             else:
                 ax.plot([0, 2.2], [0, 0], color='#0284c7', linewidth=1.8)
-                ax.text(1.1, 0.18, f"r = {radius_label}", fontsize=9, fontweight='bold', color='#0284c7')
+                ax.text(1.1, 0.22, f"r = {radius_label}", fontsize=9, fontweight='bold', color='#0284c7')
                 
             if chord:
                 ax.plot([-1.8, 1.8], [-1.3, -1.3], color='#10b981', linewidth=1.8)
-                ax.text(0, -1.68, f"Kiriş: {chord}", fontsize=9, fontweight='bold', color='#10b981', ha='center')
+                ax.text(0, -1.75, f"Kiriş: {chord}", fontsize=9, fontweight='bold', color='#10b981', ha='center')
                 
-            ax.set_xlim(-3, 3)
-            ax.set_ylim(-3, 3)
+            ax.set_xlim(-3.2, 3.2)
+            ax.set_ylim(-3.2, 3.2)
 
-        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ
+        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ (Binmeyi önleyen dinamik marjinler)
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
             title = str(shape_data.get("title", "Veri Analizi"))
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
-            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1)
-            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=8)
+            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.42, edgecolor='#1e293b', linewidth=1)
+            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=12)
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
             ax.spines['left'].set_color('#cbd5e1')
@@ -195,42 +208,45 @@ def draw_geometry_shape(shape_data):
             
             for bar in bars:
                 height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2., height + 0.2, f'{height:g}',
+                ax.text(bar.get_x() + bar.get_width()/2., height + (max(clean_vals)*0.03), f'{height:g}',
                         ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
             
             max_y = max(clean_vals) if clean_vals else 10
-            ax.set_ylim(0, max_y * 1.3)
+            ax.set_ylim(0, max_y * 1.35)
             ax.set_xlim(-0.8, len(labels)-0.2)
+            ax.tick_params(axis='x', labelsize=9)
+            ax.tick_params(axis='y', labelsize=9)
 
         # 4. FEN BİLİMLERİ / UZAY / KUVVET ŞEMASI
         elif st_type in ["science_space", "space_orbit", "eclipse", "physics_force"]:
+            ax.set_aspect('equal')
+            ax.axis('off')
             title = str(shape_data.get("title", "Sistem Şeması"))
             
-            # Örnekfen şeması çizimi (Güneş-Dünya-Ay veya Kuvvet Diyagramı)
             sun = plt.Circle((-2.2, 0), 0.85, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
             ax.add_patch(sun)
-            ax.text(-2.2, -1.2, "Merkez / Kaynak", fontsize=8.5, fontweight='bold', color='#d97706', ha='center')
+            ax.text(-2.2, -1.3, "Merkez / Kaynak", fontsize=8.5, fontweight='bold', color='#d97706', ha='center')
             
             orbit = plt.Circle((0, 0), 2.0, fill=False, edgecolor='#94a3b8', linestyle='--', linewidth=1)
             ax.add_patch(orbit)
             
             earth = plt.Circle((0, 0), 0.45, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
             ax.add_patch(earth)
-            ax.text(0, -0.7, "Cisim 1", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
+            ax.text(0, -0.75, "Cisim 1", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
             
             moon = plt.Circle((1.4, 1.4), 0.2, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
             ax.add_patch(moon)
-            ax.text(1.4, 1.75, "Cisim 2", fontsize=8, fontweight='bold', color='#64748b', ha='center')
+            ax.text(1.4, 1.85, "Cisim 2", fontsize=8, fontweight='bold', color='#64748b', ha='center')
             
-            ax.set_title(title, fontsize=10, fontweight='bold', color='#1e293b', pad=8)
-            ax.set_xlim(-3.5, 3)
-            ax.set_ylim(-2.2, 2.2)
+            ax.set_title(title, fontsize=10, fontweight='bold', color='#1e293b', pad=10)
+            ax.set_xlim(-3.5, 3.2)
+            ax.set_ylim(-2.5, 2.5)
 
         plt.tight_layout()
         buf = io.BytesIO()
-        plt.savefig(buf, format='png', bbox_inches='tight', dpi=160)
+        plt.savefig(buf, format='png', bbox_inches='tight', dpi=170)
         buf.seek(0)
-        st.image(buf, width=380)
+        st.image(buf, width=400)
         plt.close(fig)
     except Exception as e:
         plt.close(fig)
@@ -327,7 +343,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen MEB müfredatı soru hazırlama uzmanısın. Her dersin kendi alanına ait konularını tam olarak işler, sorularla kusursuz uyumlu grafik ve şemalar üretirsin."},
+            {"role": "system", "content": "Sen MEB müfredatı soru hazırlama uzmanısın. Her dersin kendi alanına ait konularını tam olarak işler, sorularla kusursuz uyumlu grafik ve şemalar üretir ve her soru için ayrıntılı çözüm alanı eklersin."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.75,
@@ -380,27 +396,21 @@ if generate_btn:
     current_topic_val = st.session_state.custom_topic_input
     custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
     
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için her dersin kendi özel alanına uygun, görsel şemalarla desteklenmiş 80 yeni nesil soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için her dersin kendi alanına uygun, üst üste binmeyen grafikli şemalar ve ayrıntılı çözümlerle 80 yeni nesil soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
             f"{custom_prompt_addon}\n\n"
             f"ZORLUK KADEMESİ VE KALİTE KRİTERİ: '{difficulty_level}'.\n\n"
             "DERS DAĞILIMI VE KESİN SORU SAYILARI VE İÇERİK KURALLARI (TOPLAM TAM 80 SORU):\n"
-            "1. Türkçe: 15 Soru (1-15 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, dil bilgisi, görsel okuma, deyimler/atasözleri). Asla başka ders konusu olamaz.\n"
-            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, oran-orantı, problemler). Geometri ve veri sorularında mutlaka 'shape' json objesi ile şema görseli ekle.\n"
-            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet ve hareket, Güneş/Dünya/Ay, hücre, maddeler, elektrik devreleri, ekosistem). Deney düzenekleri veya grafikler için 'shape' json objesi kullan.\n"
-            "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Kesinlikle Sosyal Bilgiler dersine ait (Tarih, coğrafya, harita okuma, kültürel miras, hak ve sorumluluklar).\n"
-            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Kesinlikle Din Kültürü dersine ait (Ayet ve hadis yorumlama, İslam kültürü, değerler eğitimi).\n"
-            "6. İngilizce (English): 10 Soru (71-80 arası) - Kesinlikle İngilizce dersine ait (Diyalog tamamlama, kartlar, tablo eşleştirme, kelime bilgisi).\n\n"
-            "🚨 KESİN GÖRSEL VE ŞEMA KURALLARI (`shape` nesnesi):\n"
-            "Soruların matematik, fen ve bazı görsel okuma bölümlerinde 'shape' alanını boş bırakma; şemaya uygun parametreleri ekle:\n"
-            "- Üçgen için: {\"type\": \"triangle\", \"sub_type\": \"right/scalene/equilateral\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"side_ab\": \"...\", \"angle_a\": \"...\"}\n"
-            "- Çember için: {\"type\": \"circle\", \"center\": \"O\", \"radius\": \"5 cm\", \"show_diameter\": true}\n"
-            "- Grafik/Veri için: {\"type\": \"bar_chart\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [10, 25, 15, 30], \"title\": \"Grafik Başlığı\"}\n"
-            "- Fen/Sistem için: {\"type\": \"science_space\", \"title\": \"Deney / Sistem Şeması\"}\n"
-            "Görsel gerekmeyen metin/dil bilgisi sorularında 'shape' değerini null bırak.\n\n"
-            "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
+            "1. Türkçe: 15 Soru (1-15 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, dil bilgisi, görsel okuma).\n"
+            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, problemler). Geometri ve veri sorularında mutlaka 'shape' json objesi ekle.\n"
+            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet, hareket, uzay, hücre, maddeler, elektrik). Grafik veya düzenekler için 'shape' objesi kullan.\n"
+            "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Kesinlikle Sosyal Bilgiler dersine ait (Tarih, coğrafya, harita okuma, kültürel miras).\n"
+            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Kesinlikle Din Kültürü dersine ait.\n"
+            "6. İngilizce (English): 10 Soru (71-80 arası) - Kesinlikle İngilizce dersine ait.\n\n"
+            "🚨 HER SORU İÇİN ÇÖZÜM ALANI (`solution`):"
+            "Her sorunun çözümünü adım adım açıklayan ayrıntılı bir açıklama metnini 'solution' alanına yaz.\n\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
             "{\n"
             "    \"questions\": [\n"
@@ -416,7 +426,8 @@ if generate_btn:
             "                \"C\": \"C şıkkı\",\n"
             "                \"D\": \"D şıkkı\"\n"
             "            },\n"
-            "            \"answer\": \"A\"\n"
+            "            \"answer\": \"A\",\n"
+            "            \"solution\": \"Adım adım detaylı soru çözüm açıklaması...\"\n"
             "        }\n"
             "    ]\n"
             "}"
@@ -551,4 +562,8 @@ if st.session_state.quiz_started and st.session_state.questions:
                     draw_geometry_shape(q_item['shape'])
                 st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
+                
+                # Ayrıntılı Çözüm Alanı
+                sol_text = q_item.get('solution', 'Çözüm açıklaması eklenmemiştir.')
+                st.markdown(f"<div class='solution-box'>💡 <b>Adım Adım Çözüm:</b><br>{sol_text}</div>", unsafe_allow_html=True)
                 st.markdown("---")
