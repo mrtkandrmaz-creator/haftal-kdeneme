@@ -108,7 +108,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Üst üste binmeleri (overlapping) tamamen engelleyen izole Grafik ve Şema Motoru
+# Üst üste binmeleri tamamen engelleyen izole Grafik ve Şema Motoru
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -117,7 +117,6 @@ def draw_geometry_shape(shape_data):
     if not st_type:
         return
 
-    # Her çizim için yalıtılmış figür ve eksen
     fig, ax = plt.subplots(figsize=(5, 3.8))
     ax.clear()
     
@@ -192,7 +191,7 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
 
-        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ (Binmeyi önleyen dinamik marjinler)
+        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
@@ -279,6 +278,8 @@ if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 if "custom_topic_input" not in st.session_state:
     st.session_state.custom_topic_input = ""
+if "kaynak_metin" not in st.session_state:
+    st.session_state.kaynak_metin = ""
 
 # Yan Menü Ayarları
 st.sidebar.markdown("## ⚙ MEB Müfredat & Sınav Ayarları")
@@ -310,11 +311,11 @@ st.sidebar.text_input(
     key="widget_custom_topic",
     on_change=update_custom_topic,
     placeholder="Örn: Açılar, Hücre, Paragraf...",
-    help="Belirttiğiniz konu soruların yaklaşık 1/3'ünde dengeli odak olarak yer alır, kalanı genel müfredat kazanımlarından oluşur."
+    help="Belirttiğiniz konu soruların odağında yer alır."
 )
 
 difficulty_level = st.sidebar.selectbox(
-    "📊 Soru Zorluk Derecesi (Kademe Seçimi)",
+    "📊 Soru Zorluk Derecesi",
     [
         "🟢 1. Çok Kolay / Temel Kazanım Düzeyi",
         "🔵 2. Kolay / Bilgiyi Hatırlama ve Kavrama",
@@ -325,16 +326,23 @@ difficulty_level = st.sidebar.selectbox(
     ]
 )
 
-question_count = 80
-
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🚀 Soru İşlemleri")
 generate_btn = st.sidebar.button("Soruları Üret")
 
-# Ana Ekran Başlığı
+# Ana Ekran Başlığı ve Paragraf/Metin Giriş Alanı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
 custom_info_str = f" | Odak Kriter: <b>{st.session_state.custom_topic_input}</b>" if st.session_state.custom_topic_input.strip() else ""
 st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b>{custom_info_str} | Zorluk Kademesi: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
+st.markdown("---")
+
+st.markdown("### 📝 Kaynak Paragraf veya Metin (Opsiyonel / Özelleştirilmiş Alan)")
+st.session_state.kaynak_metin = st.text_area(
+    "Soruların türetileceği ana metni, paragrafı veya özel içeriği buraya yapıştırabilirsiniz:",
+    value=st.session_state.kaynak_metin,
+    height=140,
+    placeholder="Buraya metin girerseniz sorular bu metin/kazanım odağında üretilir; boş bırakılırsa haftalık MEB müfredatına göre üretilir..."
+)
 st.markdown("---")
 
 def call_groq_with_key(api_key, prompt_text):
@@ -394,13 +402,16 @@ def multi_pool_generate(prompt_text):
 # Soru Üretim Mantığı
 if generate_btn:
     current_topic_val = st.session_state.custom_topic_input
-    custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
+    kaynak_metin_val = st.session_state.kaynak_metin
+    
+    custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'" if current_topic_val.strip() else ""
+    metin_addon = f"\nKAYNAK METİN / PARAGRAF BİLGİSİ:\n{kaynak_metin_val}\n(Soruların hazırlanmasında bu metni ve bağlamı baz al.)" if kaynak_metin_val.strip() else ""
     
     with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için her dersin kendi alanına uygun, üst üste binmeyen grafikli şemalar ve ayrıntılı çözümlerle 80 yeni nesil soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
-            f"{custom_prompt_addon}\n\n"
+            f"{custom_prompt_addon}{metin_addon}\n\n"
             f"ZORLUK KADEMESİ VE KALİTE KRİTERİ: '{difficulty_level}'.\n\n"
             "DERS DAĞILIMI VE KESİN SORU SAYILARI VE İÇERİK KURALLARI (TOPLAM TAM 80 SORU):\n"
             "1. Türkçe: 15 Soru (1-15 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, dil bilgisi, görsel okuma).\n"
@@ -442,7 +453,6 @@ if generate_btn:
                 st.session_state.quiz_started = False
                 st.session_state.selected_answers = {}
                 st.session_state.current_page = 0
-                st.session_state.custom_topic_input = ""
                 st.sidebar.success(f"✅ Toplam {len(st.session_state.questions)} soru başarıyla üretildi!")
                 st.rerun()
             except json.JSONDecodeError:
