@@ -27,7 +27,7 @@ st.markdown("""
         border-radius: 14px;
         font-weight: 800;
         font-size: 1.1rem;
-        padding: 1rem 1.2rem;
+        padding: 1.0rem 1.2rem;
         background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
         color: white;
         border: none;
@@ -96,10 +96,19 @@ st.markdown("""
         font-weight: 700;
         font-size: 0.9rem;
     }
+    .solution-box {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-left: 4px solid #10b981;
+        padding: 1rem;
+        border-radius: 6px;
+        margin-top: 0.8rem;
+        margin-bottom: 1.2rem;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Dinamik Görselleştirme ve Şema Motoru (Tüm grafik ve fen çizimleri optimize edildi)
+# Gelişmiş Dinamik Görselleştirme ve Şema Motoru (Üst üste binmeleri önleyen optimize edilmiş sürüm)
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -179,7 +188,7 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.5, 3.5)
             ax.set_ylim(-3.5, 3.5)
 
-        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ (Üst üste binmeleri önlemek için üst marj artırıldı)
+        # 3. SÜTUN / MATEMATİK & FEN GRAFİĞİ (Üst marjlar ve eksen payları optimize edildi)
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
@@ -188,8 +197,7 @@ def draw_geometry_shape(shape_data):
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1)
             
-            # Başlığın üst kısımla çakışmasını önlemek için yüksek offset
-            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=22)
             
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
@@ -198,11 +206,11 @@ def draw_geometry_shape(shape_data):
             
             for bar in bars:
                 height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2., height + (max(clean_vals)*0.05), f'{height:g}',
+                ax.text(bar.get_x() + bar.get_width()/2., height + (max(clean_vals)*0.06), f'{height:g}',
                         ha='center', va='bottom', fontsize=9.5, fontweight='bold', color='#1e293b')
             
             max_y = max(clean_vals) if clean_vals else 10
-            ax.set_ylim(0, max_y * 1.55)
+            ax.set_ylim(0, max_y * 1.65)
             ax.set_xlim(-0.8, len(labels)-0.2)
 
         # 4. FEN BİLİMLERİ / UZAY / KUVVET ŞEMASI
@@ -224,7 +232,7 @@ def draw_geometry_shape(shape_data):
             ax.add_patch(moon)
             ax.text(1.4, 1.9, "Cisim 2", fontsize=8, fontweight='bold', color='#64748b', ha='center')
             
-            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=22)
             ax.set_xlim(-4.0, 3.5)
             ax.set_ylim(-2.8, 2.8)
 
@@ -346,14 +354,10 @@ def call_gemini_with_key(api_key, prompt_text):
         contents=prompt_text,
     )
     text = response.text
-    if "
-```json" in text:
-        text = text.split("
-```json")[1].split("```")[0].strip()
-    elif "
-```" in text:
-        text = text.split("
-```")[1].split("```")[0].strip()
+    if "```json" in text:
+        text = text.split("```json")[1].split("```")[0].strip()
+    elif "```" in text:
+        text = text.split("```")[1].split("```")[0].strip()
     return text
 
 def multi_pool_generate(prompt_text):
@@ -546,16 +550,36 @@ if st.session_state.quiz_started and st.session_state.questions:
         res_col2.metric("❌ Yanlış Sayısı", wrong_count)
         res_col3.metric("🎯 Genel Başarı Puanı", f"{score:.1f} Puan")
 
-        with st.expander("📖 Detaylı Soru Çözüm ve Cevap Anahtarını İncele"):
+        with st.expander("📖 Detaylı Soru Çözüm, Cevap Anahtarı ve Tüm Şıkları İncele", expanded=True):
             for i, q_item in enumerate(st.session_state.questions):
                 user_ans = st.session_state.selected_answers.get(i, "Boş")
-                status = "✅" if user_ans == q_item['answer'] else "❌"
+                correct_ans = q_item['answer']
+                status = "✅ Doğru" if user_ans == correct_ans else "❌ Yanlış / Boş"
+                
+                st.markdown(f"### Soru {i + 1} [{q_item.get('subject', '')}] — {status}")
+                
                 p_text = str(q_item.get('passage', '')).strip()
                 if p_text and p_text.lower() != "null" and p_text != "":
-                    st.markdown(f"**Metin:** {p_text}")
+                    st.markdown(f"**Metin / Öncül:** {p_text}")
+                    
                 if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
                     draw_geometry_shape(q_item['shape'])
-                st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
-                st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
+                    
+                st.markdown(f"**Soru Kökü:** {q_item['question']}")
+                
+                # Tüm Şıkları Listeleme
+                st.markdown("**Tüm Şıklar:**")
+                opts = q_item.get('options', {})
+                for key_opt, text_opt in opts.items():
+                    is_correct_marker = " 🎯 **(Doğru Cevap)**" if key_opt == correct_ans else ""
+                    is_user_marker = " 👈 *(Sizin Cevabınız)*" if key_opt == user_ans else ""
+                    st.markdown(f"- **{key_opt})** {text_opt}{is_correct_marker}{is_user_marker}")
+                
+                # Çözüm / Açıklama Alanı (Eğer model açıklama döndüyse gösterir, dönmediyse şık bazlı özet sunar)
+                explanation = q_item.get('explanation', '')
+                if explanation:
+                    st.markdown(f"<div class='solution-box'>💡 <b>Çözüm Açıklaması:</b> {explanation}</div>", unsafe_allow_html=True)
+                else:
+                    st.markdown(f"<div class='solution-box'>💡 <b>Doğru Cevap:</b> {correct_ans} şıkkıdır. Sizin tercihiniz: <b>{user_ans}</b></div>", unsafe_allow_html=True)
+                
                 st.markdown("---")
-```eof
