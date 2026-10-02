@@ -122,7 +122,7 @@ def draw_geometry_shape(shape_data):
             
             if sub_type == "right":
                 pts = np.array([[0, 0], [4, 0], [0, 3]])
-                ax.plot([0, 0.4, 0.4, 0], [0, 0, 0.4, 0.4], color='#1e293b', linewidth=1.5) # Dik açı sembolü
+                ax.plot([0, 0.4, 0.4, 0], [0, 0, 0.4, 0.4], color='#1e293b', linewidth=1.5)
             elif sub_type == "equilateral":
                 h = np.sqrt(3) / 2 * 4
                 pts = np.array([[0, 0], [4, 0], [2, h]])
@@ -178,7 +178,7 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.5, 3.5)
             ax.set_ylim(-3, 3)
 
-        # 4. SÜTUN / ÇUBUK GRAFİK (Fen Bilimleri & Matematik)
+        # 4. SÜTUN / ÇUBUK GRAFİK
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
@@ -283,7 +283,6 @@ weeks_options.extend([
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
 
-# Manuel Konu / Kazanım Arama Motoru
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🔍 Manuel Konu & Kazanım Ekle")
 custom_topic_search = st.sidebar.text_input(
@@ -337,14 +336,10 @@ def call_gemini_with_key(api_key, prompt_text):
         contents=prompt_text,
     )
     text = response.text
-    if "
-```json" in text:
-        text = text.split("
-```json")[1].split("```")[0].strip()
-    elif "
-```" in text:
-        text = text.split("
-```")[1].split("```")[0].strip()
+    if "```json" in text:
+        text = text.split("```json")[1].split("```")[0].strip()
+    elif "```" in text:
+        text = text.split("```")[1].split("```")[0].strip()
     return text
 
 def multi_pool_generate(prompt_text):
