@@ -1,0 +1,8 @@
+streamlit
+google-generativeai
+groq
+reportlab
+matplotlib
+numpy
+groq
+google-genai
