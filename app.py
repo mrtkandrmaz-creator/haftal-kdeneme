@@ -221,7 +221,7 @@ def draw_geometry_shape(shape_data):
             </svg>
         </div>'''
 
-    # 5. FEN BİLİMLERİ TABLO / DENEY SONUÇ MATRİSİ
+    # 5. FEN BİLİMLERİ & DİĞER DERSLER TABLO / DENEY SONUÇ MATRİSİ
     elif st_type == "science_table":
         title = str(shape_data.get("title", "Deney Veri Tablosu"))
         headers = shape_data.get("headers", ["Grup", "Değişken 1", "Değişken 2"])
@@ -287,6 +287,15 @@ weeks_options.extend([
 
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
 
+# YENİ ÖZELLİK: Manuel Konu / Kazanım Arama Motoru
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🔍 Manuel Konu & Kazanım Ekle")
+custom_topic_search = st.sidebar.text_input(
+    "Özel Konu / Alt Başlık / Soru Kriteri",
+    placeholder="Örn: Basınç ve Sıvıların Kaldırma Kuvveti, Kalıtım...",
+    help="Buraya yazacağınız özel konu veya detay, üretilecek 80 sorunun içeriğine doğrudan kılavuzluk edecektir."
+)
+
 difficulty_level = st.sidebar.selectbox(
     "📊 Soru Zorluk Derecesi",
     [
@@ -305,7 +314,8 @@ generate_btn = st.sidebar.button("Soruları Üret")
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b> | Zorluk Modu: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
+custom_info_str = f" | Özel Konu/Kriter: <b>{custom_topic_search}</b>" if custom_topic_search.strip() else ""
+st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b>{custom_info_str} | Zorluk Modu: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
 st.markdown("---")
 
 def call_groq_with_key(api_key, prompt_text):
@@ -314,7 +324,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve LGS soru hazırlama uzmanısın. Grafikleri ve şekilleri asla ham kod olarak metin içinde yazdırma, JSON objesi olarak 'shape' alanında ver. Eksiksiz JSON formatında yanıt ver."},
+            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve LGS soru hazırlama uzmanısın. Grafikleri, tabloları ve şekilleri ASLA ham kod veya düz metin olarak yazdırma, JSON objesi olarak 'shape' alanında eksiksiz ver. Yanıtı saf ve eksiksiz bir JSON formatında ver."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
@@ -362,26 +372,28 @@ def multi_pool_generate(prompt_text):
 
     return None, str(last_error)
 
-# Soru Üretim Mantığı (80 Soru Sabit ve İngilizce Dahil)
+# Soru Üretim Mantığı (80 Soru Sabit ve Sosyal Bilgiler dahil)
 if generate_btn:
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için harita, grafik, tablo uyumlu tam 80 yeni nesil soru hazırlanıyor..."):
+    custom_prompt_addon = f"\nMANUEL EKLENEN ÖZEL KONU / KRİTER: {custom_topic_search}\n(Soruların hazırlanmasında bu özel konuya ve odak noktasına da ağırlık ver.)" if custom_topic_search.strip() else ""
+    
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için grafik, tablo ve şekil destekli tam 80 yeni nesil soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
-            f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla.\n\n"
+            f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
+            f"{custom_prompt_addon}\n\n"
             f"ZORLUK SEVİYESİ VE KALİTE TALİMATI: '{difficulty_level}'. (Sorular net, anlaşılır ve MEB beceri temelli sınav formatına uygun olmalıdır!)\n\n"
             "LGS VE MERKEZİ SINAV DERS DAĞILIMI VE KESİN SORU SAYILARI (TOPLAM TAM 80 SORU):\n"
             "1. Türkçe: 15 Soru (1-15 arası) - Uzun metinli, eleştirel okuma, mantık muhakemesi.\n"
             "2. Matematik: 15 Soru (16-30 arası) - Günlük hayat problemleri, şekil ve işlem yoğun.\n"
             "3. Fen Bilimleri: 15 Soru (31-45 arası) - Deney yorumlama, grafik analizi veya tablo matrisli.\n"
-            "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Öncüllü yorum, belge analizi.\n"
+            "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Öncüllü yorum, harita/belge analizi ve vatandaşlık bilgisi.\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Ayet/hadis yorumu.\n"
             "6. İngilizce (English): 10 Soru (71-80 arası) - Diyalog tamamlama, paragraf okuma, görsel/durum analizi ve vocabulary (kelime bilgisi) ağırlıklı.\n\n"
-            "HAYATİ ÖNEM TAŞIYAN GÖRSEL VE TABLO KURALLARI (ASLA HATA YAPMA):\n"
-            "1. Fen Bilimleri ve Matematik sorularında grafik, tablo veya geometrik şekil (üçgen, çember, kare, dikdörtgen) gerektiren durumlarda ASLA metin içinde açık kod veya ham metin yazma; bunun yerine `shape` alanına eksiksiz JSON objesi ekle.\n"
-            "2. Çember/Üçgen/Kare/Dikdörtgen için `shape` formatları doğru olmalıdır.\n"
-            "3. Fen Bilimleri Tablo formatı: `{\"type\": \"science_table\", \"title\": \"Deney Sonuçları\", \"headers\": [\"Kaplar\", \"Sıcaklık\", \"Süre\"], \"rows\": [[\"1. Kap\", \"20°C\", \"10 dk\"], [\"2. Kap\", \"40°C\", \"5 dk\"]]}`\n"
-            "4. Grafik formatı: `{\"type\": \"bar_chart\", \"title\": \"Grafik Analizi\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n"
-            "5. Geometrik şekil formatları:\n"
+            "HAYATİ ÖNEM TAŞIYAN GÖRSEL, TABLO VE GRAFİK KURALLARI (ASLA AÇIK KOD YAZMA):\n"
+            "1. Fen Bilimleri, Matematik veya diğer derslerde grafik, tablo, deney matrisi veya geometrik şekil (üçgen, çember, kare, dikdörtgen) gerektiren durumlarda ASLA soru metni içinde ham kod veya metinsel tablo çizme. Tüm görsel yapıları KESİNLİKLE `shape` JSON objesi içinde ver.\n"
+            "2. Fen Bilimleri / Diğer Dersler Tablo formatı örneği: `{\"type\": \"science_table\", \"title\": \"Deney Sonuçları\", \"headers\": [\"Kaplar\", \"Sıcaklık\", \"Süre\"], \"rows\": [[\"1. Kap\", \"20°C\", \"10 dk\"], [\"2. Kap\", \"40°C\", \"5 dk\"]]}`\n"
+            "3. Sütun Grafik formatı örneği: `{\"type\": \"bar_chart\", \"title\": \"Grafik Analizi\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n"
+            "4. Geometrik şekil formatları:\n"
             "   - Üçgen: `{\"type\": \"triangle\", \"sub_type\": \"right\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"3 cm\", \"bc\": \"4 cm\", \"ac\": \"5 cm\"}`\n"
             "   - Çember: `{\"type\": \"circle\", \"center\": \"O\", \"radius\": \"r = 6 cm\"}`\n"
             "   - Kare/Dikdörtgen: `{\"type\": \"rectangle\", \"title\": \"ABCD Dikdörtgeni\", \"width\": \"12 cm\", \"height\": \"5 cm\"}`\n\n"
@@ -391,7 +403,7 @@ if generate_btn:
             "    \"questions\": [\n"
             "        {\n"
             "            \"id\": 1,\n"
-            "            \"subject\": \"Türkçe\",\n"
+            "            \"subject\": \"Fen Bilimleri\",\n"
             "            \"passage\": \"Paragraf veya metin içeriği (gerekmiyorsa boş bırakılabilir).\",\n"
             "            \"question\": \"Soru metni...\",\n"
             "            \"shape\": null,\n"
@@ -448,7 +460,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     st.markdown("---")
     header_col1, header_col2 = st.columns([2, 1])
     with header_col1:
-        st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) 80 Soruluk LGS Denemesi")
+        st.markdown(f"### 📋 {selected_grade} - {term} ({selected_scope}) 80 Soruluk Deneme")
         st.markdown(f"<span class='badge'>Soru: {st.session_state.current_page + 1} / {total_questions}</span> <span class='badge'>Zorluk Modu: {difficulty_level}</span>", unsafe_allow_html=True)
     with header_col2:
         st.markdown(f"<div class='timer-box'>⏳ {hours:02d}:{minutes:02d}:{seconds:02d}</div>", unsafe_allow_html=True)
@@ -494,7 +506,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
     with nav_col1:
         if st.session_state.current_page < total_questions - 1:
-            if st.button("➡️️ Sonraki Soru"):
+            if st.button("➡ Sonraki Soru"):
                 st.session_state.current_page += 1
                 st.rerun()
                 
