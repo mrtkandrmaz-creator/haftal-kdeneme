@@ -1,5 +1,5 @@
 import time
-import streamlit as json_lib  # Alias to prevent conflict
+import streamlit as st
 import json
 
 # Sayfa Yapılandırması
@@ -494,7 +494,7 @@ if st.session_state.quiz_started and st.session_state.questions:
     nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
     with nav_col1:
         if st.session_state.current_page < total_questions - 1:
-            if st.button("➡️ Sonraki Soru"):
+            if st.button("➡️️ Sonraki Soru"):
                 st.session_state.current_page += 1
                 st.rerun()
                 
