@@ -108,7 +108,6 @@ def draw_geometry_shape(shape_data):
     if not st_type:
         return
 
-    # Sayfada devasa görünmemesi için boyut küçültüldü (figsize 3.5 x 3)
     fig, ax = plt.subplots(figsize=(3.5, 3))
     ax.set_aspect('equal')
     ax.axis('off')
@@ -142,7 +141,6 @@ def draw_geometry_shape(shape_data):
             for i, p in enumerate(pts):
                 ax.text(p[0] + offsets[i][0], p[1] + offsets[i][1], labels[i], fontsize=11, fontweight='bold', color='#1e293b')
             
-            # Kenar/Açı değerleri varsa görsel üzerine yerleştirilir
             if side_ab:
                 ax.text(0.2, 1.5, side_ab, fontsize=9, color='#0284c7', fontweight='bold')
             if side_bc:
@@ -258,7 +256,6 @@ def draw_geometry_shape(shape_data):
         buf = io.BytesIO()
         plt.savefig(buf, format='png', bbox_inches='tight', dpi=150)
         buf.seek(0)
-        # Genişliği sınırlayarak sayfada taşmayı önledik
         st.image(buf, width=380)
         plt.close(fig)
     except Exception as e:
@@ -362,14 +359,10 @@ def call_gemini_with_key(api_key, prompt_text):
         contents=prompt_text,
     )
     text = response.text
-    if "
-```json" in text:
-        text = text.split("
-```json")[1].split("```")[0].strip()
-    elif "
-```" in text:
-        text = text.split("
-```")[1].split("```")[0].strip()
+    if "```json" in text:
+        text = text.split("```json")[1].split("```")[0].strip()
+    elif "```" in text:
+        text = text.split("```")[1].split("```")[0].strip()
     return text
 
 def multi_pool_generate(prompt_text):
@@ -567,4 +560,3 @@ if st.session_state.quiz_started and st.session_state.questions:
                 st.markdown(f"**Soru {i + 1} ({q_item.get('subject', '')}):**\n\n{q_item['question']}")
                 st.markdown(f"Seçiminiz: **{user_ans}** | Doğru Cevap: **{q_item['answer']}** {status}")
                 st.markdown("---")
-```eof
