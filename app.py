@@ -363,4 +363,4 @@ def call_gemini_with_key(api_key, prompt_text):
     if "```json" in text:
         text = text.split("```json")[1].split("```")[0].strip()
     elif "```" in text:
-        text = text.split("
+        text = text.split(")
