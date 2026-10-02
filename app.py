@@ -1,5 +1,5 @@
 import time
-import streamlit as st
+import streamlit as json_lib  # Alias to prevent conflict
 import json
 
 # Sayfa Yapılandırması
@@ -270,7 +270,7 @@ if "current_page" not in st.session_state:
     st.session_state.current_page = 0
 
 # Yan Menü Ayarları
-st.sidebar.markdown("## ⚙️️ MEB Müfredat & Sınav Ayarları")
+st.sidebar.markdown("## ⚙ MEB Müfredat & Sınav Ayarları")
 st.sidebar.markdown("---")
 
 selected_grade = st.sidebar.selectbox("🎓 Sınıf Seviyesi", ["5. Sınıf", "6. Sınıf", "7. Sınıf", "8. Sınıf (LGS)"])
@@ -290,10 +290,10 @@ selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_op
 difficulty_level = st.sidebar.selectbox(
     "📊 Soru Zorluk Derecesi",
     [
-        "🚀 Üst Düzey Zor / LGS Seçici (2 Kademe Artırılmış - Çok Aşamalı Muhakeme)",
-        "⚡ Çok Zor / Olimpiyat & Beceri Odaklı (En Üst Sınır Zorluk)",
-        "🎯 Zorlaştırılmış Orta / MEB Beceri Temelli (Güçlendirilmiş)",
-        "🔥 Karma / Çok Katmanlı Zorluk Dağılımı (Tüm Seviyelerin 2 Kademe Üstü)"
+        "🎯 MEB Standart & Beceri Temelli (LGS İdeal Düzey)",
+        "🔥 Güçlendirilmiş Orta / Seçici Düzey",
+        "🚀 Üst Düzey Zor / LGS Seçici (Çok Aşamalı Muhakeme)",
+        "⚡ Çok Zor / Olimpiyat & Beceri Odaklı"
     ]
 )
 
@@ -314,7 +314,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve LGS soru hazırlama uzmanısın. Eksiksiz JSON formatında yanıt ver."},
+            {"role": "system", "content": "Sen kıdemli bir MEB müfredat ve LGS soru hazırlama uzmanısın. Grafikleri ve şekilleri asla ham kod olarak metin içinde yazdırma, JSON objesi olarak 'shape' alanında ver. Eksiksiz JSON formatında yanıt ver."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.7,
@@ -368,19 +368,23 @@ if generate_btn:
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla.\n\n"
-            f"ZORLUK SEVİYESİ VE KALİTE TALİMATI: '{difficulty_level}'. (Sorular standart müfredatın en az iki kademe üzerinde, üst düzey bilişsel becerilere dayalı olmalıdır!)\n\n"
+            f"ZORLUK SEVİYESİ VE KALİTE TALİMATI: '{difficulty_level}'. (Sorular net, anlaşılır ve MEB beceri temelli sınav formatına uygun olmalıdır!)\n\n"
             "LGS VE MERKEZİ SINAV DERS DAĞILIMI VE KESİN SORU SAYILARI (TOPLAM TAM 80 SORU):\n"
             "1. Türkçe: 15 Soru (1-15 arası) - Uzun metinli, eleştirel okuma, mantık muhakemesi.\n"
             "2. Matematik: 15 Soru (16-30 arası) - Günlük hayat problemleri, şekil ve işlem yoğun.\n"
             "3. Fen Bilimleri: 15 Soru (31-45 arası) - Deney yorumlama, grafik analizi veya tablo matrisli.\n"
-            "4. T.C. İnkılap Tarihi ve Atatürkçülük: 15 Soru (46-60 arası) - Öncüllü yorum, belge analizi.\n"
+            "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Öncüllü yorum, belge analizi.\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Ayet/hadis yorumu.\n"
             "6. İngilizce (English): 10 Soru (71-80 arası) - Diyalog tamamlama, paragraf okuma, görsel/durum analizi ve vocabulary (kelime bilgisi) ağırlıklı.\n\n"
             "HAYATİ ÖNEM TAŞIYAN GÖRSEL VE TABLO KURALLARI (ASLA HATA YAPMA):\n"
-            "1. Fen Bilimleri ve Matematik sorularında grafik veya tablo gerektiren durumlarda `shape` alanına eksiksiz JSON objesi ekle.\n"
+            "1. Fen Bilimleri ve Matematik sorularında grafik, tablo veya geometrik şekil (üçgen, çember, kare, dikdörtgen) gerektiren durumlarda ASLA metin içinde açık kod veya ham metin yazma; bunun yerine `shape` alanına eksiksiz JSON objesi ekle.\n"
             "2. Çember/Üçgen/Kare/Dikdörtgen için `shape` formatları doğru olmalıdır.\n"
             "3. Fen Bilimleri Tablo formatı: `{\"type\": \"science_table\", \"title\": \"Deney Sonuçları\", \"headers\": [\"Kaplar\", \"Sıcaklık\", \"Süre\"], \"rows\": [[\"1. Kap\", \"20°C\", \"10 dk\"], [\"2. Kap\", \"40°C\", \"5 dk\"]]}`\n"
-            "4. Grafik formatı: `{\"type\": \"bar_chart\", \"title\": \"Grafik Analizi\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n\n"
+            "4. Grafik formatı: `{\"type\": \"bar_chart\", \"title\": \"Grafik Analizi\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [15, 30, 20, 40]}`\n"
+            "5. Geometrik şekil formatları:\n"
+            "   - Üçgen: `{\"type\": \"triangle\", \"sub_type\": \"right\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"ab\": \"3 cm\", \"bc\": \"4 cm\", \"ac\": \"5 cm\"}`\n"
+            "   - Çember: `{\"type\": \"circle\", \"center\": \"O\", \"radius\": \"r = 6 cm\"}`\n"
+            "   - Kare/Dikdörtgen: `{\"type\": \"rectangle\", \"title\": \"ABCD Dikdörtgeni\", \"width\": \"12 cm\", \"height\": \"5 cm\"}`\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı ('A', 'B', 'C' veya 'D') olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
             "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
             "{\n"
