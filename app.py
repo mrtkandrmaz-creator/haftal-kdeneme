@@ -96,15 +96,6 @@ st.markdown("""
         font-weight: 700;
         font-size: 0.9rem;
     }
-    .solution-box {
-        background: #f8fafc;
-        border: 1px solid #cbd5e1;
-        border-left: 4px solid #10b981;
-        padding: 1rem;
-        border-radius: 6px;
-        margin-top: 0.8rem;
-        margin-bottom: 1.2rem;
-    }
     
     /* Geliştirilmiş Modern Tablo Stili */
     .custom-table-container {
@@ -146,7 +137,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Dinamik Görselleştirme, Tablo ve Şema Motoru (Çakışma Önleyici Kalıcı Çözüm)
+# Gelişmiş Dinamik Görselleştirme, Tablo ve Şema Motoru (Kusursuz Görsel Kalite)
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -176,8 +167,8 @@ def draw_geometry_shape(shape_data):
         return
 
     # Matplotlib görselleri için profesyonel boyutlandırma ve çakışma önleyici layout optimizasyonu
-    fig, ax = plt.subplots(figsize=(6.5, 4.2))
-    fig.subplots_adjust(top=0.85, bottom=0.20, left=0.15, right=0.90)
+    fig, ax = plt.subplots(figsize=(6.8, 4.0))
+    fig.subplots_adjust(top=0.82, bottom=0.18, left=0.12, right=0.92)
     ax.set_aspect('equal')
     ax.axis('off')
     
@@ -248,7 +239,7 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
 
-        # 3. MATEMATİK & FEN ÇUBUK / GRAFİK ANALİZİ (Çakışmasız, profesyonel eksen tasarımı)
+        # 3. ÇUBUK / GRAFİK ANALİZİ
         elif st_type in ["bar_chart", "science_chart"]:
             ax.set_aspect('auto')
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
@@ -258,7 +249,7 @@ def draw_geometry_shape(shape_data):
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
             
-            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=18)
             ax.tick_params(axis='x', rotation=15, labelsize=9)
             ax.tick_params(axis='y', labelsize=9)
             
@@ -276,7 +267,7 @@ def draw_geometry_shape(shape_data):
             ax.set_ylim(0, max_val * 1.35)
             ax.set_xlim(-0.8, len(labels) - 0.2)
 
-        # 4. MATEMATİK ÇİZİCİ / TREND GRAFİĞİ (Kalıcı çakışma önleyici kütüphane düzenlemesi)
+        # 4. TREND / ÇİZGİ GRAFİĞİ
         elif st_type == "line_chart":
             ax.set_aspect('auto')
             labels = shape_data.get("labels", ["Oca", "Şub", "Mar", "Nis", "May"])
@@ -286,7 +277,7 @@ def draw_geometry_shape(shape_data):
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             
             ax.plot(labels, clean_vals, marker='o', color='#ea580c', linewidth=2.5, markersize=7, markerfacecolor='#0284c7', markeredgecolor='#ffffff')
-            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=18)
             ax.tick_params(axis='x', rotation=15, labelsize=9)
             ax.tick_params(axis='y', labelsize=9)
             
@@ -302,7 +293,7 @@ def draw_geometry_shape(shape_data):
             ax.set_ylim(0, max_val * 1.40)
             ax.set_xlim(-0.5, len(labels) - 0.5)
 
-        # 5. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ÇEŞİTLİLİĞİ
+        # 5. FEN BİLİMLERİ: UZAY, DÜNYA, GÜNEŞ, AY EVRELERİ VE TUTULMALAR
         elif st_type in ["science_space", "space_orbit", "eclipse", "moon_phases"]:
             sub_sub = str(shape_data.get("sub_type", "orbit")).strip().lower()
             title = str(shape_data.get("title", "Fen Bilimleri Sistem Şeması"))
@@ -375,7 +366,7 @@ def draw_geometry_shape(shape_data):
                 ax.set_xlim(-3.8, 3.5)
                 ax.set_ylim(-2.5, 2.5)
 
-            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=18)
 
         plt.tight_layout()
         buf = io.BytesIO()
@@ -466,52 +457,101 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### 🚀 Soru İşlemleri")
 generate_btn = st.sidebar.button("Soruları Üret")
 
-# İSTEK ÜZERİNE GÜNCELLENDİ: "Sorular Hazırlanıyor" Durum Metni Sol Panele, Butonun Altına Taşındı
 if generate_btn:
     st.sidebar.info("⏳ Sorular hazırlanıyor, çoklu API havuzu taranıyor...")
 
-# Sağ Panel: Denemedeki Dersler ve Üniteler/Kazanım Dağılımı Paneli
+# GÜNCELLENDİ: Seçilen Hafta/Kazanım Kapsamına Uygun Dinamik Kazanım Haritası Paneli
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 📋 Deneme Ünite & Kazanım Haritası")
+st.sidebar.markdown(f"### 📋 Kazanım Haritası ({selected_scope})")
 
-# Sınıfa göre dinamik ünite haritası gösterimi
-unit_mapping = {
-    "5. Sınıf": [
-        ("**Türkçe (15 Soru)**", "Sözcükte Anlam, Cümlede Anlam, Paragraf, Metin Yorumlama, Görsel Okuma"),
-        ("**Matematik (15 Soru)**", "Doğal Sayılar, Kesirler, Ondalık Gösterimler, Temel Geometrik Kavramlar ve Açılar"),
-        ("**Fen Bilimleri (15 Soru)**", "Güneş, Dünya ve Ay, Canlılar Dünyası, Kuvvetin Etkileri, Madde ve Değişim"),
-        ("**Sosyal Bilgiler (15 Soru)**", "Birey ve Toplum, Çocuk Hakları, Kültür ve Miras, Yaşadığımız Yer"),
-        ("**Din Kültürü (10 Soru)**", "Allah İnancı, Ramazan ve Oruç, Hz. Muhammed ve Aile Hayatı"),
-        ("**İngilizce (10 Soru)**", "Hello!, My Town, Games and Hobbies, My Daily Routine")
-    ],
-    "6. Sınıf": [
-        ("**Türkçe (15 Soru)**", "Söz Sanatları, Deyimler, Paragrafta Yapı, Noktalama İşaretleri, Metin Türleri"),
-        ("**Matematik (15 Soru)**", "Üslü İfadeler, İşlem Önceliği, Ortaklar ve Katlar, Kümeler, Tam Sayılar"),
-        ("**Fen Bilimleri (15 Soru)**", "Güneş Sistemi ve Tutulmalar, Destek ve Hareket Sistemi, Sindirim/Dolaşım, Kuvvet ve Hareket"),
-        ("**Sosyal Bilgiler (15 Soru)**", "Uzak Asya'dan Asya'ya Türk Devletleri, İslamiyet'in Doğuşu, İpek Yolunda Türkler"),
-        ("**Din Kültürü (10 Soru)**", "Peygamber ve İlahi Kitaplar, Namaz İbadeti, Hz. Muhammed'in Hayatı"),
-        ("**İngilizce (10 Soru)**", "Life, Yummy Breakfast, Downtown, Weather and Emotions")
-    ],
-    "7. Sınıf": [
-        ("**Türkçe (15 Soru)**", "Fiiller, Ek Fiil, Zarf, Anlatım Bozuklukları, Sözel Mantık ve Muhakeme"),
-        ("**Matematik (15 Soru)**", "Tam Sayılarla İşlemler, Rasyonel Sayılar, Cebirsel İfadeler, Orantı ve Yüzdeler"),
-        ("**Fen Bilimleri (15 Soru)**", "Güneş Sistemi ve Ötesi, Hücre ve Bölünmeler, Kuvvet ve Enerji, Saf Madde ve Karışımlar"),
-        ("**Sosyal Bilgiler (15 Soru)**", "İletişim ve İnsan İlişkileri, Osmanlı Tarihi (Beylikten İmparatorluğa), Nüfus ve Yerleşme"),
-        ("**Din Kültürü (10 Soru)**", "Melek ve Ahiret İnancı, Kader Amacı, Hz. Muhammed ve Aydınlık Yol"),
-        ("**İngilizce (10 Soru)**", "Appearance and Personality, Sports, Biographies, Wild Animals")
-    ],
-    "8. Sınıf (LGS)": [
-        ("**Türkçe (15 Soru)**", "Fiilimsiler, Cümlenin Ögeleri, Anlatım Bozuklukları, Sözel Mantık, Yeni Nesil Paragraf"),
-        ("**Matematik (15 Soru)**", "Çarpanlar ve Katlar, Üslü İfadeler, Kareköklü İfadeler, Veri Analizi, Olasılık, Cebirsel İfadeler"),
-        ("**Fen Bilimleri (15 Soru)**", "Mevsimler ve İklim, DNA ve Genetik Kod, Basınç, Madde ve Endüstri, Basit Makineler"),
-        ("**Sosyal Bilgiler (T.C. İnkılap) (15 Soru)**", "Bir Kahraman Doğuyor, Millî Uyanıksa, Ya İstiklal Ya Ölüm, Atatürkçülük"),
-        ("**Din Kültürü (10 Soru)**", "Kader İnancı, Zekat ve Sadaka, Din ve Hayat, Hz. Muhammed'in Örnekliği"),
-        ("**İngilizce (10 Soru)**", "Friendship, Teen Life, In The Kitchen, Communication, The Internet")
-    ]
-}
+# Haftalık veya genel döneme göre dinamik içerik üretici mantık
+def get_dynamic_syllabus(grade, scope):
+    s_lower = scope.lower()
+    if "hafta 1" in s_lower or "1. hafta" in s_lower:
+        return [
+            ("**Türkçe (15 Soru)**", "Sözcükte Anlam, Temel Kavramlar, Ses Bilgisi"),
+            ("**Matematik (15 Soru)**", "Doğal Sayılar ve Milyonlar, Sayı Örüntüleri"),
+            ("**Fen Bilimleri (15 Soru)**", "Gezegenimiz Dünya ve Temel Katmanları"),
+            ("**Sosyal Bilgiler (15 Soru)**", "Birey ve Toplum, Rol ve Sorumluluklar"),
+            ("**Din Kültürü (10 Soru)**", "Yaratılış ve Evrendeki Düzen"),
+            ("**İngilizce (10 Soru)**", "Hello! - Karşılama ve Tanışma İfadeleri")
+        ]
+    elif "hafta 4" in s_lower:
+        return [
+            ("**Türkçe (15 Soru)**", "Cümlede Anlam İlişkileri, Neden-Sonuç, Amaç-Sonuç"),
+            ("**Matematik (15 Soru)**", "Doğrtusal İşlemler, Toplama ve Çıkarma Problemleri"),
+            ("**Fen Bilimleri (15 Soru)**", "Güneş'in Yapısı ve Kendi Eksenindeki Dönme Hareketi"),
+            ("**Sosyal Bilgiler (15 Soru)**", "Kültürel Mirasımız ve Çocuk Hakları"),
+            ("**Din Kültürü (10 Soru)**", "Allah'ın Evrene Koyduğu Yasalar"),
+            ("**İngilizce (10 Soru)**", "My Town - Yönler ve Konum Belirtme")
+        ]
+    elif "hafta 8" in s_lower:
+        return [
+            ("**Türkçe (15 Soru)**", "Paragrafın Ana Düşüncesi ve Yardımcı Düşünceler"),
+            ("**Matematik (15 Soru)**", "Çarpanlar, Katlar veya Kesirler Temel İşlemler"),
+            ("**Fen Bilimleri (15 Soru)**", "Ay'ın Evreleri, Dönme ve Dolanma Hareketleri"),
+            ("**Sosyal Bilgiler (15 Soru)**", "Tarihi İpek Yolu ve Türk Devletleri"),
+            ("**Din Kültürü (10 Soru)**", "İbadet Bilinci ve Namaz İbadeti"),
+            ("**İngilizce (10 Soru)**", "Games and Hobbies - Boş Zaman Aktiviteleri")
+        ]
+    elif "hafta 12" in s_lower or "12. hafta" in s_lower:
+        return [
+            ("**Türkçe (15 Soru)**", "Metin Türleri (Hikaye, Masal, Bilgilendirici Metinler)"),
+            ("**Matematik (15 Soru)**", "Cebirsel İfadeler / Oran ve Orantı Başlangıcı"),
+            ("**Fen Bilimleri (15 Soru)**", "Canlılar Dünyası: Hücre Yapısı ve Organeller"),
+            ("**Sosyal Bilgiler (15 Soru)**", "Orta Çağ'da Türk Dünyası ve İslam Tarihi"),
+            ("**Din Kültürü (10 Soru)**", "Peygamberlerin Özellikleri ve İlahi Kitaplar"),
+            ("**İngilizce (10 Soru)**", "Daily Routine - Günlük Rutinler ve Saatler")
+        ]
+    elif "hafta 16" in s_lower or "16. hafta" in s_lower:
+        return [
+            ("**Türkçe (15 Soru)**", "Fiilimsiler / Ek Fiil / Söz Sanatları Kapsamı"),
+            ("**Matematik (15 Soru)**", "Veri Analizi ve Olasılık Temelleri"),
+            ("**Fen Bilimleri (15 Soru)**", "Kuvvet ve Enerji Dönüşümleri, Basit Makineler"),
+            ("**Sosyal Bilgiler (15 Soru)**", "Osmanlı Devleti'nin Kuruluş Dönemi ve Siyasi Gelişmeler"),
+            ("**Din Kültürü (10 Soru)**", "Kader İnancı ve Zekat / Sadaka Kurumları"),
+            ("**İngilizce (10 Soru)**", "In The Kitchen - Yemek Tarifleri ve İfadeler")
+        ]
+    else:
+        # Genel / Standart Sınıf Müfredat Haritası
+        base_map = {
+            "5. Sınıf": [
+                ("**Türkçe (15 Soru)**", f"{selected_scope} - Sözcükte/Cümlede Anlam ve Paragraf"),
+                ("**Matematik (15 Soru)**", f"{selected_scope} - Temel İşlemler ve Geometrik Açılar"),
+                ("**Fen Bilimleri (15 Soru)**", f"{selected_scope} - Güneş, Dünya, Ay ve Kuvvet"),
+                ("**Sosyal Bilgiler (15 Soru)**", f"{selected_scope} - Birey, Toplum ve Kültürel Miras"),
+                ("**Din Kültürü (10 Soru)**", f"{selected_scope} - Allah İnancı ve İbadetler"),
+                ("**İngilizce (10 Soru)**", f"{selected_scope} - Ünite Kelime ve Diyaloglar")
+            ],
+            "6. Sınıf": [
+                ("**Türkçe (15 Soru)**", f"{selected_scope} - Deyimler, Paragraf Yapısı ve Dil Bilgisi"),
+                ("**Matematik (15 Soru)**", f"{selected_scope} - Üslü Sayılar, Ortaklar ve Tam Sayılar"),
+                ("**Fen Bilimleri (15 Soru)**", f"{selected_scope} - Güneş Sistemi, Sistemler ve Kuvvet"),
+                ("**Sosyal Bilgiler (15 Soru)**", f"{selected_scope} - Türk Devletleri ve İslam Tarihi"),
+                ("**Din Kültürü (10 Soru)**", f"{selected_scope} - Peygamberler ve Namaz"),
+                ("**İngilizce (10 Soru)**", f"{selected_scope} - Life, Breakfast & Downtown")
+            ],
+            "7. Sınıf": [
+                ("**Türkçe (15 Soru)**", f"{selected_scope} - Fiiller, Zarflar ve Sözel Mantık"),
+                ("**Matematik (15 Soru)**", f"{selected_scope} - Rasyonel Sayılar ve Cebirsel İfadeler"),
+                ("**Fen Bilimleri (15 Soru)**", f"{selected_scope} - Hücre Bölünmeleri ve Saf Maddeler"),
+                ("**Sosyal Bilgiler (15 Soru)**", f"{selected_scope} - Osmanlı Beylikten İmparatorluğa"),
+                ("**Din Kültürü (10 Soru)**", f"{selected_scope} - Melek, Ahiret ve Kader"),
+                ("**İngilizce (10 Soru)**", f"{selected_scope} - Appearance, Sports & Biographies")
+            ],
+            "8. Sınıf (LGS)": [
+                ("**Türkçe (15 Soru)**", f"{selected_scope} - Fiilimsiler, Ögeler ve Yeni Nesil Paragraf"),
+                ("**Matematik (15 Soru)**", f"{selected_scope} - Çarpanlar, Köklü İfadeler ve Olasılık"),
+                ("**Fen Bilimleri (15 Soru)**", f"{selected_scope} - Mevsimler, DNA, Basınç ve Asit-Baz"),
+                ("**Sosyal Bilgiler (İnkılap) (15 Soru)**", f"{selected_scope} - Bir Kahraman Doğuyor & Milli Mücadele"),
+                ("**Din Kültürü (10 Soru)**", f"{selected_scope} - Kader, Zekat ve Din-Hayat"),
+                ("**İngilizce (10 Soru)**", f"{selected_scope} - Friendship, Teen Life & Kitchen")
+            ]
+        }
+        return base_map.get(selected_grade, base_map["5. Sınıf"])
 
-current_units = unit_mapping.get(selected_grade, unit_mapping["5. Sınıf"])
-for sub_title, content_desc in current_units:
+active_syllabus = get_dynamic_syllabus(selected_grade, selected_scope)
+for sub_title, content_desc in active_syllabus:
     st.sidebar.markdown(f"• {sub_title}<br><span style='font-size:0.8rem; color:#64748b;'>&nbsp;&nbsp;&nbsp;{content_desc}</span>", unsafe_allow_html=True)
 
 # Ana Ekran Başlığı
@@ -579,7 +619,7 @@ if generate_btn:
     current_topic_val = st.session_state.custom_topic_input
     custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
     
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, gelişmiş matematik grafik kütüphaneleri ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} ({selected_scope}) için eksiksiz metinler, gelişmiş matematik grafik kütüphaneleri ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
