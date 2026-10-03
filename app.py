@@ -734,16 +734,13 @@ if st.session_state.quiz_started and st.session_state.questions:
     # Daha önce bu soruya verilmiş bir cevap var mı kontrol edelim
     current_val = st.session_state.selected_answers.get(idx)
     
-    # Eğer daha önce cevap verilmişse index'ini bulalım, verilmemişse None yapalım ki boş gelsin
+    # Eğer daha önce cevap verilmişse index'ini bulalım, verilmemişse None yapalım
     default_index = None
     if current_val in option_keys:
         default_index = option_keys.index(current_val)
 
-    # st.radio içerisindeki key ile session_state çakışmasını önlemek için 
-    # widget'ın kendi state'ini dikkatli yönetiyoruz:
     widget_key = f"q_{idx}"
     
-    # Eğer widget state'i daha önce oluşmadıysa ve hafızada cevap varsa atayalım
     if widget_key not in st.session_state:
         if current_val in option_keys:
             st.session_state[widget_key] = current_val
@@ -761,11 +758,9 @@ if st.session_state.quiz_started and st.session_state.questions:
         index=default_index,
         format_func=lambda x: f"{x}) {options[x]}",
         key=widget_key,
-        on_change=update_answer,
-        placeholder="Bir şık seçiniz..." # Streamlit'in boş bırakabilmeyi destekleyen yapısı için
+        on_change=update_answer
     )
     
-    # Kullanıcı tıkladığında anında kaydet
     if choice:
         st.session_state.selected_answers[idx] = choice
         
