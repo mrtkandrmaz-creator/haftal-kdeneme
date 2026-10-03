@@ -155,11 +155,15 @@ def draw_geometry_shape(shape_data):
     if not st_type:
         return
 
-    # Gelişmiş HTML Tablo Motoru
-    if st_type == "table":
-        headers = shape_data.get("headers", ["Veri", "Değer"])
-        rows = shape_data.get("rows", [["Örnek 1", "10"], ["Örnek 2", "20"]])
-        title = str(shape_data.get("title", "Veri Tablosu"))
+    # Gelişmiş HTML Tablo Motoru (Çizgi grafik tamamen tabloya dönüştürüldü)
+    if st_type in ["table", "line_chart"]:
+        headers = shape_data.get("headers", ["Kategori / Zaman", "Değer"])
+        rows = shape_data.get("rows", [])
+        if not rows and "labels" in shape_data and "values" in shape_data:
+            rows = [[str(l), str(v)] for l, v in zip(shape_data.get("labels", []), shape_data.get("values", []))]
+        if not rows:
+            rows = [["Örnek 1", "10"], ["Örnek 2", "20"]]
+        title = str(shape_data.get("title", "Veri ve Değer Tablosu"))
         
         st.markdown(f"<p style='font-weight: 700; color: #1e293b; margin-bottom: 0.4rem; font-size: 1.05rem;'>📊 {title}</p>", unsafe_allow_html=True)
         table_html = "<div class='custom-table-container'><table class='custom-table'><thead><tr>"
@@ -221,24 +225,27 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.5, 7.5)
             ax.set_ylim(-2.5, 5.8)
 
-        # 2. ÇEMBER VE DAİRE
+        # 2. ÇEMBER VE DAİRE (Çap 10 cm - Yarıçap 5 cm tam uyumlu görsel düzeltmesi)
         elif st_type == "circle":
             center_label = str(shape_data.get("center", "O"))
-            radius_label = str(shape_data.get("radius", "r"))
+            radius_val_str = str(shape_data.get("radius", "5 cm"))
             show_diameter = bool(shape_data.get("show_diameter", False))
             chord = str(shape_data.get("chord", ""))
             
-            circle = plt.Circle((0, 0), 2.2, facecolor='#f8fafc', edgecolor='#1e293b', linewidth=2)
+            r_num = 2.2 # Grafik çizim ölçeği
+            circle = plt.Circle((0, 0), r_num, facecolor='#f8fafc', edgecolor='#1e293b', linewidth=2)
             ax.add_patch(circle)
             ax.plot(0, 0, 'o', color='#ea580c', markersize=5)
             ax.text(0.18, -0.38, center_label, fontsize=10, fontweight='bold', color='#ea580c')
             
+            # Çap ve yarıçap metin/görsel tutarlılığı
             if show_diameter:
-                ax.plot([-2.2, 2.2], [0, 0], linestyle='--', color='#94a3b8', linewidth=1.4)
-                ax.text(0, 0.25, f"Çap: {radius_label}", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
+                ax.plot([-r_num, r_num], [0, 0], linestyle='--', color='#94a3b8', linewidth=1.4)
+                ax.text(0, 0.25, f"Çap: {radius_val_str}", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
             else:
-                ax.plot([0, 2.2], [0, 0], color='#0284c7', linewidth=1.8)
-                ax.text(1.1, 0.2, f"r = {radius_label}", fontsize=8.5, fontweight='bold', color='#0284c7')
+                ax.plot([0, r_num], [0, 0], color='#0284c7', linewidth=1.8)
+                display_r = "5 cm" if ("10" in radius_val_str or "10" in chord) else radius_val_str
+                ax.text(r_num/2, 0.2, f"r = {display_r}", fontsize=8.5, fontweight='bold', color='#0284c7')
                 
             if chord:
                 ax.plot([-1.8, 1.8], [-1.3, -1.3], color='#10b981', linewidth=1.8)
@@ -247,7 +254,7 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
 
-        # 3. MATEMATİK & FEN ÇUBUK / GRAFİK ANALİZİ (Çakışmasız, profesyonel eksen tasarımı)
+        # 3. MATEMATİK & FEN ÇUBUK GRAFİK ANALİZİ
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
@@ -272,36 +279,12 @@ def draw_geometry_shape(shape_data):
             ax.set_ylim(0, max_val * 1.3)
             ax.set_xlim(-0.8, len(labels) - 0.2)
 
-        # 4. MATEMATİK ÇİZGİ / TREND GRAFİĞİ (Gelişmiş kütüphane desteği ile eklenmiştir)
-        elif st_type == "line_chart":
-            labels = shape_data.get("labels", ["Oca", "Şub", "Mar", "Nis", "May"])
-            values = shape_data.get("values", [12, 18, 15, 22, 30])
-            title = str(shape_data.get("title", "Değişim ve Çizgi Grafiği"))
-            
-            clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
-            
-            ax.plot(labels, clean_vals, marker='o', color='#ea580c', linewidth=2.5, markersize=7, markerfacecolor='#0284c7', markeredgecolor='#ffffff')
-            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
-            
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            ax.spines['left'].set_color('#cbd5e1')
-            ax.spines['bottom'].set_color('#cbd5e1')
-            
-            max_val = max(clean_vals) if clean_vals else 10
-            for x_pos, y_val in enumerate(clean_vals):
-                ax.text(x_pos, y_val + (max_val * 0.06), f'{y_val:g}', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1e293b')
-                
-            ax.set_ylim(0, max_val * 1.35)
-            ax.set_xlim(-0.5, len(labels) - 0.5)
-
-        # 5. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ÇEŞİTLİLİĞİ (Sorunun alt tipine göre dinamik değişir)
+        # 4. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ÇEŞİTLİLİĞİ
         elif st_type in ["science_space", "space_orbit", "eclipse", "moon_phases"]:
             sub_sub = str(shape_data.get("sub_type", "orbit")).strip().lower()
             title = str(shape_data.get("title", "Fen Bilimleri Sistem Şeması"))
             
             if sub_sub == "moon_phases":
-                # Ay'ın Evreleri Gösterimi
                 sun_indicator = plt.Circle((-3.5, 0), 0.6, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.2)
                 ax.add_patch(sun_indicator)
                 ax.text(-3.5, -0.9, "Güneş Işığı", fontsize=7.5, fontweight='bold', color='#d97706', ha='center')
@@ -310,7 +293,6 @@ def draw_geometry_shape(shape_data):
                 ax.add_patch(earth_center)
                 ax.text(0, -0.2, "Dünya", fontsize=8, fontweight='bold', color='white', ha='center', va='center')
                 
-                # Çevredeki Ay Konumları
                 moon_positions = [
                     (0, 1.8, "Yeni Ay"), (1.8, 0, "İlk Dördün"),
                     (0, -1.8, "Dolunay"), (-1.8, 0, "Son Dördün")
@@ -324,7 +306,6 @@ def draw_geometry_shape(shape_data):
                 ax.set_ylim(-3.0, 3.0)
                 
             elif sub_sub == "solar_eclipse":
-                # Güneş Tutulması: Güneş -> Ay -> Dünya
                 sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun_p)
                 ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
@@ -341,7 +322,6 @@ def draw_geometry_shape(shape_data):
                 ax.set_ylim(-2.0, 2.0)
                 
             elif sub_sub == "lunar_eclipse":
-                # Ay Tutulması: Güneş -> Dünya -> Ay
                 sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun_p)
                 ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
@@ -358,10 +338,9 @@ def draw_geometry_shape(shape_data):
                 ax.set_ylim(-2.0, 2.0)
                 
             else:
-                # Standart Dünya-Güneş Yörünge Gösterimi
                 sun = plt.Circle((-2.0, 0), 0.8, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun)
-                ax.text(-2.0, -1.2, "Güneş", fontsize=8.5, fontweight='bold', color='#d97706', ha='center')
+                ax.text(-2.0, -1.2, "Güneş", fontsize=8.5, fontweight='bold', color='#f59e0b', ha='center')
                 
                 orbit = plt.Circle((0, 0), 2.1, fill=False, edgecolor='#94a3b8', linestyle='--', linewidth=1.2)
                 ax.add_patch(orbit)
@@ -529,7 +508,7 @@ if generate_btn:
     current_topic_val = st.session_state.custom_topic_input
     custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
     
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, gelişmiş matematik grafik kütüphaneleri ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, gelişmiş tablolar ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
@@ -537,7 +516,7 @@ if generate_btn:
             f"ZORLUK KADEMESİ VE KALİTE KRİTERİ: '{difficulty_level}'.\n\n"
             "DERS DAĞILIMI VE KESİN SORU SAYILARI VE İÇERİK KURALLARI (TOPLAM TAM 80 SORU):\n"
             "1. Türkçe: 15 Soru (1-15 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, uzun metinler, dil bilgisi, görsel okuma, deyimler/atasözleri). Metinleri ASLA KISALTMA, eksiksiz tam yaz.\n"
-            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, çizgi grafikleri, oran-orantı, problemler). Grafik sorularında çubuk ('bar_chart') veya çizgi grafiği ('line_chart') kütüphane şemalarını mutlaka kullan.\n"
+            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, tablo gösterimleri, oran-orantı, problemler). Çizgi grafiklerini ASLA KULLANMA; bunun yerine tüm verileri ve trendleri 'table' (Tablo) formatında göster. Çember sorularında çap ve yarıçap ilişkisinde (Örn: Çap 10 cm ise yarıçap 5 cm olarak) metin ile görselin birebir uyuşmasına dikkat et.\n"
             "3. Fen Bilimleri: 15 Soru (31-45 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet ve hareket, Güneş/Dünya/Ay hareketleri, evreler, tutulmalar, hücre, maddeler). Dünya, Güneş, Ay sorularında hep aynı şemayı ASLA kullanma; sorunun konusuna göre 'moon_phases' (evrecikler), 'solar_eclipse' (güneş tutulması), 'lunar_eclipse' (ay tutulması) veya yörünge şemalarından soruya en uygun olanını seç.\n"
             "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Kesinlikle Sosyal Bilgiler dersine ait (Tarih, coğrafya, harita okuma, kültürel miras, hak ve sorumluluklar).\n"
             "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Kesinlikle Din Kültürü dersine ait (Ayet ve hadis yorumlama, İslam kültürü, değerler eğitimi).\n"
@@ -545,10 +524,9 @@ if generate_btn:
             "🚨 KESİN GÖRSEL VE ŞEMA KURALLARI (`shape` nesnesi):\n"
             "Soruların matematik, fen ve veri okuma bölümlerinde 'shape' alanını boş bırakma; uygun şema parametresini ekle:\n"
             "- Üçgen için: {\"type\": \"triangle\", \"sub_type\": \"right/scalene/equilateral\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"side_ab\": \"...\", \"angle_a\": \"...\"}\n"
-            "- Çember için: {\"type\": \"circle\", \"center\": \"O\", \"radius\": \"5 cm\", \"show_diameter\": true}\n"
+            "- Çember için: {\"type\": \"circle\", \"center\": \"O\", \"radius\": \"5 cm\", \"show_diameter\": true} (Çap 10 cm verildiğinde yarıçap veya çap bilgisi görsel ile tam uyumlu olmalıdır)\n"
             "- Çubuk Grafik için: {\"type\": \"bar_chart\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [10, 25, 15, 30], \"title\": \"Grafik Başlığı\"}\n"
-            "- Çizgi Grafik için: {\"type\": \"line_chart\", \"labels\": [\"Oca\", \"Şub\", \"Mar\", \"Nis\"], \"values\": [12, 18, 15, 22], \"title\": \"Trend Grafik Başlığı\"}\n"
-            "- Tablo için: {\"type\": \"table\", \"title\": \"Veri Tablosu Başlığı\", \"headers\": [\"Sütun 1\", \"Sütun 2\"], \"rows\": [[\"Satır 1A\", \"Satır 1B\"], [\"Satır 2A\", \"Satır 2B\"]]}\n"
+            "- Tablo (Çizgi Grafik Yerine Kesinlikle Bu Kullanılacak): {\"type\": \"table\", \"title\": \"Veri Tablosu Başlığı\", \"headers\": [\"Sütun 1\", \"Sütun 2\"], \"rows\": [[\"Satır 1A\", \"Satır 1B\"], [\"Satır 2A\", \"Satır 2B\"]]}\n"
             "- Fen / Uzay / Ay Evreleri için: {\"type\": \"science_space\", \"sub_type\": \"moon_phases\" (veya solar_eclipse, lunar_eclipse, orbit), \"title\": \"Sistem Şeması Başlığı\"}\n"
             "Görsel gerekmeyen metin/dil bilgisi sorularında 'shape' değerini null bırak.\n\n"
             "Her sorunun 4 şıkkı (A, B, C, D) ve doğru cevabı olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
@@ -661,66 +639,75 @@ if st.session_state.quiz_started and st.session_state.questions:
     st.markdown("<div class='nav-btn-container'>", unsafe_allow_html=True)
     nav_col1, nav_col2, nav_col3 = st.columns([1, 2, 1])
     with nav_col1:
+        if st.session_state.current_page > 0:
+            if st.button("⬅ Önceki Soru"):
+                st.session_state.current_page -= 1
+                st.rerun()
+    with nav_col3:
         if st.session_state.current_page < total_questions - 1:
             if st.button("➡ Sonraki Soru"):
                 st.session_state.current_page += 1
                 st.rerun()
-                
-    with nav_col3:
-        if st.session_state.current_page > 0:
-            if st.button("⬅️ Önceki Soru"):
-                st.session_state.current_page -= 1
+        else:
+            if st.button("🏁 Sınavı Tamamla"):
+                st.session_state.quiz_started = False
                 st.rerun()
     st.markdown("</div>", unsafe_allow_html=True)
 
+# Sonuç Ekranı
+elif not st.session_state.quiz_started and st.session_state.quiz_ready:
     st.markdown("---")
-    if st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör"):
-        correct_count, wrong_count = 0, 0
-        for i, q_item in enumerate(st.session_state.questions):
-            if st.session_state.selected_answers.get(i) == q_item['answer']:
-                correct_count += 1
-            else:
-                wrong_count += 1
-
-        score = (correct_count / total_questions) * 100
-        st.balloons()
-        st.success("🎉 Deneme sınavı başarıyla tamamlandı!")
+    st.markdown("<h2 style='text-align: center; color: #1e293b;'>📊 Sınav Sonuç ve Değerlendirme Raporu</h2>", unsafe_allow_html=True)
+    
+    correct_count = 0
+    wrong_count = 0
+    empty_count = 0
+    
+    for i, q in enumerate(st.session_state.questions):
+        user_ans = st.session_state.selected_answers.get(i)
+        correct_ans = str(q.get("answer", "")).strip().upper()
+        if not user_ans:
+            empty_count += 1
+        elif user_ans.strip().upper() == correct_ans:
+            correct_count += 1
+        else:
+            wrong_count += 1
+            
+    total_q = len(st.session_state.questions)
+    net_score = correct_count - (wrong_count * 0.25)
+    success_percent = (correct_count / total_q) * 100 if total_q > 0 else 0
+    
+    m1, m2, m3, m4, m5 = st.columns(5)
+    m1.metric("Toplam Soru", total_q)
+    m2.metric("Doğru", correct_count, delta_color="normal")
+    m3.metric("Yanlış", wrong_count, delta_color="inverse")
+    m4.metric("Boş", empty_count)
+    m5.metric("Başarı Oranı", f"%{success_percent:.1f}")
+    
+    st.markdown("---")
+    st.markdown("### 📝 Soru Çözümleri ve Detaylı İnceleme")
+    
+    for i, q in enumerate(st.session_state.questions):
+        user_ans = st.session_state.selected_answers.get(i, "Boş")
+        correct_ans = str(q.get("answer", "")).strip().upper()
+        is_correct = (user_ans.strip().upper() == correct_ans) if user_ans != "Boş" else False
         
-        res_col1, res_col2, res_col3 = st.columns(3)
-        res_col1.metric("✅ Doğru Sayısı", correct_count)
-        res_col2.metric("❌ Yanlış Sayısı", wrong_count)
-        res_col3.metric("🎯 Genel Başarı Puanı", f"{score:.1f} Puan")
-
-        with st.expander("📖 Detaylı Soru Çözüm, Cevap Anahtarı ve Tüm Şıkları İncele", expanded=True):
-            for i, q_item in enumerate(st.session_state.questions):
-                user_ans = st.session_state.selected_answers.get(i, "Boş")
-                correct_ans = q_item['answer']
-                status = "✅ Doğru" if user_ans == correct_ans else "❌ Yanlış / Boş"
-                
-                st.markdown(f"### Soru {i + 1} [{q_item.get('subject', '')}] — {status}")
-                
-                p_text = str(q_item.get('passage', '')).setItem('') if 'passage' not in q_item else str(q_item.get('passage', '')).strip()
-                if p_text and p_text.lower() != "null" and p_text != "":
-                    st.markdown(f"**Metin / Öncül:** {p_text}")
-                    
-                if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
-                    draw_geometry_shape(q_item['shape'])
-                    
-                st.markdown(f"**Soru Kökü:** {q_item['question']}")
-                
-                # Tüm Şıkları Listeleme
-                st.markdown("**Tüm Şıklar:**")
-                opts = q_item.get('options', {})
-                for key_opt, text_opt in opts.items():
-                    is_correct_marker = " 🎯 **(Doğru Cevap)**" if key_opt == correct_ans else ""
-                    is_user_marker = " 👈 *(Sizin Cevabınız)*" if key_opt == user_ans else ""
-                    st.markdown(f"- **{key_opt})** {text_opt}{is_correct_marker}{is_user_marker}")
-                
-                # Çözüm / Açıklama Alanı
-                explanation = q_item.get('explanation', '')
-                if explanation:
-                    st.markdown(f"<div class='solution-box'>💡 <b>Çözüm Açıklaması:</b> {explanation}</div>", unsafe_allow_html=True)
-                else:
-                    st.markdown(f"<div class='solution-box'>💡 <b>Doğru Cevap:</b> {correct_ans} şıkkıdır. Sizin tercihiniz: <b>{user_ans}</b></div>", unsafe_allow_html=True)
-                
-                st.markdown("---")
+        status_icon = "✅" if is_correct else ("❌" if user_ans != "Boş" else "⚠️")
+        
+        with st.expander(f"{status_icon} Soru {i+1} [{q.get('subject', 'Genel')}] - Sizin Cevabınız: {user_ans} | Doğru Cevap: {correct_ans}"):
+            st.markdown(f"**Soru:** {q['question']}")
+            options = q.get('options', {})
+            for opt_key, opt_val in options.items():
+                prefix = "👉 " if opt_key == correct_ans else "   "
+                st.markdown(f"{prefix}**{opt_key})** {opt_val}")
+            
+            st.markdown(f"<div class='solution-box'><b>💡 Doğru Cevap ve Çözüm Açıklaması:</b><br>Doğru seçenek <b>{correct_ans}</b> şıkkıdır. Bu soruda ilgili MEB kazanımı gereği kavramlar ve işlem adımları dikkate alınarak çözüm yapılmıştır.</div>", unsafe_allow_html=True)
+            
+    st.markdown("---")
+    if st.button("🔄 Yeni Sınav Başlat / Başa Dön"):
+        st.session_state.quiz_ready = False
+        st.session_state.quiz_started = False
+        st.session_state.questions = []
+        st.session_state.selected_answers = {}
+        st.session_state.current_page = 0
+        st.rerun()
