@@ -728,20 +728,33 @@ if st.session_state.quiz_started and st.session_state.questions:
 
     st.markdown(f"<p class='question-title'>Soru {idx + 1} {sub_badge}:\n\n{q['question']}</p>", unsafe_allow_html=True)
 
-    options = q['options']
-    
+    options = q['options'] # Örn: {"A": "Seçenek 1", "B": "Seçenek 2", ...}
+    option_keys = list(options.keys())
+
+    # Daha kararlı bir state yönetimi için callback (on_change) kullanıyoruz
+    def update_answer():
+        st.session_state.selected_answers[idx] = st.session_state.get(f"q_{idx}")
+
+    # Mevcut seçimi session_state'ten bulalım index için
     current_val = st.session_state.selected_answers.get(idx)
-    default_index = None
-    if current_val in list(options.keys()):
-        default_index = list(options.keys()).index(current_val)
+    default_index = 0
+    if current_val in option_keys:
+        default_index = option_keys.index(current_val)
+
+    # Widget'ın kendi key'i üzerinden değerini session_state'e senkronize ediyoruz
+    if f"q_{idx}" not in st.session_state and current_val in option_keys:
+        st.session_state[f"q_{idx}"] = current_val
 
     choice = st.radio(
         f"**Soru {idx + 1} Şıkları:**",
-        options=list(options.keys()),
+        options=option_keys,
         index=default_index,
         format_func=lambda x: f"{x}) {options[x]}",
-        key=f"q_{idx}"
+        key=f"q_{idx}",
+        on_change=update_answer
     )
+    
+    # Güvence olarak doğrudan atamayı da yineliyoruz
     if choice:
         st.session_state.selected_answers[idx] = choice
         
