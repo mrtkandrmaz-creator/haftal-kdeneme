@@ -180,7 +180,7 @@ def draw_geometry_shape(shape_data):
         st.markdown(table_html, unsafe_allow_html=True)
         return
 
-    # Kompakt ve İdeal Boyutlandırılmış Matplotlib Görsel Motoru (Boyut Sorunu Çözüldü: width=280)
+    # Kompakt ve İdeal Boyutlandırılmış Matplotlib Görsel Motoru (Genişlik: 280 piksel)
     fig, ax = plt.subplots(figsize=(3.4, 2.3))
     ax.set_aspect('equal')
     ax.axis('off')
@@ -265,7 +265,6 @@ def draw_geometry_shape(shape_data):
             bar_colors = [colors[i % len(colors)] for i in range(len(labels))]
             
             bars = ax.bar(labels, clean_vals, color=bar_colors, width=0.5, edgecolor='#1e293b', linewidth=1.1, alpha=0.95)
-            
             ax.set_title(title, fontsize=10, fontweight='bold', color='#1e293b', pad=20)
             
             ax.spines['top'].set_visible(False)
@@ -361,7 +360,6 @@ def draw_geometry_shape(shape_data):
         buf = io.BytesIO()
         plt.savefig(buf, format='png', bbox_inches='tight', dpi=180)
         buf.seek(0)
-        # Boyut sorunu çözüldü: Kompakt ve ideal genişlik (280 piksel)
         st.image(buf, width=280)
         plt.close(fig)
     except Exception as e:
@@ -415,18 +413,18 @@ weeks_options.extend([
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 🔍 Manuel Ek Konu / Odak Kriteri")
+st.sidebar.markdown("### 🔍 Manuel Özel Ünite / Konu Ekleme")
 
 def update_custom_topic():
     st.session_state.custom_topic_input = st.session_state.widget_custom_topic
 
 st.sidebar.text_input(
-    "Özel Konu / Alt Başlık (Opsiyonel)",
+    "Özel Ünite / İçerik (Opsiyonel)",
     value=st.session_state.custom_topic_input,
     key="widget_custom_topic",
     on_change=update_custom_topic,
     placeholder="Örn: Açılar, Hücre, Paragraf...",
-    help="Belirttiğiniz konu soruların yaklaşık 1/3'ünde dengeli odak olarak yer alır, kalanı genel müfredat kazanımlarından oluşur."
+    help="Buraya yazdığınız ünite/konu otomatik olarak ilgili dersine atanır ve o dersin içerisindeki diğer kazanımlarla eşit olarak paylaştırılır. Diğer 5 ders kendi haftalık MEB müfredatına göre üretilir."
 )
 
 difficulty_level = st.sidebar.selectbox(
@@ -449,7 +447,7 @@ generate_btn = st.sidebar.button("Soruları Üret")
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
-custom_info_str = f" | Odak Kriter: <b>{st.session_state.custom_topic_input}</b>" if st.session_state.custom_topic_input.strip() else ""
+custom_info_str = f" | Manuel Ekleme Odak Ünitesi: <b>{st.session_state.custom_topic_input}</b>" if st.session_state.custom_topic_input.strip() else ""
 st.markdown(f"<p style='text-align: center; color: #64748b; font-size: 1.1rem;'>Seçilen Kapsam: <b>{selected_scope}</b>{custom_info_str} | Zorluk Kademesi: <b>{difficulty_level}</b></p>", unsafe_allow_html=True)
 st.markdown("---")
 
@@ -510,21 +508,29 @@ def multi_pool_generate(prompt_text):
 # Soru Üretim Mantığı
 if generate_btn:
     current_topic_val = st.session_state.custom_topic_input
-    custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
     
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, modern tablolar ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
+    if current_topic_val.strip():
+        custom_prompt_addon = (
+            f"\n\n🚨 MANUEL ÖZEL ÜNİTE / KONU EKLENDİ: '{current_topic_val}'\n"
+            f"TALİMAT: Bu girdiğin üniteyi/konuyu akademik olarak ait olduğu ilgili derse otomatik olarak dahil et. "
+            f"Ancak tüm sınavı bu üniteyle doldurma! Tüm dersler kendi haftalık MEB müfredatına uygun olarak üretilirken, bu eklediğin özel ünite veya konu **sadece ilgili dersin kendi içerisindeki soruların arasında diğer kazanımlarla eşit olarak (kısmi oranlı şekilde) paylaştırılsın**."
+        )
+    else:
+        custom_prompt_addon = ""
+
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, modern tablolar ve ders bazlı dengeli 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
-            f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
+            f"ve '{selected_scope}' kapsamındaki resmi kazanımlara tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
             f"{custom_prompt_addon}\n\n"
             f"ZORLUK KADEMESİ VE KALİTE KRİTERİ: '{difficulty_level}'.\n\n"
             "DERS DAĞILIMI VE KESİN SORU SAYILARI VE İÇERİK KURALLARI (TOPLAM TAM 80 SORU):\n"
-            "1. Türkçe: 15 Soru (1-15 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, uzun metinler, dil bilgisi, görsel okuma, deyimler/atasözleri). Metinleri ASLA KISALTMA, eksiksiz tam yaz.\n"
-            "2. Matematik: 15 Soru (16-30 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, tablo gösterimleri, oran-orantı, problemler). Çizgi grafiklerini ASLA KULLANMA; bunun yerine tüm verileri ve trendleri 'table' (Tablo) formatında göster. Çember sorularında çap ve yarıçap ilişkisinde (Örn: Çap 10 cm ise yarıçap 5 cm olarak) metin ile görselin birebir uyuşmasına dikkat et.\n"
-            "3. Fen Bilimleri: 15 Soru (31-45 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet ve hareket, Güneş/Dünya/Ay hareketleri, evreler, tutulmalar, hücre, maddeler). Dünya, Güneş, Ay sorularında hep aynı şemayı ASLA kullanma; sorunun konusuna göre 'moon_phases' (evrecikler), 'solar_eclipse' (güneş tutulması), 'lunar_eclipse' (ay tutulması) veya yörünge şemalarından soruya en uygun olanını seç.\n"
-            "4. Sosyal Bilgiler: 15 Soru (46-60 arası) - Kesinlikle Sosyal Bilgiler dersine ait (Tarih, coğrafya, harita okuma, kültürel miras, hak ve sorumluluklar).\n"
-            "5. Din Kültürü ve Ahlak Bilgisi: 10 Soru (61-70 arası) - Kesinlikle Din Kültürü dersine ait (Ayet ve hadis yorumlama, İslam kültürü, değerler eğitimi).\n"
-            "6. İngilizce (English): 10 Soru (71-80 arası) - Kesinlikle İngilizce dersine ait (Diyalog tamamlama, kartlar, tablo eşleştirme, kelime bilgisi).\n\n"
+            "1. Türkçe: 14 Soru (1-14 arası) - Kesinlikle Türkçe dersine ait (Sözel mantık, paragrafta anlam, uzun metinler, dil bilgisi, görsel okuma, deyimler/atasözleri). Metinleri ASLA KISALTMA, eksiksiz tam yaz.\n"
+            "2. Matematik: 14 Soru (15-28 arası) - Kesinlikle Matematik dersine ait (Geometri, açılar, üçgenler, çember, veri analizi, tablo gösterimleri, oran-orantı, problemler). Çizgi grafiklerini ASLA KULLANMA; bunun yerine tüm verileri ve trendleri 'table' (Tablo) formatında göster. Çember sorularında çap ve yarıçap ilişkisinde (Örn: Çap 10 cm ise yarıçap 5 cm olarak) metin ile görselin birebir uyuşmasına dikkat et.\n"
+            "3. Fen Bilimleri: 14 Soru (29-42 arası) - Kesinlikle Fen Bilimleri dersine ait (Kuvvet ve hareket, Güneş/Dünya/Ay hareketleri, evreler, tutulmalar, hücre, maddeler). Dünya, Güneş, Ay sorularında hep aynı şemayı ASLA kullanma; sorunun konusuna göre 'moon_phases' (evrecikler), 'solar_eclipse' (güneş tutulması), 'lunar_eclipse' (ay tutulması) veya yörünge şemalarından soruya en uygun olanını seç.\n"
+            "4. Sosyal Bilgiler: 14 Soru (43-56 arası) - Kesinlikle Sosyal Bilgiler dersine ait (Tarih, coğrafya, harita okuma, kültürel miras, hak ve sorumluluklar).\n"
+            "5. Din Kültürü ve Ahlak Bilgisi: 12 Soru (57-68 arası) - Kesinlikle Din Kültürü dersine ait (Ayet ve hadis yorumlama, İslam kültürü, değerler eğitimi).\n"
+            "6. İngilizce (English): 12 Soru (69-80 arası) - Kesinlikle İngilizce dersine ait (Diyalog tamamlama, kartlar, tablo eşleştirme, kelime bilgisi).\n\n"
             "🚨 KESİN GÖRSEL VE ŞEMA KURALLARI (`shape` nesnesi):\n"
             "Soruların matematik, fen ve veri okuma bölümlerinde 'shape' alanını boş bırakma; uygun şema parametresini ekle:\n"
             "- Üçgen için: {\"type\": \"triangle\", \"sub_type\": \"right/scalene/equilateral\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"side_ab\": \"...\", \"angle_a\": \"...\"}\n"
