@@ -731,30 +731,41 @@ if st.session_state.quiz_started and st.session_state.questions:
     options = q['options'] # Örn: {"A": "Seçenek 1", "B": "Seçenek 2", ...}
     option_keys = list(options.keys())
 
-    # Daha kararlı bir state yönetimi için callback (on_change) kullanıyoruz
-    def update_answer():
-        st.session_state.selected_answers[idx] = st.session_state.get(f"q_{idx}")
-
-    # Mevcut seçimi session_state'ten bulalım index için
+    # Daha önce bu soruya verilmiş bir cevap var mı kontrol edelim
     current_val = st.session_state.selected_answers.get(idx)
-    default_index = 0
+    
+    # Eğer daha önce cevap verilmişse index'ini bulalım, verilmemişse None yapalım ki boş gelsin
+    default_index = None
     if current_val in option_keys:
         default_index = option_keys.index(current_val)
 
-    # Widget'ın kendi key'i üzerinden değerini session_state'e senkronize ediyoruz
-    if f"q_{idx}" not in st.session_state and current_val in option_keys:
-        st.session_state[f"q_{idx}"] = current_val
+    # st.radio içerisindeki key ile session_state çakışmasını önlemek için 
+    # widget'ın kendi state'ini dikkatli yönetiyoruz:
+    widget_key = f"q_{idx}"
+    
+    # Eğer widget state'i daha önce oluşmadıysa ve hafızada cevap varsa atayalım
+    if widget_key not in st.session_state:
+        if current_val in option_keys:
+            st.session_state[widget_key] = current_val
+        else:
+            st.session_state[widget_key] = None
+
+    def update_answer():
+        selected = st.session_state.get(widget_key)
+        if selected:
+            st.session_state.selected_answers[idx] = selected
 
     choice = st.radio(
         f"**Soru {idx + 1} Şıkları:**",
         options=option_keys,
         index=default_index,
         format_func=lambda x: f"{x}) {options[x]}",
-        key=f"q_{idx}",
-        on_change=update_answer
+        key=widget_key,
+        on_change=update_answer,
+        placeholder="Bir şık seçiniz..." # Streamlit'in boş bırakabilmeyi destekleyen yapısı için
     )
     
-    # Güvence olarak doğrudan atamayı da yineliyoruz
+    # Kullanıcı tıkladığında anında kaydet
     if choice:
         st.session_state.selected_answers[idx] = choice
         
