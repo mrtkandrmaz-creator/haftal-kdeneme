@@ -146,7 +146,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Dinamik Görselleştirme, Tablo ve Şema Motoru
+# Gelişmiş Dinamik Görselleştirme, Tablo ve Şema Motoru (Çakışma Önleyici Kalıcı Çözüm)
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -175,8 +175,9 @@ def draw_geometry_shape(shape_data):
         st.markdown(table_html, unsafe_allow_html=True)
         return
 
-    # Matplotlib görselleri için profesyonel boyutlandırma ve layout optimizasyonu
-    fig, ax = plt.subplots(figsize=(4.5, 3.0))
+    # Matplotlib görselleri için profesyonel boyutlandırma ve çakışma önleyici layout optimizasyonu
+    fig, ax = plt.subplots(figsize=(6.5, 4.2))
+    fig.subplots_adjust(top=0.85, bottom=0.20, left=0.15, right=0.90)
     ax.set_aspect('equal')
     ax.axis('off')
     
@@ -210,13 +211,13 @@ def draw_geometry_shape(shape_data):
                 ax.text(p[0] + offsets[i][0], p[1] + offsets[i][1], labels[i], fontsize=10, fontweight='bold', color='#1e293b')
             
             if side_ab:
-                ax.text(-0.8, 1.5, f"AB: {side_ab}", fontsize=8, color='#0284c7', fontweight='bold', ha='right')
+                ax.text(-0.8, 1.5, f"AB: {side_ab}", fontsize=8.5, color='#0284c7', fontweight='bold', ha='right')
             if side_bc:
-                ax.text(2.5, -0.7, f"BC: {side_bc}", fontsize=8, color='#0284c7', fontweight='bold', ha='center')
+                ax.text(2.5, -0.7, f"BC: {side_bc}", fontsize=8.5, color='#0284c7', fontweight='bold', ha='center')
             if side_ac:
-                ax.text(2.8, 2.3, f"AC: {side_ac}", fontsize=8, color='#0284c7', fontweight='bold')
+                ax.text(2.8, 2.3, f"AC: {side_ac}", fontsize=8.5, color='#0284c7', fontweight='bold')
             if angle_a:
-                ax.text(2.0, 3.8, f"Â={angle_a}", fontsize=8, color='#ea580c', fontweight='bold', ha='center')
+                ax.text(2.0, 3.8, f"Â={angle_a}", fontsize=8.5, color='#ea580c', fontweight='bold', ha='center')
                 
             ax.set_xlim(-3.5, 7.5)
             ax.set_ylim(-2.5, 5.8)
@@ -249,6 +250,7 @@ def draw_geometry_shape(shape_data):
 
         # 3. MATEMATİK & FEN ÇUBUK / GRAFİK ANALİZİ (Çakışmasız, profesyonel eksen tasarımı)
         elif st_type in ["bar_chart", "science_chart"]:
+            ax.set_aspect('auto')
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
             title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
@@ -256,7 +258,9 @@ def draw_geometry_shape(shape_data):
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
             
-            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
+            ax.tick_params(axis='x', rotation=15, labelsize=9)
+            ax.tick_params(axis='y', labelsize=9)
             
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
@@ -266,14 +270,15 @@ def draw_geometry_shape(shape_data):
             max_val = max(clean_vals) if clean_vals else 10
             for bar in bars:
                 height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.05), f'{height:g}',
-                        ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1e293b')
+                ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.03), f'{height:g}',
+                        ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
             
-            ax.set_ylim(0, max_val * 1.3)
+            ax.set_ylim(0, max_val * 1.35)
             ax.set_xlim(-0.8, len(labels) - 0.2)
 
-        # 4. MATEMATİK ÇİZGİ / TREND GRAFİĞİ (Gelişmiş kütüphane desteği ile eklenmiştir)
+        # 4. MATEMATİK ÇİZİCİ / TREND GRAFİĞİ (Kalıcı çakışma önleyici kütüphane düzenlemesi)
         elif st_type == "line_chart":
+            ax.set_aspect('auto')
             labels = shape_data.get("labels", ["Oca", "Şub", "Mar", "Nis", "May"])
             values = shape_data.get("values", [12, 18, 15, 22, 30])
             title = str(shape_data.get("title", "Değişim ve Çizgi Grafiği"))
@@ -281,7 +286,9 @@ def draw_geometry_shape(shape_data):
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             
             ax.plot(labels, clean_vals, marker='o', color='#ea580c', linewidth=2.5, markersize=7, markerfacecolor='#0284c7', markeredgecolor='#ffffff')
-            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
+            ax.tick_params(axis='x', rotation=15, labelsize=9)
+            ax.tick_params(axis='y', labelsize=9)
             
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
@@ -290,18 +297,17 @@ def draw_geometry_shape(shape_data):
             
             max_val = max(clean_vals) if clean_vals else 10
             for x_pos, y_val in enumerate(clean_vals):
-                ax.text(x_pos, y_val + (max_val * 0.06), f'{y_val:g}', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1e293b')
+                ax.text(x_pos, y_val + (max_val * 0.04), f'{y_val:g}', ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
                 
-            ax.set_ylim(0, max_val * 1.35)
+            ax.set_ylim(0, max_val * 1.40)
             ax.set_xlim(-0.5, len(labels) - 0.5)
 
-        # 5. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ÇEŞİTLİLİĞİ (Sorunun alt tipine göre dinamik değişir)
+        # 5. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ÇEŞİTLİLİĞİ
         elif st_type in ["science_space", "space_orbit", "eclipse", "moon_phases"]:
             sub_sub = str(shape_data.get("sub_type", "orbit")).strip().lower()
             title = str(shape_data.get("title", "Fen Bilimleri Sistem Şeması"))
             
             if sub_sub == "moon_phases":
-                # Ay'ın Evreleri Gösterimi
                 sun_indicator = plt.Circle((-3.5, 0), 0.6, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.2)
                 ax.add_patch(sun_indicator)
                 ax.text(-3.5, -0.9, "Güneş Işığı", fontsize=7.5, fontweight='bold', color='#d97706', ha='center')
@@ -310,7 +316,6 @@ def draw_geometry_shape(shape_data):
                 ax.add_patch(earth_center)
                 ax.text(0, -0.2, "Dünya", fontsize=8, fontweight='bold', color='white', ha='center', va='center')
                 
-                # Çevredeki Ay Konumları
                 moon_positions = [
                     (0, 1.8, "Yeni Ay"), (1.8, 0, "İlk Dördün"),
                     (0, -1.8, "Dolunay"), (-1.8, 0, "Son Dördün")
@@ -324,7 +329,6 @@ def draw_geometry_shape(shape_data):
                 ax.set_ylim(-3.0, 3.0)
                 
             elif sub_sub == "solar_eclipse":
-                # Güneş Tutulması: Güneş -> Ay -> Dünya
                 sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun_p)
                 ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
@@ -341,7 +345,6 @@ def draw_geometry_shape(shape_data):
                 ax.set_ylim(-2.0, 2.0)
                 
             elif sub_sub == "lunar_eclipse":
-                # Ay Tutulması: Güneş -> Dünya -> Ay
                 sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun_p)
                 ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
@@ -358,7 +361,6 @@ def draw_geometry_shape(shape_data):
                 ax.set_ylim(-2.0, 2.0)
                 
             else:
-                # Standart Dünya-Güneş Yörünge Gösterimi
                 sun = plt.Circle((-2.0, 0), 0.8, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun)
                 ax.text(-2.0, -1.2, "Güneş", fontsize=8.5, fontweight='bold', color='#d97706', ha='center')
@@ -373,13 +375,13 @@ def draw_geometry_shape(shape_data):
                 ax.set_xlim(-3.8, 3.5)
                 ax.set_ylim(-2.5, 2.5)
 
-            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=20)
 
         plt.tight_layout()
         buf = io.BytesIO()
         plt.savefig(buf, format='png', bbox_inches='tight', dpi=180)
         buf.seek(0)
-        st.image(buf, width=340)
+        st.image(buf, width=380)
         plt.close(fig)
     except Exception as e:
         plt.close(fig)
@@ -463,6 +465,54 @@ question_count = 80
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🚀 Soru İşlemleri")
 generate_btn = st.sidebar.button("Soruları Üret")
+
+# İSTEK ÜZERİNE GÜNCELLENDİ: "Sorular Hazırlanıyor" Durum Metni Sol Panele, Butonun Altına Taşındı
+if generate_btn:
+    st.sidebar.info("⏳ Sorular hazırlanıyor, çoklu API havuzu taranıyor...")
+
+# Sağ Panel: Denemedeki Dersler ve Üniteler/Kazanım Dağılımı Paneli
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 📋 Deneme Ünite & Kazanım Haritası")
+
+# Sınıfa göre dinamik ünite haritası gösterimi
+unit_mapping = {
+    "5. Sınıf": [
+        ("**Türkçe (15 Soru)**", "Sözcükte Anlam, Cümlede Anlam, Paragraf, Metin Yorumlama, Görsel Okuma"),
+        ("**Matematik (15 Soru)**", "Doğal Sayılar, Kesirler, Ondalık Gösterimler, Temel Geometrik Kavramlar ve Açılar"),
+        ("**Fen Bilimleri (15 Soru)**", "Güneş, Dünya ve Ay, Canlılar Dünyası, Kuvvetin Etkileri, Madde ve Değişim"),
+        ("**Sosyal Bilgiler (15 Soru)**", "Birey ve Toplum, Çocuk Hakları, Kültür ve Miras, Yaşadığımız Yer"),
+        ("**Din Kültürü (10 Soru)**", "Allah İnancı, Ramazan ve Oruç, Hz. Muhammed ve Aile Hayatı"),
+        ("**İngilizce (10 Soru)**", "Hello!, My Town, Games and Hobbies, My Daily Routine")
+    ],
+    "6. Sınıf": [
+        ("**Türkçe (15 Soru)**", "Söz Sanatları, Deyimler, Paragrafta Yapı, Noktalama İşaretleri, Metin Türleri"),
+        ("**Matematik (15 Soru)**", "Üslü İfadeler, İşlem Önceliği, Ortaklar ve Katlar, Kümeler, Tam Sayılar"),
+        ("**Fen Bilimleri (15 Soru)**", "Güneş Sistemi ve Tutulmalar, Destek ve Hareket Sistemi, Sindirim/Dolaşım, Kuvvet ve Hareket"),
+        ("**Sosyal Bilgiler (15 Soru)**", "Uzak Asya'dan Asya'ya Türk Devletleri, İslamiyet'in Doğuşu, İpek Yolunda Türkler"),
+        ("**Din Kültürü (10 Soru)**", "Peygamber ve İlahi Kitaplar, Namaz İbadeti, Hz. Muhammed'in Hayatı"),
+        ("**İngilizce (10 Soru)**", "Life, Yummy Breakfast, Downtown, Weather and Emotions")
+    ],
+    "7. Sınıf": [
+        ("**Türkçe (15 Soru)**", "Fiiller, Ek Fiil, Zarf, Anlatım Bozuklukları, Sözel Mantık ve Muhakeme"),
+        ("**Matematik (15 Soru)**", "Tam Sayılarla İşlemler, Rasyonel Sayılar, Cebirsel İfadeler, Orantı ve Yüzdeler"),
+        ("**Fen Bilimleri (15 Soru)**", "Güneş Sistemi ve Ötesi, Hücre ve Bölünmeler, Kuvvet ve Enerji, Saf Madde ve Karışımlar"),
+        ("**Sosyal Bilgiler (15 Soru)**", "İletişim ve İnsan İlişkileri, Osmanlı Tarihi (Beylikten İmparatorluğa), Nüfus ve Yerleşme"),
+        ("**Din Kültürü (10 Soru)**", "Melek ve Ahiret İnancı, Kader Amacı, Hz. Muhammed ve Aydınlık Yol"),
+        ("**İngilizce (10 Soru)**", "Appearance and Personality, Sports, Biographies, Wild Animals")
+    ],
+    "8. Sınıf (LGS)": [
+        ("**Türkçe (15 Soru)**", "Fiilimsiler, Cümlenin Ögeleri, Anlatım Bozuklukları, Sözel Mantık, Yeni Nesil Paragraf"),
+        ("**Matematik (15 Soru)**", "Çarpanlar ve Katlar, Üslü İfadeler, Kareköklü İfadeler, Veri Analizi, Olasılık, Cebirsel İfadeler"),
+        ("**Fen Bilimleri (15 Soru)**", "Mevsimler ve İklim, DNA ve Genetik Kod, Basınç, Madde ve Endüstri, Basit Makineler"),
+        ("**Sosyal Bilgiler (T.C. İnkılap) (15 Soru)**", "Bir Kahraman Doğuyor, Millî Uyanıksa, Ya İstiklal Ya Ölüm, Atatürkçülük"),
+        ("**Din Kültürü (10 Soru)**", "Kader İnancı, Zekat ve Sadaka, Din ve Hayat, Hz. Muhammed'in Örnekliği"),
+        ("**İngilizce (10 Soru)**", "Friendship, Teen Life, In The Kitchen, Communication, The Internet")
+    ]
+}
+
+current_units = unit_mapping.get(selected_grade, unit_mapping["5. Sınıf"])
+for sub_title, content_desc in current_units:
+    st.sidebar.markdown(f"• {sub_title}<br><span style='font-size:0.8rem; color:#64748b;'>&nbsp;&nbsp;&nbsp;{content_desc}</span>", unsafe_allow_html=True)
 
 # Ana Ekran Başlığı
 st.markdown(f"<h1 style='text-align: center; color: #1e293b; font-weight: 900;'>🎯 {selected_grade} 80 Soruluk Deneme Paneli</h1>", unsafe_allow_html=True)
@@ -693,34 +743,7 @@ if st.session_state.quiz_started and st.session_state.questions:
 
         with st.expander("📖 Detaylı Soru Çözüm, Cevap Anahtarı ve Tüm Şıkları İncele", expanded=True):
             for i, q_item in enumerate(st.session_state.questions):
-                user_ans = st.session_state.selected_answers.get(i, "Boş")
-                correct_ans = q_item['answer']
-                status = "✅ Doğru" if user_ans == correct_ans else "❌ Yanlış / Boş"
-                
-                st.markdown(f"### Soru {i + 1} [{q_item.get('subject', '')}] — {status}")
-                
-                p_text = str(q_item.get('passage', '')).setItem('') if 'passage' not in q_item else str(q_item.get('passage', '')).strip()
-                if p_text and p_text.lower() != "null" and p_text != "":
-                    st.markdown(f"**Metin / Öncül:** {p_text}")
-                    
-                if 'shape' in q_item and q_item['shape'] and isinstance(q_item['shape'], dict):
-                    draw_geometry_shape(q_item['shape'])
-                    
-                st.markdown(f"**Soru Kökü:** {q_item['question']}")
-                
-                # Tüm Şıkları Listeleme
-                st.markdown("**Tüm Şıklar:**")
-                opts = q_item.get('options', {})
-                for key_opt, text_opt in opts.items():
-                    is_correct_marker = " 🎯 **(Doğru Cevap)**" if key_opt == correct_ans else ""
-                    is_user_marker = " 👈 *(Sizin Cevabınız)*" if key_opt == user_ans else ""
-                    st.markdown(f"- **{key_opt})** {text_opt}{is_correct_marker}{is_user_marker}")
-                
-                # Çözüm / Açıklama Alanı
-                explanation = q_item.get('explanation', '')
-                if explanation:
-                    st.markdown(f"<div class='solution-box'>💡 <b>Çözüm Açıklaması:</b> {explanation}</div>", unsafe_allow_html=True)
-                else:
-                    st.markdown(f"<div class='solution-box'>💡 <b>Doğru Cevap:</b> {correct_ans} şıkkıdır. Sizin tercihiniz: <b>{user_ans}</b></div>", unsafe_allow_html=True)
-                
-                st.markdown("---")
+                u_ans = st.session_state.selected_answers.get(i, "Boş")
+                c_ans = q_item['answer']
+                status_icon = "✅" if u_ans == c_ans else "❌"
+                st.markdown(f"**Soru {i+1} [{q_item.get('subject', '')}]:** {status_icon} (Sizin Cevabınız: **{u_ans}** | Doğru Cevap: **{c_ans}**)")
