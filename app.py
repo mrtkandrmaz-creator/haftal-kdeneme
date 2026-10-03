@@ -17,28 +17,28 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Modern UI ve Özel CSS Stilleri (Daha Büyük/Modern Butonlar, Sabit Görsel Boyutları)
+# Modern UI ve Özel CSS Stilleri (Daha Uzatılmış / Büyük Butonlar ve Sabit Boyutlar)
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
     
-    /* Daha Büyük, Uzatılmış ve Ultra Modern Soru Üret Butonu */
+    /* Çok Daha Uzun, Geniş ve Ultra Modern Soru Üret Butonu */
     div.stButton > button:first-child {
         width: 100%;
-        border-radius: 16px;
+        border-radius: 18px;
         font-weight: 900;
-        font-size: 1.25rem;
-        padding: 1.2rem 1.5rem;
+        font-size: 1.35rem;
+        padding: 1.4rem 1.8rem;
         background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
         color: white;
         border: none;
-        box-shadow: 0 8px 20px -4px rgba(249, 115, 22, 0.4);
+        box-shadow: 0 10px 25px -4px rgba(249, 115, 22, 0.45);
         transition: all 0.3s ease;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.8px;
     }
     div.stButton > button:first-child:hover {
         transform: translateY(-3px);
-        box-shadow: 0 12px 25px -6px rgba(249, 115, 22, 0.6);
+        box-shadow: 0 15px 30px -6px rgba(249, 115, 22, 0.65);
         background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
     }
     
@@ -117,10 +117,10 @@ st.markdown("""
         box-shadow: 0 15px 35px -5px rgba(0,0,0,0.08);
         border: 1px solid #e2e8f0;
         text-align: center;
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
     
-    /* Kesin Boyutlandırılmış ve Esnek Modern Tablo Stili */
+    /* Kusursuz, İdeal Boyutlu ve Modern Tablo Stili */
     .custom-table-container {
         max-width: 100%;
         overflow-x: auto;
@@ -199,7 +199,6 @@ def draw_geometry_shape(shape_data):
     ax.axis('off')
     
     try:
-        # 1. GEOMETRİ / ÜÇGEN ÇİZİMİ
         if st_type == "triangle":
             sub_type = str(shape_data.get("sub_type", "scalene")).strip().lower()
             a_label = str(shape_data.get("A", "A"))
@@ -239,7 +238,6 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.5, 7.5)
             ax.set_ylim(-2.5, 5.8)
 
-        # 2. ÇEMBER VE DAİRE (Çap 10 cm - Yarıçap 5 cm tam uyumlu)
         elif st_type == "circle":
             center_label = str(shape_data.get("center", "O"))
             radius_val_str = str(shape_data.get("radius", "5 cm"))
@@ -267,7 +265,6 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.0, 3.0)
             ax.set_ylim(-3.0, 3.0)
 
-        # 3. ÇUBUK GRAFİK
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
@@ -294,7 +291,6 @@ def draw_geometry_shape(shape_data):
             ax.set_ylim(0, max_val * 1.3)
             ax.set_xlim(-0.8, len(labels) - 0.2)
 
-        # 4. FEN BİLİMLERİ: UZAY VE SİSTEM ŞEMALARI
         elif st_type in ["science_space", "space_orbit", "eclipse", "moon_phases"]:
             sub_sub = str(shape_data.get("sub_type", "orbit")).strip().lower()
             title = str(shape_data.get("title", "Fen Bilimleri Şeması"))
@@ -439,7 +435,7 @@ st.sidebar.text_input(
     key="widget_custom_topic",
     on_change=update_custom_topic,
     placeholder="Örn: Açılar, Hücre, Paragraf...",
-    help="Buraya yazdığınız ünite/konu otomatik olarak ilgili dersine atanır ve o dersin içerisindeki diğer kazanımlarla eşit olarak paylaştırılır."
+    help="Buraya yazdığınız ünite/konu ilgili dersin kazanımlarıyla eşit şekilde paylaştırılır."
 )
 
 difficulty_level = st.sidebar.selectbox(
@@ -459,7 +455,7 @@ question_count = 80
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🚀 Soru İşlemleri")
 
-# Büyük ve Modern Soru Üret Butonu
+# Uzatılmış ve Büyük Soru Üret Butonu
 generate_btn = st.sidebar.button("🎯 SORULARI ÜRET")
 
 # Ana Ekran Başlığı
@@ -474,7 +470,7 @@ def call_groq_with_key(api_key, prompt_text):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {"role": "system", "content": "Sen MEB müfredatı soru hazırlama uzmanısın. Paragraf, metin, tablo ve fen bilimleri grafik/şema sorularında asla kesinti yapmaz, eksiksiz üretirsin."},
+            {"role": "system", "content": "Sen MEB müfredatı soru hazırlama uzmanısın. Paragraf, tablo ve fen bilimleri grafik/şema sorularında asla kesinti yapmazsın."},
             {"role": "user", "content": prompt_text}
         ],
         temperature=0.75,
@@ -526,19 +522,25 @@ def multi_pool_generate(prompt_text):
 if generate_btn:
     st.session_state.is_generating = True
 
-# Üretim Yapılırken Sağ Ekranda Bilgi Verme ve Sol Sidebar'da Spinner Gösterme
+# Üretim Yapılırken Sağ Ekranda Ünite/Ders Detayları Bilgisi ve Sol Sidebar'da Spinner
 if st.session_state.is_generating:
     with st.sidebar:
-        st.info("🔄 Yapay zeka havuzu aktif: Sorular ve çözümler üretiliyor...")
+        st.info("🔄 Yapay zeka havuzu aktif: Sorular, veriler ve çözümler üretiliyor...")
         
     st.markdown(
         f"""
         <div class='info-display-box'>
             <h2 style='color: #0284c7; margin-bottom: 1rem;'>🚀 Deneme Sınavı Hazırlanıyor...</h2>
-            <p style='font-size: 1.15rem; color: #334155; line-height: 1.7;'>
-                Seçmiş olduğunuz <b>{selected_grade}</b> seviyesi ve <b>{selected_scope}</b> kapsamındaki MEB resmi kazanımları taranıyor.<br>
-                <b>6 Farklı Temel Ders (Türkçe, Matematik, Fen, Sosyal, Din, İngiltere/İngilizce)</b> için toplam 80 adet yeni nesil soru, şema ve detaylı çözüm açıklamaları havuzdan derlenmektedir.<br>
-                Lütfen bekleyiniz, işlem birazdan tamamlanacaktır.
+            <p style='font-size: 1.15rem; color: #334155; line-height: 1.8;'>
+                Seçmiş olduğunuz <b>{selected_grade}</b> seviyesi ve <b>{selected_scope}</b> kapsamındaki MEB resmi kazanımları taranıyor.<br><br>
+                <b>📚 Denemede Yer Alan Dersler ve Üniteler:</b><br>
+                • <b>Türkçe (14 Soru):</b> Sözcükte Anlam, Paragraf, Sözel Mantık, Dil Bilgisi<br>
+                • <b>Matematik (14 Soru):</b> Geometri, Üçgenler, Çember, Veri Analizi ve Tablo Yorumlama<br>
+                • <b>Fen Bilimleri (14 Soru):</b> Güneş, Dünya ve Ay, Evreler, Tutulmalar, Kuvvet ve Hareket<br>
+                • <b>Sosyal Bilgiler (14 Soru):</b> Tarih, Coğrafya, Harita Okuma ve Haklar<br>
+                • <b>Din Kültürü ve Ahlak Bilgisi (12 Soru):</b> Ayet/Hadis Yorumlama ve Değerler Eğitimi<br>
+                • <b>İngilizce (12 Soru):</b> Diyalog Tamamlama, Kelime ve Tablo Eşleştirme<br><br>
+                Toplam 80 adet yeni nesil soru, şema ve detaylı çözüm açıklamaları derlenmektedir. Lütfen bekleyiniz...
             </p>
         </div>
         """,
@@ -549,8 +551,7 @@ if st.session_state.is_generating:
     if current_topic_val.strip():
         custom_prompt_addon = (
             f"\n\n🚨 MANUEL ÖZEL ÜNİTE / KONU EKLENDİ: '{current_topic_val}'\n"
-            f"TALİMAT: Bu girdiğin üniteyi/konuyu akademik olarak ait olduğu ilgili derse otomatik olarak dahil et. "
-            f"Tüm dersler kendi haftalık MEB müfredatına uygun olarak üretilirken, bu eklediğin özel ünite veya konu **sadece ilgili dersin kendi içerisindeki soruların arasında diğer kazanımlarla eşit olarak paylaştırılsın**."
+            f"TALİMAT: Bu girdiğin üniteyi ilgili dersin kazanımlarıyla eşit şekilde paylaştırarak sorulara yansıt."
         )
     else:
         custom_prompt_addon = ""
@@ -562,7 +563,7 @@ if st.session_state.is_generating:
         f"ZORLUK KADEMESİ VE KALİTE KRİTERİ: '{difficulty_level}'.\n\n"
         "DERS DAĞILIMI VE KESİN SORU SAYILARI VE İÇERİK KURALLARI (TOPLAM TAM 80 SORU):\n"
         "1. Türkçe: 14 Soru (1-14 arası) - Sözel mantık, paragrafta anlam, uzun metinler, dil bilgisi, görsel okuma. Metinleri ASLA KISALTMA, tam yaz.\n"
-        "2. Matematik: 14 Soru (15-28 arası) - Geometri, açılar, üçgenler, çember, veri analizi, tablo gösterimleri, oran-orantı, problemler. Çizgi grafiklerini ASLA KULLANMA; tüm verileri ve trendleri 'table' formatında göster. Çember sorularında çap ve yarıçap ilişkisinde (Örn: Çap 10 cm ise yarıçap 5 cm olarak) metin ile görselin birebir uyuşmasına dikkat et.\n"
+        "2. Matematik: 14 Soru (15-28 arası) - Geometri, açılar, üçgenler, çember, veri analizi, tablo gösterimleri, oran-orantı, problemler. Çizgi grafiklerini ASLA KULLANMA; tüm verileri ve trendleri 'table' formatında göster. Örneğin dondurma satış tablosu gibi veri tablolarını soru yapısına dahil et. Çember sorularında çap ve yarıçap ilişkisinde (Örn: Çap 10 cm ise yarıçap 5 cm olarak) metin ile görselin birebir uyuşmasına dikkat et.\n"
         "3. Fen Bilimleri: 14 Soru (29-42 arası) - Kuvvet ve hareket, Güneş/Dünya/Ay hareketleri, evreler, tutulmalar, hücre, maddeler. Konuya göre 'moon_phases', 'solar_eclipse', 'lunar_eclipse' veya yörünge şemalarından en uygununu seç.\n"
         "4. Sosyal Bilgiler: 14 Soru (43-56 arası) - Tarih, coğrafya, harita okuma, kültürel miras, hak ve sorumluluklar.\n"
         "5. Din Kültürü ve Ahlak Bilgisi: 12 Soru (57-68 arası) - Ayet ve hadis yorumlama, İslam kültürü, değerler eğitimi.\n"
@@ -571,7 +572,7 @@ if st.session_state.is_generating:
         "- Üçgen için: {\"type\": \"triangle\", \"sub_type\": \"right/scalene/equilateral\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\", \"side_ab\": \"...\", \"angle_a\": \"...\"}\n"
         "- Çember için: {\"type\": \"circle\", \"center\": \"O\", \"radius\": \"5 cm\", \"show_diameter\": true}\n"
         "- Çubuk Grafik için: {\"type\": \"bar_chart\", \"labels\": [\"A\", \"B\", \"C\", \"D\"], \"values\": [10, 25, 15, 30], \"title\": \"Grafik Başlığı\"}\n"
-        "- Tablo için: {\"type\": \"table\", \"title\": \"Veri Tablosu Başlığı\", \"headers\": [\"Sütun 1\", \"Sütun 2\"], \"rows\": [[\"Satır 1A\", \"Satır 1B\"], [\"Satır 2A\", \"Satır 2B\"]]}\n"
+        "- Tablo için: {\"type\": \"table\", \"title\": \"Tablo Başlığı\", \"headers\": [\"Gün\", \"Adet\"], \"rows\": [[\"Pazartesi\", \"12\"], [\"Salı\", \"15\"]]}\n"
         "- Fen / Uzay için: {\"type\": \"science_space\", \"sub_type\": \"moon_phases\", \"title\": \"Sistem Şeması\"}\n"
         "Her sorunun 4 şıkkı (A, B, C, D), doğru cevabı (`answer`) ve neden doğru olduğunu açıklayan detaylı çözüm adımları (`explanation`) olmalıdır. 'subject' alanına ilgili dersin adını tam yaz.\n"
         "Çıktıyı KESİNLİKLE aşağıdaki JSON formatında ver, başka hiçbir açıklama ekleme:\n"
@@ -582,7 +583,7 @@ if st.session_state.is_generating:
         "            \"subject\": \"Matematik\",\n"
         "            \"passage\": \"Metin veya paragraf içeriği burada eksiksiz yer alacak...\",\n"
         "            \"question\": \"Soru metni...\",\n"
-        "            \"shape\": {\"type\": \"triangle\", \"sub_type\": \"right\", \"A\": \"A\", \"B\": \"B\", \"C\": \"C\"},\n"
+        "            \"shape\": {\"type\": \"table\", \"title\": \"Dondurma Satış Tablosu\", \"headers\": [\"Gün\", \"Adet\"], \"rows\": [[\"Pazartesi\", \"12\"], [\"Salı\", \"15\"]]},\n"
         "            \"options\": {\n"
         "                \"A\": \"A şıkkı\",\n"
         "                \"B\": \"B şıkkı\",\n"
@@ -616,7 +617,7 @@ if st.session_state.is_generating:
     else:
         st.error(f"❌ Bağlantı kurulamadı. Hata: {error_message}")
 
-# Sınavı Başlat Butonu (Eğer sorular hazırsa ve sınav başlamadıysa)
+# Sınavı Başlat Butonu
 if st.session_state.quiz_ready and not st.session_state.quiz_started and not st.session_state.is_generating:
     st.markdown("---")
     sc1, sc2, sc3 = st.columns([1, 2, 1])
@@ -701,7 +702,7 @@ if st.session_state.quiz_started and st.session_state.questions:
                 st.rerun()
     st.markdown("</div>", unsafe_allow_html=True)
 
-# Sonuç ve Karne Ekranı (Detaylı Doğru Şık ve Neden Doğru Açıklamaları İle)
+# Sonuç ve Karne Ekranı (Detaylı Doğru Şık ve Çözüm Gerekçeleri İle)
 elif not st.session_state.quiz_started and st.session_state.quiz_ready and not st.session_state.is_generating:
     st.markdown("---")
     st.markdown("<h2 style='text-align: center; color: #1e293b;'>📊 Sınav Sonuç ve Detaylı Karne Raporu</h2>", unsafe_allow_html=True)
