@@ -17,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Modern UI ve Özel CSS Stilleri
+# Modern UI ve Özel CSS Stilleri (Daha Renkli, Modern Tablolar ve Kompakt Görsel Düzenleri)
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; }
@@ -67,7 +67,7 @@ st.markdown("""
         margin-bottom: 1.2rem;
     }
     .passage-box {
-        background: #f1f5f9;
+        background: #f0f9ff;
         border-left: 5px solid #0284c7;
         padding: 1.2rem;
         border-radius: 8px;
@@ -106,47 +106,48 @@ st.markdown("""
         margin-bottom: 1.2rem;
     }
     
-    /* Geliştirilmiş Modern Tablo Stili */
+    /* Ultra Modern ve Renkli Tablo Stili */
     .custom-table-container {
         overflow-x: auto;
         margin: 15px 0;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        box-shadow: 0 6px 20px -4px rgba(2, 132, 199, 0.15);
+        border: 1px solid #bae6fd;
     }
     .custom-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.95rem;
+        font-size: 0.98rem;
         background-color: #ffffff;
         text-align: left;
     }
     .custom-table th {
-        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
         color: white;
-        padding: 14px 18px;
+        padding: 15px 20px;
         font-weight: 700;
-        letter-spacing: 0.3px;
-        border-bottom: 2px solid #0284c7;
+        letter-spacing: 0.4px;
+        border-bottom: 3px solid #0284c7;
     }
     .custom-table td {
-        padding: 12px 18px;
-        border-bottom: 1px solid #f1f5f9;
-        color: #334155;
+        padding: 13px 20px;
+        border-bottom: 1px solid #e0f2fe;
+        color: #1e293b;
     }
     .custom-table tr:last-child td {
         border-bottom: none;
     }
     .custom-table tr:nth-child(even) {
-        background-color: #f8fafc;
+        background-color: #f0f9ff;
     }
     .custom-table tr:hover {
-        background-color: #f1f5f9;
+        background-color: #e0f2fe;
+        transition: background-color 0.2s ease;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Gelişmiş Dinamik Görselleştirme, Tablo ve Şema Motoru
+# Gelişmiş Dinamik Görselleştirme, Renkli Tablo ve Kompakt Şema Motoru
 def draw_geometry_shape(shape_data):
     if not isinstance(shape_data, dict):
         return
@@ -155,7 +156,7 @@ def draw_geometry_shape(shape_data):
     if not st_type:
         return
 
-    # Gelişmiş HTML Tablo Motoru (Çizgi grafik tamamen tabloya dönüştürüldü)
+    # Modern ve Renkli Tablo Motoru
     if st_type in ["table", "line_chart"]:
         headers = shape_data.get("headers", ["Kategori / Zaman", "Değer"])
         rows = shape_data.get("rows", [])
@@ -165,7 +166,7 @@ def draw_geometry_shape(shape_data):
             rows = [["Örnek 1", "10"], ["Örnek 2", "20"]]
         title = str(shape_data.get("title", "Veri ve Değer Tablosu"))
         
-        st.markdown(f"<p style='font-weight: 700; color: #1e293b; margin-bottom: 0.4rem; font-size: 1.05rem;'>📊 {title}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-weight: 700; color: #0284c7; margin-bottom: 0.4rem; font-size: 1.1rem;'>📊 {title}</p>", unsafe_allow_html=True)
         table_html = "<div class='custom-table-container'><table class='custom-table'><thead><tr>"
         for h in headers:
             table_html += f"<th>{h}</th>"
@@ -179,8 +180,8 @@ def draw_geometry_shape(shape_data):
         st.markdown(table_html, unsafe_allow_html=True)
         return
 
-    # Matplotlib görselleri için profesyonel boyutlandırma ve layout optimizasyonu
-    fig, ax = plt.subplots(figsize=(4.5, 3.0))
+    # Kompakt ve İdeal Boyutlandırılmış Matplotlib Görsel Motoru (Boyut Sorunu Çözüldü: width=280)
+    fig, ax = plt.subplots(figsize=(3.4, 2.3))
     ax.set_aspect('equal')
     ax.axis('off')
     
@@ -198,72 +199,74 @@ def draw_geometry_shape(shape_data):
             
             if sub_type == "right":
                 pts = np.array([[0, 0], [4, 0], [0, 3]])
-                ax.plot([0, 0.35, 0.35, 0], [0, 0, 0.35, 0.35], color='#1e293b', linewidth=1.2)
+                ax.plot([0, 0.35, 0.35, 0], [0, 0, 0.35, 0.35], color='#0284c7', linewidth=1.5)
             elif sub_type == "equilateral":
                 h = np.sqrt(3) / 2 * 4
                 pts = np.array([[0, 0], [4, 0], [2, h]])
             else:
                 pts = np.array([[0, 0], [5, 0], [2, 4.2]])
                 
-            triangle = plt.Polygon(pts, closed=True, facecolor='#f8fafc', edgecolor='#1e293b', linewidth=2)
+            triangle = plt.Polygon(pts, closed=True, facecolor='#f0f9ff', edgecolor='#0284c7', linewidth=2.2)
             ax.add_patch(triangle)
             
             offsets = [[-0.5, -0.5], [0.4, -0.5], [0, 0.35]]
             labels = [b_label, c_label, a_label]
             for i, p in enumerate(pts):
-                ax.text(p[0] + offsets[i][0], p[1] + offsets[i][1], labels[i], fontsize=10, fontweight='bold', color='#1e293b')
+                ax.text(p[0] + offsets[i][0], p[1] + offsets[i][1], labels[i], fontsize=9.5, fontweight='bold', color='#1e293b')
             
             if side_ab:
-                ax.text(-0.8, 1.5, f"AB: {side_ab}", fontsize=8, color='#0284c7', fontweight='bold', ha='right')
+                ax.text(-0.8, 1.5, f"AB: {side_ab}", fontsize=7.5, color='#2563eb', fontweight='bold', ha='right')
             if side_bc:
-                ax.text(2.5, -0.7, f"BC: {side_bc}", fontsize=8, color='#0284c7', fontweight='bold', ha='center')
+                ax.text(2.5, -0.7, f"BC: {side_bc}", fontsize=7.5, color='#2563eb', fontweight='bold', ha='center')
             if side_ac:
-                ax.text(2.8, 2.3, f"AC: {side_ac}", fontsize=8, color='#0284c7', fontweight='bold')
+                ax.text(2.8, 2.3, f"AC: {side_ac}", fontsize=7.5, color='#2563eb', fontweight='bold')
             if angle_a:
-                ax.text(2.0, 3.8, f"Â={angle_a}", fontsize=8, color='#ea580c', fontweight='bold', ha='center')
+                ax.text(2.0, 3.8, f"Â={angle_a}", fontsize=7.5, color='#ea580c', fontweight='bold', ha='center')
                 
             ax.set_xlim(-3.5, 7.5)
             ax.set_ylim(-2.5, 5.8)
 
-        # 2. ÇEMBER VE DAİRE (Çap 10 cm - Yarıçap 5 cm tam uyumlu görsel düzeltmesi)
+        # 2. ÇEMBER VE DAİRE (Çap 10 cm - Yarıçap 5 cm tam uyumlu renkli görsel)
         elif st_type == "circle":
             center_label = str(shape_data.get("center", "O"))
             radius_val_str = str(shape_data.get("radius", "5 cm"))
             show_diameter = bool(shape_data.get("show_diameter", False))
             chord = str(shape_data.get("chord", ""))
             
-            r_num = 2.2 # Grafik çizim ölçeği
-            circle = plt.Circle((0, 0), r_num, facecolor='#f8fafc', edgecolor='#1e293b', linewidth=2)
+            r_num = 2.2
+            circle = plt.Circle((0, 0), r_num, facecolor='#f0f9ff', edgecolor='#0284c7', linewidth=2.2)
             ax.add_patch(circle)
-            ax.plot(0, 0, 'o', color='#ea580c', markersize=5)
-            ax.text(0.18, -0.38, center_label, fontsize=10, fontweight='bold', color='#ea580c')
+            ax.plot(0, 0, 'o', color='#ea580c', markersize=6)
+            ax.text(0.18, -0.38, center_label, fontsize=9.5, fontweight='bold', color='#ea580c')
             
-            # Çap ve yarıçap metin/görsel tutarlılığı
             if show_diameter:
-                ax.plot([-r_num, r_num], [0, 0], linestyle='--', color='#94a3b8', linewidth=1.4)
-                ax.text(0, 0.25, f"Çap: {radius_val_str}", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
+                ax.plot([-r_num, r_num], [0, 0], linestyle='--', color='#94a3b8', linewidth=1.5)
+                ax.text(0, 0.25, f"Çap: {radius_val_str}", fontsize=8, fontweight='bold', color='#2563eb', ha='center')
             else:
-                ax.plot([0, r_num], [0, 0], color='#0284c7', linewidth=1.8)
+                ax.plot([0, r_num], [0, 0], color='#2563eb', linewidth=2)
                 display_r = "5 cm" if ("10" in radius_val_str or "10" in chord) else radius_val_str
-                ax.text(r_num/2, 0.2, f"r = {display_r}", fontsize=8.5, fontweight='bold', color='#0284c7')
+                ax.text(r_num/2, 0.2, f"r = {display_r}", fontsize=8, fontweight='bold', color='#2563eb')
                 
             if chord:
-                ax.plot([-1.8, 1.8], [-1.3, -1.3], color='#10b981', linewidth=1.8)
-                ax.text(0, -1.75, f"Kiriş: {chord}", fontsize=8.5, fontweight='bold', color='#10b981', ha='center')
+                ax.plot([-1.8, 1.8], [-1.3, -1.3], color='#10b981', linewidth=2)
+                ax.text(0, -1.75, f"Kiriş: {chord}", fontsize=8, fontweight='bold', color='#10b981', ha='center')
                 
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
 
-        # 3. MATEMATİK & FEN ÇUBUK GRAFİK ANALİZİ
+        # 3. RENKLİ MATEMATİK & FEN ÇUBUK GRAFİK ANALİZİ
         elif st_type in ["bar_chart", "science_chart"]:
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
             values = shape_data.get("values", [10, 25, 15, 30])
             title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
-            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
+            colors = ['#0284c7', '#2563eb', '#06b6d4', '#3b82f6']
+            bar_colors = [colors[i % len(colors)] for i in range(len(labels))]
             
-            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
+            bars = ax.bar(labels, clean_vals, color=bar_colors, width=0.5, edgecolor='#1e293b', linewidth=1.1, alpha=0.95)
+            
+            ax.set_title(title, fontsize=10, fontweight='bold', color='#1e293b', pad=20)
             
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
@@ -273,13 +276,13 @@ def draw_geometry_shape(shape_data):
             max_val = max(clean_vals) if clean_vals else 10
             for bar in bars:
                 height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.05), f'{height:g}',
-                        ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1e293b')
+                ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.04), f'{height:g}',
+                        ha='center', va='bottom', fontsize=8, fontweight='bold', color='#1e293b')
             
             ax.set_ylim(0, max_val * 1.3)
             ax.set_xlim(-0.8, len(labels) - 0.2)
 
-        # 4. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ÇEŞİTLİLİĞİ
+        # 4. FEN BİLİMLERİ: DÜNYA, GÜNEŞ, AY & EVRE / TUTULMA ŞEMALARI
         elif st_type in ["science_space", "space_orbit", "eclipse", "moon_phases"]:
             sub_sub = str(shape_data.get("sub_type", "orbit")).strip().lower()
             title = str(shape_data.get("title", "Fen Bilimleri Sistem Şeması"))
@@ -287,20 +290,20 @@ def draw_geometry_shape(shape_data):
             if sub_sub == "moon_phases":
                 sun_indicator = plt.Circle((-3.5, 0), 0.6, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.2)
                 ax.add_patch(sun_indicator)
-                ax.text(-3.5, -0.9, "Güneş Işığı", fontsize=7.5, fontweight='bold', color='#d97706', ha='center')
+                ax.text(-3.5, -0.9, "Güneş Işığı", fontsize=7, fontweight='bold', color='#d97706', ha='center')
                 
                 earth_center = plt.Circle((0, 0), 0.7, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
                 ax.add_patch(earth_center)
-                ax.text(0, -0.2, "Dünya", fontsize=8, fontweight='bold', color='white', ha='center', va='center')
+                ax.text(0, -0.2, "Dünya", fontsize=7.5, fontweight='bold', color='white', ha='center', va='center')
                 
                 moon_positions = [
                     (0, 1.8, "Yeni Ay"), (1.8, 0, "İlk Dördün"),
                     (0, -1.8, "Dolunay"), (-1.8, 0, "Son Dördün")
                 ]
                 for mx, my, mlabel in moon_positions:
-                    m_circle = plt.Circle((mx, my), 0.3, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
+                    m_circle = plt.Circle((mx, my), 0.3, facecolor='#e2e8f0', edgecolor='#64748b', linewidth=1)
                     ax.add_patch(m_circle)
-                    ax.text(mx, my - 0.6, mlabel, fontsize=7, fontweight='bold', color='#334155', ha='center')
+                    ax.text(mx, my - 0.6, mlabel, fontsize=6.5, fontweight='bold', color='#334155', ha='center')
                     
                 ax.set_xlim(-4.5, 4.5)
                 ax.set_ylim(-3.0, 3.0)
@@ -308,15 +311,15 @@ def draw_geometry_shape(shape_data):
             elif sub_sub == "solar_eclipse":
                 sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun_p)
-                ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
+                ax.text(-2.5, -1.0, "Güneş", fontsize=7.5, fontweight='bold', color='#d97706', ha='center')
                 
-                moon_p = plt.Circle((-0.7, 0), 0.25, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
+                moon_p = plt.Circle((-0.7, 0), 0.25, facecolor='#e2e8f0', edgecolor='#64748b', linewidth=1)
                 ax.add_patch(moon_p)
-                ax.text(-0.7, -0.5, "Ay", fontsize=8, fontweight='bold', color='#64748b', ha='center')
+                ax.text(-0.7, -0.5, "Ay", fontsize=7.5, fontweight='bold', color='#64748b', ha='center')
                 
                 earth_p = plt.Circle((1.5, 0), 0.55, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
                 ax.add_patch(earth_p)
-                ax.text(1.5, -0.8, "Dünya", fontsize=8, fontweight='bold', color='#0284c7', ha='center')
+                ax.text(1.5, -0.8, "Dünya", fontsize=7.5, fontweight='bold', color='#0284c7', ha='center')
                 
                 ax.set_xlim(-3.8, 3.0)
                 ax.set_ylim(-2.0, 2.0)
@@ -324,15 +327,15 @@ def draw_geometry_shape(shape_data):
             elif sub_sub == "lunar_eclipse":
                 sun_p = plt.Circle((-2.5, 0), 0.75, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun_p)
-                ax.text(-2.5, -1.0, "Güneş", fontsize=8, fontweight='bold', color='#d97706', ha='center')
+                ax.text(-2.5, -1.0, "Güneş", fontsize=7.5, fontweight='bold', color='#d97706', ha='center')
                 
                 earth_p = plt.Circle((-0.5, 0), 0.55, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.5)
                 ax.add_patch(earth_p)
-                ax.text(-0.5, -0.8, "Dünya", fontsize=8, fontweight='bold', color='#0284c7', ha='center')
+                ax.text(-0.5, -0.8, "Dünya", fontsize=7.5, fontweight='bold', color='#0284c7', ha='center')
                 
-                moon_p = plt.Circle((1.5, 0), 0.25, facecolor='#cbd5e1', edgecolor='#64748b', linewidth=1)
+                moon_p = plt.Circle((1.5, 0), 0.25, facecolor='#e2e8f0', edgecolor='#64748b', linewidth=1)
                 ax.add_patch(moon_p)
-                ax.text(1.5, -0.5, "Ay", fontsize=8, fontweight='bold', color='#64748b', ha='center')
+                ax.text(1.5, -0.5, "Ay", fontsize=7.5, fontweight='bold', color='#64748b', ha='center')
                 
                 ax.set_xlim(-3.8, 3.0)
                 ax.set_ylim(-2.0, 2.0)
@@ -340,25 +343,26 @@ def draw_geometry_shape(shape_data):
             else:
                 sun = plt.Circle((-2.0, 0), 0.8, facecolor='#f59e0b', edgecolor='#d97706', linewidth=1.5)
                 ax.add_patch(sun)
-                ax.text(-2.0, -1.2, "Güneş", fontsize=8.5, fontweight='bold', color='#f59e0b', ha='center')
+                ax.text(-2.0, -1.2, "Güneş", fontsize=8, fontweight='bold', color='#f59e0b', ha='center')
                 
                 orbit = plt.Circle((0, 0), 2.1, fill=False, edgecolor='#94a3b8', linestyle='--', linewidth=1.2)
                 ax.add_patch(orbit)
                 
                 earth = plt.Circle((2.1, 0), 0.4, facecolor='#0284c7', edgecolor='#0369a1', linewidth=1.2)
                 ax.add_patch(earth)
-                ax.text(2.1, -0.7, "Dünya", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
+                ax.text(2.1, -0.7, "Dünya", fontsize=8, fontweight='bold', color='#0284c7', ha='center')
                 
                 ax.set_xlim(-3.8, 3.5)
                 ax.set_ylim(-2.5, 2.5)
 
-            ax.set_title(title, fontsize=10.5, fontweight='bold', color='#1e293b', pad=25)
+            ax.set_title(title, fontsize=10, fontweight='bold', color='#1e293b', pad=20)
 
         plt.tight_layout()
         buf = io.BytesIO()
         plt.savefig(buf, format='png', bbox_inches='tight', dpi=180)
         buf.seek(0)
-        st.image(buf, width=340)
+        # Boyut sorunu çözüldü: Kompakt ve ideal genişlik (280 piksel)
+        st.image(buf, width=280)
         plt.close(fig)
     except Exception as e:
         plt.close(fig)
@@ -508,7 +512,7 @@ if generate_btn:
     current_topic_val = st.session_state.custom_topic_input
     custom_prompt_addon = f"\nDENGELİ ODAK KONU: '{current_topic_val}'\n(Soruların üçte birlik bölümünde bu konuya odaklan, kalanı haftanın diğer tüm kazanımlarından eşit dağılımla üretilsin.)" if current_topic_val.strip() else ""
     
-    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, gelişmiş tablolar ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
+    with st.spinner(f"✨ Çoklu API havuzu taranıyor: {selected_grade} için eksiksiz metinler, modern tablolar ve konuya özel fen şemalarıyla 80 soru hazırlanıyor..."):
         prompt = (
             f"Türkiye Cumhuriyeti Millî Eğitim Bakanlığı (MEB) {selected_grade} {term} dönemi resmi öğretim programı "
             f"ve '{selected_scope}' kapsamındaki gerçek haftalık kazanımlarına tam uygun olarak toplam KESİNLİKLE VE EKSİKSİZ olarak tam 80 adet yeni nesil soru hazırla."
