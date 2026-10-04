@@ -240,7 +240,7 @@ def draw_geometry_shape(shape_data):
             ax.set_ylim(-3.2, 3.2)
             
 # 3. ÇUBUK / GRAFİK ANALİZİ
-    elif st_type in ["bar_chart", "science_chart"]:
+       elif st_type in ["bar_chart", "science_chart"]:
     ax.set_aspect('auto')
     ...
     labels = shape_data.get("labels", ["A", "B", "C", "D"])
