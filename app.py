@@ -242,9 +242,14 @@ def draw_geometry_shape(shape_data):
         # 3. ÇUBUK / GRAFİK ANALİZİ
         elif st_type in ["bar_chart", "science_chart"]:
             ax.set_aspect('auto')
-            labels = shape_data.get("labels", ["A", "B", "C", "D"])
-            values = shape_data.get("values", [10, 25, 15, 30])
-            title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
+            
+            # KESİN ÇÖZÜM: Labels boş gelse bile öğrencilerin isimlerini otomatik atıyoruz
+            labels = shape_data.get("labels")
+            if not labels:
+                labels = ["Ali", "Ayşe", "Mehmet", "Fatma"]
+                
+            values = shape_data.get("values", [12, 18, 15, 20])
+            title = str(shape_data.get("title", "Haftalık Okuma Sayısı"))
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
@@ -253,17 +258,13 @@ def draw_geometry_shape(shape_data):
             ax.tick_params(axis='x', rotation=15, labelsize=9)
             ax.tick_params(axis='y', labelsize=9)
             
-            # Üst ve sağ çizgileri gizliyoruz
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
             ax.spines['left'].set_color('#1e293b')
             
-            # Alt çizgiyi (x eksenini) koyu ve kalın yapıyoruz ki kesinlikle görünsün
             ax.spines['bottom'].set_visible(True)
             ax.spines['bottom'].set_color('#1e293b')
             ax.spines['bottom'].set_linewidth(1.5)
-            
-            # GARANTİ: y=0 hizasına net bir x ekseni çizgisi çekiyoruz
             ax.axhline(0, color='#1e293b', linewidth=1.5, zorder=2)
             
             max_val = max(clean_vals) if clean_vals else 10
@@ -274,8 +275,6 @@ def draw_geometry_shape(shape_data):
             
             ax.set_ylim(0, max_val * 1.35)
             ax.set_xlim(-0.8, len(labels) - 0.2)
-            
-            # Etiketlerin alt kısımda kesilmesini önlemek için pay bırakıyoruz
             ax.figure.subplots_adjust(bottom=0.25)
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
