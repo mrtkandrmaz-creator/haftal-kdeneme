@@ -269,7 +269,7 @@ def draw_geometry_shape(shape_data):
 
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
-       elif st_type == "line_chart":
+        elif st_type == "line_chart":
             ax.set_aspect('auto')
             labels = shape_data.get("labels", ["Oca", "Şub", "Mar", "Nis", "May"])
             values = shape_data.get("values", [12, 18, 15, 22, 30])
