@@ -805,4 +805,43 @@ if st.session_state.quiz_started and st.session_state.questions:
                 u_ans = st.session_state.selected_answers.get(i, "Boş")
                 c_ans = q_item['answer']
                 status_icon = "✅" if u_ans == c_ans else "❌"
-                st.markdown(f"**Soru {i+1} [{q_item.get('subject', '')}]:** {status_icon} (Sizin Cevabınız: **{u_ans}** | Doğru Cevap: **{c_ans}**)")
+                
+                # Soru Başlığı ve Durumu
+                st.markdown(f"### Soru {i+1} [{q_item.get('subject', 'Genel')}] {status_icon}")
+                
+                # Eğer soruya ait bir metin/öncül varsa gösterelim
+                passage_text = str(q_item.get('passage', '')).strip()
+                if passage_text and passage_text.lower() != "null" and passage_text != "":
+                    st.markdown(f"> **📖 Metin / Öncül:** {passage_text}")
+                
+                # Soru Metni
+                st.markdown(f"**Soru:** {q_item['question']}")
+                
+                # Şıkları ve İşaretlenmiş Durumları Listeleme
+                st.markdown("**Şıklar:**")
+                options = q_item.get('options', {})
+                for opt_key, opt_val in options.items():
+                    prefix = "   "
+                    if opt_key == c_ans and opt_key == u_ans:
+                        prefix = "✅ **(Doğru Cevabınız)**"
+                    elif opt_key == c_ans:
+                        prefix = "🟢 **(Doğru Cevap)**"
+                    elif opt_key == u_ans:
+                        prefix = "❌ **(Sizin Cevabınız)**"
+                    
+                    st.markdown(f"- {prefix} **{opt_key})** {opt_val}")
+                
+                # Kullanıcı ve Doğru Cevap Özeti
+                st.markdown(f"*Sizin Cevabınız:* **{u_ans}** | *Doğru Cevap:* **{c_ans}**")
+                
+                # Detaylı Çözüm / Açıklama Kutusu
+                # Not: Sorularınızın sözlük (dict) yapısında 'explanation' anahtarı olduğunu varsayıyoruz.
+                explanation = q_item.get('explanation', 'Bu soru için henüz detaylı bir çözüm açıklaması eklenmemiş.')
+                st.markdown(
+                    f"<div style='background-color: #f8f9fa; padding: 12px; border-radius: 6px; border-left: 4px solid #4e73df; margin-top: 10px; margin-bottom: 20px;'>"
+                    f"<b>💡 Çözüm ve Açıklama:</b><br>{explanation}"
+                    f"</div>", 
+                    unsafe_allow_html=True
+                )
+                
+                st.markdown("---")
