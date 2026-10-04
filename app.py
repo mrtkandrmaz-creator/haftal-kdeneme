@@ -227,7 +227,7 @@ def draw_geometry_shape(shape_data):
             
             if show_diameter:
                 ax.plot([-2.2, 2.2], [0, 0], linestyle='--', color='#94a3b8', linewidth=1.4)
-                ax.text(0, 0.25, f"Çap: {radius_label}", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
+                ax.text(0, 0.25, f"Yarıçap: {radius_label}", fontsize=8.5, fontweight='bold', color='#0284c7', ha='center')
             else:
                 ax.plot([0, 2.2], [0, 0], color='#0284c7', linewidth=1.8)
                 ax.text(1.1, 0.2, f"r = {radius_label}", fontsize=8.5, fontweight='bold', color='#0284c7')
