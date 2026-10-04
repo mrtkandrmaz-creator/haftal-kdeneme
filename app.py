@@ -450,7 +450,7 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### 🔍 Manuel Ek Konu / Odak Kriteri")
 
 def update_custom_topic():
-    st.session_state.custom_topic_input = st.session_state.widget_custom_topic
+ st.session_state.custom_topic_input = st.session_state.get("widget_custom_topic", "")
 
 st.sidebar.text_input(
     "Özel Konu / Alt Başlık (Opsiyonel)",
