@@ -239,7 +239,7 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
             
-        # 3. ÇUBUK / GRAFİK ANALİZİ (Aynı hizada olmalı!)
+        # 3. ÇUBUK / GRAFİK ANALİZİ
         elif st_type in ["bar_chart", "science_chart"]:
             ax.set_aspect('auto')
             labels = shape_data.get("labels", ["A", "B", "C", "D"])
@@ -265,7 +265,10 @@ def draw_geometry_shape(shape_data):
                         ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
             
             ax.set_ylim(0, max_val * 1.35)
-            ax.margins(x=0.15)   
+            
+            # --- KESİN ÇÖZÜM SATIRI ---
+            # Grafiğin alt kısmında etiketler için ekstra boşluk bırakır (kesilmeyi önler)
+            ax.figure.subplots_adjust(bottom=0.25)  
 
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
