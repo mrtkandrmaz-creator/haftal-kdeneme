@@ -247,7 +247,14 @@ def draw_geometry_shape(shape_data):
             title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
-            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
+            
+            # Barları çizdirme
+            x_pos = range(len(labels))
+            bars = ax.bar(x_pos, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
+            
+            # Etiketlerin görünmesi için x eksenini açıkça tanımlıyoruz
+            ax.set_xticks(x_pos)
+            ax.set_xticklabels(labels, fontsize=9, fontweight='medium')
             
             ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=18)
             ax.tick_params(axis='x', rotation=15, labelsize=9)
@@ -263,9 +270,13 @@ def draw_geometry_shape(shape_data):
                 height = bar.get_height()
                 ax.text(bar.get_x() + bar.get_width()/2., height + (max_val * 0.03), f'{height:g}',
                         ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
-            
+                
             ax.set_ylim(0, max_val * 1.35)
             ax.set_xlim(-0.8, len(labels) - 0.2)
+            
+            # Alt etiketlerin kesilmesini önlemek için figür boşluğunu ayarlıyoruz
+            if hasattr(ax, 'figure') and ax.figure:
+                ax.figure.subplots_adjust(bottom=0.2)
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
         elif st_type == "line_chart":
