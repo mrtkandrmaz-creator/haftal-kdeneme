@@ -256,8 +256,8 @@ def draw_geometry_shape(shape_data):
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
             ax.spines['left'].set_color('#cbd5e1')
-            ax.spines['bottom'].set_color('#cbd5e1')
-            
+            ax.spines['bottom'].set_color(False)
+            ax.axhline(0, color='#1e293b', linewidth=1.5, zorder=1)
             max_val = max(clean_vals) if clean_vals else 10
             for bar in bars:
                 height = bar.get_height()
