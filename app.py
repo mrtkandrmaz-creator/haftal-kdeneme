@@ -239,9 +239,16 @@ def draw_geometry_shape(shape_data):
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
 
-        # 3. ÇUBUK / GRAFİK ANALİZİ
+        try:
+    # Bazı işlemler yapılıyor...
+except Exception as e:
+    # Hata yakalama bloğu ile try kapatılıyor
+    pass
+
+# 3. ÇUBUK / GRAFİK ANALİZİ
 elif st_type in ["bar_chart", "science_chart"]:
     ax.set_aspect('auto')
+    ...
     labels = shape_data.get("labels", ["A", "B", "C", "D"])
     values = shape_data.get("values", [10, 25, 15, 30])
     title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
