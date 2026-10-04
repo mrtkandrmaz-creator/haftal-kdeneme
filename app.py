@@ -238,11 +238,9 @@ def draw_geometry_shape(shape_data):
                 
             ax.set_xlim(-3.2, 3.2)
             ax.set_ylim(-3.2, 3.2)
-            
-# 3. ÇUBUK / GRAFİK ANALİZİ
-       elif st_type in ["bar_chart", "science_chart"]:
+         # 3. ÇUBUK / GRAFİK ANALİZİ
+     elif st_type in ["bar_chart", "science_chart"]:
     ax.set_aspect('auto')
-    ...
     labels = shape_data.get("labels", ["A", "B", "C", "D"])
     values = shape_data.get("values", [10, 25, 15, 30])
     title = str(shape_data.get("title", "Veri ve Grafik Analizi"))
@@ -268,10 +266,11 @@ def draw_geometry_shape(shape_data):
     ax.set_ylim(0, max_val * 1.35)
     
     # xlim satırını kaldırıp yerine alt boşluk (margin) ekliyoruz:
-    ax.margins(x=0.15)
+    ax.margins(x=0.15)   
+
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
-        elif st_type == "line_chart":
+       elif st_type == "line_chart":
             ax.set_aspect('auto')
             labels = shape_data.get("labels", ["Oca", "Şub", "Mar", "Nis", "May"])
             values = shape_data.get("values", [12, 18, 15, 22, 30])
