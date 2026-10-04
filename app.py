@@ -463,19 +463,19 @@ weeks_options.extend([
     "18. Hafta Genel Dönem Bitirme Sınavı"
 ])
 
+# 1. En başta (veya widget'tan önce) session_state'i başlatıyoruz
+if "widget_custom_topic" not in st.session_state:
+    st.session_state.widget_custom_topic = ""
+
 selected_scope = st.sidebar.selectbox("📅 Hafta / Kazanım Kapsamı", weeks_options)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🔍 Manuel Ek Konu / Odak Kriteri")
 
-def update_custom_topic():
-    st.session_state.custom_topic_input = st.session_state.widget_custom_topic
-
+# 2. Text input'u callback ve value olmadan sade bir şekilde tanımlıyoruz
 st.sidebar.text_input(
     "Özel Konu / Alt Başlık (Opsiyonel)",
-    value=st.session_state.custom_topic_input,
     key="widget_custom_topic",
-    on_change=update_custom_topic,
     placeholder="Örn: Açılar, Hücre, Paragraf...",
     help="Belirttiğiniz konu soruların yaklaşık 1/3'ünde dengeli odak olarak yer alır, kalanı genel müfredat kazanımlarından oluşur."
 )
