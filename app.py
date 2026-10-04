@@ -241,13 +241,12 @@ def draw_geometry_shape(shape_data):
 
         # 3. ÇUBUK / GRAFİK ANALİZİ
         elif st_type in ["bar_chart", "science_chart"]:
+            ax.clear()  # Önceki çizimden kalan bozuklukları temizle
             ax.set_aspect('auto')
             
-            # KESİN ÇÖZÜM: Python .get() boş liste verse bile burası yakalar ve etiketleri doldurur
             labels = shape_data.get("labels")
             if not labels or len(labels) == 0:
                 values_len = len(shape_data.get("values", [10, 25, 15, 30]))
-                # Veri uzunluğuna göre akıllı varsayılan etiketler atıyoruz
                 if values_len == 4:
                     labels = ["Pazartesi", "Salı", "Çarşamba", "Perşembe"]
                 else:
@@ -258,27 +257,24 @@ def draw_geometry_shape(shape_data):
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             
-            # Çubukları indis koordinatlarına göre çiziyoruz
-            x_indices = range(len(labels))
-            bars = ax.bar(x_indices, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
-            
-            # Etiketleri x eksenine kesin olarak sabitliyoruz
-            ax.set_xticks(list(x_indices))
-            ax.set_xticklabels(labels, fontsize=9, fontweight='bold', color='#1e293b')
+            # Doğrudan string etiketlerle bar çizdirme (Matplotlib'in kendi otomatik etiketlemesi)
+            bars = ax.bar(labels, clean_vals, color='#0284c7', width=0.45, edgecolor='#1e293b', linewidth=1, alpha=0.9)
             
             ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=18)
-            ax.tick_params(axis='y', labelsize=9)
             
+            # X ve Y eksen etiket font ve görünürlük ayarları
+            ax.tick_params(axis='x', rotation=15, labelsize=9, colors='#1e293b')
+            ax.tick_params(axis='y', labelsize=9, colors='#1e293b')
+            
+            # Eksen çerçeveleri (Spines)
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
             ax.spines['left'].set_color('#1e293b')
-            
-            # Alt eksen çizgisini kalın ve net yapıyoruz
             ax.spines['bottom'].set_visible(True)
             ax.spines['bottom'].set_color('#1e293b')
             ax.spines['bottom'].set_linewidth(1.5)
-            ax.axhline(0, color='#1e293b', linewidth=1.5, zorder=2)
             
+            # Değerleri çubukların üzerine yazdır
             max_val = max(clean_vals) if clean_vals else 10
             for bar in bars:
                 height = bar.get_height()
@@ -286,10 +282,9 @@ def draw_geometry_shape(shape_data):
                         ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
             
             ax.set_ylim(0, max_val * 1.35)
-            ax.set_xlim(-0.8, len(labels) - 0.2)
             
-            # Etiketlerin ve alt çizginin kesilmemesi için alt boşluğu artırıyoruz
-            ax.figure.subplots_adjust(bottom=0.3)
+            # KESİN ÇÖZÜM: Streamlit ve Matplotlib'in etiketleri kesmesini önleyen dahili komut
+            ax.figure.subplots_adjust(bottom=0.35, left=0.15, right=0.95, top=0.85)
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
         elif st_type == "line_chart":
