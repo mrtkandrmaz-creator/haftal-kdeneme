@@ -253,10 +253,18 @@ def draw_geometry_shape(shape_data):
             ax.tick_params(axis='x', rotation=15, labelsize=9)
             ax.tick_params(axis='y', labelsize=9)
             
+            # Üst ve sağ çizgileri gizliyoruz
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
-            ax.spines['left'].set_color('#cbd5e1')
-            ax.spines['bottom'].set_color('#cbd5e1')
+            ax.spines['left'].set_color('#1e293b')
+            
+            # Alt çizgiyi (x eksenini) koyu ve kalın yapıyoruz ki kesinlikle görünsün
+            ax.spines['bottom'].set_visible(True)
+            ax.spines['bottom'].set_color('#1e293b')
+            ax.spines['bottom'].set_linewidth(1.5)
+            
+            # GARANTİ: y=0 hizasına net bir x ekseni çizgisi çekiyoruz
+            ax.axhline(0, color='#1e293b', linewidth=1.5, zorder=2)
             
             max_val = max(clean_vals) if clean_vals else 10
             for bar in bars:
@@ -266,6 +274,9 @@ def draw_geometry_shape(shape_data):
             
             ax.set_ylim(0, max_val * 1.35)
             ax.set_xlim(-0.8, len(labels) - 0.2)
+            
+            # Etiketlerin alt kısımda kesilmesini önlemek için pay bırakıyoruz
+            ax.figure.subplots_adjust(bottom=0.25)
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
         elif st_type == "line_chart":
