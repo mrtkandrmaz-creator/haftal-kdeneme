@@ -288,30 +288,52 @@ def draw_geometry_shape(shape_data):
 
         # 4. TREND / ÇİZGİ GRAFİĞİ
         elif st_type == "line_chart":
+            ax.clear()  # Önceki çizimden kalan artıkları temizle
             ax.set_aspect('auto')
-            labels = shape_data.get("labels", ["Oca", "Şub", "Mar", "Nis", "May"])
+            
+            # Etiketlerin boş gelme ihtimaline karşı güvenli kontrol
+            labels = shape_data.get("labels")
+            if not labels or len(labels) == 0:
+                values_len = len(shape_data.get("values", [12, 18, 15, 22, 30]))
+                if values_len == 5:
+                    labels = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs"]
+                else:
+                    labels = [f"Ay {i+1}" for i in range(values_len)]
+                    
             values = shape_data.get("values", [12, 18, 15, 22, 30])
             title = str(shape_data.get("title", "Değişim ve Çizgi Grafiği"))
             
             clean_vals = [float(v) if str(v).replace('.','',1).isdigit() else 10.0 for v in values]
             
-            ax.plot(labels, clean_vals, marker='o', color='#ea580c', linewidth=2.5, markersize=7, markerfacecolor='#0284c7', markeredgecolor='#ffffff')
-            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=18)
-            ax.tick_params(axis='x', rotation=15, labelsize=9)
-            ax.tick_params(axis='y', labelsize=9)
+            # İndisleri kullanarak çizgi grafiğini çiziyoruz
+            x_indices = range(len(labels))
+            ax.plot(x_indices, clean_vals, marker='o', color='#ea580c', linewidth=2.5, markersize=7, markerfacecolor='#0284c7', markeredgecolor='#ffffff')
             
+            # --- KESİN ÇÖZÜM: Ay isimlerini x eksenine zorla ve net bir şekilde sabitliyoruz ---
+            ax.set_xticks(list(x_indices))
+            ax.set_xticklabels(labels, fontsize=9, fontweight='bold', color='#1e293b', rotation=15)
+            
+            ax.set_title(title, fontsize=11, fontweight='bold', color='#1e293b', pad=18)
+            ax.tick_params(axis='y', labelsize=9, colors='#1e293b')
+            
+            # Üst ve sağ çerçeveleri kaldır, alt ve sol çerçeveleri belirginleştir
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
-            ax.spines['left'].set_color('#cbd5e1')
-            ax.spines['bottom'].set_color('#cbd5e1')
+            ax.spines['left'].set_color('#1e293b')
+            ax.spines['bottom'].set_visible(True)
+            ax.spines['bottom'].set_color('#1e293b')
+            ax.spines['bottom'].set_linewidth(1.5)
             
+            # Noktaların üzerindeki sayı değerleri
             max_val = max(clean_vals) if clean_vals else 10
             for x_pos, y_val in enumerate(clean_vals):
                 ax.text(x_pos, y_val + (max_val * 0.04), f'{y_val:g}', ha='center', va='bottom', fontsize=9, fontweight='bold', color='#1e293b')
                 
             ax.set_ylim(0, max_val * 1.40)
             ax.set_xlim(-0.5, len(labels) - 0.5)
-
+            
+            # Etiketlerin ekrandan taşmasını ve kesilmesini önlemek için alt boşluğu genişletiyoruz
+            ax.figure.subplots_adjust(bottom=0.35)
         # 5. FEN BİLİMLERİ: UZAY, DÜNYA, GÜNEŞ, AY EVRELERİ VE TUTULMALAR
         elif st_type in ["science_space", "space_orbit", "eclipse", "moon_phases"]:
             sub_sub = str(shape_data.get("sub_type", "orbit")).strip().lower()
