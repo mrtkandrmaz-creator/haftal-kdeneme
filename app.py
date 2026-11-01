@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Denemematik — TEK DOSYA sürümü (MEB Maarif Modeli yapay zekâ deneme platformu).
 Çalıştırma: streamlit run app.py
-Anahtarlar: .streamlit/secrets.toml -> [api_keys] groq_keys=[".."] gemini_keys=[".."]
-Gerekli paketler: streamlit>=1.40 groq google-genai matplotlib numpy pandas altair reportlab
-Not: Aşağıdaki MODULES sözlüğündeki her kayıt eski çok dosyalı projenin bir modülüdür (düzenlenebilir; ör. core/curriculum müfredat listesi).
+Anahtarlar: Secrets -> [api_keys] groq_keys=[".."] gemini_keys=[".."]
+Paketler: streamlit>=1.40 groq google-genai matplotlib numpy pandas altair reportlab requests pypdf
+MODULES sözlüğündeki her kayıt bir modüldür (ör. core/curriculum = müfredat, core/meb_live = MEB'den çekme). İçinde üç tek tırnak yazmayın.
 """
 import os
 import sys
@@ -176,13 +176,110 @@ C = {
  },
 }
 
-MONTH_WEEKS = 4
+import datetime as _dt
+
 TOTAL_WEEKS = 36
-NUM_MONTHS = TOTAL_WEEKS // MONTH_WEEKS
+# MEB 2026-2027 çalışma takvimi: 14 Eylül 2026 başlangıç, 22 Ocak 2027 dönem sonu, 8 Şubat 2027 2. dönem,
+# ara tatiller 16-20 Kasım, 25 Ocak-5 Şubat (yarıyıl), 8-12 Mart; ders yılı sonu 25 Haziran 2027.
+TERM1_START = _dt.date(2026, 9, 14)
+TERM2_START = _dt.date(2027, 2, 8)
+BREAKS = [(_dt.date(2026, 11, 16), _dt.date(2026, 11, 20)), (_dt.date(2027, 1, 25), _dt.date(2027, 2, 5)),
+          (_dt.date(2027, 3, 8), _dt.date(2027, 3, 12))]
+TR_MONTHS = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
+
+
+def _in_break(d):
+    return any(a <= d <= b for a, b in BREAKS)
+
+
+def _build_weeks():
+    out = []
+    for start, need in ((TERM1_START, 18), (TERM2_START, 18)):
+        d, n = start, 0
+        while n < need:
+            if not _in_break(d):
+                out.append(d)
+                n += 1
+            d += _dt.timedelta(days=7)
+    return out
+
+
+WEEK_STARTS = _build_weeks()  # hafta no (1..36) -> o haftanın pazartesisi
+
+
+def _build_months():
+    order, res = [], {}
+    for w, d in enumerate(WEEK_STARTS, 1):
+        k = (d.year, d.month)
+        if k not in res:
+            res[k] = {"year": d.year, "month": d.month, "name": TR_MONTHS[d.month - 1], "a": w, "b": w}
+            order.append(k)
+        res[k]["b"] = w
+    out = []
+    for i, k in enumerate(order, 1):
+        m = res[k]
+        m["m"] = i
+        y, mo = (m["year"] + (m["month"] == 12), m["month"] % 12 + 1)
+        d = _dt.date(y, mo, 1)
+        while d.weekday() != 0:  # sonraki ayın ilk haftasının pazartesisi
+            d += _dt.timedelta(days=1)
+        m["solve"] = d if i < len(order) else None
+        out.append(m)
+    return out
+
+
+MONTHS = _build_months()
+NUM_MONTHS = len(MONTHS)
+
+
+def fmt_date(d):
+    return f"{d.day} {TR_MONTHS[d.month - 1]}"
+
+
+def week_dates(w):
+    a = WEEK_STARTS[w - 1]
+    return f"{fmt_date(a)} – {fmt_date(a + _dt.timedelta(days=4))} {a.year}"
+
+
+def current_week(today=None):
+    today = today or _dt.date.today()
+    for w, d in enumerate(WEEK_STARTS, 1):
+        if d <= today <= d + _dt.timedelta(days=6):
+            return w
+    return None
+
+
+def suggested_month(today=None):
+    """Aylık deneme ayın ilk haftasında ÇÖZÜLÜR ve ÖNCEKİ ayın konularını ölçer."""
+    today = today or _dt.date.today()
+    prev = None
+    for m in MONTHS:
+        if (m["year"], m["month"]) < (today.year, today.month):
+            prev = m["m"]
+    return prev or 1
+
+
+def month_scope(i):
+    m = MONTHS[i - 1]
+    return {"type": "month", "m": i, "a": m["a"], "b": m["b"], "name": m["name"]}
+
+
+def month_note(i):
+    m = MONTHS[i - 1]
+    if m["solve"]:
+        return f"{m['name']} ayı konularını ölçer • {TR_MONTHS[m['solve'].month - 1]} ayının ilk haftasında ({fmt_date(m['solve'])}) çözülür"
+    return f"{m['name']} ayı konularını ölçer • ders yılı sonunda çözülür"
+
+
+LIVE = {}  # core.meb_live tarafından MEB'den çekilen müfredat: "sınıf|ders" -> [(ünite, [kazanımlar])]
 
 
 def units(g, subject):
-    return C[base_grade(g)].get(subject, [])
+    b = base_grade(g)
+    lv = LIVE.get(f"{b}|{subject}")
+    if lv:
+        return lv
+    return C[b].get(subject, [])
 
 
 def _idx(w, n):
@@ -202,16 +299,15 @@ def week_unit_info(g, subject, w):
 
 def scope_range(scope):
     if scope["type"] == "month":
-        m = scope["m"]
-        return (m - 1) * MONTH_WEEKS + 1, m * MONTH_WEEKS
+        return scope["a"], scope["b"]
     return scope["w"], scope["w"]
 
 
 def scope_label(scope):
     if scope["type"] == "month":
         a, b = scope_range(scope)
-        return f"Aylık Genel Deneme {scope['m']} (Hafta {a}-{b})"
-    return f"{scope['w']}. Hafta"
+        return f"{scope['name']} Ayı Genel Deneme (Hafta {a}-{b})"
+    return f"{scope['w']}. Hafta ({week_dates(scope['w'])})"
 
 
 def scope_units(g, subject, scope):
@@ -1260,6 +1356,125 @@ def add_stems(questions):
         d[k] = d[k][-300:]
     _save("stems.json", d)
 '''
+MODULES['core/meb_live'] = r'''# -*- coding: utf-8 -*-
+"""MEB Öğretim Programları (mufredat.meb.gov.tr) sitesinden program PDF'lerini çeker, kazanım kodlarını ayrıştırır
+ve curriculum.LIVE içine yükler. Site yapısı değişirse ya da ders için kazanım kodu bulunamazsa yerleşik müfredat
+kullanılmaya devam eder (uygulama asla bozulmaz).
+
+Program sayfaları: https://mufredat.meb.gov.tr/ProgramDetay.aspx?PID=<no>  (indirme bağlantısı /Dosyalar/....pdf)
+PID numaraları MEB sitesinin listesinden alınmıştır (2026 programları; İngilizce/Almanca 2025, İnkılap 8. sınıf 2024).
+Yeni sürüm çıkınca PROGRAMS listesindeki numarayı güncelleyin."""
+import io
+import json
+import os
+import re
+import time
+from . import curriculum as cur
+from . import store
+
+BASE = "https://mufredat.meb.gov.tr"
+UA = {"User-Agent": "Mozilla/5.0 (Denemematik; +müfredat okuyucu)"}
+G = ["4", "5", "6", "7", "8"]
+PROGRAMS = [
+    (cur.TR, ["4"], 2351), (cur.TR, ["5", "6", "7", "8"], 2352),
+    (cur.MAT, ["4"], 2339), (cur.MAT, ["5", "6", "7", "8"], 2340),
+    (cur.FEN, G, 2334), (cur.SOS, ["4", "5", "6", "7"], 2347), (cur.DIN, G, 2150),
+    (cur.ING, G, 1903), (cur.ALM, ["5", "6", "7", "8"], 2023), (cur.INK, ["8"], 1974),
+]
+CODE = re.compile(r"(?<![A-Za-z0-9ÇĞİÖŞÜçğıöşü])([A-ZÇĞİÖŞÜ]{1,6})\.(\d)\.(\d{1,2})\.(\d{1,2})(?:\.(\d{1,2}))?\.?(?=\s)")
+CUT = re.compile(r"(Açıklama|Süreç Bileşenleri|Öğrenme Çıktıları|Eğitim Öğretim Durumları|Değerlendirme)")
+CACHE = "meb_curriculum.json"
+
+
+def _get(url, binary=False, timeout=60):
+    import requests
+    r = requests.get(url, headers=UA, timeout=timeout)
+    r.raise_for_status()
+    return r.content if binary else r.text
+
+
+def find_pdf(pid):
+    html = _get(f"{BASE}/ProgramDetay.aspx?PID={pid}")
+    m = re.search(r'href="([^"]*Dosyalar/[^"]+?\.pdf)"', html, re.I)
+    if not m:
+        raise RuntimeError(f"PID {pid}: PDF bağlantısı bulunamadı")
+    u = m.group(1).replace(" ", "%20")
+    return u if u.startswith("http") else BASE + "/" + u.lstrip("/")
+
+
+def pdf_text(data):
+    from pypdf import PdfReader
+    rd = PdfReader(io.BytesIO(data))
+    return "\n".join((p.extract_text() or "") for p in rd.pages)
+
+
+def parse(text, grade):
+    """Metinden o sınıfa ait kazanımları ayıklar -> [(ünite_adı, [ 'KOD metin', ...])]"""
+    t = re.sub(r"\s+", " ", text)
+    ms = list(CODE.finditer(t))
+    best = {}
+    for i, m in enumerate(ms):
+        if m.group(2) != str(grade):
+            continue
+        end = ms[i + 1].start() if i + 1 < len(ms) else len(t)
+        body = CUT.split(t[m.end():end])[0].strip(" .-–")[:230]
+        if len(body) < 12:
+            continue
+        code = m.group(0).rstrip(".")
+        if code not in best or len(body) > len(best[code][1]):
+            best[code] = (int(m.group(3)), body)
+    units = {}
+    for code, (u, body) in best.items():
+        units.setdefault(u, []).append(f"{code}. {body}")
+    out = [(f"{u}. Ünite/Tema", sorted(v)) for u, v in sorted(units.items())]
+    return out if sum(len(v) for _, v in out) >= 6 else []
+
+
+def refresh(progress=None):
+    """Tüm programları indirir. -> (kayıt_sayısı, hatalar)"""
+    say = progress or (lambda m: None)
+    data, errs, cache = {}, [], {}
+    for subj, grades, pid in PROGRAMS:
+        try:
+            say(f"⬇️ {subj} ({grades[0]}-{grades[-1]}. sınıf) programı indiriliyor…")
+            if pid not in cache:
+                cache[pid] = pdf_text(_get(find_pdf(pid), binary=True, timeout=120))
+            for g in grades:
+                u = parse(cache[pid], g)
+                if u:
+                    data[f"{g}|{subj}"] = u
+                    say(f"✅ {g}. sınıf {subj}: {sum(len(v) for _, v in u)} kazanım")
+                else:
+                    errs.append(f"{g}. sınıf {subj}: kazanım kodu bulunamadı (yerleşik müfredat kullanılacak)")
+        except Exception as e:
+            errs.append(f"{subj}: {type(e).__name__}: {str(e)[:120]}")
+    if data:
+        with open(os.path.join(store.DATA, CACHE), "w", encoding="utf-8") as f:
+            json.dump({"ts": int(time.time()), "data": data}, f, ensure_ascii=False)
+        apply(data)
+    return len(data), errs
+
+
+def apply(data):
+    cur.LIVE.clear()
+    for k, v in data.items():
+        cur.LIVE[k] = [(n, list(t)) for n, t in v]
+
+
+def load_cache():
+    """Önceden çekilmiş MEB müfredatını yükler -> zaman damgası ya da None"""
+    try:
+        with open(os.path.join(store.DATA, CACHE), encoding="utf-8") as f:
+            d = json.load(f)
+        apply(d["data"])
+        return d["ts"]
+    except Exception:
+        return None
+
+
+def status():
+    return {"count": len(cur.LIVE)}
+'''
 MODULES['core/ai_engine'] = r'''# -*- coding: utf-8 -*-
 """Soru üretim motoru. DÜZEN KORUNDU: önce tüm Groq anahtarları, sonra Gemini anahtarları denenir.
 Model adları eski kodla aynıdır. Yenilikler: ders ders paralel üretim, tekrarsızlık (nonce + son sorular listesi),
@@ -1835,23 +2050,67 @@ def difficulty_select(key):
 
 
 def week_grid():
-    tab = st.radio("Sınav türü", ["📅 Haftalık Deneme (36 hafta)", "🗓️ Aylık Genel Deneme (9 ay)"], horizontal=True, key="scope_radio")
+    S = st.session_state
+    if not S.get("cal_init"):  # takvime göre başlangıç seçimi
+        S.cal_init = True
+        cw = cur.current_week()
+        if cw:
+            S.sel_week = cw
+        S.sel_month = cur.suggested_month()
+    tab = st.radio("Sınav türü", ["📅 Haftalık Deneme (36 hafta)", f"🗓️ Aylık Genel Deneme ({cur.NUM_MONTHS} ay)"], horizontal=True, key="scope_radio")
     monthly = tab.startswith("🗓")
     if not monthly:
-        st.caption("Kırmızı çerçeveli turuncu kenarlı haftalar, ay sonu haftalarıdır (4, 8, 12 …). 1-18: 1. dönem, 19-36: 2. dönem.")
+        cw = cur.current_week()
+        st.caption("MEB 2026-2027 çalışma takvimine göre 36 öğretim haftası (ara tatiller hariç). 📍 = bu hafta. Turuncu kenarlı haftalar ay sonu haftalarıdır.")
         for r in range(0, 36, 9):
             cols = st.columns(9)
             for j, w in enumerate(range(r + 1, r + 10)):
                 with cols[j]:
-                    kind = "on" if st.session_state.sel_week == w else ("mon" if w % 4 == 0 else "off")
-                    st.button(f"{w}. Hf", key=f"sel_{kind}_w{w}", on_click=lambda w=w: st.session_state.update(sel_week=w))
-        return {"type": "week", "w": st.session_state.sel_week}
-    cols = st.columns(9)
-    for m in range(1, 10):
-        with cols[m - 1]:
-            kind = "on" if st.session_state.sel_month == m else "off"
-            st.button(f"{m}. Ay", key=f"sel_{kind}_m{m}", on_click=lambda m=m: st.session_state.update(sel_month=m))
-    return {"type": "month", "m": st.session_state.sel_month}
+                    kind = "on" if S.sel_week == w else ("mon" if w % 4 == 0 else "off")
+                    st.button(f"{'📍' if w == cw else ''}{w}. Hf", key=f"sel_{kind}_w{w}", on_click=lambda w=w: st.session_state.update(sel_week=w))
+        st.caption(f"📆 Seçili: **{S.sel_week}. hafta** • {cur.week_dates(S.sel_week)}")
+        return {"type": "week", "w": S.sel_week}
+    sug = cur.suggested_month()
+    st.info(f"📌 Aylık genel denemeler **ayın ilk haftasında çözülür** ve **bir önceki ayın** konularını ölçer. "
+            f"Bugüne göre önerilen: **{cur.MONTHS[sug - 1]['name']} Ayı Genel Denemesi**.")
+    for r in range(0, cur.NUM_MONTHS, 5):
+        cols = st.columns(5)
+        for j, m in enumerate(range(r + 1, min(r + 6, cur.NUM_MONTHS + 1))):
+            with cols[j]:
+                st.button(f"{'📌 ' if m == sug else ''}{cur.MONTHS[m - 1]['name']}", key=f"sel_{'on' if S.sel_month == m else 'off'}_m{m}",
+                          on_click=lambda m=m: st.session_state.update(sel_month=m))
+    st.caption(f"🗓️ {cur.month_note(S.sel_month)}")
+    return cur.month_scope(S.sel_month)
+
+
+WEIGHTS = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0]
+
+
+def _auto_weights(g):
+    per = {}
+    for h in store.history():
+        if h["grade"] == g:
+            for s, d in h["per"].items():
+                per.setdefault(s, []).append(d["pct"])
+    out = {}
+    for s, v in per.items():
+        a = sum(v[-3:]) / len(v[-3:])
+        out[s] = 1.5 if a < 50 else 1.25 if a < 70 else 0.75 if a > 90 else 1.0
+    return out
+
+
+def weight_panel(g, key):
+    """Ders ağırlıkları: soru sayısını çarpan. Otomatik mod, geçmiş başarına göre zayıf derslere ağırlık verir."""
+    auto = st.toggle("📉 Zayıf derslerime otomatik ağırlık ver (geçmiş sınavlarıma göre)", key=f"auto_{key}")
+    aw = _auto_weights(g) if auto else {}
+    out = {}
+    with st.expander("⚖️ Ders ağırlıkları (soru sayısını çarpan)", expanded=auto):
+        cols = st.columns(4)
+        for i, s in enumerate(cur.subjects_for(g)):
+            with cols[i % 4]:
+                out[s] = st.select_slider(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", WEIGHTS, value=aw.get(s, 1.0),
+                                          key=f"w_{key}_{s}_{int(auto)}", format_func=lambda x: f"×{x:g}")
+    return out
 
 
 def subject_counts(g, defaults, key):
@@ -1907,7 +2166,7 @@ def weekly():
     g = st.session_state.grade
     gl = cur.GRADE_LABELS[g]
     st.button("⬅ Sınav türleri", key="back_w", on_click=nav, args=("modes",))
-    st.markdown(f"<div class='hero'><h1>📅 {gl} • Haftalık / Aylık Deneme</h1><p>MEB yıllık planına göre hafta seç; ay sonlarında aylık genel deneme çöz.</p></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='hero'><h1>📅 {gl} • Haftalık / Aylık Deneme</h1><p>MEB takvimine göre hafta seç; aylık genel deneme ayın ilk haftasında çözülür ve önceki ayı ölçer.</p></div>", unsafe_allow_html=True)
     scope = week_grid()
     label = cur.scope_label(scope)
     monthly = scope["type"] == "month"
@@ -1925,7 +2184,10 @@ def weekly():
             official = st.toggle("Resmî LGS dağılımı (90 soru: 20-20-20-10-10-10)", value=False, key="lgs_off",
                                  help="Kapalıyken mevcut 80 soruluk format kullanılır.")
         defaults = cur.LGS_OFFICIAL if official else cur.weekly_counts(g, monthly)
-        counts = subject_counts(g, defaults, f"cnt_w_{g}_{int(monthly)}_{int(official)}")
+        wts = weight_panel(g, f"wk_{g}")
+        defaults = {k: max(0, round(v * wts.get(k, 1.0))) for k, v in defaults.items()}
+        sig = "".join(f"{wts.get(k, 1.0):g}_" for k in sorted(defaults))
+        counts = subject_counts(g, defaults, f"cnt_w_{g}_{int(monthly)}_{int(official)}_{sig}")
         focus = st.text_input("🔍 Özel Konu / Alt Başlık (opsiyonel)", key="focus_w", placeholder="Örn: Açılar, Hücre, Paragraf…",
                               help="Soruların yaklaşık 1/3'ünde dengeli odak olarak yer alır.")
     if st.button("🚀 Soruları Üret", key="gen_w") and counts:
@@ -1988,11 +2250,12 @@ def topic_setup(bank=False):
     if bank:
         subs = st.multiselect("Dersler", cur.subjects_for(g), default=cur.subjects_for(g)[:4], key="b_subs")
         per = st.select_slider("Ders başına soru", [5, 8, 10, 12, 15, 20], value=10, key="b_per")
+        bw = weight_panel(g, f"bank_{g}")
         plan = []
         for s in subs:
             tp = cur.all_topics(g, s)
             pick = random.sample(tp, min(6, len(tp)))
-            plan.append({"subject": s, "n": per, "topics": "; ".join(f"{u}: {t}" for u, t in pick) + " (görsel/tablo/grafik ağırlıklı, beceri temelli)",
+            plan.append({"subject": s, "n": max(1, round(per * bw.get(s, 1.0))), "topics": "; ".join(f"{u}: {t}" for u, t in pick) + " (görsel/tablo/grafik ağırlıklı, beceri temelli)",
                          "short": "Karma kazanımlar"})
         if st.button("🚀 Soru Bankası Testi Üret", key="gen_b") and plan:
             _gen_mc(plan, _meta_common(gl, "bank", f"{gl} Yeni Nesil Soru Bankası", "Karma", diff, plan), "Yıl geneli karma")
@@ -2050,6 +2313,23 @@ def setup():
     else:
         st.session_state.page = "modes"
         st.rerun()
+
+
+def meb_panel():
+    """Kenar çubuğu: MEB müfredatını canlı çek / durum göster."""
+    import datetime
+    from core import meb_live
+    ts = st.session_state.get("meb_ts")
+    txt = (f"🌐 MEB müfredatı: <b>{len(cur.LIVE)}</b> ders-sınıf<br><small>{datetime.datetime.fromtimestamp(ts):%d.%m.%Y}</small>" if ts and cur.LIVE
+           else "📚 Yerleşik müfredat kullanılıyor")
+    st.markdown(f"<div class='side-chip'>{txt}</div>", unsafe_allow_html=True)
+    if st.button("🌐 MEB müfredatını çek", key="meb_fetch"):
+        with st.status("MEB sitesinden programlar indiriliyor… (1-3 dk)", expanded=True) as stt:
+            n, errs = meb_live.refresh(lambda m: st.write(m))
+            for e in errs:
+                st.write("⚠️ " + e)
+            stt.update(label=f"{n} ders-sınıf güncellendi" + (f" • {len(errs)} uyarı" if errs else ""), state="complete" if n else "error")
+        st.session_state.meb_ts = meb_live.load_cache()
 
 
 # ------------------------------------------------------------------ sınav öncesi bilgilendirme
@@ -2709,7 +2989,7 @@ def badges():
         st.download_button(f"📜 {h['title']} — %{h['pct']:.0f}", pdf, file_name=f"sertifika_{i}.pdf", mime="application/pdf", key=f"cert_{h['id']}")
 '''
 
-ORDER = ['core/curriculum', 'core/oyss', 'core/visuals', 'core/pdf_export', 'core/store', 'core/ai_engine', 'ui/theme', 'ui/state', 'ui/setup', 'ui/exam', 'ui/reports', 'ui/extras']
+ORDER = ['core/curriculum', 'core/oyss', 'core/visuals', 'core/pdf_export', 'core/store', 'core/meb_live', 'core/ai_engine', 'ui/theme', 'ui/state', 'ui/setup', 'ui/exam', 'ui/reports', 'ui/extras']
 
 
 def _load_modules():
@@ -2733,11 +3013,14 @@ def _load_modules():
 
 
 _load_modules()
-from core import ai_engine, curriculum as cur
+from core import ai_engine, curriculum as cur, meb_live
 from ui import theme, state, setup, exam, reports, extras
 
 theme.inject()
 state.init()
+if "meb_loaded" not in st.session_state:
+    st.session_state.meb_loaded = True
+    st.session_state.meb_ts = meb_live.load_cache()
 
 GROQ_KEYS, GEMINI_KEYS = ai_engine.load_keys()
 if not GROQ_KEYS and not GEMINI_KEYS and not ai_engine.demo_mode():
@@ -2756,6 +3039,7 @@ with st.sidebar:
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", on_click=state.nav, args=("badges",))
     st.markdown("---")
+    setup.meb_panel()
     g = st.session_state.grade
     if g:
         st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
