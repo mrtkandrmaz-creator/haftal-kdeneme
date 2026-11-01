@@ -1,8 +1,8 @@
-streamlit
-google-generativeai
-groq
-reportlab
-matplotlib
-numpy
+streamlit>=1.40
 groq
 google-genai
+matplotlib
+numpy
+pandas
+altair
+reportlab
