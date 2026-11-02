@@ -1303,6 +1303,49 @@ def certificate_pdf(name, subject, grade_label, pct, topic=""):
     c.drawCentredString(W / 2, 2.6 * cm, datetime.date.today().strftime("%d.%m.%Y") + "  •  Denemematik")
     c.save()
     return buf.getvalue()
+
+
+def report_pdf(name, grade_label, hist, stats, weak, streak_n, level, comment=""):
+    """Veli / öğretmen için tek sayfalık gelişim raporu."""
+    from reportlab.platypus import SimpleDocTemplate
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=1.6 * cm, rightMargin=1.6 * cm, topMargin=1.4 * cm, bottomMargin=1.4 * cm)
+    H1 = ParagraphStyle("h1", fontName="DV-B", fontSize=19, leading=24, textColor=NAVY, spaceAfter=4)
+    H2 = ParagraphStyle("h2", fontName="DV-B", fontSize=12, textColor=BLUE, spaceBefore=9, spaceAfter=4)
+    P = ParagraphStyle("p", fontName="DV", fontSize=9.2, leading=13, textColor=colors.HexColor("#1e293b"))
+    sm = ParagraphStyle("sm", fontName="DV", fontSize=8, textColor=colors.HexColor("#64748b"))
+    el = [Paragraph("Denemematik • Öğrenci Gelişim Raporu", H1),
+          Paragraph(clean(f"{name or 'Öğrenci'} • {grade_label} • {datetime.date.today().strftime('%d.%m.%Y')}"), sm), Spacer(1, 6)]
+    pcts = [h["pct"] for h in hist]
+    last5 = pcts[-5:]
+    avg = sum(pcts) / len(pcts) if pcts else 0
+    trend = (sum(last5[-2:]) / len(last5[-2:]) - sum(last5[:2]) / len(last5[:2])) if len(last5) >= 3 else 0
+    kp = [["Çözülen sınav", "Ortalama başarı", "Son 5 sınav trendi", "Çalışma serisi", "Seviye"],
+          [str(len(hist)), f"%{avg:.0f}", ("▲ " if trend > 0 else "▼ " if trend < 0 else "■ ") + f"{abs(trend):.0f} puan", f"{streak_n} gün", clean(f"{level['level']} • {level['title']}")]]
+    t = Table(kp, colWidths=[3.4 * cm] * 5)
+    t.setStyle(TableStyle([("FONT", (0, 0), (-1, 0), "DV", 7.5), ("FONT", (0, 1), (-1, 1), "DV-B", 12), ("TEXTCOLOR", (0, 0), (-1, 0), colors.HexColor("#64748b")),
+                           ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f5f3ff")), ("BOX", (0, 0), (-1, -1), .8, colors.HexColor("#c4b5fd")),
+                           ("ALIGN", (0, 0), (-1, -1), "CENTER"), ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
+    el += [t, Paragraph("Ders bazında durum", H2)]
+    rows = [["Ders", "Ort. başarı", "Soru başı süre", "Değerlendirme"]]
+    for s_, v in sorted(stats.items(), key=lambda x: x[1]["pct"]):
+        rows.append([clean(s_), f"%{v['pct']:.0f}", f"{v['sec']:.0f} sn" if v.get("sec") else "-",
+                     "Güçlü" if v["pct"] >= 75 else "Gelişiyor" if v["pct"] >= 50 else "Destek gerekli"])
+    t2 = Table(rows, colWidths=[6 * cm, 3 * cm, 3.4 * cm, 4.2 * cm], repeatRows=1)
+    t2.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "DV", 8.8), ("FONT", (0, 0), (-1, 0), "DV-B", 8.8), ("BACKGROUND", (0, 0), (-1, 0), BLUE), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f8fafc")]), ("GRID", (0, 0), (-1, -1), .4, colors.HexColor("#e2e8f0")),
+                            ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 4)]))
+    el.append(t2)
+    weak = [w for w in weak if w[2] < 70]
+    if weak:
+        el.append(Paragraph("Öncelikli çalışılacak kazanımlar", H2))
+        for s_, tp, p_, _ in weak[:6]:
+            el.append(Paragraph(clean(f"• {s_} — {tp} (başarı %{p_:.0f})"), P))
+    el.append(Paragraph("Öğretmen değerlendirmesi ve tavsiye", H2))
+    el.append(Paragraph(clean(comment or "Düzenli çalışmaya devam edilmesi, zayıf kazanımların günlük tekrarla pekiştirilmesi önerilir."), P))
+    el += [Spacer(1, 10), Paragraph("Bu rapor Denemematik tarafından öğrencinin çözdüğü denemelerden otomatik üretilmiştir.", sm)]
+    doc.build(el)
+    return buf.getvalue()
 '''
 MODULES['core/store'] = r'''# -*- coding: utf-8 -*-
 """Yerel kayıt: sınav geçmişi, yanlış soru arşivi, son sorular (tekrarsızlık). JSON dosyaları ./data altında.
@@ -1389,6 +1432,29 @@ def add_stems(questions):
     for k in d:
         d[k] = d[k][-300:]
     _save("stems.json", d)
+
+
+def update_wrong(key, **fields):
+    w = wrong()
+    for x in w:
+        if x.get("key") == key:
+            x.update(fields)
+    _save("wrong.json", w)
+
+
+# ---- ayarlar (öğrenci adı, günlük hedef, günlük tekrar sayacı)
+def settings():
+    d = _load("settings.json", {})
+    d.setdefault("name", "")
+    d.setdefault("goal", 20)
+    d.setdefault("reviews", {})
+    return d
+
+
+def save_settings(**kw):
+    d = settings()
+    d.update(kw)
+    _save("settings.json", d)
 '''
 MODULES['core/meb_live'] = r'''# -*- coding: utf-8 -*-
 """MEB Öğretim Programları (mufredat.meb.gov.tr) sitesinden program PDF'lerini çeker, kazanım kodlarını ayrıştırır
@@ -1709,6 +1775,21 @@ SUBJECT_HINT = {
 }
 
 
+_GEO = {"triangle", "circle", "rectangle", "cylinder", "number_line"}
+_SCI = {"science_space", "space_orbit", "eclipse", "moon_phases", "dynamometer", "thermometer", "forces", "science_chart", "cylinder"}
+_CH = {"bar_chart", "line_chart", "pie_chart", "table"}
+ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
+    "Matematik": _GEO | _CH,
+    "Fen Bilimleri": (_SCI | _CH) - {"cylinder"},
+    "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line"},
+    "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
+}
+VISUAL_HINT = {
+    "Matematik": "Şekil/grafik/tablo: geometri (üçgen, çember, dikdörtgen), sayı doğrusu, sütun/çizgi/daire grafiği, veri tablosu.",
+    "Fen Bilimleri": "Görsel: deney düzeneği verileri, dinamometre, termometre, kuvvet, Ay evreleri/Güneş-Dünya, tablo ve grafikler. Geometri şekli (üçgen/çember) KULLANMA.",
+    "Sosyal Bilgiler": "Görsel yalnızca tablo, sütun/çizgi/daire grafiği ya da zaman çizelgesi (sayı doğrusu) olabilir; geometri ve fen şemaları YOK.",
+    "T.C. İnkılap Tarihi ve Atatürkçülük": "Görsel yalnızca kronoloji tablosu/şeridi ya da basit grafik olabilir; geometri ve fen şemaları YOK.",
+}
 VISUAL_SUBJECTS = ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "T.C. İnkılap Tarihi ve Atatürkçülük")
 FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu sızarsa elenir)
     "Din Kültürü ve Ahlak Bilgisi": re.compile(r"\b(cm|m²|km|üçgen|dörtgen|çember|denklem|hesapla|kesir|yüzde|ondalık|alanı|çevresi|hacim|formül|newton|joule|hücre|atom)\b", re.I),
@@ -1722,7 +1803,9 @@ def _subject_lock(subject):
     base = (f"\n🔒 DERS KİLİDİ: Bu sorular YALNIZCA {subject} dersine aittir. Başka bir dersin (özellikle Matematik/Fen) sorusu, işlem ya da "
             f"geometri problemi SORMA. Her soru verilen ünite/kazanımlardan birine dayansın; kazanımları sırayla gez, her soruda FARKLI bir kazanım ve farklı bağlam kullan.\n")
     if subject not in VISUAL_SUBJECTS:
-        base += "Bu derste geometrik şekil/grafik ÇİZDİRME: `shape` alanı null olsun (gerekirse yalnızca basit tablo).\n"
+        base += "Bu derste şekil/grafik ÇİZDİRME: `shape` alanı null olsun (gerekirse yalnızca konuyla ilgili basit bir tablo; matematik/fen şeması ASLA).\n"
+    else:
+        base += f"GÖRSEL KISITI: {VISUAL_HINT.get(subject, '')} Görsel soruyla birebir ilgili olsun.\n"
     return base
 
 
@@ -1760,7 +1843,7 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
         "Her soru tek bir kazanımı ölçsün, beceri temelli ve bağlamlı olsun; öğrencinin yazarak cevaplayacağı şekilde kurgulansın.\n"
         f"DAĞILIM (kazanım başına tam soru sayısı):\n" + "\n".join(lines) + "\n"
         f"KALİTE KADEMESİ: '{difficulty}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy.\n"
-        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n\n{SHAPE_RULES}\n"
+        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
         "Her soru için: beklenen 'answer', ve puanlama anahtarı 'rubric' (adımlar ve göreli puanlar; toplam 10 olsun).\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"kazanim":"..","type":"Açık uçlu|Kısa cevaplı","difficulty":"Kolay|Orta|Zor",'
         '"passage":"... veya null","question":"..","shape":null,"answer":"..","rubric":[{"step":"..","points":5},{"step":"..","points":5}]}]}')
@@ -1792,7 +1875,7 @@ def _norm_q(q, subject):
         ans = [k for k, v in opts.items() if v == correct][0]
     from . import visuals
     shape = visuals.normalize_shape(q.get("shape"))
-    if shape and subject not in VISUAL_SUBJECTS and shape.get("type") != "table":
+    if shape and shape.get("type") not in ALLOWED_SHAPES.get(subject, {"table"}):
         shape = None
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
@@ -1954,7 +2037,9 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
                 acc += r["points"]
             q["rubric"] = rub
             q["passage"] = q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else ""
-            q["shape"] = q["shape"] if isinstance(q.get("shape"), dict) and q["shape"].get("type") else None
+            from . import visuals as _v
+            _sh = _v.normalize_shape(q.get("shape"))
+            q["shape"] = _sh if _sh and _sh.get("type") in ALLOWED_SHAPES.get(subj, {"table"}) else None
             q["answer"] = str(q.get("answer", ""))
         questions += qs
         if on_progress:
@@ -2045,6 +2130,187 @@ def grade_open(questions, open_answers, grade_label):
                 out[i] = {"points": pts, "verdict": str(r.get("verdict") or ""), "feedback": str(r.get("feedback") or ""), "tip": str(r.get("tip") or "")}
     return out, errs
 '''
+MODULES['core/coach'] = r'''# -*- coding: utf-8 -*-
+"""Öğrenci koçu: aralıklı tekrar, seri/hedef/seviye, çalışma planı, süre analizi, yapay zekâ anlatımı."""
+import datetime as _dt
+import time
+from . import store, ai_engine as ai
+
+INTERVALS = [1, 3, 7, 21, 60]  # gün: kutu 0..4
+DAY = 86400
+TR_DAYS = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+LEVELS = ["Çaylak", "Meraklı", "Gayretli", "Kararlı", "Usta", "Uzman", "Şampiyon", "Efsane"]
+
+
+def _day(ts):
+    return _dt.date.fromtimestamp(ts)
+
+
+# ------------------------------------------------------------ aralıklı tekrar (Leitner)
+def due_items(now=None):
+    now = now or time.time()
+    out = [w for w in store.wrong() if w.get("kind") == "mc" and w.get("due", 0) <= now]
+    return sorted(out, key=lambda w: (w.get("box", 0), w.get("due", 0)))
+
+
+def upcoming_count():
+    now = time.time()
+    return sum(1 for w in store.wrong() if w.get("kind") == "mc" and w.get("due", 0) > now)
+
+
+def review_result(key, ok):
+    """Doğruysa bir sonraki kutuya (aralık uzar), yanlışsa başa döner."""
+    w = next((x for x in store.wrong() if x.get("key") == key), None)
+    if not w:
+        return
+    box = min(w.get("box", 0) + 1, len(INTERVALS)) if ok else 0
+    days = INTERVALS[min(box, len(INTERVALS) - 1)] if ok else 1
+    store.update_wrong(key, box=box, due=int(time.time() + days * DAY), last_review=int(time.time()))
+    s = store.settings()
+    t = _dt.date.today().isoformat()
+    s["reviews"][t] = s["reviews"].get(t, 0) + 1
+    store.save_settings(reviews=s["reviews"])
+    return days
+
+
+# ------------------------------------------------------------ seri / hedef / seviye
+def daily_counts(hist=None):
+    hist = store.history() if hist is None else hist
+    d = {}
+    for h in hist:
+        k = _day(h["ts"]).isoformat()
+        d[k] = d.get(k, 0) + int(h.get("total", 0))
+    for k, v in store.settings()["reviews"].items():
+        d[k] = d.get(k, 0) + v
+    return d
+
+
+def streak(counts=None):
+    c = daily_counts() if counts is None else counts
+    day = _dt.date.today()
+    if c.get(day.isoformat(), 0) == 0:
+        day -= _dt.timedelta(days=1)  # bugün henüz çalışılmadıysa seri dünden sayılır
+    n = 0
+    while c.get(day.isoformat(), 0) > 0:
+        n += 1
+        day -= _dt.timedelta(days=1)
+    return n
+
+
+def today_count():
+    return daily_counts().get(_dt.date.today().isoformat(), 0)
+
+
+def xp_level(hist=None):
+    hist = store.history() if hist is None else hist
+    xp = sum(int(h.get("correct", 0)) * 10 + int(h.get("total", 0)) * 2 for h in hist) + sum(store.settings()["reviews"].values()) * 5
+    lv = int((xp / 60) ** 0.5)
+    nxt = ((lv + 1) ** 2) * 60
+    base = (lv ** 2) * 60
+    return {"xp": xp, "level": lv + 1, "title": LEVELS[min(lv, len(LEVELS) - 1)], "pct": 100 * (xp - base) / max(1, nxt - base), "next": nxt}
+
+
+# ------------------------------------------------------------ zayıf kazanımlar & plan
+def weak_topics(hist=None, last=10, limit=12):
+    hist = (store.history() if hist is None else hist)[-last:]
+    agg = {}
+    for h in hist:
+        for s, tps in (h.get("topics") or {}).items():
+            for t, v in tps.items():
+                if t and t != "Genel" and v[1]:
+                    a = agg.setdefault((s, t), [0.0, 0.0])
+                    a[0] += v[0]
+                    a[1] += v[1]
+    rows = [(s, t, 100 * a / b, b) for (s, t), (a, b) in agg.items() if b >= 1]
+    return sorted([r for r in rows if r[2] < 75] or rows, key=lambda r: (r[2], -r[3]))[:limit]
+
+
+def subject_stats(hist=None, last=10):
+    hist = (store.history() if hist is None else hist)[-last:]
+    d = {}
+    for h in hist:
+        for s, v in (h.get("per") or {}).items():
+            e = d.setdefault(s, {"pct": [], "sec": []})
+            e["pct"].append(v.get("pct", 0))
+            if v.get("sec"):
+                e["sec"].append(v["sec"])
+    return {s: {"pct": sum(e["pct"]) / len(e["pct"]), "sec": (sum(e["sec"]) / len(e["sec"])) if e["sec"] else None, "n": len(e["pct"])} for s, e in d.items()}
+
+
+def week_plan(hist=None):
+    """7 günlük plan: zayıf kazanımlar, tekrar, yaprak test, hafta sonu deneme."""
+    weak = weak_topics(hist)
+    due = len(due_items())
+    plan = []
+    wi = 0
+    for i, day in enumerate(TR_DAYS):
+        if i == 6:
+            plan.append({"day": day, "icon": "🏆", "title": "Mini deneme + değerlendirme", "detail": "Haftanın kazanımlarından 20 soruluk deneme çöz, yanlışlarını arşive ekle.", "action": "weekly"})
+        elif i == 5:
+            plan.append({"day": day, "icon": "🔁", "title": f"Genel tekrar ({due} soru sırada)" if due else "Genel tekrar", "detail": "Günlük Tekrar'daki soruları bitir; yanlış arşivinden eksikleri kapat.", "action": "review"})
+        elif i % 2 == 0 and weak:
+            s, t, p, _ = weak[wi % len(weak)]
+            wi += 1
+            plan.append({"day": day, "icon": "🎯", "title": f"{s}: {t}", "detail": f"Bu kazanımda başarın %{p:.0f}. 10 soruluk yaprak test çöz.", "action": "leaf", "subject": s})
+        elif weak:
+            s, t, p, _ = weak[wi % len(weak)]
+            wi += 1
+            plan.append({"day": day, "icon": "📖", "title": f"{s}: {t} konu tekrarı", "detail": "Konu özetini oku, yanlış yaptığın soruları 'Bana anlat' ile incele.", "action": "archive", "subject": s})
+        else:
+            plan.append({"day": day, "icon": "📝", "title": "Konu tarama", "detail": "Bir ders ve ünite seç, 15 soruluk konu tarama çöz.", "action": "topic"})
+    return plan
+
+
+def time_analysis(qs, answers, qtime, mc=True, expected=90):
+    """Soru başı süre: hızlı-yanlış (aceleci), uzun düşünülen, ders ortalamaları."""
+    per, fast_wrong, slow, rows = {}, 0, 0, []
+    for i, q in enumerate(qs):
+        t = float(qtime.get(i, 0))
+        s = q.get("subject", "Genel")
+        per.setdefault(s, []).append(t)
+        ua = answers.get(i)
+        if mc and ua and ua != q.get("answer") and t < 15:
+            fast_wrong += 1
+        if t > expected * 1.8:
+            slow += 1
+        rows.append(t)
+    return {"avg": {s: sum(v) / len(v) for s, v in per.items()}, "fast_wrong": fast_wrong, "slow": slow,
+            "total": sum(rows), "n": len(qs), "expected": expected}
+
+
+# ------------------------------------------------------------ yapay zekâ: öğretmen yorumu & anlatım
+def _ask(prompt, system=ai.TEACHER_SYSTEM, temperature=0.4):
+    if ai.demo_mode():
+        return None
+    gk, mk = ai.load_keys()
+    raw, err = ai.multi_pool_generate(prompt, gk, mk, temperature=temperature)
+    return ai.parse_json(raw) if raw else None
+
+
+def teacher_comment(grade_label, stats, weak, streak_n):
+    lines = [f"- {s}: ort. %{v['pct']:.0f}" + (f", soru başı {v['sec']:.0f} sn" if v.get("sec") else "") for s, v in stats.items()]
+    wk = [f"- {s} / {t}: %{p:.0f}" for s, t, p, _ in weak[:6]]
+    fb = "Düzenli çalışıyorsun; önce en düşük başarılı kazanımlardan başla, her gün kısa ama sürekli çalış."
+    r = _ask(f"{grade_label} öğrencisinin son denemeleri:\n" + "\n".join(lines) + "\nZayıf kazanımlar:\n" + "\n".join(wk) +
+             f"\nÇalışma serisi: {streak_n} gün.\nÖğrenciye 'sen' diye hitap eden, motive edici ama dürüst, 4-5 cümlelik bir öğretmen değerlendirmesi ve haftalık çalışma tavsiyesi yaz. "
+             'Yalnızca JSON: {"comment":"..."}')
+    return (r or {}).get("comment") or fb
+
+
+def explain(q, user_answer, grade_label):
+    """Yanlış çözülen soruyu öğretmen ağzıyla anlatır + daha kolay benzer örnek. -> dict"""
+    opts = q.get("options") or {}
+    correct = opts.get(q.get("answer"), "")
+    r = _ask(f"{grade_label} {q.get('subject', '')} sorusunu öğrenciye anlat.\nMetin: {q.get('passage') or '-'}\nSoru: {q.get('question')}\n"
+             f"Şıklar: {opts}\nDoğru cevap: {q.get('answer')}) {correct}\nÖğrencinin cevabı: {user_answer or 'boş'}\n"
+             "Öğretmen ağzıyla, samimi ve sabırlı anlat: 1) soruda ne isteniyor, 2) adım adım çözüm, 3) öğrenci muhtemelen neden yanlış şıkkı seçti, 4) aynı kazanımdan DAHA KOLAY, "
+             "çözümlü kısa bir benzer örnek. Yalnızca JSON: "
+             '{"steps":["adım 1","adım 2"],"why_wrong":"..","easy_example":{"question":"..","answer":".."},"tip":"tek cümle ipucu"}')
+    if r:
+        return r
+    return {"steps": [q.get("explanation") or "Çözüm açıklaması bulunamadı."], "why_wrong": "Soruyu yeniden oku ve her şıkkı eleyerek ilerle.",
+            "easy_example": None, "tip": "Kazanımı tekrar oku."}
+'''
 MODULES['ui/theme'] = r'''# -*- coding: utf-8 -*-
 import streamlit as st
 
@@ -2078,6 +2344,20 @@ CSS = """
 [data-testid="stSidebar"] .st-key-nv_rep button  { background:linear-gradient(135deg,#a78bfa,#6d28d9) !important; }
 [data-testid="stSidebar"] .st-key-nv_arc button  { background:linear-gradient(135deg,#fbbf24,#b45309) !important; }
 [data-testid="stSidebar"] .st-key-nv_bdg button  { background:linear-gradient(135deg,#f472b6,#be185d) !important; }
+
+/* ---- Koç: seri şeridi, öğretmen kutusu, plan kartları ---- */
+.strip { display:grid; grid-template-columns:1fr 2fr 1fr 1fr; gap:.7rem; margin:.2rem 0 1rem; }
+.strip .sc { background:linear-gradient(135deg,#f5f3ff,#ecfeff); border:2px solid #ddd6fe; border-radius:18px; padding:.7rem .9rem; }
+.strip .sc.wide { grid-column:auto; }
+.strip .sv { font-size:1.35rem; font-weight:900; color:#4c1d95; } .strip .sl { font-size:.78rem; color:#475569; font-weight:700; margin:.15rem 0; }
+@media (max-width:760px) { .strip { grid-template-columns:1fr 1fr; } .strip .sc.wide { grid-column:1 / -1; order:5; } }
+.teach { background:linear-gradient(135deg,#faf5ff,#f0fdfa); border:2px solid #c4b5fd; border-radius:18px; padding:1rem 1.2rem; margin:.6rem 0; color:#1e293b; line-height:1.6; }
+.teach.ex { border-color:#5eead4; } .teach-h { font-weight:900; color:#6d28d9; margin-bottom:.3rem; } .teach ol { margin:.2rem 0 .4rem 1.1rem; } .teach details { cursor:pointer; color:#0f766e; }
+.plan-card { background:#fff; border:2px solid #e2e8f0; border-radius:18px; padding:.9rem 1.1rem; margin-bottom:.35rem; box-shadow:0 8px 18px -16px rgba(15,23,42,.6); }
+.plan-card.today { border-color:#7c3aed; background:linear-gradient(135deg,#f5f3ff,#ecfeff); }
+.plan-card .pd { font-size:.75rem; font-weight:900; color:#7c3aed; text-transform:uppercase; letter-spacing:.5px; } .plan-card .pt { font-weight:900; color:#0f172a; margin:.15rem 0; } .plan-card .pi { font-size:.85rem; color:#64748b; }
+[data-testid="stSidebar"] .st-key-nv_rev button  { background:linear-gradient(135deg,#2dd4bf,#0f766e) !important; }
+[data-testid="stSidebar"] .st-key-nv_plan button { background:linear-gradient(135deg,#818cf8,#4338ca) !important; }
 
 /* ---- Başlık ---- */
 .hero { background: linear-gradient(120deg,#0f172a 0%,#1d4ed8 60%,#0ea5e9 100%); color:white; border-radius:22px;
@@ -2304,7 +2584,7 @@ import streamlit as st
 DEFAULTS = {
     "page": "home", "grade": None, "mode": None,
     "questions": [], "meta": {}, "answers": {}, "open_answers": {}, "cur": 0, "start": None,
-    "duration": 0, "result": None, "saved": False, "self_scores": {}, "ai_grades": None,
+    "duration": 0, "result": None, "saved": False, "self_scores": {}, "ai_grades": None, "qtime": {}, "q_last": None,
     "sel_week": 1, "sel_month": 1, "scope_tab": "week",
     "leaf_subject": None,
 }
@@ -2324,7 +2604,7 @@ def nav(page, **kw):
 
 
 def reset_exam():
-    for k in ("questions", "meta", "answers", "open_answers", "cur", "start", "duration", "result", "saved", "self_scores", "ai_grades"):
+    for k in ("questions", "meta", "answers", "open_answers", "cur", "start", "duration", "result", "saved", "self_scores", "ai_grades", "qtime", "q_last"):
         st.session_state[k] = copy.deepcopy(DEFAULTS[k])
 '''
 MODULES['ui/setup'] = r'''# -*- coding: utf-8 -*-
@@ -2351,14 +2631,21 @@ GRADE_CARDS = [
 def home():
     st.markdown("<div class='hero'><h1>🎓 Denemematik</h1><p>Yapay zekâ ile sınırsız, her seferinde farklı MEB yeni nesil soruları. "
                 "Önce sınıfını seç.</p></div>", unsafe_allow_html=True)
+    try:
+        from . import study
+        study.strip()
+    except Exception:
+        pass
     st.markdown("<div class='sec-title'>🎓 Sınıfını Seç</div>", unsafe_allow_html=True)
     theme.cells(GRADE_CARDS, 3, lambda c: theme.card(f"g{c[0]}", c[1], f"{c[2]} {c[3]}", c[4], pick_grade, (c[0],)))
     st.markdown("<div class='sec-title'>🧰 Araçlar</div>", unsafe_allow_html=True)
     tools = [("leaf", "green", "📄 Yaprak Test", "Tek kazanımlık hızlı çalışma kâğıdı + PDF", "leaf_start"),
+             ("review", "teal", "🔁 Günlük Tekrar", "Yanlışların tam zamanında geri gelir (aralıklı tekrar)", "review"),
+             ("plan", "violet", "🗓️ Çalışma Planım", "Zayıf kazanımlarına göre 7 günlük kişisel plan", "plan"),
              ("reports", "indigo", "📊 Performans & Raporlar", "Grafikler, ders karşılaştırmaları", "reports"),
              ("archive", "amber", "🗂️ Yanlış Arşivim", "Yanlış yaptığın sorulardan kişisel test", "archive"),
              ("badges", "slate", "🏅 Rozet & Sertifika", "Başarılarını topla, sertifika al", "badges")]
-    theme.cells(tools, 2, lambda x: theme.card(f"tool_{x[0]}", x[1], x[2], x[3], _tool_go, (x[4],)))
+    theme.cells(tools, 3, lambda x: theme.card(f"tool_{x[0]}", x[1], x[2], x[3], _tool_go, (x[4],)))
 
 
 def _tool_go(page):
@@ -2914,7 +3201,7 @@ import time
 import altair as alt
 import pandas as pd
 import streamlit as st
-from core import curriculum as cur, store, ai_engine as ai
+from core import curriculum as cur, store, ai_engine as ai, coach
 from core.visuals import draw_geometry_shape
 from . import theme
 from .state import nav, reset_exam
@@ -2975,6 +3262,14 @@ def compute_result():
                "empty": sum(d["empty"] for d in per.values()), "total": len(qs), "net": round(P, 1),
                "pct": round(100 * P / Mx, 1) if Mx else 0, "points": round(P, 1), "max": Mx}
     res["duration"] = st.session_state.duration
+    try:
+        tan = coach.time_analysis(qs, st.session_state.answers, st.session_state.get("qtime", {}), mc=(m["kind"] == "mc"))
+        for sname, v in tan["avg"].items():
+            if sname in per and v > 0:
+                per[sname]["sec"] = round(v, 1)
+        res["tan"] = tan
+    except Exception:
+        res["tan"] = None
     return res
 
 
@@ -2996,11 +3291,23 @@ def persist(res):
             items.append({"key": key, "grade": m["grade"], "grade_label": m["grade_label"], "subject": q.get("subject", ""),
                           "topic": q.get("topic") or q.get("kazanim", ""), "q": q, "kind": m["kind"],
                           "user": st.session_state.answers.get(i) if m["kind"] == "mc" else st.session_state.open_answers.get(i, ""),
-                          "ts": int(time.time())})
+                          "ts": int(time.time()), "box": 0, "due": int(time.time()) + 86400})
     store.add_wrong(items)
 
 
+def _tick(idx=None):
+    """Soru başı süre: bir önceki ekranda geçen süreyi o soruya yazar."""
+    S = st.session_state
+    now = time.time()
+    last = S.get("q_last")
+    if last:
+        qt = S.setdefault("qtime", {})
+        qt[last[1]] = qt.get(last[1], 0) + min(now - last[0], 240)
+    S.q_last = (now, idx) if idx is not None else None
+
+
 def finish():
+    _tick(None)
     st.session_state.duration = int(time.time() - (st.session_state.start or time.time()))
     if st.session_state.meta["kind"] == "open":
         st.session_state.page = "selfscore"
@@ -3056,6 +3363,7 @@ def exam():
     total = len(qs)
     idx = max(0, min(int(st.session_state.get("cur", 0) or 0), total - 1))
     st.session_state.cur = idx
+    _tick(idx)
     q = qs[idx]
     h1, h2 = st.columns([2, 1])
     with h1:
@@ -3200,6 +3508,28 @@ def result():
         for lab, key in (("Doğru", "correct"), ("Yanlış", "wrong"), ("Boş", "empty")):
             chart.append({"Ders": s, "Durum": lab, "Adet": d[key]})
     theme.html_table(["Ders", "Soru", "D", "Y", "B", "Net/Puan", "Başarı", "Önceki %", "Değişim"], rows, num_cols=(1, 2, 3, 4, 5, 7, 8))
+    tan = res.get("tan")
+    if tan and tan.get("total", 0) > 5:
+        st.markdown("<div class='sec-title'>⏱ Süre Analizi</div>", unsafe_allow_html=True)
+        avg_all = tan["total"] / max(1, tan["n"])
+        kk = st.columns(3)
+        with kk[0]:
+            theme.kpi("Soru başı ortalama", f"{avg_all:.0f} sn", avg_all - tan["expected"], good_up=False)
+        with kk[1]:
+            theme.kpi("Aceleci yanlış (<15 sn)", tan["fast_wrong"])
+        with kk[2]:
+            theme.kpi("Çok uzun düşünülen", tan["slow"])
+        rows_t = [(f"{cur.SUBJECT_ICONS.get(s_, '')} {s_}", f"{v:.0f} sn", "⚡ Hızlı" if v < tan["expected"] * .6 else "🐢 Uzun" if v > tan["expected"] * 1.3 else "✅ Dengeli") for s_, v in tan["avg"].items()]
+        theme.html_table(["Ders", "Soru başı", "Tempo"], rows_t)
+        tips = []
+        if tan["fast_wrong"] >= 2:
+            tips.append(f"{tan['fast_wrong']} soruyu 15 saniyenin altında yanlış yaptın: acele ediyorsun, soruyu iki kez okumayı dene.")
+        if tan["slow"] >= 2:
+            tips.append(f"{tan['slow']} soruda çok uzun düşündün: takılırsan işaretleyip sona bırak, süre kazanırsın.")
+        if avg_all > tan["expected"] * 1.2:
+            tips.append("Genel tempon hedefin üstünde: süre tutarak kısa testler çözmek hızını artırır.")
+        for t_ in tips or ["Tempon dengeli görünüyor, böyle devam!"]:
+            st.markdown(f"- 💡 {t_}")
     cA, cB = st.columns([1.3, 1])
     with cA:
         st.markdown("**Ders bazında doğru / yanlış / boş dağılımı**")
@@ -3231,7 +3561,7 @@ def result():
         st.button("🗂️ Yanlış Arşivim", key="to_arc", on_click=nav, args=("archive",))
     with b3:
         st.button("🏠 Ana Sayfa", key="to_home", on_click=lambda: (reset_exam(), nav("home")))
-    with st.expander("📖 Detaylı Soru Çözüm, Cevap Anahtarı ve Tüm Şıkları İncele", expanded=False):
+    with st.expander("📖 Detaylı Soru Çözüm, Cevap Anahtarı ve Tüm Şıkları İncele", expanded=any(str(k).startswith("expl_") for k in st.session_state)):
         for i, q in enumerate(qs):
             if m["kind"] == "mc":
                 u, c = st.session_state.answers.get(i, "Boş"), q["answer"]
@@ -3245,6 +3575,9 @@ def result():
                     pre_ = "✅ **(Doğru Cevabınız)**" if ok == c == u else "🟢 **(Doğru Cevap)**" if ok == c else "❌ **(Sizin Cevabınız)**" if ok == u else "   "
                     st.markdown(f"- {pre_} **{ok})** {ov}")
                 st.markdown(f"<div style='background:#f8f9fa;padding:12px;border-radius:6px;border-left:4px solid #4e73df;margin:10px 0 20px'><b>💡 Çözüm:</b><br>{q.get('explanation') or 'Açıklama yok.'}</div>", unsafe_allow_html=True)
+                if u != c:
+                    from .study import explain_box
+                    explain_box(q, u if u != "Boş" else None, f"res_{i}", m.get("grade_label", ""))
             else:
                 st.markdown(f"### Soru {i + 1} [{q.get('subject', '')}] — {st.session_state.self_scores.get(i, 0)}/{q.get('points')} puan")
                 st.markdown(f"**{q['question']}**\n\n**Beklenen cevap:** {q.get('answer', '')}")
@@ -3403,7 +3736,23 @@ def reports():
         rows = [(len(H) - i, _date(h["ts"]), h["grade_label"], MODE_NAMES.get(h["mode"], h["mode"]), h["title"], h["correct"], h["wrong"], h["empty"], h["net"], f"%{h['pct']:.0f}", f"{h['duration'] // 60} dk") for i, h in enumerate(reversed(H))]
         theme.html_table(["#", "Tarih", "Sınıf", "Tür", "Sınav", "D", "Y", "B", "Net/Puan", "Başarı", "Süre"], rows, num_cols=(0, 5, 6, 7, 8, 9, 10))
     with t6:
+        _parent_report(hist)
         _backup(hist)
+
+
+def _parent_report(hist):
+    from core import coach, pdf_export
+    st.markdown("<div class='sec-title'>👨‍👩‍👧 Veli / Öğretmen Raporu</div>", unsafe_allow_html=True)
+    name = st.text_input("Öğrenci adı", value=store.settings().get("name", ""), key="rp_name")
+    if name != store.settings().get("name", ""):
+        store.save_settings(name=name)
+    if st.button("📄 Tek sayfalık raporu hazırla", key="rp_make", type="primary"):
+        stats, weak = coach.subject_stats(hist), coach.weak_topics(hist)
+        cm = st.session_state.get("plan_comment") or ""
+        st.session_state["rp_pdf"] = pdf_export.report_pdf(name, hist[-1].get("grade_label", ""), hist, stats, weak, coach.streak(), coach.xp_level(hist), cm)
+    if st.session_state.get("rp_pdf"):
+        st.download_button("⬇️ Raporu indir (PDF)", st.session_state["rp_pdf"], file_name="gelisim_raporu.pdf", mime="application/pdf", key="rp_dl")
+        st.caption("İpucu: Çalışma Planım sayfasında 'Öğretmen yorumu al' dersen yorum rapora da eklenir.")
 
 
 def _backup(hist):
@@ -3538,8 +3887,184 @@ def badges():
         pdf = pdf_export.certificate_pdf(name, subj, h["grade_label"], h["pct"], ti.get("unit", "").split(" (MAT")[0])
         st.download_button(f"📜 {h['title']} — %{h['pct']:.0f}", pdf, file_name=f"sertifika_{i}.pdf", mime="application/pdf", key=f"cert_{h['id']}")
 '''
+MODULES['ui/study'] = r'''# -*- coding: utf-8 -*-
+"""Öğrenci koçu ekranları: günlük tekrar, çalışma planı, 'bana anlat', seri/hedef şeridi."""
+import time
+import streamlit as st
+from core import curriculum as cur, store, coach
+from . import theme
+from .state import nav
+from . import setup as su
 
-ORDER = ['core/curriculum', 'core/oyss', 'core/visuals', 'core/pdf_export', 'core/store', 'core/meb_live', 'core/ai_engine', 'ui/theme', 'ui/state', 'ui/setup', 'ui/wizard', 'ui/exam', 'ui/reports', 'ui/extras']
+
+# ------------------------------------------------------------------ ortak: Bana anlat
+def explain_box(q, user_answer, key, grade_label=""):
+    ck = f"expl_{key}"
+    if st.session_state.get(ck) is None:
+        if st.button("👩‍🏫 Bana anlat", key=f"btn_{ck}", type="primary"):
+            r = su.with_overlay(12, "Öğretmen anlatıyor", "Çözüm adım adım ve daha kolay bir örnekle hazırlanıyor…", lambda: coach.explain(q, user_answer, grade_label))
+            st.session_state[ck] = r
+            st.rerun()
+        return
+    r = st.session_state[ck]
+    steps = "".join(f"<li>{x}</li>" for x in (r.get("steps") or []))
+    st.markdown(f"<div class='teach'><div class='teach-h'>👩‍🏫 Öğretmenin anlatımı</div><ol>{steps}</ol>"
+                + (f"<p><b>Neden yanlış olmuş olabilir?</b> {r['why_wrong']}</p>" if r.get("why_wrong") else "") + "</div>", unsafe_allow_html=True)
+    ex = r.get("easy_example")
+    if isinstance(ex, dict) and ex.get("question"):
+        st.markdown(f"<div class='teach ex'><div class='teach-h'>🌱 Daha kolay benzer örnek</div><p>{ex.get('question')}</p>"
+                    f"<details><summary>Cevabı gör</summary><p><b>{ex.get('answer', '')}</b></p></details></div>", unsafe_allow_html=True)
+    if r.get("tip"):
+        st.caption(f"💡 {r['tip']}")
+
+
+# ------------------------------------------------------------------ seri / hedef şeridi (ana sayfa)
+def strip():
+    cnt, goal = coach.today_count(), store.settings()["goal"]
+    sk, lv = coach.streak(), coach.xp_level()
+    due = len(coach.due_items())
+    pct = min(100, 100 * cnt / max(1, goal))
+    st.markdown(
+        f"<div class='strip'>"
+        f"<div class='sc'><div class='sv'>🔥 {sk}</div><div class='sl'>gün seri</div></div>"
+        f"<div class='sc wide'><div class='sl'>Günlük hedef: {cnt}/{goal} soru</div><div class='bar-bg'><div class='bar-fg' style='width:{pct:.0f}%;background:linear-gradient(90deg,#7c3aed,#14b8a6)'></div></div>"
+        f"<div class='sl'>{'🎉 Hedef tamam!' if cnt >= goal else f'{goal - cnt} soru kaldı'}</div></div>"
+        f"<div class='sc'><div class='sv'>⭐ Sv.{lv['level']}</div><div class='sl'>{lv['title']} • {lv['xp']} XP</div></div>"
+        f"<div class='sc'><div class='sv'>🔁 {due}</div><div class='sl'>bugünkü tekrar</div></div></div>", unsafe_allow_html=True)
+
+
+# ------------------------------------------------------------------ GÜNLÜK TEKRAR
+def _answer_review(key, ok):
+    days = coach.review_result(key, ok)
+    st.session_state.rev_msg = (ok, days)
+    st.session_state.rev_done = st.session_state.get("rev_done", 0) + 1
+    st.session_state.rev_ok = st.session_state.get("rev_ok", 0) + (1 if ok else 0)
+
+
+def _rev_pick(key):
+    ok_key = st.session_state.get("rev_cur")
+    st.session_state.rev_checked = True
+
+
+def review():
+    S = st.session_state
+    st.markdown("<div class='hero'><h1>🔁 Günlük Tekrar</h1><p>Yanlış yaptığın sorular unutmadan tam zamanında geri gelir: doğru bilirsen aralık uzar (1 → 3 → 7 → 21 → 60 gün), yanlış bilirsen yarın tekrar sorulur.</p></div>", unsafe_allow_html=True)
+    due = coach.due_items()
+    if S.get("rev_msg"):
+        ok, days = S.rev_msg
+        (st.success if ok else st.warning)(f"{'✅ Doğru! Bu soru ' + str(days) + ' gün sonra tekrar gelecek.' if ok else '❌ Yanlış. Sorun yarın tekrar karşına çıkacak.'}")
+        S.rev_msg = None
+    if not due:
+        done = S.get("rev_done", 0)
+        st.markdown(f"<div class='panel' style='text-align:center'><div style='font-size:3rem'>🎉</div><h3>Bugünlük tekrar tamam!</h3>"
+                    f"<p>{('Bu oturumda ' + str(done) + ' soru çözdün (' + str(S.get('rev_ok', 0)) + ' doğru). ') if done else ''}Sırada bekleyen {coach.upcoming_count()} soru ileriki günlere planlandı.</p></div>", unsafe_allow_html=True)
+        st.button("🏠 Ana sayfa", key="rev_home", on_click=nav, args=("home",))
+        return
+    w = due[0]
+    q = w["q"]
+    st.markdown(f"<span class='badge'>Bugün sırada: {len(due)} soru</span><span class='badge'>{cur.SUBJECT_ICONS.get(w['subject'], '')} {w['subject']}</span>"
+                f"<span class='badge'>Kutu {w.get('box', 0) + 1}/5</span>", unsafe_allow_html=True)
+    st.progress(min(1.0, S.get("rev_done", 0) / max(1, S.get("rev_done", 0) + len(due))))
+    st.markdown("<div class='question-card'>", unsafe_allow_html=True)
+    if str(q.get("passage") or "").strip() not in ("", "null"):
+        st.markdown(f"<div class='passage-box'><b>📖</b> {q['passage']}</div>", unsafe_allow_html=True)
+    if isinstance(q.get("shape"), dict):
+        from core.visuals import draw_geometry_shape
+        draw_geometry_shape(q["shape"])
+    st.markdown(f"<p class='question-title'>{q['question']}</p>", unsafe_allow_html=True)
+    opts = q["options"]
+    keys = list(opts)
+    checked = S.get("rev_checked_key") == w["key"]
+    pick = st.radio("Cevabın", keys, index=None, format_func=lambda x: f"{x}) {opts[x]}", key=f"rev_pick_{w['key']}", disabled=checked)
+    st.markdown("</div>", unsafe_allow_html=True)
+    if not checked:
+        if st.button("✔️ Kontrol et", key="rev_check", type="primary", disabled=pick is None):
+            S.rev_checked_key = w["key"]
+            S.rev_last_pick = pick
+            st.rerun()
+        return
+    pick = S.get("rev_last_pick")
+    ok = pick == q["answer"]
+    (st.success if ok else st.error)(f"{'✅ Doğru!' if ok else '❌ Yanlış.'} Doğru cevap: {q['answer']}) {opts[q['answer']]}")
+    st.info(f"💡 {q.get('explanation') or 'Açıklama yok.'}")
+    if not ok:
+        explain_box(q, opts.get(pick), f"rev_{w['key']}", w.get("grade_label", ""))
+
+    def nxt(ok=ok, key=w["key"]):
+        _answer_review(key, ok)
+        S.rev_checked_key = None
+    st.button("➡ Sıradaki soru", key="rev_next", on_click=nxt, type="primary")
+
+
+# ------------------------------------------------------------------ ÇALIŞMA PLANI
+def _plan_go(action, subject=None):
+    S = st.session_state
+    if not S.get("grade"):
+        S.grade = "5"
+    if action == "review":
+        nav("review")
+    elif action == "archive":
+        nav("archive")
+    elif action == "leaf":
+        su._tool_go("leaf_start")
+    elif action in ("weekly", "topic"):
+        su.pick_mode(action)
+    else:
+        nav("home")
+
+
+def plan():
+    S = st.session_state
+    st.markdown("<div class='hero'><h1>🗓️ Çalışma Planım</h1><p>Son denemelerindeki zayıf kazanımlara göre sana özel 7 günlük plan. Her gün kısa, net bir görev.</p></div>", unsafe_allow_html=True)
+    hist = store.history()
+    if not hist:
+        st.info("Plan, ilk denemeni çözdükten sonra senin sonuçlarına göre hazırlanır. Şimdilik bir deneme çöz ya da Konu Tarama ile başla.")
+        st.button("🏠 Ana sayfa", key="plan_home", on_click=nav, args=("home",))
+        return
+    g = hist[-1].get("grade_label", "")
+    stats = coach.subject_stats(hist)
+    weak = coach.weak_topics(hist)
+    sk = coach.streak()
+    k = st.columns(3)
+    with k[0]:
+        theme.kpi("Çalışma serisi", f"🔥 {sk} gün")
+    with k[1]:
+        theme.kpi("Zayıf kazanım", len(weak))
+    with k[2]:
+        theme.kpi("Bugünkü tekrar", len(coach.due_items()))
+    st.markdown("<div class='sec-title'>👩‍🏫 Öğretmenin değerlendirmesi</div>", unsafe_allow_html=True)
+    sig = f"{len(hist)}_{len(weak)}"
+    if S.get("plan_sig") != sig:
+        S.plan_sig = sig
+        S.plan_comment = None
+    if S.get("plan_comment") is None:
+        if st.button("✨ Öğretmen yorumu al", key="plan_ai", type="primary"):
+            S.plan_comment = su.with_overlay(12, "Öğretmen planını hazırlıyor", "Son denemelerin değerlendiriliyor…", lambda: coach.teacher_comment(g, stats, weak, sk))
+            st.rerun()
+    else:
+        st.markdown(f"<div class='teach'>{S.plan_comment}</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sec-title'>📅 Bu haftanın planı</div>", unsafe_allow_html=True)
+    days = coach.week_plan(hist)
+    import datetime
+    today = datetime.date.today().weekday()
+
+    def card(item):
+        i = days.index(item)
+        st.markdown(f"<div class='plan-card {'today' if i == today else ''}'><div class='pd'>{item['day']}{' • BUGÜN' if i == today else ''}</div>"
+                    f"<div class='pt'>{item['icon']} {item['title']}</div><div class='pi'>{item['detail']}</div></div>", unsafe_allow_html=True)
+        st.button("Başla →", key=f"plan_go_{i}", on_click=_plan_go, args=(item["action"], item.get("subject")), use_container_width=True)
+    theme.cells(days, 2, card)
+    if weak:
+        st.markdown("<div class='sec-title'>🔴 Öncelikli kazanımlar</div>", unsafe_allow_html=True)
+        theme.html_table(["Ders", "Kazanım", "Başarı"], [(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", t, f"{theme.bar(p)}<small><b>%{p:.0f}</b></small>") for s, t, p, _ in weak[:8]])
+    with st.expander("🎯 Günlük soru hedefini ayarla"):
+        goal = st.slider("Günde kaç soru?", 5, 100, int(store.settings()["goal"]), 5, key="goal_sl")
+        if goal != store.settings()["goal"]:
+            store.save_settings(goal=goal)
+            st.rerun()
+'''
+
+ORDER = ['core/curriculum', 'core/oyss', 'core/visuals', 'core/pdf_export', 'core/store', 'core/meb_live', 'core/ai_engine', 'core/coach', 'ui/theme', 'ui/state', 'ui/setup', 'ui/wizard', 'ui/exam', 'ui/reports', 'ui/extras', 'ui/study']
 
 
 def _load_modules():
@@ -3569,7 +4094,7 @@ def _load_modules():
 
 _load_modules()
 from core import ai_engine, curriculum as cur, meb_live
-from ui import theme, state, setup, wizard, exam, reports, extras
+from ui import theme, state, setup, wizard, exam, reports, extras, study
 
 theme.inject()
 state.init()
@@ -3602,6 +4127,8 @@ with st.sidebar:
     st.markdown("---")
     st.button("🏠 Ana Sayfa", key="nv_home", use_container_width=True, on_click=lambda: (state.reset_exam(), state.nav("home")))
     st.button("📄 Yaprak Test", key="nv_leaf", use_container_width=True, on_click=setup._tool_go, args=("leaf_start",))
+    st.button("🔁 Günlük Tekrar", key="nv_rev", use_container_width=True, on_click=state.nav, args=("review",))
+    st.button("🗓️ Çalışma Planım", key="nv_plan", use_container_width=True, on_click=state.nav, args=("plan",))
     st.button("📊 Performans & Raporlar", key="nv_rep", use_container_width=True, on_click=state.nav, args=("reports",))
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
@@ -3617,7 +4144,7 @@ PAGE = st.session_state.page
 ROUTES = {
     "home": setup.home, "modes": setup.modes, "setup": wizard.run, "pre": setup.pre,
     "exam": exam.exam, "selfscore": exam.selfscore, "result": exam.result,
-    "reports": reports.reports, "archive": extras.archive, "badges": extras.badges,
+    "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges,
 }
 try:
     ROUTES.get(PAGE, setup.home)()
