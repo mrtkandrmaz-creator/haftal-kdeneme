@@ -1497,7 +1497,7 @@ def refresh(progress=None, deadline=75):
                     u = parse(txt, g)
                 except Exception:
                     u = []
-                if u:
+                if u and sane(subj, u):
                     data[f"{g}|{subj}"] = u
     _mark_attempt()
     if data:
@@ -1539,10 +1539,34 @@ def needs_refresh(max_age_days=14, retry_hours=6):
         return True
 
 
+KEYS = {
+    cur.DIN: ["allah", "peygamber", "ibadet", "namaz", "kur", "ahlak", "din", "islam", "iman", "hz.", "hac", "oruç", "zekât", "dua", "hadis", "sabır", "değer", "kader", "melek", "ayet", "cami", "bayram"],
+    cur.MAT: ["sayı", "işlem", "üçgen", "açı", "kesir", "geometri", "ölç", "denklem", "oran", "veri", "çarp", "böl", "toplam", "alan", "çevre", "problem", "olasılık", "cebir", "doğru", "çember", "yüzde", "grafik", "örüntü"],
+    cur.FEN: ["canlı", "madde", "kuvvet", "enerji", "hücre", "ışık", "ses", "elektrik", "dünya", "güneş", "ay", "deney", "gözlem", "çevre", "isı", "maddenin", "bitki", "hayvan", "ekosistem", "mıknatıs", "asit", "gen"],
+    cur.TR: ["metin", "okuma", "yazma", "dinleme", "konuşma", "sözcük", "cümle", "paragraf", "anlam", "şiir", "hikâye", "hikaye", "noktalama", "yazım", "kelime", "anlat", "deyim", "atasöz", "fiil", "isim"],
+    cur.SOS: ["toplum", "tarih", "harita", "coğrafya", "kültür", "vatandaş", "ekonomi", "göç", "birey", "türk", "devlet", "bölge", "nüfus", "kaynak", "miras", "demokrasi", "üretim", "tüketim", "yaşam"],
+    cur.INK: ["atatürk", "inkılap", "cumhuriyet", "savaş", "kurtuluş", "osmanlı", "milli", "mondros", "lozan", "tbmm", "kongre", "devrim", "antlaşma"],
+    cur.ING: ["english", "listen", "speak", "read", "write", "student", "school", "friend", "family", "daily", "teen", "sentence", "dialog", "yabancı dil", "konuş", "dinle", "okuma", "yazma", "tanıt", "anlat", "iletişim"],
+    cur.ALM: ["deutsch", "almanca", "hören", "sprechen", "lesen", "schreiben", "dinle", "konuş", "okuma", "yazma", "tanıt", "anlat", "iletişim"],
+}
+
+
+def sane(subject, units):
+    """Çekilen programın o derse ait olup olmadığını anahtar kelimelerle doğrular (yanlış PDF = yerleşik müfredata dön)."""
+    kz = [str(k).lower() for _, ks in units for k in ks]
+    keys = KEYS.get(subject) if subject in (cur.DIN, cur.MAT, cur.FEN, cur.TR) else None  # dil dersleri/Sosyal: kontrol yok
+    if not kz or not keys:
+        return bool(kz)
+    hit = sum(any(w in k for w in keys) for k in kz)
+    return hit / len(kz) >= 0.2
+
+
 def apply(data):
     cur.LIVE.clear()
     for k, v in data.items():
-        cur.LIVE[k] = [(n, list(t)) for n, t in v]
+        subj = k.split("|", 1)[-1]
+        if sane(subj, v):
+            cur.LIVE[k] = [(n, list(t)) for n, t in v]
 
 
 def load_cache():
@@ -1685,6 +1709,23 @@ SUBJECT_HINT = {
 }
 
 
+VISUAL_SUBJECTS = ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "T.C. İnkılap Tarihi ve Atatürkçülük")
+FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu sızarsa elenir)
+    "Din Kültürü ve Ahlak Bilgisi": re.compile(r"\b(cm|m²|km|üçgen|dörtgen|çember|denklem|hesapla|kesir|yüzde|ondalık|alanı|çevresi|hacim|formül|newton|joule|hücre|atom)\b", re.I),
+    "Türkçe": re.compile(r"\b(üçgen|denklem|kesir|hacim|newton|joule|hücre|atom|alanı kaç)\b", re.I),
+    "Sosyal Bilgiler": re.compile(r"\b(üçgen|denklem|kesir|newton|joule|atom)\b", re.I),
+    "İngilizce": re.compile(r"\b(üçgen|denklem|kesir|hacim|newton|joule)\b", re.I),
+}
+
+
+def _subject_lock(subject):
+    base = (f"\n🔒 DERS KİLİDİ: Bu sorular YALNIZCA {subject} dersine aittir. Başka bir dersin (özellikle Matematik/Fen) sorusu, işlem ya da "
+            f"geometri problemi SORMA. Her soru verilen ünite/kazanımlardan birine dayansın; kazanımları sırayla gez, her soruda FARKLI bir kazanım ve farklı bağlam kullan.\n")
+    if subject not in VISUAL_SUBJECTS:
+        base += "Bu derste geometrik şekil/grafik ÇİZDİRME: `shape` alanı null olsun (gerekirse yalnızca basit tablo).\n"
+    return base
+
+
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1):
     nonce = uuid.uuid4().hex[:8]
     seed_themes = random.sample(["spor", "market", "okul", "doğa", "müze", "tarım", "ulaşım", "teknoloji", "sanat", "sağlık",
@@ -1700,7 +1741,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. "
         "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
         f"Çeşitlilik tohumu: {nonce}; önerilen bağlam temaları: {', '.join(seed_themes)}. Her soru birbirinden bağımsız ve farklı olsun."
-        f"{av}\n\n{SHAPE_RULES}\n"
+        f"{av}\n{_subject_lock(subject)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
         '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":"..."}]}' % (start_id, subject))
@@ -1751,6 +1792,11 @@ def _norm_q(q, subject):
         ans = [k for k, v in opts.items() if v == correct][0]
     from . import visuals
     shape = visuals.normalize_shape(q.get("shape"))
+    if shape and subject not in VISUAL_SUBJECTS and shape.get("type") != "table":
+        shape = None
+    fr = FOREIGN.get(subject)
+    if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
+        return None
     out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else "",
            "question": str(q["question"]).strip(), "shape": shape, "options": opts, "answer": ans, "explanation": str(q.get("explanation") or "")}
     return None if leaks_answer(out) else out
