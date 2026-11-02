@@ -1594,17 +1594,17 @@ def demo_mode():
 
 
 # ---------------------------------------------------------------- API çağrıları (eski düzen)
-def call_groq_with_key(api_key, prompt_text, system=SYSTEM):
+def call_groq_with_key(api_key, prompt_text, system=SYSTEM, temperature=0.85):
     from groq import Groq
     client = Groq(api_key=api_key)
     completion = client.chat.completions.create(
         model=GROQ_MODEL,
         messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt_text}],
-        temperature=0.85, max_tokens=8000, response_format={"type": "json_object"})
+        temperature=temperature, max_tokens=8000, response_format={"type": "json_object"})
     return completion.choices[0].message.content
 
 
-def call_gemini_with_key(api_key, prompt_text, system=SYSTEM):
+def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None):
     from google import genai
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(model=GEMINI_MODEL, contents=system + "\n\n" + prompt_text)
@@ -1616,7 +1616,7 @@ def call_gemini_with_key(api_key, prompt_text, system=SYSTEM):
     return text
 
 
-def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0):
+def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperature=None):
     attempts = []
     gk = [k for k in groq_keys if str(k).strip()]
     if gk:
@@ -1627,7 +1627,7 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0):
     last = None
     for func, key in attempts:
         try:
-            r = func(key, prompt_text)
+            r = func(key, prompt_text, temperature=temperature) if temperature is not None else func(key, prompt_text)
             if r:
                 return r, None
         except Exception as e:  # sıradaki anahtara geç
@@ -1916,6 +1916,88 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
     for i, q in enumerate(questions, 1):
         q["id"] = i
     return questions, errors
+
+
+
+# ---------------------------------------------------------------- yapay zekâ öğretmen: açık uçlu değerlendirme
+TEACHER_SYSTEM = ("Sen deneyimli, adil ve gerçekçi bir Türkiye ortaokul öğretmenisin. MEB yazılı sınavı kâğıdı okur gibi puanlarsın: "
+                  "puanlama anahtarındaki her adımı ayrı ayrı kontrol eder, öğrencinin yazdığı bilgiyi/işlemi görürsen o adımın puanını verir, "
+                  "kısmen doğruysa kısmi puan verir. Boş ya da konu dışı cevaba 0 verirsin. Cömert de acımasız da olma; yazım hatası için puan kırma. "
+                  "Geri bildirimin samimi, öğretmen ağzıyla, öğrenciye 'sen' diye hitap eden, kısa ve yol göstericidir. Yalnızca geçerli JSON döndür.")
+
+
+def _teacher_prompt(items, grade_label):
+    blocks = []
+    for k, (i, q, ans) in enumerate(items, 1):
+        rub = "; ".join(f"{r.get('step', '')} ({r.get('points', '')} p)" for r in (q.get("rubric") or []) if isinstance(r, dict))
+        blocks.append(f"### Soru {k} (id={i}) — en çok {q.get('points')} puan\nKazanım: {q.get('kazanim', '')}\n"
+                      f"Metin: {q.get('passage') or '-'}\nSoru: {q.get('question')}\nBeklenen cevap: {q.get('answer')}\n"
+                      f"Puanlama anahtarı: {rub or 'yok'}\nÖĞRENCİ CEVABI: {ans or '(boş)'}")
+    return (f"{grade_label} öğrencisinin yazılı sınav cevaplarını değerlendir.\n\n" + "\n\n".join(blocks) +
+            '\n\nYalnızca şu JSON: {"results":[{"id":<soru id>,"points":<0 ile en çok puan arası sayı, 0.5 adımlı>,'
+            '"verdict":"Tam|Kısmi|Yetersiz|Boş","feedback":"2-3 cümle öğretmen yorumu: neyi doğru yaptı, neyi eksik bıraktı","tip":"1 cümle somut çalışma önerisi"}]}')
+
+
+def _words(t):
+    return {w for w in re.sub(r"[^\w\s]", " ", str(t).lower()).split() if len(w) > 3}
+
+
+def _demo_grade(q, ans):
+    mx = float(q.get("points", 0))
+    if not str(ans).strip():
+        return {"points": 0.0, "verdict": "Boş", "feedback": "Bu soruyu boş bırakmışsın. Bilmesen bile bildiğin kısmı yazmak kısmi puan getirir.", "tip": "Kazanımı tekrar oku."}
+    ref = _words(q.get("answer", ""))
+    got = len(ref & _words(ans)) / max(1, len(ref))
+    p = round(mx * min(1, got * 1.3) * 2) / 2
+    return {"points": p, "verdict": "Tam" if p >= mx * .9 else "Kısmi" if p > 0 else "Yetersiz",
+            "feedback": "Cevabındaki anahtar kavramları beklenen cevapla karşılaştırdım (demo değerlendirme).", "tip": "Beklenen cevabı oku ve eksik adımları tamamla."}
+
+
+def grade_open(questions, open_answers, grade_label):
+    """Açık uçlu cevapları yapay zekâ öğretmenle puanlar. -> ({idx: {points, verdict, feedback, tip}}, hatalar)"""
+    from concurrent.futures import ThreadPoolExecutor
+    out, errs = {}, []
+    todo = []
+    for i, q in enumerate(questions):
+        ans = str(open_answers.get(i, "")).strip()
+        if not ans:
+            out[i] = {"points": 0.0, "verdict": "Boş", "feedback": "Bu soruyu boş bırakmışsın. Bilmediğin soruda bile bildiğin kısmı yazmak kısmi puan getirir.",
+                      "tip": "Kazanımı tekrar edip beklenen cevapla karşılaştır."}
+        else:
+            todo.append((i, q, ans))
+    if demo_mode():
+        for i, q, a in todo:
+            out[i] = _demo_grade(q, a)
+        return out, errs
+    gk, mk = load_keys()
+    chunks = [todo[k:k + 4] for k in range(0, len(todo), 4)]
+
+    def work(arg):
+        n, ch = arg
+        raw, err = multi_pool_generate(_teacher_prompt(ch, grade_label), gk, mk, offset=n, temperature=0.2)
+        data = parse_json(raw) if raw else None
+        return ch, data, err
+
+    with ThreadPoolExecutor(max_workers=min(4, max(1, len(chunks)))) as ex:
+        for ch, data, err in ex.map(work, list(enumerate(chunks))):
+            res = {}
+            for r in ((data or {}).get("results") or []) if isinstance(data, dict) else []:
+                try:
+                    res[int(r.get("id"))] = r
+                except Exception:
+                    pass
+            for i, q, a in ch:
+                r = res.get(i)
+                if not r:
+                    errs.append(f"Soru {i + 1} yapay zekâ ile puanlanamadı" + (f" ({err})" if err else ""))
+                    continue
+                mx = float(q.get("points", 0))
+                try:
+                    pts = max(0.0, min(mx, round(float(r.get("points", 0)) * 2) / 2))
+                except Exception:
+                    pts = 0.0
+                out[i] = {"points": pts, "verdict": str(r.get("verdict") or ""), "feedback": str(r.get("feedback") or ""), "tip": str(r.get("tip") or "")}
+    return out, errs
 '''
 MODULES['ui/theme'] = r'''# -*- coding: utf-8 -*-
 import streamlit as st
@@ -1936,6 +2018,18 @@ CSS = """
 .brand { font-size:1.35rem; font-weight:900; letter-spacing:.3px; color:#f8fafc; }
 .brand span { color:#fb923c; }
 .side-chip { background:#0b1220; border:1px solid #334155; border-radius:12px; padding:.6rem .8rem; font-size:.82rem; margin:.3rem 0; }
+
+/* ---- Kenar çubuğu butonları: eş boyut + renkli ---- */
+[data-testid="stSidebar"] [class*="st-key-nv_"] button { width:100% !important; height:3.2rem !important; min-height:3.2rem !important; max-height:3.2rem !important;
+    border-radius:14px !important; border:none !important; justify-content:flex-start !important; text-align:left; padding:0 1rem !important; white-space:nowrap;
+    box-shadow:0 8px 16px -8px rgba(0,0,0,.5) !important; transition:all .2s ease; }
+[data-testid="stSidebar"] [class*="st-key-nv_"] button:hover { transform:translateX(4px); filter:brightness(1.12); }
+[data-testid="stSidebar"] [class*="st-key-nv_"] button p { color:#fff !important; font-weight:800; font-size:.98rem; margin:0; }
+[data-testid="stSidebar"] .st-key-nv_home button { background:linear-gradient(135deg,#38bdf8,#1d4ed8) !important; }
+[data-testid="stSidebar"] .st-key-nv_leaf button { background:linear-gradient(135deg,#4ade80,#15803d) !important; }
+[data-testid="stSidebar"] .st-key-nv_rep button  { background:linear-gradient(135deg,#a78bfa,#6d28d9) !important; }
+[data-testid="stSidebar"] .st-key-nv_arc button  { background:linear-gradient(135deg,#fbbf24,#b45309) !important; }
+[data-testid="stSidebar"] .st-key-nv_bdg button  { background:linear-gradient(135deg,#f472b6,#be185d) !important; }
 
 /* ---- Başlık ---- */
 .hero { background: linear-gradient(120deg,#0f172a 0%,#1d4ed8 60%,#0ea5e9 100%); color:white; border-radius:22px;
@@ -1993,7 +2087,10 @@ button[data-testid="stBaseButton-primary"], button[kind="primary"], button[kind=
 button[data-testid="stBaseButton-primary"]:hover, button[kind="primary"]:hover { color:#fff !important; filter:brightness(1.06); }
 button[data-testid="stBaseButton-primary"] p, button[kind="primary"] p { color:#fff !important; }
 [class*="st-key-nav_"] button { background:linear-gradient(135deg,#0284c7,#0369a1) !important; color:#fff !important; border-color:#0369a1 !important; }
-[class*="st-key-sel_"] button { background:#fff !important; color:#0f172a !important; border:2px solid #cbd5e1 !important; box-shadow:none !important; padding:.55rem .2rem !important; font-size:.9rem !important; min-height:2.8rem; }
+[class*="st-key-sel_"] button { background:#fff !important; color:#0f172a !important; border:2px solid #cbd5e1 !important; box-shadow:none !important; padding:.55rem .2rem !important; font-size:.9rem !important; min-height:3.6rem; line-height:1.25; }
+[class*="st-key-sel_"] button p { font-size:.88rem; font-weight:800; margin:0; text-align:center; }
+[class*="st-key-sel_"] button p:nth-child(2) { font-size:.74rem; font-weight:600; color:#64748b; }
+[class*="st-key-sel_on_"] button p:nth-child(2) { color:#e0f2fe !important; }
 [class*="st-key-sel_on_"] button { background:linear-gradient(135deg,#0284c7,#1d4ed8) !important; color:#fff !important; border-color:#1d4ed8 !important; }
 [class*="st-key-sel_on_"] button p { color:#fff !important; }
 [class*="st-key-sel_mon_"] button { border-color:#f97316 !important; }
@@ -2025,10 +2122,13 @@ div[data-baseweb="select"] > div { border-radius:14px; }
   .block-container { padding:1rem .7rem 3rem; }
   .hero { padding:1.1rem 1.1rem; border-radius:18px; } .hero h1 { font-size:1.4rem; }
   div[data-testid="stHorizontalBlock"]:has([class*="st-key-sel_"]) { flex-wrap:wrap !important; gap:.35rem !important; }
-  div[data-testid="stHorizontalBlock"]:has([class*="st-key-sel_"]) > div[data-testid="stColumn"] { min-width:calc(20% - .4rem) !important; flex:1 1 calc(20% - .4rem) !important; width:auto !important; }
+  div[data-testid="stHorizontalBlock"]:has([class*="st-key-sel_"]) > div[data-testid="stColumn"] { min-width:calc(33.3% - .4rem) !important; flex:1 1 calc(33.3% - .4rem) !important; width:auto !important; }
   div[data-testid="stHorizontalBlock"]:has([class*="st-key-card_"]) > div[data-testid="stColumn"],
   div[data-testid="stHorizontalBlock"]:has([class*="st-key-opt"]) > div[data-testid="stColumn"] { min-width:100% !important; }
   [class*="st-key-card_"] button { min-height:110px; }
+  div[data-testid="stHorizontalBlock"]:has(.kpi) { flex-wrap:wrap !important; gap:.5rem !important; }
+  div[data-testid="stHorizontalBlock"]:has(.kpi) > div[data-testid="stColumn"] { min-width:calc(50% - .5rem) !important; flex:1 1 calc(50% - .5rem) !important; }
+  div[data-testid="stHorizontalBlock"]:has([class*="st-key-wz_back"]), div[data-testid="stHorizontalBlock"]:has([class*="st-key-gen_"]) { flex-wrap:nowrap !important; }
 }
 
 /* ---- Soru kartı ---- */
@@ -2156,7 +2256,7 @@ import streamlit as st
 DEFAULTS = {
     "page": "home", "grade": None, "mode": None,
     "questions": [], "meta": {}, "answers": {}, "open_answers": {}, "cur": 0, "start": None,
-    "duration": 0, "result": None, "saved": False, "self_scores": {},
+    "duration": 0, "result": None, "saved": False, "self_scores": {}, "ai_grades": None,
     "sel_week": 1, "sel_month": 1, "scope_tab": "week",
     "leaf_subject": None,
 }
@@ -2176,7 +2276,7 @@ def nav(page, **kw):
 
 
 def reset_exam():
-    for k in ("questions", "meta", "answers", "open_answers", "cur", "start", "duration", "result", "saved", "self_scores"):
+    for k in ("questions", "meta", "answers", "open_answers", "cur", "start", "duration", "result", "saved", "self_scores", "ai_grades"):
         st.session_state[k] = copy.deepcopy(DEFAULTS[k])
 '''
 MODULES['ui/setup'] = r'''# -*- coding: utf-8 -*-
@@ -2283,21 +2383,19 @@ def weight_panel(g, key):
     aw = _auto_weights(g) if auto else {}
     out = {}
     with st.expander("⚖️ Ders ağırlıkları (soru sayısını çarpan)", expanded=auto):
-        cols = st.columns(4)
-        for i, s in enumerate(cur.subjects_for(g)):
-            with cols[i % 4]:
-                out[s] = st.select_slider(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", WEIGHTS, value=aw.get(s, 1.0),
-                                          key=f"w_{key}_{s}_{int(auto)}", format_func=lambda x: f"×{x:g}")
+        def _w(s):
+            out[s] = st.select_slider(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", WEIGHTS, value=aw.get(s, 1.0),
+                                      key=f"w_{key}_{s}_{int(auto)}", format_func=lambda x: f"×{x:g}")
+        theme.cells(cur.subjects_for(g), 2, _w)
     return out
 
 
 def subject_counts(g, defaults, key):
     out = {}
     with st.expander("⚙️ Ders başına soru sayıları", expanded=False):
-        cols = st.columns(4)
-        for i, s in enumerate(cur.subjects_for(g)):
-            with cols[i % 4]:
-                out[s] = st.number_input(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", 0, 40, int(defaults.get(s, 0)), key=f"{key}_{s}")
+        def _c(s):
+            out[s] = st.number_input(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", 0, 40, int(defaults.get(s, 0)), key=f"{key}_{s}")
+        theme.cells(cur.subjects_for(g), 2, _c)
     out = {k: v for k, v in out.items() if v > 0}
     st.caption(f"Toplam: **{sum(out.values())} soru** • Süre: **{sum(out.values()) * SEC_PER_Q // 60} dk** (soru başına 90 sn)")
     return out
@@ -2550,9 +2648,17 @@ def weekly():
     if step == 1:
         if not agis:
             cw = cur.current_week()
-            st.markdown("#### Hafta seç")
-            st.caption("📍 = bu hafta • MEB 2026-2027 çalışma takvimi (ara tatiller hariç 36 öğretim haftası). Seçince otomatik ilerler.")
-            theme.cells(range(1, 37), 6, lambda n: st.button(f"{'📍' if n == cw else ''}{n}. Hf", key=f"sel_{'on' if w.get('week') == n else 'off'}_w{n}", on_click=go, kwargs=dict(week=n)))
+            dflt = 1 if (not cw or cw <= 18) else 2
+            term = theme.pick_cards("v_wterm", [1, 2], dflt, 2, "dif",
+                                    label_fn=lambda t: "📘 1. Dönem\nEylül – Ocak • 1-18. hafta" if t == 1 else "📗 2. Dönem\nŞubat – Haziran • 19-36. hafta",
+                                    label="Hangi dönem?")
+            st.markdown(f"<div class='pick-lbl'>{term}. Dönem • hafta seç <small style='color:#64748b;font-weight:600'>(📍 = bu hafta • seçince otomatik ilerler)</small></div>", unsafe_allow_html=True)
+            weeks = range((term - 1) * 18 + 1, term * 18 + 1)
+
+            def _wk(n):
+                a = cur.WEEK_STARTS[n - 1]
+                st.button(f"{'📍 ' if n == cw else ''}{n}. Hafta\n{cur.fmt_date(a)}", key=f"sel_{'on' if w.get('week') == n else 'off'}_w{n}", on_click=go, kwargs=dict(week=n))
+            theme.cells(weeks, 6, _wk)
         else:
             sug = cur.suggested_month()
             st.markdown("#### Ay seç")
@@ -2578,8 +2684,7 @@ def weekly():
         official = f["id"] in OFFICIAL_IDS
         wts = {}
         if not official:
-            with st.expander("⚖️ Ders ağırlığı (isteğe bağlı)"):
-                wts = su.weight_panel(g, f"wz_{g}")
+            wts = su.weight_panel(g, f"wz_{g}")
             counts = {s: max(0, round(n * wts.get(s, 1.0))) for s, n in counts.items()}
             counts = {s: n for s, n in counts.items() if n > 0}
         focus = st.text_input("🔍 Özel konu (isteğe bağlı)", key="focus_wz", placeholder="Örn: Açılar, Hücre, Paragraf…")
@@ -2734,8 +2839,7 @@ def bank():
         theme.cells([("a", "Mini", "ders başına 5 soru", 5), ("b", "Standart", "ders başına 10 soru", 10), ("c", "Yoğun", "ders başına 15 soru", 15)], 3,
                     lambda x: choice(f"bn_{x[0]}", "🧩", x[1], x[2], w.get("per", 10) == x[3], setv, kwargs=dict(per=x[3])))
         per = w.get("per", 10)
-        with st.expander("⚖️ Ders ağırlığı (isteğe bağlı)"):
-            bw = su.weight_panel(g, f"bk_{g}")
+        bw = su.weight_panel(g, f"bk_{g}")
         diff = su.difficulty_select("diff_bk")
         c1, c2 = st.columns(2)
         with c1:
@@ -2757,7 +2861,7 @@ import time
 import altair as alt
 import pandas as pd
 import streamlit as st
-from core import curriculum as cur, store
+from core import curriculum as cur, store, ai_engine as ai
 from core.visuals import draw_geometry_shape
 from . import theme
 from .state import nav, reset_exam
@@ -2949,24 +3053,50 @@ def exam():
     st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish, type="primary")
 
 
-# ------------------------------------------------------------------ OYSS öz-değerlendirme
+# ------------------------------------------------------------------ OYSS: yapay zekâ öğretmen değerlendirmesi
+VERDICT_ICON = {"Tam": "🟢", "Kısmi": "🟡", "Yetersiz": "🔴", "Boş": "⚪"}
+
+
 def selfscore():
+    from . import setup as su
     m, qs = st.session_state.meta, st.session_state.questions
-    st.markdown("<div class='hero'><h1>✍️ Puanlama Anahtarıyla Öz Değerlendirme</h1><p>Yazılı sınavlar öğretmen puanlar. Cevabını beklenen cevap ve puanlama anahtarıyla karşılaştırıp her soruya aldığın puanı gir.</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='hero'><h1>👩‍🏫 Yapay Zekâ Öğretmen Değerlendirmesi</h1><p>Cevap kâğıdın puanlama anahtarına göre adım adım okunuyor. "
+                "Puanlar öneridir; katılmadığın bir soruda puanı kendin değiştirebilirsin.</p></div>", unsafe_allow_html=True)
+    if st.session_state.get("ai_grades") is None:
+        grades, errs = su.with_overlay(10 + 4 * len(qs), "Öğretmen kâğıdını okuyor", "Cevapların puanlama anahtarıyla karşılaştırılıyor…",
+                                       lambda: ai.grade_open(qs, st.session_state.open_answers, m.get("grade_label", "")))
+        st.session_state.ai_grades = grades
+        st.session_state.ai_grade_errs = errs
+    grades = st.session_state.ai_grades or {}
+    if st.session_state.get("ai_grade_errs"):
+        st.warning("⚠️ " + " | ".join(st.session_state.ai_grade_errs[:3]) + " — bu sorular için puanı kendin girebilirsin.")
+    tot = sum(float(g.get("points", 0)) for g in grades.values())
+    mx = sum(float(q.get("points", 0)) for q in qs)
+    k = st.columns(3)
+    with k[0]:
+        theme.kpi("Öğretmen puanı", f"{tot:.1f} / {mx:.0f}")
+    with k[1]:
+        theme.kpi("Başarı", f"%{100 * tot / mx:.0f}" if mx else "—")
+    with k[2]:
+        theme.kpi("Değerlendirilen soru", len(grades))
     with st.form("selfscore_form"):
         for i, q in enumerate(qs):
-            with st.expander(f"Soru {i + 1} • {q.get('subject', '')} • {q.get('kazanim', '')} • {q.get('points')} puan • {q.get('difficulty', '')}", expanded=(i == 0)):
+            g = grades.get(i, {})
+            ic = VERDICT_ICON.get(g.get("verdict"), "📝")
+            with st.expander(f"{ic} Soru {i + 1} • {q.get('subject', '')} • {q.get('kazanim', '')} • {g.get('points', 0):g}/{q.get('points')} puan", expanded=(i == 0)):
                 if q.get("passage"):
                     st.markdown(f"> {q['passage']}")
                 if isinstance(q.get("shape"), dict):
                     draw_geometry_shape(q["shape"])
                 st.markdown(f"**{q['question']}**")
                 st.markdown(f"**Senin cevabın:** {st.session_state.open_answers.get(i) or '_(boş)_'}")
+                if g.get("feedback"):
+                    st.info(f"👩‍🏫 **Öğretmen yorumu:** {g['feedback']}" + (f"\n\n💡 {g['tip']}" if g.get("tip") else ""))
                 st.success(f"**Beklenen cevap:** {q.get('answer', '')}")
                 if q.get("rubric"):
-                    theme.html_table(["Puanlama adımı", "Puan"], [(r.get("step", ""), r.get("points", "")) for r in q["rubric"]], num_cols=(1,))
-                st.number_input("Aldığın puan", 0, int(q.get("points", 0)), 0, key=f"self_in_{i}")
-        ok = st.form_submit_button("📊 Sonucu Göster")
+                    theme.html_table(["Puanlama adımı", "Puan"], [(r.get("step", ""), r.get("points", "")) for r in q["rubric"] if isinstance(r, dict)], num_cols=(1,))
+                st.number_input("Puan (gerekirse değiştir)", 0.0, float(q.get("points", 0)), float(g.get("points", 0)), step=0.5, key=f"self_in_{i}")
+        ok = st.form_submit_button("📊 Sonucu Göster", type="primary")
     if ok:
         st.session_state.self_scores = {i: st.session_state.get(f"self_in_{i}", 0) for i in range(len(qs))}
         st.session_state.result = compute_result()
@@ -3065,6 +3195,9 @@ def result():
             else:
                 st.markdown(f"### Soru {i + 1} [{q.get('subject', '')}] — {st.session_state.self_scores.get(i, 0)}/{q.get('points')} puan")
                 st.markdown(f"**{q['question']}**\n\n**Beklenen cevap:** {q.get('answer', '')}")
+                fb = (st.session_state.get("ai_grades") or {}).get(i, {}).get("feedback")
+                if fb:
+                    st.info(f"👩‍🏫 {fb}")
             st.markdown("---")
 '''
 MODULES['ui/reports'] = r'''# -*- coding: utf-8 -*-
