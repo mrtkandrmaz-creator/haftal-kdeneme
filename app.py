@@ -2020,6 +2020,8 @@ CSS = """
 .side-chip { background:#0b1220; border:1px solid #334155; border-radius:12px; padding:.6rem .8rem; font-size:.82rem; margin:.3rem 0; }
 
 /* ---- Kenar çubuğu butonları: eş boyut + renkli ---- */
+[data-testid="stSidebar"] [class*="st-key-nv_"], [data-testid="stSidebar"] [class*="st-key-nv_"] > div, [data-testid="stSidebar"] [class*="st-key-nv_"] div.stButton { width:100% !important; }
+[data-testid="stSidebar"] [class*="st-key-nv_"] button > div, [data-testid="stSidebar"] [class*="st-key-nv_"] button [data-testid="stMarkdownContainer"] { width:100%; justify-content:flex-start; text-align:left; }
 [data-testid="stSidebar"] [class*="st-key-nv_"] button { width:100% !important; height:3.2rem !important; min-height:3.2rem !important; max-height:3.2rem !important;
     border-radius:14px !important; border:none !important; justify-content:flex-start !important; text-align:left; padding:0 1rem !important; white-space:nowrap;
     box-shadow:0 8px 16px -8px rgba(0,0,0,.5) !important; transition:all .2s ease; }
@@ -2663,7 +2665,12 @@ def weekly():
             sug = cur.suggested_month()
             st.markdown("#### Ay seç")
             st.info(f"📌 AGİS ayın ilk haftasında çözülür ve **bir önceki ayı** ölçer. Bugüne göre önerilen: **{cur.MONTHS[sug - 1]['name']}**.")
-            theme.cells(range(1, cur.NUM_MONTHS + 1), 5, lambda m: st.button(f"{'📌 ' if m == sug else ''}{cur.MONTHS[m - 1]['name']}", key=f"sel_{'on' if w.get('month') == m else 'off'}_m{m}", on_click=go, kwargs=dict(month=m)))
+            term = theme.pick_cards("v_mterm", [1, 2], 1 if sug <= 5 else 2, 2, "dif",
+                                    label_fn=lambda t: "📘 1. Dönem\nEylül – Ocak" if t == 1 else "📗 2. Dönem\nŞubat – Haziran", label="Hangi dönem?")
+            rng = range(1, 6) if term == 1 else range(6, cur.NUM_MONTHS + 1)
+            st.markdown(f"<div class='pick-lbl'>{term}. Dönem • ay seç <small style='color:#64748b;font-weight:600'>(📌 = önerilen • seçince otomatik ilerler)</small></div>", unsafe_allow_html=True)
+            theme.cells(rng, 5, lambda m: st.button(f"{'📌 ' if m == sug else ''}{cur.MONTHS[m - 1]['name']}\n{cur.MONTHS[m - 1]['a']}-{cur.MONTHS[m - 1]['b']}. hafta",
+                                                    key=f"sel_{'on' if w.get('month') == m else 'off'}_m{m}", on_click=go, kwargs=dict(month=m)))
         footer("modes")
     elif step == 2:
         if agis:
@@ -3547,11 +3554,11 @@ with st.sidebar:
     st.markdown("<div class='brand'>🎓 Deneme<span>matik</span></div>", unsafe_allow_html=True)
     st.caption("MEB Maarif Modeli • AI ile sınırsız deneme")
     st.markdown("---")
-    st.button("🏠 Ana Sayfa", key="nv_home", on_click=lambda: (state.reset_exam(), state.nav("home")))
-    st.button("📄 Yaprak Test", key="nv_leaf", on_click=setup._tool_go, args=("leaf_start",))
-    st.button("📊 Performans & Raporlar", key="nv_rep", on_click=state.nav, args=("reports",))
-    st.button("🗂️ Yanlış Arşivim", key="nv_arc", on_click=state.nav, args=("archive",))
-    st.button("🏅 Rozet & Sertifika", key="nv_bdg", on_click=state.nav, args=("badges",))
+    st.button("🏠 Ana Sayfa", key="nv_home", use_container_width=True, on_click=lambda: (state.reset_exam(), state.nav("home")))
+    st.button("📄 Yaprak Test", key="nv_leaf", use_container_width=True, on_click=setup._tool_go, args=("leaf_start",))
+    st.button("📊 Performans & Raporlar", key="nv_rep", use_container_width=True, on_click=state.nav, args=("reports",))
+    st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
+    st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
     st.markdown("---")
     g = st.session_state.grade
     if g:
