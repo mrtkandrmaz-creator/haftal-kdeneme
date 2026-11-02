@@ -2359,6 +2359,31 @@ CSS = """
 [data-testid="stSidebar"] .st-key-nv_rev button  { background:linear-gradient(135deg,#2dd4bf,#0f766e) !important; }
 [data-testid="stSidebar"] .st-key-nv_plan button { background:linear-gradient(135deg,#818cf8,#4338ca) !important; }
 
+/* ---- Hazır ekranı: kocaman BAŞLAT ---- */
+.ready-aura { position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(circle at 50% 52%, rgba(20,184,166,.28) 0%, rgba(124,58,237,.22) 32%, rgba(241,245,249,0) 62%); }
+.ready-top { text-align:center; margin:1.2rem 0 .6rem; position:relative; z-index:1; }
+.ready-badge { display:inline-block; padding:.35rem 1.1rem; border-radius:999px; font-weight:900; letter-spacing:2px; font-size:.82rem; color:#fff;
+    background:linear-gradient(135deg,#14b8a6,#7c3aed); box-shadow:0 10px 24px -10px rgba(124,58,237,.8); }
+.ready-title { font-size:1.7rem; font-weight:900; color:#1e1b4b; margin:.7rem 0 .6rem; line-height:1.25; }
+.ready-chips { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
+.ready-chips span { background:#fff; border:2px solid #ddd6fe; color:#4c1d95; font-weight:800; font-size:.88rem; padding:.3rem .85rem; border-radius:999px; }
+.ready-hint { text-align:center; color:#64748b; font-weight:700; margin:.4rem 0 1.4rem; position:relative; z-index:1; }
+.st-key-bigstart { display:flex; justify-content:center; position:relative; z-index:1; padding:1.2rem 0; }
+.st-key-bigstart div.stButton, .st-key-bigstart [data-testid="stButton"] { width:auto !important; }
+.st-key-bigstart button { width:min(300px,68vw) !important; height:min(300px,68vw) !important; max-height:none !important; border-radius:50% !important; border:6px solid rgba(255,255,255,.9) !important;
+    background:conic-gradient(from 210deg,#14b8a6,#6366f1,#7c3aed,#14b8a6) !important; color:#fff !important; flex-direction:column; gap:.2rem;
+    box-shadow:0 0 0 14px rgba(124,58,237,.14), 0 0 0 30px rgba(20,184,166,.10), 0 30px 70px -18px rgba(76,29,149,.75) !important;
+    animation:bigpulse 2.2s ease-in-out infinite; transition:transform .25s ease; }
+.st-key-bigstart button:hover { transform:scale(1.06); filter:brightness(1.08); }
+.st-key-bigstart button:active { transform:scale(.97); }
+.st-key-bigstart button p { color:#fff !important; margin:0; text-align:center; line-height:1; text-shadow:0 4px 14px rgba(30,27,75,.45); }
+.st-key-bigstart button p:first-child { font-size:6.2rem; font-weight:900; margin-left:.5rem; }
+.st-key-bigstart button p:nth-child(2) { font-size:1.9rem; font-weight:900; letter-spacing:6px; margin-top:.2rem; }
+@keyframes bigpulse { 0%,100% { box-shadow:0 0 0 14px rgba(124,58,237,.14), 0 0 0 30px rgba(20,184,166,.10), 0 30px 70px -18px rgba(76,29,149,.75); }
+    50% { box-shadow:0 0 0 26px rgba(124,58,237,.10), 0 0 0 52px rgba(20,184,166,.06), 0 36px 80px -16px rgba(76,29,149,.85); } }
+@media (max-width:760px) { .ready-title { font-size:1.3rem; } .st-key-bigstart button p:first-child { font-size:4.8rem; } }
+
 /* ---- Başlık ---- */
 .hero { background: linear-gradient(120deg,#0f172a 0%,#1d4ed8 60%,#0ea5e9 100%); color:white; border-radius:22px;
         padding:1.6rem 2rem; margin-bottom:1.2rem; box-shadow:0 18px 40px -18px rgba(15,23,42,.6); }
@@ -2754,7 +2779,7 @@ def _finish(qs, errs, meta):
     st.session_state.questions = qs
     st.session_state.meta = meta
     store.add_stems(qs)
-    st.session_state.page = "pre"
+    st.session_state.page = "ready"
     st.rerun()
 
 
@@ -2844,6 +2869,35 @@ def pre():
             st.rerun()
     with c2:
         st.button("↩ Vazgeç", key="back_pre", on_click=nav, args=("home",))
+
+
+# ------------------------------------------------------------------ sorular hazır: kocaman BAŞLAT
+def _start_now():
+    import time
+    st.session_state.start = time.time()
+    st.session_state.page = "exam"
+
+
+def ready():
+    m, qs = st.session_state.meta, st.session_state.questions
+    if not qs:
+        st.session_state.page = "home"
+        st.rerun()
+    subs = sorted({q.get("subject", "") for q in qs})
+    mins = m["duration_sec"] // 60
+    st.markdown("<div class='ready-aura'></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='ready-top'><div class='ready-badge'>✨ SINAVIN HAZIR</div><div class='ready-title'>{m['title']}</div>"
+                f"<div class='ready-chips'><span>📝 {len(qs)} soru</span><span>⏱ {mins} dk</span><span>{(m['difficulty'] or '')[:2]} {m['difficulty'].split('/')[0][2:].strip() if m.get('difficulty') else ''}</span>"
+                f"<span>📚 {', '.join(cur.SUBJECT_ICONS.get(x, '') + ' ' + x for x in subs[:3])}{' +' + str(len(subs) - 3) if len(subs) > 3 else ''}</span></div></div>", unsafe_allow_html=True)
+    c = st.columns([1, 1, 1])[1]
+    with c:
+        st.button("▶\n\nBAŞLAT", key="bigstart", on_click=_start_now, use_container_width=True)
+    st.markdown("<div class='ready-hint'>Hazır olduğunda dokun • süre başladığı anda işler</div>", unsafe_allow_html=True)
+    b = st.columns([1, 1, 1])
+    with b[0]:
+        st.button("📋 Konu özeti & PDF", key="ready_pre", on_click=nav, args=("pre",), use_container_width=True)
+    with b[2]:
+        st.button("↩ Vazgeç", key="ready_back", on_click=nav, args=("home",), use_container_width=True)
 '''
 MODULES['ui/wizard'] = r'''# -*- coding: utf-8 -*-
 """Sınıf seçiminden sonraki sade, adım adım ekranlar. Her sayfada tek karar; seçince otomatik ilerler."""
@@ -4142,7 +4196,7 @@ with st.sidebar:
 # ------------------------------------------------------------------ yönlendirme
 PAGE = st.session_state.page
 ROUTES = {
-    "home": setup.home, "modes": setup.modes, "setup": wizard.run, "pre": setup.pre,
+    "home": setup.home, "modes": setup.modes, "setup": wizard.run, "ready": setup.ready, "pre": setup.pre,
     "exam": exam.exam, "selfscore": exam.selfscore, "result": exam.result,
     "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges,
 }
