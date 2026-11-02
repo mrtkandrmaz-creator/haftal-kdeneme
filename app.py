@@ -306,7 +306,7 @@ def scope_range(scope):
 def scope_label(scope):
     if scope["type"] == "month":
         a, b = scope_range(scope)
-        return f"{scope['name']} Ayı Genel Deneme (Hafta {a}-{b})"
+        return f"AGİS • {scope['name']} Ayı (Hafta {a}-{b})"
     return f"{scope['w']}. Hafta ({week_dates(scope['w'])})"
 
 
@@ -872,6 +872,29 @@ def shape_type(shape):
     return str(shape.get("type", "")).strip().lower()
 
 
+def normalize_shape(shape):
+    """AI'dan gelen şemayı güvenli hâle getirir; çizilemeyecekse None. Cevabı sızdıran alanları kapatır."""
+    if not isinstance(shape, dict):
+        return None
+    t = shape_type(shape)
+    if not t:
+        return None
+    sh = dict(shape)
+    sh["type"] = t
+    if t == "table":
+        hs, rows = sh.get("headers"), sh.get("rows")
+        if not isinstance(hs, (list, tuple)) or not isinstance(rows, (list, tuple)) or not hs:
+            return None
+        sh["headers"] = [str(x) for x in hs]
+        sh["rows"] = [[str(c) for c in r] if isinstance(r, (list, tuple)) else [str(r)] for r in rows if r is not None]
+        sh["title"] = str(sh.get("title") or "")
+        return sh if sh["rows"] else None
+    if t not in _DISPATCH:
+        return None
+    sh["show_names"] = False  # evre/konum adlarını yazmak cevabı verir
+    return sh
+
+
 def is_table(shape):
     return shape_type(shape) == "table"
 
@@ -915,16 +938,20 @@ def table_html(shape):
 
 
 def draw_geometry_shape(shape_data):
-    """Streamlit tarafı (eski fonksiyon adı korunur)."""
+    """Streamlit tarafı (eski fonksiyon adı korunur). Hata verirse sayfayı bozmaz."""
     import streamlit as st
-    if not isinstance(shape_data, dict) or not shape_type(shape_data):
-        return
-    if is_table(shape_data):
-        st.markdown(table_html(shape_data), unsafe_allow_html=True)
-        return
-    png = render_shape(shape_data)
-    if png:
-        st.image(png, width=420)
+    try:
+        sh = normalize_shape(shape_data)
+        if not sh:
+            return
+        if is_table(sh):
+            st.markdown(table_html(sh), unsafe_allow_html=True)
+            return
+        png = render_shape(sh)
+        if png:
+            st.image(png, width=420)
+    except Exception:
+        st.caption("📊 (Bu sorunun görseli yüklenemedi)")
 '''
 MODULES['core/pdf_export'] = r'''# -*- coding: utf-8 -*-
 """Soru bankası tarzı PDF: sayfa ortadan ikiye bölünmüş, iki sütunda yan yana sorular,
@@ -1006,6 +1033,13 @@ def _img(png, max_w, max_h):
 
 
 def _shape_flowables(shape, width, S, max_h=3.7 * cm):
+    try:
+        return _shape_flowables_raw(visuals.normalize_shape(shape), width, S, max_h)
+    except Exception:
+        return []
+
+
+def _shape_flowables_raw(shape, width, S, max_h):
     if not isinstance(shape, dict) or not visuals.shape_type(shape):
         return []
     if visuals.is_table(shape):
@@ -1430,29 +1464,79 @@ def parse(text, grade):
     return out if sum(len(v) for _, v in out) >= 6 else []
 
 
-def refresh(progress=None):
-    """Tüm programları indirir. -> (kayıt_sayısı, hatalar)"""
+def refresh(progress=None, deadline=75):
+    """Tüm programları PARALEL indirir; süre dolarsa elde olanla yetinir. -> (kayıt_sayısı, hatalar)"""
+    from concurrent.futures import ThreadPoolExecutor, wait
     say = progress or (lambda m: None)
-    data, errs, cache = {}, [], {}
+    t0 = time.time()
+    data, errs = {}, []
+    pids = {}
     for subj, grades, pid in PROGRAMS:
+        pids.setdefault(pid, []).append((subj, grades))
+
+    def work(pid):
+        return pdf_text(_get(find_pdf(pid), binary=True, timeout=40))
+
+    ex = ThreadPoolExecutor(max_workers=6)
+    futs = {ex.submit(work, pid): pid for pid in pids}
+    done, pending = wait(list(futs), timeout=deadline)
+    for f in pending:
+        f.cancel()
+        errs.append("zaman aşımı: bazı programlar indirilemedi (yerleşik müfredat kullanılacak)")
+    ex.shutdown(wait=False, cancel_futures=True)
+    for f in done:
+        pid = futs[f]
         try:
-            say(f"⬇️ {subj} ({grades[0]}-{grades[-1]}. sınıf) programı indiriliyor…")
-            if pid not in cache:
-                cache[pid] = pdf_text(_get(find_pdf(pid), binary=True, timeout=120))
+            txt = f.result()
+        except Exception as e:
+            errs.append(f"{type(e).__name__}: {str(e)[:100]}")
+            continue
+        for subj, grades in pids[pid]:
             for g in grades:
-                u = parse(cache[pid], g)
+                try:
+                    u = parse(txt, g)
+                except Exception:
+                    u = []
                 if u:
                     data[f"{g}|{subj}"] = u
-                    say(f"✅ {g}. sınıf {subj}: {sum(len(v) for _, v in u)} kazanım")
-                else:
-                    errs.append(f"{g}. sınıf {subj}: kazanım kodu bulunamadı (yerleşik müfredat kullanılacak)")
-        except Exception as e:
-            errs.append(f"{subj}: {type(e).__name__}: {str(e)[:120]}")
+    _mark_attempt()
     if data:
-        with open(os.path.join(store.DATA, CACHE), "w", encoding="utf-8") as f:
-            json.dump({"ts": int(time.time()), "data": data}, f, ensure_ascii=False)
+        try:
+            with open(os.path.join(store.DATA, CACHE), "w", encoding="utf-8") as f:
+                json.dump({"ts": int(time.time()), "data": data}, f, ensure_ascii=False)
+        except Exception:
+            pass
         apply(data)
     return len(data), errs
+
+
+ATTEMPT = "meb_attempt.txt"
+
+
+def _mark_attempt():
+    try:
+        os.makedirs(store.DATA, exist_ok=True)
+        with open(os.path.join(store.DATA, ATTEMPT), "w") as f:
+            f.write(str(int(time.time())))
+    except Exception:
+        pass
+
+
+def needs_refresh(max_age_days=14, retry_hours=6):
+    """Önbellek yoksa/eskiyse ve son deneme yakın zamanda yapılmadıysa True."""
+    now = time.time()
+    try:
+        with open(os.path.join(store.DATA, ATTEMPT)) as f:
+            if now - int(f.read().strip() or 0) < retry_hours * 3600:
+                return False
+    except Exception:
+        pass
+    try:
+        with open(os.path.join(store.DATA, CACHE), encoding="utf-8") as f:
+            ts = json.load(f)["ts"]
+        return now - ts > max_age_days * 86400
+    except Exception:
+        return True
 
 
 def apply(data):
@@ -1665,11 +1749,39 @@ def _norm_q(q, subject):
         random.shuffle(vals)
         opts = dict(zip("ABCD", vals))
         ans = [k for k, v in opts.items() if v == correct][0]
-    shape = q.get("shape")
+    from . import visuals
+    shape = visuals.normalize_shape(q.get("shape"))
     out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else "",
-           "question": str(q["question"]).strip(), "shape": shape if isinstance(shape, dict) and shape.get("type") else None,
-           "options": opts, "answer": ans, "explanation": str(q.get("explanation") or "")}
-    return out
+           "question": str(q["question"]).strip(), "shape": shape, "options": opts, "answer": ans, "explanation": str(q.get("explanation") or "")}
+    return None if leaks_answer(out) else out
+
+
+def _alnum(t):
+    return re.sub(r"[\W_]+", " ", str(t).lower()).strip()
+
+
+def _strings(o):
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k not in ("type", "sub_type"):
+                yield from _strings(v)
+    elif isinstance(o, (list, tuple)):
+        for v in o:
+            yield from _strings(v)
+    elif isinstance(o, str):
+        yield o
+
+
+def leaks_answer(q):
+    """Doğru şıkkın metni görselde ya da soru/metin içinde aynen geçiyorsa True (cevap/ipucu sızıntısı)."""
+    ans = _alnum(q["options"][q["answer"]])
+    if len(ans) < 5:
+        return False
+    if q.get("shape"):
+        hay = " | ".join(_alnum(x) for x in _strings(q["shape"]))
+        if ans in hay:
+            return True
+    return len(ans) >= 9 and ans in _alnum(str(q.get("passage", "")) + " " + str(q.get("question", "")))
 
 
 def _stem(q):
@@ -1869,17 +1981,43 @@ CSS = """
 [class*="st-key-optsel_"] button p { color:#fff !important; margin:0 0 .25rem; font-size:.85rem; text-align:left; line-height:1.35; }
 [class*="st-key-optsel_"] button p:first-child { font-size:1.08rem; font-weight:900; }
 
-/* ---- Normal butonlar ---- */
-div.stButton > button:first-child { width:100%; border-radius:14px; font-weight:800; font-size:1.02rem; padding:.85rem 1.1rem;
-    background:linear-gradient(135deg,#f97316 0%,#ea580c 100%); color:white; border:none;
-    box-shadow:0 6px 12px -2px rgba(249,115,22,.3); transition:all .3s ease; }
-div.stButton > button:first-child:hover { transform:translateY(-2px); box-shadow:0 8px 20px -4px rgba(249,115,22,.5); color:white; }
-.nav-btn-container div.stButton > button:first-child, [class*="st-key-nav_"] button {
-    background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%) !important; box-shadow:0 6px 15px -2px rgba(2,132,199,.35) !important; }
-[class*="st-key-sel_"] button { background:#fff !important; color:#0f172a !important; border:2px solid #cbd5e1 !important; box-shadow:none !important; padding:.55rem .3rem !important; font-size:.9rem !important; }
+/* ---- Butonlar: hepsi modern kart ---- */
+div.stButton > button, div.stDownloadButton > button, div[data-testid="stFormSubmitButton"] > button {
+    width:100%; border-radius:16px; font-weight:800; font-size:1rem; padding:.8rem 1.1rem; min-height:3rem;
+    background:#fff; color:#0f172a; border:2px solid #e2e8f0; box-shadow:0 8px 18px -14px rgba(15,23,42,.55); transition:all .2s ease; }
+div.stButton > button:hover, div.stDownloadButton > button:hover, div[data-testid="stFormSubmitButton"] > button:hover {
+    border-color:#38bdf8; color:#0369a1; transform:translateY(-2px); box-shadow:0 12px 22px -14px rgba(2,132,199,.6); }
+button[data-testid="stBaseButton-primary"], button[kind="primary"], button[kind="primaryFormSubmit"] {
+    background:linear-gradient(135deg,#f97316 0%,#ea580c 100%) !important; color:#fff !important; border:2px solid #ea580c !important;
+    box-shadow:0 10px 20px -8px rgba(249,115,22,.55) !important; }
+button[data-testid="stBaseButton-primary"]:hover, button[kind="primary"]:hover { color:#fff !important; filter:brightness(1.06); }
+button[data-testid="stBaseButton-primary"] p, button[kind="primary"] p { color:#fff !important; }
+[class*="st-key-nav_"] button { background:linear-gradient(135deg,#0284c7,#0369a1) !important; color:#fff !important; border-color:#0369a1 !important; }
+[class*="st-key-sel_"] button { background:#fff !important; color:#0f172a !important; border:2px solid #cbd5e1 !important; box-shadow:none !important; padding:.55rem .2rem !important; font-size:.9rem !important; min-height:2.8rem; }
 [class*="st-key-sel_on_"] button { background:linear-gradient(135deg,#0284c7,#1d4ed8) !important; color:#fff !important; border-color:#1d4ed8 !important; }
+[class*="st-key-sel_on_"] button p { color:#fff !important; }
 [class*="st-key-sel_mon_"] button { border-color:#f97316 !important; }
-[class*="st-key-back"] button { background:#fff !important; color:#0f172a !important; border:1px solid #cbd5e1 !important; box-shadow:none !important; width:auto; }
+[class*="st-key-back"] button, [class*="st-key-wz_back"] button { background:#fff !important; color:#334155 !important; border:2px solid #cbd5e1 !important; box-shadow:none !important; }
+
+/* ---- Radyo / seçenekler kart gibi ---- */
+div[role="radiogroup"] { gap:.55rem; }
+div[role="radiogroup"] > label { background:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:.75rem 1rem; width:100%; box-shadow:0 8px 18px -16px rgba(15,23,42,.55); transition:all .2s ease; }
+div[role="radiogroup"] > label:hover { border-color:#38bdf8; transform:translateY(-1px); }
+div[role="radiogroup"] > label:has(input:checked) { border-color:#1d4ed8; background:#eff6ff; box-shadow:0 10px 20px -14px rgba(29,78,216,.7); }
+div[role="radiogroup"][aria-orientation="horizontal"] > label, div[data-testid="stRadio"] div[role="radiogroup"]:not([aria-orientation="vertical"]) > label { width:auto; }
+div[data-baseweb="select"] > div { border-radius:14px; }
+[data-testid="stExpander"] { border-radius:16px; border:1px solid #e2e8f0; background:#fff; }
+
+/* ---- Telefon / tablet ---- */
+@media (max-width: 760px) {
+  .block-container { padding:1rem .7rem 3rem; }
+  .hero { padding:1.1rem 1.1rem; border-radius:18px; } .hero h1 { font-size:1.4rem; }
+  div[data-testid="stHorizontalBlock"]:has([class*="st-key-sel_"]) { flex-wrap:wrap !important; gap:.35rem !important; }
+  div[data-testid="stHorizontalBlock"]:has([class*="st-key-sel_"]) > div[data-testid="stColumn"] { min-width:calc(20% - .4rem) !important; flex:1 1 calc(20% - .4rem) !important; width:auto !important; }
+  div[data-testid="stHorizontalBlock"]:has([class*="st-key-card_"]) > div[data-testid="stColumn"],
+  div[data-testid="stHorizontalBlock"]:has([class*="st-key-opt"]) > div[data-testid="stColumn"] { min-width:100% !important; }
+  [class*="st-key-card_"] button { min-height:110px; }
+}
 
 /* ---- Soru kartı ---- */
 .question-card { background:white; padding:2rem; border-radius:18px; box-shadow:0 10px 25px -5px rgba(0,0,0,.06); border:1px solid #e2e8f0; margin-bottom:1.2rem; }
@@ -1925,6 +2063,16 @@ def card(key, color, title, desc, on_click=None, args=(), disabled=False):
               disabled=disabled, use_container_width=True)
 
 
+def cells(items, per, fn):
+    """Izgara: her satır ayrı st.columns -> telefonda/tablette sıra bozulmaz (4-5-6 / 7-8-LGS)."""
+    items = list(items)
+    for r in range(0, len(items), per):
+        cols = st.columns(per)
+        for c, it in zip(cols, items[r:r + per]):
+            with c:
+                fn(it)
+
+
 def kpi(label, value, delta=None, good_up=True):
     d = ""
     if delta is not None:
@@ -1948,6 +2096,29 @@ def html_table(headers, rows, num_cols=()):
     for r in rows:
         h += "<tr>" + "".join(f"<td class='{'num' if i in num_cols else ''}'>{c}</td>" for i, c in enumerate(r)) + "</tr>"
     st.markdown(h + "</tbody></table></div>", unsafe_allow_html=True)
+
+
+OVERLAY_CSS = ("<style>.gen-ov{position:fixed;inset:0;z-index:999999;background:rgba(15,23,42,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center}"
+ ".gen-card{background:#fff;border-radius:28px;padding:2rem 2.4rem 1.6rem;text-align:center;box-shadow:0 30px 70px -20px rgba(0,0,0,.6);width:min(420px,90vw)}"
+ ".gen-ring{position:relative;width:170px;height:170px;margin:0 auto 1.1rem}"
+ ".gen-ring:before{content:'';position:absolute;inset:0;border-radius:50%;border:10px solid #e2e8f0}"
+ ".gen-ring:after{content:'';position:absolute;inset:0;border-radius:50%;border:10px solid transparent;border-top-color:#0284c7;border-right-color:#38bdf8;animation:genspin 1.1s linear infinite}"
+ ".gen-cd{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.2rem;font-weight:900;color:#0f172a}"
+ ".gen-cd span{position:absolute;opacity:0;animation:gencd 1s linear forwards}"
+ ".gen-cd span.z{font-size:1.05rem;line-height:1.2;color:#0284c7;animation:genz .5s linear forwards,genpulse 1.2s ease-in-out infinite}"
+ ".gen-t{font-size:1.25rem;font-weight:900;color:#0f172a}.gen-s{color:#64748b;font-size:.9rem;margin:.3rem 0 1rem}"
+ ".gen-bar{background:#e2e8f0;border-radius:999px;height:8px;overflow:hidden}.gen-bar i{display:block;height:8px;width:0;background:linear-gradient(90deg,#0284c7,#38bdf8);border-radius:999px;animation:genbar linear forwards}"
+ "@keyframes genspin{to{transform:rotate(360deg)}}@keyframes gencd{0%,97%{opacity:1}100%{opacity:0}}@keyframes genz{to{opacity:1}}"
+ "@keyframes genpulse{50%{transform:scale(1.08)}}@keyframes genbar{to{width:100%}}</style>")
+
+
+def overlay_html(seconds, title, sub=""):
+    """Ekran ortasında geriye sayan daire. Sayaç tarayıcıda (CSS) çalışır; sunucu meşgulken de akar."""
+    n = max(5, min(int(seconds), 240))
+    spans = "".join(f"<span style='animation-delay:{i}s'>{n - i}</span>" for i in range(n))
+    spans += f"<span class='z' style='animation-delay:{n}s'>Son rötuşlar…</span>"
+    return (OVERLAY_CSS + f"<div class='gen-ov'><div class='gen-card'><div class='gen-ring'><div class='gen-cd'>{spans}</div></div>"
+            f"<div class='gen-t'>{title}</div><div class='gen-s'>{sub}</div><div class='gen-bar'><i style='animation-duration:{n}s'></i></div></div></div>")
 '''
 MODULES['ui/state'] = r'''# -*- coding: utf-8 -*-
 import copy
@@ -2004,19 +2175,13 @@ def home():
     st.markdown("<div class='hero'><h1>🎓 Denemematik</h1><p>Yapay zekâ ile sınırsız, her seferinde farklı MEB yeni nesil soruları. "
                 "Önce sınıfını seç.</p></div>", unsafe_allow_html=True)
     st.markdown("<div class='sec-title'>🎓 Sınıfını Seç</div>", unsafe_allow_html=True)
-    cols = st.columns(3)
-    for i, (g, color, ic, title, desc) in enumerate(GRADE_CARDS):
-        with cols[i % 3]:
-            theme.card(f"g{g}", color, f"{ic} {title}", desc, pick_grade, (g,))
+    theme.cells(GRADE_CARDS, 3, lambda c: theme.card(f"g{c[0]}", c[1], f"{c[2]} {c[3]}", c[4], pick_grade, (c[0],)))
     st.markdown("<div class='sec-title'>🧰 Araçlar</div>", unsafe_allow_html=True)
-    c = st.columns(4)
     tools = [("leaf", "green", "📄 Yaprak Test", "Tek kazanımlık hızlı çalışma kâğıdı + PDF", "leaf_start"),
              ("reports", "indigo", "📊 Performans & Raporlar", "Grafikler, ders karşılaştırmaları", "reports"),
              ("archive", "amber", "🗂️ Yanlış Arşivim", "Yanlış yaptığın sorulardan kişisel test", "archive"),
              ("badges", "slate", "🏅 Rozet & Sertifika", "Başarılarını topla, sertifika al", "badges")]
-    for col, (k, color, t, d, page) in zip(c, tools):
-        with col:
-            theme.card(f"tool_{k}", color, t, d, _tool_go, (page,))
+    theme.cells(tools, 2, lambda x: theme.card(f"tool_{x[0]}", x[1], x[2], x[3], _tool_go, (x[4],)))
 
 
 def _tool_go(page):
@@ -2051,56 +2216,20 @@ def modes():
     official = g in oy.OFFICIAL_GRADES
     full = "Resmî LGS (90 soru, 155 dk) dâhil hazır formatlar" if g in ("8", "LGS") else "Mini 20 • Standart 40 • Tam 60 soru"
     items = [
-        ("weekly", "blue", "📅 Haftalık / Aylık Deneme", f"36 hafta + aylık genel deneme • {full}"),
+        ("weekly", "blue", "📅 Haftalık Deneme", f"36 haftanın her biri için • {full}"),
+        ("agis", "indigo", "🗓️ AGİS", "Akademik Gelişim İzleme Sınavı • ayın ilk haftasında, önceki ayı ölçer"),
         ("oyss", "orange", "📝 MEB OYSS Genel Deneme",
          "Ortak Yazılı Sınav • 5 senaryo • 100 puan • 40 dk" if official else "OYSS formatında antrenman (resmî uygulama 5-6-7. sınıfta)"),
         ("topic", "violet", "🎯 Konu Tarama", "Ünite ve kazanım seç • 10-30 soru"),
         ("bank", "pink", "🧠 Yeni Nesil Soru Bankası", "Beceri temelli • görsel ve veri yoğun karma sorular"),
         ("leaf", "green", "📄 Yaprak Test", "Tek kazanım • 6-12 soru • PDF'e hazır"),
     ]
-    cols = st.columns(3)
-    for i, (k, color, t, d) in enumerate(items):
-        with cols[i % 3]:
-            theme.card(f"m_{k}", color, t, d, pick_mode, (k,))
+    theme.cells(items, 3, lambda x: theme.card(f"m_{x[0]}", x[1], x[2], x[3], pick_mode, (x[0],)))
 
 
 # ------------------------------------------------------------------ ortak bileşenler
 def difficulty_select(key):
     return st.selectbox("📊 Soru Zorluk Derecesi (Kademe Seçimi)", cur.DIFFICULTIES, index=2, key=key)
-
-
-def week_grid():
-    S = st.session_state
-    if not S.get("cal_init"):  # takvime göre başlangıç seçimi
-        S.cal_init = True
-        cw = cur.current_week()
-        if cw:
-            S.sel_week = cw
-        S.sel_month = cur.suggested_month()
-    tab = st.radio("Sınav türü", ["📅 Haftalık Deneme (36 hafta)", f"🗓️ Aylık Genel Deneme ({cur.NUM_MONTHS} ay)"], horizontal=True, key="scope_radio")
-    monthly = tab.startswith("🗓")
-    if not monthly:
-        cw = cur.current_week()
-        st.caption("MEB 2026-2027 çalışma takvimine göre 36 öğretim haftası (ara tatiller hariç). 📍 = bu hafta. Turuncu kenarlı haftalar ay sonu haftalarıdır.")
-        for r in range(0, 36, 9):
-            cols = st.columns(9)
-            for j, w in enumerate(range(r + 1, r + 10)):
-                with cols[j]:
-                    kind = "on" if S.sel_week == w else ("mon" if w % 4 == 0 else "off")
-                    st.button(f"{'📍' if w == cw else ''}{w}. Hf", key=f"sel_{kind}_w{w}", on_click=lambda w=w: st.session_state.update(sel_week=w))
-        st.caption(f"📆 Seçili: **{S.sel_week}. hafta** • {cur.week_dates(S.sel_week)}")
-        return {"type": "week", "w": S.sel_week}
-    sug = cur.suggested_month()
-    st.info(f"📌 Aylık genel denemeler **ayın ilk haftasında çözülür** ve **bir önceki ayın** konularını ölçer. "
-            f"Bugüne göre önerilen: **{cur.MONTHS[sug - 1]['name']} Ayı Genel Denemesi**.")
-    for r in range(0, cur.NUM_MONTHS, 5):
-        cols = st.columns(5)
-        for j, m in enumerate(range(r + 1, min(r + 6, cur.NUM_MONTHS + 1))):
-            with cols[j]:
-                st.button(f"{'📌 ' if m == sug else ''}{cur.MONTHS[m - 1]['name']}", key=f"sel_{'on' if S.sel_month == m else 'off'}_m{m}",
-                          on_click=lambda m=m: st.session_state.update(sel_month=m))
-    st.caption(f"🗓️ {cur.month_note(S.sel_month)}")
-    return cur.month_scope(S.sel_month)
 
 
 WEIGHTS = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0]
@@ -2174,182 +2303,27 @@ def _meta_common(gl, mode, title, scope, diff, plan):
             "briefing": [(p["subject"], p["n"], p.get("short", p["topics"])) for p in plan]}
 
 
+def with_overlay(seconds, title, sub, fn):
+    """Uzun işlemi, ekran ortasında geriye sayan daire ile çalıştırır."""
+    ph = st.empty()
+    ph.markdown(theme.overlay_html(seconds, title, sub), unsafe_allow_html=True)
+    try:
+        return fn()
+    finally:
+        ph.empty()
+
+
+def est_seconds_mc(plan):
+    import math
+    chunks = sum(math.ceil(p["n"] / ai.CHUNK) for p in plan)
+    return 12 + 14 * math.ceil(chunks / 4)
+
+
 def _gen_mc(plan, meta, scope_label, focus=""):
-    g = st.session_state.grade
-    with st.spinner("✨ Çoklu API havuzu taranıyor (önce Groq, sonra Gemini)… ders ders paralel soru üretiliyor, bu işlem 1-2 dk sürebilir."):
-        qs, errs = ai.generate_mc(plan, meta["grade_label"], meta["difficulty"], scope_label, avoid=_avoid(), focus=focus)
+    n = sum(p["n"] for p in plan)
+    qs, errs = with_overlay(est_seconds_mc(plan), "Sorular hazırlanıyor", f"{n} yeni nesil soru ve görselleri yapay zekâ ile üretiliyor…",
+                            lambda: ai.generate_mc(plan, meta["grade_label"], meta["difficulty"], scope_label, avoid=_avoid(), focus=focus))
     _finish(qs, errs, meta)
-
-
-# ------------------------------------------------------------------ haftalık / aylık
-def weekly():
-    g = st.session_state.grade
-    gl = cur.GRADE_LABELS[g]
-    st.button("⬅ Sınav türleri", key="back_w", on_click=nav, args=("modes",))
-    st.markdown(f"<div class='hero'><h1>📅 {gl} • Haftalık / Aylık Deneme</h1><p>MEB takvimine göre hafta seç; aylık genel deneme ayın ilk haftasında çözülür ve önceki ayı ölçer.</p></div>", unsafe_allow_html=True)
-    scope = week_grid()
-    label = cur.scope_label(scope)
-    monthly = scope["type"] == "month"
-    left, right = st.columns([1.15, 1])
-    with left:
-        st.markdown(f"### 📋 Kazanım Haritası — {label}")
-        rows = []
-        for s in cur.subjects_for(g):
-            rows.append((f"{cur.SUBJECT_ICONS.get(s, '')} {s}", cur.scope_topic_text(g, s, scope) or "—"))
-        theme.html_table(["Ders", "Kapsanan Üniteler ve Konular"], rows)
-    with right:
-        diff = difficulty_select("diff_w")
-        official = False
-        if g == "LGS":
-            official = st.toggle("Resmî LGS dağılımı (90 soru: 20-20-20-10-10-10)", value=False, key="lgs_off",
-                                 help="Kapalıyken mevcut 80 soruluk format kullanılır.")
-        defaults = cur.LGS_OFFICIAL if official else cur.weekly_counts(g, monthly)
-        wts = weight_panel(g, f"wk_{g}")
-        defaults = {k: max(0, round(v * wts.get(k, 1.0))) for k, v in defaults.items()}
-        sig = "".join(f"{wts.get(k, 1.0):g}_" for k in sorted(defaults))
-        counts = subject_counts(g, defaults, f"cnt_w_{g}_{int(monthly)}_{int(official)}_{sig}")
-        focus = st.text_input("🔍 Özel Konu / Alt Başlık (opsiyonel)", key="focus_w", placeholder="Örn: Açılar, Hücre, Paragraf…",
-                              help="Soruların yaklaşık 1/3'ünde dengeli odak olarak yer alır.")
-    if st.button("🚀 Soruları Üret", key="gen_w") and counts:
-        plan = [{"subject": s, "n": n, "topics": cur.scope_topic_text(g, s, scope), "short": cur.scope_short(g, s, scope)} for s, n in counts.items()]
-        title = f"{gl} {label}" + (" • 80 Soruluk Deneme" if g == "LGS" and sum(counts.values()) == 80 else "")
-        _gen_mc(plan, _meta_common(gl, "monthly" if monthly else "weekly", title, label, diff, plan), label, focus)
-
-
-# ------------------------------------------------------------------ OYSS
-def oyss_setup():
-    g = st.session_state.grade
-    gl = cur.GRADE_LABELS[g]
-    official = g in oy.OFFICIAL_GRADES
-    st.button("⬅ Sınav türleri", key="back_o", on_click=nav, args=("modes",))
-    st.markdown(f"<div class='hero'><h1>📝 {gl} • MEB OYSS Genel Deneme</h1><p>Ortak Yazılı Sınav Sistemi: açık uçlu + kısa cevaplı, 100 puan, {oy.DURATION_MIN} dk, en fazla {oy.MAX_PAGES} sayfa.</p></div>", unsafe_allow_html=True)
-    if not official:
-        st.warning("ℹ️ MEB kılavuzuna göre OYSS resmî olarak 5-6-7 (ve 9-10-11) sınıflarında uygulanır. "
-                   f"{gl} için bu ekran **OYSS formatında antrenman** sunar; senaryo tabloları 5-6-7. sınıf kuralıyla türetilir.")
-    c1, c2 = st.columns(2)
-    term = c1.radio("Dönem", [1, 2], format_func=lambda x: f"{x}. Dönem", horizontal=True, key="o_term")
-    yaz = c2.radio("Yazılı", [1, 2], format_func=lambda x: f"{x}. Yazılı", horizontal=True, key="o_yaz")
-    st.markdown("<div class='sec-title'>Senaryo seç</div>", unsafe_allow_html=True)
-    cols = st.columns(5)
-    sel = st.session_state.get("o_scen", 1)
-    for s in oy.SCENARIOS:
-        with cols[s - 1]:
-            st.button(f"Senaryo {s}", key=f"sel_{'on' if sel == s else 'off'}_s{s}", on_click=lambda s=s: st.session_state.update(o_scen=s))
-    st.caption(f"Senaryo {sel}: {oy.profile_name(sel)}")
-    subs = st.multiselect("Dersler (her ders ayrı yazılı kâğıdıdır)", cur.subjects_for(g), default=cur.subjects_for(g)[:2], key="o_subs")
-    diff = difficulty_select("diff_o")
-    a, b = oy.window_weeks(term, yaz)
-    st.markdown(f"<div class='panel'><b>Kapsam:</b> {term}. Dönem {yaz}. Yazılı • Hafta {a}-{b} • Süre {oy.DURATION_MIN} dk (her ders için) • Toplam {oy.TOTAL_POINTS} puan</div>", unsafe_allow_html=True)
-    tables = []
-    for s in subs:
-        t = oy.scenario_table(g, s, term, yaz, sel)
-        tables.append({"subject": s, **t})
-        badge = "✅ MEB/ÖDSGM tablosu" if t["verified"] else "🧩 MEB şablonuna göre türetildi"
-        with st.expander(f"{cur.SUBJECT_ICONS.get(s, '')} {s} — Senaryo {sel} dağılımı • {t['total']} soru • {badge}", expanded=True):
-            theme.html_table(["Kazanım", "Ünite / Konu", "Soru"], [(r["code"], r["topic"], r["n"]) for r in t["rows"]], num_cols=(2,))
-    if st.button("🚀 OYSS Sorularını Üret", key="gen_o") and tables:
-        with st.spinner("✨ Açık uçlu ve kısa cevaplı OYSS soruları ve puanlama anahtarları hazırlanıyor…"):
-            qs, errs = ai.generate_oyss(tables, gl, diff, avoid=_avoid())
-        meta = {"grade": g, "grade_label": gl, "mode": "oyss", "kind": "open", "title": f"{gl} OYSS {term}. Dönem {yaz}. Yazılı • Senaryo {sel}",
-                "scope": f"{term}. Dönem {yaz}. Yazılı", "difficulty": diff, "scenario": sel, "term": term, "yazili": yaz,
-                "subtitle": f"MEB Ortak Yazılı Sınav Sistemi • Senaryo {sel} • {oy.TOTAL_POINTS} puan • {oy.DURATION_MIN} dk",
-                "info_line": f"{len(qs)} soru • {oy.TOTAL_POINTS} puan • {oy.DURATION_MIN * len(tables)} dk", "duration_sec": oy.DURATION_MIN * 60 * len(tables),
-                "oyss_tables": tables,
-                "briefing": [(t["subject"], t["total"], "; ".join(f"{r['code']}×{r['n']}" for r in t["rows"])) for t in tables]}
-        _finish(qs, errs, meta)
-
-
-# ------------------------------------------------------------------ konu tarama / soru bankası / yaprak
-def topic_setup(bank=False):
-    g = st.session_state.grade
-    gl = cur.GRADE_LABELS[g]
-    st.button("⬅ Sınav türleri", key="back_t", on_click=nav, args=("modes",))
-    ttl = "🧠 Yeni Nesil / Beceri Temelli Soru Bankası" if bank else "🎯 Konu Tarama Testi (Kazanım Kazanım)"
-    st.markdown(f"<div class='hero'><h1>{ttl}</h1><p>{gl} • Ünite ve kazanım seç, yapay zekâ her seferinde farklı sorular yazsın.</p></div>", unsafe_allow_html=True)
-    diff = difficulty_select("diff_t")
-    if bank:
-        subs = st.multiselect("Dersler", cur.subjects_for(g), default=cur.subjects_for(g)[:4], key="b_subs")
-        per = st.select_slider("Ders başına soru", [5, 8, 10, 12, 15, 20], value=10, key="b_per")
-        bw = weight_panel(g, f"bank_{g}")
-        plan = []
-        for s in subs:
-            tp = cur.all_topics(g, s)
-            pick = random.sample(tp, min(6, len(tp)))
-            plan.append({"subject": s, "n": max(1, round(per * bw.get(s, 1.0))), "topics": "; ".join(f"{u}: {t}" for u, t in pick) + " (görsel/tablo/grafik ağırlıklı, beceri temelli)",
-                         "short": "Karma kazanımlar"})
-        if st.button("🚀 Soru Bankası Testi Üret", key="gen_b") and plan:
-            _gen_mc(plan, _meta_common(gl, "bank", f"{gl} Yeni Nesil Soru Bankası", "Karma", diff, plan), "Yıl geneli karma")
-        return
-    subj = st.selectbox("Ders", cur.subjects_for(g), key="t_sub")
-    us = [u for u, _ in cur.units(g, subj)]
-    unit = st.selectbox("Ünite", us, key="t_unit")
-    topics = dict(cur.units(g, subj))[unit]
-    chosen = st.multiselect("Kazanım / Konu (boş = ünitenin tamamı)", topics, key=f"t_top_{subj}_{unit}")
-    n = st.radio("Soru sayısı", [10, 15, 20, 25, 30], horizontal=True, key="t_n")
-    if st.button("🚀 Konu Tarama Testi Üret", key="gen_t"):
-        tt = chosen or topics
-        plan = [{"subject": subj, "n": n, "topics": f"{unit}: " + ", ".join(tt), "short": f"{unit} ({', '.join(tt)})"}]
-        meta = _meta_common(gl, "topic", f"{gl} {subj} Konu Tarama • {unit.split(' (MAT')[0]}", unit, diff, plan)
-        meta["topic_info"] = {"subject": subj, "unit": unit}
-        _gen_mc(plan, meta, unit)
-
-
-def leaf_setup():
-    if not st.session_state.grade:
-        st.session_state.grade = "5"
-    st.button("⬅ Ana sayfa", key="back_l", on_click=nav, args=("home",))
-    st.markdown("<div class='hero'><h1>📄 Yaprak Test</h1><p>Tek kazanıma odaklı kısa çalışma kâğıdı. Çevrimiçi çöz ya da PDF olarak yazdır.</p></div>", unsafe_allow_html=True)
-    grades = ["4", "5", "6", "7", "8"]
-    cur_g = st.session_state.grade if st.session_state.grade in grades else "5"
-    g = st.selectbox("Sınıf", grades, index=grades.index(cur_g), format_func=lambda x: cur.GRADE_LABELS[x], key="l_grade")
-    st.session_state.grade = g
-    gl = cur.GRADE_LABELS[g]
-    subj = st.selectbox("Ders", cur.subjects_for(g), key="l_sub")
-    unit = st.selectbox("Ünite", [u for u, _ in cur.units(g, subj)], key="l_unit")
-    topics = dict(cur.units(g, subj))[unit]
-    chosen = st.multiselect("Kazanım / Konu", topics, default=topics[:1], key=f"l_top_{subj}_{unit}")
-    n = st.radio("Soru sayısı", [6, 8, 10, 12], index=2, horizontal=True, key="l_n")
-    diff = difficulty_select("diff_l")
-    if st.button("🚀 Yaprak Testi Üret", key="gen_l"):
-        tt = chosen or topics
-        plan = [{"subject": subj, "n": n, "topics": f"{unit}: " + ", ".join(tt), "short": ", ".join(tt)}]
-        meta = _meta_common(gl, "leaf", f"{gl} {subj} Yaprak Test", ", ".join(tt), diff, plan)
-        meta["topic_info"] = {"subject": subj, "unit": unit}
-        _gen_mc(plan, meta, unit)
-
-
-def setup():
-    mode = st.session_state.mode
-    if mode == "weekly":
-        weekly()
-    elif mode == "oyss":
-        oyss_setup()
-    elif mode == "topic":
-        topic_setup(False)
-    elif mode == "bank":
-        topic_setup(True)
-    elif mode == "leaf":
-        leaf_setup()
-    else:
-        st.session_state.page = "modes"
-        st.rerun()
-
-
-def meb_panel():
-    """Kenar çubuğu: MEB müfredatını canlı çek / durum göster."""
-    import datetime
-    from core import meb_live
-    ts = st.session_state.get("meb_ts")
-    txt = (f"🌐 MEB müfredatı: <b>{len(cur.LIVE)}</b> ders-sınıf<br><small>{datetime.datetime.fromtimestamp(ts):%d.%m.%Y}</small>" if ts and cur.LIVE
-           else "📚 Yerleşik müfredat kullanılıyor")
-    st.markdown(f"<div class='side-chip'>{txt}</div>", unsafe_allow_html=True)
-    if st.button("🌐 MEB müfredatını çek", key="meb_fetch"):
-        with st.status("MEB sitesinden programlar indiriliyor… (1-3 dk)", expanded=True) as stt:
-            n, errs = meb_live.refresh(lambda m: st.write(m))
-            for e in errs:
-                st.write("⚠️ " + e)
-            stt.update(label=f"{n} ders-sınıf güncellendi" + (f" • {len(errs)} uyarı" if errs else ""), state="complete" if n else "error")
-        st.session_state.meb_ts = meb_live.load_cache()
 
 
 # ------------------------------------------------------------------ sınav öncesi bilgilendirme
@@ -2401,7 +2375,7 @@ def pre():
     pdf_panel("pre_")
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("🎯 Sınavı Şimdi Başlat", key="start_exam"):
+        if st.button("🎯 Sınavı Şimdi Başlat", key="start_exam", type="primary"):
             import time
             st.session_state.start = time.time()
             st.session_state.page = "exam"
@@ -2508,63 +2482,67 @@ def formats(g):
     ]
 
 
+def subject_cards(prefix, g, w):
+    """Tek dokunuşla ders seç -> sonraki ekran. 'Tüm dersler' kartı da var."""
+    subs = cur.subjects_for(g)
+    cards = [(s, cur.SUBJECT_ICONS.get(s, ""), s, "", [s]) for s in subs] + [("all", "🌟", "Tüm dersler", "hepsi birden", list(subs))]
+    cur_sel = w.get("subs") or []
+    theme.cells(cards, 4, lambda c: choice(f"{prefix}_{c[0]}", c[1], c[2], c[3], cur_sel == c[4], go, kwargs=dict(subs=c[4])))
+
+
 # ------------------------------------------------------------------ giriş
 def run():
+    try:
+        _run()
+    except Exception as e:  # beklenmeyen durumda sihirbazı sıfırla
+        st.session_state.wz = {"step": 1}
+        st.warning(f"Bir şey ters gitti, adım başa alındı. ({type(e).__name__})")
+        st.button("Yeniden başla", key="wz_reset", type="primary")
+
+
+def _run():
     mode = st.session_state.mode
-    {"weekly": weekly, "oyss": oyss, "topic": topic, "leaf": topic, "bank": bank}.get(mode, weekly)()
+    {"weekly": weekly, "agis": weekly, "oyss": oyss, "topic": topic, "leaf": topic, "bank": bank}.get(mode, weekly)()
 
 
-# ------------------------------------------------------------------ HAFTALIK / AYLIK
+# ------------------------------------------------------------------ HAFTALIK DENEME  /  AGİS (aylık)
 def weekly():
     g = st.session_state.grade
     gl = cur.GRADE_LABELS[g]
     w = wz()
+    agis = st.session_state.mode == "agis"
     step = w.get("step", 1)
-    head(f"📅 {gl} • Deneme", "Her sayfada tek seçim yap.", ["Tür", "Zaman", "Format", "Üret"])
+    if step >= 3 and not (w.get("month") if agis else w.get("week")) or (step >= 4 and not w.get("fmt")):
+        w.clear(); w["step"] = step = 1
+    if agis:
+        head(f"🗓️ {gl} • AGİS", "Akademik Gelişim İzleme Sınavı • ayın ilk haftasında çözülür, önceki ayı ölçer", ["Ay", "Format", "Üret"])
+    else:
+        head(f"📅 {gl} • Haftalık Deneme", "36 öğretim haftasının her biri için bir deneme", ["Hafta", "Format", "Üret"])
     if step == 1:
-        st.markdown("#### Hangi denemeyi çözmek istiyorsun?")
-        c = st.columns(2)
-        with c[0]:
-            choice("kind_w", "📅", "Haftalık deneme", "36 haftanın her biri için bir deneme", w.get("kind") == "week", go, kwargs=dict(kind="week"))
-        with c[1]:
-            choice("kind_m", "🗓️", "Aylık genel deneme", "Ayın ilk haftasında çözülür, önceki ayı ölçer", w.get("kind") == "month", go, kwargs=dict(kind="month"))
-        footer("modes")
-    elif step == 2:
-        if w.get("kind") == "week":
+        if not agis:
             cw = cur.current_week()
             st.markdown("#### Hafta seç")
-            st.caption("📍 = bu hafta • MEB 2026-2027 çalışma takvimi (ara tatiller hariç 36 öğretim haftası)")
-            for r in range(0, 36, 9):
-                cols = st.columns(9)
-                for j, n in enumerate(range(r + 1, r + 10)):
-                    with cols[j]:
-                        st.button(f"{'📍' if n == cw else ''}{n}", key=f"sel_{'on' if w.get('week') == n else 'off'}_w{n}", on_click=go, kwargs=dict(week=n))
-            if w.get("week"):
-                st.caption(f"Seçili: {w['week']}. hafta • {cur.week_dates(w['week'])}")
+            st.caption("📍 = bu hafta • MEB 2026-2027 çalışma takvimi (ara tatiller hariç 36 öğretim haftası). Seçince otomatik ilerler.")
+            theme.cells(range(1, 37), 6, lambda n: st.button(f"{'📍' if n == cw else ''}{n}. Hf", key=f"sel_{'on' if w.get('week') == n else 'off'}_w{n}", on_click=go, kwargs=dict(week=n)))
         else:
             sug = cur.suggested_month()
             st.markdown("#### Ay seç")
-            st.info(f"📌 Aylık denemeler ayın ilk haftasında çözülür ve **bir önceki ayı** ölçer. Bugüne göre önerilen: **{cur.MONTHS[sug - 1]['name']}**.")
-            for r in range(0, cur.NUM_MONTHS, 5):
-                cols = st.columns(5)
-                for j, m in enumerate(range(r + 1, min(r + 6, cur.NUM_MONTHS + 1))):
-                    with cols[j]:
-                        st.button(f"{'📌 ' if m == sug else ''}{cur.MONTHS[m - 1]['name']}", key=f"sel_{'on' if w.get('month') == m else 'off'}_m{m}", on_click=go, kwargs=dict(month=m))
-            if w.get("month"):
-                st.caption(f"🗓️ {cur.month_note(w['month'])}")
+            st.info(f"📌 AGİS ayın ilk haftasında çözülür ve **bir önceki ayı** ölçer. Bugüne göre önerilen: **{cur.MONTHS[sug - 1]['name']}**.")
+            theme.cells(range(1, cur.NUM_MONTHS + 1), 5, lambda m: st.button(f"{'📌 ' if m == sug else ''}{cur.MONTHS[m - 1]['name']}", key=f"sel_{'on' if w.get('month') == m else 'off'}_m{m}", on_click=go, kwargs=dict(month=m)))
         footer("modes")
-    elif step == 3:
+    elif step == 2:
+        if agis:
+            st.caption(f"🗓️ {cur.month_note(w['month'])}")
+        else:
+            st.caption(f"📆 {w['week']}. hafta • {cur.week_dates(w['week'])}")
         st.markdown("#### Kaç soruluk deneme?")
         fm = formats(g)
-        cols = st.columns(min(3, len(fm)))
-        for i, f in enumerate(fm):
-            with cols[i % len(cols)]:
-                choice(f"fmt_{f['id']}", f["icon"], f["title"], f["desc"], w.get("fmt") == f["id"], go, kwargs=dict(fmt=f["id"]))
+        theme.cells(fm, 3 if len(fm) > 3 else len(fm), lambda f: choice(f"fmt_{f['id']}", f["icon"], f["title"], f["desc"], w.get("fmt") == f["id"], go, kwargs=dict(fmt=f["id"])))
         footer("modes")
     else:
-        scope = {"type": "week", "w": w["week"]} if w["kind"] == "week" else cur.month_scope(w["month"])
+        scope = cur.month_scope(w["month"]) if agis else {"type": "week", "w": w["week"]}
         label = cur.scope_label(scope)
-        f = next(x for x in formats(g) if x["id"] == w["fmt"])
+        f = next((x for x in formats(g) if x["id"] == w.get("fmt")), formats(g)[0])
         st.markdown(f"#### ✅ Özet: **{label}** • **{f['title']}**")
         diff = su.difficulty_select("diff_wz")
         counts = dict(f["counts"])
@@ -2586,11 +2564,11 @@ def weekly():
         with c1:
             st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",))
         with c2:
-            go_btn = st.button("🚀 Soruları Üret", key="gen_wz")
+            go_btn = st.button("🚀 Soruları Üret", key="gen_wz", type="primary")
         if go_btn and counts:
             plan = [{"subject": s, "n": c, "topics": cur.scope_topic_text(g, s, scope), "short": cur.scope_short(g, s, scope)} for s, c in counts.items()]
             title = f"{gl} {label} • {f['title']}"
-            meta = su._meta_common(gl, "monthly" if w["kind"] == "month" else "weekly", title, label, diff, plan)
+            meta = su._meta_common(gl, "agis" if agis else "weekly", title, label, diff, plan)
             meta["duration_sec"] = minutes * 60
             meta["info_line"] = f"{n} soru • {minutes} dk"
             su._gen_mc(plan, meta, label, focus)
@@ -2607,30 +2585,26 @@ def oyss():
         st.warning(f"ℹ️ OYSS resmî olarak 5-6-7. sınıflarda uygulanır. {gl} için bu bölüm OYSS formatında antrenmandır.")
     if step == 1:
         st.markdown("#### Hangi yazılı?")
-        c = st.columns(4)
-        for i, (t, y) in enumerate([(1, 1), (1, 2), (2, 1), (2, 2)]):
+        def _yz(ty):
+            t, y = ty
             a, b = oy.window_weeks(t, y)
-            with c[i]:
-                choice(f"oy_{t}{y}", "📄", f"{t}. Dönem {y}. Yazılı", f"Hafta {a}-{b}", w.get("term") == t and w.get("yaz") == y, go, kwargs=dict(term=t, yaz=y))
+            choice(f"oy_{t}{y}", "📄", f"{t}. Dönem {y}. Yazılı", f"Hafta {a}-{b}", w.get("term") == t and w.get("yaz") == y, go, kwargs=dict(term=t, yaz=y))
+        theme.cells([(1, 1), (1, 2), (2, 1), (2, 2)], 2, _yz)
         footer("modes")
     elif step == 2:
         st.markdown("#### Senaryo seç")
         st.caption("Senaryo, hangi kazanımdan kaç soru çıkacağını belirleyen dağılım şablonudur.")
-        c = st.columns(5)
-        for s in oy.SCENARIOS:
-            with c[s - 1]:
-                choice(f"sc_{s}", "🎲", f"Senaryo {s}", oy.profile_name(s), w.get("scen") == s, go, kwargs=dict(scen=s))
+        theme.cells(list(oy.SCENARIOS), 3, lambda s: choice(f"sc_{s}", "🎲", f"Senaryo {s}", oy.profile_name(s), w.get("scen") == s, go, kwargs=dict(scen=s)))
         footer("modes")
     elif step == 3:
-        st.markdown("#### Hangi ders(ler)?")
-        st.caption("Her ders ayrı bir yazılı kâğıdıdır. Birden fazla seçebilirsin.")
-        subs = cur.subjects_for(g)
-        cols = st.columns(4)
-        for i, s in enumerate(subs):
-            with cols[i % 4]:
-                choice(f"os_{i}", cur.SUBJECT_ICONS.get(s, ""), s, "seçildi ✓" if s in w.get("subs", []) else "dokun ve seç", s in w.get("subs", []), toggle_in, args=("subs", s))
-        footer("modes", nxt=lambda: go(), disabled=not w.get("subs"))
+        st.markdown("#### Hangi ders?")
+        st.caption("Dokunman yeterli, otomatik ilerler. Her ders ayrı bir yazılı kâğıdıdır.")
+        subject_cards("os", g, w)
+        footer("modes")
     else:
+        if not all(k in w for k in ("term", "yaz", "scen", "subs")):
+            w.clear(); w["step"] = 1
+            st.rerun()
         t, yz, sc = w["term"], w["yaz"], w["scen"]
         tables = []
         for s in w["subs"]:
@@ -2647,11 +2621,11 @@ def oyss():
         with c1:
             st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",))
         with c2:
-            go_btn = st.button("🚀 OYSS Sorularını Üret", key="gen_oyss")
+            go_btn = st.button("🚀 OYSS Sorularını Üret", key="gen_oyss", type="primary")
         if go_btn:
             from core import ai_engine as ai
-            with st.spinner("✨ Açık uçlu ve kısa cevaplı sorular ile puanlama anahtarları hazırlanıyor…"):
-                qs, errs = ai.generate_oyss(tables, gl, diff, avoid=store.recent_stems())
+            qs, errs = su.with_overlay(15 + 14 * len(tables), "OYSS soruları hazırlanıyor", "Açık uçlu ve kısa cevaplı sorular ile puanlama anahtarları yazılıyor…",
+                                       lambda: ai.generate_oyss(tables, gl, diff, avoid=store.recent_stems()))
             meta = {"grade": g, "grade_label": gl, "mode": "oyss", "kind": "open", "title": f"{gl} OYSS {t}. Dönem {yz}. Yazılı • Senaryo {sc}",
                     "scope": f"{t}. Dönem {yz}. Yazılı", "difficulty": diff, "scenario": sc, "term": t, "yazili": yz,
                     "subtitle": f"MEB Ortak Yazılı Sınav Sistemi • Senaryo {sc} • {oy.TOTAL_POINTS} puan • {oy.DURATION_MIN} dk",
@@ -2675,27 +2649,21 @@ def topic():
     first = "home" if leaf else "modes"
     if step == 1:
         if leaf:
-            gc = st.columns(5)
-            for i, x in enumerate(grades):
-                with gc[i]:
-                    choice(f"lg_{x}", "🎓", cur.GRADE_LABELS[x], "", x == g, lambda x=x: st.session_state.update(grade=x))
+            theme.cells(grades, 3, lambda x: choice(f"lg_{x}", "🎓", cur.GRADE_LABELS[x], "", x == g, lambda x=x: st.session_state.update(grade=x)))
         st.markdown("#### Hangi ders?")
         subs = cur.subjects_for(g)
-        cols = st.columns(4)
-        for i, s in enumerate(subs):
-            with cols[i % 4]:
-                choice(f"ts_{i}", cur.SUBJECT_ICONS.get(s, ""), s, "", w.get("subj") == s, go, kwargs=dict(subj=s, unit=None, tops=None))
+        theme.cells(subs, 4, lambda s: choice(f"ts_{s}", cur.SUBJECT_ICONS.get(s, ""), s, "", w.get("subj") == s, go, kwargs=dict(subj=s, unit=None, tops=None)))
         footer(first)
     elif step == 2:
         st.markdown(f"#### {w['subj']} • Hangi ünite?")
         us = cur.units(g, w["subj"])
-        cols = st.columns(3)
-        for i, (name, tps) in enumerate(us):
-            with cols[i % 3]:
-                choice(f"tu_{i}", "📚", name.split(" (MAT")[0][:60], f"{len(tps)} kazanım", w.get("unit") == name, go, kwargs=dict(unit=name, tops=None))
+        theme.cells(list(enumerate(us)), 3, lambda it: choice(f"tu_{it[0]}", "📚", it[1][0].split(" (MAT")[0][:60], f"{len(it[1][1])} kazanım", w.get("unit") == it[1][0], go, kwargs=dict(unit=it[1][0], tops=None)))
         footer(first)
     else:
-        tps = dict(cur.units(g, w["subj"]))[w["unit"]]
+        tps = dict(cur.units(g, w["subj"])).get(w.get("unit"))
+        if not tps:
+            w["step"] = 1
+            st.rerun()
         st.markdown(f"#### {w['unit'].split(' (MAT')[0]} • Kazanımlar ve soru sayısı")
         chosen = st.multiselect("Kazanım / konu (boş bırakırsan ünitenin tamamı)", tps, key=f"wz_tops_{w['subj']}_{w['unit']}")
         opts = [6, 8, 10, 12] if leaf else [10, 15, 20, 30]
@@ -2705,7 +2673,7 @@ def topic():
         with c1:
             st.button("← Geri", key="wz_back_3", on_click=back, args=(first,))
         with c2:
-            go_btn = st.button("🚀 Testi Üret", key="gen_tp")
+            go_btn = st.button("🚀 Testi Üret", key="gen_tp", type="primary")
         if go_btn:
             tt = chosen or tps
             plan = [{"subject": w["subj"], "n": n, "topics": f"{w['unit']}: " + ", ".join(tt), "short": ", ".join(tt)}]
@@ -2725,19 +2693,17 @@ def bank():
     step = w.get("step", 1)
     head(f"🧠 {gl} • Yeni Nesil Soru Bankası", "Beceri temelli, görsel ve veri yoğun karma sorular.", ["Ders", "Format"])
     if step == 1:
-        st.markdown("#### Hangi dersler?")
-        subs = cur.subjects_for(g)
-        cols = st.columns(4)
-        for i, s in enumerate(subs):
-            with cols[i % 4]:
-                choice(f"bs_{i}", cur.SUBJECT_ICONS.get(s, ""), s, "seçildi ✓" if s in w.get("subs", []) else "dokun ve seç", s in w.get("subs", []), toggle_in, args=("subs", s))
-        footer("modes", nxt=lambda: go(), disabled=not w.get("subs"))
+        st.markdown("#### Hangi ders?")
+        st.caption("Dokunman yeterli, otomatik ilerler.")
+        subject_cards("bs", g, w)
+        footer("modes")
     else:
+        if not w.get("subs"):
+            w["step"] = 1
+            st.rerun()
         st.markdown("#### Ders başına kaç soru?")
-        c = st.columns(3)
-        for i, (k, t, d, n) in enumerate([("a", "Mini", "ders başına 5 soru", 5), ("b", "Standart", "ders başına 10 soru", 10), ("c", "Yoğun", "ders başına 15 soru", 15)]):
-            with c[i]:
-                choice(f"bn_{k}", "🧩", t, d, w.get("per") == n, setv, kwargs=dict(per=n))
+        theme.cells([("a", "Mini", "ders başına 5 soru", 5), ("b", "Standart", "ders başına 10 soru", 10), ("c", "Yoğun", "ders başına 15 soru", 15)], 3,
+                    lambda x: choice(f"bn_{x[0]}", "🧩", x[1], x[2], w.get("per", 10) == x[3], setv, kwargs=dict(per=x[3])))
         per = w.get("per", 10)
         with st.expander("⚖️ Ders ağırlığı (isteğe bağlı)"):
             bw = su.weight_panel(g, f"bk_{g}")
@@ -2746,7 +2712,7 @@ def bank():
         with c1:
             st.button("← Geri", key="wz_back_b2", on_click=back, args=("modes",))
         with c2:
-            go_btn = st.button("🚀 Testi Üret", key="gen_bk")
+            go_btn = st.button("🚀 Testi Üret", key="gen_bk", type="primary")
         if go_btn:
             plan = []
             for s in w["subs"]:
@@ -2869,7 +2835,9 @@ def _set_open(idx):
 
 
 def _go(delta=0, to=None):
-    st.session_state.cur = to if to is not None else st.session_state.cur + delta
+    n = len(st.session_state.get("questions") or []) or 1
+    c = to if to is not None else st.session_state.get("cur", 0) + delta
+    st.session_state.cur = max(0, min(int(c), n - 1))
 
 
 def _clear(idx):
@@ -2878,12 +2846,13 @@ def _clear(idx):
 
 
 def _jump():
-    k = f"jump_{st.session_state.cur}"
-    st.session_state.cur = st.session_state[k]
+    _go(to=st.session_state.get("jump_sel", 0))
 
 
 @st.fragment(run_every=1)
 def timer_box(total, start):
+    if st.session_state.get("page") != "exam" or not start:
+        return
     rem = max(0, total - int(time.time() - start))
     h, mi, s = rem // 3600, (rem % 3600) // 60, rem % 60
     cls = "timer-box low" if rem < 300 else "timer-box"
@@ -2899,8 +2868,10 @@ def exam():
         st.session_state.page = "home"
         st.rerun()
     total = len(qs)
-    idx = min(st.session_state.cur, total - 1)
+    idx = max(0, min(int(st.session_state.get("cur", 0) or 0), total - 1))
+    st.session_state.cur = idx
     q = qs[idx]
+    st.session_state["jump_sel"] = idx
     h1, h2 = st.columns([2, 1])
     with h1:
         st.markdown(f"### 📋 {m['title']}")
@@ -2920,6 +2891,8 @@ def exam():
         st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül / Diyalog:</b><br>{pas}</div>", unsafe_allow_html=True)
     if isinstance(q.get("shape"), dict):
         draw_geometry_shape(q["shape"])
+    if not isinstance(q.get("options"), dict) and m["kind"] == "mc":
+        q["options"] = {"A": "-", "B": "-", "C": "-", "D": "-"}
     pts = f" ({q['points']} puan)" if q.get("points") else ""
     st.markdown(f"<p class='question-title'>Soru {idx + 1} [{sub}]{pts}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     if m["kind"] == "mc":
@@ -2939,15 +2912,15 @@ def exam():
         if idx > 0:
             st.button("⬅️ Önceki Soru", key="prev", on_click=_go, args=(-1,))
     with n2:
-        st.selectbox("Soruya git", list(range(total)), index=idx, format_func=lambda i: f"Soru {i + 1} • {qs[i].get('subject', '')}"
+        st.selectbox("Soruya git", list(range(total)), format_func=lambda i: f"Soru {i + 1} • {qs[i].get('subject', '')}"
                      + (" ✅" if (i in st.session_state.answers or str(st.session_state.open_answers.get(i, "")).strip()) else ""),
-                     key=f"jump_{idx}", on_change=_jump)
+                     key="jump_sel", on_change=_jump)
     with n3:
         if idx < total - 1:
-            st.button("➡ Sonraki Soru", key="next", on_click=_go, args=(1,))
+            st.button("➡ Sonraki Soru", key="next", on_click=_go, args=(1,), type="primary")
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("---")
-    st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish)
+    st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish, type="primary")
 
 
 # ------------------------------------------------------------------ OYSS öz-değerlendirme
@@ -3079,7 +3052,7 @@ from . import theme
 from .state import nav
 
 SPARK = "▁▂▃▄▅▆▇█"
-MODE_NAMES = {"weekly": "Haftalık", "monthly": "Aylık", "oyss": "OYSS", "topic": "Konu Tarama", "bank": "Soru Bankası", "leaf": "Yaprak Test", "archive": "Arşiv Testi"}
+MODE_NAMES = {"weekly": "Haftalık", "agis": "AGİS", "monthly": "AGİS", "oyss": "OYSS", "topic": "Konu Tarama", "bank": "Soru Bankası", "leaf": "Yaprak Test", "archive": "Arşiv Testi"}
 
 
 def spark(vals):
@@ -3271,7 +3244,7 @@ def archive():
     mc = [w for w in F if w.get("kind") == "mc"]
     a, b = st.columns(2)
     with a:
-        if mc and st.button("🧪 Benzer Sorulardan Kişisel Test Üret", key="ar_gen"):
+        if mc and st.button("🧪 Benzer Sorulardan Kişisel Test Üret", key="ar_gen", type="primary"):
             plan, gl = [], mc[0]["grade_label"]
             for sub in sorted({w["subject"] for w in mc}):
                 items = [w for w in mc if w["subject"] == sub]
@@ -3279,8 +3252,9 @@ def archive():
                 stems = " | ".join(w["q"]["question"][:80] for w in items[:4])
                 plan.append({"subject": sub, "n": min(10, max(5, len(items))), "topics": f"{tops} (bu kazanımlarda ÖĞRENCİNİN YANLIŞ YAPTIĞI konulara benzer ama farklı sorular; örnekler: {stems})", "short": tops})
             diff = cur.DIFFICULTIES[2]
-            with st.spinner("Kişisel test hazırlanıyor…"):
-                qs, errs = ai.generate_mc(plan, gl, diff, "Yanlış arşivi", avoid=store.recent_stems())
+            from .setup import with_overlay, est_seconds_mc
+            qs, errs = with_overlay(est_seconds_mc(plan), "Kişisel testin hazırlanıyor", "Yanlış yaptığın konulara benzer yeni sorular yazılıyor…",
+                                    lambda: ai.generate_mc(plan, gl, diff, "Yanlış arşivi", avoid=store.recent_stems()))
             n = sum(p["n"] for p in plan)
             meta = {"grade": mc[0]["grade"], "grade_label": gl, "mode": "archive", "title": f"{gl} Kişisel Hata Telafi Testi", "scope": "Yanlış arşivi",
                     "difficulty": diff, "kind": "mc", "subtitle": "Yanlışlarına özel hazırlanmış test", "info_line": f"{n} soru",
@@ -3323,7 +3297,7 @@ def _badges(H):
     out.append(("🚀", "Yükseliş", "Bir önceki sınava göre +10 puan", n > 1 and H[-1]["pct"] - H[-2]["pct"] >= 10))
     out.append(("🎯", "Konu Avcısı", "5 konu tarama / yaprak test", sum(h["mode"] in ("topic", "leaf") for h in H) >= 5))
     out.append(("📝", "OYSS Kahramanı", "OYSS'de %70+ başarı", any(h["mode"] == "oyss" and h["pct"] >= 70 for h in H)))
-    out.append(("🗓️", "Aylık Deneme Ustası", "3 aylık genel deneme", sum(h["mode"] == "monthly" for h in H) >= 3))
+    out.append(("🗓️", "AGİS Ustası", "3 AGİS (aylık gelişim sınavı)", sum(h["mode"] in ("agis", "monthly") for h in H) >= 3))
     sv = {}
     for h in H:
         for s, d in h["per"].items():
@@ -3339,10 +3313,7 @@ def badges():
     H = store.history()
     bd = _badges(H)
     st.markdown(f"**Kazanılan rozet: {sum(1 for b in bd if b[3])} / {len(bd)}**")
-    cols = st.columns(4)
-    for i, (ic, t, s, ok) in enumerate(bd):
-        with cols[i % 4]:
-            st.markdown(f"<div class='rozet {'' if ok else 'locked'}'><div class='ic'>{ic}</div><div class='t'>{t}</div><div class='s'>{s}</div></div><br>", unsafe_allow_html=True)
+    theme.cells(bd, 4, lambda b: st.markdown(f"<div class='rozet {'' if b[3] else 'locked'}'><div class='ic'>{b[0]}</div><div class='t'>{b[1]}</div><div class='s'>{b[2]}</div></div><br>", unsafe_allow_html=True))
     st.markdown("<div class='sec-title'>📜 Sertifikalar</div>", unsafe_allow_html=True)
     cert = [h for h in H if h["mode"] in ("topic", "leaf") and h["pct"] >= 85 and h["total"] >= 8]
     if not cert:
@@ -3393,6 +3364,18 @@ state.init()
 if "meb_loaded" not in st.session_state:
     st.session_state.meb_loaded = True
     st.session_state.meb_ts = meb_live.load_cache()
+    # MEB müfredatı otomatik: gerekirse arka planda çek, olmazsa yerleşik müfredat zaten hazır
+    try:
+        if not ai_engine.demo_mode() and meb_live.needs_refresh():
+            _ph = st.empty()
+            _ph.markdown(theme.overlay_html(40, "MEB müfredatı güncelleniyor", "Güncel kazanımlar mufredat.meb.gov.tr'den alınıyor…"), unsafe_allow_html=True)
+            try:
+                meb_live.refresh(deadline=40)
+            finally:
+                _ph.empty()
+            st.session_state.meb_ts = meb_live.load_cache()
+    except Exception:
+        pass
 
 GROQ_KEYS, GEMINI_KEYS = ai_engine.load_keys()
 if not GROQ_KEYS and not GEMINI_KEYS and not ai_engine.demo_mode():
@@ -3411,7 +3394,6 @@ with st.sidebar:
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", on_click=state.nav, args=("badges",))
     st.markdown("---")
-    setup.meb_panel()
     g = st.session_state.grade
     if g:
         st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
@@ -3425,4 +3407,14 @@ ROUTES = {
     "exam": exam.exam, "selfscore": exam.selfscore, "result": exam.result,
     "reports": reports.reports, "archive": extras.archive, "badges": extras.badges,
 }
-ROUTES.get(PAGE, setup.home)()
+try:
+    ROUTES.get(PAGE, setup.home)()
+except st.errors.StreamlitAPIException:
+    raise
+except Exception as e:  # sayfa çökmesin: nazik hata + ana sayfaya dön
+    if type(e).__name__ in ("RerunException", "StopException"):
+        raise
+    st.error(f"⚠️ Beklenmeyen bir sorun oluştu ({type(e).__name__}). Aşağıdaki düğmeyle devam edebilirsin.")
+    with st.expander("Teknik ayrıntı"):
+        st.code(f"{type(e).__name__}: {e}")
+    st.button("🏠 Ana sayfaya dön", key="err_home", type="primary", on_click=lambda: (state.reset_exam(), state.nav("home")))
