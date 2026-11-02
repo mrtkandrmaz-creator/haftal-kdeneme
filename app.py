@@ -2900,7 +2900,6 @@ def exam():
     idx = max(0, min(int(st.session_state.get("cur", 0) or 0), total - 1))
     st.session_state.cur = idx
     q = qs[idx]
-    st.session_state["jump_sel"] = idx
     h1, h2 = st.columns([2, 1])
     with h1:
         st.markdown(f"### 📋 {m['title']}")
@@ -2941,9 +2940,7 @@ def exam():
         if idx > 0:
             st.button("⬅️ Önceki Soru", key="prev", on_click=_go, args=(-1,))
     with n2:
-        st.selectbox("Soruya git", list(range(total)), format_func=lambda i: f"Soru {i + 1} • {qs[i].get('subject', '')}"
-                     + (" ✅" if (i in st.session_state.answers or str(st.session_state.open_answers.get(i, "")).strip()) else ""),
-                     key="jump_sel", on_change=_jump)
+        st.markdown(f"<div style='text-align:center;font-weight:900;color:#4c1d95;padding-top:.6rem'>Soru {idx + 1} / {total}</div>", unsafe_allow_html=True)
     with n3:
         if idx < total - 1:
             st.button("➡ Sonraki Soru", key="next", on_click=_go, args=(1,), type="primary")
