@@ -1999,6 +1999,18 @@ button[data-testid="stBaseButton-primary"] p, button[kind="primary"] p { color:#
 [class*="st-key-sel_mon_"] button { border-color:#f97316 !important; }
 [class*="st-key-back"] button, [class*="st-key-wz_back"] button { background:#fff !important; color:#334155 !important; border:2px solid #cbd5e1 !important; box-shadow:none !important; }
 
+/* ---- Seçim kartları (zorluk / soru sayısı): mor + turkuaz ---- */
+[class*="st-key-dif_"] button, [class*="st-key-cnt_"] button { min-height:84px; border-radius:20px !important; white-space:normal; transition:all .2s ease; }
+[class*="st-key-dif_off_"] button, [class*="st-key-cnt_off_"] button { background:linear-gradient(135deg,#f5f3ff 0%,#ecfeff 100%) !important; color:#4c1d95 !important;
+    border:2px solid #c4b5fd !important; box-shadow:0 8px 18px -14px rgba(109,40,217,.6) !important; }
+[class*="st-key-dif_off_"] button:hover, [class*="st-key-cnt_off_"] button:hover { border-color:#14b8a6 !important; transform:translateY(-3px); }
+[class*="st-key-dif_off_"] button p, [class*="st-key-cnt_off_"] button p { color:#4c1d95 !important; }
+[class*="st-key-dif_on_"] button, [class*="st-key-cnt_on_"] button { background:linear-gradient(135deg,#7c3aed 0%,#0d9488 100%) !important; color:#fff !important;
+    border:2px solid #5b21b6 !important; box-shadow:0 14px 26px -12px rgba(109,40,217,.7) !important; }
+[class*="st-key-dif_on_"] button p, [class*="st-key-cnt_on_"] button p { color:#fff !important; font-weight:900; }
+[class*="st-key-cnt_"] button p { font-size:1.5rem; font-weight:900; text-align:center; }
+.pick-lbl { font-weight:900; color:#4c1d95; margin:.8rem 0 .4rem; font-size:1.05rem; }
+
 /* ---- Radyo / seçenekler kart gibi ---- */
 div[role="radiogroup"] { gap:.55rem; }
 div[role="radiogroup"] > label { background:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:.75rem 1rem; width:100%; box-shadow:0 8px 18px -16px rgba(15,23,42,.55); transition:all .2s ease; }
@@ -2071,6 +2083,23 @@ def cells(items, per, fn):
         for c, it in zip(cols, items[r:r + per]):
             with c:
                 fn(it)
+
+
+def pick_cards(skey, options, default, per, prefix, label_fn=str, label=""):
+    """Kart şeklinde tek seçim. Seçim session_state[skey]'de tutulur, tek tıkla güncellenir."""
+    options = list(options)
+    if st.session_state.get(skey) not in options:
+        st.session_state[skey] = default
+    if label:
+        st.markdown(f"<div class='pick-lbl'>{label}</div>", unsafe_allow_html=True)
+    cur_v = st.session_state[skey]
+
+    def one(o):
+        i = options.index(o)
+        st.button(label_fn(o), key=f"{prefix}_{'on' if o == cur_v else 'off'}_{skey}_{i}", use_container_width=True,
+                  on_click=lambda o=o: st.session_state.update({skey: o}))
+    cells(options, per, one)
+    return st.session_state[skey]
 
 
 def kpi(label, value, delta=None, good_up=True):
@@ -2229,7 +2258,7 @@ def modes():
 
 # ------------------------------------------------------------------ ortak bileşenler
 def difficulty_select(key):
-    return st.selectbox("📊 Soru Zorluk Derecesi (Kademe Seçimi)", cur.DIFFICULTIES, index=2, key=key)
+    return theme.pick_cards(f"v_{key}", cur.DIFFICULTIES, cur.DIFFICULTIES[2], 3, "dif", label="📊 Soru Zorluk Derecesi (Kademe Seçimi)")
 
 
 WEIGHTS = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0]
@@ -2667,7 +2696,7 @@ def topic():
         st.markdown(f"#### {w['unit'].split(' (MAT')[0]} • Kazanımlar ve soru sayısı")
         chosen = st.multiselect("Kazanım / konu (boş bırakırsan ünitenin tamamı)", tps, key=f"wz_tops_{w['subj']}_{w['unit']}")
         opts = [6, 8, 10, 12] if leaf else [10, 15, 20, 30]
-        n = st.radio("Soru sayısı", opts, index=2 if leaf else 1, horizontal=True, key="wz_n_" + st.session_state.mode)
+        n = theme.pick_cards("v_wz_n_" + st.session_state.mode, opts, opts[2 if leaf else 1], 4, "cnt", label_fn=lambda x: f"{x}\nsoru", label="🔢 Kazanım soru sayısı")
         diff = su.difficulty_select("diff_tp")
         c1, c2 = st.columns(2)
         with c1:
