@@ -3093,7 +3093,7 @@ def back(first_page):
 
 def toggle_in(field, val):
     w = wz()
-    lst = list(w.get(field, []))
+    lst = list(w.get(field) or [])
     if val in lst:
         lst.remove(val)
     else:
@@ -3343,7 +3343,17 @@ def topic():
             w["step"] = 1
             st.rerun()
         st.markdown(f"#### {w['unit'].split(' (MAT')[0]} • Kazanımlar ve soru sayısı")
-        chosen = st.multiselect("Kazanım / konu (boş bırakırsan ünitenin tamamı)", tps, key=f"wz_tops_{w['subj']}_{w['unit']}")
+        st.caption("Kazanım kartlarına dokunarak seç (birden fazla seçebilirsin). Hiçbiri seçili değilse ünitenin tamamı gelir.")
+        sel = [t for t in (w.get("tops") or []) if t in tps]
+        if sel != (w.get("tops") or []):
+            w["tops"] = sel
+        items = [("all", "📚", "Ünitenin tamamı", f"{len(tps)} kazanım", not sel)] + [(str(i), "🎯", t[:110], "seçildi ✓" if t in sel else "dokun ve seç", t in sel) for i, t in enumerate(tps)]
+
+        def _tp(it):
+            i = it[0]
+            choice(f"tk_{i}", it[1], it[2], it[3], it[4], (lambda: setv(tops=[])) if i == "all" else toggle_in, args=() if i == "all" else ("tops", tps[int(i)]))
+        theme.cells(items, 2, _tp)
+        chosen = sel
         opts = [6, 8, 10, 12] if leaf else [10, 15, 20, 30]
         n = theme.pick_cards("v_wz_n_" + st.session_state.mode, opts, opts[2 if leaf else 1], 4, "cnt", label_fn=lambda x: f"{x}\nsoru", label="🔢 Kazanım soru sayısı")
         diff = su.difficulty_select("diff_tp")
