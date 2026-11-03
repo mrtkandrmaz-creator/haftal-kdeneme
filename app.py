@@ -290,7 +290,7 @@ MEB_MAT = {
             "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"]),
         ("3. Tema: Geometrik Şekiller", [
             "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru)",
-            "MAT.5.3.2. Çokgenlerde çevre uzunluğu ve köşegenleri yorumlayabilme",
+            "MAT.5.3.2. Temel geometrik inşa deneyimlerini yansıtabilme",
             "MAT.5.3.3. Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
             "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılara ilişkin çıkarım yapabilme",
             "MAT.5.3.5. Çokgenleri düzlemde ardışık kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme",
@@ -2140,6 +2140,12 @@ from concurrent.futures import ThreadPoolExecutor
 
 GROQ_MODEL = "openai/gpt-oss-120b"
 GEMINI_MODEL = "gemini-3.6-flash"
+# ORTAK HAVUZ: sıra önemlidir (en iyi model önce). Secrets'ta [api_keys] groq_models / gemini_models ile ezilebilir.
+GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct", "qwen/qwen3-32b",
+               "llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
+GEMINI_MODELS = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"]
+POOL_MAX_WAIT = 25      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
+POOL_DEADLINE = 60      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
@@ -2161,22 +2167,110 @@ def demo_mode():
     return os.environ.get("DENEMEMATIK_DEMO") == "1"
 
 
-# ---------------------------------------------------------------- API çağrıları (eski düzen)
-def call_groq_with_key(api_key, prompt_text, system=SYSTEM, temperature=0.85):
+# ---------------------------------------------------------------- ORTAK HAVUZ (kota dostu)
+import threading
+
+_POOL_LOCK = threading.Lock()
+_COOL = {}   # (sağlayıcı, anahtar_no, model) -> bu zamana kadar bekle
+_DEAD = {}   # ("model", sağlayıcı, model) / ("key", sağlayıcı, anahtar_no) -> bu zamana kadar kullanma
+
+
+def load_models():
+    import streamlit as st
+    g, m = list(GROQ_MODELS), list(GEMINI_MODELS)
+    try:
+        ak = st.secrets["api_keys"]
+        g = list(ak.get("groq_models", g)) or g
+        m = list(ak.get("gemini_models", m)) or m
+    except Exception:
+        pass
+    return g, m
+
+
+def _retry_after(msg):
+    """Hata metninden 'try again in 7m12.5s' / 'retry in 34s' / retryDelay: '34s' süresini saniye olarak çıkarır."""
+    m = re.search(r"(?:try again in|retry in|retrydelay['\"]?\s*:\s*['\"]?)\s*([0-9hmsµ\.]+)", msg, re.I)
+    if not m:
+        return None
+    tot = 0.0
+    for num, unit in re.findall(r"(\d+(?:\.\d+)?)(ms|h|m|s)", m.group(1)):
+        tot += float(num) * {"ms": .001, "s": 1, "m": 60, "h": 3600}[unit]
+    return tot or None
+
+
+def _classify(e):
+    """-> (tür, saniye): 'rate' (kota/hız), 'model' (model yok/kalktı), 'key' (anahtar geçersiz), 'other'"""
+    msg = f"{type(e).__name__}: {e}"
+    low = msg.lower()
+    code = getattr(e, "status_code", None) or getattr(e, "code", None)
+    try:
+        code = int(code)
+    except Exception:
+        code = None
+    if code in (401, 403) or "invalid api key" in low or "api key not valid" in low or "permission_denied" in low:
+        return "key", 6 * 3600
+    if code == 404 or "model_not_found" in low or "decommissioned" in low or "does not exist" in low or "not found" in low and "model" in low:
+        return "model", 6 * 3600
+    if code in (429, 413) or "rate limit" in low or "rate_limit" in low or "quota" in low or "resource_exhausted" in low or "too many requests" in low:
+        ra = _retry_after(msg)
+        if ra is None:
+            ra = 3600 if re.search(r"per day|perday|daily|tokens per day|requests per day", low) else 60
+        return "rate", min(max(ra, 2), 6 * 3600)
+    if code in (500, 502, 503, 504) or "overloaded" in low or "unavailable" in low or "timeout" in low:
+        return "other", 8
+    return "other", 5
+
+
+def _mark(provider, kidx, model, kind, secs):
+    now = time.time()
+    with _POOL_LOCK:
+        if kind == "key":
+            _DEAD[("key", provider, kidx)] = now + secs
+        elif kind == "model":
+            _DEAD[("model", provider, model)] = now + secs
+        else:
+            _COOL[(provider, kidx, model)] = now + secs
+
+
+def _wait_for(provider, kidx, model, now):
+    """Bu üçlü şimdi kullanılabilir mi? 0 = evet, aksi hâlde kalan bekleme (sn)."""
+    w = 0.0
+    for d, k in ((_DEAD, ("key", provider, kidx)), (_DEAD, ("model", provider, model)), (_COOL, (provider, kidx, model))):
+        w = max(w, d.get(k, 0) - now)
+    return max(w, 0.0)
+
+
+def pool_status():
+    now = time.time()
+    with _POOL_LOCK:
+        cool = sum(1 for v in _COOL.values() if v > now)
+        dead = sum(1 for v in _DEAD.values() if v > now)
+    return {"cooling": cool, "disabled": dead}
+
+
+# ---------------------------------------------------------------- API çağrıları
+def call_groq_with_key(api_key, prompt_text, system=SYSTEM, temperature=0.85, model=None):
     from groq import Groq
     client = Groq(api_key=api_key)
-    completion = client.chat.completions.create(
-        model=GROQ_MODEL,
-        messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt_text}],
-        temperature=temperature, max_tokens=8000, response_format={"type": "json_object"})
+    kw = dict(model=model or GROQ_MODEL,
+              messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt_text}],
+              temperature=temperature, max_tokens=8000)
+    try:
+        completion = client.chat.completions.create(response_format={"type": "json_object"}, **kw)
+    except Exception as e:  # bazı modeller json_object kabul etmez -> onsuz dene
+        low = str(e).lower()
+        if getattr(e, "status_code", None) == 400 and ("response_format" in low or "json" in low):
+            completion = client.chat.completions.create(**kw)
+        else:
+            raise
     return completion.choices[0].message.content
 
 
-def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None):
+def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None, model=None):
     from google import genai
     client = genai.Client(api_key=api_key)
-    response = client.models.generate_content(model=GEMINI_MODEL, contents=system + "\n\n" + prompt_text)
-    text = response.text
+    response = client.models.generate_content(model=model or GEMINI_MODEL, contents=system + "\n\n" + prompt_text)
+    text = response.text or ""
     if "```json" in text:
         text = text.split("```json")[1].split("```")[0].strip()
     elif "```" in text:
@@ -2185,23 +2279,68 @@ def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None):
 
 
 def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperature=None):
-    attempts = []
-    gk = [k for k in groq_keys if str(k).strip()]
-    if gk:
-        gk = gk[offset % len(gk):] + gk[:offset % len(gk)]  # paralel işlerde yükü dağıt
-    attempts = [(call_groq_with_key, k) for k in gk] + [(call_gemini_with_key, k) for k in gemini_keys if str(k).strip()]
-    if not attempts:
+    """Ortak havuz: önce Groq'un TÜM modelleri (her model için tüm anahtarlar), sonra Gemini'nin tüm modelleri.
+    Kota/hız sınırına takılan (anahtar, model) çifti süreli 'soğumaya' alınır ve atlanır; tüm iş parçacıkları
+    bu durumu paylaşır, böylece aynı kotaya tekrar tekrar çarpılmaz."""
+    gk = [(i, k) for i, k in enumerate(groq_keys) if str(k).strip()]
+    mk = [(i, k) for i, k in enumerate(gemini_keys) if str(k).strip()]
+    if not gk and not mk:
         return None, "Geçerli API anahtarı bulunamadı!"
+    gmodels, mmodels = load_models()
+    plan = []
+    for prov, keys, models, fn in (("groq", gk, gmodels, call_groq_with_key), ("gemini", mk, mmodels, call_gemini_with_key)):
+        if not keys:
+            continue
+        r = offset % len(keys)
+        rot = keys[r:] + keys[:r]  # paralel işlerde yükü dağıt
+        for model in models:
+            for kidx, key in rot:
+                plan.append((prov, kidx, key, model, fn))
+    t0 = time.time()
     last = None
-    for func, key in attempts:
-        try:
-            r = func(key, prompt_text, temperature=temperature) if temperature is not None else func(key, prompt_text)
-            if r:
-                return r, None
-        except Exception as e:  # sıradaki anahtara geç
-            last = e
-            time.sleep(.4)
-    return None, str(last)
+    tried = set()
+    while time.time() - t0 < POOL_DEADLINE:
+        now = time.time()
+        soonest = None
+        progressed = False
+        for prov, kidx, key, model, fn in plan:
+            if (prov, kidx, model) in tried:
+                continue
+            w = _wait_for(prov, kidx, model, now)
+            if w > 0:
+                soonest = w if soonest is None else min(soonest, w)
+                continue
+            tried.add((prov, kidx, model))
+            progressed = True
+            try:
+                kw = {"model": model}
+                if temperature is not None:
+                    kw["temperature"] = temperature
+                r = fn(key, prompt_text, **kw)
+                if r:
+                    return r, None
+                _mark(prov, kidx, model, "other", 5)  # boş yanıt
+            except Exception as e:
+                last = e
+                kind, secs = _classify(e)
+                _mark(prov, kidx, model, kind, secs)
+                time.sleep(.2)
+        # bir tur bitti: her şey denendiyse ya da soğumadaysa
+        remaining = [p for p in plan if (p[0], p[1], p[3]) not in tried]
+        if remaining and progressed:
+            continue
+        # denenmemiş ve şu an uygun olan kalmadı: soğuma bitenler için tekrar dene
+        tried.clear()
+        with_wait = [(_wait_for(p[0], p[1], p[3], time.time()), p) for p in plan]
+        avail = [w for w, _ in with_wait if w <= 0]
+        if avail and progressed:
+            continue
+        nxt = min((w for w, _ in with_wait), default=None)
+        if nxt is None or nxt > POOL_MAX_WAIT or time.time() - t0 + nxt > POOL_DEADLINE:
+            break
+        time.sleep(min(nxt, POOL_MAX_WAIT) + .3)
+    st_ = pool_status()
+    return None, f"Tüm modeller/anahtarlar şu an dolu (soğumada: {st_['cooling']}, devre dışı: {st_['disabled']}). Son hata: {str(last)[:160] if last else '-'}"
 
 
 def parse_json(raw):
@@ -4949,7 +5088,13 @@ with st.sidebar:
     if g:
         st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
     mode_txt = "DEMO (çevrimdışı)" if ai_engine.demo_mode() else f"Groq {len(GROQ_KEYS)} • Gemini {len(GEMINI_KEYS)}"
-    st.markdown(f"<div class='side-chip'>🤖 API havuzu<br><b>{mode_txt}</b><br><small>Önce Groq, sonra Gemini</small></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='side-chip'>🤖 API havuzu<br><b>{mode_txt}</b><br><small>Önce Groq (tüm modeller), sonra Gemini • ortak havuz</small></div>", unsafe_allow_html=True)
+    try:
+        _ps = ai_engine.pool_status()
+        if _ps["cooling"] or _ps["disabled"]:
+            st.caption(f"⏳ Kota beklemesinde: {_ps['cooling']} • devre dışı: {_ps['disabled']}")
+    except Exception:
+        pass
 
 # ------------------------------------------------------------------ yönlendirme
 PAGE = st.session_state.page
