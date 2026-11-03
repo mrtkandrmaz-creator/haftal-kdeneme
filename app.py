@@ -2677,51 +2677,60 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             results[idx] = qs
             if err:
                 errors.append(err)
-    questions, seen = [], set(s for v in avoid.values() for s in v)
+    seen = set(s for v in avoid.values() for s in v)
+    state = []
     for p in plan:
-        subj_qs, reserve = [], []  # reserve: geçerli ama "benzer/eski" diye elenenler (son çare dolgu)
+        state.append({"p": p, "qs": [], "reserve": [], "fails": 0})
 
-        def take(batch, p=p, subj_qs=subj_qs, reserve=reserve):
-            for q in batch:
-                if len(subj_qs) >= p["n"]:
-                    break
-                s = _stem(q)
-                if not s:
-                    continue
-                if s in seen:
-                    reserve.append(q)
-                elif accept_diverse(q, subj_qs, p["n"]):
-                    seen.add(s)
-                    subj_qs.append(q)
-                else:
-                    reserve.append(q)
-
-        for idx, (pp, c, k) in enumerate(tasks):
-            if pp is p:
-                take(results.get(idx, []))
-        fails = 0
-        for rnd in range(1, 7):  # eksik kalanı tamamla: her turda fazladan iste, elenenleri telafi et
-            short = p["n"] - len(subj_qs)
-            if short <= 0 or not (demo_mode() or gk or mk) or fails >= 2:
+    def take(st_, batch):
+        p, qs_, res_ = st_["p"], st_["qs"], st_["reserve"]
+        for q in batch:
+            if len(qs_) >= p["n"]:
                 break
-            ask = min(CHUNK, max(4, short * 2 + 2))
-            kept_txt = [str(q.get("question", ""))[:80] for q in subj_qs]
-            _, extra, err = work((900 + rnd, (p, ask, rnd)), kept_txt)
-            fails = fails + 1 if not extra else 0
-            take(extra)
-        if len(subj_qs) < p["n"] and reserve:  # son çare: elenenlerden (tam kopya olmayanları) tamamla
-            have = [_qwords(q) for q in subj_qs]
-            for q in reserve:
-                if len(subj_qs) >= p["n"]:
+            s = _stem(q)
+            if not s:
+                continue
+            if s in seen:
+                res_.append(q)
+            elif accept_diverse(q, qs_, p["n"]):
+                seen.add(s)
+                qs_.append(q)
+            else:
+                res_.append(q)
+
+    for st_ in state:
+        for idx, (pp, c, k) in enumerate(tasks):
+            if pp is st_["p"]:
+                take(st_, results.get(idx, []))
+    # eksikleri tüm dersler için PARALEL tamamla (en çok 3 tur, az fazla isteyerek)
+    if demo_mode() or gk or mk:
+        for rnd in range(1, 4):
+            todo = [s_ for s_ in state if s_["p"]["n"] - len(s_["qs"]) > 0 and s_["fails"] < 2]
+            if not todo:
+                break
+            jobs = [(900 + rnd * 10 + i, (s_["p"], min(CHUNK, (s_["p"]["n"] - len(s_["qs"])) + 3), rnd), [str(q.get("question", ""))[:80] for q in s_["qs"]])
+                    for i, s_ in enumerate(todo)]
+            with ThreadPoolExecutor(max_workers=min(4, len(jobs))) as ex:
+                outs = list(ex.map(lambda j: work((j[0], j[1]), j[2]), jobs))
+            for s_, (_, extra, err) in zip(todo, outs):
+                s_["fails"] = s_["fails"] + 1 if not extra else 0
+                take(s_, extra)
+    questions = []
+    for st_ in state:
+        p, qs_ = st_["p"], st_["qs"]
+        if len(qs_) < p["n"] and st_["reserve"]:  # son çare: elenenlerden (tam kopya olmayanlar) tamamla
+            have = [_qwords(q) for q in qs_]
+            for q in st_["reserve"]:
+                if len(qs_) >= p["n"]:
                     break
                 w = _qwords(q)
                 if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have):
                     continue
-                subj_qs.append(q)
+                qs_.append(q)
                 have.append(w)
-        if len(subj_qs) < p["n"]:
-            errors.append(f"{p['subject']}: {len(subj_qs)}/{p['n']} soru üretilebildi")
-        questions += subj_qs[:p["n"]]
+        if len(qs_) < p["n"]:
+            errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi")
+        questions += qs_[:p["n"]]
     for i, q in enumerate(questions, 1):
         q["id"] = i
     return questions, errors
