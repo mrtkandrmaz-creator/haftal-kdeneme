@@ -1334,84 +1334,6 @@ def _geo(ax, d):
     return _geo_basic(ax, d)
 
 
-# ---- koordinat ızgarası (nokta, çokgen, öteleme/yansıma, doğrusal fonksiyon)
-def _pt(v):
-    try:
-        return np.array([float(v[0]), float(v[1])])
-    except Exception:
-        return None
-
-
-def _grid_geo(ax, d):
-    pts = d.get("points") or {}
-    P = {str(k): _pt(v) for k, v in pts.items() if _pt(v) is not None}
-    img = d.get("image") or {}
-    names = list(P)
-    Q = {}
-    if names and img:
-        for k in names:
-            p = P[k]
-            if "translate" in img and _pt(img["translate"]) is not None:
-                Q[k] = p + _pt(img["translate"])
-            elif str(img.get("reflect", "")).lower() in ("x", "y"):
-                Q[k] = np.array([p[0], -p[1]]) if str(img["reflect"]).lower() == "x" else np.array([-p[0], p[1]])
-    line = d.get("line") or {}
-    allp = [p for p in list(P.values()) + list(Q.values())]
-    ext = max([4] + [abs(c) + 1 for p in allp for c in p] + ([abs(_f(line.get("m", 0))) * 3 if False else 0]))
-    ext = int(min(max(ext, 4), 9))
-    if line:
-        ext = max(ext, 5)
-    ax.set_aspect("equal")
-    ax.set_xlim(-ext - .6, ext + .9); ax.set_ylim(-ext - .6, ext + .9)
-    for t in range(-ext, ext + 1):
-        ax.plot([t, t], [-ext, ext], color="#e2e8f0", lw=.8, zorder=0)
-        ax.plot([-ext, ext], [t, t], color="#e2e8f0", lw=.8, zorder=0)
-        if t:
-            ax.text(t, -.45, str(t), fontsize=7.5, ha="center", va="center", color=SLATE)
-            ax.text(-.4, t, str(t), fontsize=7.5, ha="center", va="center", color=SLATE)
-    _arrow(ax, (-ext - .3, 0), (ext + .5, 0), lw=1.6); _arrow(ax, (0, -ext - .3), (0, ext + .5), lw=1.6)
-    ax.text(ext + .7, -.45, "x", fontsize=10, fontweight="bold", color=INK); ax.text(.3, ext + .6, "y", fontsize=10, fontweight="bold", color=INK)
-    ax.text(-.4, -.45, "0", fontsize=7.5, ha="center", va="center", color=SLATE)
-    if line:
-        m, b = _f(line.get("m", 1), 1), _f(line.get("b", 0), 0)
-        xs = np.array([-ext, ext], float); ys = m * xs + b
-        ys = np.clip(ys, -ext, ext); xs = np.where(m != 0, (ys - b) / (m if m else 1), xs) if m else xs
-        if m:
-            ax.plot(xs, ys, color=BLUE, lw=2.2, zorder=3)
-        else:
-            ax.plot([-ext, ext], [b, b], color=BLUE, lw=2.2, zorder=3)
-        if line.get("label"):
-            ax.text(ext - .3, min(ext, max(-ext, m * (ext - .8) + b)) + .5, str(line["label"]), fontsize=10, fontweight="bold", color=BLUE)
-    if len(P) >= 3 and d.get("polygon", True):
-        ax.add_patch(Polygon(np.array(list(P.values())), closed=True, fc="#e0f2fe", ec=INK, lw=2, joinstyle="round", zorder=2))
-    elif len(P) == 2 and d.get("polygon", True) and d.get("segment"):
-        a, b2 = list(P.values()); ax.plot(*zip(a, b2), color=INK, lw=2, zorder=2)
-    if Q and len(Q) >= 3:
-        ax.add_patch(Polygon(np.array(list(Q.values())), closed=True, fc="#fde68a66", ec=ORANGE, lw=2, ls="--", joinstyle="round", zorder=2))
-    c = np.mean(list(P.values()), axis=0) if P else np.zeros(2)
-    for k, p in P.items():
-        ax.plot(*p, "o", color=INK, ms=5, zorder=5)
-        dd = p - c; dd = dd / (np.linalg.norm(dd) or 1)
-        ax.text(*(p + dd * .55), k, fontsize=10.5, fontweight="bold", ha="center", va="center", zorder=6)
-    if d.get("show_image_points", True):
-        cq = np.mean(list(Q.values()), axis=0) if Q else c
-        for k, p in Q.items():
-            ax.plot(*p, "o", color=ORANGE, ms=5, zorder=5)
-            dd = p - cq; dd = dd / (np.linalg.norm(dd) or 1)
-            ax.text(*(p + dd * .6), k + "'", fontsize=10.5, fontweight="bold", color=ORANGE, ha="center", va="center", zorder=6)
-    for k in (d.get("mark") or []):  # doğru üzerinde işaretli noktalar
-        pass
-
-
-_geo_prev = _geo
-
-
-def _geo(ax, d):
-    if str(d.get("sub_type", "")).lower() in ("grid", "coordinate", "coords"):
-        return _grid_geo(ax, d)
-    return _geo_prev(ax, d)
-
-
 _DISPATCH = {
     "triangle": _triangle, "circle": _circle, "rectangle": _rectangle,
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
@@ -2313,8 +2235,6 @@ SHAPE_RULES = (
     '   {"type":"geo","sub_type":"triangle_set","kinds":["right","equilateral","isosceles","scalene"],"labels":["K","L","M","N"]}\n'
     '   {"type":"geo","sub_type":"quad","kind":"square|rectangle|parallelogram|rhombus|trapezoid|kite","labels":["A","B","C","D"],"ticks":true,"diagonals":false}  |  {"type":"geo","sub_type":"quad_set","kinds":["square","rectangle","parallelogram","rhombus"]}\n'
     '   {"type":"geo","sub_type":"circle_parts","center":"O","parts":["radius","diameter","chord","arc","tangent","sector"],"labels":["A","B","C","D","E"]} (yarıçap OA, çap BC, kiriş DE; seçilen parçalar çizilir)\n'
-    '   KOORDİNAT IZGARASI: {"type":"geo","sub_type":"grid","points":{"A":[1,1],"B":[4,1],"C":[2,3]},"image":{"translate":[-5,-3]} veya {"reflect":"x|y"},"line":{"m":2,"b":-1,"label":"d"},"segment":false}\n'
-    '      points=çokgen/nokta köşeleri (tam sayı, -8..8); image verirsen ÖTELENMİŞ/YANSIMIŞ görüntü A\'B\'C\' kesikli çizilir -> "hangi dönüşüm uygulandı?" / "A\' noktasının koordinatı?" gibi sorularda SADECE soru bunu GÖSTERMEK gerektiriyorsa kullan, aksi hâlde image\'ı koyma (cevabı verir); line=y=mx+b doğrusu (doğrusal fonksiyon, eğim, kesim noktası). Koordinatlar soru metniyle birebir aynı olsun.\n'
     '   ⚠ Soru metni çizilenle BİREBİR aynı olsun: köşe sayısı, harfler, açı ölçüsü, çizim türü çelişmesin; şekil türünün adını (ışın, altıgen…) görselde ipucu olarak yazma.\n'
     '- Çember: {"type":"circle","center":"O","radius":"5 cm","show_diameter":true}\n'
     '- Dikdörtgen: {"type":"rectangle","width":8,"height":5,"width_label":"8 cm","height_label":"5 cm"}\n'
@@ -2386,7 +2306,7 @@ _REQUIRE = {  # özel görsel -> metinde bulunması gereken anahtarlar
     "rectangle": r"dikdörtgen|kare|dörtgen|alan|çevre|bahçe|zemin|tarla|kenar|uzunluk|genişlik|oda",
     "cylinder": r"hacim|silindir|ml|litre|sıvı|ölç|kap|taşır",
     "forces": r"kuvvet|net|hareket|sürtünme|dengelen|itme|çekme",
-    "geo": r"koordinat|öteleme|yansıma|fonksiyon|nokta|ızgara|doğru|ışın|parça|dik|paralel|açı|çokgen|üçgen|dörtgen|beşgen|altıgen|köşegen|kenar|köşe|şekil|kesen|eş",
+    "geo": r"doğru|ışın|parça|dik|paralel|açı|çokgen|üçgen|dörtgen|beşgen|altıgen|köşegen|kenar|köşe|şekil|kesen|eş",
     "number_line": r"sayı|doğru|konum|yıl|zaman|kronolo|kesir|ondalık|negatif|tam sayı|eksi|işaret|mutlak|sıra",
 }
 for _k in _MOON_KINDS:
@@ -2481,11 +2401,9 @@ def _variety_plan(subject, n, topics):
     moon = bool(_MOON.search(topics or ""))
     if moon:  # Ay evreleri: bolca ve çeşitli Ay görseli, görselsiz soru yok
         vis = ["moon_phases", "moon_single", "moon_phases", "moon_single", "moon_orbit", "moon_phases", "moon_single", "solar_eclipse", "lunar_eclipse"]
-    geom = subject == "Matematik" and re.search(r"koordinat|öteleme|yansıma|dönüşüm|fonksiyon|geometri|açı|doğru|ışın|çokgen|üçgen|dörtgen|çember|dik |paralel|inşa|çevre|alan|prizma|silindir", topics or "", re.I)
+    geom = subject == "Matematik" and re.search(r"geometri|açı|doğru|ışın|çokgen|üçgen|dörtgen|çember|dik |paralel|inşa|çevre|alan|prizma|silindir", topics or "", re.I)
     if geom:  # geometri ünitesi: kesin ölçülü geo görselleri ağırlıklı
         geo_k = ["geo:line", "geo:ray", "geo:segment", "geo:lines_set", "geo:perpendicular", "geo:parallel", "geo:angle", "geo:angles_two_lines", "geo:polygon", "geo:polygon_set", "geo:triangle", "geo:triangle", "geo:triangle_set", "geo:quad", "geo:quad_set", "geo:circle_parts", "geo:circle_parts"]
-        if re.search(r"koordinat|öteleme|yansıma|dönüşüm|fonksiyon|ızgara", topics or "", re.I):
-            geo_k = ["geo:grid"] * 8 + geo_k[:4]
         vis = (geo_k * 2) + [v for v in vis if v != "geo"]
     else:
         vis = [v for v in vis if v != "geo"]
