@@ -675,6 +675,16 @@ def _moon(ax, cx, cy, r, phase, dark="#1f2937", lit="#f8fafc"):
 def _space(ax, d):
     sub = str(d.get("sub_type", "orbit")).lower()
     _title_txt = d.get("title", "")
+    if sub in ("moon_single", "single_moon", "moon_phase"):
+        ph = int(_f(d.get("phase", 0))) % 8
+        _moon(ax, 0, 0, 1.55, ph)
+        lab = str(d.get("label") or "").strip()
+        if lab:
+            ax.text(0, -2.15, lab, ha="center", fontsize=12, fontweight="bold", color=INK)
+        ax.set_xlim(-2.4, 2.4)
+        ax.set_ylim(-2.6, 2.0)
+        ax.set_facecolor("#e2e8f0")
+        return
     if sub in ("moon_phases", "moon_sequence", "phases"):
         phases = d.get("phases") or list(range(8))
         phases = [int(_f(p)) % 8 for p in phases][:8]
@@ -1757,6 +1767,7 @@ SHAPE_RULES = (
     '- Dereceli silindir: {"type":"cylinder","max":100,"level":62,"step":10,"unit":"mL"}\n'
     '- Kuvvetler: {"type":"forces","left":[20],"right":[35],"unit":"N","object_label":"Kutu"}\n'
     '- Ay evreleri (8 evre, harf etiketli, adı yazmaz): {"type":"science_space","sub_type":"moon_phases","phases":[0,1,2,3,4,5,6,7],"labels":["A","B","C","D","E","F","G","H"],"title":"..."}  (phases: 0 yeni ay,2 ilk dördün,4 dolunay,6 son dördün)\n'
+    '- TEK Ay evresi (büyük, adı yazmaz): {"type":"science_space","sub_type":"moon_single","phase":2,"label":"K"}  (phase: 0 yeni ay,1 büyüyen hilal,2 ilk dördün,3 büyüyen şişkin ay,4 dolunay,5 küçülen şişkin ay,6 son dördün,7 küçülen hilal)\n'
     '- Ay'"'"'ın Dünya çevresindeki 8 konumu (numaralı): {"type":"science_space","sub_type":"moon_orbit","title":"..."}\n'
     '- Güneş/Ay tutulması: {"type":"science_space","sub_type":"solar_eclipse|lunar_eclipse","title":"..."}; Yörünge: {"type":"science_space","sub_type":"orbit"}\n'
     "⛔ Şemanın başlığı, etiketleri ve değerleri sorunun CEVABINI veya İPUCUNU ASLA içermesin; yalnızca ham veriyi göstersin.\n"
@@ -1801,7 +1812,7 @@ FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu
 
 # ---------------------------------------------------------------- konu-görsel tutarlılığı (katı)
 _MOON = re.compile(r"evre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
-_MOON_KINDS = {"moon_phases", "moon_sequence", "phases", "moon_orbit", "moon_positions", "solar_eclipse", "lunar_eclipse", "eclipse", "orbit", "space_orbit"}
+_MOON_KINDS = {"moon_single", "moon_phases", "moon_sequence", "phases", "moon_orbit", "moon_positions", "solar_eclipse", "lunar_eclipse", "eclipse", "orbit", "space_orbit"}
 _TOPIC_RULES = [  # (ad, konu regex, izinli görsel türleri)
     ("ay", _MOON, _MOON_KINDS),
     ("kuvvet", re.compile(r"dinamometre|kuvvet|sürtünme|newton|ağırlık|dengelen", re.I), {"dynamometer", "forces", "line_chart", "bar_chart", "table"}),
@@ -1847,7 +1858,13 @@ def topic_visual_rules(topics_text):
     if _MOON.search(topics_text or ""):
         out += ("🌙 AY/GÜNEŞ/DÜNYA KONUSU KATI KURAL: Bu konudaki sorularda görsel YALNIZCA Ay evreleri (`moon_phases`), Ay'ın Dünya çevresindeki konumları (`moon_orbit`), "
                 "tutulma (`solar_eclipse`/`lunar_eclipse`) ya da yörünge (`orbit`) şeması olabilir. TABLO, ÇUBUK/ÇİZGİ/DAİRE GRAFİĞİ, DİNAMOMETRE, TERMOMETRE, KUVVET şeması KESİNLİKLE YASAK. "
-                "Soru metni görseldeki harf/numaralara atıf yapsın (örn. 'Şekildeki K evresi…'); görselde evre adı yazmaz.\n")
+                "Soru metni görseldeki harf/numaralara atıf yapsın (örn. 'Şekildeki K evresi…'); görselde evre adı yazmaz.\n"
+                "🌙 AY EVRELERİ SORU ÇEŞİTLERİ (hepsinde görsel ZORUNLU, bol ve çeşitli kullan): (1) `moon_single` ile tek evre göster, 'Şekildeki Ay evresi hangisidir?' (şıklar: Yeni Ay, Hilal, İlk Dördün, Şişkin Ay, Dolunay, Son Dördün); "
+                "(2) `moon_phases` ile 3-8 evreyi KARIŞIK sırada (örn. phases [4,0,6,2,7,3,5,1], labels A,B,C…) ver, 'Hangi harf İlk Dördün/Son Dördün/Dolunay/Yeni Ay/Şişkin Ay evresidir?'; "
+                "(3) evre sıralaması: 3-4 evreyi karışık ver, 'Ay'ın evre sırasına göre dizilişi hangisidir?'; (4) `moon_orbit` numaralı konumlarda 'Dolunay/Yeni Ay hangi konumda?'; "
+                "(5) tutulma şemasıyla Güneş-Dünya-Ay dizilişi; (6) 'Şekildeki evreden … gün sonra Ay hangi evrede olur?' (7 günde bir çeyrek ilerler). "
+                "Doğru şık görseldeki evrelerle KESİNLİKLE tutarlı olsun: ilk dördün = sağ yarısı aydınlık (phase 2), son dördün = sol yarısı aydınlık (phase 6), dolunay = phase 4, yeni ay = phase 0, şişkin ay = phase 3 veya 5. "
+                "Her soruda FARKLI evre/harf düzeni kullan; aynı görseli tekrar etme.\n")
     if re.search(r"dinamometre|kuvvet|sürtünme", topics_text or "", re.I) and not _MOON.search(topics_text or ""):
         out += "💪 KUVVET konusunda görsel dinamometre ya da kuvvet şeması olsun; sorudaki sayılar görseldekiyle birebir aynı olsun.\n"
     out += ("🎯 SORU–GÖRSEL BİREBİR UYUM: Görsel varsa soru ona doğrudan dayansın ve görseldeki her veri soruyla tutarlı olsun. Konuyla ilgisiz görsel (ör. Ay evresi sorusuna tablo, "
@@ -1879,7 +1896,7 @@ def _visual_candidates(subject, topics):
         if k in ("science_chart", "eclipse", "space_orbit", "moon_phases"):
             continue  # komutta kullanılmayan eş adlar
         if k == "science_space":
-            kinds += [("science_space", sub) for sub in ("moon_phases", "moon_orbit", "solar_eclipse", "lunar_eclipse", "orbit")]
+            kinds += [("science_space", sub) for sub in ("moon_phases", "moon_single", "moon_orbit", "solar_eclipse", "lunar_eclipse", "orbit")]
         else:
             kinds.append((k, None))
     ok = []
@@ -1900,10 +1917,13 @@ def _variety_plan(subject, n, topics):
     while len(sk) < n:
         sk += random.sample(_SKILLS, len(_SKILLS))
     vis = _visual_candidates(subject, topics) if subject in VISUAL_SUBJECTS else []
+    moon = bool(_MOON.search(topics or ""))
+    if moon:  # Ay evreleri: bolca ve çeşitli Ay görseli, görselsiz soru yok
+        vis = ["moon_phases", "moon_single", "moon_phases", "moon_single", "moon_orbit", "moon_phases", "moon_single", "solar_eclipse", "lunar_eclipse"]
     random.shuffle(vis)
     lines = []
     for i in range(n):
-        if vis and random.random() > 0.22:
+        if vis and (moon or random.random() > 0.22):
             v = vis[i % len(vis)]
             vtxt = f"görsel türü = {v}"
         else:
@@ -2511,7 +2531,8 @@ CSS = """
 
 /* ---- Hazır ekranı: geri sayım penceresiyle aynı tarz ---- */
 .ready-aura { position:fixed; inset:0; z-index:0; pointer-events:none; background:rgba(15,23,42,.78); backdrop-filter:blur(6px); }
-.st-key-ready_card { position:relative; z-index:1; background:#fff; border-radius:28px; padding:2rem 2.2rem 1.4rem; text-align:center; width:min(440px,92vw); margin:3vh auto 0;
+.block-container:has(.ready-aura) { padding-top:.6rem; padding-bottom:.6rem; min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
+.st-key-ready_card { position:relative; z-index:1; background:#fff; border-radius:28px; padding:1.5rem 1.6rem 1.1rem; text-align:center; width:min(440px,92vw); margin:0 auto;
     box-shadow:0 30px 70px -20px rgba(0,0,0,.6); }
 .st-key-ready_card [data-testid="stVerticalBlock"] { gap:.5rem; align-items:center; }
 .ready-t { font-size:1.3rem; font-weight:900; color:#0f172a; line-height:1.3; }
@@ -2520,7 +2541,7 @@ CSS = """
 .ready-chips span { background:#f5f3ff; border:1.5px solid #ddd6fe; color:#4c1d95; font-weight:800; font-size:.8rem; padding:.2rem .7rem; border-radius:999px; }
 .st-key-bigstart { display:flex; justify-content:center; padding:.4rem 0 .8rem; }
 .st-key-bigstart div.stButton, .st-key-bigstart [data-testid="stButton"] { width:auto !important; }
-.st-key-bigstart button { position:relative; width:170px !important; height:170px !important; min-height:170px !important; max-height:170px !important; padding:0 !important; border-radius:50% !important;
+.st-key-bigstart button { position:relative; width:clamp(120px,26vh,170px) !important; height:clamp(120px,26vh,170px) !important; min-height:clamp(120px,26vh,170px) !important; max-height:clamp(120px,26vh,170px) !important; padding:0 !important; border-radius:50% !important;
     background:#fff !important; border:10px solid #e2e8f0 !important; box-shadow:none !important; color:#0f172a !important; flex-direction:column; overflow:visible; transition:transform .2s ease; }
 .st-key-bigstart button:after { content:''; position:absolute; inset:-10px; border-radius:50%; border:10px solid transparent; border-top-color:#7c3aed; border-right-color:#14b8a6; animation:genspin 1.1s linear infinite; pointer-events:none; }
 .st-key-bigstart button:hover { transform:scale(1.06); }
@@ -2529,6 +2550,7 @@ CSS = """
 .st-key-bigstart button p:first-child { font-size:3.4rem; font-weight:900; color:#7c3aed !important; margin-left:.35rem; animation:genpulse 1.2s ease-in-out infinite; }
 .st-key-bigstart button p:nth-child(2) { font-size:1rem; font-weight:900; letter-spacing:3px; color:#0f766e !important; margin-top:.3rem; }
 .ready-bar { background:#e2e8f0; border-radius:999px; height:8px; overflow:hidden; width:100%; } .ready-bar i { display:block; height:8px; width:100%; background:linear-gradient(90deg,#7c3aed,#14b8a6); border-radius:999px; }
+@media (max-height:640px) { .ready-hint, .ready-bar { display:none; } .st-key-ready_card { padding:1rem 1.2rem .8rem; } }
 .ready-hint { color:#94a3b8; font-size:.8rem; font-weight:700; margin:.3rem 0 .2rem; }
 .st-key-ready_card [class*="st-key-ready_"] button { min-height:2.4rem; font-size:.88rem; padding:.4rem .8rem; }
 @keyframes genspin{to{transform:rotate(360deg)}} @keyframes genpulse{50%{transform:scale(1.08)}}
