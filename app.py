@@ -2291,7 +2291,7 @@ FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu
 
 
 # ---------------------------------------------------------------- konu-görsel tutarlılığı (katı)
-_MOON = re.compile(r"evre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
+_MOON = re.compile(r"\bevre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
 _MOON_KINDS = {"moon_single", "moon_phases", "moon_sequence", "phases", "moon_orbit", "moon_positions", "solar_eclipse", "lunar_eclipse", "eclipse", "orbit", "space_orbit"}
 _TOPIC_RULES = [  # (ad, konu regex, izinli görsel türleri)
     ("ay", _MOON, _MOON_KINDS),
@@ -2363,6 +2363,35 @@ def _subject_lock(subject, topics=""):
     return base + topic_visual_rules(topics)
 
 
+GEO_STYLE = (
+    "\n📐 GEOMETRİ SORU TARZI (KATI KURAL; yukarıdaki 'günlük hayat bağlamı / senaryo / metin' yönergesi geometri soruları için GEÇERSİZDİR):\n"
+    "- Sorular MEB/LGS'nin klasik geometri soru tarzında olsun: ÇOK KISA ve doğrudan ŞEKLE dayalı. Soru kökü en çok 1-2 cümle (en fazla ~30 kelime). 'passage' alanı HER ZAMAN null.\n"
+    "- Hikâye, senaryo, tarih, kültür bağlamı YOK. Osmanlı/padişah/savaş/kale/müze/arkeoloji gibi tarihî ya da kültürel konular ve "
+    "Güneş/Ay/Dünya/gezegen/uzay gibi gök cismi konuları KESİNLİKLE YASAK. Yalnızca nokta, harf, doğru, açı, kenar, çokgen, çember dili kullan.\n"
+    "- HER geometri sorusunda `shape` ZORUNLU (null YASAK). Sorudaki tüm veriler (harfler, ölçüler, x) çizimdekiyle BİREBİR aynı olsun. "
+    "Soru kökü 'Şekilde…', 'Yukarıdaki şekle göre…' diye şekle atıf yapsın; şekildeki verileri uzun metinle yeniden anlatma.\n"
+    "- Örnek kökler: 'Yukarıdaki şekilde d₁ ∥ d₂ olduğuna göre x kaç derecedir?' | 'Şekildeki ABC üçgeninde m(A) = 50°, m(B) = 60° ise m(C) kaç derecedir?' | "
+    "'Aşağıdakilerden hangisi ışındır?' | 'Şekildeki dikdörtgenin çevresi kaç cm'dir?' | 'Şekildeki O merkezli çemberde |OA| = 6 cm ise çap kaç cm'dir?' | "
+    "'Şekildeki çokgenlerden hangisi beşgendir?'\n"
+    "- Şıklar kısa olsun (sayı, derece, cm, harf ya da numara).\n")
+_GEO_PLAN_RX = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|\bdaire\b|dik |paralel|inşa|prizma|silindir|doğru parçası|köşegen|eşkenar|ikizkenar|\bkare\b", re.I)
+_GEO_STRICT = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|paralel|\bdik\b|\bkare\b|eşkenar|ikizkenar|köşegen|doğru parçası|inşa|prizma|koni|simetri|dönüşüm", re.I)
+_GEO_DRAW = {"geo", "triangle", "circle", "rectangle"}
+_GEO_BAN = re.compile(r"osmanl|padişah|sultan|fetih|savaş|tarih|imparator|devlet|medeniyet|kale\b|saray|cami|müze|arkeolo|kazı|gezegen|uzay|yörünge|güneş|\bay\b|ay['’]ın|dünya|\bevre|ilkçağ|masal|hikâye|hikaye", re.I)
+_GEO_SKILLS = ["şekilden bilinmeyen açıyı bulma", "şekildeki elemanları tanıma (kenar, köşe, yarıçap, çap, kiriş)", "şekli sınıflandırma / adlandırma",
+               "ölçüleri verilen şekilde çevre ya da alan hesaplama", "şekle bakarak I, II, III yargılarını değerlendirme", "eş kenar / eş açı çıkarımı yapma",
+               "paralel ve dik doğru ilişkisinden açı bulma", "şekiller arasında özellik karşılaştırma"]
+
+
+def _is_geo_q(q, shape, subject):
+    if subject != "Matematik":
+        return False
+    if isinstance(shape, dict) and shape.get("type") in _GEO_DRAW:
+        return True
+    tp = str(q.get("topic") or "")
+    return bool(_GEO_STRICT.search(tp)) and not re.search(r"grafik|veri|tablo|olasılık|ortalama", tp, re.I)
+
+
 _THEMES = ["spor müsabakası", "market alışverişi", "okul kantini", "doğa yürüyüşü", "müze gezisi", "çiftlik", "toplu taşıma", "robotik atölyesi", "resim sergisi",
            "sağlık kontrolü", "hayvanat bahçesi", "mutfak tarifi", "yaz tatili", "kütüphane", "geri dönüşüm", "şehir planı", "bilim insanı", "kültür festivali",
            "bahçe düzenleme", "su tasarrufu", "bisiklet turu", "kamp", "pazar yeri", "fotoğrafçılık", "inşaat", "uzay merkezi", "balıkçılık", "gıda üretimi",
@@ -2398,24 +2427,28 @@ def _variety_plan(subject, n, topics):
     while len(sk) < n:
         sk += random.sample(_SKILLS, len(_SKILLS))
     vis = _visual_candidates(subject, topics) if subject in VISUAL_SUBJECTS else []
-    moon = bool(_MOON.search(topics or ""))
+    moon = subject != "Matematik" and bool(_MOON.search(topics or ""))
     if moon:  # Ay evreleri: bolca ve çeşitli Ay görseli, görselsiz soru yok
         vis = ["moon_phases", "moon_single", "moon_phases", "moon_single", "moon_orbit", "moon_phases", "moon_single", "solar_eclipse", "lunar_eclipse"]
-    geom = subject == "Matematik" and re.search(r"geometri|açı|doğru|ışın|çokgen|üçgen|dörtgen|çember|dik |paralel|inşa|çevre|alan|prizma|silindir", topics or "", re.I)
+    geom = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     if geom:  # geometri ünitesi: kesin ölçülü geo görselleri ağırlıklı
         geo_k = ["geo:line", "geo:ray", "geo:segment", "geo:lines_set", "geo:perpendicular", "geo:parallel", "geo:angle", "geo:angles_two_lines", "geo:polygon", "geo:polygon_set", "geo:triangle", "geo:triangle", "geo:triangle_set", "geo:quad", "geo:quad_set", "geo:circle_parts", "geo:circle_parts"]
-        vis = (geo_k * 2) + [v for v in vis if v != "geo"]
+        vis = geo_k * 2  # yalnızca kesin ölçülü geometri çizimleri (Ay/tablo/grafik karışmaz)
+        sk = []
+        while len(sk) < n:
+            sk += random.sample(_GEO_SKILLS, len(_GEO_SKILLS))
     else:
         vis = [v for v in vis if v != "geo"]
     random.shuffle(vis)
     lines = []
     for i in range(n):
-        if vis and (moon or geom or random.random() > 0.22):
+        if vis and (moon or geom or random.random() > 0.22):  # geometride görsel HER soruda zorunlu
             v = vis[i % len(vis)]
             vtxt = (f"görsel = {{\"type\":\"geo\",\"sub_type\":\"{v[4:]}\"}} (geo şeması)" if v.startswith("geo:") else f"görsel türü = {v}")
         else:
             vtxt = "görselsiz (shape null) ya da metin/tablo ağırlıklı"
-        lines.append(f"  Soru {i + 1}: bağlam = {th[i]}; beceri = {sk[i]}; {vtxt}")
+        ctx = "YOK (hikâyesiz, kısa, doğrudan şekil sorusu)" if geom else th[i]
+        lines.append(f"  Soru {i + 1}: bağlam = {ctx}; beceri = {sk[i]}; {vtxt}")
     return ("\nSORU PLANI (HER SORU AYNI NUMARADAKİ SATIRA UYSUN; sorular ve görseller BİRBİRİNE BENZEMESİN, farklı sayılar/veriler/şekil ölçüleri kullan, "
             "aynı kazanımın farklı yönlerini ölç):\n" + "\n".join(lines) + "\nPlandaki görsel türü konuya uymuyorsa o soruyu görselsiz yaz; ama iki soruda aynı görsel/veri tekrar etmesin.\n")
 
@@ -2423,6 +2456,7 @@ def _variety_plan(subject, n, topics):
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
+    geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     return (
         f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
@@ -2430,10 +2464,11 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         f"KAPSAM: {scope_label}\nKONULAR/KAZANIMLAR: {topics}{fc}\n"
         f"ZORLUK KADEMESİ: '{difficulty}'. Bu kademeye kesin uy.\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
-        "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. "
+        + ("MEB geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz; yorum ve muhakeme gerektiren ama metni az olan sorular. " if geo_on else
+           "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. ") +
         "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
         f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{_variety_plan(subject, n, topics)}"
-        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
+        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
         '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":"..."}]}' % (start_id, subject))
@@ -2446,13 +2481,14 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
     for it in items:
         lines.append(f"- Kazanım: {it['kazanim']} → {it['n']} soru (zorluk etiketleri: {', '.join(it['labels'])})")
     av = ("\nTekrar etme:\n- " + "\n- ".join(avoid[-12:])) if avoid else ""
+    geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(" ".join(str(it.get("kazanim", "")) for it in items)))
     return (
         f"MEB Ortak Yazılı Sınav Sistemi (OYSS) için {grade_label} {subject} dersi yazılı sınavı soruları hazırla. "
         "Sorular AÇIK UÇLU ve KISA CEVAPLI olacak (çoktan seçmeli DEĞİL); yaklaşık 1/3'ü kısa cevaplı, kalanı açık uçlu. "
         "Her soru tek bir kazanımı ölçsün, beceri temelli ve bağlamlı olsun; öğrencinin yazarak cevaplayacağı şekilde kurgulansın.\n"
         f"DAĞILIM (kazanım başına tam soru sayısı):\n" + "\n".join(lines) + "\n"
         f"KALİTE KADEMESİ: '{difficulty}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy.\n"
-        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
+        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
         "Her soru için: beklenen 'answer', ve puanlama anahtarı 'rubric' (adımlar ve göreli puanlar; toplam 10 olsun).\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"kazanim":"..","type":"Açık uçlu|Kısa cevaplı","difficulty":"Kolay|Orta|Zor",'
         '"passage":"... veya null","question":"..","shape":null,"answer":"..","rubric":[{"step":"..","points":5},{"step":"..","points":5}]}]}')
@@ -2492,7 +2528,15 @@ def _norm_q(q, subject):
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
-    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else "",
+    pas = q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else ""
+    if _is_geo_q(q, shape, subject):  # geometri: şekil ZORUNLU, metin KISA, hikâye/tarih/gök cismi bağlamı YOK
+        if not shape:
+            return None
+        if len(str(q.get("question", "")).split()) > 45 or len(str(pas or "").split()) > 15:
+            return None
+        if _GEO_BAN.search(f"{q.get('question', '')} {pas} {' '.join(opts.values())}"):
+            return None
+    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": pas,
            "question": str(q["question"]).strip(), "shape": shape, "options": opts, "answer": ans, "explanation": str(q.get("explanation") or "")}
     return None if leaks_answer(out) else out
 
