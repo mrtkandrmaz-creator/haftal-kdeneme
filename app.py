@@ -1505,7 +1505,6 @@ def _styles(fs=8.3):
 
 def _img(png, max_w, max_h):
     iw, ih = ImageReader(io.BytesIO(png)).getSize()
-    k = min(max_w / iw, max_h / ih, 1.6 * 72 / 72)
     k = min(max_w / iw, max_h / ih)
     return Image(io.BytesIO(png), width=iw * k, height=ih * k)
 
@@ -2598,7 +2597,7 @@ def accept_diverse(q, kept, n):
     w = _qwords(q)
     for k in kept:
         wk = _qwords(k)
-        if w and wk and len(w & wk) / len(w | wk) > 0.5:
+        if w and wk and len(w & wk) / len(w | wk) > 0.6:
             return False
     sig, kind = _vsig(q), _vkind(q)
     if sig:
@@ -2647,19 +2646,31 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     errors, results = [], {}
     done = [0]
 
-    def work(idx_task):
+    def work(idx_task, extra_avoid=None):
         idx, (p, c, k) = idx_task
         subj = p["subject"]
-        if demo_mode():
-            return idx, _demo_mc(subj, c, p["topics"]), None
-        prompt = mc_prompt(grade_label, subj, c, p["topics"], difficulty, scope_label, avoid.get(subj, []), focus if k == 0 else "")
-        raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
-        data = parse_json(raw)
-        qs = [x for x in (_norm_q(q, subj) for q in (data or {}).get("questions", [])) if x]
-        if on_progress:
-            done[0] += 1
-            on_progress(done[0], len(tasks), subj)
-        return idx, qs, (err if not qs else None)
+        try:
+            if demo_mode():
+                return idx, _demo_mc(subj, c, p["topics"]), None
+            av = list(avoid.get(subj, [])) + list(extra_avoid or [])
+            prompt = mc_prompt(grade_label, subj, c, p["topics"], difficulty, scope_label, av, focus if k == 0 else "")
+            raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
+            data = parse_json(raw)
+            items = (data or {}).get("questions", []) if isinstance(data, dict) else []
+            qs = []
+            for q in items:
+                try:
+                    x = _norm_q(q, subj)
+                except Exception:  # tek bozuk soru tüm üretimi bozmasın
+                    x = None
+                if x:
+                    qs.append(x)
+            if on_progress:
+                done[0] += 1
+                on_progress(done[0], len(tasks), subj)
+            return idx, qs, (err if not qs else None)
+        except Exception as e:
+            return idx, [], f"{type(e).__name__}: {str(e)[:80]}"
 
     with ThreadPoolExecutor(max_workers=min(4, max(1, len(tasks)))) as ex:
         for idx, qs, err in ex.map(work, list(enumerate(tasks))):
@@ -2668,24 +2679,46 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 errors.append(err)
     questions, seen = [], set(s for v in avoid.values() for s in v)
     for p in plan:
-        subj_qs = []
-        for idx, (pp, c, k) in enumerate(tasks):
-            if pp is p:
-                for q in results.get(idx, []):
-                    s = _stem(q)
-                    if s and s not in seen and accept_diverse(q, subj_qs, p["n"]):
-                        seen.add(s)
-                        subj_qs.append(q)
-        for rnd in (1, 2):  # eksik kalanı (benzer/uyumsuz elenenler) en çok iki kez tamamla
-            short = p["n"] - len(subj_qs)
-            if short <= 0 or not (demo_mode() or gk or mk):
-                break
-            _, extra, err = work((900 + rnd, (p, min(short + 3, CHUNK), rnd)))
-            for q in extra:
+        subj_qs, reserve = [], []  # reserve: geçerli ama "benzer/eski" diye elenenler (son çare dolgu)
+
+        def take(batch, p=p, subj_qs=subj_qs, reserve=reserve):
+            for q in batch:
+                if len(subj_qs) >= p["n"]:
+                    break
                 s = _stem(q)
-                if s not in seen and len(subj_qs) < p["n"] and accept_diverse(q, subj_qs, p["n"]):
+                if not s:
+                    continue
+                if s in seen:
+                    reserve.append(q)
+                elif accept_diverse(q, subj_qs, p["n"]):
                     seen.add(s)
                     subj_qs.append(q)
+                else:
+                    reserve.append(q)
+
+        for idx, (pp, c, k) in enumerate(tasks):
+            if pp is p:
+                take(results.get(idx, []))
+        fails = 0
+        for rnd in range(1, 7):  # eksik kalanı tamamla: her turda fazladan iste, elenenleri telafi et
+            short = p["n"] - len(subj_qs)
+            if short <= 0 or not (demo_mode() or gk or mk) or fails >= 2:
+                break
+            ask = min(CHUNK, max(4, short * 2 + 2))
+            kept_txt = [str(q.get("question", ""))[:80] for q in subj_qs]
+            _, extra, err = work((900 + rnd, (p, ask, rnd)), kept_txt)
+            fails = fails + 1 if not extra else 0
+            take(extra)
+        if len(subj_qs) < p["n"] and reserve:  # son çare: elenenlerden (tam kopya olmayanları) tamamla
+            have = [_qwords(q) for q in subj_qs]
+            for q in reserve:
+                if len(subj_qs) >= p["n"]:
+                    break
+                w = _qwords(q)
+                if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have):
+                    continue
+                subj_qs.append(q)
+                have.append(w)
         if len(subj_qs) < p["n"]:
             errors.append(f"{p['subject']}: {len(subj_qs)}/{p['n']} soru üretilebildi")
         questions += subj_qs[:p["n"]]
@@ -2719,11 +2752,20 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
                                "passage": "", "question": f"[{subj}] Demo açık uçlu soru {uuid.uuid4().hex[:4]}", "shape": None,
                                "answer": "Demo cevap", "rubric": [{"step": "Adım 1", "points": 5}, {"step": "Adım 2", "points": 5}]})
         else:
-            raw, err = multi_pool_generate(oyss_prompt(grade_label, subj, items, difficulty, avoid.get(subj, [])), gk, mk, offset=si)
-            data = parse_json(raw)
-            qs = [q for q in (data or {}).get("questions", []) if isinstance(q, dict) and q.get("question")]
+            qs, err = [], None
+            for attempt in range(3):  # eksik/fazla dönerse yeniden iste; en çok 3 deneme
+                raw, err = multi_pool_generate(oyss_prompt(grade_label, subj, items, difficulty, avoid.get(subj, [])), gk, mk, offset=si + attempt)
+                data = parse_json(raw)
+                got = [q for q in ((data or {}).get("questions", []) if isinstance(data, dict) else []) if isinstance(q, dict) and q.get("question")]
+                if len(got) > len(qs):
+                    qs = got
+                if len(qs) >= total:
+                    break
+            qs = qs[:total]
             if not qs:
                 errors.append(f"{subj}: {err or 'geçersiz yanıt'}")
+            elif len(qs) < total:
+                errors.append(f"{subj}: {len(qs)}/{total} soru üretilebildi")
         pts = oy.point_split(len(qs))
         for q, p in zip(qs, pts):
             q["subject"] = subj
@@ -4862,16 +4904,13 @@ state.init()
 if "meb_loaded" not in st.session_state:
     st.session_state.meb_loaded = True
     st.session_state.meb_ts = meb_live.load_cache()
-    # MEB müfredatı otomatik: gerekirse arka planda çek, olmazsa yerleşik müfredat zaten hazır
+    # MEB müfredatı: arka planda (arayüzü bekletmeden) güncellenir; yerleşik müfredat anında hazırdır
     try:
-        if not ai_engine.demo_mode() and meb_live.needs_refresh():
-            _ph = st.empty()
-            _ph.markdown(theme.overlay_html(40, "MEB müfredatı güncelleniyor", "Güncel kazanımlar mufredat.meb.gov.tr'den alınıyor…"), unsafe_allow_html=True)
-            try:
-                meb_live.refresh(deadline=40)
-            finally:
-                _ph.empty()
-            st.session_state.meb_ts = meb_live.load_cache()
+        import threading
+        if not ai_engine.demo_mode() and meb_live.needs_refresh() and not getattr(sys.modules["core"], "_meb_thread", None):
+            _t = threading.Thread(target=lambda: meb_live.refresh(deadline=60), daemon=True)
+            sys.modules["core"]._meb_thread = _t
+            _t.start()
     except Exception:
         pass
 
@@ -4894,6 +4933,13 @@ with st.sidebar:
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
     st.markdown("---")
+    if st.button("🔄 MEB müfredatını güncelle", key="meb_refresh", use_container_width=True):
+        def _do():
+            n, errs = meb_live.refresh(deadline=60)
+            meb_live.load_cache()
+            return n, errs
+        _n, _errs = setup.with_overlay(40, "MEB müfredatı güncelleniyor", "Kazanımlar mufredat.meb.gov.tr'den alınıyor…", _do)
+        st.success(f"{_n} program güncellendi." if _n else "Güncelleme yapılamadı; yerleşik müfredat kullanılıyor.")
     g = st.session_state.grade
     if g:
         st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
