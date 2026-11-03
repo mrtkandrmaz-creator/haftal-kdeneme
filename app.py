@@ -1865,10 +1865,56 @@ def _subject_lock(subject, topics=""):
     return base + topic_visual_rules(topics)
 
 
+_THEMES = ["spor müsabakası", "market alışverişi", "okul kantini", "doğa yürüyüşü", "müze gezisi", "çiftlik", "toplu taşıma", "robotik atölyesi", "resim sergisi",
+           "sağlık kontrolü", "hayvanat bahçesi", "mutfak tarifi", "yaz tatili", "kütüphane", "geri dönüşüm", "şehir planı", "bilim insanı", "kültür festivali",
+           "bahçe düzenleme", "su tasarrufu", "bisiklet turu", "kamp", "pazar yeri", "fotoğrafçılık", "inşaat", "uzay merkezi", "balıkçılık", "gıda üretimi",
+           "okul bahçesi", "tarihî yapı", "kitap fuarı", "hava durumu", "enerji tasarrufu", "kodlama kulübü", "pastane", "arkeoloji kazısı", "akvaryum", "ormancılık"]
+_SKILLS = ["kavramı günlük hayattaki bir olaya uygulama", "verilen veriden çıkarım yapma", "iki durumu karşılaştırma", "neden-sonuç ilişkisi kurma", "verilen çözümdeki hatayı bulma",
+           "eksik bilgiyi tamamlama", "modelden/şekilden yorum yapma", "çok adımlı muhakeme", "sınıflandırma/eşleştirme", "tahmin ve doğrulama", "örnek/karşı örnek bulma", "sonucu yorumlayıp karar verme"]
+
+
+def _visual_candidates(subject, topics):
+    kinds = []
+    for k in sorted(ALLOWED_SHAPES.get(subject, set())):
+        if k in ("science_chart", "eclipse", "space_orbit", "moon_phases"):
+            continue  # komutta kullanılmayan eş adlar
+        if k == "science_space":
+            kinds += [("science_space", sub) for sub in ("moon_phases", "moon_orbit", "solar_eclipse", "lunar_eclipse", "orbit")]
+        else:
+            kinds.append((k, None))
+    ok = []
+    for k, sub in kinds:
+        sh = {"type": k}
+        if sub:
+            sh["sub_type"] = sub
+        shp, _bad = coherent_shape(sh, topics or "")
+        if shp:
+            ok.append(sub or k)
+    return sorted(set(ok))
+
+
+def _variety_plan(subject, n, topics):
+    """Her soruya FARKLI bağlam, beceri ve görsel türü atar -> sorular birbirine benzemesin."""
+    th = random.sample(_THEMES, min(n, len(_THEMES))) + [random.choice(_THEMES) for _ in range(max(0, n - len(_THEMES)))]
+    sk = []
+    while len(sk) < n:
+        sk += random.sample(_SKILLS, len(_SKILLS))
+    vis = _visual_candidates(subject, topics) if subject in VISUAL_SUBJECTS else []
+    random.shuffle(vis)
+    lines = []
+    for i in range(n):
+        if vis and random.random() > 0.22:
+            v = vis[i % len(vis)]
+            vtxt = f"görsel türü = {v}"
+        else:
+            vtxt = "görselsiz (shape null) ya da metin/tablo ağırlıklı"
+        lines.append(f"  Soru {i + 1}: bağlam = {th[i]}; beceri = {sk[i]}; {vtxt}")
+    return ("\nSORU PLANI (HER SORU AYNI NUMARADAKİ SATIRA UYSUN; sorular ve görseller BİRBİRİNE BENZEMESİN, farklı sayılar/veriler/şekil ölçüleri kullan, "
+            "aynı kazanımın farklı yönlerini ölç):\n" + "\n".join(lines) + "\nPlandaki görsel türü konuya uymuyorsa o soruyu görselsiz yaz; ama iki soruda aynı görsel/veri tekrar etmesin.\n")
+
+
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1):
     nonce = uuid.uuid4().hex[:8]
-    seed_themes = random.sample(["spor", "market", "okul", "doğa", "müze", "tarım", "ulaşım", "teknoloji", "sanat", "sağlık",
-                                 "hayvanlar", "mutfak", "tatil", "kütüphane", "çevre", "şehir yaşamı", "bilim insanı", "festival"], 4)
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     return (
@@ -1879,7 +1925,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
         "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. "
         "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
-        f"Çeşitlilik tohumu: {nonce}; önerilen bağlam temaları: {', '.join(seed_themes)}. Her soru birbirinden bağımsız ve farklı olsun."
+        f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{_variety_plan(subject, n, topics)}"
         f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
@@ -1976,6 +2022,48 @@ def _stem(q):
     return re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
 
 
+def _qwords(q):
+    t = str(q.get("question", "")) + " " + str(q.get("passage", "")) + " " + " ".join(str(v) for v in (q.get("options") or {}).values())
+    return {w for w in re.sub(r"[^\w\s]", " ", t.lower()).split() if len(w) > 2}
+
+
+def _vsig(q):
+    sh = q.get("shape")
+    if not isinstance(sh, dict):
+        return None
+    d = {k: v for k, v in sh.items() if k not in ("title",)}
+    return json.dumps(d, sort_keys=True, ensure_ascii=False)
+
+
+def _vkind(q):
+    sh = q.get("shape")
+    return _kind(sh) if isinstance(sh, dict) else None
+
+
+def accept_diverse(q, kept, n):
+    """Aynı sette benzer soru/aynı görsel/aynı görsel türü yığılması varsa reddeder."""
+    if demo_mode():
+        return True
+    w = _qwords(q)
+    for k in kept:
+        wk = _qwords(k)
+        if w and wk and len(w & wk) / len(w | wk) > 0.5:
+            return False
+    sig, kind = _vsig(q), _vkind(q)
+    if sig:
+        if any(_vsig(k) == sig for k in kept):
+            return False
+        cap = max(2, -(-n * 2 // 5))  # tek tür en çok ~%40
+        if sum(1 for k in kept if _vkind(k) == kind) >= cap:
+            return False
+        # aynı türde çok benzer sayısal veri (yalnızca değerler farklı küçük oynamalar) için: sayı kümesi aynıysa ele
+        nums = tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", sig)))
+        for k in kept:
+            if _vkind(k) == kind and tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", _vsig(k) or ""))) == nums:
+                return False
+    return True
+
+
 # ---------------------------------------------------------------- demo (çevrimdışı test)
 def _demo_mc(subject, n, topics):
     shapes = [None, {"type": "bar_chart", "labels": ["A", "B", "C"], "values": [random.randint(5, 30) for _ in range(3)], "title": "Veri"},
@@ -2034,15 +2122,17 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             if pp is p:
                 for q in results.get(idx, []):
                     s = _stem(q)
-                    if s and s not in seen:
+                    if s and s not in seen and accept_diverse(q, subj_qs, p["n"]):
                         seen.add(s)
                         subj_qs.append(q)
-        short = p["n"] - len(subj_qs)
-        if short > 0 and (demo_mode() or gk or mk):  # eksik kalanı bir kez tamamla
-            _, extra, err = work((900, (p, min(short + 2, CHUNK), 1)))
+        for rnd in (1, 2):  # eksik kalanı (benzer/uyumsuz elenenler) en çok iki kez tamamla
+            short = p["n"] - len(subj_qs)
+            if short <= 0 or not (demo_mode() or gk or mk):
+                break
+            _, extra, err = work((900 + rnd, (p, min(short + 3, CHUNK), rnd)))
             for q in extra:
                 s = _stem(q)
-                if s not in seen and len(subj_qs) < p["n"]:
+                if s not in seen and len(subj_qs) < p["n"] and accept_diverse(q, subj_qs, p["n"]):
                     seen.add(s)
                     subj_qs.append(q)
         if len(subj_qs) < p["n"]:
@@ -3508,15 +3598,15 @@ def exam():
                      on_change=_set_open, args=(idx,))
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("<div class='nav-btn-container'>", unsafe_allow_html=True)
-    n1, n2, n3 = st.columns([1, 2, 1])
-    with n1:
-        if idx > 0:
-            st.button("⬅️ Önceki Soru", key="prev", on_click=_go, args=(-1,))
+    n1, n2, n3 = st.columns([1, 1, 1])
+    with n1:  # Sonraki üstte (telefonda alt alta dizilince de yukarıda kalır)
+        if idx < total - 1:
+            st.button("➡ Sonraki Soru", key="next", on_click=_go, args=(1,), type="primary", use_container_width=True)
     with n2:
         st.markdown(f"<div style='text-align:center;font-weight:900;color:#4c1d95;padding-top:.6rem'>Soru {idx + 1} / {total}</div>", unsafe_allow_html=True)
     with n3:
-        if idx < total - 1:
-            st.button("➡ Sonraki Soru", key="next", on_click=_go, args=(1,), type="primary")
+        if idx > 0:
+            st.button("⬅️ Önceki Soru", key="prev", on_click=_go, args=(-1,), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("---")
     st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish, type="primary")
