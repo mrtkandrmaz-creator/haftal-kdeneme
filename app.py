@@ -1799,14 +1799,70 @@ FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu
 }
 
 
-def _subject_lock(subject):
+# ---------------------------------------------------------------- konu-görsel tutarlılığı (katı)
+_MOON = re.compile(r"evre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
+_MOON_KINDS = {"moon_phases", "moon_sequence", "phases", "moon_orbit", "moon_positions", "solar_eclipse", "lunar_eclipse", "eclipse", "orbit", "space_orbit"}
+_TOPIC_RULES = [  # (ad, konu regex, izinli görsel türleri)
+    ("ay", _MOON, _MOON_KINDS),
+    ("kuvvet", re.compile(r"dinamometre|kuvvet|sürtünme|newton|ağırlık|dengelen", re.I), {"dynamometer", "forces", "line_chart", "bar_chart", "table"}),
+    ("ısı", re.compile(r"sıcaklık|termometre|ısı|erime|donma|kaynama|buharlaş", re.I), {"thermometer", "line_chart", "bar_chart", "table", "cylinder"}),
+]
+_REQUIRE = {  # özel görsel -> metinde bulunması gereken anahtarlar
+    "dynamometer": r"kuvvet|dinamometre|ağırlık|newton|yay|kütle",
+    "thermometer": r"sıcaklık|termometre|ısı|°|derece",
+    "triangle": r"üçgen|açı|kenar|çevre|alan|dik|yükseklik",
+    "circle": r"çember|daire|yarıçap|çap|merkez|yay|alan|çevre",
+    "rectangle": r"dikdörtgen|kare|dörtgen|alan|çevre|bahçe|zemin|tarla|kenar|uzunluk|genişlik|oda",
+    "cylinder": r"hacim|silindir|ml|litre|sıvı|ölç|kap|taşır",
+    "forces": r"kuvvet|net|hareket|sürtünme|dengelen|itme|çekme",
+    "number_line": r"sayı|doğru|konum|yıl|zaman|kronolo|kesir|ondalık|negatif|tam sayı|eksi|işaret|mutlak|sıra",
+}
+for _k in _MOON_KINDS:
+    _REQUIRE[_k] = r"\bay\b|ay['’]?ın|evre|tutulma|uzay|gezegen|yörünge|dünya|güneş|gökcis|uydu|hilal|dolunay"
+_FIG = re.compile(r"\b(şekil|şekle|şekilde|şekildeki|grafik|grafiğe|grafikte|grafikteki|tablo|tabloya|tabloda|tablodaki|görsel|görselde|resim|resimde|çizim|çizimde|diyagram)\w*", re.I)
+
+
+def _kind(shape):
+    t = shape.get("type")
+    return str(shape.get("sub_type") or t).lower() if t == "science_space" else t
+
+
+def coherent_shape(shape, text):
+    """Görsel, konu/soru metniyle birebir uyumlu mu? -> (şema ya da None, uyumsuz_mu)"""
+    if not shape:
+        return None, False
+    k = _kind(shape)
+    for _n, rx, allowed in _TOPIC_RULES:
+        if rx.search(text):
+            return (shape, False) if k in allowed else (None, True)
+    req = _REQUIRE.get(k)
+    if req and not re.search(req, text, re.I):
+        return None, True
+    return shape, False
+
+
+def topic_visual_rules(topics_text):
+    """Planın konularına göre prompta eklenecek katı görsel kuralları."""
+    out = ""
+    if _MOON.search(topics_text or ""):
+        out += ("🌙 AY/GÜNEŞ/DÜNYA KONUSU KATI KURAL: Bu konudaki sorularda görsel YALNIZCA Ay evreleri (`moon_phases`), Ay'ın Dünya çevresindeki konumları (`moon_orbit`), "
+                "tutulma (`solar_eclipse`/`lunar_eclipse`) ya da yörünge (`orbit`) şeması olabilir. TABLO, ÇUBUK/ÇİZGİ/DAİRE GRAFİĞİ, DİNAMOMETRE, TERMOMETRE, KUVVET şeması KESİNLİKLE YASAK. "
+                "Soru metni görseldeki harf/numaralara atıf yapsın (örn. 'Şekildeki K evresi…'); görselde evre adı yazmaz.\n")
+    if re.search(r"dinamometre|kuvvet|sürtünme", topics_text or "", re.I) and not _MOON.search(topics_text or ""):
+        out += "💪 KUVVET konusunda görsel dinamometre ya da kuvvet şeması olsun; sorudaki sayılar görseldekiyle birebir aynı olsun.\n"
+    out += ("🎯 SORU–GÖRSEL BİREBİR UYUM: Görsel varsa soru ona doğrudan dayansın ve görseldeki her veri soruyla tutarlı olsun. Konuyla ilgisiz görsel (ör. Ay evresi sorusuna tablo, "
+            "Din/Türkçe sorusuna grafik) ASLA koyma; uygun görsel yoksa shape null yap ve metne 'şekil/grafik/tablo' deme.\n")
+    return out
+
+
+def _subject_lock(subject, topics=""):
     base = (f"\n🔒 DERS KİLİDİ: Bu sorular YALNIZCA {subject} dersine aittir. Başka bir dersin (özellikle Matematik/Fen) sorusu, işlem ya da "
             f"geometri problemi SORMA. Her soru verilen ünite/kazanımlardan birine dayansın; kazanımları sırayla gez, her soruda FARKLI bir kazanım ve farklı bağlam kullan.\n")
     if subject not in VISUAL_SUBJECTS:
         base += "Bu derste şekil/grafik ÇİZDİRME: `shape` alanı null olsun (gerekirse yalnızca konuyla ilgili basit bir tablo; matematik/fen şeması ASLA).\n"
     else:
         base += f"GÖRSEL KISITI: {VISUAL_HINT.get(subject, '')} Görsel soruyla birebir ilgili olsun.\n"
-    return base
+    return base + topic_visual_rules(topics)
 
 
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1):
@@ -1824,7 +1880,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. "
         "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
         f"Çeşitlilik tohumu: {nonce}; önerilen bağlam temaları: {', '.join(seed_themes)}. Her soru birbirinden bağımsız ve farklı olsun."
-        f"{av}\n{_subject_lock(subject)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
+        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
         '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":"..."}]}' % (start_id, subject))
@@ -1843,7 +1899,7 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
         "Her soru tek bir kazanımı ölçsün, beceri temelli ve bağlamlı olsun; öğrencinin yazarak cevaplayacağı şekilde kurgulansın.\n"
         f"DAĞILIM (kazanım başına tam soru sayısı):\n" + "\n".join(lines) + "\n"
         f"KALİTE KADEMESİ: '{difficulty}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy.\n"
-        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
+        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
         "Her soru için: beklenen 'answer', ve puanlama anahtarı 'rubric' (adımlar ve göreli puanlar; toplam 10 olsun).\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"kazanim":"..","type":"Açık uçlu|Kısa cevaplı","difficulty":"Kolay|Orta|Zor",'
         '"passage":"... veya null","question":"..","shape":null,"answer":"..","rubric":[{"step":"..","points":5},{"step":"..","points":5}]}]}')
@@ -1877,6 +1933,9 @@ def _norm_q(q, subject):
     shape = visuals.normalize_shape(q.get("shape"))
     if shape and shape.get("type") not in ALLOWED_SHAPES.get(subject, {"table"}):
         shape = None
+    shape, bad = coherent_shape(shape, f"{q.get('topic', '')} {q.get('question', '')} {q.get('passage', '')}")
+    if not shape and re.search(_FIG, str(q.get("question", ""))) and not str(q.get("passage") or "").count("|"):
+        return None  # görsele atıf var ama uygun görsel yok -> soruyu ele
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
@@ -2039,7 +2098,8 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
             q["passage"] = q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else ""
             from . import visuals as _v
             _sh = _v.normalize_shape(q.get("shape"))
-            q["shape"] = _sh if _sh and _sh.get("type") in ALLOWED_SHAPES.get(subj, {"table"}) else None
+            _sh = _sh if _sh and _sh.get("type") in ALLOWED_SHAPES.get(subj, {"table"}) else None
+            q["shape"], _ = coherent_shape(_sh, f"{q.get('kazanim', '')} {q.get('question', '')} {q.get('passage', '')}")
             q["answer"] = str(q.get("answer", ""))
         questions += qs
         if on_progress:
@@ -2359,30 +2419,29 @@ CSS = """
 [data-testid="stSidebar"] .st-key-nv_rev button  { background:linear-gradient(135deg,#2dd4bf,#0f766e) !important; }
 [data-testid="stSidebar"] .st-key-nv_plan button { background:linear-gradient(135deg,#818cf8,#4338ca) !important; }
 
-/* ---- Hazır ekranı: kocaman BAŞLAT ---- */
-.ready-aura { position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:radial-gradient(circle at 50% 52%, rgba(20,184,166,.28) 0%, rgba(124,58,237,.22) 32%, rgba(241,245,249,0) 62%); }
-.ready-top { text-align:center; margin:1.2rem 0 .6rem; position:relative; z-index:1; }
-.ready-badge { display:inline-block; padding:.35rem 1.1rem; border-radius:999px; font-weight:900; letter-spacing:2px; font-size:.82rem; color:#fff;
-    background:linear-gradient(135deg,#14b8a6,#7c3aed); box-shadow:0 10px 24px -10px rgba(124,58,237,.8); }
-.ready-title { font-size:1.7rem; font-weight:900; color:#1e1b4b; margin:.7rem 0 .6rem; line-height:1.25; }
-.ready-chips { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
-.ready-chips span { background:#fff; border:2px solid #ddd6fe; color:#4c1d95; font-weight:800; font-size:.88rem; padding:.3rem .85rem; border-radius:999px; }
-.ready-hint { text-align:center; color:#64748b; font-weight:700; margin:.4rem 0 1.4rem; position:relative; z-index:1; }
-.st-key-bigstart { display:flex; justify-content:center; position:relative; z-index:1; padding:1.2rem 0; }
+/* ---- Hazır ekranı: geri sayım penceresiyle aynı tarz ---- */
+.ready-aura { position:fixed; inset:0; z-index:0; pointer-events:none; background:rgba(15,23,42,.78); backdrop-filter:blur(6px); }
+.st-key-ready_card { position:relative; z-index:1; background:#fff; border-radius:28px; padding:2rem 2.2rem 1.4rem; text-align:center; width:min(440px,92vw); margin:3vh auto 0;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.6); }
+.st-key-ready_card [data-testid="stVerticalBlock"] { gap:.5rem; align-items:center; }
+.ready-t { font-size:1.3rem; font-weight:900; color:#0f172a; line-height:1.3; }
+.ready-s { color:#64748b; font-size:.9rem; margin:.1rem 0 .3rem; }
+.ready-chips { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin:.2rem 0 .6rem; }
+.ready-chips span { background:#f5f3ff; border:1.5px solid #ddd6fe; color:#4c1d95; font-weight:800; font-size:.8rem; padding:.2rem .7rem; border-radius:999px; }
+.st-key-bigstart { display:flex; justify-content:center; padding:.4rem 0 .8rem; }
 .st-key-bigstart div.stButton, .st-key-bigstart [data-testid="stButton"] { width:auto !important; }
-.st-key-bigstart button { width:min(300px,68vw) !important; height:min(300px,68vw) !important; max-height:none !important; border-radius:50% !important; border:6px solid rgba(255,255,255,.9) !important;
-    background:conic-gradient(from 210deg,#14b8a6,#6366f1,#7c3aed,#14b8a6) !important; color:#fff !important; flex-direction:column; gap:.2rem;
-    box-shadow:0 0 0 14px rgba(124,58,237,.14), 0 0 0 30px rgba(20,184,166,.10), 0 30px 70px -18px rgba(76,29,149,.75) !important;
-    animation:bigpulse 2.2s ease-in-out infinite; transition:transform .25s ease; }
-.st-key-bigstart button:hover { transform:scale(1.06); filter:brightness(1.08); }
-.st-key-bigstart button:active { transform:scale(.97); }
-.st-key-bigstart button p { color:#fff !important; margin:0; text-align:center; line-height:1; text-shadow:0 4px 14px rgba(30,27,75,.45); }
-.st-key-bigstart button p:first-child { font-size:6.2rem; font-weight:900; margin-left:.5rem; }
-.st-key-bigstart button p:nth-child(2) { font-size:1.9rem; font-weight:900; letter-spacing:6px; margin-top:.2rem; }
-@keyframes bigpulse { 0%,100% { box-shadow:0 0 0 14px rgba(124,58,237,.14), 0 0 0 30px rgba(20,184,166,.10), 0 30px 70px -18px rgba(76,29,149,.75); }
-    50% { box-shadow:0 0 0 26px rgba(124,58,237,.10), 0 0 0 52px rgba(20,184,166,.06), 0 36px 80px -16px rgba(76,29,149,.85); } }
-@media (max-width:760px) { .ready-title { font-size:1.3rem; } .st-key-bigstart button p:first-child { font-size:4.8rem; } }
+.st-key-bigstart button { position:relative; width:170px !important; height:170px !important; min-height:170px !important; max-height:170px !important; padding:0 !important; border-radius:50% !important;
+    background:#fff !important; border:10px solid #e2e8f0 !important; box-shadow:none !important; color:#0f172a !important; flex-direction:column; overflow:visible; transition:transform .2s ease; }
+.st-key-bigstart button:after { content:''; position:absolute; inset:-10px; border-radius:50%; border:10px solid transparent; border-top-color:#7c3aed; border-right-color:#14b8a6; animation:genspin 1.1s linear infinite; pointer-events:none; }
+.st-key-bigstart button:hover { transform:scale(1.06); }
+.st-key-bigstart button:active { transform:scale(.96); }
+.st-key-bigstart button p { margin:0; text-align:center; line-height:1; }
+.st-key-bigstart button p:first-child { font-size:3.4rem; font-weight:900; color:#7c3aed !important; margin-left:.35rem; animation:genpulse 1.2s ease-in-out infinite; }
+.st-key-bigstart button p:nth-child(2) { font-size:1rem; font-weight:900; letter-spacing:3px; color:#0f766e !important; margin-top:.3rem; }
+.ready-bar { background:#e2e8f0; border-radius:999px; height:8px; overflow:hidden; width:100%; } .ready-bar i { display:block; height:8px; width:100%; background:linear-gradient(90deg,#7c3aed,#14b8a6); border-radius:999px; }
+.ready-hint { color:#94a3b8; font-size:.8rem; font-weight:700; margin:.3rem 0 .2rem; }
+.st-key-ready_card [class*="st-key-ready_"] button { min-height:2.4rem; font-size:.88rem; padding:.4rem .8rem; }
+@keyframes genspin{to{transform:rotate(360deg)}} @keyframes genpulse{50%{transform:scale(1.08)}}
 
 /* ---- Başlık ---- */
 .hero { background: linear-gradient(120deg,#0f172a 0%,#1d4ed8 60%,#0ea5e9 100%); color:white; border-radius:22px;
@@ -2461,6 +2520,12 @@ button[data-testid="stBaseButton-primary"] p, button[kind="primary"] p { color:#
 [class*="st-key-cnt_"] button p { font-size:1.5rem; font-weight:900; text-align:center; }
 .pick-lbl { font-weight:900; color:#4c1d95; margin:.8rem 0 .4rem; font-size:1.05rem; }
 
+/* ---- Üret düğmeleri: büyük, mor, tam genişlik ---- */
+[class*="st-key-gen_"] button { min-height:4.4rem !important; font-size:1.25rem !important; border-radius:22px !important; background:linear-gradient(135deg,#8b5cf6 0%,#6d28d9 55%,#5b21b6 100%) !important;
+    border:2px solid #5b21b6 !important; color:#fff !important; box-shadow:0 16px 30px -12px rgba(109,40,217,.7) !important; letter-spacing:.3px; }
+[class*="st-key-gen_"] button p { color:#fff !important; font-weight:900; font-size:1.25rem; }
+[class*="st-key-gen_"] button:hover { filter:brightness(1.08); transform:translateY(-3px); color:#fff !important; }
+
 /* ---- Radyo / seçenekler kart gibi ---- */
 div[role="radiogroup"] { gap:.55rem; }
 div[role="radiogroup"] > label { background:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:.75rem 1rem; width:100%; box-shadow:0 8px 18px -16px rgba(15,23,42,.55); transition:all .2s ease; }
@@ -2481,7 +2546,7 @@ div[data-baseweb="select"] > div { border-radius:14px; }
   [class*="st-key-card_"] button { min-height:110px; }
   div[data-testid="stHorizontalBlock"]:has(.kpi) { flex-wrap:wrap !important; gap:.5rem !important; }
   div[data-testid="stHorizontalBlock"]:has(.kpi) > div[data-testid="stColumn"] { min-width:calc(50% - .5rem) !important; flex:1 1 calc(50% - .5rem) !important; }
-  div[data-testid="stHorizontalBlock"]:has([class*="st-key-wz_back"]), div[data-testid="stHorizontalBlock"]:has([class*="st-key-gen_"]) { flex-wrap:nowrap !important; }
+
 }
 
 /* ---- Soru kartı ---- */
@@ -2886,18 +2951,19 @@ def ready():
     subs = sorted({q.get("subject", "") for q in qs})
     mins = m["duration_sec"] // 60
     st.markdown("<div class='ready-aura'></div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='ready-top'><div class='ready-badge'>✨ SINAVIN HAZIR</div><div class='ready-title'>{m['title']}</div>"
-                f"<div class='ready-chips'><span>📝 {len(qs)} soru</span><span>⏱ {mins} dk</span><span>{(m['difficulty'] or '')[:2]} {m['difficulty'].split('/')[0][2:].strip() if m.get('difficulty') else ''}</span>"
-                f"<span>📚 {', '.join(cur.SUBJECT_ICONS.get(x, '') + ' ' + x for x in subs[:3])}{' +' + str(len(subs) - 3) if len(subs) > 3 else ''}</span></div></div>", unsafe_allow_html=True)
-    c = st.columns([1, 1, 1])[1]
-    with c:
-        st.button("▶\n\nBAŞLAT", key="bigstart", on_click=_start_now, use_container_width=True)
-    st.markdown("<div class='ready-hint'>Hazır olduğunda dokun • süre başladığı anda işler</div>", unsafe_allow_html=True)
-    b = st.columns([1, 1, 1])
-    with b[0]:
-        st.button("📋 Konu özeti & PDF", key="ready_pre", on_click=nav, args=("pre",), use_container_width=True)
-    with b[2]:
-        st.button("↩ Vazgeç", key="ready_back", on_click=nav, args=("home",), use_container_width=True)
+    dtxt = (m.get("difficulty") or "")
+    dlab = f"{dtxt[:2]} {dtxt.split('/')[0][2:].strip()}" if dtxt else ""
+    with st.container(key="ready_card"):
+        st.markdown(f"<div class='ready-t'>✨ Sınavın hazır!</div><div class='ready-s'>{m['title']}</div>", unsafe_allow_html=True)
+        st.button("▶\n\nBAŞLAT", key="bigstart", on_click=_start_now)
+        st.markdown(f"<div class='ready-bar'><i></i></div><div class='ready-hint'>Hazır olduğunda dokun • süre başladığı anda işler</div>"
+                    f"<div class='ready-chips'><span>📝 {len(qs)} soru</span><span>⏱ {mins} dk</span><span>{dlab}</span>"
+                    f"<span>📚 {', '.join(cur.SUBJECT_ICONS.get(x, '') + ' ' + x for x in subs[:3])}{' +' + str(len(subs) - 3) if len(subs) > 3 else ''}</span></div>", unsafe_allow_html=True)
+        b1, b2 = st.columns(2)
+        with b1:
+            st.button("📋 Konu özeti & PDF", key="ready_pre", on_click=nav, args=("pre",), use_container_width=True)
+        with b2:
+            st.button("↩ Vazgeç", key="ready_back", on_click=nav, args=("home",), use_container_width=True)
 '''
 MODULES['ui/wizard'] = r'''# -*- coding: utf-8 -*-
 """Sınıf seçiminden sonraki sade, adım adım ekranlar. Her sayfada tek karar; seçince otomatik ilerler."""
@@ -3088,11 +3154,8 @@ def weekly():
         rows = [(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", c, cur.scope_short(g, s, scope) or "—") for s, c in counts.items()]
         theme.html_table(["Ders", "Soru", "Kapsanan üniteler"], rows, num_cols=(1,))
         st.caption(f"Toplam **{n} soru** • süre **{minutes} dk**")
-        c1, c2 = st.columns(2)
-        with c1:
-            st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",))
-        with c2:
-            go_btn = st.button("🚀 Soruları Üret", key="gen_wz", type="primary")
+        go_btn = st.button("🚀 Soruları Üret", key="gen_wz", type="primary", use_container_width=True)
+        st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",), use_container_width=True)
         if go_btn and counts:
             plan = [{"subject": s, "n": c, "topics": cur.scope_topic_text(g, s, scope), "short": cur.scope_short(g, s, scope)} for s, c in counts.items()]
             title = f"{gl} {label} • {f['title']}"
@@ -3145,11 +3208,8 @@ def oyss():
             with st.expander(f"{x['subject']} • kazanım-soru dağılımı"):
                 theme.html_table(["Kazanım", "Ünite / Konu", "Soru"], [(r["code"], r["topic"], r["n"]) for r in x["rows"]], num_cols=(2,))
         diff = su.difficulty_select("diff_oyss")
-        c1, c2 = st.columns(2)
-        with c1:
-            st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",))
-        with c2:
-            go_btn = st.button("🚀 OYSS Sorularını Üret", key="gen_oyss", type="primary")
+        go_btn = st.button("🚀 OYSS Sorularını Üret", key="gen_oyss", type="primary", use_container_width=True)
+        st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",), use_container_width=True)
         if go_btn:
             from core import ai_engine as ai
             qs, errs = su.with_overlay(15 + 14 * len(tables), "OYSS soruları hazırlanıyor", "Açık uçlu ve kısa cevaplı sorular ile puanlama anahtarları yazılıyor…",
@@ -3197,11 +3257,8 @@ def topic():
         opts = [6, 8, 10, 12] if leaf else [10, 15, 20, 30]
         n = theme.pick_cards("v_wz_n_" + st.session_state.mode, opts, opts[2 if leaf else 1], 4, "cnt", label_fn=lambda x: f"{x}\nsoru", label="🔢 Kazanım soru sayısı")
         diff = su.difficulty_select("diff_tp")
-        c1, c2 = st.columns(2)
-        with c1:
-            st.button("← Geri", key="wz_back_3", on_click=back, args=(first,))
-        with c2:
-            go_btn = st.button("🚀 Testi Üret", key="gen_tp", type="primary")
+        go_btn = st.button("🚀 Testi Üret", key="gen_tp", type="primary", use_container_width=True)
+        st.button("← Geri", key="wz_back_3", on_click=back, args=(first,), use_container_width=True)
         if go_btn:
             tt = chosen or tps
             plan = [{"subject": w["subj"], "n": n, "topics": f"{w['unit']}: " + ", ".join(tt), "short": ", ".join(tt)}]
@@ -3235,11 +3292,8 @@ def bank():
         per = w.get("per", 10)
         bw = su.weight_panel(g, f"bk_{g}")
         diff = su.difficulty_select("diff_bk")
-        c1, c2 = st.columns(2)
-        with c1:
-            st.button("← Geri", key="wz_back_b2", on_click=back, args=("modes",))
-        with c2:
-            go_btn = st.button("🚀 Testi Üret", key="gen_bk", type="primary")
+        go_btn = st.button("🚀 Testi Üret", key="gen_bk", type="primary", use_container_width=True)
+        st.button("← Geri", key="wz_back_b2", on_click=back, args=("modes",), use_container_width=True)
         if go_btn:
             plan = []
             for s in w["subs"]:
