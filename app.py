@@ -1505,7 +1505,6 @@ def _styles(fs=8.3):
 
 def _img(png, max_w, max_h):
     iw, ih = ImageReader(io.BytesIO(png)).getSize()
-    k = min(max_w / iw, max_h / ih, 1.6 * 72 / 72)
     k = min(max_w / iw, max_h / ih)
     return Image(io.BytesIO(png), width=iw * k, height=ih * k)
 
@@ -2144,7 +2143,8 @@ GEMINI_MODEL = "gemini-3.6-flash"
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
-CHUNK = 8
+CHUNK = 6
+WORKERS = 8
 
 
 def load_keys():
@@ -2291,7 +2291,7 @@ FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu
 
 
 # ---------------------------------------------------------------- konu-görsel tutarlılığı (katı)
-_MOON = re.compile(r"evre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
+_MOON = re.compile(r"\bevre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
 _MOON_KINDS = {"moon_single", "moon_phases", "moon_sequence", "phases", "moon_orbit", "moon_positions", "solar_eclipse", "lunar_eclipse", "eclipse", "orbit", "space_orbit"}
 _TOPIC_RULES = [  # (ad, konu regex, izinli görsel türleri)
     ("ay", _MOON, _MOON_KINDS),
@@ -2363,6 +2363,35 @@ def _subject_lock(subject, topics=""):
     return base + topic_visual_rules(topics)
 
 
+GEO_STYLE = (
+    "\n📐 GEOMETRİ SORU TARZI (KATI KURAL; yukarıdaki 'günlük hayat bağlamı / senaryo / metin' yönergesi geometri soruları için GEÇERSİZDİR):\n"
+    "- Sorular MEB/LGS'nin klasik geometri soru tarzında olsun: ÇOK KISA ve doğrudan ŞEKLE dayalı. Soru kökü en çok 1-2 cümle (en fazla ~30 kelime). 'passage' alanı HER ZAMAN null.\n"
+    "- Hikâye, senaryo, tarih, kültür bağlamı YOK. Osmanlı/padişah/savaş/kale/müze/arkeoloji gibi tarihî ya da kültürel konular ve "
+    "Güneş/Ay/Dünya/gezegen/uzay gibi gök cismi konuları KESİNLİKLE YASAK. Yalnızca nokta, harf, doğru, açı, kenar, çokgen, çember dili kullan.\n"
+    "- HER geometri sorusunda `shape` ZORUNLU (null YASAK). Sorudaki tüm veriler (harfler, ölçüler, x) çizimdekiyle BİREBİR aynı olsun. "
+    "Soru kökü 'Şekilde…', 'Yukarıdaki şekle göre…' diye şekle atıf yapsın; şekildeki verileri uzun metinle yeniden anlatma.\n"
+    "- Örnek kökler: 'Yukarıdaki şekilde d₁ ∥ d₂ olduğuna göre x kaç derecedir?' | 'Şekildeki ABC üçgeninde m(A) = 50°, m(B) = 60° ise m(C) kaç derecedir?' | "
+    "'Aşağıdakilerden hangisi ışındır?' | 'Şekildeki dikdörtgenin çevresi kaç cm'dir?' | 'Şekildeki O merkezli çemberde |OA| = 6 cm ise çap kaç cm'dir?' | "
+    "'Şekildeki çokgenlerden hangisi beşgendir?'\n"
+    "- Şıklar kısa olsun (sayı, derece, cm, harf ya da numara).\n")
+_GEO_PLAN_RX = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|\bdaire\b|dik |paralel|inşa|prizma|silindir|doğru parçası|köşegen|eşkenar|ikizkenar|\bkare\b", re.I)
+_GEO_STRICT = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|paralel|\bdik\b|\bkare\b|eşkenar|ikizkenar|köşegen|doğru parçası|inşa|prizma|koni|simetri|dönüşüm", re.I)
+_GEO_DRAW = {"geo", "triangle", "circle", "rectangle"}
+_GEO_BAN = re.compile(r"osmanl|padişah|sultan|fetih|savaş|tarih|imparator|devlet|medeniyet|kale\b|saray|cami|müze|arkeolo|kazı|gezegen|uzay|yörünge|güneş|\bay\b|ay['’]ın|dünya|\bevre|ilkçağ|masal|hikâye|hikaye", re.I)
+_GEO_SKILLS = ["şekilden bilinmeyen açıyı bulma", "şekildeki elemanları tanıma (kenar, köşe, yarıçap, çap, kiriş)", "şekli sınıflandırma / adlandırma",
+               "ölçüleri verilen şekilde çevre ya da alan hesaplama", "şekle bakarak I, II, III yargılarını değerlendirme", "eş kenar / eş açı çıkarımı yapma",
+               "paralel ve dik doğru ilişkisinden açı bulma", "şekiller arasında özellik karşılaştırma"]
+
+
+def _is_geo_q(q, shape, subject):
+    if subject != "Matematik":
+        return False
+    if isinstance(shape, dict) and shape.get("type") in _GEO_DRAW:
+        return True
+    tp = str(q.get("topic") or "")
+    return bool(_GEO_STRICT.search(tp)) and not re.search(r"grafik|veri|tablo|olasılık|ortalama", tp, re.I)
+
+
 _THEMES = ["spor müsabakası", "market alışverişi", "okul kantini", "doğa yürüyüşü", "müze gezisi", "çiftlik", "toplu taşıma", "robotik atölyesi", "resim sergisi",
            "sağlık kontrolü", "hayvanat bahçesi", "mutfak tarifi", "yaz tatili", "kütüphane", "geri dönüşüm", "şehir planı", "bilim insanı", "kültür festivali",
            "bahçe düzenleme", "su tasarrufu", "bisiklet turu", "kamp", "pazar yeri", "fotoğrafçılık", "inşaat", "uzay merkezi", "balıkçılık", "gıda üretimi",
@@ -2398,24 +2427,28 @@ def _variety_plan(subject, n, topics):
     while len(sk) < n:
         sk += random.sample(_SKILLS, len(_SKILLS))
     vis = _visual_candidates(subject, topics) if subject in VISUAL_SUBJECTS else []
-    moon = bool(_MOON.search(topics or ""))
+    moon = subject != "Matematik" and bool(_MOON.search(topics or ""))
     if moon:  # Ay evreleri: bolca ve çeşitli Ay görseli, görselsiz soru yok
         vis = ["moon_phases", "moon_single", "moon_phases", "moon_single", "moon_orbit", "moon_phases", "moon_single", "solar_eclipse", "lunar_eclipse"]
-    geom = subject == "Matematik" and re.search(r"geometri|açı|doğru|ışın|çokgen|üçgen|dörtgen|çember|dik |paralel|inşa|çevre|alan|prizma|silindir", topics or "", re.I)
+    geom = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     if geom:  # geometri ünitesi: kesin ölçülü geo görselleri ağırlıklı
         geo_k = ["geo:line", "geo:ray", "geo:segment", "geo:lines_set", "geo:perpendicular", "geo:parallel", "geo:angle", "geo:angles_two_lines", "geo:polygon", "geo:polygon_set", "geo:triangle", "geo:triangle", "geo:triangle_set", "geo:quad", "geo:quad_set", "geo:circle_parts", "geo:circle_parts"]
-        vis = (geo_k * 2) + [v for v in vis if v != "geo"]
+        vis = geo_k * 2  # yalnızca kesin ölçülü geometri çizimleri (Ay/tablo/grafik karışmaz)
+        sk = []
+        while len(sk) < n:
+            sk += random.sample(_GEO_SKILLS, len(_GEO_SKILLS))
     else:
         vis = [v for v in vis if v != "geo"]
     random.shuffle(vis)
     lines = []
     for i in range(n):
-        if vis and (moon or geom or random.random() > 0.22):
+        if vis and (moon or geom or random.random() > 0.22):  # geometride görsel HER soruda zorunlu
             v = vis[i % len(vis)]
             vtxt = (f"görsel = {{\"type\":\"geo\",\"sub_type\":\"{v[4:]}\"}} (geo şeması)" if v.startswith("geo:") else f"görsel türü = {v}")
         else:
             vtxt = "görselsiz (shape null) ya da metin/tablo ağırlıklı"
-        lines.append(f"  Soru {i + 1}: bağlam = {th[i]}; beceri = {sk[i]}; {vtxt}")
+        ctx = "YOK (hikâyesiz, kısa, doğrudan şekil sorusu)" if geom else th[i]
+        lines.append(f"  Soru {i + 1}: bağlam = {ctx}; beceri = {sk[i]}; {vtxt}")
     return ("\nSORU PLANI (HER SORU AYNI NUMARADAKİ SATIRA UYSUN; sorular ve görseller BİRBİRİNE BENZEMESİN, farklı sayılar/veriler/şekil ölçüleri kullan, "
             "aynı kazanımın farklı yönlerini ölç):\n" + "\n".join(lines) + "\nPlandaki görsel türü konuya uymuyorsa o soruyu görselsiz yaz; ama iki soruda aynı görsel/veri tekrar etmesin.\n")
 
@@ -2423,6 +2456,7 @@ def _variety_plan(subject, n, topics):
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
+    geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     return (
         f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
@@ -2430,10 +2464,11 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         f"KAPSAM: {scope_label}\nKONULAR/KAZANIMLAR: {topics}{fc}\n"
         f"ZORLUK KADEMESİ: '{difficulty}'. Bu kademeye kesin uy.\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
-        "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. "
+        + ("MEB geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz; yorum ve muhakeme gerektiren ama metni az olan sorular. " if geo_on else
+           "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. ") +
         "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
         f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{_variety_plan(subject, n, topics)}"
-        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
+        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
         '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":"..."}]}' % (start_id, subject))
@@ -2446,13 +2481,14 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
     for it in items:
         lines.append(f"- Kazanım: {it['kazanim']} → {it['n']} soru (zorluk etiketleri: {', '.join(it['labels'])})")
     av = ("\nTekrar etme:\n- " + "\n- ".join(avoid[-12:])) if avoid else ""
+    geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(" ".join(str(it.get("kazanim", "")) for it in items)))
     return (
         f"MEB Ortak Yazılı Sınav Sistemi (OYSS) için {grade_label} {subject} dersi yazılı sınavı soruları hazırla. "
         "Sorular AÇIK UÇLU ve KISA CEVAPLI olacak (çoktan seçmeli DEĞİL); yaklaşık 1/3'ü kısa cevaplı, kalanı açık uçlu. "
         "Her soru tek bir kazanımı ölçsün, beceri temelli ve bağlamlı olsun; öğrencinin yazarak cevaplayacağı şekilde kurgulansın.\n"
         f"DAĞILIM (kazanım başına tam soru sayısı):\n" + "\n".join(lines) + "\n"
         f"KALİTE KADEMESİ: '{difficulty}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy.\n"
-        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
+        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
         "Her soru için: beklenen 'answer', ve puanlama anahtarı 'rubric' (adımlar ve göreli puanlar; toplam 10 olsun).\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"kazanim":"..","type":"Açık uçlu|Kısa cevaplı","difficulty":"Kolay|Orta|Zor",'
         '"passage":"... veya null","question":"..","shape":null,"answer":"..","rubric":[{"step":"..","points":5},{"step":"..","points":5}]}]}')
@@ -2492,7 +2528,15 @@ def _norm_q(q, subject):
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
-    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else "",
+    pas = q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else ""
+    if _is_geo_q(q, shape, subject):  # geometri: şekil ZORUNLU, metin KISA, hikâye/tarih/gök cismi bağlamı YOK
+        if not shape:
+            return None
+        if len(str(q.get("question", "")).split()) > 45 or len(str(pas or "").split()) > 15:
+            return None
+        if _GEO_BAN.search(f"{q.get('question', '')} {pas} {' '.join(opts.values())}"):
+            return None
+    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": pas,
            "question": str(q["question"]).strip(), "shape": shape, "options": opts, "answer": ans, "explanation": str(q.get("explanation") or "")}
     return None if leaks_answer(out) else out
 
@@ -2554,20 +2598,15 @@ def accept_diverse(q, kept, n):
     w = _qwords(q)
     for k in kept:
         wk = _qwords(k)
-        if w and wk and len(w & wk) / len(w | wk) > 0.5:
+        if w and wk and len(w & wk) / len(w | wk) > 0.75:
             return False
     sig, kind = _vsig(q), _vkind(q)
     if sig:
         if any(_vsig(k) == sig for k in kept):
             return False
-        cap = max(2, -(-n * 2 // 5))  # tek tür en çok ~%40
+        cap = max(3, -(-n * 3 // 5))  # tek tür en çok ~%60
         if sum(1 for k in kept if _vkind(k) == kind) >= cap:
             return False
-        # aynı türde çok benzer sayısal veri (yalnızca değerler farklı küçük oynamalar) için: sayı kümesi aynıysa ele
-        nums = tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", sig)))
-        for k in kept:
-            if _vkind(k) == kind and tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", _vsig(k) or ""))) == nums:
-                return False
     return True
 
 
@@ -2603,48 +2642,91 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     errors, results = [], {}
     done = [0]
 
-    def work(idx_task):
+    def work(idx_task, extra_avoid=None):
         idx, (p, c, k) = idx_task
         subj = p["subject"]
-        if demo_mode():
-            return idx, _demo_mc(subj, c, p["topics"]), None
-        prompt = mc_prompt(grade_label, subj, c, p["topics"], difficulty, scope_label, avoid.get(subj, []), focus if k == 0 else "")
-        raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
-        data = parse_json(raw)
-        qs = [x for x in (_norm_q(q, subj) for q in (data or {}).get("questions", [])) if x]
-        if on_progress:
-            done[0] += 1
-            on_progress(done[0], len(tasks), subj)
-        return idx, qs, (err if not qs else None)
+        try:
+            if demo_mode():
+                return idx, _demo_mc(subj, c, p["topics"]), None
+            av = list(avoid.get(subj, [])) + list(extra_avoid or [])
+            prompt = mc_prompt(grade_label, subj, c + (1 if idx < 900 else 0), p["topics"], difficulty, scope_label, av, focus if k == 0 else "")
+            raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
+            data = parse_json(raw)
+            items = (data or {}).get("questions", []) if isinstance(data, dict) else []
+            qs = []
+            for q in items:
+                try:
+                    x = _norm_q(q, subj)
+                except Exception:  # tek bozuk soru tüm üretimi bozmasın
+                    x = None
+                if x:
+                    qs.append(x)
+            if on_progress:
+                done[0] += 1
+                on_progress(done[0], len(tasks), subj)
+            return idx, qs, (err if not qs else None)
+        except Exception as e:
+            return idx, [], f"{type(e).__name__}: {str(e)[:80]}"
 
-    with ThreadPoolExecutor(max_workers=min(4, max(1, len(tasks)))) as ex:
+    with ThreadPoolExecutor(max_workers=min(WORKERS, max(1, len(tasks)))) as ex:
         for idx, qs, err in ex.map(work, list(enumerate(tasks))):
             results[idx] = qs
             if err:
                 errors.append(err)
-    questions, seen = [], set(s for v in avoid.values() for s in v)
+    seen = set(s for v in avoid.values() for s in v)
+    state = []
     for p in plan:
-        subj_qs = []
-        for idx, (pp, c, k) in enumerate(tasks):
-            if pp is p:
-                for q in results.get(idx, []):
-                    s = _stem(q)
-                    if s and s not in seen and accept_diverse(q, subj_qs, p["n"]):
-                        seen.add(s)
-                        subj_qs.append(q)
-        for rnd in (1, 2):  # eksik kalanı (benzer/uyumsuz elenenler) en çok iki kez tamamla
-            short = p["n"] - len(subj_qs)
-            if short <= 0 or not (demo_mode() or gk or mk):
+        state.append({"p": p, "qs": [], "reserve": [], "fails": 0})
+
+    def take(st_, batch):
+        p, qs_, res_ = st_["p"], st_["qs"], st_["reserve"]
+        for q in batch:
+            if len(qs_) >= p["n"]:
                 break
-            _, extra, err = work((900 + rnd, (p, min(short + 3, CHUNK), rnd)))
-            for q in extra:
-                s = _stem(q)
-                if s not in seen and len(subj_qs) < p["n"] and accept_diverse(q, subj_qs, p["n"]):
-                    seen.add(s)
-                    subj_qs.append(q)
-        if len(subj_qs) < p["n"]:
-            errors.append(f"{p['subject']}: {len(subj_qs)}/{p['n']} soru üretilebildi")
-        questions += subj_qs[:p["n"]]
+            s = _stem(q)
+            if not s:
+                continue
+            if s in seen:
+                res_.append(q)
+            elif accept_diverse(q, qs_, p["n"]):
+                seen.add(s)
+                qs_.append(q)
+            else:
+                res_.append(q)
+
+    for st_ in state:
+        for idx, (pp, c, k) in enumerate(tasks):
+            if pp is st_["p"]:
+                take(st_, results.get(idx, []))
+    # eksikleri tüm dersler için PARALEL tamamla (en çok 3 tur, az fazla isteyerek)
+    if demo_mode() or gk or mk:
+        for rnd in range(1, 3):
+            todo = [s_ for s_ in state if s_["p"]["n"] - len(s_["qs"]) > 0 and s_["fails"] < 2]
+            if not todo:
+                break
+            jobs = [(900 + rnd * 10 + i, (s_["p"], min(CHUNK, (s_["p"]["n"] - len(s_["qs"])) + 3), rnd), [str(q.get("question", ""))[:80] for q in s_["qs"]])
+                    for i, s_ in enumerate(todo)]
+            with ThreadPoolExecutor(max_workers=min(WORKERS, len(jobs))) as ex:
+                outs = list(ex.map(lambda j: work((j[0], j[1]), j[2]), jobs))
+            for s_, (_, extra, err) in zip(todo, outs):
+                s_["fails"] = s_["fails"] + 1 if not extra else 0
+                take(s_, extra)
+    questions = []
+    for st_ in state:
+        p, qs_ = st_["p"], st_["qs"]
+        if len(qs_) < p["n"] and st_["reserve"]:  # son çare: elenenlerden (tam kopya olmayanlar) tamamla
+            have = [_qwords(q) for q in qs_]
+            for q in st_["reserve"]:
+                if len(qs_) >= p["n"]:
+                    break
+                w = _qwords(q)
+                if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have):
+                    continue
+                qs_.append(q)
+                have.append(w)
+        if len(qs_) < p["n"]:
+            errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi")
+        questions += qs_[:p["n"]]
     for i, q in enumerate(questions, 1):
         q["id"] = i
     return questions, errors
@@ -2675,11 +2757,20 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
                                "passage": "", "question": f"[{subj}] Demo açık uçlu soru {uuid.uuid4().hex[:4]}", "shape": None,
                                "answer": "Demo cevap", "rubric": [{"step": "Adım 1", "points": 5}, {"step": "Adım 2", "points": 5}]})
         else:
-            raw, err = multi_pool_generate(oyss_prompt(grade_label, subj, items, difficulty, avoid.get(subj, [])), gk, mk, offset=si)
-            data = parse_json(raw)
-            qs = [q for q in (data or {}).get("questions", []) if isinstance(q, dict) and q.get("question")]
+            qs, err = [], None
+            for attempt in range(3):  # eksik/fazla dönerse yeniden iste; en çok 3 deneme
+                raw, err = multi_pool_generate(oyss_prompt(grade_label, subj, items, difficulty, avoid.get(subj, [])), gk, mk, offset=si + attempt)
+                data = parse_json(raw)
+                got = [q for q in ((data or {}).get("questions", []) if isinstance(data, dict) else []) if isinstance(q, dict) and q.get("question")]
+                if len(got) > len(qs):
+                    qs = got
+                if len(qs) >= total:
+                    break
+            qs = qs[:total]
             if not qs:
                 errors.append(f"{subj}: {err or 'geçersiz yanıt'}")
+            elif len(qs) < total:
+                errors.append(f"{subj}: {len(qs)}/{total} soru üretilebildi")
         pts = oy.point_split(len(qs))
         for q, p in zip(qs, pts):
             q["subject"] = subj
@@ -3467,7 +3558,7 @@ def with_overlay(seconds, title, sub, fn):
 def est_seconds_mc(plan):
     import math
     chunks = sum(math.ceil(p["n"] / ai.CHUNK) for p in plan)
-    return 12 + 14 * math.ceil(chunks / 4)
+    return 10 + 10 * math.ceil(chunks / ai.WORKERS)
 
 
 def _gen_mc(plan, meta, scope_label, focus=""):
@@ -4818,16 +4909,13 @@ state.init()
 if "meb_loaded" not in st.session_state:
     st.session_state.meb_loaded = True
     st.session_state.meb_ts = meb_live.load_cache()
-    # MEB müfredatı otomatik: gerekirse arka planda çek, olmazsa yerleşik müfredat zaten hazır
+    # MEB müfredatı: arka planda (arayüzü bekletmeden) güncellenir; yerleşik müfredat anında hazırdır
     try:
-        if not ai_engine.demo_mode() and meb_live.needs_refresh():
-            _ph = st.empty()
-            _ph.markdown(theme.overlay_html(40, "MEB müfredatı güncelleniyor", "Güncel kazanımlar mufredat.meb.gov.tr'den alınıyor…"), unsafe_allow_html=True)
-            try:
-                meb_live.refresh(deadline=40)
-            finally:
-                _ph.empty()
-            st.session_state.meb_ts = meb_live.load_cache()
+        import threading
+        if not ai_engine.demo_mode() and meb_live.needs_refresh() and not getattr(sys.modules["core"], "_meb_thread", None):
+            _t = threading.Thread(target=lambda: meb_live.refresh(deadline=60), daemon=True)
+            sys.modules["core"]._meb_thread = _t
+            _t.start()
     except Exception:
         pass
 
@@ -4850,6 +4938,13 @@ with st.sidebar:
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
     st.markdown("---")
+    if st.button("🔄 MEB müfredatını güncelle", key="meb_refresh", use_container_width=True):
+        def _do():
+            n, errs = meb_live.refresh(deadline=60)
+            meb_live.load_cache()
+            return n, errs
+        _n, _errs = setup.with_overlay(40, "MEB müfredatı güncelleniyor", "Kazanımlar mufredat.meb.gov.tr'den alınıyor…", _do)
+        st.success(f"{_n} program güncellendi." if _n else "Güncelleme yapılamadı; yerleşik müfredat kullanılıyor.")
     g = st.session_state.grade
     if g:
         st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
