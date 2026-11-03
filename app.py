@@ -2143,7 +2143,8 @@ GEMINI_MODEL = "gemini-3.6-flash"
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
-CHUNK = 8
+CHUNK = 6
+WORKERS = 8
 
 
 def load_keys():
@@ -2653,7 +2654,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             if demo_mode():
                 return idx, _demo_mc(subj, c, p["topics"]), None
             av = list(avoid.get(subj, [])) + list(extra_avoid or [])
-            prompt = mc_prompt(grade_label, subj, c, p["topics"], difficulty, scope_label, av, focus if k == 0 else "")
+            prompt = mc_prompt(grade_label, subj, c + (1 if idx < 900 else 0), p["topics"], difficulty, scope_label, av, focus if k == 0 else "")
             raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
             data = parse_json(raw)
             items = (data or {}).get("questions", []) if isinstance(data, dict) else []
@@ -2672,7 +2673,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
         except Exception as e:
             return idx, [], f"{type(e).__name__}: {str(e)[:80]}"
 
-    with ThreadPoolExecutor(max_workers=min(4, max(1, len(tasks)))) as ex:
+    with ThreadPoolExecutor(max_workers=min(WORKERS, max(1, len(tasks)))) as ex:
         for idx, qs, err in ex.map(work, list(enumerate(tasks))):
             results[idx] = qs
             if err:
@@ -2704,13 +2705,13 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 take(st_, results.get(idx, []))
     # eksikleri tüm dersler için PARALEL tamamla (en çok 3 tur, az fazla isteyerek)
     if demo_mode() or gk or mk:
-        for rnd in range(1, 4):
+        for rnd in range(1, 3):
             todo = [s_ for s_ in state if s_["p"]["n"] - len(s_["qs"]) > 0 and s_["fails"] < 2]
             if not todo:
                 break
             jobs = [(900 + rnd * 10 + i, (s_["p"], min(CHUNK, (s_["p"]["n"] - len(s_["qs"])) + 3), rnd), [str(q.get("question", ""))[:80] for q in s_["qs"]])
                     for i, s_ in enumerate(todo)]
-            with ThreadPoolExecutor(max_workers=min(4, len(jobs))) as ex:
+            with ThreadPoolExecutor(max_workers=min(WORKERS, len(jobs))) as ex:
                 outs = list(ex.map(lambda j: work((j[0], j[1]), j[2]), jobs))
             for s_, (_, extra, err) in zip(todo, outs):
                 s_["fails"] = s_["fails"] + 1 if not extra else 0
@@ -3562,7 +3563,7 @@ def with_overlay(seconds, title, sub, fn):
 def est_seconds_mc(plan):
     import math
     chunks = sum(math.ceil(p["n"] / ai.CHUNK) for p in plan)
-    return 12 + 14 * math.ceil(chunks / 4)
+    return 10 + 10 * math.ceil(chunks / ai.WORKERS)
 
 
 def _gen_mc(plan, meta, scope_label, focus=""):
