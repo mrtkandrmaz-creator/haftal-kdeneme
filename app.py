@@ -2598,20 +2598,15 @@ def accept_diverse(q, kept, n):
     w = _qwords(q)
     for k in kept:
         wk = _qwords(k)
-        if w and wk and len(w & wk) / len(w | wk) > 0.6:
+        if w and wk and len(w & wk) / len(w | wk) > 0.75:
             return False
     sig, kind = _vsig(q), _vkind(q)
     if sig:
         if any(_vsig(k) == sig for k in kept):
             return False
-        cap = max(2, -(-n * 2 // 5))  # tek tür en çok ~%40
+        cap = max(3, -(-n * 3 // 5))  # tek tür en çok ~%60
         if sum(1 for k in kept if _vkind(k) == kind) >= cap:
             return False
-        # aynı türde çok benzer sayısal veri (yalnızca değerler farklı küçük oynamalar) için: sayı kümesi aynıysa ele
-        nums = tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", sig)))
-        for k in kept:
-            if _vkind(k) == kind and tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", _vsig(k) or ""))) == nums:
-                return False
     return True
 
 
