@@ -274,153 +274,8 @@ def month_note(i):
 LIVE = {}  # core.meb_live tarafından MEB'den çekilen müfredat: "sınıf|ders" -> [(ünite, [kazanımlar])]
 
 
-# MEB Öğretim Programları (tymm.meb.gov.tr) — Ortaokul Matematik, Türkiye Yüzyılı Maarif Modeli. Tema adları ve kazanım kodları resmî sayfadan alınmıştır.
-MEB_MAT = {
-    "5": [
-        ("1. Tema: Sayılar ve Nicelikler (1)", [
-            "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
-            "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"]),
-        ("1. Tema: Sayılar ve Nicelikler (2)", [
-            "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
-            "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"]),
-        ("2. Tema: İşlemlerle Cebirsel Düşünme", [
-            "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
-            "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
-            "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
-            "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"]),
-        ("3. Tema: Geometrik Şekiller", [
-            "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru)",
-            "MAT.5.3.2. Temel geometrik inşa deneyimlerini yansıtabilme",
-            "MAT.5.3.3. Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
-            "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılara ilişkin çıkarım yapabilme",
-            "MAT.5.3.5. Çokgenleri düzlemde ardışık kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme",
-            "MAT.5.3.6. Çokgenlerin kenar ve açı özelliklerine yönelik deneyimlerini yansıtabilme",
-            "MAT.5.3.7. İki çemberin kesişimiyle oluşan üçgenlerin kenar özelliklerine ilişkin çıkarım yapabilme (eşkenar, ikizkenar, çeşitkenar)"]),
-        ("4. Tema: Geometrik Nicelikler", [
-            "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
-            "MAT.5.4.2. Birim karelerden yola çıkarak dikdörtgenin alanını değerlendirebilme",
-            "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
-            "MAT.5.4.4. Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemleri çözebilme"]),
-        ("5. Tema: İstatistiksel Araştırma Süreci", [
-            "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
-            "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"]),
-        ("6. Tema: Veriden Olasılığa", [
-            "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
-            "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"]),
-    ],
-    "6": [
-        ("1. Tema: Sayılar ve Nicelikler (1)", [
-            "MAT.6.1.1. Karşılaştığı problem durumlarında bir doğal sayının çarpan ve katlarına yönelik muhakeme yapabilme",
-            "MAT.6.1.2. Bir doğal sayının 2, 3, 4, 5, 6, 9 ve 10 ile tam bölünebilme kriterlerine ilişkin çıkarım yapabilme",
-            "MAT.6.1.3. Bir doğal sayının asal olma durumunu ve asal çarpanlarını çözümleyebilme",
-            "MAT.6.1.4. Günlük hayat problemleri ya da matematiksel durumlar üzerinden ortak kat ve ortak böleni yorumlayabilme"]),
-        ("1. Tema: Sayılar ve Nicelikler (2)", [
-            "MAT.6.1.5. Gerçek yaşam durumlarında ondalık gösterimlerin basamak değerlerini kesirlerden yararlanarak yorumlayabilme",
-            "MAT.6.1.6. Kesir ve bölme işlemi arasındaki ilişkiye yönelik tümevarımsal akıl yürütebilme",
-            "MAT.6.1.7. Gerçek yaşam durumlarında karşılaşılan kesir, ondalık ve yüzde gösterimleri ile ilgili dört işlem gerektiren problemleri çözebilme",
-            "MAT.6.1.8. Karşılaştığı günlük hayat ya da matematiksel durumlarda standart uzunluk ölçme birimlerini değerlendirebilme"]),
-        ("2. Tema: İşlemlerle Cebirsel Düşünme ve Değişimler", [
-            "MAT.6.2.1. Gerçek yaşam durumlarında bilinen niceliklerden bilinmeyen niceliklere ilişkin muhakeme yapabilme",
-            "MAT.6.2.2. Sayı ve şekil örüntülerini yorumlayabilme",
-            "MAT.6.2.3. Cebirsel ifadeler içeren durumlardaki algoritmaları yorumlayabilme"]),
-        ("3. Tema: Geometrik Şekiller", [
-            "MAT.6.3.1. İki paralel doğru ve bir kesenin oluşturduğu açıları belirleyip sınıflandırarak adlandırabilme",
-            "MAT.6.3.2. İki paralel doğrunun iki kesenle oluşturduğu şekillerin özellikleri hakkında çıkarım yapabilme",
-            "MAT.6.3.3. Birbirini ortalayan doğru parçalarını köşegen kabul eden dörtgenler hakkında çıkarım yapabilme",
-            "MAT.6.3.4. Üçgen, yamuk, paralelkenar, eşkenar dörtgen, dikdörtgen ve karenin açılarıyla ilgili problemleri çözebilme"]),
-        ("4. Tema: Geometrik Nicelikler", [
-            "MAT.6.4.1. Uzunluk ve alan ölçme birimleri arasındaki ilişkilerle ilgili analojik akıl yürütebilme",
-            "MAT.6.4.2. Dikdörtgenin alan bağıntısına yönelik deneyimlerini paralelkenar ve üçgenin alan bağıntılarına yansıtabilme",
-            "MAT.6.4.3. Geometrik şekillerin alanları ile modellenen gerçek yaşam durumlarına yönelik problem çözebilme",
-            "MAT.6.4.4. Çemberin uzunluğu ile çap uzunluğu arasındaki ilişkiye yönelik çıkarım yapabilme",
-            "MAT.6.4.5. Çap veya yarıçap uzunluğu verilen bir çemberin uzunluğu ile ilgili problemleri çözebilme",
-            "MAT.6.4.6. Çemberde merkez açının ölçüsü ile gördüğü yayın uzunluğu arasındaki ilişkiye dair tümevarımsal akıl yürütebilme"]),
-        ("5. Tema: İstatistiksel Araştırma Süreci", [
-            "MAT.6.5.1. Kategorik veya nicel (kesikli) veri ile çalışabilme ve veriye dayalı karar verebilme",
-            "MAT.6.5.2. Başkaları tarafından oluşturulan kategorik veya nicel (kesikli) veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"]),
-        ("6. Tema: Veriden Olasılığa", [
-            "MAT.6.6.1. Bir olayın olasılığını gözleme dayalı tahmin edebilme"]),
-    ],
-    "7": [
-        ("1. Tema: Sayılar ve Nicelikler (1)", [
-            "MAT.7.1.1. Gerçek yaşam ya da matematiksel durumlarda doğal sayı, tam sayı ve rasyonel sayıları yorumlayabilme",
-            "MAT.7.1.2. Gerçek yaşam durumlarında rasyonel sayıların ondalık gösterimlerini yansıtabilme",
-            "MAT.7.1.3. Rasyonel sayıların karşılaştırma ve sıralama ilişkilerini yorumlayabilme",
-            "MAT.7.1.4. Rasyonel sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"]),
-        ("1. Tema: Sayılar ve Nicelikler (2)", [
-            "MAT.7.1.5. Gerçek yaşam durumları üzerinden oran ilişkileri hakkında muhakeme yapabilme",
-            "MAT.7.1.6. Gerçek yaşam durumları üzerinden orantılı durumları yorumlayabilme",
-            "MAT.7.1.7. Gerçek yaşam durumları üzerinden doğru orantılı durumlara ilişkin problemleri çözebilme"]),
-        ("2. Tema: İşlemlerle Cebirsel Düşünme ve Değişimler", [
-            "MAT.7.2.1. Cebirsel ifadelerle toplama, çıkarma ve rasyonel sayıyla çarpma işlemlerini yorumlayabilme",
-            "MAT.7.2.2. Birinci dereceden bir bilinmeyenli denklem ve eşitsizliklerle gerçek yaşam problemlerini çözebilme",
-            "MAT.7.2.3. Sayılar ve özellikleriyle ilgili ispatlara dair matematiksel muhakeme yapabilme",
-            "MAT.7.2.4. Aritmetik ve cebirsel işlem süreçlerini algoritma ifade yöntemleriyle yapılandırabilme"]),
-        ("3. Tema: Dönüşüm", [
-            "MAT.7.3.1. Şekillerin yansıma dönüşümü altındaki görüntülerinin oluşturulmasına dair çıkarım yapabilme",
-            "MAT.7.3.2. Yansıma dönüşümündeki deneyimlerini orta dikme ve açıortay inşasına yansıtabilme"]),
-        ("4. Tema: Geometrik Nicelikler (1)", [
-            "MAT.7.4.1. Eş küplerle kurulan yapılar ile bu yapıların görünümleri arasındaki ilişkiyi çözümleyebilme",
-            "MAT.7.4.2. Dikdörtgenler prizmasının yüzey alanını yorumlayabilme",
-            "MAT.7.4.3. Dikdörtgenler prizmasının hacmini eş nesnelerle yorumlayabilme",
-            "MAT.7.4.4. Dikdörtgenler prizmasının hacim bağıntısını değerlendirebilme",
-            "MAT.7.4.5. Hacim ölçme birimleri arasındaki ilişkileri değerlendirebilme",
-            "MAT.7.4.6. Günlük hayat durumlarında dikdörtgenler prizmalarıyla modellenen cisimlerin yüzey alanı ve hacmine ilişkin problem çözebilme"]),
-        ("4. Tema: Geometrik Nicelikler (2)", [
-            "MAT.7.4.7. Dikdörtgen ve paralelkenar alanı ile çember uzunluğuna ilişkin deneyimleri dairenin alan bağıntısına aktarabilme",
-            "MAT.7.4.8. Merkez açı ile gördüğü yay uzunluğu arasındaki ilişkiden yola çıkarak daire ve daire dilimi alanları arasında analojik akıl yürütebilme",
-            "MAT.7.4.9. Eşkenar dörtgen ve yamuğun alan bağıntıları hakkında çıkarım yapabilme",
-            "MAT.7.4.10. Günlük hayat durumlarında daire, daire dilimi, eşkenar dörtgen ve yamuğun alanına ilişkin problem çözebilme"]),
-        ("5. Tema: Geometrik Şekiller", [
-            "MAT.7.5.1. Matematiksel araçlarla üçgenin kenarortay, açıortay ve yüksekliğini analiz edebilme",
-            "MAT.7.5.2. Orta dikme inşası deneyimlerini üçgende kenarortay inşasına aktarabilme"]),
-        ("6. Tema: İstatistiksel Araştırma Süreci", [
-            "MAT.7.6.1. Kategorik veya nicel (sürekli) veriyle çalışarak veriye dayalı karar verebilme",
-            "MAT.7.6.2. Başkaları tarafından oluşturulan kategorik veya nicel (sürekli) veriye dayalı istatistiksel sonuç ve yorumları tartışabilme"]),
-        ("7. Tema: Veriden Olasılığa", [
-            "MAT.7.7.1. Bir olayın ve tümleyeninin olasılıklarına ilişkin tümevarımsal akıl yürütebilme",
-            "MAT.7.7.2. Aynı deneye ait olayların eşit olasılıklı olup olmadığını değerlendirebilme",
-            "MAT.7.7.3. Olayları ayrık veya ayrık olmayan olarak sınıflandırabilme"]),
-    ],
-    "8": [
-        ("1. Tema: Sayılar ve Nicelikler", [
-            "MAT.8.1.1. Üslü ifadeler, özellikleri ve üslü ifadelerle işlemler hakkında çıkarım yapabilme",
-            "MAT.8.1.2. Kareköklü ifadelerle ilgili problem durumlarında akıl yürütebilme",
-            "MAT.8.1.3. Sayıların rasyonel mi irrasyonel mi olduğunu değerlendirebilme",
-            "MAT.8.1.4. Gerçek sayıları ve sayı aralıklarını sayı doğrusunda yorumlayabilme"]),
-        ("2. Tema: Cebirsel Düşünme ve Değişimler", [
-            "MAT.8.2.1. Gerçek yaşam durumlarında dik koordinat sistemini inceleyebilme",
-            "MAT.8.2.2. Gerçek yaşamdaki doğrusal ilişkileri doğrusal fonksiyonlarla gösterebilme",
-            "MAT.8.2.3. Dik koordinat sisteminde iki doğrusal fonksiyonun konumu hakkında çıkarım yapabilme",
-            "MAT.8.2.4. Doğrusal fonksiyon problemlerinin çözümünü algoritma yöntemleriyle düzenleyebilme"]),
-        ("3. Tema: Geometrik Şekiller", [
-            "MAT.8.3.1. Araç ve teknoloji yardımıyla üçgenin kenar ve açıları arasındaki ilişkiyi yorumlayabilme",
-            "MAT.8.3.2. Araç ve teknoloji yardımıyla üçgenin kenar uzunlukları arasındaki ilişkiye dair çıkarım yapabilme",
-            "MAT.8.3.3. Bir üçgene eş üçgen oluşturmak için hangi elemanların bilinmesinin yeterli olduğuna dair çıkarım yapabilme",
-            "MAT.8.3.4. Bir üçgene benzer üçgen oluşturmak için hangi elemanların bilinmesinin yeterli olduğuna dair çıkarım yapabilme",
-            "MAT.8.3.5. a²+b²=c² koşulunu sağlayan üçgenlerle dik üçgeni ve Pisagor bağıntısını yorumlayabilme",
-            "MAT.8.3.6. Üçgende açı-kenar ilişkisi, üçgen eşitsizliği ve Pisagor bağıntısını içeren problemleri çözebilme"]),
-        ("4. Tema: Geometrik Nicelikler", [
-            "MAT.8.4.1. Dik prizmalar, dikdörtgen dik piramit, dik dairesel silindir ve dik dairesel koninin yüzey açınımlarını çözümleyebilme",
-            "MAT.8.4.2. Dik dairesel silindirin yüzey açınımına ilişkin deneyimlerini dik dairesel silindirin yüzey alanına yansıtabilme",
-            "MAT.8.4.3. Dairenin alan bağıntısının oluşturulma sürecinden hareketle dik dairesel silindirin hacim bağıntısına yönelik analojik akıl yürütebilme"]),
-        ("5. Tema: Dönüşüm", [
-            "MAT.8.5.1. Araç ve teknolojiyle öteleme dönüşümünü analiz edebilme",
-            "MAT.8.5.2. Noktaların koordinatlarındaki değişimler hakkında öteleme ve eksen yansımasında çıkarım yapabilme",
-            "MAT.8.5.3. Öteleme ve yansıma dönüşümü içeren problemleri çözebilme"]),
-        ("6. Tema: İstatistiksel Araştırma Süreci", [
-            "MAT.8.6.1. Kategorik veya nicel (kesikli-sürekli) veri ile çalışabilme ve veriye dayalı karar verebilme",
-            "MAT.8.6.2. Başkaları tarafından oluşturulan kategorik veya nicel (kesikli-sürekli) veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"]),
-        ("7. Tema: Veriden Olasılığa", [
-            "MAT.8.7.1. Gerçek yaşamdaki bir olayın olasılığı için öznel, deneysel veya teorik yaklaşımlardan uygun olanını seçerek karar verebilme"]),
-    ],
-}
-
-
 def units(g, subject):
     b = base_grade(g)
-    if subject == MAT and b in MEB_MAT:  # resmî MEB (tymm.meb.gov.tr) tema adları ve kazanımları kesin kaynaktır
-        return MEB_MAT[b]
     lv = LIVE.get(f"{b}|{subject}")
     if lv:
         return lv
@@ -534,22 +389,22 @@ MAX_PAGES = 4
 # (sınıf, ders, dönem, yazılı) -> [(ünite, kod, [S1..S5])]
 VERIFIED = {
     ("5", cur.MAT, 1, 1): [
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.1", [1, 1, 1, 1, 1]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.2", [1, 1, 0, 1, 1]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.3", [1, 1, 2, 2, 2]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.4", [1, 1, 2, 1, 2]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.5", [1, 1, 1, 1, 1]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.6", [1, 2, 1, 0, 0]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.7", [1, 0, 0, 0, 0]),
+        ("Temel Geometrik Çizimler ve İnşalar", "MAT.5.3.1", [1, 1, 1, 1, 1]),
+        ("Temel Geometrik Çizimler ve İnşalar", "MAT.5.3.2", [1, 1, 0, 1, 1]),
+        ("Açı Ölçme", "MAT.5.3.3", [1, 1, 2, 2, 2]),
+        ("Açı Ölçme", "MAT.5.3.4", [1, 1, 2, 1, 2]),
+        ("Çokgenler ve Çember", "MAT.5.3.5", [1, 1, 1, 1, 1]),
+        ("Çokgenler ve Çember", "MAT.5.3.6", [1, 2, 1, 0, 0]),
+        ("Çokgenler ve Çember", "MAT.5.3.7", [1, 0, 0, 0, 0]),
     ],
     ("5", cur.MAT, 1, 2): [
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.5", [0, 0, 1, 0, 1]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.6", [0, 1, 0, 1, 1]),
-        ("3. Tema: Geometrik Şekiller", "MAT.5.3.7", [2, 2, 1, 1, 1]),
-        ("1. Tema: Sayılar ve Nicelikler (1)", "MAT.5.1.1", [2, 2, 2, 2, 1]),
-        ("1. Tema: Sayılar ve Nicelikler (1)", "MAT.5.1.2", [2, 2, 2, 2, 2]),
-        ("4. Tema: Geometrik Nicelikler", "MAT.5.4.1", [1, 1, 1, 0, 0]),
-        ("4. Tema: Geometrik Nicelikler", "MAT.5.4.2", [1, 0, 0, 0, 0]),
+        ("Çokgenler ve Çember", "MAT.5.3.5", [0, 0, 1, 0, 1]),
+        ("Çokgenler ve Çember", "MAT.5.3.6", [0, 1, 0, 1, 1]),
+        ("Çokgenler ve Çember", "MAT.5.3.7", [2, 2, 1, 1, 1]),
+        ("Basamak Değerlerini Çözümleme", "MAT.5.1.1", [2, 2, 2, 2, 1]),
+        ("Doğal Sayılarla Dört İşlem İçeren Problem Çözme", "MAT.5.1.2", [2, 2, 2, 2, 2]),
+        ("Dikdörtgenin Çevre Uzunluğu ve Alanı", "MAT.5.4.1", [1, 1, 1, 0, 0]),
+        ("Dikdörtgenin Çevre Uzunluğu ve Alanı", "MAT.5.4.2", [1, 0, 0, 0, 0]),
     ],
 }
 
@@ -620,8 +475,7 @@ def scenario_table(grade, subject, term, yazili, scen):
     g = cur.base_grade(grade)
     key = (g, subject, term, yazili)
     if key in VERIFIED:
-        kz = {k.split(". ", 1)[0]: k.split(". ", 1)[-1] for _, ks in cur.units(g, subject) for k in ks}
-        rows = [{"unit": u, "code": c, "topic": kz.get(c, u), "n": cnt[scen - 1]}
+        rows = [{"unit": u, "code": c, "topic": u, "n": cnt[scen - 1]}
                 for u, c, cnt in VERIFIED[key] if cnt[scen - 1] > 0]
         return {"rows": rows, "total": sum(r["n"] for r in rows), "verified": True}
     topics = _topics_for(grade, subject, term, yazili)
@@ -1012,334 +866,12 @@ def _cylinder(ax, d):
     ax.set_ylim(0, 9.4)
 
 
-# ------------------------------------------------------------------ kesin ölçülü geometri (geo)
-def _dot(ax, p, lab="", off=(0, -.38), color=INK, fs=11):
-    ax.plot(*p, "o", color=color, ms=5, zorder=5)
-    if lab:
-        ax.text(p[0] + off[0], p[1] + off[1], lab, fontsize=fs, fontweight="bold", color=color, ha="center", va="center", zorder=6)
-
-
-def _arrow(ax, a, b, both=False, color=INK, lw=2):
-    ax.add_patch(FancyArrowPatch(a, b, arrowstyle="<|-|>" if both else "-|>", mutation_scale=16, color=color, lw=lw, shrinkA=0, shrinkB=0, zorder=3))
-
-
-def _rot(v, deg):
-    t = np.radians(deg)
-    return np.array([v[0] * np.cos(t) - v[1] * np.sin(t), v[0] * np.sin(t) + v[1] * np.cos(t)])
-
-
-def _right_mark(ax, o, u, v, s=.32):
-    u, v = np.array(u, float), np.array(v, float)
-    u, v = u / np.linalg.norm(u), v / np.linalg.norm(v)
-    ax.plot([o[0] + s * u[0], o[0] + s * (u[0] + v[0]), o[0] + s * v[0]], [o[1] + s * u[1], o[1] + s * (u[1] + v[1]), o[1] + s * v[1]], color=INK, lw=1.4, zorder=4)
-
-
-def _arc_mark(ax, o, a0, a1, r=.7, color=ORANGE, label=None):
-    th = np.radians(np.linspace(a0, a1, 40))
-    ax.plot(o[0] + r * np.cos(th), o[1] + r * np.sin(th), color=color, lw=2, zorder=4)
-    if label:
-        m = np.radians((a0 + a1) / 2)
-        ax.text(o[0] + (r + .42) * np.cos(m), o[1] + (r + .42) * np.sin(m), label, fontsize=10, fontweight="bold", color=color, ha="center", va="center", zorder=6)
-
-
-def _regular(n, R=2.0, rot=90):
-    return np.array([[R * np.cos(np.radians(rot + 360 * i / n)), R * np.sin(np.radians(rot + 360 * i / n))] for i in range(n)])
-
-
-def _poly(ax, pts, labels=None, fc="#e0f2fe", ticks=False, diagonals=False, label_off=.38):
-    pts = np.array(pts, float)
-    n = len(pts)
-    c = pts.mean(axis=0)
-    ax.add_patch(Polygon(pts, closed=True, fc=fc, ec=INK, lw=2.2, joinstyle="round", zorder=2))
-    if diagonals:
-        for i in range(n):
-            for j in range(i + 2, n):
-                if not (i == 0 and j == n - 1):
-                    ax.plot(*zip(pts[i], pts[j]), color=SLATE, lw=1.2, ls="--", zorder=2)
-    if ticks:
-        for i in range(n):
-            a, b = pts[i], pts[(i + 1) % n]
-            m, v = (a + b) / 2, b - a
-            nrm = np.array([-v[1], v[0]]) / np.linalg.norm(v)
-            for k in (-1, 1) if False else (0,):
-                ax.plot(*zip(m - .12 * nrm, m + .12 * nrm), color=ORANGE, lw=2, zorder=4)
-    for i, p in enumerate(pts):
-        ax.plot(*p, "o", color=INK, ms=4, zorder=5)
-        if labels:
-            d = (p - c) / (np.linalg.norm(p - c) or 1)
-            q = p + d * label_off
-            ax.text(q[0], q[1], labels[i], fontsize=11, fontweight="bold", color=INK, ha="center", va="center", zorder=6)
-
-
-_POLY_N = {"üçgen": 3, "dörtgen": 4, "beşgen": 5, "altıgen": 6, "yedigen": 7, "sekizgen": 8}
-
-
-def _geo(ax, d):
-    sub = str(d.get("sub_type", "polygon")).lower()
-    L = [str(x) for x in (d.get("labels") or [])]
-    ax.set_aspect("equal")
-    if sub in ("line", "ray", "segment"):
-        a, b = np.array([-3., 0]), np.array([3., 0])
-        la, lb = (L + ["A", "B"])[:2]
-        if sub == "line":
-            _arrow(ax, a - [.5, 0], b + [.5, 0], both=True)
-            _dot(ax, a + [1, 0], la); _dot(ax, b - [1, 0], lb)
-        elif sub == "ray":
-            _arrow(ax, a, b + [.6, 0]); _dot(ax, a, la); _dot(ax, b - [1.5, 0], lb)
-        else:
-            ax.plot(*zip(a, b), color=INK, lw=2.4, zorder=3); _dot(ax, a, la); _dot(ax, b, lb)
-        ax.set_xlim(-4.3, 4.3); ax.set_ylim(-1.5, 1.5)
-    elif sub == "lines_set":  # I, II, III: doğru / ışın / doğru parçası karışık (kimin ne olduğunu sorusu sorar)
-        kinds = [str(k).lower() for k in (d.get("kinds") or ["segment", "ray", "line"])][:4]
-        for i, k in enumerate(kinds):
-            y = -i * 1.5
-            a, b = np.array([-3., y]), np.array([3., y])
-            if k == "line":
-                _arrow(ax, a - [.5, 0], b + [.5, 0], both=True)
-            elif k == "ray":
-                _arrow(ax, a, b + [.6, 0]); ax.plot(*a, "o", color=INK, ms=5, zorder=5)
-            else:
-                ax.plot(*zip(a, b), color=INK, lw=2.4, zorder=3); ax.plot(*a, "o", color=INK, ms=5); ax.plot(*b, "o", color=INK, ms=5)
-            ax.text(-4.3, y, ["I", "II", "III", "IV"][i], fontsize=12, fontweight="bold", color=BLUE, va="center", ha="center")
-        ax.set_xlim(-5, 4.6); ax.set_ylim(-1.5 * len(kinds) + .5, 1)
-    elif sub == "perpendicular":  # kesin 90°
-        tilt = _f(d.get("tilt", 20), 20)
-        o = np.array([0., 0])
-        u, v = _rot([1, 0], tilt), _rot([1, 0], tilt + 90)
-        _arrow(ax, o - 3 * u, o + 3 * u, both=True); _arrow(ax, o - 2.6 * v, o + 2.6 * v, both=True)
-        _right_mark(ax, o, u, v)
-        names = (L + ["d₁", "d₂", "A"])[:3]
-        ax.text(*(o + 3.35 * u), names[0], fontsize=11, fontweight="bold", color=BLUE, ha="center", va="center")
-        ax.text(*(o + 2.95 * v), names[1], fontsize=11, fontweight="bold", color=GREEN, ha="center", va="center")
-        _dot(ax, o, names[2], off=(.5, -.5)); ax.set_xlim(-4, 4); ax.set_ylim(-3.4, 3.4)
-    elif sub == "parallel":  # paralel iki doğru (+ isteğe bağlı kesen)
-        tilt = _f(d.get("tilt", 0), 0)
-        u = _rot([1, 0], tilt); n = _rot([0, 1], tilt)
-        for k, nm in ((0, "d₁"), (1, "d₂")):
-            o = n * (-.9 + 1.8 * k)
-            _arrow(ax, o - 3.4 * u, o + 3.4 * u, both=True)
-            ax.text(*(o + 3.9 * u), (L + ["d₁", "d₂"])[k], fontsize=11, fontweight="bold", color=BLUE, ha="center", va="center")
-        if d.get("transversal"):
-            w = _rot([1, 0], _f(d.get("angle", 60), 60) + tilt)
-            _arrow(ax, -2.6 * w + n * -.9 - n * .0, 2.6 * w + n * 0.9 + n * 0, both=True, color=GREEN) if False else None
-            # kesen: iki doğruyu kesecek şekilde
-            c = n * 0
-            _arrow(ax, c - 2.4 * w, c + 2.4 * w, both=True, color=GREEN)
-            ax.text(*(c + 2.8 * w), (L + ["d₁", "d₂", "k"])[2], fontsize=11, fontweight="bold", color=GREEN, ha="center", va="center")
-        ax.set_xlim(-4.6, 4.6); ax.set_ylim(-3.6, 3.6)
-    elif sub == "angle":  # kesin ölçülü açı
-        deg = _f(d.get("degree", 50), 50)
-        base = _f(d.get("rotation", 0), 0)
-        o = np.array([0., 0])
-        p = o + 3.2 * _rot([1, 0], base); q = o + 3.2 * _rot([1, 0], base + deg)
-        _arrow(ax, o, p); _arrow(ax, o, q)
-        _arc_mark(ax, o, base, base + deg, r=.9, label=str(d.get("angle_label", "")) or None)
-        ln = (L + ["A", "B", "C"])[:3]  # köşe=ln[0]
-        _dot(ax, o, ln[0], off=_rot([1, 0], base + deg / 2) * -.45)
-        ax.text(*(p + .4 * _rot([1, 0], base)), ln[1], fontsize=11, fontweight="bold", ha="center", va="center", color=INK)
-        ax.text(*(q + .4 * _rot([1, 0], base + deg)), ln[2], fontsize=11, fontweight="bold", ha="center", va="center", color=INK)
-        ax.set_xlim(-2.5, 4.2); ax.set_ylim(-2, 4.2)
-    elif sub == "angles_two_lines":  # kesişen iki doğru: ölçüsü verilen bir açı, diğeri sorulur
-        deg = _f(d.get("degree", 60), 60)
-        o = np.array([0., 0]); u, v = _rot([1, 0], 0), _rot([1, 0], deg)
-        _arrow(ax, o - 3 * u, o + 3 * u, both=True); _arrow(ax, o - 3 * v, o + 3 * v, both=True)
-        _arc_mark(ax, o, 0, deg, r=.9, label=str(d.get("given", f"{deg:g}°")))
-        _arc_mark(ax, o, deg, 180, r=1.3, color=BLUE, label=str(d.get("ask", "x")))
-        _dot(ax, o, "O", off=(.1, -.42)); ax.set_xlim(-3.8, 3.8); ax.set_ylim(-3.2, 3.2)
-    elif sub == "polygon_set":  # K, L, M, N: farklı çokgenler (adı yazmaz)
-        ks = [str(k).lower() for k in (d.get("kinds") or ["üçgen", "dörtgen", "beşgen", "altıgen"])][:4]
-        names = (L + ["K", "L", "M", "N"])[:len(ks)]
-        for i, k in enumerate(ks):
-            n = _POLY_N.get(k, 5)
-            pts = _regular(n, 1.0, 90 if n % 2 else 90 + 180 / n) * (1.0 if n != 4 else .9) + [i * 2.8, 0]
-            if n == 4:
-                pts = np.array([[0, 0], [1.7, 0], [1.7, 1.7], [0, 1.7]]) - [.85, .85] + [i * 2.8, 0]
-            _poly(ax, pts, fc=PALETTE[i % 3] + "22")
-            ax.text(i * 2.8, -1.7, names[i], fontsize=12, fontweight="bold", color=BLUE, ha="center")
-        ax.set_xlim(-1.6, 2.8 * len(ks) - 1.2); ax.set_ylim(-2.3, 1.7)
-    else:  # polygon: düzgün/düzgün olmayan çokgen, köşe harfli
-        n = int(_f(d.get("sides", _POLY_N.get(str(d.get("kind", "")).lower(), 5)), 5))
-        n = max(3, min(n, 8))
-        pts = _regular(n, 2.0, 90 if n % 2 else 90 + 180 / n)
-        if d.get("irregular"):
-            rng = np.random.RandomState(int(_f(d.get("seed", 7), 7)))
-            pts = np.array([p * (.75 + .5 * rng.rand()) for p in pts])
-        labs = (L + list("ABCDEFGH"))[:n]
-        _poly(ax, pts, labels=labs, ticks=bool(d.get("equal_ticks")) and not d.get("irregular"), diagonals=bool(d.get("diagonals")))
-        ax.set_xlim(-3.2, 3.2); ax.set_ylim(-3.2, 3.2)
-
-
-# ---- üçgen / dörtgen / çember: kesin koordinatlı çizimler
-def _tri_pts(kind, scale=1.0):
-    k = str(kind).lower()
-    if k in ("right", "dik"):
-        P = [[0, 0], [4, 0], [0, 3]]            # 3-4-5, dik açı B'de değil A'da (ilk köşe)
-    elif k in ("equilateral", "eşkenar"):
-        P = [[0, 0], [4, 0], [2, 4 * np.sqrt(3) / 2]]
-    elif k in ("isosceles", "ikizkenar"):
-        P = [[0, 0], [4, 0], [2, 3.6]]          # |AC| = |BC|
-    elif k in ("obtuse", "geniş"):
-        P = [[0, 0], [5, 0], [-1.2, 2.2]]
-    elif k in ("acute", "dar"):
-        P = [[0, 0], [4.6, 0], [2.7, 3.4]]
-    else:                                        # çeşitkenar
-        P = [[0, 0], [5, 0], [1.4, 3.3]]
-    return np.array(P, float) * scale
-
-
-def _tick(ax, a, b, n=1, color=ORANGE):
-    a, b = np.array(a, float), np.array(b, float)
-    m, v = (a + b) / 2, b - a
-    u = v / np.linalg.norm(v); nrm = np.array([-u[1], u[0]])
-    for i in range(n):
-        c = m + (i - (n - 1) / 2) * .16 * u
-        ax.plot(*zip(c - .13 * nrm, c + .13 * nrm), color=color, lw=2, zorder=4)
-
-
-def _triangle_geo(ax, d, pts=None):
-    kind = str(d.get("kind", "scalene")).lower()
-    P = _tri_pts(kind) if pts is None else pts
-    L = (list(map(str, d.get("labels") or [])) + ["A", "B", "C"])[:3]
-    c = P.mean(axis=0)
-    ax.add_patch(Polygon(P, closed=True, fc="#e0f2fe", ec=INK, lw=2.2, joinstyle="round", zorder=2))
-    for i, p in enumerate(P):
-        ax.plot(*p, "o", color=INK, ms=4, zorder=5)
-        dd = (p - c) / np.linalg.norm(p - c)
-        ax.text(*(p + dd * .45), L[i], fontsize=11, fontweight="bold", ha="center", va="center", color=INK, zorder=6)
-    side = lambda i, j: (P[i], P[j])
-    if d.get("ticks", True):
-        if kind in ("equilateral", "eşkenar"):
-            for i, j in ((0, 1), (1, 2), (2, 0)):
-                _tick(ax, *side(i, j), n=1)
-        elif kind in ("isosceles", "ikizkenar"):
-            _tick(ax, *side(0, 2)); _tick(ax, *side(1, 2))
-    if kind in ("right", "dik"):
-        _right_mark(ax, P[0], P[1] - P[0], P[2] - P[0], s=.35)
-    if d.get("height"):  # C'den AB'ye yükseklik
-        foot = np.array([P[2][0], 0.0])
-        ax.plot(*zip(P[2], foot), color=GREEN, lw=1.6, ls="--", zorder=3)
-        _right_mark(ax, foot, [-1, 0] if P[2][0] > 0 else [1, 0], [0, 1], s=.28)
-    sides = d.get("sides") or {}
-    for key, (i, j) in (("AB", (0, 1)), ("BC", (1, 2)), ("AC", (0, 2))):
-        if key in sides:
-            m = (P[i] + P[j]) / 2; out = m - c; out = out / np.linalg.norm(out)
-            ax.text(*(m + out * .5), str(sides[key]), fontsize=9.5, fontweight="bold", color=BLUE, ha="center", va="center", zorder=6)
-    angs = d.get("angles") or {}
-    for key, i in (("A", 0), ("B", 1), ("C", 2)):
-        if key in angs:
-            q = (P[i] * .72 + c * .28)
-            ax.text(*q, str(angs[key]), fontsize=9, fontweight="bold", color=ORANGE, ha="center", va="center", zorder=6)
-    lo, hi = P.min(axis=0) - 1.3, P.max(axis=0) + 1.3
-    ax.set_xlim(lo[0], hi[0]); ax.set_ylim(lo[1], hi[1])
-
-
-def _quad_pts(kind):
-    k = str(kind).lower()
-    if k in ("square", "kare"):
-        return np.array([[0, 0], [3, 0], [3, 3], [0, 3]], float)
-    if k in ("rectangle", "dikdörtgen"):
-        return np.array([[0, 0], [4.4, 0], [4.4, 2.6], [0, 2.6]], float)
-    if k in ("parallelogram", "paralelkenar"):
-        return np.array([[0, 0], [4, 0], [5.2, 2.4], [1.2, 2.4]], float)
-    if k in ("rhombus", "eşkenar dörtgen", "eskenar dortgen"):
-        return np.array([[0, 1.6], [2.2, 0], [4.4, 1.6], [2.2, 3.2]], float)
-    if k in ("trapezoid", "yamuk"):
-        return np.array([[0, 0], [5, 0], [3.8, 2.4], [1.0, 2.4]], float)
-    return np.array([[0, 1.5], [1.6, 0], [4.6, 1.5], [1.6, 3.2]], float)  # deltoid
-
-
-def _quad_geo(ax, d, pts=None, labels=None):
-    kind = str(d.get("kind", "rectangle")).lower()
-    P = _quad_pts(kind) if pts is None else pts
-    L = labels or (list(map(str, d.get("labels") or [])) + list("ABCD"))[:4]
-    c = P.mean(axis=0)
-    ax.add_patch(Polygon(P, closed=True, fc="#e0f2fe", ec=INK, lw=2.2, joinstyle="round", zorder=2))
-    for i, p in enumerate(P):
-        ax.plot(*p, "o", color=INK, ms=4, zorder=5)
-        dd = (p - c) / np.linalg.norm(p - c)
-        ax.text(*(p + dd * .45), L[i], fontsize=11, fontweight="bold", ha="center", va="center", color=INK, zorder=6)
-    if d.get("ticks", True):
-        e = lambda i: (P[i], P[(i + 1) % 4])
-        if kind in ("square", "kare", "rhombus", "eşkenar dörtgen", "eskenar dortgen"):
-            for i in range(4):
-                _tick(ax, *e(i))
-        elif kind in ("rectangle", "dikdörtgen", "parallelogram", "paralelkenar"):
-            _tick(ax, *e(0)); _tick(ax, *e(2)); _tick(ax, *e(1), n=2); _tick(ax, *e(3), n=2)
-        elif kind not in ("trapezoid", "yamuk"):  # deltoid
-            _tick(ax, *e(0)); _tick(ax, *e(3)); _tick(ax, *e(1), n=2); _tick(ax, *e(2), n=2)
-    if kind in ("square", "kare", "rectangle", "dikdörtgen"):
-        for i in range(4):
-            _right_mark(ax, P[i], P[(i + 1) % 4] - P[i], P[(i - 1) % 4] - P[i], s=.26)
-    if d.get("diagonals"):
-        ax.plot(*zip(P[0], P[2]), color=SLATE, lw=1.3, ls="--", zorder=2); ax.plot(*zip(P[1], P[3]), color=SLATE, lw=1.3, ls="--", zorder=2)
-    lo, hi = P.min(axis=0) - 1.2, P.max(axis=0) + 1.2
-    ax.set_xlim(lo[0], hi[0]); ax.set_ylim(lo[1], hi[1])
-
-
-def _circle_parts(ax, d):
-    parts = [str(x).lower() for x in (d.get("parts") or ["radius"])]
-    R = 2.4
-    ax.add_patch(Circle((0, 0), R, fc="#f0f9ff", ec=INK, lw=2.2, zorder=2))
-    _dot(ax, (0, 0), str(d.get("center", "O")), off=(.1, -.38), color=ORANGE)
-    pt = lambda deg: np.array([R * np.cos(np.radians(deg)), R * np.sin(np.radians(deg))])
-    def lab(p, t, k=1.18):
-        ax.plot(*p, "o", color=INK, ms=5, zorder=5); ax.text(*(p * k), t, fontsize=11, fontweight="bold", ha="center", va="center", zorder=6)
-    L = (list(map(str, d.get("labels") or [])) + ["A", "B", "C", "D", "E"])
-    if "radius" in parts:
-        p = pt(35); ax.plot(*zip([0, 0], p), color=BLUE, lw=2.2, zorder=3); lab(p, L[0])
-    if "diameter" in parts:
-        p, q = pt(160), pt(340); ax.plot(*zip(p, q), color=GREEN, lw=2.2, zorder=3); lab(p, L[1]); lab(q, L[2])
-    if "chord" in parts:
-        p, q = pt(250), pt(300) if False else pt(295); ax.plot(*zip(p, q), color=ORANGE, lw=2.2, zorder=3); lab(p, L[3]); lab(q, L[4])
-    if "arc" in parts:
-        th = np.radians(np.linspace(40, 110, 40)); ax.plot(R * np.cos(th), R * np.sin(th), color="#8b5cf6", lw=5, zorder=4, solid_capstyle="round")
-    if "tangent" in parts:
-        p = pt(0); ax.plot([p[0], p[0]], [-2.2, 2.2], color="#ec4899", lw=2.2, zorder=3); ax.plot(*p, "o", color=INK, ms=5, zorder=5)
-    if "sector" in parts:
-        ax.add_patch(Wedge((0, 0), R, 20, 100, fc="#fde68a", ec=INK, lw=1.8, zorder=3))
-    ax.set_xlim(-3.6, 3.6); ax.set_ylim(-3.3, 3.3)
-
-
-def _shape_set(ax, d, kind_fn, default):
-    ks = [str(k).lower() for k in (d.get("kinds") or default)][:4]
-    names = (list(map(str, d.get("labels") or [])) + ["K", "L", "M", "N"])[:len(ks)]
-    off = 0.0
-    for i, k in enumerate(ks):
-        P = kind_fn(k)
-        P = P / max(np.ptp(P[:, 0]), np.ptp(P[:, 1])) * 2.0
-        P = P - [P[:, 0].min(), P[:, 1].min()] + [off, 0]
-        ax.add_patch(Polygon(P, closed=True, fc=PALETTE[i % 3] + "22", ec=INK, lw=2.2, joinstyle="round", zorder=2))
-        for p in P: ax.plot(*p, "o", color=INK, ms=3.5, zorder=5)
-        ax.text(P[:, 0].mean(), -.55, names[i], fontsize=12, fontweight="bold", color=BLUE, ha="center")
-        off += np.ptp(P[:, 0]) + 1.0
-    ax.set_xlim(-.6, off); ax.set_ylim(-1.1, 2.6)
-
-
-_geo_basic = _geo
-
-
-def _geo(ax, d):
-    sub = str(d.get("sub_type", "polygon")).lower()
-    ax.set_aspect("equal")
-    if sub in ("triangle", "triangle_kind"):
-        return _triangle_geo(ax, d)
-    if sub in ("triangle_set",):
-        return _shape_set(ax, d, _tri_pts, ["right", "equilateral", "isosceles", "scalene"])
-    if sub in ("quad", "quadrilateral"):
-        return _quad_geo(ax, d)
-    if sub in ("quad_set",):
-        return _shape_set(ax, d, _quad_pts, ["square", "rectangle", "parallelogram", "rhombus"])
-    if sub in ("circle_parts", "circle"):
-        return _circle_parts(ax, d)
-    return _geo_basic(ax, d)
-
-
 _DISPATCH = {
     "triangle": _triangle, "circle": _circle, "rectangle": _rectangle,
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo,
+    "forces": _forces, "cylinder": _cylinder,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -1505,6 +1037,7 @@ def _styles(fs=8.3):
 
 def _img(png, max_w, max_h):
     iw, ih = ImageReader(io.BytesIO(png)).getSize()
+    k = min(max_w / iw, max_h / ih, 1.6 * 72 / 72)
     k = min(max_w / iw, max_h / ih)
     return Image(io.BytesIO(png), width=iw * k, height=ih * k)
 
@@ -2143,8 +1676,7 @@ GEMINI_MODEL = "gemini-3.6-flash"
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
-CHUNK = 6
-WORKERS = 8
+CHUNK = 8
 
 
 def load_keys():
@@ -2224,18 +1756,6 @@ def parse_json(raw):
 SHAPE_RULES = (
     "🚨 GÖRSEL KURALLARI (`shape` nesnesi). Matematik, fen ve veri okuma sorularında konuya UYGUN şemayı mutlaka ekle:\n"
     '- Üçgen: {"type":"triangle","sub_type":"right|scalene|equilateral","A":"A","B":"B","C":"C","side_ab":"3 cm","side_bc":"4 cm","angle_a":"60°"}\n'
-    '- 📐 KESİN ÖLÇÜLÜ GEOMETRİ (doğru/ışın/doğru parçası, dik-paralel doğrular, açılar, çokgenler; GEOMETRİ konularında TERCİH ET, `labels` köşe/nokta harfleridir):\n'
-    '   {"type":"geo","sub_type":"line|ray|segment","labels":["A","B"]}  |  {"type":"geo","sub_type":"lines_set","kinds":["segment","ray","line"]} (I,II,III numaralı karışık çizim; soruda "hangisi ışındır?" gibi)\n'
-    '   {"type":"geo","sub_type":"perpendicular","labels":["d1","d2","A"],"tilt":25} (tam 90°)  |  {"type":"geo","sub_type":"parallel","labels":["d1","d2","k"],"transversal":true,"angle":60}\n'
-    '   {"type":"geo","sub_type":"angle","degree":50,"rotation":0,"labels":["A","B","C"],"angle_label":"?"} (açı TAM `degree` derece çizilir; ölçüyü soru metni verir ya da öğrenci açıyı türünden sınıflar)\n'
-    '   {"type":"geo","sub_type":"angles_two_lines","degree":60,"given":"60°","ask":"x"} (kesişen iki doğru)\n'
-    '   {"type":"geo","sub_type":"polygon","sides":6,"labels":["A","B","C","D","E","F"],"equal_ticks":true,"diagonals":false,"irregular":false}  (3-8 kenar)\n'
-    '   {"type":"geo","sub_type":"polygon_set","kinds":["üçgen","dörtgen","beşgen","altıgen"],"labels":["K","L","M","N"]} (adı yazmaz; "hangisi beşgendir?")\n'
-    '   {"type":"geo","sub_type":"triangle","kind":"right|equilateral|isosceles|scalene|obtuse|acute","labels":["A","B","C"],"ticks":true,"height":false,"sides":{"AB":"4 cm","AC":"3 cm"},"angles":{"A":"60°"}} (kind=right: dik açı A köşesinde; ticks=true eş kenarları işaretler; "hangi üçgen?" sorularında ticks:false yap)\n'
-    '   {"type":"geo","sub_type":"triangle_set","kinds":["right","equilateral","isosceles","scalene"],"labels":["K","L","M","N"]}\n'
-    '   {"type":"geo","sub_type":"quad","kind":"square|rectangle|parallelogram|rhombus|trapezoid|kite","labels":["A","B","C","D"],"ticks":true,"diagonals":false}  |  {"type":"geo","sub_type":"quad_set","kinds":["square","rectangle","parallelogram","rhombus"]}\n'
-    '   {"type":"geo","sub_type":"circle_parts","center":"O","parts":["radius","diameter","chord","arc","tangent","sector"],"labels":["A","B","C","D","E"]} (yarıçap OA, çap BC, kiriş DE; seçilen parçalar çizilir)\n'
-    '   ⚠ Soru metni çizilenle BİREBİR aynı olsun: köşe sayısı, harfler, açı ölçüsü, çizim türü çelişmesin; şekil türünün adını (ışın, altıgen…) görselde ipucu olarak yazma.\n'
     '- Çember: {"type":"circle","center":"O","radius":"5 cm","show_diameter":true}\n'
     '- Dikdörtgen: {"type":"rectangle","width":8,"height":5,"width_label":"8 cm","height_label":"5 cm"}\n'
     '- Çubuk: {"type":"bar_chart","labels":[...],"values":[...],"title":"..."}   Çizgi: {"type":"line_chart","labels":[...],"values":[...],"title":"..."}\n'
@@ -2266,7 +1786,7 @@ SUBJECT_HINT = {
 }
 
 
-_GEO = {"triangle", "circle", "rectangle", "cylinder", "number_line", "geo"}
+_GEO = {"triangle", "circle", "rectangle", "cylinder", "number_line"}
 _SCI = {"science_space", "space_orbit", "eclipse", "moon_phases", "dynamometer", "thermometer", "forces", "science_chart", "cylinder"}
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
@@ -2291,7 +1811,7 @@ FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu
 
 
 # ---------------------------------------------------------------- konu-görsel tutarlılığı (katı)
-_MOON = re.compile(r"\bevre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
+_MOON = re.compile(r"evre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
 _MOON_KINDS = {"moon_single", "moon_phases", "moon_sequence", "phases", "moon_orbit", "moon_positions", "solar_eclipse", "lunar_eclipse", "eclipse", "orbit", "space_orbit"}
 _TOPIC_RULES = [  # (ad, konu regex, izinli görsel türleri)
     ("ay", _MOON, _MOON_KINDS),
@@ -2306,7 +1826,6 @@ _REQUIRE = {  # özel görsel -> metinde bulunması gereken anahtarlar
     "rectangle": r"dikdörtgen|kare|dörtgen|alan|çevre|bahçe|zemin|tarla|kenar|uzunluk|genişlik|oda",
     "cylinder": r"hacim|silindir|ml|litre|sıvı|ölç|kap|taşır",
     "forces": r"kuvvet|net|hareket|sürtünme|dengelen|itme|çekme",
-    "geo": r"doğru|ışın|parça|dik|paralel|açı|çokgen|üçgen|dörtgen|beşgen|altıgen|köşegen|kenar|köşe|şekil|kesen|eş",
     "number_line": r"sayı|doğru|konum|yıl|zaman|kronolo|kesir|ondalık|negatif|tam sayı|eksi|işaret|mutlak|sıra",
 }
 for _k in _MOON_KINDS:
@@ -2363,35 +1882,6 @@ def _subject_lock(subject, topics=""):
     return base + topic_visual_rules(topics)
 
 
-GEO_STYLE = (
-    "\n📐 GEOMETRİ SORU TARZI (KATI KURAL; yukarıdaki 'günlük hayat bağlamı / senaryo / metin' yönergesi geometri soruları için GEÇERSİZDİR):\n"
-    "- Sorular MEB/LGS'nin klasik geometri soru tarzında olsun: ÇOK KISA ve doğrudan ŞEKLE dayalı. Soru kökü en çok 1-2 cümle (en fazla ~30 kelime). 'passage' alanı HER ZAMAN null.\n"
-    "- Hikâye, senaryo, tarih, kültür bağlamı YOK. Osmanlı/padişah/savaş/kale/müze/arkeoloji gibi tarihî ya da kültürel konular ve "
-    "Güneş/Ay/Dünya/gezegen/uzay gibi gök cismi konuları KESİNLİKLE YASAK. Yalnızca nokta, harf, doğru, açı, kenar, çokgen, çember dili kullan.\n"
-    "- HER geometri sorusunda `shape` ZORUNLU (null YASAK). Sorudaki tüm veriler (harfler, ölçüler, x) çizimdekiyle BİREBİR aynı olsun. "
-    "Soru kökü 'Şekilde…', 'Yukarıdaki şekle göre…' diye şekle atıf yapsın; şekildeki verileri uzun metinle yeniden anlatma.\n"
-    "- Örnek kökler: 'Yukarıdaki şekilde d₁ ∥ d₂ olduğuna göre x kaç derecedir?' | 'Şekildeki ABC üçgeninde m(A) = 50°, m(B) = 60° ise m(C) kaç derecedir?' | "
-    "'Aşağıdakilerden hangisi ışındır?' | 'Şekildeki dikdörtgenin çevresi kaç cm'dir?' | 'Şekildeki O merkezli çemberde |OA| = 6 cm ise çap kaç cm'dir?' | "
-    "'Şekildeki çokgenlerden hangisi beşgendir?'\n"
-    "- Şıklar kısa olsun (sayı, derece, cm, harf ya da numara).\n")
-_GEO_PLAN_RX = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|\bdaire\b|dik |paralel|inşa|prizma|silindir|doğru parçası|köşegen|eşkenar|ikizkenar|\bkare\b", re.I)
-_GEO_STRICT = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|paralel|\bdik\b|\bkare\b|eşkenar|ikizkenar|köşegen|doğru parçası|inşa|prizma|koni|simetri|dönüşüm", re.I)
-_GEO_DRAW = {"geo", "triangle", "circle", "rectangle"}
-_GEO_BAN = re.compile(r"osmanl|padişah|sultan|fetih|savaş|tarih|imparator|devlet|medeniyet|kale\b|saray|cami|müze|arkeolo|kazı|gezegen|uzay|yörünge|güneş|\bay\b|ay['’]ın|dünya|\bevre|ilkçağ|masal|hikâye|hikaye", re.I)
-_GEO_SKILLS = ["şekilden bilinmeyen açıyı bulma", "şekildeki elemanları tanıma (kenar, köşe, yarıçap, çap, kiriş)", "şekli sınıflandırma / adlandırma",
-               "ölçüleri verilen şekilde çevre ya da alan hesaplama", "şekle bakarak I, II, III yargılarını değerlendirme", "eş kenar / eş açı çıkarımı yapma",
-               "paralel ve dik doğru ilişkisinden açı bulma", "şekiller arasında özellik karşılaştırma"]
-
-
-def _is_geo_q(q, shape, subject):
-    if subject != "Matematik":
-        return False
-    if isinstance(shape, dict) and shape.get("type") in _GEO_DRAW:
-        return True
-    tp = str(q.get("topic") or "")
-    return bool(_GEO_STRICT.search(tp)) and not re.search(r"grafik|veri|tablo|olasılık|ortalama", tp, re.I)
-
-
 _THEMES = ["spor müsabakası", "market alışverişi", "okul kantini", "doğa yürüyüşü", "müze gezisi", "çiftlik", "toplu taşıma", "robotik atölyesi", "resim sergisi",
            "sağlık kontrolü", "hayvanat bahçesi", "mutfak tarifi", "yaz tatili", "kütüphane", "geri dönüşüm", "şehir planı", "bilim insanı", "kültür festivali",
            "bahçe düzenleme", "su tasarrufu", "bisiklet turu", "kamp", "pazar yeri", "fotoğrafçılık", "inşaat", "uzay merkezi", "balıkçılık", "gıda üretimi",
@@ -2427,28 +1917,18 @@ def _variety_plan(subject, n, topics):
     while len(sk) < n:
         sk += random.sample(_SKILLS, len(_SKILLS))
     vis = _visual_candidates(subject, topics) if subject in VISUAL_SUBJECTS else []
-    moon = subject != "Matematik" and bool(_MOON.search(topics or ""))
+    moon = bool(_MOON.search(topics or ""))
     if moon:  # Ay evreleri: bolca ve çeşitli Ay görseli, görselsiz soru yok
         vis = ["moon_phases", "moon_single", "moon_phases", "moon_single", "moon_orbit", "moon_phases", "moon_single", "solar_eclipse", "lunar_eclipse"]
-    geom = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
-    if geom:  # geometri ünitesi: kesin ölçülü geo görselleri ağırlıklı
-        geo_k = ["geo:line", "geo:ray", "geo:segment", "geo:lines_set", "geo:perpendicular", "geo:parallel", "geo:angle", "geo:angles_two_lines", "geo:polygon", "geo:polygon_set", "geo:triangle", "geo:triangle", "geo:triangle_set", "geo:quad", "geo:quad_set", "geo:circle_parts", "geo:circle_parts"]
-        vis = geo_k * 2  # yalnızca kesin ölçülü geometri çizimleri (Ay/tablo/grafik karışmaz)
-        sk = []
-        while len(sk) < n:
-            sk += random.sample(_GEO_SKILLS, len(_GEO_SKILLS))
-    else:
-        vis = [v for v in vis if v != "geo"]
     random.shuffle(vis)
     lines = []
     for i in range(n):
-        if vis and (moon or geom or random.random() > 0.22):  # geometride görsel HER soruda zorunlu
+        if vis and (moon or random.random() > 0.22):
             v = vis[i % len(vis)]
-            vtxt = (f"görsel = {{\"type\":\"geo\",\"sub_type\":\"{v[4:]}\"}} (geo şeması)" if v.startswith("geo:") else f"görsel türü = {v}")
+            vtxt = f"görsel türü = {v}"
         else:
             vtxt = "görselsiz (shape null) ya da metin/tablo ağırlıklı"
-        ctx = "YOK (hikâyesiz, kısa, doğrudan şekil sorusu)" if geom else th[i]
-        lines.append(f"  Soru {i + 1}: bağlam = {ctx}; beceri = {sk[i]}; {vtxt}")
+        lines.append(f"  Soru {i + 1}: bağlam = {th[i]}; beceri = {sk[i]}; {vtxt}")
     return ("\nSORU PLANI (HER SORU AYNI NUMARADAKİ SATIRA UYSUN; sorular ve görseller BİRBİRİNE BENZEMESİN, farklı sayılar/veriler/şekil ölçüleri kullan, "
             "aynı kazanımın farklı yönlerini ölç):\n" + "\n".join(lines) + "\nPlandaki görsel türü konuya uymuyorsa o soruyu görselsiz yaz; ama iki soruda aynı görsel/veri tekrar etmesin.\n")
 
@@ -2456,7 +1936,6 @@ def _variety_plan(subject, n, topics):
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
-    geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     return (
         f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
@@ -2464,11 +1943,10 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         f"KAPSAM: {scope_label}\nKONULAR/KAZANIMLAR: {topics}{fc}\n"
         f"ZORLUK KADEMESİ: '{difficulty}'. Bu kademeye kesin uy.\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
-        + ("MEB geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz; yorum ve muhakeme gerektiren ama metni az olan sorular. " if geo_on else
-           "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. ") +
+        "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. "
         "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
         f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{_variety_plan(subject, n, topics)}"
-        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
+        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
         '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":"..."}]}' % (start_id, subject))
@@ -2481,14 +1959,13 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
     for it in items:
         lines.append(f"- Kazanım: {it['kazanim']} → {it['n']} soru (zorluk etiketleri: {', '.join(it['labels'])})")
     av = ("\nTekrar etme:\n- " + "\n- ".join(avoid[-12:])) if avoid else ""
-    geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(" ".join(str(it.get("kazanim", "")) for it in items)))
     return (
         f"MEB Ortak Yazılı Sınav Sistemi (OYSS) için {grade_label} {subject} dersi yazılı sınavı soruları hazırla. "
         "Sorular AÇIK UÇLU ve KISA CEVAPLI olacak (çoktan seçmeli DEĞİL); yaklaşık 1/3'ü kısa cevaplı, kalanı açık uçlu. "
         "Her soru tek bir kazanımı ölçsün, beceri temelli ve bağlamlı olsun; öğrencinin yazarak cevaplayacağı şekilde kurgulansın.\n"
         f"DAĞILIM (kazanım başına tam soru sayısı):\n" + "\n".join(lines) + "\n"
         f"KALİTE KADEMESİ: '{difficulty}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy.\n"
-        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
+        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}\n"
         "Her soru için: beklenen 'answer', ve puanlama anahtarı 'rubric' (adımlar ve göreli puanlar; toplam 10 olsun).\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"kazanim":"..","type":"Açık uçlu|Kısa cevaplı","difficulty":"Kolay|Orta|Zor",'
         '"passage":"... veya null","question":"..","shape":null,"answer":"..","rubric":[{"step":"..","points":5},{"step":"..","points":5}]}]}')
@@ -2528,15 +2005,7 @@ def _norm_q(q, subject):
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
-    pas = q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else ""
-    if _is_geo_q(q, shape, subject):  # geometri: şekil ZORUNLU, metin KISA, hikâye/tarih/gök cismi bağlamı YOK
-        if not shape:
-            return None
-        if len(str(q.get("question", "")).split()) > 45 or len(str(pas or "").split()) > 15:
-            return None
-        if _GEO_BAN.search(f"{q.get('question', '')} {pas} {' '.join(opts.values())}"):
-            return None
-    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": pas,
+    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else "",
            "question": str(q["question"]).strip(), "shape": shape, "options": opts, "answer": ans, "explanation": str(q.get("explanation") or "")}
     return None if leaks_answer(out) else out
 
@@ -2598,15 +2067,20 @@ def accept_diverse(q, kept, n):
     w = _qwords(q)
     for k in kept:
         wk = _qwords(k)
-        if w and wk and len(w & wk) / len(w | wk) > 0.75:
+        if w and wk and len(w & wk) / len(w | wk) > 0.5:
             return False
     sig, kind = _vsig(q), _vkind(q)
     if sig:
         if any(_vsig(k) == sig for k in kept):
             return False
-        cap = max(3, -(-n * 3 // 5))  # tek tür en çok ~%60
+        cap = max(2, -(-n * 2 // 5))  # tek tür en çok ~%40
         if sum(1 for k in kept if _vkind(k) == kind) >= cap:
             return False
+        # aynı türde çok benzer sayısal veri (yalnızca değerler farklı küçük oynamalar) için: sayı kümesi aynıysa ele
+        nums = tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", sig)))
+        for k in kept:
+            if _vkind(k) == kind and tuple(sorted(re.findall(r"\d+(?:[.,]\d+)?", _vsig(k) or ""))) == nums:
+                return False
     return True
 
 
@@ -2642,91 +2116,48 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     errors, results = [], {}
     done = [0]
 
-    def work(idx_task, extra_avoid=None):
+    def work(idx_task):
         idx, (p, c, k) = idx_task
         subj = p["subject"]
-        try:
-            if demo_mode():
-                return idx, _demo_mc(subj, c, p["topics"]), None
-            av = list(avoid.get(subj, [])) + list(extra_avoid or [])
-            prompt = mc_prompt(grade_label, subj, c + (1 if idx < 900 else 0), p["topics"], difficulty, scope_label, av, focus if k == 0 else "")
-            raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
-            data = parse_json(raw)
-            items = (data or {}).get("questions", []) if isinstance(data, dict) else []
-            qs = []
-            for q in items:
-                try:
-                    x = _norm_q(q, subj)
-                except Exception:  # tek bozuk soru tüm üretimi bozmasın
-                    x = None
-                if x:
-                    qs.append(x)
-            if on_progress:
-                done[0] += 1
-                on_progress(done[0], len(tasks), subj)
-            return idx, qs, (err if not qs else None)
-        except Exception as e:
-            return idx, [], f"{type(e).__name__}: {str(e)[:80]}"
+        if demo_mode():
+            return idx, _demo_mc(subj, c, p["topics"]), None
+        prompt = mc_prompt(grade_label, subj, c, p["topics"], difficulty, scope_label, avoid.get(subj, []), focus if k == 0 else "")
+        raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
+        data = parse_json(raw)
+        qs = [x for x in (_norm_q(q, subj) for q in (data or {}).get("questions", [])) if x]
+        if on_progress:
+            done[0] += 1
+            on_progress(done[0], len(tasks), subj)
+        return idx, qs, (err if not qs else None)
 
-    with ThreadPoolExecutor(max_workers=min(WORKERS, max(1, len(tasks)))) as ex:
+    with ThreadPoolExecutor(max_workers=min(4, max(1, len(tasks)))) as ex:
         for idx, qs, err in ex.map(work, list(enumerate(tasks))):
             results[idx] = qs
             if err:
                 errors.append(err)
-    seen = set(s for v in avoid.values() for s in v)
-    state = []
+    questions, seen = [], set(s for v in avoid.values() for s in v)
     for p in plan:
-        state.append({"p": p, "qs": [], "reserve": [], "fails": 0})
-
-    def take(st_, batch):
-        p, qs_, res_ = st_["p"], st_["qs"], st_["reserve"]
-        for q in batch:
-            if len(qs_) >= p["n"]:
-                break
-            s = _stem(q)
-            if not s:
-                continue
-            if s in seen:
-                res_.append(q)
-            elif accept_diverse(q, qs_, p["n"]):
-                seen.add(s)
-                qs_.append(q)
-            else:
-                res_.append(q)
-
-    for st_ in state:
+        subj_qs = []
         for idx, (pp, c, k) in enumerate(tasks):
-            if pp is st_["p"]:
-                take(st_, results.get(idx, []))
-    # eksikleri tüm dersler için PARALEL tamamla (en çok 3 tur, az fazla isteyerek)
-    if demo_mode() or gk or mk:
-        for rnd in range(1, 3):
-            todo = [s_ for s_ in state if s_["p"]["n"] - len(s_["qs"]) > 0 and s_["fails"] < 2]
-            if not todo:
+            if pp is p:
+                for q in results.get(idx, []):
+                    s = _stem(q)
+                    if s and s not in seen and accept_diverse(q, subj_qs, p["n"]):
+                        seen.add(s)
+                        subj_qs.append(q)
+        for rnd in (1, 2):  # eksik kalanı (benzer/uyumsuz elenenler) en çok iki kez tamamla
+            short = p["n"] - len(subj_qs)
+            if short <= 0 or not (demo_mode() or gk or mk):
                 break
-            jobs = [(900 + rnd * 10 + i, (s_["p"], min(CHUNK, (s_["p"]["n"] - len(s_["qs"])) + 3), rnd), [str(q.get("question", ""))[:80] for q in s_["qs"]])
-                    for i, s_ in enumerate(todo)]
-            with ThreadPoolExecutor(max_workers=min(WORKERS, len(jobs))) as ex:
-                outs = list(ex.map(lambda j: work((j[0], j[1]), j[2]), jobs))
-            for s_, (_, extra, err) in zip(todo, outs):
-                s_["fails"] = s_["fails"] + 1 if not extra else 0
-                take(s_, extra)
-    questions = []
-    for st_ in state:
-        p, qs_ = st_["p"], st_["qs"]
-        if len(qs_) < p["n"] and st_["reserve"]:  # son çare: elenenlerden (tam kopya olmayanlar) tamamla
-            have = [_qwords(q) for q in qs_]
-            for q in st_["reserve"]:
-                if len(qs_) >= p["n"]:
-                    break
-                w = _qwords(q)
-                if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have):
-                    continue
-                qs_.append(q)
-                have.append(w)
-        if len(qs_) < p["n"]:
-            errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi")
-        questions += qs_[:p["n"]]
+            _, extra, err = work((900 + rnd, (p, min(short + 3, CHUNK), rnd)))
+            for q in extra:
+                s = _stem(q)
+                if s not in seen and len(subj_qs) < p["n"] and accept_diverse(q, subj_qs, p["n"]):
+                    seen.add(s)
+                    subj_qs.append(q)
+        if len(subj_qs) < p["n"]:
+            errors.append(f"{p['subject']}: {len(subj_qs)}/{p['n']} soru üretilebildi")
+        questions += subj_qs[:p["n"]]
     for i, q in enumerate(questions, 1):
         q["id"] = i
     return questions, errors
@@ -2757,20 +2188,11 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
                                "passage": "", "question": f"[{subj}] Demo açık uçlu soru {uuid.uuid4().hex[:4]}", "shape": None,
                                "answer": "Demo cevap", "rubric": [{"step": "Adım 1", "points": 5}, {"step": "Adım 2", "points": 5}]})
         else:
-            qs, err = [], None
-            for attempt in range(3):  # eksik/fazla dönerse yeniden iste; en çok 3 deneme
-                raw, err = multi_pool_generate(oyss_prompt(grade_label, subj, items, difficulty, avoid.get(subj, [])), gk, mk, offset=si + attempt)
-                data = parse_json(raw)
-                got = [q for q in ((data or {}).get("questions", []) if isinstance(data, dict) else []) if isinstance(q, dict) and q.get("question")]
-                if len(got) > len(qs):
-                    qs = got
-                if len(qs) >= total:
-                    break
-            qs = qs[:total]
+            raw, err = multi_pool_generate(oyss_prompt(grade_label, subj, items, difficulty, avoid.get(subj, [])), gk, mk, offset=si)
+            data = parse_json(raw)
+            qs = [q for q in (data or {}).get("questions", []) if isinstance(q, dict) and q.get("question")]
             if not qs:
                 errors.append(f"{subj}: {err or 'geçersiz yanıt'}")
-            elif len(qs) < total:
-                errors.append(f"{subj}: {len(qs)}/{total} soru üretilebildi")
         pts = oy.point_split(len(qs))
         for q, p in zip(qs, pts):
             q["subject"] = subj
@@ -3558,7 +2980,7 @@ def with_overlay(seconds, title, sub, fn):
 def est_seconds_mc(plan):
     import math
     chunks = sum(math.ceil(p["n"] / ai.CHUNK) for p in plan)
-    return 10 + 10 * math.ceil(chunks / ai.WORKERS)
+    return 12 + 14 * math.ceil(chunks / 4)
 
 
 def _gen_mc(plan, meta, scope_label, focus=""):
@@ -4909,13 +4331,16 @@ state.init()
 if "meb_loaded" not in st.session_state:
     st.session_state.meb_loaded = True
     st.session_state.meb_ts = meb_live.load_cache()
-    # MEB müfredatı: arka planda (arayüzü bekletmeden) güncellenir; yerleşik müfredat anında hazırdır
+    # MEB müfredatı otomatik: gerekirse arka planda çek, olmazsa yerleşik müfredat zaten hazır
     try:
-        import threading
-        if not ai_engine.demo_mode() and meb_live.needs_refresh() and not getattr(sys.modules["core"], "_meb_thread", None):
-            _t = threading.Thread(target=lambda: meb_live.refresh(deadline=60), daemon=True)
-            sys.modules["core"]._meb_thread = _t
-            _t.start()
+        if not ai_engine.demo_mode() and meb_live.needs_refresh():
+            _ph = st.empty()
+            _ph.markdown(theme.overlay_html(40, "MEB müfredatı güncelleniyor", "Güncel kazanımlar mufredat.meb.gov.tr'den alınıyor…"), unsafe_allow_html=True)
+            try:
+                meb_live.refresh(deadline=40)
+            finally:
+                _ph.empty()
+            st.session_state.meb_ts = meb_live.load_cache()
     except Exception:
         pass
 
@@ -4938,13 +4363,6 @@ with st.sidebar:
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
     st.markdown("---")
-    if st.button("🔄 MEB müfredatını güncelle", key="meb_refresh", use_container_width=True):
-        def _do():
-            n, errs = meb_live.refresh(deadline=60)
-            meb_live.load_cache()
-            return n, errs
-        _n, _errs = setup.with_overlay(40, "MEB müfredatı güncelleniyor", "Kazanımlar mufredat.meb.gov.tr'den alınıyor…", _do)
-        st.success(f"{_n} program güncellendi." if _n else "Güncelleme yapılamadı; yerleşik müfredat kullanılıyor.")
     g = st.session_state.grade
     if g:
         st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
