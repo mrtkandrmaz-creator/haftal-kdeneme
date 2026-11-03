@@ -290,7 +290,7 @@ MEB_MAT = {
             "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"]),
         ("3. Tema: Geometrik Şekiller", [
             "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru)",
-            "MAT.5.3.2. Temel geometrik inşa deneyimlerini yansıtabilme",
+            "MAT.5.3.2. Çokgenlerde çevre uzunluğu ve köşegenleri yorumlayabilme",
             "MAT.5.3.3. Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
             "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılara ilişkin çıkarım yapabilme",
             "MAT.5.3.5. Çokgenleri düzlemde ardışık kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme",
