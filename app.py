@@ -1196,9 +1196,37 @@ def _tick(ax, a, b, n=1, color=ORANGE):
         ax.plot(*zip(c - .13 * nrm, c + .13 * nrm), color=color, lw=2, zorder=4)
 
 
+def _tri_apex_pts(ai):
+    """İkizkenar üçgen: eşit kenarların ortak köşesi (tepe) ai. 0=A (üstte), 1=B (üstte), 2=C (üstte)."""
+    T = np.array([[0, 0], [4, 0], [2, 3.6]], float)
+    return {0: np.array([T[2], T[0], T[1]]), 1: np.array([T[0], T[2], T[1]]), 2: T}[ai]
+
+
+def _vertex_arc(ax, P, i, text, color=ORANGE, r=.75):
+    """P[i] köşesinde iç açıyı yayla gösterir ve ölçüyü (3x+5°, ? ...) yayın yanına yazar."""
+    o = P[i]
+    a, b = P[(i + 1) % 3] - o, P[(i + 2) % 3] - o
+    t1 = np.degrees(np.arctan2(a[1], a[0])); t2 = np.degrees(np.arctan2(b[1], b[0]))
+    d = (t2 - t1) % 360
+    if d > 180:
+        t1, d = t2, 360 - d
+    th = np.radians(np.linspace(t1, t1 + d, 40))
+    ax.plot(o[0] + r * np.cos(th), o[1] + r * np.sin(th), color=color, lw=2, zorder=4)
+    m = np.radians(t1 + d / 2)
+    rl = r + (.7 if d >= 45 else 1.0)
+    ax.text(o[0] + rl * np.cos(m), o[1] + rl * np.sin(m), str(text), fontsize=9.5, fontweight="bold", color=color, ha="center", va="center", zorder=6,
+            bbox=dict(boxstyle="round,pad=0.14", fc="white", ec="none", alpha=.9))
+
+
 def _triangle_geo(ax, d, pts=None):
     kind = str(d.get("kind", "scalene")).lower()
-    P = _tri_pts(kind) if pts is None else pts
+    apex = str(d.get("apex", "")).upper()
+    ai = 2  # ikizkenarda varsayılan tepe C
+    if pts is None and kind in ("isosceles", "ikizkenar") and apex in ("A", "B", "C"):
+        ai = "ABC".index(apex)
+        P = _tri_apex_pts(ai)
+    else:
+        P = _tri_pts(kind) if pts is None else pts
     L = (list(map(str, d.get("labels") or [])) + ["A", "B", "C"])[:3]
     c = P.mean(axis=0)
     ax.add_patch(Polygon(P, closed=True, fc="#e0f2fe", ec=INK, lw=2.2, joinstyle="round", zorder=2))
@@ -1212,24 +1240,28 @@ def _triangle_geo(ax, d, pts=None):
             for i, j in ((0, 1), (1, 2), (2, 0)):
                 _tick(ax, *side(i, j), n=1)
         elif kind in ("isosceles", "ikizkenar"):
-            _tick(ax, *side(0, 2)); _tick(ax, *side(1, 2))
+            for j in range(3):
+                if j != ai:
+                    _tick(ax, *side(ai, j))  # eşit kenarlar tepe köşesinden çıkan iki kenar
+    right_at = None
     if kind in ("right", "dik"):
         _right_mark(ax, P[0], P[1] - P[0], P[2] - P[0], s=.35)
+        right_at = 0
     if d.get("height"):  # C'den AB'ye yükseklik
         foot = np.array([P[2][0], 0.0])
         ax.plot(*zip(P[2], foot), color=GREEN, lw=1.6, ls="--", zorder=3)
         _right_mark(ax, foot, [-1, 0] if P[2][0] > 0 else [1, 0], [0, 1], s=.28)
-    sides = d.get("sides") or {}
+    skey = lambda k: "".join(sorted(str(k).upper()))
+    sides = {skey(k): v for k, v in (d.get("sides") or {}).items()}
     for key, (i, j) in (("AB", (0, 1)), ("BC", (1, 2)), ("AC", (0, 2))):
         if key in sides:
             m = (P[i] + P[j]) / 2; out = m - c; out = out / np.linalg.norm(out)
             ax.text(*(m + out * .5), str(sides[key]), fontsize=9.5, fontweight="bold", color=BLUE, ha="center", va="center", zorder=6)
-    angs = d.get("angles") or {}
+    angs = {str(k).upper(): v for k, v in (d.get("angles") or {}).items()}
     for key, i in (("A", 0), ("B", 1), ("C", 2)):
-        if key in angs:
-            q = (P[i] * .72 + c * .28)
-            ax.text(*q, str(angs[key]), fontsize=9, fontweight="bold", color=ORANGE, ha="center", va="center", zorder=6)
-    lo, hi = P.min(axis=0) - 1.3, P.max(axis=0) + 1.3
+        if key in angs and not (right_at == i and str(angs[key]).strip().startswith("90")):
+            _vertex_arc(ax, P, i, angs[key], color="#7c3aed" if str(angs[key]).strip() in ("?", "x") else ORANGE)
+    lo, hi = P.min(axis=0) - 1.5, P.max(axis=0) + 1.5
     ax.set_xlim(lo[0], hi[0]); ax.set_ylim(lo[1], hi[1])
 
 
@@ -1272,7 +1304,12 @@ def _quad_geo(ax, d, pts=None, labels=None):
             _right_mark(ax, P[i], P[(i + 1) % 4] - P[i], P[(i - 1) % 4] - P[i], s=.26)
     if d.get("diagonals"):
         ax.plot(*zip(P[0], P[2]), color=SLATE, lw=1.3, ls="--", zorder=2); ax.plot(*zip(P[1], P[3]), color=SLATE, lw=1.3, ls="--", zorder=2)
-    lo, hi = P.min(axis=0) - 1.2, P.max(axis=0) + 1.2
+    qs_ = {"".join(sorted(str(k).upper())): v for k, v in (d.get("sides") or {}).items()}
+    for key, (i, j) in (("AB", (0, 1)), ("BC", (1, 2)), ("CD", (2, 3)), ("AD", (3, 0))):  # metinde verilen uzunluklar şekilde de görünsün
+        if key in qs_:
+            m = (P[i] + P[j]) / 2; out = m - c; out = out / np.linalg.norm(out)
+            ax.text(*(m + out * (.55 + .4 * abs(out[0]))), str(qs_[key]), fontsize=9.5, fontweight="bold", color=BLUE, ha="center", va="center", zorder=6)
+    lo, hi = P.min(axis=0) - np.array([1.9, 1.4]), P.max(axis=0) + np.array([1.9, 1.4])
     ax.set_xlim(lo[0], hi[0]); ax.set_ylim(lo[1], hi[1])
 
 
@@ -2827,7 +2864,7 @@ _SR_GEO = (
     '   {"type":"geo","sub_type":"angles_two_lines","degree":60,"given":"60°","ask":"x"} (kesişen iki doğru)\n'
     '   {"type":"geo","sub_type":"polygon","sides":6,"labels":["A","B","C","D","E","F"],"equal_ticks":true,"diagonals":false,"irregular":false}  (3-8 kenar)\n'
     '   {"type":"geo","sub_type":"polygon_set","kinds":["üçgen","dörtgen","beşgen","altıgen"],"labels":["K","L","M","N"]} (adı yazmaz; "hangisi beşgendir?")\n'
-    '   {"type":"geo","sub_type":"triangle","kind":"right|equilateral|isosceles|scalene|obtuse|acute","labels":["A","B","C"],"ticks":true,"height":false,"sides":{"AB":"4 cm","AC":"3 cm"},"angles":{"A":"60°"}} (kind=right: dik açı A köşesinde; ticks=true eş kenarları işaretler; "hangi üçgen?" sorularında ticks:false yap)\n'
+    '   {"type":"geo","sub_type":"triangle","kind":"right|equilateral|isosceles|scalene|obtuse|acute","labels":["A","B","C"],"ticks":true,"height":false,"apex":"A","sides":{"AB":"4 cm","AC":"3 cm"},"angles":{"B":"3x+5°","C":"2x+15°","A":"?"}} (kind=right: dik açı A köşesinde; kind=isosceles: apex = eşit kenarların ortak köşesi, ör. AB=AC ise "A"; ticks=true eş kenarları işaretler; angles/sides: soruda verilen ölçüler AYNEN, sorulan açı "?"; "hangi üçgen?" sorularında ticks:false yap)\n'
     '   {"type":"geo","sub_type":"triangle_set","kinds":["right","equilateral","isosceles","scalene"],"labels":["K","L","M","N"]}\n'
     '   {"type":"geo","sub_type":"quad","kind":"square|rectangle|parallelogram|rhombus|trapezoid|kite","labels":["A","B","C","D"],"ticks":true,"diagonals":false}  |  {"type":"geo","sub_type":"quad_set","kinds":["square","rectangle","parallelogram","rhombus"]}\n'
     '   {"type":"geo","sub_type":"circle_parts","center":"O","parts":["radius","diameter","chord","arc","tangent","sector"],"labels":["A","B","C","D","E"]} (yarıçap OA, çap BC, kiriş DE; seçilen parçalar çizilir)\n'
@@ -2987,12 +3024,17 @@ def _subject_lock(subject, topics=""):
     return base + topic_visual_rules(topics)
 
 
+MATH_NOTATION = (
+    "GEOMETRİ GÖSTERİMİ (MEB): açı ölçüsü m(ABC) = 40° biçiminde (tepe harfi ORTADA), kenar uzunluğu |AB| = 5 cm, eş kenarlar |AB| = |AC| biçiminde yazılır. "
+    "'∠B = 40°', 'AB = AC', 'm(A)' gibi yazma. Metinde verilen HER eşitlik, ölçü ve uzunluk ŞEKİLDE DE gösterilsin: üçgen şemasında 'kind' (ikizkenarsa 'apex': eşit kenarların ortak köşesi), "
+    "'angles' (ör. {\"B\":\"3x+5°\",\"C\":\"2x+15°\"}, sorulan açı için \"?\") ve 'sides' alanlarını soruyla BİREBİR doldur. Şekilde olmayan veri metinde, metinde olmayan veri şekilde olmasın (sorulan değer hariç).\n")
+
 GEO_STYLE = (
     "\n📐 GEOMETRİ SORU TARZI (KATI KURAL; yukarıdaki 'günlük hayat bağlamı / senaryo / metin' yönergesi geometri soruları için GEÇERSİZDİR):\n"
     "- MEB/LGS yeni nesil geometri tarzı: soru kökü KISA (en çok 2-3 cümle, ~45 kelime) ve ŞEKLE dayalı; 'passage' HER ZAMAN null. Ama çözüm TEK ADIMLI OLMASIN: en az İKİ-ÜÇ adımlı muhakeme gerektirsin.\n"
     "- 🚫 YASAK BASİT KALIPLAR: iki açısı verilen üçgende üçüncü açıyı sorma; tek adımlı bütünler/tümler/doğru açı hesabı; tek formüle sayı koyup çevre/alan bulma; "
     "'hangisi üçgendir/ışındır/çaptır' gibi yalnızca tanıma-adlandırma soruları.\n"
-    "- BUNUN YERİNE şunlardan BİRİNİ ya da BİRKAÇINI birleştir: bilinmeyenleri cebirsel ifadelerle ver (m(A) = 2x + 10°, m(B) = 3x − 20°) ve denklem kurdur; paralel doğrular + ikizkenar/eşkenar üçgen + iç-dış açı ilişkisi; "
+    "- BUNUN YERİNE şunlardan BİRİNİ ya da BİRKAÇINI birleştir: bilinmeyenleri cebirsel ifadelerle ver (m(ABC) = 2x + 10°, m(ACB) = 3x − 20°) ve denklem kurdur; paralel doğrular + ikizkenar/eşkenar üçgen + iç-dış açı ilişkisi; "
     "açıortay/yükseklik/kenarortay özelliği; Pisagor + çevre/alan; çokgenin iç/dış açı toplamı + eşitlik; çemberde yarıçap-çap-kiriş ilişkisi + çevre; bileşik şekilde alan/çevre; "
     "şekle bakarak I, II, III yargılarından hangilerinin doğru olduğunu değerlendirtme.\n"
     "- Hikâye, senaryo, tarih, kültür bağlamı YOK. Osmanlı/padişah/savaş/kale/müze/arkeoloji gibi tarihî ya da kültürel konular ve "
@@ -3000,9 +3042,9 @@ GEO_STYLE = (
     "- HER geometri sorusunda `shape` ZORUNLU (null YASAK). Sorudaki tüm veriler (harfler, ölçüler, x) çizimdekiyle BİREBİR aynı ve kendi içinde TUTARLI olsun (açı toplamları, kenar ilişkileri). "
     "Soru kökü 'Şekilde…', 'Yukarıdaki şekle göre…' diye şekle atıf yapsın; şekildeki verileri uzun metinle yeniden anlatma.\n"
     "- Örnek kök TARZI (kopyalama, kendi verilerini kur): 'Şekilde d₁ ∥ d₂ ve |AB| = |AC| olduğuna göre x kaç derecedir?' | "
-    "'Şekildeki ABC ikizkenar üçgeninde m(B) = 2x + 10°, m(C) = 3x − 20° ise m(A) kaç derecedir?' | "
+    "'Şekildeki ABC üçgeninde |AB| = |AC|, m(ABC) = 2x + 10°, m(ACB) = 3x − 20° ise m(BAC) kaç derecedir?' | "
     "'Yukarıdaki şekle göre I, II ve III yargılarından hangileri doğrudur?' | 'Şekildeki bileşik şeklin çevresi kaç cm'dir?'\n"
-    "- Şıklar kısa olsun (sayı, derece, cm, harf ya da numara).\n")
+    "- Şıklar kısa olsun (sayı, derece, cm, harf ya da numara).\n" + MATH_NOTATION)
 _GEO_BASIC_RX = re.compile(r"ışın|doğru parçası|doğrusal|\bnokta", re.I)
 _GEO_PLAN_RX = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|\bdaire\b|dik |paralel|inşa|prizma|silindir|doğru parçası|köşegen|eşkenar|ikizkenar|\bkare\b", re.I)
 _GEO_STRICT = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|paralel|\bdik\b|\bkare\b|eşkenar|ikizkenar|köşegen|doğru parçası|inşa|prizma|koni|simetri|dönüşüm", re.I)
@@ -3150,7 +3192,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         f"ZORLUK KADEMESİ: '{eff}'. Bu kademeye kesin uy → {DIFF_SPEC.get(lvl, '')}\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
         + ("MEB/LGS geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz ama ÇOK ADIMLI muhakeme gerektiren sorular.\n" if geo_on else LGS_STYLE) +
-        "Sınıf düzeyinin dışına (üst sınıf konusuna) taşma; kazanım kapsamında kal.\n" + LOGIC_RULES +
+        "Sınıf düzeyinin dışına (üst sınıf konusuna) taşma; kazanım kapsamında kal.\n" + (MATH_NOTATION if (subject == "Matematik" and not geo_on) else "") + LOGIC_RULES +
         f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{'' if plain else _variety_plan(subject, n, topics)}"
         f"{av}\n{_subject_lock(subject, topics)}\n{PLAIN_RULE if plain else shape_rules(subject, geo_on) + (GEO_STYLE if geo_on else '')}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, adım adım 'explanation' (çözüm) ve çözümden SONRA 'answer' (A/B/C/D) olsun.\n"
@@ -3183,6 +3225,99 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
 
 # ---------------------------------------------------------------- doğrulama
 _NOSHUF = re.compile(r"hepsi|yukarıdakilerin|yalnız|yalnızca|ve [IV]+|[IV]+ ve|I, II|hiçbiri|all of|none of|beide|alle", re.I)
+
+
+_ANG1 = re.compile(r"∠\s*([A-ZÇĞİÖŞÜ]{1,3})(?=\s*(?:=|<|>|≠|kaç))")
+_MPAR = re.compile(r"m\s*\(\s*(?:∠\s*)?([A-ZÇĞİÖŞÜ]{1,3})\s*\)")
+_SIDE_EQ = re.compile(r"(?<![\w|(\[])([A-Z]{2})\s*=\s*([A-Z]{2})(?![\w|)\]])")
+_SIDE_LEN = re.compile(r"(?<![\w|(\[])([A-Z]{2})\s*=\s*(?=\d)")
+
+
+def _angle3(v, L):
+    """Köşe harfi -> 3 harfli açı adı (tepe ortada): A->BAC, B->ABC, C->ACB."""
+    if L and len(L) == 3 and v in L:
+        n = [x for x in L if x != v]
+        return f"{n[0]}{v}{n[1]}"
+    return None
+
+
+def _fix_geo_notation(t, L=None):
+    """MEB gösterimi: m(ABC) = 40°, |AB| = |AC|, |AB| = 5 cm  ('∠B =', 'AB = AC', 'm(A)' yerine)."""
+    if not t:
+        return t
+    t = str(t)
+
+    def ang(m):
+        v = m.group(1)
+        if len(v) == 3:
+            return f"m({v})"
+        a3 = _angle3(v, L)
+        return f"m({a3})" if a3 else f"m(∠{v})"
+    t = _MPAR.sub(lambda m: ang(m) if len(m.group(1)) < 3 else f"m({m.group(1)})", t)
+    t = _ANG1.sub(ang, t)
+    t = _SIDE_EQ.sub(lambda m: f"|{m.group(1)}| = |{m.group(2)}|", t)
+    t = _SIDE_LEN.sub(lambda m: f"|{m.group(1)}| = ", t)
+    return t
+
+
+def _tri_labels(shape):
+    if isinstance(shape, dict) and shape.get("type") == "geo" and str(shape.get("sub_type", "")).lower() == "triangle":
+        L = [str(x) for x in (shape.get("labels") or [])][:3]
+        return (L + list("ABC")[len(L):])[:3]
+    return None
+
+
+_VAL = r"([0-9xy+\-−\s]+°)"
+
+
+def _sync_geo_shape(shape, text):
+    """Metinde verilen eşit kenar, açı ve uzunlukları ŞEKİLDE de gösterir (şema metinle BİREBİR uyumlu olsun)."""
+    if not isinstance(shape, dict) or shape.get("type") != "geo":
+        return shape
+    sub = str(shape.get("sub_type", "")).lower()
+    if sub not in ("triangle", "quad"):
+        return shape
+    n = 3 if sub == "triangle" else 4
+    default = list("ABCD")[:n]
+    L = [str(x) for x in (shape.get("labels") or [])][:n]
+    L = (L + default[len(L):])[:n]
+    eq = re.findall(r"\|([A-Z]{2})\|\s*=\s*\|([A-Z]{2})\|", text)
+    lens = re.findall(r"\|([A-Z]{2})\|\s*=\s*(\d[\d.,]*\s*(?:cm|mm|m|birim)?)", text)
+    angs = re.findall(r"m\(([A-Z]{3})\)\s*=\s*" + _VAL, text) if n == 3 else []
+    ask = re.findall(r"m\(([A-Z]{3})\)\s*(?:kaç|=\s*\?)", text) if n == 3 else []
+    used = set("".join(x for pr in eq for x in pr) + "".join(a for a, _ in lens) + "".join(a for a, _ in angs) + "".join(ask))
+    if not used:
+        return shape
+    if not used <= set(L):
+        if used <= set(default):
+            L = default
+        elif len(used) == n:
+            L = sorted(used)
+        else:
+            return shape
+    pos = {ch: i for i, ch in enumerate(L)}
+    P = "ABCD"
+    sh = dict(shape)
+    sh["labels"] = L
+    pk = lambda pair: "".join(sorted(P[pos[x]] for x in pair))
+    if lens:
+        sh["sides"] = {pk(pr): v.strip() for pr, v in lens}
+    if n == 3:
+        if angs or ask:
+            d = {P[pos[abc[1]]]: v.strip() for abc, v in angs if abc[1] in pos}
+            for abc in ask:
+                d.setdefault(P[pos[abc[1]]], "?")
+            sh["angles"] = d
+        if eq and str(sh.get("kind", "")).lower() not in ("right", "dik"):
+            E = {pk(x) for pr in eq for x in (pr[0], pr[1])}
+            if len(E) >= 3:
+                sh["kind"], sh["ticks"] = "equilateral", True
+            else:
+                (a_, b_) = list(E)[:2]
+                common = set(a_) & set(b_)
+                if common:
+                    sh["kind"], sh["apex"], sh["ticks"] = "isosceles", common.pop(), True
+    return sh
 
 
 _ANGLE_ASSIGN = re.compile(r"m\s*\(\s*[A-ZÇĞİÖŞÜ∠^\s]{1,5}\s*\)\s*=\s*\d+\s*°?")
@@ -3231,17 +3366,29 @@ def _norm_q(q, subject):
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
     pas = q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else ""
+    qtext, expl = str(q["question"]).strip(), str(q.get("explanation") or "")
+    if subject == "Matematik" and (_is_geo_q(q, shape, subject) or (isinstance(shape, dict) and shape.get("type") == "geo") or "∠" in qtext):
+        L3 = _tri_labels(shape) or (list("ABC") if re.search(r"üçgen", qtext, re.I) else None)
+        qtext, pas, expl = _fix_geo_notation(qtext, L3), _fix_geo_notation(pas, L3), _fix_geo_notation(expl, L3)
+        opts = {k: _fix_geo_notation(v, L3) for k, v in opts.items()}
+        shape = _sync_geo_shape(shape, f"{qtext} {pas}")
+        if isinstance(shape, dict) and shape.get("type") == "geo":  # şekildeki ölçü doğru şıkkı ele vermesin
+            corr = re.sub(r"[\s°]|cm|birim", "", opts[ans]).lower()
+            for dct in (shape.get("angles"), shape.get("sides")):
+                for v in (dct or {}).values():
+                    if corr and str(v) != "?" and re.sub(r"[\s°]|cm|birim", "", str(v)).lower() == corr:
+                        return None
     if _is_geo_q(q, shape, subject):  # geometri: şekil ZORUNLU, metin KISA, hikâye/tarih/gök cismi bağlamı YOK
         if not shape:
             return None
         if len(str(q.get("question", "")).split()) > 60 or len(str(pas or "").split()) > 20:
             return None
-        if _trivial_geo(f"{q.get('question', '')} {pas}"):
+        if _trivial_geo(f"{qtext} {pas}"):
             return None
         if _GEO_BAN.search(f"{q.get('question', '')} {pas} {' '.join(opts.values())}"):
             return None
     out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": pas,
-           "question": str(q["question"]).strip(), "shape": shape, "options": opts, "answer": ans, "explanation": str(q.get("explanation") or "")}
+           "question": qtext, "shape": shape, "options": opts, "answer": ans, "explanation": expl}
     return None if leaks_answer(out) else out
 
 
