@@ -2334,6 +2334,7 @@ GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-
                "llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
 GEMINI_MODELS = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"]
 POOL_MAX_WAIT = 25      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
+HEDGE_AFTER = 9         # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
 POOL_DEADLINE = 60      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
@@ -2667,6 +2668,10 @@ def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None, 
     return text
 
 
+from concurrent.futures import ThreadPoolExecutor as _TPE, wait as _cf_wait, FIRST_COMPLETED as _cf_first
+_HEDGE_EX = _TPE(max_workers=96)
+
+
 def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperature=None, models=None, system=None, reasoning=None, deadline=None, max_wait=None, exclude=None, meta=None):
     """Ortak havuz: önce Groq'un TÜM modelleri (her model için tüm anahtarlar), sonra Gemini'nin tüm modelleri.
     Kota/hız sınırına takılan (anahtar, model) çifti süreli 'soğumaya' alınır ve atlanır; tüm iş parçacıkları
@@ -2692,6 +2697,28 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
     t0 = time.time()
     last = None
     tried = set()
+    pend = {}  # uçuştaki çağrılar: future -> (sağlayıcı, anahtar, model)
+
+    def collect(wait_s):
+        nonlocal last
+        if not pend:
+            return None
+        done, _ = _cf_wait(list(pend), timeout=wait_s, return_when=_cf_first)
+        for f in done:
+            prov_, kidx_, model_ = pend.pop(f)
+            try:
+                r_ = f.result()
+                if r_:
+                    if meta is not None:
+                        meta.update(provider=prov_, model=model_)
+                    return r_
+                _mark(prov_, kidx_, model_, "other", 5)  # boş yanıt
+            except Exception as e:
+                last = e
+                kind, secs = _classify(e)
+                _mark(prov_, kidx_, model_, kind, secs)
+        return None
+
     while time.time() - t0 < deadline:
         now = time.time()
         soonest = None
@@ -2705,27 +2732,27 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
                 continue
             tried.add((prov, kidx, model))
             progressed = True
-            try:
-                kw = {"model": model}
-                if temperature is not None:
-                    kw["temperature"] = temperature
-                if system is not None:
-                    kw["system"] = system
-                if reasoning is not None:
-                    kw["reasoning"] = reasoning
-                r = fn(key, prompt_text, **kw)
-                if r:
-                    if meta is not None:
-                        meta.update(provider=prov, model=model)
-                    return r, None
-                _mark(prov, kidx, model, "other", 5)  # boş yanıt
-            except Exception as e:
-                last = e
-                kind, secs = _classify(e)
-                _mark(prov, kidx, model, kind, secs)
-                time.sleep(.2)
+            kw = {"model": model}
+            if temperature is not None:
+                kw["temperature"] = temperature
+            if system is not None:
+                kw["system"] = system
+            if reasoning is not None:
+                kw["reasoning"] = reasoning
+            pend[_HEDGE_EX.submit(fn, key, prompt_text, **kw)] = (prov, kidx, model)
+            r = collect(HEDGE_AFTER)  # yavaşsa beklemeden sıradaki modeli de başlat
+            if r:
+                return r, None
+            if time.time() - t0 >= deadline:
+                break
         # bir tur bitti: her şey denendiyse ya da soğumadaysa
         remaining = [p for p in plan if (p[0], p[1], p[3]) not in tried]
+        if pend:  # uçuştaki çağrıları bekle
+            r = collect(2 if (remaining and progressed) else 3)
+            if r:
+                return r, None
+            if not (remaining and progressed):
+                continue
         if remaining and progressed:
             continue
         # denenmemiş ve şu an uygun olan kalmadı: soğuma bitenler için tekrar dene
@@ -3228,7 +3255,7 @@ LOGIC_RULES = (
     "(4) Olumsuz kökte (yanlış/söylenemez/değildir) doğru cevabın 'yanlış olan' şık olduğunu karıştırma. "
     "(5) Bilimsel ve tarihsel bilgiler doğru; gerçek kişi/olay/tarih uydurma. Gerçek hayat büyüklükleri mantıklı (süre, uzunluk, kütle, fiyat). "
     "(6) Şıklar birbirinden farklı olsun, aynı anlama gelen iki şık YOK.\n"
-    "Önce 'explanation' alanında çözümü ADIM ADIM yap, doğru sonucu bulduktan sonra 'answer' yaz. 'explanation' şık HARFİ (A, B…) yazmasın, şıkkın DEĞERİNİ yazsın.\n")
+    "Önce 'explanation' alanında çözümü ADIM ADIM ama ÖZ yap (en çok 4 kısa adım), doğru sonucu bulduktan sonra 'answer' yaz. 'explanation' şık HARFİ (A, B…) yazmasın, şıkkın DEĞERİNİ yazsın.\n")
 
 
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False):
