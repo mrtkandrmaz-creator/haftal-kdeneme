@@ -2338,18 +2338,18 @@ POOL_DEADLINE = 60      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
-CHUNK = 4          # küçük parça = daha kısa yanıt, en yavaş parça daha az bekletir
-WORKERS = 12
-EXTRA_FIRST = 3    # ilk turda fazladan istenen soru (elenenler için yedek; tamamlama turlarını çoğunlukla gereksiz kılar)
-CALL_TIMEOUT = 40  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
+CHUNK = 3          # küçük parça = daha kısa yanıt, en yavaş parça daha az bekletir
+WORKERS = 16
+EXTRA_FIRST = 4    # ilk turda fazladan istenen soru (elenenler için yedek; tamamlama turlarını çoğunlukla gereksiz kılar)
+CALL_TIMEOUT = 25  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
 GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
 # İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
 VERIFY_SUBJECTS = ()  # boş = TÜM dersler doğrulanır (mantık hatalarını yakalamak için)
-GEN_REASONING = {"Matematik": "medium", "Fen Bilimleri": "medium"}  # hesap gerektiren derslerde daha derin düşünme
+GEN_REASONING = {"Matematik": "low", "Fen Bilimleri": "low"}  # hesap gerektiren derslerde daha derin düşünme
 VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
 VERIFY_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
 VERIFY_DEADLINE = 40  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
-GEN_BUDGET = 150      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
+GEN_BUDGET = 90       # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
 MAX_ROUNDS = 5        # istenen sayıya ulaşmak için en çok tur
 OYSS_CHUNK = 5        # yazılı sınavda tek istekteki soru sayısı
 
