@@ -1932,6 +1932,107 @@ def save_settings(**kw):
     d = settings()
     d.update(kw)
     _save("settings.json", d)
+
+
+# ---- SORU BANKASI: kapsam başına önceden üretilmiş, doğrulanmış sorular (tek kullanımlık, tüketilir)
+import hashlib
+import re
+import threading
+
+_BANK_LOCK = threading.Lock()
+BANK_PER_KEY = 80
+BANK_TOTAL = 2500
+
+
+def bank_key(grade_label, subject, difficulty, topics):
+    return hashlib.sha1(f"{grade_label}|{subject}|{difficulty}|{topics}".encode("utf-8")).hexdigest()[:16]
+
+
+def _bstem(q):
+    return re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
+
+
+def _bank():
+    return _load("bank.json", {})
+
+
+def bank_count(key):
+    e = _bank().get(key)
+    return len(e["qs"]) if e else 0
+
+
+def bank_peek(key, limit=20):
+    with _BANK_LOCK:
+        e = _bank().get(key)
+        return [dict(q) for q in e["qs"][:limit]] if e else []
+
+
+def bank_remove(key, stems):
+    stems = set(stems)
+    if not stems:
+        return
+    with _BANK_LOCK:
+        b = _bank()
+        e = b.get(key)
+        if not e:
+            return
+        e["qs"] = [q for q in e["qs"] if _bstem(q) not in stems]
+        if e["qs"]:
+            e["ts"] = int(time.time())
+        else:
+            b.pop(key)
+        _save("bank.json", b)
+
+
+def bank_put(key, meta, qs):
+    clean = [{k: v for k, v in q.items() if k != "id"} for q in qs]
+    clean = [c for c in clean if _bstem(c)]
+    if not clean:
+        return 0
+    with _BANK_LOCK:
+        b = _bank()
+        e = b.setdefault(key, {"meta": meta, "qs": [], "ts": 0})
+        have = {_bstem(q) for q in e["qs"]}
+        added = 0
+        for c in clean:
+            st_ = _bstem(c)
+            if st_ in have:
+                continue
+            e["qs"].append(c)
+            have.add(st_)
+            added += 1
+        e["qs"] = e["qs"][-BANK_PER_KEY:]
+        e["ts"] = int(time.time())
+        total = sum(len(x["qs"]) for x in b.values())
+        if total > BANK_TOTAL:  # en eski kullanılmayan kapsamlar önce silinir
+            for k in sorted((k for k in b if k != key), key=lambda k: b[k].get("ts", 0)):
+                total -= len(b[k]["qs"])
+                b.pop(k)
+                if total <= BANK_TOTAL:
+                    break
+        _save("bank.json", b)
+        return added
+
+
+def bank_all():
+    return _bank()
+
+
+def replace_bank(b):
+    with _BANK_LOCK:
+        _save("bank.json", b if isinstance(b, dict) else {})
+
+
+def replace_stems(d):
+    _save("stems.json", d if isinstance(d, dict) else {})
+
+
+def bank_stats():
+    per = {}
+    for e in _bank().values():
+        sj = (e.get("meta") or {}).get("subject", "?")
+        per[sj] = per.get(sj, 0) + len(e["qs"])
+    return {"total": sum(per.values()), "per": per}
 '''
 MODULES['core/meb_live'] = r'''# -*- coding: utf-8 -*-
 """MEB Öğretim Programları (mufredat.meb.gov.tr) sitesinden program PDF'lerini çeker, kazanım kodlarını ayrıştırır
@@ -2149,8 +2250,19 @@ POOL_DEADLINE = 60      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
-CHUNK = 6
-WORKERS = 8
+CHUNK = 4          # küçük parça = daha kısa yanıt, en yavaş parça daha az bekletir
+WORKERS = 12
+EXTRA_FIRST = 3    # ilk turda fazladan istenen soru (elenenler için yedek; tamamlama turlarını çoğunlukla gereksiz kılar)
+CALL_TIMEOUT = 40  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
+GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
+# İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
+VERIFY_SUBJECTS = ("Matematik", "Fen Bilimleri")
+VERIFY_GROQ_MODELS = ["openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
+VERIFY_GEMINI_MODELS = ["gemini-2.5-flash-lite", "gemini-2.5-flash"]
+VERIFY_DEADLINE = 30  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
+GEN_BUDGET = 150      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
+MAX_ROUNDS = 5        # istenen sayıya ulaşmak için en çok tur
+OYSS_CHUNK = 5        # yazılı sınavda tek istekteki soru sayısı
 
 
 def load_keys():
@@ -2168,23 +2280,138 @@ def demo_mode():
 
 
 # ---------------------------------------------------------------- ORTAK HAVUZ (kota dostu)
+import itertools
 import threading
 
+_UID = itertools.count()
 _POOL_LOCK = threading.Lock()
 _COOL = {}   # (sağlayıcı, anahtar_no, model) -> bu zamana kadar bekle
 _DEAD = {}   # ("model", sağlayıcı, model) / ("key", sağlayıcı, anahtar_no) -> bu zamana kadar kullanma
 
 
-def load_models():
+_PREF_CACHE = {}
+
+
+def _pref_models():
+    """Tercih sırası: secrets ([api_keys] groq_models / gemini_models) varsa o, yoksa koddaki liste. auto_models=false -> keşif kapalı."""
     import streamlit as st
-    g, m = list(GROQ_MODELS), list(GEMINI_MODELS)
+    g, m, auto = list(GROQ_MODELS), list(GEMINI_MODELS), True
     try:
         ak = st.secrets["api_keys"]
         g = list(ak.get("groq_models", g)) or g
         m = list(ak.get("gemini_models", m)) or m
+        auto = bool(ak.get("auto_models", True))
+        _PREF_CACHE["v"] = (g, m, auto)
     except Exception:
-        pass
+        if "v" in _PREF_CACHE:
+            return _PREF_CACHE["v"]
+    return g, m, auto
+
+
+# ---------------------------------------------------------------- MODEL KEŞFİ: mevcut + gelecekte çıkacak modeller
+_DISC = {}  # sağlayıcı -> {"ts": zaman, "ids": [modeller]}
+_DISC_LOCK = threading.Lock()
+DISC_TTL = 6 * 3600     # başarılı keşif önbelleği
+DISC_FAIL_TTL = 300     # başarısız keşif tekrar deneme aralığı
+MAX_EXTRA = 6           # listede olmayan, yeni keşfedilen en çok bu kadar model eklenir
+_GROQ_BAD = re.compile(r"whisper|tts|guard|safeguard|orpheus|playai|embed|compound|moderation|transcri|speech", re.I)
+_GEM_BAD = re.compile(r"embed|imagen|veo|aqa|tts|image|live|audio|robotics|computer-use|learnlm|gemma|latest|transcri|native|dialog", re.I)
+
+
+def _list_groq(key):
+    from groq import Groq
+    c = Groq(api_key=key, timeout=10, max_retries=0)
+    out = []
+    for m in c.models.list().data:
+        mid = str(getattr(m, "id", "") or "")
+        cw = getattr(m, "context_window", None)
+        if not mid or getattr(m, "active", True) is False or (isinstance(cw, int) and cw < 8192) or _GROQ_BAD.search(mid):
+            continue
+        out.append(mid)
+    return out
+
+
+def _list_gemini(key):
+    from google import genai
+    from google.genai import types
+    c = genai.Client(api_key=key, http_options=types.HttpOptions(timeout=10000))
+    out = []
+    for m in c.models.list():
+        name = str(getattr(m, "name", "") or "").replace("models/", "")
+        acts = getattr(m, "supported_actions", None)
+        if acts is not None and "generateContent" not in acts:
+            continue
+        if name.startswith("gemini") and not _GEM_BAD.search(name):
+            out.append(name)
+    return out
+
+
+def _discover(provider, keys):
+    now = time.time()
+    with _DISC_LOCK:
+        e = _DISC.get(provider)
+        if e and now - e["ts"] < (DISC_TTL if e["ids"] else DISC_FAIL_TTL):
+            return e["ids"]
+        fn = _list_groq if provider == "groq" else _list_gemini
+        ids = []
+        for k in list(keys)[:3]:
+            try:
+                ids = fn(k)
+                if ids:
+                    break
+            except Exception:
+                continue
+        _DISC[provider] = {"ts": now, "ids": ids}
+        return ids
+
+
+def _rank_groq(mid):
+    low = mid.lower()
+    m = re.search(r"(\d+(?:\.\d+)?)b", low)
+    size = float(m.group(1)) if m else 40.0
+    return -(size - (5 if "preview" in low else 0))
+
+
+def _rank_gemini(mid):
+    low = mid.lower()
+    v = re.search(r"gemini-(\d+(?:\.\d+)?)", low)
+    ver = float(v.group(1)) if v else 0.0
+    tier = 3 if ("flash" in low and "lite" not in low) else 2 if "lite" in low else 1 if "pro" in low else 0
+    return (-tier, 1 if ("preview" in low or "exp" in low) else 0, -ver)
+
+
+def resolve_models(pref_g, pref_m, gkeys, mkeys, extras=True):
+    """Tercih listesini API'nin GERÇEK model listesiyle süzer (kalkan modeller düşer), yeni çıkan modelleri sona ekler.
+    Keşif başarısızsa tercih listesi olduğu gibi kullanılır."""
+    out = []
+    for prov, pref, keys, rank in (("groq", pref_g, gkeys, _rank_groq), ("gemini", pref_m, mkeys, _rank_gemini)):
+        keys = [k for k in keys if str(k).strip()]
+        avail = _discover(prov, keys) if keys else []
+        if not avail:
+            out.append(list(pref))
+            continue
+        lst = [m for m in pref if m in set(avail)]
+        if extras:
+            lst += sorted((m for m in avail if m not in set(lst)), key=rank)[:MAX_EXTRA]
+        elif not lst:
+            lst = sorted(avail, key=rank)[:2]
+        out.append(lst or list(pref))
+    return tuple(out)
+
+
+def load_models(gkeys=None, mkeys=None):
+    g, m, auto = _pref_models()
+    if auto and (gkeys or mkeys):
+        try:
+            return resolve_models(g, m, gkeys or [], mkeys or [])
+        except Exception:
+            pass
     return g, m
+
+
+def model_summary():
+    with _DISC_LOCK:
+        return {k: len(v["ids"]) for k, v in _DISC.items()}
 
 
 def _retry_after(msg):
@@ -2207,10 +2434,14 @@ def _classify(e):
         code = int(code)
     except Exception:
         code = None
-    if code in (401, 403) or "invalid api key" in low or "api key not valid" in low or "permission_denied" in low:
-        return "key", 6 * 3600
-    if code == 404 or "model_not_found" in low or "decommissioned" in low or "does not exist" in low or "not found" in low and "model" in low:
+    if "limit: 0" in low:  # bu modelin bu anahtarda ücretsiz kotası yok
+        return "rate", 3600
+    if (code in (400, 403, 404) and "model" in low and ("terms" in low or "not support" in low or "not a valid model" in low or "invalid model" in low
+                                                         or "no access" in low or "does not have access" in low or "not available" in low)) \
+            or code == 404 or "model_not_found" in low or "decommissioned" in low or "does not exist" in low or "not found" in low and "model" in low:
         return "model", 6 * 3600
+    if code in (401, 403) or "invalid api key" in low or "api key not valid" in low or "api key expired" in low or "api_key_invalid" in low or "permission_denied" in low:
+        return "key", 6 * 3600
     if code in (429, 413) or "rate limit" in low or "rate_limit" in low or "quota" in low or "resource_exhausted" in low or "too many requests" in low:
         ra = _retry_after(msg)
         if ra is None:
@@ -2240,6 +2471,12 @@ def _wait_for(provider, kidx, model, now):
     return max(w, 0.0)
 
 
+def _penalize(provider, model, secs=30):
+    """Yanıtı kullanılamaz çıkan (bozuk JSON / geçersiz soru) modeli kısa süre sona iter."""
+    with _POOL_LOCK:
+        _DEAD[("model", provider, model)] = max(_DEAD.get(("model", provider, model), 0), time.time() + secs)
+
+
 def pool_status():
     now = time.time()
     with _POOL_LOCK:
@@ -2249,28 +2486,91 @@ def pool_status():
 
 
 # ---------------------------------------------------------------- API çağrıları
-def call_groq_with_key(api_key, prompt_text, system=SYSTEM, temperature=0.85, model=None):
+_CAPS = {}  # (sağlayıcı, model) -> o modelin desteklemediği, hata mesajından ÖĞRENİLEN seçenekler
+
+
+def _strip_think(t):
+    """Düşünme bloklarını (<think>…</think>) temizler; yeni modeller içeriğe düşünceyi katarsa JSON bozulmasın."""
+    t = t or ""
+    t = re.sub(r"<think>.*?</think>", "", t, flags=re.S | re.I)
+    if "</think>" in t:
+        t = t.split("</think>")[-1]
+    if "<think>" in t:
+        t = t.split("<think>")[0]
+    return t.strip()
+
+
+def call_groq_with_key(api_key, prompt_text, system=SYSTEM, temperature=0.85, model=None, reasoning=None):
     from groq import Groq
-    client = Groq(api_key=api_key)
-    kw = dict(model=model or GROQ_MODEL,
-              messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt_text}],
-              temperature=temperature, max_tokens=8000)
-    try:
-        completion = client.chat.completions.create(response_format={"type": "json_object"}, **kw)
-    except Exception as e:  # bazı modeller json_object kabul etmez -> onsuz dene
-        low = str(e).lower()
-        if getattr(e, "status_code", None) == 400 and ("response_format" in low or "json" in low):
-            completion = client.chat.completions.create(**kw)
-        else:
+    model = model or GROQ_MODEL
+    client = Groq(api_key=api_key, timeout=CALL_TIMEOUT, max_retries=0)  # yeniden denemeyi havuz yönetir
+    drop = _CAPS.setdefault(("groq", model), set())  # kalıcı: model bu seçeneği desteklemiyor
+    tmp = set()                                      # geçici: yalnızca bu çağrı
+    for _ in range(6):
+        off = drop | tmp
+        kw = dict(model=model, messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt_text}])
+        kw["max_tokens" if "use_max_tokens" in off else "max_completion_tokens"] = 8000
+        if "temperature" not in off:
+            kw["temperature"] = temperature
+        if "response_format" not in off:
+            kw["response_format"] = {"type": "json_object"}
+        if "reasoning_effort" not in off and (reasoning or GROQ_REASONING) and model.startswith("openai/gpt-oss"):
+            kw["reasoning_effort"] = reasoning or GROQ_REASONING
+        try:
+            comp = client.chat.completions.create(**kw)
+        except Exception as e:
+            low = str(e).lower()
+            if getattr(e, "status_code", None) in (400, 422):
+                if "json_validate_failed" in low or "failed to generate json" in low:
+                    if "response_format" not in tmp:
+                        tmp.add("response_format")  # model bu sefer geçerli JSON üretemedi: serbest metin iste, ayrıştırırız
+                        continue
+                else:
+                    hit = next((t for t in ("response_format", "reasoning_effort", "temperature") if t in low and t not in drop), None)
+                    if hit:
+                        drop.add(hit)
+                        continue
+                    if "max_completion_tokens" in low and "use_max_tokens" not in drop:
+                        drop.add("use_max_tokens")
+                        continue
+                    if "json" in low and "response_format" not in drop:
+                        drop.add("response_format")
+                        continue
             raise
-    return completion.choices[0].message.content
+        ch = comp.choices[0]
+        if getattr(ch, "finish_reason", None) == "length":
+            raise ValueError("truncated: finish_reason=length")  # yarım JSON: sıradaki modele geç
+        return _strip_think(ch.message.content)
+    raise RuntimeError("groq: uyumlu istek parametreleri bulunamadı")
 
 
-def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None, model=None):
+def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None, model=None, reasoning=None):
     from google import genai
-    client = genai.Client(api_key=api_key)
-    response = client.models.generate_content(model=model or GEMINI_MODEL, contents=system + "\n\n" + prompt_text)
-    text = response.text or ""
+    from google.genai import types
+    model = model or GEMINI_MODEL
+    try:
+        ho = types.HttpOptions(timeout=CALL_TIMEOUT * 1000, retry_options=types.HttpRetryOptions(attempts=1))  # yeniden denemeyi havuz yönetir
+    except Exception:
+        ho = types.HttpOptions(timeout=CALL_TIMEOUT * 1000)
+    client = genai.Client(api_key=api_key, http_options=ho)
+    drop = _CAPS.setdefault(("gemini", model), set())
+    response = None
+    for _ in range(3):
+        cfg = None if "json" in drop else types.GenerateContentConfig(response_mime_type="application/json")
+        try:
+            response = client.models.generate_content(model=model, contents=system + "\n\n" + prompt_text, config=cfg)
+        except Exception as e:
+            low = str(e).lower()
+            if cfg is not None and str(getattr(e, "code", "") or getattr(e, "status_code", "")) == "400" and ("mime" in low or "json" in low or "response_schema" in low):
+                drop.add("json")  # bu model JSON modunu desteklemiyor: düz metin iste
+                continue
+            raise
+        break
+    try:
+        text = response.text or ""
+    except Exception:  # engellenen / boş yanıt
+        text = ""
+    text = _strip_think(text)
     if "```json" in text:
         text = text.split("```json")[1].split("```")[0].strip()
     elif "```" in text:
@@ -2278,7 +2578,7 @@ def call_gemini_with_key(api_key, prompt_text, system=SYSTEM, temperature=None, 
     return text
 
 
-def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperature=None):
+def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperature=None, models=None, system=None, reasoning=None, deadline=None, max_wait=None, exclude=None, meta=None):
     """Ortak havuz: önce Groq'un TÜM modelleri (her model için tüm anahtarlar), sonra Gemini'nin tüm modelleri.
     Kota/hız sınırına takılan (anahtar, model) çifti süreli 'soğumaya' alınır ve atlanır; tüm iş parçacıkları
     bu durumu paylaşır, böylece aynı kotaya tekrar tekrar çarpılmaz."""
@@ -2286,7 +2586,9 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
     mk = [(i, k) for i, k in enumerate(gemini_keys) if str(k).strip()]
     if not gk and not mk:
         return None, "Geçerli API anahtarı bulunamadı!"
-    gmodels, mmodels = load_models()
+    gmodels, mmodels = models if models else load_models([k for _, k in gk], [k for _, k in mk])
+    deadline = POOL_DEADLINE if deadline is None else deadline
+    max_wait = POOL_MAX_WAIT if max_wait is None else max_wait
     plan = []
     for prov, keys, models, fn in (("groq", gk, gmodels, call_groq_with_key), ("gemini", mk, mmodels, call_gemini_with_key)):
         if not keys:
@@ -2294,12 +2596,14 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
         r = offset % len(keys)
         rot = keys[r:] + keys[:r]  # paralel işlerde yükü dağıt
         for model in models:
+            if exclude and model in exclude:
+                continue
             for kidx, key in rot:
                 plan.append((prov, kidx, key, model, fn))
     t0 = time.time()
     last = None
     tried = set()
-    while time.time() - t0 < POOL_DEADLINE:
+    while time.time() - t0 < deadline:
         now = time.time()
         soonest = None
         progressed = False
@@ -2316,8 +2620,14 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
                 kw = {"model": model}
                 if temperature is not None:
                     kw["temperature"] = temperature
+                if system is not None:
+                    kw["system"] = system
+                if reasoning is not None:
+                    kw["reasoning"] = reasoning
                 r = fn(key, prompt_text, **kw)
                 if r:
+                    if meta is not None:
+                        meta.update(provider=prov, model=model)
                     return r, None
                 _mark(prov, kidx, model, "other", 5)  # boş yanıt
             except Exception as e:
@@ -2336,9 +2646,9 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
         if avail and progressed:
             continue
         nxt = min((w for w, _ in with_wait), default=None)
-        if nxt is None or nxt > POOL_MAX_WAIT or time.time() - t0 + nxt > POOL_DEADLINE:
+        if nxt is None or nxt > max_wait or time.time() - t0 + nxt > deadline:
             break
-        time.sleep(min(nxt, POOL_MAX_WAIT) + .3)
+        time.sleep(min(nxt, max_wait) + .3)
     st_ = pool_status()
     return None, f"Tüm modeller/anahtarlar şu an dolu (soğumada: {st_['cooling']}, devre dışı: {st_['disabled']}). Son hata: {str(last)[:160] if last else '-'}"
 
@@ -2359,10 +2669,155 @@ def parse_json(raw):
     return None
 
 
+def _salvage_objects(raw):
+    """Yarım kalmış JSON'dan, TAMAMLANMIŞ soru nesnelerini kurtarır."""
+    if not raw:
+        return []
+    i = raw.find('"questions"')
+    i = raw.find("[", i if i >= 0 else 0)
+    if i < 0:
+        return []
+    out, depth, start, in_str, esc = [], 0, None, False, False
+    for j in range(i + 1, len(raw)):
+        ch = raw[j]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            if depth == 0:
+                start = j
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0 and start is not None:
+                try:
+                    out.append(json.loads(raw[start:j + 1]))
+                except Exception:
+                    pass
+                start = None
+            elif depth < 0:
+                break
+        elif ch == "]" and depth == 0:
+            break
+    return [o for o in out if isinstance(o, dict)]
+
+
+def _extract_questions(raw):
+    data = parse_json(raw)
+    if isinstance(data, dict):
+        q = data.get("questions")
+        if isinstance(q, list):
+            return [x for x in q if isinstance(x, dict)]
+        for v in data.values():  # model anahtarı farklı adlandırdıysa
+            if isinstance(v, list) and v and all(isinstance(x, dict) for x in v):
+                return v
+    if isinstance(data, list):
+        return [x for x in data if isinstance(x, dict)]
+    return _salvage_objects(raw)
+
+
+def _ask_questions(prompt, gk, mk, offset, validate, tries=3):
+    """Havuzdan soru ister. Yanıt kullanılamazsa (bozuk JSON / hiç geçerli soru yok) AYNI modeli tekrarlamaz, sıradakine geçer.
+    -> (geçerli_sorular, hata)"""
+    exclude, last = set(), None
+    for t in range(tries):
+        meta = {}
+        raw, err = multi_pool_generate(prompt, gk, mk, offset=offset + t, exclude=exclude, meta=meta)
+        if not raw:
+            return [], err  # havuz tükendi: aynı şeyi tekrar denemek boşuna
+        good = validate(_extract_questions(raw))
+        if good:
+            return good, None
+        last = "geçersiz yanıt"
+        if meta.get("model"):
+            exclude.add(meta["model"])
+            _penalize(meta.get("provider", ""), meta["model"], 30)
+    return [], last
+
+
+# ---------------------------------------------------------------- ikinci model kontrolü
+VERIFY_SYSTEM = "Sen titiz bir MEB soru doğrulayıcısısın. Soruları bağımsız çözer, yalnızca geçerli JSON döndürürsün."
+VERIFY_STATS = {"checked": 0, "rejected": 0, "unverified": 0}
+
+
+def verify_stats():
+    with _POOL_LOCK:
+        return dict(VERIFY_STATS)
+
+
+def _vq_text(i, q):
+    sh = q.get("shape")
+    sh_txt = json.dumps(sh, ensure_ascii=False)[:1500] if sh else "yok"
+    opts = " | ".join(f"{k}) {v}" for k, v in q["options"].items())
+    return f"[{i}] METİN: {q.get('passage') or '-'}\n    GÖRSEL VERİSİ: {sh_txt}\n    SORU: {q['question']}\n    ŞIKLAR: {opts}"
+
+
+def _verify_models(gk, mk):
+    try:
+        return resolve_models(VERIFY_GROQ_MODELS, VERIFY_GEMINI_MODELS, gk, mk, extras=False)
+    except Exception:
+        return (VERIFY_GROQ_MODELS, VERIFY_GEMINI_MODELS)
+
+
+def verify_questions(qs, gk, mk, offset=0):
+    """Soruları cevap gösterilmeden çözdürür; doğru şıkkı tutmayan (ya da hatalı bulunan) soruları eler.
+    Doğrulayıcıya ulaşılamazsa sorular doğrulanmadan korunur."""
+    if not qs:
+        return qs
+    prompt = ("Aşağıdaki çoktan seçmeli soruları SEN çöz. Her soru için doğru şıkkı bağımsız olarak hesapla/doğrula ve harfini ver (A, B, C veya D). "
+              "Soru hatalıysa (doğru şık yok, birden çok şık doğru, veri eksik ya da görsel verisiyle çelişiyor) 'X' ver.\n\n"
+              + "\n\n".join(_vq_text(i, q) for i, q in enumerate(qs, 1))
+              + '\n\nÇIKTI SADECE şu JSON: {"results":[{"i":1,"answer":"A"}]}')
+    raw, err = multi_pool_generate(prompt, gk, mk, offset=offset, temperature=0, models=_verify_models(gk, mk),
+                                   system=VERIFY_SYSTEM, reasoning="medium", deadline=VERIFY_DEADLINE, max_wait=0)
+    data = parse_json(raw)
+    res = data.get("results") if isinstance(data, dict) else None
+    if not isinstance(res, list):
+        with _POOL_LOCK:
+            VERIFY_STATS["unverified"] += len(qs)
+        return qs
+    got = {}
+    for r in res:
+        try:
+            got[int(r.get("i"))] = str(r.get("answer", "")).strip().upper()[:1]
+        except Exception:
+            pass
+    keep, rej, unv = [], 0, 0
+    for i, q in enumerate(qs, 1):
+        a = got.get(i)
+        if a is None:
+            unv += 1
+            keep.append(q)
+        elif a == q["answer"]:
+            keep.append(q)
+        else:
+            rej += 1
+    with _POOL_LOCK:
+        VERIFY_STATS["checked"] += len(qs) - unv
+        VERIFY_STATS["rejected"] += rej
+        VERIFY_STATS["unverified"] += unv
+    return keep
+
+
 # ---------------------------------------------------------------- prompt
-SHAPE_RULES = (
+_SR_HEAD = (
     "🚨 GÖRSEL KURALLARI (`shape` nesnesi). Matematik, fen ve veri okuma sorularında konuya UYGUN şemayı mutlaka ekle:\n"
+)
+
+_SR_BASIC = (
     '- Üçgen: {"type":"triangle","sub_type":"right|scalene|equilateral","A":"A","B":"B","C":"C","side_ab":"3 cm","side_bc":"4 cm","angle_a":"60°"}\n'
+    '- Çember: {"type":"circle","center":"O","radius":"5 cm","show_diameter":true}\n'
+    '- Dikdörtgen: {"type":"rectangle","width":8,"height":5,"width_label":"8 cm","height_label":"5 cm"}\n'
+)
+
+_SR_GEO = (
     '- 📐 KESİN ÖLÇÜLÜ GEOMETRİ (doğru/ışın/doğru parçası, dik-paralel doğrular, açılar, çokgenler; GEOMETRİ konularında TERCİH ET, `labels` köşe/nokta harfleridir):\n'
     '   {"type":"geo","sub_type":"line|ray|segment","labels":["A","B"]}  |  {"type":"geo","sub_type":"lines_set","kinds":["segment","ray","line"]} (I,II,III numaralı karışık çizim; soruda "hangisi ışındır?" gibi)\n'
     '   {"type":"geo","sub_type":"perpendicular","labels":["d1","d2","A"],"tilt":25} (tam 90°)  |  {"type":"geo","sub_type":"parallel","labels":["d1","d2","k"],"transversal":true,"angle":60}\n'
@@ -2375,12 +2830,19 @@ SHAPE_RULES = (
     '   {"type":"geo","sub_type":"quad","kind":"square|rectangle|parallelogram|rhombus|trapezoid|kite","labels":["A","B","C","D"],"ticks":true,"diagonals":false}  |  {"type":"geo","sub_type":"quad_set","kinds":["square","rectangle","parallelogram","rhombus"]}\n'
     '   {"type":"geo","sub_type":"circle_parts","center":"O","parts":["radius","diameter","chord","arc","tangent","sector"],"labels":["A","B","C","D","E"]} (yarıçap OA, çap BC, kiriş DE; seçilen parçalar çizilir)\n'
     '   ⚠ Soru metni çizilenle BİREBİR aynı olsun: köşe sayısı, harfler, açı ölçüsü, çizim türü çelişmesin; şekil türünün adını (ışın, altıgen…) görselde ipucu olarak yazma.\n'
-    '- Çember: {"type":"circle","center":"O","radius":"5 cm","show_diameter":true}\n'
-    '- Dikdörtgen: {"type":"rectangle","width":8,"height":5,"width_label":"8 cm","height_label":"5 cm"}\n'
+)
+
+_SR_CHART = (
     '- Çubuk: {"type":"bar_chart","labels":[...],"values":[...],"title":"..."}   Çizgi: {"type":"line_chart","labels":[...],"values":[...],"title":"..."}\n'
     '- Daire grafiği: {"type":"pie_chart","labels":[...],"values":[...],"title":"..."}\n'
     '- Tablo: {"type":"table","title":"...","headers":[...],"rows":[[...],[...]]}\n'
+)
+
+_SR_NUMLINE = (
     '- Sayı doğrusu: {"type":"number_line","min":0,"max":10,"step":1,"marks":[{"label":"A","value":2.5}]}\n'
+)
+
+_SR_SCI = (
     '- Dinamometre (kuvvet ölçme): {"type":"dynamometer","value":6.5,"max_value":10,"unit":"N","mass_label":"m"}\n'
     '- Termometre: {"type":"thermometer","value":23,"min":-10,"max":50,"step":10,"unit":"°C"}\n'
     '- Dereceli silindir: {"type":"cylinder","max":100,"level":62,"step":10,"unit":"mL"}\n'
@@ -2389,9 +2851,27 @@ SHAPE_RULES = (
     '- TEK Ay evresi (büyük, adı yazmaz): {"type":"science_space","sub_type":"moon_single","phase":2,"label":"K"}  (phase: 0 yeni ay,1 büyüyen hilal,2 ilk dördün,3 büyüyen şişkin ay,4 dolunay,5 küçülen şişkin ay,6 son dördün,7 küçülen hilal)\n'
     '- Ay'"'"'ın Dünya çevresindeki 8 konumu (numaralı): {"type":"science_space","sub_type":"moon_orbit","title":"..."}\n'
     '- Güneş/Ay tutulması: {"type":"science_space","sub_type":"solar_eclipse|lunar_eclipse","title":"..."}; Yörünge: {"type":"science_space","sub_type":"orbit"}\n'
+)
+
+_SR_FOOT = (
     "⛔ Şemanın başlığı, etiketleri ve değerleri sorunun CEVABINI veya İPUCUNU ASLA içermesin; yalnızca ham veriyi göstersin.\n"
     "Görsel gerektirmeyen sorularda 'shape' değerini null yap. Her seferinde konuya uygun FARKLI görsel türü seç.\n"
-    "Metinlerde LaTeX KULLANMA; üs için x², kök için √, çarpma için ×, bölme için ÷ gibi Unicode karakterleri kullan.\n")
+    "Metinlerde LaTeX KULLANMA; üs için x², kök için √, çarpma için ×, bölme için ÷ gibi Unicode karakterleri kullan.\n"
+)
+
+# Tam metin (geriye dönük uyumluluk)
+SHAPE_RULES = _SR_HEAD + _SR_BASIC + _SR_GEO + _SR_CHART + _SR_NUMLINE + _SR_SCI + _SR_FOOT
+
+
+def shape_rules(subject, geo_on=False):
+    """Prompt kısaltma: yalnızca dersin ve konunun gerektirdiği görsel kuralları gönderilir."""
+    if subject not in VISUAL_SUBJECTS:
+        return ""
+    if subject == "Matematik":
+        return _SR_HEAD + _SR_BASIC + (_SR_GEO if geo_on else "") + _SR_CHART + _SR_NUMLINE + _SR_FOOT
+    if subject == "Fen Bilimleri":
+        return _SR_HEAD + _SR_CHART + _SR_SCI + _SR_FOOT
+    return _SR_HEAD + _SR_CHART + _SR_NUMLINE + _SR_FOOT
 
 SUBJECT_HINT = {
     "Türkçe": "Paragraf, sözel mantık, dil bilgisi, görsel/tablo okuma, deyim-atasözü. Metinleri ASLA KISALTMA, eksiksiz yaz.",
@@ -2592,10 +3072,15 @@ def _variety_plan(subject, n, topics):
             "aynı kazanımın farklı yönlerini ölç):\n" + "\n".join(lines) + "\nPlandaki görsel türü konuya uymuyorsa o soruyu görselsiz yaz; ama iki soruda aynı görsel/veri tekrar etmesin.\n")
 
 
-def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1):
+PLAIN_RULE = ("🚫 GÖRSEL YOK: 'shape' alanını null yap. Soru metni 'şekilde', 'grafikte', 'tabloda' gibi bir görsele atıf yapmasın; gerekirse veriyi metin ya da paragraf içinde ver. "
+              "Sorular yalnızca metinle çözülebilsin.\nMetinlerde LaTeX KULLANMA; üs için x², kök için √, çarpma için ×, bölme için ÷ kullan.\n")
+
+
+def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
     geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
+    plain = plain and not geo_on  # geometri şekilsiz olmaz
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     return (
         f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
@@ -2606,8 +3091,8 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         + ("MEB geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz; yorum ve muhakeme gerektiren ama metni az olan sorular. " if geo_on else
            "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. ") +
         "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
-        f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{_variety_plan(subject, n, topics)}"
-        f"{av}\n{_subject_lock(subject, topics)}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
+        f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{'' if plain else _variety_plan(subject, n, topics)}"
+        f"{av}\n{_subject_lock(subject, topics)}\n{PLAIN_RULE if plain else shape_rules(subject, geo_on) + (GEO_STYLE if geo_on else '')}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
         '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":"..."}]}' % (start_id, subject))
@@ -2627,7 +3112,7 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
         "Her soru tek bir kazanımı ölçsün, beceri temelli ve bağlamlı olsun; öğrencinin yazarak cevaplayacağı şekilde kurgulansın.\n"
         f"DAĞILIM (kazanım başına tam soru sayısı):\n" + "\n".join(lines) + "\n"
         f"KALİTE KADEMESİ: '{difficulty}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy.\n"
-        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{SHAPE_RULES if subject in VISUAL_SUBJECTS else ''}{GEO_STYLE if geo_on else ''}\n"
+        f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{shape_rules(subject, geo_on)}{GEO_STYLE if geo_on else ''}\n"
         "Her soru için: beklenen 'answer', ve puanlama anahtarı 'rubric' (adımlar ve göreli puanlar; toplam 10 olsun).\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"kazanim":"..","type":"Açık uçlu|Kısa cevaplı","difficulty":"Kolay|Orta|Zor",'
         '"passage":"... veya null","question":"..","shape":null,"answer":"..","rubric":[{"step":"..","points":5},{"step":"..","points":5}]}]}')
@@ -2764,93 +3249,154 @@ def _demo_mc(subject, n, topics):
 
 
 # ---------------------------------------------------------------- üst düzey API
-def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None):
-    """plan: [{subject, n, topics}] -> (questions, errors)"""
-    avoid = avoid or {}
-    gk, mk = load_keys() if not demo_mode() else ([], [])
-    if not demo_mode() and not gk and not mk:
-        return [], ["API anahtarı bulunamadı"]
-    tasks = []
-    for p in plan:
-        left, k = p["n"], 0
-        while left > 0:
-            c = min(CHUNK, left)
-            tasks.append((p, c, k))
-            left -= c
-            k += 1
-    errors, results = [], {}
-    done = [0]
+def bank_key_for(p, grade_label, difficulty):
+    from . import store
+    return store.bank_key(grade_label, p["subject"], difficulty, p.get("topics", ""))
 
-    def work(idx_task, extra_avoid=None):
-        idx, (p, c, k) = idx_task
-        subj = p["subject"]
+
+def _bank_meta(p, grade_label, difficulty):
+    return {"grade_label": grade_label, "subject": p["subject"], "difficulty": difficulty, "topics": str(p.get("topics", ""))[:120]}
+
+
+def bank_counts(plan, grade_label, difficulty):
+    """Plandaki her ders için bankada hazır soru sayısı."""
+    from . import store
+    return {p["subject"]: store.bank_count(bank_key_for(p, grade_label, difficulty)) for p in plan}
+
+
+def _relaxed_ok(q, kept):
+    """Gevşetilmiş çeşitlilik: yalnızca (neredeyse) birebir kopyayı reddeder."""
+    w = _qwords(q)
+    for k in kept:
+        wk = _qwords(k)
+        if w and wk and len(w & wk) / len(w | wk) > 0.9:
+            return False
+    return True
+
+
+def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None):
+    """plan: [{subject, n, topics}] -> (questions, errors).
+    Her ders BAĞIMSIZ ilerler (başka dersi beklemez): bankadan al -> paralel üret -> eksik kaldıkça yeniden tamamla
+    (turlar ilerledikçe daha çok yedek ister, çeşitlilik kuralını gevşetir, en son görselsiz moda geçer).
+    Amaç: istenen sayının TAM karşılanması."""
+    avoid = {k: list(v) for k, v in (avoid or {}).items()}
+    gk, mk = (keys if keys else load_keys()) if not demo_mode() else ([], [])
+    no_keys = not demo_mode() and not gk and not mk
+    bank_ok = use_bank and not demo_mode() and not focus.strip()
+    dep_ok = deposit and not demo_mode() and not focus.strip()
+    seen = set(s for v in avoid.values() for s in v)
+    seen_lock = threading.Lock()
+    prog_lock = threading.Lock()
+    prog = {"done": 0, "total": max(1, sum(-(-p["n"] // CHUNK) for p in plan))}
+    state = [{"p": p, "qs": [], "reserve": [], "over": [], "fails": 0, "err": None, "bank_stems": []} for p in plan]
+    T0 = time.time()
+    E = ThreadPoolExecutor(max_workers=WORKERS)
+
+    def take(st_, batch, relax=False):
+        p, qs_, res_ = st_["p"], st_["qs"], st_["reserve"]
+        with seen_lock:
+            for i, q in enumerate(batch):
+                if len(qs_) >= p["n"]:
+                    st_["over"].extend(batch[i:])  # fazlalık atılmaz, bankaya gider
+                    break
+                s = _stem(q)
+                if not s:
+                    continue
+                if s in seen:
+                    res_.append(q)
+                elif (_relaxed_ok(q, qs_) if relax else accept_diverse(q, qs_, p["n"])):
+                    seen.add(s)
+                    qs_.append(q)
+                else:
+                    res_.append(q)
+
+    def work_chunk(st_, c_ask, use_focus, extra_avoid, plain):
+        p = st_["p"]
+        subj, idx = p["subject"], next(_UID)
         try:
             if demo_mode():
-                return idx, _demo_mc(subj, c, p["topics"]), None
-            av = list(avoid.get(subj, [])) + list(extra_avoid or [])
-            prompt = mc_prompt(grade_label, subj, c + (1 if idx < 900 else 0), p["topics"], difficulty, scope_label, av, focus if k == 0 else "")
-            raw, err = multi_pool_generate(prompt, gk, mk, offset=idx)
-            data = parse_json(raw)
-            items = (data or {}).get("questions", []) if isinstance(data, dict) else []
-            qs = []
-            for q in items:
+                return _demo_mc(subj, c_ask, p["topics"]), None
+            av = list(avoid.get(subj, [])) + list(extra_avoid)
+            prompt = mc_prompt(grade_label, subj, c_ask, p["topics"], difficulty, scope_label, av, focus if use_focus else "", plain=plain)
+
+            def validate(items):
+                out = []
+                for q in items:
+                    try:
+                        x = _norm_q(q, subj)
+                    except Exception:  # tek bozuk soru tüm üretimi bozmasın
+                        x = None
+                    if x:
+                        out.append(x)
+                return out
+
+            qs, err = _ask_questions(prompt, gk, mk, idx, validate)
+            if qs and subj in VERIFY_SUBJECTS and (gk or mk):
                 try:
-                    x = _norm_q(q, subj)
-                except Exception:  # tek bozuk soru tüm üretimi bozmasın
-                    x = None
-                if x:
-                    qs.append(x)
-            if on_progress:
-                done[0] += 1
-                on_progress(done[0], len(tasks), subj)
-            return idx, qs, (err if not qs else None)
+                    qs = verify_questions(qs, gk, mk, offset=idx)
+                except Exception:  # doğrulayıcı hatası üretimi engellemesin
+                    pass
+            return qs, (err if not qs else None)
         except Exception as e:
-            return idx, [], f"{type(e).__name__}: {str(e)[:80]}"
+            return [], f"{type(e).__name__}: {str(e)[:80]}"
 
-    with ThreadPoolExecutor(max_workers=min(WORKERS, max(1, len(tasks)))) as ex:
-        for idx, qs, err in ex.map(work, list(enumerate(tasks))):
-            results[idx] = qs
-            if err:
-                errors.append(err)
-    seen = set(s for v in avoid.values() for s in v)
-    state = []
-    for p in plan:
-        state.append({"p": p, "qs": [], "reserve": [], "fails": 0})
+    def run_item(st_):
+        p = st_["p"]
+        subj, n = p["subject"], p["n"]
+        try:
+            if bank_ok:  # 0) bankadan doldur
+                try:
+                    from . import store
+                    key = bank_key_for(p, grade_label, difficulty)
+                    fresh, purge = [], []
+                    for q in store.bank_peek(key, n * 2 + 4):
+                        s = _stem(q)
+                        if not s or s in seen:  # daha önce çözülmüş: bankadan da temizle
+                            purge.append(s)
+                        else:
+                            fresh.append(q)
+                    take(st_, fresh)
+                    st_["reserve"], st_["over"] = [], []  # elenenler bankada kalır
+                    got = [_stem(q) for q in st_["qs"]]
+                    store.bank_remove(key, got + purge)
+                    st_["bank_stems"] = got
+                except Exception:
+                    pass  # banka hatası üretimi engellemesin
+            for rnd in range(MAX_ROUNDS + 1):
+                need = n - len(st_["qs"])
+                if need <= 0 or (no_keys and not demo_mode()):
+                    break
+                if rnd > 0 and (time.time() - T0 > GEN_BUDGET or st_["fails"] >= 3):
+                    break
+                sizes, left = [], need
+                while left > 0:
+                    c = min(CHUNK, left)
+                    sizes.append(c)
+                    left -= c
+                extra_av = [_stem(q) for q in st_["qs"]] + st_["bank_stems"]
+                futs = [E.submit(work_chunk, st_, c + EXTRA_FIRST + min(rnd, 3), rnd == 0 and k == 0, extra_av, rnd >= 3) for k, c in enumerate(sizes)]
+                before = len(st_["qs"])
+                for f in futs:
+                    qs, err = f.result()
+                    if err:
+                        st_["err"] = err
+                    take(st_, qs, relax=rnd >= 2)
+                    if on_progress:
+                        with prog_lock:
+                            prog["done"] += 1
+                            on_progress(min(prog["done"], prog["total"]), prog["total"], subj)
+                st_["fails"] = 0 if len(st_["qs"]) > before else st_["fails"] + 1
+        except Exception as e:
+            st_["err"] = f"{type(e).__name__}: {str(e)[:80]}"
 
-    def take(st_, batch):
-        p, qs_, res_ = st_["p"], st_["qs"], st_["reserve"]
-        for q in batch:
-            if len(qs_) >= p["n"]:
-                break
-            s = _stem(q)
-            if not s:
-                continue
-            if s in seen:
-                res_.append(q)
-            elif accept_diverse(q, qs_, p["n"]):
-                seen.add(s)
-                qs_.append(q)
-            else:
-                res_.append(q)
-
-    for st_ in state:
-        for idx, (pp, c, k) in enumerate(tasks):
-            if pp is st_["p"]:
-                take(st_, results.get(idx, []))
-    # eksikleri tüm dersler için PARALEL tamamla (en çok 3 tur, az fazla isteyerek)
-    if demo_mode() or gk or mk:
-        for rnd in range(1, 3):
-            todo = [s_ for s_ in state if s_["p"]["n"] - len(s_["qs"]) > 0 and s_["fails"] < 2]
-            if not todo:
-                break
-            jobs = [(900 + rnd * 10 + i, (s_["p"], min(CHUNK, (s_["p"]["n"] - len(s_["qs"])) + 3), rnd), [str(q.get("question", ""))[:80] for q in s_["qs"]])
-                    for i, s_ in enumerate(todo)]
-            with ThreadPoolExecutor(max_workers=min(WORKERS, len(jobs))) as ex:
-                outs = list(ex.map(lambda j: work((j[0], j[1]), j[2]), jobs))
-            for s_, (_, extra, err) in zip(todo, outs):
-                s_["fails"] = s_["fails"] + 1 if not extra else 0
-                take(s_, extra)
-    questions = []
+    try:
+        with ThreadPoolExecutor(max_workers=max(1, len(state))) as SX:
+            list(SX.map(run_item, state))
+    finally:
+        E.shutdown(wait=False)
+    if no_keys and not any(s_["qs"] for s_ in state):
+        return [], ["API anahtarı bulunamadı"]
+    errors, questions = [], []
     for st_ in state:
         p, qs_ = st_["p"], st_["qs"]
         if len(qs_) < p["n"] and st_["reserve"]:  # son çare: elenenlerden (tam kopya olmayanlar) tamamla
@@ -2864,52 +3410,183 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 qs_.append(q)
                 have.append(w)
         if len(qs_) < p["n"]:
-            errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi")
+            errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi" + (f" ({st_['err'][:90]})" if st_.get("err") and not qs_ else ""))
         questions += qs_[:p["n"]]
+    if dep_ok:  # artan sağlam soruları bankaya ekle
+        try:
+            from . import store
+            for st_ in state:
+                p = st_["p"]
+                used = {_stem(q) for q in st_["qs"][:p["n"]]}
+                extra = [q for q in st_["over"] + st_["reserve"] if _stem(q) and _stem(q) not in used and _stem(q) not in seen]
+                if extra:
+                    store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), extra)
+        except Exception:
+            pass
     for i, q in enumerate(questions, 1):
         q["id"] = i
     return questions, errors
 
 
+_FILLING = set()
+_FILL_LOCK = threading.Lock()
+
+
+def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
+    """Sınav üretildikten sonra arka planda, bu kapsamın bankasını bir sonraki sınav için tamamlar (en fazla bir sınav boyu).
+    Ana iş parçacığında çağrılır; anahtarlar ve kaçınılacak soru listesi burada alınır, işi daemon iş parçacığı yapar."""
+    if demo_mode() or not plan:
+        return False
+    try:
+        from . import store
+        gk, mk = load_keys()
+        if not gk and not mk:
+            return False
+        avoid = {k: list(v) for k, v in store.recent_stems().items()}
+        for q in used_qs:
+            avoid.setdefault(q.get("subject", "Genel"), []).append(_stem(q))
+        todo = []
+        for p in plan:
+            key = bank_key_for(p, grade_label, difficulty)
+            need = p["n"] - store.bank_count(key)
+            with _FILL_LOCK:
+                if need > 0 and key not in _FILLING:
+                    _FILLING.add(key)
+                    todo.append((key, {**p, "n": need}))
+        if not todo:
+            return False
+    except Exception:
+        return False
+
+    def run():
+        try:
+            sub = [p for _, p in todo]
+            qs, _e = generate_mc(sub, grade_label, difficulty, scope_label, avoid=avoid, use_bank=False, deposit=False, keys=(gk, mk))
+            for key, p in todo:
+                mine = [q for q in qs if q.get("subject") == p["subject"]]
+                store.bank_put(key, _bank_meta(p, grade_label, difficulty), mine)
+        except Exception:
+            pass
+        finally:
+            with _FILL_LOCK:
+                for key, _p in todo:
+                    _FILLING.discard(key)
+
+    threading.Thread(target=run, daemon=True).start()
+    return True
+
+
+def fill_bank(plan, grade_label, difficulty, scope_label, avoid=None, on_progress=None):
+    """Soruları KULLANMADAN üretip bankaya koyar (sonraki sınav anında açılsın). -> (eklenen, hatalar)"""
+    if demo_mode():
+        return 0, []
+    from . import store
+    qs, errs = generate_mc(plan, grade_label, difficulty, scope_label, avoid=avoid, on_progress=on_progress, use_bank=False, deposit=False)
+    added = 0
+    for p in plan:
+        mine = [q for q in qs if q.get("subject") == p["subject"]]
+        added += store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), mine)
+    return added, errs
+
+
+def _valid_oyss(q):
+    if not isinstance(q, dict):
+        return False
+    if len(str(q.get("question", "")).strip()) < 8 or not str(q.get("answer", "")).strip():
+        return False
+    rub = q.get("rubric")
+    return isinstance(rub, list) and any(isinstance(r, dict) for r in rub)
+
+
 def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progress=None):
-    """subject_tables: [{subject, rows:[{code,topic,unit,n}]}] -> (questions, errors)"""
+    """subject_tables: [{subject, rows:[{code,topic,unit,n}]}] -> (questions, errors).
+    Dersler paralel; her kazanım-soru 'yuvası' ayrı takip edilir, eksik yuvalar küçük gruplar hâlinde yeniden istenir:
+    kazanım dağılımı ve soru sayısı TAM tutar."""
     from . import oyss as oy
+    from . import visuals as _v
     avoid = avoid or {}
     gk, mk = load_keys() if not demo_mode() else ([], [])
     if not demo_mode() and not gk and not mk:
         return [], ["API anahtarı bulunamadı"]
-    questions, errors = [], []
-    for si, st_ in enumerate(subject_tables):
+    seen = set(s for v in avoid.values() for s in v)
+    seen_lock = threading.Lock()
+    T0 = time.time()
+    E = ThreadPoolExecutor(max_workers=WORKERS)
+
+    def run_subject(si):
+        st_ = subject_tables[si]
         subj, rows = st_["subject"], st_["rows"]
         total = sum(r["n"] for r in rows)
         labels = oy.difficulty_labels(total)
         random.shuffle(labels)
-        items, pos = [], 0
+        slots, pos = [], 0
         for r in rows:
-            items.append({"kazanim": f"{r['code']} – {r['topic']}", "n": r["n"], "labels": labels[pos:pos + r["n"]]})
+            for j in range(r["n"]):
+                slots.append({"kazanim": f"{r['code']} – {r['topic']}", "code": str(r["code"]), "label": labels[pos + j]})
             pos += r["n"]
+        errs = []
         if demo_mode():
             qs = []
-            for it in items:
-                for j in range(it["n"]):
-                    qs.append({"kazanim": it["kazanim"], "type": "Açık uçlu" if j % 3 else "Kısa cevaplı", "difficulty": it["labels"][j],
-                               "passage": "", "question": f"[{subj}] Demo açık uçlu soru {uuid.uuid4().hex[:4]}", "shape": None,
-                               "answer": "Demo cevap", "rubric": [{"step": "Adım 1", "points": 5}, {"step": "Adım 2", "points": 5}]})
+            for j, sl in enumerate(slots):
+                qs.append({"kazanim": sl["kazanim"], "type": "Açık uçlu" if j % 3 else "Kısa cevaplı", "difficulty": sl["label"],
+                           "passage": "", "question": f"[{subj}] Demo açık uçlu soru {uuid.uuid4().hex[:4]}", "shape": None,
+                           "answer": "Demo cevap", "rubric": [{"step": "Adım 1", "points": 5}, {"step": "Adım 2", "points": 5}]})
         else:
-            qs, err = [], None
-            for attempt in range(3):  # eksik/fazla dönerse yeniden iste; en çok 3 deneme
-                raw, err = multi_pool_generate(oyss_prompt(grade_label, subj, items, difficulty, avoid.get(subj, [])), gk, mk, offset=si + attempt)
-                data = parse_json(raw)
-                got = [q for q in ((data or {}).get("questions", []) if isinstance(data, dict) else []) if isinstance(q, dict) and q.get("question")]
-                if len(got) > len(qs):
-                    qs = got
-                if len(qs) >= total:
+            filled = [None] * total
+            av = list(avoid.get(subj, []))
+            last_err, fails = None, 0
+
+            def ask(batch):
+                items = []
+                for i in batch:
+                    sl = slots[i]
+                    if items and items[-1]["kazanim"] == sl["kazanim"]:
+                        items[-1]["n"] += 1
+                        items[-1]["labels"].append(sl["label"])
+                    else:
+                        items.append({"kazanim": sl["kazanim"], "n": 1, "labels": [sl["label"]]})
+                done_stems = [_stem(q) for q in filled if q]
+                return _ask_questions(oyss_prompt(grade_label, subj, items, difficulty, av + done_stems), gk, mk, next(_UID),
+                                      lambda its: [q for q in its if _valid_oyss(q)])
+
+            for rnd in range(MAX_ROUNDS):
+                missing = [i for i, f in enumerate(filled) if f is None]
+                if not missing:
                     break
-            qs = qs[:total]
+                if rnd > 0 and (time.time() - T0 > GEN_BUDGET or fails >= 3):
+                    break
+                batches = [missing[i:i + OYSS_CHUNK] for i in range(0, len(missing), OYSS_CHUNK)]
+                futs = [(b, E.submit(ask, b)) for b in batches]
+                progress = False
+                for b, f in futs:
+                    try:
+                        got, err = f.result()
+                    except Exception as e:
+                        got, err = [], f"{type(e).__name__}: {str(e)[:80]}"
+                    if err and not got:
+                        last_err = err
+                    free = list(b)
+                    for q in got:
+                        if not free:
+                            break
+                        s = _stem(q)
+                        with seen_lock:
+                            if not s or s in seen:
+                                continue
+                            j = next((i for i in free if slots[i]["code"] and slots[i]["code"] in str(q.get("kazanim", ""))), free[0])
+                            free.remove(j)
+                            seen.add(s)
+                        q["kazanim"], q["difficulty"] = slots[j]["kazanim"], slots[j]["label"]
+                        if q.get("type") not in ("Açık uçlu", "Kısa cevaplı"):
+                            q["type"] = "Açık uçlu"
+                        filled[j] = q
+                        progress = True
+                fails = 0 if progress else fails + 1
+            qs = [q for q in filled if q is not None]
             if not qs:
-                errors.append(f"{subj}: {err or 'geçersiz yanıt'}")
+                errs.append(f"{subj}: {last_err or 'geçersiz yanıt'}")
             elif len(qs) < total:
-                errors.append(f"{subj}: {len(qs)}/{total} soru üretilebildi")
+                errs.append(f"{subj}: {len(qs)}/{total} soru üretilebildi")
         pts = oy.point_split(len(qs))
         for q, p in zip(qs, pts):
             q["subject"] = subj
@@ -2923,17 +3600,33 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
                 acc += r["points"]
             q["rubric"] = rub
             q["passage"] = q.get("passage") if str(q.get("passage")).lower() not in ("none", "null", "") else ""
-            from . import visuals as _v
             _sh = _v.normalize_shape(q.get("shape"))
             _sh = _sh if _sh and _sh.get("type") in ALLOWED_SHAPES.get(subj, {"table"}) else None
             q["shape"], _ = coherent_shape(_sh, f"{q.get('kazanim', '')} {q.get('question', '')} {q.get('passage', '')}")
             q["answer"] = str(q.get("answer", ""))
+        return qs, errs
+
+    questions, errors = [], []
+    try:
+        with ThreadPoolExecutor(max_workers=max(1, len(subject_tables))) as SX:
+            outs = list(SX.map(lambda si: _safe_subject(run_subject, si, subject_tables[si]["subject"]), range(len(subject_tables))))
+    finally:
+        E.shutdown(wait=False)
+    for si, (qs, errs) in enumerate(outs):
         questions += qs
+        errors += errs
         if on_progress:
-            on_progress(si + 1, len(subject_tables), subj)
+            on_progress(si + 1, len(subject_tables), subject_tables[si]["subject"])
     for i, q in enumerate(questions, 1):
         q["id"] = i
     return questions, errors
+
+
+def _safe_subject(fn, si, subj):
+    try:
+        return fn(si)
+    except Exception as e:  # bir dersin çökmesi diğerlerini etkilemesin
+        return [], [f"{subj}: {type(e).__name__}: {str(e)[:80]}"]
 
 
 
@@ -3700,10 +4393,15 @@ def est_seconds_mc(plan):
     return 10 + 10 * math.ceil(chunks / ai.WORKERS)
 
 
-def _gen_mc(plan, meta, scope_label, focus=""):
+def _gen_mc(plan, meta, scope_label, focus="", use_bank=True):
     n = sum(p["n"] for p in plan)
     qs, errs = with_overlay(est_seconds_mc(plan), "Sorular hazırlanıyor", f"{n} yeni nesil soru ve görselleri yapay zekâ ile üretiliyor…",
-                            lambda: ai.generate_mc(plan, meta["grade_label"], meta["difficulty"], scope_label, avoid=_avoid(), focus=focus))
+                            lambda: ai.generate_mc(plan, meta["grade_label"], meta["difficulty"], scope_label, avoid=_avoid(), focus=focus, use_bank=use_bank))
+    if use_bank and qs and not focus.strip():  # sonraki sınav için bankayı arka planda tazele
+        try:
+            ai.bank_topup_async(plan, meta["grade_label"], meta["difficulty"], scope_label, qs)
+        except Exception:
+            pass
     _finish(qs, errs, meta)
 
 
@@ -3983,10 +4681,18 @@ def weekly():
         rows = [(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", c, cur.scope_short(g, s, scope) or "—") for s, c in counts.items()]
         theme.html_table(["Ders", "Soru", "Kapsanan üniteler"], rows, num_cols=(1,))
         st.caption(f"Toplam **{n} soru** • süre **{minutes} dk**")
+        plan = [{"subject": s, "n": c, "topics": cur.scope_topic_text(g, s, scope), "short": cur.scope_short(g, s, scope)} for s, c in counts.items()]
+        from core import ai_engine as _ai
+        try:
+            _bc = _ai.bank_counts(plan, gl, diff) if plan else {}
+            _ready = sum(min(c, _bc.get(s, 0)) for s, c in counts.items())
+            if plan and not focus.strip():
+                st.caption(f"🏦 Soru bankasında bu kapsam için hazır: **{_ready}/{n}** soru" + (" • sınav anında açılır ⚡" if _ready >= n else " • sınavdan sonra otomatik doldurulur"))
+        except Exception:
+            pass
         go_btn = st.button("🚀 Soruları Üret", key="gen_wz", type="primary", use_container_width=True)
         st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",), use_container_width=True)
         if go_btn and counts:
-            plan = [{"subject": s, "n": c, "topics": cur.scope_topic_text(g, s, scope), "short": cur.scope_short(g, s, scope)} for s, c in counts.items()]
             title = f"{gl} {label} • {f['title']}"
             meta = su._meta_common(gl, "agis" if agis else "weekly", title, label, diff, plan)
             meta["duration_sec"] = minutes * 60
@@ -4140,7 +4846,7 @@ def bank():
                 pick = random.sample(tp, min(6, len(tp)))
                 plan.append({"subject": s, "n": max(1, round(per * bw.get(s, 1.0))), "short": "Karma kazanımlar",
                              "topics": "; ".join(f"{u}: {t}" for u, t in pick) + " (görsel/tablo/grafik ağırlıklı, beceri temelli)"})
-            su._gen_mc(plan, su._meta_common(gl, "bank", f"{gl} Yeni Nesil Soru Bankası", "Karma", diff, plan), "Yıl geneli karma")
+            su._gen_mc(plan, su._meta_common(gl, "bank", f"{gl} Yeni Nesil Soru Bankası", "Karma", diff, plan), "Yıl geneli karma", use_bank=False)
 '''
 MODULES['ui/exam'] = r'''# -*- coding: utf-8 -*-
 import hashlib
@@ -4704,7 +5410,9 @@ def _parent_report(hist):
 
 def _backup(hist):
     st.markdown("**Yedekle / Geri yükle** — Streamlit Cloud geçici disk kullanır; verini düzenli yedekle.")
-    blob = json.dumps({"history": hist, "wrong": store.wrong()}, ensure_ascii=False).encode("utf-8")
+    blob = json.dumps({"history": hist, "wrong": store.wrong(), "bank": store.bank_all(), "stems": store.recent_stems()}, ensure_ascii=False).encode("utf-8")
+    bs = store.bank_stats()
+    st.caption(f"Yedeğe dahil: {len(hist)} sınav • {len(store.wrong())} yanlış soru • 🏦 {bs['total']} bankadaki soru")
     st.download_button("⬇️ Yedeği indir (JSON)", blob, file_name="denemematik_yedek.json", mime="application/json", key="bk_dl")
     up = st.file_uploader("Yedeği geri yükle", type="json", key="bk_up")
     if up is not None and st.button("♻️ Geri yükle", key="bk_go"):
@@ -4712,6 +5420,10 @@ def _backup(hist):
             d = json.loads(up.read().decode("utf-8"))
             store.replace_history(d.get("history", []))
             store.replace_wrong(d.get("wrong", []))
+            if "bank" in d:  # eski yedeklerde banka yoktur; varsa geri yükle
+                store.replace_bank(d.get("bank", {}))
+            if "stems" in d:
+                store.replace_stems(d.get("stems", {}))
             st.success("Yedek geri yüklendi.")
             st.rerun()
         except Exception as e:
@@ -4762,7 +5474,7 @@ def archive():
             diff = cur.DIFFICULTIES[2]
             from .setup import with_overlay, est_seconds_mc
             qs, errs = with_overlay(est_seconds_mc(plan), "Kişisel testin hazırlanıyor", "Yanlış yaptığın konulara benzer yeni sorular yazılıyor…",
-                                    lambda: ai.generate_mc(plan, gl, diff, "Yanlış arşivi", avoid=store.recent_stems()))
+                                    lambda: ai.generate_mc(plan, gl, diff, "Yanlış arşivi", avoid=store.recent_stems(), use_bank=False, deposit=False))
             n = sum(p["n"] for p in plan)
             meta = {"grade": mc[0]["grade"], "grade_label": gl, "mode": "archive", "title": f"{gl} Kişisel Hata Telafi Testi", "scope": "Yanlış arşivi",
                     "difficulty": diff, "kind": "mc", "subtitle": "Yanlışlarına özel hazırlanmış test", "info_line": f"{n} soru",
@@ -5089,6 +5801,24 @@ with st.sidebar:
         st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
     mode_txt = "DEMO (çevrimdışı)" if ai_engine.demo_mode() else f"Groq {len(GROQ_KEYS)} • Gemini {len(GEMINI_KEYS)}"
     st.markdown(f"<div class='side-chip'>🤖 API havuzu<br><b>{mode_txt}</b><br><small>Önce Groq (tüm modeller), sonra Gemini • ortak havuz</small></div>", unsafe_allow_html=True)
+    try:
+        _ms = ai_engine.model_summary()
+        if _ms:
+            st.caption("🧭 Keşfedilen model: Groq " + str(_ms.get('groq', 0)) + " • Gemini " + str(_ms.get('gemini', 0)))
+    except Exception:
+        pass
+    try:
+        _vs = ai_engine.verify_stats()
+        if _vs['checked']:
+            st.caption(f"🔎 İkinci model kontrolü: {_vs['checked']} sorudan {_vs['rejected']} elendi")
+    except Exception:
+        pass
+    try:
+        _bs = store.bank_stats()
+        if _bs['total']:
+            st.caption(f"🏦 Soru bankası: {_bs['total']} hazır soru")
+    except Exception:
+        pass
     try:
         _ps = ai_engine.pool_status()
         if _ps["cooling"] or _ps["disabled"]:
