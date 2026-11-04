@@ -1940,12 +1940,13 @@ import re
 import threading
 
 _BANK_LOCK = threading.Lock()
+BANK_VER = "v2"  # soru kalitesi/zorluk kuralları değişince artırılır: eski bankadaki sorular kullanılmaz
 BANK_PER_KEY = 80
 BANK_TOTAL = 2500
 
 
 def bank_key(grade_label, subject, difficulty, topics):
-    return hashlib.sha1(f"{grade_label}|{subject}|{difficulty}|{topics}".encode("utf-8")).hexdigest()[:16]
+    return hashlib.sha1(f"{BANK_VER}|{grade_label}|{subject}|{difficulty}|{topics}".encode("utf-8")).hexdigest()[:16]
 
 
 def _bstem(q):
@@ -2256,10 +2257,11 @@ EXTRA_FIRST = 3    # ilk turda fazladan istenen soru (elenenler için yedek; tam
 CALL_TIMEOUT = 40  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
 GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
 # İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
-VERIFY_SUBJECTS = ("Matematik", "Fen Bilimleri")
-VERIFY_GROQ_MODELS = ["openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
-VERIFY_GEMINI_MODELS = ["gemini-2.5-flash-lite", "gemini-2.5-flash"]
-VERIFY_DEADLINE = 30  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
+VERIFY_SUBJECTS = ()  # boş = TÜM dersler doğrulanır (mantık hatalarını yakalamak için)
+GEN_REASONING = {"Matematik": "medium", "Fen Bilimleri": "medium"}  # hesap gerektiren derslerde daha derin düşünme
+VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
+VERIFY_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
+VERIFY_DEADLINE = 40  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
 GEN_BUDGET = 150      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
 MAX_ROUNDS = 5        # istenen sayıya ulaşmak için en çok tur
 OYSS_CHUNK = 5        # yazılı sınavda tek istekteki soru sayısı
@@ -2509,7 +2511,7 @@ def call_groq_with_key(api_key, prompt_text, system=SYSTEM, temperature=0.85, mo
     for _ in range(6):
         off = drop | tmp
         kw = dict(model=model, messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt_text}])
-        kw["max_tokens" if "use_max_tokens" in off else "max_completion_tokens"] = 8000
+        kw["max_tokens" if "use_max_tokens" in off else "max_completion_tokens"] = 12000
         if "temperature" not in off:
             kw["temperature"] = temperature
         if "response_format" not in off:
@@ -2723,13 +2725,13 @@ def _extract_questions(raw):
     return _salvage_objects(raw)
 
 
-def _ask_questions(prompt, gk, mk, offset, validate, tries=3):
+def _ask_questions(prompt, gk, mk, offset, validate, tries=3, reasoning=None):
     """Havuzdan soru ister. Yanıt kullanılamazsa (bozuk JSON / hiç geçerli soru yok) AYNI modeli tekrarlamaz, sıradakine geçer.
     -> (geçerli_sorular, hata)"""
     exclude, last = set(), None
     for t in range(tries):
         meta = {}
-        raw, err = multi_pool_generate(prompt, gk, mk, offset=offset + t, exclude=exclude, meta=meta)
+        raw, err = multi_pool_generate(prompt, gk, mk, offset=offset + t, exclude=exclude, meta=meta, reasoning=reasoning)
         if not raw:
             return [], err  # havuz tükendi: aynı şeyi tekrar denemek boşuna
         good = validate(_extract_questions(raw))
@@ -2772,7 +2774,7 @@ def verify_questions(qs, gk, mk, offset=0):
     if not qs:
         return qs
     prompt = ("Aşağıdaki çoktan seçmeli soruları SEN çöz. Her soru için doğru şıkkı bağımsız olarak hesapla/doğrula ve harfini ver (A, B, C veya D). "
-              "Soru hatalıysa (doğru şık yok, birden çok şık doğru, veri eksik ya da görsel verisiyle çelişiyor) 'X' ver.\n\n"
+              "Soru hatalıysa (doğru şık yok, birden çok şık doğru, cevap için veri eksik, soru ile görsel verisi ya da kendi içindeki sayılar/ifadeler tutarsız, bilgi yanlış) 'X' ver.\n\n"
               + "\n\n".join(_vq_text(i, q) for i, q in enumerate(qs, 1))
               + '\n\nÇIKTI SADECE şu JSON: {"results":[{"i":1,"answer":"A"}]}')
     raw, err = multi_pool_generate(prompt, gk, mk, offset=offset, temperature=0, models=_verify_models(gk, mk),
@@ -2874,13 +2876,16 @@ def shape_rules(subject, geo_on=False):
     return _SR_HEAD + _SR_CHART + _SR_NUMLINE + _SR_FOOT
 
 SUBJECT_HINT = {
-    "Türkçe": "Paragraf, sözel mantık, dil bilgisi, görsel/tablo okuma, deyim-atasözü. Metinleri ASLA KISALTMA, eksiksiz yaz.",
-    "Matematik": "Problem, geometri, veri analizi, olasılık. Grafik/tablo/şekil kullan; işlem sonucu tek ve kesin olsun.",
-    "Fen Bilimleri": "Deney, veri, grafik, günlük hayat bağlamı. Ay-Güneş-Dünya konularında konuya özel şema seç; kuvvet ölçmede dinamometre kullan.",
-    "Sosyal Bilgiler": "Tarih/coğrafya/vatandaşlık bağlamı; kaynak metin, harita, tablo, kronoloji yorumlama.",
-    "T.C. İnkılap Tarihi ve Atatürkçülük": "Kaynak/belge yorumlama, neden-sonuç, kronoloji; Atatürk dönemi olayları.",
-    "Din Kültürü ve Ahlak Bilgisi": "Ayet/hadis meali yorumlama, değerler eğitimi, vaka analizi. Saygılı ve doğru bilgi.",
-    "İngilizce": "Sorular İNGİLİZCE yazılır (yönerge dahil). Diyalog tamamlama, okuma parçası, tablo/kart eşleştirme, kelime.",
+    "Türkçe": "LGS Türkçe tarzı: gerçek bir metin parçası gibi eksiksiz paragraf (ana fikir, yardımcı düşünce, çıkarım, anlatım teknikleri, metnin yapısı), sözel mantık, "
+              "deyim/atasözü-metin ilişkisi, yazım-noktalama, anlatım bozukluğu, fiilimsi-ek fiil-cümle türleri, söz sanatları, tablo/grafik/görsel okuma. Metinleri ASLA KISALTMA, eksiksiz yaz.",
+    "Matematik": "LGS Matematik tarzı: günlük hayat bağlamında ÇOK ADIMLI problem (cebirsel ifadeler, denklemler, üslü/köklü sayılar, oran-orantı, yüzde, olasılık, veri analizi), "
+                 "sayısal mantık ve örüntü, grafik/tablo yorumlama. İşlem sonucu tek ve kesin olsun; tek işlemle çıkan sorular YOK.",
+    "Fen Bilimleri": "LGS Fen tarzı: deney düzeneği/hipotez/değişkenler (bağımlı-bağımsız-kontrol), tablo-grafik yorumlama, günlük olayın bilimsel açıklaması, çıkarım, "
+                     "kavramları birleştiren çok adımlı muhakeme, gerekiyorsa basit hesaplama. Ay-Güneş-Dünya konularında konuya özel şema seç; kuvvet ölçmede dinamometre kullan.",
+    "Sosyal Bilgiler": "LGS Sosyal tarzı: kaynak/belge, harita, tablo, kronoloji yorumlama; neden-sonuç, karşılaştırma ve çıkarım; I-II-III yargı değerlendirme.",
+    "T.C. İnkılap Tarihi ve Atatürkçülük": "LGS İnkılap tarzı: kaynak/belge/bildiri yorumlama, neden-sonuç, kronolojik sıralama, olaylar arası ilişki, karşılaştırma; I-II-III yargı değerlendirme; doğru tarih ve olay bilgisi.",
+    "Din Kültürü ve Ahlak Bilgisi": "LGS Din Kültürü tarzı: ayet/hadis meali ve vaka/durum yorumlama, değer ve davranış çıkarımı, kavramları ilişkilendirme. Saygılı ve doğru bilgi.",
+    "İngilizce": "Sorular İNGİLİZCE yazılır (yönerge dahil). LGS İngilizce tarzı: diyalog tamamlama, okuma parçasından çıkarım, tablo/kart/ilan bilgisi, cümle tamamlama, kelime-bağlam ilişkisi.",
     "Almanca": "Sorular ALMANCA yazılır. A1 düzeyi: diyalog, okuma, kelime, dilbilgisi.",
 }
 
@@ -2984,22 +2989,29 @@ def _subject_lock(subject, topics=""):
 
 GEO_STYLE = (
     "\n📐 GEOMETRİ SORU TARZI (KATI KURAL; yukarıdaki 'günlük hayat bağlamı / senaryo / metin' yönergesi geometri soruları için GEÇERSİZDİR):\n"
-    "- Sorular MEB/LGS'nin klasik geometri soru tarzında olsun: ÇOK KISA ve doğrudan ŞEKLE dayalı. Soru kökü en çok 1-2 cümle (en fazla ~30 kelime). 'passage' alanı HER ZAMAN null.\n"
+    "- MEB/LGS yeni nesil geometri tarzı: soru kökü KISA (en çok 2-3 cümle, ~45 kelime) ve ŞEKLE dayalı; 'passage' HER ZAMAN null. Ama çözüm TEK ADIMLI OLMASIN: en az İKİ-ÜÇ adımlı muhakeme gerektirsin.\n"
+    "- 🚫 YASAK BASİT KALIPLAR: iki açısı verilen üçgende üçüncü açıyı sorma; tek adımlı bütünler/tümler/doğru açı hesabı; tek formüle sayı koyup çevre/alan bulma; "
+    "'hangisi üçgendir/ışındır/çaptır' gibi yalnızca tanıma-adlandırma soruları.\n"
+    "- BUNUN YERİNE şunlardan BİRİNİ ya da BİRKAÇINI birleştir: bilinmeyenleri cebirsel ifadelerle ver (m(A) = 2x + 10°, m(B) = 3x − 20°) ve denklem kurdur; paralel doğrular + ikizkenar/eşkenar üçgen + iç-dış açı ilişkisi; "
+    "açıortay/yükseklik/kenarortay özelliği; Pisagor + çevre/alan; çokgenin iç/dış açı toplamı + eşitlik; çemberde yarıçap-çap-kiriş ilişkisi + çevre; bileşik şekilde alan/çevre; "
+    "şekle bakarak I, II, III yargılarından hangilerinin doğru olduğunu değerlendirtme.\n"
     "- Hikâye, senaryo, tarih, kültür bağlamı YOK. Osmanlı/padişah/savaş/kale/müze/arkeoloji gibi tarihî ya da kültürel konular ve "
     "Güneş/Ay/Dünya/gezegen/uzay gibi gök cismi konuları KESİNLİKLE YASAK. Yalnızca nokta, harf, doğru, açı, kenar, çokgen, çember dili kullan.\n"
-    "- HER geometri sorusunda `shape` ZORUNLU (null YASAK). Sorudaki tüm veriler (harfler, ölçüler, x) çizimdekiyle BİREBİR aynı olsun. "
+    "- HER geometri sorusunda `shape` ZORUNLU (null YASAK). Sorudaki tüm veriler (harfler, ölçüler, x) çizimdekiyle BİREBİR aynı ve kendi içinde TUTARLI olsun (açı toplamları, kenar ilişkileri). "
     "Soru kökü 'Şekilde…', 'Yukarıdaki şekle göre…' diye şekle atıf yapsın; şekildeki verileri uzun metinle yeniden anlatma.\n"
-    "- Örnek kökler: 'Yukarıdaki şekilde d₁ ∥ d₂ olduğuna göre x kaç derecedir?' | 'Şekildeki ABC üçgeninde m(A) = 50°, m(B) = 60° ise m(C) kaç derecedir?' | "
-    "'Aşağıdakilerden hangisi ışındır?' | 'Şekildeki dikdörtgenin çevresi kaç cm'dir?' | 'Şekildeki O merkezli çemberde |OA| = 6 cm ise çap kaç cm'dir?' | "
-    "'Şekildeki çokgenlerden hangisi beşgendir?'\n"
+    "- Örnek kök TARZI (kopyalama, kendi verilerini kur): 'Şekilde d₁ ∥ d₂ ve |AB| = |AC| olduğuna göre x kaç derecedir?' | "
+    "'Şekildeki ABC ikizkenar üçgeninde m(B) = 2x + 10°, m(C) = 3x − 20° ise m(A) kaç derecedir?' | "
+    "'Yukarıdaki şekle göre I, II ve III yargılarından hangileri doğrudur?' | 'Şekildeki bileşik şeklin çevresi kaç cm'dir?'\n"
     "- Şıklar kısa olsun (sayı, derece, cm, harf ya da numara).\n")
+_GEO_BASIC_RX = re.compile(r"ışın|doğru parçası|doğrusal|\bnokta", re.I)
 _GEO_PLAN_RX = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|\bdaire\b|dik |paralel|inşa|prizma|silindir|doğru parçası|köşegen|eşkenar|ikizkenar|\bkare\b", re.I)
 _GEO_STRICT = re.compile(r"geometri|açı|ışın|çokgen|üçgen|dörtgen|çember|paralel|\bdik\b|\bkare\b|eşkenar|ikizkenar|köşegen|doğru parçası|inşa|prizma|koni|simetri|dönüşüm", re.I)
 _GEO_DRAW = {"geo", "triangle", "circle", "rectangle"}
 _GEO_BAN = re.compile(r"osmanl|padişah|sultan|fetih|savaş|tarih|imparator|devlet|medeniyet|kale\b|saray|cami|müze|arkeolo|kazı|gezegen|uzay|yörünge|güneş|\bay\b|ay['’]ın|dünya|\bevre|ilkçağ|masal|hikâye|hikaye", re.I)
-_GEO_SKILLS = ["şekilden bilinmeyen açıyı bulma", "şekildeki elemanları tanıma (kenar, köşe, yarıçap, çap, kiriş)", "şekli sınıflandırma / adlandırma",
-               "ölçüleri verilen şekilde çevre ya da alan hesaplama", "şekle bakarak I, II, III yargılarını değerlendirme", "eş kenar / eş açı çıkarımı yapma",
-               "paralel ve dik doğru ilişkisinden açı bulma", "şekiller arasında özellik karşılaştırma"]
+_GEO_SKILLS = ["paralel doğruları ve üçgen özelliklerini birleştirerek bilinmeyen açıyı cebirsel ifadeyle bulma", "ikizkenar/eşkenar üçgen özelliği + iç-dış açı ilişkisi",
+               "açıortay, yükseklik ya da kenarortay özelliğini kullanarak açı/uzunluk bulma", "Pisagor bağıntısıyla kenar bulup çevre ya da alan hesaplama",
+               "bileşik şekilde çevre ya da alan hesaplama", "çokgenin iç/dış açı toplamıyla bilinmeyeni bulma", "çemberde yarıçap-çap-kiriş ilişkisiyle uzunluk hesabı",
+               "şekle bakarak I, II, III yargılarını değerlendirme"]
 
 
 def _is_geo_q(q, shape, subject):
@@ -3052,6 +3064,8 @@ def _variety_plan(subject, n, topics):
     geom = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     if geom:  # geometri ünitesi: kesin ölçülü geo görselleri ağırlıklı
         geo_k = ["geo:line", "geo:ray", "geo:segment", "geo:lines_set", "geo:perpendicular", "geo:parallel", "geo:angle", "geo:angles_two_lines", "geo:polygon", "geo:polygon_set", "geo:triangle", "geo:triangle", "geo:triangle_set", "geo:quad", "geo:quad_set", "geo:circle_parts", "geo:circle_parts"]
+        if not _GEO_BASIC_RX.search(topics or ""):  # temel tanıma görselleri (doğru/ışın/doğru parçası) yalnızca konusu geçiyorsa
+            geo_k = [k for k in geo_k if k not in ("geo:line", "geo:ray", "geo:segment", "geo:lines_set")]
         vis = geo_k * 2  # yalnızca kesin ölçülü geometri çizimleri (Ay/tablo/grafik karışmaz)
         sk = []
         while len(sk) < n:
@@ -3076,26 +3090,72 @@ PLAIN_RULE = ("🚫 GÖRSEL YOK: 'shape' alanını null yap. Soru metni 'şekild
               "Sorular yalnızca metinle çözülebilsin.\nMetinlerde LaTeX KULLANMA; üs için x², kök için √, çarpma için ×, bölme için ÷ kullan.\n")
 
 
+DIFF_SPEC = {
+    1: "Temel kazanım düzeyi: bilgiyi bağlam içinde kullandır (doğrudan tanım sorma).",
+    2: "Kavrama: 1-2 adımlı, bilgiyi yeni bir durumda yorumlatma.",
+    3: "Uygulama/yorum: 2-3 adımlı; veriyi okuyup ilişki kurma. LGS'nin orta sorularına denk.",
+    4: "LGS orta-zor: 3 ve üzeri adımlı muhakeme; en az İKİ bilgi/kazanımı birleştirme; verilerden çıkarım; çeldiriciler tipik kavram yanılgılarından ve işlem hatalarından türesin.",
+    5: "LGS seçici (son sorular): çok aşamalı muhakeme, birden fazla kazanım ya da veri kaynağını birleştirme, özgün durum, tuzak çeldiriciler; kestirme çözümü olmasın.",
+    6: "Olimpiyat/üst düzey: LGS'nin en zor sorularından da zor, özgün, çok aşamalı, koşul analizi gerektiren; yine de sınıf düzeyindeki kazanımlarla çözülebilsin.",
+}
+
+
+def bump_difficulty(difficulty):
+    """Seçilen kademeyi BİR kademe artırır (en üst kademede kalır). -> (metin, kademe_no)"""
+    try:
+        from . import curriculum as cur
+        L = list(cur.DIFFICULTIES)
+        if difficulty in L:
+            i = min(L.index(difficulty) + 1, len(L) - 1)
+            return L[i], i + 1
+        m = re.search(r"(\d)\.", str(difficulty))
+        if m:
+            i = min(int(m.group(1)), len(L) - 1)
+            return L[i], i + 1
+    except Exception:
+        pass
+    return difficulty, 4
+
+
+LGS_STYLE = (
+    "LGS / MEB YENİ NESİL SORU TARZI (KATI):\n"
+    "- Soru, bir BAĞLAM ya da VERİ (kısa senaryo, deney, metin, tablo, grafik) sunar; sonra ölçtüğü beceriye yönelik TEK net soru sorar: 'Buna göre … hangisidir?', "
+    "'Bu verilere göre aşağıdakilerden hangisi söylenemez?', 'I, II ve III yargılarından hangileri doğrudur?'.\n"
+    "- Soru kökü çeşitli olsun: yargı değerlendirme (I-II-III), olumsuz kök (yanlış/söylenemez), sıralama, eşleştirme, çıkarım, karşılaştırma, hata bulma. Tüm sorular aynı kalıpta olmasın.\n"
+    "- 🚫 Doğrudan tanım/ezber ('… nedir?', tek bilgiyi hatırlama) ve TEK İŞLEMLİ/TEK ADIMLI sorular YASAK; her soru en az iki adımlı muhakeme (veriyi oku → ilişki kur → sonuca var) gerektirsin.\n"
+    "- Çeldiriciler rastgele olmasın: öğrencilerin yapabileceği tipik yanılgılardan ve işlem hatalarından türesin; şıklar benzer uzunlukta olsun, doğru şık uzunluğuyla ya da ifadesiyle ele vermesin.\n")
+
+LOGIC_RULES = (
+    "MANTIK KONTROLÜ (ZORUNLU): Her soruyu yazdıktan sonra KENDİN baştan çöz ve şunları doğrula: "
+    "(1) Doğru şık TEK ve gerçekten doğru; diğer üç şık KESİNLİKLE yanlış (hiçbiri savunulabilir olmasın). "
+    "(2) Soru ve görseldeki tüm sayılar/ifadeler birbiriyle TUTARLI (açı toplamları, yüzde/oran toplamları, tablo-toplam uyumu, birimler). "
+    "(3) Cevap için gereken TÜM veri verilmiş; eksik, fazla ya da çelişen veri yok. "
+    "(4) Olumsuz kökte (yanlış/söylenemez/değildir) doğru cevabın 'yanlış olan' şık olduğunu karıştırma. "
+    "(5) Bilimsel ve tarihsel bilgiler doğru; gerçek kişi/olay/tarih uydurma. Gerçek hayat büyüklükleri mantıklı (süre, uzunluk, kütle, fiyat). "
+    "(6) Şıklar birbirinden farklı olsun, aynı anlama gelen iki şık YOK.\n"
+    "Önce 'explanation' alanında çözümü ADIM ADIM yap, doğru sonucu bulduktan sonra 'answer' yaz. 'explanation' şık HARFİ (A, B…) yazmasın, şıkkın DEĞERİNİ yazsın.\n")
+
+
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
     geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     plain = plain and not geo_on  # geometri şekilsiz olmaz
+    eff, lvl = bump_difficulty(difficulty)
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     return (
         f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
         f"tam uygun, TAM {n} adet ÇOKTAN SEÇMELİ (A,B,C,D) yeni nesil soru hazırla.\n"
         f"KAPSAM: {scope_label}\nKONULAR/KAZANIMLAR: {topics}{fc}\n"
-        f"ZORLUK KADEMESİ: '{difficulty}'. Bu kademeye kesin uy.\n"
+        f"ZORLUK KADEMESİ: '{eff}'. Bu kademeye kesin uy → {DIFF_SPEC.get(lvl, '')}\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
-        + ("MEB geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz; yorum ve muhakeme gerektiren ama metni az olan sorular. " if geo_on else
-           "MEB yeni nesil soru anlayışı: günlük hayat bağlamı (senaryo/metin/tablo/grafik), yorum ve muhakeme, beceri temelli. ") +
-        "Yalnızca bilgi ezberi sorma. Çeldiriciler makul olsun, doğru cevap TEK olsun ve gerçekten doğru olsun (hesapla, doğrula).\n"
+        + ("MEB/LGS geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz ama ÇOK ADIMLI muhakeme gerektiren sorular.\n" if geo_on else LGS_STYLE) +
+        "Sınıf düzeyinin dışına (üst sınıf konusuna) taşma; kazanım kapsamında kal.\n" + LOGIC_RULES +
         f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{'' if plain else _variety_plan(subject, n, topics)}"
         f"{av}\n{_subject_lock(subject, topics)}\n{PLAIN_RULE if plain else shape_rules(subject, geo_on) + (GEO_STYLE if geo_on else '')}\n"
-        "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, 'answer' (A/B/C/D) ve 2-3 cümlelik 'explanation' (çözüm) olsun.\n"
+        "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, adım adım 'explanation' (çözüm) ve çözümden SONRA 'answer' (A/B/C/D) olsun.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
-        '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":"..."}]}' % (start_id, subject))
+        '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"explanation":"..","answer":"A"}]}' % (start_id, subject))
 
 
 def oyss_prompt(grade_label, subject, items, difficulty, avoid):
@@ -3106,12 +3166,15 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
         lines.append(f"- Kazanım: {it['kazanim']} → {it['n']} soru (zorluk etiketleri: {', '.join(it['labels'])})")
     av = ("\nTekrar etme:\n- " + "\n- ".join(avoid[-12:])) if avoid else ""
     geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(" ".join(str(it.get("kazanim", "")) for it in items)))
+    eff, lvl = bump_difficulty(difficulty)
     return (
         f"MEB Ortak Yazılı Sınav Sistemi (OYSS) için {grade_label} {subject} dersi yazılı sınavı soruları hazırla. "
         "Sorular AÇIK UÇLU ve KISA CEVAPLI olacak (çoktan seçmeli DEĞİL); yaklaşık 1/3'ü kısa cevaplı, kalanı açık uçlu. "
         "Her soru tek bir kazanımı ölçsün, beceri temelli ve bağlamlı olsun; öğrencinin yazarak cevaplayacağı şekilde kurgulansın.\n"
         f"DAĞILIM (kazanım başına tam soru sayısı):\n" + "\n".join(lines) + "\n"
-        f"KALİTE KADEMESİ: '{difficulty}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy.\n"
+        f"KALİTE KADEMESİ: '{eff}'. Etiket (Kolay/Orta/Zor) ile birlikte bu kademeye uy → {DIFF_SPEC.get(lvl, '')}\n"
+        "Yazılı soru tarzı: bağlamlı/veri içeren, en az iki adımlı muhakeme ya da yorum gerektiren; doğrudan tanım ve tek işlemli sorular YOK. "
+        "Soru ve verilen veriler kendi içinde TUTARLI, beklenen cevap gerçekten doğru ve rubric adımlarıyla uyumlu olsun (kendin çözerek doğrula).\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\nÇeşitlilik tohumu: {nonce}.{av}\n{_subject_lock(subject, ' '.join(str(it.get('kazanim', '')) for it in items))}\n{shape_rules(subject, geo_on)}{GEO_STYLE if geo_on else ''}\n"
         "Her soru için: beklenen 'answer', ve puanlama anahtarı 'rubric' (adımlar ve göreli puanlar; toplam 10 olsun).\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"kazanim":"..","type":"Açık uçlu|Kısa cevaplı","difficulty":"Kolay|Orta|Zor",'
@@ -3120,6 +3183,19 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
 
 # ---------------------------------------------------------------- doğrulama
 _NOSHUF = re.compile(r"hepsi|yukarıdakilerin|yalnız|yalnızca|ve [IV]+|[IV]+ ve|I, II|hiçbiri|all of|none of|beide|alle", re.I)
+
+
+_ANGLE_ASSIGN = re.compile(r"m\s*\(\s*[A-ZÇĞİÖŞÜ∠^\s]{1,5}\s*\)\s*=\s*\d+\s*°?")
+_GEO_COMPLEX = re.compile(r"(?<![A-Za-zÇĞİÖŞÜçğıöşü])[xy](?![A-Za-zÇĞİÖŞÜçğıöşü])|[∥⊥]|ikizkenar|eşkenar|dış açı|dik üçgen|açıortay|yükseklik|kenarortay|çevre|\balan|pisagor|benzer|\|[A-Z]{2}\||paralel|çember|yamuk|paralelkenar|yargı", re.I)
+_GEO_ROMAN = re.compile(r"\bI{1,3}\b")
+
+
+def _trivial_geo(text):
+    """İki açısı verilip üçüncüsü sorulan türden, tek adımlı basit üçgen sorusu."""
+    t = str(text)
+    if "üçgen" in t.lower() and len(_ANGLE_ASSIGN.findall(t)) >= 2 and not _GEO_COMPLEX.search(re.sub(_ANGLE_ASSIGN, "", t)) and not _GEO_ROMAN.search(t):
+        return True
+    return bool(re.search(r"(iki|2)\s+açısı.*(üçüncü|diğer)\s+açı", t, re.I))
 
 
 def _norm_q(q, subject):
@@ -3136,6 +3212,8 @@ def _norm_q(q, subject):
     ans = str(q.get("answer", "")).strip().upper()[:1]
     if ans not in opts:
         return None
+    if len({_alnum(v) for v in opts.values()}) < 4:
+        return None  # aynı şık iki kez geçiyor -> birden çok doğru olabilir
     if not any(_NOSHUF.search(v) for v in opts.values()):  # şık konumu dengesi: doğru cevap dağılımı
         vals = list(opts.values())
         correct = opts[ans]
@@ -3156,7 +3234,9 @@ def _norm_q(q, subject):
     if _is_geo_q(q, shape, subject):  # geometri: şekil ZORUNLU, metin KISA, hikâye/tarih/gök cismi bağlamı YOK
         if not shape:
             return None
-        if len(str(q.get("question", "")).split()) > 45 or len(str(pas or "").split()) > 15:
+        if len(str(q.get("question", "")).split()) > 60 or len(str(pas or "").split()) > 20:
+            return None
+        if _trivial_geo(f"{q.get('question', '')} {pas}"):
             return None
         if _GEO_BAN.search(f"{q.get('question', '')} {pas} {' '.join(opts.values())}"):
             return None
@@ -3330,8 +3410,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                         out.append(x)
                 return out
 
-            qs, err = _ask_questions(prompt, gk, mk, idx, validate)
-            if qs and subj in VERIFY_SUBJECTS and (gk or mk):
+            qs, err = _ask_questions(prompt, gk, mk, idx, validate, reasoning=GEN_REASONING.get(subj))
+            if qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS) and (gk or mk):
                 try:
                     qs = verify_questions(qs, gk, mk, offset=idx)
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
@@ -3547,7 +3627,7 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
                         items.append({"kazanim": sl["kazanim"], "n": 1, "labels": [sl["label"]]})
                 done_stems = [_stem(q) for q in filled if q]
                 return _ask_questions(oyss_prompt(grade_label, subj, items, difficulty, av + done_stems), gk, mk, next(_UID),
-                                      lambda its: [q for q in its if _valid_oyss(q)])
+                                      lambda its: [q for q in its if _valid_oyss(q)], reasoning=GEN_REASONING.get(subj))
 
             for rnd in range(MAX_ROUNDS):
                 missing = [i for i, f in enumerate(filled) if f is None]
@@ -4324,12 +4404,13 @@ def _auto_weights(g):
     return out
 
 
-def weight_panel(g, key):
+def weight_panel(g, key, boxed=True):
     """Ders ağırlıkları: soru sayısını çarpan. Otomatik mod, geçmiş başarına göre zayıf derslere ağırlık verir."""
     auto = st.toggle("📉 Zayıf derslerime otomatik ağırlık ver (geçmiş sınavlarıma göre)", key=f"auto_{key}")
     aw = _auto_weights(g) if auto else {}
     out = {}
-    with st.expander("⚖️ Ders ağırlıkları (soru sayısını çarpan)", expanded=auto):
+    import contextlib
+    with (st.expander("⚖️ Ders ağırlıkları (soru sayısını çarpan)", expanded=auto) if boxed else contextlib.nullcontext()):
         def _w(s):
             out[s] = st.select_slider(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", WEIGHTS, value=aw.get(s, 1.0),
                                       key=f"w_{key}_{s}_{int(auto)}", format_func=lambda x: f"×{x:g}")
@@ -4666,15 +4747,17 @@ def weekly():
         label = cur.scope_label(scope)
         f = next((x for x in formats(g) if x["id"] == w.get("fmt")), formats(g)[0])
         st.markdown(f"#### ✅ Özet: **{label}** • **{f['title']}**")
-        diff = su.difficulty_select("diff_wz")
         counts = dict(f["counts"])
         official = f["id"] in OFFICIAL_IDS
         wts = {}
+        with st.expander("⚙️ Gelişmiş (isteğe bağlı — dokunmasan da olur)", expanded=False):
+            diff = su.difficulty_select("diff_wz")
+            if not official:
+                wts = su.weight_panel(g, f"wz_{g}", boxed=False)
+            focus = st.text_input("🔍 Özel konu (isteğe bağlı)", key="focus_wz", placeholder="Örn: Açılar, Hücre, Paragraf…")
         if not official:
-            wts = su.weight_panel(g, f"wz_{g}")
             counts = {s: max(0, round(n * wts.get(s, 1.0))) for s, n in counts.items()}
             counts = {s: n for s, n in counts.items() if n > 0}
-        focus = st.text_input("🔍 Özel konu (isteğe bağlı)", key="focus_wz", placeholder="Örn: Açılar, Hücre, Paragraf…")
         n = sum(counts.values())
         same = all(abs(wts.get(s, 1.0) - 1.0) < 1e-9 for s in wts)
         minutes = f["min"] if same else max(1, n * su.SEC_PER_Q // 60)
@@ -4682,14 +4765,6 @@ def weekly():
         theme.html_table(["Ders", "Soru", "Kapsanan üniteler"], rows, num_cols=(1,))
         st.caption(f"Toplam **{n} soru** • süre **{minutes} dk**")
         plan = [{"subject": s, "n": c, "topics": cur.scope_topic_text(g, s, scope), "short": cur.scope_short(g, s, scope)} for s, c in counts.items()]
-        from core import ai_engine as _ai
-        try:
-            _bc = _ai.bank_counts(plan, gl, diff) if plan else {}
-            _ready = sum(min(c, _bc.get(s, 0)) for s, c in counts.items())
-            if plan and not focus.strip():
-                st.caption(f"🏦 Soru bankasında bu kapsam için hazır: **{_ready}/{n}** soru" + (" • sınav anında açılır ⚡" if _ready >= n else " • sınavdan sonra otomatik doldurulur"))
-        except Exception:
-            pass
         go_btn = st.button("🚀 Soruları Üret", key="gen_wz", type="primary", use_container_width=True)
         st.button("← Geri", key="wz_back_4", on_click=back, args=("modes",), use_container_width=True)
         if go_btn and counts:
@@ -5779,7 +5854,6 @@ if not GROQ_KEYS and not GEMINI_KEYS and not ai_engine.demo_mode():
 # ------------------------------------------------------------------ kenar çubuğu
 with st.sidebar:
     st.markdown("<div class='brand'>🎓 Deneme<span>matik</span></div>", unsafe_allow_html=True)
-    st.caption("MEB Maarif Modeli • AI ile sınırsız deneme")
     st.markdown("---")
     st.button("🏠 Ana Sayfa", key="nv_home", use_container_width=True, on_click=lambda: (state.reset_exam(), state.nav("home")))
     st.button("📄 Yaprak Test", key="nv_leaf", use_container_width=True, on_click=setup._tool_go, args=("leaf_start",))
@@ -5788,46 +5862,11 @@ with st.sidebar:
     st.button("📊 Performans & Raporlar", key="nv_rep", use_container_width=True, on_click=state.nav, args=("reports",))
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
-    st.markdown("---")
-    if st.button("🔄 MEB müfredatını güncelle", key="meb_refresh", use_container_width=True):
-        def _do():
-            n, errs = meb_live.refresh(deadline=60)
-            meb_live.load_cache()
-            return n, errs
-        _n, _errs = setup.with_overlay(40, "MEB müfredatı güncelleniyor", "Kazanımlar mufredat.meb.gov.tr'den alınıyor…", _do)
-        st.success(f"{_n} program güncellendi." if _n else "Güncelleme yapılamadı; yerleşik müfredat kullanılıyor.")
-    g = st.session_state.grade
-    if g:
-        st.markdown(f"<div class='side-chip'>🎓 <b>{cur.GRADE_LABELS[g]}</b><br>Seçili tür: {st.session_state.mode or '—'}</div>", unsafe_allow_html=True)
-    mode_txt = "DEMO (çevrimdışı)" if ai_engine.demo_mode() else f"Groq {len(GROQ_KEYS)} • Gemini {len(GEMINI_KEYS)}"
-    st.markdown(f"<div class='side-chip'>🤖 API havuzu<br><b>{mode_txt}</b><br><small>Önce Groq (tüm modeller), sonra Gemini • ortak havuz</small></div>", unsafe_allow_html=True)
-    try:
-        _ms = ai_engine.model_summary()
-        if _ms:
-            st.caption("🧭 Keşfedilen model: Groq " + str(_ms.get('groq', 0)) + " • Gemini " + str(_ms.get('gemini', 0)))
-    except Exception:
-        pass
-    try:
-        _vs = ai_engine.verify_stats()
-        if _vs['checked']:
-            st.caption(f"🔎 İkinci model kontrolü: {_vs['checked']} sorudan {_vs['rejected']} elendi")
-    except Exception:
-        pass
-    try:
-        _bs = store.bank_stats()
-        if _bs['total']:
-            st.caption(f"🏦 Soru bankası: {_bs['total']} hazır soru")
-    except Exception:
-        pass
-    try:
-        _ps = ai_engine.pool_status()
-        if _ps["cooling"] or _ps["disabled"]:
-            st.caption(f"⏳ Kota beklemesinde: {_ps['cooling']} • devre dışı: {_ps['disabled']}")
-    except Exception:
-        pass
 
 # ------------------------------------------------------------------ yönlendirme
 PAGE = st.session_state.page
+if PAGE in ("exam", "ready"):  # soru çözerken dikkat dağıtan hiçbir şey olmasın
+    st.markdown("<style>[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl'],[data-testid='collapsedControl']{display:none !important}</style>", unsafe_allow_html=True)
 ROUTES = {
     "home": setup.home, "modes": setup.modes, "setup": wizard.run, "ready": setup.ready, "pre": setup.pre,
     "exam": exam.exam, "selfscore": exam.selfscore, "result": exam.result,
