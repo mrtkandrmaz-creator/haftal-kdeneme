@@ -2993,7 +2993,7 @@ GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-
                "llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
 GEMINI_MODELS = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"]
 POOL_MAX_WAIT = 45      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
-HEDGE_AFTER = 14        # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
+HEDGE_AFTER = 9        # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
 POOL_DEADLINE = 90      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
@@ -5829,12 +5829,13 @@ def html_table(headers, rows, num_cols=()):
 
 OVERLAY_CSS = ("<style>.gen-ov{position:fixed;inset:0;z-index:999999;background:rgba(15,23,42,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center}"
  ".gen-card{background:#fff;border-radius:28px;padding:2rem 2.4rem 1.6rem;text-align:center;box-shadow:0 30px 70px -20px rgba(0,0,0,.6);width:min(420px,90vw)}"
- ".gen-ring{position:relative;width:170px;height:170px;margin:0 auto 1.1rem}"
- ".gen-ring:before{content:'';position:absolute;inset:0;border-radius:50%;border:10px solid #e2e8f0}"
- ".gen-ring:after{content:'';position:absolute;inset:0;border-radius:50%;border:10px solid transparent;border-top-color:#0284c7;border-right-color:#38bdf8;animation:genspin 1.1s linear infinite}"
- ".gen-cd{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.2rem;font-weight:900;color:#0f172a}"
- ".gen-cd span{position:absolute;opacity:0;animation:gencd 1s linear forwards}"
- ".gen-cd span.z{font-size:1.05rem;line-height:1.2;color:#0284c7;animation:genz .5s linear forwards,genpulse 1.2s ease-in-out infinite}"
+ ".gen-ov *,.gen-ov *:before,.gen-ov *:after{box-sizing:border-box}"
+ ".gen-ring{position:relative;width:170px;height:170px;margin:0 auto 1.1rem;display:block;flex:none}"
+ ".gen-ring:before{content:'';position:absolute;left:0;top:0;width:170px;height:170px;border-radius:50%;border:10px solid #e2e8f0}"
+ ".gen-ring:after{content:'';position:absolute;left:0;top:0;width:170px;height:170px;border-radius:50%;border:10px solid transparent;border-top-color:#0284c7;border-right-color:#38bdf8;animation:genspin 1.1s linear infinite;transform-origin:50% 50%}"
+ ".gen-cd{position:absolute;left:0;top:0;width:170px;height:170px;font-size:3.2rem;font-weight:900;color:#0f172a;line-height:1}"
+ ".gen-cd span{position:absolute;left:0;top:0;width:170px;height:170px;display:flex;align-items:center;justify-content:center;text-align:center;opacity:0;animation:gencd 1s linear forwards;margin:0;padding:0}"
+ ".gen-cd span.z{font-size:1.05rem;line-height:1.25;color:#0284c7;padding:0 26px;animation:genz .5s linear forwards,genpulse 1.2s ease-in-out infinite}"
  ".gen-t{font-size:1.25rem;font-weight:900;color:#0f172a}.gen-s{color:#64748b;font-size:.9rem;margin:.3rem 0 1rem}"
  ".gen-bar{background:#e2e8f0;border-radius:999px;height:8px;overflow:hidden}.gen-bar i{display:block;height:8px;width:0;background:linear-gradient(90deg,#0284c7,#38bdf8);border-radius:999px;animation:genbar linear forwards}"
  "@keyframes genspin{to{transform:rotate(360deg)}}@keyframes gencd{0%,97%{opacity:1}100%{opacity:0}}@keyframes genz{to{opacity:1}}"
@@ -5880,6 +5881,7 @@ def reset_exam():
         st.session_state[k] = copy.deepcopy(DEFAULTS[k])
 '''
 MODULES['ui/setup'] = r'''# -*- coding: utf-8 -*-
+import time
 import random
 import uuid
 import streamlit as st
@@ -6060,7 +6062,12 @@ def with_overlay(seconds, title, sub, fn):
 def est_seconds_mc(plan):
     import math
     chunks = sum(math.ceil(p["n"] / ai.CHUNK) for p in plan)
-    return 10 + 10 * math.ceil(chunks / ai.WORKERS)
+    waves = math.ceil(chunks / ai.WORKERS)
+    try:
+        per = float(store.settings().get("gen_wave_s", 0)) or 10.0
+    except Exception:
+        per = 10.0
+    return int(max(8, min(120, 4 + per * waves)))
 
 
 def with_overlay_progress(seconds, title, sub, fn):
@@ -6110,8 +6117,18 @@ def _remember_plan(plan, meta, scope_label):
 def _gen_mc(plan, meta, scope_label, focus="", use_bank=True):
     n = sum(p["n"] for p in plan)
     avoid = _avoid()  # Streamlit'e ait çağrılar ana iş parçacığında kalsın
+    _t0 = time.time()
     qs, errs = with_overlay_progress(est_seconds_mc(plan), "Sorular hazırlanıyor", f"{n} yeni nesil soru ve görselleri yapay zekâ ile üretiliyor…",
                                      lambda cb: ai.generate_mc(plan, meta["grade_label"], meta["difficulty"], scope_label, avoid=avoid, focus=focus, use_bank=use_bank, on_progress=cb))
+    try:  # ölçülen gerçek süre: sonraki geri sayım buna uyar (bankadan anında gelenler ölçüme katılmaz)
+        import math
+        _el = time.time() - _t0
+        if _el > 6 and qs:
+            _w = max(1, math.ceil(sum(math.ceil(p["n"] / ai.CHUNK) for p in plan) / ai.WORKERS))
+            _old = float(store.settings().get("gen_wave_s", 0)) or (_el - 4) / _w
+            store.save_settings(gen_wave_s=round(max(4.0, min(40.0, .5 * _old + .5 * (_el - 4) / _w)), 2))
+    except Exception:
+        pass
     if use_bank and qs and not focus.strip():  # sonraki sınav için bankayı arka planda tazele
         _remember_plan(plan, meta, scope_label)
         try:
@@ -6572,6 +6589,92 @@ from .state import nav, reset_exam
 from .setup import pdf_panel
 
 
+
+# ------------------------------------------------------------------ kalem (not alma): istenince açılıp kapanan çizim katmanı
+_PEN_JS = r"""
+(function(){
+if(window.__penV===1)return; window.__penV=1;
+var S={on:false,color:'#dc2626',tool:'pen',q:'',data:{},drawing:false,miss:0,cur:null};
+var cv=null,ctx=null,bar=null,btns={};
+function hostEl(){return document.querySelector('[data-testid="stMainBlockContainer"]')||document.querySelector('.block-container')||document.querySelector('[data-testid="stMain"]');}
+function strokes(){return S.data[S.q]||(S.data[S.q]=[]);}
+function drawStroke(s){
+  var W=cv.width,e=s.t==='e';ctx.globalCompositeOperation=e?'destination-out':'source-over';
+  ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=s.c;ctx.lineWidth=e?18:3;ctx.beginPath();
+  var p=s.p;ctx.moveTo(p[0][0]*W,p[0][1]);
+  if(p.length===1)ctx.lineTo(p[0][0]*W+.1,p[0][1]+.1);
+  for(var i=1;i<p.length;i++)ctx.lineTo(p[i][0]*W,p[i][1]);
+  ctx.stroke();ctx.globalCompositeOperation='source-over';}
+function redraw(){if(!cv)return;ctx.clearRect(0,0,cv.width,cv.height);var a=strokes();for(var i=0;i<a.length;i++)drawStroke(a[i]);}
+function layout(){
+  var h=hostEl();if(!h)return false;
+  if(!cv){cv=document.createElement('canvas');cv.id='pen-cv';ctx=cv.getContext('2d');bind();}
+  if(cv.parentNode!==h){if(getComputedStyle(h).position==='static')h.style.position='relative';h.appendChild(cv);}
+  cv.style.cssText='position:absolute;left:0;top:0;z-index:50;display:none';
+  var w=h.clientWidth,hh=h.scrollHeight;
+  cv.style.display='block';
+  cv.style.width=w+'px';cv.style.height=hh+'px';
+  cv.style.pointerEvents=S.on?'auto':'none';cv.style.touchAction=S.on?'none':'auto';cv.style.cursor=S.on?'crosshair':'default';
+  if(cv.width!==w||cv.height!==hh){cv.width=w;cv.height=hh;redraw();}
+  return true;}
+function measure(){ // tuval yüksekliği sayfanın GERÇEK içerik yüksekliğini şişirmesin
+  var h=hostEl();if(!h||!cv)return;cv.style.display='none';var hh=h.scrollHeight,w=h.clientWidth;cv.style.display='block';
+  if(cv.width!==w||cv.height!==hh){cv.style.width=w+'px';cv.style.height=hh+'px';cv.width=w;cv.height=hh;redraw();}}
+function pos(e){var r=cv.getBoundingClientRect();return [(e.clientX-r.left)/cv.width,e.clientY-r.top];}
+function bind(){
+  cv.addEventListener('pointerdown',function(e){if(!S.on)return;e.preventDefault();try{cv.setPointerCapture(e.pointerId);}catch(x){}
+    S.drawing=true;S.cur={c:S.color,t:S.tool==='eraser'?'e':'p',p:[pos(e)]};strokes().push(S.cur);drawStroke(S.cur);});
+  cv.addEventListener('pointermove',function(e){if(!S.drawing||!S.cur)return;e.preventDefault();var a=pos(e),l=S.cur.p[S.cur.p.length-1];
+    S.cur.p.push(a);ctx.globalCompositeOperation=S.cur.t==='e'?'destination-out':'source-over';ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.strokeStyle=S.cur.c;ctx.lineWidth=S.cur.t==='e'?18:3;ctx.beginPath();ctx.moveTo(l[0]*cv.width,l[1]);ctx.lineTo(a[0]*cv.width,a[1]);ctx.stroke();ctx.globalCompositeOperation='source-over';});
+  function up(){S.drawing=false;S.cur=null;}
+  cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);cv.addEventListener('pointerleave',up);}
+function setOn(v){S.on=!!v;paintBar();layout();}
+function paintBar(){
+  if(!bar)return;
+  btns.tog.style.background=S.on?'#7c3aed':'#fff';btns.tog.style.color=S.on?'#fff':'#0f172a';
+  btns.tog.textContent=S.on?'✏️ Kalem: AÇIK':'✏️ Kalem';
+  btns.tools.style.display=S.on?'flex':'none';
+  ['#dc2626','#2563eb','#111827'].forEach(function(c,i){btns['c'+i].style.outline=(S.tool==='pen'&&S.color===c)?'3px solid #a78bfa':'none';});
+  btns.er.style.outline=S.tool==='eraser'?'3px solid #a78bfa':'none';}
+function mk(txt,css,fn){var b=document.createElement('button');b.type='button';b.textContent=txt;b.style.cssText='border:1px solid #cbd5e1;border-radius:999px;padding:.35rem .8rem;font-weight:800;font-size:.85rem;cursor:pointer;background:#fff;color:#0f172a;'+css;b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();fn();});return b;}
+function buildBar(){
+  bar=document.createElement('div');bar.id='pen-bar';
+  bar.style.cssText='position:fixed;right:14px;bottom:14px;z-index:1000001;display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.96);padding:.4rem .5rem;border-radius:999px;box-shadow:0 8px 24px -6px rgba(0,0,0,.35);border:1px solid #e2e8f0;font-family:system-ui,sans-serif';
+  btns.tools=document.createElement('div');btns.tools.style.cssText='display:none;align-items:center;gap:.35rem';
+  ['#dc2626','#2563eb','#111827'].forEach(function(c,i){btns['c'+i]=mk('',  'width:26px;height:26px;padding:0;background:'+c+';border-color:'+c,function(){S.color=c;S.tool='pen';paintBar();});btns.tools.appendChild(btns['c'+i]);});
+  btns.er=mk('🧽 Silgi','',function(){S.tool='eraser';paintBar();});btns.tools.appendChild(btns.er);
+  btns.cl=mk('🗑️ Temizle','',function(){S.data[S.q]=[];redraw();});btns.tools.appendChild(btns.cl);
+  btns.tog=mk('✏️ Kalem','',function(){setOn(!S.on);});
+  bar.appendChild(btns.tools);bar.appendChild(btns.tog);document.body.appendChild(bar);paintBar();}
+function show(v){if(bar)bar.style.display=v?'flex':'none';if(cv)cv.style.display=v?'block':'none';}
+window.__penSetQ=function(k){S.q=k;S.miss=0;if(!bar)buildBar();show(true);layout();redraw();};
+setInterval(function(){
+  var alive=!!document.querySelector('iframe[data-pen]');
+  if(!alive){S.miss++;if(S.miss>=4&&bar&&bar.style.display!=='none'){S.on=false;S.data={};show(false);paintBar();}return;}
+  S.miss=0;if(bar&&bar.style.display==='none')show(true);measure();
+},600);
+})();
+"""
+
+
+def _pen_html(key):
+    import json
+    return ("<script>(function(){var W=window.parent,D=W.document;"
+            "try{window.frameElement.setAttribute('data-pen','1');}catch(e){}"
+            "if(!W.__penV){var s=D.createElement('script');s.textContent=" + json.dumps(_PEN_JS) + ";D.head.appendChild(s);}"
+            "if(W.__penSetQ)W.__penSetQ(" + json.dumps(str(key)) + ");})();</script>")
+
+
+def _pen(key):
+    """Soru sayfasında kalem: sağ alttaki düğmeyle açılır/kapanır; çizimler soru bazında saklanır."""
+    try:
+        import streamlit.components.v1 as components
+        components.html(_pen_html(key), height=0)
+    except Exception:
+        pass
+
+
 # ------------------------------------------------------------------ hesaplama
 def compute_result():
     m, qs = st.session_state.meta, st.session_state.questions
@@ -6776,6 +6879,7 @@ def exam():
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("---")
     st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish, type="primary")
+    _pen(f"{m.get('id', '')}:{idx}")
 
 
 # ------------------------------------------------------------------ OYSS: yapay zekâ öğretmen değerlendirmesi
