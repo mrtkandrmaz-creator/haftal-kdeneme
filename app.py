@@ -6594,7 +6594,8 @@ from .setup import pdf_panel
 # ------------------------------------------------------------------ kalem (not alma): istenince açılıp kapanan çizim katmanı
 _PEN_JS = r"""
 (function(){
-if(window.__penV===1)return; window.__penV=1;
+if(window.__penV===2)return; window.__penV=2;
+var _ob=document.getElementById('pen-bar');if(_ob)_ob.remove();var _oc=document.getElementById('pen-cv');if(_oc)_oc.remove();
 var S={on:false,color:'#dc2626',tool:'pen',q:'',data:{},drawing:false,miss:0,cur:null};
 var cv=null,ctx=null,bar=null,btns={};
 function hostEl(){return document.querySelector('[data-testid="stMainBlockContainer"]')||document.querySelector('.block-container')||document.querySelector('[data-testid="stMain"]');}
@@ -6641,19 +6642,24 @@ function paintBar(){
 function mk(txt,css,fn){var b=document.createElement('button');b.type='button';b.textContent=txt;b.style.cssText='border:1px solid #cbd5e1;border-radius:999px;padding:.35rem .8rem;font-weight:800;font-size:.85rem;cursor:pointer;background:#fff;color:#0f172a;'+css;b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();fn();});return b;}
 function buildBar(){
   bar=document.createElement('div');bar.id='pen-bar';
-  bar.style.cssText='position:fixed;right:14px;bottom:14px;z-index:1000001;display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.96);padding:.4rem .5rem;border-radius:999px;box-shadow:0 8px 24px -6px rgba(0,0,0,.35);border:1px solid #e2e8f0;font-family:system-ui,sans-serif';
   btns.tools=document.createElement('div');btns.tools.style.cssText='display:none;align-items:center;gap:.35rem';
   ['#dc2626','#2563eb','#111827'].forEach(function(c,i){btns['c'+i]=mk('',  'width:26px;height:26px;padding:0;background:'+c+';border-color:'+c,function(){S.color=c;S.tool='pen';paintBar();});btns.tools.appendChild(btns['c'+i]);});
   btns.er=mk('🧽 Silgi','',function(){S.tool='eraser';paintBar();});btns.tools.appendChild(btns.er);
   btns.cl=mk('🗑️ Temizle','',function(){S.data[S.q]=[];redraw();});btns.tools.appendChild(btns.cl);
   btns.tog=mk('✏️ Kalem','',function(){setOn(!S.on);});
-  bar.appendChild(btns.tools);bar.appendChild(btns.tog);document.body.appendChild(bar);paintBar();}
-function show(v){if(bar)bar.style.display=v?'flex':'none';if(cv)cv.style.display=v?'block':'none';}
-window.__penSetQ=function(k){S.q=k;S.miss=0;if(!bar)buildBar();show(true);layout();redraw();};
+  bar.appendChild(btns.tog);bar.appendChild(btns.tools);place();paintBar();}
+function place(){ // kalem, 'Sınavı Tamamla' düğmesinin yanındaki boşluğa; yoksa sağ alta sabit
+  if(!bar)return;var sl=document.querySelector('.pen-slot');
+  if(sl){if(bar.parentNode!==sl){sl.appendChild(bar);}
+    bar.style.cssText='display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;justify-content:flex-start;font-family:system-ui,sans-serif;min-height:2.5rem';}
+  else{if(bar.parentNode!==document.body){document.body.appendChild(bar);}
+    bar.style.cssText='position:fixed;right:14px;bottom:14px;z-index:1000001;display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.96);padding:.4rem .5rem;border-radius:999px;box-shadow:0 8px 24px -6px rgba(0,0,0,.35);border:1px solid #e2e8f0;font-family:system-ui,sans-serif';}}
+function show(v){if(bar){place();bar.style.display=v?'flex':'none';}if(cv)cv.style.display=v?'block':'none';}
+window.__penSetQ=function(k){S.q=k;S.miss=0;if(!bar)buildBar();place();show(true);layout();redraw();};
 setInterval(function(){
   var alive=!!document.querySelector('iframe[data-pen]');
   if(!alive){S.miss++;if(S.miss>=4&&bar&&bar.style.display!=='none'){S.on=false;S.data={};show(false);paintBar();}return;}
-  S.miss=0;if(bar&&bar.style.display==='none')show(true);measure();
+  S.miss=0;if(bar&&bar.style.display==='none')show(true);place();measure();
 },600);
 })();
 """
@@ -6879,7 +6885,11 @@ def exam():
             st.button("⬅️ Önceki Soru", key="prev", on_click=_go, args=(-1,), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("---")
-    st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish, type="primary")
+    fb1, fb2 = st.columns([3, 2])
+    with fb1:
+        st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish, type="primary")
+    with fb2:
+        st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
     _pen(f"{m.get('id', '')}:{idx}")
 
 
