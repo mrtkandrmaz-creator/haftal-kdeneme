@@ -6624,7 +6624,12 @@ function measure(){ // tuval yüksekliği sayfanın GERÇEK içerik yüksekliği
   if(cv.width!==w||cv.height!==hh){cv.style.width=w+'px';cv.style.height=hh+'px';cv.width=w;cv.height=hh;redraw();}}
 function pos(e){var r=cv.getBoundingClientRect();return [(e.clientX-r.left)/cv.width,e.clientY-r.top];}
 function bind(){
-  cv.addEventListener('pointerdown',function(e){if(!S.on)return;e.preventDefault();try{cv.setPointerCapture(e.pointerId);}catch(x){}
+  cv.addEventListener('pointerdown',function(e){if(!S.on)return;
+    if(bar){var r=bar.getBoundingClientRect(); // tuval çubuğun üstüne taşarsa tıklamayı çubuktaki düğmeye ilet
+      if(e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom){
+        e.preventDefault();var els=document.elementsFromPoint(e.clientX,e.clientY);
+        for(var i=0;i<els.length;i++){if(els[i].tagName==='BUTTON'&&bar.contains(els[i])){els[i].click();break;}}return;}}
+    e.preventDefault();try{cv.setPointerCapture(e.pointerId);}catch(x){}
     S.drawing=true;S.cur={c:S.color,t:S.tool==='eraser'?'e':'p',p:[pos(e)]};strokes().push(S.cur);drawStroke(S.cur);});
   cv.addEventListener('pointermove',function(e){if(!S.drawing||!S.cur)return;e.preventDefault();var a=pos(e),l=S.cur.p[S.cur.p.length-1];
     S.cur.p.push(a);ctx.globalCompositeOperation=S.cur.t==='e'?'destination-out':'source-over';ctx.lineCap='round';ctx.lineJoin='round';
@@ -6651,7 +6656,7 @@ function buildBar(){
 function place(){ // kalem, 'Sınavı Tamamla' düğmesinin yanındaki boşluğa; yoksa sağ alta sabit
   if(!bar)return;var sl=document.querySelector('.pen-slot');
   if(sl){if(bar.parentNode!==sl){sl.appendChild(bar);}
-    bar.style.cssText='display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;justify-content:flex-start;font-family:system-ui,sans-serif;min-height:2.5rem';}
+    bar.style.cssText='display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;justify-content:flex-start;font-family:system-ui,sans-serif;min-height:2.5rem;position:relative;z-index:100';}
   else{if(bar.parentNode!==document.body){document.body.appendChild(bar);}
     bar.style.cssText='position:fixed;right:14px;bottom:14px;z-index:1000001;display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.96);padding:.4rem .5rem;border-radius:999px;box-shadow:0 8px 24px -6px rgba(0,0,0,.35);border:1px solid #e2e8f0;font-family:system-ui,sans-serif';}}
 function show(v){if(bar){place();bar.style.display=v?'flex':'none';}if(cv)cv.style.display=v?'block':'none';}
