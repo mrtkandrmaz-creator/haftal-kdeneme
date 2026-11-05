@@ -2951,17 +2951,17 @@ POOL_DEADLINE = 90      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
-CHUNK = 3          # küçük parça = daha kısa yanıt, en yavaş parça daha az bekletir
+CHUNK = 5          # istek sayısı azalır (kota + bekleme); parça başına ~7 soru istenir (5 + EXTRA_FIRST)
 WORKERS = 16
-EXTRA_FIRST = 4    # ilk turda fazladan istenen soru (elenenler için yedek; tamamlama turlarını çoğunlukla gereksiz kılar)
+EXTRA_FIRST = 2    # ilk turda fazladan istenen soru (elenenler için yedek; tamamlama turlarını çoğunlukla gereksiz kılar)
 CALL_TIMEOUT = 25  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
 GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
 # İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
-VERIFY_SUBJECTS = ()  # boş = TÜM dersler doğrulanır (mantık hatalarını yakalamak için)
+VERIFY_SUBJECTS = ("Matematik", "Fen Bilimleri")  # sayısal muhakeme dersleri doğrulanır; diğerleri doğrulama beklemeden hızlı akar
 GEN_REASONING = {"Matematik": "low", "Fen Bilimleri": "low"}  # hesap gerektiren derslerde daha derin düşünme
 VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
 VERIFY_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
-VERIFY_DEADLINE = 40  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
+VERIFY_DEADLINE = 25  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
 GEN_BUDGET = 120      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
 MAX_ROUNDS = 5        # istenen sayıya ulaşmak için en çok tur
 OYSS_CHUNK = 5        # yazılı sınavda tek istekteki soru sayısı
@@ -3430,6 +3430,27 @@ from concurrent.futures import ThreadPoolExecutor as _TPE, wait as _cf_wait, FIR
 _HEDGE_EX = _TPE(max_workers=96)
 
 
+_LAT = {}  # (sağlayıcı, model) -> ortalama başarılı yanıt süresi (sn); en hızlı sağlıklı model öne alınır
+LAT_DEFAULT = 5.0
+
+
+def _lat_update(prov, model, secs, ok):
+    with _POOL_LOCK:
+        old = _LAT.get((prov, model), LAT_DEFAULT)
+        _LAT[(prov, model)] = .6 * old + .4 * (secs if ok else max(30.0, secs))
+
+
+def _timed(prov, model, fn, key, prompt_text, kw):
+    t = time.time()
+    try:
+        r = fn(key, prompt_text, **kw)
+    except Exception:
+        _lat_update(prov, model, time.time() - t, False)
+        raise
+    _lat_update(prov, model, time.time() - t, bool(r))
+    return r
+
+
 def _infl_done(bk):
     with _POOL_LOCK:
         _INFL[bk] = max(0, _INFL.get(bk, 0) - 1)
@@ -3473,6 +3494,7 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
                 continue
             for kidx, key in rotx:
                 plan.append((nm, kidx, key, model, fnx))
+    plan.sort(key=lambda e: _LAT.get((e[0], e[3]), LAT_DEFAULT))  # kararlı sıralama: en hızlı sağlıklı model önce, anahtar sırası korunur
     t0 = time.time()
     last = None
     tried = set()
@@ -3523,7 +3545,7 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
             _bk = (prov, kidx, model)
             with _POOL_LOCK:
                 _INFL[_bk] = _INFL.get(_bk, 0) + 1
-            _f = _HEDGE_EX.submit(fn, key, prompt_text, **kw)
+            _f = _HEDGE_EX.submit(_timed, prov, model, fn, key, prompt_text, kw)
             _f.add_done_callback(lambda _x, _bk=_bk: _infl_done(_bk))
             pend[_f] = (prov, kidx, model)
             r = collect(HEDGE_AFTER)  # yavaşsa beklemeden sıradaki modeli de başlat
