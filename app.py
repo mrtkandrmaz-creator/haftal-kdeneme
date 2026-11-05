@@ -4278,18 +4278,12 @@ def _sync_geo_shape(shape, text):
     L = (L + default[len(L):])[:n]
     if sub == "quad" and str(sh.get("kind", "")).lower() in ("trapezoid", "yamuk", "isosceles_trapezoid"):
         pr_ = _PAR_RX.findall(text)
-        if not pr_:
-            sh["_bad"] = True  # yamukta paralel kenarlar metinde belirtilmeli
-        else:
+        if pr_:
             a_, b_ = pr_[0]
             if all(x in L for x in a_ + b_):
                 ia = sorted(L.index(x) for x in a_)
                 if ia in ([1, 2], [0, 3]):
                     L = L[1:] + L[:1]  # paralel kenarlar şekilde alt/üst (AB, DC) olacak biçimde köşe sırasını döndür
-                elif ia not in ([0, 1], [2, 3]):
-                    sh["_bad"] = True
-            else:
-                sh["_bad"] = True
     eq = re.findall(r"\|([A-Z]{2})\|\s*=\s*\|([A-Z]{2})\|", text)
     lens = re.findall(r"\|([A-Z]{2})\|\s*=\s*(\d[\d.,]*\s*(?:cm|mm|m|birim)?)", text)
     angs = re.findall(r"m\(([A-Z]{3})\)\s*=\s*" + _VAL, text)
@@ -4331,8 +4325,7 @@ def _sync_geo_shape(shape, text):
                 d[P[pos[abc[1]]]] = v.strip()
                 if n == 3 and re.fullmatch(r"\s*90\s*°", v):
                     rv = abc[1]
-            else:
-                sh["_bad"] = True  # alt açı / başka noktaya ait açı: şekilde gösterilemiyor
+            # alt açı / başka noktaya ait açı: şekilde gösterilemez; soruyu eleme, yalnızca şemaya işleme
         for abc in ask:
             if nb_ok(abc):
                 d.setdefault(P[pos[abc[1]]], "?")
@@ -4888,7 +4881,7 @@ def _relaxed_ok(q, kept):
     return True
 
 
-def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None):
+def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False):
     """plan: [{subject, n, topics}] -> (questions, errors).
     Her ders BAĞIMSIZ ilerler (başka dersi beklemez): bankadan al -> paralel üret -> eksik kaldıkça yeniden tamamla
     (turlar ilerledikçe daha çok yedek ister, çeşitlilik kuralını gevşetir, en son görselsiz moda geçer).
@@ -4945,7 +4938,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 return out
 
             qs, err = _ask_questions(prompt, gk, mk, idx, validate, reasoning=GEN_REASONING.get(subj))
-            if qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS) and (gk or mk or extra_keys()):
+            if verify and qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS) and (gk or mk or extra_keys()):  # yalnız arka plan banka dolumunda
                 try:
                     qs = verify_questions(qs, gk, mk, offset=idx)
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
@@ -5076,7 +5069,7 @@ def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
     def run():
         try:
             sub = [p for _, p in todo]
-            qs, _e = generate_mc(sub, grade_label, difficulty, scope_label, avoid=avoid, use_bank=False, deposit=False, keys=(gk, mk))
+            qs, _e = generate_mc(sub, grade_label, difficulty, scope_label, avoid=avoid, use_bank=False, deposit=False, keys=(gk, mk), verify=True)
             for key, p in todo:
                 mine = [q for q in qs if q.get("subject") == p["subject"]]
                 store.bank_put(key, _bank_meta(p, grade_label, difficulty), mine)
@@ -5096,7 +5089,7 @@ def fill_bank(plan, grade_label, difficulty, scope_label, avoid=None, on_progres
     if demo_mode():
         return 0, []
     from . import store
-    qs, errs = generate_mc(plan, grade_label, difficulty, scope_label, avoid=avoid, on_progress=on_progress, use_bank=False, deposit=False)
+    qs, errs = generate_mc(plan, grade_label, difficulty, scope_label, avoid=avoid, on_progress=on_progress, use_bank=False, deposit=False, verify=True)
     added = 0
     for p in plan:
         mine = [q for q in qs if q.get("subject") == p["subject"]]
