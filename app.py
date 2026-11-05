@@ -444,12 +444,16 @@ def week_unit_info(g, subject, w):
 
 
 def scope_range(scope):
+    if scope["type"] == "year":
+        return 1, TOTAL_WEEKS
     if scope["type"] == "month":
         return scope["a"], scope["b"]
     return scope["w"], scope["w"]
 
 
 def scope_label(scope):
+    if scope["type"] == "year":
+        return "Yıl geneli (tüm üniteler)"
     if scope["type"] == "month":
         a, b = scope_range(scope)
         return f"AGİS • {scope['name']} Ayı (Hafta {a}-{b})"
@@ -459,6 +463,8 @@ def scope_label(scope):
 def scope_units(g, subject, scope):
     """Kapsamdaki üniteler [(ad, konular, not)]"""
     us = units(g, subject)
+    if scope["type"] == "year":
+        return [(n, t, "") for n, t in us]
     a, b = scope_range(scope)
     out, seen = [], set()
     for w in range(a, b + 1):
@@ -512,6 +518,123 @@ def weekly_counts(g, monthly=False):
 
 
 LGS_OFFICIAL = {TR: 20, MAT: 20, FEN: 20, INK: 10, DIN: 10, ING: 10}  # resmî LGS 90 soru
+
+# ---- Genel Değerlendirme / LGS: puanlama (500 üzerinden) ----
+# MEB katsayıları: Türkçe-Matematik-Fen 4, diğerleri 1. 3 yanlış 1 doğruyu götürür.
+# Gerçek LGS puanı, o yılki öğrenci kitlesinin standart sapmasına göre hesaplanır; burada kitle verisi olmadığından
+# ağırlıklı net oranından 100-500 aralığına çevrilen TAHMİNİ puan verilir.
+SCORE_W = {TR: 4, MAT: 4, FEN: 4}
+SCORE_BASE, SCORE_MAX = 100.0, 500.0
+
+
+def exam_score(per):
+    """per: {ders: {correct, wrong, total}} -> {'total','max','subj':{ders:{net,w,pts,max_pts}}}"""
+    span = SCORE_MAX - SCORE_BASE
+    tw = sum(SCORE_W.get(s, 1) * int(d.get("total", 0)) for s, d in per.items())
+    out, got = {}, 0.0
+    for s, d in per.items():
+        w = SCORE_W.get(s, 1)
+        n = int(d.get("total", 0))
+        net = max(0.0, float(d.get("correct", 0)) - float(d.get("wrong", 0)) / 3.0)
+        pts = span * w * net / tw if tw else 0.0
+        out[s] = {"net": round(net, 2), "w": w, "pts": round(pts, 2), "max_pts": round(span * w * n / tw, 2) if tw else 0.0}
+        got += pts
+    return {"total": round(SCORE_BASE + got, 2) if tw else 0.0, "max": SCORE_MAX, "base": SCORE_BASE, "subj": out}
+
+
+# ---- LGS / Genel Değerlendirme: oturumlar ----
+SOZEL_RATE, SAYISAL_RATE = 1.5, 2.0  # dk/soru: LGS Sözel 50 soru = 75 dk, Sayısal 40 soru = 80 dk
+SAYISAL_SUBJECTS = [MAT, FEN]
+SOZEL_ORDER = [TR, INK, SOS, DIN, ING, ALM]
+
+
+def session_defs(counts):
+    sz = [s for s in SOZEL_ORDER if counts.get(s, 0) > 0]
+    sy = [s for s in SAYISAL_SUBJECTS if counts.get(s, 0) > 0]
+    out = []
+    if sz:
+        out.append({"name": "Sözel Bölüm", "subjects": sz, "rate": SOZEL_RATE})
+    if sy:
+        out.append({"name": "Sayısal Bölüm", "subjects": sy, "rate": SAYISAL_RATE})
+    return out
+
+
+def build_sessions(qs, defs):
+    """Soruları oturumlara göre sırala; [{name,a,b,sec,subjects}] döndür."""
+    left = list(qs)
+    out_q, sess = [], []
+    for i, d in enumerate(defs):
+        part = []
+        for s in d["subjects"]:
+            part += [q for q in left if q.get("subject") == s]
+        taken = {id(q) for q in part}
+        left = [q for q in left if id(q) not in taken]
+        if i == len(defs) - 1:
+            part += left
+            left = []
+        if not part:
+            continue
+        sess.append({"name": d["name"], "a": len(out_q), "b": len(out_q) + len(part), "sec": int(round(len(part) * d["rate"])) * 60,
+                     "subjects": d["subjects"]})
+        out_q += part
+    if left:
+        out_q += left
+        if sess:
+            sess[-1]["b"] = len(out_q)
+            sess[-1]["sec"] = int(round((sess[-1]["b"] - sess[-1]["a"]) * 1.5)) * 60 if sess[-1]["name"].startswith("Söz") else sess[-1]["sec"]
+    return out_q, sess
+
+
+# ---- Yıl geneli plan: ünitelere LGS ağırlığıyla dağıt ----
+_UNIT_W = {
+    FEN: [("Madde ve Endüstri", 5), ("Enerji Dönüşümleri", 4), ("DNA", 3), ("Elektrik", 3), ("Basınç", 2), ("Basit Makineler", 2), ("Mevsimler", 1)],
+    MAT: [("Çarpanlar", 1), ("Üslü", 2), ("Kareköklü", 2), ("Veri", 2), ("Olasılık", 1), ("Cebirsel", 2), ("Doğrusal", 3), ("Eşitsizlik", 2), ("Üçgen", 2), ("Dönüşüm", 1)],
+}
+
+
+def year_plan(g, counts, per_item=5):
+    """counts {ders: soru} -> plan [{subject,n,topics,short}]; her öğe en çok per_item soru, yıl genelinden ağırlıklı ünite karışımı."""
+    plan = []
+    for s, n in counts.items():
+        if n <= 0:
+            continue
+        us = units(g, s)
+        if not us:
+            continue
+        wts = []
+        for name, _ in us:
+            w = 1.0
+            if base_grade(g) == "8" and s in _UNIT_W:
+                for key, v in _UNIT_W[s]:
+                    if key.lower() in name.lower():
+                        w = float(v)
+                        break
+            wts.append(w)
+        tot = sum(wts)
+        raw = [n * w / tot for w in wts]
+        alloc = [int(x) for x in raw]
+        for i in sorted(range(len(us)), key=lambda i: raw[i] - alloc[i], reverse=True)[: n - sum(alloc)]:
+            alloc[i] += 1
+        cur_items, buf = [], []
+        for i in sorted(range(len(us)), key=lambda i: -alloc[i]):
+            k = alloc[i]
+            while k > 0:
+                take = min(per_item, k)
+                placed = False
+                for it in cur_items:
+                    if it["n"] + take <= per_item:
+                        it["n"] += take
+                        it["units"].append(i)
+                        placed = True
+                        break
+                if not placed:
+                    cur_items.append({"n": take, "units": [i]})
+                k -= take
+        for it in cur_items:
+            names = list(dict.fromkeys(us[i][0] for i in it["units"]))
+            topics = " | ".join(f"{us[i][0]}: " + ", ".join(us[i][1]) for i in dict.fromkeys(it["units"]))
+            plan.append({"subject": s, "n": it["n"], "topics": topics, "short": "; ".join(x.split(" (MAT")[0] for x in names)})
+    return plan
 '''
 MODULES['core/oyss'] = r'''# -*- coding: utf-8 -*-
 """MEB Ortak Yazılı Sınav Sistemi (OYSS) - senaryo motoru.
@@ -2492,6 +2615,302 @@ def report_pdf(name, grade_label, hist, stats, weak, streak_n, level, comment=""
     el += [Spacer(1, 10), Paragraph("Bu rapor Denemematik tarafından öğrencinin çözdüğü denemelerden otomatik üretilmiştir.", sm)]
     doc.build(el)
     return buf.getvalue()
+
+
+# ------------------------------------------------------------------ SINAV KARNESİ (dairesel + ayrıntılı grafikler, son 5 sınav karşılaştırması)
+_C_OK, _C_BAD, _C_EMP = "#16a34a", "#dc2626", "#94a3b8"
+
+
+def _fig_png(fig):
+    import matplotlib.pyplot as plt
+    b = io.BytesIO()
+    fig.savefig(b, format="png", dpi=170, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    return b.getvalue()
+
+
+def _donut(vals, labels, cols, center, title=None, size=3.2):
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots(figsize=(size, size))
+    tot = sum(vals)
+    if tot <= 0:
+        vals, cols, tot = [1], ["#e2e8f0"], 1
+    ax.pie(vals, colors=cols, startangle=90, counterclock=False, wedgeprops=dict(width=.38, edgecolor="white", linewidth=1.5))
+    ax.text(0, 0, center, ha="center", va="center", fontsize=size * 4.4, fontweight="bold", color="#0f172a")
+    if title:
+        ax.set_title(title, fontsize=9.5, fontweight="bold", color="#0f172a", pad=6)
+    if len(vals) == len(labels):
+        ax.legend([f"{l}: {v:g}" if float(v) >= 1 else f"{l}" for l, v in zip(labels, vals)], loc="upper center", bbox_to_anchor=(.5, -.02),
+                  ncol=3, frameon=False, fontsize=7.5, handlelength=1, columnspacing=1)
+    return _fig_png(fig)
+
+
+def _stack_bars(per):
+    import matplotlib.pyplot as plt
+    subs = list(per)
+    fig, ax = plt.subplots(figsize=(7.2, 2.9))
+    c = [per[s]["correct"] for s in subs]
+    w = [per[s]["wrong"] for s in subs]
+    e = [per[s]["empty"] for s in subs]
+    x = range(len(subs))
+    ax.bar(x, c, color=_C_OK, label="Doğru")
+    ax.bar(x, w, bottom=c, color=_C_BAD, label="Yanlış")
+    ax.bar(x, e, bottom=[a + b for a, b in zip(c, w)], color=_C_EMP, label="Boş")
+    for i, s in enumerate(subs):
+        for off, v in ((0, c[i]), (c[i], w[i]), (c[i] + w[i], e[i])):
+            if v:
+                ax.text(i, off + v / 2, str(v), ha="center", va="center", color="white", fontsize=8, fontweight="bold")
+    ax.set_xticks(list(x))
+    ax.set_xticklabels([_short_sub(s) for s in subs], fontsize=8)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_ylabel("Soru", fontsize=8)
+    ax.legend(ncol=3, frameon=False, fontsize=8, loc="upper center", bbox_to_anchor=(.5, 1.14))
+    return _fig_png(fig)
+
+
+def _short_sub(s):
+    return {"Fen Bilimleri": "Fen", "Sosyal Bilgiler": "Sosyal", "Din Kültürü ve Ahlak Bilgisi": "Din K.",
+            "T.C. İnkılap Tarihi ve Atatürkçülük": "İnkılap", "Matematik": "Matematik", "Türkçe": "Türkçe", "İngilizce": "İngilizce"}.get(s, s[:10])
+
+
+def _contrib_bars(score):
+    import matplotlib.pyplot as plt
+    subs = list(score["subj"])
+    fig, ax = plt.subplots(figsize=(7.2, 2.7))
+    mx = [score["subj"][s]["max_pts"] for s in subs]
+    gt = [score["subj"][s]["pts"] for s in subs]
+    y = range(len(subs))
+    ax.barh(y, mx, color="#e2e8f0", label="Alınabilecek puan")
+    ax.barh(y, gt, color="#7c3aed", label="Alınan puan")
+    for i in y:
+        ax.text(mx[i] + 1, i, f"{gt[i]:.1f} / {mx[i]:.1f}", va="center", fontsize=8, color="#334155")
+    ax.set_yticks(list(y))
+    ax.set_yticklabels([_short_sub(s) for s in subs], fontsize=8)
+    ax.invert_yaxis()
+    ax.set_xlim(0, max(mx + [1]) * 1.25)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.legend(frameon=False, fontsize=8, loc="lower right")
+    ax.set_xlabel("Puan (100 taban puanın üstüne eklenen katkı)", fontsize=8)
+    return _fig_png(fig)
+
+
+def _time_bars(per, expected):
+    import matplotlib.pyplot as plt
+    items = [(s, d["sec"]) for s, d in per.items() if d.get("sec")]
+    if not items:
+        return None
+    fig, ax = plt.subplots(figsize=(7.2, 2.4))
+    y = range(len(items))
+    ax.barh(y, [v for _, v in items], color=["#f59e0b" if v > expected * 1.3 else "#0ea5e9" for _, v in items])
+    if expected:
+        ax.axvline(expected, color="#dc2626", ls="--", lw=1)
+        ax.text(expected, -.55, f" hedef {expected:.0f} sn", color="#dc2626", fontsize=7.5)
+    for i, (_, v) in enumerate(items):
+        ax.text(v + 1, i, f"{v:.0f} sn", va="center", fontsize=8)
+    ax.set_yticks(list(y))
+    ax.set_yticklabels([_short_sub(s) for s, _ in items], fontsize=8)
+    ax.invert_yaxis()
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_xlabel("Soru başı ortalama süre", fontsize=8)
+    return _fig_png(fig)
+
+
+def _topic_bars(topics):
+    import matplotlib.pyplot as plt
+    rows = []
+    for s, t in topics.items():
+        for tp, (a, b) in t.items():
+            if b:
+                rows.append((f"{_short_sub(s)} • {str(tp)[:42]}", 100.0 * a / b, b))
+    if not rows:
+        return None
+    rows = sorted(rows, key=lambda r: r[1])[:10]
+    fig, ax = plt.subplots(figsize=(7.2, .38 * len(rows) + .9))
+    y = range(len(rows))
+    ax.barh(y, [r[1] for r in rows], color=["#dc2626" if r[1] < 50 else "#f59e0b" if r[1] < 75 else "#16a34a" for r in rows])
+    for i, r in enumerate(rows):
+        ax.text(r[1] + 1.5, i, f"%{r[1]:.0f}", va="center", fontsize=8)
+    ax.set_yticks(list(y))
+    ax.set_yticklabels([r[0] for r in rows], fontsize=7.5)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 112)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_xlabel("Başarı %  (en düşük 10 kazanım)", fontsize=8)
+    return _fig_png(fig)
+
+
+def _cmp_line(labels, puan, nets):
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots(figsize=(7.2, 2.7))
+    x = list(range(len(labels)))
+    if any(p is not None for p in puan):
+        ax.plot(x, [p if p is not None else float("nan") for p in puan], marker="o", color="#7c3aed", lw=2.2, label="Puan (500)")
+        for i, p in enumerate(puan):
+            if p is not None:
+                ax.text(i, p + 5, f"{p:.0f}", ha="center", fontsize=8, color="#5b21b6", fontweight="bold")
+        ax.set_ylim(100, 520)
+        ax.set_ylabel("Puan", fontsize=8, color="#5b21b6")
+        ax2 = ax.twinx()
+    else:
+        ax2 = ax
+    ax2.plot(x, nets, marker="s", color="#0ea5e9", lw=1.8, ls="--", label="Net")
+    ax2.set_ylabel("Net", fontsize=8, color="#0369a1")
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=7.5)
+    ax.spines[["top"]].set_visible(False)
+    ax.grid(axis="y", alpha=.25)
+    h1, l1 = ax.get_legend_handles_labels()
+    h2, l2 = ax2.get_legend_handles_labels() if ax2 is not ax else ([], [])
+    ax.legend(h1 + h2, l1 + l2, frameon=False, fontsize=8, loc="upper center", bbox_to_anchor=(.5, 1.16), ncol=2)
+    return _fig_png(fig)
+
+
+def _cmp_subject_bars(labels, subs, table):
+    import matplotlib.pyplot as plt
+    import numpy as np
+    fig, ax = plt.subplots(figsize=(7.2, 2.9))
+    n = len(subs)
+    wd = .8 / max(1, n)
+    pal = ["#7c3aed", "#0ea5e9", "#16a34a", "#f59e0b", "#dc2626", "#64748b", "#db2777"]
+    for k, s in enumerate(subs):
+        ax.bar(np.arange(len(labels)) + k * wd - .4 + wd / 2, [table[i].get(s, 0) for i in range(len(labels))], width=wd, color=pal[k % len(pal)], label=_short_sub(s))
+    ax.set_xticks(range(len(labels)))
+    ax.set_xticklabels(labels, fontsize=7.5)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_ylabel("Net", fontsize=8)
+    ax.legend(frameon=False, fontsize=7.5, ncol=min(7, n), loc="upper center", bbox_to_anchor=(.5, 1.17))
+    return _fig_png(fig)
+
+
+def exam_report_pdf(name, meta, res, prev, hist_scores=None):
+    """Sınav karnesi. prev: önceki sınavlar (en yeni sonda, en çok 5): [{title, ts, correct, wrong, empty, net, pct, per, score}]."""
+    from reportlab.platypus import SimpleDocTemplate, Image, KeepTogether
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=1.5 * cm, rightMargin=1.5 * cm, topMargin=1.3 * cm, bottomMargin=1.3 * cm,
+                            title="Denemematik Sınav Karnesi")
+    H1 = ParagraphStyle("h1", fontName="DV-B", fontSize=18, leading=22, textColor=NAVY, spaceAfter=2)
+    H2 = ParagraphStyle("h2", fontName="DV-B", fontSize=11.5, textColor=BLUE, spaceBefore=8, spaceAfter=4)
+    P = ParagraphStyle("p", fontName="DV", fontSize=8.8, leading=12.4, textColor=colors.HexColor("#1e293b"))
+    sm = ParagraphStyle("sm", fontName="DV", fontSize=7.6, leading=10, textColor=colors.HexColor("#64748b"))
+    per = res["per"]
+    score = res.get("score")
+    W = 18 * cm
+    el = [Paragraph("Denemematik • Sınav Karnesi", H1),
+          Paragraph(clean(f"{name or 'Öğrenci'} • {meta.get('title', '')} • {datetime.date.today().strftime('%d.%m.%Y')}"), sm), Spacer(1, 6)]
+    # --- başlık kutusu: puan + KPI
+    mins = int(res.get("duration", 0)) // 60
+    big = f"{score['total']:.1f}" if score else f"%{res['pct']:.0f}"
+    cap = "TAHMİNİ PUAN / 500" if score else "BAŞARI"
+    kp = [[cap, "Doğru", "Yanlış", "Boş", "Net", "Başarı", "Süre"],
+          [big, str(res["correct"]), str(res["wrong"]), str(res["empty"]), f"{res['net']:.2f}", f"%{res['pct']:.0f}", f"{mins} dk"]]
+    t = Table(kp, colWidths=[4.6 * cm] + [2.2 * cm] * 6)
+    t.setStyle(TableStyle([("FONT", (0, 0), (-1, 0), "DV", 7.2), ("FONT", (0, 1), (0, 1), "DV-B", 20), ("FONT", (1, 1), (-1, 1), "DV-B", 12.5),
+                           ("TEXTCOLOR", (0, 0), (-1, 0), colors.HexColor("#64748b")), ("TEXTCOLOR", (0, 1), (0, 1), colors.HexColor("#5b21b6")),
+                           ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f5f3ff")), ("BOX", (0, 0), (-1, -1), .8, colors.HexColor("#c4b5fd")),
+                           ("ALIGN", (0, 0), (-1, -1), "CENTER"), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                           ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
+    el += [t, Spacer(1, 4)]
+    if score:
+        el.append(Paragraph(clean("Puan, MEB katsayılarına (Türkçe-Matematik-Fen 4, diğer dersler 1) ve '3 yanlış 1 doğruyu götürür' kuralına göre 100-500 aralığında TAHMİNİ olarak hesaplanmıştır. "
+                                  "Gerçek LGS puanı o yılki öğrenci kitlesinin başarısına göre belirlendiğinden resmî puandan farklı olabilir."), sm))
+    # --- dairesel grafikler
+    el.append(Paragraph("Genel dağılım", H2))
+    pie_main = _donut([res["correct"], res["wrong"], res["empty"]], ["Doğru", "Yanlış", "Boş"], [_C_OK, _C_BAD, _C_EMP], f"{res['net']:.1f}\nnet", "Doğru / Yanlış / Boş", 3.0)
+    sec_pie = None
+    if score:
+        sec_pie = _donut([max(.0001, score["subj"][s]["pts"]) for s in score["subj"]], [_short_sub(s) for s in score["subj"]],
+                         ["#7c3aed", "#0ea5e9", "#16a34a", "#f59e0b", "#dc2626", "#64748b", "#db2777"][:len(score["subj"])], f"{score['total']:.0f}", "Puanın ders dağılımı", 3.0)
+    else:
+        sec_pie = _donut([max(.0001, d["correct"]) for d in per.values()], [_short_sub(s) for s in per],
+                         ["#7c3aed", "#0ea5e9", "#16a34a", "#f59e0b", "#dc2626", "#64748b", "#db2777"][:len(per)], str(res["correct"]), "Doğruların ders dağılımı", 3.0)
+    row = Table([[Image(io.BytesIO(pie_main), 6.6 * cm, 6.6 * cm), Image(io.BytesIO(sec_pie), 6.6 * cm, 6.6 * cm)]], colWidths=[9 * cm, 9 * cm])
+    row.setStyle(TableStyle([("ALIGN", (0, 0), (-1, -1), "CENTER"), ("VALIGN", (0, 0), (-1, -1), "MIDDLE")]))
+    el.append(row)
+    el += [Paragraph("Ders bazında doğru / yanlış / boş", H2), Image(io.BytesIO(_stack_bars(per)), 15.5 * cm, 15.5 * cm * 2.9 / 7.2)]
+    # --- ders tablosu
+    rows = [["Ders", "Soru", "D", "Y", "B", "Net", "Başarı", "Puan katkısı" if score else "Soru başı"]]
+    for s, d in per.items():
+        last = f"{score['subj'][s]['pts']:.1f} / {score['subj'][s]['max_pts']:.1f}" if score else (f"{d['sec']:.0f} sn" if d.get("sec") else "-")
+        rows.append([clean(s), d["total"], d["correct"], d["wrong"], d["empty"], f"{d.get('net', 0):.2f}", f"%{d['pct']:.0f}", last])
+    t2 = Table(rows, colWidths=[5.4 * cm, 1.5 * cm, 1.2 * cm, 1.2 * cm, 1.2 * cm, 1.8 * cm, 1.9 * cm, 3.8 * cm], repeatRows=1)
+    t2.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "DV", 8.4), ("FONT", (0, 0), (-1, 0), "DV-B", 8.4), ("BACKGROUND", (0, 0), (-1, 0), BLUE), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f8fafc")]), ("GRID", (0, 0), (-1, -1), .4, colors.HexColor("#e2e8f0")),
+                            ("ALIGN", (1, 0), (-1, -1), "CENTER"), ("TOPPADDING", (0, 0), (-1, -1), 3.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5)]))
+    el += [Spacer(1, 4), t2]
+    if res.get("sessions"):
+        el.append(Paragraph("Oturum bazında sonuç", H2))
+        sr = [["Oturum", "Soru", "D", "Y", "B", "Net", "Süre (kullanılan / verilen)"]]
+        for x in res["sessions"]:
+            sr.append([clean(x["name"]), x["n"], x["correct"], x["wrong"], x["empty"], f"{x['net']:.2f}", f"{int(x.get('used', 0)) // 60} / {x['sec'] // 60} dk"])
+        t3 = Table(sr, colWidths=[4.6 * cm, 1.6 * cm, 1.3 * cm, 1.3 * cm, 1.3 * cm, 2 * cm, 5.9 * cm], repeatRows=1)
+        t3.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "DV", 8.4), ("FONT", (0, 0), (-1, 0), "DV-B", 8.4), ("BACKGROUND", (0, 0), (-1, 0), BLUE), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                                                  ("GRID", (0, 0), (-1, -1), .4, colors.HexColor("#e2e8f0")), ("ALIGN", (1, 0), (-1, -1), "CENTER"),
+                                                  ("TOPPADDING", (0, 0), (-1, -1), 3.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5)]))
+        el.append(t3)
+    # --- ayrıntılı grafikler
+    el.append(PageBreak())
+    el.append(Paragraph("Ayrıntılı analiz", H1))
+    if score:
+        el += [Paragraph("Puan katkısı (ders ders)", H2), Image(io.BytesIO(_contrib_bars(score)), W, W * 2.7 / 7.2)]
+    tan = res.get("tan")
+    if tan:
+        tb = _time_bars(per, tan.get("expected", 0))
+        if tb:
+            el += [Paragraph("Tempo: soru başı süre", H2), Image(io.BytesIO(tb), W, W * 2.4 / 7.2)]
+            el.append(Paragraph(clean(f"Aceleci yanlış (<15 sn): {tan.get('fast_wrong', 0)} • Çok uzun düşünülen soru: {tan.get('slow', 0)} • Hedef: soru başı {tan.get('expected', 0):.0f} sn"), P))
+    tbp = _topic_bars(res.get("topics") or {})
+    if tbp:
+        from PIL import Image as _PI
+        w_, h_ = _PI.open(io.BytesIO(tbp)).size
+        el += [Paragraph("Kazanım analizi (öncelikli çalışılacaklar)", H2), Image(io.BytesIO(tbp), W, W * h_ / w_)]
+    # --- son 5 sınav karşılaştırması
+    el.append(PageBreak())
+    el.append(Paragraph("Son 5 sınavla karşılaştırma", H1))
+    allx = list(prev or [])[-5:]
+    cur_row = {"title": "Bu sınav", "ts": None, "correct": res["correct"], "wrong": res["wrong"], "empty": res["empty"], "net": res["net"], "pct": res["pct"], "per": per,
+               "score": score["total"] if score else None}
+    seq = allx + [cur_row]
+    if len(seq) == 1:
+        el.append(Paragraph("Karşılaştırma için önceki sınav bulunamadı. Daha fazla sınav çözdükçe bu bölüm dolacak.", P))
+    labels = []
+    for i, h in enumerate(seq):
+        if h["ts"]:
+            labels.append(datetime.datetime.fromtimestamp(h["ts"]).strftime("%d.%m"))
+        else:
+            labels.append("Bu sınav")
+    puan = [h.get("score") for h in seq]
+    if len(seq) > 1:
+        el += [Image(io.BytesIO(_cmp_line(labels, puan, [h["net"] for h in seq])), W, W * 2.7 / 7.2)]
+        subs = list(per)
+        nets = [{s: (max(0.0, (h["per"].get(s, {}).get("correct", 0) - h["per"].get(s, {}).get("wrong", 0) / 3.0))) for s in subs} for h in seq]
+        el += [Paragraph("Ders ders net karşılaştırması", H2), Image(io.BytesIO(_cmp_subject_bars(labels, subs, nets)), W, W * 2.9 / 7.2)]
+    _ab = {"Türkçe": "Trk", "Matematik": "Mat", "Fen Bilimleri": "Fen", "Sosyal Bilgiler": "Sos", "T.C. İnkılap Tarihi ve Atatürkçülük": "İnk",
+           "Din Kültürü ve Ahlak Bilgisi": "Din", "İngilizce": "İng"}
+    hdr = ["Sınav", "Tarih", "D", "Y", "B", "Net", "%", "Puan"] + [_ab.get(s, s[:3]) + " net" for s in per]
+    tr = [hdr]
+    for h in seq:
+        dt = datetime.datetime.fromtimestamp(h["ts"]).strftime("%d.%m.%Y") if h["ts"] else datetime.date.today().strftime("%d.%m.%Y")
+        row_ = [clean(str(h["title"]))[:26], dt, h["correct"], h["wrong"], h["empty"], f"{h['net']:.1f}", f"{h['pct']:.0f}", f"{h['score']:.0f}" if h.get("score") else "-"]
+        for s in per:
+            d = h["per"].get(s)
+            row_.append(f"{max(0.0, d['correct'] - d['wrong'] / 3.0):.1f}" if d else "-")
+        tr.append(row_)
+    nsub = len(per)
+    cw = [3.3 * cm, 1.8 * cm, .8 * cm, .8 * cm, .8 * cm, 1.1 * cm, .8 * cm, 1.1 * cm] + [max(1.0, (18 - 10.5) / max(1, nsub)) * cm] * nsub
+    t4 = Table(tr, colWidths=cw, repeatRows=1)
+    st4 = [("FONT", (0, 0), (-1, -1), "DV", 7.4), ("FONT", (0, 0), (-1, 0), "DV-B", 7.4), ("BACKGROUND", (0, 0), (-1, 0), BLUE), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+           ("GRID", (0, 0), (-1, -1), .4, colors.HexColor("#e2e8f0")), ("ALIGN", (2, 0), (-1, -1), "CENTER"),
+           ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f8fafc")]),
+           ("BACKGROUND", (0, len(tr) - 1), (-1, len(tr) - 1), colors.HexColor("#ede9fe")), ("FONT", (0, len(tr) - 1), (-1, len(tr) - 1), "DV-B", 7.4),
+           ("TOPPADDING", (0, 0), (-1, -1), 3.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5)]
+    t4.setStyle(TableStyle(st4))
+    el += [Spacer(1, 6), t4, Paragraph("Ders sütunları ilgili dersin NET değerini gösterir (doğru − yanlış/3). Puan: tahmini, 500 üzerinden; puanlı olmayan sınavlarda '-' görünür.", sm)]
+    if len(seq) > 1 and seq[-2].get("score") and seq[-1].get("score"):
+        dlt = seq[-1]["score"] - seq[-2]["score"]
+        el.append(Paragraph(clean(f"Bir önceki sınava göre puan değişimi: {'+' if dlt >= 0 else ''}{dlt:.1f}"), P))
+    el += [Spacer(1, 8), Paragraph("Bu karne Denemematik tarafından öğrencinin sınav sonucundan otomatik üretilmiştir.", sm)]
+    doc.build(el)
+    return buf.getvalue()
 '''
 MODULES['core/store'] = r'''# -*- coding: utf-8 -*-
 """Yerel kayıt: sınav geçmişi, yanlış soru arşivi, son sorular (tekrarsızlık). JSON dosyaları ./data altında.
@@ -4157,6 +4576,34 @@ LOGIC_RULES = (
     "Önce 'explanation' alanında çözümü ADIM ADIM ama ÖZ yap (en çok 4 kısa adım), doğru sonucu bulduktan sonra 'answer' yaz. Çözümün SON adımı işaretlediğin şıkkın değeriyle BİREBİR aynı sonucu versin (çözüm ile cevap çelişmesin). 'explanation' şık HARFİ (A, B…) yazmasın, şıkkın DEĞERİNİ yazsın.\n")
 
 
+_LGS25 = {
+    "Matematik": (
+        "LGS 2025 MATEMATİK ÖRÜNTÜSÜ (bunlara uy): "
+        "(a) Sorular senaryolu ve günlük hayatla ilişkili olsun; en az yarısı tablo, çizgi/sütun grafiği ya da şekle dayalı VERİ YORUMU içersin: önce görselden çıkarım yap, sonra işlem yap. "
+        "(b) Birden çok beceriyi birleştir (oran-orantı + yüzde, denklem kurma + eşitsizlik, üslü/köklü ifade + bilimsel gösterim, eğim + doğrusal ilişki, olasılık + veri analizi). "
+        "(c) Ezber formül uygulatan tek adımlı soru yok; eleyici kalıp: tek bir veri kaynağı (tablo/şekil) üzerinde iki-üç özelliği birlikte sorgulayan, çok adımlı soru. "
+        "(d) Soru kökü çeşitli: 'hangisi doğrudur', 'hangisi yanlıştır', 'kaç tanesi', I-II-III yargı değerlendirme, sıralama. "
+        "(e) Konu ağırlığı: üslü-kareköklü ifadeler, cebirsel ifadeler-özdeşlikler, doğrusal denklem-eğim-grafik, eşitsizlik, olasılık, veri analizi, üçgenler, oran-orantı; geometrik cisimlerden en çok bir silindir/koni/prizma sorusu.\n"),
+    "Fen Bilimleri": (
+        "LGS 2025 FEN ÖRÜNTÜSÜ (bunlara uy): ezber değil akıl yürütme; her soru bir deney düzeneği, grafik, tablo, model/şema ya da günlük olay verisi üzerinden. Kalıplar: "
+        "(a) deney: bağımlı/bağımsız/kontrol değişkeni belirleme ve sonuç çıkarma; "
+        "(b) hipotezi destekleyen ya da çürüten gözlem/yargıyı değerlendirme; "
+        "(c) tablo-grafik yorumlama, verileri grafiğe dönüştürme; "
+        "(d) Madde ve Endüstri'de çok aşamalı soru (periyodik sistem özellikleri, kimyasal tepkime ve kütle korunumu, asit-baz-indikatör); "
+        "(e) basit makinelerde sistemi kuvvet-yol-iş ilişkisiyle çözme; "
+        "(f) DNA ve genetik kod: şema/soyağacı/çaprazlama; "
+        "(g) basınç: katı-sıvı-gaz basıncı ve görsel yorum. "
+        "Seçili konular arasında LGS 2025 soru ağırlığına göre dağıt (20 soruda Madde ve Endüstri 5, Enerji Dönüşümleri ve Çevre 4, DNA ve Genetik Kod 3, Elektrik Yükleri 3, Basınç 2, Basit Makineler 2, Mevsimler ve İklim 1).\n"),
+}
+
+
+def _lgs25(subject, grade_label):
+    g = str(grade_label or "")
+    if not ("8" in g or "LGS" in g):
+        return ""
+    return _LGS25.get(subject, "")
+
+
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
@@ -4170,7 +4617,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         f"KAPSAM: {scope_label}\nKONULAR/KAZANIMLAR: {topics}{fc}\n"
         f"ZORLUK KADEMESİ: '{eff}'. Bu kademeye kesin uy → {DIFF_SPEC.get(lvl, '')}\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
-        + ("MEB/LGS geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz ama ÇOK ADIMLI muhakeme gerektiren sorular.\n" if geo_on else LGS_STYLE) +
+        + ("MEB/LGS geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz ama ÇOK ADIMLI muhakeme gerektiren sorular.\n" if geo_on else LGS_STYLE) + (_lgs25(subject, grade_label) if not geo_on else "LGS geometri: eleyici kalıp = şeklin birden fazla özelliğini (kenar, açı, eşlik/benzerlik, çevre/alan) birlikte sorgulayan çok adımlı soru.\n" if _lgs25(subject, grade_label) else "") +
         "Sınıf düzeyinin dışına (üst sınıf konusuna) taşma; kazanım kapsamında kal.\n" + (MATH_NOTATION if (subject == "Matematik" and not geo_on) else "") + LOGIC_RULES +
         f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{'' if plain else _variety_plan(subject, n, topics)}"
         f"{av}\n{_subject_lock(subject, topics)}\n{PLAIN_RULE if plain else shape_rules(subject, geo_on) + (GEO_STYLE if geo_on else '')}\n"
@@ -5859,6 +6306,7 @@ DEFAULTS = {
     "page": "home", "grade": None, "mode": None,
     "questions": [], "meta": {}, "answers": {}, "open_answers": {}, "cur": 0, "start": None,
     "duration": 0, "result": None, "saved": False, "self_scores": {}, "ai_grades": None, "qtime": {}, "q_last": None,
+    "sess": 0, "sess_start": None, "sess_el": [], "cur_attempt_id": None,
     "sel_week": 1, "sel_month": 1, "scope_tab": "week",
     "leaf_subject": None,
 }
@@ -5878,7 +6326,7 @@ def nav(page, **kw):
 
 
 def reset_exam():
-    for k in ("questions", "meta", "answers", "open_answers", "cur", "start", "duration", "result", "saved", "self_scores", "ai_grades", "qtime", "q_last"):
+    for k in ("questions", "meta", "answers", "open_answers", "cur", "start", "duration", "result", "saved", "self_scores", "ai_grades", "qtime", "q_last", "sess", "sess_start", "sess_el", "cur_attempt_id"):
         st.session_state[k] = copy.deepcopy(DEFAULTS[k])
 '''
 MODULES['ui/setup'] = r'''# -*- coding: utf-8 -*-
@@ -5962,7 +6410,10 @@ def modes():
     st.markdown(f"<div class='hero'><h1>{gl}</h1><p>Hangi sınav türünü çözmek istersin?</p></div>", unsafe_allow_html=True)
     official = g in oy.OFFICIAL_GRADES
     full = "Resmî LGS (90 soru, 155 dk) dâhil hazır formatlar" if g in ("8", "LGS") else "Mini 20 • Standart 40 • Tam 60 soru"
-    items = [
+    items = ([("lgs", "red", "🏆 LGS Deneme Sınavı", "MEB şartlarında: 90 soru • Sözel 75 dk + Sayısal 80 dk • 3 yanlış 1 doğruyu götürür • 500 puan")] if g in ("8", "LGS") else []) + [
+        ("gds", "indigo", "🧪 Genel Değerlendirme Sınavı", "Yıl geneli • Sözel + Sayısal oturum • 3 yanlış 1 doğruyu götürür • 500 üzerinden puan"),
+        ("tempo", "teal", "⏱️ Tempo Denemesi", "Matematik + Fen • 20 soru • soru başı 2 dk • sayısal süre yönetimi"),
+        ("wrongexam", "pink", "🔁 Yanlışlarımdan Sınav", "Yanlış arşivinden anında sınav • yapay zekâ beklemez"),
         ("weekly", "blue", "📅 Haftalık Deneme", f"36 haftanın her biri için • {full}"),
         ("agis", "indigo", "🗓️ AGİS", "Akademik Gelişim İzleme Sınavı • ayın ilk haftasında, önceki ayı ölçer"),
         ("oyss", "orange", "📝 MEB OYSS Genel Deneme",
@@ -6034,6 +6485,13 @@ def _finish(qs, errs, meta):
     reset_exam()
     meta["id"] = uuid.uuid4().hex[:8]
     meta["n"] = len(qs)
+    if meta.get("sessions_def") and meta["kind"] == "mc":  # LGS / Genel Değerlendirme: Sözel + Sayısal oturumlar
+        qs, sess = cur.build_sessions(qs, meta["sessions_def"])
+        for i, q in enumerate(qs):
+            q["id"] = i + 1
+        meta["sessions"] = sess
+        meta["duration_sec"] = sum(x["sec"] for x in sess)
+        meta["info_line"] = f"{len(qs)} soru • " + " + ".join(f"{x['name'].split()[0]} {x['sec'] // 60} dk" for x in sess)
     if meta["kind"] == "mc" and "duration_sec" not in meta:
         meta["duration_sec"] = len(qs) * SEC_PER_Q
     st.session_state.questions = qs
@@ -6191,6 +6649,8 @@ def pre():
         if st.button("🎯 Sınavı Şimdi Başlat", key="start_exam", type="primary"):
             import time
             st.session_state.start = time.time()
+            st.session_state.sess, st.session_state.sess_start, st.session_state.sess_el = 0, st.session_state.start, []
+            st.session_state.cur = ((st.session_state.meta.get("sessions") or [{}])[0]).get("a", 0)
             st.session_state.page = "exam"
             st.rerun()
     with c2:
@@ -6201,6 +6661,8 @@ def pre():
 def _start_now():
     import time
     st.session_state.start = time.time()
+    st.session_state.sess, st.session_state.sess_start, st.session_state.sess_el = 0, st.session_state.start, []
+    st.session_state.cur = ((st.session_state.meta.get("sessions") or [{}])[0]).get("a", 0)
     st.session_state.page = "exam"
 
 
@@ -6220,6 +6682,8 @@ def ready():
         st.markdown(f"<div class='ready-bar'><i></i></div><div class='ready-hint'>Hazır olduğunda dokun • süre başladığı anda işler</div>"
                     f"<div class='ready-chips'><span>📝 {len(qs)} soru</span><span>⏱ {mins} dk</span><span>{dlab}</span>"
                     f"<span>📚 {', '.join(cur.SUBJECT_ICONS.get(x, '') + ' ' + x for x in subs[:3])}{' +' + str(len(subs) - 3) if len(subs) > 3 else ''}</span></div>", unsafe_allow_html=True)
+        if m.get("sessions"):
+            st.caption("🕘 " + " → ".join(f"{x['name']} ({x['b'] - x['a']} soru, {x['sec'] // 60} dk)" for x in m["sessions"]) + " • oturum bitince geri dönülemez • 3 yanlış 1 doğruyu götürür")
         b1, b2 = st.columns(2)
         with b1:
             st.button("📋 Konu özeti & PDF", key="ready_pre", on_click=nav, args=("pre",), use_container_width=True)
@@ -6345,7 +6809,8 @@ def run():
 
 def _run():
     mode = st.session_state.mode
-    {"weekly": weekly, "agis": weekly, "oyss": oyss, "topic": topic, "leaf": topic, "bank": bank}.get(mode, weekly)()
+    {"weekly": weekly, "agis": weekly, "oyss": oyss, "topic": topic, "leaf": topic, "bank": bank,
+     "lgs": general, "gds": general, "tempo": general, "wrongexam": wrongexam}.get(mode, weekly)()
 
 
 # ------------------------------------------------------------------ HAFTALIK DENEME  /  AGİS (aylık)
@@ -6426,6 +6891,102 @@ def weekly():
             meta["duration_sec"] = minutes * 60
             meta["info_line"] = f"{n} soru • {minutes} dk"
             su._gen_mc(plan, meta, label, focus)
+
+
+# ------------------------------------------------------------------ LGS DENEME / GENEL DEĞERLENDİRME / TEMPO
+def _units_text(plan, s):
+    seen = []
+    for p_ in plan:
+        if p_["subject"] == s:
+            for x in p_["short"].split("; "):
+                if x and x not in seen:
+                    seen.append(x)
+    return "; ".join(seen)
+
+
+def general():
+    g = st.session_state.grade
+    gl = cur.GRADE_LABELS[g]
+    mode = st.session_state.mode
+    is_lgs8 = g in ("8", "LGS")
+    if mode == "lgs" and not is_lgs8:
+        mode = st.session_state.mode = "gds"
+    st.button("⬅ Sınav türleri", key="gen_back", on_click=back, args=("modes",))
+    subs = main_subjects(g)
+    if mode == "lgs":
+        title, sub = "🏆 LGS Deneme Sınavı", "MEB şartlarında • 90 soru • Sözel 75 dk + Sayısal 80 dk • 3 yanlış 1 doğruyu götürür • 500 üzerinden puan"
+        counts = dict(cur.LGS_OFFICIAL)
+        label = "LGS Deneme"
+        defs = cur.session_defs(counts)
+        scored = True
+    elif mode == "gds":
+        title, sub = "🧪 Genel Değerlendirme Sınavı", "Yıl geneli • Sözel + Sayısal oturum • 3 yanlış 1 doğruyu götürür • 500 üzerinden puan"
+        size = st.radio("Sınav boyutu", [30, 60, 90], index=1, horizontal=True, key="gds_size",
+                        format_func=lambda n: {30: "Mini • 30 soru", 60: "Standart • 60 soru", 90: "Tam • 90 soru"}[n])
+        counts = ratio_counts(g, size)
+        label = f"Genel Değerlendirme ({size} soru)"
+        defs = cur.session_defs(counts)
+        scored = True
+    else:  # tempo
+        title, sub = "⏱️ Tempo Denemesi", "Matematik + Fen • 20 soru • soru başı 2 dakika • LGS sayısal temposu"
+        counts = {s: 10 for s in (cur.MAT, cur.FEN) if s in subs}
+        label = "Tempo Denemesi"
+        defs = [{"name": "Sayısal Bölüm", "subjects": [s for s in counts], "rate": cur.SAYISAL_RATE}]
+        scored = False
+    st.markdown(f"<div class='hero'><h1>{title}</h1><p>{gl} • {sub}</p></div>", unsafe_allow_html=True)
+    plan = cur.year_plan(g, counts)
+    n = sum(counts.values())
+    mins = sum(int(round(sum(counts.get(s, 0) for s in d["subjects"]) * d["rate"])) for d in defs)
+    rows = [(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", c, _units_text(plan, s) or "—") for s, c in counts.items()]
+    theme.html_table(["Ders", "Soru", "Kapsanan üniteler (yıl geneli)"], rows, num_cols=(1,))
+    st.caption(f"Toplam **{n} soru** • süre **{mins} dk**" + (f" • {len(defs)} oturum: " + " → ".join(f"{d['name']} {int(round(sum(counts.get(s, 0) for s in d['subjects']) * d['rate']))} dk" for d in defs) if len(defs) > 1 else ""))
+    if scored:
+        st.info("📐 **Puanlama:** 3 yanlış 1 doğruyu götürür. Türkçe-Matematik-Fen katsayısı 4, diğer dersler 1; sonuç 100-500 aralığında **tahmini puan** olarak verilir "
+                "(gerçek LGS puanı o yılki öğrenci kitlesine göre belirlendiği için burada kesin değil, tahminidir). Bir oturum bitince geri dönülemez.")
+    diff = su.difficulty_select("diff_gen")
+    if st.button("🚀 Soruları Üret", key="gen_general", type="primary", use_container_width=True):
+        scope = "Yıl geneli • tüm üniteler"
+        meta = su._meta_common(gl, mode, f"{gl} {label}", scope, diff, plan)
+        meta["briefing"] = [(s, c, _units_text(plan, s)) for s, c in counts.items()]
+        meta["scored"] = scored
+        meta["sessions_def"] = defs
+        meta["duration_sec"] = mins * 60
+        meta["info_line"] = f"{n} soru • {mins} dk"
+        su._gen_mc(plan, meta, scope)
+
+
+# ------------------------------------------------------------------ YANLIŞLARIMDAN SINAV (yapay zekâsız, anında)
+def wrongexam():
+    g = st.session_state.grade
+    gl = cur.GRADE_LABELS[g]
+    st.button("⬅ Sınav türleri", key="we_back", on_click=back, args=("modes",))
+    st.markdown(f"<div class='hero'><h1>🔁 Yanlışlarımdan Sınav</h1><p>{gl} • Yanlış arşivindeki sorulardan anında sınav • yapay zekâ beklemez</p></div>", unsafe_allow_html=True)
+    import time as _t
+    W = [w for w in store.wrong() if w.get("grade") == g and w.get("kind", "mc") == "mc" and isinstance(w.get("q"), dict) and isinstance(w["q"].get("options"), dict)]
+    if not W:
+        st.info("Bu sınıf için arşivde çoktan seçmeli yanlış soru yok. Birkaç deneme çözdükten sonra buradan tekrar sınav olabilirsin.")
+        return
+    W.sort(key=lambda w: w.get("due", 0))  # tekrarı gelen önce
+    top = min(40, len(W))
+    k = st.slider("Soru sayısı", 5 if top >= 5 else 1, max(top, 5 if top >= 5 else 1), min(15, top), key="we_n") if top > 5 else top
+    st.caption(f"Arşivde **{len(W)}** uygun soru var. Tekrar zamanı gelenler öne alınır.")
+    if st.button("🚀 Sınavı Başlat", key="we_go", type="primary", use_container_width=True):
+        import copy as _c
+        qs = []
+        for i, w in enumerate(W[:k]):
+            q = _c.deepcopy(w["q"])
+            q["subject"] = q.get("subject") or w.get("subject", "Genel")
+            q["id"] = i + 1
+            qs.append(q)
+        by = {}
+        for q in qs:
+            by[q["subject"]] = by.get(q["subject"], 0) + 1
+        plan = [{"subject": s_, "n": c_, "topics": "", "short": "Yanlış arşivi"} for s_, c_ in by.items()]
+        diff = cur.DIFFICULTIES[2]
+        meta = su._meta_common(gl, "wrongexam", f"{gl} Yanlışlarımdan Sınav", "Yanlış arşivi", diff, plan)
+        meta["duration_sec"] = len(qs) * su.SEC_PER_Q
+        meta["info_line"] = f"{len(qs)} soru • {meta['duration_sec'] // 60} dk"
+        su._finish(qs, [], meta)
 
 
 # ------------------------------------------------------------------ OYSS
@@ -6741,6 +7302,23 @@ def compute_result():
                "empty": sum(d["empty"] for d in per.values()), "total": len(qs), "net": round(P, 1),
                "pct": round(100 * P / Mx, 1) if Mx else 0, "points": round(P, 1), "max": Mx}
     res["duration"] = st.session_state.duration
+    if m.get("scored") and m["kind"] == "mc":
+        res["score"] = cur.exam_score(per)
+    if m.get("sessions") and m["kind"] == "mc":
+        res["sessions"] = []
+        el = st.session_state.get("sess_el") or []
+        for k, sx in enumerate(m["sessions"]):
+            c_ = w_ = e_ = 0
+            for i in range(sx["a"], min(sx["b"], len(qs))):
+                ua = st.session_state.answers.get(i)
+                if not ua:
+                    e_ += 1
+                elif ua == qs[i]["answer"]:
+                    c_ += 1
+                else:
+                    w_ += 1
+            res["sessions"].append({"name": sx["name"], "n": sx["b"] - sx["a"], "correct": c_, "wrong": w_, "empty": e_,
+                                    "net": round(c_ - w_ / 3, 2), "sec": sx["sec"], "used": el[k] if k < len(el) else 0})
     try:
         tan = coach.time_analysis(qs, st.session_state.answers, st.session_state.get("qtime", {}), mc=(m["kind"] == "mc"))
         for sname, v in tan["avg"].items():
@@ -6754,10 +7332,12 @@ def compute_result():
 
 def persist(res):
     m, qs = st.session_state.meta, st.session_state.questions
-    store.add_attempt({"grade": m["grade"], "grade_label": m["grade_label"], "mode": m["mode"], "title": m["title"], "scope": m["scope"],
+    rec = store.add_attempt({"grade": m["grade"], "grade_label": m["grade_label"], "mode": m["mode"], "title": m["title"], "scope": m["scope"],
                        "difficulty": m["difficulty"], "kind": m["kind"], "per": res["per"], "topics": res["topics"], "net": res["net"],
                        "pct": res["pct"], "correct": res["correct"], "wrong": res["wrong"], "empty": res["empty"], "total": res["total"],
-                       "duration": res["duration"], "topic_info": m.get("topic_info")})
+                       "duration": res["duration"], "topic_info": m.get("topic_info"),
+                       "score": (res.get("score") or {}).get("total"), "sessions": res.get("sessions")})
+    st.session_state.cur_attempt_id = (rec or {}).get("id")
     items = []
     for i, q in enumerate(qs):
         bad = False
@@ -6785,9 +7365,32 @@ def _tick(idx=None):
     S.q_last = (now, idx) if idx is not None else None
 
 
+def _sess_range(m=None):
+    """Aktif oturumun (a, b, sıra, toplam) değeri; oturumsuz sınavda (0, n, 0, 1)."""
+    m = m or st.session_state.get("meta") or {}
+    sess = m.get("sessions")
+    n = len(st.session_state.get("questions") or [])
+    if not sess:
+        return 0, n, 0, 1
+    si = max(0, min(int(st.session_state.get("sess", 0) or 0), len(sess) - 1))
+    return sess[si]["a"], sess[si]["b"], si, len(sess)
+
+
 def finish():
     _tick(None)
-    st.session_state.duration = int(time.time() - (st.session_state.start or time.time()))
+    S = st.session_state
+    m = S.meta
+    sess = m.get("sessions")
+    if sess and m["kind"] == "mc":
+        S.sess_el = list(S.get("sess_el") or []) + [int(time.time() - (S.get("sess_start") or time.time()))]
+        if S.sess < len(sess) - 1:  # sıradaki oturuma geç: geri dönüş yok
+            S.sess += 1
+            S.cur = sess[S.sess]["a"]
+            S.page = "sess_break"
+            return
+        S.duration = sum(S.sess_el)
+    else:
+        S.duration = int(time.time() - (S.start or time.time()))
     if st.session_state.meta["kind"] == "open":
         st.session_state.page = "selfscore"
     else:
@@ -6807,9 +7410,9 @@ def _set_open(idx):
 
 
 def _go(delta=0, to=None):
-    n = len(st.session_state.get("questions") or []) or 1
+    a, b, _, _ = _sess_range()
     c = to if to is not None else st.session_state.get("cur", 0) + delta
-    st.session_state.cur = max(0, min(int(c), n - 1))
+    st.session_state.cur = max(a, min(int(c), max(a, b - 1)))
 
 
 def _clear(idx):
@@ -6834,25 +7437,63 @@ def timer_box(total, start):
         st.rerun()
 
 
+def _start_next_session():
+    st.session_state.sess_start = time.time()
+    st.session_state.page = "exam"
+
+
+def sess_break():
+    m = st.session_state.meta
+    sess = m.get("sessions") or []
+    si = min(int(st.session_state.get("sess", 0)), max(0, len(sess) - 1))
+    if not sess:
+        st.session_state.page = "home"
+        st.rerun()
+    prev, nxt = sess[si - 1], sess[si]
+    el = (st.session_state.get("sess_el") or [0])[-1]
+    st.markdown(f"<div class='hero'><h1>✅ {prev['name']} tamamlandı</h1><p>Kullanılan süre: {el // 60} dk {el % 60} sn • Bu bölüme artık dönemezsin (MEB sınavındaki gibi)</p></div>", unsafe_allow_html=True)
+    st.info(f"Sıradaki: **{nxt['name']}** • {nxt['b'] - nxt['a']} soru • **{nxt['sec'] // 60} dk**. Hazır olduğunda başlat; süre bu düğmeye bastığın anda işlemeye başlar. İstersen önce kısa bir mola ver.")
+    c1, c2 = st.columns([2, 1])
+    with c1:
+        st.button(f"▶ {nxt['name']} Oturumunu Başlat", key="sess_start_btn", type="primary", on_click=_start_next_session, use_container_width=True)
+    with c2:
+        st.button("🏁 Sınavı burada bitir", key="sess_stop_btn", on_click=_finish_all, use_container_width=True)
+
+
+def _finish_all():
+    """Kalan oturumları boş sayarak sınavı bitir."""
+    S = st.session_state
+    S.duration = sum(S.get("sess_el") or [])
+    S.result = compute_result()
+    S.page = "result"
+
+
 def exam():
     m, qs = st.session_state.meta, st.session_state.questions
     if not qs:
         st.session_state.page = "home"
         st.rerun()
-    total = len(qs)
-    idx = max(0, min(int(st.session_state.get("cur", 0) or 0), total - 1))
+    A, B, si, ns = _sess_range(m)
+    total = B - A
+    idx = max(A, min(int(st.session_state.get("cur", 0) or 0), B - 1))
     st.session_state.cur = idx
+    num = idx - A + 1
     _tick(idx)
     q = qs[idx]
+    sx = (m.get("sessions") or [None])[si] if m.get("sessions") else None
     h1, h2 = st.columns([2, 1])
     with h1:
         st.markdown(f"### 📋 {m['title']}")
-        done = len(st.session_state.answers) if m["kind"] == "mc" else sum(1 for v in st.session_state.open_answers.values() if str(v).strip())
-        st.markdown(f"<span class='badge'>Soru {idx + 1} / {total}</span><span class='badge'>Cevaplanan {done}</span>"
+        done = (sum(1 for k in st.session_state.answers if A <= k < B) if m["kind"] == "mc" else sum(1 for v in st.session_state.open_answers.values() if str(v).strip()))
+        sb = f"<span class='badge'>🕘 {sx['name']} ({si + 1}/{ns})</span>" if sx else ""
+        st.markdown(f"{sb}<span class='badge'>Soru {num} / {total}</span><span class='badge'>Cevaplanan {done}</span>"
                     f"<span class='badge'>{m['difficulty'][:2]} {m['difficulty'].split('/')[0][2:].strip()}</span>", unsafe_allow_html=True)
         st.progress(done / total)
     with h2:
-        timer_box(m["duration_sec"], st.session_state.start)
+        if sx:
+            timer_box(sx["sec"], st.session_state.get("sess_start"))
+        else:
+            timer_box(m["duration_sec"], st.session_state.start)
     st.markdown("---")
     st.markdown("<div class='question-card'>", unsafe_allow_html=True)
     sub = q.get("subject", "Genel")
@@ -6866,12 +7507,12 @@ def exam():
     if not isinstance(q.get("options"), dict) and m["kind"] == "mc":
         q["options"] = {"A": "-", "B": "-", "C": "-", "D": "-"}
     pts = f" ({q['points']} puan)" if q.get("points") else ""
-    st.markdown(f"<p class='question-title'>Soru {idx + 1} [{sub}]{pts}:\n\n{q['question']}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p class='question-title'>Soru {num} [{sub}]{pts}:\n\n{q['question']}</p>", unsafe_allow_html=True)
     if m["kind"] == "mc":
         opts = q["options"]
         keys = list(opts)
         cv = st.session_state.answers.get(idx)
-        st.radio(f"**Soru {idx + 1} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
+        st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
         st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
     else:
@@ -6881,18 +7522,19 @@ def exam():
     st.markdown("<div class='nav-btn-container'>", unsafe_allow_html=True)
     n1, n2, n3 = st.columns([1, 1, 1])
     with n1:  # Sonraki üstte (telefonda alt alta dizilince de yukarıda kalır)
-        if idx < total - 1:
+        if idx < B - 1:
             st.button("➡ Sonraki Soru", key="next", on_click=_go, args=(1,), type="primary", use_container_width=True)
     with n2:
-        st.markdown(f"<div style='text-align:center;font-weight:900;color:#4c1d95;padding-top:.6rem'>Soru {idx + 1} / {total}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align:center;font-weight:900;color:#4c1d95;padding-top:.6rem'>Soru {num} / {total}</div>", unsafe_allow_html=True)
     with n3:
-        if idx > 0:
+        if idx > A:
             st.button("⬅️ Önceki Soru", key="prev", on_click=_go, args=(-1,), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("---")
     fb1, fb2 = st.columns([3, 2])
     with fb1:
-        st.button("🏁 Deneme Sınavını Tamamla ve Sonuçları Gör", key="finish_btn", on_click=finish, type="primary")
+        st.button(f"➡ {sx['name']}'i Bitir ve Sıradaki Oturuma Geç (geri dönülemez)" if (sx and si < ns - 1) else "🏁 Deneme Sınavını Tamamla ve Sonuçları Gör",
+                  key="finish_btn", on_click=finish, type="primary")
     with fb2:
         st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
     _pen(f"{m.get('id', '')}:{idx}")
@@ -6997,6 +7639,100 @@ def _study_summary(res, qs, m):
     st.button("🔁 Yanlışlarımı şimdi tekrar et", key="sum_review", on_click=nav, args=("review",))
 
 
+def _prev5(m, res):
+    """Aynı sınıftaki son 5 çoktan seçmeli sınav (bu sınav hariç, en yeni sonda). Puanlı sınavda hepsine tahmini puan hesaplanır."""
+    cid = st.session_state.get("cur_attempt_id")
+    H = [h for h in store.history() if h.get("grade") == m["grade"] and h.get("kind") == "mc" and h.get("id") != cid and h.get("per")]
+    if res.get("score"):
+        pref = [h for h in H if h.get("mode") in ("lgs", "gds")]
+        if pref:
+            H = pref
+    out = []
+    for h in H[-5:]:
+        sc_ = h.get("score")
+        if sc_ is None and res.get("score"):
+            try:
+                sc_ = cur.exam_score(h["per"])["total"]
+            except Exception:
+                sc_ = None
+        out.append({"title": h.get("title", ""), "ts": h.get("ts"), "correct": h.get("correct", 0), "wrong": h.get("wrong", 0), "empty": h.get("empty", 0),
+                    "net": h.get("net", 0), "pct": h.get("pct", 0), "per": h.get("per", {}), "score": sc_})
+    return out
+
+
+def _score_block(m, res, prev5):
+    sc = res["score"]
+    st.markdown("<div class='sec-title'>🏆 Puan (500 üzerinden, tahmini)</div>", unsafe_allow_html=True)
+    k = st.columns([1.3, 1, 1, 1])
+    last = prev5[-1]["score"] if prev5 and prev5[-1].get("score") is not None else None
+    with k[0]:
+        theme.kpi("Tahmini puan", f"{sc['total']:.1f} / 500", (sc["total"] - last) if last is not None else None, True)
+    with k[1]:
+        theme.kpi("Net (3 yanlış 1 doğruyu götürür)", res["net"])
+    with k[2]:
+        theme.kpi("Doğru / Yanlış / Boş", f"{res['correct']} / {res['wrong']} / {res['empty']}")
+    with k[3]:
+        theme.kpi("Başarı", f"%{res['pct']:.0f}")
+    rows = [(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", f"{d['w']}x", d["net"], f"{d['pts']:.1f}", f"{d['max_pts']:.1f}") for s, d in sc["subj"].items()]
+    theme.html_table(["Ders", "Katsayı", "Net", "Alınan puan", "Alınabilecek"], rows, num_cols=(1, 2, 3, 4))
+    c1, c2 = st.columns(2)
+    with c1:
+        df = pd.DataFrame([{"Durum": "Doğru", "Adet": res["correct"]}, {"Durum": "Yanlış", "Adet": res["wrong"]}, {"Durum": "Boş", "Adet": res["empty"]}])
+        ch = alt.Chart(df).mark_arc(innerRadius=55, outerRadius=95).encode(
+            theta="Adet:Q", color=alt.Color("Durum:N", scale=alt.Scale(domain=["Doğru", "Yanlış", "Boş"], range=["#16a34a", "#dc2626", "#94a3b8"]), legend=alt.Legend(orient="bottom", title=None)),
+            tooltip=["Durum", "Adet"]).properties(height=230, title="Doğru / Yanlış / Boş")
+        st.altair_chart(ch, use_container_width=True)
+    with c2:
+        df2 = pd.DataFrame([{"Ders": s, "Puan": max(0.001, d["pts"])} for s, d in sc["subj"].items()])
+        ch2 = alt.Chart(df2).mark_arc(innerRadius=55, outerRadius=95).encode(
+            theta="Puan:Q", color=alt.Color("Ders:N", legend=alt.Legend(orient="bottom", title=None)), tooltip=["Ders", alt.Tooltip("Puan:Q", format=".1f")]).properties(height=230, title="Puanın ders dağılımı")
+        st.altair_chart(ch2, use_container_width=True)
+    if res.get("sessions"):
+        theme.html_table(["Oturum", "Soru", "D", "Y", "B", "Net", "Kullanılan / verilen süre"],
+                         [(x["name"], x["n"], x["correct"], x["wrong"], x["empty"], x["net"], f"{int(x.get('used', 0)) // 60} / {x['sec'] // 60} dk") for x in res["sessions"]], num_cols=(1, 2, 3, 4, 5))
+
+
+def _compare_block(m, res, prev5):
+    st.markdown("<div class='sec-title'>📊 Son 5 Sınavla Karşılaştırma</div>", unsafe_allow_html=True)
+    if not prev5:
+        st.caption("Karşılaştırma için önceki sınav yok; sınav çözdükçe bu tablo dolacak.")
+        return
+    subs = list(res["per"])
+    ab = {"Türkçe": "Trk", "Matematik": "Mat", "Fen Bilimleri": "Fen", "Sosyal Bilgiler": "Sos", "T.C. İnkılap Tarihi ve Atatürkçülük": "İnk", "Din Kültürü ve Ahlak Bilgisi": "Din", "İngilizce": "İng"}
+    sc_cur = res["score"]["total"] if res.get("score") else None
+    seq = prev5 + [{"title": "▶ Bu sınav", "ts": None, "correct": res["correct"], "wrong": res["wrong"], "empty": res["empty"], "net": res["net"], "pct": res["pct"], "per": res["per"], "score": sc_cur}]
+    rows = []
+    for h in seq:
+        dt = time.strftime("%d.%m.%Y", time.localtime(h["ts"])) if h["ts"] else "bugün"
+        r = [str(h["title"])[:34], dt, h["correct"], h["wrong"], h["empty"], f"{h['net']:.1f}", f"%{h['pct']:.0f}", f"{h['score']:.0f}" if h.get("score") is not None else "—"]
+        for s in subs:
+            d = h["per"].get(s)
+            r.append(f"{max(0.0, d['correct'] - d['wrong'] / 3.0):.1f}" if d else "—")
+        rows.append(r)
+    theme.html_table(["Sınav", "Tarih", "D", "Y", "B", "Net", "Başarı", "Puan"] + [f"{ab.get(s, s[:3])} net" for s in subs], rows, num_cols=tuple(range(2, 8 + len(subs))))
+    labs = [(time.strftime("%d.%m", time.localtime(h["ts"])) if h["ts"] else "Bu sınav") for h in seq]
+    ln = pd.DataFrame([{"Sınav": f"{i + 1}. {labs[i]}", "Değer": (h["score"] if (sc_cur is not None and h.get("score") is not None) else h["net"]),
+                        "Ölçü": "Puan" if sc_cur is not None else "Net"} for i, h in enumerate(seq)])
+    st.altair_chart(alt.Chart(ln).mark_line(point=True, color="#7c3aed").encode(x=alt.X("Sınav:N", sort=None, title=None), y=alt.Y("Değer:Q", title=ln["Ölçü"].iloc[0]),
+                                                                          tooltip=["Sınav", "Değer"]).properties(height=220), use_container_width=True)
+    return seq
+
+
+def _report_pdf_button(m, res, prev5):
+    cid = st.session_state.get("cur_attempt_id") or m.get("id")
+    cache = st.session_state.setdefault("karne_cache", {})
+    if cid not in cache:
+        try:
+            from core import pdf_export
+            cache[cid] = pdf_export.exam_report_pdf(store.settings().get("name", ""), m, res, prev5)
+        except Exception as e:
+            cache[cid] = None
+            st.warning(f"Karne PDF'i hazırlanamadı ({type(e).__name__}).")
+    if cache.get(cid):
+        st.download_button("📑 Detaylı Sınav Karnesi (PDF) • dairesel grafikler + son 5 sınav karşılaştırması", cache[cid], file_name=f"karne_{(m.get('title') or 'sinav')[:30].replace(' ', '_')}.pdf",
+                           mime="application/pdf", key="dl_karne", type="primary", use_container_width=True)
+
+
 def result():
     m, qs, res = st.session_state.meta, st.session_state.questions, st.session_state.result
     if not res:
@@ -7020,6 +7756,12 @@ def result():
             theme.kpi(l, v, d, up)
     if prev:
         st.caption(f"Karşılaştırma: önceki aynı tür sınav — {prev['title']}")
+    p5 = _prev5(m, res) if res["kind"] == "mc" else []
+    if res.get("score"):
+        _score_block(m, res, p5)
+    if res["kind"] == "mc":
+        _report_pdf_button(m, res, p5)
+        _compare_block(m, res, p5)
     st.markdown("<div class='sec-title'>📚 Ders Bazlı Değerlendirme</div>", unsafe_allow_html=True)
     rows, chart = [], []
     for s, d in res["per"].items():
@@ -7126,7 +7868,7 @@ from . import theme
 from .state import nav
 
 SPARK = "▁▂▃▄▅▆▇█"
-MODE_NAMES = {"weekly": "Haftalık", "agis": "AGİS", "monthly": "AGİS", "oyss": "OYSS", "topic": "Konu Tarama", "bank": "Soru Bankası", "leaf": "Yaprak Test", "archive": "Arşiv Testi"}
+MODE_NAMES = {"lgs": "LGS Deneme", "gds": "Genel Değerlendirme", "tempo": "Tempo", "wrongexam": "Yanlışlarımdan", "weekly": "Haftalık", "agis": "AGİS", "monthly": "AGİS", "oyss": "OYSS", "topic": "Konu Tarama", "bank": "Soru Bankası", "leaf": "Yaprak Test", "archive": "Arşiv Testi"}
 
 
 def spark(vals):
@@ -7690,11 +8432,11 @@ with st.sidebar:
 
 # ------------------------------------------------------------------ yönlendirme
 PAGE = st.session_state.page
-if PAGE in ("exam", "ready"):  # soru çözerken dikkat dağıtan hiçbir şey olmasın
+if PAGE in ("exam", "ready", "sess_break"):  # soru çözerken dikkat dağıtan hiçbir şey olmasın
     st.markdown("<style>[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl'],[data-testid='collapsedControl']{display:none !important}</style>", unsafe_allow_html=True)
 ROUTES = {
     "home": setup.home, "modes": setup.modes, "setup": wizard.run, "ready": setup.ready, "pre": setup.pre,
-    "exam": exam.exam, "selfscore": exam.selfscore, "result": exam.result,
+    "exam": exam.exam, "sess_break": exam.sess_break, "selfscore": exam.selfscore, "result": exam.result,
     "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges,
 }
 try:
