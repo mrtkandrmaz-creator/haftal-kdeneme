@@ -87,6 +87,7 @@ C = {
       _u("Birey ve Toplum", "Kelime türleri; Ad-sıfat; Cümle öğeleri giriş")],
   MAT: [_u("Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)", "Doğru, ışın, doğru parçası; Paralel ve dik doğrular; Geometrik çizimler"),
        _u("Açı Ölçme (MAT.5.3.3-4)", "Açı ölçme ve çizme; Açı türleri; Açıortay"),
+       _u("Açı İlişkileri: Tümler, Bütünler, Komşu ve Ters Açılar (MAT.5.3.4)", "Tümler açılar (toplamı 90°); Bütünler açılar (toplamı 180°); Komşu açılar; Ters (karşıt) açılar; Kesişen iki doğrunun oluşturduğu açılar"),
        _u("Çokgenler ve Çember (MAT.5.3.5-7)", "Çokgenlerin elemanları; Çember ve daire elemanları; Çokgen çizimi"),
        _u("Basamak Değerlerini Çözümleme (MAT.5.1.1)", "Milyonlu sayılar; Basamak değeri; Sayı okuma-yazma"),
        _u("Doğal Sayılarla Dört İşlem (MAT.5.1.2)", "Dört işlem problemleri; Zihinden işlem; Tahmin"),
@@ -2528,6 +2529,52 @@ def history():
     return _load("history.json", [])
 
 
+def _today():
+    import datetime as _d
+    try:
+        from zoneinfo import ZoneInfo
+        return _d.datetime.now(ZoneInfo("Europe/Istanbul")).date()
+    except Exception:
+        return _d.date.today()
+
+
+def count_generated(n):
+    """Takvim gününe göre üretilen/sunulan soru sayısını günlük sayaca ekler."""
+    try:
+        n = int(n)
+        if n <= 0:
+            return
+        d = _load("gen_stats.json", {})
+        if not isinstance(d, dict):
+            d = {}
+        k = _today().isoformat()
+        d[k] = int(d.get(k, 0)) + n
+        _save("gen_stats.json", d)
+    except Exception:
+        pass
+
+
+def gen_totals():
+    """(bugün, bu hafta [Pazartesi-başlangıçlı], bu ay) — takvim gününe göre."""
+    import datetime as _d
+    d = _load("gen_stats.json", {})
+    t = _today()
+    wk0 = t - _d.timedelta(days=t.weekday())
+    day = wk = mo = 0
+    for k, v in (d.items() if isinstance(d, dict) else []):
+        try:
+            dt = _d.date.fromisoformat(k); v = int(v)
+        except Exception:
+            continue
+        if dt == t:
+            day += v
+        if wk0 <= dt <= t:
+            wk += v
+        if dt.year == t.year and dt.month == t.month and dt <= t:
+            mo += v
+    return day, wk, mo
+
+
 def add_attempt(rec):
     h = history()
     rec = {**rec, "id": uuid.uuid4().hex[:10], "ts": int(time.time())}
@@ -4881,7 +4928,7 @@ def _relaxed_ok(q, kept):
     return True
 
 
-def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False):
+def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False, count=True):
     """plan: [{subject, n, topics}] -> (questions, errors).
     Her ders BAĞIMSIZ ilerler (başka dersi beklemez): bankadan al -> paralel üret -> eksik kaldıkça yeniden tamamla
     (turlar ilerledikçe daha çok yedek ister, çeşitlilik kuralını gevşetir, en son görselsiz moda geçer).
@@ -5033,6 +5080,11 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             pass
     for i, q in enumerate(questions, 1):
         q["id"] = i
+    if count:
+        try:
+            store.count_generated(len(questions))
+        except Exception:
+            pass
     return questions, errors
 
 
@@ -5069,7 +5121,7 @@ def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
     def run():
         try:
             sub = [p for _, p in todo]
-            qs, _e = generate_mc(sub, grade_label, difficulty, scope_label, avoid=avoid, use_bank=False, deposit=False, keys=(gk, mk), verify=True)
+            qs, _e = generate_mc(sub, grade_label, difficulty, scope_label, avoid=avoid, use_bank=False, deposit=False, keys=(gk, mk), verify=True, count=False)
             for key, p in todo:
                 mine = [q for q in qs if q.get("subject") == p["subject"]]
                 store.bank_put(key, _bank_meta(p, grade_label, difficulty), mine)
@@ -5089,7 +5141,7 @@ def fill_bank(plan, grade_label, difficulty, scope_label, avoid=None, on_progres
     if demo_mode():
         return 0, []
     from . import store
-    qs, errs = generate_mc(plan, grade_label, difficulty, scope_label, avoid=avoid, on_progress=on_progress, use_bank=False, deposit=False, verify=True)
+    qs, errs = generate_mc(plan, grade_label, difficulty, scope_label, avoid=avoid, on_progress=on_progress, use_bank=False, deposit=False, verify=True, count=False)
     added = 0
     for p in plan:
         mine = [q for q in qs if q.get("subject") == p["subject"]]
@@ -7508,6 +7560,13 @@ with st.sidebar:
     st.button("📊 Performans & Raporlar", key="nv_rep", use_container_width=True, on_click=state.nav, args=("reports",))
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
+    try:
+        from core import store as _gstore
+        _gd, _gw, _gm = _gstore.gen_totals()
+        st.markdown("---")
+        st.markdown(f"<div style='font-size:.85rem;line-height:1.7'><b>📈 Üretilen soru</b><br>Bugün: <b>{_gd}</b><br>Bu hafta: <b>{_gw}</b><br>Bu ay: <b>{_gm}</b></div>", unsafe_allow_html=True)
+    except Exception:
+        pass
 
 # ------------------------------------------------------------------ yönlendirme
 PAGE = st.session_state.page
