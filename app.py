@@ -652,6 +652,574 @@ def difficulty_labels(n):
 def profile_name(scen):
     return _PROFILE_NAMES[scen]
 '''
+MODULES['core/fenfig'] = r'''# -*- coding: utf-8 -*-
+"""Fen Bilimleri / basit makineler çizimleri (Soru Fabrikası'ndan uyarlandı): sorudaki verilerle ölçekli, cevaba ipucu vermeyen şemalar."""
+import itertools
+import re
+import textwrap
+import numpy as np
+from matplotlib.patches import Arc, FancyBboxPatch, Polygon, Rectangle, Wedge
+import matplotlib.pyplot as plt
+
+
+def _norm(s):
+    s = str(s).replace("İ", "i").replace("I", "i").lower()
+    for a, b in zip("çğıöşü", "cgiosu"):
+        s = s.replace(a, b)
+    return s.replace(" ", "_").replace("-", "_").replace("(", "").replace(")", "")
+
+
+
+def _t(x):
+    """Etiketi matplotlib için güvenli metne çevirir ($ / LaTeX kalıntılarını temizler)."""
+    s = "" if x is None else str(x)
+    s = s.replace("^\\circ", "°").replace("\\circ", "°").replace("$", "")
+    s = re.sub(r'\\frac\{([^}]+)\}\{([^}]+)\}', r'\1/\2', s)
+    s = s.replace("\\%", "%").replace("\\", "")
+    return s.strip()
+
+
+_OLCU_RE = re.compile(r'\s*(\d+(?:[.,]\d+)?)\s*(?:°|derece|cm|mm|km|m|N|kg|g|br|birim)?\s*', re.I)
+
+
+def olcu_cek(deger):
+    """'6 cm', '40°', 8 -> sayı. Sadece SAF ölçüler (x, 2x gibi cebirsel ifadeler -> None)."""
+    if deger is None:
+        return None
+    if isinstance(deger, (int, float)):
+        return float(deger)
+    m = _OLCU_RE.fullmatch(str(deger))
+    return float(m.group(1).replace(",", ".")) if m else None
+
+
+def sayi_cek(deger, varsayilan=None):
+    if deger is None:
+        return varsayilan
+    if isinstance(deger, (int, float)):
+        return float(deger)
+    m = re.search(r'-?\d+(?:[.,]\d+)?', str(deger))
+    return float(m.group(0).replace(",", ".")) if m else varsayilan
+
+
+def liste_cek(deger):
+    if deger is None:
+        return []
+    if isinstance(deger, (list, tuple)):
+        return list(deger)
+    if isinstance(deger, str):
+        ayirici = r'[;|]' if re.search(r'[;|]', deger) else r','
+        return [x.strip() for x in re.split(ayirici, deger) if x.strip()]
+    return [deger]
+
+
+
+
+def _sar(metin, genislik=11):
+    return textwrap.fill(_t(metin), genislik, break_long_words=False, break_on_hyphens=False)
+
+
+def _guzel_adim(ust):
+    for st_ in (0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000):
+        if ust / st_ <= 10:
+            return st_
+    return max(ust / 10, 1)
+
+
+
+def _guzel_maks(v):
+    for m in (5, 10, 20, 25, 50, 100, 200, 500):
+        if v <= m:
+            return m
+    return float(np.ceil(v / 100) * 100)
+
+
+def _dinamometre_tek(ax, cx, kuvvet, maks, ad="", yuk="", n=1, deger_yaz=False):
+    w = 1.3 if n == 1 else 1.18
+    ust, alt = 4.5, 1.9
+    kuvvet = min(max(kuvvet, 0.0), maks)
+    # asma halkası + gövde
+    ax.add_patch(plt.Circle((cx, 4.78), 0.15, fill=False, ec='#475569', linewidth=2.4, zorder=2))
+    ax.plot([cx, cx], [4.63, ust], color='#475569', linewidth=2.6, zorder=2)
+    ax.add_patch(FancyBboxPatch((cx - w / 2, alt), w, ust - alt, boxstyle="round,pad=0,rounding_size=0.12",
+                                fc='#e2e8f0', ec='#0f172a', linewidth=2.2, zorder=2))
+    px0, px1 = cx - w / 2 + 0.09, cx + w / 2 - 0.09
+    ax.add_patch(Rectangle((px0, alt + 0.1), px1 - px0, ust - alt - 0.2, fc='#ffffff', ec='#94a3b8', linewidth=1.2, zorder=3))
+    s0, s1 = ust - 0.32, alt + 0.3
+
+    def yv(v):
+        return s0 - (v / maks) * (s0 - s1)
+    adim = 1.0 if maks <= 10 else maks / 10.0
+    for v in np.arange(0, maks + 1e-9, adim):
+        ax.plot([px0, px0 + 0.16], [yv(v), yv(v)], color='#0f172a', linewidth=1.4, zorder=4)
+        ax.text(px0 + 0.21, yv(v), f"{v:g}", fontsize=7.5, va='center', ha='left', color='#0f172a', zorder=4)
+        if v + adim / 2 <= maks + 1e-9:
+            ax.plot([px0, px0 + 0.08], [yv(v + adim / 2)] * 2, color='#0f172a', linewidth=0.9, zorder=4)
+    ax.text(px1 - 0.03, ust - 0.2, "N", fontsize=9, fontweight='bold', color='#dc2626', ha='right', va='center', zorder=4)
+    # kılavuz yuva
+    ax.add_patch(Rectangle((cx - 0.045, yv(maks) - 0.06), 0.09, (yv(0) - yv(maks)) + 0.12, fc='#cbd5e1', ec='none', zorder=3))
+    # ibre + çubuk + kanca
+    yp = yv(kuvvet)
+    ext = 0.1 + 0.3 * (kuvvet / maks)
+    uc = alt - ext
+    ax.plot([cx, cx], [yp, uc], color='#64748b', linewidth=3, zorder=4, solid_capstyle='butt')
+    ax.plot([px0 + 0.02, cx - 0.09], [yp, yp], color='#dc2626', linewidth=1.2, zorder=3.5, alpha=0.9)
+    ax.plot([cx - 0.09, px1 - 0.02], [yp, yp], color='#dc2626', linewidth=3.2, zorder=5, solid_capstyle='round')
+    ax.add_patch(plt.Circle((cx, uc - 0.08), 0.08, fill=False, ec='#475569', linewidth=2, zorder=4))
+    ip_ust = uc - 0.16
+    bw, bh = (0.92, 0.6) if n == 1 else (0.8, 0.54)
+    ax.plot([cx, cx], [ip_ust, ip_ust - 0.2], color='#475569', linewidth=2, zorder=4)
+    wy = ip_ust - 0.2 - bh
+    ax.add_patch(Rectangle((cx - bw / 2, wy), bw, bh, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=4))
+    ax.text(cx, wy + bh / 2, _t(yuk) or "Yük", fontsize=8.5 if n == 1 else 8, fontweight='bold', ha='center', va='center', color='#0f172a', zorder=5)
+    if ad:
+        ax.text(cx, max(wy - 0.22, 0.2), _t(ad), fontsize=12, fontweight='bold', ha='center', va='center', color='#0f172a')
+    if deger_yaz:
+        ax.text(cx + w / 2 + 0.1, yp, f"{kuvvet:g} N", fontsize=9, fontweight='bold', color='#dc2626', ha='left', va='center',
+                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#fca5a5', lw=1), zorder=6)
+
+
+def _dinamometre_ciz(ax, et):
+    ham = et.get("kuvvetler") if et.get("kuvvetler") is not None else et.get("kuvvet")
+    ks = [sayi_cek(x, 0.0) for x in liste_cek(ham)][:3] or [4.0]
+    maks = sayi_cek(et.get("maks"), None) or _guzel_maks(max(ks))
+    maks = max(maks, max(ks))
+    yukler = liste_cek(et.get("yukler") if et.get("yukler") is not None else et.get("yuk"))
+    isimler = liste_cek(et.get("isimler"))
+    deger_yaz = _norm(et.get("deger_yaz", "hayir")) in ("evet", "true", "1")
+    n = len(ks)
+    merkezler = {1: [3.0], 2: [1.9, 4.1], 3: [1.0, 3.0, 5.0]}[n]
+    for i, (cx, kv) in enumerate(zip(merkezler, ks)):
+        _dinamometre_tek(ax, cx, kv, maks, isimler[i] if i < len(isimler) else "",
+                         yukler[i] if i < len(yukler) else "", n=n, deger_yaz=deger_yaz)
+
+
+def _surtunme_ciz(ax, et):
+    kv = sayi_cek(et.get("kuvvet") if et.get("kuvvet") is not None else et.get("kuvvetler"), 3.0)
+    maks = max(sayi_cek(et.get("maks"), None) or _guzel_maks(kv), kv)
+    zy = 1.4
+    ax.plot([0.3, 5.7], [zy, zy], color='#0f172a', linewidth=2.5)
+    for x in np.arange(0.4, 5.7, 0.22):
+        ax.plot([x, x - 0.14], [zy, zy - 0.14], color='#94a3b8', linewidth=1)
+    yuzey = _t(et.get("yuzey", ""))
+    if yuzey:
+        ax.text(3.0, 0.7, yuzey, fontsize=10, fontweight='bold', ha='center', color='#475569')
+    ax.add_patch(Rectangle((0.9, zy), 1.4, 0.95, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=3))
+    ax.text(1.6, zy + 0.47, _t(et.get("yuk", "Cisim")), fontsize=10, fontweight='bold', ha='center', va='center', zorder=4)
+    ay = zy + 0.47
+    ax.plot([2.3, 2.75], [ay, ay], color='#475569', linewidth=2.5)
+    bx0, bx1 = 2.75, 4.95
+    ax.add_patch(Rectangle((bx0, ay - 0.22), bx1 - bx0, 0.44, fc='#f1f5f9', ec='#0f172a', linewidth=2, zorder=3))
+    sx0, sx1 = bx0 + 0.18, bx1 - 0.18
+    step = 1.0 if maks <= 10 else maks / 10
+    for v in np.arange(0, maks + 1e-9, step):
+        x = sx0 + (v / maks) * (sx1 - sx0)
+        ax.plot([x, x], [ay + 0.22, ay + 0.08], color='#0f172a', linewidth=1.2, zorder=4)
+        ax.text(x, ay + 0.3, f"{v:g}", fontsize=6.5, ha='center', va='bottom', zorder=4)
+    xp = sx0 + (min(max(kv, 0), maks) / maks) * (sx1 - sx0)
+    ax.plot([xp, xp], [ay - 0.2, ay + 0.2], color='#dc2626', linewidth=2.4, zorder=5)
+    ax.text((bx0 + bx1) / 2, ay + 0.62, "Kuvvet (N)", fontsize=7.5, fontweight='bold', color='#dc2626', ha='center', va='bottom')
+    ax.plot([bx1, bx1 + 0.2], [ay, ay], color='#475569', linewidth=2.5)
+    ax.annotate("", xy=(5.75, ay), xytext=(5.15, ay), arrowprops=dict(arrowstyle='->', color='#16a34a', lw=2.2))
+    ax.text(5.45, ay + 0.2, "Çekme", fontsize=8, fontweight='bold', color='#16a34a', ha='center')
+    if _norm(et.get("surtunme_goster", "evet")) not in ("hayir", "false", "0"):
+        ax.annotate("", xy=(0.45, zy + 0.12), xytext=(0.9, zy + 0.12), arrowprops=dict(arrowstyle='->', color='#dc2626', lw=2.2))
+        ax.text(0.62, zy + 0.32, "Sürtünme", fontsize=7.5, fontweight='bold', color='#dc2626', ha='center')
+
+
+# --- BASINÇ ---
+def _basinc_kati(ax, et):
+    durus = _norm(et.get("durus", "yatay"))
+    w, h = (1.0, 2.4) if durus == "dikey" else (2.4, 1.0)
+    zemin, cx = 1.3, 3.0
+    ax.plot([0.5, 5.5], [zemin, zemin], color='#0f172a', linewidth=2.5)
+    for x in np.arange(0.6, 5.5, 0.25):
+        ax.plot([x, x - 0.15], [zemin, zemin - 0.15], color='#94a3b8', linewidth=1)
+    ax.add_patch(Rectangle((cx - w / 2, zemin), w, h, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=3))
+    cisim = _t(et.get("cisim", ""))
+    if cisim:
+        ax.text(cx, zemin + h * 0.78, cisim, fontsize=10, fontweight='bold', ha='center', va='center', zorder=5)
+    ax.annotate("", xy=(cx, zemin + 0.04), xytext=(cx, zemin + h * 0.5),
+                arrowprops=dict(arrowstyle='->', color='#0f172a', lw=2), zorder=5)
+    ax.text(cx + w / 2 + 0.12, zemin + h * 0.3, _t(et.get("G", "G")), fontsize=10, fontweight='bold', ha='left', va='center', zorder=5)
+    ax.plot([cx + 0.04, cx + w / 2 + 0.08], [zemin + h * 0.3] * 2, color='#94a3b8', linewidth=0.9, linestyle=':', zorder=4)
+    if et.get("F"):
+        ax.annotate("", xy=(cx, zemin + h + 0.05), xytext=(cx, zemin + h + 0.95),
+                    arrowprops=dict(arrowstyle='->', color='#dc2626', lw=2.4))
+        ax.text(cx + 0.12, zemin + h + 0.5, _t(et["F"]), fontsize=10, fontweight='bold', color='#dc2626', ha='left', va='center')
+    ax.annotate("", xy=(cx - w / 2, zemin - 0.4), xytext=(cx + w / 2, zemin - 0.4),
+                arrowprops=dict(arrowstyle='<->', color='#475569', lw=1.6))
+    s_et = _t(et.get("S", ""))
+    ax.text(cx, zemin - 0.7, (f"S = {s_et}" if s_et and "=" not in s_et and s_et != "S" else (s_et or "S")),
+            fontsize=9, fontweight='bold', ha='center', va='top', color='#475569')
+
+
+def _basinc_sivi(ax, et):
+    y0, yu = 0.9, 4.1
+    seviye = 3.5
+    noktalar = [_t(x) for x in liste_cek(et.get("noktalar"))]
+    n = 1 if noktalar else max(1, min(int(sayi_cek(et.get("kap_sayisi"), 1)), 3))
+    genislik = {1: [2.6 if noktalar else 1.8], 2: [1.4, 2.2], 3: [1.1, 1.8, 1.2]}[n]
+    merkez = {1: [3.0], 2: [1.9, 4.2], 3: [1.2, 3.0, 4.8]}[n]
+    sivi = _t(et.get("sivi_adi", "Su"))
+    for cx, w in zip(merkez, genislik):
+        ax.add_patch(Rectangle((cx - w / 2, y0), w, seviye - y0, fc='#bae6fd', ec='none', alpha=0.9, zorder=1))
+        ax.plot([cx - w / 2, cx - w / 2, cx + w / 2, cx + w / 2], [yu, y0, y0, yu], color='#0f172a', linewidth=2.4, zorder=3)
+        ax.plot([cx - w / 2 + 0.03, cx + w / 2 - 0.03], [seviye, seviye], color='#0284c7', linewidth=1.8, zorder=3)
+    ax.text(merkez[-1], y0 - 0.3, sivi, fontsize=9, fontweight='bold', ha='center', va='top', color='#0369a1')
+    if noktalar:
+        der = [sayi_cek(x, i + 1.0) for i, x in enumerate(liste_cek(et.get("derinlikler")))]
+        der += [float(i + 1) for i in range(len(der), len(noktalar))]
+        dl = liste_cek(et.get("derinlikler"))
+        mx = max(der)
+        cx, w = merkez[0], genislik[0]
+        for i, (ad, d) in enumerate(zip(noktalar, der)):
+            y = seviye - (d / mx) * (seviye - y0 - 0.45)
+            ax.plot([cx - w / 2, cx], [y, y], color='#475569', linewidth=0.9, linestyle=':', zorder=3)
+            ax.plot(cx, y, 'ko', markersize=5, zorder=5)
+            ax.text(cx + 0.15, y, ad, fontsize=10, fontweight='bold', va='center', zorder=5)
+            if i < len(dl):
+                ax.text(cx - w / 2 - 0.1, y, _t(dl[i]), fontsize=8, fontweight='bold', ha='right', va='center', color='#dc2626')
+        return
+    yp = seviye - 1.4
+    for cx, w in zip(merkez, genislik):
+        ax.plot(cx, yp, 'ko', markersize=5, zorder=5)
+        ax.text(cx + 0.14, yp - 0.02, _t(et.get("P", "P")), fontsize=10, fontweight='bold', va='center', zorder=5)
+        ax.annotate("", xy=(cx, yp + 0.05), xytext=(cx, seviye - 0.02), arrowprops=dict(arrowstyle='<->', color='#dc2626', lw=1.8), zorder=5)
+        if et.get("h"):
+            ax.text(cx - 0.1, (yp + seviye) / 2, _t(et["h"]), fontsize=9, fontweight='bold', color='#dc2626', ha='right', va='center', zorder=5)
+
+
+# --- EK GÖRSEL TİPLERİ: MEVSİM, DNA, ÇAPRAZLAMA, DİRENÇ, BASİT MAKİNELER ---
+def _mevsim_ciz(ax, et):
+    gx, gy, a, b = 3.0, 2.5, 2.05, 1.4
+    th = np.linspace(0, 2 * np.pi, 200)
+    ax.plot(gx + a * np.cos(th), gy + b * np.sin(th), color='#94a3b8', linestyle='--', linewidth=1.2)
+    ax.add_patch(plt.Circle((gx, gy), 0.42, color='#f59e0b', ec='#d97706', linewidth=2, zorder=2))
+    ax.text(gx, gy, _t(et.get("G", "Güneş")), fontsize=6, fontweight='bold', color='#ffffff', ha='center', va='center', zorder=3)
+    # (anahtar, yörünge açısı, tarih, kuzey yarımküre mevsimi) - Dünya saat yönünün tersine döner
+    KON = [("haziran", 180, "21 Haziran", "Yaz"), ("eylul", 270, "23 Eylül", "Sonbahar"),
+           ("aralik", 0, "21 Aralık", "Kış"), ("mart", 90, "21 Mart", "İlkbahar")]
+    harf = {"haziran": "K", "eylul": "L", "aralik": "M", "mart": "N"}
+    vurgu = _norm(et.get("vurgula", ""))
+    tarih = _norm(et.get("tarih_goster", "hayir")) in ("evet", "true", "1")
+    mevsim = _norm(et.get("mevsim_goster", "hayir")) in ("evet", "true", "1")
+    tilt = np.radians(23.5)
+    ux, uy = np.sin(tilt), np.cos(tilt)
+    r = 0.3
+    for key, ang, tr, mv in KON:
+        t = np.radians(ang)
+        ex, ey = gx + a * np.cos(t), gy + b * np.sin(t)
+        ad = _t(et.get(key, harf[key]))
+        if vurgu == key:
+            ax.add_patch(plt.Circle((ex, ey), r + 0.13, fill=False, ec='#f97316', linewidth=2.4, zorder=3))
+        ax.add_patch(plt.Circle((ex, ey), r, fc='#1e3a5f', ec='#0f172a', linewidth=1.4, zorder=4))
+        gd = np.degrees(np.arctan2(gy - ey, gx - ex))
+        ax.add_patch(Wedge((ex, ey), r, gd - 90, gd + 90, fc='#7dd3fc', ec='#0f172a', linewidth=1.0, zorder=5))
+        ax.plot([ex - ux * (r + 0.2), ex + ux * (r + 0.2)], [ey - uy * (r + 0.2), ey + uy * (r + 0.2)],
+                color='#dc2626', linewidth=1.8, zorder=6)
+        ax.plot(ex + ux * (r + 0.2), ey + uy * (r + 0.2), 'o', color='#dc2626', ms=3.5, zorder=7)
+        d = np.array([ex - gx, ey - gy])
+        d = d / np.linalg.norm(d)
+        lx, ly = ex + d[0] * (r + 0.55), ey + d[1] * (r + 0.5)
+        metin = ad
+        if tarih:
+            metin += f"\n{tr}"
+        if mevsim:
+            metin += f"\n{mv}"
+        ax.text(lx, ly, metin, fontsize=9 if metin == ad else 7, fontweight='bold', ha='center', va='center', color='#0f172a', zorder=8)
+    ax.text(0.15, 0.2, "Kırmızı çubuk: Dünya'nın eksen eğikliği (kuzey ucu noktalı)", fontsize=5.5, color='#64748b', va='center')
+
+
+def _dna_ciz(ax, et):
+    dizi = re.sub(r'[^ATGC]', '', str(et.get("baz_dizisi", "ATGCCTAG")).upper())[:10] or "ATGCCTAG"
+    n = len(dizi)
+    comp = {'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G'}
+    renk = {'A': '#ef4444', 'T': '#3b82f6', 'G': '#22c55e', 'C': '#f59e0b'}
+    gizle = _norm(et.get("gizle", "")) in ("tamamlayici", "ikinci_zincir", "evet")
+    xs = np.linspace(0.9, 5.1, n)
+    xx = np.linspace(0.5, 5.5, 300)
+    dalga = 0.14 * np.sin(2 * np.pi * (xx - 0.5) / 1.7)
+    ax.plot(xx, 3.35 + dalga, color='#64748b', linewidth=3.5, solid_capstyle='round', zorder=2)
+    ax.plot(xx, 1.65 - dalga, color='#64748b', linewidth=3.5, solid_capstyle='round', zorder=2)
+    for x, b in zip(xs, dizi):
+        yt = 3.35 + 0.14 * np.sin(2 * np.pi * (x - 0.5) / 1.7)
+        yb = 1.65 - 0.14 * np.sin(2 * np.pi * (x - 0.5) / 1.7)
+        ym = (yt + yb) / 2
+        c2 = comp[b]
+        ax.plot([x, x], [yt, ym], color=renk[b], linewidth=3.2, zorder=3)
+        ax.plot([x, x], [ym, yb], color='#cbd5e1' if gizle else renk[c2], linewidth=3.2, zorder=3)
+        ax.add_patch(plt.Circle((x, yt), 0.17, fc=renk[b], ec='#0f172a', linewidth=1.2, zorder=4))
+        ax.text(x, yt, b, fontsize=8, fontweight='bold', color='#ffffff', ha='center', va='center', zorder=5)
+        ax.add_patch(plt.Circle((x, yb), 0.17, fc='#e2e8f0' if gizle else renk[c2], ec='#0f172a', linewidth=1.2, zorder=4))
+        ax.text(x, yb, "?" if gizle else c2, fontsize=8, fontweight='bold', color='#0f172a' if gizle else '#ffffff',
+                ha='center', va='center', zorder=5)
+    if et.get("baslik"):
+        ax.text(3.0, 0.6, _t(et["baslik"]), fontsize=9, fontweight='bold', ha='center', color='#475569')
+
+
+def _caprazlama_ciz(ax, et):
+    e1 = re.sub(r'[^A-Za-z]', '', str(et.get("ebeveyn1", "Aa")))
+    e2 = re.sub(r'[^A-Za-z]', '', str(et.get("ebeveyn2", "Aa")))
+    if len(e1) < 2 or len(e1) % 2 or len(e1) != len(e2) or len(e1) > 4:
+        e1, e2 = "Aa", "Aa"
+    p1 = [e1[i:i + 2] for i in range(0, len(e1), 2)]
+    p2 = [e2[i:i + 2] for i in range(0, len(e2), 2)]
+    g1 = [''.join(c) for c in itertools.product(*p1)]
+    g2 = [''.join(c) for c in itertools.product(*p2)]
+    goster = _norm(et.get("hucreleri_goster", "hayir")) in ("evet", "true", "1")
+    n1, n2 = len(g2), len(g1)
+    cw = min(0.95, 3.6 / n1)
+    ch = min(0.7, 2.8 / n2)
+    x0, y0 = 1.6, 3.9 - ch
+    ax.text(x0 - 0.12, y0 - (n2 * ch) / 2, _t(et.get("ad1", e1)), fontsize=10, fontweight='bold', ha='right', va='center', color='#4f46e5')
+    ax.text(x0 + 0.5 + cw * n1 / 2, y0 + ch * 0.6 + 0.12, _t(et.get("ad2", e2)), fontsize=10, fontweight='bold', ha='center', va='bottom', color='#db2777')
+    for j, g in enumerate(g2):
+        ax.add_patch(Rectangle((x0 + 0.5 + j * cw, y0 + ch * 0.0 + 0.0), cw, ch * 0.6, fc='#fce7f3', ec='#0f172a', linewidth=1.2))
+        ax.text(x0 + 0.5 + (j + 0.5) * cw, y0 + ch * 0.3, g, fontsize=8, fontweight='bold', ha='center', va='center')
+    top = y0
+    for i, g in enumerate(g1):
+        yy = top - (i + 1) * ch
+        ax.add_patch(Rectangle((x0, yy), 0.5, ch, fc='#e0e7ff', ec='#0f172a', linewidth=1.2))
+        ax.text(x0 + 0.25, yy + ch / 2, g, fontsize=8, fontweight='bold', ha='center', va='center')
+        for j, h in enumerate(g2):
+            gen = []
+            for k in range(len(p1)):
+                ik = g[k] + h[k]
+                gen.append(''.join(sorted(ik, key=lambda c: (c.islower(), c))))
+            ax.add_patch(Rectangle((x0 + 0.5 + j * cw, yy), cw, ch, fc='#ffffff', ec='#0f172a', linewidth=1.2))
+            ax.text(x0 + 0.5 + (j + 0.5) * cw, yy + ch / 2, ''.join(gen) if goster else "", fontsize=9, fontweight='bold',
+                    ha='center', va='center', color='#0f172a')
+
+
+def _direnc_ciz(ax, et):
+    su = _norm(et.get("ortam", "hava")) == "su"
+    isim = liste_cek(et.get("isimler")) or ["K", "L"]
+    alan = liste_cek(et.get("alanlar")) or ["genis", "dar"]
+    n = max(1, min(len(alan), 3))
+    isim = (isim + ["K", "L", "M"])[:n]
+    sozlu = {"genis": 1.5, "buyuk": 1.5, "orta": 1.0, "dar": 0.6, "kucuk": 0.6}
+    ham = []
+    for a in alan[:n]:
+        v = olcu_cek(a)
+        ham.append(v if v is not None else sozlu.get(_norm(a), 1.0))
+    mx = max(ham)
+    w = [max(0.45, 1.5 * h / mx) if all(olcu_cek(a) is not None for a in alan[:n]) else h for h, a in zip(ham, alan[:n])]
+    parasut = _norm(et.get("sekil", "levha")) == "parasut"
+    if su:
+        ax.add_patch(Rectangle((0.2, 0.3), 5.6, 4.3, fc='#e0f2fe', ec='#38bdf8', linewidth=1.5, zorder=0))
+        for y in (1.0, 2.0, 3.0, 4.0):
+            xs = np.linspace(0.3, 5.7, 60)
+            ax.plot(xs, y + 0.05 * np.sin(xs * 6), color='#7dd3fc', linewidth=1, zorder=0)
+    merkez = {1: [3.0], 2: [1.8, 4.2], 3: [1.1, 3.0, 4.9]}[n]
+    kg = _norm(et.get("kuvvet_goster", "hayir")) in ("evet", "true", "1")
+    for cx, wi, ad in zip(merkez, w, isim):
+        yc = 3.0
+        if parasut:
+            ax.add_patch(Wedge((cx, yc + 0.2), wi / 2 + 0.2, 0, 180, fc='#fbbf24', ec='#0f172a', linewidth=1.8, zorder=3))
+            ax.plot([cx - wi / 2 - 0.2, cx], [yc + 0.2, yc - 0.45], color='#0f172a', linewidth=1, zorder=3)
+            ax.plot([cx + wi / 2 + 0.2, cx], [yc + 0.2, yc - 0.45], color='#0f172a', linewidth=1, zorder=3)
+            ax.add_patch(Rectangle((cx - 0.17, yc - 0.75), 0.34, 0.3, fc='#cbd5e1', ec='#0f172a', linewidth=1.5, zorder=4))
+            ymid = yc - 0.3
+        else:
+            ax.add_patch(Rectangle((cx - wi / 2, yc), wi, 0.16, fc='#cbd5e1', ec='#0f172a', linewidth=1.8, zorder=3))
+            ymid = yc + 0.08
+        if kg:
+            ax.annotate("", xy=(cx, ymid - 1.0), xytext=(cx, ymid), arrowprops=dict(arrowstyle='->', color='#0f172a', lw=2.2), zorder=6)
+            ax.text(cx + 0.1, ymid - 0.75, "G", fontsize=9, fontweight='bold', va='center')
+            rl = 0.35 + 0.65 * (wi / 1.5)
+            ax.annotate("", xy=(cx, ymid + rl + (0.35 if parasut else 0.0)), xytext=(cx, ymid),
+                        arrowprops=dict(arrowstyle='->', color='#dc2626', lw=2.2), zorder=6)
+            ax.text(cx + 0.1, ymid + rl * 0.5 + (0.2 if parasut else 0.0), "R", fontsize=9, fontweight='bold', color='#dc2626', va='center')
+        ax.text(cx, 1.05, ad, fontsize=11, fontweight='bold', ha='center', color='#0f172a', zorder=6)
+    ax.text(5.7, 4.5, "Su" if su else "Hava", fontsize=8, fontweight='bold', ha='right', color='#0369a1' if su else '#64748b')
+
+
+def _kaldirac_ciz(ax, et):
+    tur = _norm(et.get("tur", "birinci"))
+    ky, yy = olcu_cek(et.get("kuvvet_kolu")), olcu_cek(et.get("yuk_kolu"))
+    ky_var, yy_var = ky is not None, yy is not None
+    ky, yy = ky or 3.0, yy or 1.0
+    if tur.startswith("ucuncu") and not (ky_var and yy_var):
+        ky, yy = 2.0, 4.0
+    L, x0, yb = 4.4, 0.8, 2.3
+    if tur.startswith("ikinci"):
+        yy = min(yy, ky * 0.9)
+        xf, xl, xk = x0, x0 + L * yy / ky, x0 + L
+        kuvvet_yon = "yukari"
+    elif tur.startswith("ucuncu"):
+        ky = min(ky, yy * 0.9)
+        xf, xk, xl = x0, x0 + L * ky / yy, x0 + L
+        kuvvet_yon = "yukari"
+    else:
+        xf, xl, xk = x0 + L * yy / (yy + ky), x0, x0 + L
+        kuvvet_yon = "asagi"
+    ax.add_patch(Rectangle((x0 - 0.1, yb), L + 0.2, 0.14, fc='#d6a65c', ec='#0f172a', linewidth=2, zorder=3))
+    ax.add_patch(Polygon([[xf, yb], [xf - 0.3, yb - 0.6], [xf + 0.3, yb - 0.6]], fc='#94a3b8', ec='#0f172a', linewidth=2, zorder=2))
+    ax.plot([xf - 0.7, xf + 0.7], [yb - 0.6, yb - 0.6], color='#0f172a', linewidth=2.5)
+    ax.text(xf, yb - 0.85, "Destek", fontsize=7.5, fontweight='bold', ha='center', color='#475569')
+    # yük: kirişten sarkan blok
+    ax.plot([xl, xl], [yb, yb - 0.55], color='#475569', linewidth=2)
+    ax.add_patch(Rectangle((xl - 0.28, yb - 1.15), 0.56, 0.6, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=3))
+    ax.text(xl, yb - 0.85, _t(et.get("yuk", "Yük")), fontsize=7.5, fontweight='bold', ha='center', va='center', zorder=4)
+    kt = _t(et.get("kuvvet", "F"))
+    if kuvvet_yon == "asagi":
+        ax.annotate("", xy=(xk, yb + 0.14), xytext=(xk, yb + 1.0), arrowprops=dict(arrowstyle='<-', color='#dc2626', lw=2.4), zorder=6)
+        ax.text(xk + 0.12, yb + 0.6, kt, fontsize=9, fontweight='bold', color='#dc2626', va='center')
+    else:
+        ax.annotate("", xy=(xk, yb + 0.16), xytext=(xk, yb - 0.85), arrowprops=dict(arrowstyle='<-', color='#dc2626', lw=2.4), zorder=6)
+        ax.text(xk + 0.12, yb - 0.5, kt, fontsize=9, fontweight='bold', color='#dc2626', va='center')
+
+    def kol(xa, xb, y, metin, renk):
+        ax.annotate("", xy=(xb, y), xytext=(xa, y), arrowprops=dict(arrowstyle='<->', color=renk, lw=1.4))
+        ax.text((xa + xb) / 2, y + 0.12, metin, fontsize=7.5, fontweight='bold', ha='center', color=renk)
+    yk_m = _t(et.get("yuk_kolu")) if yy_var else "Yük kolu"
+    kk_m = _t(et.get("kuvvet_kolu")) if ky_var else "Kuvvet kolu"
+    kol(min(xf, xl), max(xf, xl), 3.5, yk_m, '#475569')
+    kol(min(xf, xk), max(xf, xk), 4.0, kk_m, '#dc2626')
+
+
+def _egik_duzlem_ciz(ax, et):
+    uz, yk, tb = olcu_cek(et.get("uzunluk")), olcu_cek(et.get("yukseklik")), olcu_cek(et.get("taban"))
+    if uz and yk and uz > yk:
+        tb = (uz ** 2 - yk ** 2) ** 0.5
+    elif yk and tb and not uz:
+        uz = (yk ** 2 + tb ** 2) ** 0.5
+    elif uz and tb and tb < uz:
+        yk = (uz ** 2 - tb ** 2) ** 0.5
+    if not (yk and tb):
+        yk, tb = 2.0, 4.0
+    s = min(4.2 / tb, 2.7 / yk)
+    W, H = tb * s, yk * s
+    A = np.array([0.8, 1.0])
+    C = np.array([0.8 + W, 1.0])
+    D = np.array([0.8 + W, 1.0 + H])
+    ax.add_patch(Polygon([A, C, D], fc='#f1f5f9', ec='#0f172a', linewidth=2.2, zorder=2))
+    ax.plot([C[0] - 0.25, C[0] - 0.25, C[0]], [C[1], C[1] + 0.25, C[1] + 0.25], color='#0f172a', linewidth=1.4)
+    u = (D - A) / np.linalg.norm(D - A)
+    nrm = np.array([-u[1], u[0]])
+    p = A + u * np.linalg.norm(D - A) * 0.55
+    bw, bh = 0.7, 0.45
+    blok = [p - u * bw / 2, p + u * bw / 2, p + u * bw / 2 + nrm * bh, p - u * bw / 2 + nrm * bh]
+    ax.add_patch(Polygon(blok, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=4))
+    bc = p + nrm * bh / 2
+    ax.annotate("", xy=bc + u * 1.2, xytext=bc, arrowprops=dict(arrowstyle='->', color='#dc2626', lw=2.4), zorder=6)
+    ft = bc + u * 1.3 + nrm * 0.15
+    ax.text(ft[0], ft[1], _t(et.get("kuvvet", "F")), fontsize=10, fontweight='bold', color='#dc2626', zorder=6)
+    ax.annotate("", xy=bc + np.array([0, -0.95]), xytext=bc, arrowprops=dict(arrowstyle='->', color='#0f172a', lw=2.2), zorder=6)
+    ax.text(bc[0] + 0.1, bc[1] - 0.75, _t(et.get("yuk", "G")), fontsize=9, fontweight='bold', zorder=6)
+    m = (A + D) / 2
+    uzt = _t(et.get("uzunluk", ""))
+    if uzt:
+        m2 = A + u * np.linalg.norm(D - A) * 0.2
+        q = m2 + np.array([-u[1], u[0]]) * 0.32
+        ax.text(q[0], q[1], uzt, fontsize=9, fontweight='bold', color='#2563eb', ha='center', va='center', rotation=np.degrees(np.arctan2(u[1], u[0])))
+    ykt = _t(et.get("yukseklik", ""))
+    if ykt:
+        ax.text(D[0] + 0.15, (C[1] + D[1]) / 2, ykt, fontsize=9, fontweight='bold', color='#16a34a', va='center')
+    tbt = _t(et.get("taban", ""))
+    if tbt:
+        ax.text((A[0] + C[0]) / 2, A[1] - 0.25, tbt, fontsize=9, fontweight='bold', color='#475569', ha='center')
+
+
+def _makara_ciz(ax, et):
+    tur = _norm(et.get("tur", "sabit"))
+    yuk, kt = _t(et.get("yuk", "Yük")), _t(et.get("kuvvet", "F"))
+    ax.plot([1.6, 4.4], [4.6, 4.6], color='#0f172a', linewidth=3)
+    for x in np.arange(1.7, 4.4, 0.2):
+        ax.plot([x, x + 0.12], [4.6, 4.75], color='#94a3b8', linewidth=1)
+    r = 0.45
+    if tur.startswith("hareketli"):
+        pc = (3.0, 2.9)
+        ax.plot([2.55, 2.55], [4.6, pc[1]], color='#0f172a', linewidth=1.8)
+        th = np.linspace(np.pi, 2 * np.pi, 40)
+        ax.plot(pc[0] + r * np.cos(th), pc[1] + r * np.sin(th), color='#0f172a', linewidth=1.8)
+        ax.plot([3.45, 3.45], [pc[1], 4.1], color='#0f172a', linewidth=1.8)
+        ax.add_patch(plt.Circle(pc, r, fc='#e2e8f0', ec='#0f172a', linewidth=2, alpha=0.9, zorder=3))
+        ax.plot(*pc, 'ko', ms=4, zorder=4)
+        ax.plot([pc[0], pc[0]], [pc[1], 1.9], color='#475569', linewidth=2)
+        ax.add_patch(Rectangle((2.65, 1.2), 0.7, 0.7, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=3))
+        ax.text(3.0, 1.55, yuk, fontsize=8, fontweight='bold', ha='center', va='center', zorder=4)
+        ax.annotate("", xy=(3.45, 4.5), xytext=(3.45, 3.85), arrowprops=dict(arrowstyle='->', color='#dc2626', lw=2.4), zorder=6)
+        ax.text(3.6, 4.15, kt, fontsize=10, fontweight='bold', color='#dc2626', va='center')
+    else:
+        pc = (3.0, 3.7)
+        ax.plot([3.0, 3.0], [4.6, pc[1] + r], color='#0f172a', linewidth=2)
+        ax.add_patch(plt.Circle(pc, r, fc='#e2e8f0', ec='#0f172a', linewidth=2, alpha=0.9, zorder=3))
+        ax.plot(*pc, 'ko', ms=4, zorder=4)
+        ax.plot([2.55, 2.55], [pc[1], 1.9], color='#0f172a', linewidth=1.8)
+        ax.add_patch(Rectangle((2.2, 1.2), 0.7, 0.7, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=3))
+        ax.text(2.55, 1.55, yuk, fontsize=8, fontweight='bold', ha='center', va='center', zorder=4)
+        ax.plot([3.45, 3.45], [pc[1], 2.5], color='#0f172a', linewidth=1.8)
+        ax.annotate("", xy=(3.45, 1.7), xytext=(3.45, 2.5), arrowprops=dict(arrowstyle='->', color='#dc2626', lw=2.4), zorder=6)
+        ax.text(3.6, 2.1, kt, fontsize=10, fontweight='bold', color='#dc2626', va='center')
+
+
+def _disli_ciz(ax, et):
+    sayilar = [max(6, min(int(sayi_cek(x, 20)), 60)) for x in liste_cek(et.get("dislerin_sayisi"))][:3] or [20, 40]
+    isimler = (liste_cek(et.get("isimler")) + ["K", "L", "M"])[:len(sayilar)]
+    yonler = liste_cek(et.get("yonler"))
+    dis_goster = _norm(et.get("dis_goster", "evet")) not in ("hayir", "false", "0")
+    s = min(0.06, 5.2 / (2 * sum(sayilar)))
+    yaricap = [n * s for n in sayilar]
+    cx = 0.45 + yaricap[0]
+    cy = 2.5
+    phi_onceki, n_onceki = None, None
+    for i, (n, r, ad) in enumerate(zip(sayilar, yaricap, isimler)):
+        adim = 2 * np.pi / n
+        if i == 0:
+            phi = 0.0
+        else:
+            frac = ((0 - phi_onceki) / n_onceki) % 1
+            tooth = frac < 0.25 or frac > 0.75
+            phi = np.pi + adim / 2 if tooth else np.pi
+        pts = []
+        for k in range(n):
+            a0 = phi + k * adim
+            for da, rr in ((-0.32, 0.88), (-0.2, 1.1), (0.2, 1.1), (0.32, 0.88)):
+                a = a0 + da * adim
+                pts.append((cx + r * rr * np.cos(a), cy + r * rr * np.sin(a)))
+        renk = ['#93c5fd', '#fdba74', '#86efac'][i % 3]
+        ax.add_patch(Polygon(pts, fc=renk, ec='#0f172a', linewidth=1.6, zorder=3))
+        ax.add_patch(plt.Circle((cx, cy), r * 0.13, fc='#ffffff', ec='#0f172a', linewidth=1.2, zorder=4))
+        fs_ad = 9 if r < 0.7 else 11
+        ax.text(cx, cy + r * 0.62, _t(ad), fontsize=fs_ad, fontweight='bold', ha='center', va='center', zorder=5)
+        if dis_goster:
+            ax.text(cx, cy - r * 0.62, f"{n} diş", fontsize=7 if r < 0.7 else 8, fontweight='bold', ha='center', va='center', zorder=5)
+        yon = _norm(yonler[i]) if i < len(yonler) else ("saat" if i == 0 else "")
+        if yon in ("saat", "ters"):
+            ra = min(0.3, r * 0.3)
+            t = np.radians(np.linspace(50, 300, 30)) if yon == "ters" else np.radians(np.linspace(300, 50, 30))
+            px, py = cx + ra * np.cos(t), cy + ra * np.sin(t)
+            ax.plot(px[:-1], py[:-1], color='#dc2626', linewidth=1.8, zorder=6)
+            ax.annotate("", xy=(px[-1], py[-1]), xytext=(px[-3], py[-3]), arrowprops=dict(arrowstyle='->', color='#dc2626', lw=1.8), zorder=6)
+        phi_onceki, n_onceki = phi, n
+        if i + 1 < len(sayilar):
+            cx += r + yaricap[i + 1]
+
+
+# --- ANA ÇİZİCİ ---
+
+
+KINDS = {"surtunme": _surtunme_ciz, "basinc_kati": _basinc_kati, "basinc_sivi": _basinc_sivi, "mevsim": _mevsim_ciz, "dna": _dna_ciz,
+         "caprazlama": _caprazlama_ciz, "direnc": _direnc_ciz, "kaldirac": _kaldirac_ciz, "egik_duzlem": _egik_duzlem_ciz,
+         "makara": _makara_ciz, "disli": _disli_ciz}
+_HINT_KEYS = ("surtunme_goster", "kuvvet_goster", "hucreleri_goster", "tarih_goster", "mevsim_goster", "etiket_goster", "deger_goster", "deger_yaz", "gorunum_goster")
+
+
+def kind_of(d):
+    k = _norm(d.get("sub_type", ""))
+    return k if k in KINDS else ""
+
+
+def draw(ax, d):
+    """Cevaba ipucu veren seçenekler, soru açıkça istemedikçe KAPALI çizilir."""
+    et = dict(d)
+    for k in _HINT_KEYS:
+        et.setdefault(k, "hayir")
+    KINDS[kind_of(d)](ax, et)
+    ax.set_xlim(-0.1, 6.1)
+    ax.set_ylim(0, 5.0)
+'''
 MODULES['core/visuals'] = r'''# -*- coding: utf-8 -*-
 """Soruya uyumlu görsel motoru. Saf matplotlib; Streamlit ve PDF aynı PNG'yi kullanır.
 Kural: Görseller cevabı/ipucunu ASLA yazmaz (yalnızca veri gösterir)."""
@@ -1311,6 +1879,8 @@ def _quad_pts(kind):
         return np.array([[0, 0], [5, 0], [3.8, 2.4], [1.0, 2.4]], float)
     if k in ("isosceles_trapezoid", "ikizkenar yamuk", "ikizkenar_yamuk"):
         return np.array([[0, 0], [5, 0], [4, 2.4], [1, 2.4]], float)  # bacaklar eşit
+    if k in ("general", "genel", "quad"):
+        return np.array([[0, 0], [5, 0.3], [4.1, 2.7], [0.7, 2.2]], float)  # özel olmayan dörtgen
     return np.array([[0, 1.5], [1.6, 0], [4.6, 1.5], [1.6, 3.2]], float)  # deltoid
 
 
@@ -1342,7 +1912,7 @@ def _quad_geo(ax, d, pts=None, labels=None):
             _tick(ax, *e(0)); _tick(ax, *e(2)); _tick(ax, *e(1), n=2); _tick(ax, *e(3), n=2)
         elif isos:  # ikizkenar yamuk: eşit olan BACAKLAR
             _tick(ax, *e(1)); _tick(ax, *e(3))
-        elif kind not in ("trapezoid", "yamuk"):  # deltoid
+        elif kind not in ("trapezoid", "yamuk", "general", "genel", "quad"):  # deltoid
             _tick(ax, *e(0)); _tick(ax, *e(3)); _tick(ax, *e(1), n=2); _tick(ax, *e(2), n=2)
     right_kinds = ("square", "kare", "rectangle", "dikdörtgen")
     if kind in right_kinds:
@@ -1421,8 +1991,13 @@ def _geo(ax, d):
     return _geo_basic(ax, d)
 
 
+def _fen(ax, d):
+    from . import fenfig
+    fenfig.draw(ax, d)
+
+
 _DISPATCH = {
-    "triangle": _triangle, "circle": _circle, "rectangle": _rectangle,
+    "fen": _fen, "triangle": _triangle, "circle": _circle, "rectangle": _rectangle,
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
@@ -1456,6 +2031,12 @@ def normalize_shape(shape):
         return sh if sh["rows"] else None
     if t not in _DISPATCH:
         return None
+    if t == "fen":
+        from . import fenfig
+        k = fenfig.kind_of(sh)
+        if not k:
+            return None
+        sh["sub_type"] = k
     sh["show_names"] = False  # evre/konum adlarını yazmak cevabı verir
     return sh
 
@@ -1998,6 +2579,37 @@ def add_stems(questions):
     _save("stems.json", d)
 
 
+# ---- hatalı bildirilen sorular: bankadan ve yanlış arşivinden çıkar, bir daha üretilirse elenir
+def bad_stems():
+    return set(_load("bad.json", []))
+
+
+def report_bad(q):
+    import re as _re
+    stem = _re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
+    if not stem:
+        return False
+    bad = _load("bad.json", [])
+    if stem not in bad:
+        bad.append(stem)
+    _save("bad.json", bad[-1000:])
+    try:  # bankadaki aynı soru
+        with _BANK_LOCK:
+            b = _bank()
+            for k in list(b):
+                b[k]["qs"] = [x for x in b[k]["qs"] if _bstem(x) != stem]
+                if not b[k]["qs"]:
+                    b.pop(k)
+            _save("bank.json", b)
+    except Exception:
+        pass
+    try:  # yanlış arşivinden de çıkar (hatalı soruyu çalıştırmasın)
+        _save("wrong.json", [x for x in wrong() if _re.sub(r"\W+", " ", str((x.get("q") or {}).get("question", "")).lower())[:70].strip() != stem])
+    except Exception:
+        pass
+    return True
+
+
 def update_wrong(key, **fields):
     w = wrong()
     for x in w:
@@ -2027,7 +2639,7 @@ import re
 import threading
 
 _BANK_LOCK = threading.Lock()
-BANK_VER = "v2"  # soru kalitesi/zorluk kuralları değişince artırılır: eski bankadaki sorular kullanılmaz
+BANK_VER = "v3"  # soru kalitesi/zorluk kuralları değişince artırılır: eski bankadaki sorular kullanılmaz
 BANK_PER_KEY = 80
 BANK_TOTAL = 2500
 
@@ -2333,9 +2945,9 @@ GEMINI_MODEL = "gemini-3.6-flash"
 GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct", "qwen/qwen3-32b",
                "llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
 GEMINI_MODELS = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"]
-POOL_MAX_WAIT = 25      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
-HEDGE_AFTER = 9         # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
-POOL_DEADLINE = 60      # tek istek için toplam üst süre (sn)
+POOL_MAX_WAIT = 45      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
+HEDGE_AFTER = 14        # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
+POOL_DEADLINE = 90      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
@@ -2350,19 +2962,77 @@ GEN_REASONING = {"Matematik": "low", "Fen Bilimleri": "low"}  # hesap gerektiren
 VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
 VERIFY_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
 VERIFY_DEADLINE = 40  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
-GEN_BUDGET = 90       # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
+GEN_BUDGET = 120      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
 MAX_ROUNDS = 5        # istenen sayıya ulaşmak için en çok tur
 OYSS_CHUNK = 5        # yazılı sınavda tek istekteki soru sayısı
 
 
-def load_keys():
+def _split_keys(v):
+    """Liste ya da 'a, b\nc' biçiminde yazılmış anahtarları temiz, tekrarsız listeye çevirir."""
+    if v is None:
+        return []
+    items = re.split(r"[,\s;]+", v) if isinstance(v, str) else [str(x) for x in v]
+    out = []
+    for k in items:
+        k = str(k).strip().strip("\"'")
+        if len(k) >= 8 and k not in out and "..." not in k:
+            out.append(k)
+    return out
+
+
+def _env_keys(*names):
+    out = []
+    for nm in names:
+        out += _split_keys(os.environ.get(nm))
+    i = 1
+    while i < 60:  # GROQ_API_KEY_1, _2 …
+        v = os.environ.get(f"{names[0].rstrip('S')}_{i}")
+        if v:
+            out += _split_keys(v)
+        i += 1
+    return out
+
+
+def _secret_keys(name):
     import streamlit as st
     try:
-        g = list(st.secrets["api_keys"].get("groq_keys", []))
-        m = list(st.secrets["api_keys"].get("gemini_keys", []))
+        return _split_keys(st.secrets["api_keys"].get(name, []))
     except Exception:
-        g, m = [], []
+        return []
+
+
+def load_keys():
+    """Groq ve Gemini anahtarları: secrets ([api_keys] groq_keys / gemini_keys) + ortam değişkenleri (GROQ_API_KEYS, GEMINI_API_KEYS…).
+    Sınırsız sayıda anahtar eklenebilir; hepsi tek havuzda kullanılır."""
+    g = _split_keys(_secret_keys("groq_keys") + _env_keys("GROQ_API_KEYS", "GROQ_API_KEY"))
+    m = _split_keys(_secret_keys("gemini_keys") + _env_keys("GEMINI_API_KEYS", "GEMINI_API_KEY", "GOOGLE_API_KEY"))
     return g, m
+
+
+# Havuza katılabilen ek (OpenAI uyumlu) sağlayıcılar: anahtarı varsa otomatik devreye girer -> çok daha büyük kota.
+EXTRA_PROVIDERS = {
+    "cerebras": ("https://api.cerebras.ai/v1", ["gpt-oss-120b", "llama-3.3-70b", "qwen-3-235b-a22b-instruct-2507", "llama3.1-8b"]),
+    "openrouter": ("https://openrouter.ai/api/v1", ["openai/gpt-oss-120b:free", "meta-llama/llama-3.3-70b-instruct:free", "qwen/qwen3-235b-a22b:free", "deepseek/deepseek-chat-v3.1:free"]),
+    "mistral": ("https://api.mistral.ai/v1", ["mistral-large-latest", "mistral-small-latest", "open-mistral-nemo"]),
+    "sambanova": ("https://api.sambanova.ai/v1", ["gpt-oss-120b", "Meta-Llama-3.3-70B-Instruct", "DeepSeek-V3.1"]),
+    "nvidia": ("https://integrate.api.nvidia.com/v1", ["openai/gpt-oss-120b", "meta/llama-3.3-70b-instruct", "nvidia/llama-3.3-nemotron-super-49b-v1"]),
+    "github": ("https://models.github.ai/inference", ["openai/gpt-4.1", "openai/gpt-4.1-mini", "meta/Llama-3.3-70B-Instruct"]),
+}
+
+
+def extra_keys():
+    """{sağlayıcı: [anahtarlar]} — secrets'ta '<ad>_keys' (cerebras_keys, openrouter_keys, mistral_keys, sambanova_keys, nvidia_keys, github_keys) ya da ortam değişkeni."""
+    out = {}
+    for nm in EXTRA_PROVIDERS:
+        ks = _split_keys(_secret_keys(nm + "_keys") + _env_keys(nm.upper() + "_API_KEYS", nm.upper() + "_API_KEY"))
+        if ks:
+            out[nm] = ks
+    return out
+
+
+def has_any_keys():
+    g, m = load_keys()
+    return bool(g or m or extra_keys())
 
 
 def demo_mode():
@@ -2372,8 +3042,11 @@ def demo_mode():
 # ---------------------------------------------------------------- ORTAK HAVUZ (kota dostu)
 import itertools
 import threading
+import functools
 
 _UID = itertools.count()
+_INFL = {}              # (sağlayıcı, anahtar_no, model) -> o an uçuştaki istek sayısı
+INFLIGHT_CAP = 2        # aynı anahtar+model'e aynı anda en çok bu kadar istek: yük modellere/anahtarlara yayılır, ani 429'lar azalır
 _POOL_LOCK = threading.Lock()
 _COOL = {}   # (sağlayıcı, anahtar_no, model) -> bu zamana kadar bekle
 _DEAD = {}   # ("model", sağlayıcı, model) / ("key", sağlayıcı, anahtar_no) -> bu zamana kadar kullanma
@@ -2504,6 +3177,90 @@ def model_summary():
         return {k: len(v["ids"]) for k, v in _DISC.items()}
 
 
+class _HttpErr(Exception):
+    def __init__(self, msg, code):
+        super().__init__(msg)
+        self.status_code = code
+
+
+_XM_CACHE = {}  # sağlayıcı -> (zaman, [model kimlikleri])
+_NOT_CHAT = re.compile(r"embed|vision|guard|whisper|tts|image|rerank|moderation|ocr|audio|safety|speech|clip|stable|flux", re.I)
+
+
+def _extra_models(name, base, key):
+    """Tercih listesi (secrets'ta '<ad>_models' ile değiştirilebilir) + varsa /models ile keşfedilen en iyi yeni modeller."""
+    import streamlit as st
+    pref = list(EXTRA_PROVIDERS[name][1])
+    try:
+        pref = list(st.secrets["api_keys"].get(name + "_models", pref)) or pref
+    except Exception:
+        pass
+    ts, ids = _XM_CACHE.get(name, (0, None))
+    if ids is None or time.time() - ts > 3600:
+        ids = []
+        try:
+            import urllib.request
+            rq = urllib.request.Request(base.rstrip("/") + "/models", headers={"Authorization": "Bearer " + key, "User-Agent": "denemematik"})
+            with urllib.request.urlopen(rq, timeout=6) as r:
+                d = json.loads(r.read().decode("utf-8", "replace"))
+            ids = [str(x.get("id")) for x in (d.get("data") if isinstance(d, dict) else d) if isinstance(x, dict) and x.get("id")]
+        except Exception:
+            ids = []
+        _XM_CACHE[name] = (time.time(), ids)
+    if not ids:
+        return pref
+    have = [m for m in pref if m in ids]
+    if name == "openrouter":
+        free = [m for m in ids if m.endswith(":free") and not _NOT_CHAT.search(m)]
+        score = lambda m: -(int(re.search(r"(\d+)b", m).group(1)) if re.search(r"(\d+)b", m) else 0)
+        extra = sorted([m for m in free if m not in have], key=score)[:3]
+    else:
+        score = lambda m: -(int(re.search(r"(\d+)[bB]", m).group(1)) if re.search(r"(\d+)[bB]", m) else 0)
+        extra = sorted([m for m in ids if m not in have and not _NOT_CHAT.search(m) and re.search(r"gpt-oss|llama|qwen|mistral|deepseek|gemma|nemotron", m, re.I)], key=score)[:2]
+    return (have + extra) or pref
+
+
+def _compat_call(name, base, key, prompt_text, system=None, temperature=0.85, model=None, reasoning=None):
+    """OpenAI uyumlu /chat/completions çağrısı (stdlib ile; ek paket gerekmez)."""
+    import urllib.request
+    import urllib.error
+    system = SYSTEM if system is None else system
+    drop = _CAPS.setdefault((name, model), set())
+    for _ in range(4):
+        body = {"model": model, "max_tokens": 8000,
+                "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt_text}]}
+        if "temperature" not in drop:
+            body["temperature"] = temperature
+        if "response_format" not in drop:
+            body["response_format"] = {"type": "json_object"}
+        rq = urllib.request.Request(base.rstrip("/") + "/chat/completions", data=json.dumps(body).encode("utf-8"),
+                                    headers={"Authorization": "Bearer " + key, "Content-Type": "application/json", "User-Agent": "denemematik"})
+        try:
+            with urllib.request.urlopen(rq, timeout=CALL_TIMEOUT) as r:
+                data = json.loads(r.read().decode("utf-8", "replace"))
+        except urllib.error.HTTPError as e:
+            txt = e.read().decode("utf-8", "replace")[:600]
+            low = txt.lower()
+            if e.code in (400, 422):
+                hit = next((t for t in ("response_format", "temperature") if t in low and t not in drop), None)
+                if hit:
+                    drop.add(hit)
+                    continue
+                if "json" in low and "response_format" not in drop:
+                    drop.add("response_format")
+                    continue
+            ra = e.headers.get("retry-after") if e.headers else None
+            raise _HttpErr(f"HTTP {e.code}: {txt}" + (f" Please try again in {ra}s" if ra and str(ra).replace('.', '').isdigit() else ""), e.code)
+        ch = (data.get("choices") or [{}])[0]
+        if ch.get("finish_reason") == "length":
+            raise ValueError("truncated: finish_reason=length")
+        txt = (ch.get("message") or {}).get("content") or ""
+        if not txt.strip():
+            raise ValueError("boş yanıt")
+        return _strip_think(txt)
+    raise RuntimeError(f"{name}: uyumlu istek parametreleri bulunamadı")
+
+
 def _retry_after(msg):
     """Hata metninden 'try again in 7m12.5s' / 'retry in 34s' / retryDelay: '34s' süresini saniye olarak çıkarır."""
     m = re.search(r"(?:try again in|retry in|retrydelay['\"]?\s*:\s*['\"]?)\s*([0-9hmsµ\.]+)", msg, re.I)
@@ -2572,7 +3329,8 @@ def pool_status():
     with _POOL_LOCK:
         cool = sum(1 for v in _COOL.values() if v > now)
         dead = sum(1 for v in _DEAD.values() if v > now)
-    return {"cooling": cool, "disabled": dead}
+        badk = sum(1 for k, v in _DEAD.items() if k[0] == "key" and v > now)
+    return {"cooling": cool, "disabled": dead, "bad_keys": badk}
 
 
 # ---------------------------------------------------------------- API çağrıları
@@ -2599,7 +3357,7 @@ def call_groq_with_key(api_key, prompt_text, system=SYSTEM, temperature=0.85, mo
     for _ in range(6):
         off = drop | tmp
         kw = dict(model=model, messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt_text}])
-        kw["max_tokens" if "use_max_tokens" in off else "max_completion_tokens"] = 12000
+        kw["max_tokens" if "use_max_tokens" in off else "max_completion_tokens"] = 8000
         if "temperature" not in off:
             kw["temperature"] = temperature
         if "response_format" not in off:
@@ -2672,13 +3430,19 @@ from concurrent.futures import ThreadPoolExecutor as _TPE, wait as _cf_wait, FIR
 _HEDGE_EX = _TPE(max_workers=96)
 
 
+def _infl_done(bk):
+    with _POOL_LOCK:
+        _INFL[bk] = max(0, _INFL.get(bk, 0) - 1)
+
+
 def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperature=None, models=None, system=None, reasoning=None, deadline=None, max_wait=None, exclude=None, meta=None):
     """Ortak havuz: önce Groq'un TÜM modelleri (her model için tüm anahtarlar), sonra Gemini'nin tüm modelleri.
     Kota/hız sınırına takılan (anahtar, model) çifti süreli 'soğumaya' alınır ve atlanır; tüm iş parçacıkları
     bu durumu paylaşır, böylece aynı kotaya tekrar tekrar çarpılmaz."""
     gk = [(i, k) for i, k in enumerate(groq_keys) if str(k).strip()]
     mk = [(i, k) for i, k in enumerate(gemini_keys) if str(k).strip()]
-    if not gk and not mk:
+    xk = extra_keys()
+    if not gk and not mk and not xk:
         return None, "Geçerli API anahtarı bulunamadı!"
     gmodels, mmodels = models if models else load_models([k for _, k in gk], [k for _, k in mk])
     deadline = POOL_DEADLINE if deadline is None else deadline
@@ -2694,6 +3458,21 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
                 continue
             for kidx, key in rot:
                 plan.append((prov, kidx, key, model, fn))
+    for nm, ks in xk.items():  # ek sağlayıcılar: Groq ve Gemini'den sonra
+        try:
+            base = EXTRA_PROVIDERS[nm][0]
+            mods = _extra_models(nm, base, ks[0])
+        except Exception:
+            continue
+        rotx = [(i, k) for i, k in enumerate(ks)]
+        r0 = offset % len(rotx)
+        rotx = rotx[r0:] + rotx[:r0]
+        fnx = functools.partial(_compat_call, nm, base)
+        for model in mods:
+            if exclude and model in exclude:
+                continue
+            for kidx, key in rotx:
+                plan.append((nm, kidx, key, model, fnx))
     t0 = time.time()
     last = None
     tried = set()
@@ -2727,6 +3506,8 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
             if (prov, kidx, model) in tried:
                 continue
             w = _wait_for(prov, kidx, model, now)
+            if w <= 0 and _INFL.get((prov, kidx, model), 0) >= INFLIGHT_CAP:
+                w = 1.0  # bu anahtar+model şu an meşgul: sıradakine geç
             if w > 0:
                 soonest = w if soonest is None else min(soonest, w)
                 continue
@@ -2739,7 +3520,12 @@ def multi_pool_generate(prompt_text, groq_keys, gemini_keys, offset=0, temperatu
                 kw["system"] = system
             if reasoning is not None:
                 kw["reasoning"] = reasoning
-            pend[_HEDGE_EX.submit(fn, key, prompt_text, **kw)] = (prov, kidx, model)
+            _bk = (prov, kidx, model)
+            with _POOL_LOCK:
+                _INFL[_bk] = _INFL.get(_bk, 0) + 1
+            _f = _HEDGE_EX.submit(fn, key, prompt_text, **kw)
+            _f.add_done_callback(lambda _x, _bk=_bk: _infl_done(_bk))
+            pend[_f] = (prov, kidx, model)
             r = collect(HEDGE_AFTER)  # yavaşsa beklemeden sıradaki modeli de başlat
             if r:
                 return r, None
@@ -2895,6 +3681,11 @@ def verify_questions(qs, gk, mk, offset=0):
                                    system=VERIFY_SYSTEM, reasoning="medium", deadline=VERIFY_DEADLINE, max_wait=0)
     data = parse_json(raw)
     res = data.get("results") if isinstance(data, dict) else None
+    if not isinstance(res, list):  # ulaşılamadı / bozuk yanıt: farklı model/anahtarla bir kez daha dene
+        raw, err = multi_pool_generate(prompt, gk, mk, offset=offset + 3, temperature=0, models=_verify_models(gk, mk),
+                                       system=VERIFY_SYSTEM, reasoning="medium", deadline=VERIFY_DEADLINE, max_wait=0)
+        data = parse_json(raw)
+        res = data.get("results") if isinstance(data, dict) else None
     if not isinstance(res, list):
         with _POOL_LOCK:
             VERIFY_STATS["unverified"] += len(qs)
@@ -2969,6 +3760,16 @@ _SR_SCI = (
     '- Güneş/Ay tutulması: {"type":"science_space","sub_type":"solar_eclipse|lunar_eclipse","title":"..."}; Yörünge: {"type":"science_space","sub_type":"orbit"}\n'
 )
 
+_SR_FEN = (
+    '- 🔧 FEN ŞEMALARI {"type":"fen","sub_type":"..."} (sorudaki TÜM sayı/harfler şemada AYNEN olsun; sorulan değeri şemaya YAZMA, bilinmeyeni "x" ya da "?" yaz; ipucu veren "*_goster" anahtarlarını yazma):\n'
+    '   surtunme {"kuvvet":3,"maks":10,"yuk":"2 kg","yuzey":"Pürüzlü yüzey"}  |  basinc_kati {"cisim":"5 kg","G":"50 N","F":"20 N","S":"100 cm²","durus":"yatay|dikey"}  |  '
+    'basinc_sivi {"sivi_adi":"Su","noktalar":["K","L","M"],"derinlikler":["10 cm","20 cm","30 cm"]} ya da {"sivi_adi":"Su","kap_sayisi":2,"h":"20 cm"}\n'
+    '   mevsim {"K":"K","L":"L","M":"M","N":"N","vurgula":"haziran|eylul|aralik|mart"} (K=21 Haziran, L=23 Eylül, M=21 Aralık, N=21 Mart; tarih/mevsim adını yazma)  |  '
+    'dna {"baz_dizisi":"ATGCCTAG","gizle":"tamamlayici"} (en çok 10 baz)  |  caprazlama {"ebeveyn1":"Aa","ebeveyn2":"Aa"} (iki özellik: "AaBb")\n'
+    '   direnc {"ortam":"hava|su","isimler":["K","L"],"alanlar":["genis","dar"],"sekil":"levha|parasut"}  |  kaldirac {"tur":"birinci|ikinci|ucuncu","yuk":"60 N","kuvvet":"F","yuk_kolu":"1 m","kuvvet_kolu":"3 m"}  |  '
+    'egik_duzlem {"uzunluk":"5 m","yukseklik":"3 m","yuk":"100 N","kuvvet":"F"}  |  makara {"tur":"sabit|hareketli","yuk":"40 N","kuvvet":"F"}  |  disli {"dislerin_sayisi":[20,40],"isimler":["K","L"],"yonler":["saat"]}\n'
+)
+
 _SR_FOOT = (
     "⛔ Şemanın başlığı, etiketleri ve değerleri sorunun CEVABINI veya İPUCUNU ASLA içermesin; yalnızca ham veriyi göstersin.\n"
     "Görsel gerektirmeyen sorularda 'shape' değerini null yap. Her seferinde konuya uygun FARKLI görsel türü seç.\n"
@@ -2986,7 +3787,7 @@ def shape_rules(subject, geo_on=False):
     if subject == "Matematik":
         return _SR_HEAD + _SR_BASIC + (_SR_GEO if geo_on else "") + _SR_CHART + _SR_NUMLINE + _SR_FOOT
     if subject == "Fen Bilimleri":
-        return _SR_HEAD + _SR_CHART + _SR_SCI + _SR_FOOT
+        return _SR_HEAD + _SR_CHART + _SR_SCI + _SR_FEN + _SR_FOOT
     return _SR_HEAD + _SR_CHART + _SR_NUMLINE + _SR_FOOT
 
 SUBJECT_HINT = {
@@ -3005,7 +3806,7 @@ SUBJECT_HINT = {
 
 
 _GEO = {"triangle", "circle", "rectangle", "cylinder", "number_line", "geo"}
-_SCI = {"science_space", "space_orbit", "eclipse", "moon_phases", "dynamometer", "thermometer", "forces", "science_chart", "cylinder"}
+_SCI = {"fen", "science_space", "space_orbit", "eclipse", "moon_phases", "dynamometer", "thermometer", "forces", "science_chart", "cylinder"}
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
     "Matematik": _GEO | _CH,
@@ -3015,7 +3816,7 @@ ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini
 }
 VISUAL_HINT = {
     "Matematik": "Şekil/grafik/tablo: geometri (üçgen, çember, dikdörtgen), sayı doğrusu, sütun/çizgi/daire grafiği, veri tablosu.",
-    "Fen Bilimleri": "Görsel: deney düzeneği verileri, dinamometre, termometre, kuvvet, Ay evreleri/Güneş-Dünya, tablo ve grafikler. Geometri şekli (üçgen/çember) KULLANMA.",
+    "Fen Bilimleri": "Görsel: deney düzeneği verileri, dinamometre, termometre, kuvvet, sürtünme, basınç, mevsimler, DNA, çaprazlama, basit makineler (kaldıraç, eğik düzlem, makara, dişli), Ay evreleri/Güneş-Dünya, tablo ve grafikler. Geometri şekli (üçgen/çember) KULLANMA.",
     "Sosyal Bilgiler": "Görsel yalnızca tablo, sütun/çizgi/daire grafiği ya da zaman çizelgesi (sayı doğrusu) olabilir; geometri ve fen şemaları YOK.",
     "T.C. İnkılap Tarihi ve Atatürkçülük": "Görsel yalnızca kronoloji tablosu/şeridi ya da basit grafik olabilir; geometri ve fen şemaları YOK.",
 }
@@ -3030,10 +3831,25 @@ FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu
 
 # ---------------------------------------------------------------- konu-görsel tutarlılığı (katı)
 _MOON = re.compile(r"\bevre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
+_FEN_REQ = {
+    "surtunme": r"sürtünme|pürüz|dinamometre|kuvvet|yüzey|çekme",
+    "basinc_kati": r"basınç|kuvvet|yüzey alan|ağırlık|taban",
+    "basinc_sivi": r"basınç|sıvı|derinlik|kap\b|su\b",
+    "mevsim": r"mevsim|yörünge|eksen|iklim|haziran|aralık|eylül|mart|güneş ışın",
+    "dna": r"dna|baz|nükleotid|genetik|tamamlayıcı|gen\b",
+    "caprazlama": r"çaprazlama|genotip|fenotip|kalıtım|allel|punnett|baskın|çekinik|gen\b|bireyler",
+    "direnc": r"direnç|hava|su\b|paraşüt|yüzey alan|sürtünme",
+    "kaldirac": r"kaldıraç|kuvvet kolu|yük kolu|destek|basit makine",
+    "egik_duzlem": r"eğik düzlem|basit makine|yük|kuvvet|rampa",
+    "makara": r"makara|basit makine|yük|kuvvet",
+    "disli": r"dişli|basit makine|dönüş|devir|diş",
+}
+_FEN_KINDS = set(_FEN_REQ)
+
 _MOON_KINDS = {"moon_single", "moon_phases", "moon_sequence", "phases", "moon_orbit", "moon_positions", "solar_eclipse", "lunar_eclipse", "eclipse", "orbit", "space_orbit"}
 _TOPIC_RULES = [  # (ad, konu regex, izinli görsel türleri)
-    ("ay", _MOON, _MOON_KINDS),
-    ("kuvvet", re.compile(r"dinamometre|kuvvet|sürtünme|newton|ağırlık|dengelen", re.I), {"dynamometer", "forces", "line_chart", "bar_chart", "table"}),
+    ("ay", _MOON, _MOON_KINDS | {"mevsim"}),
+    ("kuvvet", re.compile(r"dinamometre|kuvvet|sürtünme|newton|ağırlık|dengelen", re.I), {"dynamometer", "forces", "line_chart", "bar_chart", "table"} | _FEN_KINDS),
     ("ısı", re.compile(r"sıcaklık|termometre|ısı|erime|donma|kaynama|buharlaş", re.I), {"thermometer", "line_chart", "bar_chart", "table", "cylinder"}),
 ]
 _REQUIRE = {  # özel görsel -> metinde bulunması gereken anahtarlar
@@ -3043,10 +3859,11 @@ _REQUIRE = {  # özel görsel -> metinde bulunması gereken anahtarlar
     "circle": r"çember|daire|yarıçap|çap|merkez|yay|alan|çevre",
     "rectangle": r"dikdörtgen|kare|dörtgen|alan|çevre|bahçe|zemin|tarla|kenar|uzunluk|genişlik|oda",
     "cylinder": r"hacim|silindir|ml|litre|sıvı|ölç|kap|taşır",
-    "forces": r"kuvvet|net|hareket|sürtünme|dengelen|itme|çekme",
+    "forces": r"kuvvet|\bnet\b|hareket|sürtünme|dengelen|itme|çekme",
     "geo": r"doğru|ışın|parça|dik|paralel|açı|çokgen|üçgen|dörtgen|beşgen|altıgen|köşegen|kenar|köşe|şekil|kesen|eş",
     "number_line": r"sayı|doğru|konum|yıl|zaman|kronolo|kesir|ondalık|negatif|tam sayı|eksi|işaret|mutlak|sıra",
 }
+_REQUIRE.update(_FEN_REQ)
 for _k in _MOON_KINDS:
     _REQUIRE[_k] = r"\bay\b|ay['’]?ın|evre|tutulma|uzay|gezegen|yörünge|dünya|güneş|gökcis|uydu|hilal|dolunay"
 _FIG = re.compile(r"\b(şekil|şekle|şekilde|şekildeki|grafik|grafiğe|grafikte|grafikteki|tablo|tabloya|tabloda|tablodaki|görsel|görselde|resim|resimde|çizim|çizimde|diyagram)\w*", re.I)
@@ -3054,6 +3871,8 @@ _FIG = re.compile(r"\b(şekil|şekle|şekilde|şekildeki|grafik|grafiğe|grafikt
 
 def _kind(shape):
     t = shape.get("type")
+    if t == "fen":
+        return str(shape.get("sub_type") or "").lower()
     return str(shape.get("sub_type") or t).lower() if t == "science_space" else t
 
 
@@ -3064,7 +3883,11 @@ def coherent_shape(shape, text):
     k = _kind(shape)
     for _n, rx, allowed in _TOPIC_RULES:
         if rx.search(text):
-            return (shape, False) if k in allowed else (None, True)
+            if k not in allowed:
+                return None, True
+            if k not in _FEN_KINDS:
+                return shape, False
+            break  # fen şemaları ayrıca kendi konu anahtarını da taşımalı
     req = _REQUIRE.get(k)
     if req and not re.search(req, text, re.I):
         return None, True
@@ -3107,6 +3930,7 @@ MATH_NOTATION = (
     "'angles' (ör. {\"B\":\"3x+5°\",\"C\":\"2x+15°\"}, sorulan açı için \"?\") ve 'sides' alanlarını soruyla BİREBİR doldur. Şekilde olmayan veri metinde, metinde olmayan veri şekilde olmasın (sorulan değer hariç). "
     "Dörtgenlerde köşeleri sırayla A, B, C, D adlandır ve metinde 'ABCD dörtgeninde' diye belirt (şekil aynı harfleri taşır); dörtgen türünü (dikdörtgen, paralelkenar, ikizkenar yamuk…) soruda yaz, "
     "'quad' şemasında 'kind' ve 'angles'/'sides' alanlarını doldur. İkizkenar üçgen/yamukta eşit kenarları metinde AÇIKÇA yaz (|AB| = |AC|); şekilde bu kenarlar işaretlenir. "
+    "Yamukta paralel kenarları metinde yaz (AB ∥ DC); şekil aynı kenarları paralel çizer. Metinde adı geçmeyen özel tür (ikizkenar, dik, eşkenar, dikdörtgen…) şekilde GÖSTERİLMEZ. "
     "Eşkenar üçgende her açı 60° olduğundan cebirsel açı ifadesi (ör. m(BAC) = 3x − 15°) 60°'ye eşitlenince x TAM SAYI çıksın; verilen ifade şekilde ilgili köşede görünür. Dik üçgende dik açının köşesini metinde belirt (m(ABC) = 90° ya da AB ⊥ BC); şekil dik üçgen olarak çizilir. ÇEVRE sorulurken gereken TÜM uzunluklar verilsin: üçgende üç kenar, ya da eşitlik bilgisi (|AB| = |AC| gibi) / eşkenar / dik üçgende iki kenar (Pisagor); iki kenar verip üçüncüsünü bilgisiz bırakma. Metindeki her açı ve uzunluk şekilde de yazılsın; şekilde gösterilemeyen alt açı (ör. m(BAD)) kullanma.\n")
 
 GEO_STYLE = (
@@ -3160,13 +3984,15 @@ def _visual_candidates(subject, topics):
             continue  # komutta kullanılmayan eş adlar
         if k == "science_space":
             kinds += [("science_space", sub) for sub in ("moon_phases", "moon_single", "moon_orbit", "solar_eclipse", "lunar_eclipse", "orbit")]
+        elif k == "fen":
+            kinds += [("fen", "fen:" + sub) for sub in sorted(_FEN_KINDS)]
         else:
             kinds.append((k, None))
     ok = []
     for k, sub in kinds:
         sh = {"type": k}
         if sub:
-            sh["sub_type"] = sub
+            sh["sub_type"] = sub[4:] if sub.startswith("fen:") else sub
         shp, _bad = coherent_shape(sh, topics or "")
         if shp:
             ok.append(sub or k)
@@ -3199,7 +4025,8 @@ def _variety_plan(subject, n, topics):
     for i in range(n):
         if vis and (moon or geom or random.random() > 0.22):  # geometride görsel HER soruda zorunlu
             v = vis[i % len(vis)]
-            vtxt = (f"görsel = {{\"type\":\"geo\",\"sub_type\":\"{v[4:]}\"}} (geo şeması)" if v.startswith("geo:") else f"görsel türü = {v}")
+            vtxt = (f"görsel = {{\"type\":\"geo\",\"sub_type\":\"{v[4:]}\"}} (geo şeması)" if v.startswith("geo:") else
+                    f"görsel = {{\"type\":\"fen\",\"sub_type\":\"{v[4:]}\"}} (fen şeması)" if v.startswith("fen:") else f"görsel türü = {v}")
         else:
             vtxt = "görselsiz (shape null) ya da metin/tablo ağırlıklı"
         ctx = "YOK (hikâyesiz, kısa, doğrudan şekil sorusu)" if geom else th[i]
@@ -3255,7 +4082,10 @@ LOGIC_RULES = (
     "(4) Olumsuz kökte (yanlış/söylenemez/değildir) doğru cevabın 'yanlış olan' şık olduğunu karıştırma. "
     "(5) Bilimsel ve tarihsel bilgiler doğru; gerçek kişi/olay/tarih uydurma. Gerçek hayat büyüklükleri mantıklı (süre, uzunluk, kütle, fiyat). "
     "(6) Şıklar birbirinden farklı olsun, aynı anlama gelen iki şık YOK.\n"
-    "Önce 'explanation' alanında çözümü ADIM ADIM ama ÖZ yap (en çok 4 kısa adım), doğru sonucu bulduktan sonra 'answer' yaz. 'explanation' şık HARFİ (A, B…) yazmasın, şıkkın DEĞERİNİ yazsın.\n")
+    "GERÇEKÇİLİK: Sayılar gerçek hayatta makul olsun (yaş, boy, fiyat, hız, süre, kütle, sıcaklık); birimler tutarlı; adlar ve yerler Türkçe ve doğal (Ayşe, Mehmet, İzmir…); "
+    "işlem sonuçları 'düzgün' çıksın (tam sayı ya da yalın kesir/ondalık); senaryo gerçekten yaşanabilir olsun; dil MEB/LGS yeni nesil soru kökü gibi akıcı ve kısa; "
+    "çeldiriciler öğrencinin gerçek hata türlerinden (işlem hatası, birim karıştırma, kavram yanılgısı, yönü/işareti karıştırma) türesin; sayısal şıkları küçükten büyüğe sırala. "
+    "Önce 'explanation' alanında çözümü ADIM ADIM ama ÖZ yap (en çok 4 kısa adım), doğru sonucu bulduktan sonra 'answer' yaz. Çözümün SON adımı işaretlediğin şıkkın değeriyle BİREBİR aynı sonucu versin (çözüm ile cevap çelişmesin). 'explanation' şık HARFİ (A, B…) yazmasın, şıkkın DEĞERİNİ yazsın.\n")
 
 
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False):
@@ -3345,7 +4175,29 @@ def _fix_geo_notation(t, L=None):
 
 _NAME_RX = re.compile(r"\b([A-ZÇĞİÖŞÜ]{3,8})\s+(?:üçgen|dörtgen|beşgen|altıgen|yedigen|sekizgen|çokgen|yamuk|paralelkenar|dikdörtgen|kare|eşkenar\s+dörtgen|deltoid)")
 _QUAD_KW = [(r"ikizkenar\s+yamuk", "isosceles_trapezoid"), (r"eşkenar\s+dörtgen", "rhombus"), (r"dikdörtgen", "rectangle"),
-            (r"paralelkenar", "parallelogram"), (r"deltoid", "kite"), (r"yamuk", "trapezoid")]
+            (r"paralelkenar", "parallelogram"), (r"deltoid", "kite"), (r"yamuk", "trapezoid"),
+            (r"\bkare\b|\bkaresi\w*|\bkarenin\b|[A-Z]{4}\s+kare", "square")]
+_PAR_RX = re.compile(r"[\[|]?([A-Z]{2})[\]|]?\s*(?:∥|//)\s*[\[|]?([A-Z]{2})[\]|]?")
+
+
+def _geo_kind_fix(sh, text, n, has_eq):
+    """Şekil, metinde ADI/KANITI olmayan özel tür (ikizkenar, eşkenar, dik, dikdörtgen…) göstermesin."""
+    k = str(sh.get("kind", "")).lower()
+    if n == 3:
+        ev_iso = bool(re.search(r"ikizkenar", text, re.I)) or has_eq
+        ev_eq = bool(re.search(r"eşkenar", text, re.I))
+        ev_r = bool(re.search(r"dik\s+üçgen|⊥|=\s*90\s*°|köşesinde\s+dik|açısı\s+dik", text, re.I))
+        if (k in ("isosceles", "ikizkenar") and not ev_iso) or (k in ("equilateral", "eşkenar") and not ev_eq) or (k in ("right", "dik") and not ev_r):
+            sh["kind"], sh["ticks"] = "scalene", False
+            sh.pop("apex", None)
+            sh.pop("right_at", None)
+        if str(sh.get("kind", "")).lower() in ("isosceles", "ikizkenar") and not sh.get("apex"):
+            sh["ticks"] = False  # hangi kenarların eşit olduğu metinde yok -> işaretleme
+    else:
+        if not any(re.search(rx, text, re.I) for rx, _ in _QUAD_KW) and not has_eq:
+            sh["kind"] = "general"
+            sh["ticks"] = False
+    return sh
 
 
 def _geo_labels(shape, text=""):
@@ -3402,6 +4254,20 @@ def _sync_geo_shape(shape, text):
     default = list("ABCD")[:n]
     L = [str(x) for x in (sh.get("labels") or [])][:n]
     L = (L + default[len(L):])[:n]
+    if sub == "quad" and str(sh.get("kind", "")).lower() in ("trapezoid", "yamuk", "isosceles_trapezoid"):
+        pr_ = _PAR_RX.findall(text)
+        if not pr_:
+            sh["_bad"] = True  # yamukta paralel kenarlar metinde belirtilmeli
+        else:
+            a_, b_ = pr_[0]
+            if all(x in L for x in a_ + b_):
+                ia = sorted(L.index(x) for x in a_)
+                if ia in ([1, 2], [0, 3]):
+                    L = L[1:] + L[:1]  # paralel kenarlar şekilde alt/üst (AB, DC) olacak biçimde köşe sırasını döndür
+                elif ia not in ([0, 1], [2, 3]):
+                    sh["_bad"] = True
+            else:
+                sh["_bad"] = True
     eq = re.findall(r"\|([A-Z]{2})\|\s*=\s*\|([A-Z]{2})\|", text)
     lens = re.findall(r"\|([A-Z]{2})\|\s*=\s*(\d[\d.,]*\s*(?:cm|mm|m|birim)?)", text)
     angs = re.findall(r"m\(([A-Z]{3})\)\s*=\s*" + _VAL, text)
@@ -3413,7 +4279,7 @@ def _sync_geo_shape(shape, text):
         sh["labels"] = L
         if perim and sub in ("triangle", "quad"):
             sh["_bad"] = True  # çevre soruluyor ama hiç kenar verisi yok
-        return sh
+        return _geo_kind_fix(sh, text, n, False)
     if not used <= set(L):
         if used <= set(default):
             L = default
@@ -3514,7 +4380,288 @@ def _sync_geo_shape(shape, text):
                     groups.remove(old)
                 groups.append(g)
             sh["equal_groups"], sh["ticks"] = [sorted(g) for g in groups], True
-    return sh
+    return _geo_kind_fix(sh, text, n, bool(eq))
+
+
+def _nums(t):
+    return [float(x.replace(",", ".")) for x in re.findall(r"\d+(?:[.,]\d+)?", str(t).replace("−", "-").replace("–", "-"))]
+
+
+def _expl_consistent(expl, opts, ans):
+    """Çözüm metni, işaretli doğru şıkla çelişiyor mu? (çözümde başka bir şık harfi ya da başka bir şıkkın değeri sonuç olarak çıkıyorsa elenir)"""
+    if not expl or ans not in opts:
+        return True
+    m = re.search(r"doğru\s+(?:cevap|yanıt|şık)\w*\s*[:\-]?\s*\(?\b([A-D])\b\)?", expl, re.I)
+    if m and m.group(1).upper() != ans:
+        return False
+    m = re.search(r"\b([A-D])\)?\s+şıkkı\s+doğru", expl)
+    if m and m.group(1) != ans:
+        return False
+    corr = _optnum(opts[ans])
+    ns = _nums(expl)
+    if corr is None or not ns or corr != int(corr):
+        return True
+    if abs(corr) not in [abs(x) for x in ns]:
+        return False  # çözümde işaretlenen sonuca hiç ulaşılmıyor
+    tail = ns[-2:]
+    if abs(corr) not in [abs(x) for x in tail]:
+        others = {abs(_optnum(v)) for k, v in opts.items() if k != ans and _optnum(v) is not None}
+        if abs(ns[-1]) in others:
+            return False  # çözüm başka bir şıkkın değeriyle bitiyor
+    return True
+
+
+_BAD_C = {"t": 0, "v": frozenset()}
+
+
+def _is_bad(stem):
+    if time.time() - _BAD_C["t"] > 5:
+        try:
+            from . import store
+            _BAD_C["v"] = frozenset(store.bad_stems())
+        except Exception:
+            pass
+        _BAD_C["t"] = time.time()
+    return stem in _BAD_C["v"]
+
+
+def _circle_ok(shape, text):
+    """Daire şeması: metindeki yarıçap/çap değeri şekildeki yarıçapla çelişmesin."""
+    if not isinstance(shape, dict) or shape.get("type") != "circle":
+        return True
+    r = _num_len(shape.get("radius", ""))
+    if r is None:
+        return True
+    for m in re.finditer(r"yarıçap\w*[^.\d]{0,30}?(\d+(?:[.,]\d+)?)\s*(?:cm|birim)", text, re.I):
+        if abs(float(m.group(1).replace(",", ".")) - r) > 1e-6:
+            return False
+    for m in re.finditer(r"çap\w*[^.\d]{0,30}?(\d+(?:[.,]\d+)?)\s*(?:cm|birim)", text, re.I):
+        if abs(float(m.group(1).replace(",", ".")) / 2 - r) > 1e-6 and "yarıçap" not in text[max(0, m.start() - 4):m.end()].lower():
+            return False
+    return True
+
+
+def _quota_like(e):
+    return bool(e) and bool(re.search(r"429|rate.?limit|quota|kota|resource_exhausted|too many|tokens per|try again in|limit", str(e), re.I))
+
+
+def _optnum(t):
+    t = re.sub(r"cm²|cm2|cm|birim²|birim|br|°|\s|\^2", "", str(t)).replace(",", ".")
+    return float(t) if re.fullmatch(r"-?\d+(?:\.\d+)?", t) else None
+
+
+def _lin(v):
+    """'3x + 5°' -> (3, 5);  '70°' -> (0, 70);  '?' / karmaşık -> None"""
+    from fractions import Fraction
+    t = str(v).replace("°", "").replace("−", "-").replace("–", "-").replace(" ", "").replace(",", ".")
+    if not t or t == "?":
+        return None
+    toks = re.findall(r"[+-]?\d*\.?\d*x|[+-]?\d+\.?\d*", t)
+    if "".join(toks) != t.lstrip("+") and "".join(toks) != t:
+        return None
+    a = b = Fraction(0)
+    for k in toks:
+        if k.endswith("x"):
+            c = k[:-1]
+            a += Fraction(-1 if c == "-" else 1 if c in ("", "+") else c)
+        else:
+            b += Fraction(k)
+    return a, b
+
+
+def _geo_consistent(shape, text, opts, ans):
+    """Üçgen/dörtgen: açı ve uzunluk verileri kendi içinde TUTARLI mı, sorulan değer işaretli doğru şıkla uyuşuyor mu?
+    Yanlış cevap anahtarlı ya da imkânsız (örn. iç açılar toplamı tutmayan) soruları eler."""
+    from fractions import Fraction
+    if not isinstance(shape, dict) or shape.get("type") != "geo" or shape.get("sub_type") not in ("triangle", "quad"):
+        return True
+    n = 3 if shape["sub_type"] == "triangle" else 4
+    kind = str(shape.get("kind", "")).lower()
+    names = "ABCD"[:n]
+    ang = {str(k).upper(): v for k, v in (shape.get("angles") or {}).items() if str(k).upper() in names}
+    V = {}
+    for k, v in ang.items():
+        if str(v).strip() == "?":
+            V[k] = (Fraction(0), Fraction(1), Fraction(0))  # sorulan açı: y
+        else:
+            ab = _lin(v)
+            if ab is None:
+                return True  # çözemediğimiz ifade: kontrol dışı bırak
+            V[k] = (ab[0], Fraction(0), ab[1])
+    nxt = lambda c: names[(names.index(c) + 1) % n]
+    prv = lambda c: names[(names.index(c) - 1) % n]
+    cons = []
+    sub = lambda a, b: (a[0] - b[0], a[1] - b[1], a[2] - b[2])
+    add = lambda *xs: tuple(sum(x[i] for x in xs) for i in range(3))
+    const = lambda c: (Fraction(0), Fraction(0), Fraction(c))
+    same = lambda a, b: V.__setitem__(b, V[a]) if (a in V and b not in V) else (V.__setitem__(a, V[b]) if (b in V and a not in V) else (cons.append(sub(V[a], V[b])) if (a in V and b in V) else None))
+    sumc = lambda a, b, tot: cons.append(sub(add(V[a], V[b]), const(tot))) if (a in V and b in V) else None
+    if n == 3:
+        if kind in ("equilateral", "eşkenar"):
+            for c in names:
+                if c in V:
+                    cons.append(sub(V[c], const(60)))
+                else:
+                    V[c] = const(60)
+        elif kind in ("right", "dik"):
+            r = str(shape.get("right_at", "A")).upper()[:1]
+            if r in V:
+                cons.append(sub(V[r], const(90)))
+            else:
+                V[r] = const(90)
+        elif kind in ("isosceles", "ikizkenar") and str(shape.get("apex", "")).upper() in names:
+            ap = str(shape.get("apex")).upper()
+            same(nxt(ap), prv(ap))
+        if all(c in V for c in names):
+            cons.append(sub(add(*[V[c] for c in names]), const(180)))
+    else:
+        if kind in ("square", "kare", "rectangle", "dikdörtgen"):
+            for c in names:
+                if c in V:
+                    cons.append(sub(V[c], const(90)))
+                else:
+                    V[c] = const(90)
+        elif kind in ("parallelogram", "paralelkenar", "rhombus", "eşkenar dörtgen"):
+            same("A", "C"); same("B", "D"); sumc("A", "B", 180)
+        elif kind in ("isosceles_trapezoid", "ikizkenar yamuk"):
+            same("A", "B"); same("C", "D"); sumc("A", "D", 180); sumc("B", "C", 180)
+        elif kind in ("trapezoid", "yamuk"):
+            sumc("A", "D", 180); sumc("B", "C", 180)
+        elif kind in ("kite", "deltoid"):
+            same("B", "D")
+        if all(c in V for c in names):
+            cons.append(sub(add(*[V[c] for c in names]), const(360)))
+    # ---- x, y için doğrusal sistem
+    sol = {}
+    eqs = [e for e in cons if e[0] != 0 or e[1] != 0 or e[2] != 0]
+    for e in eqs:
+        if e[0] == 0 and e[1] == 0:
+            return False  # sabit eşitlik tutmuyor (örn. açılar toplamı ≠ 180°)
+    pure_x = [e for e in eqs if e[1] == 0 and e[0] != 0]
+    if pure_x:
+        x = -pure_x[0][2] / pure_x[0][0]
+        if any(e[0] * x + e[2] != 0 for e in pure_x):
+            return False
+        sol["x"] = x
+    mixed = [e for e in eqs if e[1] != 0]
+    if "x" not in sol and len(mixed) >= 2:
+        e1, e2 = mixed[0], mixed[1]
+        det = e1[0] * e2[1] - e2[0] * e1[1]
+        if det != 0:
+            sol["x"] = (-e1[2] * e2[1] + e2[2] * e1[1]) / det
+    if "x" in sol:
+        for e in mixed:
+            yv = -(e[0] * sol["x"] + e[2]) / e[1]
+            if "y" in sol and sol["y"] != yv:
+                return False
+            sol["y"] = yv
+    elif mixed and all(e[0] == 0 for e in mixed):
+        ys = {-e[2] / e[1] for e in mixed}
+        if len(ys) > 1:
+            return False
+        sol["y"] = ys.pop()
+    xv, yv = sol.get("x"), sol.get("y")
+    if xv is not None and xv <= 0:
+        return False
+    for c, (ax, ay, cc) in V.items():
+        if (ay != 0 and yv is None) or (ax != 0 and xv is None):
+            continue
+        val = ax * (xv or 0) + ay * (yv or 0) + cc
+        if val <= 0 or val >= 180:
+            return False
+    # ---- sorulan değer, işaretli şıkla uyuşuyor mu?
+    cv = _optnum(opts.get(ans, ""))
+    qt = str(text)
+    if cv is not None:
+        if yv is not None and re.search(r"m\([A-Z]{3}\)\s*(?:kaç|=\s*\?)", qt) and sum(1 for v in ang.values() if str(v).strip() == "?") == 1 \
+                and not re.search(r"çevre|alan|toplam|fark|oran|çarp", qt, re.I):
+            if abs(float(yv) - cv) > 1e-6:
+                return False
+        if xv is not None and re.search(r"\bx(?:'in)?\s+(?:değeri\s+)?kaç|x\s+değeri|x\s+kaçtır", qt) and not re.search(r"çevre|alan|toplam|fark|oran|çarp", qt, re.I):
+            if abs(float(xv) - cv) > 1e-6:
+                return False
+    # ---- uzunluklar
+    S = {"".join(sorted(str(k).upper())): _num_len(v) for k, v in (shape.get("sides") or {}).items()}
+    S = {k: v for k, v in S.items() if v is not None}
+    names_s = ["AB", "BC", "AC"] if n == 3 else ["AB", "BC", "CD", "AD"]
+    par = {x: x for x in names_s}
+
+    def fd(x):
+        while par[x] != x:
+            x = par[x]
+        return x
+
+    def un(*xs):
+        for x in xs[1:]:
+            par[fd(x)] = fd(xs[0])
+    if n == 3:
+        if kind in ("equilateral", "eşkenar"):
+            un("AB", "BC", "AC")
+        elif kind in ("isosceles", "ikizkenar") and str(shape.get("apex", "")).upper() in names:
+            ap = str(shape.get("apex")).upper()
+            un(*["".join(sorted(ap + o)) for o in names if o != ap])
+    else:
+        if kind in ("square", "kare", "rhombus", "eşkenar dörtgen"):
+            un("AB", "BC", "CD", "AD")
+        elif kind in ("rectangle", "dikdörtgen", "parallelogram", "paralelkenar"):
+            un("AB", "CD"); un("BC", "AD")
+        elif kind in ("isosceles_trapezoid", "ikizkenar yamuk"):
+            un("BC", "AD")
+        elif kind in ("kite", "deltoid"):
+            un("AB", "AD"); un("BC", "CD")
+        for g in shape.get("equal_groups") or []:
+            ks = ["".join(sorted(str(x).upper())) for x in g]
+            ks = [k for k in ks if k in par]
+            if len(ks) > 1:
+                un(*ks)
+    val = {}
+    for k, v in S.items():
+        if k in par:
+            r = fd(k)
+            if r in val and abs(val[r] - v) > 1e-6:
+                return False  # eşit olduğu söylenen kenarlara farklı uzunluk verilmiş
+            val[r] = v
+    full = {k: val.get(fd(k)) for k in names_s}
+    if n == 3:
+        if kind in ("right", "dik"):
+            r = str(shape.get("right_at", "A")).upper()[:1]
+            hyp = "".join(sorted(c for c in names if c != r))
+            legs = [k for k in names_s if k != hyp]
+            if full[hyp] is None and all(full[l] is not None for l in legs):
+                full[hyp] = (full[legs[0]] ** 2 + full[legs[1]] ** 2) ** .5
+            elif full[hyp] is not None:
+                for i, l in enumerate(legs):
+                    o = legs[1 - i]
+                    if full[l] is None and full[o] is not None:
+                        if full[hyp] <= full[o]:
+                            return False
+                        full[l] = (full[hyp] ** 2 - full[o] ** 2) ** .5
+            if all(full[k] is not None for k in names_s) and abs(full[legs[0]] ** 2 + full[legs[1]] ** 2 - full[hyp] ** 2) > 1e-6 * max(1, full[hyp] ** 2):
+                return False
+        if all(full[k] is not None for k in names_s):
+            a_, b_, c_ = sorted(full.values())
+            if a_ + b_ <= c_ + 1e-9:
+                return False  # üçgen eşitsizliği sağlanmıyor
+    if cv is not None and all(full[k] is not None for k in names_s):
+        tot = sum(full.values())
+        if re.search(r"çevre\w*\s+(?:uzunluğ\w*\s+)?(?:kaç|nedir|hesapla|bul)", qt, re.I) and abs(tot - cv) > 1e-6:
+            return False
+        if kind in ("rectangle", "dikdörtgen") and re.search(r"alan\w*\s+(?:kaç|nedir|hesapla|bul)", qt, re.I) and abs(full["AB"] * full["BC"] - cv) > 1e-6:
+            return False
+        if kind in ("square", "kare") and re.search(r"alan\w*\s+(?:kaç|nedir|hesapla|bul)", qt, re.I) and abs(full["AB"] ** 2 - cv) > 1e-6:
+            return False
+    if cv is not None and n == 3 and kind in ("right", "dik") and all(full[k] is not None for k in names_s) and re.search(r"alan\w*\s+(?:kaç|nedir|hesapla|bul)", qt, re.I):
+        r = str(shape.get("right_at", "A")).upper()[:1]
+        hyp = "".join(sorted(c for c in names if c != r))
+        l1, l2 = [full[k] for k in names_s if k != hyp]
+        if abs(l1 * l2 / 2 - cv) > 1e-6:
+            return False
+    return True
+
+
+def _num_len(v):
+    m = re.match(r"\s*(\d+(?:[.,]\d+)?)\s*(?:cm|mm|m|birim|br)?\s*$", str(v))
+    return float(m.group(1).replace(",", ".")) if m else None
 
 
 _ANGLE_ASSIGN = re.compile(r"m\s*\(\s*[A-ZÇĞİÖŞÜ∠^\s]{1,5}\s*\)\s*=\s*\d+\s*°?")
@@ -3546,7 +4693,12 @@ def _norm_q(q, subject):
         return None
     if len({_alnum(v) for v in opts.values()}) < 4:
         return None  # aynı şık iki kez geçiyor -> birden çok doğru olabilir
-    if not any(_NOSHUF.search(v) for v in opts.values()):  # şık konumu dengesi: doğru cevap dağılımı
+    _nv = [_optnum(v) for v in opts.values()]
+    if all(x is not None for x in _nv) and len(set(_nv)) == 4:  # sayısal şıklar LGS'deki gibi küçükten büyüğe sıralı
+        _correct = opts[ans]
+        opts = dict(zip("ABCD", [v for _k, v in sorted(opts.items(), key=lambda kv: _optnum(kv[1]))]))
+        ans = [k for k, v in opts.items() if v == _correct][0]
+    elif not any(_NOSHUF.search(v) for v in opts.values()):  # şık konumu dengesi: doğru cevap dağılımı
         vals = list(opts.values())
         correct = opts[ans]
         random.shuffle(vals)
@@ -3571,6 +4723,11 @@ def _norm_q(q, subject):
         shape = _sync_geo_shape(shape, f"{qtext} {pas}")
         if isinstance(shape, dict) and shape.get("_bad"):
             return None  # çevre için eksik veri ya da metindeki veri şekle işlenemiyor -> soruyu ele
+        try:
+            if not _geo_consistent(shape, f"{qtext} {pas}", opts, ans):
+                return None  # veriler kendi içinde çelişiyor / işaretli cevap hesapla uyuşmuyor
+        except Exception:
+            pass
         if isinstance(shape, dict) and shape.get("_rnote"):
             shape = dict(shape)
             pas = (f"{pas} Dik açı {shape.pop('_rnote')} köşesindedir.").strip()
@@ -3580,6 +4737,12 @@ def _norm_q(q, subject):
                 for v in (dct or {}).values():
                     if corr and str(v) != "?" and re.sub(r"[\s°]|cm|birim", "", str(v)).lower() == corr:
                         return None
+    if subject in ("Matematik", "Fen Bilimleri") and not _expl_consistent(expl, opts, ans):
+        return None  # çözüm ile işaretli cevap tutmuyor
+    if not _circle_ok(shape, f"{qtext} {pas}"):
+        return None  # metindeki yarıçap/çap şekille çelişiyor
+    if _is_bad(re.sub(r"\W+", " ", qtext.lower())[:70].strip()):
+        return None  # kullanıcı bu soruyu hatalı diye bildirmişti
     if _is_geo_q(q, shape, subject):  # geometri: şekil ZORUNLU, metin KISA, hikâye/tarih/gök cismi bağlamı YOK
         if not shape:
             return None
@@ -3710,7 +4873,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     Amaç: istenen sayının TAM karşılanması."""
     avoid = {k: list(v) for k, v in (avoid or {}).items()}
     gk, mk = (keys if keys else load_keys()) if not demo_mode() else ([], [])
-    no_keys = not demo_mode() and not gk and not mk
+    no_keys = not demo_mode() and not gk and not mk and not extra_keys()
     bank_ok = use_bank and not demo_mode() and not focus.strip()
     dep_ok = deposit and not demo_mode() and not focus.strip()
     seen = set(s for v in avoid.values() for s in v)
@@ -3760,7 +4923,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 return out
 
             qs, err = _ask_questions(prompt, gk, mk, idx, validate, reasoning=GEN_REASONING.get(subj))
-            if qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS) and (gk or mk):
+            if qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS) and (gk or mk or extra_keys()):
                 try:
                     qs = verify_questions(qs, gk, mk, offset=idx)
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
@@ -3839,7 +5002,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 qs_.append(q)
                 have.append(w)
         if len(qs_) < p["n"]:
-            errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi" + (f" ({st_['err'][:90]})" if st_.get("err") and not qs_ else ""))
+            errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru hazırlanabildi (yoğunluk nedeniyle); tekrar denersen tamamlanır" if _quota_like(st_.get("err")) else
+                          f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi" + (f" ({st_['err'][:90]})" if st_.get("err") and not qs_ else ""))
         questions += qs_[:p["n"]]
     if dep_ok:  # artan sağlam soruları bankaya ekle
         try:
@@ -3869,7 +5033,7 @@ def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
     try:
         from . import store
         gk, mk = load_keys()
-        if not gk and not mk:
+        if not gk and not mk and not extra_keys():
             return False
         avoid = {k: list(v) for k, v in store.recent_stems().items()}
         for q in used_qs:
@@ -3935,7 +5099,7 @@ def generate_oyss(subject_tables, grade_label, difficulty, avoid=None, on_progre
     from . import visuals as _v
     avoid = avoid or {}
     gk, mk = load_keys() if not demo_mode() else ([], [])
-    if not demo_mode() and not gk and not mk:
+    if not demo_mode() and not gk and not mk and not extra_keys():
         return [], ["API anahtarı bulunamadı"]
     seen = set(s for v in avoid.values() for s in v)
     seen_lock = threading.Lock()
@@ -4677,6 +5841,14 @@ def home():
         study.strip()
     except Exception:
         pass
+    try:  # yalnızca sorun varsa görünen küçük not
+        ps = ai.pool_status()
+        if ps.get("bad_keys"):
+            st.caption("⚠️ Anahtarlardan biri geçersiz görünüyor; diğerleri kullanılıyor. secrets.toml'u kontrol et.")
+        elif ps.get("cooling", 0) >= 8:
+            st.caption("⏳ Bazı yapay zekâ modelleri kısa süre dinleniyor; üretim biraz yavaşlayabilir.")
+    except Exception:
+        pass
     st.markdown("<div class='sec-title'>🎓 Sınıfını Seç</div>", unsafe_allow_html=True)
     theme.cells(GRADE_CARDS, 3, lambda c: theme.card(f"g{c[0]}", c[1], f"{c[2]} {c[3]}", c[4], pick_grade, (c[0],)))
     st.markdown("<div class='sec-title'>🧰 Araçlar</div>", unsafe_allow_html=True)
@@ -4783,7 +5955,8 @@ def _avoid():
 
 
 def _finish(qs, errs, meta):
-    if errs:
+    want = sum(int(b[1]) for b in meta.get("briefing", []) if len(b) > 1 and str(b[1]).isdigit()) if meta.get("kind") == "mc" else 0
+    if errs and not (want and len(qs) >= want):  # istenen sayıya ulaşıldıysa uyarı gösterme
         st.warning("⚠️ " + " | ".join(errs[:4]))
     if not qs:
         st.error("❌ Soru üretilemedi. API anahtarlarınızı/bağlantıyı kontrol edin.")
@@ -4823,11 +5996,57 @@ def est_seconds_mc(plan):
     return 10 + 10 * math.ceil(chunks / ai.WORKERS)
 
 
+def with_overlay_progress(seconds, title, sub, fn):
+    """Üretimi arka plan iş parçacığında çalıştırır; ekranda 'hazır %' rozetini canlı günceller. fn(on_progress) -> sonuç."""
+    import threading
+    ph, pill = st.empty(), st.empty()
+    ph.markdown(theme.overlay_html(seconds, title, sub), unsafe_allow_html=True)
+    box = {"d": 0, "t": 0, "res": None, "err": None}
+
+    def cb(done, total, *_a):
+        box["d"], box["t"] = done, total
+
+    def run():
+        try:
+            box["res"] = fn(cb)
+        except BaseException as e:  # noqa
+            box["err"] = e
+
+    th = threading.Thread(target=run, daemon=True)
+    th.start()
+    last = -1
+    try:
+        while th.is_alive():
+            if box["t"] and box["d"] != last:
+                last = box["d"]
+                pill.markdown("<div style='position:fixed;left:50%;bottom:8%;transform:translateX(-50%);z-index:1000000;background:#0f172a;color:#fff;"
+                              f"padding:.45rem 1.1rem;border-radius:99px;font-weight:800;font-size:.95rem'>⚡ %{min(100, int(100 * box['d'] / max(1, box['t'])))} hazır</div>", unsafe_allow_html=True)
+            th.join(0.4)
+    finally:
+        ph.empty()
+        pill.empty()
+    if box["err"] is not None:
+        raise box["err"]
+    return box["res"]
+
+
+def _remember_plan(plan, meta, scope_label):
+    """Son 3 farklı sınav planını saklar; uygulama açılınca bankaları arka planda hazır tutulur."""
+    try:
+        e = {"plan": plan, "gl": meta["grade_label"], "diff": meta["difficulty"], "scope": scope_label}
+        lst = [x for x in store.settings().get("recent_plans", []) if not (x.get("gl") == e["gl"] and x.get("diff") == e["diff"] and x.get("plan") == plan)]
+        store.save_settings(recent_plans=([e] + lst)[:3])
+    except Exception:
+        pass
+
+
 def _gen_mc(plan, meta, scope_label, focus="", use_bank=True):
     n = sum(p["n"] for p in plan)
-    qs, errs = with_overlay(est_seconds_mc(plan), "Sorular hazırlanıyor", f"{n} yeni nesil soru ve görselleri yapay zekâ ile üretiliyor…",
-                            lambda: ai.generate_mc(plan, meta["grade_label"], meta["difficulty"], scope_label, avoid=_avoid(), focus=focus, use_bank=use_bank))
+    avoid = _avoid()  # Streamlit'e ait çağrılar ana iş parçacığında kalsın
+    qs, errs = with_overlay_progress(est_seconds_mc(plan), "Sorular hazırlanıyor", f"{n} yeni nesil soru ve görselleri yapay zekâ ile üretiliyor…",
+                                     lambda cb: ai.generate_mc(plan, meta["grade_label"], meta["difficulty"], scope_label, avoid=avoid, focus=focus, use_bank=use_bank, on_progress=cb))
     if use_bank and qs and not focus.strip():  # sonraki sınav için bankayı arka planda tazele
+        _remember_plan(plan, meta, scope_label)
         try:
             ai.bank_topup_async(plan, meta["grade_label"], meta["difficulty"], scope_label, qs)
         except Exception:
@@ -5274,6 +6493,7 @@ def bank():
 '''
 MODULES['ui/exam'] = r'''# -*- coding: utf-8 -*-
 import hashlib
+import re
 import time
 import altair as alt
 import pandas as pd
@@ -5550,6 +6770,46 @@ def _prev_attempt(m, current_id=None):
     return None
 
 
+def _report(q, flag):
+    try:
+        store.report_bad(q)
+    except Exception:
+        pass
+    st.session_state[flag] = True
+
+
+def _tip_of(q, n=150):
+    t = re.sub(r"<[^>]+>|\s+", " ", str(q.get("explanation") or "")).strip()
+    if not t:
+        return ""
+    cut = re.split(r"(?<=[.!?])\s", t, maxsplit=1)[0]
+    return (cut if len(cut) <= n else cut[:n].rsplit(" ", 1)[0] + "…")
+
+
+def _study_summary(res, qs, m):
+    """Yanlış/boş soruları konuya göre gruplar; en çok kayıp veren 3 konuyu, soru numaraları ve örnek çözüm ipucuyla gösterir."""
+    if res.get("kind") != "mc":
+        return
+    groups = {}
+    for i, q in enumerate(qs):
+        ua = st.session_state.answers.get(i)
+        if ua != q.get("answer"):
+            g = groups.setdefault((q.get("subject", "Genel"), q.get("topic") or "Genel"), {"idx": [], "boş": 0, "q": q})
+            g["idx"].append(i + 1)
+            g["boş"] += 0 if ua else 1
+    st.markdown("<div class='sec-title'>🧭 Çalışma Özeti</div>", unsafe_allow_html=True)
+    if not groups:
+        st.success("Hiç yanlışın yok. Bir sonraki denemede zorluğu bir kademe artırmayı dene.")
+        return
+    top = sorted(groups.items(), key=lambda kv: -len(kv[1]["idx"]))[:3]
+    st.markdown(f"**{sum(len(g['idx']) for g in groups.values())} sorudaki kaybın büyük kısmı şu {len(top)} konuda:**")
+    for (subj, topic), g in top:
+        nums = ", ".join(str(x) for x in g["idx"][:8])
+        tip = _tip_of(g["q"])
+        st.markdown(f"- **{cur.SUBJECT_ICONS.get(subj, '')} {subj} • {topic}** — {len(g['idx'])} soru (Soru {nums})" + (f"  \n  💡 *{tip}*" if tip else ""))
+    st.button("🔁 Yanlışlarımı şimdi tekrar et", key="sum_review", on_click=nav, args=("review",))
+
+
 def result():
     m, qs, res = st.session_state.meta, st.session_state.questions, st.session_state.result
     if not res:
@@ -5629,6 +6889,7 @@ def result():
         st.markdown("🟢 **Güçlü kazanımlar**")
         for s, tp, p in sorted(strong, key=lambda x: -x[2])[:5] or [("", "—", 0)]:
             st.markdown(f"- {s} • {tp} {'(%' + format(p, '.0f') + ')' if s else ''}")
+    _study_summary(res, qs, m)
     st.markdown("<div class='sec-title'>📄 PDF Çıktısı</div>", unsafe_allow_html=True)
     pdf_panel("res_")
     b1, b2, b3 = st.columns(3)
@@ -5655,6 +6916,10 @@ def result():
                 if u != c:
                     from .study import explain_box
                     explain_box(q, u if u != "Boş" else None, f"res_{i}", m.get("grade_label", ""))
+                if st.session_state.get(f"rep_{i}"):
+                    st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
+                else:
+                    st.button("🚩 Bu soru hatalı", key=f"repb_{i}", on_click=_report, args=(q, f"rep_{i}"))
             else:
                 st.markdown(f"### Soru {i + 1} [{q.get('subject', '')}] — {st.session_state.self_scores.get(i, 0)}/{q.get('points')} puan")
                 st.markdown(f"**{q['question']}**\n\n**Beklenen cevap:** {q.get('answer', '')}")
@@ -6147,7 +7412,7 @@ def plan():
             st.rerun()
 '''
 
-ORDER = ['core/curriculum', 'core/oyss', 'core/visuals', 'core/pdf_export', 'core/store', 'core/meb_live', 'core/ai_engine', 'core/coach', 'ui/theme', 'ui/state', 'ui/setup', 'ui/wizard', 'ui/exam', 'ui/reports', 'ui/extras', 'ui/study']
+ORDER = ['core/curriculum', 'core/oyss', 'core/fenfig', 'core/visuals', 'core/pdf_export', 'core/store', 'core/meb_live', 'core/ai_engine', 'core/coach', 'ui/theme', 'ui/state', 'ui/setup', 'ui/wizard', 'ui/exam', 'ui/reports', 'ui/extras', 'ui/study']
 
 
 def _load_modules():
@@ -6195,10 +7460,27 @@ if "meb_loaded" not in st.session_state:
         pass
 
 GROQ_KEYS, GEMINI_KEYS = ai_engine.load_keys()
-if not GROQ_KEYS and not GEMINI_KEYS and not ai_engine.demo_mode():
+if not GROQ_KEYS and not GEMINI_KEYS and not ai_engine.extra_keys() and not ai_engine.demo_mode():
     st.error("⚠️ `.streamlit/secrets.toml` dosyasında API anahtarları bulunamadı!")
-    st.code('[api_keys]\ngroq_keys = ["gsk_..."]\ngemini_keys = ["AIza..."]', language="toml")
+    st.code('[api_keys]\ngroq_keys = ["gsk_...", "gsk_..."]      # istediğin kadar anahtar ekleyebilirsin\ngemini_keys = ["AIza...", "AIza..."]\n# İsteğe bağlı ek havuz (kota artırır): cerebras_keys, openrouter_keys, mistral_keys, sambanova_keys, nvidia_keys, github_keys', language="toml")
     st.stop()
+
+# ------------------------------------------------------------------ açılışta: son planların bankası arka planda hazırlanır
+if "warm_done" not in st.session_state:
+    st.session_state.warm_done = True
+    try:
+        if not ai_engine.demo_mode():
+            import threading as _th
+            from core import store as _store
+            _rp = _store.settings().get("recent_plans", [])[:2]
+            for _i, _e in enumerate(_rp):
+                _call = lambda e=_e: ai_engine.bank_topup_async(e["plan"], e["gl"], e["diff"], e["scope"])
+                if _i == 0:
+                    _call()
+                else:
+                    _th.Timer(25 * _i, _call).start()
+    except Exception:
+        pass
 
 # ------------------------------------------------------------------ kenar çubuğu
 with st.sidebar:
