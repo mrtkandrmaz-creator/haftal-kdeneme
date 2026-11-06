@@ -2080,6 +2080,89 @@ def _right_tri_pts(ri, sides):
     return P
 
 
+def _arc_dirs(ax, o, u, v, r, color=ORANGE, n=1):
+    """o köşesinde u ve v yönleri arasındaki (küçük) açıyı n yayla çizer; yay ortasının yönünü döndürür."""
+    t1 = np.degrees(np.arctan2(u[1], u[0])); t2 = np.degrees(np.arctan2(v[1], v[0]))
+    d = (t2 - t1) % 360
+    if d > 180:
+        t1, d = t2, 360 - d
+    for k in range(n):
+        th = np.radians(np.linspace(t1, t1 + d, 30))
+        rr = r + .1 * k
+        ax.plot(o[0] + rr * np.cos(th), o[1] + rr * np.sin(th), color=color, lw=1.8, zorder=4)
+    m = np.radians(t1 + d / 2)
+    return np.array([np.cos(m), np.sin(m)])
+
+
+def _draw_cevians(ax, P, L, d):
+    """Üçgende metinde geçen açıortay/kenarortay/yükseklik doğrularını (ayak noktası harfiyle) çizer. Çizilen noktaları döndürür."""
+    pts = {L[i]: P[i] for i in range(3)}
+    c = P.mean(axis=0)
+    out = []
+    subs = {str(k).upper(): v for k, v in (d.get("sub_angles") or {}).items()}
+    for cv in d.get("cevians") or []:
+        V, F_, kd = str(cv.get("from")), str(cv.get("foot")), str(cv.get("kind"))
+        if V not in L:
+            continue
+        vi = L.index(V)
+        o = P[vi]
+        B_, C_ = [P[j] for j in range(3) if j != vi]
+        if kd == "bisector":
+            lb, lc = np.linalg.norm(o - B_), np.linalg.norm(o - C_)
+            F = (lc * B_ + lb * C_) / (lb + lc)
+        elif kd == "median":
+            F = (B_ + C_) / 2
+        else:
+            e = C_ - B_
+            F = B_ + e * (np.dot(o - B_, e) / np.dot(e, e))
+        pts[F_] = F
+        out.append(F)
+        ax.plot(*zip(o, F), color=GREEN, lw=1.8, ls="--", zorder=3)
+        ax.plot(*F, "o", color=INK, ms=4, zorder=5)
+        e = C_ - B_; ne = np.linalg.norm(e)
+        for X in (B_, C_):  # ayak üçgenin dışındaysa kenar uzatılır
+            pass
+        tb = np.dot(F - B_, e) / (ne * ne)
+        if tb < 0:
+            ax.plot(*zip(B_, F), color=INK, lw=1.4, ls=":", zorder=2)
+        elif tb > 1:
+            ax.plot(*zip(C_, F), color=INK, lw=1.4, ls=":", zorder=2)
+        away = F - o
+        away = away / np.linalg.norm(away)
+        ax.text(*(F + away * .4), F_, fontsize=11, fontweight="bold", ha="center", va="center", color=INK, zorder=6)
+        if kd == "median":
+            _tick(ax, B_, F); _tick(ax, F, C_)
+        elif kd == "altitude":
+            u = (B_ - F) if tb >= .5 else (C_ - F)
+            if tb < 0 or tb > 1:
+                u = (C_ - B_) * (1 if tb > 1 else -1) * -1
+            _right_mark(ax, F, u, o - F, s=.28)
+        elif kd == "bisector":
+            labd = {k: v for k, v in subs.items() if len(k) == 3 and k[1] == V and F_ in (k[0], k[2])}
+            for Q in (B_, C_):
+                _arc_dirs(ax, o, Q - o, F - o, .55, ORANGE, 2)
+            for k, v in labd.items():
+                Q = pts.get(k[0] if k[2] == F_ else k[2])
+                if Q is None:
+                    continue
+                md = _arc_dirs(ax, o, Q - o, F - o, .55, ORANGE, 0)
+                col = "#7c3aed" if str(v).strip() in ("?", "x") else ORANGE
+                ax.text(*(o + md * 1.0), str(v), fontsize=9.5, fontweight="bold", color=col, ha="center", va="center", zorder=6,
+                        bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+    # bisector dışındaki alt açılar (ör. m(BAD)) da yaylanır
+    for k, v in subs.items():
+        if len(k) != 3 or k[0] not in pts or k[1] not in pts or k[2] not in pts:
+            continue
+        if any(cv.get("kind") == "bisector" and cv.get("from") == k[1] and cv.get("foot") in (k[0], k[2]) for cv in d.get("cevians") or []):
+            continue
+        o = pts[k[1]]
+        md = _arc_dirs(ax, o, pts[k[0]] - o, pts[k[2]] - o, .55, ORANGE, 1)
+        col = "#7c3aed" if str(v).strip() in ("?", "x") else ORANGE
+        ax.text(*(o + md * 1.0), str(v), fontsize=9.5, fontweight="bold", color=col, ha="center", va="center", zorder=6,
+                bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+    return out
+
+
 def _triangle_geo(ax, d, pts=None):
     kind = str(d.get("kind", "scalene")).lower()
     apex = str(d.get("apex", "")).upper()
@@ -2120,17 +2203,24 @@ def _triangle_geo(ax, d, pts=None):
     sides = {skey(k): v for k, v in (d.get("sides") or {}).items()}
     for key, (i, j) in (("AB", (0, 1)), ("BC", (1, 2)), ("AC", (0, 2))):
         if key in sides:
-            m = (P[i] + P[j]) / 2; e_ = P[j] - P[i]; out = np.array([-e_[1], e_[0]]) / np.linalg.norm(e_)
+            m = (P[i] + P[j]) / 2; e_ = P[j] - P[i]
+            if any(L[vv] not in key and str(cv.get("from")) == L[vv] for cv in (d.get("cevians") or []) for vv in range(3)):
+                m = P[i] + .25 * e_    # ayak (D) bu kenarda: ölçü etiketi D'nin üstüne binmesin
+            out = np.array([-e_[1], e_[0]]) / np.linalg.norm(e_)
             if np.dot(out, m - c) < 0:
                 out = -out  # kenara dik, üçgenin dışına bakan birim vektör
             ha = "right" if out[0] < -.3 else "left" if out[0] > .3 else "center"
             va = "top" if out[1] < -.3 else "bottom" if out[1] > .3 else "center"
             ax.text(*(m + out * .14), str(sides[key]), fontsize=9.5, fontweight="bold", color=BLUE, ha=ha, va=va, zorder=6)
     angs = {str(k).upper(): v for k, v in (d.get("angles") or {}).items()}
+    extra = _draw_cevians(ax, P, L, d) if d.get("cevians") or d.get("sub_angles") else []
+    cv_v = {L.index(str(cv.get("from"))) for cv in (d.get("cevians") or []) if str(cv.get("from")) in L}
     for key, i in (("A", 0), ("B", 1), ("C", 2)):
         if key in angs and not (right_at == i and str(angs[key]).strip().startswith("90")):
-            _vertex_arc(ax, P, i, angs[key], color="#7c3aed" if str(angs[key]).strip() in ("?", "x") else ORANGE)
-    lo, hi = P.min(axis=0) - 1.5, P.max(axis=0) + 1.5
+            _vertex_arc(ax, P, i, angs[key], color="#7c3aed" if str(angs[key]).strip() in ("?", "x") else ORANGE,
+                        r=1.15 if i in cv_v else .75, lab=.5 if i in cv_v else None)
+    allp = np.vstack([P] + [np.array(e)[None, :] for e in extra]) if extra else P
+    lo, hi = allp.min(axis=0) - 1.5, allp.max(axis=0) + 1.5
     ax.set_xlim(lo[0], hi[0]); ax.set_ylim(lo[1], hi[1])
 
 
@@ -5169,6 +5259,36 @@ def _sync_parallel0(shape, text):
     return sh
 
 
+_CEV_RX = re.compile(r"[\[|(]?\b([A-ZÇĞİÖŞÜ])([A-ZÇĞİÖŞÜ])[\]|)]?\s*(?:doğru\s+parçası|ışını)?\s*,?\s*(?:\b[A-ZÇĞİÖŞÜ]{3}\s+açısının\s+|\b[A-ZÇĞİÖŞÜ]\s+köşesinin\s+)?(açıortay|kenarortay|yükseklik)")
+_CEV_RX2 = re.compile(r"(açıortay|kenarortay|yükseklik)\w*\s*[:,]?\s*[\[|(]?\b([A-ZÇĞİÖŞÜ])([A-ZÇĞİÖŞÜ])\b[\]|)]?")
+_CEV_KIND = {"açıortay": "bisector", "kenarortay": "median", "yükseklik": "altitude"}
+
+
+def _find_cevians(text, L):
+    """Metindeki 'AD açıortay / kenarortay / yükseklik' (ve AD ⊥ BC) ifadelerini [{kind, from, foot}] olarak çıkarır."""
+    out, seen = [], set()
+
+    def add(kd, x, y):
+        if x in L and y not in L:
+            V, F = x, y
+        elif y in L and x not in L:
+            V, F = y, x
+        else:
+            return
+        if (kd, V, F) not in seen:
+            seen.add((kd, V, F))
+            out.append({"kind": kd, "from": V, "foot": F})
+    for m in _CEV_RX.finditer(text):
+        add(_CEV_KIND[m.group(3)], m.group(1), m.group(2))
+    for m in _CEV_RX2.finditer(text):
+        add(_CEV_KIND[m.group(1)], m.group(2), m.group(3))
+    for a_, b_ in re.findall(r"[\[|(]?([A-Z]{2})[\]|)]?\s*⊥\s*[\[|(]?([A-Z]{2})[\]|)]?", text):
+        for p, q in ((a_, b_), (b_, a_)):
+            if all(x in L for x in q) and sum(x in L for x in p) == 1 and not (set(p) & set(q)):
+                add("altitude", p[0], p[1])
+    return out
+
+
 def _sync_geo_shape(shape, text):
     """Metinde verilen ad, tür, eşit kenar, açı ve uzunlukları ŞEKİLDE de gösterir (şema metinle BİREBİR uyumlu olsun)."""
     if not isinstance(shape, dict) or shape.get("type") != "geo":
@@ -5224,6 +5344,26 @@ def _sync_geo_shape(shape, text):
     angs = re.findall(r"m\(([A-Z]{3})\)\s*=\s*" + _VAL, text)
     ask = re.findall(r"m\(([A-Z]{3})\)\s*(?:kaç|=\s*\?)", text)
     lens_any = re.findall(r"\|([A-Z]{2})\|\s*=\s*(?!\|)(?=[0-9xy(+\-−])", text)
+    if n == 3:
+        cev = _find_cevians(text, L)
+        if cev:
+            feet = {cv["foot"] for cv in cev}
+            sh["cevians"] = cev
+            sub_ = {a: v.strip() for a, v in angs if set(a) & feet}
+            for a in ask:
+                if set(a) & feet:
+                    sub_.setdefault(a, "?")
+            if sub_:
+                sh["sub_angles"] = sub_
+            angs = [(a, v) for a, v in angs if not set(a) & feet]
+            ask = [a for a in ask if not set(a) & feet]
+            lens = [(a, v) for a, v in lens if not set(a) & feet]
+            eq = [pr for pr in eq if not set(pr[0] + pr[1]) & feet]
+            lens_any = [a for a in lens_any if not set(a) & feet]
+    _feet = {cv["foot"] for cv in (sh.get("cevians") or [])}
+    for _pm in re.findall(r"\b([A-ZÇĞİÖŞÜ])\s+(?:noktası|noktasının)", text):
+        if _pm not in L and _pm not in _feet:
+            sh["_bad"] = True  # metinde geçen nokta şekilde çizilemiyor -> soruyu ele
     used = set("".join(x for pr in eq for x in pr) + "".join(a for a, _ in lens) + "".join(a for a, _ in angs) + "".join(ask) + "".join(lens_any))
     perim = re.search(r"çevre\w*\s+(?:uzunluğ\w*\s+)?(?:kaç|nedir|hesapla|bul)", text, re.I)
     if re.search(r"verilen\s+açı|açı\s+ölçüler\w*\s+göre|şekildeki\s+açı", text, re.I):
