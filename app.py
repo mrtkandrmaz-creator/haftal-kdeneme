@@ -4579,6 +4579,7 @@ def verify_questions(qs, gk, mk, offset=0):
             unv += 1
             keep.append(q)
         elif a == q["answer"]:
+            q["vfd"] = True  # bağımsız ikinci model aynı cevabı buldu
             keep.append(q)
         else:
             rej += 1
@@ -4901,6 +4902,8 @@ def _chart_answer_ok(shape, qtext, opts, ans):
     labpre = {pre(l) for l in labs if len(l.split()) > 1}
     optpre = {pre(v) for v in opts.values() if len(_lab_norm(v).split()) > 1}
     labelish = n_ok >= 2 or (labpre and optpre and optpre <= labpre)
+    if any(len(_lab_norm(v).split()) > 4 for v in opts.values()):
+        labelish = False  # cümle biçimli şıklar (yargılar) etiket şıkkı değildir
     if labelish and n_ok < len(opts):
         return False  # şıkta grafikte olmayan grup/kategori var (ör. Grup E)
     if labelish and len(set(ms.values())) < len(ms):
@@ -4977,6 +4980,20 @@ def _instrument_ok(shape, qtext, pas, opts, ans):
     except Exception:
         return True
     return True
+
+
+_CPLX = re.compile(r"fark|toplam|oran|yüzde|kat\b|ortalama|artış|azal|değişim|çıkarım|yorum|söylenemez|kesin|yalnız|numaralı|öncül|yargı|nedeni|sonuç|birlikte|ikisi|\bI\.|\bII\.|bilgiler|metne|parçaya|ancak|buna göre", re.I)
+
+
+def _trivial_chart_q(shape, qtext, opts, ans):
+    """Grafik/tablodan tek bakışta okunan soru mu? ('en çok hangisi', 'X kaçtır')"""
+    pairs = _chart_pairs(shape)
+    if not pairs or _CPLX.search(qtext):
+        return False
+    if _HI.search(qtext) or _LO.search(qtext):
+        return True
+    an = _optnum(opts.get(ans, "")) if isinstance(opts, dict) else None
+    return an is not None and any(abs(v - an) < 1e-9 for _l, v in pairs) and bool(re.search(r"kaç", qtext, re.I))
 
 
 def _complete_ok(qtext, pas, opts, shape):
@@ -5267,6 +5284,11 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
     eff, lvl = bump_difficulty(difficulty)
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     fc += lessons(subject)
+    if subject in ("Türkçe", "Sosyal Bilgiler"):
+        fc += ("\n🎯 GRAFİK/TABLO/ŞEMA SORULARINDA ZORLUK: Cevap görsele bakınca DOĞRUDAN okunmasın ('en çok/en az hangisi', 'X kaçtır' YASAK). "
+               "Bunun yerine: iki-üç adımlı çıkarım (karşılaştırma + fark/oran/toplam), numaralı yargılardan (I, II, III) doğru/yanlış ayıklama, "
+               "'hangisi söylenemez', nedensellik/sonuç çıkarma, görseldeki veriyi paragraftaki bilgiyle birleştirme, yorumlama. "
+               "Çeldiriciler görseldeki gerçek değerlerden türetilsin (yakın ama yanlış sonuçlar).")
     if like:
         fc += ("\n👍 ÖĞRENCİNİN BEĞENDİĞİ ÖRNEK SORU:\n" + like[:900] + "\nTÜM soruları bu örneğe BENZER yaz: aynı kazanım/beceri, aynı yapı, tür ve zorluk; "
                "ama FARKLI sayı, ad, bağlam ve görsel verisi kullan. Örneği kopyalama; metindeki her değer görselde de olsun.")
@@ -6170,6 +6192,8 @@ def _norm_q(q, subject):
         return None  # ölçü aleti değeri okunamıyor / cevap şekille çelişiyor
     if not _chart_answer_ok(shape, str(q.get("question", "")), opts, ans):
         return None  # şık grafikte yok ya da en çok/en az cevabı grafikle çelişiyor
+    if subject in ("Türkçe", "Sosyal Bilgiler") and _trivial_chart_q(shape, str(q.get("question", "")), opts, ans):
+        return None  # cevap grafiğe bakınca doğrudan okunuyor: yeterince zor değil
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
@@ -6435,7 +6459,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 return out
 
             qs, err = _ask_questions(prompt, gk, mk, idx, validate, reasoning=GEN_REASONING.get(subj))
-            if qs and (gk or mk or extra_keys()) and ((verify and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS)) or subj in STRICT_VERIFY):
+            if verify and qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS or subj in STRICT_VERIFY) and (gk or mk or extra_keys()):  # yalnız arka plan (banka/havuz) dolumunda
                 try:
                     qs = verify_questions(qs, gk, mk, offset=idx)
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
@@ -6531,7 +6555,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             for st_ in state:
                 p = st_["p"]
                 used = {_stem(q) for q in st_["qs"][:p["n"]]}
-                extra = [q for q in st_["over"] + st_["reserve"] if _stem(q) and _stem(q) not in used and _stem(q) not in seen]
+                extra = [q for q in st_["over"] + st_["reserve"] if _stem(q) and _stem(q) not in used and _stem(q) not in seen
+                         and (p["subject"] not in STRICT_VERIFY or q.get("vfd"))]  # katı derslerde bankaya yalnız doğrulanmış sorular girer
                 if extra:
                     store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), extra)
         except Exception:
@@ -6712,7 +6737,7 @@ def like_similar_async(q, grade_label, difficulty, n=2, auto=False):
         try:
             plan = [{"subject": subj, "n": n, "topics": topics or subj}]
             qs, _e = generate_mc(plan, grade_label, difficulty, "Beğenilen soruya benzer", avoid=avoid, use_bank=False, deposit=False,
-                                 keys=(gk, mk), verify=False, count=False, like=ex)
+                                 keys=(gk, mk), verify=(subj in STRICT_VERIFY), count=False, like=ex)
             mine = [x for x in qs if x.get("subject") == subj]
             store.lpool_put(subj, grade_label, difficulty, topics or subj, mine, src=stem)
         except Exception:
