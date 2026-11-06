@@ -5294,9 +5294,20 @@ def _find_cevians(text, L):
 
 def _sync_geo_shape(shape, text):
     """Metinde verilen ad, tür, eşit kenar, açı ve uzunlukları ŞEKİLDE de gösterir (şema metinle BİREBİR uyumlu olsun)."""
+    if isinstance(shape, dict) and str(shape.get("type", "")).lower() == "triangle":
+        shape = {"type": "geo", "sub_type": "triangle", "kind": shape.get("kind") or "scalene",
+                 "labels": shape.get("labels") or ["A", "B", "C"]}  # eski biçim -> veriyi işleyebilen geo üçgen
     if not isinstance(shape, dict) or shape.get("type") != "geo":
         return shape
     sub = str(shape.get("sub_type", "")).lower()
+    if sub == "polygon":
+        try:
+            _pn = int(shape.get("sides") or 0)
+        except Exception:
+            _pn = 0
+        if _pn in (3, 4):  # 3-4 kenarlı 'polygon' üçgen/dörtgen gibi işlenir (açı/uzunluklar şekle yazılsın)
+            shape = dict(shape, sub_type="triangle" if _pn == 3 else "quad", kind=shape.get("kind") if shape.get("kind") not in (None, "") else ("scalene" if _pn == 3 else "general"))
+            sub = shape["sub_type"]
     if sub == "parallel":
         return _sync_parallel(shape, text)
     if sub in ("angles_two_lines", "angle", "line", "lines_set", "perpendicular", "lines", "") and _PAR_STMT.search(text) and re.search(r"m\([A-ZÇĞİÖŞÜ]{3}\)|∠|\b[A-ZÇĞİÖŞÜ]{3}\s+açısı", text):
