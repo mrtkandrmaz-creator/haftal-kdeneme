@@ -3452,6 +3452,167 @@ def like_budget_take(auto=True):
     return True
 
 
+# ---- GitHub senkronu: data/*.json dosyalarını özel bir dala (varsayılan 'userdata') yedekler, yeniden başlayınca geri yükler.
+# Ana dal değişmediği için Streamlit Cloud her yedekte yeniden dağıtım (redeploy) yapmaz.
+import base64 as _b64
+import hashlib as _hl
+import threading as _th
+import urllib.request as _ur
+import urllib.error as _ue
+
+_GH = {"pulled": False, "running": False, "last": 0.0, "ok": None, "msg": "", "state": {}}
+
+
+def gh_cfg():
+    c = {}
+    try:
+        import streamlit as st
+        c = dict(st.secrets.get("github_sync", {}) or {})
+    except Exception:
+        c = {}
+    c.setdefault("token", os.environ.get("GH_SYNC_TOKEN", ""))
+    c.setdefault("repo", os.environ.get("GH_SYNC_REPO", ""))
+    c.setdefault("branch", os.environ.get("GH_SYNC_BRANCH", "userdata"))
+    return c if c.get("token") and c.get("repo") else None
+
+
+def _gh(cfg, method, path, body=None):
+    req = _ur.Request("https://api.github.com/repos/" + cfg["repo"] + path, method=method,
+                      data=json.dumps(body).encode() if body is not None else None,
+                      headers={"Authorization": "Bearer " + cfg["token"], "Accept": "application/vnd.github+json",
+                               "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "denemematik-sync", "Content-Type": "application/json"})
+    try:
+        with _ur.urlopen(req, timeout=15) as r:
+            return r.status, json.loads(r.read().decode() or "null")
+    except _ue.HTTPError as e:
+        try:
+            return e.code, json.loads(e.read().decode() or "null")
+        except Exception:
+            return e.code, None
+
+
+def _gh_ensure_branch(cfg):
+    br = cfg["branch"]
+    st_, _d = _gh(cfg, "GET", f"/git/ref/heads/{br}")
+    if st_ == 200:
+        return True
+    st_, rep = _gh(cfg, "GET", "")
+    if st_ != 200 or not rep:
+        return False
+    base = rep.get("default_branch", "main")
+    st_, ref = _gh(cfg, "GET", f"/git/ref/heads/{base}")
+    if st_ != 200 or not ref:
+        return False
+    st_, _x = _gh(cfg, "POST", "/git/refs", {"ref": f"refs/heads/{br}", "sha": ref["object"]["sha"]})
+    return st_ in (200, 201)
+
+
+def gh_pull_once():
+    """Süreç başına bir kez: yerelde olmayan data/*.json dosyalarını GitHub'dan indirir (var olanı ezmez)."""
+    if _GH["pulled"]:
+        return
+    _GH["pulled"] = True
+    cfg = gh_cfg()
+    if not cfg:
+        return
+    try:
+        st_, lst = _gh(cfg, "GET", f"/contents/data?ref={cfg['branch']}")
+        if st_ != 200 or not isinstance(lst, list):
+            _GH.update(ok=True, msg="yedek henüz yok")
+            return
+        n = 0
+        for it in lst:
+            nm = it.get("name", "")
+            if not nm.endswith(".json") or os.path.exists(_p(nm)):
+                continue
+            st2, d = _gh(cfg, "GET", f"/contents/data/{nm}?ref={cfg['branch']}")
+            if st2 == 200 and d and d.get("content"):
+                raw = _b64.b64decode(d["content"])
+                with open(_p(nm) + ".tmp", "wb") as f:
+                    f.write(raw)
+                os.replace(_p(nm) + ".tmp", _p(nm))
+                _GH["state"][nm] = _hl.md5(raw).hexdigest()
+                n += 1
+        _GH.update(ok=True, msg=f"{n} dosya geri yüklendi")
+    except Exception as e:
+        _GH.update(ok=False, msg=f"geri yükleme hatası: {type(e).__name__}")
+
+
+def gh_push():
+    """Değişen data/*.json dosyalarını GitHub dalına yazar. -> gönderilen dosya sayısı"""
+    cfg = gh_cfg()
+    if not cfg:
+        return 0
+    if not _gh_ensure_branch(cfg):
+        _GH.update(ok=False, msg="dal oluşturulamadı / depo erişimi yok")
+        return 0
+    n = 0
+    for nm in sorted(os.listdir(DATA)):
+        if not nm.endswith(".json"):
+            continue
+        try:
+            raw = open(_p(nm), "rb").read()
+        except Exception:
+            continue
+        h = _hl.md5(raw).hexdigest()
+        if _GH["state"].get(nm) == h:
+            continue
+        st_, cur = _gh(cfg, "GET", f"/contents/data/{nm}?ref={cfg['branch']}")
+        body = {"message": f"veri yedeği: {nm}", "branch": cfg["branch"], "content": _b64.b64encode(raw).decode()}
+        if st_ == 200 and isinstance(cur, dict) and cur.get("sha"):
+            body["sha"] = cur["sha"]
+        st2, _r = _gh(cfg, "PUT", f"/contents/data/{nm}", body)
+        if st2 in (200, 201):
+            _GH["state"][nm] = h
+            n += 1
+        else:
+            _GH.update(ok=False, msg=f"{nm} yazılamadı (HTTP {st2})")
+            return n
+    _GH.update(ok=True, msg=f"{n} dosya yedeklendi" if n else "güncel", last=time.time())
+    return n
+
+
+def gh_sync_async(min_interval=120):
+    """Ana iş parçacığından çağrılır; en az min_interval sn arayla arka planda değişenleri yedekler."""
+    if not gh_cfg() or _GH["running"] or time.time() - _GH["last"] < min_interval:
+        return False
+    _GH["running"] = True
+    _GH["last"] = time.time()
+
+    def run():
+        try:
+            gh_push()
+        except Exception as e:
+            _GH.update(ok=False, msg=f"hata: {type(e).__name__}")
+        finally:
+            _GH["running"] = False
+    _th.Thread(target=run, daemon=True).start()
+    return True
+
+
+def gh_status():
+    return {"on": bool(gh_cfg()), "ok": _GH["ok"], "msg": _GH["msg"]}
+
+
+def all_data_files():
+    """data/*.json içeriklerinin tamamı {ad: veri} (yedek için)."""
+    out = {}
+    for nm in sorted(os.listdir(DATA)):
+        if nm.endswith(".json"):
+            try:
+                with open(_p(nm), encoding="utf-8") as f:
+                    out[nm] = json.load(f)
+            except Exception:
+                pass
+    return out
+
+
+def restore_data_files(files):
+    for nm, obj in (files or {}).items():
+        if isinstance(nm, str) and nm.endswith(".json") and "/" not in nm and "\\" not in nm and not nm.startswith("."):
+            _save(nm, obj)
+
+
 def lpool_per_src():
     d = {}
     for x in _load("lpool.json", []):
@@ -9243,14 +9404,17 @@ def _parent_report(hist):
 
 def _backup(hist):
     st.markdown("**Yedekle / Geri yükle** — Streamlit Cloud geçici disk kullanır; verini düzenli yedekle.")
-    blob = json.dumps({"history": hist, "wrong": store.wrong(), "bank": store.bank_all(), "stems": store.recent_stems()}, ensure_ascii=False).encode("utf-8")
+    blob = json.dumps({"history": hist, "wrong": store.wrong(), "bank": store.bank_all(), "stems": store.recent_stems(),
+                       "files": store.all_data_files()}, ensure_ascii=False).encode("utf-8")
     bs = store.bank_stats()
-    st.caption(f"Yedeğe dahil: {len(hist)} sınav • {len(store.wrong())} yanlış soru • 🏦 {bs['total']} bankadaki soru")
+    st.caption(f"Yedeğe dahil: {len(hist)} sınav • {len(store.wrong())} yanlış soru • 🏦 {bs['total']} bankadaki soru • 👍 {len(store.liked())} beğeni • havuz {store.lpool_count()} • 🚩 {len(store.reports(None, 500))} bildirim • ayarlar")
     st.download_button("⬇️ Yedeği indir (JSON)", blob, file_name="denemematik_yedek.json", mime="application/json", key="bk_dl")
     up = st.file_uploader("Yedeği geri yükle", type="json", key="bk_up")
     if up is not None and st.button("♻️ Geri yükle", key="bk_go"):
         try:
             d = json.loads(up.read().decode("utf-8"))
+            if isinstance(d.get("files"), dict):  # yeni yedek: tüm veri dosyaları (havuz, beğeni, hata günlüğü, ayarlar…)
+                store.restore_data_files(d["files"])
             store.replace_history(d.get("history", []))
             store.replace_wrong(d.get("wrong", []))
             if "bank" in d:  # eski yedeklerde banka yoktur; varsa geri yükle
@@ -9585,6 +9749,11 @@ def _load_modules():
 
 
 _load_modules()
+try:  # veri klasörü boşsa (Streamlit Cloud yeniden başlatması) GitHub yedeğinden geri yükle
+    from core import store as _gh_store
+    _gh_store.gh_pull_once()
+except Exception:
+    pass
 from core import ai_engine, curriculum as cur, meb_live
 from ui import theme, state, setup, wizard, exam, reports, extras, study
 
@@ -9645,6 +9814,15 @@ with st.sidebar:
         try:
             from core import ai_engine as _gai
             _gai.audit_pools_async()
+        except Exception:
+            pass
+        try:
+            _gstore.gh_sync_async()
+            _gs = _gstore.gh_status()
+            if _gs["on"]:
+                st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>☁️ GitHub yedeği</b><br>{'✅' if _gs['ok'] else ('⚠️' if _gs['ok'] is False else '⏳')} {_gs['msg'] or 'bekleniyor'}</div>", unsafe_allow_html=True)
+            else:
+                st.caption("☁️ GitHub yedeği kapalı (secrets: [github_sync])")
         except Exception:
             pass
         _rp = _gstore.reports(None, 500)
