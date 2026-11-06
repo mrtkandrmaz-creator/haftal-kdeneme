@@ -1763,6 +1763,149 @@ def _poly(ax, pts, labels=None, fc="#e0f2fe", ticks=False, diagonals=False, labe
             ax.text(q[0], q[1], labels[i], fontsize=11, fontweight="bold", color=INK, ha="center", va="center", zorder=6)
 
 
+# ------------------------------------------------------------------ paralel doğrular: noktalı + açılı şablonlar
+import re
+
+_PAR_RAYS = {"d1_r": (0, 0), "d1_l": (180, 0), "d2_r": (0, 0), "d2_l": (180, 0), "k_up": (0, 1), "k_down": (180, 1)}
+
+
+def _num_deg(s):
+    m = re.match(r"^\s*(\d+(?:[.,]\d+)?)\s*°?\s*$", str(s or ""))
+    return float(m.group(1).replace(",", ".")) if m else None
+
+
+def _fold(a):
+    a = a % 360
+    return 360 - a if a > 180 else a
+
+
+def par_geometry(d):
+    """Paralel doğru şeması için nokta koordinatları ve çözülen açılar. Döner: {'ok','pos','params','arcs','k'}."""
+    layout = str(d.get("layout", "transversal")).lower()
+    pts = d.get("points") if isinstance(d.get("points"), dict) else {}
+    arcs = [a for a in (d.get("arcs") or []) if isinstance(a, dict) and a.get("v") in pts and a.get("a") in pts and a.get("b") in pts]
+    role = {n: str(r) for n, r in pts.items()}
+    res = {"ok": True, "layout": layout, "arcs": arcs}
+
+    if layout == "zigzag":
+        # d1 (üst, y=1) üstünde A, d2 (alt, y=-1) üstünde C, ikisinin arasında B (y=0); A→B sağa-aşağı, C→B sağa-yukarı
+        cons = {}  # alpha, gamma, sum
+        for a in arcs:
+            m = _num_deg(a.get("label"))
+            if m is None:
+                continue
+            v, x, y = role[a["v"]], role[a["a"]], role[a["b"]]
+            pair = {x, y}
+            if v == "d1_a" and pair == {"d1_r", "mid"}: cons.setdefault("alpha", m)
+            elif v == "d1_a" and pair == {"d1_l", "mid"}: cons.setdefault("alpha", 180 - m)
+            elif v == "d2_c" and pair == {"d2_r", "mid"}: cons.setdefault("gamma", m)
+            elif v == "d2_c" and pair == {"d2_l", "mid"}: cons.setdefault("gamma", 180 - m)
+            elif v == "mid" and pair == {"d1_a", "d2_c"}: cons.setdefault("sum", m)
+        al, ga, sm = cons.get("alpha"), cons.get("gamma"), cons.get("sum")
+        if al and ga: pass
+        elif al and sm: ga = sm - al
+        elif ga and sm: al = sm - ga
+        elif sm: al = sm * .55; ga = sm - al
+        elif al: ga = 30.0
+        elif ga: al = 40.0
+        else: al, ga = 40.0, 30.0
+        if not (8 <= al <= 150 and 8 <= ga <= 150):
+            res["ok"] = False
+            al, ga = 40.0, 30.0
+        cot = lambda t: 1 / np.tan(np.radians(t))
+        A = np.array([-2.0, 1.0]); Bp = A + [cot(al), -1.0]; C = np.array([Bp[0] - cot(ga), -1.0])
+        base = {"d1_a": A, "mid": Bp, "d2_c": C, "d1_r": A + [2.0, 0], "d1_l": A - [2.0, 0], "d2_r": C + [2.0, 0], "d2_l": C - [2.0, 0]}
+        res.update(params={"alpha": al, "gamma": ga}, k=None)
+    else:
+        th = None
+        for a in arcs:
+            m = _num_deg(a.get("label"))
+            if m is None:
+                continue
+            x, y = role[a["a"]], role[a["b"]]
+            vr = role[a["v"]]
+            if vr == "d1_k" and x == "d2_k": x = "k_down"
+            elif vr == "d2_k" and x == "d1_k": x = "k_up"
+            if vr == "d1_k" and y == "d2_k": y = "k_down"
+            elif vr == "d2_k" and y == "d1_k": y = "k_up"
+            if x in _PAR_RAYS and y in _PAR_RAYS and _PAR_RAYS[x][1] != _PAR_RAYS[y][1]:
+                (c1, s1), (c2, s2) = _PAR_RAYS[x], _PAR_RAYS[y]
+                for cand in (m, 180 - m):
+                    if 10 <= cand <= 170 and abs(_fold((c2 - c1) + (s2 - s1) * cand) - m) < .6:
+                        th = cand
+                        break
+                if th:
+                    break
+        if th is None:
+            th = 60.0
+        w = np.array([np.cos(np.radians(th)), np.sin(np.radians(th))])
+        A = w / np.sin(np.radians(th)); Bp = -A
+        base = {"d1_k": A, "d2_k": Bp, "d1_r": A + [2.0, 0], "d1_l": A - [2.0, 0], "d2_r": Bp + [2.0, 0], "d2_l": Bp - [2.0, 0],
+                "k_up": A + w * 1.7, "k_down": Bp - w * 1.7}
+        res.update(params={"theta": th}, k=w)
+    pos = {}
+    for n, r in role.items():
+        if r in base:
+            pos[n] = np.array(base[r], float)
+        else:
+            res["ok"] = False
+    res["pos"] = pos
+    # tutarlılık: sayısal ölçüler çizilen geometriyle örtüşmeli
+    for a in arcs:
+        m = _num_deg(a.get("label"))
+        if m is None or a["v"] not in pos or a["a"] not in pos or a["b"] not in pos:
+            continue
+        u, v_ = pos[a["a"]] - pos[a["v"]], pos[a["b"]] - pos[a["v"]]
+        ang = np.degrees(np.arccos(np.clip(np.dot(u, v_) / ((np.linalg.norm(u) * np.linalg.norm(v_)) or 1), -1, 1)))
+        if abs(ang - m) > 1.5:
+            res["ok"] = False
+    res["base"] = base
+    return res
+
+
+def _par_draw(ax, d):
+    g = par_geometry(d)
+    pos, layout = g["pos"], g["layout"]
+    L = [str(x) for x in (d.get("labels") or [])] + ["d₁", "d₂", "k"]
+    L = [x.replace("d1", "d₁").replace("d2", "d₂") for x in L]
+    for y, nm in ((1.0, L[0]), (-1.0, L[1])):
+        _arrow(ax, np.array([-4.0, y]), np.array([4.0, y]), both=True)
+        ax.text(4.45, y, nm, fontsize=11, fontweight="bold", color=BLUE, ha="center", va="center")
+        for x in (3.0, 3.25):  # paralellik işareti ››
+            ax.plot([x - .1, x + .06, x - .1], [y + .17, y, y - .17], color=BLUE, lw=1.6, zorder=4)
+    if layout == "zigzag":
+        P = g["base"]
+        names = {r: n for n, r in {n: str(r) for n, r in d["points"].items()}.items()}
+        A, B, C = P["d1_a"], P["mid"], P["d2_c"]
+        ax.plot([A[0], B[0], C[0]], [A[1], B[1], C[1]], color=GREEN, lw=2.4, zorder=3)
+    else:
+        w = g["k"]
+        A, B = g["base"]["d1_k"], g["base"]["d2_k"]
+        _arrow(ax, B - w * 1.9, A + w * 1.9, both=True, color=GREEN)
+        ax.text(*(A + w * 2.3), L[2], fontsize=11, fontweight="bold", color=GREEN, ha="center", va="center")
+    for a in g["arcs"]:
+        v, x, y = a["v"], a["a"], a["b"]
+        if v not in pos or x not in pos or y not in pos:
+            continue
+        o = pos[v]
+        a0 = np.degrees(np.arctan2(*(pos[x] - o)[::-1]))
+        a1 = np.degrees(np.arctan2(*(pos[y] - o)[::-1]))
+        dd = (a1 - a0) % 360
+        if dd > 180:
+            a0, dd = a1, 360 - dd
+        _arc_mark(ax, o, a0, a0 + dd, r=.62 + .14 * (list(g["arcs"]).index(a) % 2), label=str(a.get("label", "")) or None)
+    for n, p in pos.items():
+        r = str(d["points"][n])
+        if r.endswith("_r") or r.endswith("_l") or r in ("k_up", "k_down"):
+            ax.plot(*p, "o", color=INK, ms=4, zorder=5)
+            off = (0, .36) if r.startswith("d1") or r == "k_up" else (0, -.36)
+        else:
+            ax.plot(*p, "o", color=INK, ms=5.5, zorder=5)
+            off = (-.05, .38) if r in ("d1_k", "d1_a") else (-.4, -.32) if r == "d2_k" else (-.05, -.38) if r == "d2_c" else (.42, 0)
+        ax.text(p[0] + off[0], p[1] + off[1], n, fontsize=11, fontweight="bold", color=INK, ha="center", va="center", zorder=6)
+    ax.set_xlim(-4.6, 5.0); ax.set_ylim(-3.1, 3.1)
+
+
 _POLY_N = {"üçgen": 3, "dörtgen": 4, "beşgen": 5, "altıgen": 6, "yedigen": 7, "sekizgen": 8}
 
 
@@ -1804,6 +1947,8 @@ def _geo(ax, d):
         ax.text(*(o + 3.35 * u), names[0], fontsize=11, fontweight="bold", color=BLUE, ha="center", va="center")
         ax.text(*(o + 2.95 * v), names[1], fontsize=11, fontweight="bold", color=GREEN, ha="center", va="center")
         _dot(ax, o, names[2], off=(.5, -.5)); ax.set_xlim(-4, 4); ax.set_ylim(-3.4, 3.4)
+    elif sub == "parallel" and isinstance(d.get("points"), dict) and d.get("points"):
+        _par_draw(ax, d)
     elif sub == "parallel":  # paralel iki doğru (+ isteğe bağlı kesen)
         tilt = _f(d.get("tilt", 0), 0)
         u = _rot([1, 0], tilt); n = _rot([0, 1], tilt)
@@ -4215,7 +4360,12 @@ _SR_BASIC = (
 _SR_GEO = (
     '- 📐 KESİN ÖLÇÜLÜ GEOMETRİ (doğru/ışın/doğru parçası, dik-paralel doğrular, açılar, çokgenler; GEOMETRİ konularında TERCİH ET, `labels` köşe/nokta harfleridir):\n'
     '   {"type":"geo","sub_type":"line|ray|segment","labels":["A","B"]}  |  {"type":"geo","sub_type":"lines_set","kinds":["segment","ray","line"]} (I,II,III numaralı karışık çizim; soruda "hangisi ışındır?" gibi)\n'
-    '   {"type":"geo","sub_type":"perpendicular","labels":["d1","d2","A"],"tilt":25} (tam 90°)  |  {"type":"geo","sub_type":"parallel","labels":["d1","d2","k"],"transversal":true,"angle":60}\n'
+    '   {"type":"geo","sub_type":"perpendicular","labels":["d1","d2","A"],"tilt":25} (tam 90°)  |  {"type":"geo","sub_type":"parallel","labels":["d1","d2","k"],"transversal":true,"angle":60} (YALNIZ düz paralel doğrular; soru metninde nokta/açı harfi VARSA aşağıdaki NOKTALI biçimi kullan)\n'
+    '   PARALEL DOĞRU + NOKTA/AÇI (d1 // d2 sorularında ZORUNLU; metinde geçen HER nokta harfi ve HER m(XYZ) ölçüsü şekilde de bulunsun): '
+    '{"type":"geo","sub_type":"parallel","layout":"transversal","labels":["d1","d2","k"],"points":{"A":"d1_k","B":"d2_k","C":"d1_r","D":"d2_l","E":"k_up"},"arcs":[{"v":"A","a":"C","b":"E","label":"65°"},{"v":"B","a":"D","b":"A","label":"x"}]} '
+    '(transversal: A=kesenin d1 ile kesişimi "d1_k", B=d2 ile kesişimi "d2_k"; ek noktalar: "d1_r"/"d1_l" d1 üzerinde sağ/sol, "d2_r"/"d2_l" d2 üzerinde sağ/sol, "k_up" kesen üzerinde A\'nın üstü, "k_down" B\'nin altı; arcs: v=köşe, a ve b=kolların üzerindeki nokta adları, label=ölçü ya da x). '
+    'KIRIK ÇİZGİ: {"type":"geo","sub_type":"parallel","layout":"zigzag","labels":["d1","d2"],"points":{"A":"d1_a","B":"mid","C":"d2_c","D":"d1_r","E":"d2_r"},"arcs":[{"v":"A","a":"D","b":"B","label":"40°"},{"v":"C","a":"E","b":"B","label":"30°"},{"v":"B","a":"A","b":"C","label":"?"}]} '
+    '(A d1 üstünde, C d2 üstünde, B ikisinin arasında; m(DAB)=α, m(ECB)=γ ise m(ABC)=α+γ). Metindeki açı ölçüleri BU açı etiketleriyle AYNEN yazılır.\n'
     '   {"type":"geo","sub_type":"angle","degree":50,"rotation":0,"labels":["A","B","C"],"angle_label":"?"} (açı TAM `degree` derece çizilir; ölçüyü soru metni verir ya da öğrenci açıyı türünden sınıflar)\n'
     '   {"type":"geo","sub_type":"angles_two_lines","degree":60,"given":"60°","ask":"x"} (kesişen iki doğru)\n'
     '   {"type":"geo","sub_type":"polygon","sides":6,"labels":["A","B","C","D","E","F"],"equal_ticks":true,"diagonals":false,"irregular":false}  (3-8 kenar)\n'
@@ -4338,11 +4488,11 @@ _MOON_KINDS = {"moon_single", "moon_phases", "moon_sequence", "phases", "moon_or
 _TOPIC_RULES = [  # (ad, konu regex, izinli görsel türleri)
     ("ay", _MOON, _MOON_KINDS | {"mevsim"}),
     ("kuvvet", re.compile(r"dinamometre|kuvvet|sürtünme|newton|ağırlık|dengelen", re.I), {"dynamometer", "forces", "line_chart", "bar_chart", "table"} | _FEN_KINDS),
-    ("ısı", re.compile(r"sıcaklık|termometre|ısı|erime|donma|kaynama|buharlaş", re.I), {"thermometer", "line_chart", "bar_chart", "table", "cylinder"}),
+    ("ısı", re.compile(r"sıcaklık|termometre|\bısı|\b(?:erime|donma|kaynama|buharlaş)", re.I), {"thermometer", "line_chart", "bar_chart", "table", "cylinder"}),
 ]
 _REQUIRE = {  # özel görsel -> metinde bulunması gereken anahtarlar
     "dynamometer": r"kuvvet|dinamometre|ağırlık|newton|yay|kütle",
-    "thermometer": r"sıcaklık|termometre|ısı|°|derece",
+    "thermometer": r"sıcaklık|termometre|\bısı|°|derece",
     "triangle": r"üçgen|açı|kenar|çevre|alan|dik|yükseklik",
     "circle": r"çember|daire|yarıçap|çap|merkez|yay|alan|çevre",
     "rectangle": r"dikdörtgen|kare|dörtgen|alan|çevre|bahçe|zemin|tarla|kenar|uzunluk|genişlik|oda",
@@ -4362,6 +4512,106 @@ def _kind(shape):
     if t == "fen":
         return str(shape.get("sub_type") or "").lower()
     return str(shape.get("sub_type") or t).lower() if t == "science_space" else t
+
+
+# ------------------------------------------------------------------ TAM VERİ KONTROLÜ: görsel/metin/şıklarda eksik bilgi bırakma
+def _numlist(v, minlen=2):
+    try:
+        out = [float(str(x).replace(",", ".")) for x in (v or [])]
+    except Exception:
+        return None
+    return out if len(out) >= minlen else None
+
+
+def _isnum(v):
+    try:
+        float(str(v).replace(",", "."))
+        return True
+    except Exception:
+        return False
+
+
+def _figure_complete(shape):
+    """Çizimin kendisi eksiksiz mi? (Eksik alanlar renderer'da uydurma varsayılanla doldurulur -> metinle uyumsuz görsel.)"""
+    if not isinstance(shape, dict):
+        return True
+    t = str(shape.get("type", "")).lower()
+    if t in ("bar_chart", "science_chart", "line_chart", "pie_chart"):
+        vals = _numlist(shape.get("values"))
+        labs = shape.get("labels")
+        if vals is None or not isinstance(labs, (list, tuple)) or len(labs) != len(vals):
+            return False
+        labs = [str(x).strip() for x in labs]
+        if any(not x for x in labs) or len(set(labs)) != len(labs):
+            return False
+        if t == "pie_chart" and (min(vals) <= 0 or sum(vals) <= 0):
+            return False
+        if t != "line_chart" and min(vals) < 0:
+            return False
+        return True
+    if t == "table":
+        hs, rows = shape.get("headers") or [], shape.get("rows") or []
+        if len(hs) < 2 or len(rows) < 2 or any(not str(h).strip() for h in hs):
+            return False
+        for r in rows:
+            if len(r) != len(hs) or any(not str(c).strip() or str(c).strip() in ("-", "—", "None", "null") for c in r):
+                return False
+        return True
+    if t == "dynamometer":
+        return _isnum(shape.get("max_value")) and _isnum(shape.get("value")) and float(shape["value"]) <= float(shape["max_value"])
+    if t == "thermometer":
+        return all(_isnum(shape.get(k)) for k in ("min", "max", "value")) and float(shape["min"]) < float(shape["max"])
+    if t == "cylinder":
+        return _isnum(shape.get("max")) and _isnum(shape.get("level")) and 0 <= float(shape["level"]) <= float(shape["max"])
+    if t == "number_line":
+        return all(_isnum(shape.get(k)) for k in ("min", "max", "step")) and float(shape["max"]) > float(shape["min"]) and float(shape["step"]) > 0
+    if t == "forces":
+        L, R = _numlist(shape.get("left"), 0), _numlist(shape.get("right"), 0)
+        return L is not None and R is not None and bool(L or R)
+    return True
+
+
+_PLACEHOLDER = re.compile(r"\{\{|\}\}|\[\s*\.{2,}\s*\]|\bTODO\b|\bundefined\b|\bnull\b|\bNone\b|(?:…|\.\.\.)\s*(?:cm|mm|km|kg|gr?|N|TL|lira|°|%|dakika|saat|metre|litre)\b", re.I)
+_ROMAN_OPT = re.compile(r"(?<![A-Za-z])(III|II|IV|I)(?![A-Za-z])")
+_LETTER_OPT = re.compile(r"^(?:yaln[ıi]z\s+|sadece\s+)?([A-ZÇĞİÖŞÜ])(?:\s*(?:,|ve|ile|-|–)\s*([A-ZÇĞİÖŞÜ]))*\s*$")
+_GTYPE = [(r"daire grafi", {"pie_chart"}), (r"(?:sütun|çubuk) grafi", {"bar_chart", "science_chart"}), (r"çizgi grafi", {"line_chart"})]
+
+
+def _complete_ok(qtext, pas, opts, shape):
+    """Soru metni + şıklar + görsel arasında eksik/uyumsuz bilgi var mı? (False -> soruyu ele)"""
+    full = f"{qtext}\n{pas}"
+    if _PLACEHOLDER.search(full) or any(_PLACEHOLDER.search(str(v)) or not str(v).strip() for v in opts.values()):
+        return False
+    if not _figure_complete(shape):
+        return False
+    st_ = str((shape or {}).get("type", "")).lower()
+    low = full.lower()
+    if shape:
+        for rx, kinds in _GTYPE:
+            if re.search(rx, low) and st_ not in kinds:
+                return False  # metin başka grafik türü söylüyor
+        if re.search(r"\btablo\w*", low) and not re.search(r"grafi|şekil", low) and st_ != "table" and st_ in ("bar_chart", "line_chart", "pie_chart", "science_chart"):
+            return False
+    # I, II, III yargıları metinde gerçekten yazılı mı?
+    romans = set()
+    for v in opts.values():
+        romans |= set(_ROMAN_OPT.findall(str(v)))
+    for r in romans:
+        if not re.search(rf"(?:^|[\s(]){r}\s*[.):\-–]", full, re.M):
+            return False
+    # şıklardaki K/L/M harfleri metinde ya da görselde bulunmalı
+    letters = set()
+    for v in opts.values():
+        m = _LETTER_OPT.match(str(v).strip())
+        if m:
+            letters |= set(re.findall(r"[A-ZÇĞİÖŞÜ]", str(v).replace("Yalnız", "").replace("Sadece", "")))
+    if letters:
+        import json as _j
+        blob = full + " " + (_j.dumps(shape, ensure_ascii=False) if shape else "")
+        for L in letters:
+            if not re.search(rf"(?<![A-Za-zçğıöşüÇĞİÖŞÜ]){L}(?![A-Za-zçğıöşüÇĞİÖŞÜ])", blob):
+                return False
+    return True
 
 
 def coherent_shape(shape, text):
@@ -4398,7 +4648,10 @@ def topic_visual_rules(topics_text):
     if re.search(r"dinamometre|kuvvet|sürtünme", topics_text or "", re.I) and not _MOON.search(topics_text or ""):
         out += "💪 KUVVET konusunda görsel dinamometre ya da kuvvet şeması olsun; sorudaki sayılar görseldekiyle birebir aynı olsun.\n"
     out += ("🎯 SORU–GÖRSEL BİREBİR UYUM: Görsel varsa soru ona doğrudan dayansın ve görseldeki her veri soruyla tutarlı olsun. Konuyla ilgisiz görsel (ör. Ay evresi sorusuna tablo, "
-            "Din/Türkçe sorusuna grafik) ASLA koyma; uygun görsel yoksa shape null yap ve metne 'şekil/grafik/tablo' deme.\n")
+            "Din/Türkçe sorusuna grafik) ASLA koyma; uygun görsel yoksa shape null yap ve metne 'şekil/grafik/tablo' deme.\n"
+            "🧩 EKSİKSİZ VERİ: Grafik/tablo/ölçü aleti şemalarında TÜM alanları doldur (bar/line/pie: labels ve values aynı uzunlukta; tablo: boş hücre yok; dinamometre: max_value+value; termometre: min+max+value; "
+            "mezür: max+level). Metinde geçen her ad, sayı, harf ve ölçü görselde de bulunsun; görselde olmayan bilgiyi metne yazma, soruyu çözmek için gereken hiçbir veriyi eksik bırakma. "
+            "'I, II, III' yargılı sorularda yargıları metne tek tek yaz; şıklarda K/L/M gibi harfler kullanıyorsan bunları metinde/görselde tanımla.\n")
     return out
 
 
@@ -4737,11 +4990,157 @@ def _geo_labels(shape, text=""):
 _VAL = r"([0-9xy+\-−–()\s.]+°)"
 
 
+_PAR_STMT = re.compile(r"d\s*[1₁]\s*(?://|∥|\|\|)\s*d\s*[2₂]|paralel", re.I)
+
+
+def _par_norm(text):
+    """'ABC açısının ölçüsü' -> 'm(ABC)'; '∠ABC' -> 'm(ABC)' (yalnızca şekil eşlemesi için)."""
+    t = re.sub(r"\b([A-ZÇĞİÖŞÜ]{3})\s+açısı(?:nın|nin)?\s+ölçüsü", r"m(\1)", text)
+    t = re.sub(r"∠\s*([A-ZÇĞİÖŞÜ]{3})", r"m(\1)", t)
+    return t
+
+
+def _par_angles(text):
+    out = []
+    for m3, val in re.findall(r"m\(([A-ZÇĞİÖŞÜ]{3})\)\s*=\s*" + _VAL, text):
+        out.append((m3[1], m3[0], m3[2], re.sub(r"\s+", "", val.strip())))
+    for m3 in re.findall(r"m\(([A-ZÇĞİÖŞÜ]{3})\)\s*(?:kaç|=\s*\?)", text):
+        out.append((m3[1], m3[0], m3[2], "?"))
+    seen, res = set(), []
+    for a in out:  # aynı açı iki kez geçerse ilkini tut
+        k = (a[0], frozenset((a[1], a[2])))
+        if k not in seen:
+            seen.add(k)
+            res.append(a)
+    return res
+
+
+def _rebuild_parallel(text):
+    """d1 // d2 ve m(XYZ) ölçüleri METİNDEN şemaya çevrilir (kırık çizgi ya da kesenli). Kurulamazsa None."""
+    import itertools
+    from . import visuals
+    text = _par_norm(text)
+    ang = _par_angles(text)
+    if not ang:
+        return None
+    byv = {}
+    for v, x, y, l in ang:
+        byv.setdefault(v, []).append((x, y, l))
+
+    def mk(layout, pts):
+        arcs = [{"v": v, "a": x, "b": y, "label": l} for v, x, y, l in ang if v in pts and x in pts and y in pts]
+        if len(arcs) != len(ang):
+            return None
+        sh = {"type": "geo", "sub_type": "parallel", "layout": layout, "labels": ["d1", "d2", "k"], "points": dict(pts), "arcs": arcs}
+        return sh if visuals.par_geometry(sh)["ok"] else None
+
+    # --- kırık çizgi: B köşesinde A-B-C, A ve C'nin birer kolu B
+    for B, lst in byv.items():
+        for A, C, _ in lst:
+            if A in byv and C in byv and A != C:
+                armsA = [(y if x == B else x) for x, y, _ in byv[A] if B in (x, y)]
+                armsC = [(y if x == B else x) for x, y, _ in byv[C] if B in (x, y)]
+                if not armsA or not armsC:
+                    continue
+                P, Q = armsA[0], armsC[0]
+                if len({A, B, C, P, Q}) != 5:
+                    continue
+                for sp, sq in itertools.product(("d1_r", "d1_l"), ("d2_r", "d2_l")):
+                    sh = mk("zigzag", {A: "d1_a", B: "mid", C: "d2_c", P: sp, Q: sq})
+                    if sh:
+                        return sh
+    # --- kesenli: iki köşe birbirinin kolu
+    vs = list(byv)
+    for A, B in itertools.permutations(vs, 2):
+        if not (any(B in (x, y) for x, y, _ in byv[A]) and any(A in (x, y) for x, y, _ in byv[B])):
+            continue
+        oa = list(dict.fromkeys([(y if x == B else x) for x, y, _ in byv[A] if B in (x, y)] + [t for x, y, _ in byv[A] for t in (x, y) if t != B]))
+        ob = list(dict.fromkeys([(y if x == A else x) for x, y, _ in byv[B] if A in (x, y)] + [t for x, y, _ in byv[B] for t in (x, y) if t != A]))
+        oa = [t for t in oa if t not in (A, B)]
+        ob = [t for t in ob if t not in (A, B) and t not in oa]
+        if len(oa) > 2 or len(ob) > 2 or len(set(oa + ob)) != len(oa + ob):
+            continue
+        for sa in itertools.product(("d1_r", "d1_l"), repeat=len(oa)):
+            if len(set(sa)) != len(sa):
+                continue
+            for sb in itertools.product(("d2_r", "d2_l"), repeat=len(ob)):
+                if len(set(sb)) != len(sb):
+                    continue
+                pts = {A: "d1_k", B: "d2_k"}
+                pts.update(dict(zip(oa, sa)))
+                pts.update(dict(zip(ob, sb)))
+                sh = mk("transversal", pts)
+                if sh:
+                    return sh
+    return None
+
+
+def _sync_parallel(shape, text):
+    """d1 // d2 sorularında metindeki her nokta harfi ve m(XYZ) ölçüsü ŞEKİLDE de gösterilsin; ölçüler çizilen geometriyle örtüşsün."""
+    from . import visuals
+    text = _par_norm(text)
+    out = _sync_parallel0(shape, text)
+    if out.get("_bad"):
+        rb = _rebuild_parallel(text)  # şekil eksik/uyumsuz: metindeki veriden yeniden kur
+        if rb:
+            out = _sync_parallel0(rb, text)
+            if not out.get("_bad"):
+                out["_rebuilt"] = True
+    return out
+
+
+def _sync_parallel0(shape, text):
+    from . import visuals
+    sh = dict(shape)
+    has_txt_pts = bool(re.search(r"m\([A-ZÇĞİÖŞÜ]{3}\)|\b[A-Z]\s*(?:noktas|ile|,)|∠", text))
+    pts = sh.get("points") if isinstance(sh.get("points"), dict) else {}
+    if not pts:
+        if has_txt_pts:
+            sh["_bad"] = True  # metinde nokta/açı var ama şekil çıplak paralel doğrular: şekle işlenemez
+        return sh
+    arcs = [dict(a) for a in (sh.get("arcs") or []) if isinstance(a, dict) and a.get("v") in pts and a.get("a") in pts and a.get("b") in pts]
+    have = {(a["v"], frozenset((a["a"], a["b"]))) for a in arcs}
+    for m3, val in re.findall(r"m\(([A-ZÇĞİÖŞÜ]{3})\)\s*=\s*" + _VAL, text):
+        x, v, y = m3[0], m3[1], m3[2]
+        if not all(c in pts for c in (x, v, y)):
+            sh["_bad"] = True  # metindeki açının harfleri şekilde yok
+            return sh
+        if (v, frozenset((x, y))) not in have:
+            arcs.append({"v": v, "a": x, "b": y, "label": re.sub(r"\s+", "", val.strip())})
+            have.add((v, frozenset((x, y))))
+    for m3 in re.findall(r"m\(([A-ZÇĞİÖŞÜ]{3})\)\s*(?:kaç|=\s*\?)", text):
+        x, v, y = m3[0], m3[1], m3[2]
+        if not all(c in pts for c in (x, v, y)):
+            sh["_bad"] = True
+            return sh
+        if (v, frozenset((x, y))) not in have:
+            arcs.append({"v": v, "a": x, "b": y, "label": "?"})
+            have.add((v, frozenset((x, y))))
+    for letter in set(re.findall(r"(?<![A-Za-zÇĞİÖŞÜçğıöşü])([A-Z])(?:\s*noktas|\s*∈)", text)):
+        if letter not in pts:
+            sh["_bad"] = True  # "X noktası" metinde var, şekilde yok
+            return sh
+    sh["arcs"] = arcs
+    sh["labels"] = [("d1" if "1" in str(x) or "₁" in str(x) else "d2" if "2" in str(x) or "₂" in str(x) else str(x)) for x in (sh.get("labels") or ["d1", "d2", "k"])]
+    if not visuals.par_geometry(sh)["ok"]:
+        sh["_bad"] = True  # ölçüler paralellik geometrisiyle çelişiyor ya da nokta rolü tanımsız
+    return sh
+
+
 def _sync_geo_shape(shape, text):
     """Metinde verilen ad, tür, eşit kenar, açı ve uzunlukları ŞEKİLDE de gösterir (şema metinle BİREBİR uyumlu olsun)."""
     if not isinstance(shape, dict) or shape.get("type") != "geo":
         return shape
     sub = str(shape.get("sub_type", "")).lower()
+    if sub == "parallel":
+        return _sync_parallel(shape, text)
+    if sub in ("angles_two_lines", "angle", "line", "lines_set", "perpendicular", "lines", "") and _PAR_STMT.search(text) and re.search(r"m\([A-ZÇĞİÖŞÜ]{3}\)|∠|\b[A-ZÇĞİÖŞÜ]{3}\s+açısı", text):
+        rb = _rebuild_parallel(text)  # metin d1 // d2 + harfli açı veriyor ama şekil bunları taşımıyor
+        if rb:
+            return rb
+        sh = dict(shape)
+        sh["_bad"] = True
+        return sh
     if sub not in ("triangle", "quad", "polygon"):
         return shape
     sh = dict(shape)
@@ -5220,6 +5619,8 @@ def _norm_q(q, subject):
     shape, bad = coherent_shape(shape, f"{q.get('topic', '')} {q.get('question', '')} {q.get('passage', '')}")
     if not shape and re.search(_FIG, str(q.get("question", ""))) and not str(q.get("passage") or "").count("|"):
         return None  # görsele atıf var ama uygun görsel yok -> soruyu ele
+    if not _complete_ok(str(q.get("question", "")), str(q.get("passage") or ""), opts, shape):
+        return None  # eksik veri / metin-görsel uyumsuzluğu: soruyu ele (yerine yenisi üretilir)
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
