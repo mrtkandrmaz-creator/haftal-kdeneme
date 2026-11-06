@@ -8169,7 +8169,9 @@ def exam():
         cv = st.session_state.answers.get(idx)
         st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
-        bc1, bc2 = st.columns(2)
+        bc1, bc2, bc3 = st.columns([1, 1, 1.4])
+        with bc3:
+            st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
         with bc1:
             st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
         with bc2:
@@ -8199,7 +8201,8 @@ def exam():
         st.button(f"➡ {sx['name']}'i Bitir ve Sıradaki Oturuma Geç (geri dönülemez)" if (sx and si < ns - 1) else "🏁 Deneme Sınavını Tamamla ve Sonuçları Gör",
                   key="finish_btn", on_click=finish, type="primary")
     with fb2:
-        st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
+        if m["kind"] != "mc":
+            st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
     _pen(f"{m.get('id', '')}:{idx}")
 
 
