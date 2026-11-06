@@ -3314,6 +3314,106 @@ def report_bad(q):
     return True
 
 
+# ---- beğenilen sorular + "benzer soru havuzu" (sonraki sınavlarda kullanılır)
+LPOOL_TOTAL = 5000
+import re as _re_
+_CODE_RX = _re_.compile(r"[A-ZÇĞİÖŞÜ]{2,5}\.\d+(?:\.\d+)+")
+
+
+def liked():
+    return _load("liked.json", [])
+
+
+def like_q(q, meta=None):
+    """Beğenilen soruyu kaydeder (tekrar eklenmez). -> yeni mi?"""
+    st_ = _bstem(q)
+    if not st_:
+        return False
+    L = liked()
+    if any(x.get("stem") == st_ for x in L):
+        return False
+    meta = meta or {}
+    L.append({"stem": st_, "q": {k: v for k, v in q.items() if k != "id"}, "grade_label": meta.get("grade_label", ""),
+              "difficulty": meta.get("difficulty", ""), "ts": int(time.time())})
+    _save("liked.json", L[-300:])
+    return True
+
+
+def _lp_topics(q_or_topics):
+    t = str(q_or_topics or "")
+    return {"code": (_CODE_RX.search(t) or [None])[0] if _CODE_RX.search(t) else "", "kz": t.lower()[:40]}
+
+
+def lpool_put(subject, grade_label, difficulty, topics, qs, src=""):
+    clean = [{k: v for k, v in q.items() if k != "id"} for q in qs]
+    clean = [c for c in clean if _bstem(c)]
+    if not clean:
+        return 0
+    tp = _lp_topics(topics)
+    with _BANK_LOCK:
+        P = _load("lpool.json", [])
+        have = {_bstem(x["q"]) for x in P}
+        added = 0
+        for c in clean:
+            if _bstem(c) in have:
+                continue
+            P.append({"q": c, "subject": subject, "grade_label": grade_label, "difficulty": difficulty,
+                      "code": tp["code"], "kz": tp["kz"], "src": src, "ts": int(time.time())})
+            have.add(_bstem(c))
+            added += 1
+        _save("lpool.json", P[-LPOOL_TOTAL:])
+        return added
+
+
+def lpool_peek(subject, grade_label, difficulty, topics, limit=10):
+    """Bu ders/sınıf/zorluk ve kapsama uyan, beğenilenlere benzer hazır sorular."""
+    tl = str(topics or "").lower()
+    out = []
+    for x in _load("lpool.json", []):
+        if x.get("subject") != subject or x.get("grade_label") != grade_label or x.get("difficulty") != difficulty:
+            continue
+        ok = (x.get("code") and x["code"] in str(topics)) or (x.get("kz") and x["kz"] in tl) or (not x.get("code") and not x.get("kz"))
+        if ok:
+            out.append(dict(x["q"]))
+        if len(out) >= limit:
+            break
+    return out
+
+
+def lpool_remove(stems):
+    stems = set(stems)
+    if not stems:
+        return
+    with _BANK_LOCK:
+        P = _load("lpool.json", [])
+        _save("lpool.json", [x for x in P if _bstem(x["q"]) not in stems])
+
+
+LIKE_DAILY_CALLS = 20  # günde en fazla bu kadar arka plan havuz üretimi (kota koruması)
+
+
+def like_budget_take(auto=True):
+    """Günlük arka plan üretim hakkı. Elle beğenme her zaman çalışır (2 soru); otomatik büyütme günlük limite tabidir."""
+    d = _load("likebudget.json", {})
+    k = str(_today())
+    n = int(d.get("n", 0)) if d.get("d") == k else 0
+    if auto and n >= LIKE_DAILY_CALLS:
+        return False
+    _save("likebudget.json", {"d": k, "n": n + 1})
+    return True
+
+
+def lpool_per_src():
+    d = {}
+    for x in _load("lpool.json", []):
+        d[x.get("src", "")] = d.get(x.get("src", ""), 0) + 1
+    return d
+
+
+def lpool_count(subject=None):
+    return sum(1 for x in _load("lpool.json", []) if subject is None or x.get("subject") == subject)
+
+
 def update_wrong(key, **fields):
     w = wrong()
     for x in w:
@@ -4983,13 +5083,16 @@ def _lgs25(subject, grade_label):
     return _LGS25.get(subject, "")
 
 
-def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False):
+def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False, like=""):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
     geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     plain = plain and not geo_on  # geometri şekilsiz olmaz
     eff, lvl = bump_difficulty(difficulty)
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
+    if like:
+        fc += ("\n👍 ÖĞRENCİNİN BEĞENDİĞİ ÖRNEK SORU:\n" + like[:900] + "\nTÜM soruları bu örneğe BENZER yaz: aynı kazanım/beceri, aynı yapı, tür ve zorluk; "
+               "ama FARKLI sayı, ad, bağlam ve görsel verisi kullan. Örneği kopyalama; metindeki her değer görselde de olsun.")
     return (
         f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
         f"tam uygun, TAM {n} adet ÇOKTAN SEÇMELİ (A,B,C,D) yeni nesil soru hazırla.\n"
@@ -6041,7 +6144,7 @@ def _relaxed_ok(q, kept):
     return True
 
 
-def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False, count=True):
+def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False, count=True, like=""):
     """plan: [{subject, n, topics}] -> (questions, errors).
     Her ders BAĞIMSIZ ilerler (başka dersi beklemez): bankadan al -> paralel üret -> eksik kaldıkça yeniden tamamla
     (turlar ilerledikçe daha çok yedek ister, çeşitlilik kuralını gevşetir, en son görselsiz moda geçer).
@@ -6084,7 +6187,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             if demo_mode():
                 return _demo_mc(subj, c_ask, p["topics"]), None
             av = list(avoid.get(subj, [])) + list(extra_avoid)
-            prompt = mc_prompt(grade_label, subj, c_ask, p["topics"], difficulty, scope_label, av, focus if use_focus else "", plain=plain)
+            prompt = mc_prompt(grade_label, subj, c_ask, p["topics"], difficulty, scope_label, av, focus if use_focus else "", plain=plain, like=like)
 
             def validate(items):
                 out = []
@@ -6111,6 +6214,14 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
         p = st_["p"]
         subj, n = p["subject"], p["n"]
         try:
+            if bank_ok:  # 00) beğenilen sorulara benzer havuzdan (en çok %40)
+                try:
+                    from . import store
+                    lp = [q for q in store.lpool_peek(subj, grade_label, difficulty, p.get("topics", ""), limit=n) if _stem(q) and _stem(q) not in seen]
+                    take(st_, lp[:max(1, int(n * 0.4))])
+                    store.lpool_remove([_stem(q) for q in st_["qs"]])
+                except Exception:
+                    pass
             if bank_ok:  # 0) bankadan doldur
                 try:
                     from . import store
@@ -6247,6 +6358,70 @@ def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
 
     threading.Thread(target=run, daemon=True).start()
     return True
+
+
+_LIKING = set()
+
+
+def like_similar_async(q, grade_label, difficulty, n=2, auto=False):
+    """Beğenilen soruya benzer sorular üretip havuza koyar (arka planda). Ana iş parçacığında çağrılır."""
+    if demo_mode() or not isinstance(q, dict):
+        return False
+    try:
+        from . import store
+        gk, mk = load_keys()
+        if not gk and not mk and not extra_keys():
+            return False
+        subj = q.get("subject") or "Genel"
+        topics = str(q.get("kazanim") or q.get("topic") or "")
+        stem = _stem(q)
+        if stem in _LIKING:
+            return False
+        if auto:  # kotayı koru: modeller soğumadaysa ya da günlük limit dolduysa üretme
+            ps = pool_status()
+            if ps.get("cooling", 0) > 0 or ps.get("disabled", 0) > 0 or _FILLING or not store.like_budget_take(True):
+                return False
+        else:
+            store.like_budget_take(False)
+        _LIKING.add(stem)
+        opts = " | ".join(f"{k}) {v}" for k, v in (q.get("options") or {}).items()) if isinstance(q.get("options"), dict) else ""
+        ex = f"{q.get('passage') or ''} {q.get('question', '')} {opts}".strip()
+        if isinstance(q.get("shape"), dict):
+            ex += " [görsel: " + json.dumps({k: v for k, v in q["shape"].items() if k != "_bad"}, ensure_ascii=False)[:300] + "]"
+        avoid = {k: list(v) for k, v in store.recent_stems().items()}
+        avoid.setdefault(subj, []).append(stem)
+    except Exception:
+        return False
+
+    def run():
+        try:
+            plan = [{"subject": subj, "n": n, "topics": topics or subj}]
+            qs, _e = generate_mc(plan, grade_label, difficulty, "Beğenilen soruya benzer", avoid=avoid, use_bank=False, deposit=False,
+                                 keys=(gk, mk), verify=False, count=False, like=ex)
+            mine = [x for x in qs if x.get("subject") == subj]
+            store.lpool_put(subj, grade_label, difficulty, topics or subj, mine, src=stem)
+        except Exception:
+            pass
+        finally:
+            _LIKING.discard(stem)
+
+    threading.Thread(target=run, daemon=True).start()
+    return True
+
+
+def like_refill_async(grade_label, difficulty, per_src=5, max_src=2):
+    """Beğenilen soruların benzer havuzunu büyütür: havuzda en az benzeri kalan beğenilenler için 2'şer soru daha üretir."""
+    try:
+        from . import store
+        cnt = store.lpool_per_src()
+        L = [x for x in store.liked() if x.get("grade_label") == grade_label and x.get("difficulty") == difficulty
+             and cnt.get(x.get("stem"), 0) < per_src and x.get("stem") not in _LIKING]
+        L.sort(key=lambda x: cnt.get(x.get("stem"), 0))
+        for x in L[:max_src]:
+            like_similar_async(x["q"], grade_label, difficulty, auto=True)
+        return bool(L)
+    except Exception:
+        return False
 
 
 def fill_bank(plan, grade_label, difficulty, scope_label, avoid=None, on_progress=None):
@@ -7258,6 +7433,7 @@ def _gen_mc(plan, meta, scope_label, focus="", use_bank=True):
         _remember_plan(plan, meta, scope_label)
         try:
             ai.bank_topup_async(plan, meta["grade_label"], meta["difficulty"], scope_label, qs)
+            ai.like_refill_async(meta["grade_label"], meta["difficulty"])
         except Exception:
             pass
     _finish(qs, errs, meta)
@@ -8180,9 +8356,15 @@ def exam():
         cv = st.session_state.answers.get(idx)
         st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
-        bc1, bc2, bc3 = st.columns([1, 1, 1.4])
+        bc1, bc2, bc4, bc3 = st.columns([1, 1, 1, 1.3])
         with bc3:
             st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
+        with bc4:
+            if st.session_state.get(f"lk_{idx}"):
+                st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
+            else:
+                st.button("👍 Soruyu beğendim", key=f"likeq_{idx}", on_click=_like, args=(q, f"lk_{idx}", m),
+                          help="Benzer sorular arka planda üretilip havuzda birikir ve sonraki sınavlarda kullanılır.")
         with bc1:
             st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
         with bc2:
@@ -8274,6 +8456,15 @@ def _prev_attempt(m, current_id=None):
         if a["grade"] == m["grade"] and a["mode"] == m["mode"] and a["id"] != current_id:
             return a
     return None
+
+
+def _like(q, flag, m):
+    try:
+        if store.like_q(q, m):
+            ai.like_similar_async(q, m.get("grade_label", ""), m.get("difficulty", ""))
+    except Exception:
+        pass
+    st.session_state[flag] = True
 
 
 def _report(q, flag):
@@ -8526,6 +8717,10 @@ def result():
                     st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
                 else:
                     st.button("🚩 Bu soru hatalı", key=f"repb_{i}", on_click=_report, args=(q, f"rep_{i}"))
+                if st.session_state.get(f"lk_{i}"):
+                    st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
+                else:
+                    st.button("👍 Soruyu beğendim", key=f"likeb_{i}", on_click=_like, args=(q, f"lk_{i}", m))
             else:
                 st.markdown(f"### Soru {i + 1} [{q.get('subject', '')}] — {st.session_state.self_scores.get(i, 0)}/{q.get('points')} puan")
                 st.markdown(f"**{q['question']}**\n\n**Beklenen cevap:** {q.get('answer', '')}")
@@ -9104,6 +9299,8 @@ with st.sidebar:
         _gd, _gw, _gm = _gstore.gen_totals()
         st.markdown("---")
         st.markdown(f"<div style='font-size:.85rem;line-height:1.7'><b>📈 Üretilen soru</b><br>Bugün: <b>{_gd}</b><br>Bu hafta: <b>{_gw}</b><br>Bu ay: <b>{_gm}</b></div>", unsafe_allow_html=True)
+        _lp, _lk = _gstore.lpool_count(), len(_gstore.liked())
+        st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>👍 Beğenilen havuz</b><br>Beğenilen soru: <b>{_lk}</b><br>Havuzdaki benzer soru: <b>{_lp}</b></div>", unsafe_allow_html=True)
     except Exception:
         pass
 
