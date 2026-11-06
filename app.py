@@ -4910,6 +4910,11 @@ _ANG1 = re.compile(r"∠\s*([A-ZÇĞİÖŞÜ]{1,3})(?=\s*(?:=|<|>|≠|kaç))")
 _MPAR = re.compile(r"m\s*\(\s*(?:∠\s*)?([A-ZÇĞİÖŞÜ]{1,3})\s*\)")
 _SIDE_EQ = re.compile(r"(?<![\w|(\[])([A-Z]{2})\s*=\s*([A-Z]{2})(?![\w|)\]])")
 _SIDE_LEN = re.compile(r"(?<![\w|(\[])([A-Z]{2})\s*=\s*(?=\d)")
+# sözlü biçimler -> MEB gösterimi: 'BAC açısı 60°' -> m(BAC) = 60°, 'AB kenarı 7 cm' / '[AB] = 7 cm' -> |AB| = 7 cm
+_ANG_WORD = re.compile(r"(?<![A-Za-zÇĞİÖŞÜ])([A-ZÇĞİÖŞÜ]{1,3})\s+açısı(?:nın\s+ölçüsü)?(?:\s*=\s*|\s+)(?=\d)")
+_SIDE_WORD = re.compile(r"(?<![A-Za-zÇĞİÖŞÜ|(\[])\[?([A-Z]{2})\]?(?![A-Za-zÇĞİÖŞÜ])\s*(?:kenar(?:ı|ının)?(?:\s+uzunluğu)?|uzunluğu|'?nin\s+uzunluğu|doğru\s+parçası(?:nın\s+uzunluğu)?)?\s*(?:=\s*)?(?=\d[\d.,]*\s*(?:cm|mm|m|birim)(?![A-Za-zÇĞİÖŞÜ]))")
+_ANG_ASK = re.compile(r"(?<![A-Za-zÇĞİÖŞÜ])([A-ZÇĞİÖŞÜ]{1,3})\s+açısı(?:nın\s+ölçüsü)?(?=\s+(?:kaç|nedir))")
+_DEG_WORD = re.compile(r"(\d)\s*derece(?![a-zçğıöşü])")
 
 
 def _angle3(v, L):
@@ -4935,6 +4940,10 @@ def _fix_geo_notation(t, L=None):
             return f"m({v})"
         a3 = _angle3(v, L)
         return f"m({a3})" if a3 else f"m(∠{v})"
+    t = _DEG_WORD.sub(r"\1°", t)
+    t = _ANG_WORD.sub(lambda m: ang(m) + " = ", t)
+    t = _ANG_ASK.sub(lambda m: ang(m), t)
+    t = _SIDE_WORD.sub(lambda m: f"|{m.group(1)}| = ", t)
     t = _MPAR.sub(lambda m: ang(m) if len(m.group(1)) < 3 else f"m({m.group(1)})", t)
     t = _ANG1.sub(ang, t)
     t = _SIDE_EQ.sub(lambda m: f"|{m.group(1)}| = |{m.group(2)}|", t)
