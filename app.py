@@ -2003,6 +2003,9 @@ def _geo(ax, d):
             pts = np.array([p * (.75 + .5 * rng.rand()) for p in pts])
         labs = (L + list("ABCDEFGH"))[:n]
         _poly(ax, pts, labels=labs, ticks=bool(d.get("equal_ticks")) and not d.get("irregular"), diagonals=bool(d.get("diagonals")))
+        for k, v in (d.get("angles") or {}).items():
+            if str(k) in labs:
+                _vertex_arc(ax, pts, labs.index(str(k)), v, color="#7c3aed" if str(v).strip() in ("?", "x") else ORANGE, r=.6, lab=.55)
         ax.set_xlim(-3.2, 3.2); ax.set_ylim(-3.2, 3.2)
 
 
@@ -5312,8 +5315,41 @@ def _sync_geo_shape(shape, text):
             ns = int(sh.get("sides") or 0)
         except Exception:
             ns = 0
-        if nm and len(nm.group(1)) == ns:
+        _pw = {"beşgen": 5, "altıgen": 6, "yedigen": 7, "sekizgen": 8}
+        pm = re.search(r"(?<![A-Za-zçğıöşü])(beşgen|altıgen|yedigen|sekizgen)\w*", text, re.I)
+        if pm and ns != _pw[pm.group(1).lower()]:
+            ns = _pw[pm.group(1).lower()]
+            sh["sides"] = ns
+        nmx = None
+        for rx in (r"\b([A-ZÇĞİÖŞÜ]{5,8})\s+(?:beşgen|altıgen|yedigen|sekizgen|çokgen)", r"(?:beşgen|altıgen|yedigen|sekizgen|çokgen)\w*\s+([A-ZÇĞİÖŞÜ]{5,8})(?![A-Za-zçğıöşüÇĞİÖŞÜ])"):
+            for mm in re.finditer(rx, text):
+                if len(mm.group(1)) == ns:
+                    nmx = mm.group(1)
+                    break
+            if nmx:
+                break
+        if nmx:
+            sh["labels"] = list(nmx)
+        elif nm and len(nm.group(1)) == ns:
             sh["labels"] = list(nm.group(1))
+        PL = [str(x) for x in (sh.get("labels") or [])][:ns]
+        if ns >= 3 and len(PL) < ns:
+            PL = (PL + list("ABCDEFGH")[len(PL):])[:ns]
+        sh["labels"] = PL
+        pa = {a: v.strip() for a, v in re.findall(r"m\(\s*∠?\s*([A-ZÇĞİÖŞÜ])\s*\)\s*=\s*" + _VAL, text)}
+        pq = re.findall(r"m\(\s*∠?\s*([A-ZÇĞİÖŞÜ])\s*\)\s*(?:kaç|=\s*\?)", text)
+        if any(k not in PL for k in list(pa) + pq):
+            sh["_bad"] = True  # metindeki köşe harfi şekilde yok
+        else:
+            ang = dict(pa)
+            for k in pq:
+                ang.setdefault(k, "?")
+            if ang:
+                sh["angles"] = ang
+            others = [k for k in PL if k not in pq]
+            if len(pq) == 1 and len(pa) == len(PL) - 1 and all("x" in v for v in pa.values()) \
+                    and not re.search(r"\bx\s*=\s*\d|toplam\w*\s*[^.?]*\bx\b", text):
+                sh["_bad"] = True  # sorulan açı x'e bağlı değil, x de belirlenemiyor -> çözümsüz soru
         return sh
     n = 3 if sub == "triangle" else 4
     if nm and len(nm.group(1)) == n:
@@ -5583,6 +5619,20 @@ def _geo_consistent(shape, text, opts, ans):
     """Üçgen/dörtgen: açı ve uzunluk verileri kendi içinde TUTARLI mı, sorulan değer işaretli doğru şıkla uyuşuyor mu?
     Yanlış cevap anahtarlı ya da imkânsız (örn. iç açılar toplamı tutmayan) soruları eler."""
     from fractions import Fraction
+    if isinstance(shape, dict) and shape.get("type") == "geo" and shape.get("sub_type") == "polygon":
+        try:  # çokgen: tüm açılar sayı + biri '?' ise (n-2)*180 toplamıyla doğru şıkkı doğrula
+            an = shape.get("angles") or {}
+            ns = int(shape.get("sides") or 0)
+            if ns >= 3 and len(an) == ns and sum(1 for v in an.values() if str(v).strip() == "?") == 1 \
+                    and all(re.fullmatch(r"\s*\d+(?:[.,]\d+)?\s*°\s*", str(v)) for v in an.values() if str(v).strip() != "?"):
+                tot = sum(float(re.sub(r"[^\d.,]", "", str(v)).replace(",", ".")) for v in an.values() if str(v).strip() != "?")
+                want = (ns - 2) * 180 - tot
+                got = re.search(r"\d+(?:[.,]\d+)?", str(opts.get(ans, "")))
+                if want <= 0 or want >= 360 or (got and abs(float(got.group(0).replace(",", ".")) - want) > 1e-6):
+                    return False
+        except Exception:
+            pass
+        return True
     if not isinstance(shape, dict) or shape.get("type") != "geo" or shape.get("sub_type") not in ("triangle", "quad"):
         return True
     n = 3 if shape["sub_type"] == "triangle" else 4
@@ -5848,7 +5898,7 @@ def _norm_q(q, subject):
         if isinstance(shape, dict) and shape.get("type") == "geo":  # şekildeki ölçü doğru şıkkı ele vermesin
             corr = re.sub(r"[\s°]|cm|birim", "", opts[ans]).lower()
             for dct in (shape.get("angles"), shape.get("sides")):
-                for v in (dct or {}).values():
+                for v in (dct.values() if isinstance(dct, dict) else ()):
                     if corr and str(v) != "?" and re.sub(r"[\s°]|cm|birim", "", str(v)).lower() == corr:
                         return None
     if subject in ("Matematik", "Fen Bilimleri") and not _expl_consistent(expl, opts, ans):
