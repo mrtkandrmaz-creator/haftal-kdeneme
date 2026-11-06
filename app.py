@@ -4468,7 +4468,7 @@ FOREIGN = {  # ders -> o derste olmaması gereken ifadeler (başka dersin sorusu
 
 
 # ---------------------------------------------------------------- konu-görsel tutarlılığı (katı)
-_MOON = re.compile(r"\bevre|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
+_MOON = re.compile(r"\bevre(?:si|leri|sin|ler|nin)?\b|hilal|dolunay|yeni ay|dördün|tutulma|gelgit|\bay['’]?ın\b|dünya.{0,25}\bay\b|\bay\b.{0,25}dünya|güneş.{0,25}\bay\b", re.I)
 _FEN_REQ = {
     "surtunme": r"sürtünme|pürüz|dinamometre|kuvvet|yüzey|çekme",
     "basinc_kati": r"basınç|kuvvet|yüzey alan|ağırlık|taban",
@@ -4549,6 +4549,14 @@ def _figure_complete(shape):
         if t != "line_chart" and min(vals) < 0:
             return False
         return True
+    if t == "rectangle":
+        for k in ("width", "height"):
+            try:
+                if float(shape.get(k)) <= 0:
+                    return False
+            except (TypeError, ValueError):
+                return False
+        return True
     if t == "table":
         hs, rows = shape.get("headers") or [], shape.get("rows") or []
         if len(hs) < 2 or len(rows) < 2 or any(not str(h).strip() for h in hs):
@@ -4575,6 +4583,31 @@ _PLACEHOLDER = re.compile(r"\{\{|\}\}|\[\s*\.{2,}\s*\]|\bTODO\b|\bundefined\b|\b
 _ROMAN_OPT = re.compile(r"(?<![A-Za-z])(III|II|IV|I)(?![A-Za-z])")
 _LETTER_OPT = re.compile(r"^(?:yaln[ıi]z\s+|sadece\s+)?([A-ZÇĞİÖŞÜ])(?:\s*(?:,|ve|ile|-|–)\s*([A-ZÇĞİÖŞÜ]))*\s*$")
 _GTYPE = [(r"daire grafi", {"pie_chart"}), (r"(?:sütun|çubuk) grafi", {"bar_chart", "science_chart"}), (r"çizgi grafi", {"line_chart"})]
+
+
+_REF_SCHEMA = re.compile(r"\b(?:şema|şemada|şemadaki|şemaya|çizelge\w*|harita\w*|diyagram\w*|krokide|krokideki|kroki|infografik\w*|afiş\w*|görsel\w*|resim\w*|çizim\w*|şekil\w*|grafik\w*|tablo\w*)\b", re.I)
+_REF_DATA = re.compile(r"\b(?:aşağıdaki|yukarıdaki|verilen|yandaki|karşıdaki)\s+(?:veri\w*|bilgi\w*|metin\w*|parça\w*|ifade\w*|söz\w*|belge\w*|olay\w*|durum\w*|liste\w*|haber\w*|diyalog\w*|öncül\w*|yargı\w*)", re.I)
+
+
+def _dangling_ref(qtext, pas, opts):
+    """Metin 'şema/harita/aşağıdaki veri' diyor ama ne görsel ne metin/tablo var mı?"""
+    pas = (pas or "").strip()
+    if pas and pas.lower() != "null" and len(pas) >= 25:
+        return False
+    if "|" in pas:
+        return False
+    q = str(qtext or "")
+    if _REF_SCHEMA.search(q):
+        return True
+    m = _REF_DATA.search(q)
+    if m:
+        rest = q[m.end():]
+        # veri aynı soru metninde ":" sonrası / madde madde verilmişse sorun yok
+        if re.search(r":\s*.{25,}", q) or re.search(r"(?:^|\n)\s*(?:[-•*]|\d+[.)]|[IVX]+[.)])\s*\S", q) or len(rest) > 140:
+            return False
+        # "Aşağıdakilerden hangisi" gibi şık kalıplarını (ref değil) ayır
+        return True
+    return False
 
 
 def _complete_ok(qtext, pas, opts, shape):
@@ -4614,12 +4647,12 @@ def _complete_ok(qtext, pas, opts, shape):
     return True
 
 
-def coherent_shape(shape, text):
+def coherent_shape(shape, text, subject=None):
     """Görsel, konu/soru metniyle birebir uyumlu mu? -> (şema ya da None, uyumsuz_mu)"""
     if not shape:
         return None, False
     k = _kind(shape)
-    for _n, rx, allowed in _TOPIC_RULES:
+    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" else ()):
         if rx.search(text):
             if k not in allowed:
                 return None, True
@@ -5645,9 +5678,11 @@ def _norm_q(q, subject):
     shape = visuals.normalize_shape(q.get("shape"))
     if shape and shape.get("type") not in ALLOWED_SHAPES.get(subject, {"table"}):
         shape = None
-    shape, bad = coherent_shape(shape, f"{q.get('topic', '')} {q.get('question', '')} {q.get('passage', '')}")
+    shape, bad = coherent_shape(shape, f"{q.get('topic', '')} {q.get('question', '')} {q.get('passage', '')}", subject)
     if not shape and re.search(_FIG, str(q.get("question", ""))) and not str(q.get("passage") or "").count("|"):
         return None  # görsele atıf var ama uygun görsel yok -> soruyu ele
+    if not shape and _dangling_ref(str(q.get("question", "")), str(q.get("passage") or ""), opts):
+        return None  # "aşağıdaki veri/şema/harita…" diyor ama veri yok
     if not _complete_ok(str(q.get("question", "")), str(q.get("passage") or ""), opts, shape):
         return None  # eksik veri / metin-görsel uyumsuzluğu: soruyu ele (yerine yenisi üretilir)
     fr = FOREIGN.get(subject)
@@ -7944,7 +7979,15 @@ def exam():
         cv = st.session_state.answers.get(idx)
         st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
-        st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
+        bc1, bc2 = st.columns(2)
+        with bc1:
+            st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
+        with bc2:
+            if st.session_state.get(f"rep_{idx}"):
+                st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
+            else:
+                st.button("🚩 Bu soru hatalı", key=f"repq_{idx}", on_click=_report, args=(q, f"rep_{idx}"),
+                          help="Şekil/veri eksik ya da mantık hatası varsa bildir; bir daha çıkmaz.")
     else:
         st.text_area("Cevabınız", value=st.session_state.open_answers.get(idx, ""), height=180, key=f"open_{idx}",
                      on_change=_set_open, args=(idx,))
