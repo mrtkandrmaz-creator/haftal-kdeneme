@@ -5184,10 +5184,20 @@ def _sync_geo_shape(shape, text):
     lens_any = re.findall(r"\|([A-Z]{2})\|\s*=\s*(?!\|)(?=[0-9xy(+\-−])", text)
     used = set("".join(x for pr in eq for x in pr) + "".join(a for a, _ in lens) + "".join(a for a, _ in angs) + "".join(ask) + "".join(lens_any))
     perim = re.search(r"çevre\w*\s+(?:uzunluğ\w*\s+)?(?:kaç|nedir|hesapla|bul)", text, re.I)
+    if re.search(r"verilen\s+açı|açı\s+ölçüler\w*\s+göre|şekildeki\s+açı", text, re.I):
+        shown = [v for v in ((shape.get("angles") or {}).values() if isinstance(shape.get("angles"), dict) else [])]
+        if not re.search(r"\d\s*°", text) and not any(re.search(r"\d", str(v)) for v in shown):
+            sh["_bad"] = True  # 'verilen açılar' deniyor ama hiçbir yerde açı değeri yok
     if not used:
         sh["labels"] = L
         if perim and sub in ("triangle", "quad"):
             sh["_bad"] = True  # çevre soruluyor ama hiç kenar verisi yok
+        if sub == "triangle" and re.search(r"dik\s+üçgen", text, re.I):
+            sh["kind"] = "right"  # dik üçgende dik açı simgesi MUTLAKA bir köşede görünür
+            ra = str(sh.get("right_at") or "B").upper()[:1]
+            sh["right_at"] = ra if ra in "ABC" else "B"
+            sh["_rnote"] = L["ABC".index(sh["right_at"])]
+            return sh
         return _geo_kind_fix(sh, text, n, False)
     if not used <= set(L):
         if used <= set(default):
@@ -5235,7 +5245,17 @@ def _sync_geo_shape(shape, text):
             sh["kind"], sh["right_at"] = "right", P[pos[rv]]
         elif re.search(r"dik\s+üçgen", text, re.I):
             sh["kind"] = "right"
-            sh["right_at"] = str(sh.get("right_at") or "A").upper()[:1] if str(sh.get("right_at") or "A").upper()[:1] in "ABC" else "A"
+            _used_v = {P[pos[abc[1]]] for abc, _v in angs if abc[1] in pos} | {P[pos[abc[1]]] for abc in ask if abc[1] in pos}
+            _ra = str(sh.get("right_at") or "").upper()[:1]
+            if _ra not in "ABC" or not _ra or _ra in _used_v:  # dik köşe: açı verilmeyen/sorulmayan köşelerden biri (tercihen B)
+                _free = [c for c in "BAC" if c not in _used_v]
+                _legs = [set(pr) for pr, _v in lens if all(x in pos for x in pr)]
+                if len(_legs) == 2 and len(_legs[0] & _legs[1]) == 1:  # verilen iki kenarın ortak köşesi (dik kenarlar) dik köşe olsun
+                    _cm = P[pos[list(_legs[0] & _legs[1])[0]]]
+                    if _cm in _free:
+                        _free = [_cm]
+                _ra = _free[0] if _free else "B"
+            sh["right_at"] = _ra
             sh["_rnote"] = L["ABC".index(sh["right_at"])]  # dik açının köşesi metinde yok -> metne eklenecek
     if perim and sub in ("triangle", "quad"):  # çevre için GEREKLİ tüm uzunluklar verilmiş mi?
         sides_ = ["AB", "BC", "AC"] if n == 3 else ["AB", "BC", "CD", "AD"]
