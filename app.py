@@ -4803,6 +4803,69 @@ def _dangling_ref(qtext, pas, opts):
     return False
 
 
+_HI = re.compile(r"en\s+(?:çok|fazla|uzun|yüksek|büyük|geniş|yoğun|sık|kalabalık|pahalı|ağır)|maksimum|en\s+fazla", re.I)
+_LO = re.compile(r"en\s+(?:az|kısa|düşük|küçük|dar|seyrek|ucuz|hafif)|minimum", re.I)
+
+
+def _lab_norm(x):
+    return re.sub(r"[^0-9a-zçğıöşü]+", " ", str(x).lower()).strip()
+
+
+def _chart_pairs(shape):
+    """Grafik/tablodan (etiket, değer) çiftleri; yoksa None."""
+    if not isinstance(shape, dict):
+        return None
+    t = str(shape.get("type", "")).lower()
+    if t in ("bar_chart", "science_chart", "line_chart", "pie_chart"):
+        vals, labs = _numlist(shape.get("values")), shape.get("labels")
+        if vals and isinstance(labs, (list, tuple)) and len(labs) == len(vals):
+            return [(_lab_norm(a), v) for a, v in zip(labs, vals)]
+    if t == "table":
+        hs, rows = shape.get("headers") or [], shape.get("rows") or []
+        if len(hs) == 2 and rows and all(len(r) == 2 for r in rows) and all(_isnum(r[1]) for r in rows):
+            return [(_lab_norm(r[0]), float(str(r[1]).replace(",", "."))) for r in rows]
+    return None
+
+
+def _chart_answer_ok(shape, qtext, opts, ans):
+    """Şıklar grafikteki etiketlerden mi oluşuyor? Öyleyse hepsi gerçekten grafikte olmalı ve 'en çok/en az' doğru şık uç değeri göstermeli."""
+    pairs = _chart_pairs(shape)
+    if not pairs:
+        return True
+    labs = [p[0] for p in pairs]
+
+    def match(o):
+        o = _lab_norm(o)
+        if not o:
+            return None
+        hits = [l for l in labs if l and (l == o or re.search(rf"(?<![0-9a-zçğıöşü]){re.escape(l)}(?![0-9a-zçğıöşü])", o))]
+        if not hits:  # şık etiketin kendisi ya da ortak ön ek taşıyan kısa hâli: 'Grup A' <-> 'A'
+            hits = [l for l in labs if o and re.search(rf"(?<![0-9a-zçğıöşü]){re.escape(o)}(?![0-9a-zçğıöşü])", l)]
+        return hits[0] if len(set(hits)) == 1 else None
+    pre = lambda x: " ".join(_lab_norm(x).split()[:-1])
+    ms = {k: match(v) for k, v in opts.items()}
+    n_ok = sum(1 for v in ms.values() if v)
+    # şıklar etiket benzeri mi? (çoğu şık bir etiketle eşleşiyorsa ya da 'Grup X' gibi etiketle aynı ön ekte)
+    labpre = {pre(l) for l in labs if len(l.split()) > 1}
+    optpre = {pre(v) for v in opts.values() if len(_lab_norm(v).split()) > 1}
+    labelish = n_ok >= 2 or (labpre and optpre and optpre <= labpre)
+    if labelish and n_ok < len(opts):
+        return False  # şıkta grafikte olmayan grup/kategori var (ör. Grup E)
+    if labelish and len(set(ms.values())) < len(ms):
+        return False  # iki şık aynı etikete denk geliyor
+    chosen = ms.get(ans)
+    if labelish and chosen:
+        vals = dict(pairs)
+        top, bot = max(vals.values()), min(vals.values())
+        if _HI.search(qtext) and not _LO.search(qtext):
+            if vals[chosen] != top or sum(1 for v in vals.values() if v == top) > 1:
+                return False
+        elif _LO.search(qtext) and not _HI.search(qtext):
+            if vals[chosen] != bot or sum(1 for v in vals.values() if v == bot) > 1:
+                return False
+    return True
+
+
 def _complete_ok(qtext, pas, opts, shape):
     """Soru metni + şıklar + görsel arasında eksik/uyumsuz bilgi var mı? (False -> soruyu ele)"""
     full = f"{qtext}\n{pas}"
@@ -5989,6 +6052,8 @@ def _norm_q(q, subject):
         return None  # "aşağıdaki veri/şema/harita…" diyor ama veri yok
     if not _complete_ok(str(q.get("question", "")), str(q.get("passage") or ""), opts, shape):
         return None  # eksik veri / metin-görsel uyumsuzluğu: soruyu ele (yerine yenisi üretilir)
+    if not _chart_answer_ok(shape, str(q.get("question", "")), opts, ans):
+        return None  # şık grafikte yok ya da en çok/en az cevabı grafikle çelişiyor
     fr = FOREIGN.get(subject)
     if fr and fr.search(str(q.get("question", "")) + " " + str(q.get("passage", ""))):
         return None
@@ -6057,8 +6122,10 @@ def leaks_answer(q):
     if len(ans) < 5:
         return False
     if q.get("shape"):
+        pr = _chart_pairs(q["shape"]) or []
+        is_label = any(_alnum(l) == ans for l, _v in pr)  # grafikteki kategori adı cevap olabilir (hangi grup/ay?); okunacak olan değerdir
         hay = " | ".join(_alnum(x) for x in _strings(q["shape"]))
-        if ans in hay:
+        if ans in hay and not is_label:
             return True
     return len(ans) >= 9 and ans in _alnum(str(q.get("passage", "")) + " " + str(q.get("question", "")))
 
@@ -6897,8 +6964,9 @@ CSS = """
 .ready-s { color:#64748b; font-size:.9rem; margin:.1rem 0 .3rem; }
 .ready-chips { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin:.2rem 0 .6rem; }
 .ready-chips span { background:#f5f3ff; border:1.5px solid #ddd6fe; color:#4c1d95; font-weight:800; font-size:.8rem; padding:.2rem .7rem; border-radius:999px; }
-.st-key-bigstart { display:flex; justify-content:center; padding:.4rem 0 .8rem; }
-.st-key-bigstart div.stButton, .st-key-bigstart [data-testid="stButton"] { width:auto !important; }
+.st-key-bigstart, .st-key-bigstart > div, .st-key-bigstart div.stButton, .st-key-bigstart [data-testid="stButton"] { display:flex !important; justify-content:center !important; align-items:center !important; width:100% !important; margin-left:auto !important; margin-right:auto !important; }
+.st-key-bigstart { padding:.6rem 0 1rem; overflow:visible !important; }
+.st-key-bigstart button { margin:0 auto !important; flex:none !important; }
 .st-key-bigstart button { position:relative; width:clamp(120px,26vh,170px) !important; height:clamp(120px,26vh,170px) !important; min-height:clamp(120px,26vh,170px) !important; max-height:clamp(120px,26vh,170px) !important; padding:0 !important; border-radius:50% !important;
     background:#fff !important; border:10px solid #e2e8f0 !important; box-shadow:none !important; color:#0f172a !important; display:flex !important; align-items:center; justify-content:center; overflow:visible; transition:transform .2s ease; box-sizing:border-box; }
 .st-key-bigstart button > *, .st-key-bigstart button [data-testid="stMarkdownContainer"] { display:flex !important; flex-direction:column; align-items:center; justify-content:center; width:100% !important; height:100%; margin:0 !important; padding:0 !important; gap:.35rem; text-align:center; }
@@ -7520,7 +7588,9 @@ def ready():
     dlab = f"{dtxt[:2]} {dtxt.split('/')[0][2:].strip()}" if dtxt else ""
     with st.container(key="ready_card"):
         st.markdown(f"<div class='ready-t'>✨ Sınavın hazır!</div><div class='ready-s'>{m['title']}</div>", unsafe_allow_html=True)
-        st.button("▶\n\nBAŞLAT", key="bigstart", on_click=_start_now)
+        _bl, _bm, _br = st.columns([1, 2, 1])
+        with _bm:
+            st.button("▶\n\nBAŞLAT", key="bigstart", on_click=_start_now)
         st.markdown(f"<div class='ready-bar'><i></i></div><div class='ready-hint'>Hazır olduğunda dokun • süre başladığı anda işler</div>"
                     f"<div class='ready-chips'><span>📝 {len(qs)} soru</span><span>⏱ {mins} dk</span><span>{dlab}</span>"
                     f"<span>📚 {', '.join(cur.SUBJECT_ICONS.get(x, '') + ' ' + x for x in subs[:3])}{' +' + str(len(subs) - 3) if len(subs) > 3 else ''}</span></div>", unsafe_allow_html=True)
