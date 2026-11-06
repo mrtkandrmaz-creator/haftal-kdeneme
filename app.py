@@ -3288,7 +3288,56 @@ def bad_stems():
     return set(_load("bad.json", []))
 
 
-def report_bad(q):
+def report_log(q, reason=""):
+    """Hata günlüğü: bildirilen soru + otomatik teşhis."""
+    L = _load("reports.json", [])
+    L.append({"ts": int(time.time()), "subject": q.get("subject", ""), "topic": str(q.get("topic", ""))[:60],
+              "reason": reason or "yakalanmadı", "head": str(q.get("question", ""))[:140], "has_shape": bool(q.get("shape"))})
+    _save("reports.json", L[-500:])
+
+
+def reports(subject=None, n=60):
+    L = [x for x in _load("reports.json", []) if subject is None or x.get("subject") == subject]
+    return L[-n:]
+
+
+def audit_pool_files(keep_fn):
+    """Banka ve beğeni havuzundaki soruları güncel kurallarla yeniden denetler; geçemeyenleri siler. -> silinen sayısı"""
+    removed = 0
+    with _BANK_LOCK:
+        b = _bank()
+        for k in list(b):
+            good = []
+            for q in b[k]["qs"]:
+                try:
+                    ok = keep_fn(q)
+                except Exception:
+                    ok = True
+                good.append(q) if ok else None
+            removed += len(b[k]["qs"]) - len(good)
+            b[k]["qs"] = good
+            if not good:
+                b.pop(k)
+        _save("bank.json", b)
+        P = _load("lpool.json", [])
+        goodp = []
+        for x in P:
+            try:
+                ok = keep_fn(x["q"])
+            except Exception:
+                ok = True
+            if ok:
+                goodp.append(x)
+        removed += len(P) - len(goodp)
+        _save("lpool.json", goodp)
+    return removed
+
+
+def report_bad(q, reason=""):
+    try:
+        report_log(q, reason)
+    except Exception:
+        pass
     import re as _re
     stem = _re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
     if not stem:
@@ -3761,6 +3810,7 @@ EXTRA_FIRST = 2    # ilk turda fazladan istenen soru (elenenler için yedek; tam
 CALL_TIMEOUT = 25  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
 GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
 # İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
+STRICT_VERIFY = ("Türkçe", "Sosyal Bilgiler")  # bu derslerde canlı üretimde de ikinci model doğrulaması yapılır (katı mod)
 VERIFY_SUBJECTS = ("Matematik", "Fen Bilimleri")  # sayısal muhakeme dersleri doğrulanır; diğerleri doğrulama beklemeden hızlı akar
 GEN_REASONING = {"Matematik": "low", "Fen Bilimleri": "low"}  # hesap gerektiren derslerde daha derin düşünme
 VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
@@ -4792,6 +4842,8 @@ def _dangling_ref(qtext, pas, opts):
     q = str(qtext or "")
     if _REF_SCHEMA.search(q):
         return True
+    if re.search(r"\b(?:parça\w*|metin\w*|paragraf\w*|dörtlük\w*|dize\w*|şiir\w*|diyalog\w*|haber\w*|ilan\w*|mektup\w*)\s+(?:göre|ışığında|dayanarak)|\b(?:yukarıdaki|aşağıdaki|verilen)\s+(?:parça|metin|paragraf|dörtlük|dize|şiir|diyalog|haber|ilan|mektup)", q, re.I):
+        return not re.search(r":\s*.{40,}", q)  # atıf var, metin soru içinde de verilmemiş
     m = _REF_DATA.search(q)
     if m:
         rest = q[m.end():]
@@ -4863,6 +4915,67 @@ def _chart_answer_ok(shape, qtext, opts, ans):
         elif _LO.search(qtext) and not _HI.search(qtext):
             if vals[chosen] != bot or sum(1 for v in vals.values() if v == bot) > 1:
                 return False
+    return True
+
+
+_INSTR = re.compile(r"dinamometre|termometre|mezür|dereceli\s+silindir|ölçü\s+silindiri", re.I)
+_READ = re.compile(r"gösteriyor|gösterir|gösterdiği|okun|ölçülen|ölçer|kaç\s*(?:N|newton|°\s*C|derece|mL|ml|mililitre|cm3|cm³)\b", re.I)
+_NOREAD = re.compile(r"hacm|fark|değişim|artış|azal|ağırlığ|kütle|cisim|bileşke|net\s+kuvvet|ısı|ortalama|toplam|oran|sonra|önce", re.I)
+_FN = re.compile(r"(\d+(?:[.,]\d+)?)\s*(?:N\b|newton)", re.I)
+
+
+def _on_scale(val, lo, step):
+    try:
+        k = (float(val) - float(lo)) / float(step)
+        return abs(k - round(k)) < 1e-6
+    except Exception:
+        return False
+
+
+def _instrument_ok(shape, qtext, pas, opts, ans):
+    """Ölçü aletlerinde okunabilirlik + 'kaç gösterir' cevabı şekildeki değerle aynı mı; kuvvet okları metindeki değerleri içeriyor mu."""
+    if not isinstance(shape, dict):
+        return True
+    t = str(shape.get("type", "")).lower()
+    txt = f"{pas or ''} {qtext}"
+    an = _optnum(opts.get(ans, "")) if isinstance(opts, dict) else None
+    try:
+        if t == "dynamometer":
+            mx = float(shape["max_value"]); st_ = float(shape.get("step") or (1 if mx <= 12 else mx / 10))
+            if not _on_scale(shape["value"], 0, st_):
+                return False  # ibre çizgi arasında: okunamaz
+            if _READ.search(txt) and not _NOREAD.search(txt) and an is not None and abs(an - float(shape["value"])) > 1e-9:
+                return False
+        elif t == "thermometer":
+            st_ = float(shape.get("step") or 10)
+            if st_ >= 5 and not _on_scale(shape["value"], shape["min"], max(st_ / (5 if st_ >= 5 else 1), 1e-9)):
+                return False  # etiketli çizgiler arasındaki okunamayan değer
+            if _READ.search(txt) and not _NOREAD.search(txt) and an is not None and abs(an - float(shape["value"])) > 1e-9:
+                return False
+        elif t == "cylinder":
+            mx = float(shape["max"]); st_ = float(shape.get("step") or mx / 10)
+            if not _on_scale(shape["level"], 0, st_ / (5 if st_ >= 5 else 1)):
+                return False
+            if _READ.search(txt) and not _NOREAD.search(txt) and an is not None and abs(an - float(shape["level"])) > 1e-9:
+                return False
+        elif t == "forces":
+            L = _numlist(shape.get("left"), 0) or []; R = _numlist(shape.get("right"), 0) or []
+            have = {round(x, 6) for x in L + R}
+            for m in _FN.finditer(qtext + " " + str(pas or "")):
+                v = float(m.group(1).replace(",", "."))
+                if round(v, 6) not in have and not re.search(r"net|bileşke|sonuç|toplam", txt[max(0, m.start() - 25):m.end() + 5], re.I):
+                    return False  # metindeki kuvvet değeri şekilde yok
+            if re.search(r"bileşke|net\s+kuvvet", qtext, re.I) and an is not None and re.search(r"kaç\s*(?:N|newton)", qtext, re.I):
+                if abs(an - abs(sum(R) - sum(L))) > 1e-9:
+                    return False
+        elif t == "number_line":
+            marks = {str(m.get("label", "")).strip(): m.get("value") for m in (shape.get("marks") or []) if isinstance(m, dict)}
+            inq = [k for k in marks if k and re.search(rf"(?<![A-Za-zÇĞİÖŞÜ]){re.escape(k)}(?![A-Za-zÇĞİÖŞÜ])\s*(?:noktası|harfi)?", qtext)]
+            if len(inq) == 1 and re.search(r"gösterir|karşılık|hangi\s+sayı|değeri", qtext, re.I) and an is not None and _isnum(marks[inq[0]]):
+                if abs(an - float(marks[inq[0]])) > 1e-9:
+                    return False
+    except Exception:
+        return True
     return True
 
 
@@ -5153,6 +5266,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
     plain = plain and not geo_on  # geometri şekilsiz olmaz
     eff, lvl = bump_difficulty(difficulty)
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
+    fc += lessons(subject)
     if like:
         fc += ("\n👍 ÖĞRENCİNİN BEĞENDİĞİ ÖRNEK SORU:\n" + like[:900] + "\nTÜM soruları bu örneğe BENZER yaz: aynı kazanım/beceri, aynı yapı, tür ve zorluk; "
                "ama FARKLI sayı, ad, bağlam ve görsel verisi kullan. Örneği kopyalama; metindeki her değer görselde de olsun.")
@@ -6028,7 +6142,7 @@ def _norm_q(q, subject):
     ans = str(q.get("answer", "")).strip().upper()[:1]
     if ans not in opts:
         return None
-    if len({_alnum(v) for v in opts.values()}) < 4:
+    if len({_alnum(re.sub(r"(?<![\w)])[-−–]\s*(?=\d)", "eksi ", str(v))) for v in opts.values()}) < 4:
         return None  # aynı şık iki kez geçiyor -> birden çok doğru olabilir
     _nv = [_optnum(v) for v in opts.values()]
     if all(x is not None for x in _nv) and len(set(_nv)) == 4:  # sayısal şıklar LGS'deki gibi küçükten büyüğe sıralı
@@ -6052,6 +6166,8 @@ def _norm_q(q, subject):
         return None  # "aşağıdaki veri/şema/harita…" diyor ama veri yok
     if not _complete_ok(str(q.get("question", "")), str(q.get("passage") or ""), opts, shape):
         return None  # eksik veri / metin-görsel uyumsuzluğu: soruyu ele (yerine yenisi üretilir)
+    if not _instrument_ok(shape, str(q.get("question", "")), str(q.get("passage") or ""), opts, ans):
+        return None  # ölçü aleti değeri okunamıyor / cevap şekille çelişiyor
     if not _chart_answer_ok(shape, str(q.get("question", "")), opts, ans):
         return None  # şık grafikte yok ya da en çok/en az cevabı grafikle çelişiyor
     fr = FOREIGN.get(subject)
@@ -6152,14 +6268,63 @@ def _vkind(q):
     return _kind(sh) if isinstance(sh, dict) else None
 
 
+def _optset(q):
+    o = q.get("options")
+    return frozenset(_alnum(v) for v in o.values()) if isinstance(o, dict) and len(o) >= 4 else None
+
+
+def _same_answers(q, k):
+    """Şıklar aynı kümeyse (yalnız yerleri değişmiş) ya da doğru cevap + 2 şık ortaksa -> kopya soru."""
+    a, b = _optset(q), _optset(k)
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    try:
+        ca, cb = _alnum(q["options"][q["answer"]]), _alnum(k["options"][k["answer"]])
+    except Exception:
+        return False
+    return ca == cb and len(ca) >= 4 and len(a & b) >= 3
+
+
+def _spread_answers(qs):
+    """Aynı doğru cevap harfi arka arkaya 3 kez gelmesin; harf dağılımı dengeli olsun (yalnız şık sırası serbest sorularda)."""
+    def free(q):
+        o = q.get("options") or {}
+        if len(o) != 4 or any(_NOSHUF.search(str(v)) for v in o.values()):
+            return False
+        nv = [_optnum(v) for v in o.values()]
+        return not (all(x is not None for x in nv) and len(set(nv)) == 4)
+    VERB = ("Türkçe", "Sosyal Bilgiler", "İngilizce", "Almanca", "T.C. İnkılap Tarihi ve Atatürkçülük", "Din Kültürü ve Ahlak Bilgisi")
+    for i, q in enumerate(qs):
+        if not free(q):
+            continue
+        for _try in range(12):
+            prev = [x.get("answer") for x in qs[max(0, i - 2):i]]
+            if q.get("subject") in VERB:  # sözel derslerde arka arkaya aynı doğru harf olmasın
+                bad = bool(prev) and prev[-1] == q.get("answer")
+            else:
+                bad = len(prev) == 2 and prev[0] == prev[1] == q.get("answer")
+            if not bad:
+                break
+            o = q["options"]; correct = o[q["answer"]]
+            vals = list(o.values()); random.shuffle(vals)
+            q["options"] = dict(zip("ABCD", vals))
+            q["answer"] = [k for k, v in q["options"].items() if v == correct][0]
+    return qs
+
+
 def accept_diverse(q, kept, n):
     """Aynı sette benzer soru/aynı görsel/aynı görsel türü yığılması varsa reddeder."""
     if demo_mode():
         return True
     w = _qwords(q)
+    thr = 0.6 if q.get("subject") in ("Türkçe", "Sosyal Bilgiler", "İngilizce", "Almanca") else 0.75
     for k in kept:
         wk = _qwords(k)
-        if w and wk and len(w & wk) / len(w | wk) > 0.75:
+        if w and wk and len(w & wk) / len(w | wk) > thr:
+            return False
+        if _same_answers(q, k):
             return False
     sig, kind = _vsig(q), _vkind(q)
     if sig:
@@ -6207,6 +6372,8 @@ def _relaxed_ok(q, kept):
     for k in kept:
         wk = _qwords(k)
         if w and wk and len(w & wk) / len(w | wk) > 0.9:
+            return False
+        if _same_answers(q, k):
             return False
     return True
 
@@ -6268,7 +6435,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 return out
 
             qs, err = _ask_questions(prompt, gk, mk, idx, validate, reasoning=GEN_REASONING.get(subj))
-            if verify and qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS) and (gk or mk or extra_keys()):  # yalnız arka plan banka dolumunda
+            if qs and (gk or mk or extra_keys()) and ((verify and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS)) or subj in STRICT_VERIFY):
                 try:
                     qs = verify_questions(qs, gk, mk, offset=idx)
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
@@ -6369,6 +6536,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), extra)
         except Exception:
             pass
+    _spread_answers(questions)
     for i, q in enumerate(questions, 1):
         q["id"] = i
     if count:
@@ -6423,6 +6591,86 @@ def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
                 for key, _p in todo:
                     _FILLING.discard(key)
 
+    threading.Thread(target=run, daemon=True).start()
+    return True
+
+
+_GUIDE = {
+    "eksik_veri": "Soru metninin atıf yaptığı şema/tablo/metin/veri MUTLAKA soruda verilmiş olsun; 'aşağıdaki veri' deyip veri verme.",
+    "ölçü_aleti": "Ölçü aleti değerleri çizgiye tam oturan okunabilir sayılar olsun; 'kaç gösterir' cevabı şekildeki değerle birebir aynı olsun; metindeki kuvvet değerleri şekilde de bulunsun.",
+    "grafik_şık": "Şıklar grafikteki/tablodaki kategorilerden oluşsun (olmayan grup yazma); 'en çok/en az' sorusunda doğru şık gerçekten uç değer olsun.",
+    "sızıntı": "Doğru cevabı soru metninde ya da görselde aynen verme.",
+    "kural_red": "Metin, görsel ve şıklar birbiriyle birebir uyumlu ve mantıksal olarak tutarlı olsun; çözümü olmayan/belirsiz soru yazma.",
+}
+
+
+def diagnose(q, subject=None):
+    """Bildirilen sorunun hangi otomatik kurala takıldığını söyler ('yakalanmadı' = kurallar kaçırdı)."""
+    try:
+        opts = q.get("options") or {}
+        ans = str(q.get("answer", "")).strip().upper()[:1]
+        qt, pas, sh = str(q.get("question", "")), str(q.get("passage") or ""), q.get("shape")
+        if not sh and _dangling_ref(qt, pas, opts):
+            return "eksik_veri"
+        if sh and not _complete_ok(qt, pas, opts, sh):
+            return "eksik_veri"
+        if not _instrument_ok(sh, qt, pas, opts, ans):
+            return "ölçü_aleti"
+        if not _chart_answer_ok(sh, qt, opts, ans):
+            return "grafik_şık"
+        import copy
+        if _norm_q(copy.deepcopy(q), subject or q.get("subject")) is None:
+            return "kural_red"
+    except Exception:
+        pass
+    return "yakalanmadı"
+
+
+def lessons(subject):
+    """Bu dersteki son hata bildirimlerinden üretim istemine eklenecek 'kaçın' notu."""
+    try:
+        from . import store
+        R = store.reports(subject, 40)
+    except Exception:
+        return ""
+    if not R:
+        return ""
+    cnt = {}
+    for x in R:
+        cnt[x.get("reason")] = cnt.get(x.get("reason"), 0) + 1
+    lines = [_GUIDE[k] for k, _v in sorted(cnt.items(), key=lambda kv: -kv[1]) if k in _GUIDE][:3]
+    ex = [x["head"] for x in R if x.get("reason") == "yakalanmadı"][-2:]
+    out = ""
+    if lines:
+        out += "\n⚠ BU DERSTE KULLANICI HATA BİLDİRDİ, KAÇIN: " + " ".join(lines)
+    if ex:
+        out += "\n⚠ Şu tarzda sorular hatalı bulundu, benzerini yazma: " + " || ".join(ex)
+    return out
+
+
+def audit_pools_async():
+    """Günde bir kez: banka ve beğeni havuzunu güncel doğrulama kurallarıyla yeniden süz (API kullanmaz)."""
+    try:
+        from . import store
+        today = str(store._today())
+        if store.settings().get("audit_day") == today:
+            return False
+        store.save_settings(audit_day=today)
+    except Exception:
+        return False
+
+    def keep(q):
+        import copy
+        subj = q.get("subject")
+        if not subj:
+            return True
+        return _norm_q(copy.deepcopy(q), subj) is not None
+
+    def run():
+        try:
+            store.audit_pool_files(keep)
+        except Exception:
+            pass
     threading.Thread(target=run, daemon=True).start()
     return True
 
@@ -8539,7 +8787,7 @@ def _like(q, flag, m):
 
 def _report(q, flag):
     try:
-        store.report_bad(q)
+        store.report_bad(q, ai.diagnose(q, q.get("subject")))
     except Exception:
         pass
     st.session_state[flag] = True
@@ -9369,6 +9617,14 @@ with st.sidebar:
         _gd, _gw, _gm = _gstore.gen_totals()
         st.markdown("---")
         st.markdown(f"<div style='font-size:.85rem;line-height:1.7'><b>📈 Üretilen soru</b><br>Bugün: <b>{_gd}</b><br>Bu hafta: <b>{_gw}</b><br>Bu ay: <b>{_gm}</b></div>", unsafe_allow_html=True)
+        try:
+            from core import ai_engine as _gai
+            _gai.audit_pools_async()
+        except Exception:
+            pass
+        _rp = _gstore.reports(None, 500)
+        _auto = sum(1 for x in _rp if x.get("reason") != "yakalanmadı")
+        st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🚩 Hata günlüğü</b><br>Bildirilen: <b>{len(_rp)}</b> • otomatik kurala takılan: <b>{_auto}</b></div>", unsafe_allow_html=True)
         _lp, _lk = _gstore.lpool_count(), len(_gstore.liked())
         st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>👍 Beğenilen havuz</b><br>Beğenilen soru: <b>{_lk}</b><br>Havuzdaki benzer soru: <b>{_lp}</b></div>", unsafe_allow_html=True)
     except Exception:
