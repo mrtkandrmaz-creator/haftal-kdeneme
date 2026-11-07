@@ -103,7 +103,8 @@ C = {
        _u("Ortak Mirasımız", "Kültürel miras; Anadolu medeniyetleri"), _u("Yaşayan Demokrasi", "Demokrasi; Seçim; Yönetim"),
        _u("Hayatımızdaki Ekonomi", "İhtiyaç-istek; Tasarruf; Meslekler"), _u("Teknoloji ve Sosyal Bilimler", "Bilim ve teknoloji tarihi; Bilişim güvenliği")],
   DIN: [_u("Allah İnancı", "Allah'ın varlığı; Güzel isimler"), _u("Namaz İbadeti", "Namazın önemi; Abdest; Namaz vakitleri"), _u("Hz. Muhammed'in Hayatı", "Peygamberliği; Örnek ahlakı"),
-       _u("Kur'an-ı Kerim", "Kur'an'ın indirilişi; Temel konular"), _u("Değerlerimiz", "Dürüstlük; Adalet; Hoşgörü")],
+       _u("Kur'an-ı Kerim", "Kur'an'ın indirilişi; Temel konular"), _u("İhlas Suresi", "İhlas Suresi'nin okunuşu; İhlas Suresi'nin meali; Tevhid ve Allah'ın birliği"),
+       _u("Değerlerimiz", "Dürüstlük; Adalet; Hoşgörü")],
   ING: [_u("Hello!", "Greetings; Introducing; Alphabet"), _u("My Town", "Places; Directions; Prepositions"), _u("Games and Hobbies", "Free time; Can/can't; Likes"),
        _u("My Daily Routine", "Daily routines; Time; Frequency"), _u("Health", "Body parts; Illnesses; Advice"), _u("Movies", "Genres; Opinions; Past simple basics"),
        _u("Party Time", "Invitations; Food; Dates"), _u("Fitness", "Sports; Healthy life")],
@@ -5719,7 +5720,23 @@ _LGS25 = {
         "(b) Birden çok beceriyi birleştir (oran-orantı + yüzde, denklem kurma + eşitsizlik, üslü/köklü ifade + bilimsel gösterim, eğim + doğrusal ilişki, olasılık + veri analizi). "
         "(c) Ezber formül uygulatan tek adımlı soru yok; eleyici kalıp: tek bir veri kaynağı (tablo/şekil) üzerinde iki-üç özelliği birlikte sorgulayan, çok adımlı soru. "
         "(d) Soru kökü çeşitli: 'hangisi doğrudur', 'hangisi yanlıştır', 'kaç tanesi', I-II-III yargı değerlendirme, sıralama. "
-        "(e) Konu ağırlığı: üslü-kareköklü ifadeler, cebirsel ifadeler-özdeşlikler, doğrusal denklem-eğim-grafik, eşitsizlik, olasılık, veri analizi, üçgenler, oran-orantı; geometrik cisimlerden en çok bir silindir/koni/prizma sorusu.\n"),
+        "(e) Konu ağırlığı: üslü-kareköklü ifadeler, cebirsel ifadeler-özdeşlikler, doğrusal denklem-eğim-grafik, eşitsizlik, olasılık, veri analizi, üçgenler, oran-orantı; geometrik cisimlerden en çok bir silindir/koni/prizma sorusu. "
+        "(f) ÇIKMIŞ SORU KALIPLARI (birebir kopyalama; aynı kalıpla FARKLI sayı/bağlam üret): "
+        "1) kenar uzunluğu verilen eşkenar üçgen/düzgün altıgende çevre-alan (kareköklü ifade şıklı); "
+        "2) kareli zeminde iki karenin alanı/çevresi karşılaştırma (farkı kareköklü ifadeyle iste); "
+        "3) birim karelerden küp açınımı ve yansıma ile görünüm; "
+        "4) mavi dikdörtgen + sarı kare levhalarla oluşan şekillerin çevresi için cebirsel ifade (Şekil I, II verilir, III sorulur); "
+        "5) iki farklı yükseklikteki noktalar arasında 'en az uzaklık' koşuluyla eşitsizlik kurma; "
+        "6) tarif/karışım oranı: bardak şeklinde oran görseli + 'toplam miktar farkı X mL' verisinden bir bardağın hacmi; "
+        "7) koordinat düzleminde eş karelerden dikdörtgen ve köşegen/uzunluk; "
+        "8) mağaza fiyat-adet tablosundan cebirsel ifade kurma; "
+        "9) özdeş cisim kütleleri için denklem; "
+        "10) iki aracın yol-zaman doğrusal grafiği ve hız karşılaştırma; "
+        "11) kâğıt katlama/kesme sonrası iki köşe arası uzaklık; "
+        "12) torbadan/bahçeden rastgele seçim olasılığı (tablo + sonradan eklenen eleman); "
+        "13) silindirin yanal alanı verilip hacim ((π yerine 3 alınız) notuyla); "
+        "14) tren vagonu/istasyon gibi çok adımlı mantık ve sayma. "
+        "Her sorudaki TÜM sayısal değerler şekil/tabloda da yazılı olsun; tüm şekil ve tabloların altına gerekli birimi yaz.\n"),
     "Fen Bilimleri": (
         "LGS 2025 FEN ÖRÜNTÜSÜ (bunlara uy): ezber değil akıl yürütme; her soru bir deney düzeneği, grafik, tablo, model/şema ya da günlük olay verisi üzerinden. Kalıplar: "
         "(a) deney: bağımlı/bağımsız/kontrol değişkeni belirleme ve sonuç çıkarma; "
@@ -5729,6 +5746,9 @@ _LGS25 = {
         "(e) basit makinelerde sistemi kuvvet-yol-iş ilişkisiyle çözme; "
         "(f) DNA ve genetik kod: şema/soyağacı/çaprazlama; "
         "(g) basınç: katı-sıvı-gaz basıncı ve görsel yorum. "
+        "ÇIKMIŞ SORU KALIPLARI (birebir kopyalama; aynı kalıpla FARKLI veri üret): besin ağı/üretici-tüketici hipotezini destekleme ya da desteklememe; kapalı kapta fotosentez (CO2/O2/biyokütle I-II-III yargıları); azot döngüsü şemasından doğru çıkarım; yıllara göre CO2 grafiğinin değişim nedeni ('olamaz' kökü); "
+        "sıvı basıncı deneyinde tek değişken (yoğunluk/hacim/derinlik) kontrolü ile düzenek seçimi; süngere asılı halkalarla basınç ve temas yüzeyi (I-II-III); iki şehrin aylık sıcaklık tablosundan yarım küre çıkarımı; sürtünmesiz eğik düzlemde kuvvet-yol karşılaştırma; "
+        "periyodik sistem, asit-baz ve kütle korunumu çok aşamalı; DNA/gen/soyağacı. Her soruda deney düzeneği ya da tablo/grafik MUTLAKA görselde verilsin ve metindeki tüm değerler görselde yer alsın. "
         "Seçili konular arasında LGS 2025 soru ağırlığına göre dağıt (20 soruda Madde ve Endüstri 5, Enerji Dönüşümleri ve Çevre 4, DNA ve Genetik Kod 3, Elektrik Yükleri 3, Basınç 2, Basit Makineler 2, Mevsimler ve İklim 1).\n"),
 }
 
@@ -5740,6 +5760,33 @@ def _lgs25(subject, grade_label):
     return _LGS25.get(subject, "")
 
 
+_IHLAS = (
+    "\n📖 İHLAS SURESİ KAYNAK METNİ (kesin doğru; sorular YALNIZ bu bilgiye dayansın, değiştirme):\n"
+    "Arapça: قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ\n"
+    "Okunuşu: Kul hüvallâhü ehad. Allâhüs-samed. Lem yelid ve lem yûled. Ve lem yekün lehû küfüven ehad.\n"
+    "Meali (Diyanet): (Resûlüm!) De ki: O, Allah'tır, bir tektir. Allah Samed'dir (her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir). O doğurmamış ve doğurulmamıştır. Hiçbir şey O'na denk ve benzer değildir.\n"
+    "Bilgiler: Mekke'de inmiştir (Mekkî); 4 ayettir; Allah'ın birliğini (tevhid) anlatır; Kur'an'ın 112. suresidir. "
+    "Soru türleri: ayetin mealini ilgili ayetle eşleştirme, ayetten çıkan inanç ilkesi (Allah'ın tek, muhtaç olmayan, eşi benzeri olmayan oluşu), "
+    "günlük durumda hangi ayetin mesajına uygun olduğunu bulma, okunuş-ayet sırası. Sure metnini ve okunuşunu soru/şıkta AYNEN ve eksiksiz yaz; Arapça metni değiştirme.\n")
+
+_MEB_SENARYO = (
+    "\n🏫 MEB ÖRNEK SORU TARZI (tüm sınıflar): Soru, kısa bir SENARYO ile başlasın (adı olan öğrenci/aile/okul/mahalle: 'Melis okulda…', '5/B sınıfı öğrencileri…'); "
+    "senaryoda soruyu çözmek için gereken TÜM bilgi bulunsun, sonra 'Metne göre …', 'Bu duruma göre …' ya da 'Buna göre …' ile TEK net soru sorulsun. "
+    "Sorular kazanımın gerçek hayattaki karşılığını (grup/rol/sorumluluk, kültürel farklılığa saygı, yardımlaşma ve dayanışma, afet durumu, proje ve görev paylaşımı, "
+    "göreceli konum ve harita, okul/mahalle olayı) yoklasın; ezber değil yorum ve değer çıkarımı olsun. Şıklarda doğru olan, metindeki durumla birebir örtüşen davranış/sonuç olsun; "
+    "çeldiriciler metinle çelişen ya da metinde geçmeyen yargılar olsun. Senaryodaki her ad, sayı ve olay şıklarla ve görselle tutarlı olsun.\n")
+
+
+def _meb_extra(grade_label, subject, topics):
+    t = (topics or "")
+    x = ""
+    if "İhlas" in t and subject == "Din Kültürü ve Ahlak Bilgisi":
+        x += _IHLAS
+    if subject in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi", "Türkçe", "Fen Bilimleri", "T.C. İnkılap Tarihi ve Atatürkçülük"):
+        x += _MEB_SENARYO
+    return x
+
+
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False, like=""):
     nonce = uuid.uuid4().hex[:8]
     av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
@@ -5749,6 +5796,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     fc += lessons(subject)
     fc += golden(subject, grade_label)
+    fc += _meb_extra(grade_label, subject, topics)
     if subject in ("Türkçe", "Sosyal Bilgiler"):
         fc += ("\n🎯 GRAFİK/TABLO/ŞEMA SORULARINDA ZORLUK: Cevap görsele bakınca DOĞRUDAN okunmasın ('en çok/en az hangisi', 'X kaçtır' YASAK). "
                "Bunun yerine: iki-üç adımlı çıkarım (karşılaştırma + fark/oran/toplam), numaralı yargılardan (I, II, III) doğru/yanlış ayıklama, "
