@@ -102,7 +102,7 @@ C = {
   SOS: [_u("Birlikte Yaşamak", "Birey-toplum; Haklar ve sorumluluklar; Roller"), _u("Evimiz Dünya", "Harita; Yer şekilleri; İklim; Doğal afetler"),
        _u("Ortak Mirasımız", "Kültürel miras; Anadolu medeniyetleri"), _u("Yaşayan Demokrasi", "Demokrasi; Seçim; Yönetim"),
        _u("Hayatımızdaki Ekonomi", "İhtiyaç-istek; Tasarruf; Meslekler"), _u("Teknoloji ve Sosyal Bilimler", "Bilim ve teknoloji tarihi; Bilişim güvenliği")],
-  DIN: [_u("Allah İnancı", "Allah'ın varlığı; Güzel isimler"), _u("Namaz İbadeti", "Namazın önemi; Abdest; Namaz vakitleri"), _u("Hz. Muhammed'in Hayatı", "Peygamberliği; Örnek ahlakı"),
+  DIN: [_u("Allah İnancı", "Allah'ın varlığı; Güzel isimler; Tevhid; Tekvin; Semi ve Basar; Kudret ve İrade; Evrendeki düzen ve akıl"), _u("Namaz İbadeti", "Namazın önemi; Abdest; Namaz vakitleri"), _u("Hz. Muhammed'in Hayatı", "Peygamberliği; Örnek ahlakı"),
        _u("Kur'an-ı Kerim", "Kur'an'ın indirilişi; Temel konular"), _u("İhlas Suresi", "İhlas Suresi'nin okunuşu; İhlas Suresi'nin meali; Tevhid ve Allah'ın birliği"),
        _u("Değerlerimiz", "Dürüstlük; Adalet; Hoşgörü")],
   ING: [_u("Hello!", "Greetings; Introducing; Alphabet"), _u("My Town", "Places; Directions; Prepositions"), _u("Games and Hobbies", "Free time; Can/can't; Likes"),
@@ -5777,11 +5777,25 @@ _MEB_SENARYO = (
     "çeldiriciler metinle çelişen ya da metinde geçmeyen yargılar olsun. Senaryodaki her ad, sayı ve olay şıklarla ve görselle tutarlı olsun.\n")
 
 
+_DIN5_ALLAH = (
+    "\n🕌 5. SINIF DİN 'ALLAH İNANCI' ÜNİTE TARZI: Kısa, sade, 5. sınıf düzeyinde, kavram odaklı sorular. Şu kalıpları çeşitlendir: "
+    "(1) boşluk doldurma: 'Allah'ın bir ve tek olması, eşi ve benzerinin olmaması ……… kavramı ile ifade edilir' (Tevhid); 'her şeyi görmesine ………, işitmesine ………' (Basar–Semi); 'her şeyi yaratması ………' (Tekvin); "
+    "(2) 'aşağıdakilerden hangisi yanlış bir ifadedir / çıkarılamaz / söylenemez'; "
+    "(3) maddeli özellik listesi verip ('Hiçbir varlığa benzemez; tektir, eşi ortağı yoktur; hiçbir şeye ihtiyaç duymaz') hangi varlığa ait olduğunu ya da hangi sorunun cevabı olduğunu sordurma; "
+    "(4) evrendeki düzen ve ayet (ör. Kamer Suresi 49. ayet: 'Gerçekten biz her şeyi bir ölçü ve dengede yarattık.') üzerinden genel yargı çıkarma; "
+    "(5) 'Allah'ın her şeyi gördüğüne inanan birinden beklenmeyen davranış' gibi değer-davranış ilişkisi; "
+    "(6) evrende yüce bir yaratıcıyı gösteren ve göstermeyen örnekleri ayırma; akıl ve Kur'an ilişkisi. "
+    "Kavramlar: Tevhid (birlik), Tekvin (yaratma), Semi (işiten), Basar (gören), Kudret (güç), İrade (dileme), Rahman-Rahim. "
+    "Çeldiriciler kavram karışıklığından (ör. Tevhid–Tekvin, Semi–Basar, Kudret–İrade) türesin. Hiçbir soruda hatalı dinî bilgi olmasın; Allah'a insan özelliği yakıştıran ifade doğru şık olamaz.\n")
+
+
 def _meb_extra(grade_label, subject, topics):
     t = (topics or "")
     x = ""
     if "İhlas" in t and subject == "Din Kültürü ve Ahlak Bilgisi":
         x += _IHLAS
+    if subject == "Din Kültürü ve Ahlak Bilgisi" and ("Allah" in t or "Tevhid" in t) and "5" in str(grade_label)[:2]:
+        x += _DIN5_ALLAH
     if subject in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi", "Türkçe", "Fen Bilimleri", "T.C. İnkılap Tarihi ve Atatürkçülük"):
         x += _MEB_SENARYO
     return x
