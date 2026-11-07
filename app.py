@@ -3522,6 +3522,40 @@ def audit_pool_files(keep_fn):
     return removed
 
 
+def _qtok(q):
+    t = str(q.get("question", "")) + " " + str(q.get("passage", ""))
+    return {w for w in re.sub(r"[^\w\s]", " ", t.lower()).split() if len(w) > 3}
+
+
+def purge_similar(q, thr=0.62):
+    """Bildirilen soruya çok benzeyen (aynı ders, yüksek sözcük örtüşmesi) soruları banka ve beğeni havuzundan siler. -> silinen sayısı"""
+    base = _qtok(q)
+    subj = q.get("subject")
+    if len(base) < 6:
+        return 0
+    n = 0
+
+    def sim(x):
+        if subj and x.get("subject") and x.get("subject") != subj:
+            return False
+        t = _qtok(x)
+        return bool(t) and len(base & t) / len(base | t) >= thr
+    with _BANK_LOCK:
+        b = _bank()
+        for k in list(b):
+            keep = [x for x in b[k]["qs"] if not sim(x)]
+            n += len(b[k]["qs"]) - len(keep)
+            b[k]["qs"] = keep
+            if not keep:
+                b.pop(k)
+        _save("bank.json", b)
+        P = _load("lpool.json", [])
+        keepP = [x for x in P if not sim(x.get("q") or {})]
+        n += len(P) - len(keepP)
+        _save("lpool.json", keepP)
+    return n
+
+
 def report_bad(q, reason=""):
     try:
         report_log(q, reason)
@@ -3543,6 +3577,10 @@ def report_bad(q, reason=""):
                 if not b[k]["qs"]:
                     b.pop(k)
             _save("bank.json", b)
+    except Exception:
+        pass
+    try:  # benzer yapıdaki sorular da bankadan/beğeni havuzundan çıksın (aynı hata türü tekrar etmesin)
+        purge_similar(q)
     except Exception:
         pass
     try:  # yanlış arşivinden de çıkar (hatalı soruyu çalıştırmasın)
@@ -4939,6 +4977,8 @@ def _ask_questions(prompt, gk, mk, offset, validate, tries=3, reasoning=None):
             return [], err  # havuz tükendi: aynı şeyi tekrar denemek boşuna
         good = validate(_extract_questions(raw))
         if good:
+            for _q in good:
+                _q["_gp"] = meta.get("provider", "")  # üreten sağlayıcı: doğrulama başka sağlayıcıyla yapılsın
             return good, None
         last = "geçersiz yanıt"
         if meta.get("model"):
@@ -5016,8 +5056,24 @@ def verify_questions(qs, gk, mk, offset=0):
               "Soru hatalıysa (doğru şık yok, birden çok şık doğru, cevap için veri eksik, soru ile görsel verisi ya da kendi içindeki sayılar/ifadeler tutarsız, bilgi yanlış) 'X' ver.\n\n"
               + "\n\n".join(_vq_text(i, q) for i, q in enumerate(qs, 1))
               + '\n\nÇIKTI SADECE şu JSON: {"results":[{"i":1,"answer":"A"}]}')
-    raw, err = multi_pool_generate(prompt, gk, mk, offset=offset, temperature=0, models=_verify_models(gk, mk),
-                                   system=VERIFY_SYSTEM, reasoning="medium", deadline=VERIFY_DEADLINE, max_wait=0)
+    gps = {q.get("_gp") for q in qs if q.get("_gp")}
+    excl = set()
+    try:  # çapraz doğrulama: soruyu üreten sağlayıcının modellerini doğrulamadan çıkar (farklı model ailesi aynı yanılgıyı yapmaz)
+        gm, mm = _verify_models(gk, mk)
+        if len(gps) == 1:
+            gp = next(iter(gps))
+            excl = set(gm) if gp == "groq" else set(mm) if gp == "gemini" else set()
+    except Exception:
+        excl = set()
+    for q in qs:
+        q.pop("_gp", None)
+    raw, err = (None, None)
+    if excl:
+        raw, err = multi_pool_generate(prompt, gk, mk, offset=offset, temperature=0, models=_verify_models(gk, mk), exclude=excl,
+                                       system=VERIFY_SYSTEM, reasoning="medium", deadline=VERIFY_DEADLINE, max_wait=0)
+    if not raw:  # başka sağlayıcı yok/ulaşılamadı: normal doğrulama
+        raw, err = multi_pool_generate(prompt, gk, mk, offset=offset, temperature=0, models=_verify_models(gk, mk),
+                                       system=VERIFY_SYSTEM, reasoning="medium", deadline=VERIFY_DEADLINE, max_wait=0)
     data = parse_json(raw)
     res = data.get("results") if isinstance(data, dict) else None
     if not isinstance(res, list):  # ulaşılamadı / bozuk yanıt: farklı model/anahtarla bir kez daha dene
@@ -5311,6 +5367,8 @@ def _dangling_ref(qtext, pas, opts):
     if re.search(r"\b(?:parça\w*|metin\w*|paragraf\w*|dörtlük\w*|dize\w*|şiir\w*|diyalog\w*|haber\w*|ilan\w*|mektup\w*)\s+(?:göre|ışığında|dayanarak)|\b(?:yukarıdaki|aşağıdaki|verilen)\s+(?:parça|metin|paragraf|dörtlük|dize|şiir|diyalog|haber|ilan|mektup)", q, re.I):
         return not re.search(r":\s*.{40,}", q)  # atıf var, metin soru içinde de verilmemiş
     m = _REF_DATA.search(q)
+    if m and re.search(r"(?:den|dan|ten|tan)$", m.group(0).strip(), re.I):
+        m = None  # 'aşağıdaki ifadelerden hangisi…' : ifadeler şıklardır
     if m:
         rest = q[m.end():]
         # veri aynı soru metninde ":" sonrası / madde madde verilmişse sorun yok
@@ -6929,6 +6987,333 @@ def _relaxed_ok(q, kept):
     return True
 
 
+# ---------------------------------------------------------------- KODLA ÜRETİLEN (cevabı hesaplanan) tablo/grafik soruları
+_LQ_NAMES = ["Ayşe", "Mehmet", "Elif", "Ali", "Zeynep", "Can", "Defne", "Burak", "Selin", "Emir", "Derya", "Kerem"]
+_LQ_THEMES = [
+    ("Okul kulüplerine kayıtlı öğrenci sayısı", "Kulüp", "öğrenci", ["Satranç", "Resim", "Müzik", "Tiyatro", "Robotik", "Halk oyunları", "Kodlama"], 10, 60, 2,
+     "okulun kulüplerine kayıt yapan öğrenci sayısını inceliyor"),
+    ("Bir mahallede haftalık toplanan geri dönüşüm atığı", "Atık türü", "kg", ["Kâğıt", "Cam", "Plastik", "Metal", "Pil", "Bitkisel yağ"], 20, 120, 5,
+     "mahallelerinde bir haftada toplanan geri dönüşüm atıklarını inceliyor"),
+    ("Kitap bağışı kampanyasında sınıflara göre toplanan kitap sayısı", "Sınıf", "kitap", ["5/A", "5/B", "5/C", "5/D", "5/E", "5/F"], 20, 90, 2,
+     "okulda düzenlenen kitap bağışı kampanyasının sonuçlarını inceliyor"),
+    ("Kütüphanede bir haftada ödünç alınan kitap türleri", "Kitap türü", "kitap", ["Hikâye", "Roman", "Şiir", "Bilim", "Tarih", "Masal"], 15, 80, 1,
+     "okul kütüphanesinin ödünç verme kayıtlarını inceliyor"),
+    ("Bir köyde yıllık ürün miktarı", "Ürün", "ton", ["Buğday", "Arpa", "Mısır", "Ayçiçeği", "Nohut", "Pamuk"], 10, 90, 2,
+     "köyde yetiştirilen ürünlerin yıllık miktarını inceliyor"),
+    ("Bir şehirde yıl boyunca ziyaret edilen yerler (bin kişi)", "Mekân", "bin kişi", ["Müze", "Antik kent", "Kale", "Saat kulesi", "Şelale", "Tarihî çarşı"], 10, 80, 2,
+     "şehirde ziyaret edilen tarihî ve doğal mekânların ziyaretçi sayılarını inceliyor"),
+    ("Bir mahallede kullanılan ulaşım araçları", "Ulaşım aracı", "kişi", ["Otobüs", "Metro", "Tramvay", "Bisiklet", "Yürüyerek", "Servis"], 20, 100, 2,
+     "mahalle halkının okula ve işe gitmek için kullandığı ulaşım araçlarını inceliyor"),
+    ("Afet farkındalığı eğitimine katılanlar", "Grup", "kişi", ["Öğrenciler", "Öğretmenler", "Veliler", "Gönüllüler", "Mahalle sakinleri", "Okul personeli"], 15, 90, 1,
+     "okulda düzenlenen afet farkındalığı eğitimine katılan grupları inceliyor"),
+]
+_LQ_TIME = [
+    ("Bir ilçenin yıllara göre nüfusu (bin kişi)", "bin kişi", 40, 120, "ilçenin yıllara göre nüfus değişimini inceliyor"),
+    ("Bir okulda yıllara göre kayıtlı öğrenci sayısı", "öğrenci", 300, 900, "okuldaki kayıtlı öğrenci sayısının yıllara göre değişimini inceliyor"),
+    ("Bir şehre yıllara göre gelen turist sayısı (bin kişi)", "bin kişi", 50, 200, "şehre gelen turist sayısının yıllara göre değişimini inceliyor"),
+    ("Bir mahallede yıllara göre dikilen fidan sayısı", "fidan", 100, 600, "mahallede yıllara göre dikilen fidan sayısını inceliyor"),
+]
+
+
+def _lq_vals(n, lo, hi, step):
+    pool = list(range(lo, hi + 1, step))
+    return random.sample(pool, n) if len(pool) >= n else None
+
+
+def _lq_opts(correct, wrongs, unit, step):
+    """Sayısal şıklar: doğru + 3 çeldirici (yakın ama farklı); -> (opts_list, doğru_metin)"""
+    seen = {correct}
+    ws = []
+    for w in wrongs:
+        if w is not None and w > 0 and w not in seen:
+            seen.add(w)
+            ws.append(w)
+    k = 1
+    while len(ws) < 3 and k < 40:
+        for c in (correct + k * step, correct - k * step):
+            if c > 0 and c not in seen and len(ws) < 3:
+                seen.add(c)
+                ws.append(c)
+        k += 1
+    ws = ws[:3]
+    if len(ws) < 3:
+        return None
+    f = lambda v: (f"{v} {unit}" if unit else str(v))
+    return [f(correct)] + [f(w) for w in ws], f(correct)
+
+
+_LQ_SETS = ["Yalnız I", "Yalnız II", "Yalnız III", "I ve II", "I ve III", "II ve III", "I, II ve III"]
+
+
+def _lq_stmts(items, unit):
+    """Verilerden (doğru_cümle, yanlış_cümle) çiftleri (ek uyumu gerektirmeyen kalıplar)."""
+    srt = sorted(items, key=lambda x: -x[1])
+    tot = sum(v for _, v in items)
+    mx, mn = srt[0], srt[-1]
+    a, b = random.sample(items, 2)
+    hi, lo = (a, b) if a[1] > b[1] else (b, a)
+    d = mx[1] - mn[1]
+    pairs = [
+        (f"{hi[0]}, {lo[0]} ile karşılaştırıldığında daha fazladır.", f"{lo[0]}, {hi[0]} ile karşılaştırıldığında daha fazladır."),
+        (f"En fazla olan ile en az olan arasındaki fark {d} {unit} kadardır.", f"En fazla olan ile en az olan arasındaki fark {d + random.choice([2, 3, 4, 5])} {unit} kadardır."),
+        (f"Tüm değerlerin toplamı {tot} {unit} kadardır.", f"Tüm değerlerin toplamı {tot - random.choice([2, 4, 5, 6, 10])} {unit} kadardır."),
+    ]
+    c, d2 = srt[0], srt[1]
+    if (c[1] + d2[1]) * 2 != tot:
+        more = (c[1] + d2[1]) * 2 > tot
+        t1 = f"{c[0]} ile {d2[0]} birlikte toplamın yarısından fazladır."
+        t2 = f"{c[0]} ile {d2[0]} birlikte toplamın yarısından azdır."
+        pairs.append((t1, t2) if more else (t2, t1))
+    return pairs
+
+
+def _lq_pick_true_false(items, unit, n_true):
+    """3 farklı türden cümle seçer: n_true tanesi doğru. -> [(cümle, doğru_mu)]"""
+    kinds = _lq_stmts(items, unit)
+    random.shuffle(kinds)
+    kinds = kinds[:3]
+    tset = set(random.sample(range(3), n_true))
+    return [(kinds[i][0], True) if i in tset else (kinds[i][1], False) for i in range(3)]
+
+
+def _lq_shape(kind, title, hdr_a, hdr_b, items):
+    if kind == "table":
+        return {"type": "table", "title": title, "headers": [hdr_a, hdr_b], "rows": [[a, v] for a, v in items]}
+    return {"type": "bar_chart", "title": title, "labels": [a for a, _ in items], "values": [v for _, v in items]}
+
+
+def _lq_one(subject, kind_q=None):
+    nm = random.choice(_LQ_NAMES)
+    vis = random.choice(["grafik", "tablo"])
+    visl = "grafikte" if vis == "grafik" else "tabloda"
+    th = random.choice(_LQ_THEMES)
+    title, hdr, unit, cats, lo, hi, step, ctx = th
+    n = random.choice([5, 6])
+    cs = random.sample(cats, n)
+    vals = _lq_vals(n, lo, hi, step)
+    if not vals:
+        return None
+    items = list(zip(cs, vals))
+    shape_kind = "table" if vis == "tablo" else "bar_chart"
+    srt = sorted(items, key=lambda x: -x[1])
+    tot = sum(vals)
+    kq = kind_q or random.choice(["diff", "top2", "ratio", "avg", "stmt", "stmt", "not"])
+    lead = f"{nm}, {ctx}. Elde ettiği veriler aşağıdaki {visl} gösterilmiştir."
+    if kq == "ratio":
+        base = random.choice([r for r in range(lo, hi + 1, step) if r * 2 <= hi and r >= lo])
+        k = random.choice([2, 3])
+        if base * k > hi * 2:
+            return None
+        rest_pool = [v for v in range(lo, hi + 1, step) if v not in (base, base * k)]
+        if len(rest_pool) < n - 2:
+            return None
+        rest = random.sample(rest_pool, n - 2)
+        vv = [base * k, base] + rest
+        items = list(zip(cs, vv))
+        shape = _lq_shape(shape_kind, title, hdr, "Değer", items)
+        opts = _lq_opts(k, [k + 1, k - 1 if k > 1 else k + 2, k * 2, base * k - base], "", 1)
+        if not opts:
+            return None
+        q = f"Buna göre, {cs[0]} değeri {cs[1]} değerinin kaç katıdır?"
+        ex = f"{cs[0]} = {base * k}, {cs[1]} = {base}; {base * k} ÷ {base} = {k}."
+        return _lq_fin(subject, title, lead, q, opts, shape, ex)
+    shape = _lq_shape(shape_kind, title, hdr, unit.capitalize() if unit else "Sayı", items)
+    if kq == "diff":
+        a, b = random.sample(items, 2)
+        hi_, lo_ = (a, b) if a[1] > b[1] else (b, a)
+        d = hi_[1] - lo_[1]
+        opts = _lq_opts(d, [hi_[1] + lo_[1], hi_[1], lo_[1], srt[0][1] - srt[-1][1] if srt[0][1] - srt[-1][1] != d else None], unit, step)
+        q = f"Buna göre, {hi_[0]} ile {lo_[0]} arasındaki fark kaç {unit} kadardır?"
+        ex = f"{hi_[0]} = {hi_[1]}, {lo_[0]} = {lo_[1]}; fark = {hi_[1]} − {lo_[1]} = {d}."
+    elif kq == "top2":
+        s2 = srt[0][1] + srt[1][1]
+        opts = _lq_opts(s2, [srt[0][1] + srt[2][1], srt[-1][1] + srt[-2][1], tot - s2, srt[0][1]], unit, step)
+        q = f"Buna göre, en fazla olan iki değerin toplamı kaç {unit} kadardır?"
+        ex = f"En fazla olanlar {srt[0][0]} ({srt[0][1]}) ve {srt[1][0]} ({srt[1][1]}); toplam = {s2}."
+    elif kq == "avg":
+        r = tot % n
+        if r:
+            adj = None
+            for i in range(n):
+                nv = vals[i] - r
+                if nv >= lo - step * 2 and nv > 0 and nv not in vals:
+                    adj = (i, nv)
+                    break
+            if not adj:
+                return None
+            vals[adj[0]] = adj[1]
+            items = list(zip(cs, vals))
+            shape = _lq_shape(shape_kind, title, hdr, unit.capitalize() if unit else "Sayı", items)
+            tot = sum(vals)
+        av = tot // n
+        opts = _lq_opts(av, [tot, tot // (n - 1) if tot % (n - 1) == 0 else None, max(vals), tot // n + step], unit, step)
+        q = f"Buna göre, verilen {n} değerin aritmetik ortalaması kaç {unit} kadardır?"
+        ex = f"Toplam = {tot}; ortalama = {tot} ÷ {n} = {av}."
+    elif kq == "not":
+        P = _lq_stmts(items, unit)
+        if len(P) < 4:
+            return None
+        random.shuffle(P)
+        trues = [p[0] for p in P[:3]]
+        fals = P[3][1]
+        allo = trues + [fals]
+        random.shuffle(allo)
+        q = "Buna göre, aşağıdakilerden hangisi söylenemez?"
+        return _lq_fin(subject, title, lead, q, (allo, fals), shape, f"Doğru olmayan ifade: {fals}", text_opts=True)
+    else:
+        return _lq_stmt_q(subject, title, lead, items, unit, shape, random.choice([1, 2, 2, 3]))
+    if not opts:
+        return None
+    return _lq_fin(subject, title, lead, q, opts, shape, ex)
+
+
+def _lq_stmt_q(subject, title, lead, items, unit, shape, n_true):
+    S = _lq_pick_true_false(items, unit, n_true)
+    ro = ["I", "II", "III"]
+    truth = [i for i, (_s, ok) in enumerate(S) if ok]
+    names = {1: ["Yalnız I", "Yalnız II", "Yalnız III"], 2: ["I ve II", "I ve III", "II ve III"], 3: ["I, II ve III"]}
+    right = {1: lambda t: f"Yalnız {ro[t[0]]}", 2: lambda t: f"{ro[t[0]]} ve {ro[t[1]]}", 3: lambda t: "I, II ve III"}[len(truth)](truth)
+    others = [x for x in _LQ_SETS if x != right]
+    random.shuffle(others)
+    opts = sorted([right] + others[:3], key=_LQ_SETS.index)
+    passage_stmts = " ".join(f"{ro[i]}. {s}" for i, (s, _ok) in enumerate(S))
+    q = "Buna göre, aşağıdaki yargılardan hangileri doğrudur?\n" + "\n".join(f"{ro[i]}. {s}" for i, (s, _ok) in enumerate(S))
+    ex = "; ".join(f"{ro[i]}. {'doğru' if ok else 'yanlış'}" for i, (_s, ok) in enumerate(S))
+    return _lq_fin(subject, title, lead, q, (opts, right), shape, ex, text_opts=True)
+
+
+def _lq_fin(subject, title, lead, q, opts, shape, ex, text_opts=False):
+    ol, correct = opts
+    if len(set(ol)) < 4:
+        return None
+    letters = "ABCD"
+    ans = letters[ol.index(correct)]
+    raw = {"subject": subject, "topic": "Tablo/grafik yorumlama", "passage": lead, "question": q,
+           "options": dict(zip(letters, ol)), "answer": ans, "explanation": ex, "shape": shape}
+    return raw
+
+
+def local_questions(subject, grade_label, n, topics="", seen=()):
+    """Cevabı kodla hesaplanan tablo/grafik soruları (API kullanmaz, mantık hatası içermez). Yalnız Sosyal Bilgiler ve grafik/tablo konulu Türkçe."""
+    if n <= 0:
+        return []
+    if subject == "Türkçe":
+        if not re.search(r"grafik|tablo", str(topics or ""), re.I):
+            return []
+    elif subject != "Sosyal Bilgiler":
+        return []
+    out, stems = [], set(seen)
+    tries = 0
+    while len(out) < n and tries < n * 12:
+        tries += 1
+        try:
+            raw = _lq_one(subject)
+            if not raw:
+                continue
+            x = _norm_q(raw, subject)
+        except Exception:
+            x = None
+        if not x or _stem(x) in stems:
+            continue
+        stems.add(_stem(x))
+        x["vfd"] = True
+        x["local"] = True
+        out.append(x)
+    return out
+
+
+# ---------------------------------------------------------------- ELLE YAZILMIŞ, ONAYLI ÇEKİRDEK SORULAR (doğrulanmış; sınavda önce bunlar kullanılır)
+_SEEDS = [
+    # (sınıflar, ders, anahtar sözcükler, konu, soru, [şıklar], doğru_index, çözüm)
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid"), "Allah İnancı",
+     "Allah'ın bir ve tek olduğuna, eşi ve benzerinin bulunmadığına inanmaya ……… denir.\nYukarıdaki boşluğa aşağıdakilerden hangisi getirilmelidir?",
+     ["Tevhid", "Tekvin", "İrade", "Kudret"], 0, "Allah'ın birliğine inanmaya tevhid denir."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid"), "Allah İnancı",
+     "Allah'ın her şeyi yoktan var etmesi sıfatına ……… denir.\nYukarıdaki boşluğa aşağıdakilerden hangisi getirilmelidir?",
+     ["Semi", "Tekvin", "Basar", "Rahman"], 1, "Yaratma sıfatına tekvin denir."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid", "sıfat"), "Allah İnancı",
+     "Allah'ın her şeyi görmesine ………, her şeyi işitmesine ……… denir.\nBu cümlede boş bırakılan yerlere sırasıyla hangi kavramlar getirilmelidir?",
+     ["Semi – Basar", "Basar – Semi", "Kudret – İrade", "Tekvin – Tevhid"], 1, "Görme: basar, işitme: semi."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid"), "Allah İnancı",
+     "Allah ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?",
+     ["Her şeyi bilir ve görür.", "Kendisine denk bir eşi vardır.", "Her şeye gücü yeter.", "Her şeyi yoktan var etmiştir."], 1, "Allah'ın eşi ve benzeri yoktur."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid"), "Allah İnancı",
+     "Aşağıdaki özelliklerin hepsi aynı varlığa aittir:\n- Doğmamış ve doğurulmamıştır.\n- Eşi ve benzeri yoktur.\n- Her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir.\nBu özellikler aşağıdakilerden hangisine aittir?",
+     ["Peygamberlere", "Allah'a", "Meleklere", "İnsanlara"], 1, "Bu özellikler Allah'a aittir."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid", "düzen"), "Allah İnancı",
+     "Mevsimlerin düzenli olarak birbirini takip etmesi evrendeki düzenin bir örneğidir.\nEvrendeki bu düzen bize aşağıdakilerden hangisini düşündürür?",
+     ["Her şeyin kendiliğinden oluştuğunu", "Evrenin bir yaratıcısı olduğunu", "İnsanların evreni yarattığını", "Düzenin rastgele olduğunu"], 1, "Düzen, bir yaratıcının varlığını düşündürür."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid", "sıfat"), "Allah İnancı",
+     "Allah'ın her yerde ve her zaman kendisini gördüğüne inanan Elif'ten aşağıdakilerden hangisini yapması beklenmez?",
+     ["Kimse görmese de çöpünü çöp kutusuna atmasını", "Yalnızken de doğruyu söylemesini", "Kimse görmeyecek diye başkasının eşyasını alması", "Verdiği sözü tutmasını"], 2, "Allah'ın gördüğüne inanan kişi gizlide de doğru davranır."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+     "'Lem yelid ve lem yûled.' ayetinin anlamı aşağıdakilerden hangisidir?",
+     ["O, Allah'tır, bir tektir.", "O doğurmamış ve doğurulmamıştır.", "Hiçbir şey O'na denk ve benzer değildir.", "Allah Samed'dir."], 1, "Ayetin meali: O doğurmamış ve doğurulmamıştır."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+     "'De ki: O, Allah'tır, bir tektir.' mealine sahip ayet aşağıdakilerden hangisidir?",
+     ["Kul hüvallâhü ehad.", "Allâhüs-samed.", "Lem yelid ve lem yûled.", "Ve lem yekün lehû küfüven ehad."], 0, "İhlas Suresi'nin ilk ayeti: Kul hüvallâhü ehad."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+     "Ahmet, 'Hiçbir şey O'na denk ve benzer değildir.' ayetini öğrenmiştir.\nBu ayet Allah'ın hangi özelliğini vurgular?",
+     ["Eşinin ve benzerinin bulunmadığını", "Her şeyi gördüğünü", "Rızık verdiğini", "İnsanları sevdiğini"], 0, "Ayet, Allah'ın eşi ve benzerinin olmadığını bildirir."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+     "İhlas Suresi'nde geçen 'Samed' ifadesi aşağıdakilerden hangisini anlatır?",
+     ["Allah'ın her şeyi yaratmasını", "Her şeyin Allah'a muhtaç olup Allah'ın hiçbir şeye muhtaç olmamasını", "Allah'ın sadece insanlara yardım etmesini", "Allah'ın yalnızca işitmesini"], 1, "Samed: her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir."),
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+     "İhlas Suresi ile ilgili aşağıdakilerden hangisi doğrudur?",
+     ["Dört ayetten oluşur.", "Yalnızca namazda okunur.", "Allah'ın birliğini (tevhid) anlatmaz.", "Peygamberlerin kıssalarını anlatır."], 0, "İhlas Suresi 4 ayettir ve Allah'ın birliğini anlatır."),
+    (("5", "6"), "Sosyal Bilgiler", ("birey", "rol", "grup", "hak", "sorumluluk"), "Birey ve Toplum",
+     "Deniz; sınıfında sınıf başkanı, ailesinde abla, okul takımında ise kaleci olarak görev yapmaktadır.\nBuna göre aşağıdakilerden hangisi Deniz'in aile içindeki rolüne uygun bir davranıştır?",
+     ["Sınıf kurallarını arkadaşlarına duyurmak", "Kardeşinin ödevini yapmasına yardım etmek", "Maçta kaleyi savunmak", "Antrenmanı programına göre yapmak"], 1, "Ablalık rolü aile içindedir; kardeşe yardım bu role uygundur."),
+    (("5", "6"), "Sosyal Bilgiler", ("birey", "hak", "sorumluluk"), "Birey ve Toplum",
+     "Aşağıdakilerden hangisi öğrencinin okula karşı bir sorumluluğudur?",
+     ["Eğitim görmek", "Okul eşyalarına zarar vermemek", "Oyun oynamak", "Sağlık hizmetinden yararlanmak"], 1, "Okul eşyalarına zarar vermemek bir sorumluluktur; diğerleri haktır."),
+    (("5", "6", "7"), "Sosyal Bilgiler", ("kültür", "gelenek", "miras"), "Kültür ve Miras",
+     "Bayramlarda büyüklerin ziyaret edilmesi ve ellerinin öpülmesi, kültürün hangi unsuruna örnektir?",
+     ["Gelenek ve göreneğe", "Teknolojiye", "Para birimine", "Alfabeye"], 0, "Bayram ziyaretleri gelenek ve göreneklerdendir."),
+    (("5", "6", "7"), "Sosyal Bilgiler", ("afet", "dayanışma", "yardımlaşma"), "İnsanlar, Yerler ve Çevreler",
+     "Aşağıdakilerden hangisi afet sonrasında yardımlaşma ve dayanışmaya örnek gösterilemez?",
+     ["Gönüllülerin yiyecek ve su taşıması", "İnsanların battaniye ve giysi göndermesi", "Yardım malzemelerini fahiş fiyatla satmaya çalışmak", "Sağlık ekiplerinin yaralılara yardım etmesi"], 2, "Fahiş fiyatla satış yardımlaşma değildir."),
+    (("5", "6", "7"), "Sosyal Bilgiler", ("harita", "yön", "konum"), "İnsanlar, Yerler ve Çevreler",
+     "Ahmet'in evi okulun doğusunda, okul ise parkın doğusundadır.\nBuna göre Ahmet'in evi parka göre hangi yöndedir?",
+     ["Batı yönünde", "Doğu yönünde", "Kuzey yönünde", "Güney yönünde"], 1, "Park → okul → ev doğuya doğru sıralanır; ev parkın doğusundadır."),
+    (("5", "6", "7"), "Sosyal Bilgiler", ("tasarruf", "ekonomik", "üretim", "tüketim"), "Üretim, Dağıtım ve Tüketim",
+     "Elif her hafta harçlığından 5 TL biriktirmektedir.\nElif'in 8 haftada biriktireceği para kaç TL olur?",
+     ["13 TL", "35 TL", "40 TL", "45 TL"], 2, "5 × 8 = 40 TL."),
+    (("5", "6", "7"), "Sosyal Bilgiler", ("tasarruf", "ekonomik", "üretim", "tüketim"), "Üretim, Dağıtım ve Tüketim",
+     "Çiftçi Hasan, tarlasında buğday yetiştirip hasat etmiştir.\nBu durum aşağıdaki ekonomik faaliyetlerden hangisine örnektir?",
+     ["Üretim", "Tüketim", "Tasarruf", "Dağıtım"], 0, "Buğday yetiştirmek üretimdir."),
+]
+
+
+def seed_questions(subject, grade_label, topics="", limit=3, seen=()):
+    """Elle yazılmış onaylı sorulardan kapsama uyanları döndürür (aynı soru tekrar gelmesin diye `seen` süzülür)."""
+    gl = str(grade_label or "")
+    gd = next((c for c in gl if c.isdigit()), "")
+    tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+    pool = []
+    for grades, subj, kws, topic, qq, opts, ai, ex in _SEEDS:
+        if subj != subject or (gd and gd not in grades):
+            continue
+        if tl and not any(k in tl for k in kws):
+            continue
+        pool.append((topic, qq, opts, ai, ex))
+    random.shuffle(pool)
+    out = []
+    for topic, qq, opts, ai, ex in pool:
+        if len(out) >= limit:
+            break
+        raw = {"subject": subject, "topic": topic, "passage": "", "question": qq, "options": dict(zip("ABCD", opts)), "answer": "ABCD"[ai], "explanation": ex}
+        try:
+            x = _norm_q(raw, subject)
+        except Exception:
+            x = None
+        if x and _stem(x) not in seen:
+            x["vfd"] = True
+            x["seed"] = True
+            out.append(x)
+    return out
+
+
 def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False, count=True, like=""):
     """plan: [{subject, n, topics}] -> (questions, errors).
     Her ders BAĞIMSIZ ilerler (başka dersi beklemez): bankadan al -> paralel üret -> eksik kaldıkça yeniden tamamla
@@ -6998,6 +7383,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     qs = verify_questions(qs, gk, mk, offset=idx)
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
                     pass
+            for _q in qs:
+                _q.pop("_gp", None)
             return qs, (err if not qs else None)
         except Exception as e:
             return [], f"{type(e).__name__}: {str(e)[:80]}"
@@ -7012,6 +7399,13 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     lp = [q for q in store.lpool_peek(subj, grade_label, difficulty, p.get("topics", ""), limit=n) if _stem(q) and _stem(q) not in seen]
                     take(st_, lp[:max(1, int(n * 0.4))])
                     store.lpool_remove([_stem(q) for q in st_["qs"]])
+                except Exception:
+                    pass
+            if not demo_mode() and not like and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
+                try:
+                    take(st_, seed_questions(subj, grade_label, p.get("topics", ""), limit=max(1, int(n * 0.4)), seen=seen))
+                    if len(st_["qs"]) < n:
+                        take(st_, local_questions(subj, grade_label, max(1, int(n * 0.3)), p.get("topics", ""), seen=seen))
                 except Exception:
                     pass
             if bank_ok:  # 0) bankadan doldur
