@@ -5346,7 +5346,7 @@ def _figure_complete(shape):
 
 
 _PLACEHOLDER = re.compile(r"\{\{|\}\}|\[\s*\.{2,}\s*\]|\bTODO\b|\bundefined\b|\bnull\b|\bNone\b|(?:…|\.\.\.)\s*(?:cm|mm|km|kg|gr?|N|TL|lira|°|%|dakika|saat|metre|litre)\b", re.I)
-_ROMAN_OPT = re.compile(r"(?<![A-Za-z])(III|II|IV|I)(?![A-Za-z])")
+_ROMAN_OPT = re.compile(r"(?<![A-Za-zçğıöşüÇĞİÖŞÜ])(III|II|IV|I)(?![A-Za-zçğıöşüÇĞİÖŞÜ])")
 _LETTER_OPT = re.compile(r"^(?:yaln[ıi]z\s+|sadece\s+)?([A-ZÇĞİÖŞÜ])(?:\s*(?:,|ve|ile|-|–)\s*([A-ZÇĞİÖŞÜ]))*\s*$")
 _GTYPE = [(r"daire grafi", {"pie_chart"}), (r"(?:sütun|çubuk) grafi", {"bar_chart", "science_chart"}), (r"çizgi grafi", {"line_chart"})]
 
@@ -5850,6 +5850,13 @@ _DIN5_ALLAH = (
     "Çeldiriciler kavram karışıklığından (ör. Tevhid–Tekvin, Semi–Basar, Kudret–İrade) türesin. Hiçbir soruda hatalı dinî bilgi olmasın; Allah'a insan özelliği yakıştıran ifade doğru şık olamaz.\n")
 
 
+_BURS5 = (
+    "\n🏆 MEB BURSLULUK SINAVI (5. sınıf) TARZI: tüm derslerde bir yaşam durumu/senaryo + tablo/görsel + TEK net kök; her soru çok adımlı düşünme ister (doğrudan okuma değil). "
+    "Kalıplar: iki marka/ürün fiyat tablosundan para üstü ve en az tutar yargıları (hangisi yanlıştır); işlem problemi (bir kovandaki arıların kanat sayısı verilip ayak+göz toplamı); "
+    "kelimenin farklı anlamları ve öğrenci cevaplarından uygun olmayanı bulma; metinden kişilik özelliği/atasözü eşleştirme; Fen'de dinamometre okuma, Dünya-Ay ağırlık karşılaştırması, Ay evreleri gözlemi, yay uzaması; "
+    "Sosyal'de harita, grafik ve tablo yorumu. Şıklar birbirinden net ayrılsın, doğru şık tek ve kesin olsun.\n")
+
+
 _YZ5 = {
     "Fen Bilimleri": (
         "\n🔬 5. SINIF FEN (MEM İZLEME SINAVI) SORU TARZI: Sorular kısa bir bilgi/gözlem/deney cümlesiyle başlar, sonra tek net kök gelir. Kalıplar (birebir kopyalama, aynı kalıpla FARKLI içerik üret): "
@@ -5861,7 +5868,7 @@ _YZ5 = {
         "(6) 'Ay'da gözlemlenemez/beklenmez' gibi atmosfer ve gök cismi özelliklerini ilişkilendirme; "
         "(7) kavram haritası (K, L, M, N kutuları) tamamlama; canlıları (bitki, hayvan, mantar, mikroskobik canlı) sınıflandırma; "
         "(8) öğretmen/öğrenci diyaloğunda öğrenci yorumlarından doğru/yanlış olanı bulma; "
-        "(9) boşluk doldurma ('… nedeniyle ………'). Bilimsel olarak kesin doğru bilgi kullan; çeldiriciler yaygın kavram yanılgılarından türesin (ör. Ay'ın ışık kaynağı sanılması, Dünya'nın Ay etrafında dolandığı sanılması).\n"),
+        "(9) boşluk doldurma ('… nedeniyle ………'). KAZANIM ODAKLI KALIPLAR (ek): öğrenci/pano/defter notu üzerinden bilgi tamamlama (Yaşı: I, Gazları: II); Doğru-Yanlış (D/Y) sütunlu önerme tablosu; I-a, II-b, III-c eşleştirme; 'ilk dördün evresinden 1 hafta önce/2 hafta sonra hangi evre', Ay'ın haftalık gözlem kaydı sırası; model hazırlama (Güneş'e biçim olarak uygun olmayan cisim); yıkıcı doğa olayları (deprem, sel, heyelan, çığ, volkan) ve korunma yolları; 'öğrencilerden hangisi yanlış bilgi vermiştir'. Bilimsel olarak kesin doğru bilgi kullan; çeldiriciler yaygın kavram yanılgılarından türesin (ör. Ay'ın ışık kaynağı sanılması, Dünya'nın Ay etrafında dolandığı sanılması).\n"),
     "Türkçe": (
         "\n📘 5. SINIF TÜRKÇE (MEM İZLEME SINAVI) SORU TARZI: Öğretmen kutusunda kısa bir kural/tanım ver (karşılaştırma cümlesi, öznel-nesnel cümle, kişileştirme, noktanın görevleri), "
         "sonra bu bilgiyi yeni örneklere UYGULATAN soru sor: sözlük sırasına göre dizme ve hata düzeltme, numaralı sözcük/sözcük gruplarından anlamlı cümle kurma, "
@@ -5914,6 +5921,8 @@ def _meb_extra(grade_label, subject, topics):
         x += _DIN5_ALLAH
     if subject in _YZ_ALL:
         x += _YZ_ALL[subject]
+    if "5" in str(grade_label)[:2] and subject in ("Türkçe", "Matematik", "Fen Bilimleri", "Sosyal Bilgiler"):
+        x += _BURS5
     if "5" in str(grade_label)[:2] and subject in _YZ5:
         x += _YZ5[subject]
     if subject in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi", "Türkçe", "Fen Bilimleri", "T.C. İnkılap Tarihi ve Atatürkçülük"):
@@ -6490,7 +6499,8 @@ def _sync_geo_shape(shape, text):
 
 
 def _nums(t):
-    return [float(x.replace(",", ".")) for x in re.findall(r"\d+(?:[.,]\d+)?", str(t).replace("−", "-").replace("–", "-"))]
+    t = re.sub(r"\b\d{1,3}(?: \d{3})+\b", lambda m: m.group(0).replace(" ", ""), str(t))  # '113 102' -> 113102
+    return [float(x.replace(",", ".")) for x in re.findall(r"\d+(?:[.,]\d+)?", t.replace("−", "-").replace("–", "-"))]
 
 
 def _expl_consistent(expl, opts, ans):
@@ -6914,7 +6924,11 @@ def leaks_answer(q):
         hay = " | ".join(_alnum(x) for x in _strings(q["shape"]))
         if ans in hay and not is_label:
             return True
-    return len(ans) >= 9 and ans in _alnum(str(q.get("passage", "")) + " " + str(q.get("question", "")))
+    txt = _alnum(str(q.get("passage", "")) + " " + str(q.get("question", "")))
+    if len(ans) >= 9 and ans in txt:
+        listed = sum(1 for v in q["options"].values() if _alnum(v) and _alnum(v) in txt)
+        return listed < 3  # şıkların çoğu metinde sayılıysa (hangi renk/grup?) soru listeden seçtiriyordur, sızıntı değil
+    return False
 
 
 def _stem(q):
@@ -7371,6 +7385,72 @@ _SEEDS = [
     (('5', '6'), 'Sosyal Bilgiler', ('harita', 'iklim', 'evimiz', 'yer şekilleri', 'anadolu', 'miras'), 'Ortak Mirasımız',
      "Anadolu; elverişli iklimi, bereketli ovaları, zengin su kaynakları ve önemli ticaret yolları üzerinde bulunmasıyla birçok uygarlığa ev sahipliği yapmıştır.\nBuna göre Anadolu'nun en eski yerleşim merkezlerinden biri olmasında aşağıdakilerden hangileri etkili olmuştur?\nI. Verimli topraklara sahip olması\nII. Su kaynaklarının bulunması\nIII. Ticaret yolları üzerinde yer alması",
      ['Yalnız I', 'I ve II', 'II ve III', 'I, II ve III'], 3, 'Metinde üç özellik de belirtilmiştir.'),
+    (('6',), 'Fen Bilimleri', ('kuvvet', 'hareket', 'sürat'), 'Kuvvet ve Hareket',
+     'Sabit süratle giden bir araç 3 saatte 240 km yol almaktadır.\nBu araç aynı süratle 5 saatte kaç km yol alır?',
+     ['300', '360', '400', '480'], 2, 'Sürat = 240 ÷ 3 = 80 km/sa; 80 × 5 = 400 km.'),
+    (('6',), 'Fen Bilimleri', ('ses', 'madde', 'enerji'), 'Ses',
+     "Uzayda ses yayılmaz; bu nedenle uzaydaki bir patlamanın sesi Dünya'dan duyulmaz.\nBu durum sesin hangi özelliğiyle açıklanır?",
+     ['Sesin yayılması için maddesel bir ortama ihtiyaç duyması', 'Sesin ışıktan daha hızlı yayılması', 'Sesin yalnızca katı maddelerde oluşması', 'Sesin her ortamda aynı hızda yayılması'], 0, 'Ses, boşlukta değil yalnızca maddesel ortamlarda yayılır.'),
+    (('6',), 'Fen Bilimleri', ('sistem', 'vücut', 'sindirim'), 'Vücudumuzdaki Sistemler',
+     'Aşağıdakilerden hangisi sindirim sisteminin bir parçası değildir?',
+     ['Yemek borusu', 'Mide', 'Soluk borusu', 'İnce bağırsak'], 2, 'Soluk borusu solunum sistemine aittir.'),
+    (('6', '7'), 'Fen Bilimleri', ('madde', 'ısı', 'hâl', 'hal'), 'Madde ve Isı',
+     'Saf bir katı madde erirken ısı almaya devam eder.\nBuna göre buzun erimesi sırasında aşağıdakilerden hangisi doğrudur?',
+     ['Sıcaklığı sürekli artar.', 'Sıcaklığı değişmez.', 'Sıcaklığı sürekli azalır.', 'Önce artar sonra azalır.'], 1, 'Saf maddelerde hâl değişimi sırasında sıcaklık sabit kalır.'),
+    (('7',), 'Fen Bilimleri', ('hücre', 'canlı'), 'Hücre ve Bölünmeler',
+     'Aşağıdakilerden hangisi bitki hücresinde bulunur ancak hayvan hücresinde bulunmaz?',
+     ['Hücre zarı', 'Çekirdek', 'Hücre duvarı', 'Mitokondri'], 2, 'Hücre duvarı yalnızca bitki hücresinde bulunur.'),
+    (('7',), 'Fen Bilimleri', ('karışım', 'madde', 'saf'), 'Saf Madde ve Karışımlar',
+     'Aşağıdakilerden hangisi heterojen bir karışımdır?',
+     ['Tuzlu su', 'Şekerli su', 'Zeytinyağı–su karışımı', 'Hava'], 2, 'Zeytinyağı ve su birbiri içinde çözünmez; görünür fazlar oluşturur.'),
+    (('7',), 'Fen Bilimleri', ('elektrik', 'devre'), 'Elektrik Devreleri',
+     'Seri bağlı bir devrede iki özdeş ampul bulunmaktadır.\nBu ampullerden biri devreden çıkarılırsa diğeri için ne söylenebilir?',
+     ['Daha parlak yanar.', 'Işık vermez.', 'Aynı parlaklıkla yanar.', 'Yarı parlaklıkla yanar.'], 1, 'Seri devrede akım tek yoldan geçer; bir ampul çıkınca devre açılır.'),
+    (('8',), 'Fen Bilimleri', ('mevsim', 'iklim', 'dünya'), 'Mevsimler ve İklim',
+     "21 Haziran'da Kuzey Yarım Küre'de hangi mevsim başlar?",
+     ['İlkbahar', 'Yaz', 'Sonbahar', 'Kış'], 1, "21 Haziran'da Kuzey Yarım Küre'de yaz başlar."),
+    (('8',), 'Fen Bilimleri', ('basınç', 'sıvı'), 'Basınç',
+     'Aynı sıvı içinde K noktası 10 cm, L noktası 30 cm derinliktedir.\nBuna göre bu noktalardaki sıvı basınçları için aşağıdakilerden hangisi doğrudur?',
+     ['L noktasındaki basınç K noktasındakinden büyüktür.', 'K noktasındaki basınç L noktasındakinden büyüktür.', 'İki noktadaki basınç eşittir.', 'Sıvı basıncı derinliğe bağlı değildir.'], 0, 'Sıvı basıncı derinlikle artar.'),
+    (('8',), 'Fen Bilimleri', ('dna', 'genetik', 'kalıtım'), 'DNA ve Genetik Kod',
+     "DNA'da adenin (A) bazının karşısında hangi baz bulunur?",
+     ['Guanin (G)', 'Sitozin (C)', 'Timin (T)', 'Urasil (U)'], 2, "DNA'da A–T ve G–C eşleşir."),
+    (('8',), 'Fen Bilimleri', ('makine', 'iş', 'enerji'), 'Basit Makineler',
+     'Basit makinelerle ilgili aşağıdakilerden hangisi doğrudur?',
+     ['Basit makineler iş kazancı sağlar.', 'Hiçbir basit makine iş kazancı sağlamaz.', 'Makaralar enerji üretir.', 'Kaldıraç her zaman kuvvetten kayıp sağlar.'], 1, 'Basit makineler kuvvet ya da yol kazancı sağlayabilir; iş kazancı sağlamaz.'),
+    (('8',), 'Fen Bilimleri', ('enerji', 'dönüşüm', 'çevre'), 'Enerji Dönüşümleri',
+     'Bir hidroelektrik santralde enerji dönüşümü aşağıdakilerden hangisinde doğru verilmiştir?',
+     ['Potansiyel enerji → kinetik enerji → elektrik enerjisi', 'Kimyasal enerji → ısı enerjisi → elektrik enerjisi', 'Işık enerjisi → ısı enerjisi → kinetik enerji', 'Nükleer enerji → ses enerjisi → elektrik enerjisi'], 0, 'Yüksekteki suyun potansiyel enerjisi kinetik enerjiye, türbinde elektrik enerjisine dönüşür.'),
+    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), "Güneş'in Yapısı",
+     "Güneş'in yapısında en fazla bulunan gaz aşağıdakilerden hangisidir?",
+     ['Oksijen', 'Hidrojen', 'Karbondioksit', 'Metan'], 1, 'Güneş, büyük oranda hidrojen ve helyum gazlarından oluşur; en çok hidrojen bulunur.'),
+    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), "Güneş'in Yapısı",
+     'Güneş ile ilgili öğrencilerin verdiği bilgilerden hangisi yanlıştır?',
+     ['Isı ve ışık kaynağıdır.', 'Katı hâldedir.', 'Kendi ekseni etrafında döner.', 'Küre biçimindedir.'], 1, 'Güneş gaz hâlindeki maddelerden oluşur; katı değildir.'),
+    (('5',), 'Fen Bilimleri', ('güneş', 'tutulma', 'dünya'), "Güneş'in Yapısı",
+     'Güneş tutulması izlenirken özel filtreli gözlükler kullanılır.\nBunun öncelikli nedeni aşağıdakilerden hangisidir?',
+     ["Güneş'in görüntüsünü büyütmek", 'Gözleri zararlı ışınlardan korumak', "Güneş'in rengini değiştirmek", "Güneş'i daha yakın göstermek"], 1, "Güneş'e doğrudan bakmak gözlere zarar verir; filtre zararlı ışınları engeller."),
+    (('5',), 'Fen Bilimleri', ('ay ', "ay'ın", 'güneş'), "Ay'ın Yapısı",
+     "• Dünya'nın doğal uydusudur.\n• Kendi ışığı yoktur.\n• Yüzeyinde kraterler bulunur.\nYukarıdaki özellikler aşağıdaki gök cisimlerinden hangisine aittir?",
+     ['Güneş', 'Ay', 'Samanyolu', 'Dünya'], 1, "Bu özellikler Ay'a aittir."),
+    (('5',), 'Fen Bilimleri', ('ay ', "ay'ın", 'güneş'), "Ay'ın Yapısı",
+     "Ay'a ilk ayak basan insan aşağıdakilerden hangisidir?",
+     ['Yuri Gagarin', 'Galileo Galilei', 'Neil Armstrong', 'Kopernik'], 2, "Neil Armstrong, Apollo 11 görevi ile 1969'da Ay'a ilk ayak basan kişidir."),
+    (('5',), 'Fen Bilimleri', ('doğa olay', 'afet', 'deprem', 'güneş'), 'Yıkıcı Doğa Olayları',
+     'Aşağıdakilerden hangisi yıkıcı doğa olaylarından biri değildir?',
+     ['Deprem', 'Sel', 'Yanardağ patlaması', 'Gün batımı'], 3, "Gün batımı Dünya'nın dönmesiyle oluşan sıradan bir olaydır; yıkıcı değildir."),
+    (('5',), 'Fen Bilimleri', ('doğa olay', 'afet', 'deprem', 'güneş'), 'Yıkıcı Doğa Olayları',
+     'Deprem sırasında kapalı bir yerdeyken aşağıdakilerden hangisi yapılmalıdır?',
+     ['Asansöre binmek', 'Çök-kapan-tutun hareketini yapmak', 'Balkona çıkmak', 'Cam kenarına gitmek'], 1, 'Deprem anında sağlam bir masa gibi bir yerin yanında çök-kapan-tutun yapılır.'),
+    (('5', '6'), 'Türkçe', ('anlam', 'sözcük', 'okuma'), 'Sözcükte Anlam',
+     "Selma Öğretmen, dört öğrenciden 'çekmek' sözcüğüyle birer cümle kurmalarını ve sözcüğün anlamını yazmalarını istemiştir.\nAylin: Arabayı garaja çekti. → Bir şeyi kendine doğru sürüklemek\nCenk: Kutudan bir kâğıt çekti. → Bir şeyin içinden çıkarmak\nMeltem: Bu hafta nöbet çekecek. → Bir görevi yerine getirmek\nKadir: Odanın perdesini çekti. → Bir şeyi yok etmek\nBuna göre hangi öğrencinin cümlesi sözcüğün anlamına uygun değildir?",
+     ['Aylin', 'Cenk', 'Meltem', 'Kadir'], 3, "Perdeyi çekmek, perdeyi kapatmak demektir; 'yok etmek' anlamı uygun değildir."),
+    (('5', '6', '7'), 'Türkçe', ('atasözü', 'deyim', 'anlam', 'kültür'), 'Atasözleri',
+     "Her gün harçlığından küçük miktarlarda para biriktiren Ali, bir yılın sonunda bisiklet alacak kadar para toplamıştır.\nAli'nin bu davranışı aşağıdaki atasözlerinden hangisiyle ilişkilendirilebilir?",
+     ['Damlaya damlaya göl olur.', 'Ateş olmayan yerden duman çıkmaz.', 'Gülü seven dikenine katlanır.', 'Sütten ağzı yanan yoğurdu üfleyerek yer.'], 0, 'Küçük birikimlerin zamanla büyük sonuç vermesini anlatır.'),
+    (('5', '6', '7'), 'Türkçe', ('anlam', 'okuma', 'ana fikir', 'metin'), 'Okuma Anlama',
+     "Cem, yolda bulduğu cüzdanı içindeki paraya dokunmadan hemen sahibine ulaştırmıştır.\nBuna göre Cem'in davranışı aşağıdaki kişilik özelliklerinden hangisini gösterir?",
+     ['Cömertlik', 'Dürüstlük', 'Sabırlılık', 'Çalışkanlık'], 1, 'Başkasının malına dokunmadan sahibine ulaştırmak dürüstlüktür.'),
     (("5", "6"), "Sosyal Bilgiler", ("birey", "rol", "grup", "hak", "sorumluluk"), "Birey ve Toplum",
      "Deniz; sınıfında sınıf başkanı, ailesinde abla, okul takımında ise kaleci olarak görev yapmaktadır.\nBuna göre aşağıdakilerden hangisi Deniz'in aile içindeki rolüne uygun bir davranıştır?",
      ["Sınıf kurallarını arkadaşlarına duyurmak", "Kardeşinin ödevini yapmasına yardım etmek", "Maçta kaleyi savunmak", "Antrenmanı programına göre yapmak"], 1, "Ablalık rolü aile içindedir; kardeşe yardım bu role uygundur."),
@@ -7421,6 +7501,628 @@ def seed_questions(subject, grade_label, topics="", limit=3, seen=()):
             x["vfd"] = True
             x["seed"] = True
             out.append(x)
+    return out
+
+
+# ---------------------------------------------------------------- MATEMATİK SORU FABRİKASI (cevabı kodla hesaplanan; hatasız)
+_ON = ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"]
+_OZ = ["", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"]
+
+
+def _say3(n):
+    h, r = divmod(n, 100)
+    t, o = divmod(r, 10)
+    w = ("yüz" if h == 1 else (_ON[h] + " yüz") if h else "")
+    return " ".join(x for x in (w, _OZ[t], _ON[o]) if x)
+
+
+def say_tr(n):
+    """0..999 999 999 arası doğal sayının Türkçe okunuşu."""
+    if n == 0:
+        return "sıfır"
+    m, r = divmod(n, 1000000)
+    b, u = divmod(r, 1000)
+    p = []
+    if m:
+        p.append(_say3(m) + " milyon")
+    if b:
+        p.append("bin" if b == 1 else _say3(b) + " bin")
+    if u:
+        p.append(_say3(u))
+    return " ".join(p)
+
+
+def _fmt(n):
+    return f"{n:,}".replace(",", " ")
+
+
+def _mf_opts(correct, wrongs, fmt=str, sort=True):
+    ws = []
+    for w in wrongs:
+        if w is not None and w != correct and w not in ws:
+            ws.append(w)
+    if len(ws) < 3:
+        return None
+    ws = ws[:3]
+    allv = [correct] + ws
+    if sort:
+        allv = sorted(allv)
+    return [fmt(v) for v in allv], fmt(correct)
+
+
+def _mf_raw(subject, topic, q, opts, ex, shape=None, passage=""):
+    ol, cor = opts
+    if len(set(ol)) < 4:
+        return None
+    r = {"subject": subject, "topic": topic, "passage": passage, "question": q, "options": dict(zip("ABCD", ol)),
+         "answer": "ABCD"[ol.index(cor)], "explanation": ex}
+    if shape:
+        r["shape"] = shape
+    return r
+
+
+def _rand_big():
+    """Sıfır içeren dokuz/sekiz/yedi basamaklı sayı (bölükte sıfır tuzağı için)."""
+    while True:
+        d = random.choice([7, 8, 9])
+        s = str(random.randint(1, 9)) + "".join(random.choice("0123456789") for _ in range(d - 1))
+        if s.count("0") >= 1 and len(set(s)) > 3:
+            return int(s)
+
+
+def _perturb(n):
+    s = str(n)
+    out = []
+    z = [i for i, c in enumerate(s) if c == "0"]
+    if z:  # sıfırı bir basamak kaydır
+        i = random.choice(z)
+        for j in (i - 1, i + 1):
+            if 0 < j < len(s) and s[j] != "0":
+                t = list(s); t[i], t[j] = t[j], t[i]
+                out.append(int("".join(t)))
+    out += [n * 10, n // 10, int(s[:-1] + str((int(s[-1]) + random.randint(1, 8)) % 10 or 1)), int(s[1:] + s[0]) if s[0] != "0" else n]
+    out += [int(s[:3] + "0" + s[3:]) if len(s) > 3 else n]
+    return [x for x in out if x != n and x > 0 and len(str(x)) <= 9]
+
+
+def _mf_read(subject):
+    n = _rand_big()
+    wr = _perturb(n)
+    random.shuffle(wr)
+    o = _mf_opts(n, wr, _fmt, sort=False)
+    if not o:
+        return None
+    return _mf_raw(subject, "Doğal sayılar", f"Okunuşu “{say_tr(n)}” olan sayı aşağıdakilerden hangisidir?", o, f"{say_tr(n)} = {_fmt(n)}.")
+
+
+def _mf_say(subject):
+    n = _rand_big()
+    wr = _perturb(n)
+    wr = [x for x in wr if say_tr(x) != say_tr(n)]
+    random.shuffle(wr)
+    o = _mf_opts(say_tr(n), [say_tr(x) for x in wr], str, sort=False)
+    if not o:
+        return None
+    return _mf_raw(subject, "Doğal sayılar", f"{_fmt(n)} sayısının okunuşu aşağıdakilerden hangisidir?", o, f"{_fmt(n)} sayısı “{say_tr(n)}” diye okunur.")
+
+
+_PLACES = [("birler", 1), ("onlar", 10), ("yüzler", 100), ("binler", 1000), ("on binler", 10000), ("yüz binler", 100000), ("milyonlar", 1000000), ("on milyonlar", 10000000)]
+
+
+def _mf_place(subject):
+    n = _rand_big()
+    if len(str(n)) < 8:
+        n = int(str(n) + "".join(random.choice("123456789") for _ in range(8 - len(str(n)))))
+    L = len(str(n))
+    ps = [p for p in _PLACES if p[1] < 10 ** L]
+    (na, va), (nb, vb) = random.sample(ps, 2)
+    da, db = (n // va) % 10, (n // vb) % 10
+    if da == 0 or db == 0:
+        return None
+    kind = random.choice(["bd_sum", "bd_diff"])
+    if kind == "bd_sum":
+        c = da * va + db * vb
+        wr = [da + db, da * va + db, da + db * vb, c + va]
+        q = f"{_fmt(n)} sayısında {na} basamağındaki rakamın basamak değeri ile {nb} basamağındaki rakamın basamak değeri toplamı kaçtır?"
+        ex = f"{na} basamağı: {da}×{va} = {da * va}; {nb} basamağı: {db}×{vb} = {db * vb}; toplam = {c}."
+    else:
+        c = abs(da * va - db * vb)
+        if c == 0:
+            return None
+        wr = [abs(da - db), da * va + db * vb, abs(da * va - db), abs(da - db * vb)]
+        q = f"{_fmt(n)} sayısında {na} basamağındaki rakamın basamak değeri ile {nb} basamağındaki rakamın basamak değeri arasındaki fark kaçtır?"
+        ex = f"{_fmt(da * va)} ile {_fmt(db * vb)} arasındaki fark {_fmt(c)}."
+    o = _mf_opts(c, wr, lambda v: _fmt(v))
+    return _mf_raw(subject, "Basamak değeri", q, o, ex) if o else None
+
+
+def _mf_cards(subject):
+    cs = random.sample(range(100, 999), 3)
+    if any(c % 100 == 0 for c in cs):
+        return None
+    big = sorted(cs, reverse=True)
+    n = int("".join(map(str, big)))
+    opts_n = set()
+    import itertools
+    for p in itertools.permutations(cs):
+        opts_n.add(int("".join(map(str, p))))
+    wr = [x for x in opts_n if x != n]
+    random.shuffle(wr)
+    o = _mf_opts(n, wr, _fmt)
+    if not o:
+        return None
+    q = f"Üç karta {cs[0]}, {cs[1]} ve {cs[2]} sayıları yazılmıştır. Her kart bir bölüğü temsil ettiğine göre bu üç kartı yan yana koyarak yazılabilecek en büyük doğal sayı aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Doğal sayılar", q, o, f"En büyük bölüğe en büyük kart konur: {_fmt(n)}.")
+
+
+def _mf_addsub(subject):
+    if random.random() < .5:
+        a, b = random.randint(10000, 99999), random.randint(1000, 99999)
+        c = a + b
+        wr = [c + 10, c - 100, c + 1000, c - 10, c + 100, c - 1000]
+        q = f"{_fmt(a)} + {_fmt(b)} işleminin sonucu kaçtır?"
+        ex = f"{_fmt(a)} + {_fmt(b)} = {_fmt(c)}."
+    else:
+        a, b = random.randint(40000, 99999), random.randint(1000, 39999)
+        c = a - b
+        wr = [c + 10, c - 100, c + 1000, c - 10, c + 100, c - 1000, a + b]
+        q = f"{_fmt(a)} – {_fmt(b)} işleminin sonucu kaçtır?"
+        ex = f"{_fmt(a)} − {_fmt(b)} = {_fmt(c)}."
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, _fmt)
+    return _mf_raw(subject, "Dört işlem", q, o, ex) if o else None
+
+
+def _mf_estimate(subject):
+    a, b = random.randint(50000, 99999), random.randint(2000, 19999)
+    est = round(a, -3) - round(b, -3)
+    if abs(est - (a - b)) > 1500 or est <= 0:
+        return None
+    wr = [est + 3000, est - 3000, est + 6000, est - 6000, est + 4000]
+    random.shuffle(wr)
+    o = _mf_opts(est, wr, _fmt)
+    if not o:
+        return None
+    return _mf_raw(subject, "Tahmin", f"{_fmt(a)} – {_fmt(b)} çıkarma işleminin tahmini sonucu aşağıdakilerden hangisi olabilir?", o,
+                   f"Sayılar en yakın binliğe yuvarlanır: {_fmt(round(a, -3))} − {_fmt(round(b, -3))} = {_fmt(est)}.")
+
+
+def _mf_remainder(subject):
+    d = random.randint(4, 9)
+    kind = random.choice(["sum", "max", "dividend"])
+    if kind == "sum":
+        c = d * (d - 1) // 2
+        wr = [d * (d + 1) // 2, d, d - 1, c + d, c - 1]
+        q = f"Doğal sayılarla yapılan bir bölme işleminde bölen {d} olduğuna göre kalanın alabileceği değerler toplamı kaçtır?"
+        ex = f"Kalan 0 ile {d - 1} arasındadır: 0+1+…+{d - 1} = {c}."
+    elif kind == "max":
+        c = d - 1
+        wr = [d, d + 1, d - 2, 0, d * 2]
+        q = f"Doğal sayılarla yapılan bir bölme işleminde bölen {d} ise kalan en çok kaç olabilir?"
+        ex = f"Kalan bölenden küçüktür; en çok {c} olur."
+    else:
+        b, k = random.randint(5, 30), random.randint(1, d - 1)
+        q_ = random.randint(10, 99)
+        a = b * q_ + k
+        c = a
+        wr = [b * q_, b * q_ - k, b * (q_ + 1), q_ * k + b]
+        q = f"Bir bölme işleminde bölen {b}, bölüm {q_} ve kalan {k} olduğuna göre bölünen sayı kaçtır?"
+        ex = f"Bölünen = bölen × bölüm + kalan = {b}×{q_} + {k} = {a}."
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, str)
+    return _mf_raw(subject, "Bölme işlemi", q, o, ex) if o else None
+
+
+def _mf_order(subject):
+    a, b, c, d = (random.randint(2, 12) for _ in range(4))
+    forms = [(f"{a} × ({b + c} – {c})", a * ((b + c) - c)),
+             (f"{a} + {b} × {c}", a + b * c),
+             (f"{a * b} – {c} × {d}", a * b - c * d),
+             (f"{a} × {b} + {c} × {d}", a * b + c * d),
+             (f"({a} + {b}) × {c}", (a + b) * c),
+             (f"{a * c} : {c} + {b} × {d}", a + b * d)]
+    expr, val = random.choice(forms)
+    if val <= 0:
+        return None
+    # soldan sağa (yanlış) değerlendirme
+    toks = re.findall(r"\d+|[×:+–()]", expr)
+    try:
+        flat = expr.replace("×", "*").replace(":", "//").replace("–", "-")
+        wrong = []
+        nums = [int(x) for x in re.findall(r"\d+", expr)]
+        ops = re.findall(r"[×:+–]", expr)
+        acc = nums[0]
+        for o_, x in zip(ops, nums[1:]):
+            acc = acc * x if o_ == "×" else acc // x if o_ == ":" else acc + x if o_ == "+" else acc - x
+        wrong.append(acc)
+    except Exception:
+        wrong = []
+    wr = wrong + [val + 10, val - 10, val + a, val - b, val * 2, val + 1]
+    wr = [w for w in wr if w > 0]
+    random.shuffle(wr[1:]) if len(wr) > 1 else None
+    o = _mf_opts(val, wr, str)
+    return _mf_raw(subject, "İşlem önceliği", f"{expr} işleminin sonucu kaçtır?", o, f"Önce parantez, sonra çarpma/bölme, en son toplama/çıkarma yapılır: {expr} = {val}.") if o else None
+
+
+def _mf_power(subject):
+    a, b = random.randint(2, 5), random.randint(2, 4)
+    c, d = random.randint(2, 4), random.randint(2, 3)
+    val = a ** b + c ** d
+    wr = [a * b + c * d, a ** b * c ** d, (a + c) ** (b + d), a ** b + c * d, a * b + c ** d]
+    random.shuffle(wr)
+    o = _mf_opts(val, wr, str)
+    return _mf_raw(subject, "Üslü nicelikler", f"{a}^{b} + {c}^{d} işleminin sonucu kaçtır?".replace("^", "ˆ") if False else f"{a}{_sup(b)} + {c}{_sup(d)} işleminin sonucu kaçtır?", o,
+                   f"{a}{_sup(b)} = {a ** b}, {c}{_sup(d)} = {c ** d}; toplam {val}.") if o else None
+
+
+def _sup(n):
+    return "".join("⁰¹²³⁴⁵⁶⁷⁸⁹"[int(c)] for c in str(n))
+
+
+def _mf_pattern(subject):
+    a, dd, k = random.randint(3, 9), random.randint(2, 6), random.randint(7, 12)
+    seq = [a + i * dd for i in range(3)]
+    val = a + (k - 1) * dd
+    wr = [val + dd, val - dd, a * k, val + 1, seq[-1] + dd * (k - 3) + 1]
+    random.shuffle(wr)
+    o = _mf_opts(val, wr, str)
+    q = f"Bir örüntünün ilk üç adımında kullanılan çubuk sayıları sırasıyla {seq[0]}, {seq[1]} ve {seq[2]}’dir. Örüntü aynı kuralla devam ettiğine göre {k}. adımda kaç çubuk kullanılır?"
+    return _mf_raw(subject, "Örüntüler", q, o, f"Her adımda {dd} artar: {a} + ({k}−1)×{dd} = {val}.") if o else None
+
+
+def _frac_s(f):
+    return f"{f.numerator}/{f.denominator}" if f.denominator != 1 else str(f.numerator)
+
+
+def _mf_fracorder(subject):
+    from fractions import Fraction as Fr
+    ds = random.sample([2, 3, 4, 5, 6, 8, 9, 10, 12, 15], 3)
+    fs = [Fr(1, d) for d in ds]
+    asc = random.choice([True, False])
+    order = sorted(fs, reverse=not asc)
+    names = lambda L: " < ".join(_frac_s(x) for x in L) if asc else " > ".join(_frac_s(x) for x in L)
+    import itertools
+    perms = [list(p) for p in itertools.permutations(fs) if list(p) != order]
+    random.shuffle(perms)
+    o = _mf_opts(names(order), [names(p) for p in perms], str, sort=False)
+    if not o:
+        return None
+    q = f"Özdeş K, L ve M şişelerinin sırasıyla {_frac_s(fs[0])}, {_frac_s(fs[1])} ve {_frac_s(fs[2])}’i doludur. Buna göre şişelerdeki sıvı miktarlarının {'küçükten büyüğe' if asc else 'büyükten küçüğe'} sıralanışı aşağıdakilerden hangisidir?"
+    # kesirlerin hangi şişeye ait olduğu belli olsun: etiketli sıralama
+    lab = {fs[0]: "K", fs[1]: "L", fs[2]: "M"}
+    names2 = lambda L: (" < " if asc else " > ").join(lab[x] for x in L)
+    o = _mf_opts(names2(order), [names2(p) for p in perms], str, sort=False)
+    return _mf_raw(subject, "Kesirler", q, o, f"Payı 1 olan kesirlerde payda büyüdükçe kesir küçülür: {names(order)}.") if o else None
+
+
+def _mf_fracmax(subject):
+    from fractions import Fraction as Fr
+    parts = None
+    for _ in range(200):
+        c = random.sample(range(1, 9), 4)
+        if sum(c) == 12 and len(set(c)) == 4:
+            parts = c
+            break
+    if not parts:
+        return None
+    cols = ["siyah", "yeşil", "ela", "kahverengi", "mavi", "bal rengi"]
+    names = random.sample(cols, 4)
+    fr = [Fr(p, 12) for p in parts]
+    more = random.choice([True, False])
+    idx = parts.index(max(parts)) if more else parts.index(min(parts))
+    txt = ", ".join(f"{_frac_s(f)}’i {n}" for f, n in zip(fr, names[:3])) + f" ve {_frac_s(fr[3])}’i {names[3]}"
+    q = f"Bir sınıftaki öğrencilerin {txt} gözlüdür.\nBuna göre bu sınıfta hangi renk göze sahip öğrenci sayısı {'en fazladır' if more else 'en azdır'}?"
+    cor = names[idx]
+    o = _mf_opts(cor, [n for n in names if n != cor], str, sort=False)
+    return _mf_raw(subject, "Kesirler", q, o, f"Paydaları 12 yapınca paylar {parts}; {'en büyük' if more else 'en küçük'} pay {parts[idx]} ({cor}).") if o else None
+
+
+def _mf_decimal(subject):
+    k = random.choice([2, 3])
+    kind = random.choice(["frac2dec", "read"])
+    if kind == "frac2dec":
+        p = random.choice([6, 7, 8, 9, 12, 18, 24, 35, 45, 56])
+        den = random.choice([100, 1000]) if p < 100 else 100
+        val = p / den
+        s = f"{val:.{2 if den == 100 else 3}f}".replace(".", ",")
+        wr = [f"{p / (den * 10):.{3 if den == 100 else 4}f}".replace(".", ","), f"{p / (den / 10):.{1 if den == 100 else 2}f}".replace(".", ","), f"{p * 10 / den:.2f}".replace(".", ",")]
+        wr = [w for w in wr if w != s]
+        o = _mf_opts(s, wr + [f"{p / den + 0.1:.{2 if den == 100 else 3}f}".replace(".", ",")], str, sort=False)
+        return _mf_raw(subject, "Ondalık gösterim", f"Aşağıdakilerden hangisi {p}/{den} kesrinin ondalık gösterimidir?", o, f"{p}/{den} = {s}.") if o else None
+    ip, fp = random.randint(100, 999), random.randint(1, 99)
+    if fp % 10 == 0 or fp < 10:
+        fp = random.choice([7, 17, 27, 37, 43, 59])
+    word = f"{say_tr(ip)} tam yüzde {say_tr(fp)}"
+    s = f"{ip},{fp:02d}"
+    wr = [f"{ip},{fp}0".replace(f"{fp}0", f"{fp}0")[:len(s)] if False else f"{ip},{fp:02d}".replace(f",{fp:02d}", f",{fp:02d}"[::1])]
+    alts = [f"{ip},{(fp % 10)}{fp // 10}", f"{ip},{fp:03d}", f"{ip}{fp:02d},".rstrip(",") + "", f"{ip},{fp}0"]
+    alts = [a for a in alts if a != s and "," in a]
+    alts += [f"{ip + 1},{fp:02d}"]
+    o = _mf_opts(s, alts, str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", f"Okunuşu “{word}” olan ondalık gösterim aşağıdakilerden hangisidir?", o, f"{word} = {s}.") if o else None
+
+
+def _mf_percent_odd(subject):
+    from fractions import Fraction as Fr
+    p = random.choice([10, 20, 25, 40, 50, 60, 75, 80])
+    f = Fr(p, 100)
+    dec = f"{p / 100:.2f}".replace(".", ",").rstrip("0").rstrip(",") if p % 10 else f"{p / 100:.1f}".replace(".", ",")
+    same = [f"%{p}", _frac_s(f), dec]
+    odd_fr = Fr(random.choice([1, 2, 3, 4]), random.choice([5, 6, 7, 9]))
+    while odd_fr == f:
+        odd_fr = Fr(random.choice([1, 2, 3]), random.choice([5, 6, 7, 9]))
+    opts = same + [_frac_s(odd_fr)]
+    if len(set(opts)) < 4:
+        return None
+    random.shuffle(opts)
+    return _mf_raw(subject, "Yüzdeler", "Aşağıdakilerden hangisinin değeri diğerlerinden farklıdır?", (opts, _frac_s(odd_fr)),
+                   f"%{p} = {_frac_s(f)} = {dec}; farklı olan {_frac_s(odd_fr)}.")
+
+
+def _mf_percent_of(subject):
+    p = random.choice([10, 20, 25, 50, 75])
+    base = {10: 10, 20: 5, 25: 4, 50: 2, 75: 4}[p]
+    n = base * random.randint(3, 30)
+    c = n * p // 100
+    wr = [n - c, c + p, n // 10, c * 2, n + c]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, str)
+    q = f"Bir okulda {n} öğrenci vardır. Öğrencilerin %{p}’i spor kulübüne kayıtlıdır.\nBuna göre spor kulübüne kayıtlı kaç öğrenci vardır?"
+    return _mf_raw(subject, "Yüzdeler", q, o, f"{n} × {p}/100 = {c}.") if o else None
+
+
+def _mf_geo(subject):
+    kind = random.choice(["sq_side", "rect_area", "rect_per", "area_diff", "mm"])
+    if kind == "sq_side":
+        s = random.randint(4, 20)
+        wr = [s * 4, s + 4, s // 2 if s % 2 == 0 else s + 2, s * s, s + 1, s - 1]
+        o = _mf_opts(s, wr, str)
+        return _mf_raw(subject, "Çevre", f"Çevre uzunluğu {4 * s} cm olan karenin bir kenarının uzunluğu kaç santimetredir?", o, f"{4 * s} ÷ 4 = {s}.") if o else None
+    if kind in ("rect_area", "rect_per"):
+        a, b = random.randint(4, 15), random.randint(2, 12)
+        if a == b:
+            return None
+        shape = {"type": "geo", "sub_type": "quad", "kind": "rectangle", "labels": ["A", "B", "C", "D"], "sides": {"AB": f"{a} cm", "BC": f"{b} cm"}}
+        if kind == "rect_area":
+            c = a * b
+            wr = [2 * (a + b), a + b, c + a, c - b, (a - b) * 2]
+            q = f"Şekildeki ABCD dikdörtgeninde |AB| = {a} cm ve |BC| = {b} cm’dir.\nBuna göre bu dikdörtgenin alanı kaç santimetrekaredir?"
+            ex = f"Alan = {a} × {b} = {c} cm²."
+        else:
+            c = 2 * (a + b)
+            wr = [a * b, a + b, c + 2, c - 2, 4 * a]
+            q = f"Şekildeki ABCD dikdörtgeninde |AB| = {a} cm ve |BC| = {b} cm’dir.\nBuna göre bu dikdörtgenin çevresi kaç santimetredir?"
+            ex = f"Çevre = 2 × ({a} + {b}) = {c} cm."
+        random.shuffle(wr)
+        o = _mf_opts(c, wr, str)
+        return _mf_raw(subject, "Çevre ve alan", q, o, ex, shape=shape) if o else None
+    if kind == "area_diff":
+        a, b, s = random.randint(4, 12), random.randint(2, 9), random.randint(2, 8)
+        c = a * b - s * s
+        if c <= 0:
+            return None
+        wr = [a * b + s * s, (a - s) * b, a * b - s, c + 2, abs(a - b) * s]
+        random.shuffle(wr)
+        o = _mf_opts(c, wr, str)
+        q = f"Kenar uzunlukları {a} cm ve {b} cm olan bir dikdörtgenin alanı, bir kenarının uzunluğu {s} cm olan karenin alanından kaç santimetrekare fazladır?"
+        return _mf_raw(subject, "Çevre ve alan", q, o, f"{a}×{b} = {a * b}; {s}×{s} = {s * s}; fark = {c}.") if o else None
+    k = random.randint(5, 12)
+    gap = random.choice([5, 10, 20])
+    c_cm = (k - 1) * gap
+    c = c_cm * 10
+    wr = [k * gap * 10, c_cm, k * gap, c_cm * 100, c + 10]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, str)
+    q = f"Okan defterine çizdiği doğru parçasının üzerine başlangıç ve bitiş noktaları dâhil olmak üzere {gap} cm aralıklarla {k} nokta işaretleyebiliyor.\nOkan’ın çizdiği doğru parçasının uzunluğu kaç milimetredir?"
+    return _mf_raw(subject, "Uzunluk ölçme", q, o, f"{k} nokta arasında {k - 1} aralık vardır: {k - 1}×{gap} = {c_cm} cm = {c} mm.") if o else None
+
+
+def _mf_market(subject):
+    """Bursluluk tarzı: iki marka × üç ürün fiyat tablosu; 'hangisi yanlıştır' (3 doğru + 1 yanlış ifade, hepsi kodla hesaplanır)."""
+    prods = random.choice([["Kalem", "Silgi", "Kalemtıraş"], ["Defter", "Cetvel", "Pergel"], ["Ekmek", "Süt", "Peynir"], ["Elma", "Armut", "Portakal"]])
+    A = [random.choice(range(10, 60, 5)) for _ in range(3)]
+    B = [random.choice(range(10, 60, 5)) for _ in range(3)]
+    if A == B or sum(A) == sum(B):
+        return None
+    money = random.choice(range(80, 160, 10))
+    tA, tB = sum(A), sum(B)
+    mn = min(tA, tB)
+    mixed = A[0] + A[1] + B[2] if random.random() < .5 else B[0] + B[1] + A[2]
+    mixed_lbl = ("İlk iki ürünü A markasından, üçüncü ürünü B markasından" if mixed == A[0] + A[1] + B[2] else "İlk iki ürünü B markasından, üçüncü ürünü A markasından")
+    cand = []
+    cand.append((f"Üç ürüne ödeyeceği en az tutar {mn} TL olur.", True))
+    cand.append((f"Üç ürüne ödeyeceği en az tutar {mn + random.choice([5, 10])} TL olur.", False))
+    for nm, tot in (("A", tA), ("B", tB)):
+        if money >= tot:
+            cand.append((f"Üç ürünü {nm} markasından alırsa {money - tot} TL para üstü alır.", True))
+            cand.append((f"Üç ürünü {nm} markasından alırsa {money - tot + random.choice([5, 10])} TL para üstü alır.", False))
+        else:
+            cand.append((f"Üç ürünü {nm} markasından alırsa parası yetmez.", True))
+            cand.append((f"Üç ürünü {nm} markasından alırsa parası yeterli olur.", False))
+    cand.append((f"{mixed_lbl} alırsa {mixed} TL öder.", True))
+    cand.append((f"{mixed_lbl} alırsa {mixed + random.choice([5, 10])} TL öder.", False))
+    trues = [c for c in cand if c[1]]
+    falses = [c for c in cand if not c[1]]
+    random.shuffle(trues); random.shuffle(falses)
+    stmts = [t[0] for t in trues[:3]] + [falses[0][0]]
+    bad = falses[0][0]
+    if len(set(stmts)) < 4:
+        return None
+    random.shuffle(stmts)
+    shape = {"type": "table", "title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)", "headers": ["Marka"] + prods,
+             "rows": [["A Marka"] + [str(x) for x in A], ["B Marka"] + [str(x) for x in B]]}
+    lead = f"Bir kırtasiyedeki A ve B markalarına ait {prods[0].lower()}, {prods[1].lower()} ve {prods[2].lower()} ürünlerinin birer adedinin Türk lirası cinsinden satış fiyatları tabloda verilmiştir."
+    q = f"{money} TL’si olan Can, bu kırtasiyeden A veya B marka birer adet {prods[0].lower()}, {prods[1].lower()} ve {prods[2].lower()} satın alacaktır.\nBuna göre, aşağıdakilerden hangisi yanlıştır?"
+    return _mf_raw(subject, "Tablo yorumlama", q, (stmts, bad), f"Doğru olmayan ifade: {bad}", shape=shape, passage=lead)
+
+
+def _mf_wings(subject):
+    legs, eyes, wings = random.choice([(6, 5, 4), (6, 5, 2)])
+    total_w = wings * random.choice([6000, 9000, 12000, 15000, 18000])
+    hives = total_w // wings
+    c = hives * (legs + eyes)
+    wr = [hives * legs, hives * eyes, hives * (legs + eyes + wings), c + hives, total_w]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, _fmt)
+    q = f"Sağlıklı bir bal arısının {legs} adet ayağı, {eyes} adet gözü ve {wings} adet kanadı vardır.\nBir kovandaki sağlıklı bal arılarının tamamının toplam kanat sayısı {_fmt(total_w)} olduğuna göre, bu kovandaki sağlıklı bal arılarının ayak ve göz sayılarının toplamı kaçtır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"Arı sayısı = {_fmt(total_w)} ÷ {wings} = {_fmt(hives)}; ayak+göz = {legs + eyes}; toplam = {_fmt(hives)} × {legs + eyes} = {_fmt(c)}.") if o else None
+
+
+# (üretici, anahtar sözcükler, geçerli sınıflar)
+_MF_GENS = [
+    (_mf_read, ("basamak", "doğal sayı", "milyon", "sayı okuma"), (5,)),
+    (_mf_say, ("basamak", "doğal sayı", "milyon", "sayı okuma"), (5,)),
+    (_mf_place, ("basamak", "doğal sayı", "milyon"), (5,)),
+    (_mf_cards, ("basamak", "doğal sayı", "milyon"), (5,)),
+    (_mf_addsub, ("işlem", "toplama", "çıkarma"), (4, 5)),
+    (_mf_estimate, ("tahmin", "işlem"), (4, 5)),
+    (_mf_remainder, ("bölme", "işlem"), (4, 5)),
+    (_mf_order, ("işlem öncelik", "dört işlem", "işlem"), (5, 6)),
+    (_mf_power, ("üslü", "işlem öncelik"), (5, 6)),
+    (_mf_pattern, ("örüntü",), (4, 5, 6)),
+    (_mf_fracorder, ("kesir",), (5,)),
+    (_mf_fracmax, ("kesir",), (5,)),
+    (_mf_decimal, ("ondalık",), (5,)),
+    (_mf_percent_odd, ("yüzde", "ondalık"), (5, 6)),
+    (_mf_percent_of, ("yüzde",), (5, 6)),
+    (_mf_geo, ("çevre", "alan", "uzunluk"), (5, 6)),
+    (_mf_market, ("veri", "tablo", "işlem", "problem"), (5, 6)),
+    (_mf_wings, ("işlem", "problem", "basamak"), (5,)),
+]
+
+
+def math_questions(grade_label, n, topics="", seen=()):
+    """Cevabı kodla hesaplanan Matematik soruları (MEB 'Kazanım Kavrama' tarzı). API kullanmaz, hata içermez."""
+    if n <= 0:
+        return []
+    gl = str(grade_label or "")
+    g = int(next((c for c in gl if c.isdigit()), "0"))
+    tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+    pool = [(f, kw) for f, kw, gs in _MF_GENS if g in gs]
+    if not pool:
+        return []
+    sel = [f for f, kw in pool if any(k in tl for k in kw)] or ([f for f, _ in pool] if not tl else [])
+    if not sel:
+        return []
+    out, stems, tries = [], set(seen), 0
+    while len(out) < n and tries < n * 15:
+        tries += 1
+        try:
+            raw = random.choice(sel)("Matematik")
+            x = _norm_q(raw, "Matematik") if raw else None
+        except Exception:
+            x = None
+        if not x or _stem(x) in stems:
+            continue
+        stems.add(_stem(x))
+        x["vfd"] = True
+        x["local"] = True
+        out.append(x)
+    return out
+
+
+# ---------------------------------------------------------------- FEN FABRİKASI (5. sınıf Ay evreleri; kodla hesaplanan)
+_PH = ["Yeni ay", "İlk dördün", "Dolunay", "Son dördün"]
+
+
+def _ff_shift(subject):
+    i, k = random.randrange(4), random.randint(1, 3)
+    after = random.choice([True, False])
+    cor = _PH[(i + k) % 4] if after else _PH[(i - k) % 4]
+    wr = [p for p in _PH if p != cor]
+    random.shuffle(wr)
+    q = f"Ay'ın {_PH[i].lower()} evresinden {k} hafta {'sonra' if after else 'önce'} gözlemlenen evre aşağıdakilerden hangisidir?"
+    ex = f"Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir."
+    return _mf_raw(subject, "Ay'ın evreleri", q, ([cor] + wr, cor), ex)
+
+
+def _ff_seq(subject):
+    import itertools
+    i = random.randrange(4)
+    seq = [_PH[(i + j) % 4] for j in range(1, 4)]
+    perms = [list(p) for p in itertools.permutations(seq) if list(p) != seq]
+    rev = [_PH[(i - j) % 4] for j in range(1, 4)]
+    wr = [p for p in perms if p != rev][:2] + [rev]
+    random.shuffle(wr)
+    f = lambda L: " – ".join(L)
+    names = ["Cenk", "Elif", "Mert", "Ayşe", "Deniz"]
+    q = f"{random.choice(names)}, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt {_PH[i].lower()} evresi olduğuna göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?"
+    return _mf_raw(subject, "Ay'ın evreleri", q, ([f(seq)] + [f(w) for w in wr], f(seq)), f"Evre sırası: {f([_PH[(i + j) % 4] for j in range(0, 4)])}…")
+
+
+def _ff_quarter(subject):
+    i = random.choice([0, 2])
+    cor = _PH[(i + 1) % 4]
+    wr = [p for p in _PH if p != cor]
+    random.shuffle(wr)
+    q = f"Ay'ın {_PH[i].lower()} evresinden çeyrek tur (yaklaşık 1 hafta) sonra gerçekleşen evre aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Ay'ın evreleri", q, ([cor] + wr, cor), f"{_PH[i]} evresinden sonra {cor.lower()} evresi gelir.")
+
+
+def _ff_props(subject):
+    P = {"Yeni ay": ["Ay, Dünya ile Güneş'in arasındadır.", "Ay Dünya'dan görülemez."],
+         "Dolunay": ["Dünya'dan bakıldığında Ay'ın tamamı aydınlık görünür.", "Dünya'dan görülen aydınlık yüzey en fazladır."],
+         "İlk dördün": ["Yeni ay evresinden çeyrek tur sonra gözlenir.", "Dünya'dan Ay'ın yarısı aydınlık görünür."],
+         "Son dördün": ["Dolunay evresinden çeyrek tur sonra gözlenir.", "Dünya'dan Ay'ın yarısı aydınlık görünür."]}
+    ph = random.choice(["Yeni ay", "Dolunay"])
+    st = random.choice(P[ph])
+    cor = ph
+    wr = [p for p in ["Yeni ay", "Dolunay", "İlk dördün", "Son dördün"] if p != ph]
+    random.shuffle(wr)
+    q = f"“{st}” bilgisi Ay'ın hangi evresine aittir?"
+    return _mf_raw(subject, "Ay'ın evreleri", q, ([cor] + wr, cor), f"{st} → {ph.lower()} evresi.")
+
+
+def _ff_weight(subject):
+    m = random.choice([6, 12, 18, 24, 30, 36, 42, 48, 60])
+    wd, wa = m * 10, m * 10 // 6
+    wr = [(m * 10, m * 10), (m, m // 6), (wa, wd), (m * 10, m), (wd, wa + 10)]
+    wr = [w for w in wr if w != (wd, wa)]
+    f = lambda p: f"Dünya'da {p[0]} N, Ay'da {p[1]} N"
+    random.shuffle(wr)
+    q = (f"Bir kutunun kütlesi Dünya ve Ay'da ayrı ayrı ölçülüyor. Dünya 1 kg'lık kütleye 10 N'luk çekim kuvveti uygular; Ay'da bu kuvvet Dünya'dakinin 1/6'sı kadardır.\n"
+         f"Kütlesi {m} kg olan kutunun ağırlığı Dünya'da ve Ay'da ayrı ayrı dinamometreyle ölçüldüğünde okunan değerler aşağıdakilerden hangisinde doğru verilmiştir?")
+    return _mf_raw(subject, "Kuvvet ve ağırlık", q, ([f((wd, wa))] + [f(w) for w in wr[:3]], f((wd, wa))), f"Dünya'da {m}×10 = {wd} N; Ay'da {wd} ÷ 6 = {wa} N. (Kütle her yerde aynıdır.)")
+
+
+def _ff_spring(subject):
+    k = random.choice([2, 3, 4, 5])
+    f1 = random.choice([2, 4, 5])
+    f2 = f1 * random.choice([2, 3, 4])
+    x1, x2 = f1 * k, f2 * k
+    wr = [x1 + f2 - f1, f2 + k, x1 * 2 if x1 * 2 != x2 else x2 + k, x2 + 2 * k]
+    q = f"Bir yaya {f1} N'luk bir cisim asıldığında yay {x1} cm uzamaktadır.\nAynı yaya {f2} N'luk bir cisim asılırsa yay kaç cm uzar? (Yay esnekliğini yitirmemektedir.)"
+    o = _mf_opts(x2, wr, lambda v: f"{v} cm")
+    return _mf_raw(subject, "Kuvvetin ölçülmesi", q, o, f"{f1} N için {x1} cm uzuyorsa 1 N için {k} cm; {f2} N için {f2}×{k} = {x2} cm.") if o else None
+
+
+_FF_GENS = [(_ff_shift, ("ay", "evre")), (_ff_seq, ("ay", "evre")), (_ff_quarter, ("ay", "evre")), (_ff_props, ("ay", "evre")),
+            (_ff_weight, ("kuvvet", "ağırlık", "dinamometre")), (_ff_spring, ("kuvvet", "dinamometre", "ölçül"))]
+
+
+def fen_questions(grade_label, n, topics="", seen=()):
+    """5. sınıf Fen 'Ay'ın hareketleri ve evreleri' için cevabı kodla hesaplanan sorular."""
+    gl = str(grade_label or "")
+    if n <= 0 or "5" not in gl[:2]:
+        return []
+    tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+    sel = [f for f, kw in _FF_GENS if any(k in tl for k in kw)]
+    if not sel:
+        return []
+    out, stems, tries = [], set(seen), 0
+    while len(out) < n and tries < n * 15:
+        tries += 1
+        try:
+            raw = random.choice(sel)("Fen Bilimleri")
+            x = _norm_q(raw, "Fen Bilimleri") if raw else None
+        except Exception:
+            x = None
+        if not x or _stem(x) in stems:
+            continue
+        stems.add(_stem(x))
+        x["vfd"] = True
+        x["local"] = True
+        out.append(x)
     return out
 
 
@@ -7511,11 +8213,15 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     store.lpool_remove([_stem(q) for q in st_["qs"]])
                 except Exception:
                     pass
-            if not demo_mode() and not like and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
+            if not demo_mode() and not like and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "Matematik", "Fen Bilimleri"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
                 try:
                     take(st_, seed_questions(subj, grade_label, p.get("topics", ""), limit=max(1, int(n * 0.4)), seen=seen))
                     if len(st_["qs"]) < n:
                         take(st_, local_questions(subj, grade_label, max(1, int(n * 0.3)), p.get("topics", ""), seen=seen))
+                    if subj == "Matematik":
+                        take(st_, math_questions(grade_label, max(1, int(n * 0.5)), p.get("topics", ""), seen=seen))
+                    if subj == "Fen Bilimleri":
+                        take(st_, fen_questions(grade_label, max(1, int(n * 0.3)), p.get("topics", ""), seen=seen))
                 except Exception:
                     pass
             if bank_ok:  # 0) bankadan doldur
