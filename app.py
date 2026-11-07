@@ -2855,6 +2855,102 @@ def report_pdf(name, grade_label, hist, stats, weak, streak_n, level, comment=""
     return buf.getvalue()
 
 
+def weekly_report_pdf(name, grade_label, hist, wrongs, target_net=0.0, comment=""):
+    """Veli için haftalık rapor: bu hafta vs geçen hafta net, çalışılan dersler/konular, yanlış nedenleri."""
+    from reportlab.platypus import SimpleDocTemplate
+    import time as _t
+    now = _t.time()
+    wk, pw = 7 * 86400, 14 * 86400
+    cur_ = [h for h in hist if h.get("ts") and now - h["ts"] <= wk]
+    prv = [h for h in hist if h.get("ts") and wk < now - h["ts"] <= pw]
+
+    def _avg(L, k):
+        return sum(float(h.get(k, 0) or 0) for h in L) / len(L) if L else 0.0
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=1.6 * cm, rightMargin=1.6 * cm, topMargin=1.4 * cm, bottomMargin=1.4 * cm)
+    H1 = ParagraphStyle("wh1", fontName="DV-B", fontSize=19, leading=24, textColor=NAVY, spaceAfter=4)
+    H2 = ParagraphStyle("wh2", fontName="DV-B", fontSize=12, textColor=BLUE, spaceBefore=9, spaceAfter=4)
+    P = ParagraphStyle("wp", fontName="DV", fontSize=9.2, leading=13, textColor=colors.HexColor("#1e293b"))
+    sm = ParagraphStyle("wsm", fontName="DV", fontSize=8, textColor=colors.HexColor("#64748b"))
+    d1 = datetime.date.today()
+    d0 = d1 - datetime.timedelta(days=6)
+    el = [Paragraph("Denemematik • Haftalık Veli Raporu", H1),
+          Paragraph(clean(f"{name or 'Öğrenci'} • {grade_label} • {d0.strftime('%d.%m')} – {d1.strftime('%d.%m.%Y')}"), sm), Spacer(1, 6)]
+    n_c, n_p = _avg(cur_, "net"), _avg(prv, "net")
+    diff = n_c - n_p if prv else 0.0
+    arrow = "▲ " if diff > 0.05 else "▼ " if diff < -0.05 else "■ "
+    qs = sum(int(h.get("correct", 0) or 0) + int(h.get("wrong", 0) or 0) + int(h.get("empty", 0) or 0) for h in cur_)
+    tg = f"{n_c:.1f} / {target_net:.0f}" if target_net else "-"
+    kp = [["Bu hafta sınav", "Çözülen soru", "Ort. net", "Geçen haftaya göre", "Hedef net"],
+          [str(len(cur_)), str(qs), f"{n_c:.1f}", (arrow + f"{abs(diff):.1f} net") if prv else "ilk hafta", tg]]
+    t = Table(kp, colWidths=[3.4 * cm] * 5)
+    t.setStyle(TableStyle([("FONT", (0, 0), (-1, 0), "DV", 7.5), ("FONT", (0, 1), (-1, 1), "DV-B", 12), ("TEXTCOLOR", (0, 0), (-1, 0), colors.HexColor("#64748b")),
+                           ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f5f3ff")), ("BOX", (0, 0), (-1, -1), .8, colors.HexColor("#c4b5fd")),
+                           ("ALIGN", (0, 0), (-1, -1), "CENTER"), ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
+    el.append(t)
+    if not cur_:
+        el.append(Paragraph("Bu hafta çözülen sınav bulunmuyor. Haftada en az 2–3 kısa deneme önerilir.", P))
+    # ders bazında
+    per = {}
+    for h in cur_:
+        for s_, v in (h.get("per") or {}).items():
+            e = per.setdefault(s_, [0, 0, 0])
+            e[0] += int(v.get("correct", 0) or 0)
+            e[1] += int(v.get("wrong", 0) or 0)
+            e[2] += int(v.get("empty", 0) or 0)
+    if per:
+        el.append(Paragraph("Bu hafta çalışılan dersler", H2))
+        rows = [["Ders", "Doğru", "Yanlış", "Boş", "Net", "Başarı"]]
+        for s_, (c, w, e) in sorted(per.items(), key=lambda x: x[0]):
+            tot = c + w + e
+            rows.append([clean(s_), str(c), str(w), str(e), f"{c - w / 3:.1f}", f"%{100 * c / tot:.0f}" if tot else "-"])
+        t2 = Table(rows, colWidths=[5.6 * cm, 2.2 * cm, 2.2 * cm, 2.2 * cm, 2.2 * cm, 2.4 * cm], repeatRows=1)
+        t2.setStyle(TableStyle([("FONT", (0, 0), (-1, -1), "DV", 8.8), ("FONT", (0, 0), (-1, 0), "DV-B", 8.8), ("BACKGROUND", (0, 0), (-1, 0), BLUE), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                                ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f8fafc")]), ("GRID", (0, 0), (-1, -1), .4, colors.HexColor("#e2e8f0")),
+                                ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 4)]))
+        el.append(t2)
+    # konular
+    tp = {}
+    for h in cur_:
+        for k, v in (h.get("topics") or {}).items():
+            if isinstance(v, dict):
+                e = tp.setdefault(str(k), [0, 0])
+                e[0] += int(v.get("correct", 0) or 0)
+                e[1] += int(v.get("total", 0) or 0)
+    if tp:
+        L = sorted(((c / n * 100, k, c, n) for k, (c, n) in tp.items() if n), key=lambda x: x[0])
+        el.append(Paragraph("Konu durumu", H2))
+        for p_, k, c, n in L[:5]:
+            el.append(Paragraph(clean(f"• Pekiştirilecek: {k} — {c}/{n} doğru (%{p_:.0f})"), P))
+        for p_, k, c, n in L[::-1][:3]:
+            if p_ >= 75:
+                el.append(Paragraph(clean(f"• Güçlü: {k} — {c}/{n} doğru (%{p_:.0f})"), P))
+    # yanlış nedenleri
+    rc = {}
+    for w in wrongs:
+        if w.get("reason") and (not w.get("ts") or now - float(w.get("ts") or 0) <= wk * 4):
+            rc[w["reason"]] = rc.get(w["reason"], 0) + 1
+    if rc:
+        el.append(Paragraph("Yanlış nedenleri", H2))
+        tot = sum(rc.values())
+        for k, v in sorted(rc.items(), key=lambda kv: -kv[1])[:5]:
+            el.append(Paragraph(clean(f"• {k}: {v} soru (%{100 * v / tot:.0f})"), P))
+    el.append(Paragraph("Velimize öneri", H2))
+    tips = []
+    if diff < -0.05:
+        tips.append("Net bu hafta düştü; yeni konu yerine yanlış arşivini tekrar etmek ve kısa denemeler çözmek iyi gelir.")
+    elif diff > 0.05:
+        tips.append("Net artıyor, bu tempo korunmalı. Başarıyı takdir etmek motivasyonu yükseltir.")
+    if target_net and n_c and n_c < target_net:
+        tips.append(f"Hedef nete {target_net - n_c:.1f} net kaldı; haftalık plandaki zayıf kazanımlara öncelik verilmeli.")
+    if len(cur_) < 2:
+        tips.append("Haftada en az 2–3 deneme çözülmesi önerilir.")
+    el.append(Paragraph(clean(comment or " ".join(tips) or "Düzenli çalışma ve yanlış arşivi tekrarı sürdürülmelidir."), P))
+    el += [Spacer(1, 10), Paragraph("Bu rapor Denemematik tarafından öğrencinin son 7 günlük verilerinden otomatik üretilmiştir.", sm)]
+    doc.build(el)
+    return buf.getvalue()
+
+
 # ------------------------------------------------------------------ SINAV KARNESİ (dairesel + ayrıntılı grafikler, son 5 sınav karşılaştırması)
 _C_OK, _C_BAD, _C_EMP = "#16a34a", "#dc2626", "#94a3b8"
 
@@ -3162,8 +3258,100 @@ DATA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 os.makedirs(DATA, exist_ok=True)
 
 
+PERSONAL = {"history.json", "wrong.json", "bad.json", "stems.json", "settings.json", "gen_stats.json", "liked.json",
+            "lpool.json", "reports.json", "likebudget.json", "budgets.json"}  # kişiye özel dosyalar; bank.json ve müfredat ortaktır
+import threading as _pth
+_TL = _pth.local()
+_ACTIVE = {"pid": ""}  # son giriş yapan profil (arka plan iş parçacıkları için yedek)
+
+
+def set_active(pid):
+    _ACTIVE["pid"] = pid or ""
+
+
+def set_thread_profile(pid):
+    _TL.pid = pid or ""
+
+
+def current_profile():
+    p = getattr(_TL, "pid", None)
+    if p:
+        return p
+    try:
+        import streamlit as st
+        v = st.session_state.get("profile_id")
+        if v:
+            return v
+    except Exception:
+        pass
+    return _ACTIVE["pid"]
+
+
 def _p(name):
+    if name in PERSONAL:
+        pid = current_profile()
+        if pid:
+            d = os.path.join(DATA, "profiles", pid)
+            os.makedirs(d, exist_ok=True)
+            return os.path.join(d, name)
     return os.path.join(DATA, name)
+
+
+# ---- profiller (ad + isteğe bağlı PIN); misafir verisi geçicidir (çıkışta silinir, GitHub'a yedeklenmez)
+def profiles():
+    return _load("profiles.json", {})
+
+
+def _pin_hash(pin, salt):
+    import hashlib
+    return hashlib.sha256((salt + str(pin)).encode("utf-8")).hexdigest()
+
+
+def create_profile(name, pin=""):
+    """-> (profil_id, hata). İlk profil oluşturulurken eski (profilsiz) kişisel veriler ona taşınır."""
+    import re as _r
+    name = (name or "").strip()[:30]
+    if not name:
+        return None, "Ad boş olamaz."
+    pr = profiles()
+    base = _r.sub(r"[^a-z0-9]+", "-", name.lower().translate(str.maketrans("çğıöşü", "cgiosu"))).strip("-") or "profil"
+    if any(v.get("name", "").lower() == name.lower() for v in pr.values()):
+        return None, "Bu adla bir profil zaten var."
+    pid, i = base, 2
+    while pid in pr:
+        pid = f"{base}-{i}"; i += 1
+    salt = uuid.uuid4().hex[:8]
+    first = not pr
+    pr[pid] = {"name": name, "salt": salt, "pin": _pin_hash(pin, salt) if pin else "", "created": int(time.time())}
+    _save("profiles.json", pr)
+    d = os.path.join(DATA, "profiles", pid)
+    os.makedirs(d, exist_ok=True)
+    if first:  # eski veriler ilk profile geçer
+        import shutil
+        for nm in PERSONAL:
+            src = os.path.join(DATA, nm)
+            if os.path.exists(src):
+                shutil.copyfile(src, os.path.join(d, nm))
+    return pid, None
+
+
+def verify_profile(pid, pin=""):
+    e = profiles().get(pid)
+    if not e:
+        return False
+    return (not e.get("pin")) or e["pin"] == _pin_hash(pin, e.get("salt", ""))
+
+
+def new_guest():
+    pid = "guest_" + uuid.uuid4().hex[:8]
+    os.makedirs(os.path.join(DATA, "profiles", pid), exist_ok=True)
+    return pid
+
+
+def drop_guest(pid):
+    if str(pid).startswith("guest_"):
+        import shutil
+        shutil.rmtree(os.path.join(DATA, "profiles", pid), ignore_errors=True)
 
 
 def _load(name, default):
@@ -3507,8 +3695,38 @@ def _gh_ensure_branch(cfg):
     return st_ in (200, 201)
 
 
+def _local_files():
+    out = [nm for nm in sorted(os.listdir(DATA)) if nm.endswith(".json")]
+    pd = os.path.join(DATA, "profiles")
+    if os.path.isdir(pd):
+        for pid in sorted(os.listdir(pd)):
+            if pid.startswith("guest_") or not os.path.isdir(os.path.join(pd, pid)):
+                continue
+            out += [f"profiles/{pid}/{nm}" for nm in sorted(os.listdir(os.path.join(pd, pid))) if nm.endswith(".json")]
+    return out
+
+
+def _abs(rel):
+    return os.path.join(DATA, *rel.split("/"))
+
+
+def _gh_walk(cfg, path=""):
+    """GitHub dalındaki data/ altındaki tüm .json dosyalarının göreli yolları"""
+    st_, lst = _gh(cfg, "GET", f"/contents/data{path}?ref={cfg['branch']}")
+    out = []
+    if st_ != 200 or not isinstance(lst, list):
+        return out
+    for it in lst:
+        nm = it.get("name", "")
+        if it.get("type") == "dir" and path.count("/") < 2:
+            out += _gh_walk(cfg, f"{path}/{nm}")
+        elif nm.endswith(".json"):
+            out.append(f"{path}/{nm}".lstrip("/"))
+    return out
+
+
 def gh_pull_once():
-    """Süreç başına bir kez: yerelde olmayan data/*.json dosyalarını GitHub'dan indirir (var olanı ezmez)."""
+    """Süreç başına bir kez: yerelde olmayan data/**.json dosyalarını GitHub'dan indirir (var olanı ezmez)."""
     if _GH["pulled"]:
         return
     _GH["pulled"] = True
@@ -3516,22 +3734,22 @@ def gh_pull_once():
     if not cfg:
         return
     try:
-        st_, lst = _gh(cfg, "GET", f"/contents/data?ref={cfg['branch']}")
-        if st_ != 200 or not isinstance(lst, list):
+        rels = _gh_walk(cfg)
+        if not rels:
             _GH.update(ok=True, msg="yedek henüz yok")
             return
         n = 0
-        for it in lst:
-            nm = it.get("name", "")
-            if not nm.endswith(".json") or os.path.exists(_p(nm)):
+        for rel in rels:
+            if os.path.exists(_abs(rel)):
                 continue
-            st2, d = _gh(cfg, "GET", f"/contents/data/{nm}?ref={cfg['branch']}")
+            st2, d = _gh(cfg, "GET", f"/contents/data/{rel}?ref={cfg['branch']}")
             if st2 == 200 and d and d.get("content"):
                 raw = _b64.b64decode(d["content"])
-                with open(_p(nm) + ".tmp", "wb") as f:
+                os.makedirs(os.path.dirname(_abs(rel)), exist_ok=True)
+                with open(_abs(rel) + ".tmp", "wb") as f:
                     f.write(raw)
-                os.replace(_p(nm) + ".tmp", _p(nm))
-                _GH["state"][nm] = _hl.md5(raw).hexdigest()
+                os.replace(_abs(rel) + ".tmp", _abs(rel))
+                _GH["state"][rel] = _hl.md5(raw).hexdigest()
                 n += 1
         _GH.update(ok=True, msg=f"{n} dosya geri yüklendi")
     except Exception as e:
@@ -3539,7 +3757,7 @@ def gh_pull_once():
 
 
 def gh_push():
-    """Değişen data/*.json dosyalarını GitHub dalına yazar. -> gönderilen dosya sayısı"""
+    """Değişen data/**.json dosyalarını GitHub dalına yazar (misafir verisi hariç). -> gönderilen dosya sayısı"""
     cfg = gh_cfg()
     if not cfg:
         return 0
@@ -3547,26 +3765,24 @@ def gh_push():
         _GH.update(ok=False, msg="dal oluşturulamadı / depo erişimi yok")
         return 0
     n = 0
-    for nm in sorted(os.listdir(DATA)):
-        if not nm.endswith(".json"):
-            continue
+    for rel in _local_files():
         try:
-            raw = open(_p(nm), "rb").read()
+            raw = open(_abs(rel), "rb").read()
         except Exception:
             continue
         h = _hl.md5(raw).hexdigest()
-        if _GH["state"].get(nm) == h:
+        if _GH["state"].get(rel) == h:
             continue
-        st_, cur = _gh(cfg, "GET", f"/contents/data/{nm}?ref={cfg['branch']}")
-        body = {"message": f"veri yedeği: {nm}", "branch": cfg["branch"], "content": _b64.b64encode(raw).decode()}
+        st_, cur = _gh(cfg, "GET", f"/contents/data/{rel}?ref={cfg['branch']}")
+        body = {"message": f"veri yedeği: {rel}", "branch": cfg["branch"], "content": _b64.b64encode(raw).decode()}
         if st_ == 200 and isinstance(cur, dict) and cur.get("sha"):
             body["sha"] = cur["sha"]
-        st2, _r = _gh(cfg, "PUT", f"/contents/data/{nm}", body)
+        st2, _r = _gh(cfg, "PUT", f"/contents/data/{rel}", body)
         if st2 in (200, 201):
-            _GH["state"][nm] = h
+            _GH["state"][rel] = h
             n += 1
         else:
-            _GH.update(ok=False, msg=f"{nm} yazılamadı (HTTP {st2})")
+            _GH.update(ok=False, msg=f"{rel} yazılamadı (HTTP {st2})")
             return n
     _GH.update(ok=True, msg=f"{n} dosya yedeklendi" if n else "güncel", last=time.time())
     return n
@@ -3654,8 +3870,8 @@ import threading
 
 _BANK_LOCK = threading.Lock()
 BANK_VER = "v3"  # soru kalitesi/zorluk kuralları değişince artırılır: eski bankadaki sorular kullanılmaz
-BANK_PER_KEY = 80
-BANK_TOTAL = 2500
+BANK_PER_KEY = 150
+BANK_TOTAL = 6000
 
 
 def bank_key(grade_label, subject, difficulty, topics):
@@ -3679,6 +3895,55 @@ def bank_peek(key, limit=20):
     with _BANK_LOCK:
         e = _bank().get(key)
         return [dict(q) for q in e["qs"][:limit]] if e else []
+
+
+def bank_peek_similar(grade_label, subject, difficulty, topics, limit=20, exclude_key=""):
+    """Aynı sınıf/ders/zorlukta, konusu örtüşen diğer banka kapsamlarından hazır sorular -> [(anahtar, soru)]"""
+    tl = str(topics or "").lower()
+    chunks = [c.strip()[:40] for c in re.split(r"[|;]", tl) if len(c.strip()) >= 6]
+    out = []
+    for k, e in _bank().items():
+        m = e.get("meta", {})
+        if k == exclude_key or m.get("grade_label") != grade_label or m.get("subject") != subject or m.get("difficulty") != difficulty:
+            continue
+        et = str(m.get("topics", "")).lower()
+        if not tl or not et or et[:40] in tl or any(c in et for c in chunks):
+            for q in e["qs"]:
+                out.append((k, q))
+                if len(out) >= limit:
+                    return out
+    return out
+
+
+_QLOCK = _pth.Lock()
+
+
+def quality_add(delta):
+    """Kalite sayaçları (ortak dosya): {ders: {olay: adet}} değerlerini toplayarak birleştirir."""
+    with _QLOCK:
+        q = _load("quality.json", {})
+        for sj, ev in delta.items():
+            e = q.setdefault(sj, {})
+            for k, v in ev.items():
+                e[k] = e.get(k, 0) + v
+        _save("quality.json", q)
+
+
+def quality():
+    return _load("quality.json", {})
+
+
+def budget_take(name, limit):
+    """Günlük arka plan işi hakkı (kota koruması). -> hak alındı mı"""
+    d = _load("budgets.json", {})
+    k = str(_today())
+    e = d.get(name) or {}
+    n = int(e.get("n", 0)) if e.get("d") == k else 0
+    if n >= limit:
+        return False
+    d[name] = {"d": k, "n": n + 1}
+    _save("budgets.json", d)
+    return True
 
 
 def bank_remove(key, stems):
@@ -3972,7 +4237,7 @@ CALL_TIMEOUT = 25  # sn; takılan çağrı bütün üretimi bekletmesin, havuz s
 GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
 # İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
 STRICT_VERIFY = ("Türkçe", "Sosyal Bilgiler")  # bu derslerde canlı üretimde de ikinci model doğrulaması yapılır (katı mod)
-VERIFY_SUBJECTS = ("Matematik", "Fen Bilimleri")  # sayısal muhakeme dersleri doğrulanır; diğerleri doğrulama beklemeden hızlı akar
+VERIFY_SUBJECTS = ()  # boş = arka plandaki banka/havuz dolumunda TÜM dersler ikinci modelle doğrulanır (eskiden yalnız Matematik/Fen).  # sayısal muhakeme dersleri doğrulanır; diğerleri doğrulama beklemeden hızlı akar
 GEN_REASONING = {"Matematik": "low", "Fen Bilimleri": "low"}  # hesap gerektiren derslerde daha derin düşünme
 VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
 VERIFY_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
@@ -4705,6 +4970,42 @@ def _verify_models(gk, mk):
         return (VERIFY_GROQ_MODELS, VERIFY_GEMINI_MODELS)
 
 
+_QBUF = {}
+_QN = {"n": 0}
+
+
+def qstat(subj, ev, k=1):
+    """Kalite olayını sayar; belirli aralıklarla diske yazar."""
+    try:
+        with _POOL_LOCK:
+            _QBUF.setdefault(subj or "?", {}).setdefault(ev, 0)
+            _QBUF[subj or "?"][ev] += k
+            _QN["n"] += k
+            flush = _QN["n"] >= 15
+            if flush:
+                snap = {a: dict(b) for a, b in _QBUF.items()}
+                _QBUF.clear()
+                _QN["n"] = 0
+        if flush:
+            from . import store
+            store.quality_add(snap)
+    except Exception:
+        pass
+
+
+def qstat_flush():
+    try:
+        with _POOL_LOCK:
+            snap = {a: dict(b) for a, b in _QBUF.items()}
+            _QBUF.clear()
+            _QN["n"] = 0
+        if snap:
+            from . import store
+            store.quality_add(snap)
+    except Exception:
+        pass
+
+
 def verify_questions(qs, gk, mk, offset=0):
     """Soruları cevap gösterilmeden çözdürür; doğru şıkkı tutmayan (ya da hatalı bulunan) soruları eler.
     Doğrulayıcıya ulaşılamazsa sorular doğrulanmadan korunur."""
@@ -4742,8 +5043,10 @@ def verify_questions(qs, gk, mk, offset=0):
         elif a == q["answer"]:
             q["vfd"] = True  # bağımsız ikinci model aynı cevabı buldu
             keep.append(q)
+            qstat(q.get("subject"), "doğrulandı")
         else:
             rej += 1
+            qstat(q.get("subject"), "doğrulayıcı reddetti")
     with _POOL_LOCK:
         VERIFY_STATS["checked"] += len(qs) - unv
         VERIFY_STATS["rejected"] += rej
@@ -5445,6 +5748,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
     eff, lvl = bump_difficulty(difficulty)
     fc = f"\nODAK KONU: '{focus}' (soruların yaklaşık 1/3'ünde bu konuya odaklan, kalanı diğer kazanımlardan)." if focus.strip() else ""
     fc += lessons(subject)
+    fc += golden(subject, grade_label)
     if subject in ("Türkçe", "Sosyal Bilgiler"):
         fc += ("\n🎯 GRAFİK/TABLO/ŞEMA SORULARINDA ZORLUK: Cevap görsele bakınca DOĞRUDAN okunmasın ('en çok/en az hangisi', 'X kaçtır' YASAK). "
                "Bunun yerine: iki-üç adımlı çıkarım (karşılaştırma + fark/oran/toplam), numaralı yargılardan (I, II, III) doğru/yanlış ayıklama, "
@@ -6617,6 +6921,13 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                         x = None
                     if x:
                         out.append(x)
+                        qstat(subj, "üretildi")
+                    else:
+                        try:
+                            rs = diagnose(q, subj)
+                        except Exception:
+                            rs = "yakalanmadı"
+                        qstat(subj, "elendi: " + ("diğer kural" if rs in ("yakalanmadı", "kural_red") else rs.replace("_", " ")))
                 return out
 
             qs, err = _ask_questions(prompt, gk, mk, idx, validate, reasoning=GEN_REASONING.get(subj))
@@ -6659,6 +6970,19 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     st_["bank_stems"] = got
                 except Exception:
                     pass  # banka hatası üretimi engellemesin
+            if bank_ok and len(st_["qs"]) < n:  # 0b) aynı ders/sınıf/zorlukta konusu örtüşen diğer banka kapsamlarından tamamla
+                try:
+                    from . import store
+                    have = {_stem(q) for q in st_["qs"]}
+                    sim = [(k_, q) for k_, q in store.bank_peek_similar(grade_label, subj, difficulty, p.get("topics", ""), limit=(n - len(st_["qs"])) * 3 + 6,
+                                                                        exclude_key=bank_key_for(p, grade_label, difficulty))
+                           if _stem(q) and _stem(q) not in seen and _stem(q) not in have]
+                    take(st_, [q for _k, q in sim])
+                    taken = {_stem(q) for q in st_["qs"]} - have
+                    for k_ in {k for k, q in sim if _stem(q) in taken}:
+                        store.bank_remove(k_, [_stem(q) for k, q in sim if k == k_ and _stem(q) in taken])
+                except Exception:
+                    pass
             for rnd in range(MAX_ROUNDS + 1):
                 need = n - len(st_["qs"])
                 if need <= 0 or (no_keys and not demo_mode()):
@@ -6717,7 +7041,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 p = st_["p"]
                 used = {_stem(q) for q in st_["qs"][:p["n"]]}
                 extra = [q for q in st_["over"] + st_["reserve"] if _stem(q) and _stem(q) not in used and _stem(q) not in seen
-                         and (p["subject"] not in STRICT_VERIFY or q.get("vfd"))]  # katı derslerde bankaya yalnız doğrulanmış sorular girer
+                         and q.get("vfd")]  # bankaya yalnızca ikinci modelle doğrulanmış sorular girer
                 if extra:
                     store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), extra)
         except Exception:
@@ -6812,6 +7136,24 @@ def diagnose(q, subject=None):
     return "yakalanmadı"
 
 
+def golden(subject, grade_label):
+    """Öğrencinin beğendiği (altın) soruların en fazla ikisini kalite örneği olarak istemine ekler."""
+    try:
+        import random as _rnd
+        from . import store
+        L = [x["q"] for x in store.liked()[-30:] if x.get("grade_label") == grade_label and x["q"].get("subject") == subject]
+        if not L:
+            return ""
+        out = "\n⭐ KALİTE ÖRNEKLERİ (öğrencinin beğendiği sorular; bu netlikte, bu zorlukta ve metin-şık-görsel uyumunda yaz, KOPYALAMA):"
+        for q in _rnd.sample(L, min(2, len(L))):
+            o = " | ".join(f"{k}) {v}" for k, v in (q.get("options") or {}).items()) if isinstance(q.get("options"), dict) else ""
+            g = f" [görsel: {q['shape'].get('type')}]" if isinstance(q.get("shape"), dict) else ""
+            out += f"\n- {str(q.get('passage') or '')[:300]} {str(q.get('question', ''))[:400]}{g} ŞIKLAR: {o[:300]} DOĞRU: {q.get('answer')}"
+        return out
+    except Exception:
+        return ""
+
+
 def lessons(subject):
     """Bu dersteki son hata bildirimlerinden üretim istemine eklenecek 'kaçın' notu."""
     try:
@@ -6852,7 +7194,10 @@ def audit_pools_async():
             return True
         return _norm_q(copy.deepcopy(q), subj) is not None
 
+    prof = store.current_profile()
+
     def run():
+        store.set_thread_profile(prof)
         try:
             store.audit_pool_files(keep)
         except Exception:
@@ -6894,11 +7239,14 @@ def like_similar_async(q, grade_label, difficulty, n=2, auto=False):
     except Exception:
         return False
 
+    prof = store.current_profile()
+
     def run():
+        store.set_thread_profile(prof)
         try:
             plan = [{"subject": subj, "n": n, "topics": topics or subj}]
             qs, _e = generate_mc(plan, grade_label, difficulty, "Beğenilen soruya benzer", avoid=avoid, use_bank=False, deposit=False,
-                                 keys=(gk, mk), verify=(subj in STRICT_VERIFY), count=False, like=ex)
+                                 keys=(gk, mk), verify=True, count=False, like=ex)
             mine = [x for x in qs if x.get("subject") == subj]
             store.lpool_put(subj, grade_label, difficulty, topics or subj, mine, src=stem)
         except Exception:
@@ -6923,6 +7271,75 @@ def like_refill_async(grade_label, difficulty, per_src=5, max_src=2):
         return bool(L)
     except Exception:
         return False
+
+
+_DFILL = {"running": False, "last": 0.0}
+DAILY_FILL_RUNS = 10     # günde en fazla bu kadar banka dolum turu (her tur bir sınıf × birkaç ders)
+DAILY_FILL_SUBJ = 4      # bir turda doldurulan ders sayısı
+DAILY_FILL_GOAL = 60     # yıl geneli kapsamda ders başına hedef soru sayısı
+
+
+def daily_fill_async(min_interval=1200):
+    """Tüm sınıflar için: yıl geneli kapsamlarda en az dolu (sınıf, ders) bankalarını arka planda doğrulanmış sorularla doldurur.
+    Kota koruması: günlük tur limiti, model soğumadaysa ya da başka dolum sürüyorsa çalışmaz. Ana iş parçacığında çağrılır."""
+    if demo_mode() or _DFILL["running"] or time.time() - _DFILL["last"] < min_interval:
+        return False
+    try:
+        from . import store
+        from . import curriculum as cur
+        gk, mk = load_keys()
+        if not gk and not mk and not extra_keys():
+            return False
+        ps = pool_status()
+        if ps.get("cooling", 0) > 0 or ps.get("disabled", 0) > 0 or _FILLING:
+            return False
+        _DFILL["last"] = time.time()
+        diffs = [d for d, _c in sorted(_diff_counts(store).items(), key=lambda kv: -kv[1])][:2] or [cur.DIFFICULTIES[2]]
+        scope = {"type": "year"}
+        best = None  # (doluluk, g, difficulty, [plan])
+        for g in ("5", "6", "7", "8", "4"):
+            gl = cur.GRADE_LABELS[g]
+            for d in diffs:
+                gaps = []
+                for sj in cur.subjects_for(g):
+                    topics = cur.scope_topic_text(g, sj, scope)
+                    if not topics:
+                        continue
+                    pl = {"subject": sj, "n": 10, "topics": topics, "short": cur.scope_short(g, sj, scope)}
+                    have = store.bank_count(bank_key_for(pl, gl, d))
+                    if have < DAILY_FILL_GOAL:
+                        gaps.append((have, pl))
+                if gaps:
+                    gaps.sort(key=lambda x: x[0])
+                    tot = sum(h for h, _p in gaps[:DAILY_FILL_SUBJ])
+                    if best is None or tot < best[0]:
+                        best = (tot, gl, d, [p_ for _h, p_ in gaps[:DAILY_FILL_SUBJ]])
+        if not best or not store.budget_take("dfill", DAILY_FILL_RUNS):
+            return False
+        _tot, gl, d, plan = best
+        avoid = {k: list(v) for k, v in store.recent_stems().items()}
+        _DFILL["running"] = True
+    except Exception:
+        return False
+
+    def run():
+        try:
+            fill_bank(plan, gl, d, cur.scope_label(scope), avoid=avoid)
+        except Exception:
+            pass
+        finally:
+            _DFILL["running"] = False
+    threading.Thread(target=run, daemon=True).start()
+    return True
+
+
+def _diff_counts(store):
+    c = {}
+    for h in store.history()[-40:]:
+        d = h.get("difficulty")
+        if d:
+            c[d] = c.get(d, 0) + 1
+    return c
 
 
 def fill_bank(plan, grade_label, difficulty, scope_label, avoid=None, on_progress=None):
@@ -8860,6 +9277,7 @@ def exam():
         cv = st.session_state.answers.get(idx)
         st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
+        _tts_box(q, sub, m)
         bc1, bc2, bc4, bc3 = st.columns([1, 1, 1, 1.3])
         with bc3:
             st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
@@ -8960,6 +9378,33 @@ def _prev_attempt(m, current_id=None):
         if a["grade"] == m["grade"] and a["mode"] == m["mode"] and a["id"] != current_id:
             return a
     return None
+
+
+def _tts_box(q, sub, m):
+    """Tarayıcı Web Speech API ile soruyu sesli okur (API kotası harcamaz)."""
+    try:
+        import json as _j
+        import re as _r
+        import streamlit.components.v1 as components
+        lang = "en-US" if sub == "İngilizce" else "de-DE" if sub == "Almanca" else "tr-TR"
+        parts = []
+        pas = str(q.get("passage") or "").strip()
+        if pas and pas.lower() != "null":
+            parts.append(pas)
+        parts.append(str(q.get("question", "")))
+        if isinstance(q.get("options"), dict):
+            parts += [f"{k}: {v}" for k, v in q["options"].items()]
+        txt = _r.sub(r"<[^>]+>|[*_`#]", " ", " . ".join(parts))
+        h = ("<div style='font-family:sans-serif'><button id='p' style='padding:6px 12px;border-radius:10px;border:1px solid #c4b5fd;background:#f5f3ff;cursor:pointer;font-weight:700'>🔊 Sesli oku</button> "
+             "<button id='s' style='padding:6px 12px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;cursor:pointer'>⏹ Durdur</button></div>"
+             "<script>const T=" + _j.dumps(txt) + ",L=" + _j.dumps(lang) + ";"
+             "const ss=window.speechSynthesis;"
+             "document.getElementById('p').onclick=()=>{if(!ss){alert('Tarayıcı seslendirmeyi desteklemiyor');return;}ss.cancel();const u=new SpeechSynthesisUtterance(T);u.lang=L;u.rate=0.95;"
+             "const v=ss.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith(L.slice(0,2).toLowerCase()));if(v)u.voice=v;ss.speak(u);};"
+             "document.getElementById('s').onclick=()=>{if(ss)ss.cancel();};window.addEventListener('pagehide',()=>{if(ss)ss.cancel();});</script>")
+        components.html(h, height=46)
+    except Exception:
+        pass
 
 
 def _like(q, flag, m):
@@ -9217,6 +9662,8 @@ def result():
                 if u != c:
                     from .study import explain_box
                     explain_box(q, u if u != "Boş" else None, f"res_{i}", m.get("grade_label", ""))
+                    from .study import reason_pick
+                    reason_pick(q, f"why_{i}")
                 if st.session_state.get(f"rep_{i}"):
                     st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
                 else:
@@ -9263,6 +9710,56 @@ def _d(delta):
 
 def _date(ts):
     return datetime.datetime.fromtimestamp(ts).strftime("%d.%m.%Y %H:%M")
+
+
+_REASON_TIP = {
+    "Bilgi eksiğim vardı": "Konu tekrarı: Kazanım Analizi'ndeki en zayıf konuları 'Bana anlat' ile çalış, sonra Yaprak Test çöz.",
+    "Dikkatsizlik / işlem hatası": "Çözümü kontrol alışkanlığı: şıkka geçmeden önce işlemi bir kez daha gözden geçir, verilenleri alt çiz.",
+    "Soruyu yanlış anladım": "Soru kökünü iki kez oku ('hangisi değildir', 'en az' gibi ifadeleri daire içine al); okuduğunu anlama sorularıyla pratik yap.",
+    "Süre yetmedi": "Tempo çalışması: Tempo Sınavı çöz, kolay soruları önce bitir, takıldığın soruyu işaretleyip geç.",
+    "Tahmin ettim": "Şıkları eleyerek git; emin olmadığın soruyu boş bırakmak yanlış yapmaktan (3 yanlış 1 doğruyu götürür) daha az zararlıdır.",
+}
+
+
+def _goal_reasons(H):
+    stt = store.settings()
+    mcH = [h for h in H if h.get("kind") == "mc" and h.get("total")]
+    st.markdown("#### 🎯 Hedef net")
+    tgt = st.number_input("Sınav başına hedef net", min_value=0.0, max_value=200.0, value=float(stt.get("target_net") or 0.0), step=1.0, key="tg_net")
+    if tgt != float(stt.get("target_net") or 0.0):
+        store.save_settings(target_net=tgt)
+    if tgt and mcH:
+        last3 = [h["net"] for h in mcH[-3:]]
+        avg = sum(last3) / len(last3)
+        st.progress(min(1.0, max(0.0, avg / tgt)))
+        st.caption(f"Son {len(last3)} sınavın net ortalaması **{avg:.1f}** / hedef **{tgt:.0f}** (fark {avg - tgt:+.1f}).")
+    elif tgt:
+        st.caption("Hedefin kayıtlı. Çoktan seçmeli bir sınav çözünce ilerlemen burada görünür.")
+    st.markdown("#### 📅 Haftalık gidiş")
+    wk = {}
+    for h in H:
+        d = datetime.date.fromtimestamp(h["ts"])
+        y, w, _ = d.isocalendar()
+        e = wk.setdefault((y, w), [0, 0.0, d])
+        e[0] += 1
+        e[1] += h["pct"]
+    if wk:
+        rows = [{"Hafta": e[2].strftime("%d.%m"), "Ortalama başarı %": round(e[1] / e[0], 1), "Sınav": e[0]} for _k, e in sorted(wk.items())[-8:]]
+        df = pd.DataFrame(rows)
+        st.bar_chart(df.set_index("Hafta")["Ortalama başarı %"])
+        st.caption("Son 8 hafta: " + " • ".join(f"{r['Hafta']}: %{r['Ortalama başarı %']:.0f} ({r['Sınav']} sınav)" for r in rows))
+    st.markdown("#### 🧭 Yanlış nedenlerim")
+    W = [w for w in store.wrong() if w.get("reason")]
+    if not W:
+        st.info("Henüz etiketlenmiş yanlış yok. Sınav sonunda ya da Yanlış Arşivim'de 'Neden yanlış yaptım?' seçeneğini işaretle; burada nedenlerin dağılımı ve kişisel önerin görünür.")
+        return
+    cnt = {}
+    for w in W:
+        cnt[w["reason"]] = cnt.get(w["reason"], 0) + 1
+    tot = sum(cnt.values())
+    theme.html_table(["Neden", "Adet", "Oran"], [(k, v, f"{theme.bar(100 * v / tot)}<small><b>%{100 * v / tot:.0f}</b></small>") for k, v in sorted(cnt.items(), key=lambda kv: -kv[1])], num_cols=(1,))
+    top = max(cnt, key=cnt.get)
+    st.markdown(f"<div class='panel'>💡 <b>En sık nedenin: {top}.</b><br>{_REASON_TIP.get(top, '')}</div>", unsafe_allow_html=True)
 
 
 def reports():
@@ -9312,7 +9809,7 @@ def reports():
             txt += f" Son sınavda en büyük yükseliş **{up}** ({imp[up]:+.0f} puan)" + (f", en büyük düşüş **{dn}** ({imp[dn]:+.0f})." if imp[dn] < 0 else ".")
         st.markdown(f"<div class='panel'>{txt}<br><small>Öneri: {weak} için Konu Tarama ve Yaprak Test ile zayıf kazanımları çalış; Yanlış Arşivim'den kişisel test çöz.</small></div>", unsafe_allow_html=True)
 
-    t1, t2, t3, t4, t5, t6 = st.tabs(["📈 Genel Gidiş", "📚 Ders Karşılaştırma", "🔥 Isı Haritası", "🧩 Kazanım Analizi", "🧾 Sınav Geçmişi", "💾 Yedek"])
+    t1, t2, t3, t4, t5, t6, t7 = st.tabs(["📈 Genel Gidiş", "📚 Ders Karşılaştırma", "🔥 Isı Haritası", "🧩 Kazanım Analizi", "🧾 Sınav Geçmişi", "💾 Yedek", "🎯 Hedef & Nedenler"])
     with t1:
         df = pd.DataFrame([{"Sınav": i + 1, "Başarı %": h["pct"], "Başlık": h["title"], "Tarih": _date(h["ts"]), "Tür": MODE_NAMES.get(h["mode"], h["mode"])} for i, h in enumerate(H)])
         line = alt.Chart(df).mark_line(point=alt.OverlayMarkDef(size=70), color="#0284c7", strokeWidth=3).encode(
@@ -9385,6 +9882,8 @@ def reports():
     with t6:
         _parent_report(hist)
         _backup(hist)
+    with t7:
+        _goal_reasons(H)
 
 
 def _parent_report(hist):
@@ -9400,6 +9899,14 @@ def _parent_report(hist):
     if st.session_state.get("rp_pdf"):
         st.download_button("⬇️ Raporu indir (PDF)", st.session_state["rp_pdf"], file_name="gelisim_raporu.pdf", mime="application/pdf", key="rp_dl")
         st.caption("İpucu: Çalışma Planım sayfasında 'Öğretmen yorumu al' dersen yorum rapora da eklenir.")
+    if st.button("📅 Haftalık veli raporu (son 7 gün)", key="rp_week"):
+        try:
+            st.session_state["rp_wpdf"] = pdf_export.weekly_report_pdf(name, hist[-1].get("grade_label", "") if hist else "", hist, store.wrong(),
+                                                                       float(store.settings().get("target_net") or 0.0), st.session_state.get("plan_comment") or "")
+        except Exception as e:
+            st.error(f"Rapor hazırlanamadı: {e}")
+    if st.session_state.get("rp_wpdf"):
+        st.download_button("⬇️ Haftalık raporu indir (PDF)", st.session_state["rp_wpdf"], file_name="haftalik_veli_raporu.pdf", mime="application/pdf", key="rp_wdl")
 
 
 def _backup(hist):
@@ -9499,6 +10006,13 @@ def archive():
                 st.info(f"💡 {q.get('explanation') or 'Açıklama yok.'}")
             else:
                 st.success(f"Beklenen cevap: {q.get('answer', '')}")
+            if w.get("kind") == "mc":
+                from .study import explain_box, reason_pick, WRONG_REASONS
+                explain_box(q, w.get("user"), f"ar_{w['key']}", w.get("grade_label", ""))
+                if w.get("reason") in WRONG_REASONS:
+                    st.caption(f"🧭 Nedenin: {w['reason']}")
+                else:
+                    reason_pick(q, f"arwhy_{w['key']}")
             st.button("✅ Öğrendim — arşivden çıkar", key=f"ar_rm_{w['key']}", on_click=store.remove_wrong, args=(w["key"],))
 
 
@@ -9554,6 +10068,23 @@ from . import setup as su
 
 
 # ------------------------------------------------------------------ ortak: Bana anlat
+WRONG_REASONS = ["Bilgi eksiğim vardı", "Dikkatsizlik / işlem hatası", "Soruyu yanlış anladım", "Süre yetmedi", "Tahmin ettim"]
+
+
+def _save_reason(q, rk):
+    import hashlib
+    key = hashlib.md5((q.get("subject", "") + q.get("question", "")).encode()).hexdigest()[:12]
+    try:
+        store.update_wrong(key, reason=st.session_state.get(rk))
+    except Exception:
+        pass
+
+
+def reason_pick(q, rk):
+    """Yanlış sorunun nedenini etiketler (Hedef & Nedenler sekmesinde analiz edilir)."""
+    st.radio("🧭 Neden yanlış yaptım?", WRONG_REASONS, index=None, horizontal=True, key=rk, on_change=_save_reason, args=(q, rk))
+
+
 def explain_box(q, user_answer, key, grade_label=""):
     ck = f"expl_{key}"
     if st.session_state.get(ck) is None:
@@ -9758,6 +10289,83 @@ from core import ai_engine, curriculum as cur, meb_live
 from ui import theme, state, setup, wizard, exam, reports, extras, study
 
 theme.inject()
+
+
+def _profile_gate():
+    """Profil girişi: kayıtlı profil (isteğe bağlı PIN), yeni profil ya da misafir modu. Giriş yapılmadan uygulama açılmaz."""
+    from core import store as _ps
+    if st.session_state.get("profile_id"):
+        _ps.set_active(st.session_state["profile_id"])
+        return
+    pr = _ps.profiles()
+    try:  # PIN'siz profil için sayfa yenilemede otomatik giriş
+        _u = st.query_params.get("u")
+        if _u and _u in pr and not pr[_u].get("pin"):
+            st.session_state.update(profile_id=_u, profile_name=pr[_u]["name"], is_guest=False)
+            _ps.set_active(_u)
+            return
+    except Exception:
+        pass
+    _l, _m, _r = st.columns([1, 2, 1])
+    with _m:
+        st.markdown("<div class='brand' style='text-align:center;font-size:2rem;margin:1.5rem 0 .3rem'>🎓 Deneme<span>matik</span></div>"
+                    "<div style='text-align:center;opacity:.75;margin-bottom:1rem'>Kimin için çalışıyoruz?</div>", unsafe_allow_html=True)
+        if pr:
+            ids = list(pr)
+            pid = st.selectbox("👤 Profil", ids, format_func=lambda i: pr[i]["name"] + ("  🔒" if pr[i].get("pin") else ""), key="lg_pick")
+            pin = st.text_input("PIN", type="password", key="lg_pin") if pr[pid].get("pin") else ""
+            if st.button("▶ Giriş yap", key="lg_go", use_container_width=True, type="primary"):
+                if _ps.verify_profile(pid, pin):
+                    st.session_state.update(profile_id=pid, profile_name=pr[pid]["name"], is_guest=False)
+                    try:
+                        if not pr[pid].get("pin"):
+                            st.query_params["u"] = pid
+                    except Exception:
+                        pass
+                    st.rerun()
+                else:
+                    st.error("PIN yanlış.")
+        with st.expander("➕ Yeni profil oluştur", expanded=not pr):
+            nm = st.text_input("Ad", key="lg_new", max_chars=30)
+            npin = st.text_input("PIN (isteğe bağlı, 4+ karakter)", type="password", key="lg_newpin")
+            if st.button("Profili oluştur ve gir", key="lg_create", use_container_width=True):
+                if npin and len(npin) < 4:
+                    st.error("PIN en az 4 karakter olmalı.")
+                else:
+                    pid, err = _ps.create_profile(nm, npin)
+                    if err:
+                        st.error(err)
+                    else:
+                        st.session_state.update(profile_id=pid, profile_name=nm.strip(), is_guest=False)
+                        try:
+                            if not npin:
+                                st.query_params["u"] = pid
+                        except Exception:
+                            pass
+                        st.rerun()
+        st.caption("Profil girmek zorunda değilsin:")
+        if st.button("👤 Misafir olarak devam et", key="lg_guest", use_container_width=True):
+            gid = _ps.new_guest()
+            st.session_state.update(profile_id=gid, profile_name="Misafir", is_guest=True)
+            st.rerun()
+        st.caption("Misafir verisi yalnızca bu oturumda tutulur; çıkışta silinir ve yedeklenmez.")
+    st.stop()
+
+
+def _logout():
+    from core import store as _ps
+    if st.session_state.get("is_guest"):
+        _ps.drop_guest(st.session_state.get("profile_id"))
+    _ps.set_active("")
+    for _k in list(st.session_state.keys()):
+        del st.session_state[_k]
+    try:
+        st.query_params.clear()
+    except Exception:
+        pass
+
+
+_profile_gate()
 state.init()
 if "meb_loaded" not in st.session_state:
     st.session_state.meb_loaded = True
@@ -9798,6 +10406,11 @@ if "warm_done" not in st.session_state:
 # ------------------------------------------------------------------ kenar çubuğu
 with st.sidebar:
     st.markdown("<div class='brand'>🎓 Deneme<span>matik</span></div>", unsafe_allow_html=True)
+    _pg = bool(st.session_state.get("is_guest"))
+    _pn = st.session_state.get("profile_name", "")
+    st.markdown("<div style='font-size:.95rem;margin:.2rem 0 .4rem'>" + ("🕶️" if _pg else "👤") + " <b>" + _pn + "</b>"
+                + (" <span style='opacity:.7'>(misafir)</span>" if _pg else "") + "</div>", unsafe_allow_html=True)
+    st.button("🚪 Oturumu kapat", key="nv_logout", use_container_width=True, on_click=_logout)
     st.markdown("---")
     st.button("🏠 Ana Sayfa", key="nv_home", use_container_width=True, on_click=lambda: (state.reset_exam(), state.nav("home")))
     st.button("📄 Yaprak Test", key="nv_leaf", use_container_width=True, on_click=setup._tool_go, args=("leaf_start",))
@@ -9814,6 +10427,7 @@ with st.sidebar:
         try:
             from core import ai_engine as _gai
             _gai.audit_pools_async()
+            _gai.daily_fill_async()
         except Exception:
             pass
         try:
@@ -9828,6 +10442,28 @@ with st.sidebar:
         _rp = _gstore.reports(None, 500)
         _auto = sum(1 for x in _rp if x.get("reason") != "yakalanmadı")
         st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🚩 Hata günlüğü</b><br>Bildirilen: <b>{len(_rp)}</b> • otomatik kurala takılan: <b>{_auto}</b></div>", unsafe_allow_html=True)
+        try:
+            from core import ai_engine as _qai
+            _qai.qstat_flush()
+            _qs = _gstore.quality()
+            if _qs:
+                with st.expander("📊 Kalite sayacı", expanded=False):
+                    _rows = ["| Ders | Üretilen | Elenen | Doğrulandı | Reddedilen |", "|---|---|---|---|---|"]
+                    for _sj, _ev in sorted(_qs.items()):
+                        _el = sum(v for k, v in _ev.items() if k.startswith("elendi"))
+                        _rows.append(f"| {_sj} | {_ev.get('üretildi', 0)} | {_el} | {_ev.get('doğrulandı', 0)} | {_ev.get('doğrulayıcı reddetti', 0)} |")
+                    st.markdown("\n".join(_rows))
+                    _why = {}
+                    for _ev in _qs.values():
+                        for k, v in _ev.items():
+                            if k.startswith("elendi"):
+                                _why[k[8:]] = _why.get(k[8:], 0) + v
+                    if _why:
+                        st.caption("Eleme nedenleri: " + " • ".join(f"{k} {v}" for k, v in sorted(_why.items(), key=lambda kv: -kv[1])))
+        except Exception:
+            pass
+        _bs = _gstore.bank_stats()
+        st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🏦 Soru bankası</b><br>Hazır soru: <b>{_bs['total']}</b><br>" + "<br>".join(f"&nbsp;&nbsp;{k}: {v}" for k, v in sorted(_bs["per"].items(), key=lambda kv: -kv[1])[:8]) + "</div>", unsafe_allow_html=True)
         _lp, _lk = _gstore.lpool_count(), len(_gstore.liked())
         st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>👍 Beğenilen havuz</b><br>Beğenilen soru: <b>{_lk}</b><br>Havuzdaki benzer soru: <b>{_lp}</b></div>", unsafe_allow_html=True)
     except Exception:
