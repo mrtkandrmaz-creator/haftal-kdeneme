@@ -5269,6 +5269,7 @@ _REQUIRE = {  # özel görsel -> metinde bulunması gereken anahtarlar
 _REQUIRE.update(_FEN_REQ)
 for _k in _MOON_KINDS:
     _REQUIRE[_k] = r"\bay\b|ay['’]?ın|evre|tutulma|uzay|gezegen|yörünge|dünya|güneş|gökcis|uydu|hilal|dolunay"
+_FIGSTRIP = re.compile(r"\bşekl\w*\s+(?:sahip|alan|alır|alma|değiştir|ver)\w*|\b(?:küresel|düzgün|farklı|aynı|bu|her)\s+şekil\w*", re.I)
 _FIG = re.compile(r"\b(şekil|şekle|şekilde|şekildeki|grafik|grafiğe|grafikte|grafikteki|tablo|tabloya|tabloda|tablodaki|görsel|görselde|resim|resimde|çizim|çizimde|diyagram)\w*", re.I)
 
 
@@ -5366,6 +5367,8 @@ def _dangling_ref(qtext, pas, opts):
         return True
     if re.search(r"\b(?:parça\w*|metin\w*|paragraf\w*|dörtlük\w*|dize\w*|şiir\w*|diyalog\w*|haber\w*|ilan\w*|mektup\w*)\s+(?:göre|ışığında|dayanarak)|\b(?:yukarıdaki|aşağıdaki|verilen)\s+(?:parça|metin|paragraf|dörtlük|dize|şiir|diyalog|haber|ilan|mektup)", q, re.I):
         return not re.search(r":\s*.{40,}", q)  # atıf var, metin soru içinde de verilmemiş
+    if re.search(r"\b(?:aşağıdaki|verilen|yukarıdaki)\s+\w+(?:\s+\w+)?(?:den|dan|ten|tan)\s+hangi", q, re.I) and not _REF_SCHEMA.search(q):
+        return False  # 'aşağıdaki sözcük çiftlerinden hangisi…': şıklar seçilecek varlıklardır
     m = _REF_DATA.search(q)
     if m and re.search(r"(?:den|dan|ten|tan)$", m.group(0).strip(), re.I):
         m = None  # 'aşağıdaki ifadelerden hangisi…' : ifadeler şıklardır
@@ -5847,6 +5850,35 @@ _DIN5_ALLAH = (
     "Çeldiriciler kavram karışıklığından (ör. Tevhid–Tekvin, Semi–Basar, Kudret–İrade) türesin. Hiçbir soruda hatalı dinî bilgi olmasın; Allah'a insan özelliği yakıştıran ifade doğru şık olamaz.\n")
 
 
+_YZ5 = {
+    "Fen Bilimleri": (
+        "\n🔬 5. SINIF FEN (MEM İZLEME SINAVI) SORU TARZI: Sorular kısa bir bilgi/gözlem/deney cümlesiyle başlar, sonra tek net kök gelir. Kalıplar (birebir kopyalama, aynı kalıpla FARKLI içerik üret): "
+        "(1) 'Aşağıdaki özelliklerden I., II., III., IV. hangileri X ve Y için ortak değildir?'; "
+        "(2) '… hareketleriyle ilgili aşağıdakilerden hangisi doğrudur/yanlıştır?'; "
+        "(3) Ay'ın konumlarını (1-2-3-4 numaralı şema) ve evrelerini (hilal, ilk/son dördün, şişkin ay, dolunay, yeni ay) yorumlama; ara evre bulma; "
+        "(4) bilim insanının gözleminden sonuç çıkarma (ör. Galileo'nun Güneş lekesi gözlemi); "
+        "(5) 'Bu durumla benzerlik göstermez/benzetilebilir' türü analoji (sınıflandırma = marketteki ürünlerin reyonlara ayrılması gibi); "
+        "(6) 'Ay'da gözlemlenemez/beklenmez' gibi atmosfer ve gök cismi özelliklerini ilişkilendirme; "
+        "(7) kavram haritası (K, L, M, N kutuları) tamamlama; canlıları (bitki, hayvan, mantar, mikroskobik canlı) sınıflandırma; "
+        "(8) öğretmen/öğrenci diyaloğunda öğrenci yorumlarından doğru/yanlış olanı bulma; "
+        "(9) boşluk doldurma ('… nedeniyle ………'). Bilimsel olarak kesin doğru bilgi kullan; çeldiriciler yaygın kavram yanılgılarından türesin (ör. Ay'ın ışık kaynağı sanılması, Dünya'nın Ay etrafında dolandığı sanılması).\n"),
+    "Türkçe": (
+        "\n📘 5. SINIF TÜRKÇE (MEM İZLEME SINAVI) SORU TARZI: Öğretmen kutusunda kısa bir kural/tanım ver (karşılaştırma cümlesi, öznel-nesnel cümle, kişileştirme, noktanın görevleri), "
+        "sonra bu bilgiyi yeni örneklere UYGULATAN soru sor: sözlük sırasına göre dizme ve hata düzeltme, numaralı sözcük/sözcük gruplarından anlamlı cümle kurma, "
+        "dilimizde karşılığı olan yabancı sözcüğü bulma, zıt/eş anlam, şiirde söz sanatı hangi dizede, noktalama ve noktanın görevleri, hikâye unsurları (yer, zaman, kişi, olay), "
+        "öğrenci-öğrenci diyaloğunda 'hangisi kuramamıştır'. Şiir ve metin parçaları eksiksiz verilsin; metinde ve sorudaki her bilgi çözüme yetsin.\n"),
+    "Sosyal Bilgiler": (
+        "\n🌍 5. SINIF SOSYAL (MEM İZLEME SINAVI) SORU TARZI: Kısa bir kaynak metin (Sümerler, Hammurabi Kanunları, Anadolu medeniyetleri, Çanakkale, haklar ve sorumluluklar, yöresel kültür) verip "
+        "'Verilen metne göre … doğru olduğu söylenebilir / söylenemez' kalıbıyla yorum sor; I-II-III yargılarla 'hangileri ihlal edilmiş olabilir / etkili olmuştur'; "
+        "neden-sonuç ve çok nedenli olaylar; kültürel görselden (yemek, el sanatı, türkü) genel yargıya ulaşma. Şıklar metinden çıkarılabilen/çıkarılamayan yargılar olsun; "
+        "mutlak ifadeler ('sadece', 'hiçbir zaman', 'bütün') genellikle yanlış şık olsun ama doğru şık da mutlaka bulunsun.\n"),
+    "Matematik": (
+        "\n🔢 5. SINIF MATEMATİK (MEM İZLEME SINAVI) SORU TARZI: Günlük hayat senaryosu (defter, koli, servis durakları, tuzluk, bilgisayarın yuvarlaması) ve modelle gösterim: "
+        "dokuz basamaklı sayıları okuma/yazma ve bölükler, basamak değeri-sayı değeri, yuvarlama, örüntünün n. adımı, işlem tamamlama (silinmiş rakamlar), "
+        "kesir karşılaştırma (birim kesir sıralama), bölme problemlerinde 'en az kaç' (koli/ücret). Her sorunun verisi tam ve sonucu tek olsun.\n"),
+}
+
+
 def _meb_extra(grade_label, subject, topics):
     t = (topics or "")
     x = ""
@@ -5854,6 +5886,8 @@ def _meb_extra(grade_label, subject, topics):
         x += _IHLAS
     if subject == "Din Kültürü ve Ahlak Bilgisi" and ("Allah" in t or "Tevhid" in t) and "5" in str(grade_label)[:2]:
         x += _DIN5_ALLAH
+    if "5" in str(grade_label)[:2] and subject in _YZ5:
+        x += _YZ5[subject]
     if subject in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi", "Türkçe", "Fen Bilimleri", "T.C. İnkılap Tarihi ve Atatürkçülük"):
         x += _MEB_SENARYO
     return x
@@ -6767,7 +6801,7 @@ def _norm_q(q, subject):
     if shape and shape.get("type") not in ALLOWED_SHAPES.get(subject, {"table"}):
         shape = None
     shape, bad = coherent_shape(shape, f"{q.get('topic', '')} {q.get('question', '')} {q.get('passage', '')}", subject)
-    if not shape and re.search(_FIG, str(q.get("question", ""))) and not str(q.get("passage") or "").count("|"):
+    if not shape and re.search(_FIG, _FIGSTRIP.sub(" ", str(q.get("question", "")))) and not str(q.get("passage") or "").count("|"):
         return None  # görsele atıf var ama uygun görsel yok -> soruyu ele
     if not shape and _dangling_ref(str(q.get("question", "")), str(q.get("passage") or ""), opts):
         return None  # "aşağıdaki veri/şema/harita…" diyor ama veri yok
@@ -7261,6 +7295,54 @@ _SEEDS = [
     (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
      "İhlas Suresi ile ilgili aşağıdakilerden hangisi doğrudur?",
      ["Dört ayetten oluşur.", "Yalnızca namazda okunur.", "Allah'ın birliğini (tevhid) anlatmaz.", "Peygamberlerin kıssalarını anlatır."], 0, "İhlas Suresi 4 ayettir ve Allah'ın birliğini anlatır."),
+    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'hareket'), 'Güneş, Dünya ve Ay',
+     "Dünya, Güneş'in etrafında 2 tam tur dolandığında kendi ekseni etrafında yaklaşık kaç kez döner?",
+     ['12', '52', '365', '730'], 3, '1 turda yaklaşık 365 kez döner; 2 turda yaklaşık 730 kez.'),
+    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'ay '), 'Güneş, Dünya ve Ay',
+     'Aşağıda verilen özelliklerden;\nI. Küresel şekle sahip olması\nII. Kendi ekseni etrafında dönmesi\nIII. Işık kaynağı olması\nhangileri Dünya ve Ay için ortaktır?',
+     ['Yalnız I', 'I ve II', 'I ve III', 'II ve III'], 1, 'Dünya ve Ay küresel ve kendi ekseni etrafında dönen gök cisimleridir; ışık kaynağı değillerdir (Güneş ışık kaynağıdır).'),
+    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'ay '), 'Güneş, Dünya ve Ay',
+     "Ay'ın atmosferi yok denecek kadar azdır.\nBuna göre aşağıdakilerden hangisinin Ay'da gözlemlenmesi beklenmez?",
+     ['Gökyüzünde bulutların oluşması', 'Yüzeyde çok sayıda krater bulunması', 'Ayak izlerinin uzun süre bozulmadan kalması', 'Gece ve gündüz sıcaklığının çok farklı olması'], 0, 'Atmosfer olmadığı için bulut ve hava olayları oluşmaz.'),
+    (('5',), 'Fen Bilimleri', ("ay'ın", 'evre', 'ay '), 'Güneş, Dünya ve Ay',
+     "Ay'ın evreleri belirli bir sırayla döngüsel olarak tekrar eder.\nBuna göre Dolunay evresinden hemen sonra gelen evre aşağıdakilerden hangisidir?",
+     ['Yeni Ay', 'İlk Dördün', 'Şişkin Ay', 'Son Dördün'], 2, "Dolunay'dan sonra Ay küçülmeye başlar ve önce şişkin ay evresi görülür."),
+    (('5',), 'Fen Bilimleri', ("ay'ın", 'dünya', 'ay '), 'Güneş, Dünya ve Ay',
+     "Ay'ın kendi ekseni etrafında dönme süresi ile Dünya etrafında dolanma süresi aynıdır.\nBu durumun sonucu aşağıdakilerden hangisidir?",
+     ["Dünya'dan bakıldığında Ay'ın hep aynı yüzünün görülmesi", "Ay'da gece ve gündüzün hiç oluşmaması", "Dünya'da mevsimlerin oluşması", "Ay'ın evrelerinin hiç değişmemesi"], 0, "Dönme ve dolanma süreleri eşit olduğu için Dünya'dan hep aynı yüz görülür."),
+    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), 'Güneş, Dünya ve Ay',
+     'Galileo, teleskopla yaptığı gözlemlerde Güneş lekelerinin aynı yöne doğru kaydığını fark etmiştir.\nGalileo bu gözlemiyle hangi sonuca ulaşmıştır?',
+     ['Güneş, kendi ekseni etrafında döner.', "Güneş lekeleri Ay'ın gölgesidir.", "Güneş lekeleri Dünya'dan kopan parçalardır.", "Güneş'in yüzeyi hiç hareket etmez."], 0, "Lekelerin aynı yönde kayması Güneş'in kendi ekseni etrafında döndüğünü gösterir."),
+    (('5',), 'Fen Bilimleri', ('sınıflandırma', 'canlı', 'hücre'), 'Canlıların Sınıflandırılması',
+     'Canlıların belli özelliklerine göre gruplara ayrılmasına sınıflandırma denir.\nBuna göre aşağıdakilerden hangisi sınıflandırmaya benzetilebilir?',
+     ['Öğrencilerin boy sırasına göre dizilmesi', 'Evlerin kapılarına numara verilmesi', 'Kitapların konularına göre kütüphanede ayrı raflara yerleştirilmesi', 'Arabaların otoparka rastgele park edilmesi'], 2, 'Kitapların konularına göre gruplanması, ortak özelliklere göre ayırmadır.'),
+    (('5',), 'Fen Bilimleri', ('sınıflandırma', 'canlı', 'hücre'), 'Canlıların Sınıflandırılması',
+     'Amip, öglena ve paramesyum canlı sınıflandırmasında hangi grupta yer alır?',
+     ['Bitkiler', 'Hayvanlar', 'Mantarlar', 'Mikroskobik canlılar'], 3, 'Bunlar mikroskopla görülebilen tek hücreli canlılardır.'),
+    (('5',), 'Fen Bilimleri', ('ay ', 'tutulma', 'güneş'), 'Güneş, Dünya ve Ay',
+     "Ay, Güneş ile Dünya arasına girerek üçü aynı doğrultuya geldiğinde Dünya'nın bir bölgesine Ay'ın gölgesi düşer.\nBu olay aşağıdakilerden hangisidir?",
+     ['Güneş tutulması', 'Ay tutulması', 'Mevsimlerin oluşması', 'Dolunay evresi'], 0, "Ay'ın gölgesinin Dünya'ya düşmesi Güneş tutulmasıdır."),
+    (('5',), 'Fen Bilimleri', ('dünya', 'hareket'), 'Güneş, Dünya ve Ay',
+     "Dünya'nın kendi ekseni etrafında dönmesinin sonucu aşağıdakilerden hangisidir?",
+     ['Mevsimlerin oluşması', 'Gece ve gündüzün oluşması', "Ay'ın evrelerinin oluşması", 'Ay tutulmasının oluşması'], 1, 'Dönme hareketi gece-gündüzü oluşturur.'),
+    (('5', '6'), 'Türkçe', ('sözcük', 'yazım', 'anlam'), 'Sözlük Sırası',
+     "Mustafa, aşağıdaki kelimeleri sözlük sırasına göre dizmiştir:\nI. araba\nII. armut\nIII. arı\nIV. aşçı\nV. avcı\nHangi kelimeler yer değiştirirse Mustafa'nın yaptığı hata düzeltilmiş olur?",
+     ['I-II', 'II-III', 'III-IV', 'IV-V'], 1, 'Doğru sıra: araba, arı, armut, aşçı, avcı. II ile III yer değiştirmelidir.'),
+    (('5', '6'), 'Türkçe', ('cümle', 'anlam'), 'Öznel ve Nesnel Cümle',
+     'Söyleyenin kendi düşüncesini ya da beğenisini içeren cümlelere öznel, kişiden kişiye değişmeyen doğrulanabilir cümlelere nesnel cümle denir.\nBuna göre aşağıdakilerden hangisi nesnel bir cümledir?',
+     ['Bu film çok sıkıcıydı.', "Ankara, Türkiye'nin başkentidir.", 'En güzel mevsim ilkbahardır.', 'Bu pasta harika görünüyor.'], 1, 'Doğruluğu kişiye göre değişmeyen cümle nesneldir.'),
+    (('5', '6'), 'Türkçe', ('noktalama', 'yazım'), 'Noktalama',
+     'Aşağıdaki cümlelerin hangisinde nokta, sayıdan sonra sıra bildirmek için kullanılmıştır?',
+     ["Maç 20.30'da başlayacak.", 'Dr. Ali bugün muayene yapacak.', 'Kardeşim 3. sınıfta okuyor.', 'Okul 23.04.2025 tarihinde açıldı.'], 2, '3. sınıf: sıra bildiren sayıdan sonra nokta.'),
+    (('5', '6'), 'Türkçe', ('söz sanat', 'şiir', 'anlam'), 'Söz Sanatı',
+     'İnsana özgü özelliklerin insan dışındaki varlıklara verilmesine kişileştirme denir.\nAşağıdakilerden hangisinde kişileştirme yapılmıştır?',
+     ['Güneş, bulutların ardından bize gülümsedi.', 'Güneş doğudan doğar.', 'Bulutlar gökyüzünü kapladı.', 'Yağmur dün gece başladı.'], 0, "Güneş'in gülümsemesi insana özgü bir özelliktir."),
+    (('5', '6'), 'Türkçe', ('anlam', 'eş', 'zıt'), 'Zıt Anlam',
+     'Aşağıdaki sözcük çiftlerinden hangisi zıt anlamlıdır?',
+     ['Sevinç – mutluluk', 'Uzak – yakın', 'Güzel – hoş', 'Cesur – yürekli'], 1, 'Uzak ve yakın birbirinin zıddıdır.'),
+    (('5', '6'), 'Sosyal Bilgiler', ('harita', 'iklim', 'evimiz', 'yer şekilleri', 'anadolu', 'miras'), 'Ortak Mirasımız',
+     "Anadolu; elverişli iklimi, bereketli ovaları, zengin su kaynakları ve önemli ticaret yolları üzerinde bulunmasıyla birçok uygarlığa ev sahipliği yapmıştır.\nBuna göre Anadolu'nun en eski yerleşim merkezlerinden biri olmasında aşağıdakilerden hangileri etkili olmuştur?\nI. Verimli topraklara sahip olması\nII. Su kaynaklarının bulunması\nIII. Ticaret yolları üzerinde yer alması",
+     ['Yalnız I', 'I ve II', 'II ve III', 'I, II ve III'], 3, 'Metinde üç özellik de belirtilmiştir.'),
     (("5", "6"), "Sosyal Bilgiler", ("birey", "rol", "grup", "hak", "sorumluluk"), "Birey ve Toplum",
      "Deniz; sınıfında sınıf başkanı, ailesinde abla, okul takımında ise kaleci olarak görev yapmaktadır.\nBuna göre aşağıdakilerden hangisi Deniz'in aile içindeki rolüne uygun bir davranıştır?",
      ["Sınıf kurallarını arkadaşlarına duyurmak", "Kardeşinin ödevini yapmasına yardım etmek", "Maçta kaleyi savunmak", "Antrenmanı programına göre yapmak"], 1, "Ablalık rolü aile içindedir; kardeşe yardım bu role uygundur."),
