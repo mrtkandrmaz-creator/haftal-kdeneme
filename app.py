@@ -5879,6 +5879,32 @@ _YZ5 = {
 }
 
 
+_YZ_ALL = {
+    "Fen Bilimleri": (
+        "\n🔬 FEN SORU MANTIĞI (tüm sınıflar; MEM/MEB izleme sınavı tarzı): kısa bilgi/gözlem/deney cümlesi + tek net kök. Kalıplar: "
+        "özellik listesinde (I-II-III-IV) 'ortak/ortak değildir'; 'doğrudur/yanlıştır' yargı ayıklama; bilim insanının ya da öğrencinin gözleminden SONUÇ çıkarma; "
+        "'bu durumla benzerlik gösterir/göstermez' analoji; tablo-grafik-şema (numaralı konum, kavram haritası K-L-M-N) yorumlama; öğretmen-öğrenci diyaloğunda yanlış yorumu bulma; "
+        "deneyde bağımsız/bağımlı/kontrol değişkeni; boşluk doldurma ('… nedeniyle ………'). Her soru bir kavram yanılgısını yoklasın; çeldirici bilimsel olarak KESİN yanlış, doğru şık kesin doğru olsun. "
+        "'Yalnız I / I ve II' türü şıklarda yargıların her biri metinde numaralı satır olarak YAZILI olsun.\n"),
+    "Türkçe": (
+        "\n📘 TÜRKÇE SORU MANTIĞI (tüm sınıflar): öğretmen kutusunda kısa kural/tanım ver, sonra yeni örneklere UYGULAT (öznel-nesnel, karşılaştırma cümlesi, söz sanatı, noktalama görevleri, "
+        "sözlük sırası ve hata düzeltme, sözcüklerden anlamlı cümle kurma, zıt/eş anlam, hikâye unsurları, anlatım bozukluğu). Parçalar eksiksiz, soru köküne yetecek bilgi içinde olsun.\n"),
+    "Sosyal Bilgiler": (
+        "\n🌍 SOSYAL SORU MANTIĞI (tüm sınıflar): kısa kaynak metin/belge + 'Verilen metne göre … söylenebilir/söylenemez'; I-II-III yargı; neden-sonuç; "
+        "şıklar yalnız metinden çıkarılabilen ya da çıkarılamayan yargılar olsun, doğru şık metinle birebir örtüşsün; mutlak ifadeler ('sadece', 'hiçbir zaman') çoğunlukla yanlış şıkta olsun ama doğru şık da bulunsun.\n"),
+    "Matematik": (
+        "\n🔢 MATEMATİK SORU MANTIĞI (tüm sınıflar): günlük hayat senaryosu + model/şekil; verinin tamamı soruda/şekilde yazılı, sonuç tek; çeldiriciler tipik işlem hatalarından (birim, işaret, basamak) türesin; "
+        "'en az/en çok kaç' ve çok adımlı problemler tercih edilsin.\n"),
+    "Din Kültürü ve Ahlak Bilgisi": (
+        "\n🕌 DİN KÜLTÜRÜ SORU MANTIĞI (tüm sınıflar): kavram (ör. tevhid-tekvin-semi-basar), ayet/hadis meali ve değer-davranış ilişkisi; boşluk doldurma, 'yanlıştır/çıkarılamaz', "
+        "maddeli özellikten varlığı/kavramı bulma, günlük durumda uygun davranışı seçme. Dinî bilgiler doğru ve saygılı olsun.\n"),
+    "T.C. İnkılap Tarihi ve Atatürkçülük": (
+        "\n🏛️ İNKILAP SORU MANTIĞI: kısa kaynak (bildiri, mektup, harita, kronoloji) + neden-sonuç, sıralama, I-II-III yargı; tarih ve olay bilgisi kesin doğru olsun.\n"),
+    "İngilizce": (
+        "\n🇬🇧 İNGİLİZCE SORU MANTIĞI: kısa diyalog, ilan, kart ya da tablo + anlama sorusu; kelime-bağlam; dilbilgisi yalnız sınıf düzeyinde.\n"),
+}
+
+
 def _meb_extra(grade_label, subject, topics):
     t = (topics or "")
     x = ""
@@ -5886,6 +5912,8 @@ def _meb_extra(grade_label, subject, topics):
         x += _IHLAS
     if subject == "Din Kültürü ve Ahlak Bilgisi" and ("Allah" in t or "Tevhid" in t) and "5" in str(grade_label)[:2]:
         x += _DIN5_ALLAH
+    if subject in _YZ_ALL:
+        x += _YZ_ALL[subject]
     if "5" in str(grade_label)[:2] and subject in _YZ5:
         x += _YZ5[subject]
     if subject in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi", "Türkçe", "Fen Bilimleri", "T.C. İnkılap Tarihi ve Atatürkçülük"):
@@ -7325,19 +7353,19 @@ _SEEDS = [
     (('5',), 'Fen Bilimleri', ('dünya', 'hareket'), 'Güneş, Dünya ve Ay',
      "Dünya'nın kendi ekseni etrafında dönmesinin sonucu aşağıdakilerden hangisidir?",
      ['Mevsimlerin oluşması', 'Gece ve gündüzün oluşması', "Ay'ın evrelerinin oluşması", 'Ay tutulmasının oluşması'], 1, 'Dönme hareketi gece-gündüzü oluşturur.'),
-    (('5', '6'), 'Türkçe', ('sözcük', 'yazım', 'anlam'), 'Sözlük Sırası',
+    (('4', '5', '6', '7', '8'), 'Türkçe', ('sözcük', 'yazım', 'anlam'), 'Sözlük Sırası',
      "Mustafa, aşağıdaki kelimeleri sözlük sırasına göre dizmiştir:\nI. araba\nII. armut\nIII. arı\nIV. aşçı\nV. avcı\nHangi kelimeler yer değiştirirse Mustafa'nın yaptığı hata düzeltilmiş olur?",
      ['I-II', 'II-III', 'III-IV', 'IV-V'], 1, 'Doğru sıra: araba, arı, armut, aşçı, avcı. II ile III yer değiştirmelidir.'),
-    (('5', '6'), 'Türkçe', ('cümle', 'anlam'), 'Öznel ve Nesnel Cümle',
+    (('4', '5', '6', '7', '8'), 'Türkçe', ('cümle', 'anlam'), 'Öznel ve Nesnel Cümle',
      'Söyleyenin kendi düşüncesini ya da beğenisini içeren cümlelere öznel, kişiden kişiye değişmeyen doğrulanabilir cümlelere nesnel cümle denir.\nBuna göre aşağıdakilerden hangisi nesnel bir cümledir?',
      ['Bu film çok sıkıcıydı.', "Ankara, Türkiye'nin başkentidir.", 'En güzel mevsim ilkbahardır.', 'Bu pasta harika görünüyor.'], 1, 'Doğruluğu kişiye göre değişmeyen cümle nesneldir.'),
-    (('5', '6'), 'Türkçe', ('noktalama', 'yazım'), 'Noktalama',
+    (('4', '5', '6', '7', '8'), 'Türkçe', ('noktalama', 'yazım'), 'Noktalama',
      'Aşağıdaki cümlelerin hangisinde nokta, sayıdan sonra sıra bildirmek için kullanılmıştır?',
      ["Maç 20.30'da başlayacak.", 'Dr. Ali bugün muayene yapacak.', 'Kardeşim 3. sınıfta okuyor.', 'Okul 23.04.2025 tarihinde açıldı.'], 2, '3. sınıf: sıra bildiren sayıdan sonra nokta.'),
-    (('5', '6'), 'Türkçe', ('söz sanat', 'şiir', 'anlam'), 'Söz Sanatı',
+    (('4', '5', '6', '7', '8'), 'Türkçe', ('söz sanat', 'şiir', 'anlam'), 'Söz Sanatı',
      'İnsana özgü özelliklerin insan dışındaki varlıklara verilmesine kişileştirme denir.\nAşağıdakilerden hangisinde kişileştirme yapılmıştır?',
      ['Güneş, bulutların ardından bize gülümsedi.', 'Güneş doğudan doğar.', 'Bulutlar gökyüzünü kapladı.', 'Yağmur dün gece başladı.'], 0, "Güneş'in gülümsemesi insana özgü bir özelliktir."),
-    (('5', '6'), 'Türkçe', ('anlam', 'eş', 'zıt'), 'Zıt Anlam',
+    (('4', '5', '6', '7', '8'), 'Türkçe', ('anlam', 'eş', 'zıt'), 'Zıt Anlam',
      'Aşağıdaki sözcük çiftlerinden hangisi zıt anlamlıdır?',
      ['Sevinç – mutluluk', 'Uzak – yakın', 'Güzel – hoş', 'Cesur – yürekli'], 1, 'Uzak ve yakın birbirinin zıddıdır.'),
     (('5', '6'), 'Sosyal Bilgiler', ('harita', 'iklim', 'evimiz', 'yer şekilleri', 'anadolu', 'miras'), 'Ortak Mirasımız',
