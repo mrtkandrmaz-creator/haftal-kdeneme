@@ -1,0 +1,53 @@
+{
+ "v": 1,
+ "grade": "5",
+ "units": {
+  "Erdemler": [
+   "Konu, metnin üzerinde durduğu şeydir; ana fikir (ana düşünce) yazarın metinle vermek istediği mesajdır. Başlık, metnin tamamını kapsayacak şekilde seçilir.",
+   "Yardımcı fikirler, ana fikri destekleyen ve açıklayan düşüncelerdir.",
+   "Eş anlamlı sözcükler yazılışları farklı, anlamları aynı ya da çok yakın olan sözcüklerdir (güzel – hoş, okul – mektep). Zıt anlamlı sözcükler birbirinin karşıtıdır (sıcak – soğuk, genç – yaşlı).",
+   "Bir sözcüğün gerçek anlamı ilk akla gelen anlamıdır; mecaz anlam sözcüğün benzetme yoluyla kazandığı anlamdır (tatlı su: gerçek, tatlı söz: mecaz).",
+   "Dürüstlük, yardımseverlik, sabır, hoşgörü ve saygı erdemlerdendir."
+  ],
+  "Millî Mücadele ve Atatürk": [
+   "Mustafa Kemal Atatürk 1881'de Selanik'te doğdu; 19 Mayıs 1919'da Samsun'a çıkarak Millî Mücadele'yi başlattı.",
+   "TBMM 23 Nisan 1920'de Ankara'da açıldı; Başkomutanlık Meydan Muharebesi'nin zaferi 30 Ağustos 1922'dir; Cumhuriyet 29 Ekim 1923'te ilan edildi.",
+   "İstiklal Marşı'nın şairi Mehmet Akif Ersoy'dur; 12 Mart 1921'de kabul edilmiştir.",
+   "Atatürk 10 Kasım 1938'de vefat etmiştir. 'Yurtta sulh, cihanda sulh' sözü onundur.",
+   "Noktalama: cümle nokta, soru işareti veya ünlem ile biter; soru anlamı taşıyan cümlenin sonuna soru işareti konur."
+  ],
+  "Doğa ve Evren": [
+   "Bilgilendirici metin okuyucuya bilgi vermek için yazılır; öyküleyici metin olay anlatır; betimleyici metin bir varlığı ya da yeri okuyucunun gözünde canlandıracak şekilde anlatır.",
+   "Neden-sonuç cümlelerinde bir olayın nedeni ve sonucu birlikte verilir ('Yağmur yağdığı için yollar ıslandı': neden yağmur, sonuç yolların ıslanması).",
+   "Cümlede anlam: cümle, bir duygu, düşünce ya da olayı anlatan sözcük grubudur; cümlede neden-sonuç, amaç-sonuç, karşılaştırma gibi anlam ilişkileri bulunur.",
+   "Doğayı korumak, çevreyi temiz tutmak ve canlılara zarar vermemek doğa sevgisinin göstergesidir."
+  ],
+  "Millî Kültürümüz": [
+   "Deyim, genellikle gerçek anlamından farklı anlam taşıyan kalıplaşmış sözdür (gözden düşmek: değerini yitirmek). Atasözü, uzun deneyimlerden doğmuş öğüt veren kalıplaşmış sözdür (Damlaya damlaya göl olur: küçük birikimler büyük sonuç verir).",
+   "Hikâye (öykü) unsurları: olay, kişiler, yer ve zamandır. Hikâye giriş, gelişme ve sonuç bölümlerinden oluşur.",
+   "Türk alfabesinde 29 harf vardır: 8 ünlü (a, e, ı, i, o, ö, u, ü) ve 21 ünsüz harf. Bir kelimedeki hece sayısı ünlü harf sayısına eşittir.",
+   "Kalın ünlüler: a, ı, o, u; ince ünlüler: e, i, ö, ü. Sert ünsüzler: f, s, t, k, ç, ş, h, p.",
+   "Gelenekler, bayramlar, el sanatları ve halk oyunları millî kültürümüzün parçalarıdır."
+  ],
+  "Bilim ve Teknoloji": [
+   "Sütun grafiğinde her sütunun yüksekliği o veriyi gösterir; tabloda satır ve sütun başlıkları verinin neyi gösterdiğini söyler. Toplam, fark ve karşılaştırma işlemleri veriden hesaplanır.",
+   "Başlık, metnin konusunu kısaca ve tamamını kapsayacak biçimde ifade eder.",
+   "Yazım kuralları: cümle büyük harfle başlar; özel adlar büyük harfle yazılır; 'ğ' sözcük başında yazılmaz; 'ki' bağlaç ise ayrı, ek ise bitişik yazılır (Duydum ki geliyor; evdeki).",
+   "'De/da' bağlaç ise ayrı yazılır ve ünsüz benzeşmesine uymaz (Ali de geldi); bulunma eki ise bitişik yazılır (evde, okulda).",
+   "Soru eki 'mi' sözcükten ayrı yazılır (Geldin mi?)."
+  ],
+  "Sanat ve Estetik": [
+   "Şiirde dizelere mısra, dörtlüklere kıta denir; dize sonlarındaki ses benzerliğine uyak (kafiye) denir.",
+   "Benzetme, aralarında ortak yön bulunan iki şeyin birbirine benzetilmesidir ('gibi', 'kadar' ile yapılabilir). Kişileştirme, insan olmayan varlıklara insana özgü özellik vermektir. Abartma bir şeyi olduğundan çok gösterir.",
+   "Paragraf, bir ana düşüncenin anlatıldığı anlamlı cümleler topluluğudur; paragraf yeni satıra başlayarak içeriden yazılır.",
+   "Sanat; resim, müzik, heykel, edebiyat gibi alanlarda güzelliğin ve duyguların ifadesidir."
+  ],
+  "Birey ve Toplum": [
+   "Ad (isim) varlıkları ve kavramları karşılayan sözcüktür. Özel adlar tek varlığı karşılar ve büyük harfle başlar (Ankara, Ayşe); cins adlar aynı türden varlıkların ortak adıdır (şehir, kız).",
+   "Sıfat (ön ad), adı niteleyen ya da belirten sözcüktür (güzel çiçek, üç kitap); sıfat adın önünde bulunur.",
+   "Zamir (adıl) adın yerini tutar (ben, sen, o, bu, şu).",
+   "Cümlenin temel öğeleri yüklem ve öznedir; yüklem cümlede iş, oluş veya durum bildirir, özne yüklemi yapan varlıktır. Yüklemi bulmak için genellikle cümlenin sonuna bakılır.",
+   "Kesme işareti özel adlardan sonra gelen ekleri ayırır (Ankara'ya, Atatürk'ün)."
+  ]
+ }
+}

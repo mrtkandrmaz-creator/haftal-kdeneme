@@ -1,0 +1,47 @@
+{
+ "v": 1,
+ "grade": "5",
+ "units": {
+  "Hello!": [
+   "Greetings: Hello / Hi (merhaba), Good morning (günaydın), Good afternoon (iyi öğlenler/tünaydın), Good evening (iyi akşamlar), Good night (iyi geceler: ayrılırken/yatmadan önce).",
+   "'How are you?' → 'I'm fine, thank you. And you?'. 'What's your name?' → 'My name is ...' or 'I'm ...'. 'Nice to meet you.' → 'Nice to meet you, too.'",
+   "'Where are you from?' → 'I'm from Turkey.' Nationality: Turkey – Turkish, Germany – German, England – English, France – French.",
+   "'How old are you?' → 'I'm ten (years old).' İngiliz alfabesinde 26 harf vardır."
+  ],
+  "My Town": [
+   "Places: library (kütüphane), hospital (hastane), school (okul), market / supermarket (market), bakery (fırın), post office (postane), bank (banka), park (park), museum (müze), cinema (sinema), pharmacy (eczane), police station (karakol).",
+   "Prepositions of place: next to (yanında), opposite (karşısında), between (arasında), behind (arkasında), in front of (önünde), on (üstünde), in (içinde), under (altında).",
+   "Directions: Turn left (sola dön), Turn right (sağa dön), Go straight ahead (düz git). 'Where is the library?' → 'It's next to the bank.'"
+  ],
+  "Games and Hobbies": [
+   "'can' bir şeyi yapabilmeyi anlatır: 'I can swim.' Olumsuzu 'can't' (cannot): 'She can't play the guitar.' Soru: 'Can you ride a bike?' → 'Yes, I can.' / 'No, I can't.'",
+   "Hobbies: reading books, painting, playing chess, riding a bike, swimming, dancing, collecting stamps, playing the guitar.",
+   "'like / love / enjoy' fiilinden sonra fiil -ing alır: 'I like swimming.' 'I don't like painting.' Soru: 'What do you do in your free time?'"
+  ],
+  "My Daily Routine": [
+   "Daily routines: wake up / get up, brush my teeth, have breakfast, go to school, have lunch, do my homework, have dinner, watch TV, go to bed.",
+   "Time: 'What time is it?' → 'It's seven o'clock.' half past seven (7:30), quarter past seven (7:15), quarter to eight (7:45).",
+   "Frequency adverbs: always (her zaman), usually (genellikle), sometimes (bazen), never (asla). 'I usually get up at seven.' He/She/It ile fiile -s eklenir: 'She gets up at seven.'"
+  ],
+  "Health": [
+   "Body parts: head, arm, leg, hand, foot (feet), eye, ear, nose, mouth, tooth (teeth), stomach.",
+   "Illnesses: headache, toothache, stomachache, cold, cough, fever, sore throat. 'What's the matter?' → 'I have a headache.'",
+   "Advice with should: 'You should drink water.' 'You should see a doctor.' 'You shouldn't eat too much candy.' Doctor, dentist, nurse sağlık çalışanlarıdır."
+  ],
+  "Movies": [
+   "Movie genres: comedy (komedi), cartoon / animation (çizgi film), horror (korku), action (aksiyon), adventure (macera), fantasy (fantastik), documentary (belgesel), science fiction (bilim kurgu).",
+   "Opinions: 'I think it's funny / boring / exciting / scary.' 'What kind of movies do you like?' → 'I like comedies.'",
+   "Past simple basics: 'was / were' (I was at the cinema yesterday. They were at home.); düzenli fiiller -ed alır: watch – watched."
+  ],
+  "Party Time": [
+   "Invitations: 'Would you like to come to my party?' → 'Yes, I'd love to.' / 'Sorry, I can't.' 'Can I have some juice, please?'",
+   "Months: January, February, March, April, May, June, July, August, September, October, November, December. Ordinal numbers: first, second, third, fourth, fifth.",
+   "'When is your birthday?' → 'It's on May the fifth.' Party food and drinks: cake, pizza, sandwich, juice, lemonade."
+  ],
+  "Fitness": [
+   "Sports: football, basketball, volleyball, tennis, swimming, running, jogging.",
+   "Healthy life: eat fruit and vegetables, drink water, sleep early, do exercise. Junk food (chips, fast food) sağlıksızdır; 'It's good for your health.'",
+   "'How often do you exercise?' → 'I exercise twice a week.' (once, twice, three times a week)"
+  ]
+ }
+}
