@@ -1,0 +1,125 @@
+{
+ "v": 1,
+ "grade": "5",
+ "units": {
+  "Erdemler": [
+   {
+    "id": "e1",
+    "baslik": "Kayıp Cüzdan",
+    "metin": "Emre, okul çıkışında kaldırımın kenarında kahverengi bir cüzdan buldu. Cüzdanı açınca içinde biraz para ve bir kimlik kartı gördü. Parayı harçlığına katmayı bir an bile düşünmedi. Cüzdanı alıp doğruca okulun müdür yardımcısına götürdü. Müdür yardımcısı kimlikteki bilgilerden sahibini buldu ve onu aradı. Ertesi gün cüzdanın sahibi olan yaşlı amca okula geldi ve Emre'ye teşekkür etti. Emre ise gülümseyerek: \"Ben yalnızca bana öğretileni yaptım.\" dedi. O gün sınıfta herkes dürüstlüğün küçük davranışlarla başladığını konuştu."
+   },
+   {
+    "id": "e2",
+    "baslik": "Komşuluk",
+    "metin": "Ayşe Hanım'ın apartmanında yaşayan yaşlı komşusu hastalanınca bütün apartman seferber oldu. Birinci kattaki Murat Amca market alışverişini yaptı. İkinci kattaki Zeynep her akşam çorba götürdü. Üçüncü kattaki Ali ise ilaçları eczaneden aldı. Üç gün sonra yaşlı komşu iyileşti. Kapısını açtığında merdivende hepsinin yazdığı tebrik kartlarını buldu. \"İyi ki komşularım var.\" dedi gözleri dolarak. Yardımlaşmak, hem verenin hem de alanın yüreğini ısıtır."
+   },
+   {
+    "id": "e3",
+    "baslik": "Fidan",
+    "metin": "Dede, torunu Defne'yle birlikte bahçeye bir elma fidanı dikti. Defne, \"Dede, elmaları ne zaman yiyeceğiz?\" diye sordu. Dede gülümseyerek: \"Sabret kızım. Fidan önce kök salacak, sonra büyüyecek, yıllar sonra meyve verecek. Biz de ona her gün su verip bakım yapacağız.\" dedi. Defne her gün fidanı suladı. Beş yıl sonra ağaç ilk elmalarını verdi. Defne o elmayı ısırırken sabrın ve emeğin tatlı bir sonuç getirdiğini anladı."
+   }
+  ],
+  "Millî Mücadele ve Atatürk": [
+   {
+    "id": "m1",
+    "baslik": "19 Mayıs 1919",
+    "metin": "Mustafa Kemal Atatürk, 19 Mayıs 1919'da Samsun'a çıktı. Bu tarih, Millî Mücadele'nin başlangıcı kabul edilir. Atatürk, Anadolu'nun çeşitli yerlerini dolaşarak halkı birlik olmaya çağırdı. Daha sonra Ankara'da 23 Nisan 1920'de Türkiye Büyük Millet Meclisi açıldı. Millî Mücadele yıllarında Türk milleti bağımsızlığı için büyük fedakârlıklar yaptı. Bugün her yıl 19 Mayıs, Atatürk'ü Anma, Gençlik ve Spor Bayramı olarak kutlanır."
+   },
+   {
+    "id": "m2",
+    "baslik": "Cumhuriyet'in İlanı",
+    "metin": "Millî Mücadele'yi kazanan Türk milleti yeni bir devlet kurdu. 29 Ekim 1923'te Cumhuriyet ilan edildi ve Mustafa Kemal Atatürk ilk Cumhurbaşkanı seçildi. Cumhuriyet ile birlikte millet, yönetimde söz sahibi oldu. Her yıl 29 Ekim'de Cumhuriyet Bayramı büyük bir coşkuyla kutlanır. Okullarda şiirler okunur, şarkılar söylenir, bayraklar asılır."
+   },
+   {
+    "id": "m3",
+    "baslik": "İstiklal Marşı",
+    "metin": "İstiklal Marşı'nın şairi Mehmet Akif Ersoy'dur. Marş, 12 Mart 1921'de Türkiye Büyük Millet Meclisi tarafından millî marş olarak kabul edildi. Bu şiir, Türk milletinin bağımsızlık azmini anlatır. Millî Mücadele yıllarında yazıldığı için içinde vatan sevgisi ve özgürlük duygusu çok güçlüdür. Okullarda her hafta bu marş saygıyla okunur."
+   }
+  ],
+  "Doğa ve Evren": [
+   {
+    "id": "d1",
+    "baslik": "Su Döngüsü",
+    "metin": "Güneş'in ısıttığı denizlerden, göllerden ve akarsulardan su buharlaşarak yükselir. Yükselen su buharı soğuyunca yoğuşur ve bulutları oluşturur. Bulutlardaki su damlacıkları birleşip ağırlaşınca yağmur ya da kar olarak yeryüzüne düşer. Yağan sular akarsulara ve denizlere karışır, bir kısmı da toprağa sızar. Böylece su döngüsü sürekli yinelenir. Bu döngü sayesinde su sürekli yenilenir."
+   },
+   {
+    "id": "d2",
+    "baslik": "Arıların Dünyası",
+    "metin": "Bal arıları kovanlarda topluluk hâlinde yaşar. Bir kovanda görevler paylaşılmıştır: İşçi arılar çiçeklerden nektar toplar, kovanı temizler ve yavruları besler. Ana arı ise yumurta bırakır. Arılar çiçekten çiçeğe konarken bitkilerin tozlaşmasına yardımcı olur. Tozlaşma olmazsa birçok meyve ve sebze oluşamaz. Bu yüzden arılar doğadaki dengenin önemli canlılarındandır."
+   },
+   {
+    "id": "d3",
+    "baslik": "Mevsimler",
+    "metin": "Dünya, Güneş'in etrafında dönerken eksen eğikliği nedeniyle yılın farklı zamanlarında Güneş ışıklarını farklı açıyla alır. Bu yüzden mevsimler oluşur. Yaz aylarında günler uzun, havalar sıcaktır. Kış aylarında ise günler kısalır ve hava soğur. İlkbahar ve sonbahar geçiş mevsimleridir. Doğa her mevsimde farklı bir görünüm kazanır: İlkbaharda çiçekler açar, sonbaharda yapraklar dökülür."
+   }
+  ],
+  "Millî Kültürümüz": [
+   {
+    "id": "k1",
+    "baslik": "Nasreddin Hoca'nın Kazanı",
+    "metin": "Nasreddin Hoca komşusundan bir kazan ödünç almış. Birkaç gün sonra kazanı geri verirken içine küçük bir tencere koymuş. Komşu şaşırmış: \"Bu tencere nedir?\" diye sormuş. Hoca: \"Kazanın yavrusu.\" demiş. Komşu sevinerek tencereyi almış. Bir süre sonra Hoca kazanı yine ödünç istemiş ama geri vermemiş. Komşu gelip kazanını sorunca Hoca üzgün bir sesle: \"Kazanınız öldü.\" demiş. Komşu: \"Kazan hiç ölür mü?\" diye itiraz edince Hoca: \"Yavru doğuran kazan ölmez mi?\" karşılığını vermiş."
+   },
+   {
+    "id": "k2",
+    "baslik": "Bayram Sevinci",
+    "metin": "Bayramlar, milletimizin birlik ve beraberlik duygularını güçlendiren özel günlerdir. Bayramlarda büyüklerin elleri öpülür, akrabalar ve komşular ziyaret edilir, çocuklara harçlık verilir. Küsler barışır, yardıma muhtaç kişiler unutulmaz. Evlerde tatlılar yapılır, sofralar kurulur. Bu gelenekler kuşaktan kuşağa aktarılarak bugüne kadar gelmiştir."
+   },
+   {
+    "id": "k3",
+    "baslik": "Ebru Sanatı",
+    "metin": "Ebru, suyun yüzeyine damlatılan boyaların özel bir fırça ve tarak yardımıyla şekillendirilip kâğıda aktarılması sanatıdır. Boyalar, kıvamlı bir sıvının üzerinde dağılmadan durur. Sanatçı desen vermek için ince bir çubuk kullanır. Ebru, Türkler tarafından yüzyıllardır yapılan geleneksel bir sanattır. Ebru sanatı UNESCO'nun Somut Olmayan Kültürel Miras listesinde yer almaktadır."
+   }
+  ],
+  "Bilim ve Teknoloji": [
+   {
+    "id": "b1",
+    "baslik": "Cezeri",
+    "metin": "Cezeri, 12. yüzyılda yaşamış bir Türk-İslam bilim insanıdır. Otomatik makineler, su saatleri ve sulama araçları yapmıştır. Yazdığı kitapta birçok mekanik düzeneği çizimleriyle anlatmıştır. Bu çalışmaları nedeniyle \"robotların babası\" olarak da anılır. Cezeri'nin eserleri, bilimin yüzyıllar boyunca nasıl geliştiğini gösteren önemli örneklerdir."
+   },
+   {
+    "id": "b2",
+    "baslik": "Teknoloji ve Dikkat",
+    "metin": "Teknolojik aletler hayatımızı kolaylaştırır. Telefon, bilgisayar ve tablet ile bilgiye hızlıca ulaşabiliriz. Ancak bu araçları çok uzun süre kullanmak gözlerimize, uykumuza ve derslerimize zarar verebilir. Bu nedenle ekran karşısında geçirilen süre sınırlandırılmalıdır. Ayrıca internette kişisel bilgilerimizi tanımadığımız kişilerle paylaşmamalıyız."
+   },
+   {
+    "id": "b3",
+    "baslik": "Pusula",
+    "metin": "Pusula, yön bulmaya yarayan bir araçtır. İçindeki mıknatıslı iğne, Dünya'nın manyetik alanı sayesinde hep kuzey-güney doğrultusunda durur. Eskiden denizciler yollarını bulmak için pusula kullanırdı. Bugün ise telefonlarda ve gemilerde elektronik pusulalar bulunur. Pusula sayesinde yönümüzü kaybetmeden yolculuk yapabiliriz."
+   }
+  ],
+  "Sanat ve Estetik": [
+   {
+    "id": "s1",
+    "baslik": "Resim Yapan Çocuk",
+    "metin": "Elif, her gün okuldan döndüğünde resim defterini açar ve gördüklerini çizerdi. Bazen bahçedeki kediyi, bazen pencereden görünen ağacı resmederdi. Bir gün resim öğretmeni Elif'in çizdiklerini sınıfa gösterdi. \"Güzel resim yapmak için önce dikkatle bakmayı öğrenmek gerekir.\" dedi. Elif o günden sonra çevresindeki şeylere daha dikkatli bakmaya başladı ve resimleri her geçen gün daha da güzelleşti."
+   },
+   {
+    "id": "s2",
+    "baslik": "Mimar Sinan",
+    "metin": "Mimar Sinan, 16. yüzyılda yaşamış büyük bir Osmanlı mimarıdır. Birçok cami, köprü ve külliye yapmıştır. Edirne'deki Selimiye Camii, kendisinin \"ustalık eserim\" dediği yapıdır. Eserleri sağlamlığı, estetiği ve akustiğiyle tanınır. Aradan yüzyıllar geçmesine rağmen yapıları hâlâ ayaktadır."
+   },
+   {
+    "id": "s3",
+    "baslik": "Müzik ve Duygular",
+    "metin": "Müzik, duyguları anlatmanın güzel bir yoludur. Neşeli bir şarkı dinlerken mutlu oluruz, yavaş bir ezgi bizi sakinleştirir. Her toplumun kendine özgü müzik aletleri vardır. Türk müziğinde bağlama, kemençe ve ney gibi çalgılar kullanılır. Müzikle uğraşan çocukların dikkati ve hayal gücü gelişir."
+   }
+  ],
+  "Birey ve Toplum": [
+   {
+    "id": "t1",
+    "baslik": "Kitap Kardeşliği",
+    "metin": "Okulumuzda \"Kitap Kardeşliği\" adıyla bir proje başlatıldı. Öğrenciler evlerindeki okunmuş kitapları getirdi. Toplanan kitaplar köydeki bir okulun kütüphanesine gönderildi. Projeye katılan Bora, \"Okuduğum kitaplar başkalarına da fayda sağlıyor.\" dedi. Gönüllü olarak yapılan bu tür çalışmalar toplumda dayanışmayı güçlendirir."
+   },
+   {
+    "id": "t2",
+    "baslik": "Trafikte Kurallar",
+    "metin": "Toplumda düzenin sağlanması için herkesin uyması gereken kurallar vardır. Trafik kuralları da bunlardan biridir. Yayalar karşıdan karşıya geçerken yaya geçidini kullanmalı ve kırmızı ışıkta beklemelidir. Sürücüler de yayalara yol vermelidir. Kurallara uyulduğunda kazalar azalır, herkes güvende olur."
+   },
+   {
+    "id": "t3",
+    "baslik": "Farklılıklarımız Zenginliğimiz",
+    "metin": "Sınıfımızdaki arkadaşlarımız farklı şehirlerden gelmiştir. Kimi Karadeniz'den, kimi Ege'den, kimi de Doğu Anadolu'dan. Her birinin kendine özgü yemeği, türküsü ve oyunu vardır. Öğretmenimiz, \"Farklılıklarımız bizim zenginliğimizdir.\" dedi. Biz de her hafta bir arkadaşımızın yöresini tanıttık. Böylece birbirimize daha çok saygı duymayı öğrendik."
+   }
+  ]
+ }
+}
