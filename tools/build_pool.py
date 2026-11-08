@@ -55,10 +55,11 @@ def collect_bad(bad_dir):
     out = set()
     if not bad_dir or not os.path.isdir(bad_dir):
         return out
-    files = [os.path.join(bad_dir, "bad.json")]
+    names = ("bad.json", "quarantine.json")  # hatalı bildirimler + şüpheli (çözüm verisinden) sorular
+    files = [os.path.join(bad_dir, n) for n in names]
     pd = os.path.join(bad_dir, "profiles")
     if os.path.isdir(pd):
-        files += [os.path.join(pd, p, "bad.json") for p in os.listdir(pd)]
+        files += [os.path.join(pd, p, n) for p in os.listdir(pd) for n in names]
     for fp in files:
         try:
             with open(fp, encoding="utf-8") as f:
@@ -92,6 +93,43 @@ def purge_bad(ai, root, bad):
     return removed
 
 
+def collect_liked(bad_dir):
+    """data/liked.json ve data/profiles/*/liked.json: beğenilen sorular (üretimde tarz örneği olur)."""
+    out = []
+    if not bad_dir or not os.path.isdir(bad_dir):
+        return out
+    files = [os.path.join(bad_dir, "liked.json")]
+    pd = os.path.join(bad_dir, "profiles")
+    if os.path.isdir(pd):
+        files += [os.path.join(pd, p, "liked.json") for p in os.listdir(pd)]
+    for fp in files:
+        try:
+            with open(fp, encoding="utf-8") as f:
+                out += [x for x in json.load(f) if isinstance(x, dict)]
+        except Exception:
+            pass
+    return out
+
+
+def load_passages(root):
+    """sources/<sınıf>/turkce_metinler.json: {ünite: [{id, baslik, metin}]}"""
+    out = {}
+    base = os.path.join(root, "sources")
+    if os.path.isdir(base):
+        for g in os.listdir(base):
+            fp = os.path.join(base, g, "turkce_metinler.json")
+            try:
+                with open(fp, encoding="utf-8") as f:
+                    out[g] = (json.load(f) or {}).get("units", {})
+            except Exception:
+                pass
+    return out
+
+
+def _norm_txt(t):
+    return re.sub(r"\s+", " ", str(t or "").strip().lower())
+
+
 def targets(cur, ai, grades, subjects):
     out = []
     for g in grades:
@@ -107,15 +145,22 @@ def targets(cur, ai, grades, subjects):
     return out
 
 
+def _ls_txt(ai):
+    d = getattr(ai, "LAST_STRICT", None) or {}
+    return f"şık tutmadı {d.get('mismatch', 0)}, hatalı(X) {d.get('x', 0)}, ÇÖZÜCÜYE ULAŞILAMADI {d.get('unreach', 0)}"
+
+
 def build(ai, cur, args, gen=None, strict=None):
     """gen(plan, label, difficulty, scope) -> (qs, err); testte sahte üretici verilebilir."""
     gen = gen or (lambda plan, label, diff, scope, avoid: ai.generate_mc(
         plan, label, diff, scope, avoid=avoid, use_bank=False, deposit=False, verify=True, count=False))
     if strict is None:
         _gk, _mk = ai.load_keys()
-        strict = lambda qs: ai.verify_strict(qs, _gk, _mk)
+        strict = lambda qs, facts=None: ai.verify_strict(qs, _gk, _mk, facts=facts)
     t0 = time.time()
     bad = collect_bad(getattr(args, "bad_dir", ""))
+    liked = collect_liked(getattr(args, "bad_dir", ""))
+    passages = load_passages(os.environ.get("DENEMEMATIK_ROOT", ROOT))
     if bad:
         print("hatalı bildirimlerden silinen:", purge_bad(ai, os.environ["DENEMEMATIK_POOL_DIR"], bad))
     grades = [g.strip() for g in args.grades.split(",") if g.strip()]
@@ -128,7 +173,23 @@ def build(ai, cur, args, gen=None, strict=None):
         stems = {ai._stem(q) for q in have}
         di = random.choice(args.difficulty_idx)
         diff = cur.DIFFICULTIES[di]
-        plan = [{"subject": sj, "n": args.per_unit, "topics": f"{unit}: " + ", ".join(topics), "short": unit}]
+        topics_txt = f"{unit}: " + ", ".join(topics)
+        n_ask = args.per_unit
+        chosen = None
+        ps = (passages.get(g) or {}).get(unit) if sj == "Türkçe" else None
+        if ps:  # Türkçe: onaylı okuma metni seç (en az kullanılan); sorular yalnızca bu metne dayanır
+            used = {p["id"]: sum(1 for q in have if q.get("pid") == p["id"]) for p in ps}
+            chosen = min(ps, key=lambda p: (used[p["id"]], random.random()))
+            if used[chosen["id"]] >= args.max_per_passage:
+                continue
+            n_ask = min(n_ask, 4)
+            topics_txt += (f"\n📖 KAYNAK METİN (başlık: {chosen['baslik']}):\n{chosen['metin']}\n"
+                           "KURAL: Soruların TAMAMI yalnızca bu metne dayansın (ana fikir, konu, başlık, çıkarım, neden-sonuç, sözcük/deyim anlamı, anlatım özellikleri). "
+                           "'passage' alanına bu metni AYNEN, hiç değiştirmeden yaz. Metinde olmayan bilgiyi sorma; doğru cevap metinden kesin olarak çıkarılabilsin ve tek bir şık doğru olsun. "
+                           "Her soru farklı bir beceriyi ölçsün.")
+        ex = [x["q"] for x in liked if (x.get("q") or {}).get("subject") == sj and x.get("grade_label") == label and isinstance(x.get("q"), dict)]
+        ai.STYLE_EXAMPLES[sj] = ex
+        plan = [{"subject": sj, "n": n_ask, "topics": topics_txt, "short": unit}]
         try:
             qs, err = gen(plan, label, diff, unit, {sj: list(stems)[-80:]})
         except Exception as e:
@@ -145,16 +206,27 @@ def build(ai, cur, args, gen=None, strict=None):
                 continue
             if s in bad:
                 continue
+            if chosen:  # metni değiştirmiş ya da metinden bağımsız soruları ele; metni AYNEN kaynak metinle değiştir
+                import difflib
+                if difflib.SequenceMatcher(None, _norm_txt(q.get("passage")), _norm_txt(chosen["metin"])).ratio() < 0.85:
+                    continue
+                q["passage"] = chosen["metin"]
+                q["pid"] = chosen["id"]
             stems.add(s)
             new.append(q)
+        ai.LAST_STRICT = {}
         before = len(new)
-        new = strict(new) if new else []  # sıkı doğrulama: iki bağımsız çözüm de anahtarla aynı olmalı
+        facts = ai.src_facts(sj, label, f"{unit}: " + ", ".join(topics))
+        try:
+            new = strict(new, facts=facts) if new else []
+        except TypeError:
+            new = strict(new) if new else []  # sıkı doğrulama: iki bağımsız çözüm de anahtarla aynı olmalı
         rejected_strict = before - len(new)
         new = [{**{k: v for k, v in q.items() if k not in KEEP_DROP}, "unit": unit, "topics": ", ".join(topics)[:160], "d": di, "ts": int(time.time())} for q in new]
         if new:
             write_pool(path, have + new)
             added_total += len(new)
-        print(f"{label} | {sj} | {unit[:40]} | +{len(new)} (sıkı doğrulamada elenen {rejected_strict}) (havuz {len(have) + len(new)})" + (f" | {err}" if err and not new else ""))
+        print(f"{label} | {sj} | {unit[:40]} | +{len(new)} (elenen {rejected_strict}: {_ls_txt(ai)}) (havuz {len(have) + len(new)})" + (f" | {err}" if err and not new else ""))
     print("TOPLAM eklenen:", added_total)
     return added_total
 
@@ -166,6 +238,7 @@ def main():
     ap.add_argument("--per-unit", type=int, default=10)
     ap.add_argument("--max-per-unit", type=int, default=80, help="bir ünitede bu kadar soruya ulaşılınca atlanır")
     ap.add_argument("--minutes", type=float, default=40)
+    ap.add_argument("--max-per-passage", type=int, default=12, help="bir okuma metninden bu kadar soruya ulaşılınca metin atlanır")
     ap.add_argument("--bad-dir", default="", help="userdata dalındaki data/ klasörü (bad.json içerir); bildirilen sorular havuzdan silinir")
     ap.add_argument("--difficulty-idx", default="1,2,3,4", help="curriculum.DIFFICULTIES indeksleri (0-5), virgülle")
     args = ap.parse_args()
@@ -173,6 +246,7 @@ def main():
     os.environ["DENEMEMATIK_NO_FACTORY"] = "1"
     os.environ["DENEMEMATIK_NO_POOL"] = "1"
     os.environ["DENEMEMATIK_POOL_DIR"] = os.path.join(ROOT, "pool")
+    os.environ["DENEMEMATIK_SRC_DIR"] = os.path.join(ROOT, "sources")
     ai, cur, _store = load_pkg(os.path.join(ROOT, "app.py"))
     gk, mk = ai.load_keys()
     if not gk and not mk and not ai.extra_keys():
