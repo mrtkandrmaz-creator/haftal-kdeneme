@@ -8517,12 +8517,12 @@ _TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aran
     "Matematik": [
         ("geometri", r"geometri|şekil|çember|üçgen|dörtgen|doğru|ışın|açı\b|açılar|nokta", r"üçgen|dörtgen|dikdörtgen|kare|çember|daire|açı|kenar|köşe|doğru|ışın|nokta|çokgen|şekil|simetri|paralel|dik\b|köşegen|çevre|alan|yarıçap|çap\b|merkez|cetvel|iletki|pergel|birim kare"),
         ("kesir", r"kesir", r"kesir|payda|\bpay\b|bütün|tam sayılı|\d\s*/\s*\d|bölü|\bve\b.*\bde\b"),
-        ("olasılık", r"olasılık", r"olasılık|imkânsız|imkansız|kesin|olay|şans|zar|para|torba|kura|çekil"),
-        ("veri", r"istatistik|veri\b|grafik", r"veri|tablo|grafik|sütun|çubuk|anket|sıklık|kategorik|en çok|en az|araştır|sınıf"),
+        ("olasılık", r"olasılık", r"olasılık|imkânsız|imkansız|\\bkesin\\b|olay|şans|\\bzar\\b|madeni para|\\bpara\\b|torba|kura|çekil|çark"),
+        ("veri", r"istatistik|veri\b|grafik", r"veri|tablo|grafik|sütun|çubuk|anket|sıklık|kategorik|en çok|en az|araştır"),
     ],
     "Fen Bilimleri": [
         ("ay", r"güneş|dünya|\bay\b|ay'ın|ayın|tutulma|evre", r"güneş|dünya|\bay\b|ay'|ayın|evre|tutulma|dolunay|hilal|dördün|yörünge|eksen|gece|gündüz|mevsim|uydu|gök"),
-        ("kuvvet", r"kuvvet|sürtünme|dinamometre|ağırlık", r"kuvvet|sürtünme|dinamometre|newton|ağırlık|kütle|yay|itme|çekme|hareket"),
+        ("kuvvet", r"kuvvet|sürtünme|dinamometre|ağırlık", r"kuvvet|sürtünme|dinamometre|newton|ağırlık|kütle|\\byay\\b|\\bitme\\b|\\bçekme\\b|hareket"),
         ("madde", r"madde|ısı|sıcaklık|erime|donma", r"madde|ısı|sıcaklık|erime|donma|kaynama|buhar|katı|sıvı|gaz|termometre|hâl|hal\b|yoğuş|°"),
         ("ışık", r"ışık|gölge|yansıma", r"ışık|gölge|yansı|ayna|saydam|donuk|kaynak|işın|ışın|yayıl"),
         ("elektrik", r"elektrik|devre", r"devre|pil|ampul|akım|lamba|anahtar|elektrik|seri|paralel|iletken|yalıtkan"),
@@ -8544,7 +8544,13 @@ def _on_topic(q, topics, subject=None):
         if groups:
             sel = [(n, c) for n, trig, c in groups if re.search(trig, tl)]
             if sel:
-                return any(re.search(c, body) for _n, c in sel)
+                if subj == "Matematik" and not any(n == "geometri" for n, _c in sel):
+                    shp = q.get("shape")
+                    if isinstance(shp, dict) and str(shp.get("type", "")).lower() in ("geo", "triangle", "circle", "rectangle"):
+                        return False  # geometri şekli yalnızca geometri konularında
+                    if re.search(r"(?<![a-zçğıöşü])(?:üçgen|dörtgen|çember|daire|açı\b|açının|köşegen|paralelkenar|yamuk)", body):
+                        return False
+                return any(re.search(r"(?<![a-zçğıöşü])(?:" + c + ")", body) for _n, c in sel)
         if subj in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi"):
             want = _pool_tok(tl)
             qt = str(q.get("topic") or "")
@@ -9466,7 +9472,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 p = st_["p"]
                 used = {_stem(q) for q in st_["qs"][:p["n"]]}
                 extra = [q for q in st_["over"] + st_["reserve"] if _stem(q) and _stem(q) not in used and _stem(q) not in seen
-                         and q.get("vfd")]  # bankaya yalnızca ikinci modelle doğrulanmış sorular girer
+                         and q.get("vfd") and _on_topic(q, p.get("topics", ""), p.get("subject"))]  # bankaya yalnızca ikinci modelle doğrulanmış sorular girer
                 if extra:
                     store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), extra)
         except Exception:
