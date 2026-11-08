@@ -8851,6 +8851,156 @@ def _src_block(subject, grade_label, topics):
             "bu bilgilerle ÇELİŞEN ya da kaynakta olmayan ayrıntı, isim, tarih, sayı UYDURMA. Doğru şık mutlaka bu bilgilerle desteklensin:\n- " + "\n- ".join(f))
 
 
+# ---------------------------------------------------------------- MATEMATİK ŞABLONLARI: model hikâyeyi yazar, KOD sayıları ve cevabı hesaplar
+def _tpl_eval(expr, env):
+    """Güvenli ifade değerlendirici: yalnızca sayı, değişken, + - * / // % **, karşılaştırma, and/or/not ve min/max/abs/round/gcd/lcm/int."""
+    import ast as _ast
+    import math as _m
+    import operator as _op
+    ex = str(expr).strip()
+    if not ex or len(ex) > 200:
+        raise ValueError("ifade")
+    ops = {_ast.Add: _op.add, _ast.Sub: _op.sub, _ast.Mult: _op.mul, _ast.Div: _op.truediv, _ast.FloorDiv: _op.floordiv, _ast.Mod: _op.mod, _ast.Pow: _op.pow}
+    cmps = {_ast.Lt: _op.lt, _ast.LtE: _op.le, _ast.Gt: _op.gt, _ast.GtE: _op.ge, _ast.Eq: _op.eq, _ast.NotEq: _op.ne}
+    fns = {"min": min, "max": max, "abs": abs, "round": round, "int": int, "gcd": _m.gcd, "lcm": lambda a, b: a * b // _m.gcd(a, b) if a and b else 0}
+
+    def ev(n):
+        if isinstance(n, _ast.Expression):
+            return ev(n.body)
+        if isinstance(n, _ast.Constant) and isinstance(n.value, (int, float)) and not isinstance(n.value, bool):
+            return n.value
+        if isinstance(n, _ast.Name) and n.id in env:
+            return env[n.id]
+        if isinstance(n, _ast.BinOp) and type(n.op) in ops:
+            a, b = ev(n.left), ev(n.right)
+            if isinstance(n.op, _ast.Pow) and (abs(b) > 6 or abs(a) > 1000):
+                raise ValueError("üs")
+            return ops[type(n.op)](a, b)
+        if isinstance(n, _ast.UnaryOp) and isinstance(n.op, (_ast.USub, _ast.UAdd, _ast.Not)):
+            v = ev(n.operand)
+            return -v if isinstance(n.op, _ast.USub) else (v if isinstance(n.op, _ast.UAdd) else (not v))
+        if isinstance(n, _ast.Compare) and all(type(o) in cmps for o in n.ops):
+            left, ok = ev(n.left), True
+            for o, c in zip(n.ops, n.comparators):
+                right = ev(c)
+                ok = ok and cmps[type(o)](left, right)
+                left = right
+            return ok
+        if isinstance(n, _ast.BoolOp):
+            vals = [ev(v) for v in n.values]
+            return all(vals) if isinstance(n.op, _ast.And) else any(vals)
+        if isinstance(n, _ast.Call) and isinstance(n.func, _ast.Name) and n.func.id in fns and not n.keywords and len(n.args) <= 4:
+            return fns[n.func.id](*[ev(a) for a in n.args])
+        raise ValueError("izin verilmeyen ifade")
+    return ev(_ast.parse(ex, mode="eval"))
+
+
+def _tpl_fmt(v):
+    if abs(v - round(v)) < 1e-9:
+        return f"{int(round(v)):d}"
+    return f"{round(v, 2):g}".replace(".", ",")
+
+
+def tpl_instantiate(t, tries=200):
+    """Şablondan bir soru örneği (ham sözlük) üretir; kural/şık koşulları sağlanmazsa None."""
+    try:
+        for _ in range(tries):
+            env = {}
+            for name, spec in (t.get("vars") or {}).items():
+                if isinstance(spec, dict) and spec.get("choices"):
+                    env[name] = random.choice(spec["choices"])
+                elif isinstance(spec, dict) and "lo" in spec and "hi" in spec:
+                    st_ = int(spec.get("step", 1) or 1)
+                    env[name] = random.randrange(int(spec["lo"]), int(spec["hi"]) + 1, st_)
+                else:
+                    return None
+            for name, ex in (t.get("derived") or {}).items():
+                env[name] = _tpl_eval(ex, env)
+            if not all(bool(_tpl_eval(c, env)) for c in (t.get("constraints") or [])):
+                continue
+            ans = float(_tpl_eval(t["answer"], env))
+            wrong = [float(_tpl_eval(w, env)) for w in (t.get("wrong") or [])]
+            allv = [ans] + wrong
+            if len(allv) != 4 or any(abs(v) > 1e7 for v in allv):
+                return None
+            if any(abs(v * 100 - round(v * 100)) > 1e-6 for v in allv):
+                continue  # en çok 2 ondalık
+            if len({round(v, 6) for v in allv}) != 4:
+                continue
+            if bool(t.get("positive", True)) and any(v < 0 for v in allv):
+                continue
+            unit = str(t.get("unit") or "").strip()
+            order = sorted(allv)
+            opts = {"ABCD"[i]: (f"{_tpl_fmt(v)} {unit}".strip()) for i, v in enumerate(order)}
+            right = "ABCD"[order.index(ans)]
+            fmtenv = {k: _tpl_fmt(v) for k, v in env.items()}
+            fmtenv["ans"] = _tpl_fmt(ans)
+            text = str(t["text"]).format_map(fmtenv)
+            expl = str(t.get("explanation") or "").format_map(fmtenv)
+            return {"subject": "Matematik", "topic": str(t.get("topic") or "Matematik"), "passage": "", "question": text, "options": opts, "answer": right, "explanation": expl}
+    except Exception:
+        return None
+    return None
+
+
+def tpl_schema_ok(t):
+    """Şablonun biçimsel denetimi (modelin yazdığı JSON güvenle kullanılabilir mi?)."""
+    try:
+        if not isinstance(t, dict) or not str(t.get("text") or "").strip() or not t.get("answer") or len(t.get("wrong") or []) != 3:
+            return False
+        if not isinstance(t.get("vars"), dict) or not t["vars"] or len(str(t["text"])) > 600:
+            return False
+        names = set(t["vars"]) | set((t.get("derived") or {}))
+        import string as _s
+        for _lit, field, _f, _c in _s.Formatter().parse(str(t["text"]) + " " + str(t.get("explanation") or "")):
+            if field and field not in names and field != "ans":
+                return False
+        return True
+    except Exception:
+        return False
+
+
+def tpl_questions(grade_label, n, topics="", seen=()):
+    """templates/<sınıf>/matematik.json içindeki doğrulanmış şablonlardan, her çağrıda yeni sayılarla soru üretir (API'siz)."""
+    if n <= 0 or demo_mode() or os.environ.get("DENEMEMATIK_NO_POOL") == "1":
+        return []
+    try:
+        gl = str(grade_label or "")
+        gd = "lgs" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))
+        root = os.environ.get("DENEMEMATIK_TPL_DIR")
+        if not root:
+            from . import store
+            root = os.path.join(os.path.dirname(store.DATA), "templates")
+        tps = _pool_read(os.path.join(root, gd, "matematik.json"))
+    except Exception:
+        return []
+    want = _pool_tok(topics)
+    cand = [t for t in tps if (not want or (want & _pool_tok(f"{t.get('topic', '')} {t.get('topics', '')}")))]
+    if not cand:
+        return []
+    byid = {str(t.get("id")): t for t in cand}
+    out, stems = [], set(seen)
+    rkey = ("tpl", gd)
+    for tid in _recent_order(rkey, list(byid)):
+        if len(out) >= n:
+            break
+        t = byid[tid]
+        for _t in range(3):
+            raw = tpl_instantiate(t)
+            try:
+                x = _norm_q(raw, "Matematik") if raw else None
+            except Exception:
+                x = None
+            if x and _stem(x) not in stems and not _is_bad(_stem(x)):
+                stems.add(_stem(x))
+                x["vfd"] = True
+                x["tpl_id"] = tid
+                _recent_mark(rkey, tid)
+                out.append(x)
+                break
+    return out
+
+
 def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty=""):
     """Gece/haftalık çalışan betiğin ürettiği, kural + çapraz model doğrulamasından geçmiş soruları döndürür.
     En az kullanılanlar önce gelir; görülmüş (geçmiş) sorular ve konu dışı sorular atlanır."""
@@ -9022,6 +9172,11 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                             before = len(st_["qs"])
                             take(st_, src(1))
                             got_f += len(st_["qs"]) - before
+                except Exception:
+                    pass
+            if subj == "Matematik" and not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_POOL") != "1":  # 00bb) model yazarlı, kod hesaplı şablonlar (en çok %40)
+                try:
+                    take(st_, tpl_questions(grade_label, min(max(1, int(n * 0.4)), n - len(st_["qs"])), p.get("topics", ""), seen=seen))
                 except Exception:
                     pass
             if not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_POOL") != "1":  # 00c) önceden üretilip doğrulanmış havuz (yapay zekâ kaynaklı; API'siz)
@@ -11182,7 +11337,7 @@ def persist(res):
         try:
             rows = []
             for i, q in enumerate(qs):
-                src = "fabrika" if q.get("local") else ("seed" if q.get("seed") else ("havuz" if q.get("pool") else "ai"))
+                src = "fabrika" if q.get("local") else ("seed" if q.get("seed") else ("sablon" if q.get("tpl_id") else ("havuz" if q.get("pool") else "ai")))
                 rows.append({"stem": ai._stem(q), "subject": q.get("subject", ""), "topic": q.get("topic") or q.get("kazanim", ""),
                              "src": src, "key": q.get("answer"), "chosen": st.session_state.answers.get(i)})
             store.qstats_record(rows)
