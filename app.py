@@ -3474,7 +3474,12 @@ def add_stems(questions):
 
 # ---- hatalı bildirilen sorular: bankadan ve yanlış arşivinden çıkar, bir daha üretilirse elenir
 def bad_stems():
-    return set(_load("bad.json", []))
+    import re as _r
+    out = set()
+    for s_ in _load("bad.json", []):
+        out.add(s_)
+        out.add(_r.sub(r"\W+", " ", _r.sub(r"\d+", "0", s_)).strip())  # sayı-maskeli _stem biçimi
+    return out
 
 
 def report_log(q, reason=""):
@@ -3562,7 +3567,7 @@ def report_bad(q, reason=""):
     except Exception:
         pass
     import re as _re
-    stem = _re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
+    stem = _re.sub(r"\W+", " ", _re.sub(r"\d+", "0", str(q.get("question", "")).lower()))[:70].strip()
     if not stem:
         return False
     bad = _load("bad.json", [])
@@ -5109,6 +5114,48 @@ def verify_questions(qs, gk, mk, offset=0):
         VERIFY_STATS["rejected"] += rej
         VERIFY_STATS["unverified"] += unv
     return keep
+
+
+def verify_strict(qs, gk, mk, offset=0, batch=8):
+    """HAVUZA girecek sorular için sıkı doğrulama: soru, cevap anahtarı gösterilmeden İKİ bağımsız çözümden geçer
+    (mümkünse farklı model aileleri). İkisi de anahtarla aynı şıkkı vermezse ya da çözücüye ulaşılamazsa soru ELENİR."""
+    out = []
+    if not qs:
+        return out
+    try:
+        gm, mm = _verify_models(gk, mk)
+    except Exception:
+        gm, mm = [], []
+    passes = [(set(gm), offset), (set(mm), offset + 1)] if (gm and mm) else [(set(), offset), (set(), offset + 5)]
+
+    def solve(chunk, excl, off):
+        prompt = ("Aşağıdaki çoktan seçmeli soruları SEN çöz. Her soru için doğru şıkkı bağımsız olarak hesapla/doğrula ve harfini ver (A, B, C veya D). "
+                  "Soru hatalıysa (doğru şık yok, birden çok şık doğru, cevap için veri eksik, soru ile görsel verisi ya da kendi içindeki sayılar/ifadeler tutarsız, bilgi yanlış) 'X' ver.\n\n"
+                  + "\n\n".join(_vq_text(i, q) for i, q in enumerate(chunk, 1))
+                  + '\n\nÇIKTI SADECE şu JSON: {"results":[{"i":1,"answer":"A"}]}')
+        raw, _e = multi_pool_generate(prompt, gk, mk, offset=off, temperature=0, models=_verify_models(gk, mk), exclude=(excl or None),
+                                      system=VERIFY_SYSTEM, reasoning="medium", deadline=VERIFY_DEADLINE, max_wait=30)
+        data = parse_json(raw)
+        res = data.get("results") if isinstance(data, dict) else None
+        got = {}
+        for r in (res if isinstance(res, list) else []):
+            try:
+                got[int(r.get("i"))] = str(r.get("answer", "")).strip().upper()[:1]
+            except Exception:
+                pass
+        return got
+
+    for b0 in range(0, len(qs), batch):
+        chunk = qs[b0:b0 + batch]
+        answers = [solve(chunk, ex, off) for ex, off in passes]
+        for i, q in enumerate(chunk, 1):
+            if all(a.get(i) == q.get("answer") for a in answers):
+                q["vfd"] = True
+                q["vfd2"] = True
+                out.append(q)
+            else:
+                qstat(q.get("subject"), "sıkı doğrulama reddetti")
+    return out
 
 
 # ---------------------------------------------------------------- prompt
@@ -8497,7 +8544,7 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
     cand = []
     for q in qs:
         s = _stem(q)
-        if not s or s in seen:
+        if not s or s in seen or _is_bad(s):
             continue
         ov = len(want & _pool_tok(f"{q.get('unit', '')} {q.get('topic', '')} {q.get('topics', '')}")) if want else 0
         if want and not ov:

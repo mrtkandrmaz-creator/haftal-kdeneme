@@ -50,6 +50,48 @@ def write_pool(path, qs):
     os.replace(tmp, path)
 
 
+def collect_bad(bad_dir):
+    """data/bad.json ve data/profiles/*/bad.json içindeki 'hatalı' bildirilen soru gövdeleri."""
+    out = set()
+    if not bad_dir or not os.path.isdir(bad_dir):
+        return out
+    files = [os.path.join(bad_dir, "bad.json")]
+    pd = os.path.join(bad_dir, "profiles")
+    if os.path.isdir(pd):
+        files += [os.path.join(pd, p, "bad.json") for p in os.listdir(pd)]
+    for fp in files:
+        try:
+            with open(fp, encoding="utf-8") as f:
+                for st in json.load(f):
+                    out.add(st)
+                    out.add(re.sub(r"\W+", " ", re.sub(r"\d+", "0", st)).strip())
+        except Exception:
+            pass
+    return out
+
+
+def purge_bad(ai, root, bad):
+    """Hatalı bildirilen soruları tüm havuz dosyalarından kalıcı siler. -> silinen sayısı"""
+    removed = 0
+    if not bad:
+        return 0
+    for dp, _dn, fns in os.walk(root):
+        for fn in fns:
+            if not fn.endswith(".json"):
+                continue
+            path = os.path.join(dp, fn)
+            try:
+                with open(path, encoding="utf-8") as f:
+                    qs = (json.load(f) or {}).get("qs", [])
+            except Exception:
+                continue
+            keep = [q for q in qs if ai._stem(q) not in bad]
+            if len(keep) != len(qs):
+                removed += len(qs) - len(keep)
+                write_pool(path, keep)
+    return removed
+
+
 def targets(cur, ai, grades, subjects):
     out = []
     for g in grades:
@@ -65,11 +107,17 @@ def targets(cur, ai, grades, subjects):
     return out
 
 
-def build(ai, cur, args, gen=None):
+def build(ai, cur, args, gen=None, strict=None):
     """gen(plan, label, difficulty, scope) -> (qs, err); testte sahte üretici verilebilir."""
     gen = gen or (lambda plan, label, diff, scope, avoid: ai.generate_mc(
         plan, label, diff, scope, avoid=avoid, use_bank=False, deposit=False, verify=True, count=False))
+    if strict is None:
+        _gk, _mk = ai.load_keys()
+        strict = lambda qs: ai.verify_strict(qs, _gk, _mk)
     t0 = time.time()
+    bad = collect_bad(getattr(args, "bad_dir", ""))
+    if bad:
+        print("hatalı bildirimlerden silinen:", purge_bad(ai, os.environ["DENEMEMATIK_POOL_DIR"], bad))
     grades = [g.strip() for g in args.grades.split(",") if g.strip()]
     subjects = [s.strip() for s in args.subjects.split(",") if s.strip()] if args.subjects else []
     added_total = 0
@@ -95,25 +143,30 @@ def build(ai, cur, args, gen=None):
                 continue
             if any(ai._qwords(q) and ai._qwords(k) and len(ai._qwords(q) & ai._qwords(k)) / len(ai._qwords(q) | ai._qwords(k)) > 0.6 for k in have + new):
                 continue
-            x = {k: v for k, v in q.items() if k not in KEEP_DROP}
-            x.update(unit=unit, topics=", ".join(topics)[:160], d=di, ts=int(time.time()))
+            if s in bad:
+                continue
             stems.add(s)
-            new.append(x)
+            new.append(q)
+        before = len(new)
+        new = strict(new) if new else []  # sıkı doğrulama: iki bağımsız çözüm de anahtarla aynı olmalı
+        rejected_strict = before - len(new)
+        new = [{**{k: v for k, v in q.items() if k not in KEEP_DROP}, "unit": unit, "topics": ", ".join(topics)[:160], "d": di, "ts": int(time.time())} for q in new]
         if new:
             write_pool(path, have + new)
             added_total += len(new)
-        print(f"{label} | {sj} | {unit[:40]} | +{len(new)} (havuz {len(have) + len(new)})" + (f" | {err}" if err and not new else ""))
+        print(f"{label} | {sj} | {unit[:40]} | +{len(new)} (sıkı doğrulamada elenen {rejected_strict}) (havuz {len(have) + len(new)})" + (f" | {err}" if err and not new else ""))
     print("TOPLAM eklenen:", added_total)
     return added_total
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--grades", default="4,5,6,7,8,LGS")
+    ap.add_argument("--grades", default="5")
     ap.add_argument("--subjects", default="")
-    ap.add_argument("--per-unit", type=int, default=6)
-    ap.add_argument("--max-per-unit", type=int, default=60, help="bir ünitede bu kadar soruya ulaşılınca atlanır")
+    ap.add_argument("--per-unit", type=int, default=10)
+    ap.add_argument("--max-per-unit", type=int, default=80, help="bir ünitede bu kadar soruya ulaşılınca atlanır")
     ap.add_argument("--minutes", type=float, default=40)
+    ap.add_argument("--bad-dir", default="", help="userdata dalındaki data/ klasörü (bad.json içerir); bildirilen sorular havuzdan silinir")
     ap.add_argument("--difficulty-idx", default="1,2,3,4", help="curriculum.DIFFICULTIES indeksleri (0-5), virgülle")
     args = ap.parse_args()
     args.difficulty_idx = [int(x) for x in args.difficulty_idx.split(",")]
