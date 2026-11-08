@@ -7,13 +7,13 @@ on:
     inputs:
       grades:
         description: "Sınıflar (virgülle)"
-        default: "5,6,7,8"
+        default: "4,5,6,7,8,LGS"
       per_unit:
         description: "Ünite başına istenen soru"
         default: "6"
       minutes:
         description: "En çok çalışma süresi (dk)"
-        default: "40"
+        default: "55"
 
 permissions:
   contents: write
@@ -41,7 +41,7 @@ jobs:
           MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
           SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
           NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
-        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5,6,7,8' }}" --per-unit "${{ github.event.inputs.per_unit || '6' }}" --minutes "${{ github.event.inputs.minutes || '40' }}"
+        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '4,5,6,7,8,LGS' }}" --per-unit "${{ github.event.inputs.per_unit || '6' }}" --minutes "${{ github.event.inputs.minutes || '55' }}"
       - name: Değişiklikleri kaydet
         run: |
           git config user.name "denemematik-bot"

@@ -109,7 +109,7 @@ def build(ai, cur, args, gen=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--grades", default="5,6,7,8")
+    ap.add_argument("--grades", default="4,5,6,7,8,LGS")
     ap.add_argument("--subjects", default="")
     ap.add_argument("--per-unit", type=int, default=6)
     ap.add_argument("--max-per-unit", type=int, default=60, help="bir ünitede bu kadar soruya ulaşılınca atlanır")
