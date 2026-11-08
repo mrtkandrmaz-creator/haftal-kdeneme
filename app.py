@@ -2357,6 +2357,35 @@ def _nested_circles(ax, d):
         ax.set_xlim(-.6, 2 * R * n + .6)
         ax.set_ylim(-R - 1.2, R + .6)
         return
+    if mode == "intersect":
+        r1, r2, dd = float(d.get("r1", 4)), float(d.get("r2", 4)), float(d.get("d", 4))
+        names = (list(map(str, d.get("names") or [])) + ["A", "B", "C"])[:3]
+        sd = d.get("sides") or {}
+        x = (dd * dd + r1 * r1 - r2 * r2) / (2 * dd)
+        y = max(0.0, r1 * r1 - x * x) ** .5
+        lo, hi = min(-r1, dd - r2), max(r1, dd + r2)
+        sc = 5.4 / max(hi - lo, 2 * max(r1, r2))
+        ox = -(lo + hi) / 2
+        P = lambda px, py: ((px + ox) * sc, py * sc)
+        A, B, C = P(0, 0), P(dd, 0), P(x, y)
+        ax.add_patch(Circle(A, r1 * sc, fc="#e0f2fe", ec=BLUE, lw=2, alpha=.55, zorder=2))
+        ax.add_patch(Circle(B, r2 * sc, fc="#fef3c7", ec=ORANGE, lw=2, alpha=.55, zorder=2))
+        for (p, q, key, col) in ((A, B, "AB", INK), (A, C, "AC", BLUE), (B, C, "BC", ORANGE)):
+            ax.plot([p[0], q[0]], [p[1], q[1]], color=col, lw=2.2, zorder=6)
+            t = sd.get(key, "")
+            if t:
+                mx, my = (p[0] + q[0]) / 2, (p[1] + q[1]) / 2
+                off = (-.38 if key == "AB" else (.22 if key == "AC" else .22))
+                ax.text(mx - (.32 if key == "AC" else (-.32 if key == "BC" else 0)), my + off, str(t), fontsize=9, fontweight="bold", color=INK, ha="center", zorder=9,
+                        bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+        for pt, nm, dx, dy in ((A, names[0], -.28, -.42), (B, names[1], .1, -.42), (C, names[2], 0, .3)):
+            ax.plot(*pt, "o", color=INK, ms=5, zorder=8)
+            ax.text(pt[0] + dx, pt[1] + dy, nm, fontsize=11, fontweight="bold", ha="center", zorder=9)
+        if d.get("caption"):
+            ax.text(0, -3.0, str(d["caption"]), fontsize=9.5, fontweight="bold", color=GREEN, ha="center")
+        ax.set_xlim(-3.4, 3.4)
+        ax.set_ylim(-3.4, 3.4)
+        return
     big = 2.4
     if mode == "inner_tangent":
         ax.add_patch(Circle((0, 0), big, fc=cols[0], ec=INK, lw=2.2, zorder=2))
@@ -8745,6 +8774,74 @@ def _mf_nest(subject):
 
 
 _MF_GENS += [(_mf_nest, ("çember", "iç içe"), (5,))]
+
+
+def _mf_inter(subject):
+    """5. sınıf MAT.5.3.7: iki çemberin kesişimiyle oluşan ABC üçgeni (A, B merkez; C kesişim noktası). Şekilde verilen ölçüler metinle birebir."""
+    import math as _m
+    kind = random.choice(["type", "type", "perim", "missing", "perim_eq"])
+
+    def valid():
+        for _ in range(200):
+            r1, r2, dd = random.randint(2, 9), random.randint(2, 9), random.randint(2, 9)
+            if abs(r1 - r2) < dd < r1 + r2 and sorted([r1, r2, dd])[2] ** 2 != sorted([r1, r2, dd])[0] ** 2 + sorted([r1, r2, dd])[1] ** 2:
+                return r1, r2, dd
+        return 5, 5, 5
+    base = {"type": "geo", "sub_type": "nested_circles", "mode": "intersect", "names": ["A", "B", "C"]}
+    if kind == "type":
+        pick = random.choice(["eskenar", "ikiz", "ikiz2", "cesit"])
+        if pick == "eskenar":
+            r = random.randint(2, 9)
+            r1 = r2 = dd = r
+        elif pick in ("ikiz", "ikiz2"):
+            r = random.randint(2, 9)
+            dd = random.choice([x for x in range(2, 2 * r) if x != r and x <= 12])
+            r1 = r2 = r
+            if pick == "ikiz2":
+                r1 = dd
+                r2 = random.choice([x for x in range(1, 2 * dd) if x != dd and x <= 12 and abs(r1 - x) < dd < r1 + x])
+                r = None
+        else:
+            r1, r2, dd = valid()
+            while len({r1, r2, dd}) < 3:
+                r1, r2, dd = valid()
+        kinds = {"eskenar": "Eşkenar üçgen", "ikiz": "İkizkenar üçgen", "ikiz2": "İkizkenar üçgen", "cesit": "Çeşitkenar üçgen"}
+        cor = kinds[pick]
+        ol = ["Eşkenar üçgen", "İkizkenar üçgen", "Çeşitkenar üçgen", "Dik üçgen"]
+        random.shuffle(ol)
+        sh = dict(base, r1=r1, r2=r2, d=dd, sides={"AC": f"{r1} cm", "BC": f"{r2} cm", "AB": f"{dd} cm"})
+        q = ("Şekilde A ve B merkezli iki çember C noktasında kesişmektedir. Çemberlerin yarıçapları ve merkezleri arasındaki uzaklık şekilde verilmiştir. "
+             "Buna göre ABC üçgeni aşağıdakilerden hangisidir?")
+        sd = sorted([r1, r2, dd])
+        ex = (f"|AC| = {r1} cm, |BC| = {r2} cm ve |AB| = {dd} cm. " + ("Üç kenar eşit: eşkenar." if pick == "eskenar" else "İki kenar eşit: ikizkenar." if pick != "cesit" else "Üç kenar da farklı: çeşitkenar."))
+        return _mf_raw(subject, "Çember ve üçgen", q, (ol, cor), ex, shape=sh)
+    if kind in ("perim", "perim_eq"):
+        if kind == "perim_eq":
+            r = random.randint(2, 8)
+            dd = random.choice([x for x in range(2, 2 * r) if x <= 12])
+            r1 = r2 = r
+        else:
+            r1, r2, dd = valid()
+        c = r1 + r2 + dd
+        sh = dict(base, r1=r1, r2=r2, d=dd, sides={"AC": f"{r1} cm", "BC": f"{r2} cm", "AB": f"{dd} cm"})
+        q = ("Şekilde A ve B merkezli iki çember C noktasında kesişmektedir. Çemberlerin yarıçapları ve merkezleri arasındaki uzaklık şekilde verilmiştir. "
+             "Buna göre ABC üçgeninin çevresi kaç cm’dir?")
+        wr = [r1 + r2, 2 * (r1 + r2), c + dd, c - 1, c + 2, r1 * r2]
+        o = _mf_opts(c, wr, lambda v: f"{v} cm")
+        return _mf_raw(subject, "Çember ve üçgen", q, o, f"|AC| + |BC| + |AB| = {r1} + {r2} + {dd} = {c} cm.", shape=sh) if o else None
+    r = random.randint(3, 9)
+    dd = random.choice([x for x in range(2, 2 * r) if x != r and x <= 14])
+    c = 2 * r + dd
+    sh = dict(base, r1=r, r2=r, d=dd, sides={"AC": f"{r} cm", "BC": f"{r} cm", "AB": "?"}, caption=f"ABC üçgeninin çevresi = {c} cm")
+    q = (f"Şekilde A ve B merkezli, yarıçapları eşit iki çember C noktasında kesişmektedir. ABC üçgeninin çevresi {c} cm olduğuna göre merkezler arasındaki |AB| uzaklığı kaç cm’dir?")
+    wr = [c - r, c // 2, 2 * r, c - dd, dd + 1, dd + 2]
+    o = _mf_opts(dd, wr, lambda v: f"{v} cm")
+    return _mf_raw(subject, "Çember ve üçgen", q, o, f"|AC| = |BC| = {r} cm. Çevre = {r} + {r} + |AB| = {c}, buradan |AB| = {c} − {2 * r} = {dd} cm.", shape=sh) if o else None
+
+
+_MF_GENS += [(_mf_inter, ("çember", "kesişim", "kesişen"), (5,))]
+
+
 
 
 def math_questions(grade_label, n, topics="", seen=()):
