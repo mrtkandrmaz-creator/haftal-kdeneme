@@ -1,0 +1,50 @@
+name: Soru havuzunu hazırla
+
+on:
+  schedule:
+    - cron: "0 1 * * *"      # her gece 04:00 (TR)
+  workflow_dispatch:
+    inputs:
+      grades:
+        description: "Sınıflar (virgülle)"
+        default: "5,6,7,8"
+      per_unit:
+        description: "Ünite başına istenen soru"
+        default: "6"
+      minutes:
+        description: "En çok çalışma süresi (dk)"
+        default: "40"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pool
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install groq google-genai matplotlib numpy pandas altair reportlab requests pypdf
+      - name: Havuzu üret
+        env:
+          GROQ_API_KEYS: ${{ secrets.GROQ_API_KEYS }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
+          CEREBRAS_API_KEYS: ${{ secrets.CEREBRAS_API_KEYS }}
+          OPENROUTER_API_KEYS: ${{ secrets.OPENROUTER_API_KEYS }}
+          MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
+          SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
+          NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
+        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5,6,7,8' }}" --per-unit "${{ github.event.inputs.per_unit || '6' }}" --minutes "${{ github.event.inputs.minutes || '40' }}"
+      - name: Değişiklikleri kaydet
+        run: |
+          git config user.name "denemematik-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add pool
+          git diff --cached --quiet || (git commit -m "Soru havuzu güncellendi" && git pull --rebase && git push)
