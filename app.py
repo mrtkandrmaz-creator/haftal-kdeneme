@@ -3490,10 +3490,68 @@ def add_stems(questions):
 
 
 # ---- hatalı bildirilen sorular: bankadan ve yanlış arşivinden çıkar, bir daha üretilirse elenir
+def qstats_record(rows):
+    """Çözülen soruların sonucunu (soru gövdesi bazında) birikimli kaydeder. rows: {stem, subject, topic, src, key, chosen}"""
+    try:
+        d = _load("qstats.json", {})
+        for r in rows:
+            if not r.get("stem"):
+                continue
+            e = d.setdefault(r["stem"], {"n": 0, "c": 0, "e": 0, "o": {}, "s": r.get("subject", ""), "t": r.get("topic", ""), "src": r.get("src", "ai"), "k": r.get("key")})
+            if r.get("chosen") in (None, ""):
+                e["e"] += 1
+                continue
+            e["n"] += 1
+            if r["chosen"] == r.get("key"):
+                e["c"] += 1
+            else:
+                e["o"][r["chosen"]] = e["o"].get(r["chosen"], 0) + 1
+        if len(d) > 6000:
+            d = dict(list(d.items())[-6000:])
+        _save("qstats.json", d)
+    except Exception:
+        pass
+
+
+def suspects(min_n=2, share=0.75):
+    """Şüpheli sorular: en az min_n kez çözülmüş, hiç doğru yapılmamış ve yanlışların çoğu AYNI şıkta toplanmış (cevap anahtarı hatalı olabilir).
+    Kodla üretilen (fabrika) sorular dışlanır: kalıpları sayı-bağımsız tek gövdede toplandığından yasaklanmaz."""
+    out = []
+    for stem, e in _load("qstats.json", {}).items():
+        if e.get("src") in ("fabrika", "seed") or e.get("n", 0) < min_n or e.get("c", 0) > 0:
+            continue
+        o = e.get("o") or {}
+        if o and max(o.values()) / max(1, sum(o.values())) >= share:
+            out.append(stem)
+    return out
+
+
+def update_quarantine():
+    """Şüpheli soruları karantinaya alır (seçimden çıkar; gece betiği havuzdan siler). -> karantinadaki toplam"""
+    try:
+        q = set(_load("quarantine.json", []))
+        q |= set(suspects())
+        _save("quarantine.json", sorted(q)[-2000:])
+        return len(q)
+    except Exception:
+        return 0
+
+
+def unit_health(min_n=10, max_rate=0.3):
+    """Ünite/kaynak bazında doğru oranı çok düşük olanlar -> [(ders, konu, kaynak, çözüm, doğru oranı)]"""
+    g = {}
+    for e in _load("qstats.json", {}).values():
+        k = (e.get("s", ""), e.get("t", ""), e.get("src", "ai"))
+        a = g.setdefault(k, [0, 0])
+        a[0] += e.get("n", 0)
+        a[1] += e.get("c", 0)
+    return sorted([(k[0], k[1], k[2], n, c / n) for k, (n, c) in g.items() if n >= min_n and c / n <= max_rate], key=lambda t: t[4])
+
+
 def bad_stems():
     import re as _r
     out = set()
-    for s_ in _load("bad.json", []):
+    for s_ in list(_load("bad.json", [])) + list(_load("quarantine.json", [])):
         out.add(s_)
         out.add(_r.sub(r"\W+", " ", _r.sub(r"\d+", "0", s_)).strip())  # sayı-maskeli _stem biçimi
     return out
@@ -3585,8 +3643,8 @@ def report_bad(q, reason=""):
         pass
     import re as _re
     stem = _re.sub(r"\W+", " ", _re.sub(r"\d+", "0", str(q.get("question", "")).lower()))[:70].strip()
-    if not stem:
-        return False
+    if not stem or q.get("local"):  # kodla üretilen kalıp sorular yalnızca kayda geçer (kalıbın tamamı yasaklanmaz; ben kalıbı incelerim)
+        return bool(stem)
     bad = _load("bad.json", [])
     if stem not in bad:
         bad.append(stem)
@@ -3606,7 +3664,7 @@ def report_bad(q, reason=""):
     except Exception:
         pass
     try:  # yanlış arşivinden de çıkar (hatalı soruyu çalıştırmasın)
-        _save("wrong.json", [x for x in wrong() if _re.sub(r"\W+", " ", str((x.get("q") or {}).get("question", "")).lower())[:70].strip() != stem])
+        _save("wrong.json", [x for x in wrong() if _re.sub(r"\W+", " ", _re.sub(r"\d+", "0", str((x.get("q") or {}).get("question", "")).lower()))[:70].strip() != stem])
     except Exception:
         pass
     return True
@@ -6022,6 +6080,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
     fc += golden(subject, grade_label)
     fc += _meb_extra(grade_label, subject, topics)
     fc += _src_block(subject, grade_label, topics)
+    fc += _style_block(subject, grade_label)
     if subject in ("Türkçe", "Sosyal Bilgiler"):
         fc += ("\n🎯 GRAFİK/TABLO/ŞEMA SORULARINDA ZORLUK: Cevap görsele bakınca DOĞRUDAN okunmasın ('en çok/en az hangisi', 'X kaçtır' YASAK). "
                "Bunun yerine: iki-üç adımlı çıkarım (karşılaştırma + fark/oran/toplam), numaralı yargılardan (I, II, III) doğru/yanlış ayıklama, "
@@ -8728,6 +8787,31 @@ def _pool_read(path):
     return qs
 
 
+STYLE_EXAMPLES = {}  # gece betiği doldurur: {ders: [beğenilen soru sözlükleri]}
+
+
+def _style_block(subject, grade_label):
+    """Beğenilen sorulardan en çok 2 örnek (yalnızca tarz/kalite örneği; kopyalama yasak)."""
+    ex = list(STYLE_EXAMPLES.get(subject, []))
+    if not ex:
+        try:
+            from . import store
+            ex = [x.get("q") for x in store.liked() if (x.get("q") or {}).get("subject") == subject and x.get("grade_label") == grade_label]
+        except Exception:
+            ex = []
+    ex = [q for q in ex if isinstance(q, dict) and isinstance(q.get("options"), dict) and q.get("question") and not q.get("shape")]
+    if not ex:
+        return ""
+    random.shuffle(ex)
+    lines = []
+    for q in ex[:2]:
+        o = " ".join(f"{k}) {v}" for k, v in q["options"].items())
+        ps = f"Metin: {str(q.get('passage'))[:400]}\n" if q.get("passage") else ""
+        lines.append(f"{ps}Soru: {q['question']}\n{o}\nDoğru: {q.get('answer')}")
+    return ("\n👍 BEĞENİLEN ÖRNEKLER (yalnızca TARZ ve KALİTE örneğidir: bu soruları ya da konularını KOPYALAMA; farklı bağlam ve içerikle aynı titizlikte, aynı netlikte yaz):\n"
+            + "\n---\n".join(lines))
+
+
 def src_facts(subject, grade_label, topics="", limit=30):
     """sources/<sınıf>/<ders>.json içindeki onaylı bilgi kartlarından, konuya uyan ünitelerin bilgilerini döndürür."""
     try:
@@ -8805,7 +8889,7 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
         un = q.get("unit", "")
         if per_unit.get(un, 0) >= max(2, -(-n // 2)):
             continue
-        clean = {k: v for k, v in q.items() if k not in ("unit", "topics", "d", "ts", "pool", "local", "seed", "vfd", "_gp", "id", "tpl")}
+        clean = {k: v for k, v in q.items() if k not in ("unit", "topics", "d", "ts", "pool", "local", "seed", "vfd", "_gp", "id", "tpl", "pid")}
         try:
             x = _norm_q(clean, subject)
         except Exception:
@@ -11089,6 +11173,17 @@ def persist(res):
                        "duration": res["duration"], "topic_info": m.get("topic_info"),
                        "score": (res.get("score") or {}).get("total"), "sessions": res.get("sessions")})
     st.session_state.cur_attempt_id = (rec or {}).get("id")
+    if m["kind"] == "mc":  # soru bazında doğru/yanlış kaydı -> şüpheli soru tespiti
+        try:
+            rows = []
+            for i, q in enumerate(qs):
+                src = "fabrika" if q.get("local") else ("seed" if q.get("seed") else ("havuz" if q.get("pool") else "ai"))
+                rows.append({"stem": ai._stem(q), "subject": q.get("subject", ""), "topic": q.get("topic") or q.get("kazanim", ""),
+                             "src": src, "key": q.get("answer"), "chosen": st.session_state.answers.get(i)})
+            store.qstats_record(rows)
+            store.update_quarantine()
+        except Exception:
+            pass
     items = []
     for i, q in enumerate(qs):
         bad = False
@@ -12471,6 +12566,15 @@ with st.sidebar:
                                     _why[k[8:]] = _why.get(k[8:], 0) + v
                         if _why:
                             st.caption("Eleme nedenleri: " + " • ".join(f"{k} {v}" for k, v in sorted(_why.items(), key=lambda kv: -kv[1])))
+            except Exception:
+                pass
+            try:
+                _qn = len(_gstore._load("quarantine.json", []))
+                _uh = _gstore.unit_health()
+                st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🔎 Şüpheli sorular</b><br>Karantinada: <b>{_qn}</b></div>", unsafe_allow_html=True)
+                if _uh:
+                    with st.expander("Doğru oranı çok düşük üniteler", expanded=False):
+                        st.markdown("\n".join(f"- {a} • {b} • {c}: %{int(r * 100)} doğru ({n} çözüm)" for a, b, c, n, r in _uh[:15]))
             except Exception:
                 pass
             _bs = _gstore.bank_stats()
