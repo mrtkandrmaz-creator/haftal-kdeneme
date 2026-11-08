@@ -113,7 +113,7 @@ def build(ai, cur, args, gen=None, strict=None):
         plan, label, diff, scope, avoid=avoid, use_bank=False, deposit=False, verify=True, count=False))
     if strict is None:
         _gk, _mk = ai.load_keys()
-        strict = lambda qs: ai.verify_strict(qs, _gk, _mk)
+        strict = lambda qs, facts=None: ai.verify_strict(qs, _gk, _mk, facts=facts)
     t0 = time.time()
     bad = collect_bad(getattr(args, "bad_dir", ""))
     if bad:
@@ -148,7 +148,11 @@ def build(ai, cur, args, gen=None, strict=None):
             stems.add(s)
             new.append(q)
         before = len(new)
-        new = strict(new) if new else []  # sıkı doğrulama: iki bağımsız çözüm de anahtarla aynı olmalı
+        facts = ai.src_facts(sj, label, f"{unit}: " + ", ".join(topics))
+        try:
+            new = strict(new, facts=facts) if new else []
+        except TypeError:
+            new = strict(new) if new else []  # sıkı doğrulama: iki bağımsız çözüm de anahtarla aynı olmalı
         rejected_strict = before - len(new)
         new = [{**{k: v for k, v in q.items() if k not in KEEP_DROP}, "unit": unit, "topics": ", ".join(topics)[:160], "d": di, "ts": int(time.time())} for q in new]
         if new:
@@ -173,6 +177,7 @@ def main():
     os.environ["DENEMEMATIK_NO_FACTORY"] = "1"
     os.environ["DENEMEMATIK_NO_POOL"] = "1"
     os.environ["DENEMEMATIK_POOL_DIR"] = os.path.join(ROOT, "pool")
+    os.environ["DENEMEMATIK_SRC_DIR"] = os.path.join(ROOT, "sources")
     ai, cur, _store = load_pkg(os.path.join(ROOT, "app.py"))
     gk, mk = ai.load_keys()
     if not gk and not mk and not ai.extra_keys():

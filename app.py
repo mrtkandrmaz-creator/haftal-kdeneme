@@ -5116,7 +5116,7 @@ def verify_questions(qs, gk, mk, offset=0):
     return keep
 
 
-def verify_strict(qs, gk, mk, offset=0, batch=8):
+def verify_strict(qs, gk, mk, offset=0, batch=8, facts=None):
     """HAVUZA girecek sorular için sıkı doğrulama: soru, cevap anahtarı gösterilmeden İKİ bağımsız çözümden geçer
     (mümkünse farklı model aileleri). İkisi de anahtarla aynı şıkkı vermezse ya da çözücüye ulaşılamazsa soru ELENİR."""
     out = []
@@ -5131,6 +5131,7 @@ def verify_strict(qs, gk, mk, offset=0, batch=8):
     def solve(chunk, excl, off):
         prompt = ("Aşağıdaki çoktan seçmeli soruları SEN çöz. Her soru için doğru şıkkı bağımsız olarak hesapla/doğrula ve harfini ver (A, B, C veya D). "
                   "Soru hatalıysa (doğru şık yok, birden çok şık doğru, cevap için veri eksik, soru ile görsel verisi ya da kendi içindeki sayılar/ifadeler tutarsız, bilgi yanlış) 'X' ver.\n\n"
+                  + (("KAYNAK BİLGİLER (soru bunlarla çelişiyorsa ya da doğru şık bunlarca desteklenmiyorsa 'X' ver):\n- " + "\n- ".join(facts) + "\n\n") if facts else "")
                   + "\n\n".join(_vq_text(i, q) for i, q in enumerate(chunk, 1))
                   + '\n\nÇIKTI SADECE şu JSON: {"results":[{"i":1,"answer":"A"}]}')
         raw, _e = multi_pool_generate(prompt, gk, mk, offset=off, temperature=0, models=_verify_models(gk, mk), exclude=(excl or None),
@@ -5988,6 +5989,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
     fc += lessons(subject)
     fc += golden(subject, grade_label)
     fc += _meb_extra(grade_label, subject, topics)
+    fc += _src_block(subject, grade_label, topics)
     if subject in ("Türkçe", "Sosyal Bilgiler"):
         fc += ("\n🎯 GRAFİK/TABLO/ŞEMA SORULARINDA ZORLUK: Cevap görsele bakınca DOĞRUDAN okunmasın ('en çok/en az hangisi', 'X kaçtır' YASAK). "
                "Bunun yerine: iki-üç adımlı çıkarım (karşılaştırma + fark/oran/toplam), numaralı yargılardan (I, II, III) doğru/yanlış ayıklama, "
@@ -8517,6 +8519,42 @@ def _pool_read(path):
         qs = []
     _POOL_CACHE[path] = (mt, qs)
     return qs
+
+
+def src_facts(subject, grade_label, topics="", limit=30):
+    """sources/<sınıf>/<ders>.json içindeki onaylı bilgi kartlarından, konuya uyan ünitelerin bilgilerini döndürür."""
+    try:
+        gl = str(grade_label or "")
+        gd = "lgs" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))
+        root = os.environ.get("DENEMEMATIK_SRC_DIR")
+        if not root:
+            from . import store
+            root = os.path.join(os.path.dirname(store.DATA), "sources")
+        path = os.path.join(root, gd, _pool_slug(subject) + ".json")
+        c = _POOL_CACHE.get(path)
+        mt = os.path.getmtime(path)
+        if c and c[0] == mt:
+            units = c[1]
+        else:
+            with open(path, encoding="utf-8") as f:
+                units = (json.load(f) or {}).get("units", {})
+            _POOL_CACHE[path] = (mt, units)
+        want = _pool_tok(topics)
+        out = []
+        for un, facts in units.items():
+            if not want or (want & _pool_tok(un)):
+                out += list(facts)
+        return out[:limit]
+    except Exception:
+        return []
+
+
+def _src_block(subject, grade_label, topics):
+    f = src_facts(subject, grade_label, topics)
+    if not f:
+        return ""
+    return ("\n📚 KAYNAK BİLGİLER (MEB programına uygun, doğrulanmış). Sorular YALNIZCA bu bilgilere ve bunlarla çelişmeyen temel genel bilgiye dayansın; "
+            "bu bilgilerle ÇELİŞEN ya da kaynakta olmayan ayrıntı, isim, tarih, sayı UYDURMA. Doğru şık mutlaka bu bilgilerle desteklensin:\n- " + "\n- ".join(f))
 
 
 def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty=""):
