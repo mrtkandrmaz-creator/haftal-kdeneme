@@ -8535,7 +8535,8 @@ _MF_GENS += [
 # ---------------------------------------------------------------- KONU KİLİDİ: seçilen konu/ünite dışındaki soru KESİNLİKLE girmez
 _TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aranacak; None = yalnızca dışlama kuralı)
     "Matematik": [
-        ("geometri", r"geometri|çember|üçgen|dörtgen|ışın|doğru parçası|açı ölç|inşa", r"üçgen|dörtgen|dikdörtgen|kare\b|çember|daire|açı|kenar|köşe|ışın|nokta|çokgen|şekil|simetri|paralel|dik\b|köşegen|çevre|alan|yarıçap|çap\b|merkez|cetvel|iletki|pergel|birim kare|doğru parçası|dik doğru|doğrusal|doğrular\b|doğrunun"),
+        ("geo_sekil", r"çember|üçgen|(?<![a-zçğıöşü])dörtgen|ışın|doğru parçası|açı ölç|inşa|çokgen|geometrik şekil", r"üçgen|dörtgen|çember|daire|açı|kenar|köşe|ışın|nokta|çokgen|şekil|simetri|paralel|dik\b|köşegen|yarıçap|çap\b|merkez|cetvel|iletki|pergel|doğru parçası|dik doğru|doğrusal|doğrular\b|doğrunun"),
+        ("geo_nicelik", r"dikdörtgen|çevre uzunluğ|birim kare|geometrik nicelik|(?<![a-zçğıöşü])alan", r"dikdörtgen|kare\b|çevre|alan|birim kare|kenar|uzunluk|metre|santim|cm"),
         ("kesir", r"kesir", r"kesir|payda|\bpay\b|\bbütün|tam sayılı|\d\s*/\s*\d|bölü"),
         ("olasılık", r"olasılık", r"olasılık|imkânsız|imkansız|\bkesin\b|olay|şans|\bzar\b|madeni para|\bpara\b|torba|kura|çekil|çark"),
         ("sayi", r"basamak|okuma ve yazma", None),
@@ -8554,20 +8555,23 @@ _TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aran
 }
 _MAT_STRONG = {  # ünite imzaları: soruda başka ünitenin imzası varsa ve seçilenin yoksa soru elenir
     "sayi": r"(?<![a-zçğıöşü])(?:basamak|rakam|milyon|bölük|binler)",
-    "geometri": r"(?<![a-zçğıöşü])(?:üçgen|dörtgen|çember|daire|açı\b|açının|açılar|kenar|köşe|ışın|çokgen|köşegen|yarıçap|kiriş|paralelkenar|yamuk|dikdörtgen)",
+    "geo_sekil": r"(?<![a-zçğıöşü])(?:üçgen|çember|daire|açı\b|açının|açılar|köşe|ışın|çokgen|köşegen|yarıçap|kiriş|paralelkenar|yamuk|(?<![a-zçğıöşü])dörtgen)",
+    "geo_nicelik": r"(?<![a-zçğıöşü])(?:dikdörtgen|çevre|alan\b|alanı|alanın|birim kare)",
     "kesir": r"(?<![a-zçğıöşü])(?:kesir|payda|\d\s*/\s*\d)",
     "olasılık": r"(?<![a-zçğıöşü])(?:olasılık|imkânsız|imkansız)",
     "veri": r"(?<![a-zçğıöşü])(?:sütun grafi|çubuk grafi|daire grafi|çizgi grafi|sıklık tablosu|anket|kategorik veri)",
 }
 
 
-def _on_topic(q, topics, subject=None):
+def _on_topic(q, topics, subject=None, grade_label=None):
     """Soru, seçilen konu/ünite metnine uygun mu? Emin olmadığında True (gereksiz eleme yapmaz)."""
     try:
         tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
         if not tl.strip():
             return True
         subj = subject or q.get("subject")
+        if grade_label and not _unit_guard(q, topics, subj, grade_label):
+            return False
         body = " ".join(str(x) for x in (q.get("topic", ""), q.get("question", ""), q.get("passage", ""), " ".join(str(v) for v in (q.get("options") or {}).values()))).lower()
         groups = _TOPIC_GROUPS.get(subj)
         if groups:
@@ -8576,9 +8580,10 @@ def _on_topic(q, topics, subject=None):
                 if subj == "Matematik":
                     names = {n for n, _c in sel}
                     hits = {g for g, rx in _MAT_STRONG.items() if re.search(rx, body)}
-                    if hits and not (hits & names):
-                        return False  # başka ünitenin güçlü imzası var, seçilenin yok
-                    if "geometri" not in names:
+                    foreign = hits - names
+                    if foreign and (not (hits & names) or foreign & {"kesir", "olasılık", "sayi", "veri"}):
+                        return False  # başka ünitenin güçlü imzası var
+                    if not (names & {"geo_sekil", "geo_nicelik"}):
                         shp = q.get("shape")
                         if isinstance(shp, dict) and str(shp.get("type", "")).lower() in ("geo", "triangle", "circle", "rectangle"):
                             return False  # geometri şekli yalnızca geometri konularında
@@ -8593,6 +8598,87 @@ def _on_topic(q, topics, subject=None):
             if want and qt.strip() and not (want & _pool_tok(qt)) and not (want & _pool_tok(body)):
                 return False
         return True
+    except Exception:
+        return True
+
+
+# ---------------------------------------------------------------- ÜNİTE SINIFLAYICI: soru hangi üniteye ait? (müfredat metninden, IDF ağırlıklı)
+_UNIT_GENERIC = frozenset(w[:5] for w in (
+    "yorumlayabilme çıkarım ilişkin yönelik kullanabilme yansıtabilme çözebilme değerlendirebilme temsil gerçek yaşam durumlarına karşılık "
+    "farklı biçimlerde ifade edilen gösterimlerle yapabilme muhakeme günlük hayat matematiksel durumlarda problemleri problem deneyimlerini "
+    "araç teknolojiyi teknoloji bilgi becerileri özellikleri özellik açıklayabilme belirleyebilme karşılaştırabilme sınıflandırabilme "
+    "uzunluk toplam ilgili örnekler örnek verilen aşağıdaki hangisi hangisidir göre kaçtır olduğuna şekilde şekildeki tabloda bunlardan").split())
+_UM = {}
+
+
+def _unit_tokens(text):
+    t = str(text or "").replace("İ", "i").replace("I", "ı").lower()
+    return {w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)} - _UNIT_GENERIC
+
+
+def _unit_model(grade_label, subject):
+    gl = str(grade_label or "")
+    g = "LGS" if "LGS" in gl.upper() else next((c for c in gl if c.isdigit()), "")
+    key = (g, subject)
+    if key in _UM:
+        return _UM[key]
+    m = None
+    try:
+        from . import curriculum as _cu
+        us = [(n, [str(x) for x in t]) for n, t in _cu.units(g, subject)]
+        if len(us) >= 2:
+            toks = [_unit_tokens(n + " " + " ".join(t)) for n, t in us]
+            df = {}
+            for ts in toks:
+                for w in ts:
+                    df[w] = df.get(w, 0) + 1
+            import math as _m
+            idf = {w: _m.log(len(us) / c) for w, c in df.items()}
+            m = (us, toks, idf)
+    except Exception:
+        m = None
+    _UM[key] = m
+    return m
+
+
+def _selected_units(grade_label, subject, topics):
+    """Plandaki 'topics' metninden seçilen ünitelerin adları (bulunamazsa None)."""
+    m = _unit_model(grade_label, subject)
+    if not m or not str(topics or "").strip():
+        return None
+    us = m[0]
+    tp = str(topics)
+    sel = {n for n, t in us if n and n in tp}
+    if not sel:
+        for n, t in us:
+            if any(re.match(r"[A-ZÇĞİÖŞÜ]{2,4}\.\d+\.\d+\.\d+\.", k) and k.split(" ")[0] in tp for k in t):
+                sel.add(n)
+    if not sel:  # kazanım/alt konu metinlerinden bul
+        for n, t in us:
+            if any(len(k) >= 12 and k[:40] in tp for k in t):
+                sel.add(n)
+    return sel or None
+
+
+def _unit_guard(q, topics, subject, grade_label):
+    """False -> soru başka bir üniteye ait (kesin). Emin değilse True."""
+    try:
+        if subject not in ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi") or not grade_label:
+            return True
+        m = _unit_model(grade_label, subject)
+        sel = _selected_units(grade_label, subject, topics)
+        if not m or not sel:
+            return True
+        us, toks, idf = m
+        T = _unit_tokens(f"{q.get('topic', '')} {q.get('kazanim', '')} {q.get('question', '')} {q.get('passage', '')}")
+        if not T:
+            return True
+        sc = [sum(idf.get(w, 0.0) for w in (T & ts)) for ts in toks]
+        best = max(range(len(us)), key=lambda i: sc[i])
+        if us[best][0] in sel:
+            return True
+        mine = max((sc[i] for i, (n, _t) in enumerate(us) if n in sel), default=0.0)
+        return not (sc[best] >= 1.2 and sc[best] > 1.3 * mine)
     except Exception:
         return True
 
@@ -8658,7 +8744,7 @@ def _mf_nest(subject):
     return _mf_raw(subject, "Çember", q, o, ex, shape=sh) if o else None
 
 
-_MF_GENS += [(_mf_nest, ("çember", "geometri", "geometrik", "iç içe"), (5,))]
+_MF_GENS += [(_mf_nest, ("çember", "iç içe"), (5,))]
 
 
 def math_questions(grade_label, n, topics="", seen=()):
@@ -8690,7 +8776,7 @@ def math_questions(grade_label, n, topics="", seen=()):
                     x = _norm_q(raw, "Matematik") if raw else None
                 except Exception:
                     x = None
-                if x and not _on_topic(x, topics, "Matematik"):
+                if x and not _on_topic(x, topics, "Matematik", grade_label):
                     x = None  # seçilen ünite dışı kalıp: atla
                 if x and _stem(x) not in stems:
                     stems.add(_stem(x))
@@ -8965,7 +9051,7 @@ def fen_questions(grade_label, n, topics="", seen=()):
                     x = _norm_q(raw, "Fen Bilimleri") if raw else None
                 except Exception:
                     x = None
-                if x and not _on_topic(x, topics, "Fen Bilimleri"):
+                if x and not _on_topic(x, topics, "Fen Bilimleri", grade_label):
                     x = None
                 if x and _stem(x) not in stems:
                     stems.add(_stem(x))
@@ -9208,7 +9294,11 @@ def tpl_questions(grade_label, n, topics="", seen=()):
     except Exception:
         return []
     want = _pool_tok(topics)
-    cand = [t for t in tps if (not want or (want & _pool_tok(f"{t.get('topic', '')} {t.get('topics', '')}")))]
+    sel_u = _selected_units(grade_label, "Matematik", topics)
+    if sel_u is not None:
+        cand = [t for t in tps if t.get("unit_name") in sel_u]  # yalnızca seçilen ünitenin şablonları
+    else:
+        cand = [t for t in tps if (not want or (want & _pool_tok(f"{t.get('topic', '')} {t.get('topics', '')}")))]
     if not cand:
         return []
     byid = {str(t.get("id")): t for t in cand}
@@ -9243,6 +9333,7 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
     if not qs:
         return []
     want = _pool_tok(topics)
+    sel_u = _selected_units(grade_label, subject, topics)
     store = None
     use = {}
     try:
@@ -9261,9 +9352,14 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
         s = _stem(q)
         if not s or s in seen or _is_bad(s):
             continue
-        ov = len(want & _pool_tok(f"{q.get('unit', '')} {q.get('topic', '')} {q.get('topics', '')}")) if want else 0
-        if want and not ov:
-            continue
+        if sel_u is not None:
+            if q.get("unit") not in sel_u:
+                continue  # havuz sorusu başka ünitenin: KESİN atla
+            ov = 1
+        else:
+            ov = len(want & _pool_tok(f"{q.get('unit', '')} {q.get('topic', '')} {q.get('topics', '')}")) if want else 0
+            if want and not ov:
+                continue
         far = dw is not None and isinstance(q.get("d"), int) and abs(q["d"] - dw) > 1
         cand.append((far, use.get(s, 0), -ov, random.random(), q))
     cand.sort(key=lambda t: t[:4])
@@ -9352,7 +9448,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 s = _stem(q)
                 if not s:
                     continue
-                if not _on_topic(q, p.get("topics", ""), p.get("subject")):
+                if not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
                     continue  # seçilen konu dışı: yedeğe bile alınmaz
                 if s in seen:
                     res_.append(q)
@@ -9536,7 +9632,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 p = st_["p"]
                 used = {_stem(q) for q in st_["qs"][:p["n"]]}
                 extra = [q for q in st_["over"] + st_["reserve"] if _stem(q) and _stem(q) not in used and _stem(q) not in seen
-                         and q.get("vfd") and _on_topic(q, p.get("topics", ""), p.get("subject"))]  # bankaya yalnızca ikinci modelle doğrulanmış sorular girer
+                         and q.get("vfd") and _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label)]  # bankaya yalnızca ikinci modelle doğrulanmış sorular girer
                 if extra:
                     store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), extra)
         except Exception:
