@@ -2138,6 +2138,273 @@
 "topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
 "d": 2,
 "ts": 1794163332
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "Beşinci sınıf öğrencisi Kerem, su tasarrufu konusuna dikkat çekmek için evindeki lavaboda bir deney yapar. Pürüzsüz paslanmaz çelik evye yüzeyine su damlatarak el feneri tuttuğunda ışığın çok belirgin bir şekilde belirli bir doğrultuda geri döndüğünü gözlemler. Aynı ışığı mat ahşap tezgaha tuttuğunda ise ışığın her yöne dağıldığını fark eder.",
+"question": "Bu gözlem sonuçlarına ve ışığın yansıma kurallarına göre Kerem'in yaptığı aşağıdaki yorumlardan hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Paslanmaz çelik evye yüzeyi düzgün yansıma yaparak ışığı belli bir yöne yönlendirir.",
+"B": "Pürüzlü mat ahşap yüzeylerde yansıma kanunları geçerli değildir.",
+"C": "Her iki yüzeyde de gelme açısı yansıma açısına hiçbir zaman eşit olmaz.",
+"D": "Mat ahşap tezgâh ışığı soğurur ve kesinlikle yansıtmaz."
+},
+"answer": "A",
+"explanation": "Paslanmaz çelik gibi pürüzsüz ve parlak yüzeyler düzgün yansıma yapar; bu sayede ışık belirli bir doğrultuda ve toplu halde geri döner.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayılması ve Gölge Oluşumu",
+"passage": "Meteoroloji uzmanı Deniz, akşam saatlerinde evinin balkonunda hava durumunu rapor ederken elindeki el fenerini duvara yaklaştırıp uzaklaştırarak gölge boyu değişimi üzerine bir oyun oynamaktadır. Feneri duvardaki opak cisme yaklaştırdığında duvardaki gölgenin boyutunun büyüdüğünü, uzaklaştırdığında ise küçüldüğünü fark eder.",
+"question": "Deniz'in bu gözlemine ve ışığın yayılma özelliklerine dayanarak aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Işık maddesel ortamlarda eğrisel yollar izleyerek yayılır.",
+"B": "Işık kaynakları uzaktayken gölge oluşumu gözlemlenmez.",
+"C": "Saydam cisimler arkalarında tam gölge oluşturabilir.",
+"D": "Işığı geçirmeyen opak cisimler ışık kaynağına yaklaştırıldığında gölge boyu büyü."
+},
+"answer": "D",
+"explanation": "Opak cisim ışık kaynağına yaklaştırıldığında, cismin engelleyeceği ışık miktarı artar ve perdedeki gölge boyu büyür.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddelerin Işığı Geçirgenliği",
+"passage": "Hayvanat bahçesini ziyaret eden bir grup öğrenci, farklı barınakların pencerelerinde kullanılan malzemeleri incelemektedir. Kuluçka merkezinde şeffaf cam, yavru aslan barınağında kalın buzlu cam, kaplan barınağında ise kalın tahta levha kullanılmıştır.",
+"question": "Öğrencilerin incelediği bu malzemelerin ışığı geçirme özellikleri bakımından oluşturduğu gruplandırma aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Şeffaf cam: Saydam - Buzlu cam: Opak - Tahta levha: Yarı saydam",
+"B": "Şeffaf cam: Opak - Buzlu cam: Yarı saydam - Tahta levha: Saydam",
+"C": "Şeffaf cam: Saydam - Buzlu cam: Yarı saydam - Tahta levha: Opak",
+"D": "Şeffaf cam: Yarı saydam - Buzlu cam: Saydam - Tahta levha: Opak"
+},
+"answer": "C",
+"explanation": "Işığı net geçiren şeffaf cam saydam, ışığı bulanık geçiren buzlu cam yarı saydam, hiç geçirmeyen tahta levha ise opak maddedir.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması ve Yüzey Çeşitleri",
+"passage": "Okulun resim sergisinde öğrenciler sergilenen tabloların üzerindeki aydınlatma spotlarının ışık oyunlarını incelemektedir. Daire grafiğinde sergi salonundaki farklı yüzeylerin yansıtma oranları yüzde olarak gösterilmiştir.",
+"question": "Verilen daire grafiği ve ışık yansıması kuralları dikkate alındığında, aşağıdaki çıkarımlardan hangisi kesinlikle doğrudur?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Düz Ayna",
+"Buzlu Cam",
+"Ahşap Pano",
+"Kumaş Perde"
+],
+"values": [
+45,
+25,
+20,
+10
+],
+"title": "Yüzeylerin Işığı Yansıtma Oranları (%)",
+"show_names": false
+},
+"options": {
+"A": "Kumaş perde düzgün yansıma yaparak net görüntü oluşturur.",
+"B": "Düz ayna yüzeyi ışığı en yüksek oranda yansıtan düzgün yansıtıcıdır.",
+"C": "Buzlu cam ışığı pürüzsüz yansıtarak ayna görevi görür.",
+"D": "Ahşap pano ışığı tamamen soğurur ve yansıtma yapmaz."
+},
+"answer": "B",
+"explanation": "Grafikte düz ayna %45 ile en yüksek yansıtma oranına sahiptir ve düzgün yansıma yaparak net görüntü oluşturur.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işık Kaynakları ve Yayılması",
+"passage": "Bilim insanı Galileo'nun deney notlarını inceleyen fen bilimleri sınıfı, ışık kaynaklarının yayılma hızını ve özelliklerini tartışmaktadır. Öğretmen tahtaya farklı cisimlerin ışık yayma durumlarına ait sütun grafiğini çizerek öğrencilerden yorum yapmalarını istemiştir.",
+"question": "Grafikteki verilere ve ışık kaynakları konusuna göre, aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Güneş",
+"Yıldız",
+"Ay",
+"El Feneri"
+],
+"values": [
+100,
+90,
+0,
+80
+],
+"title": "Cisimlerin Kendi Işığını Üretme Puanı",
+"show_names": false
+},
+"options": {
+"A": "Yıldızlar yapay ışık kaynakları sınıfına girer.",
+"B": "Güneş Dünya'nın tek uydusu olup kendi ışığını üretmez.",
+"C": "El feneri doğal ışık kaynağı olduğu için puanı yüksektir.",
+"D": "Ay'ın puanı sıfırdır çünkü Ay bir ışık kaynağı değil, Güneş'ten aldığı ışığı yansıtan gök cismidir."
+},
+"answer": "D",
+"explanation": "Ay bir ışık kaynağı değildir, Güneş'ten aldığı ışığı yansıtır. Bu nedenle grafikteki ışık üretme puanı sıfır olarak gösterilmiştir.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayılması",
+"passage": "Doğa yürüyüşüne çıkan bir grup öğrenci, farklı malzemelerden yapılmış levhaların arkalarındaki cisimleri görünürlük durumlarını incelemek için bir deney tasarlamıştır. Yapılan gözlem sonuçları aşağıdaki tabloda kaydedilmiştir.",
+"question": "Tablodaki verilere göre yapılan aşağıdaki çıkarımlardan hangisi doğrudur?",
+"shape": {
+"type": "table",
+"title": "Malzeme Gözlem Tablosu",
+"headers": [
+"Malzeme Adı",
+"Işığı Geçirme Durumu",
+"Arkadaki Cisim Görünürlüğü"
+],
+"rows": [
+[
+"P Levhası",
+"Tamamen geçirir",
+"Net görülüyor"
+],
+[
+"R Levhası",
+"Kısmen geçirir",
+"Bulanık görülüyor"
+],
+[
+"S Levhası",
+"Hiç geçirmez",
+"Görünmüyor"
+]
+]
+},
+"options": {
+"A": "P levhası opak bir madde olup arkasındaki cismin net görünmesini engeller.",
+"B": "R levhası yarı saydam bir malzeme olduğundan ışığın bir kısmını geçirir.",
+"C": "S levhası saydam bir cisimdir ve ışığı geçirdiği için gölge oluşturmaz.",
+"D": "P levhası ile S levhası aynı optik özelliğe sahip maddelerden üretilmiştir."
+},
+"answer": "B",
+"explanation": "R levhası arkasındaki cismi bulanık gösterdiğine göre ışığı kısmen geçiren yarı saydam bir maddedir. P saydam, S ise opak maddedir. Buna göre doğru seçenek B'dir.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Gölge Oluşumu ve Boyutu",
+"passage": "Arkeolojik bir kazı alanında çalışan uzmanlar, karanlık bir mağarada buldukları tarihî bir heykelciğin detaylarını incelemektedir. Uzmanlar, sabit bir ışık kaynağı önünde duran heykelciğin duvardaki gölge boyunu incelemek için heykelciği ışık kaynağına yaklaştırmıştır.",
+"question": "Bu kazı çalışmasında heykelcik ışık kaynağına yaklaştırıldığında duvarda oluşan gölge ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Gölge boyunda hiçbir değişiklik gözlemlenmez.",
+"B": "Cismin konumu değiştiği için gölge tamamen ortadan kalkar.",
+"C": "Gölge boyu küçülür ve netliği azalır.",
+"D": "Gölge boyu büyür çünkü cisim ışık kaynağına yaklaştıkça daha fazla ışık keser."
+},
+"answer": "D",
+"explanation": "Işığı geçirmeyen opak cisimler gölge oluşturur. Cisim ışık kaynağına yaklaştırıldığında, ışık ışınlarının cisim tarafından engellenen alanı artar ve duvardaki gölge boyu büyür. Bu bilimsel kural doğrultusunda doğru çıkarım yapılmalıdır.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Doğrusal Yayılması",
+"passage": "Kültür festivalinde görevli öğrenciler, ışık ışınlarının yayılma özelliklerini gösteren bir açık hava sahne tasarımı hazırlamıştır. Tasarımda kullanılan lazer ışınlarının izlediği yollar bir grafik üzerinde incelenmiştir. Grafik, farklı engellerden geçen ışık ışınlarının ilerleme mesafesini göstermektedir.",
+"question": "Grafik verilerine ve ışığın yayılma özelliklerine göre aşağıdakilerden hangisi yanlıştır?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1. Engel",
+"2. Engel",
+"3. Engel",
+"4. Engel"
+],
+"values": [
+10,
+20,
+30,
+40
+],
+"title": "Işık Işınının İlerleme Mesafesi (cm)",
+"show_names": false
+},
+"options": {
+"A": "Işık, boşlukta ve engelsiz ortamlarda doğrusal yollar boyunca yayılır.",
+"B": "Işık, engellerle karşılaştığında yönünü eğrisel ve kıvrımlı yollar izleyerek değiştirir.",
+"C": "Işık ışınları doğrusal yolla yayıldığı için engellerin arkasında gölge oluşur.",
+"D": "Işık kaynağının önündeki doğrusal ilerleme mesafesi ölçülebilir bir büyüklüktür."
+},
+"answer": "B",
+"explanation": "Işık eğrisel veya kıvrımlı yollarla değil, daima doğrusal yollarla yayılır. C seçeneği bu nedenle yanlıştır.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Gelme ve Yansıma Açısı",
+"passage": "Bir şehir planlamacısı, yeni yapılacak binanın cam cephelerine çarpacak güneş ışınlarının açısını hesaplamaktadır. Mühendislik modelinde, ışık ışınının düz bir aynaya gelme açısı 35 derece olarak ölçülmüştür.",
+"question": "Bu şehir planlaması modeline göre, ışık ışınının yansıma açısı kaç derecedir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Gelme Açısı",
+"Yansıma Açısı",
+"Aynadan Uzaklık"
+],
+"values": [
+35,
+35,
+50
+],
+"title": "Ayna Deneyi Verileri (Derece ve cm)",
+"show_names": false
+},
+"options": {
+"A": "35",
+"B": "55",
+"C": "70",
+"D": "90"
+},
+"answer": "A",
+"explanation": "Yansıma kanunları gereği gelme açısı yansıma açısına eşittir. Gelme açısı 35° ise yansıma açısı da 35° olur. Doğru cevap A seçeneğidir.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 2,
+"ts": 1794166772
 }
 ]
 }

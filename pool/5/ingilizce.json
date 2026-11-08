@@ -1520,6 +1520,366 @@
 "topics": "Places, Directions, Prepositions",
 "d": 2,
 "ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Healthy Life and Advice",
+"passage": "Dr. Arslan gives health advice to four students based on their daily habits:\n\n1. Mert: \"I eat fast food every day and I never drink water.\"\n2. Elif: \"I sleep early every night and I eat fruit and vegetables.\"\n3. Can: \"I play computer games all night and I don't do exercise.\"\n4. Deniz: \"I eat lots of candy and chips before sleeping.\"",
+"question": "Which student has a healthy lifestyle according to Dr. Arslan's recommendations?",
+"shape": null,
+"options": {
+"A": "Elif",
+"B": "Deniz",
+"C": "Can",
+"D": "Mert"
+},
+"answer": "A",
+"explanation": "Dr. Arslan's healthy life recommendations include eating fruit and vegetables, drinking water, sleeping early, and doing exercise. Among the students, Elif sleeps early and eats fruit and vegetables, which matches the healthy life rules. The other students consume junk food or lack healthy habits.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Frequency and Exercise",
+"passage": "Three friends talk about how often they do sports:\n- Ceren: \"I go jogging once a week, on Sundays.\"\n- Murat: \"I play tennis twice a week, on Tuesdays and Saturdays.\"\n- Hakan: \"I go swimming three times a week, on Mondays, Wednesdays, and Fridays.\"",
+"question": "Which of the following statements is correct according to the friends' statements?",
+"shape": null,
+"options": {
+"A": "Ceren does sports twice a week.",
+"B": "Hakan exercises three times a week.",
+"C": "Ceren exercises more frequently than Hakan.",
+"D": "Murat exercises only on Sundays."
+},
+"answer": "B",
+"explanation": "Let's evaluate the options: Ceren exercises once a week (so D is false). Murat exercises twice a week on Tuesdays and Saturdays (so C is false, he doesn't only exercise on Sundays). Hakan exercises three times a week on Mondays, Wednesdays, and Fridays (so B is correct). Ceren exercises once a week, whereas Hakan exercises three times a week, so Ceren does not exercise more frequently than Hakan (so A is false).",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Doctor's Advice and Illnesses",
+"passage": "Patient: \"Doctor, I feel terrible today. I have a severe headache and a high fever.\"\nDoctor: \"You should stay in bed, take your medicine, and drink plenty of water. You shouldn't go outside in the cold.\"",
+"question": "Which of the following is NOT among the doctor's advice to the patient?",
+"shape": null,
+"options": {
+"A": "You should stay in bed.",
+"B": "You shouldn't go outside in the cold.",
+"C": "You should eat fast food and chips.",
+"D": "You should drink plenty of water."
+},
+"answer": "C",
+"explanation": "The doctor advises staying in bed, taking medicine, drinking water, and not going outside in the cold. Eating fast food and chips is junk food and unhealthy, and the doctor did not give this advice. Therefore, option C is not among the doctor's advice.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Sports and Equipment",
+"passage": "Sports Club Equipment Table:\n\n| Sport       | Required Equipment / Setting |\n|-------------|------------------------------|\n| Tennis      | Racket and ball             |\n| Basketball  | Hoop and ball               |\n| Swimming    | Pool and swimsuit           |\n| Football    | Goalposts and ball          |\n\nMelis wants to join an activity where she needs a racket and a ball.",
+"question": "Which sport should Melis choose according to the table?",
+"shape": null,
+"options": {
+"A": "Swimming",
+"B": "Basketball",
+"C": "Football",
+"D": "Tennis"
+},
+"answer": "D",
+"explanation": "According to the table, Tennis requires a 'Racket and ball'. Melis wants an activity where she needs a racket and a ball, so she must choose Tennis.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Healthy Life and Junk Food",
+"passage": "A school canteen displays a poster about nutrition:\n\n- \"Fruit and vegetables are good for your health.\"\n- \"Water is essential for your body; you should drink it regularly.\"\n- \"Chips and burgers are junk food. They are not good for you.\"",
+"question": "Which of the following items is considered healthy according to the poster?",
+"shape": null,
+"options": {
+"A": "Apples",
+"B": "Burgers",
+"C": "Fast food",
+"D": "Chips"
+},
+"answer": "A",
+"explanation": "The poster states that fruit and vegetables are good for health, while chips, burgers, and fast food are junk food and not good for you. Among the choices, apples are fruit, which makes them healthy.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Illnesses and Advice",
+"passage": "Aylin goes to the school nurse because she feels very cold, has a high temperature, and coughs continuously. The nurse examines her and gives her some health advice.\n\nNurse: 'You have a bad cough and a fever. You should stay in bed and rest.'",
+"question": "Which of the following illnesses does Aylin NOT mention during her visit to the nurse?",
+"shape": null,
+"options": {
+"A": "Cold",
+"B": "Fever",
+"C": "Cough",
+"D": "Toothache"
+},
+"answer": "D",
+"explanation": "Step 1: Identify the symptoms Aylin states in the text (cold, fever, cough). Step 2: Check the options against the stated symptoms. Step 3: 'Toothache' is not mentioned in the passage, making it the correct answer for what she did not mention.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Healthy Life and Nutrition",
+"passage": "A local health magazine publishes a short guide on daily habits for students:\n\n- Eat fruit and vegetables every day.\n- Drink plenty of water.\n- Avoid junk food like chips and fast food.\n- Sleep early at night.",
+"question": "Based on the guide, which of the following food choices is considered good for your health?",
+"shape": null,
+"options": {
+"A": "Drinking soda",
+"B": "Eating chips",
+"C": "Eating vegetables",
+"D": "Eating fast food"
+},
+"answer": "C",
+"explanation": "Step 1: Review the magazine guide for healthy items. Step 2: The guide explicitly recommends eating fruit and vegetables. Step 3: Chips, fast food, and soda are classified as junk food or unhealthy choices, leaving vegetables as the correct option.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Body Parts and Pain",
+"passage": "Four students visit the school clinic and describe their physical problems to the doctor:\n\n- Kerem: 'I have a pain in my mouth.'\n- Burak: 'My head hurts a lot.'\n- Deniz: 'I ate too much, and now my stomach hurts.'\n- Ceren: 'I cannot bite anything because my front mouth area hurts.'",
+"question": "Which of the following body parts does Ceren mention implicitly when describing her pain?",
+"shape": null,
+"options": {
+"A": "Ear",
+"B": "Hand",
+"C": "Leg",
+"D": "Tooth"
+},
+"answer": "D",
+"explanation": "Step 1: Read Ceren's statement about not being able to bite anything because her front mouth area hurts. Step 2: Relate biting difficulty and mouth area pain to teeth (toothache). Step 3: Match this to the body part 'tooth'.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Medical Advice with Should",
+"passage": "A doctor gives advice to three different patients based on their health problems:\n\n1. Patient A has a severe headache.\n2. Patient B has a bad toothache.\n3. Patient C has a terrible stomachache from eating too much candy.",
+"question": "Which of the following healthcare professionals should Patient B visit according to the medical rules?",
+"shape": null,
+"options": {
+"A": "Nurse",
+"B": "Teacher",
+"C": "Dentist",
+"D": "Doctor"
+},
+"answer": "C",
+"explanation": "Step 1: Identify Patient B's problem as a toothache. Step 2: Recall the medical expert specialized in teeth and toothaches. Step 3: Conclude that Patient B should visit a dentist.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Sports Equipment and Activities",
+"passage": "A sports club creates a poster listing equipment needed for different outdoor sports:\n\n- Sport 1: You need a racket and a small yellow ball.\n- Sport 2: You need a large ball and a net with two goalposts on a green field.\n- Sport 3: You need goggles and a swimming pool.",
+"question": "Which of the following sports matches Sport 2 in the club's poster?",
+"shape": null,
+"options": {
+"A": "Football",
+"B": "Swimming",
+"C": "Tennis",
+"D": "Jogging"
+},
+"answer": "A",
+"explanation": "Step 1: Analyze the clues for Sport 2: large ball, net with two goalposts, green field. Step 2: Match these items to the sport played with goalposts and a large ball. Step 3: Conclude that Sport 2 is football.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 2,
+"ts": 1794166528
+},
+{
+"subject": "İngilizce",
+"topic": "Greetings and Meeting People",
+"passage": "At an international youth camp, four teenagers meet in the morning. \n- Leo says: 'Good morning! I am Leo from France.'\n- Mia replies: 'Good morning, Leo! My name is Mia and I am from England.'\n- Arda joins them and says: 'Good morning! I am Arda from Turkey.'\n- Sophie adds: 'Good night! It is so nice to meet you all.'",
+"question": "Which of the following explains the contextual error made by one of the teenagers in the dialogue?",
+"shape": null,
+"options": {
+"A": "Mia introduces her nationality incorrectly according to the program rules.",
+"B": "Arda responds with a question instead of stating his name.",
+"C": "Sophie uses a farewell and sleeping expression instead of a morning greeting.",
+"D": "Leo uses a greeting that is only appropriate for afternoon hours."
+},
+"answer": "C",
+"explanation": "Step 1: Analyze the time context provided in the passage, which is morning. Step 2: Check the greetings used by Leo, Mia, and Arda, all of whom correctly use 'Good morning'. Step 3: Examine Sophie's utterance 'Good night!', which is used when parting ways or before going to sleep, creating a context error for a morning meeting. Step 4: Match this finding with option B.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Asking and Answering Personal Questions",
+"passage": "Read the dialogue snippet between two new classmates:\nOliver: 'Hello! What is your name?'\nElif: 'My name is Elif. Where are you from, Oliver?'\nOliver: 'I am from England. And how old are you, Elif?'\nElif: 'I am ten years old.'",
+"question": "Which of the following questions is NOT answered in the dialogue above?",
+"shape": null,
+"options": {
+"A": "Where is Oliver from?",
+"B": "What is Elif's name?",
+"C": "How old is Elif?",
+"D": "What is Elif's nationality?"
+},
+"answer": "D",
+"explanation": "Step 1: Check if Elif's name is answered ('My name is Elif'). Step 2: Check if Oliver's origin is answered ('I am from England'). Step 3: Check if Elif's age is answered ('I am ten years old'). Step 4: Notice that Elif's specific nationality is never stated in the text, making D the correct choice.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Greetings and Responses",
+"passage": "Four friends complete a conversational matching task about greetings and parting expressions:\n1. 'Good evening!' -> Used when arriving at an evening event.\n2. 'Good night!' -> Used when greeting someone at midnight.\n3. 'Nice to meet you.' -> Responded with 'Nice to meet you, too.'\n4. 'How are you?' -> Responded with 'I'm fine, thank you. And you?'",
+"question": "Which numbered statement contains an incorrect usage or context according to the curriculum rules?",
+"shape": null,
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Step 1: Statement 1 correctly identifies 'Good evening' as an evening greeting. Step 2: Statement 2 states 'Good night' is used when 'greeting' someone, whereas 'Good night' is specifically used when parting ways or going to bed, not as a welcoming greeting. Step 3: Statements 3 and 4 match standard curriculum responses. Step 4: Therefore, statement 2 contains the error.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Nationalities and Countries",
+"passage": "An exchange student table shows matching errors made by a quiz contestant:\n- Country: England -> Nationality: English\n- Country: France -> Nationality: French\n- Country: Turkey -> Nationality: German\n- Country: Germany -> Nationality: German",
+"question": "Which country-nationality pair in the contestant's list must be corrected to match the official program?",
+"shape": null,
+"options": {
+"A": "England - English",
+"B": "Germany - German",
+"C": "Turkey - German",
+"D": "France - French"
+},
+"answer": "C",
+"explanation": "Step 1: Check England and English (Correct). Step 2: Check France and French (Correct). Step 3: Check Turkey and German (Incorrect, Turkey corresponds to Turkish). Step 4: Check Germany and German (Correct). Therefore, Turkey - German is the incorrect pair.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Introducing",
+"passage": "Four students are talking about their personal details:\n- Student 1: 'My name is Defne. I am from Turkey. I am Turkish.'\n- Student 2: 'My name is Lukas. I am from Germany. I am German.'\n- Student 3: 'My name is Marie. I am from France. I am French.'\n- Student 4: 'My name is Oliver. I am from England. I am French.'",
+"question": "Which of the following students makes a mistake when matching their country with their correct nationality?",
+"shape": null,
+"options": {
+"A": "Student 1",
+"B": "Student 2",
+"C": "Student 3",
+"D": "Student 4"
+},
+"answer": "D",
+"explanation": "Student 4 says they are from England but states their nationality is 'French', which is incorrect; someone from England is English, while someone from France is French. Therefore, Student 4 has a mismatch between country and nationality.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Alphabet",
+"passage": "A student is spelling names for a spelling bee game using the English alphabet (26 letters):\n- Name A: A-L-I (3 letters)\n- Name B: E-L-I-F (4 letters)\n- Name C: M-E-R-T (4 letters)\n- Name D: Z-E-Y-N-E-P (6 letters)",
+"question": "Which of the following names contains the highest number of letters according to the English alphabet spelling list provided above?",
+"shape": null,
+"options": {
+"A": "Zeynep",
+"B": "Elif",
+"C": "Mert",
+"D": "Ali"
+},
+"answer": "A",
+"explanation": "Counting the letters for each name: Ali has 3 letters, Elif has 4 letters, Mert has 4 letters, and Zeynep has 6 letters. 6 is the highest number among the options, so Zeynep contains the highest number of letters.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Introducing",
+"passage": "Three penpals write short introduction notes:\n- Emre: 'Hello! I am ten years old. I am from Turkey.'\n- Sofia: 'Hi! I am nine years old. I am from Spain.'\n- Hans: 'Good morning! I am ten years old. I am from Germany.'",
+"question": "Which of the following conclusions can be drawn from the notes of the three penpals?\nI. Emre and Hans are the same age.\nII. Sofia is younger than Emre.\nIII. All three penpals are from the same country.",
+"shape": null,
+"options": {
+"A": "Only I",
+"B": "I and II",
+"C": "II and III",
+"D": "I, II and III"
+},
+"answer": "B",
+"explanation": "Emre is 10 and Hans is 10, so they are the same age (I is correct). Sofia is 9, which is younger than Emre's age of 10 (II is correct). They are from Turkey, Spain, and Germany respectively, so they are not from the same country (III is false). Therefore, I and II are correct.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Greetings",
+"passage": "Different people use different farewell expressions based on the time and situation:\n- Person 1 says 'Good night' before going to sleep at 11:00 PM.\n- Person 2 says 'Good evening' when meeting a friend at 7:00 PM.\n- Person 3 says 'Good morning' when leaving a building at 2:00 PM.",
+"question": "Which of the following persons uses an expression that does not fit the appropriate time or context described?\nI. Person 1\nII. Person 2\nIII. Person 3",
+"shape": null,
+"options": {
+"A": "II and III",
+"B": "Only I",
+"C": "I and II",
+"D": "Only III"
+},
+"answer": "D",
+"explanation": "Person 1 uses 'Good night' before sleeping at night, which is correct. Person 2 uses 'Good evening' at 7:00 PM, which is correct. Person 3 uses 'Good morning' at 2:00 PM (afternoon), which is incorrect because 'Good morning' is only used in the morning, not at 2:00 PM. Thus, only Person 3 makes a mistake.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794166583
 }
 ]
 }

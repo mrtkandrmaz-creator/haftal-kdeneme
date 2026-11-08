@@ -372,6 +372,408 @@
     "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
     "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
    ]
+  },
+  {
+   "topic": "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme",
+   "text": "Elif, sınıfta {a} litre suyu {k} eşit kaba paylaştırıyor. Her bir kaba düşen su miktarı kesir olarak \"{a}/{k}\" litre. Eğer bir kaba {p} ml su eklenirse, yeni miktar hangi kesirle daha yakındır?",
+   "vars": {
+    "a": {
+     "lo": 3,
+     "hi": 8
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    },
+    "p": {
+     "lo": 100,
+     "hi": 400,
+     "step": 100
+    }
+   },
+   "derived": {
+    "t": "(a/k)+(p/1000)"
+   },
+   "constraints": [
+    "(a/k)+(p/1000)<10"
+   ],
+   "answer": "(a/k)+(p/1000)",
+   "wrong": [
+    "a/k-p/1000",
+    "a/k*p/1000",
+    "(a+p)/k"
+   ],
+   "unit": "litre",
+   "explanation": "{a}/{k} + {p}/1000 = {ans}",
+   "positive": true,
+   "id": "m5-0011",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Mert, bir bahçede {a} m uzunluğunda çit çekiyor. Çitin bir kısmı {p}% oranında boyanacak. Boyanan kısmın uzunluğunu kesir olarak \"{p}/100 * a\" metre şeklinde bulabiliriz. Mert kaç metre çiti boyar?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 12
+    },
+    "p": {
+     "lo": 10,
+     "hi": 50,
+     "step": 10
+    }
+   },
+   "derived": {
+    "t": "a*p/100"
+   },
+   "constraints": [
+    "a*p/100<30"
+   ],
+   "answer": "a*p/100",
+   "wrong": [
+    "a+p/100",
+    "a-p/100",
+    "a*p"
+   ],
+   "unit": "metre",
+   "explanation": "{a} x {p}/100 = {ans}",
+   "positive": true,
+   "id": "m5-0012",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme",
+   "text": "Ayşe, sınıfta {a} sayıda kalemi {k} grup halinde eşit olarak dağıtıyor. Her grup kaç kalem alır? Sonucu kesir olarak \"{a}/{k}\" kalem olarak yazabilir. Ayşe'nin bir grup aldığı kalem sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 12,
+     "hi": 24
+    },
+    "k": {
+     "choices": [
+      3,
+      4,
+      6
+     ]
+    }
+   },
+   "derived": {
+    "t": "a/k"
+   },
+   "constraints": [
+    "a/k<10"
+   ],
+   "answer": "a/k",
+   "wrong": [
+    "a+k",
+    "a-k",
+    "a*k"
+   ],
+   "unit": "",
+   "explanation": "{a} / {k} = {ans}",
+   "positive": true,
+   "id": "m5-0013",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+   "text": "Elif, günde {a} sayfa okuyarak bir kitabı {b} günde bitirmektedir. Mert ise aynı kitabı günde {c} sayfa okuyarak bitirmek istemektedir. Buna göre Mert bu kitabı kaç günde bitirir?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 30,
+     "step": 5
+    },
+    "b": {
+     "lo": 4,
+     "hi": 12
+    },
+    "c": {
+     "lo": 15,
+     "hi": 25,
+     "step": 5
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "(a * b) % c == 0",
+    "a != c"
+   ],
+   "answer": "(a * b) // c",
+   "wrong": [
+    "(a + b) // c",
+    "(a * b) // a",
+    "(a * b) - c"
+   ],
+   "unit": "gün",
+   "explanation": "Kitabın toplam sayfa sayısı {a} * {b} işleminden bulunur. Mert'in bitirme süresi ise ( {a} * {b} ) / {c} = {ans} gün olur.",
+   "positive": true,
+   "id": "m5-0014",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+   "text": "Mert bir kırtasiyeden tanesi {a} TL olan kalemlerden {b} adet ve tanesi {c} TL olan defterlerden {d} adet almıştır. Satıcıya {e} TL ödeyen Mert kaç TL para üstü alır?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 15
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    },
+    "c": {
+     "lo": 20,
+     "hi": 40,
+     "step": 5
+    },
+    "d": {
+     "lo": 2,
+     "hi": 4
+    },
+    "e": {
+     "lo": 200,
+     "hi": 500,
+     "step": 50
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "e > (a * b + c * d)"
+   ],
+   "answer": "e - (a * b + c * d)",
+   "wrong": [
+    "e - a * b + c * d",
+    "e - (a + c)",
+    "e + (a * b + c * d)"
+   ],
+   "unit": "TL",
+   "explanation": "İşlem önceliğine göre önce ürünlerin toplam tutarı parantez içinde hesaplanır: {a} * {b} + {c} * {d}. Para üstü için verilecek tutardan çıkarılır: {e} - ({a} * {b} + {c} * {d}) = {ans} TL.",
+   "positive": true,
+   "id": "m5-0015",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+   "text": "Ali antrenman programının 1. gününde {a} metre koşmuştur. Ali sonraki her gün bir önceki günden {b} metre daha fazla koşmaktadır. Buna göre Ali antrenmanın {n}. gününde kaç metre koşar?",
+   "vars": {
+    "a": {
+     "lo": 200,
+     "hi": 500,
+     "step": 50
+    },
+    "b": {
+     "lo": 30,
+     "hi": 100,
+     "step": 10
+    },
+    "n": {
+     "lo": 6,
+     "hi": 15
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "a > b"
+   ],
+   "answer": "a + (n - 1) * b",
+   "wrong": [
+    "a + n * b",
+    "n * b",
+    "a + b"
+   ],
+   "unit": "metre",
+   "explanation": "1. gün {a} metre koşulmuştur. {n}. güne kadar {n} - 1 kere artış gerçekleşir. Koşulan mesafe: {a} + ({n} - 1) * {b} = {ans} metre olur.",
+   "positive": true,
+   "id": "m5-0016",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+   "text": "Bir pazarcı gün boyunca sattığı meyve türlerini kaydetmiştir. Elma satışından {a} adet, armut satışından ise elma satışının {b} katı kadar adet satmıştır. Toplam meyve adedi nedir?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 30
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    }
+   },
+   "derived": {
+    "armut": "a*b"
+   },
+   "constraints": [
+    "a > 5"
+   ],
+   "answer": "a + a*b",
+   "wrong": [
+    "a*b",
+    "a+b",
+    "a*a*b"
+   ],
+   "unit": "adet",
+   "explanation": "Elma adedi ile armut adedi toplanır.",
+   "positive": true,
+   "id": "m5-0017",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+   "text": "Bir okul kantininde en çok satılan içecekler anketinde {a} öğrenci ayran, ayran seçenlerin {b} katı kadar öğrenci de su seçtiğini belirtmiştir. Su seçen öğrenci sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 15,
+     "hi": 40
+    },
+    "b": {
+     "lo": 2,
+     "hi": 4
+    }
+   },
+   "derived": {
+    "su": "a*b"
+   },
+   "constraints": [
+    "a < 50"
+   ],
+   "answer": "a*b",
+   "wrong": [
+    "a+b",
+    "a-b",
+    "a//b"
+   ],
+   "unit": "öğrenci",
+   "explanation": "Ayran seçenlerin sayısı {b} ile çarpılır.",
+   "positive": true,
+   "id": "m5-0018",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir kütüphanede her birinde {a} adet kitap bulunan {b} adet dolap vardır. Kütüphane görevlisi bu kitapların {c} adetini okullara bağışlıyor. Buna göre kütüphanede kalan kitap sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 120,
+     "hi": 250
+    },
+    "b": {
+     "lo": 15,
+     "hi": 40
+    },
+    "c": {
+     "lo": 500,
+     "hi": 1500
+    }
+   },
+   "derived": {
+    "top": "a*b"
+   },
+   "constraints": [
+    "a*b > c"
+   ],
+   "answer": "a*b-c",
+   "wrong": [
+    "a*b+c",
+    "a*b",
+    "a*b-c+100"
+   ],
+   "unit": "adet",
+   "explanation": "Toplam kitap sayısı {a} ile {b} çarpılarak bulunur, bağışlanan kitap sayısı çıkarıldığında {ans} adet kitap kalır.",
+   "positive": true,
+   "id": "m5-0019",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Mert, kilosu {a} TL olan muzdan {b} kg ve tanesi {c} TL olan sudan {d} adet alıyor. Buna göre Mert market kasasına toplam kaç TL ödeme yapar?",
+   "vars": {
+    "a": {
+     "lo": 40,
+     "hi": 80
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    },
+    "c": {
+     "lo": 5,
+     "hi": 15
+    },
+    "d": {
+     "lo": 3,
+     "hi": 8
+    }
+   },
+   "derived": {
+    "m": "a*b",
+    "s": "c*d"
+   },
+   "constraints": [
+    "a*b > 0"
+   ],
+   "answer": "a*b+c*d",
+   "wrong": [
+    "a*b-c*d",
+    "a+b+c+d",
+    "a*b*c*d"
+   ],
+   "unit": "TL",
+   "explanation": "Muz için ödenen tutar ile su için ödenen tutar toplanarak toplam {ans} TL bulunur.",
+   "positive": true,
+   "id": "m5-0020",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
   }
  ]
 }

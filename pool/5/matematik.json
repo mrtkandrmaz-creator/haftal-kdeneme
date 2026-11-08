@@ -2048,36 +2048,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme",
-"passage": "",
-"question": "Şekilde d₁ ve d₂ doğruları A noktasında dik kesişmektedir. |AB| = 6 cm ve |AC| = 8 cm olduğuna göre, A noktasının [BC] doğru parçasına olan uzaklığı kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "perpendicular",
-"labels": [
-"d1",
-"d2",
-"A"
-],
-"tilt": 0,
-"show_names": false
-},
-"options": {
-"A": "4,2 cm",
-"B": "4,8 cm",
-"C": "5,0 cm",
-"D": "5,4 cm"
-},
-"answer": "B",
-"explanation": "ABC dik üçgeninde dik kenarlar 6 cm ve 8 cm'dir. Hipotenüs uzunluğu |BC| = √(6² + 8²) = 10 cm bulunur. A köşesinden [BC]'ye inilen yükseklik (h) alandan bulunur: (6 × 8) ÷ 2 = (10 × h) ÷ 2 ⇒ 48 = 10 × h ⇒ h = 4,8 cm.",
-"vfd2": true,
-"unit": "3. Tema: Geometrik Şekiller",
-"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
-"d": 4,
-"ts": 1794163552
-},
-{
-"subject": "Matematik",
 "topic": "Çokgenleri düzlemde ardışık kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme",
 "passage": "",
 "question": "Şekildeki dışbükey beşgenin iç açıları sırasıyla x, 2x, 3x, 4x ve 5x olarak verilmiştir. Bu beşgenin en büyük iç açısı kaç derecedir?",
@@ -2150,42 +2120,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Temel geometrik inşalar ve çember",
-"passage": "",
-"question": "Şekildeki O merkezli çemberde |AB| = 12 cm uzunluğunda bir AB kirişi çizilmiştir. O merkezinden AB kirişine çizilen dikmenin kirişi iki eş parçaya ayırdığı ve merkeze olan uzaklığının 8 cm olduğu bilinmektedir. Buna göre bu çemberin yarıçapı kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "circle_parts",
-"center": "O",
-"parts": [
-"radius",
-"chord"
-],
-"labels": [
-"O",
-"A",
-"B",
-"C",
-"D"
-],
-"show_names": false
-},
-"options": {
-"A": "8 cm",
-"B": "10 cm",
-"C": "12 cm",
-"D": "15 cm"
-},
-"answer": "B",
-"explanation": "1. Adım: O merkezinden AB kirişine indirilen dikme kirişi iki eşit parçaya böler, bu nedenle yarım kiriş uzunluğu 12 ÷ 2 = 6 cm'dir.\n2. Adım: Merkez ile kirişin orta noktası ve çember üzerindeki bir nokta (örneğin A) birleştirildiğinde dik üçgen oluşur.\n3. Adım: Bu dik üçgenin dik kenarları 6 cm ve 8 cm'dir.\n4. Adım: Pisagor bağıntısı (6² + 8² = 36 + 64 = 100) kullanıldığında hipotenüs yani yarıçap √100 = 10 cm bulunur.",
-"vfd2": true,
-"unit": "3. Tema: Geometrik Şekiller",
-"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
-"d": 4,
-"ts": 1794163552
-},
-{
-"subject": "Matematik",
 "topic": "Dörtgenlerin kenar ve açı özellikleri",
 "passage": "",
 "question": "Şekildeki ABCD paralelkenarında m(BAD) = 3x + 10° ve m(BCD) = 2x + 40° olduğuna göre m(ABC) kaç derecedir?",
@@ -2221,6 +2155,154 @@
 "topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
 "d": 4,
 "ts": 1794163552
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+"passage": "",
+"question": "Çevre uzunluğu 50 cm olan bir dikdörtgenin uzun kenarı, kısa kenarından 5 cm uzundur. Bu dikdörtgenin uzun kenarı kaç cm'dir?",
+"shape": {
+"type": "rectangle",
+"width": 15,
+"height": 10,
+"width_label": "a+5",
+"height_label": "a",
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "15",
+"C": "20",
+"D": "25"
+},
+"answer": "B",
+"explanation": "Çevre 50 cm ise bir kısa ve bir uzun kenarın toplamı 50 ÷ 2 = 25 cm'dir. Kısa kenara a dersek uzun kenar a + 5 olur. a + (a + 5) = 25 ise 2a = 20 ve a = 10 cm'dir. Uzun kenar ise 10 + 5 = 15 cm bulunur.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794166204
+},
+{
+"subject": "Matematik",
+"topic": "Birim Karelerle Alan Hesabı",
+"passage": "",
+"question": "Bir zemin üzerindeki 40 birim kareden oluşan dikdörtgenin kısa kenarı 5 birimdir. Bu dikdörtgenin çevre uzunluğu kaç birimdir?",
+"shape": {
+"type": "rectangle",
+"width": 8,
+"height": 5,
+"width_label": "8 birim",
+"height_label": "5 birim",
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "18",
+"C": "26",
+"D": "40"
+},
+"answer": "C",
+"explanation": "Dikdörtgenin alanı 40 birim kare ve kısa kenarı 5 birim ise uzun kenarı 40 ÷ 5 = 8 birimdir. Çevre uzunluğu = 2 × (kısa kenar + uzun kenar) formülünden 2 × (5 + 8) = 2 × 13 = 26 birim olarak hesaplanır.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794166204
+},
+{
+"subject": "Matematik",
+"topic": "Temel aritmetik işlemler ve algoritmalar",
+"passage": "Bir kütüphanede kitaplar, silindir şeklindeki kutulara yerleştirilmektedir. Her bir kutunun yüksekliği 40 cm'dir. Bir görevli kutuların içine kalınlığı 4 cm olan kitapları üst üste dizecektir.",
+"question": "Görevli kutunun tabanına 2 cm'lik bir sünger yerleştirdikten sonra kitapları dizmeye başlarsa, bir kutuya en fazla kaç kitap sığdırabilir?",
+"shape": null,
+"options": {
+"A": "8",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "B",
+"explanation": "Kutunun kullanılabilir yüksekliği 40 - 2 = 38 cm'dir. 38 ÷ 4 = 9,5 bulunur. Tam kitap sayısı sorulduğu için en fazla 9 kitap sığabilir.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 3,
+"ts": 1794166421
+},
+{
+"subject": "Matematik",
+"topic": "Eşitliğin korunumuna yönelik çıkarım",
+"passage": "Bir çiftlikteki yem deposunda bulunan çuval sayıları ve ağırlıkları aşağıdaki tabloda verilmiştir. Dengenin sağlanması için her iki kefedeki toplam ağırlığın eşit olması gerekmektedir.",
+"question": "Sol kefede 5 kg'lık 4 çuval bulunmaktadır. Sağ kefede 8 kg'lık 2 çuval olduğuna göre, dengenin sağlanması için sağ kefeye kaç kg daha eklenmelidir?",
+"shape": {
+"type": "table",
+"title": "Yem Çuval Dağılımı",
+"headers": [
+"Kefe",
+"Çuval Sayısı",
+"Çuval Ağırlığı"
+],
+"rows": [
+[
+"Sol",
+"4",
+"5 kg"
+],
+[
+"Sağ",
+"2",
+"8 kg"
+]
+]
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Sol kefe: 5 × 4 = 20 kg. Sağ kefe: 8 × 2 = 16 kg. Denge için fark: 20 - 16 = 4 kg eklenmelidir.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 3,
+"ts": 1794166421
+},
+{
+"subject": "Matematik",
+"topic": "Temel aritmetik işlem içeren algoritmalar",
+"passage": "Kodlama kulübünde bir robot, girilen sayıya önce 15 ekleyip sonra sonucu 3'e bölmektedir. Robotun giriş ekranına 45 sayısı girilmiştir.",
+"question": "Robotun elde edeceği çıktı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bar_chart",
+"title": "Algoritma Adımları",
+"labels": [
+"Giriş",
+"İşlem 1",
+"İşlem 2"
+],
+"values": [
+45,
+60,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "20",
+"C": "25",
+"D": "30"
+},
+"answer": "B",
+"explanation": "45 + 15 = 60. 60 ÷ 3 = 20. Robotun son çıktısı 20'dir.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 3,
+"ts": 1794166421
 }
 ]
 }

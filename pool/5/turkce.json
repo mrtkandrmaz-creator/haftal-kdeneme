@@ -1163,6 +1163,279 @@
 "topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
 "d": 3,
 "ts": 1794163212
+},
+{
+"subject": "Türkçe",
+"topic": "Metnin ana fikri ve başlık",
+"passage": "Pusula, yön bulmaya yarayan bir araçtır. İçindeki mıknatıslı iğne, Dünya'nın manyetik alanı sayesinde hep kuzey-güney doğrultusunda durur. Eskiden denizciler yollarını bulmak için pusula kullanırdı. Bugün ise telefonlarda ve gemilerde elektronik pusulalar bulunur. Pusula sayesinde yönümüzü kaybetmeden yolculuk yapabiliriz.",
+"question": "Metnin başlığı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Mıknatısın Özellikleri",
+"B": "Denizcilerin Yolculukları",
+"C": "Yön Bulma Yöntemleri",
+"D": "Pusula"
+},
+"answer": "D",
+"explanation": "Metinde verilen bilgiler pusulanın ne olduğu ve nasıl çalıştığını anlatıyor. Başlık, metnin konusunu kapsayan kısa bir ifadedir. \"Pusula\" kelimesi metnin bütün içeriğini özetler. Diğer seçenekler ya konuyu daraltıyor ya da farklı bir konuyu işaret ediyor.",
+"pid": "b3",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 3,
+"ts": 1794166036
+},
+{
+"subject": "Türkçe",
+"topic": "Yazarın amaç ve çıkarım",
+"passage": "Pusula, yön bulmaya yarayan bir araçtır. İçindeki mıknatıslı iğne, Dünya'nın manyetik alanı sayesinde hep kuzey-güney doğrultusunda durur. Eskiden denizciler yollarını bulmak için pusula kullanırdı. Bugün ise telefonlarda ve gemilerde elektronik pusulalar bulunur. Pusula sayesinde yönümüzü kaybetmeden yolculuk yapabiliriz.",
+"question": "Metne göre, pusulanın modern cihazlarda bulunmasının temel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Mıknatısların daha güçlü olması",
+"B": "Günlük yaşamda eğlence amaçlı kullanılmak",
+"C": "Yön bulmayı kolaylaştırmak",
+"D": "Denizcilerin eski alışkanlıklarını sürdürmek"
+},
+"answer": "C",
+"explanation": "Metinde \"Bugün ise telefonlarda ve gemilerde elektronik pusulalar bulunur\" denildi. Bu durumun nedeni, pusulanın yön bulma işlevini modern cihazlara taşıyarak yön bulmayı kolaylaştırmasıdır. Diğer şıklar metinde destek bulmaz.",
+"pid": "b3",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 3,
+"ts": 1794166036
+},
+{
+"subject": "Türkçe",
+"topic": "Nesnel‑öznel yargı ayrımı",
+"passage": "Pusula, yön bulmaya yarayan bir araçtır. İçindeki mıknatıslı iğne, Dünya'nın manyetik alanı sayesinde hep kuzey-güney doğrultusunda durur. Eskiden denizciler yollarını bulmak için pusula kullanırdı. Bugün ise telefonlarda ve gemilerde elektronik pusulalar bulunur. Pusula sayesinde yönümüzü kaybetmeden yolculuk yapabiliriz.",
+"question": "Aşağıdaki ifadelerden hangisi nesnel bir yargıdır?",
+"shape": null,
+"options": {
+"A": "Pusula, içinde mıknatıslı bir iğne bulundurur.",
+"B": "Pusula kullanmak, seyahat etmeyi daha keyifli kılar.",
+"C": "Pusula, yön bulmayı çok kolaylaştırır.",
+"D": "Pusula, macera severler için vazgeçilmez bir araçtır."
+},
+"answer": "A",
+"explanation": "Nesnel yargı, ölçülebilir, doğrulanabilir bir gerçeği ifade eder. Metinde \"içindeki mıknatıslı iğne\" ifadesi gerçek bir özelliktir ve doğrulanabilir. Diğer şıklar kişisel görüş içerir.",
+"pid": "b3",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 3,
+"ts": 1794166036
+},
+{
+"subject": "Türkçe",
+"topic": "Metinde verilen bilgiye dayanarak çıkarım yapma",
+"passage": "Pusula, yön bulmaya yarayan bir araçtır. İçindeki mıknatıslı iğne, Dünya'nın manyetik alanı sayesinde hep kuzey-güney doğrultusunda durur. Eskiden denizciler yollarını bulmak için pusula kullanırdı. Bugün ise telefonlarda ve gemilerde elektronik pusulalar bulunur. Pusula sayesinde yönümüzü kaybetmeden yolculuk yapabiliriz.",
+"question": "Metinde \"Eskiden denizciler yollarını bulmak için pusula kullanırdı\" ifadesi bulunur. Buna göre, tarihsel olarak pusulanın en çok hangi alanda kullanıldığı söylenebilir?",
+"shape": null,
+"options": {
+"A": "Tarım",
+"B": "Denizcilik",
+"C": "İnşaat",
+"D": "Eğitim"
+},
+"answer": "B",
+"explanation": "Metinde denizcilerin eski zamanlarda pusula kullandığı açıkça belirtilmiştir. Bu, tarihsel dönemde pusulanın en çok denizcilik alanında kullanıldığını gösterir. Diğer alanlar metinde yer almaz.",
+"pid": "b3",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 3,
+"ts": 1794166036
+},
+{
+"subject": "Türkçe",
+"topic": "Metin İçeriği ve Çıkarım",
+"passage": "Okulumuzda \"Kitap Kardeşliği\" adıyla bir proje başlatıldı. Öğrenciler evlerindeki okunmuş kitapları getirdi. Toplanan kitaplar köydeki bir okulun kütüphanesine gönderildi. Projeye katılan Bora, \"Okuduğum kitaplar başkalarına da fayda sağlıyor.\" dedi. Gönüllü olarak yapılan bu tür çalışmalar toplumda dayanışmayı güçlendirir.",
+"question": "Metne göre Bora'nın kurduğu cümleden hareketle aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Bora, projenin toplumsal dayanışma üzerindeki olumlu etkisinin farkındadır.",
+"B": "Okunan kitapların artık bir işe yaramadığı düşünülmektedir.",
+"C": "Kitapların başkalarına ulaştırılması sadece maddi fayda sağlar.",
+"D": "Kütüphanelerdeki kitap sayısının artması Bora'nın kişisel başarısıdır."
+},
+"answer": "A",
+"explanation": "Bora 'Okuduğum kitaplar başkalarına da fayda sağlıyor' diyerek paylaşımın bir işe yaradığını belirtmiştir. Bu durum metindeki dayanışma bilinciyle örtüşür.",
+"pid": "t1",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 3,
+"ts": 1794166280
+},
+{
+"subject": "Türkçe",
+"topic": "Öznel ve Nesnel Yargılar",
+"passage": "Okulumuzda \"Kitap Kardeşliği\" adıyla bir proje başlatıldı. Öğrenciler evlerindeki okunmuş kitapları getirdi. Toplanan kitaplar köydeki bir okulun kütüphanesine gönderildi. Projeye katılan Bora, \"Okuduğum kitaplar başkalarına da fayda sağlıyor.\" dedi. Gönüllü olarak yapılan bu tür çalışmalar toplumda dayanışmayı güçlendirir.",
+"question": "Metindeki cümlelerin türleri ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Dayanışmanın güçlendiğine dair yargı, kanıtlanabilir bir bilgidir.",
+"B": "Tüm cümleler kişisel görüş içerir.",
+"C": "Kitapların kütüphaneye gönderilmesi herkes tarafından doğrulanabilecek nesnel bir durumdur.",
+"D": "Projenin başlatılması kişisel bir kanıdır."
+},
+"answer": "C",
+"explanation": "Kitapların okula gönderilmesi olayı yaşanmış bir eylemdir ve metne göre bir veri olarak sunulmuştur, dolayısıyla bu ifade nesneldir.",
+"pid": "t1",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 3,
+"ts": 1794166280
+},
+{
+"subject": "Türkçe",
+"topic": "Metin Türleri ve Anlatım Biçimleri",
+"passage": "İstiklal Marşı'nın şairi Mehmet Akif Ersoy'dur. Marş, 12 Mart 1921'de Türkiye Büyük Millet Meclisi tarafından millî marş olarak kabul edildi. Bu şiir, Türk milletinin bağımsızlık azmini anlatır. Millî Mücadele yıllarında yazıldığı için içinde vatan sevgisi ve özgürlük duygusu çok güçlüdür. Okullarda her hafta bu marş saygıyla okunur.",
+"question": "Bu metnin anlatımında ve tür özelliklerinde aşağıdakilerden hangisi belirgindir?",
+"shape": null,
+"options": {
+"A": "Varlıklar insana özgü özellikler kazandırılarak hayalî bir dünyada resmedilmiştir.",
+"B": "Tarihî bir gerçeklik ve bilgi, nesnel ifadelerle açıklayıcı bir şekilde verilmiştir.",
+"C": "Yaşanmış bir olay kahramanların ağzından birinci kişi anlatımıyla aktarılmıştır.",
+"D": "Karşılıklı konuşma havası içinde olaylar kronolojik bir sırayla kurgulanmıştır."
+},
+"answer": "B",
+"explanation": "Metinde İstiklal Marşı'nın şairi, kabul tarihi ve yazıldığı döneme dair gerçek bilgiler nesnel bir üslupla açıklanmaktadır. Bu durum açıklayıcı anlatım ve bilgi verme amacını gösterir. A şıkkı birinci kişi anlatımı (yanlış), C şıkkı sohbet/kronoloji, D şıkkı kişileştirme masal unsuru barındırdığı için elenir.",
+"pid": "m3",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794166460
+},
+{
+"subject": "Türkçe",
+"topic": "Sözcük Anlamı ve Bağlamdan Çıkarım",
+"passage": "İstiklal Marşı'nın şairi Mehmet Akif Ersoy'dur. Marş, 12 Mart 1921'de Türkiye Büyük Millet Meclisi tarafından millî marş olarak kabul edildi. Bu şiir, Türk milletinin bağımsızlık azmini anlatır. Millî Mücadele yıllarında yazıldığı için içinde vatan sevgisi ve özgürlük duygusu çok güçlüdür. Okullarda her hafta bu marş saygıyla okunur.",
+"question": "Metinde geçen 'bağımsızlık azmi' söz grubuyla ifade edilmek istenen durum aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Geçmişte yaşanan zorlukları unutmayarak sürekli üzüntü duymak",
+"B": "Kendi topraklarında özgür ve egemen yaşama konusunda duyulan kararlılık",
+"C": "Eğitim kurumlarında disiplinli ve saygılı bir düzen kurma isteği",
+"D": "Yabancı ülkelerle yapılan antlaşmalara bağlı kalma zorunluluğu"
+},
+"answer": "B",
+"explanation": "Bağımsızlık azmi, bir milletin kendi iradesine sahip çıkma kararlılığını ve özgür yaşama iradesini temsil eder. Metindeki vatan sevgisi ve özgürlük duygusuyla da doğrudan örtüşmektedir. Diğer şıklar metindeki anlam kapsamının dışındadır.",
+"pid": "m3",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794166460
+},
+{
+"subject": "Türkçe",
+"topic": "Noktalama İşaretleri ve Görevleri",
+"passage": "İstiklal Marşı'nın şairi Mehmet Akif Ersoy'dur. Marş, 12 Mart 1921'de Türkiye Büyük Millet Meclisi tarafından millî marş olarak kabul edildi. Bu şiir, Türk milletinin bağımsızlık azmini anlatır. Millî Mücadele yıllarında yazıldığı için içinde vatan sevgisi ve özgürlük duygusu çok güçlüdür. Okullarda her hafta bu marş saygıyla okunur.",
+"question": "Metinde kullanılan noktalama işaretlerinin işlevleri incelendiğinde aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Nokta, tamamlanmış ve yargı bildiren cümlelerin sonuna konmuştur.",
+"B": "Ünlem işareti, coşku ve heyecan bildiren cümlelerin sonuna getirilmiştir.",
+"C": "Virgülden sonra gelen kelimeler büyük harfle başlatılarak özel ad vurgulanmıştır.",
+"D": "Kesme işareti, tarihlerde kullanılan rakamları birbirinden ayırmak için tercih edilmiştir."
+},
+"answer": "A",
+"explanation": "Metindeki cümlelerin sonlarında (Ersoy'dur, kabul edildi, anlatır vb.) nokta kullanılmıştır ve bu durum noktanın tamamlanmış cümlelerin sonuna konma göreviyle uyuşur. Virgülden sonra büyük harf kuralı yoktur, metinde ünlem kullanılmamıştır, kesme işareti ek ayırmak için vardır.",
+"pid": "m3",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794166460
+},
+{
+"subject": "Türkçe",
+"topic": "Metinden Çıkarım ve Yardımcı Düşünce",
+"passage": "İstiklal Marşı'nın şairi Mehmet Akif Ersoy'dur. Marş, 12 Mart 1921'de Türkiye Büyük Millet Meclisi tarafından millî marş olarak kabul edildi. Bu şiir, Türk milletinin bağımsızlık azmini anlatır. Millî Mücadele yıllarında yazıldığı için içinde vatan sevgisi ve özgürlük duygusu çok güçlüdür. Okullarda her hafta bu marş saygıyla okunur.",
+"question": "Bu metne göre aşağıdaki yargılardan hangisine ulaşılamaz?",
+"shape": null,
+"options": {
+"A": "Eser, eğitim kurumlarında düzenli olarak saygıyla anılmaktadır.",
+"B": "Mehmet Akif Ersoy marşı kaleme alırken halktan finansal destek görmüştür.",
+"C": "Şiirin yazıldığı dönemin şartları içeriğindeki duyguları beslemiştir.",
+"D": "İstiklal Marşı millî bir kurum tarafından resmiyet kazanmıştır."
+},
+"answer": "B",
+"explanation": "Metinde TBMM tarafından kabul edildiği (A şıkkı), Millî Mücadele yıllarında yazıldığı için vatan sevgisinin güçlü olduğu (B şıkkı) ve okullarda her hafta saygıyla okunduğu (C şıkkı) belirtilmiştir. Ancak finansal destekle ilgili metinde hiçbir bilgi yoktur.",
+"pid": "m3",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794166460
+},
+{
+"subject": "Türkçe",
+"topic": "Hikâye Unsurları",
+"passage": "Bayramlar, milletimizin birlik ve beraberlik duygularını güçlendiren özel günlerdir. Bayramlarda büyüklerin elleri öpülür, akrabalar ve komşular ziyaret edilir, çocuklara harçlık verilir. Küsler barışır, yardıma muhtaç kişiler unutulmaz. Evlerde tatlılar yapılır, sofralar kurulur. Bu gelenekler kuşaktan kuşağa aktarılarak bugüne kadar gelmiştir.",
+"question": "Bir çiftlikte çalışan Elif, köyde geçen bir bayram hikâyesi yazmak istemiş ve hikâyesinde yukarıdaki metnin sunduğu kültürel atmosferden yararlanmıştır. Elif'in yazdığı hikâye taslağındaki unsurları inceleyen öğretmeni, taslakta bazı eksiklikler olduğunu fark etmiştir. \nBuna göre Elif'in taslağında yer alan hikâye unsurlarıyla ilgili aşağıdaki belirlemelerden hangisinde bir hata yapılmıştır?",
+"shape": null,
+"options": {
+"A": "Olay, bayram vesilesiyle gerçekleştirilen ziyaretler ve yardımlaşmalardır.",
+"B": "Kişiler, büyükler, akrabalar, komşular ve çocuklardır.",
+"C": "Zaman, gelecekteki bir uzay yolculuğu dönemidir.",
+"D": "Yer, geleneklerin yaşatıldığı evler ve mahalle ortamıdır."
+},
+"answer": "C",
+"explanation": "Metinde zaman unsuru 'kuşaktan kuşağa aktarılarak bugüne kadar gelen' ifadeleriyle geçmişten bugüne uzanan geleneksel bir süreci anlatır; gelecekteki bir uzay yolculuğu metinde kesinlikle geçmemektedir. Bu yüzden C seçeneğindeki zaman tanımı yanlıştır.",
+"pid": "k2",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 4,
+"ts": 1794166626
+},
+{
+"subject": "Türkçe",
+"topic": "Ses Bilgisi",
+"passage": "Bayramlar, milletimizin birlik ve beraberlik duygularını güçlendiren özel günlerdir. Bayramlarda büyüklerin elleri öpülür, akrabalar ve komşular ziyaret edilir, çocuklara harçlık verilir. Küsler barışır, yardıma muhtaç kişiler unutulmaz. Evlerde tatlılar yapılır, sofralar kurulur. Bu gelenekler kuşaktan kuşağa aktarılarak bugüne kadar gelmiştir.",
+"question": "Fotoğrafçılık kulübü öğrencisi Burak, okul sergisi için hazırladığı panonun üzerine yukarıdaki metni büyük harflerle yazdırmıştır. Burak, metindeki sözcüklerin ses özelliklerini incelemek amacıyla bir araştırma yapmıştır.\nBuna göre Burak'ın metin üzerinden yaptığı aşağıdaki incelemelerin hangisinde bir yanlışlık yapılmıştır?",
+"shape": null,
+"options": {
+"A": "'Bayramlar' kelimesinde ünlü harf sayısı hece sayısına eşittir ve 3 hecelidir.",
+"B": "Metinde geçen 'açılır' kelimesindeki tüm ünlüler kalın ünlülerdir.",
+"C": "'Gelenekler' kelimesinde birden fazla ince ünlü harf (e) bir arada yer almaktadır.",
+"D": "Metindeki sözcüklerde hem sert ünsüzler (ç, ş, t, k vb.) hem de yumuşak ünsüzler bir arada bulunabilmektedir."
+},
+"answer": "B",
+"explanation": "Metinde geçen 'açılır' sözcüğündeki ünlüler a, ı ve ı'dır (kalın). Ancak metnin tamamında veya genel ses kurallarında 'açılır' kelimesi incelendiğinde C şıkkındaki ifade metindeki başka bir detayla çelişebilir ya da metinde 'açılır' kelimesi geçmemektedir (metinde 'yapılır, kurulur, ziyaret edilir' geçer). Metinde geçmeyen bir kelimeye dayanan C seçeneği hatalıdır.",
+"pid": "k2",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 4,
+"ts": 1794166626
+},
+{
+"subject": "Türkçe",
+"topic": "Metinden Çıkarım ve Yorum",
+"passage": "Bayramlar, milletimizin birlik ve beraberlik duygularını güçlendiren özel günlerdir. Bayramlarda büyüklerin elleri öpülür, akrabalar ve komşular ziyaret edilir, çocuklara harçlık verilir. Küsler barışır, yardıma muhtaç kişiler unutulmaz. Evlerde tatlılar yapılır, sofralar kurulur. Bu gelenekler kuşaktan kuşağa aktarılarak bugüne kadar gelmiştir.",
+"question": "Doğa kampında lider olan Kemal, kamp ateşinin etrafındaki çocuklara yardımlaşma ve millî kültür bilinci kazandırmak için yukarıdaki metni okutmuştur. Kampçılardan bu metne dayanarak birer sonuç çıkarmalarını istemiştir.\nBuna göre kampçıların yaptığı aşağıdaki çıkarımlardan hangisi metindeki bilgilerle doğrudan örtüşmektedir?",
+"shape": null,
+"options": {
+"A": "Bayramlar sadece bireysel tatil yapma ve dinlenme dönemleridir.",
+"B": "Bayramlar, toplumsal bağları kuvvetlendiren ve paylaşımı öne çıkaran kültürel değerlerimizdir.",
+"C": "Çocuklara harçlık verilmesi geleneği sonradan yabancı kültürlerden alınmıştır.",
+"D": "Küslerin barışması yalnızca yaz mevsiminde gerçekleşen bir durumdur."
+},
+"answer": "B",
+"explanation": "Metinde bayramların milletimizin birlik ve beraberlik duygularını güçlendiren, yardımlaşmanın yaşandığı özel günler olduğu ve kuşaktan kuşağa aktarıldığı vurgulanmıştır. B seçeneği bu anlatımla birebir örtüşmektedir. Diğer seçenekler metinle çelişmektedir.",
+"pid": "k2",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 4,
+"ts": 1794166626
 }
 ]
 }
