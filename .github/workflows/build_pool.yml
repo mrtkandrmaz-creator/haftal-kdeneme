@@ -49,9 +49,20 @@ jobs:
           SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
           NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
         run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit "${{ github.event.inputs.per_unit || '10' }}" --minutes "${{ github.event.inputs.minutes || '35' }}" --bad-dir _ud/data
+      - name: Matematik şablonlarını üret
+        continue-on-error: true
+        env:
+          GROQ_API_KEYS: ${{ secrets.GROQ_API_KEYS }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
+          CEREBRAS_API_KEYS: ${{ secrets.CEREBRAS_API_KEYS }}
+          OPENROUTER_API_KEYS: ${{ secrets.OPENROUTER_API_KEYS }}
+          MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
+          SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
+          NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
+        run: python tools/build_templates.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit 4 --minutes 15
       - name: Değişiklikleri kaydet
         run: |
           git config user.name "denemematik-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add pool
+          git add pool templates
           git diff --cached --quiet || (git commit -m "Soru havuzu güncellendi" && git pull --rebase && git push)
