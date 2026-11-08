@@ -1,0 +1,453 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme",
+"passage": "Bir sanat galerisinde düzenlenen dört günlük resim sergisini ziyaret eden sanatseverlerin günlük oranları çizgi grafiğinde verilmiştir. Serginin en çok ilgi gören gününü tespit etmek ve eserlerin sergilenme alanlarının payını karşılaştırmak amacıyla günlük ziyaretçi kesirleri incelenmiştir.",
+"question": "Grafikteki verilere göre, Çarşamba günü sergiyi ziyaret edenlerin tüm haftaya oranı ile Salı günü ziyaret edenlerin oranı karşılaştırıldığında aşağıdaki çıkarımlardan hangisi doğrudur?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+2,
+4,
+6,
+3
+],
+"title": "Günlük Ziyaretçi Oranları",
+"show_names": false
+},
+"options": {
+"A": "Salı günü oranı Çarşamba günü oranından büyüktür.",
+"B": "Çarşamba günü ziyaretçi kesri Salı günü ziyaretçi kesrinden büyüktür.",
+"C": "Pazartesi ve Perşembe günlerinin oranları eşittir.",
+"D": "Perşembe günü oranı Çarşamba gününün iki katıdır."
+},
+"answer": "B",
+"explanation": "Çarşamba günü değeri 6, Salı günü değeri 4 birimdir. Paydaları aynı olan bu kesirler karşılaştırıldığında payı büyük olan Çarşamba günü oranı daha büyüktür.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794108014
+},
+{
+"subject": "Matematik",
+"topic": "Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+"passage": "Bir doğa kampında katılımcıların çadır kurmayı tercih ettikleri bölgeler iki farklı kategoride incelenmiştir. 1. kampta 120 kişi orman içinde, 80 kişi göl kenarındadır. 2. kampta ise 90 kişi orman içinde, 110 kişi göl kenarındadır. Kamp yönetimi her iki kampın toplam verilerine bakarak en popüler bölgeye ortak etkinlik çadırı kuracaktır.",
+"question": "İki kampın verileri birleştirildiğinde orman içi ve göl kenarı kategorilerindeki toplam kişi sayıları arasındaki fark kaçtır?",
+"shape": null,
+"options": {
+"A": "10",
+"B": "20",
+"C": "30",
+"D": "40"
+},
+"answer": "B",
+"explanation": "1. kamp orman: 120, 2. kamp orman: 90. Toplam orman içi = 120 + 90 = 210 kişi. 1. kamp göl: 80, 2. kamp göl: 110. Toplam göl kenarı = 80 + 110 = 190 kişi. İki kategori arasındaki fark 210 - 190 = 20 kişidir.",
+"vfd2": true,
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 4,
+"ts": 1794108473
+},
+{
+"subject": "Matematik",
+"topic": "Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+"passage": "Bir okul kantini haftalık en çok satan ürünlerin listesini tablo halinde ilan etmiştir. Kantin sorumlusu, bu tabloya dayanarak tost satışının artırılması için ekmek siparişinin %20 oranında artırılması gerektiği yönünde bir karar almıştır.",
+"question": "Tablodaki verilere göre kantin sorumlusunun aldığı kararı destekleyen en temel gerekçe aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Haftalık Satış Adetleri Tablosu",
+"headers": [
+"Ürün Adı",
+"Satış Miktar (Adet)"
+],
+"rows": [
+[
+"Tost",
+"450"
+],
+[
+"Simit",
+"300"
+],
+[
+"Poğaça",
+"350"
+],
+[
+"Meyve Suyu",
+"400"
+]
+]
+},
+"options": {
+"A": "Toplam satışın 1500 adedi geçmesi",
+"B": "Meyve suyunun tosttan daha az satılması",
+"C": "Simit satışının poğaçadan az olması",
+"D": "Tostun, diğer ürünler arasında 450 adet ile en yüksek satış rakamına ulaşması"
+},
+"answer": "D",
+"explanation": "Tabloda Tost 450 adet ile en yüksek satış miktarına sahiptir. Veriye dayalı karar verme sürecinde en çok talep gören ürünün (tost) arzını artırmak mantıklı bir adımdır. Bu kararı doğrudan destekleyen veri, tostun en çok satan ürün olmasıdır.",
+"vfd2": true,
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 4,
+"ts": 1794108473
+},
+{
+"subject": "Matematik",
+"topic": "Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+"passage": "Bir akvaryumda yaşayan balık türlerinin dağılımı sütun grafiği ile ziyaretçilere sunulmuştur. Akvaryum görevlisi hazırladığı broşürde, 'Tatlı su balıklarının sayısı, tuzlu su balıklarının sayısının tam iki katıdır.' iddiasında bulunmuştur.",
+"question": "Sütun grafiğindeki verilere göre görevlinin bu iddiası için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Japon Balığı",
+"Ciklet",
+"Vatoz",
+"Palyaço Balığı"
+],
+"values": [
+300,
+150,
+50,
+200
+],
+"title": "Akvaryum Balık Türü Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "İddia doğrudur çünkü Japon balığı (300) palyaço balığının (200) katıdır.",
+"B": "Tatlı su balıkları (Japon, Ciklet, Vatoz) toplamı 500, tuzlu su balığı (Palyaço) 200'dür; oran iki katı sağlamaz.",
+"C": "Tüm balıkların toplamı 700 olup iddiayı doğrular.",
+"D": "Ciklet ve vatoz toplamı palyaço balığına eşittir, bu nedenle iddia yanlıştır."
+},
+"answer": "B",
+"explanation": "Japon balığı (300), Ciklet (150) ve Vatoz (50) tatlı su balıkları olup toplamı 300 + 150 + 50 = 500'dür. Palyaço balığı (200) tuzlu su balığıdır. 500 sayısı 200'ün iki katı değildir (500 ≠ 400). Dolayısıyla görevlinin iddiası yanlıştır ve verilere dayalı çıkarım hatalıdır. B şıkkı bu analizi doğru açıklar.",
+"vfd2": true,
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 4,
+"ts": 1794108473
+},
+{
+"subject": "Matematik",
+"topic": "Veriye dayalı karar verebilme",
+"passage": "Bir doğa yürüyüşü grubu, rotalarındaki dinlenme noktalarında harcanan zamanı tabloya kaydetmiştir. Grup, toplam 180 dakikalık yürüyüş planlamaktadır.",
+"question": "Yürüyüşün %60'ının hareket halinde geçmesi hedeflendiğine göre, dinlenme için toplam en fazla kaç dakika ayrılmalıdır?",
+"shape": {
+"type": "table",
+"title": "Dinlenme Süreleri",
+"headers": [
+"Nokta",
+"Süre (dk)"
+],
+"rows": [
+[
+"1. Durak",
+"15"
+],
+[
+"2. Durak",
+"25"
+]
+]
+},
+"options": {
+"A": "60",
+"B": "72",
+"C": "108",
+"D": "120"
+},
+"answer": "B",
+"explanation": "Toplam süre 180 dk. Hareket süresi = 180 × 0.60 = 108 dk. Dinlenme için kalan süre = 180 - 108 = 72 dk.",
+"vfd2": true,
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 4,
+"ts": 1794108473
+},
+{
+"subject": "Matematik",
+"topic": "Veriye Dayalı Karar Verme (MAT.5.5.1)",
+"passage": "Bir ortaokulun yaz tatili etkinliklerine katılan öğrenci sayılarını gösteren sütun grafiği aşağıdadır. Okul yönetimi, en az tercih edilen etkinliği bir sonraki yıl kapatıp yerine farklı bir kurs açmaya karar vermiştir. Ancak, 50'den fazla öğrencinin katıldığı etkinlikler için ek bütçe ayrılacaktır.",
+"question": "Buna göre okul yönetiminin aldığı kararlar ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Yüzme",
+"Resim",
+"Satranç",
+"Robotik"
+],
+"values": [
+65,
+45,
+30,
+55
+],
+"title": "Etkinlik Katılımcı Sayıları",
+"show_names": false
+},
+"options": {
+"A": "Robotik kursu kapatılacak, Yüzme ve Resim kurslarına ek bütçe verilecektir.",
+"B": "Satranç kursu kapatılacak, sadece Yüzme kursuna ek bütçe verilecektir.",
+"C": "Resim kursu kapatılacak, Yüzme ve Satranç kurslarına ek bütçe verilecektir.",
+"D": "Satranç kursu kapatılacak, Yüzme ve Robotik kurslarına ek bütçe verilecektir."
+},
+"answer": "D",
+"explanation": "1. En az katılım Satranç (30) olduğu için kapatılır. 2. 50'den fazla katılım olanlar Yüzme (65) ve Robotik (55) olduğu için bunlara bütçe verilir.",
+"vfd2": true,
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 4,
+"ts": 1794108473
+},
+{
+"subject": "Matematik",
+"topic": "İstatistiksel Veri Yorumlama (MAT.5.5.2)",
+"passage": "Bir belediye kültür festivalinde sunulan dört farklı sanat atölyesine katılanların dağılımı daire grafiğinde gösterilmiştir. Toplam 360 kişi festivale katılmıştır. Belediye yetkilisi; 'Her 90 kişiden 15'i Heykel atölyesini seçmiştir, bu da toplamın 6'da 1'ine denk gelir' açıklamasını yapmıştır.",
+"question": "Verilen daire grafiğine göre yetkilinin yaptığı bu çıkarımın doğruluğu hakkında ne söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Resim",
+"Heykel",
+"Müzik",
+"Tiyatro"
+],
+"values": [
+120,
+60,
+90,
+90
+],
+"title": "Atölye Dağılımı (Kişi Sayısı)",
+"show_names": false
+},
+"options": {
+"A": "Doğrudur, çünkü her atölyeye eşit sayıda kişi katılmıştır.",
+"B": "Yanlıştır, Heykel atölyesine 45 kişi katılmıştır.",
+"C": "Doğrudur, çünkü 60÷360 = 1/6 eder.",
+"D": "Yanlıştır, Heykel atölyesine katılanlar toplamın 1/4'üdür."
+},
+"answer": "C",
+"explanation": "1. Toplam katılan 360 kişi. 2. Heykel = 60 kişi. 3. 60/360 = 1/6. Yetkilinin her 90 kişide 15 kişi oranı (15/90=1/6) ile toplamdaki oranı (60/360=1/6) tutarlıdır.",
+"vfd2": true,
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 4,
+"ts": 1794108473
+},
+{
+"subject": "Matematik",
+"topic": "İşlem Önceliği",
+"passage": "Kerem, yaz tatilinde topladığı 40 deniz kabuğunu arkadaşlarıyla paylaşmak istiyor. Önce kendisine 4 tane ayırıyor, kalanları 4 arkadaşına eşit paylaştırıyor. Kerem'in çözümü şu şekildedir: 40 - 4 ÷ 4 = 9. Arkadaşı ise 36 ÷ 4 = 9 sonucunu buluyor.",
+"question": "Buna göre Kerem'in yaptığı işlemdeki hatayı düzelten ve doğru sonucu veren ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Paylaşım Verileri",
+"headers": [
+"Kişi",
+"Pay",
+"İşlem"
+],
+"rows": [
+[
+"Kerem",
+"4",
+"40-4"
+],
+[
+"Arkadaşlar",
+"4",
+"36÷4"
+]
+]
+},
+"options": {
+"A": "(40 - 4) ÷ 4 = 9",
+"B": "40 - (4 ÷ 4) = 39",
+"C": "40 ÷ 4 - 4 = 6",
+"D": "(40 + 4) ÷ 4 = 11"
+},
+"answer": "A",
+"explanation": "Kerem'in hatası işlem önceliğini gözetmemesidir. 40'tan 4'ü önce çıkarması gerektiği için parantez kullanmalıdır. (40-4) = 36, 36÷4 = 9. Doğru ifade (40-4)÷4'tür.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794109427
+},
+{
+"subject": "Matematik",
+"topic": "Eşitliğin Korunumu",
+"passage": "Hayvanat bahçesindeki aslanın günlük et tüketimi ile kaplanın günlük et tüketimi karşılaştırılıyor. Aslanın günlük 12 kg, kaplanın ise 8 kg et yediği biliniyor. Eşitliğin korunması için kaplanın besinine 4 kg daha et eklenmesi gerektiği bir sayı doğrusu üzerinde modellenmiştir.",
+"question": "Aşağıdaki sayı doğrusunda 8 kg olan kaplanın miktarına 4 kg eklendiğinde ulaşılan nokta hangisidir?",
+"shape": {
+"type": "number_line",
+"min": 0,
+"max": 15,
+"step": 1,
+"marks": [
+{
+"label": "Kaplan",
+"value": 8
+},
+{
+"label": "Hedef",
+"value": 12
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "14"
+},
+"answer": "C",
+"explanation": "Başlangıç değeri 8'dir. Eşitlik için 4 kg eklendiğinde 8+4=12 sonucuna ulaşılır.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794109427
+},
+{
+"subject": "Matematik",
+"topic": "Eşitliğin Korunumu ve Çıkarım",
+"passage": "Bir arkeoloji kazısında çıkarılan vazo parçalarının ağırlıkları üç farklı grupta tartılmıştır. A grubu 120 kg, B grubu 150 kg ve C grubu 100 kg gelmiştir.",
+"question": "Grafikteki verilere göre, B grubundan kaç kg parça çıkarılırsa A ve B gruplarının ağırlıkları eşitlenir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"A Grubu",
+"B Grubu",
+"C Grubu"
+],
+"values": [
+120,
+150,
+100
+],
+"title": "Vazo Parça Ağırlıkları",
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "30",
+"C": "40",
+"D": "50"
+},
+"answer": "B",
+"explanation": "B grubunun A grubuna eşit olması için 150 - 120 = 30 kg parça çıkarılmalıdır.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794109427
+},
+{
+"subject": "Matematik",
+"topic": "İşlem Önceliği ve Mantık",
+"passage": "Bir fotoğrafçılık stüdyosunda basılan fotoğrafların maliyeti, kullanılan kağıt başına 5 TL ve boya başına 3 TL'dir. Stüdyo, aynı anda 10 fotoğraf baskısı yapabilen bir makine kullanmaktadır.",
+"question": "10 adet fotoğraf baskısı için yapılan toplam harcama '10 × (5 + 3)' işlemi ile hesaplandığına göre, bu işlem sonucunda ödenen toplam tutar kaç TL'dir?",
+"shape": null,
+"options": {
+"A": "53",
+"B": "58",
+"C": "80",
+"D": "85"
+},
+"answer": "C",
+"explanation": "Parantez içi önceliklidir: 5+3=8. Sonra 10 ile çarpılır: 10×8 = 80.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794109427
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliğini yorumlayabilme",
+"passage": "Bir kütüphanede düzenlenen etkinlikte, kitap rafındaki kitapların sayısı için bir şifre belirlenmiştir. Şifre şu işlemle hesaplanmaktadır: 24 bölü 4 çarpı 2 artı 8.",
+"question": "İşlem önceliği kuralları uygulandığında kütüphane rafındaki kitap sayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "3",
+"B": "12",
+"C": "20",
+"D": "24"
+},
+"answer": "C",
+"explanation": "İşlem önceliği soldan sağa doğru sırayla yapılır: 24 bölü 4 eşittir 6. Sonra 6 çarpı 2 eşittir 12. Son adımda 12 artı 8 eşittir 20.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794109427
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliğini yorumlayabilme",
+"passage": "Bir doğa yürüyüşü grubunun toplam yürüdüğü yolun hesaplanmasında kullanılan 100 eksi 20 çarpı 2 bölü 4 işlemi, yolun toplam metresini vermektedir.",
+"question": "Daire grafiğinde yürüyüşün ilk aşamalarının tamamlanma yüzdeleri verilmiş olup, toplam yolun kaç metre olduğunu hesaplayan bir öğrenci hangi sonucu bulmalıdır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"1. Bölüm",
+"2. Bölüm"
+],
+"values": [
+50,
+50
+],
+"title": "Yürüyüş Aşamaları",
+"show_names": false
+},
+"options": {
+"A": "40",
+"B": "60",
+"C": "80",
+"D": "90"
+},
+"answer": "D",
+"explanation": "İşlem önceliğine göre önce çarpma ve bölme yapılır: 20 çarpı 2 eşittir 40, 40 bölü 4 eşittir 10. Sonra 100 eksi 10 eşittir 90.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794109427
+},
+{
+"subject": "Matematik",
+"topic": "Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+"passage": "Bir fotoğrafçılık sergisinde, her hafta sergilenen fotoğraf sayısı bir örüntü izlemektedir. 1. hafta 10 fotoğraf, 2. hafta 17 fotoğraf, 3. hafta 24 fotoğraf sergilenmiştir.",
+"question": "Bu sergideki 6. haftada sergilenecek fotoğraf sayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "31",
+"B": "38",
+"C": "45",
+"D": "52"
+},
+"answer": "C",
+"explanation": "Örüntü 7'şer artmaktadır. 1.hafta: 10, 2.hafta: 17, 3.hafta: 24, 4.hafta: 31, 5.hafta: 38, 6.hafta: 45.",
+"vfd2": true,
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794109427
+}
+]
+}

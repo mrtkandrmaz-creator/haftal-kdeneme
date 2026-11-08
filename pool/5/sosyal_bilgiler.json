@@ -1,0 +1,1017 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ortak Mirasımız – Sağlık Kontrolü",
+"passage": "5/B sınıfı öğrencileri, okulda düzenlenen ‘Sağlık Kontrolü’ etkinliği kapsamında, 20 öğrencinin göz, diş ve kan basıncı ölçümleri alındı. Çizgi grafiği, 20 öğrencinin yaşına (9-14 yaş) göre ortalama kan basıncı değerlerini gösteriyor. Öğrenciler, grafikteki eğilimleri yorumlayarak, yaş arttıkça kan basıncının da arttığını öne sürdü.",
+"question": "Çizgi grafiğe bakarak, 9 yaşındaki bir öğrencinin ortalama kan basıncı 90 mmHg ve 14 yaşındaki bir öğrencinin ortalama kan basıncı 110 mmHg ise, bu durum…",
+"shape": {
+"type": "line_chart",
+"labels": [
+"9",
+"10",
+"11",
+"12",
+"13",
+"14"
+],
+"values": [
+90,
+95,
+98,
+100,
+105,
+110
+],
+"title": "Yaş ve Ortalama Kan Basıncı",
+"show_names": false
+},
+"options": {
+"A": "gözlemlenen eğilimle çelişir",
+"B": "gözlemlenen eğilimle uyumludur",
+"C": "veriler eksik olduğu için yorum yapılamaz",
+"D": "kan basıncı yaşla ilişkili değildir"
+},
+"answer": "B",
+"explanation": "Grafikte her yaş için kan basıncı değeri artıyor; 9 yaş 90 mmHg, 14 yaş 110 mmHg. Bu artış eğilimi, metindeki yorumla uyumludur. Dolayısıyla ifade doğru.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794107680
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ortak Mirasımız – Şehir Planı",
+"passage": "5/B sınıfı, ‘Şehir Planı’ etkinliği kapsamında, 2024’te 12.000, 2025’te 13.500, 2026’da 15.000, 2027’de 16.500, 2028’de 18.000, 2029’da 20.000, 2030’da 21.500 kişi göç eden bir şehrin nüfus büyüme trendini inceleyiyor. Öğrenciler, 2030’da tahmini nüfusu hesaplayıp, önceki yıllara göre yüzde değişimi yorumlamalı.",
+"question": "Nüfus büyüme grafiğine göre, 2030’da tahmini nüfus…",
+"shape": {
+"type": "line_chart",
+"labels": [
+"2024",
+"2025",
+"2026",
+"2027",
+"2028",
+"2029",
+"2030"
+],
+"values": [
+12000,
+13500,
+15000,
+16500,
+18000,
+20000,
+21500
+],
+"title": "Şehir Nüfus Büyüme Trend",
+"show_names": false
+},
+"options": {
+"A": "19.500",
+"B": "21.000",
+"C": "21.500",
+"D": "22.000"
+},
+"answer": "C",
+"explanation": "Grafik 2030 yılı için 21.500 değerini gösteriyor. Bu, verilen değerle aynı. Dolayısıyla doğru şık A.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794107680
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ortak Mirasımız: Kültürel Miras",
+"passage": "Bir belediye, yerel turizmi canlandırmak amacıyla \"Kültürel Miras Günleri\" düzenlemeyi planlamıştır. Belediye yetkilisi, etkinliğe katılacak olan ve farklı medeniyetlere ait mimari yapılardan örnekler getiren dört ekibi değerlendirmek üzere aşağıdaki tabloyu hazırlamıştır. Tablodaki ekibin, o medeniyetin en belirgin mimari yapısını temsil eden örneği getirdiği bilgisi verilmiştir. Tabloyu inceleyen öğretmen, \"Bir medeniyetin kültürel mirasını temsil eden yapı, o medeniyetin yaşam biçimini ve inançlarını yansıtmalıdır\" demiştir.",
+"question": "Tablodaki verilere göre, kültürel mirasın korunması ve tanıtılması açısından en tutarlı değerlendirme aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Kültürel Miras Etkinliği Ekibi Değerlendirmesi",
+"headers": [
+"Ekip",
+"Medeniyet",
+"Getirilen Mimari Örnek",
+"Açıklama"
+],
+"rows": [
+[
+"Sarı Ekip",
+"Hattuşaş",
+"Yapı Harabeleri",
+"Tapınak ve saray kalıntıları"
+],
+[
+"Yeşil Ekip",
+"Etrüsk",
+"Mezar Anıtları",
+"Ölü sonrası yaşam inancı"
+],
+[
+"Mavi Ekip",
+"Lidya",
+"Su Kemiği",
+"Yer altı su yolları"
+],
+[
+"Kırmızı Ekip",
+"Frig",
+"Savaş Arabası",
+"Askeri güç gösterisi"
+]
+]
+},
+"options": {
+"A": "Yeşil Ekip, Etrüsk medeniyetinin ölü dünyasına yönelik inancını ve yaşam biçimini en iyi yansıtan yapıyı sunmuştur.",
+"B": "Sarı Ekip, Hattuşaş medeniyetinin siyasi otoritesini sadece saray kalıntılarıyla kanıtlamıştır.",
+"C": "Mavi Ekip, Lidya medeniyetinin para birimi kullanımıyla ilgili mimari bir örnek sunmuştur.",
+"D": "Kırmızı Ekip, Frig medeniyetinin tarım aletlerini ve yerleşimini temsil eden bir yapı getirmiştir."
+},
+"answer": "A",
+"explanation": "1. Etrüskler, ölüm sonrasına inandıkları için mezar anıtları (nekropol) önemli bir kültürel mirastır. Bu, Yargı A'nın doğru olduğunu gösterir.\n2. Hattuşaş'ta sadece saray değil, tapınaklar da vardır. 'Sadece' ifadesi Yargı B'yi yanlışlaştırır.\n3. Su kemeği bir su arıtma/kolonisi tekniğidir para birimiyle ilgisi yoktur. Yargı C yanlıştır.\n4. Frigler savaş arabası değil daha çok at yetiştiriciliği ve araba kullanımında öne çıkmış olabilir ancak 'tarım aletleri' ile eşleşmez. Yargı D yanlıştır.\nDoğru yorum Yeşil Ekip'in açıklamasıyla örtüşür.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794107680
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ortak Mirasımız: Kültürel Miras",
+"passage": "5/A sınıfı öğrencileri, Ankara'daki Anadolu Medeniyetleri Müzesi'ni ziyaret ettikten sonra okulda bir 'Kültür ve Miras Fuarı' düzenlemiştir. Öğrenciler sergileyecekleri eserlerin kopyalarını seçerken aşağıdaki tabloyu oluşturmuşlardır.",
+"question": "Tablodaki bilgilere göre öğrencilerle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "table",
+"title": "Sergilenen Eserler ve Ait Oldukları Medeniyetler",
+"headers": [
+"Eser Adı",
+"Ait Olduğu Medeniyet",
+"Bulunduğu Bölge"
+],
+"rows": [
+[
+"Güneş Kursu",
+"Hatti",
+"Alacahöyük"
+],
+[
+"Kültepe Tabletleri",
+"Asur Ticaret Kolonileri",
+"Kayseri"
+],
+[
+"Pazarlı Vazo",
+"Frigya",
+"Çorum"
+],
+[
+"İvriz Kabartması",
+"Hitit",
+"Konya"
+]
+]
+},
+"options": {
+"A": "Tabloda adı geçen bütün eserler sadece tek bir şehirden çıkarılmıştır.",
+"B": "Tüm eserler aynı medeniyete aittir.",
+"C": "Sergide hem yerli Anadolu medeniyetlerine hem de ticaret yoluyla etkileşime giren medeniyetlere ait eserler yer almaktadır.",
+"D": "Öğrenciler sadece milattan sonraki döneme ait eserleri sergilemişlerdir."
+},
+"answer": "C",
+"explanation": "Tabloda Hatti, Frigya, Hitit gibi yerli Anadolu medeniyetlerinin yanı sıra Asur gibi ticaret amacıyla Anadolu'ya gelen medeniyetlerin de eserleri (Kültepe tabletleri) yer almaktadır. A şıkkı yanlıştır çünkü farklı medeniyetler vardır. C şıkkı yanlıştır, eserler farklı şehirlerdedir. D şıkkı için tarih bilgisi tabloda yoktur ancak B şıkkı tablodaki çeşitliliği ve medeniyetler arası etkileşimi tam olarak doğrulamaktadır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794107680
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ortak Mirasımız ve Sorumluluk",
+"passage": "Tarihi bir çiftlik evinde yaşayan Deniz ve ailesi, evlerinin bahçesinden çıkan eski mühür ve pişmiş toprak kap parçalarının tarihi eser olabileceğini düşünerek durumu ilgili müze müdürlüğüne bildirmişlerdir. Uzmanlar gelip inceleme yapmış ve bu kalıntıların Lidyalılara ait yerleşim izleri olduğunu tespit ederek koruma altına almışlardır.",
+"question": "Bu senaryoya göre Deniz ve ailesinin davranışı ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Tarihi eserleri evlerinde saklayarak ticari kazanç elde etmeyi amaçlamışlardır.",
+"B": "Tarihî kalıntıların yok olmasına sebep olacak bilinçsiz kazılar yapmışlardır.",
+"C": "Buldukları eserlerin mülkiyetini tamamen kendi üzerlerine geçirmişlerdir.",
+"D": "Kültür varlıklarının korunması konusunda vatandaşlık sorumluluğunu yerine getirmişlerdir."
+},
+"answer": "D",
+"explanation": "Deniz ve ailesi, buldukları olası tarihi kalıntıları yetkili kurumlara (müzede görevli uzmanlara) bildirerek doğru bir vatandaşlık bilinci sergilemişlerdir. Kültürel mirasın korunması ve resmi makamlara haber verilmesi ilkesine uygun hareket etmişlerdir. Diğer seçenekler metindeki olayla çelişmektedir.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794107680
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Anadolu Medeniyetleri: Lidyalılar ve İyonlar",
+"passage": "5. sınıf öğrencisi Zeynep, 'Anadolu Medeniyetleri Bisiklet Turu' adlı proje ödevi için hayali bir rota çizmiştir. Bu rotada uğradığı medeniyetlerin insanlığa bıraktığı en önemli katkıları araştırmış ve bunları bir daire grafiğinde oranlamıştır.",
+"question": "Verilen daire grafiğine göre Zeynep'in projesi için aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Paranın Bulunması",
+"Kral Yolu'nun Kullanımı",
+"Deniz Ticareti",
+"Yazının Aktarımı"
+],
+"values": [
+30,
+40,
+20,
+10
+],
+"title": "Anadolu Medeniyetlerinin Katkı Oranları (%)",
+"show_names": false
+},
+"options": {
+"A": "Ticaretin gelişmesinde en büyük paya sahip olan unsur Kral Yolu'nun kullanımıdır (%40).",
+"B": "Paranın bulunması, deniz ticaretinden daha yüksek bir orana sahiptir.",
+"C": "Yazının aktarımı, grafikteki en yüksek yüzdeye sahip olan unsurdur.",
+"D": "Deniz ticareti ve yazının aktarımı oranlarının toplamı %30'dur."
+},
+"answer": "C",
+"explanation": "Grafikte yazının aktarımı %10 ile en düşük orana sahiptir. C şıkkında ise 'en yüksek yüzdeye sahip olan unsurdur' denildiği için bu ifade yanlıştır ve söylenemez. Diğer seçenekler (A, B ve D) grafikteki verilerle matematiksel olarak tamamen uyuşmaktadır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794107680
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Teknoloji ve Sosyal Bilimler",
+"passage": "5/A sınıfı öğrencileri okul kampında, internete erişimin kısıtlı olduğu bir alanda dijital cihazlarını kullanmaktadır. Öğrenciler, kamp alanındaki ortak şarj istasyonunda cihazlarını şarj ederken, bazı öğrencilerin tanımadıkları kişilerden gelen 'Ödül kazandınız' bağlantılarına tıkladığı gözlenmiştir. Rehber öğretmen, öğrencilere kişisel verilerin korunması ve güvenli internet kullanımı hakkında bilgi vermiştir.",
+"question": "Metne göre öğrencilerle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "İnternet üzerinden gelen her türlü bildirim güvenilirdir.",
+"B": "Kişisel bilgilerin paylaşımı konusunda bilinçli davranmışlardır.",
+"C": "Dijital ortamdaki güvenlik risklerine karşı tedbirsiz hareket etmişlerdir.",
+"D": "Kamp alanında teknolojik cihaz kullanımı tamamen yasaklanmıştır."
+},
+"answer": "C",
+"explanation": "Öğrencilerin 'Ödül kazandınız' gibi şüpheli bağlantılara tıklaması, onların siber güvenlik konusunda dikkatli olmadığını ve risklere karşı tedbirsiz olduklarını göstermektedir.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilim ve Teknoloji Tarihi",
+"passage": "Bir spor müsabakası etkinliğinde, farklı yüzyıllarda icat edilen araçların toplumsal yaşama etkisi üzerine yapılan ankette, 100 kişinin görüşleri alınmıştır. Katılımcıların teknolojik araçları kullanım amaçları şu şekildedir:",
+"question": "Verilen verilere göre aşağıdakilerden hangisine ulaşılabilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Eğitim",
+"İletişim",
+"Eğlence",
+"Sağlık"
+],
+"values": [
+40,
+30,
+20,
+10
+],
+"title": "Teknolojik Araçların Kullanım Amaçları",
+"show_names": false
+},
+"options": {
+"A": "Sağlık alanında kullanılan teknoloji, eğitim alanındakinden daha fazladır.",
+"B": "Katılımcıların yarısından fazlası teknolojiyi eğitim ve iletişim amacıyla kullanmaktadır.",
+"C": "Eğlence amacıyla teknoloji kullanımı, toplam katılımcıların yarısını oluşturmaktadır.",
+"D": "İletişim amacı, ankete katılanlar arasında en az tercih edilen seçenektir."
+},
+"answer": "B",
+"explanation": "Eğitim (40) ve İletişim (30) değerlerinin toplamı 70'tir. Bu da 100 kişilik grubun %70'ini, yani yarısından fazlasını oluşturmaktadır.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Teknoloji ve Sosyal Bilimler",
+"passage": "Bir pazar yerinde dijital ödeme sistemlerinin kullanım oranları, esnafın gün içindeki satış takibiyle analiz edilmiştir.",
+"question": "Grafiğe göre dijital ödeme sistemlerinin kullanımıyla ilgili hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"09:00",
+"12:00",
+"15:00",
+"18:00"
+],
+"values": [
+10,
+25,
+20,
+45
+],
+"title": "Dijital Ödeme İşlem Sayısı",
+"show_names": false
+},
+"options": {
+"A": "15:00 saatindeki işlem sayısı, 12:00 saatine göre düşüş göstermiştir.",
+"B": "09:00 ile 18:00 saatleri arasındaki işlem farkı 25'tir.",
+"C": "İşlem sayısı gün boyu sürekli artış göstermiştir.",
+"D": "En az dijital ödeme öğleden sonra yapılmıştır."
+},
+"answer": "A",
+"explanation": "12:00'de 25 işlem yapılırken, 15:00'te bu sayı 20'ye düşmüştür. Bu yüzden B seçeneği doğrudur.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Teknoloji ve Sosyal Bilimler",
+"passage": "Robotik atölyesindeki görevli, öğrencilere 'Güvenli Şifre Oluşturma' projesi yaptırıyor. Öğrencilerden biri şifresini '123456', diğeri 'DoğumTarihim2013', bir diğeri ise 'aB!9zR7*' şeklinde belirlemiştir. Görevli, sadece bir öğrencinin şifresinin siber saldırılara karşı güçlü olduğunu belirtmiştir.",
+"question": "Bu duruma göre güvenli şifre oluşturma konusunda hangi öğrenci hata yapmamıştır?",
+"shape": null,
+"options": {
+"A": "Ardışık sayı dizisi kullanan öğrenci.",
+"B": "Kendi doğum tarihini kullanan öğrenci.",
+"C": "Sadece rakamları kullanan öğrenci.",
+"D": "Büyük-küçük harf, rakam ve özel karakter kullanan öğrenci."
+},
+"answer": "D",
+"explanation": "Siber güvenlik kurallarına göre şifrelerin tahmin edilmesi zor olmalıdır; bu nedenle harf, rakam ve özel karakter içeren şifreler en güvenli olanlardır.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilim ve Teknoloji Tarihi",
+"passage": "Beşinci sınıf öğrencileri, okul bahçesinde düzenledikleri 'Teknolojinin İnsan Hayatına Etkisi' konulu kamp etkinliğinde, geçmişten günümüze kullanılan iletişim araçlarının günlük hayattaki kullanım sürelerini not ettiler. Aşağıdaki grafik, öğrencilerin bir gün içerisinde farklı iletişim araçlarını kullanma sürelerini göstermektedir.",
+"question": "Verilen sütun grafiğine göre, öğrencilerin teknolojiyi en çok tercih ettikleri alan ve buna bağlı olarak söylenebilecek en tutarlı yargı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Mektup",
+"Telefon",
+"Bilgisayar",
+"Televizyon"
+],
+"values": [
+15,
+120,
+180,
+90
+],
+"title": "İletişim Araçları Kullanım Süreleri (Dakika)",
+"show_names": false
+},
+"options": {
+"A": "İnsanlar gün içinde en fazla vakti dijital içeriklere erişim sağlayan bilgisayarda geçirmektedir.",
+"B": "Telefon ve televizyon kullanım süreleri toplamı, bilgisayar kullanımından daha azdır.",
+"C": "Mektup kullanımı, günümüzde diğer tüm iletişim araçlarından daha fazla tercih edilmektedir.",
+"D": "Teknolojik gelişmeler, tüm iletişim araçlarının kullanım süresini eşit düzeye getirmiştir."
+},
+"answer": "A",
+"explanation": "Grafikte bilgisayar 180 dakika, telefon 120 dakika, televizyon 90 dakika ve mektup 15 dakikadır. Bilgisayar en yüksek süredir (180). Telefon (120) + TV (90) = 210 dakika olup 180'den büyüktür, bu yüzden C yanlıştır. En fazla süre bilgisayara aittir.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilişim Güvenliği",
+"passage": "Okul kantininde dijital güvenlik üzerine konuşan 5/A sınıfı öğrencileri şu senaryoyu paylaştı: 'Berkay, oyun oynamak için indirdiği bir dosyanın yanında 'şifrelerinizi girin' uyarısı gördü. Berkay tereddüt etmeden şifresini girdi ve ardından hesabı çalındı.' Arkadaşı Selin ise, 'Şifre girişi yaparken sitenin güvenli olup olmadığına bakmalıydın, ayrıca tanımadığın dosyalardan gelen bu tür talepleri reddetmeliydin' diyerek bir çözüm yolu önerdi.",
+"question": "Bu senaryoda Berkay'ın yaptığı hata ve Selin'in önerisi dikkate alındığında hangisi bilişim güvenliği açısından doğrudur?",
+"shape": null,
+"options": {
+"A": "Berkay, oyunun ücretsiz olması nedeniyle tüm izinleri onaylamalıydı.",
+"B": "İnternet ortamında paylaşılan her türlü uyarı mesajı mutlaka dikkate alınmalıdır.",
+"C": "Selin'in önerisi, bilinçli bir internet kullanıcısının yapması gereken güvenlik önlemlerindendir.",
+"D": "Berkay'ın şifresini paylaşması, oyunun daha hızlı yüklenmesini sağlayacak bir adımdır."
+},
+"answer": "C",
+"explanation": "Berkay güvenli olmayan bir bağlantıdan kişisel bilgilerini paylaşarak hata yapmıştır. Selin'in güvenli site kontrolü ve tanımadık linklere tıklamama önerisi, bilişim güvenliği ilkeleriyle tam olarak örtüşmektedir.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilim ve Teknoloji Tarihi",
+"passage": "Kitap fuarında 'Tarih Boyunca İletişim' temalı bir stant kurulmuştur. Stantta, bilginin yayılma hızını etkileyen icatların yıllık satış miktarları tablolaştırılmıştır.",
+"question": "Verilen tabloya göre, matbaanın icadının bilgi toplumuna geçişte bir dönüm noktası olduğu yargısına ulaşmak için en belirgin veri hangisidir?",
+"shape": {
+"type": "table",
+"title": "Bilgi Kaynaklarının Yıllık Dağılımı",
+"headers": [
+"Dönem",
+"Elle Kopyalanan Kitap",
+"Matbaa Basımı Kitap"
+],
+"rows": [
+[
+"1400",
+"500",
+"0"
+],
+[
+"1500",
+"100",
+"5000"
+],
+[
+"1600",
+"20",
+"20000"
+]
+]
+},
+"options": {
+"A": "Matbaa sonrası kitap basım sayısında görülen devasa artışın bilgiye erişimi hızlandırması.",
+"B": "Elle kopyalanan kitapların maliyetinin tabloda verilmemiş olması.",
+"C": "1400 yılında matbaanın henüz kullanılmıyor olması.",
+"D": "1600 yılında elle kopyalanan kitapların neredeyse tükenmesi."
+},
+"answer": "A",
+"explanation": "Tablodaki veriler (0'dan 20000'e hızlı geçiş) matbaanın üretimi ne kadar hızlandırdığını kanıtlar. Bu hız artışı, bilginin topluma yayılmasını sağlar.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Teknoloji ve Sosyal Bilimler",
+"passage": "Bir okulda yapılan 'Akıllı Enerji Tüketimi' projesinde, sınıfların gün içindeki elektrik harcama oranları bir grafikle paylaşılmıştır. Öğretmen, teknoloji kullanımının tasarruflu olması gerektiğini vurgulamıştır.",
+"question": "Grafiğe göre, okul yönetiminin enerji tasarrufu konusunda öncelikli olarak hangi alana odaklanması gerektiği söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Akıllı Tahta",
+"Aydınlatma",
+"Isıtma/Soğutma",
+"Bilgisayar Laboratuvarı"
+],
+"values": [
+25,
+15,
+45,
+15
+],
+"title": "Okul Elektrik Tüketim Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "Akıllı tahta kullanımına, çünkü toplam tüketimin %25'idir.",
+"B": "Isıtma/Soğutma sistemlerine, çünkü tüketimin neredeyse yarısı bu alanda gerçekleşmektedir.",
+"C": "Bilgisayar laboratuvarına, çünkü en az enerji burada tüketilmektedir.",
+"D": "Aydınlatma sistemlerine, çünkü en çok enerji burada tüketilmektedir."
+},
+"answer": "B",
+"explanation": "Isıtma/soğutma %45 ile en büyük paya sahiptir. Tasarruf için en büyük paya sahip olan alanı iyileştirmek en etkili yöntemdir.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilim ve Teknoloji Tarihi",
+"passage": "Yaz tatilinde dedesinin köyüne giden Elif, eski bir mektup arkadaşlığı kutusu bulmuştur. Kutuda 1970'li yıllardan kalma mektuplar, bir radyo, pusula, eski bir fotoğraf makinesi ve elle yazılmış bir yemek tarifi defteri vardır. Elif, teknolojinin geçmişten günümüze değişimini incelemek için bir liste yapmıştır: Mektuplar (haberleşme), Radyo (kitle iletişim), Pusula (yön bulma), Fotoğraf Makinesi (anı saklama).",
+"question": "Elif'in incelediği bu nesnelerin günümüzdeki karşılıkları düşünüldüğünde, hangisi teknolojik gelişmenin işlevsel çeşitliliği artırdığına kanıt oluşturur?",
+"shape": null,
+"options": {
+"A": "Eski mektupların yerini e-postalara bırakması.",
+"B": "Mektupların yerini anlık mesajlaşma uygulamalarının alması.",
+"C": "Fotoğraf makinesi, radyo ve yön bulma özelliklerinin günümüzde tek bir akıllı telefonda birleşmesi.",
+"D": "Elle yazılan yemek tariflerinin artık dijital ortamlarda paylaşılması."
+},
+"answer": "C",
+"explanation": "Teknolojik gelişme, geçmişte ayrı cihazlarla yapılan yön bulma, haberleşme ve görüntüleme gibi işlevlerin günümüzde tek bir cihazda birleşmesini sağlayarak işlevsel çeşitliliği ve pratikliği artırmıştır. A, C ve D şıkları sadece bir aracın yenilenmesini anlatırken, B şıkkı farklı işlevlerin birleşmesi ile oluşan değişimi ifade eder.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 1,
+"ts": 1794107746
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Kültür ve Çevre",
+"passage": "Bir şehirde düzenlenen geleneksel kültür festivaline katılan ziyaretçilerin tercih ettiği el sanatları türleri aşağıda gösterilmiştir. Verilere göre dokuma ürünlerini tercih edenlerin sayısı, ahşap işlemeciliğini tercih edenlerin sayısından 150 kişi fazladır.",
+"question": "Verilen sütun grafiğine göre festivale katılan toplam ziyaretçi sayısı kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Seramik",
+"Dokuma",
+"Ahşap",
+"Bakırcılık"
+],
+"values": [
+200,
+450,
+300,
+250
+],
+"title": "El Sanatları Tercih Sayıları",
+"show_names": false
+},
+"options": {
+"A": "1100",
+"B": "1200",
+"C": "1300",
+"D": "1400"
+},
+"answer": "B",
+"explanation": "Grafikteki değerler toplanır: 200 (Seramik) + 450 (Dokuma) + 300 (Ahşap) + 250 (Bakırcılık). Toplamda 200+450+300+250 = 1200 kişi festivale katılmıştır.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Harita Bilgisi ve Yerleşme",
+"passage": "Ayşe'nin yaşadığı mahalledeki pazar yerinde bulunan dört farklı ürünün kilogram fiyatları ve bu ürünlerin yetiştirildiği bölgelerin iklim özellikleri aşağıdaki tabloda verilmiştir.",
+"question": "Tabloya göre, hangi ürünün iklimi 'her mevsim yağışlı' olan bir bölgeden geldiği ve fiyatının en yüksek olduğu söylenebilir?",
+"shape": {
+"type": "table",
+"title": "Ürün ve İklim Özellikleri",
+"headers": [
+"Ürün",
+"Fiyat (TL)",
+"İklim"
+],
+"rows": [
+[
+"Muz",
+"40",
+"Tropikal"
+],
+[
+"Çay",
+"90",
+"Her mevsim yağışlı"
+],
+[
+"İncir",
+"70",
+"Akdeniz"
+],
+[
+"Elma",
+"30",
+"Karasal"
+]
+]
+},
+"options": {
+"A": "İncir",
+"B": "Muz",
+"C": "Çay",
+"D": "Elma"
+},
+"answer": "C",
+"explanation": "Tablo incelendiğinde 'Her mevsim yağışlı' iklim özelliğine sahip olan ürün Çay'dır. Çay'ın fiyatı 90 TL olup tablodaki en yüksek değerdir.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Doğal Çevre ve İnsan",
+"passage": "Bir uzay merkezi projesinde, Dünya'daki yüzey şekillerinin dağılımı incelenmektedir. Araştırmacılar, toplam yüzey alanının %70'ini oluşturan su kaynakları ile %30'luk kara parçalarını farklı kategorilerde değerlendirmektedir.",
+"question": "Verilen grafik, yüzey şekillerinin hangisinde yoğunlaşması gerektiğini göstermektedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Okyanus",
+"Dağ",
+"Ova",
+"Plato"
+],
+"values": [
+70,
+10,
+15,
+5
+],
+"title": "Dünya Yüzey Şekilleri Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Plato",
+"B": "Dağ",
+"C": "Ova",
+"D": "Okyanus"
+},
+"answer": "D",
+"explanation": "Grafikteki dilimler incelendiğinde Okyanus %70 ile en büyük yüzey alanını kapsamaktadır. Bu, verinin %70'inin su kaynaklarına ait olduğu bilgisiyle örtüşmektedir.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yer Şekilleri",
+"passage": "5/C sınıfı öğrencileri okul bahçesinde bir 'Yer Şekilleri Haritası' oluşturuyor. Öğrencilerin belirlediği özellikler şunlardır: I. Dağlar, yüksek ve engebeli arazi yapısıdır. II. Ovalar, çevresine göre alçakta kalan geniş düzlüklerdir. III. Vadiler, akarsuların aşındırmasıyla oluşan derin yarılardır.",
+"question": "Buna göre, aşağıdakilerden hangisi bir 'Yer Şekli' tanımı olarak kabul edilemez?",
+"shape": null,
+"options": {
+"A": "Vadiler, dağlar arasında kalan uzun çukurlardır.",
+"B": "Ovalar, tarımsal faaliyetlere uygun geniş düzlüklerdir.",
+"C": "Yağmur, bulutlardan yeryüzüne düşen su damlacıklarıdır.",
+"D": "Dağlar, yer kabuğunun yüksek kesimleridir."
+},
+"answer": "C",
+"explanation": "Dağ, ova ve vadi yeryüzü şekilleridir. Ancak yağmur bir yer şekli değil, bir hava olayıdır.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Harita ve Yer Şekilleri",
+"passage": "5/C sınıfı öğrencileri bir proje için Türkiye fiziki haritası üzerinde farklı yükseltilere sahip bölgeleri incelemişlerdir. Öğrencilerin bulduğu yükselti verileri şu şekildedir: İç Anadolu (1000m), Doğu Anadolu (2000m), Marmara (250m) ve Ege (400m).",
+"question": "Verilen verilere göre, öğrencilerin harita üzerindeki renk skalasını belirlerken aşağıdakilerden hangisini yapması en uygun olur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Marmara",
+"Ege",
+"İç Anadolu",
+"Doğu Anadolu"
+],
+"values": [
+250,
+400,
+1000,
+2000
+],
+"title": "Bölgelerin Ortalama Yükseltileri",
+"show_names": false
+},
+"options": {
+"A": "Doğu Anadolu bölgesini en koyu kahverengi tonlarıyla göstermek.",
+"B": "Marmara bölgesini yüksek dağlık alanları temsil eden kahverengi ile boyamak.",
+"C": "Ege ve İç Anadolu bölgelerini aynı renk tonuyla renklendirmek.",
+"D": "Haritanın tamamında sadece tek bir renk tonu kullanmak."
+},
+"answer": "A",
+"explanation": "Türkiye fiziki haritalarında yükselti arttıkça yeşilden kahverengiye doğru bir renk değişimi olur. Doğu Anadolu 2000m ile en yüksek yer olduğu için en koyu kahverengi ile gösterilmelidir. Diğer şıklar yükselti-renk ilişkisine aykırıdır.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İklim ve Yerleşme",
+"passage": "Bir tarım uzmanı olan Arda, yaşadığı bölgenin iklim özelliklerini incelemiştir. Bölgede yazlar sıcak ve kurak, kışlar ılık ve yağışlı geçmektedir. Bu iklim tipinde zeytin, turunçgiller ve pamuk gibi ürünler yetişmektedir.",
+"question": "Arda'nın yaşadığı bölge ve ekonomik faaliyetleri hakkında aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Kış sıcaklıkları sıfırın altında düştüğü için seracılık gelişmemiştir.",
+"B": "Her mevsim yağış aldığı için bölgede çay tarımı yaygındır.",
+"C": "Bölgede karasal iklim hakim olduğu için buğday üretimi ön plandadır.",
+"D": "Akdeniz iklimi görülmektedir ve kış ılıklığı isteyen tarım ürünleri yetiştirilmektedir."
+},
+"answer": "D",
+"explanation": "Yazları sıcak-kurak, kışları ılık-yağışlı geçen iklim Akdeniz iklimidir. Zeytin ve turunçgil bu iklimin karakteristik ürünleridir. Diğer şıklar metindeki iklim bilgisiyle çelişmektedir.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yer Şekilleri",
+"passage": "Doğa yürüyüşü ekibi dört farklı bölgeyi ziyaret etmiştir. Ziyaret edilen yerlerin yükselti ve yer şekli özellikleri tabloda verilmiştir. Ekip, 'Dağlık ve engebeli arazi' olan bölgeyi kamp için en riskli yer olarak belirlemiştir.",
+"question": "Tabloya göre ekip kamp için hangi bölgeyi 'en riskli' olarak seçmiştir?",
+"shape": {
+"type": "table",
+"title": "Bölge Özellikleri",
+"headers": [
+"Bölge",
+"Yükselti",
+"Yer Şekli"
+],
+"rows": [
+[
+"A",
+"100m",
+"Ova"
+],
+[
+"B",
+"1800m",
+"Dağlık"
+],
+[
+"C",
+"200m",
+"Plato"
+],
+[
+"D",
+"50m",
+"Delta"
+]
+]
+},
+"options": {
+"A": "B Bölgesi",
+"B": "A Bölgesi",
+"C": "D Bölgesi",
+"D": "C Bölgesi"
+},
+"answer": "A",
+"explanation": "Tabloda 1800 metre yükseltiye sahip ve dağlık olduğu belirtilen B bölgesi, ekibin belirlediği 'engebeli ve dağlık' risk tanımına tam olarak uymaktadır.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Evimiz Dünya (Doğal Çevre)",
+"passage": "Bir ortaokul, çevre bilinci projesi kapsamında atık türlerini ve geri dönüşüme kazandırılma oranlarını ölçmüştür. Grafik, okulun bir ayda topladığı atıkların türlerine göre oranlarını göstermektedir.",
+"question": "Grafikteki verilere göre aşağıdakilerden hangisi okulun çevre projesi için doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Kağıt",
+"Plastik",
+"Cam",
+"Metal"
+],
+"values": [
+40,
+30,
+20,
+10
+],
+"title": "Atık Türlerinin Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "En az toplanan atık türü kağıttır.",
+"B": "Plastik atıklar, metal atıkların üç katıdır.",
+"C": "Cam atıklar, toplam atığın yarısından fazlasını oluşturmaktadır.",
+"D": "Okulda metal atık üretimi plastik atıktan daha fazladır."
+},
+"answer": "B",
+"explanation": "Grafiğe göre Plastik (30) değeri Metal (10) değerinin 3 katıdır. Diğer seçenekler grafikteki verilerle çelişmektedir.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İklim ve İnsan Faaliyetleri",
+"passage": "Türkiye'de farklı iklim tipleri yaşanması, her bölgede farklı ürünlerin yetişmesini sağlamıştır. Karadeniz Bölgesi her mevsim yağışlı olduğu için çay ve fındık tarımı gelişmiştir. Akdeniz Bölgesi'nde ise kış ılıklığı sayesinde seracılık yaygındır. İç Anadolu'da karasal iklim hakim olduğu için tahıl üretimi temel geçim kaynağıdır.",
+"question": "Verilen metne göre, bir bölgedeki tarım ürünlerinin çeşitliliği ile ilgili aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "İklim şartları, bölgede yapılacak ekonomik faaliyetleri doğrudan etkiler.",
+"B": "Her bölgede tüm tarım ürünleri aynı verimle üretilebilir.",
+"C": "Sanayi faaliyetleri tarımdan daha çok iklime bağlıdır.",
+"D": "Yağış miktarı, tarım ürünlerinin çeşidini hiçbir zaman belirlemez."
+},
+"answer": "A",
+"explanation": "Metinde Karadeniz'in yağış yapısı ile çay, İç Anadolu'nun karasal iklimi ile tahıl eşleştirilmiştir. Bu durum iklimin ekonomik faaliyetleri (tarım) etkilediğinin kanıtıdır.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Doğal Afetler ve Korunma",
+"passage": "Selin, okulundaki sosyal sorumluluk projesi kapsamında deprem bilinci ile ilgili bir çalışma yapmaktadır. Selin, deprem anında yapılması gerekenleri içeren 'Çök-Kapan-Tutun' hareketini kütüphanede arkadaşlarına anlatmaktadır.",
+"question": "Selin'in anlatmaya çalıştığı bu davranışın temel amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Depremin şiddetini daha az hissetmeye çalışmak.",
+"B": "Deprem sonrası okulun tadilatını kolaylaştırmak.",
+"C": "Deprem sırasında eşyaların zarar görmesini önlemek.",
+"D": "Sarsıntı anında yaralanma riskini en aza indirmek."
+},
+"answer": "D",
+"explanation": "Çök-Kapan-Tutun hareketi, deprem esnasında hareket kabiliyetini kısıtlayarak düşen nesnelerden korunmayı ve hayatta kalma şansını artırmayı hedefler.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794107834
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Birlikte Yaşamak: Roller ve Haklar (Okul Kantini)",
+"passage": "Atatürk Ortaokulu 5/A sınıfı öğrencileri, okul kantininde sıra beklerken ve alışveriş yaparken uyulması gereken kurallarla ilgili bir gözlem tablosu hazırlamıştır. Tabloda öğrencilerin rolleri (müşteri, görevli, sıra bekleyen öğrenci) ve bu rollere uygun davranış oranları verilmiştir.\n\nTablo:\n| Rol Grubu | Sorumluluk Davranışı | Gözlem Oranı |\n|-----------|----------------------|--------------|\n| Sıra Bekleyen Öğrenci | Kuyruk düzenine uyma ve başkalarının hakkına saygı | %92 |\n| Alışveriş Yapan Öğrenci | Ürünleri inceledikten sonra temiz tutma | %78 |\n| Sınıf Temsilcisi | Kantin kurallarına uyulmasında rehberlik etme | %88 |\n| Görevli Personel | Hijyen kurallarına uyma ve hızlı hizmet sunma | %95 |",
+"question": "Verilen tabloya göre okul kantinindeki roller ve sorumluluklar ile ilgili aşağıdakilerden hangisi çıkarılabilir?",
+"shape": {
+"type": "table",
+"title": "Kantin Yaşamı Gözlem Tablosu",
+"headers": [
+"Rol Grubu",
+"Sorumluluk Davranışı",
+"Gözlem Oranı"
+],
+"rows": [
+[
+"Sıra Bekleyen Öğrenci",
+"Kuyruk düzenine uyma ve başkalarının hakkına saygı",
+"%92"
+],
+[
+"Alışveriş Yapan Öğrenci",
+"Ürünleri inceledikten sonra temiz tutma",
+"%78"
+],
+[
+"Sınıf Temsilcisi",
+"Kantin kurallarına uyulmasında rehberlik etme",
+"%88"
+],
+[
+"Görevli Personel",
+"Hijyen kurallarına uyma ve hızlı hizmet sunma",
+"%95"
+]
+]
+},
+"options": {
+"A": "Sıra bekleyen öğrencilerin kurallara uyum oranı %50'den azdır.",
+"B": "Sınıf temsilcileri kantin görevlisinin işini doğrudan devralmaktadır.",
+"C": "Öğrencilerin tamamı alışveriş sırasında ürünleri kirletmektedir.",
+"D": "Görevli personelin hijyen ve hizmet sorumluluğu gözlem oranında en yüksek değere sahiptir."
+},
+"answer": "D",
+"explanation": "Tablo incelendiğinde görevli personelin sorumluluk oranı %95 ile en yüksek değerdedir. A şıkkı yanlıştır çünkü ürünleri temiz tutma oranı %78'dir (tamamı kirletiyor denemez). C şıkkı yanlıştır, sıra bekleyenlerin oranı %92'dir. D şıkkı metinde geçmemektedir. Doğru ve tablodan çıkarılabilir yargı B şıkkıdır.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 3,
+"ts": 1794108346
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Birlikte Yaşamak: Birey-Toplum ve Dayanışma (Çiftlik Örneği)",
+"passage": "Yeşilvadi Köyü'nde üreticilik yapan bir aile çiftliğinde, imece usulüyle yapılan ortak tarım faaliyetleri grafik üzerinde incelenmiştir. Çiftlik sahibi Ahmet Bey, köyde yaşayan çocukların ve gençlerin ortaklaşa yaptığı işlerin verimliliğini değerlendirmek amacıyla bir sütun grafiği hazırlatmıştır.\n\nGrafik Verileri (İş Bitirme Süresi - Gün):\n- İmece Usulü Ortak Hasat: 4 gün\n- Tek Başına Bireysel Hasat: 15 gün\n- Ortak Hayvan Bakımı: 3 gün\n- Tek Başına Hayvan Bakımı: 10 gün",
+"question": "Grafikteki verilere ve çiftlik yaşamına göre toplumsal dayanışma ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Ortak Hasat",
+"Bireysel Hasat",
+"Ortak Bakım",
+"Bireysel Bakım"
+],
+"values": [
+4,
+15,
+3,
+10
+],
+"title": "Çiftlikte İş Tamamlama Süreleri (Gün)",
+"show_names": false
+},
+"options": {
+"A": "Ortak hasat süresi ile bireysel hasat süresi birbirine eşittir.",
+"B": "Birlikte yapılan ortak çalışmalar (imece), işlerin daha kısa sürede bitmesini sağlayarak dayanışmanın önemini göstermektedir.",
+"C": "Çiftlikteki işlerin süresi dayanışma arttıkça uzamaktadır.",
+"D": "Bireysel olarak yapılan çalışmalar her zaman ortak çalışmalardan daha hızlı tamamlanmaktadır."
+},
+"answer": "B",
+"explanation": "Grafikte ortak hasat 4 gün sürerken bireysel hasat 15 sürmektedir; ortak bakım 3 gün iken bireysel bakım 10 gündür. Bu durum, birlikte yapılan çalışmaların işi hızlandırdığını ve dayanışmanın önemini kanıtlar. B, C ve D şıkları grafikteki sayısal verilere ve mantığa tamamen aykırıdır. Doğru ifade A şıkkıdır.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 3,
+"ts": 1794108346
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İhtiyaç ve İstekler",
+"passage": "Bir kırtasiye mağazasında çalışan Ahmet, müşterilerin alışveriş listelerini gözlemlemiştir. Liste A: Kalem, defter, silgi. Liste B: Uzaktan kumandalı araba, sticker seti, boya kalemi. Liste C: Defter, çanta, kalem kutusu. Liste D: Hikaye kitabı, oyuncak figür, renkli ataşlar.",
+"question": "Buna göre, sadece temel eğitim ihtiyaçlarını kapsayan liste aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Liste B",
+"B": "Liste C",
+"C": "Liste A",
+"D": "Liste D"
+},
+"answer": "C",
+"explanation": "Temel eğitim ihtiyaçları okulda kullanılan araç gereçlerdir. Liste A'da yer alan kalem, defter ve silgi temel eğitim ihtiyaçlarıdır. Liste C'de çanta ve kalem kutusu olsa da defter ve kalem eksikliği gibi durumlar listeyi tam karşılamaz, Liste A doğrudan öğrencilik hayatının en temel ihtiyaçlarını içermektedir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794108900
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yönetim Biçimleri",
+"passage": "Üç farklı ülkenin yönetim biçimleri hakkında veriler incelenmiştir. Ülke A: Halk yöneticilerini seçimle belirler. Ülke B: Kararlar tek bir kişi tarafından alınır. Ülke C: Yöneticiler halkın oylarıyla belirlenir ve yasalar halkı temsil eden meclis tarafından yapılır.",
+"question": "Bu bilgilere göre, demokrasi ile yönetilen ülkelerle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Ülke A",
+"Ülke B",
+"Ülke C"
+],
+"values": [
+90,
+10,
+95
+],
+"title": "Halkın Yönetime Katılım Oranı (%)",
+"show_names": false
+},
+"options": {
+"A": "Ülke A ve C, demokratik yönetim ilkelerini benimsemiştir.",
+"B": "Ülke B, halkın yönetime en fazla katıldığı ülkedir.",
+"C": "Ülke B'de seçimler belirli aralıklarla düzenli olarak yapılmaktadır.",
+"D": "Ülke C'de halkın yönetime katılımı, Ülke A'dan daha düşüktür."
+},
+"answer": "A",
+"explanation": "Ülke A ve C seçim ve meclis vurgusu ile demokratik yönetim biçimine sahip olduğunu göstermektedir. Grafikteki 90 ve 95 puanlar da bu ülkelerin halk katılımının yüksek olduğunu doğrular.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 3,
+"ts": 1794109577
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Çocuk Hakları ve Demokrasi",
+"passage": "Bir sınıf içinde görev dağılımı yapılırken öğrencilerin ilgi alanlarına göre seçimi şu şekilde gerçekleşmiştir. Toplam 40 kişilik sınıfta görev dağılımı grafikteki gibidir.",
+"question": "Grafiğe ve demokrasi anlayışına göre hangisi çıkarılamaz?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kütüphane",
+"Spor",
+"Sosyal Etkinlik",
+"Çevre"
+],
+"values": [
+10,
+15,
+5,
+10
+],
+"title": "Öğrenci Görev Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Öğrenciler gönüllülük esasına göre farklı görevler üstlenmiştir.",
+"B": "Demokraside herkes zorunlu olarak aynı görevi yapmak zorundadır.",
+"C": "En fazla tercih edilen alan spor faaliyetleridir.",
+"D": "Sosyal etkinlik kolu, çevre kolundan daha az ilgi görmüştür."
+},
+"answer": "B",
+"explanation": "Demokrasi, kişilerin kendi istekleri ve yetenekleri doğrultusunda özgür seçim yapabilmesi demektir. D şıkkındaki 'zorunlu olarak aynı görevi yapmak' ifadesi demokrasinin çoğulculuk ve özgürlük ilkesiyle çelişir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 3,
+"ts": 1794109577
+}
+]
+}

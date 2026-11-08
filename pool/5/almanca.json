@@ -1,0 +1,525 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Besitz (mein/dein)",
+"passage": "Auf einem Campingplatz diskutieren Kinder über ihre Ausrüstung. Lukas sagt: 'Das ist mein Zelt.' Sarah antwortet: 'Nein, Lukas, das ist dein Schlafsack, aber das Zelt da drüben ist mein Zelt.'",
+"question": "Welche Schlussfolgerung ist logisch richtig?",
+"shape": null,
+"options": {
+"A": "Sarah besitzt einen Schlafsack.",
+"B": "Sarah besitzt das Zelt, auf das sie zeigt.",
+"C": "Lukas besitzt ein Zelt.",
+"D": "Lukas und Sarah teilen sich das Zelt."
+},
+"answer": "B",
+"explanation": "Schritt 1: Analysiere Lukas Aussage: Er denkt, das Zelt ist seines. Schritt 2: Analysiere Sarahs Korrektur: Sie sagt, Lukas hat einen Schlafsack und das Zelt ist ihres. Schritt 3: Vergleiche mit den Optionen. A ist falsch, da das Zelt laut Sarah nicht Lukas gehört. B wird nicht erwähnt. C ist korrekt, da Sarah explizit 'mein Zelt' sagt. D ist falsch, es gibt keine Teilung.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 4,
+"ts": 1794107773
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Besitz (Possessivpronomen)",
+"passage": "Familie Müller macht einen Wassertest. Mutter: 'Das ist mein Wasserglas.' Vater: 'Das ist mein Wasserglas.' Tochter: 'Und das ist mein Wasserglas.' Sohn: 'Das hier ist mein Glas, nicht deins, Schwester!'",
+"question": "Welche Aussage ist falsch?",
+"shape": null,
+"options": {
+"A": "Der Vater hat ein Glas.",
+"B": "Die Mutter hat ein Glas.",
+"C": "Die Tochter hat ein Glas.",
+"D": "Der Sohn benutzt das Glas der Tochter."
+},
+"answer": "D",
+"explanation": "Schritt 1: Liste die Besitzer auf: Mutter (ihr Glas), Vater (sein Glas), Tochter (ihr Glas), Sohn (sein Glas). Schritt 2: Analysiere die Aussage des Sohnes: Er sagt explizit 'nicht deins, Schwester', was bedeutet, dass er ein eigenes Glas hat und das der Tochter nicht benutzt. Schritt 3: Prüfe D: Diese Aussage widerspricht der Aussage des Sohnes.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 4,
+"ts": 1794107773
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Familienmitglieder",
+"passage": "In einer Bibliothek liest eine Gruppe. 'Das ist meine Mutter', sagt Anna und zeigt auf die Frau am Tisch. 'Das ist mein Bruder', sagt Tom und zeigt auf den Jungen neben der Frau. Anna und Tom sind Geschwister.",
+"question": "In welcher Beziehung stehen die Personen zueinander?",
+"shape": null,
+"options": {
+"A": "Tom ist der Vater von Anna.",
+"B": "Die Frau ist die Mutter von Anna und Tom.",
+"C": "Anna und Tom haben unterschiedliche Mütter.",
+"D": "Anna ist die Tante von Tom."
+},
+"answer": "B",
+"explanation": "Schritt 1: Anna sagt: Die Frau ist ihre Mutter. Schritt 2: Anna und Tom sind Geschwister. Schritt 3: Wenn Anna und Tom Geschwister sind, teilen sie die gleiche Mutter. Schritt 4: Die Frau ist somit die Mutter von beiden.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 4,
+"ts": 1794107773
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Besitz",
+"passage": "Im Weltraumzentrum gibt es Schließfächer. Fach 1: 'Mein Helm'. Fach 2: 'Mein Handschuh'. Fach 3: 'Mein Anzug'. Fach 1 gehört dem Kommandanten. Fach 2 gehört seinem Sohn. Fach 3 gehört seiner Tochter.",
+"question": "Wessen Gegenstände sind in Fach 1 und 3?",
+"shape": null,
+"options": {
+"A": "Fach 1: Kommandant, Fach 3: Sohn.",
+"B": "Fach 1: Sohn, Fach 3: Kommandant.",
+"C": "Fach 1: Kommandant, Fach 3: Tochter.",
+"D": "Fach 1: Tochter, Fach 3: Sohn."
+},
+"answer": "C",
+"explanation": "Schritt 1: Fach 1 gehört dem Kommandanten. Schritt 2: Fach 3 gehört der Tochter. Schritt 3: Vergleiche mit den Optionen. B entspricht genau dieser Zuordnung.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 4,
+"ts": 1794107773
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Familienmitglieder",
+"passage": "Die Familie von Lukas hat eine Familientradition bei der Gartenarbeit. Lukas, sein Vater Hans und seine Schwester Anna pflanzen Blumen. Lukas' Mutter, Maria, organisiert die Werkzeuge. Sein Großvater, Peter, beobachtet sie und die Großmutter, Klara, gibt Tipps.",
+"question": "Wer sind die Personen, die bei der eigentlichen Pflanzarbeit direkt aktiv sind?",
+"shape": null,
+"options": {
+"A": "Lukas, Hans und Anna",
+"B": "Anna, Lukas und Klara",
+"C": "Klara, Peter und Maria",
+"D": "Hans, Maria und Peter"
+},
+"answer": "A",
+"explanation": "Lukas, Hans und Anna sind diejenigen, die aktiv Blumen pflanzen. Maria organisiert lediglich, während Peter und Klara nur beobachten oder Tipps geben. Daher ist Lukas, Hans und Anna die korrekte Gruppe.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 4,
+"ts": 1794107773
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Besitz",
+"passage": "In der Familie von Sarah gibt es viele Gegenstände. Das ist das Buch meines Vaters. Das sind die Stifte meiner Schwester. Das ist mein Ball. Das ist das Auto meiner Mutter.",
+"question": "Welche Aussage ist basierend auf den Besitzverhältnissen korrekt?",
+"shape": null,
+"options": {
+"A": "Das Buch gehört der Schwester.",
+"B": "Das Auto gehört dem Vater.",
+"C": "Die Stifte gehören Sarah.",
+"D": "Der Ball gehört Sarah."
+},
+"answer": "D",
+"explanation": "Sarah sagt 'Das ist mein Ball', also gehört der Ball ihr. Das Buch ist vom Vater, die Stifte von der Schwester und das Auto von der Mutter. Somit ist der Ball gehört Sarah korrekt.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 4,
+"ts": 1794107773
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Familienmitglieder",
+"passage": "Tablo: Familie Klein\nVater: Thomas\nMutter: Sabine\nSohn: Felix\nTochter: Lea\nGroßvater: Heinz\nGroßmutter: Martha",
+"question": "Welche Zuordnung ist laut der Tabelle falsch?",
+"shape": null,
+"options": {
+"A": "Sabine ist die Mutter von Lea.",
+"B": "Heinz ist der Großvater von Thomas.",
+"C": "Thomas ist der Vater von Felix.",
+"D": "Lea ist die Schwester von Felix."
+},
+"answer": "B",
+"explanation": "Die Tabelle listet Heinz als Großvater, aber gibt nicht an, ob er der Großvater von Thomas oder der Vater von Thomas ist. Da die anderen drei Aussagen direkt aus der Familienstruktur der Tabelle logisch folgen, ist Heinz ist der Großvater von Thomas die unsichere/falsche Annahme.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 4,
+"ts": 1794107773
+},
+{
+"subject": "Almanca",
+"topic": "Schulfächer und Tage",
+"passage": "In einer internationalen Fotoschule analysieren Schüler die Stundenpläne für das Fach Fotografie und Kunst:\n- Montag: Kunst (Zeichnen von Landschaften)\n- Mittwoch: Fotografie (Kameraeinstellungen und Licht)\n- Freitag: Kunst (Tonmodellieren)\nBade reist am Mittwoch an, um den Unterricht zu beobachten, und möchte wissen, welche thematischen Materialien benötigt werden.",
+"question": "Welche Materialien gehören aufgrund des Stundenplans und Wochentags zwingend zum Unterrichtstag, an dem Bade anwesend ist?",
+"shape": null,
+"options": {
+"A": "Pinsel und Leinwand",
+"B": "Ton und Wasserfarbe",
+"C": "Buntstifte und Malblock",
+"D": "Kamera und Stativ"
+},
+"answer": "D",
+"explanation": "1. Bade reist am Mittwoch an. 2. Laut Stundenplan findet am Mittwoch das Fach Fotografie statt. 3. Fotografie beschäftigt sich mit Kameraeinstellungen und Licht. 4. Daher sind Kamera und Stativ die passenden Materialien für diesen Tag.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen Zuordnung",
+"passage": "Bei einer Schulradtour prüfen die Lehrer die Rucksäcke auf Notwendigkeiten für den Projekttag:\n- Rucksack 1: Mappe, Geodreieck, Zirkel\n- Rucksack 2: Wörterbuch, Heft, Bleistift\n- Rucksack 3: Turnschuhe, Trinkflasche, Handtuch\n- Rucksack 4: Biologiebuch, Lupe, Pinzette",
+"question": "Welcher Rucksack enthält ausschließlich typische Schulsachen für das Fach Geometrie bzw. Mathematik?",
+"shape": null,
+"options": {
+"A": "Rucksack 3",
+"B": "Rucksack 1",
+"C": "Rucksack 2",
+"D": "Rucksack 4"
+},
+"answer": "B",
+"explanation": "1. Rucksack 1 enthält eine Mappe, ein Geodreieck und einen Zirkel, die typische Werkzeuge für Geometrie/Mathematik sind. 2. Rucksack 2 enthält Sprachmaterialien. 3. Rucksack 3 enthält Sportutensilien. 4. Rucksack 4 enthält Biologiematerialien. 5. Rucksack 1 ist somit korrekt.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schulfächer Vergleich",
+"passage": "Im Schulgarten vergleichen zwei Gruppen ihre benötigten Arbeitsmittel:\n- Gruppe A (für Erdkunde): Landkarte, Globus, Kompass.\n- Gruppe B (für Informatik): Tastatur, Bildschirm, USB-Stick.",
+"question": "Welche Schlussfolgerung lässt sich über die Arbeitsmittel der beiden Gruppen ziehen?",
+"shape": null,
+"options": {
+"A": "Gruppe A nutzt ausschließlich elektronische Geräte für digitale Berechnungen.",
+"B": "Gruppe B verwendet ausschließlich geografische Orientierungswerkzeuge.",
+"C": "Gruppe A verwendet physische Orientierungs- und Kartenwerkzeuge, während Gruppe B digitale Hardware nutzt.",
+"D": "Beide Gruppen verwenden identische Materialien für den praktischen Unterricht."
+},
+"answer": "C",
+"explanation": "1. Gruppe A hat Landkarte, Globus und Kompass (geografische Werkzeuge). 2. Gruppe B hat Tastatur, Bildschirm und USB-Stick (digitale/Informatik-Hardware). 3. Dies zeigt, dass Gruppe A physische Orientierungswerkzeuge und Gruppe B digitale Hardware nutzt. 4. Die anderen Optionen widersprechen diesen Daten.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schulfächer und Schulsachen",
+"passage": "Im Schulkantinenschrank sind vier Fächer mit Utensilien für verschiedene Fächer beschriftet:\n- Fach A: Malfarben, Pinsel, Zeichenblock\n- Fach B: Wörterbuch, Grammatikbuch, Vokabelheft\n- Fach C: Ball, Pfeife, Stoppuhr\n- Fach D: Flöte, Notenblatt, Rhythmusinstrument",
+"question": "Welches Fach enthält die typischen Materialien für das Schulfach Musik?",
+"shape": null,
+"options": {
+"A": "Fach B",
+"B": "Fach C",
+"C": "Fach A",
+"D": "Fach D"
+},
+"answer": "D",
+"explanation": "1. Fach A enthält Kunstmaterialien (Malen). 2. Fach B enthält Sprachmaterialien (Fremdsprache). 3. Fach C enthält Sportmaterialien (Bewegung). 4. Fach D enthält Flöte, Notenblatt und Rhythmusinstrument, was eindeutig zum Fach Musik gehört.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen Inventar",
+"passage": "In einem Schreibwarengeschäft wird das Inventar für den Schulanfang aufgelistet:\n- Artikel 1: Ein dickes Buch mit Landkarten der Welt (Preis: 12 Euro)\n- Artikel 2: Ein Heft mit linierten Blättern für deutsche Texte (Preis: 3 Euro)\n- Artikel 3: Ein Instrument mit schwarzen und weißen Tasten zum Musizieren (Preis: 45 Euro)\n- Artikel 4: Ein Farbkasten mit Pinseln für den Kunstunterricht (Preis: 15 Euro)",
+"question": "Welcher Artikel gehört zum Fach Deutsch und hat den geringsten Preis in der Liste?",
+"shape": null,
+"options": {
+"A": "Artikel 3",
+"B": "Artikel 2",
+"C": "Artikel 1",
+"D": "Artikel 4"
+},
+"answer": "B",
+"explanation": "1. Artikel 2 ist ein Heft für deutsche Texte, gehört also zum Fach Deutsch. 2. Sein Preis beträgt 3 Euro. 3. Verglichen mit den Preisen 12, 45 und 15 Euro ist 3 Euro der geringste Preis. 4. Artikel 2 erfüllt beide Bedingungen.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulfächer",
+"passage": "In der Schule von Elif gibt es verschiedene Fächer. Am Montag hat sie um 9:00 Uhr ein Fach, in dem sie rechnet und mit Zahlen arbeitet. Um 10:30 Uhr lernt sie die Landkarte, Länder und Flüsse kennen. Nach der Mittagspause um 13:00 Uhr hat sie ein Fach, in dem sie Musikinstrumente hört und singt.",
+"question": "Welches Fach hat Elif am Montag um 10:30 Uhr laut dem Text?",
+"shape": null,
+"options": {
+"A": "Musik",
+"B": "Sport",
+"C": "Erdkunde",
+"D": "Mathematik"
+},
+"answer": "C",
+"explanation": "1. Elif hat um 9:00 Uhr ein Fach mit Zahlen und Rechnen, das ist Mathematik.\n2. Um 10:30 Uhr lernt sie Länder, Flüsse und Landkarten kennen, was das Fach Erdkunde (Geografie) beschreibt.\n3. Um 13:00 Uhr hat sie Musik.\n4. Daher ist das Fach um 10:30 Uhr Erdkunde, was genau Option B entspricht.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulsachen",
+"passage": "Drei Schüler packen ihre Schultaschen für den nächsten Schultag. Ahmet braucht ein Heft für Notizen, Buse benötigt ein langes Lineal zum Zeichnen von geraden Linien und Can sucht einen Farbstift zum Malen.",
+"question": "Welcher Gegenstand gehört laut Beschreibung zu Buse?",
+"shape": null,
+"options": {
+"A": "Das Heft",
+"B": "Das Lineal",
+"C": "Das Buch",
+"D": "Der Buntstift"
+},
+"answer": "B",
+"explanation": "1. Ahmet braucht ein Heft für Notizen.\n2. Buse benötigt ein langes Lineal zum Zeichnen von geraden Linien.\n3. Can sucht einen Farbstift.\n4. Somit ist der Gegenstand für Buse das Lineal, was Option B ist.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulfächer",
+"passage": "Tabelle der Lieblingsfächer von vier Freunden:\n- Emre: Er mag Experimente in der Naturwissenschaft und das Mischen von Stoffen.\n- Deniz: Sie malt gerne Bilder und benutzt Pinsel.\n- Kerem: Er spricht gerne Wörter auf Englisch und lernt neue Sprachen.\n- Zeynep: Sie läuft, springt und spielt gerne Ball in der Turnhalle.",
+"question": "Welches Schulfach ist das Lieblingsfach von Zeynep?",
+"shape": null,
+"options": {
+"A": "Englisch",
+"B": "Biologie",
+"C": "Kunst",
+"D": "Sport"
+},
+"answer": "D",
+"explanation": "1. Emre mag Naturwissenschaft (Biologie/Chemie).\n2. Deniz malt Bilder und nutzt Pinsel (Kunst).\n3. Kerem lernt Sprachen (Englisch).\n4. Zeynep läuft, springt und spielt Ball in der Turnhalle, was dem Fach Sport entspricht (Option D).",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulsachen",
+"passage": "In der Federtasche von Aylin liegen folgende Utensilien:\n- Ein Spitzer zum Anspitzen der Bleistifte\n- Ein Radiergummi zum Weglöschen von Fehlern\n- Ein Klebestift zum Papierkleben\n- Eine Schere zum Schneiden von Papier",
+"question": "Welches Utensil benutzt Aylin, um einen Bleistift spitz zu machen?",
+"shape": null,
+"options": {
+"A": "Der Spitzer",
+"B": "Der Klebestift",
+"C": "Das Radiergummi",
+"D": "Die Schere"
+},
+"answer": "A",
+"explanation": "1. Der Text listet die Utensilien in Aylins Federtasche auf.\n2. Für das Anspitzen der Bleistifte wird explizit 'Ein Spitzer' genannt.\n3. Die anderen Gegenstände haben andere Funktionen (Schere zum Schneiden, Radiergummi zum Löschen, Klebestift zum Kleben).\n4. Die richtige Antwort ist demnach Spitzer, also Option C.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 2,
+"ts": 1794107879
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken - Vorlieben",
+"passage": "Der Schularzt Dr. Weber hat eine Untersuchung gemacht. Hier sind seine Empfehlungen für den Speiseplan von Lukas: 'Lukas, du darfst keine Zuckerprodukte essen, aber du brauchst viel Gemüse und Obst. Milchprodukte sind auch gesund für dich.' Lukas' Speiseplan für die Pause: Dienstag (Apfel, Käsebrot), Mittwoch (Schokoriegel, Chips), Donnerstag (Karottensticks, Joghurt), Freitag (Eis, Limo).",
+"question": "Welche zwei Tage sind laut Dr. Webers Empfehlung für Lukas gesund?",
+"shape": null,
+"options": {
+"A": "Mittwoch und Freitag",
+"B": "Dienstag und Donnerstag",
+"C": "Dienstag und Mittwoch",
+"D": "Donnerstag und Freitag"
+},
+"answer": "B",
+"explanation": "Lukas darf keine Zuckerprodukte essen. Mittwoch hat Schokoriegel und Chips; Freitag hat Eis und Limo. Diese Tage sind ungesund. Dienstag hat er Apfel und Käsebrot (Obst und Milchprodukt). Donnerstag hat er Karottensticks und Joghurt (Gemüse und Milchprodukt). Also sind Dienstag und Donnerstag gesund.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken - Lebensmittel",
+"passage": "Nach dem Sportwettkampf haben die Athleten Hunger. Anna: 'Ich mag Fleisch, aber ich mag keinen Fisch.' Ben: 'Ich möchte etwas Veganes essen, keine Milchprodukte.' Cem: 'Ich liebe Obst, aber ich hasse Gemüse.'",
+"question": "Wer kann nach dem Wettkampf eine Tomatensuppe essen, wenn die Tomatensuppe keine Fleischzutaten enthält?",
+"shape": null,
+"options": {
+"A": "Nur Anna",
+"B": "Anna und Cem",
+"C": "Ben und Cem",
+"D": "Nur Ben"
+},
+"answer": "C",
+"explanation": "Tomatensuppe ist vegetarisch. Anna mag Fleisch, isst aber auch vegetarische Dinge, sofern kein Fisch enthalten ist. Ben isst vegan, also ohne Milchprodukte (Tomatensuppe ist in der Regel vegan). Cem isst kein Gemüse, also lehnt er Tomatensuppe ab. Ben und Anna können die Suppe essen.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken - Lebensmittel",
+"passage": "Auf dem Bauernhof gibt es eine Ernte-Tabelle für die Woche: Montag: 5 kg Äpfel, 2 kg Birnen. Mittwoch: 3 kg Tomaten, 4 kg Gurken. Freitag: 6 kg Erdbeeren, 1 kg Pfirsiche. Sarah möchte Obst für einen Fruchtsalat kaufen und braucht mindestens 7 kg Obst insgesamt.",
+"question": "An welchem Tag kann Sarah ihre Einkäufe erledigen?",
+"shape": null,
+"options": {
+"A": "Nur am Freitag",
+"B": "Nur am Mittwoch",
+"C": "Nur am Montag",
+"D": "Am Montag und Freitag"
+},
+"answer": "D",
+"explanation": "Montag: 5kg + 2kg = 7kg Obst. Mittwoch: 3kg + 4kg = 7kg Gemüse (kein Obst). Freitag: 6kg + 1kg = 7kg Obst. Sarah braucht mindestens 7kg Obst. Sowohl Montag als auch Freitag erfüllen diese Bedingung.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken - Vorlieben",
+"passage": "Auf dem Bücher- und Essensmarkt gibt es zwei Stände. Stand A: 'Wir verkaufen Äpfel, Bananen und Orangen. Alles ist frisch.' Stand B: 'Wir verkaufen Käse, Brot und Oliven. Alles ist salzig.' Melis liebt süße Speisen und mag keine salzigen Produkte.",
+"question": "Welche Aussage ist basierend auf Melis' Vorlieben richtig?",
+"shape": null,
+"options": {
+"A": "Melis mag weder Stand A noch Stand B.",
+"B": "Melis kauft nur bei Stand B ein.",
+"C": "Melis findet bei Stand A passende Lebensmittel.",
+"D": "Stand B bietet mehr Auswahl für Melis."
+},
+"answer": "C",
+"explanation": "Melis mag süße Speisen. Stand A bietet Obst (süß). Stand B bietet Käse und Oliven (salzig). Da Melis keine salzigen Produkte mag, ist Stand A die richtige Wahl für sie.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken - Lebensmittel",
+"passage": "Bei einer archäologischen Ausgrabung finden die Forscher Reste in alten Tonkrügen. Krug 1 enthält Spuren von Weizen. Krug 2 enthält Spuren von Olivenöl. Krug 3 enthält Spuren von Milch. Ein historisches Dokument besagt: 'Die Menschen hier aßen Brot mit Öl, aber keine Milchprodukte.'",
+"question": "Welche Krüge passen zu der Beschreibung im Dokument?",
+"shape": null,
+"options": {
+"A": "Nur Krug 2",
+"B": "Nur Krug 1",
+"C": "Krug 2 und Krug 3",
+"D": "Krug 1 und Krug 2"
+},
+"answer": "D",
+"explanation": "Das Dokument erwähnt Brot (Weizen) und Öl (Olivenöl), aber keine Milch. Krug 1 (Weizen) und Krug 2 (Olivenöl) passen also zur Beschreibung der Ernährung, während Krug 3 (Milch) ausgeschlossen ist.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken - Vorlieben",
+"passage": "In der Bäckerei 'Süß & Sauer' sind folgende Mengen verkauft worden: 10 Stück Schokoladenkuchen, 10 Stück Zitronenkuchen, 5 Stück Käsebrot. Die meisten Kunden fragen nach 'süßen' Backwaren.",
+"question": "Welche Schlussfolgerung lässt sich aus den Verkaufsdaten ziehen?",
+"shape": null,
+"options": {
+"A": "Käsebrot ist das beliebteste Produkt.",
+"B": "Die Kunden bevorzugen den Zitronenkuchen gegenüber dem Schokoladenkuchen.",
+"C": "Die Kunden kaufen mehr süße Produkte als salzige Produkte.",
+"D": "Die Bäckerei verkauft gar keine süßen Produkte."
+},
+"answer": "C",
+"explanation": "Es wurden insgesamt 20 süße Kuchen (10 Schoko + 10 Zitrone) und nur 5 salzige Brote verkauft. Daher kaufen Kunden mehr süße Produkte als salzige Produkte.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken - Lebensmittel",
+"passage": "In der Schule gibt es ein Recycling-Projekt für Lebensmittelverpackungen. Die Schüler sammeln: Gruppe 1: Saftkartons und Milchtüten. Gruppe 2: Bananenschalen und Apfelreste (Bio-Abfall).",
+"question": "Welches Produkt gehört in die Kategorie der 'Lebensmittel' anstatt in die Verpackungskategorie?",
+"shape": null,
+"options": {
+"A": "Der Apfelrest",
+"B": "Die Milchtüte",
+"C": "Der Saftkarton",
+"D": "Keines der genannten"
+},
+"answer": "A",
+"explanation": "Saftkartons und Milchtüten sind Verpackungen. Der Apfelrest ist ein organischer Lebensmittelrest (Bio-Abfall), der direkt vom Lebensmittel stammt.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Essen und Trinken",
+"passage": "In einer Bäckerei kaufen drei Freunde ein. Ayşe kauft zwei Stück Kuchen und ein Glas Milch. Mehmet möchte keinen Kuchen, er trinkt lieber eine Tasse Tee und isst ein Käsebrötchen. Can liebt Schokolade, er kauft zwei Schokocroissants und ein Glas Orangensaft.",
+"question": "Welche Aussage ist nach dem Text korrekt?",
+"shape": null,
+"options": {
+"A": "Nur Ayşe isst in der Bäckerei etwas.",
+"B": "Can isst Schokolade und trinkt Orangensaft.",
+"C": "Ayşe isst Käsebrötchen und trinkt Tee.",
+"D": "Mehmet trinkt Milch, aber keinen Tee."
+},
+"answer": "B",
+"explanation": "Ayşe has cake and milk. Mehmet has a cheese roll and tea. Can has chocolate croissants and orange juice. Therefore, the statement that Can eats chocolate and drinks orange juice is correct.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Lebensmittel",
+"passage": "Für ein gesundes Frühstück bereitet Elif folgende Zutaten vor: Brot, Käse, Oliven, Honig, ein Ei und ein Glas Apfelsaft. Ihr Bruder möchte kein Brot und keine Oliven, aber er mag Honig und trinkt gerne Milch.",
+"question": "Welches Lebensmittel steht auf dem Frühstückstisch, das der Bruder mag, aber Elif nicht explizit als Teil ihres eigenen Frühstücks erwähnt?",
+"shape": null,
+"options": {
+"A": "Milch",
+"B": "Brot",
+"C": "Oliven",
+"D": "Honig"
+},
+"answer": "A",
+"explanation": "Elif prepares bread, cheese, olives, honey, egg, and apple juice. The brother likes honey and milk. Since Elif mentioned the honey for the table and the brother also likes it, and milk is specifically his preference mentioned separately, milk is the item he likes that wasn't part of Elif's primary list.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Vorlieben",
+"passage": "Bei einem Ausflug sprechen Kinder über ihre Lieblingsspeisen. 'Ich mag Pizza sehr, aber ich hasse Tomatensuppe', sagt Kerem. 'Ich liebe Äpfel, aber ich mag keine Bananen', sagt Sude. 'Ich mag Fisch und Reis, aber ich mag kein Fleisch', ergänzt Ali.",
+"question": "Wer hat eine negative Meinung zu einem Lebensmittel, das normalerweise als 'Obst' klassifiziert wird?",
+"shape": null,
+"options": {
+"A": "Ali",
+"B": "Niemand",
+"C": "Kerem",
+"D": "Sude"
+},
+"answer": "D",
+"explanation": "Sude talks about apples and bananas. Bananas are fruit. She says she does not like bananas. Therefore, Sude is the one expressing a dislike for a fruit.",
+"vfd2": true,
+"unit": "Essen und Trinken",
+"topics": "Lebensmittel, Vorlieben",
+"d": 2,
+"ts": 1794108963
+}
+]
+}

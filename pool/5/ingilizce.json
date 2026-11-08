@@ -1,0 +1,545 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "İngilizce",
+"topic": "Party Time: Food and Drinks",
+"passage": "Eco-Club Party Menu:\n- Fruit juice (in glass bottles)\n- Homemade cake (no plastic packaging)\n- Fresh popcorn (in paper cones)\n- Water (in reusable bottles)\nFatma: I brought plastic cups for everyone to use.\nAhmet: Actually, let's use the glass bottles directly to avoid waste.",
+"question": "Which sentence evaluates the situation correctly regarding the Eco-Club's party plan?",
+"shape": null,
+"options": {
+"A": "Fatma's suggestion fits the club's eco-friendly goals perfectly.",
+"B": "The club decided to use plastic cups to save money.",
+"C": "Ahmet suggests a more sustainable way to serve drinks.",
+"D": "The menu includes harmful pre-packaged snacks."
+},
+"answer": "C",
+"explanation": "The club focuses on being eco-friendly. Fatma's idea of using plastic cups is against this goal. Ahmet suggests using glass bottles to avoid waste, which is a sustainable choice.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Dates and Planning",
+"passage": "Bicycle Tour Club Schedule:\n- Monday: Route meeting at 10 a.m.\n- Tuesday: Cleaning the bicycles.\n- Wednesday: The Big Tour Day!\n- Thursday: Evaluation meeting.\nAli: I can join the cleaning day, but I am busy on the first day of the week.\nCan: I am only available on the day of the tour.",
+"question": "Based on the schedule and their availability, which is true?",
+"shape": null,
+"options": {
+"A": "Ali will participate in the route meeting.",
+"B": "The Big Tour Day is on the last day of the schedule.",
+"C": "Can will attend the cleaning day on Tuesday.",
+"D": "Ali is available to help clean the bicycles."
+},
+"answer": "D",
+"explanation": "The tour is on Wednesday. Ali says he is busy on the first day (Monday) but can join the cleaning day (Tuesday). Thus, Ali can help with the cleaning.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Invitations and Preferences",
+"passage": "Akvaryum Club Party Board:\n- Ceren: I love sea creatures, I want a party with an ocean theme.\n- Deniz: I prefer a simple party with just music and dance.\n- Ege: I agree with Ceren, we need blue decorations and sea shells.\n- Mert: I am with Deniz, let's keep it simple at home.",
+"question": "Which of the following is a correct classification of the students?",
+"shape": null,
+"options": {
+"A": "Ege wants to have the party at home like Mert.",
+"B": "Ceren and Ege have the same party preference.",
+"C": "Deniz and Ceren want the same type of party.",
+"D": "Mert and Ceren are planning the party together."
+},
+"answer": "B",
+"explanation": "Ceren wants an ocean theme. Ege agrees with Ceren. Deniz wants a simple party. Mert agrees with Deniz. Therefore, Ceren and Ege share the same preference.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Food and Logic",
+"passage": "Farm Party Shopping List:\n- 5 kg of apples (for apple pie)\n- 3 liters of milk (for pudding)\n- 2 bags of flour (for bread)\n- 1 kg of honey (for drinks)\nAyşe: We have enough flour to make two big loaves of bread. \nMehmet: But we only have enough apples for one pie.",
+"question": "According to the notes, which conclusion is correct?",
+"shape": null,
+"options": {
+"A": "They need more milk to make bread.",
+"B": "They need honey to make the apple pie.",
+"C": "The shopping list is enough for ten pies.",
+"D": "They have limited apples for the pie."
+},
+"answer": "D",
+"explanation": "Mehmet explicitly states that they only have enough apples for one pie, confirming the apples are the limiting factor for that specific dish.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Invitations",
+"passage": "Archaeologist Dr. Arda is organizing a 'History Discovery Party' to celebrate the new findings in the Ephesus excavation site. He sends an invitation card: 'Dear Team, please join our celebration party on Saturday, May 15th, at 7 p.m. at the Museum Hall. We will have sandwiches and juice.'",
+"question": "According to the invitation, which information is NOT provided by Dr. Arda?",
+"shape": null,
+"options": {
+"A": "The list of the guests",
+"B": "The date of the party",
+"C": "The location of the event",
+"D": "The time of the gathering"
+},
+"answer": "A",
+"explanation": "1. The text states the date (May 15th), time (7 p.m.), and location (Museum Hall). 2. The text mentions the food (sandwiches/juice). 3. There is no information about who is invited, other than the general term 'Team'. 4. Therefore, the list of guests is missing.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Food",
+"passage": "A forest protection group is planning a 'Green Picnic' for Sunday. They prepared a food list: - 10 apples (fruits) - 20 sandwiches (main food) - 15 bottles of water (drinks) - 5 chocolate cakes (desserts). The organizer says: 'We have enough main food for everyone, but we need more drinks.'",
+"question": "Based on the information, what can we say about the party supplies?",
+"shape": null,
+"options": {
+"A": "They have more cakes than sandwiches.",
+"B": "They need to buy more water for the guests.",
+"C": "They are planning to serve pizza at the picnic.",
+"D": "They have enough fruits to feed thirty people."
+},
+"answer": "B",
+"explanation": "1. The text confirms there are 20 sandwiches and 5 cakes, so 20 is greater than 5 (A is false). 2. The organizer explicitly says they need more drinks (water). 3. There is no mention of pizza. 4. 10 apples are not enough for 30 people. Thus, they need more water.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Dates and Planning",
+"passage": "Construction manager Selim is planning two office parties. Party A is for the 'Site Workers' on June 10th. Party B is for the 'Engineers' on June 12th. Party A will be held in the morning, but Party B will be held in the evening. Both parties are on weekdays.",
+"question": "Which of the following is correct regarding the two parties?",
+"shape": null,
+"options": {
+"A": "The engineers' party is held before the workers' party.",
+"B": "Both parties take place at the same time of day.",
+"C": "The engineers' party is two days after the workers' party.",
+"D": "The workers' party happens on a weekend."
+},
+"answer": "C",
+"explanation": "1. June 12th is exactly two days after June 10th. 2. Party A is in the morning, Party B is in the evening, so they are different. 3. Weekdays are Monday-Friday. 4. Workers' party is on the 10th, so it is before the 12th.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Invitations",
+"passage": "An astronomy club at the space center is sending out invitations for a 'Star Gazing Party'. Invitation details: 'We will meet at the Space Center Garden. We will watch the stars and eat cookies. Please bring your own telescope.'",
+"question": "Which question does the invitation text NOT answer?",
+"shape": null,
+"options": {
+"A": "What should the guests bring?",
+"B": "What time does the party start?",
+"C": "What will they do?",
+"D": "Where is the party?"
+},
+"answer": "B",
+"explanation": "1. Where: Space Center Garden. 2. What to do: Watch stars/eat cookies. 3. What to bring: Telescope. 4. Time: There is no time mentioned in the text.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Food preferences",
+"passage": "In a garden party, guests are asked about their favorite snacks. 15 people like cookies, 10 people like fruit, and 5 people like vegetable salad. The host decides to order 30 items in total based on these preferences.",
+"question": "If the host buys food according to the popularity of the snacks, which choice is correct?",
+"shape": null,
+"options": {
+"A": "They should buy more vegetable salad than cookies.",
+"B": "They should buy an equal amount of fruit and cookies.",
+"C": "They should buy the most cookies.",
+"D": "They should buy only fruit."
+},
+"answer": "C",
+"explanation": "1. Cookies (15) > Fruit (10) > Vegetable salad (5). 2. Since 15 is the highest number, cookies are the most popular. 3. Therefore, the host should buy the most cookies.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 1,
+"ts": 1794108758
+},
+{
+"subject": "İngilizce",
+"topic": "Greetings and Introducing",
+"passage": "At an International Culture Festival, students from different countries meet. Ali says, 'Hello, I am Ali from Turkey.' Elena replies, 'Hi, I am Elena from Spain. Nice to meet you.' Hans says, 'Good morning! My name is Hans and I am from Germany.'",
+"question": "Which of the following explains the reason why Hans uses 'Good morning' instead of 'Hello'?",
+"shape": null,
+"options": {
+"A": "He wants to introduce his country to others.",
+"B": "He prefers to be more formal than Ali and Elena.",
+"C": "He is answering a question about his nationality.",
+"D": "He is greeting the group specifically during the early part of the day."
+},
+"answer": "D",
+"explanation": "Ali and Elena use general greetings. Hans uses 'Good morning', which is a time-specific greeting used in the morning. Therefore, his choice is based on the time of the day.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Greetings and Introducing",
+"passage": "In a book fair, a student needs to register. The registration table has these rules: 1. Say hello. 2. Say your name. 3. Say where you are from. A student approaches and says: 'Hi! I am Can from Izmir. How are you?'",
+"question": "According to the registration rules, which statement is true about the student's introduction?",
+"shape": null,
+"options": {
+"A": "He followed all the rules correctly.",
+"B": "He missed the greeting part of the registration.",
+"C": "He provided extra information that was not requested by the rules.",
+"D": "He failed to state his name clearly."
+},
+"answer": "C",
+"explanation": "The rules require saying hello (he said Hi), name (Can), and origin (Izmir). He also added 'How are you?', which was not a rule, making his information exceed the specific requirements.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Alphabet",
+"passage": "Coding Club members categorize their names based on the first letter of their names. \nCategory 1 (A-K): Ahmet, Burak, Can, Elif, Kerem. \nCategory 2 (L-Z): Lale, Mert, Pelin, Sude, Zeynep.",
+"question": "If a new student named 'Deniz' joins the club, where should he be placed?",
+"shape": null,
+"options": {
+"A": "Category 1, because D comes after A.",
+"B": "Category 2, because the categories are based on name length.",
+"C": "Category 1, because D is between A and K.",
+"D": "Category 2, because D is the fourth letter."
+},
+"answer": "C",
+"explanation": "Category 1 covers letters from A to K. The letter D is alphabetically between A and K. Therefore, Deniz belongs in Category 1.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Alphabet",
+"passage": "A student tries to spell the word 'TABLE'. He says: 'T - A - B - L - E'. His friend corrects him and says: 'That is wrong, you said 'T-A-B-L-E' but you meant to spell 'LABEL' which is 'L-A-B-E-L'.'",
+"question": "Which statement best identifies the error in the student's logic?",
+"shape": null,
+"options": {
+"A": "The student used letters that do not exist in the alphabet.",
+"B": "The friend wrongly identified a spelling error as a vocabulary confusion.",
+"C": "The student skipped a letter in the alphabet.",
+"D": "The student spelled the word correctly, but the friend is confused."
+},
+"answer": "B",
+"explanation": "The student spelled T-A-B-L-E correctly. The friend claims the student meant to spell 'LABEL' (L-A-B-E-L), which is a different word. The friend's correction is logically flawed because the original spelling was correct for the intended word.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Greetings and Introducing",
+"passage": "In a museum, there is a visitor log. \nName: Ayşe | Time: 09:00 | Greeting: 'Good morning' \nName: Mehmet | Time: 13:00 | Greeting: 'Good afternoon' \nName: Selin | Time: 20:00 | Greeting: '...'",
+"question": "According to the pattern in the log, what should Selin write as her greeting?",
+"shape": null,
+"options": {
+"A": "Good morning",
+"B": "Good afternoon",
+"C": "Good evening",
+"D": "Goodbye"
+},
+"answer": "C",
+"explanation": "The log matches greetings to the time of day. Morning is for 09:00, afternoon for 13:00. 20:00 is evening time, so 'Good evening' is the correct match.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Hello! (Greetings)",
+"passage": "A bus driver, Mr. Demir, is checking the passenger list. He says 'Good morning, welcome to the bus.' A passenger enters and replies: 'Good morning, Mr. Demir. I am Elif.'",
+"question": "Which of the following completes the greeting sequence logically?",
+"shape": null,
+"options": {
+"A": "How are you doing today?",
+"B": "Nice to meet you, Elif.",
+"C": "Goodbye, have a nice day.",
+"D": "See you later, my friend."
+},
+"answer": "B",
+"explanation": "1. Mr. Demir greets Elif with 'Good morning'. 2. Elif introduces herself. 3. According to English etiquette for introductions, the person receiving the introduction should express pleasure in meeting. 4. 'Nice to meet you' is the correct polite response.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Hello! (Alphabet)",
+"passage": "Ayşe is teaching her little brother how to spell his name. She says: 'Look, it is B-E-R-K.'",
+"question": "Which of the following is the correct phonetic sequence for the name 'BERK' in the English alphabet?",
+"shape": null,
+"options": {
+"A": "Bee - Ay - Ar - Kay",
+"B": "Bee - Ee - Ar - Kee",
+"C": "Bee - Ee - Ar - Kay",
+"D": "Bee - Ei - Ar - Kay"
+},
+"answer": "C",
+"explanation": "1. Identify the letters: B-E-R-K. 2. B is pronounced 'Bee'. 3. E is pronounced 'Ee'. 4. R is pronounced 'Ar'. 5. K is pronounced 'Kay'.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Hello! (Introducing)",
+"passage": "At the robot workshop, three students introduce themselves: \nI. Deniz: 'Hi, I am Deniz.' \nII. Kerem: 'Hello, I am Kerem. I am ten years old.' \nIII. Selin: 'Good afternoon, I am Selin. I am from İzmir.'",
+"question": "Which student provides information about their origin/location?",
+"shape": null,
+"options": {
+"A": "Only Deniz",
+"B": "Only Selin",
+"C": "Only Kerem",
+"D": "Deniz and Kerem"
+},
+"answer": "B",
+"explanation": "1. Deniz gives only his name. 2. Kerem gives his name and age. 3. Selin says 'I am from İzmir', which indicates her origin. 4. Therefore, only Selin provides this information.",
+"vfd2": true,
+"unit": "Hello!",
+"topics": "Greetings, Introducing, Alphabet",
+"d": 2,
+"ts": 1794109254
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Past Simple Basics",
+"passage": "Selin watched 'The Space Adventure' yesterday. It was 120 minutes long. Her brother, Arda, watched 'The Jungle' which was 90 minutes long. Selin said, 'My movie was longer than yours, but I think yours was more exciting.'",
+"question": "Which of the following is true according to the text?",
+"shape": null,
+"options": {
+"A": "Arda's movie finished earlier than Selin's movie.",
+"B": "Selin did not watch a movie yesterday.",
+"C": "Selin found her own movie more exciting than Arda's.",
+"D": "The Jungle was longer than The Space Adventure."
+},
+"answer": "A",
+"explanation": "Selin's movie was 120 mins, Arda's was 90 mins. Since 120 > 90, Selin's movie was longer. Arda's shorter movie would logically finish earlier if they started at the same time.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Genres",
+"passage": "At the school cinema club, students voted for the genres they want to watch: Horror: 3 votes, Comedy: 12 votes, Science Fiction: 8 votes, Documentaries: 5 votes.",
+"question": "Which statement is NOT correct according to the voting results?",
+"shape": null,
+"options": {
+"A": "Students prefer science fiction more than documentaries.",
+"B": "Comedy is the most popular genre among the students.",
+"C": "Documentaries have more votes than comedies.",
+"D": "Horror is the least popular genre."
+},
+"answer": "C",
+"explanation": "Comedy has 12 votes (most popular). Documentaries have 5 votes and Comedy has 12. Therefore, the statement that documentaries have more votes than comedy is false.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Genres and Adjectives",
+"passage": "Defne: 'I love watching heroic battles and fast cars. They are so thrilling!' Kerem: 'I think movies about the future are fantastic, but they can be a bit confusing.'",
+"question": "Which genres are Defne and Kerem talking about respectively?",
+"shape": null,
+"options": {
+"A": "Action - Science Fiction",
+"B": "Drama - Thriller",
+"C": "Comedy - Documentary",
+"D": "Animation - Horror"
+},
+"answer": "A",
+"explanation": "Defne describes heroic battles/fast cars, which defines the Action genre. Kerem mentions movies about the future, which defines Science Fiction.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Past Simple Basics",
+"passage": "Last Friday, Pelin went to the cinema. She bought a ticket for a cartoon at 15:00. She felt very happy because the movie was very funny. However, she was sad because her friend did not come.",
+"question": "Which of the following is true about Pelin?",
+"shape": null,
+"options": {
+"A": "She hated the movie she watched.",
+"B": "She went to the cinema on Saturday.",
+"C": "She watched the movie alone.",
+"D": "She watched a documentary."
+},
+"answer": "C",
+"explanation": "Pelin went on Friday (not Saturday). She felt happy because it was funny (she didn't hate it). She watched a cartoon (not a documentary). Since her friend didn't come, she watched it alone.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Genres and Opinions",
+"passage": "A local fishing club held a survey among 50 members to decide which type of movie to watch for their social night. The results are: 25 members prefer comedies because they are funny. 15 members enjoy documentaries because they are informative. 10 members like animations.",
+"question": "Which of the following is correct according to the survey results?",
+"shape": null,
+"options": {
+"A": "Half of the members prefer watching comedies.",
+"B": "Documentaries are the least popular genre.",
+"C": "Most of the club members find animations funny.",
+"D": "Only 10 people voted for comedies."
+},
+"answer": "A",
+"explanation": "Total members are 50. 25 members (half of 50) prefer comedies. 15 prefer documentaries, and 10 prefer animations. Therefore, the statement that half of the members prefer comedies is true.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Opinions",
+"passage": "Ali, Burak, and Can are talking about movies. Ali: 'I love westerns; they are thrilling.' Burak: 'I hate horror movies; they are scary.' Can: 'I think dramas are sad, so I don't like them.'",
+"question": "Which of the following completes the sentence? 'According to the conversation, ___.'",
+"shape": null,
+"options": {
+"A": "Ali thinks horror movies are scary.",
+"B": "Can prefers watching sad dramas.",
+"C": "Burak enjoys watching scary movies.",
+"D": "Ali has a positive opinion about westerns."
+},
+"answer": "D",
+"explanation": "Ali states he loves westerns and thinks they are thrilling. Thrilling is a positive opinion. Therefore, Ali has a positive opinion about westerns.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Genres",
+"passage": "Market Movie Section: Shelf 1: Animation, Cartoon. Shelf 2: Action, Science-fiction. Shelf 3: Drama, Romance. Deniz wants to buy a movie about space travel and robots.",
+"question": "Where should Deniz look for his movie?",
+"shape": null,
+"options": {
+"A": "Shelf 2",
+"B": "Nowhere",
+"C": "Shelf 3",
+"D": "Shelf 1"
+},
+"answer": "A",
+"explanation": "Space travel and robots are themes of science-fiction movies. Shelf 2 contains science-fiction.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Past Simple and Opinions",
+"passage": "Recipe for a Movie Night: Step 1: Choose a movie genre. Step 2: Prepare snacks. Step 3: Write your review. Ayşe chose an animation, prepared popcorn, and wrote: 'It was fantastic!'",
+"question": "Which one represents Ayşe's step 3 correctly?",
+"shape": null,
+"options": {
+"A": "She cooked a meal.",
+"B": "She prepared popcorn.",
+"C": "She expressed her opinion.",
+"D": "She chose an animation."
+},
+"answer": "C",
+"explanation": "Step 3 is 'Write your review'. Ayşe wrote 'It was fantastic!', which is an opinion statement.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Genres",
+"passage": "At the city zoo, there is a documentary film playing about lions. Ece says: 'This is great! I learn a lot about their lives.'",
+"question": "Why does Ece like this movie?",
+"shape": null,
+"options": {
+"A": "Because it is informative.",
+"B": "Because it is romantic.",
+"C": "Because it is funny.",
+"D": "Because it is scary."
+},
+"answer": "A",
+"explanation": "Ece says she learns a lot, which directly corresponds to the definition of 'informative'.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Preferences and Genres",
+"passage": "At the Sunflower Farm, the animals decided to watch a movie together. Barnaby the cow wants to watch a documentary about grass. Matilda the sheep prefers animations because they are funny. Daisy the horse loves action movies but she thinks they are too loud for the farm. Only the owl, Oliver, agrees with Matilda, but he also thinks documentaries are boring. The rest of the animals want to watch the same genre as Matilda.",
+"question": "According to the passage, which movie genre do the majority of the animals want to watch?",
+"shape": null,
+"options": {
+"A": "Science Fiction",
+"B": "Action",
+"C": "Documentary",
+"D": "Animation"
+},
+"answer": "D",
+"explanation": "Barnaby wants a documentary. Matilda wants an animation. Daisy prefers action. Oliver agrees with Matilda on animation. Since Matilda and Oliver (the majority) prefer animations, the correct genre is animation.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 2,
+"ts": 1794109497
+}
+]
+}

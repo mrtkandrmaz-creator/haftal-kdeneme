@@ -1,0 +1,392 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları ve Görevleri",
+"passage": "5/A sınıfı öğrencileri okul bahçesinde yapacakları fen bilimleri projesi için basit bir elektrik devresi tasarlıyorlar. Tasarladıkları devrede pil, lamba, duy, bağlantı kablosu ve anahtar kullanıyorlar.",
+"question": "Okul bahçesinde kurulan bu elektrik devresiyle ilgili aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Pil, devreye elektrik enerjisi sağlayan temel güç kaynağıdır.",
+"B": "Anahtar açık konumdayken devreden elektrik akımı geçer ve lamba ışık verir.",
+"C": "Bağlantı kablosu, elektrik enerjisinin devre elemanları arasında iletilmesini sağlar.",
+"D": "Duy, lambanın takıldığı ve güvenli bir şekilde devreye bağlanmasını sağlayan yataktır."
+},
+"answer": "B",
+"explanation": "1. Adım: Devre elemanlarının görevleri incelenir. Pil enerji kaynağı, kablo iletken, duy ise lamba yatağıdır.\n2. Adım: Anahtarın görevi devreyi açıp kapatmaktır.\n3. Adım: Anahtar açık olduğunda devre kesilir ve akım geçmez, lamba ışık vermez.\n4. Adım: 'Anahtar açık konumdayken lamba ışık verir' ifadesi bilimsel olarak yanlıştır, bu nedenle doğru yanıt B şıkkıdır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 3,
+"ts": 1794107934
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Basit Elektrik Devrelerinde Lamba Parlaklığı",
+"passage": "Robotik atölyesinde çalışan Deniz, kurduğu bir elektrik devresindeki lamba parlaklığını artırmak istemektedir. Elinde özdeş piller ve özdeş lambalar bulunmaktadır.",
+"question": "Deniz'in amacına ulaşabilmesi için yapması gereken değişiklik aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Devredeki lamba sayısını sabit tutup pil sayısını artırmak",
+"B": "Devredeki lamba sayısını artırıp pil sayısını azaltmak",
+"C": "Devredeki bağlantı kablosunun uzunluğunu artırmak",
+"D": "Devredeki pil sayısını sabit tutup lamba sayısını artırmak"
+},
+"answer": "A",
+"explanation": "1. Adım: Lamba parlaklığını artırmak için devreye verilen enerjinin artması veya direncin (lamba sayısının) azalması gerekir.\n2. Adım: Lamba sayısı artırılırsa enerji paylaşılacağı için parlaklık azalır.\n3. Adım: Pil sayısı artırıldığında devreye giren elektrik enerjisi artacağından lamba parlaklığı artar.\n4. Adım: Bu doğrultuda doğru seçenek C şıkkıdır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 3,
+"ts": 1794107934
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanlarının Özellikleri",
+"passage": "Tarihî bir konaktaki eski elektrik tesisatını inceleyen uzmanlar, kabloların iç kısmındaki metal teller ile dış kısmındaki plastik kaplamaların işlevlerini karşılaştırıyorlar.",
+"question": "Tarihî yapıdaki bu incelemeye göre metal tel ve plastik kaplamanın görevleri için aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Metal tel yalıtkan, plastik kaplama iletkendir.",
+"B": "Her ikisi de elektriğin geçişini engeller.",
+"C": "Metal tel iletken, plastik kaplama ise yalıtkandır.",
+"D": "Her ikisi de elektrik akımını çok iyi iletir."
+},
+"answer": "C",
+"explanation": "1. Adım: Elektrik tesisatlarında akımın iletilmesi için iletken maddeler kullanılır.\n2. Adım: İnsanların elektrik çarpmasından korunması için ise iletken telin dışı yalıtkan maddeyle kaplanır.\n3. Adım: Metal teller iletken özellik gösterirken, plastik kaplamalar yalıtkan özellik gösterir.\n4. Adım: Bu durum B seçeneğinde doğru olarak verilmiştir.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 3,
+"ts": 1794107934
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları ve Görevleri",
+"passage": "Kerem, fen bilimleri dersinde hazırladığı elektrik devresi projesini öğretmeni ve arkadaşlarına sunmaktadır. Hazırladığı devrede pil, ampul, duy, kablo ve anahtar kullanmıştır. Kerem'in devresinde anahtar açık konumdayken ampulün ışık vermediği, anahtar kapatıldığında ise ampulün ışık verdiği gözlemlenmiştir.",
+"question": "Bu deney ve gözleme göre aşağıdakilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Pil, devreye elektrik enerjisi sağlayan temel elemandır.",
+"B": "Ampul, elektrik enerjisini doğrudan ısı enerjisine dönüştüren devredeki tek elemandır.",
+"C": "Kablo çıkarıldığında devre açık devre olur ve ampul ışık vermez.",
+"D": "Anahtar, devredeki elektrik akışını kontrol etmeyi sağlar."
+},
+"answer": "B",
+"explanation": "Adım 1: Pil devrenin enerji kaynağıdır (A doğru). Adım 2: Anahtar devreyi açıp kapatarak akışı kontrol eder (B doğru). Adım 3: Kablo çıkarılırsa bağlantı kopar, devre açık hale gelir ve ampul yanmaz (C doğru). Adım 4: Ampul elektrik enerjisini ışık ve ısı enerjisine dönüştürür; ancak devredeki tek enerji dönüşüm elemanı ampul değildir, ayrıca enerji dönüşümünü sadece ısı olarak ifade etmek yanlıştır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 3,
+"ts": 1794107934
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devrelerinde Parlaklık",
+"passage": "5/C sınıfı öğrencileri el fenerinin çalışması üzerine bir inceleme yapmaktadır. El fenerinin içini incelediklerinde pil yatağındaki pillerin uç uca eklendiğini ve anahtara basıldığında lambanın ışık verdiğini gözlemlemişlerdir.",
+"question": "Bu el fenerinin daha parlak ışık vermesini isteyen bir öğrenci aşağıdakilerden hangisini yapmalıdır?",
+"shape": null,
+"options": {
+"A": "Devreye seri olarak özdeş bir pil daha eklemek",
+"B": "Pil yatağındaki pillerden birini ters çevirmek",
+"C": "Devredeki kablo uzunluğunu artırmak",
+"D": "Devreye seri olarak özdeş bir ampul daha eklemek"
+},
+"answer": "A",
+"explanation": "Adım 1: Ampulün parlaklığını artırmak için devreye verilen elektrik enerjisi artırılmalı ya da direnç azaltılmalıdır. Adım 2: Seri bağlanan özdeş pil sayısı artırılırsa ampulün parlaklığı artar (A doğru). Adım 3: Kablo boyunu uzatmak parlaklığı artırmaz. Adım 4: Seri ampul eklemek parlaklığı azaltır. Adım 5: Pili ters çevirmek akımı keser veya azaltır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 3,
+"ts": 1794107934
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in Yapısı ve Özellikleri",
+"passage": "Gezegenimizde su tasarrufu üzerine bir sunum hazırlayan bir öğrenci, Güneş'in özelliklerini Dünya'mızdaki yaşam için bir enerji kaynağı olarak tanımlıyor. Öğrenci, Güneş'in yapısı hakkında şu notları alıyor: I. Güneş, kendi ekseni etrafında dönme hareketi yapar. II. Güneş, Dünya'dan çok daha büyüktür. III. Güneş'in yüzeyinde daha soğuk olan bölgeler 'Güneş lekeleri' olarak adlandırılır. IV. Güneş, katı bir yapıya sahip olup yüzeyinde kayaçlar bulunur.",
+"question": "Bu bilgilere göre, öğrencinin notlarındaki hangi madde bilimsel olarak hatalıdır?",
+"shape": null,
+"options": {
+"A": "III",
+"B": "I",
+"C": "II",
+"D": "IV"
+},
+"answer": "D",
+"explanation": "Güneş, dev bir sıcak gaz küresidir; hidrojen ve helyum gazlarından oluşur. Katı bir yüzeyi yoktur ve üzerinde kayaçlar bulunmaz. Bu nedenle IV numaralı ifade bilimsel olarak yanlıştır.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 2,
+"ts": 1794108688
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dünya'nın Hareketleri",
+"passage": "Geri dönüşüm kutularını sınıflayan bir öğrenci, Dünya'nın hareketleri ile ilgili kavramları doğru kutulara yerleştirmelidir. Öğrenci; 'Dünya kendi ekseni etrafında döner' ve 'Dünya Güneş etrafında dolanır' ifadelerini kullanmıştır.",
+"question": "Bu hareketlerin sonuçları düşünüldüğünde, aşağıdaki yargılardan hangisi Dünya'nın kendi ekseni etrafındaki hareketinin bir sonucudur?",
+"shape": null,
+"options": {
+"A": "Gece ve gündüzün birbirini takip etmesi",
+"B": "Yıl içinde gölge boylarının değişmesi",
+"C": "Mevsimlerin oluşması",
+"D": "Bir yılın 365 gün sürmesi"
+},
+"answer": "A",
+"explanation": "Dünya'nın kendi ekseni etrafındaki dönme hareketi sonucunda gece ve gündüz oluşur ve günlük sıcaklık farkları meydana gelir. Mevsimlerin oluşması ve yılın uzunluğu ise Dünya'nın Güneş etrafındaki dolanma hareketiyle ilgilidir.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 2,
+"ts": 1794108688
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayılması - Doğrusal Yayılma",
+"passage": "Bir öğrenci, ışığın doğrusal yayıldığını kanıtlamak için üç adet kartonu üst üste dizip tam merkezlerinden delik açıyor. En baştaki deliğe el feneri tutup en arkadaki delikten bakıyor. Ancak öğrenci, el fenerinin ışığını göremiyor.",
+"question": "Öğrencinin bu gözlemine göre, aşağıdakilerden hangisi durumun nedeni olabilir?",
+"shape": null,
+"options": {
+"A": "Kartondaki deliklerin aynı doğru üzerinde bulunmaması.",
+"B": "Ortamda ışığı soğuran başka cisimlerin bulunması.",
+"C": "Işığın sadece dalgalar halinde yayılması.",
+"D": "El fenerinin ışık şiddetinin çok düşük olması."
+},
+"answer": "A",
+"explanation": "Işık doğrusal yolla yayılır. Eğer delikler aynı hizada (doğrusal) değilse, ışık engellere çarpar ve karşı tarafa geçemez. Bu yüzden öğrenci ışığı göremez.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayılması - Gölge ve Opak Maddeler",
+"passage": "Bir hayvanat bahçesinde cam bölme (saydam), buzlu cam (yarı saydam) ve ahşap panel (opak) kullanılarak hayvanların güneşten korunma alanları oluşturulmuştur.",
+"question": "Güneş ışığı altında hangi bölmelerde net bir gölge oluşması beklenir?",
+"shape": null,
+"options": {
+"A": "Sadece cam bölmede.",
+"B": "Sadece ahşap panelde.",
+"C": "Sadece buzlu camda.",
+"D": "Hem cam hem de ahşap panelde."
+},
+"answer": "B",
+"explanation": "Net bir gölge oluşması için ışığı geçirmeyen opak maddeler gerekir. Cam saydamdır, buzlu cam yarı saydamdır, ahşap panel ise opaktır. Bu nedenle sadece opak olan ahşap panelde net gölge oluşur.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayılması - Yansıma",
+"passage": "Market alışverişi yapan bir öğrenci, reyonlarda gördüğü ürünlerin yüzeylerini incelemiştir. Öğrenci; 1. Alüminyum folyo, 2. Aynalı süs eşyası, 3. Mat plastik kap ve 4. Cilalı çelik tencere üzerinde ışığın yansımasını gözlemlemiştir.",
+"question": "Öğrencinin gözlemine göre, hangi ürün diğerlerinden farklı bir yansıma türü gösterir?",
+"shape": null,
+"options": {
+"A": "Aynalı süs eşyası",
+"B": "Mat plastik kap",
+"C": "Alüminyum folyo",
+"D": "Cilalı çelik tencere"
+},
+"answer": "B",
+"explanation": "Alüminyum folyo, aynalı süs eşyası ve cilalı çelik tencere pürüzsüz yüzeylerdir ve düzgün yansıma yapar. Mat plastik kap ise pürüzlü bir yüzeye sahiptir ve dağınık yansıma yapar.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işık Kaynakları",
+"passage": "Bir aşçı mutfağında doğal ve yapay ışık kaynaklarını gruplandırarak bir pasta hazırlığı yapmaktadır. Mutfaktaki ışık kaynaklarının kullanım oranları daire grafiğinde gösterilmiştir.",
+"question": "Buna göre, aşağıdakilerden hangisi grafikteki 'Doğal Işık Kaynakları' diliminde yer alabilecek bir örnek olabilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Doğal",
+"Yapay"
+],
+"values": [
+30,
+70
+],
+"title": "Mutfak Işık Kaynakları Oranı",
+"show_names": false
+},
+"options": {
+"A": "Mutfak penceresinden giren Güneş ışığı",
+"B": "Gaz ocağının alevi",
+"C": "Fırın iç lambası",
+"D": "Tavan armatürü"
+},
+"answer": "A",
+"explanation": "Doğal ışık kaynağı, kendiliğinden ışık üreten ve insan eliyle yapılmamış kaynaklardır. Güneş, yıldızlar ve bazı canlılar doğal kaynaktır. Fırın lambası, armatür ve ocak alevi insan yapımı olduğu için yapay ışık kaynaklarıdır.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Gölge Oluşumu",
+"passage": "Markette el feneri, top ve karton ile gölge deneyi yapan bir grup öğrenci, el fenerini topa yaklaştırdıklarında gölge boyunun uzadığını, uzaklaştırdıklarında ise kısaldığını gözlemlemiştir.",
+"question": "Bu gözleme göre, aşağıdakilerden hangisi gölge boyunu etkileyen faktörlerden biri değildir?",
+"shape": null,
+"options": {
+"A": "Işık kaynağının cisme olan uzaklığı",
+"B": "Cismin ışık kaynağına olan konumu",
+"C": "Işığın doğrusal yayılması",
+"D": "Işık kaynağının rengi"
+},
+"answer": "D",
+"explanation": "Gölge boyu; ışık kaynağının cisme uzaklığına, cismin perdeye uzaklığına ve ışığın geliş açısına bağlıdır. Işığın rengi gölgenin varlığını veya boyutunu değiştirmez, sadece gölgenin aydınlatılmasıyla ilgili bir durumdur.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayılması",
+"passage": "Arkeolojik bir kazı alanında karanlık bir tünelin içini aydınlatmak isteyen araştırmacılar, ışığın engellerden geçip geçmediğini test etmektedir. Araştırmacılar ışık kaynağını sırasıyla tahta plaka, cam levha ve metal kutu arkasına tutmuştur.",
+"question": "Araştırmacıların cam levha arkasında ışığı görmesi fakat metal kutu arkasında görememesi, ışığın hangi özelliği ile açıklanır?",
+"shape": null,
+"options": {
+"A": "Işığın tüm maddelerden geçebilmesi",
+"B": "Maddelerin ışığı geçirme özelliklerinin farklı olması",
+"C": "Işığın sadece metallerde yansıması",
+"D": "Camın doğal bir ışık kaynağı olması"
+},
+"answer": "B",
+"explanation": "Maddeler ışığı geçirme özelliklerine göre saydam, yarı saydam ve opak (saydam olmayan) olarak ayrılır. Cam saydamdır, metal ise opaktır. Bu gözlem, maddelerin ışığı geçirme özelliklerinin farklı olduğunu kanıtlar.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Gölge",
+"passage": "Bir resim sergisinde ışık oyunları kullanılarak farklı büyüklükte gölgeler oluşturulmaktadır. Gösteride kullanılan ışık kaynağının açısı ve gölge boyu ilişkisi daire grafiğinde gösterilmiştir.",
+"question": "Grafikteki verilere göre, en kısa gölgenin oluştuğu durum için ışık kaynağının konumu hakkında ne söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Dik Açı (Kısa Gölge)",
+"Eğik Açı (Uzun Gölge)",
+"Çok Eğik (Çok Uzun Gölge)"
+],
+"values": [
+20,
+30,
+50
+],
+"title": "Açı-Gölge Boyu İlişkisi",
+"show_names": false
+},
+"options": {
+"A": "Işık kaynağı cismin arkasında gizlenmiştir.",
+"B": "Işık kaynağı cisme uzaklaştırılmıştır.",
+"C": "Işık kaynağı cisme çok yakındır.",
+"D": "Işık kaynağı cismin tam tepesindedir (dik)."
+},
+"answer": "D",
+"explanation": "Daire grafiğinde 'Dik Açı' dilimi %20'lik en küçük payı temsil etmektedir. Işık kaynağı cisme dik geldiğinde, yani ışık kaynağı cismin tam tepesinde olduğunda gölge boyu en kısa olur.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayılması ve Işık Kaynakları",
+"passage": "Bir fotoğrafçı, stüdyosunda çekim yaparken ışık kaynaklarının çevreye yaydığı ışık şiddetini ve yollarını test etmektedir. Fotoğrafçı, farklı nesnelerin ışık geçirme durumlarını bir grafik üzerinde incelemiştir.",
+"question": "Grafikteki verilere göre, ışığı tamamen geçiren ve arkasındaki nesnenin net görünmesini sağlayan madde aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Cam Levha",
+"Yağlı Kâğıt",
+"Ahşap Plaka",
+"Mukavva"
+],
+"values": [
+95,
+40,
+0,
+5
+],
+"title": "Madde Çeşidine Göre Işık Geçirgenlik Yüzdesi",
+"show_names": false
+},
+"options": {
+"A": "Mukavva",
+"B": "Ahşap Plaka",
+"C": "Cam Levha",
+"D": "Yağlı Kâğıt"
+},
+"answer": "C",
+"explanation": "Grafikte ışığı geçirme yüzdesi en yüksek olan madde %95 ile Cam Levha'dır. Saydam maddeler ışığı büyük oranda geçirir, bu nedenle net görüntü oluşur. Diğer seçenekler ya yarı saydamdır ya da opaktır.",
+"vfd2": true,
+"unit": "Işığın Yayılması",
+"topics": "Işık kaynakları, Yansıma, Gölge",
+"d": 1,
+"ts": 1794109190
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Erime ve Donma",
+"passage": "Bir resim sergisinde, buz heykellerin erime hızlarını inceleyen bir öğrenci, üç farklı buz heykelin ağırlık değişimlerini tabloya kaydetmiştir. Öğrenci: 'Buz kütlesi azaldığına göre madde yok olmuştur' demiştir.",
+"question": "Öğrencinin bu yorumuna karşılık olarak aşağıdakilerden hangisi bilimsel olarak doğrudur?",
+"shape": {
+"type": "table",
+"title": "Buz Heykel Gözlem Tablosu",
+"headers": [
+"Heykel No",
+"Başlangıç (kg)",
+"1 Saat Sonra (kg)"
+],
+"rows": [
+[
+"1",
+"10",
+"8"
+],
+[
+"2",
+"10",
+"6"
+],
+[
+"3",
+"10",
+"9"
+]
+]
+},
+"options": {
+"A": "Madde yok olmamış, katı hâlden sıvı hâle geçmiştir.",
+"B": "Öğrenci haklıdır, eriyen buzun kütlesi yok olmuştur.",
+"C": "Heykellerin ağırlığı azalmadığı için öğrenci hatalıdır.",
+"D": "Buz kütlesi azalmamış, sadece hâl değiştirerek sıvıya dönüşmüştür."
+},
+"answer": "A",
+"explanation": "Madde yok olmaz, sadece şekil veya hâl değiştirir. Buzun erimesi, maddenin katı hâlden sıvı hâle geçişidir. Öğrencinin 'yok olmuştur' ifadesi kavram yanılgısıdır; doğru ifade, maddenin sıvı hâle geçtiğidir.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 3,
+"ts": 1794109359
+}
+]
+}

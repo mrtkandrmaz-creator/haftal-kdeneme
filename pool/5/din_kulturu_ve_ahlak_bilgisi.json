@@ -1,0 +1,365 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Dürüstlük ve Güvenilirlik",
+"passage": "5/A sınıfı öğrencisi Kerem, okul kütüphanesinden aldığı tarih kitabının sayfaları arasında 50 lira değerinde bir para bulmuştur. Kerem, paranın kütüphanede ders çalışan başka bir öğrenciye ait olabileceğini düşünerek durumu hemen görevli memur Serdar Bey'e bildirmiş ve parayı teslim etmiştir.",
+"question": "Bu senaryoda Kerem'in sergilediği tutum, İslam ahlakındaki temel değerlerden hangisiyle doğrudan ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "Başkalarının haklarına riayet etme ve dürüstlükten ödün vermeme",
+"B": "Kendi çıkarlarını her koşulda ön planda tutma",
+"C": "Toplumsal kurallara sadece denetlendiği zamanlarda uyma",
+"D": "Zor durumda kalan arkadaşlarına maddî yardımda bulunma"
+},
+"answer": "A",
+"explanation": "Kerem bulduğu yabancı bir parayı sahiplenmek yerine yetkiliye teslim ederek hak gözetmiş, emanete riayet etmiş ve dürüst davranmıştır. Bu durum dürüstlük ve başkalarının haklarına saygı gösterme değeriyle doğrudan ilgilidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Adalet ve Hakkaniyet",
+"passage": "Mahalledeki çocuk parkında futbol maçı yapan iki grup arasında kalelerin boyutu ve oyuncu sayısı konusunda anlaşmazlık çıkmıştır. Gruptakilerden Deniz, iki tarafın da eşit şartlarda oynaması için oyuncu sayılarını eşitlemiş ve kaleleri aynı adımlarla ölçerek yeniden kurmuştur.",
+"question": "Metne göre Deniz'in bu davranışı aşağıdaki kavramlardan hangisiyle en iyi açıklanır?",
+"shape": null,
+"options": {
+"A": "Tasarruf",
+"B": "Adalet",
+"C": "Yardımlaşma",
+"D": "Cömertlik"
+},
+"answer": "B",
+"explanation": "Deniz taraflar arasında eşitliği sağlayarak ve hakkaniyetli bir düzenleme yaparak adalet değerini uygulamıştır.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hoşgörü ve Farklılıklara Saygı",
+"passage": "Yıl sonu sergisi için proje hazırlayan 5/B sınıfı öğrencileri, farklı kültürlere ait el sanatlarını araştırmıştır. Grup üyelerinden Zeynep, kendi grubundaki arkadaşı Can'ın farklı bir yöreye ait geleneksel deseni eleştirmesine izin vermemiş, her kültürün kendine özgü bir güzelliği olduğunu savunarak arkadaşını uyarmıştır.",
+"question": "Bu duruma göre Zeynep'in sergilediği erdemli tutum aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Arkadaşlarının hatalarını görmezden gelme",
+"B": "Birlik ve beraberliği bozma",
+"C": "Farklılıklara karşı hoşgörülü ve anlayışlı olma",
+"D": "Kendi kültürel değerlerinden tamamen vazgeçme"
+},
+"answer": "C",
+"explanation": "Zeynep farklı kültürel ögelere karşı hoşgörülü yaklaşmış ve diğerlerinin değerlerine saygı duyulması gerektiğini savunmuştur.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Dürüstlük ve Ticari Ahlak",
+"passage": "Okul aile birliğinin düzenleyeceği kermes için tezgah kuran esnaf Hasan Amca, satış yaparken ürünlerin gramajına ve kalitesine son derece dikkat etmektedir. Müşterilerine eksik tartmamaya özen gösteren Hasan Amca, bir velinin yanlışlıkla fazla para vermesi durumunda parayı hemen iade etmektedir.",
+"question": "Metindeki bilgilere dayanarak Hasan Amca ile ilgili aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Sadece kazancını artırmayı hedefleyen bir tutum sergilemektedir.",
+"B": "Ticari ilişkilerde dürüstlük ve kul hakkı bilinciyle hareket etmektedir.",
+"C": "İşlerini yürütürken başkalarının yardımına ihtiyaç duymaktadır.",
+"D": "Toplumsal kuralları sadece yasal zorunluluktan dolayı uygulamaktadır."
+},
+"answer": "B",
+"explanation": "Hasan Amca'nın eksik tartmaması ve fazla parayı iade etmesi onun dürüst ve kul hakkına riayet eden bir kişi olduğunu gösterir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Yardımlaşma ve Adalet",
+"passage": "Toplu taşıma araçlarında seyahat eden Burak, elinde ağır torbalar olan yaşlı bir kadına yer vermiştir. Aynı otobüsteki diğer yolcu Aylin ise sırada bekleyenlerin hakkına riayet ederek biniş sırasında kimsenin önüne geçmemiştir.",
+"question": "Bu senaryoda öğrencilerin sergilediği davranışlar sırasıyla hangi değerlerimizle örtüşmektedir?",
+"shape": null,
+"options": {
+"A": "Yardımlaşma - Adalet",
+"B": "Adalet - Tasarruf",
+"C": "Dürüstlük - Hoşgörü",
+"D": "Hoşgörü - Cömertlik"
+},
+"answer": "A",
+"explanation": "Burak yaşlı kadına yer vererek yardımseverlik/yardımlaşma sergilemiş, Aylin ise sıra hakkına riayet ederek adaletli davranmıştır.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Değerler Eğitimi ve Davranış Uyumları",
+"passage": "Semt pazarında alışveriş yapan Sinan, esnafınürünleri tezgahın önüne doğru daha büyük gösterecek şekilde dize fark etmiş ancak bunu uyarmak yerine kendisi de benzer bir durumla karşılaşmamak için dürüst esnaflardan alışveriş yapmayı tercih etmiştir.",
+"question": "Bu duruma göre Sinan'ın seçimi ve pazar yerindeki olayla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Pazar yerindeki bu durum toplumsal adaleti güçlendirmiştir.",
+"B": "Sinan hileli satış yapan esnafları desteklemiştir.",
+"C": "Esnafın yaptığı davranış dürüstlük değerine tamamen uygundur.",
+"D": "Sinan, dürüstlükten sapmayan kişileri tercih ederek doğru bir tutum sergilemiştir."
+},
+"answer": "D",
+"explanation": "Sinan dürüst olmayan tezgahtarlardan uzak durup dürüst esnafı seçerek doğru ve ahlaki bir tavır sergilemiştir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Değerlerimiz: Dürüstlük, Adalet ve Hoşgörü Sentezi",
+"passage": "Okul sağlığı taramasında sırasını bekleyen öğrenciler arasında tartışma çıkmış, Berk sıranın en önüne geçmeye çalışmıştır. Sınıf başkanı İrem, sıranın herkes için eşit olduğunu belirterek Berk'i uyardıktan sonra, arkadaki küçük bir öğrencinin yorgun olduğunu görerek sırasını ona vermiştir.",
+"question": "Bu olayda sınıf başkanı İrem'in sırasıyla gösterdiği erdemli davranışlar hangi seçenekte doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Hoşgörü ve dürüstlük",
+"B": "Adalet ve yardımseverlik",
+"C": "Tasarruf ve adalet",
+"D": "Cömertlik ve sabır"
+},
+"answer": "B",
+"explanation": "İrem önce sıranın düzenini koruyarak adaletli davranmış, ardından yorgun öğrenciye yer vererek yardımseverlik göstermiştir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Dürüstlük",
+"passage": "Doğa fotoğrafçısı Kerem, ormanda çektiği nadir bir kuş türünün fotoğrafını bir yarışmaya gönderir. Yarışma şartnamesinde fotoğraflarda dijital manipülasyon (ekleme veya çıkarma) yapmak kesinlikle yasaktır. Kerem, fotoğrafın arka planındaki rahatsız edici bir dalı silmek ister ancak yarışma kuralını ve dürüstlük ilkesini hatırlayarak fotoğrafı orijinal haliyle teslim eder. Sonuçta hakem heyeti onun bu erdemli davranışını takdir eder.",
+"question": "Bu senaryoda Kerem'in sergilediği tutumla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Yarışmayı kazanmak için dijital araçları ustalıkla kullanmıştır.",
+"B": "Zor durumlar karşısında başkalarından yardım istemeyi tercih etmiştir.",
+"C": "Sözünde durmanın ve güvenilir olmanın her koşulda öncelikli olduğunu göstermiştir.",
+"D": "Başarıya ulaşmak için kuralların esnetilebileceğini savunmuştur."
+},
+"answer": "C",
+"explanation": "Kerem, kurallara ve etik değerlere bağlı kalarak fotoğrafını hile yapmadan teslim etmiştir. Bu durum, dürüstlük ve güvenilirlik değerinin her durumda gözetilmesi gerektiği anlamına gelir. Diğer şıklar metindeki olayla çelişmektedir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Adalet",
+"passage": "Bir aile çiftliğinde çalışan gençler, akşam sonunda toplanan hasadı eşit olarak paylaşmak yerine aralarında tartışmaya başlar. Çiftliğin deneyimli emektarı Hasan Amca yanlarına gelip şöyle der: 'Hak, hatır gözetilerek değil; herkesin emeği, alın teri ve hak ettiği miktar gözetilerek bölüştürülür. Kimsenin hakkı diğerine geçmemelidir.' Bunun üzerine gençler ölçüye ve hakkaniyete uygun bir paylaşım yaparlar.",
+"question": "Hasan Amca'nın bu sözü ve uyarılan gençlerin davranışı aşağıdaki kavramlardan hangisiyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "İsraf",
+"B": "Yardımlaşma",
+"C": "Hoşgörü",
+"D": "Adalet"
+},
+"answer": "D",
+"explanation": "Hasan Amca'nın vurguladığı 'herkesin hak ettiği miktarı alması, kimsenin hakkının kimseye geçmemesi' ilkesi doğrudan adalet kavramıyla ilgilidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Dürüstlük",
+"passage": "Kitap fuarındaki bir stantta görevli olan Zeynep, etiket fiyatı yanlış basılmış ve normalden çok daha yüksek yazılmış bir kitabı almak isteyen müşteriye durumu fark ettirir. Müşterinin fazla para ödemesini engeller ve 'Etiket hatası bizim tarafımızdan yapılmış, ödemeniz gereken gerçek tutar daha azdır.' diyerek dürüst esnaflık örneği sergiler.",
+"question": "Metne göre Zeynep'in sergilediği davranışın temel gerekçesi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Müşterinin dikkatsizliğinden faydalanarak kâr elde etmek",
+"B": "Ticari ilişkilerde güveni ve hakkaniyeti korumak",
+"C": "Fuar yönetiminin kurallarına uymak zorunda olmak",
+"D": "Stanttaki kitap sayısını azaltmaya çalışmak"
+},
+"answer": "B",
+"explanation": "Zeynep, hatayı gizlemek yerine doğru olanı yaparak karşı tarafın mağduriyetini önlemiş ve ticarette dürüstlük ile güveni esas almıştır.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 3,
+"ts": 1794108176
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın İsim ve Sıfatları / Tevhid",
+"passage": "Bilim insanı Dr. Selim, fen laboratuvarında evrendeki muazzam düzeni incelerken öğrencilerine şu açıklamayı yapmıştır: 'Evrendeki hiçbir varlık tesadüfen var olmamıştır. Her şeyin yaratıcısı olan Yüce Allah tektir, eşi ve benzeri yoktur, hiçbir şeye muhtaç değildir ancak her şey O'na muhtaçtır.' Öğrencilerden Deniz, bu açıklamayı dinledikten sonra İslam inancındaki temel kavramları not etmiştir.",
+"question": "Dr. Selim'in vurguladığı ve İhlas Suresi'nin temel konusunu oluşturan 'Allah'ın bir ve tek olması, eşi ve benzerinin olmaması' dini literatürde hangi kavramla ifade edilir?",
+"shape": null,
+"options": {
+"A": "Tekvin",
+"B": "Semi",
+"C": "Tevhid",
+"D": "Basar"
+},
+"answer": "C",
+"explanation": "Allah'ın bir ve tek olması, eşi, ortağı ve benzerinin bulunmaması inancı 'Tevhid' kavramı ile ifade edilir. Tekvin yaratma, Basar görme, Semi ise işitme sıfatıdır.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794108260
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Günlük Yaşam ve İhlas Suresi Mesajı",
+"passage": "Mehmet ve arkadaşları şehirler arası bir bisiklet turu sırasında mola vermişler, doğanın sessizliğini ve evrendeki kusursuz dengeyi konuşmaktadırlar. Aralarından biri, 'Bu kadar büyük ve düzenli bir evreni ancak her şeyden münezzeh, hiçbir şeye muhtaç olmayan tek bir yaratıcı idare edebilir' diyerek İhlas Suresi'nin ikinci ayetindeki ilahi mesajı hatırlatmıştır.",
+"question": "Konuşmada adı geçen ayette vurgulanan 'Samed' kavramının anlamı aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Allah'ın her şeyi işitmesi ve duyması",
+"B": "Allah'ın evrendeki her şeyi bir ölçüye göre yaratması",
+"C": "Her şeyin O'na muhtaç olması, O'nun hiçbir şeye muhtaç olmaması",
+"D": "Allah'ın her şeyi görmesi ve gözetmesi"
+},
+"answer": "C",
+"explanation": "Samed kelimesi, İhlas Suresi'nin mealinde açıkça belirtildiği üzere 'her şeyin O'na muhtaç olması, O'nun hiçbir şeye muhtaç olmaması' anlamına gelir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794108260
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi'nin Okunuşu ve Ayetleri",
+"passage": "Kültür festivalinde geleneksel hat sanatıyla ilgilenen Ayşe Hanım, ziyaretçilere İhlas Suresi'nin okunuşunu ve anlamını tanıtan bir pano hazırlamıştır. Panoda surenin son ayeti olan 'Ve lem yekün lehû küfüven ehad' ifadesine yer vermiş ve altına bu ayetin mealini yazmak istemiştir.",
+"question": "Ayşe Hanım'ın panoda yer verdiği 'Ve lem yekün lehû küfüven ehad' ayetinin Diyanet meali aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Allah Samed'dir (her şey O'na muhtaçtır).",
+"B": "Hiçbir şey O'na denk ve benzer değildir.",
+"C": "O, Allah'tır, bir tektir.",
+"D": "O doğurmamış ve doğurulmamıştır."
+},
+"answer": "B",
+"explanation": "İhlas Suresi'nin son ayeti olan 'Ve lem yekün lehû küfüven ehad', 'Hiçbir şey O'na denk ve benzer değildir' anlamına gelmektedir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794108260
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İnanç İlkeleri ve Ayet Analizi",
+"passage": "Bilişim ve kodlama kulübünde öğrenciler dijital bir bilgi yarışması tasarlamaktadır. Yarışmanın din kültürü etabında, öğrencilerden İhlas Suresi'nin özellikleriyle ilgili doğru ve yanlış ifadeleri ayırt etmeleri istenmiştir. Hazırlanan kartta şu bilgiler verilmiştir:\nI. Kur'an-ı Kerim'in 112. suresidir.\nII. Sadece 4 ayetten oluşmaktadır.\nIII. Medine döneminde inmiştir.\nIV. İslam'ın inanç esaslarından olan tevhid inancını özetler.",
+"question": "Kodlama kulübü öğrencilerinin hazırladığı bu karttaki numaralandırılmış bilgilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "III",
+"B": "I",
+"C": "II",
+"D": "IV"
+},
+"answer": "A",
+"explanation": "İhlas Suresi Medine'de değil, Mekke'de inmiştir (Mekkîdir). Bu nedenle III numaralı bilgi yanlıştır.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794108260
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi ve Tevhid İnancı",
+"passage": "Gözlemevinde görevli astrofizikçi Tarık Bey, uzay araştırmaları sırasında evrendeki kusursuz düzeni incelemektedir. Evrendeki tüm galaksi, yıldız ve gezegenlerin tek bir yasa ve merkezî bir irade ile yönetildiğini fark eder. Tarık Bey mesai arkadaşına şöyle der: 'Bu uçsuz bucaksız evrende her şey o kadar uyumlu ki, bu durum ancak her şeyi idare eden, yegâne kudret sahibi ve hiçbir şeye muhtaç olmayan bir Yaratıcı'nın varlığıyla açıklanabilir.'",
+"question": "Tarık Bey'in evrendeki düzeni açıklarken vurguladığı 'hiçbir şeye muhtaç olmama ve yegâne otorite' niteliği, İhlas Suresi'nin kaynak metnindeki hangi kavram ve ayetle doğrudan örtüşmektedir?",
+"shape": null,
+"options": {
+"A": "Kul hüvallâhü ehad - De ki: O, Allah'tır, bir tektir.",
+"B": "Lem yelid ve lem yûled - O doğurmamış ve doğurulmamıştır.",
+"C": "Allâhüs-samed - Allah Samed'dir (her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir).",
+"D": "Ve lem yekün lehû küfüven ehad - Hiçbir şey O'na denk ve benzer değildir."
+},
+"answer": "C",
+"explanation": "Tarık Bey'in vurguladığı 'hiçbir şeye muhtaç olmama' niteliği, 'Samed' kavramının tanımıdır. Kaynak metinde bu durum 'Allâhüs-samed. Allah Samed'dir (her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir)' ayetiyle ifade edilmiştir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794108260
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi'nin Okunuşu",
+"passage": "Okul kantininde din kültürü ve ahlak bilgisi dersi için İhlas Suresi ezber çalışması yapan Defne, sureyi şu şekilde okumuştur:\n\n'Kul hüvallâhü ehad. Allâhüs-samed. Lem yelid ve lem yûled. Ve lem yekün lehû küfüven ehad.'\n\nKantin görevlisi Emin Amca, Defne'nin okuduğu bu metnin hangi surenin okunuşu olduğunu sormuştur.",
+"question": "Defne'nin okuduğu bu metinle ilgili olarak aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Kur'an-ı Kerim'in 112. suresidir ve Mekke'de inmiştir.",
+"B": "Toplam 5 ayetten oluşan ve insanlara ibadet esaslarını öğreten bir suredir.",
+"C": "Allah'ın birliğini (tevhid) anlatan temel surelerden biridir.",
+"D": "Okunan metin eksiksiz olarak İhlas Suresi'nin okunuşudur."
+},
+"answer": "B",
+"explanation": "Metinde okunan sure İhlas Suresi'dir ve 4 ayetten oluşur. B seçeneğinde '5 ayetten oluşan' ifadesi yer aldığı için bu ifade yanlıştır.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794108260
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Evrendeki düzen ve akıl",
+"passage": "Belediye otobüsünde cam kenarında oturan Zeynep, dışarıyı izlerken güneşin batışını, yıldızların konumunu ve ağaçların hizasını gözlemler. Kendi kendine, 'Her şey ne kadar dengeli bir düzen içinde ilerliyor, hiçbir şey tesadüfen bu şekilde duramaz.' diye düşünür.",
+"question": "Zeynep'in vardığı bu yargı, evrendeki hangi gerçeği destekler?",
+"shape": null,
+"options": {
+"A": "Evrenin sürekli değiştiğini",
+"B": "Her şeyin bir ölçü ve dengeyle yaratıldığını",
+"C": "İnsan iradesinin sınırsız olduğunu",
+"D": "Allah'ın isimlerini öğrenmenin önemini"
+},
+"answer": "B",
+"explanation": "Zeynep'in gözlemlediği düzenlilik ve dengeli hareketler, evrenin bir planlayıcı ve yaratıcı tarafından ölçülü bir şekilde var edildiğinin göstergesidir. Bu durum Kamer Suresi 49. ayetteki ölçü ve denge kavramıyla örtüşür.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 3,
+"ts": 1794108576
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Güzel İsimler (Esmâ-i Hüsnâ)",
+"passage": "Arkeoloji kazısında iki farklı medeniyete ait yazıtlar bulunur. Birinci yazıtta, 'Yarattığı her varlığa acıyan ve şefkat gösteren' ifadesi yer alır. İkinci yazıtta ise 'Özellikle müminlere rahmet eden' ifadesi bulunur.",
+"question": "Bu yazıtlar sırasıyla Allah'ın hangi iki güzel ismini temsil etmektedir?",
+"shape": null,
+"options": {
+"A": "Tekvin - Rahim",
+"B": "Semi - Rahman",
+"C": "Rahman - Rahim",
+"D": "Kadir - Basar"
+},
+"answer": "C",
+"explanation": "Rahman ismi, yarattığı her varlığa şefkat gösteren anlamındadır. Rahim ismi ise, özellikle ahirette ve inanan kullarına rahmet eden anlamına gelir. Bu nedenle doğru sıralama Rahman ve Rahim'dir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 3,
+"ts": 1794108576
+}
+]
+}
