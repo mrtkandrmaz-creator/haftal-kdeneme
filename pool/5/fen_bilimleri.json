@@ -387,6 +387,203 @@
 "topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
 "d": 3,
 "ts": 1794109359
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Besin Zinciri ve Enerji Akışı",
+"passage": "Bir göl ekosistemindeki besin zinciri şu şekildedir: Algler → Küçük Balık → Büyük Balık → Balıkçıl Kuş. Bilim insanları bu göle sanayi atığı karıştığını gözlemlemiştir.",
+"question": "Bu ekosistemde sanayi atıkları (zehirli maddeler) en çok hangi canlı grubunda birikir?",
+"shape": null,
+"options": {
+"A": "Balıkçıl Kuşlar",
+"B": "Küçük Balıklar",
+"C": "Büyük Balıklar",
+"D": "Algler"
+},
+"answer": "A",
+"explanation": "Besin zincirinde zehirli madde birikimi (biyobirikim) üreticiden tüketiciye doğru artar. Zincirin en üstünde yer alan Balıkçıl Kuş, besin yoluyla en fazla zehirli maddeyi bünyesinde toplar.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 4,
+"ts": 1794119147
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Çevre Sorunları ve Bilinçli Tüketim",
+"passage": "5/C sınıfı öğrencileri çevre sorunlarını çözmek için bir proje hazırlamışlardır. Öğrenci yorumları şöyledir:\n- Ayşe: 'Kağıtları geri dönüştürmek ağaç kesimini azaltır.'\n- Mehmet: 'Plastik atıkları toprağa gömmek ekosistemi zenginleştirir.'\n- Canan: 'Pilleri çöpe atmak yerine atık pil kutusuna atmalıyız.'\n- Elif: 'Su kaynaklarını korumak için tasarruflu musluk başlıkları kullanmalıyız.'",
+"question": "Buna göre, hangi öğrencinin yaptığı yorum bilimsel olarak hatalıdır?",
+"shape": null,
+"options": {
+"A": "Canan",
+"B": "Ayşe",
+"C": "Mehmet",
+"D": "Elif"
+},
+"answer": "C",
+"explanation": "Plastik atıklar doğada yüzlerce yıl yok olmaz ve toprağı zehirler, ekosistemi zenginleştirmez. Mehmet'in yorumu çevre bilimi açısından yanlıştır.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 4,
+"ts": 1794119147
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Biyoçeşitlilik",
+"passage": "Biyoçeşitlilik, bir bölgedeki canlı türlerinin sayıca zenginliğini ifade eder. Aşağıdaki grafik, dört farklı habitatta bulunan endemik (sadece o bölgeye özgü) tür sayılarını göstermektedir.",
+"question": "Grafiğe göre, biyoçeşitlilik açısından en kritik durumda olan habitat hangisidir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Habitat A",
+"Habitat B",
+"Habitat C",
+"Habitat D"
+],
+"values": [
+45,
+12,
+38,
+55
+],
+"title": "Endemik Tür Sayısı",
+"show_names": false
+},
+"options": {
+"A": "Habitat C",
+"B": "Habitat A",
+"C": "Habitat D",
+"D": "Habitat B"
+},
+"answer": "D",
+"explanation": "Biyoçeşitlilik, tür zenginliği ile ilgilidir. Habitat B, en düşük endemik tür sayısına (12) sahip olduğu için biyoçeşitlilik açısından en fakir ve koruma gerektiren bölgedir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 4,
+"ts": 1794119147
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Doğal Çevre ve İnsan Etkisi",
+"passage": "Güneş tutulması sırasında gökyüzünde oluşan değişimleri izlemek için bir grup öğrenci dışarı çıkar. Ancak, şehirdeki yoğun hava kirliliği ve ışık kirliliği nedeniyle gökyüzündeki olayları net göremezler.",
+"question": "Bu durumu yaşayan öğrenciler, çevreyi koruma adına aşağıdakilerden hangisini yaparsa çevre sorunlarının azalmasına doğrudan katkı sağlar?",
+"shape": {
+"type": "science_space",
+"sub_type": "solar_eclipse",
+"title": "Tutulma Gözlem Şeması",
+"show_names": false
+},
+"options": {
+"A": "Daha fazla güneş enerjisi paneli kurarak ormanlık alanları genişletmek.",
+"B": "Tutulma esnasında kullanılan gözlüklerin doğaya atılmasını engellemek.",
+"C": "Şehirdeki tüm ulaşım araçlarını elektriklilerle değiştirmek.",
+"D": "Fabrikaların filtre takmasını sağlamak ve gereksiz dış aydınlatmaları söndürmek."
+},
+"answer": "D",
+"explanation": "Hava kirliliği fabrika emisyonlarından, ışık kirliliği ise gereksiz aydınlatmadan kaynaklanır. En hızlı ve doğrudan etki bu iki temel sorunun kaynağını (filtre ve aydınlatma yönetimi) hedef almaktır.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 4,
+"ts": 1794119147
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ekosistem İlişkileri",
+"passage": "Bir orman ekosisteminde tavşanlar ve tilkiler yaşamaktadır. Tilkilerin sayısı bir yıl içinde hastalık nedeniyle aniden azalmıştır.",
+"question": "Bu durumun hemen ardından ekosistemdeki diğer canlı türleri üzerinde gözlemlenmesi beklenen ilk değişim aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ağaç sayısının azalması.",
+"B": "Tavşan sayısının hızla artması.",
+"C": "Ot miktarının artması.",
+"D": "Diğer yırtıcıların ekosistemi terk etmesi."
+},
+"answer": "B",
+"explanation": "Tilki, tavşanı avlayan yırtıcıdır. Tilki sayısı azalınca tavşanlar üzerindeki avlanma baskısı kalkar ve tavşan popülasyonu hızla artar. Bu, zincirdeki en doğrudan ilk etkidir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 4,
+"ts": 1794119147
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ekosistem ve Besin Zinciri",
+"passage": "Bir robotik atölyesinde, bir göl ekosistemindeki besin zincirini simüle etmek için 4 farklı grup oluşturulmuştur. Gruptaki öğrencilerden, bir canlı grubunun yok olması durumunda zincirin nasıl etkileneceğini modellemeleri istenmiştir.",
+"question": "Göldeki 'Küçük Balıklar' aniden yok olursa, aşağıdaki sonuçlardan hangisinin gerçekleşmesi beklenmez?",
+"shape": null,
+"options": {
+"A": "Küçük balıklarla beslenen büyük balıkların sayısı azalır.",
+"B": "Küçük balıkların yediği su yosunlarının miktarı artar.",
+"C": "Büyük balıklar besin bulamayınca başka canlılarla beslenmeye yönelir.",
+"D": "Su yosunlarını yiyen başka bir tür olmadığı için üretici sayısı hızla tükenir."
+},
+"answer": "D",
+"explanation": "Küçük balıklar yok olursa, su yosunlarını tüketen bir grup eksileceği için yosun miktarı artar, büyük balıklar azalır. Ancak üreticiler (su yosunları) sadece küçük balıklar tarafından tüketilmez; dolayısıyla D şıkkındaki 'hızla tükenir' ifadesi bilimsel olarak hatalı ve çelişkili bir sonuçtur.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 4,
+"ts": 1794119147
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ekosistem",
+"passage": "Sağlık kontrolü yapılan bir park alanında yaşayan canlılar: I. Bakteri, II. Meşe ağacı, III. Tavşan, IV. Mantar. Bu canlıların beslenme ve ekosistemdeki görevleri gruplandırılacaktır.",
+"question": "Buna göre, canlıların eşleştirilmesinden hangisi bilimsel olarak yanlış gruplandırılmıştır?",
+"shape": null,
+"options": {
+"A": "IV - Ayrıştırıcı",
+"B": "I - Mikroskobik canlı",
+"C": "III - Ayrıştırıcı",
+"D": "II - Üretici"
+},
+"answer": "C",
+"explanation": "Tavşanlar (III), otçul birer tüketicidir; üreticilerle beslenirler. Ayrıştırıcılar ise ölü organizmaları parçalayan bakteri ve mantarlar gibi canlılardır. Bu nedenle tavşanın ayrıştırıcı olarak sınıflandırılması yanlıştır.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 4,
+"ts": 1794119147
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlıların yapısı",
+"passage": "Bir sağlık merkezinde, mikroskobik canlılar ile gelişmiş canlıların hücre bölünme hızı karşılaştırılmaktadır. Aşağıdaki grafik, iki farklı canlı türünün zaman içindeki hücre sayılarını göstermektedir.",
+"question": "Verilen grafiğe göre, I. canlı türünün (mikroskobik canlı) bölünme hızının II. canlı türünden (gelişmiş canlı) daha fazla olduğu gözlemlenmiştir. Bu farkın temel nedeni, mikroskobik canlıların sahip olduğu hangi yapısal özelliğin eksikliği ile ilgilidir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"0. dk",
+"20. dk",
+"40. dk",
+"60. dk"
+],
+"values": [
+10,
+40,
+160,
+640
+],
+"title": "Canlıların Hücre Sayısı Değişimi (I: Mavi, II: Kırmızı)",
+"show_names": false
+},
+"options": {
+"A": "Belirgin bir çekirdeğe sahip olmamaları",
+"B": "Ribozom organelinin bulunmaması",
+"C": "Sitoplazma sıvısının bulunmaması",
+"D": "Hücre duvarına sahip olmaları"
+},
+"answer": "A",
+"explanation": "Mikroskobik canlıların (bakteriler gibi) gelişmiş canlılara göre çok daha hızlı çoğalmasının en temel sebebi, karmaşık bir hücre çekirdeğine ve gelişmiş organellere sahip olmamalarıdır. Bu basit yapı, bölünmeyi kolaylaştırır.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 4,
+"ts": 1794119857
 }
 ]
 }

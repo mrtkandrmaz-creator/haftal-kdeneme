@@ -1,0 +1,565 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Türkçe",
+"topic": "Noktalama İşaretleri",
+"passage": "Evde su tasarrufu yapmak için geliştirdiğimiz projeyi şöyle sıraladık: (1) Muslukları gereksiz yere açık bırakmamak (2) Bulaşık makinesini tam dolmadan çalıştırmamak (3) Sebzeleri akan suyun altında değil, bir kapta yıkamak (4) Bahçeyi hortum yerine kovayla sulamak.",
+"question": "Metindeki numaralanmış cümlelerin sonuna hangi noktalama işareti getirilmelidir?",
+"shape": null,
+"options": {
+"A": "Hepsinin sonuna nokta (.) konmalıdır.",
+"B": "Sadece 1. ve 2. cümlelerin sonuna nokta konmalıdır.",
+"C": "Hepsinin sonuna noktalı virgül (;) konmalıdır.",
+"D": "Sadece 4. cümlenin sonuna nokta konmalı, diğerlerine virgül gelmelidir."
+},
+"answer": "A",
+"explanation": "Verilen cümleler birer öğüt veya madde niteliğindedir ancak bir yargı bildirdikleri ve cümle özelliği taşıdıkları için her birinin sonuna nokta konulması dil bilgisi kuralları gereğidir. 1, 2, 3 ve 4 numaralı ifadeler tamamlanmış cümlelerdir.",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 4,
+"ts": 1794119402
+},
+{
+"subject": "Türkçe",
+"topic": "Sözcükte Anlam: Terim ve Bağlam",
+"passage": "Bir inşaat projesinde kullanılan temel terimler: \nI. Kolon: Binanın yükünü taşıyan dikey yapı öğesi. \nII. İskele: İnşaatta yüksek yerlere ulaşmak için kurulan geçici yapı. \nIII. Temel: Bir yapının ağırlığını toprağa aktaran bölüm. \nIV. Harç: Yapı malzemelerini birbirine bağlayan karışım.",
+"question": "Yukarıda verilen terimlerin anlamları göz önüne alındığında, 'Dostluklarımızın üzerine sağlam bir ........... atmalıyız ki zorluklar karşısında yıkılmasın.' cümlesindeki boşluğa hangi terim gelmelidir?",
+"shape": null,
+"options": {
+"A": "Temel",
+"B": "İskele",
+"C": "Kolon",
+"D": "Harç"
+},
+"answer": "A",
+"explanation": "Cümle, bir şeyin en alt katmanından ve sağlamlığından bahsettiği için temel metaforuna ihtiyaç duyar. İnşaat terminolojisinde ağırlığı taşıyan ve başlangıcı oluşturan yapı öğesi temeldir.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 3,
+"ts": 1794119584
+},
+{
+"subject": "Türkçe",
+"topic": "Zıt Anlamlı Sözcükler",
+"passage": "Bahçe düzenleme projesinde öğrencilerden 'çirkin' buldukları köşeleri 'güzelleştirecek' bitkiler ekmeleri istendi. Arda: 'Küçük fidanları diktik.' dedi. Can: 'Bakımsız olan yerleri düzenledik.' ifadesini kullandı.",
+"question": "Metinde geçen sözcükler arasında 'bakımsız' sözcüğünün zıt anlamlısı aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Küçük",
+"B": "Düzenli",
+"C": "Çirkin",
+"D": "Bakımlı"
+},
+"answer": "D",
+"explanation": "Bakımsız kelimesi bakım yapılmamış anlamındadır. Bunun zıt anlamlısı bakım yapılmış olan, yani bakımlı kelimesidir.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 3,
+"ts": 1794119584
+},
+{
+"subject": "Türkçe",
+"topic": "Erdemler ve Ana Fikir",
+"passage": "Resim sergisinde iki tablo yan yana asılmıştı. Birincisinde yardım eden çocuklar, ikincisinde ise sadece kendi oyuncağıyla oynayan tek bir çocuk vardı. Öğretmen Ayşe, 'Paylaşmak çoğaltır, saklamak eksiltir.' diyerek öğrencilere bu iki durumu yorumlattı.",
+"question": "Öğretmenin kurduğu cümleye göre aşağıdakilerden hangisi bir 'erdem' davranışı olarak kabul edilebilir?",
+"shape": null,
+"options": {
+"A": "Sergiye sadece kendi yaptığı resmi asan öğrenci.",
+"B": "Paylaşmanın sadece maddi değerlerle sınırlı olduğunu savunmak.",
+"C": "Resimdeki çocuğun oyuncaklarını arkadaşlarıyla paylaşması.",
+"D": "Tek başına oynayan çocuğun oyuncağını kimseye vermemesi."
+},
+"answer": "C",
+"explanation": "Öğretmen paylaşmanın çoğalttığını söyleyerek yardımseverliği ve paylaşımcılığı erdem olarak nitelendirmiştir. Bu duruma uyan tek davranış A seçeneğidir.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 3,
+"ts": 1794119584
+},
+{
+"subject": "Türkçe",
+"topic": "Sözcükte Anlam (Çok Anlamlılık)",
+"passage": "Bisiklet turuna katılan öğrencilere verilen 'yol' kelimesinin kullanıldığı cümleler: \n- I. Doğru yolu seçmek başarıyı getirir. \n- II. Bisiklet yolu oldukça engebeliydi. \n- III. Gelecek için yeni bir yol çizmeliyiz.",
+"question": "Buna göre 'yol' kelimesi hangi cümlelerde 'yöntem/izlenecek biçim' anlamında kullanılmıştır?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "I. cümlede yol, doğru yöntem/tavır anlamındadır. II. cümlede somut bir geçit anlamındadır. III. cümlede ise izlenecek strateji/yöntem anlamındadır. Bu yüzden I ve III doğrudur.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 3,
+"ts": 1794119584
+},
+{
+"subject": "Türkçe",
+"topic": "Erdemler: Sorumluluk ve Eşleştirme",
+"passage": "Toplu taşıma aracında yaşlı birine yer veren Burak, 'Sorumluluk, başkalarına karşı nezaketimizdir.' derken, aynı araçta sessizce yerinde oturan Ceyda, 'Yardımlaşma, görmezden gelmemektir.' notunu defterine yazdı.",
+"question": "Bu metne göre öğrencilerin ifade ettiği erdemler aşağıdakilerden hangisinde doğru eşleştirilmiştir?",
+"shape": null,
+"options": {
+"A": "Burak: Cesaret - Ceyda: Dürüstlük",
+"B": "Burak: Adalet - Ceyda: Sabır",
+"C": "Burak: Saygı - Ceyda: Duyarlılık",
+"D": "Burak: Çalışkanlık - Ceyda: Mütevazılık"
+},
+"answer": "C",
+"explanation": "Burak yaşlı birine yer vererek nezaket ve saygısını göstermiştir. Ceyda ise yardımlaşmayı görmezden gelmemek (duyarlılık) olarak tanımlamıştır. Bu değerler A şıkkında mevcuttur.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 3,
+"ts": 1794119584
+},
+{
+"subject": "Türkçe",
+"topic": "Ormancılık ve Yorumlama",
+"passage": "Orman İşletme Müdürlüğü, bir bölgedeki ağaçların dikim yıllarını bir raporla açıkladı: 2010 yılında 500 çam, 2015 yılında 800 meşe, 2020 yılında 1200 çam fidanı dikildi. Uzmanlar, 2020'de dikilen ağaç sayısındaki artışın, ormanın hava temizleme kapasitesini %30 oranında yükselttiğini belirtiyor.",
+"question": "Bu bilgilere göre, aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Fidan sayısındaki artış, ormanın çevreye olan faydasını olumlu etkilemiştir.",
+"B": "2010 ile 2020 yılları arasında dikilen toplam meşe sayısı 1000'i geçmiştir.",
+"C": "2020 yılında, 2015 yılına göre daha fazla fidan dikilmiştir.",
+"D": "Dikilen çam fidanı sayısı, meşe fidanı sayısından toplamda fazladır."
+},
+"answer": "B",
+"explanation": "Metinde 2015 yılında 800 meşe dikildiği bilgisi mevcuttur. Başka bir tarihte meşe dikildiğine dair bilgi yoktur. Toplam meşe sayısı 800'dür, yani 1000'i geçmemiştir. C şıkkı söylenemez.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794119675
+},
+{
+"subject": "Türkçe",
+"topic": "Deyimler ve Anlamı",
+"passage": "Mimar Sinan, inşaat alanındaki işçilerin yorgunluklarını hafifletmek için onlarla sürekli sohbet eder, her biriyle tek tek ilgilenirdi. Çalışma sırasında bir işçi duvara tuğlaları yamuk yerleştirdiğinde, usta yardımcısı ona hemen müdahale ederek 'Acele etme, bu yapı bizim geleceğe mirasımız, işini ciddiyetle yap ki sonra başımız ağrımasın.' dedi.",
+"question": "Metindeki altı çizili deyimin cümleye kattığı anlam aşağıdakilerin hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "İleride sıkıntı yaratacak bir durumla karşılaşmak.",
+"B": "Bir işte hata yapınca cezalandırılmak.",
+"C": "Fiziksel olarak çok yorulup hastalanmak.",
+"D": "Çok şiddetli baş ağrısı çekmek."
+},
+"answer": "A",
+"explanation": "Metinde 'başımız ağrımasın' ifadesi, şu an yapılan işin özensiz olması durumunda gelecekte bir problem yaşanacağı ve bu problemin huzursuzluk vereceği anlamında kullanılmıştır. Yani ileride ortaya çıkacak olumsuzluklara işaret eder.",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794119944
+},
+{
+"subject": "Türkçe",
+"topic": "Hikâye Unsurları",
+"passage": "Bilim insanı Zeynep, kütüphanesindeki eski Osmanlı el yazmalarını incelerken aradığı bilgiyi buldu. 'İşte bu!' diye bağırdı. Pencereden sızan akşam güneşi, tozlu rafları aydınlatıyordu. Yan masada oturan öğrencisi Kerem, 'Hocam, tam olarak neyi arıyorduk?' diye sordu. Zeynep, büyük bir heyecanla geçmişteki bilgelerin doğa gözlemlerine dair kayıtları işaret etti.",
+"question": "Bu metnin hikâye unsurları aşağıdakilerin hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Kişiler: Zeynep, Bilgeler; Yer: Laboratuvar; Zaman: Gün batımı",
+"B": "Kişiler: Kerem, Kütüphane görevlisi; Yer: Okul; Zaman: Sabah",
+"C": "Kişiler: Zeynep, Kerem; Yer: Ev; Zaman: Gece",
+"D": "Kişiler: Zeynep, Kerem; Yer: Kütüphane; Zaman: Akşamüzeri"
+},
+"answer": "D",
+"explanation": "Metinde geçen kişiler Zeynep ve öğrencisi Kerem'dir. Olay kütüphanede geçmektedir. Zaman ise 'akşam güneşi' ifadesinden akşamüstü olarak anlaşılmaktadır.",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794119944
+},
+{
+"subject": "Türkçe",
+"topic": "Kavram Uygulama",
+"passage": "Okul bahçesinde top oynayan öğrencilerden biri, yanlışlıkla bir çiçeği ezer. Öğretmeni durumu fark edince 'Doğa bize emanettir, ona karşı her zaman hassas olmalıyız.' der. Sınıf başkanı Ali, bu durumu sınıfa anlatırken 'Hocamız, [I]....... vurguladı.' demiştir.",
+"question": "Boşluğa aşağıdakilerden hangisi getirilirse 'yardımlaşma ve doğa sevgisi' bağlamı en doğru ifade edilmiş olur?",
+"shape": null,
+"options": {
+"A": "sadece ders çalışmamız gerektiğini",
+"B": "herkesin oyun oynamasını",
+"C": "çevremize karşı sorumluluklarımızı",
+"D": "çiçeklerin çok pahalı olduğunu"
+},
+"answer": "C",
+"explanation": "Öğretmenin 'emanet' ve 'hassas' vurgusu, çevreyi koruma ve ona karşı sorumluluk bilinciyle doğrudan ilgilidir.",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794119944
+},
+{
+"subject": "Türkçe",
+"topic": "Sözcükte Anlam",
+"passage": "Pastanede iki arkadaş oturmaktadır. Burak, 'Bu kek çok ağır olmuş.' der. Deniz ise 'Haklısın, tadı çok baskın, diğeri ise oldukça hafif.' diyerek karşılaştırma yapar.",
+"question": "Metindeki 'ağır' kelimesi hangi anlamda kullanılmıştır?",
+"shape": null,
+"options": {
+"A": "Tartıda çok çeken.",
+"B": "Mideyi yoran, sindirimi zor.",
+"C": "Ciddi ve vakur.",
+"D": "Kötü ve olumsuz."
+},
+"answer": "B",
+"explanation": "Kekin ağır olması, onun malzeme yoğunluğunu veya yağlı/şekerli yapısını ifade eder ki bu da mideyi yoracağı anlamına gelir.",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794119944
+},
+{
+"subject": "Türkçe",
+"topic": "Neden-Sonuç İlişkisi",
+"passage": "Hayvanat bahçesindeki görevli, ziyaretçilere şunları anlatır: 'Panda bugün oldukça neşesiz. Çünkü dün gece çok gürültü yapıldı ve bu da onun uyku düzenini bozdu. Bu yüzden bugün bambu dalı yemek istemiyor.'",
+"question": "Bu metne göre pandanın yemek yemek istememesinin temel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Bambu dallarının taze olmaması.",
+"B": "Ziyaretçilerin çok gürültü yapması.",
+"C": "Uykusunun bozulmuş olması.",
+"D": "Hayvanat bahçesindeki havanın soğuk olması."
+},
+"answer": "C",
+"explanation": "Metinde doğrudan 'gürültü yapıldı' ve 'bu da uyku düzenini bozdu' denilmiştir. 'Bu yüzden' ifadesi kendisinden önceki durumu (uyku bozulması) sonuçlandırır. Pandanın yememesinin doğrudan tetikleyicisi uykusuzluktur.",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794119944
+},
+{
+"subject": "Türkçe",
+"topic": "Hikâye Unsurları",
+"passage": "Genç mucit Arda, antik kent Efes'in tozlu arşivlerinde günlerce çalışarak kayıp bir haritanın izini sürdü. Güneş tepedeyken eski bir parşömen bulan Arda, haritadaki işaretleri takip ederek yer altı tüneline girdi. Heyecanla ilerlediği dehlizin sonunda, tarihin derinliklerinden gelen bir ses duydu ve aniden duraksadı.",
+"question": "Metindeki hikâye unsurları dikkate alındığında, aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Hikâyenin şahıs kadrosunda yalnızca Arda adlı karakter yer almaktadır.",
+"B": "Olay, Arda'nın bir harita bulup tüneli keşfetmesi üzerine kuruludur.",
+"C": "Zaman unsuru, 'Güneş tepedeyken' ifadesiyle günün belirli bir vaktini işaret etmektedir.",
+"D": "Mekân olarak Efes'in arşivleri ve yer altı tünelleri betimlenmiştir."
+},
+"answer": "A",
+"explanation": "Metinde olay Arda'nın çevresinde gelişmektedir, ancak tünelin sonunda duyulan bir 'ses' başka bir varlığın veya unsurun olaya dahil olabileceğini ima eder. A seçeneği 'yalnızca' ifadesiyle metnin belirsizlik bırakan son kısmını göz ardı ettiği için yanlıştır.",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794119944
+},
+{
+"subject": "Türkçe",
+"topic": "Deyimler ve Anlamları",
+"passage": "Okulun yıl sonu kermesi için 5/A sınıfı hazırlıklara başladı. Elif, arkadaşlarına yardım etmek için elinden geleni yapıyordu. Ancak kermesin başlamasına dakikalar kala stanttaki ürünlerin bir kısmı yere devrildi. Elif'in durumu görünce eli ayağına dolaştı, ne yapacağını bilemedi.",
+"question": "Bu metne göre Elif'in içinde bulunduğu durumu ifade eden 'eli ayağına dolaşmak' deyiminin anlamı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Çok çalışıp yorulmak.",
+"B": "Yardımsever tavır sergileyerek ilgi çekmek.",
+"C": "Heyecandan ne yapacağını bilemez duruma gelmek.",
+"D": "Bir işi başarmak için çaba sarf etmek."
+},
+"answer": "C",
+"explanation": "Metinde Elif'in durumu görünce ne yapacağını bilememesi ve paniklemesi vurgulanmıştır. Bu durum, telaşlanmak ve heyecanlanmak anlamlarına gelen B seçeneği ile örtüşmektedir.",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794119944
+},
+{
+"subject": "Türkçe",
+"topic": "Cümle Öğeleri Giriş",
+"passage": "Okul bahçesinde öğrenciler fidan dikiyor. Küçük öğrenciler toprağı havalandırıyor, görevli öğretmenler ise fidanlara can suyu veriyor. Bu sırada bahçenin köşesindeki yaşlı çınar ağacı, çocukların neşesini izliyor.",
+"question": "Metindeki 'Küçük öğrenciler toprağı havalandırıyor.' cümlesinde işi yapan (özne) hangisidir?",
+"shape": null,
+"options": {
+"A": "toprağı",
+"B": "Küçük öğrenciler",
+"C": "öğrenciler",
+"D": "Küçük"
+},
+"answer": "B",
+"explanation": "Cümlede işi yapan varlık 'Küçük öğrenciler'dir. Özne, cümlenin yüklemine sorulan 'kim' veya 'ne' sorusuna yanıt verir. Burada 'havalandıran kim?' sorusunun cevabı 'Küçük öğrenciler'dir.",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 4,
+"ts": 1794120204
+},
+{
+"subject": "Türkçe",
+"topic": "Kelime Türleri: Ad ve Sıfat",
+"passage": "Robotik atölyesinde üç grup çalışıyor. Birinci grup 'hızlı robotlar' tasarlarken, ikinci grup 'parlak ışıklar' üretiyor. Üçüncü grup ise 'eski parçalar' ile denemeler yapıyor.",
+"question": "Metindeki sıfat tamlamalarıyla ilgili aşağıdaki belirlemelerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Parlak ışıklar ifadesinde varlığın özelliği belirtilmiştir.",
+"B": "Tüm örneklerde bir isim ve bir niteleme sıfatı bir araya gelmiştir.",
+"C": "Hızlı robotlar ifadesinde niteleme sıfatı kullanılmıştır.",
+"D": "Eski parçalar tamlamasında 'eski' kelimesi isim görevindedir."
+},
+"answer": "D",
+"explanation": "Eski parçalar ifadesinde 'parçalar' isimdir, 'eski' ise varlığın durumunu bildiren niteleme sıfatıdır. 'Eski' burada isim değil, sıfat görevindedir.",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 4,
+"ts": 1794120204
+},
+{
+"subject": "Türkçe",
+"topic": "Sözcükte Anlam (Eş Anlamlı)",
+"passage": "Gıda üretim tesisinde çalışan Ahmet Bey, her sabah taze ürünleri kontrol ediyor. Tesisin yetkili kişisi, 'Kaliteli üretim bizim temel amacımızdır.' diyor. Ahmet Bey ise, 'İşimizdeki her aşama çok kıymetlidir.' şeklinde yanıt veriyor.",
+"question": "Metindeki altı çizili 'kıymetli' kelimesinin eş anlamlısı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Gereksiz",
+"B": "Değerli",
+"C": "Ucuz",
+"D": "Basit"
+},
+"answer": "B",
+"explanation": "Kıymetli kelimesi, bir şeyin değerini ifade eder. Türkçede kıymetli kelimesinin tam karşılığı 'değerli'dir.",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 4,
+"ts": 1794120204
+},
+{
+"subject": "Türkçe",
+"topic": "Ad ve Sıfat Farkı",
+"passage": "Kodlama kulübünde 5 öğrenci proje geliştirdi. 1. öğrenci sarı renkli bir blok seçti. 2. öğrenci hızlı kod yazdı. 3. öğrenci ise küçük ekranı tercih etti.",
+"question": "Metindeki numaralanmış cümlelerde geçen sıfatlar ile ilgili hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Sarı kelimesi isimdir.",
+"B": "Hızlı kelimesi hareketin durumunu nitelemektedir.",
+"C": "Küçük kelimesi ekran isminin özelliğini belirtmektedir.",
+"D": "Cümlelerin hiçbirinde sıfat kullanılmamıştır."
+},
+"answer": "C",
+"explanation": "Küçük ekranı ifadesinde 'ekran' isim, 'küçük' ise ismin önüne gelerek onu niteleyen bir sıfattır. Bu nedenle C seçeneği doğrudur.",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 4,
+"ts": 1794120204
+},
+{
+"subject": "Türkçe",
+"topic": "Birey ve Toplum (Yorumlama)",
+"passage": "Sağlık kontrolünde doktorlar hastaları tek tek muayene etti. Hemşire, 'Sıranızı beklerken birbirinize karşı nazik olun.' dedi. O sırada bir çocuk, yaşlı bir amcaya kendi sırasını vererek örnek bir davranış sergiledi.",
+"question": "Bu metne göre, çocuk hangi erdemli davranışı sergilemiştir?",
+"shape": null,
+"options": {
+"A": "Bireysel başarı",
+"B": "Sorumluluk alma",
+"C": "Yardımlaşma ve nezaket",
+"D": "Disiplinli olma"
+},
+"answer": "C",
+"explanation": "Çocuk, yaşlı bir insana sırasını vererek hem nezaket göstermiş hem de toplumsal bir yardımlaşma örneği sergilemiştir. Bu erdemli bir davranıştır.",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 4,
+"ts": 1794120204
+},
+{
+"subject": "Türkçe",
+"topic": "Kelime Türleri (İsim-Sıfat)",
+"passage": "Belediyenin düzenlediği Kitap Fuarı'na katılan iki yazarın stant bilgileri şöyledir:\nYazar A: 'Kırmızı kaplı kitaplarımı, eski raflara dizdim.'\nYazar B: 'Bu büyük salonda, mutlu okurlarla sohbet ettim.'",
+"question": "Buna göre iki yazarın kullandığı cümlelerdeki sıfatlar ve isimler karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "İki yazar da cümlelerinde sadece niteleme sıfatlarına yer vermiştir.",
+"B": "Yazar A, kitapların rengini ve rafların durumunu niteleyen sıfatlar kullanmıştır.",
+"C": "Yazar B, sayı bildiren sıfatlara yer vererek okur sayısını belirtmiştir.",
+"D": "Her iki yazarın cümlelerinde de isim çekim eki almış hiçbir sözcük yoktur."
+},
+"answer": "B",
+"explanation": "Yazar A 'Kırmızı' ve 'eski' sözcükleriyle niteleme sıfatı kullanmıştır. Yazar B 'büyük' ve 'mutlu' sözcükleriyle niteleme sıfatı kullanmıştır. Seçeneklerde Yazar A'nın nitelemeleri tam olarak eşleşmektedir.",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 4,
+"ts": 1794120204
+},
+{
+"subject": "Türkçe",
+"topic": "Metin Türleri ve Anlatım Biçimleri",
+"passage": "Pazar yerinin girişindeki tezgahın başında duran Kerem, elindeki sarı armutları titizlikle seçiyordu. Yanındaki tahta kasada ise kış güneşinin altında parlayan portakallar dev bir tepe oluşturmuştu. Kerem, köylülerin getirdiği taptaze sebzeleri incelerken çocukluğunun köy pazarındaki neşeli günleri hatırladı. O günlerde de pazar yerleri insanı sarıp sarmalayan bir samimiyete sahipti. Pazar yerinin o canlı, cıvıl cıvıl havası hiçbir yerde yoktu.",
+"question": "Bu metinde aşağıdaki metin türlerinden hangisinin ağır bastığı ve hangi anlatım biçiminin kullanıldığı söylenebilir?",
+"shape": null,
+"options": {
+"A": "Hikâye edici metin - Öyküleme",
+"B": "Sohbet yazısı - Tartışma",
+"C": "Bilgilendirici metin - Açıklama",
+"D": "Makale - Tanımlama"
+},
+"answer": "A",
+"explanation": "Metinde Kerem adlı kişinin pazar yerindeki eylemleri, geçmişi hatırlaması bir olay zinciri içinde anlatıldığı için hikâye edici metindir; olaylar anlatıldığı için de öyküleme biçimi kullanılmıştır. Doğru seçenek 'Hikâye edici metin - Öyküleme' ifadesidir.",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794120622
+},
+{
+"subject": "Türkçe",
+"topic": "Öznel ve Nesnel Cümleler",
+"passage": "Tarihî yapıların incelendiği gezi kulübünde öğrenciler eski bir köprü önünde durdular. Zeynep köprü hakkında şu cümleleri kaydetti: I. Köprünün kemerleri on altı metre genişliğindedir. II. Bu mimari şaheser, gören herkesi büyüleyen benzersiz bir zarafete sahiptir. III. Yapının inşasında kesme taş ve mermer bloklar kullanılmıştır. IV. Köprü, nehrin iki yakasını birbirine bağlayan en etkileyici yapıdır.",
+"question": "Zeynep'in kaydettiği numaralandırılmış cümlelerin öznel ve nesnel olma durumları hangi seçenekte doğru gruplandırılmıştır?",
+"shape": null,
+"options": {
+"A": "Nesnel: I, III - Öznel: II, IV",
+"B": "Nesnel: II, IV - Öznel: I, III",
+"C": "Nesnel: I, II - Öznel: III, IV",
+"D": "Nesnel: III, IV - Öznel: I, II"
+},
+"answer": "A",
+"explanation": "I ve III numaralı cümleler kanıtlanabilir, kişisel görüş içermeyen nesnel cümlelerdir; II ve IV numaralı cümleler ise kişisel yargılar barındıran öznel cümlelerdir. Bu nedenle doğru dağılım Nesnel: I, III - Öznel: II, IV şeklindedir. Doğru seçenek A'dır.",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794120622
+},
+{
+"subject": "Türkçe",
+"topic": "Sözcükte Anlam ve Karşılaştırma",
+"passage": "İnşaat alanındaki mühendis proje planını incelerken şu değerlendirmeleri yaptı: 'Kullanılan tuğlaların kalitesi geçen yıla göre çok daha sağlamdı. Beton harcının kıvamı ise geçen haftaki döküme kıyasla daha koyuydu. İşçilerin çalışma hızı bu projede diğerlerinden farklı olarak oldukça yüksekti.'",
+"question": "Bu metinde aşağıdaki anlam özelliklerinden hangisine yer verilmemiştir?",
+"shape": null,
+"options": {
+"A": "Nitelik bildirme",
+"B": "Karşılaştırma",
+"C": "Benzetme",
+"D": "Durum tespiti"
+},
+"answer": "C",
+"explanation": "Metinde geçen yıla göre sağlamlık, geçen haftaya göre kıvam ve diğerlerine göre hız kıyaslandığı için 'Karşılaştırma' vardır; tuğlaların kalitesi ve harcın kıvamı nitelik bildirir ve mevcut durum ifade edilir. Ancak iki varlık arasında benzetme ilişkisi kurulmamıştır. Doğru seçenek B şıkkıdır.",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794120622
+},
+{
+"subject": "Türkçe",
+"topic": "Deyimler ve Anlam İlişkisi",
+"passage": "Kodlama kulübünde proje sunumuna hazırlanan Arda, ekranı incelerken karşılaştığı hata uyarısı karşısında ne yapacağını bilemedi. Arkadaşı Eylül, Arda'nın bu durumunu ifade etmek için bazı deyimler kullandı. Eylül'ün kullandığı deyimlerin anlamları şöyledir: I. Çok korkmak, heyecanlanmak veya ne yapacağını bilemez duruma gelmek. II. Bir işi başaramayacağını anlayıp vazgeçmek. III. Şaşkınlıktan ne yapacağını bilememek, eli ayağı birbirine dolaşmak.",
+"question": "Arda'nın yaşadığı duruma uygun düşen ve metindeki tanımlarla eşleşen doğru deyim grubu aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ağzı kulaklarına varmak - Küplere binmek - İpe un sermek",
+"B": "Kulak kesilmek - Dilini ısırmak - Burnundan solumak",
+"C": "İçi içine sığmamak - Havalara uçmak - Gözü dönmek",
+"D": "Etekleri tutuşmak - Eli ayağı dolaşmak - Ne yapacağını bilememek"
+},
+"answer": "D",
+"explanation": "Arda'nın hata karşısında yaşadığı panik ve şaşkınlık durumu 'etekleri tutuşmak' ve 'eli ayağı dolaşmak' deyimleriyle tam olarak örtüşmektedir. Bu ifadeler I ve III numaralı tanımlarla doğrudan eşleşir. Doğru seçenek B'dir.",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794120622
+},
+{
+"subject": "Türkçe",
+"topic": "Geri Dönüşüm ve Söz Sanatları (Kişileştirme)",
+"passage": "Geri dönüşüm atölyesinde eski plastik şişeleri inceleyen Mert, masanın üzerindeki atık kutusuna bakarak şunları yazdı: 'Plastik şişe, çöplüğe atılmadığı için mutlulukla gülümsüyordu. Kağıt atıklar ise yeniden hayat bulmanın verdiği heyecanla birbirine fısıldaşıyordu.'",
+"question": "Mert'in yazdığı cümlelerde kullanılan temel söz sanatı aşağıdakilerden hangisidir ve hangi gerekçeye dayanmaktadır?",
+"shape": null,
+"options": {
+"A": "Benzetme sanatıdır, çünkü şişe ile insan benzetilmiştir.",
+"B": "Kişileştirme sanatıdır, çünkü cansız varlıklara insan özellikleri verilmiştir.",
+"C": "Konuşturma sanatıdır, çünkü atıklar doğrudan konuşturulmuştur.",
+"D": "Abartma sanatıdır, çünkü durumlar olduğundan çok büyük gösterilmiştir."
+},
+"answer": "B",
+"explanation": "Plastik şişenin gülümsemesi ve kağıt atıkların fısıldaşması, insan dışındaki varlıklara insani özelliklerin yüklenmesiyle oluşan 'kişileştirme' sanatıdır. Doğru seçenek B'dir.",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794120622
+},
+{
+"subject": "Türkçe",
+"topic": "Noktalama İşaretleri ve Görevleri",
+"passage": "Mutfakta annesiyle birlikte Millî Mücadele dönemine ait geleneksel bir yemek tarifi defterini inceleyen Elif, belgede geçen bazı cümlelerde noktalama yanlışları olduğunu fark etmiştir. Öğretmeninin derste verdiği 'Nokta; cümle sonuna konur, sıra bildiren sayıların yanına konur, tarihlerin yazılışında gün, ay ve yılı ayırmak için kullanılır.' kuralını hatırlayarak aşağıdaki cümleleri incelemiştir:\n- Mustafa Kemal, 19.5.1919 tarihinde Samsun’a ayak bastı.\n- Amasya Genelgesi’ni imzalayan komutanlar toplantıda hazır bulundular.\n- 5. sınıf öğrencileri kahramanlık türküleri derledi.",
+"question": "Buna göre Elif’in incelediği cümlelerde noktanın aşağıdaki görevlerinden hangisinin örneği yoktur?",
+"shape": null,
+"options": {
+"A": "Tamamlanmış cümlelerin sonuna konulması",
+"B": "Tarihlerin yazılışında gün, ay ve yılı gösteren sayıları birbirinden ayırmak için konulması",
+"C": "Saat ve dakikaları gösteren sayıları birbirinden ayırmak için konulması",
+"D": "Sayılara getirildiğinde 'inci, ıncı' anlamı katarak sıra bildirmesi"
+},
+"answer": "C",
+"explanation": "Metinde geçen birinci cümlede tarih ayırmada (19.5.1919), üçüncü cümlede sıra bildiren sayılarda (5. sınıf) ve ikinci cümlede tamamlanmış cümlenin sonunda nokta kullanılmıştır. Ancak metindeki hiçbir cümlede saat ve dakikaları birbirinden ayırmak için nokta kullanılmamıştır.",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794120622
+},
+{
+"subject": "Türkçe",
+"topic": "Deyimler ve Anlam İlişkileri",
+"passage": "Hayvanat bahçesini sınıf arkadaşlarıyla birlikte gezen Doruk, rehberin anlattığı kurtarma hikâyesini dinliyordu. Rehber, yaralı bir vaşağın doğaya yeniden kazandırılma sürecini anlatırken şu cümleyi kurmuştur: 'Yaralı hayvan ilk günlerde kafesinde sürekli sabırsızlanıyor, yerinde duramıyor, gelecek bakıcısının sesini duymak için can atıyordu.' Doruk, bu durumu sınıf arkadaşı İpek’e açıklarken yanlış bir deyim kullanmış ve İpek onu düzeltmiştir.",
+"question": "Buna göre rehberin anlattığı vaşağın durumunu en iyi ifade eden deyim ve açıklaması aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İçi içine sığmamak: Heyecanından, sevincinden veya sabırsızlığından durduğu yerde duramayacak durumda olmak.",
+"B": "Ağzı kulaklarına varmak: Çok sevinmek, neşelenmek.",
+"C": "Etekleri zil çalmak: Çok heyecanlanmak, sevinçten ne yapacağını bilememek.",
+"D": "Burnundan solumak: Çok öfkelenmek, sinirli bir şekilde soluk alıp vermek."
+},
+"answer": "A",
+"explanation": "Metinde vaşağın 'sabırsızlandığı, yerinde duramadığı' vurgulanmıştır. Bu durum, 'içi içine sığmamak' deyiminin tanımıyla tam olarak örtüşmektedir. Diğer deyimler sevinç veya öfke durumlarını ifade eder.",
+"vfd2": true,
+"unit": "Millî Mücadele ve Atatürk",
+"topics": "Metin türleri, Anlatım biçimleri, Noktalama",
+"d": 2,
+"ts": 1794120622
+},
+{
+"subject": "Türkçe",
+"topic": "Şiirde Ses ve Ahenk / Karşılaştırma",
+"passage": "Uzay merkezi sergisinde görevli rehber, öğrencilere sergi salonundaki tematik şiir panolarını tanıtmaktadır. Panoda yer alan iki şiir parçasının özellikleri şunlardır:\nI. Şiir: \"Yıldızlar birer lamba gibi yanar gece göğünde / Sessizlik uykuya dalar bu mavi örtü altında.\"\nII. Şiir: \"Güneş doğudan yavaşça doğar, ışıkları ovayı ısıtır / Kuşlar neşeyle şarkılar söyleyip göğe kanat çırpar.\"",
+"question": "Bu iki şiir parçası karşılaştırıldığında aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Her iki şiir de aynı sanat dalının kurallarıyla yazılmış nesnel metinlerdir.",
+"B": "II. şiir, günlük yaşamdaki sıradan gözlemleri doğrudan aktarmaktadır.",
+"C": "I. şiirde hayal gücüne ve benzetmeye dayalı unsurlar ağırluktadır.",
+"D": "I. şiirde estetik duyarlılığı artıran imgesel söyleyişler bulunmaktadır."
+},
+"answer": "A",
+"explanation": "Karşılaştırma, iki varlık veya durumun benzer ya da farklı yönlerini ortaya koymaktır. I. şiirde yıldızlar lambaya benzetilerek mecazî ve estetik bir ahenk (benzetme) kurulmuştur, doğa insanileştirilmiştir. II. şiir ise daha çok gözleme dayalı, gündelik ve düz bir anlatımla sade olayları aktarmaktadır. İki şiir karşılaştırıldığında, I. şiirde yoğun bir hayal gücü ve benzetme unsurları öne çıkarken II. şiir daha yalın ve nesnel bir gözlem sunmaktadır.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 2,
+"ts": 1794121010
+}
+]
+}

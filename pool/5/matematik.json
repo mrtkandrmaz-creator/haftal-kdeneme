@@ -448,6 +448,105 @@
 "topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
 "d": 2,
 "ts": 1794109427
+},
+{
+"subject": "Matematik",
+"topic": "Geometrik Şekiller",
+"passage": "",
+"question": "ABC üçgeninde [AD] kenarortaydır. |BD| = 5 cm ise |BC| kaç cm'dir?",
+"shape": {
+"type": "geo",
+"sub_type": "triangle",
+"kind": "scalene",
+"labels": [
+"A",
+"B",
+"C"
+],
+"ticks": true,
+"show_names": false,
+"cevians": [
+{
+"kind": "median",
+"from": "A",
+"foot": "D"
+}
+]
+},
+"options": {
+"A": "5",
+"B": "7.5",
+"C": "10",
+"D": "12"
+},
+"answer": "C",
+"explanation": "Kenarortay karşı kenarı iki eşit parçaya böler. BD = |DC| = 5 cm ise |BC| = 5 + 5 = 10 cm.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 4,
+"ts": 1794119317
+},
+{
+"subject": "Matematik",
+"topic": "Çok basamaklı sayılarla gerçek yaşam problemleri",
+"passage": "",
+"question": "Bir pastanede üretilen kurabiyelerin günlük paketlenme miktarları grafiktedir. Bir paket kurabiye 120 gram gelmektedir. Buna göre, Pazartesi üretilen kurabiyelerin toplam kütlesi ile Salı üretilenlerin toplam kütlesi arasındaki fark kaç gramdır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba"
+],
+"values": [
+450,
+380,
+500
+],
+"title": "Günlük Paket Sayısı",
+"show_names": false
+},
+"options": {
+"A": "7400",
+"B": "8400",
+"C": "9600",
+"D": "10400"
+},
+"answer": "B",
+"explanation": "Pazartesi üretilen kurabiye kütlesi: 450 × 120 = 54000 g. Salı üretilen kurabiye kütlesi: 380 × 120 = 45600 g. Aradaki fark: 54000 - 45600 = 8400 g.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 4,
+"ts": 1794120037
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.4.3. Alan Verildiğinde Çevreyi Bulma",
+"passage": "",
+"question": "Bir dikdörtgenin alanı 48 cm²'dir. Kenar uzunlukları birer doğal sayı olduğuna göre, bu dikdörtgenin çevresi en az kaç cm olabilir?",
+"shape": {
+"type": "rectangle",
+"width": 8,
+"height": 6,
+"width_label": "8 cm",
+"height_label": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "32",
+"C": "48",
+"D": "52"
+},
+"answer": "A",
+"explanation": "Kenarları (1,48), (2,24), (3,16), (4,12), (6,8) olabilir. Çevreler: 2(1+48)=98, 2(2+24)=52, 2(3+16)=38, 2(4+12)=32, 2(6+8)=28. En az değer 28 cm'dir.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794120345
 }
 ]
 }

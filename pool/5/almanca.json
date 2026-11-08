@@ -520,6 +520,326 @@
 "topics": "Lebensmittel, Vorlieben",
 "d": 2,
 "ts": 1794108963
+},
+{
+"subject": "Almanca",
+"topic": "Farben",
+"passage": "Ein Wissenschaftler untersucht Farbmischungen im Labor. Er mischt Blau und Gelb und erhält die Farbe Grün. Danach mischt er Rot und Blau und erhält Violett.",
+"question": "Welche Farbe entsteht laut den Labornotizen des Wissenschaftlers durch die Mischung von Blau und Gelb?",
+"shape": null,
+"options": {
+"A": "Braun",
+"B": "Schwarz",
+"C": "Violett",
+"D": "Grün"
+},
+"answer": "D",
+"explanation": "1. Im Text steht: 'Er mischt Blau und Gelb und erhält die Farbe Grün.' 2. Die gesuchte Farbe für Blau und Gelb ist demnach Grün. 3. Die anderen Optionen entsprechen nicht dieser Textstelle.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen und Farben",
+"passage": "Im Garten pflanzt ein Gärtner Blumen in Reihen an. In der ersten Reihe stehen fünfzig (50) rote Blumen. In der zweiten Reihe stehen dreißig (30) gelbe Blumen.",
+"question": "Welche Kombination aus Anzahl und Farbe trifft auf die erste Gartenreihe zu?",
+"shape": null,
+"options": {
+"A": "Dreißig rote Blumen",
+"B": "Fünfzig gelbe Blumen",
+"C": "Fünfzig rote Blumen",
+"D": "Dreißig gelbe Blumen"
+},
+"answer": "C",
+"explanation": "1. Der Text besagt, dass in der ersten Reihe fünfzig Blumen stehen. 2. Die Farbe dieser Blumen ist rot. 3. Somit ergibt sich die Kombination 'fünfzig rote Blumen'.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Farben",
+"passage": "In einer Kunstgalerie sind Gemälde nach Hauptfarben sortiert. Wand 1 zeigt Bilder in der Farbe Blau, Wand 2 zeigt Bilder in Gelb und Wand 3 zeigt Bilder in Grün.",
+"question": "Welche Farbe wird an Wand 2 der Kunstgalerie ausgestellt?",
+"shape": null,
+"options": {
+"A": "Gelb",
+"B": "Blau",
+"C": "Rot",
+"D": "Grün"
+},
+"answer": "A",
+"explanation": "1. Im Text wird beschrieben, dass Wand 2 Bilder in der Farbe Gelb zeigt. 2. Daher ist die gesuchte Farbe für Wand 2 Gelb.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen 1-100",
+"passage": "Im Zoo beobachten Besucher verschiedene Tiergehege. Im Gehege 1 sind sechzig (60) Vögel, im Gehege 2 sind zehn (10) Affen und im Gehege 3 sind zwanzig (20) Zebras.",
+"question": "Welche Tierart hat laut den Beobachtungen im Zoo die größte Anzahl?",
+"shape": null,
+"options": {
+"A": "Affen",
+"B": "Vögel",
+"C": "Löwen",
+"D": "Zebras"
+},
+"answer": "B",
+"explanation": "1. Vögel sind mit sechzig (60) Tieren vertreten. 2. Affen haben zehn und Zebras zwanzig Tiere. 3. Die größte Zahl ist sechzig, was den Vögeln entspricht.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen und Farben",
+"passage": "Ein Koch bereitet ein buntes Menü zu. Er verwendet vierzig (40) grüne Bohnen und zwanzig (20) rote Tomaten.",
+"question": "Welcher Fehler liegt in einer Rezeptanalyse vor, wenn behauptet wird, es gäbe vierzig rote Tomaten?",
+"shape": null,
+"options": {
+"A": "Die Anzahl der Bohnen ist falsch, es sind zehn.",
+"B": "Die Farbe der Tomaten ist falsch, sie sind grün.",
+"C": "Die Farbe der Bohnen ist falsch, sie sind gelb.",
+"D": "Die Anzahl der Tomaten ist falsch, es sind zwanzig."
+},
+"answer": "D",
+"explanation": "1. Im Text hat der Koch zwanzig (20) rote Tomaten verwendet. 2. Die Behauptung von vierzig roten Tomaten verwechselt die Anzahl der Bohnen (vierzig) mit den Tomaten. 3. Die korrekte Anzahl der Tomaten ist zwanzig.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen 1-100",
+"passage": "Auf einem Markt kostet ein Artikel zehn (10) Euro, ein anderer Artikel dreißig (30) Euro und ein dritter Artikel achtzig (80) Euro.",
+"question": "Welcher Preis gehört zu dem teuersten Artikel auf diesem Markt?",
+"shape": null,
+"options": {
+"A": "Zehn Euro",
+"B": "Achtzig Euro",
+"C": "Dreißig Euro",
+"D": "Vierzig Euro"
+},
+"answer": "B",
+"explanation": "1. Die genannten Preise sind zehn, dreißig und achtzig Euro. 2. Die Zahl achtzig ist die größte Zahl unter den Optionen. 3. Somit ist achtzig Euro der Preis für den teuersten Artikel.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen 1-100 und Farben",
+"passage": "Auf einem Bauernhof zählt der Bauer die Tiere und ihre Gehege-Markierungen. Er notiert folgende Zahlen und Farben: Es gibt dreizehn (13) weiße Schafe, zwanzig (20) schwarze Kühe, zwölf (12) braune Pferde und elf (11) graue Esel.",
+"question": "Welche Tierart hat die Anzahl von genau zwölf (12)?",
+"shape": null,
+"options": {
+"A": "die Kühe",
+"B": "die Esel",
+"C": "die Pferde",
+"D": "die Schafe"
+},
+"answer": "C",
+"explanation": "1. Schafe: 13 (dreizehn). 2. Kühe: 20 (zwanzig). 3. Pferde: 12 (zwölf). 4. Esel: 11 (elf). Die gesuchte Anzahl 12 gehört zu den Pferden (braune Pferde).",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen 1-100 und Farben",
+"passage": "Ein Energieunternehmen dokumentiert die Leuchtfarben von Test-LED-Lampen in einem Energiesparprojekt. Die gezählten Lampen pro Farbe sind: sechsundsechzig (66) weiße Lampen, einundachtzig (81) rote Lampen, neunundneunzig (99) blaue Lampen und vierundfünfzig (54) grüne Lampen.",
+"question": "Welche Farb- und Zahlenkombination ist im Text korrekt angegeben?",
+"shape": null,
+"options": {
+"A": "rote Lampen: vierundfünfzig (54)",
+"B": "grüne Lampen: sechsundsechzig (66)",
+"C": "weiße Lampen: einundachtzig (81)",
+"D": "blaue Lampen: neunundneunzig (99)"
+},
+"answer": "D",
+"explanation": "1. Blau ist neunundneunzig (99), was mit Option A übereinstimmt. 2. Grün ist fünfzigundvier (54), nicht 66. 3. Rot ist einundachtzig (81), nicht 54. 4. Weiß ist sechsundsechzig (66), nicht 81. Daher ist nur A korrekt.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen 1-100 und Farben",
+"passage": "Auf einem großen Handwerksmarkt bietet ein Stand Textilien in verschiedenen Farben an. Die Stückzahlen sind: siebenundzwanzig (27) braune Taschen, dreiundfünfzig (53) weiße Tücher, zweiundsiebzig (72) rote Mützen und neunzehn (19) schwarze Gürtel.",
+"question": "Welche Aussage über die Artikel und ihre Zahlen auf dem Markt ist richtig?",
+"shape": null,
+"options": {
+"A": "Es gibt neunzehn (19) rote Mützen.",
+"B": "Es gibt dreiundfünfzig (53) weiße Tücher.",
+"C": "Es gibt siebenundzwanzig (27) schwarze Gürtel.",
+"D": "Es gibt zweiundsiebzig (72) braune Taschen."
+},
+"answer": "B",
+"explanation": "1. Text prüfen: weiße Tücher sind dreiundfünfzig (53). 2. Rote Mützen sind zweiundsiebzig (72). 3. Braune Taschen sind siebenundzwanzig (27). 4. Schwarze Gürtel sind neunzehn (19). Nur B gibt die korrekte Zahl und Farbe wieder.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Zahlen 1-100 und Farben",
+"passage": "In einer Recyclinganlage werden Kunststoffkisten nach Farben sortiert und gezählt. Die Statistik zeigt: achtundsechzig (68) gelbe Kisten, fünfundachtzig (85) blaue Kisten, sechsundvierzig (46) rote Kisten und siebenundneunzig (97) grüne Kisten.",
+"question": "Welche Farbkiste hat die geringste Anzahl in der Recyclinganlage?",
+"shape": null,
+"options": {
+"A": "blaue Kisten",
+"B": "grüne Kisten",
+"C": "rote Kisten",
+"D": "gelbe Kisten"
+},
+"answer": "C",
+"explanation": "1. Gelbe Kisten: 68. 2. Blaue Kisten: 85. 3. Rote Kisten: 46. 4. Grüne Kisten: 97. Die kleinste Zahl ist 46, was den roten Kisten entspricht.",
+"vfd2": true,
+"unit": "Zahlen und Farben",
+"topics": "Zahlen 1-100, Farben",
+"d": 3,
+"ts": 1794120407
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßung",
+"passage": "Vier Personen treffen sich am Morgen in Berlin und begrüßen sich unterschiedlich: Anna sagt 'Guten Morgen!', Tom sagt 'Hallo!', Lisa sagt 'Guten Tag!' und Max sagt 'Guten Abend!'.",
+"question": "Welche Person benutzt eine Begrüßung, die ausschließlich für die Morgenstunden geeignet ist?",
+"shape": null,
+"options": {
+"A": "Lisa",
+"B": "Tom",
+"C": "Max",
+"D": "Anna"
+},
+"answer": "D",
+"explanation": "1. Der Text beschreibt die Begrüßungen von vier Personen zu verschiedenen Tageszeiten in Berlin. 2. Lisa sagt 'Guten Tag' (Tag), Max sagt 'Guten Abend' (Abend), Tom sagt 'Hallo' (jederzeit) und Anna sagt 'Guten Morgen!' (Morgen). 3. Daher ist Annas Begrüßung spezifisch für den Morgen.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 2,
+"ts": 1794120751
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "Drei neue Schüler stellen sich in der Klasse vor:\n- Lukas: 'Ich bin Lukas. Ich komme aus Wien und wohne in Köln.'\n- Marie: 'Ich heiße Marie. Ich komme aus Bern und wohne in Berlin.'\n- Paul: 'Ich bin Paul. Ich komme aus Zürich und wohne in Hamburg.'",
+"question": "Wer wohnt laut den Vorstellungen in der deutschen Hauptstadt Berlin?",
+"shape": null,
+"options": {
+"A": "Marie",
+"B": "Lukas",
+"C": "Niemand",
+"D": "Paul"
+},
+"answer": "A",
+"explanation": "1. Wir analysieren die Wohnorte der Schüler aus dem Text. 2. Lukas wohnt in Köln, Paul wohnt in Hamburg und Marie wohnt in Berlin. 3. Berlin ist die Hauptstadt Deutschlands, und Marie wohnt dort.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 2,
+"ts": 1794120751
+},
+{
+"subject": "Almanca",
+"topic": "Alphabet",
+"passage": "Ein Schüler buchstabiert ein geheimes Wort für ein Rätsel im Deutschunterricht: 'E - L - F - E - N - B - E - I - N'.",
+"question": "Wie viele verschiedene Buchstaben kommen in diesem buchstabierten Wort insgesamt vor?",
+"shape": null,
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "9"
+},
+"answer": "B",
+"explanation": "1. Das buchstabierte Wort lautet E-L-F-E-N-B-E-I-N. 2. Wir listen die eindeutigen Buchstaben auf: E, L, F, N, B, I. 3. Zählen wir diese einzigartigen Buchstaben, erhalten wir insgesamt 6 verschiedene Buchstaben.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 2,
+"ts": 1794120751
+},
+{
+"subject": "Almanca",
+"topic": "Alphabet",
+"passage": "Im deutschen Alphabet hat jeder Buchstabe eine feste Position von A (1) bis Z (26). Ein Schüler schreibt die ersten Buchstaben seines Vornamens auf: N - I - K - L - A - S.",
+"question": "Welcher Buchstabe aus diesem Vornamen steht im deutschen Alphabet am weitesten hinten?",
+"shape": null,
+"options": {
+"A": "S",
+"B": "A",
+"C": "K",
+"D": "I"
+},
+"answer": "A",
+"explanation": "1. Der Name ist N-I-K-L-A-S. 2. Die Positionen im Alphabet sind: A (1), I (9), K (11), L (12), N (14), S (19). 3. Der Buchstabe S hat die höchste Positionsnummer (19) und steht somit am weitesten hinten im Alphabet.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 2,
+"ts": 1794120751
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßung und Sich vorstellen",
+"passage": "Ein kurzer Dialog zwischen zwei Jugendlichen an einer Bushaltestelle:\n- Person A: 'Hallo! Ich heiße Jonas.'\n- Person B: 'Guten Tag! Mein Name ist Sophie.'",
+"question": "Welcher Fehler liegt in der Analyse dieses Dialogs vor, wenn ein Schüler behauptet, dass beide Personen dieselbe Art von Begrüßung verwenden?",
+"shape": null,
+"options": {
+"A": "Jonas verwendet eine formelle Begrüßung, Sophie eine informelle.",
+"B": "Jonas verwendet eine informelle Begrüßung ('Hallo'), während Sophie eine formellere Begrüßung ('Guten Tag') wählt.",
+"C": "Beide Personen stellen sich überhaupt nicht vor.",
+"D": "Beide Personen benutzen exakt dieselben Wörter für die Begrüßung."
+},
+"answer": "B",
+"explanation": "1. Jonas sagt 'Hallo', was eine informelle/lockere Begrüßung ist. 2. Sophie sagt 'Guten Tag', was traditioneller und formeller ist. 3. Die Behauptung, sie würden dieselbe Art verwenden, ist falsch, da 'Hallo' informell und 'Guten Tag' formeller ist.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 2,
+"ts": 1794120751
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßung",
+"passage": "In einem historischen Museum in Berlin treffen sich drei Personen zu unterschiedlichen Tageszeiten und nutzen jeweils andere Begrüßungsformen. Person A kommt morgens um 08:30 Uhr an und sagt 'Guten Morgen'. Person B trifft am Nachmittag um 15:00 Uhr ein und nutzt 'Guten Tag'. Person C betritt das Museum abends um 19:30 Uhr und verwendet 'Guten Abend'.",
+"question": "Buna göre, kişilerin müzeye giriş saatleri ve kullandıkları selamlama ifadeleri dikkate alındığında aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Person A nutzt eine Begrüßung, die nur nach Sonnenuntergang gültig ist.",
+"B": "Person B verwendet eine Formel, die ausschließlich für den Vormittag geeignet ist.",
+"C": "Person C begrüßt jemanden mit einem Ausdruck, der für die Abendstunden passend ist.",
+"D": "Alle drei Personen verwenden unabhängig von der Uhrzeit exakt dieselbe Begrüßung."
+},
+"answer": "C",
+"explanation": "Person C kommt abends um 19:30 Uhr an und verwendet 'Guten Abend', was in den Abendstunden korrekt ist. Die anderen Optionen enthalten falsche Zuordnungen zu den Tageszeiten.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 2,
+"ts": 1794120751
 }
 ]
 }

@@ -540,6 +540,646 @@
 "topics": "Genres, Opinions, Past simple basics",
 "d": 2,
 "ts": 1794109497
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Places and Directions",
+"passage": "A local fisherman, Mr. Demir, describes his daily route to the harbor: 'I start from my house. First, I go straight along the Main Street. I turn left at the bakery. Then, I walk past the flower shop. Finally, the harbor is on my right, opposite the post office.'",
+"question": "Which of the following describes the correct order of Mr. Demir's movement?",
+"shape": null,
+"options": {
+"A": "Go straight -> turn right -> walk past the post office -> arrive at the harbor.",
+"B": "Turn right -> walk past the bakery -> go straight -> arrive at the harbor.",
+"C": "Go straight -> turn left -> walk past the flower shop -> arrive at the harbor.",
+"D": "Walk past the harbor -> turn left -> go straight -> arrive at the bakery."
+},
+"answer": "C",
+"explanation": "Step 1: Identify the starting point. Step 2: Follow the sequence 'go straight' -> 'turn left at the bakery' -> 'walk past the flower shop'. Step 3: Match this sequence with the options. The path matches the description in the passage exactly.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 4,
+"ts": 1794120101
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Places and Context",
+"passage": "Selin wants to buy bread, borrow a book, and send a letter. The Bakery is on the corner. The Library is opposite the Bakery. The Post Office is next to the Library.",
+"question": "Based on the locations, which sequence is the most logical to complete her tasks?",
+"shape": null,
+"options": {
+"A": "Library -> Post Office -> Bakery",
+"B": "Bakery -> Post Office -> Library",
+"C": "Bakery -> Library -> Post Office",
+"D": "Post Office -> Library -> Bakery"
+},
+"answer": "C",
+"explanation": "Step 1: List items: Bread (Bakery), Book (Library), Letter (Post Office). Step 2: Since Library and Post Office are adjacent, visit them sequentially. Step 3: Option A follows a logical geographic flow where she goes to the corner (Bakery) and then to the opposite side (Library and Post Office).",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 4,
+"ts": 1794120101
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Prepositions of Place",
+"passage": "Health Center Map: The Doctor's office is near the pharmacy. The Laboratory is under the Doctor's office. The Emergency unit is far from the Laboratory. The waiting room is between the Doctor's office and the Emergency unit.",
+"question": "Which of the following is true about the Emergency unit?",
+"shape": null,
+"options": {
+"A": "It is above the Waiting room.",
+"B": "It is next to the Laboratory.",
+"C": "It is close to the Doctor's office.",
+"D": "It is not near the Laboratory."
+},
+"answer": "D",
+"explanation": "Step 1: Identify relationships: Waiting Room is between Doctor's office and Emergency. Step 2: The passage explicitly states the Emergency unit is 'far from' the Laboratory. Step 3: 'Not near' is a synonym for 'far from'.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 4,
+"ts": 1794120101
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Places and Reasons",
+"passage": "Ayşe's trip to the city: 'I went to the museum to see history, then I went to the cafe which is behind the museum to rest, and finally, I walked to the park because it is next to the cafe.'",
+"question": "Why did Ayşe go to the park last?",
+"shape": null,
+"options": {
+"A": "Because it is next to the cafe where she rested.",
+"B": "Because the museum is next to the park.",
+"C": "Because it is far from the museum.",
+"D": "Because the cafe is between the museum and the park."
+},
+"answer": "A",
+"explanation": "Step 1: Identify the reason for visiting the park. Step 2: The text states: 'I walked to the park because it is next to the cafe.' Step 3: Match this with option B.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 4,
+"ts": 1794120101
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Places and Prepositions",
+"passage": "At the city book fair: The bookstore is between the museum and the library. The cafe is behind the bookstore. The stationery shop is opposite the library.",
+"question": "If you are standing in front of the library, which of the following is true according to the layout?",
+"shape": null,
+"options": {
+"A": "The museum is behind you.",
+"B": "The stationery shop is on your right.",
+"C": "The cafe is in front of you.",
+"D": "The bookstore is on your left."
+},
+"answer": "B",
+"explanation": "The bookstore is between the museum and the library, so the bookstore is next to the library. If you face the library, the museum is on the side of the bookstore. Being opposite the library, the stationery shop is on the side you are facing. Therefore, the stationery shop is on your right if you are standing in front of the library looking at it.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 4,
+"ts": 1794120101
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Places and Directions",
+"passage": "Customer: Is there a bakery in this street?\nShopkeeper: Yes, walk straight ahead, turn left at the pharmacy, and it is next to the police station.\nCustomer: Where is the pharmacy then?\nShopkeeper: It is across from the supermarket.",
+"question": "Which of the following describes the location of the bakery correctly?",
+"shape": null,
+"options": {
+"A": "It is between the pharmacy and the supermarket.",
+"B": "It is opposite the police station.",
+"C": "It is next to the police station after a left turn.",
+"D": "It is behind the supermarket."
+},
+"answer": "C",
+"explanation": "The shopkeeper gives explicit directions: 'walk straight ahead', 'turn left at the pharmacy', and the bakery 'is next to the police station'. This matches the second option perfectly.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 4,
+"ts": 1794120101
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Places",
+"passage": "Table of distances from the park: \n- Museum: 200 meters north\n- Hospital: 150 meters south\n- School: 300 meters east\n- Toy Shop: 250 meters west",
+"question": "Which of the following is correct according to the table?",
+"shape": null,
+"options": {
+"A": "The toy shop is the closest place to the park.",
+"B": "The school is the furthest place from the park.",
+"C": "The museum is closer than the hospital to the park.",
+"D": "The hospital is further than the museum from the park."
+},
+"answer": "B",
+"explanation": "Comparing the distances: Museum (200m), Hospital (150m), School (300m), Toy Shop (250m). The school is at 300m, which is the maximum value, making it the furthest location.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 4,
+"ts": 1794120101
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Comparing abilities",
+"passage": "At the Robotics Workshop, students work in pairs. Mete can build complex robots and design circuits, but he cannot code. Selin can code perfectly and design circuits, but she cannot build robots. They want to finish a project that requires building, circuit design, and coding.",
+"question": "Which of the following statements is true for the project completion?",
+"shape": null,
+"options": {
+"A": "Mete and Selin are both unable to finish the project because they have the same skills.",
+"B": "They can finish the project together because their skills complement each other.",
+"C": "Selin is sufficient to finish the project alone by using her coding and design skills.",
+"D": "They cannot finish the project because both of them lack the coding skill."
+},
+"answer": "B",
+"explanation": "Mete has building and design skills; Selin has design and coding skills. Together they cover building, design, and coding. Therefore, they can finish the project together as they complement each other.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Preferences and decision making",
+"passage": "At the Book Fair, there are three zones: Sci-Fi, History, and Art. Burak loves reading about futuristic machines but dislikes ancient events. Zeynep prefers reading about famous painters but hates futuristic science. Defne enjoys historical battles and reading about inventions.",
+"question": "Which zone should Burak and Zeynep visit together to satisfy both of their interests?",
+"shape": null,
+"options": {
+"A": "They cannot visit any zone that satisfies both of them.",
+"B": "They can visit the Sci-Fi zone together.",
+"C": "They can visit the Art zone together.",
+"D": "They can visit the History zone together."
+},
+"answer": "A",
+"explanation": "Burak likes Sci-Fi but dislikes History. Zeynep likes Art but dislikes Sci-Fi. Since Burak dislikes History and Zeynep dislikes Sci-Fi, there is no shared interest area among the options provided that suits both.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Classification",
+"passage": "In the school library, students choose their hobbies: Kerem: chess and sculpting; Ayşe: swimming and cycling; Mert: guitar and chess; Elif: cycling and painting.",
+"question": "According to the list, which category is correctly assigned to the students?",
+"shape": null,
+"options": {
+"A": "Kerem and Ayşe share an 'outdoor activity' interest.",
+"B": "Ayşe and Elif share a 'musical instrument' interest.",
+"C": "Kerem and Mert share a 'mind games' interest.",
+"D": "Mert and Elif share a 'sport' interest."
+},
+"answer": "C",
+"explanation": "Kerem (chess) and Mert (chess) both list chess, which is a mind game. Other pairings do not share the same hobby category.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Identifying errors",
+"passage": "Four friends talk about what they can/cannot do. Can: 'I can play basketball, but I cannot swim.' Ece: 'I can play the piano, and I can sing.' Ali: 'I cannot play football, but I can play chess.' Nil: 'I cannot paint, but I can ride a horse.'",
+"question": "Which student has a conflict in their statement regarding 'hobbies'?",
+"shape": null,
+"options": {
+"A": "Nil has a conflict because she cannot paint.",
+"B": "Ece has a conflict because singing is not a skill.",
+"C": "Can has a conflict because basketball is not a hobby.",
+"D": "There is no logical conflict in any of their statements regarding hobby abilities."
+},
+"answer": "D",
+"explanation": "All students are stating what they can or cannot do regarding activities/hobbies. None of the sentences contain logical contradictions or errors in the context of describing abilities.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Multi-step reasoning",
+"passage": "A photography club has three tasks: Nature shots, Portrait shots, and Action shots. To be a member, you must like at least two of these. Cem: Likes nature and portrait. Deniz: Likes only action. Ece: Likes portrait, nature, and action. Arda: Likes nature and action.",
+"question": "Who can be a member of the club according to the rule?",
+"shape": null,
+"options": {
+"A": "Only Ece",
+"B": "Cem, Ece, and Arda",
+"C": "Cem and Deniz",
+"D": "Deniz and Ece"
+},
+"answer": "B",
+"explanation": "Cem likes two (nature, portrait), Ece likes three, and Arda likes two (nature, action). They meet the 'at least two' criteria. Deniz likes only one, so he cannot be a member.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Completing missing info",
+"passage": "The nature club needs a list of activities. Table: Tree planting (Yes), Bird watching (No), Trash collection (Yes). Ali: Likes tree planting and trash collection. Ayşe: Likes bird watching and tree planting.",
+"question": "Which activity should the club add to the list for Ayşe to be fully satisfied with the club's activities?",
+"shape": null,
+"options": {
+"A": "Trash collection",
+"B": "Gardening",
+"C": "Bird watching",
+"D": "Tree planting"
+},
+"answer": "C",
+"explanation": "Ayşe likes bird watching and tree planting. The club currently offers tree planting and trash collection. To satisfy her interest in 'bird watching', which is not in the list, the club needs to add it.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Free time and Can/Can't",
+"passage": "Dr. Arda is a researcher. He observes children's hobbies in his lab. He writes: 'Ece can play chess and swim well. Mert can play the guitar but he can't play chess. Selin loves painting and she can play the guitar too. Ece and Selin can both play the guitar, but only Ece can play chess.'",
+"question": "Which of the following completes the missing information about the children's skills according to Dr. Arda's notes?",
+"shape": null,
+"options": {
+"A": "Mert can play chess and the guitar.",
+"B": "Ece can play chess, swim and play the guitar.",
+"C": "Selin can play chess and paint.",
+"D": "Mert can play the guitar and swim."
+},
+"answer": "B",
+"explanation": "Ece can play chess, swim, and plays guitar (based on 'Ece and Selin can both play the guitar'). Mert can play guitar but not chess. Selin can play guitar and paint. The statement that Ece can play chess, swim and play the guitar is correct.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Classification",
+"passage": "Library Activity Table: - Chess Club: Can think strategically. - Art Corner: Can paint beautifully. - Drama Club: Can act well. Oya loves painting, so she joins the Art Corner. Can likes acting, so he joins the Drama Club. Ege loves strategy games, so he joins the Chess Club.",
+"question": "Which of the following is the correct matching of the students and their club activities?",
+"shape": null,
+"options": {
+"A": "Can - Art Corner",
+"B": "Oya - Chess Club",
+"C": "Ege - Chess Club",
+"D": "Oya - Drama Club"
+},
+"answer": "C",
+"explanation": "Oya likes painting (Art Corner), Can likes acting (Drama Club), Ege likes strategy games (Chess Club). The only correct match provided is Ege - Chess Club.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794120247
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Sports and Healthy Life",
+"passage": "Zoo keepers are preparing a daily fitness routine for the animals to keep them active and healthy. \n- Elephant: It needs to walk 5 kilometers and lift heavy logs.\n- Monkey: It enjoys climbing trees and jumping between branches for 2 hours.\n- Penguin: It swims in the cold pool for 1 hour every morning.\n- Cheetah: It runs fast across the field for 30 minutes.\n\nRead the activities above. Which of the following animals performs an activity that matches the definition of 'swimming in water'?",
+"question": "According to the text above, which animal has a daily fitness routine related to water?",
+"shape": null,
+"options": {
+"A": "Penguin",
+"B": "Cheetah",
+"C": "Elephant",
+"D": "Monkey"
+},
+"answer": "A",
+"explanation": "Step 1: Read the fitness activities of each animal in the zoo text.\nStep 2: Look at the penguin's routine, which says it swims in the cold pool for 1 hour every morning.\nStep 3: Match the activity of swimming with the options.\nStep 4: The correct option is Penguin.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 3,
+"ts": 1794120482
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Healthy Life and Forest Activities",
+"passage": "Forest rangers organize outdoor fitness camps to promote a healthy lifestyle. Campers do morning yoga, go hiking through the trees, and drink fresh water. \n\nAhmet wants to join an activity that improves his stamina by walking long distances in nature.",
+"question": "Which activity from the forest camp should Ahmet choose to improve his stamina?",
+"shape": null,
+"options": {
+"A": "Sleeping in the tent",
+"B": "Morning yoga",
+"C": "Drinking fresh water",
+"D": "Hiking"
+},
+"answer": "D",
+"explanation": "Step 1: Identify Ahmet's goal, which is improving stamina by walking long distances.\nStep 2: Review the camp activities: morning yoga, hiking through trees, and drinking water.\nStep 3: Match walking long distances in nature with hiking.\nStep 4: The correct option is Hiking.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 3,
+"ts": 1794120482
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Camping and Physical Activities",
+"passage": "During the summer camp, students follow a daily fitness schedule:\n- 08:00 AM: Running in the fresh air\n- 10:00 AM: ?\n- 02:00 PM: Playing team sports\n\nTeacher Deniz forgot to write the 10:00 AM activity, but she noted that students stretch their muscles and use yoga mats during this slot.",
+"question": "Which of the following completes the missing 10:00 AM activity in the schedule?",
+"shape": null,
+"options": {
+"A": "Watching television",
+"B": "Doing yoga / Stretching",
+"C": "Sleeping in bed",
+"D": "Eating heavy fast food"
+},
+"answer": "B",
+"explanation": "Step 1: Look at the missing time slot at 10:00 AM.\nStep 2: Read the clues: students stretch their muscles and use yoga mats.\nStep 3: Match the clues with the given options.\nStep 4: Conclude that the activity is doing yoga / stretching.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 3,
+"ts": 1794120482
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Healthy Lifestyle and Library Research",
+"passage": "Students are doing research in the school library about healthy living. They find four books with different titles:\n- Book A: 'Fast Food Recipes and Sugary Drinks'\n- Book B: 'Daily Exercises and Sports for Kids'\n- Book C: 'Computer Games and Nightly Habits'\n- Book D: 'History of Ancient Castles'\n\nElif wants to read a book about physical fitness and staying active.",
+"question": "Which book should Elif choose for her research on fitness and staying active?",
+"shape": null,
+"options": {
+"A": "Book A",
+"B": "Book D",
+"C": "Book C",
+"D": "Book B"
+},
+"answer": "D",
+"explanation": "Step 1: Determine Elif's research topic: physical fitness and staying active.\nStep 2: Check the titles of Book A, Book B, Book C, and Book D.\nStep 3: Identify Book B ('Daily Exercises and Sports for Kids') as the matching title.\nStep 4: Select Book B as the correct answer.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 3,
+"ts": 1794120482
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Bicycle Tour and Healthy Habits",
+"passage": "Four friends join a weekend bicycle tour to stay fit and healthy. Here is the distance each friend cycles:\n- Mert: 15 kilometers\n- Zeynep: 25 kilometers\n- Kerem: 10 kilometers\n- Aylin: 20 kilometers",
+"question": "According to the bicycle tour data above, who cycles the longest distance to stay fit?",
+"shape": null,
+"options": {
+"A": "Mert",
+"B": "Zeynep",
+"C": "Aylin",
+"D": "Kerem"
+},
+"answer": "B",
+"explanation": "Step 1: Compare the distances cycled by each friend.\nStep 2: Mert is 15 km, Zeynep is 25 km, Kerem is 10 km, Aylin is 20 km.\nStep 3: Find the maximum distance, which is 25 kilometers.\nStep 4: Identify Zeynep as the person who cycles the longest distance.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 3,
+"ts": 1794120482
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Sports",
+"passage": "Emre wants to stay fit and tries different sports during the week. According to his weekly sports plan: \n- On Mondays, he goes to the gym for step aerobics.\n- On Wednesdays, he plays basketball with his school team.\n- On Fridays, he goes swimming at the local indoor pool.\n- On weekends, he prefers outdoor activities like cycling.\nHowever, Emre hates team sports involving a ball and indoors, but he loves individual activities in the water or cycling.",
+"question": "Based on the text above, which of the following sports activities does Emre NOT prefer according to his personal likes?",
+"shape": null,
+"options": {
+"A": "Cycling",
+"B": "Step aerobics",
+"C": "Basketball",
+"D": "Swimming"
+},
+"answer": "C",
+"explanation": "Step 1: Read Emre's weekly plan and his personal likes/dislikes. Step 2: Note that he hates team sports involving a ball and indoors. Step 3: Identify that basketball is a team sport with a ball played indoors, which conflicts with his preferences. Step 4: Conclude that basketball is the activity he does not prefer personally, making the correct option Basketball.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 3,
+"ts": 1794120482
+},
+{
+"subject": "İngilizce",
+"topic": "Fitness: Healthy life",
+"passage": "Zeynep wants to live a healthier life and prepares a daily routine checklist:\nI. Eating fast food every evening for dinner.\nII. Drinking at least eight glasses of water a day.\nIII. Doing warm-up exercises before physical training.\nIV. Sleeping only three hours a night to study more.",
+"question": "Which of the items in Zeynep's checklist support a healthy lifestyle?",
+"shape": null,
+"options": {
+"A": "I and IV",
+"B": "II and III",
+"C": "I, II and III",
+"D": "II, III and IV"
+},
+"answer": "B",
+"explanation": "Step 1: Evaluate item I (eating fast food every evening) - unhealthy. Step 2: Evaluate item II (drinking eight glasses of water) and item III (warm-up exercises) - both healthy habits. Step 3: Evaluate item IV (sleeping only three hours) - unhealthy. Step 4: Combine the healthy habits, which are II and III.",
+"vfd2": true,
+"unit": "Fitness",
+"topics": "Sports, Healthy life",
+"d": 3,
+"ts": 1794120482
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Body parts",
+"passage": "Doctor: 'What is the matter with you?' \nPatient: 'I feel terrible. I can't lift heavy things because my arms hurt very much, and I have a sharp pain in my upper back.'",
+"question": "Which of the following body parts does the patient mention as the source of pain?",
+"shape": null,
+"options": {
+"A": "Head and stomach",
+"B": "Knees and fingers",
+"C": "Arms and back",
+"D": "Throat and shoulders"
+},
+"answer": "C",
+"explanation": "1. Read the patient's dialogue carefully. 2. Identify the mentioned body parts: 'arms hurt' and 'pain in my upper back'. 3. Match these findings with the options. 4. The correct matching is Arms and back.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Illnesses",
+"passage": "Nurse: 'Here is the medical log of the students today.' \n- Kerem: He is sneezing constantly and has a running nose. \n- Defne: Her forehead is very hot and she feels cold all the time. \n- Mert: He ate too much junk food and now he feels terrible in his belly.",
+"question": "According to the medical log, which of the following matching is correct for the students' illnesses?",
+"shape": null,
+"options": {
+"A": "Kerem: a cold - Defne: a cough - Mert: a toothache",
+"B": "Kerem: a flu - Defne: a fever - Mert: a stomachache",
+"C": "Kerem: a headache - Defne: a cold - Mert: a broken leg",
+"D": "Kerem: a backache - Defne: a fever - Mert: a stomachache"
+},
+"answer": "B",
+"explanation": "1. Analyze Kerem's symptoms (sneezing, running nose), which indicate a cold or flu. 2. Analyze Defne's symptoms (hot forehead, feeling cold), which indicate a fever. 3. Analyze Mert's symptoms (belly pain after junk food), which indicate a stomachache. 4. Match with option C.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Advice",
+"passage": "Teacher: 'My throat hurts so badly, and I have lost my voice.' \nStudent: 'You should take your cough syrup and drink warm mint-lemon tea, teacher. You shouldn't drink ice-cold water or shout at all.'",
+"question": "Based on the dialogue, what is the student's advice for the teacher?",
+"shape": null,
+"options": {
+"A": "Drink ice-cold water and rest at home.",
+"B": "Eat heavy meals and run outside.",
+"C": "Sing a song loudly and skip meals.",
+"D": "Take cough syrup and drink warm mint-lemon tea."
+},
+"answer": "D",
+"explanation": "1. Locate the student's speaking turns in the dialogue. 2. Find the positive recommendations: 'take your cough syrup and drink warm mint-lemon tea'. 3. Compare with the options. 4. Option B matches the advice given.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Body parts & Illnesses",
+"passage": "Ahmet's mother examines him before going to school: \n- He has a bad cough and a sore throat. \n- When he tries to swallow food, his neck hurts. \n- He also touches his forehead because it is extremely hot.",
+"question": "Which of the following body parts are directly affected by Ahmet's current illness according to the text?",
+"shape": null,
+"options": {
+"A": "Throat and forehead",
+"B": "Eyes and ears",
+"C": "Legs and toes",
+"D": "Ankle and wrist"
+},
+"answer": "A",
+"explanation": "1. Scan the text for body parts mentioned during the illness. 2. The text mentions 'throat', 'neck', and 'forehead' (temperature). 3. Look at the options to find the matching parts. 4. Throat and forehead are listed in option A.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Advice",
+"passage": "School Health Club Notice: \n'If you feel tired and have a terrible headache, you shouldn't stare at digital screens for hours. You should get some fresh air, sleep early, and drink plenty of water.'",
+"question": "According to the club notice, what should a student with a headache avoid doing?",
+"shape": null,
+"options": {
+"A": "Get some fresh air",
+"B": "Sleep early at night",
+"C": "Drink plenty of water",
+"D": "Stare at digital screens for hours"
+},
+"answer": "D",
+"explanation": "1. Read the notice for recommendations starting with 'shouldn't'. 2. The text states: 'you shouldn't stare at digital screens for hours'. 3. Match this negative advice with the options. 4. Option C represents what to avoid.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Illnesses",
+"passage": "Aylin's Health Journal: \n- Monday: I walked in the heavy rain without an umbrella. Now I am sneezing and coughing. \n- Wednesday: I played basketball and fell down. My knee is swollen and hurts a lot. \n- Friday: I ate three big chocolate bars. Now I have a terrible stomachache.",
+"question": "Which of the following is NOT mentioned in Aylin's health journal?",
+"shape": null,
+"options": {
+"A": "She has a stomachache on Friday.",
+"B": "She has a broken arm on Wednesday.",
+"C": "She has a cough on Monday.",
+"D": "She has a swollen knee on Wednesday."
+},
+"answer": "B",
+"explanation": "1. Check Monday's entry: coughing is mentioned (Option A is true). 2. Check Wednesday's entry: knee is swollen and hurts (Option C is true). 3. Check Friday's entry: stomachache is mentioned (Option D is true). 4. Option B mentions a 'broken arm', which is not in the text.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Body parts & Advice",
+"passage": "Doctor: 'Open your mouth and say 'Ah', please.' \nPatient: 'Ahhh...' \nDoctor: 'Your tonsils are red and swollen. You have a sore throat. You must stay in bed, take your pills on time, and wear a thick scarf around your neck.'",
+"question": "Why does the doctor advise the patient to wear a thick scarf around their neck?",
+"shape": null,
+"options": {
+"A": "Because the patient has an earache.",
+"B": "Because the patient has a toothache.",
+"C": "Because the patient has a sore throat and swollen tonsils.",
+"D": "Because the patient has a broken arm."
+},
+"answer": "C",
+"explanation": "1. Identify the doctor's prescription and advice regarding the neck/throat area. 2. The diagnosis is a sore throat and red, swollen tonsils. 3. The scarf keeps the neck warm for this specific condition. 4. Option B correctly connects the advice to the diagnosis.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Body parts",
+"passage": "At the coding club, Mert writes a digital robot game. He programs the robot to move its arm, bend its knee, and shake its head when it encounters an obstacle. However, the robot cannot pick up objects because its fingers are missing from its hand.",
+"question": "According to the passage, which body part does the robot need to add to its game program to pick up objects?",
+"shape": null,
+"options": {
+"A": "Arm",
+"B": "Head",
+"C": "Knee",
+"D": "Finger"
+},
+"answer": "D",
+"explanation": "1. Mert programs the robot to move its arm, bend its knee, and shake its head.\n2. The text states the robot cannot pick up objects because its fingers are missing from its hand.\n3. Therefore, the robot needs a 'Finger' to solve this problem.\n4. The correct option is Finger.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Illnesses",
+"passage": "At the organic market, Burak needs to buy ingredients for his sick friends based on their doctor notes:\n- Ceren has a high fever and needs cold-relief products.\n- Doruk has a terrible backache and needs heat patches.\n- Ece has a bad cough and needs herbal lozenges.",
+"question": "Which of the following is NOT mentioned as a need for Burak's friends in the market list?",
+"shape": null,
+"options": {
+"A": "Fever",
+"B": "Backache",
+"C": "Toothache",
+"D": "Cough"
+},
+"answer": "C",
+"explanation": "1. Ceren has a fever.\n2. Doruk has a backache.\n3. Ece has a cough.\n4. Toothache is not mentioned in the market list for any of the friends.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Advice",
+"passage": "School canteen rules for a healthy break:\n- Rule 1: If you feel cold, wear a thick sweater and drink hot mint tea.\n- Rule 2: If you have a stomachache, stay away from fast food and drink water.\n- Rule 3: If you have a broken leg, rest at home and do not run in the corridors.",
+"question": "Based on the canteen rules, what should a student do if they have a stomachache?",
+"shape": null,
+"options": {
+"A": "Rest at home and do not run in the corridors",
+"B": "Stay away from fast food and drink water",
+"C": "Wear a thick sweater and drink hot mint tea",
+"D": "Go to the school garden and play football"
+},
+"answer": "B",
+"explanation": "1. Look at Rule 2 for stomachache.\n2. Rule 2 states to stay away from fast food and drink water.\n3. Match this with the options.\n4. The correct choice is staying away from fast food and drinking water.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794120642
 }
 ]
 }

@@ -360,6 +360,446 @@
 "topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
 "d": 3,
 "ts": 1794108576
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın önemi – Spor müsabakası bağlamı",
+"passage": "5/B sınıfı öğrencileri, okullarının bahçesinde düzenlenen futbol turnuvasına katılıyor. Takım kaptanı Melih, maçtan önce takım arkadaşlarına \"Namazın, beden ve ruh sağlığını koruduğu gibi takım oyununda da disiplin ve sorumluluk kazandırdığını\" anlatıyor. Turnuvada bir takımın oyuncusu sakatlanınca, sakatlanan oyuncunun annesi, \"Oğlumuzun iyileşmesi için sabah ve akşam namazlarını kılmasını istiyorum\" diyor.",
+"question": "Metne göre, namazın bireysel ve toplumsal faydalarına en uygun çıkarım hangisidir?",
+"shape": null,
+"options": {
+"A": "Namaz, spor başarısını doğrudan artıran bir teknik öğretidir.",
+"B": "Namaz, sadece bireysel bir ibadet olup toplumsal sorumlulukları etkilemez.",
+"C": "Namaz, sadece hastalık anında kılınmalı, günlük hayatta bir etkisi yoktur.",
+"D": "Namaz, disiplin ve sorumluluk duygusunu geliştirerek bireyin hem ruhsal hem de fiziksel sağlığına katkı sağlar."
+},
+"answer": "D",
+"explanation": "1. Metinde Melih, namazın disiplin ve sorumluluk kazandırdığını vurgular. 2. Anne, iyileşme sürecinde namazın faydasını dile getirir. 3. Bu iki ifade, namazın hem bireysel (ruh‑ve beden sağlığı) hem de toplumsal (takım içinde sorumluluk) faydalarını gösterir. 4. Bu çıkarım B şıkkında yer alır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Abdest – Akvaryum bağlamı",
+"passage": "5/A sınıfı öğrencileri, okulun akvaryum projesi kapsamında suyun temizliğini inceliyor. Projede, akvaryum suyunu temizlemek için suyun içinde 2 litre suya 40 ml saf suyla karıştırılan bir temizlik solüsyonu ekleniyor. Öğrenciler, akvaryum suyunun temizlenmesi için abdest almanın suyun temizliğiyle benzer bir temizlik olduğunu düşünüyorlar. Abdest alırken, eller, yüz ve ayaklar temiz suyla yıkanır.",
+"question": "Metne göre, abdestin temiz suyla yapılması ile akvaryum suyunun temizlenmesi arasındaki en uygun benzerlik hangisidir?",
+"shape": null,
+"options": {
+"A": "Abdest, suyun kimyasal yapısını değiştirir; akvaryum suyu ise sadece fiziksel olarak temizlenir.",
+"B": "Abdestte su miktarı sabittir; akvaryumda ise su miktarı değişkendir.",
+"C": "İkisinde de temiz suyun, kirli kısmı yıkayarak arındırması temel işlemdir.",
+"D": "İkisinde de kirli suyun tamamen yok olması gerekir."
+},
+"answer": "C",
+"explanation": "1. Metinde abdestin temiz suyla yıkanması vurgulanıyor. 2. Akvaryumda da temiz suyla karıştırılan solüsyon kirli suyu arındırıyor. 3. Her iki durumda da temiz su, kirli kısmı yıkayarak temizleme işlevi görür. 4. Bu özellik B şıkkında verilmiştir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın önemi – Bahçe düzenleme bağlamı",
+"passage": "Okul bahçesinde, 5/E sınıfı öğrencileri bir çiçek tarhı oluşturuyor. Tarhın bir köşesine \"Namaz, kalbimizi temizler, iyilik yapmamıza vesile olur\" yazılı bir levha koyuyorlar. Öğrenciler, haftada iki kez 15 dakikalık temizlik yaparken, aynı zamanda namaz vakitlerinde bahçeyi süslü çiçeklerle donatıyorlar. Proje sonunda, bahçenin temizliği %40 artmış, çiçek sayısı ise %25 artmıştır.",
+"question": "Metne göre, namazın bireysel manevi faydasının toplumsal etkisi en iyi hangi ifadeyle açıklanır?",
+"shape": null,
+"options": {
+"A": "Namaz, haftada iki kez temizlik yapılmasını zorunlu kılar; aksi takdirde toplumsal düzen bozulur.",
+"B": "Namaz, kalbin temizlenmesiyle bireyin sorumluluk duygusunu artırır, bu da çevre temizliğinde somut bir artışa yol açar.",
+"C": "Namaz, sadece bireyin kalbini temizler; toplumsal düzeni etkilemez.",
+"D": "Namaz, çiçek sayısını artırır; bu yüzden bahçenin estetiği doğrudan ibadetten etkilenir."
+},
+"answer": "B",
+"explanation": "1. Levhada namazın kalbi temizlediği belirtiliyor. 2. Öğrenciler bu manevi temizliği, bahçeyi temizleme ve çiçek ekme gibi toplumsal eylemlere yansıtıyor. 3. Temizlik %40, çiçek %25 artmış; bu, bireysel manevi temizlikten toplumsal faydaya geçişi gösterir. 4. En uygun açıklama B şıkkındadır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın önemi – Ormancılık bağlamı",
+"passage": "Orman bekçisi Ahmet, sabah 05:45'te ormana girerken namaz vakti geldiğini fark eder. O gün 5 ağaç dikmekle görevli bir ekip lideridir. Ahmet, namaz kılmadan önce su bulup ellerini yıkamak (abdest) için yanındaki su şişesini kullanır ve 2 dakikalık kısa bir namaz kılar. Ardından ekip üyeleriyle birlikte 5 ağaç dikmeye başlar. Gün sonunda Ahmet, namazın ona ve ekibe nasıl huzur verdiğini anlatır.",
+"question": "Metne göre, Ahmet'in namaz kıldıktan sonra ekibe karşı tutumu aşağıdakilerden hangisinde en iyi açıklanmıştır?",
+"shape": null,
+"options": {
+"A": "Namazdan sonra ekip üyelerine sabır ve hoşgörüyle yaklaşarak iş birliğini artırması",
+"B": "Namazı bitirdikten sonra ağaç dikme işini tamamen unutarak yalnızca ibadet üzerine odaklanması",
+"C": "Namaz kıldığını gizleyerek ekip içinde rekabet duygusunu artırması",
+"D": "Namazı kıldıktan sonra suyu boşa dökerek ekip malzemelerini tüketmesi"
+},
+"answer": "A",
+"explanation": "1. Metinde Ahmet'in namaz kıldıktan sonra ekip üyeleriyle ağaç dikmeye devam ettiği ve namazın huzur verdiği belirtilir. 2. Bu, onun sabır ve hoşgörüyle ekip arkadaşlarına yaklaşarak iş birliğini güçlendirdiğini gösterir. 3. Diğer şıklar metindeki bilgiyle çelişir: ekip işi unutmamış, ibadet gizlememiş, suyu boşa dökmemiştir. 4. Bu yüzden doğru şık A'dır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın önemi – Robotik atölyesi bağlamı",
+"passage": "Robotik kulübü, haftada bir kez 17:00'de proje toplantısı yapar. Bu hafta toplantı, 17:15'te başlayan ikindi namazının (17:15) vaktiyle çakışmaktadır. Kulüp lideri Emre, toplantı sırasında bir robotun kolunu tamir ederken, namazın gelmesiyle birlikte kulüp üyeleri arasında duraklama yapar. Emre, namazın önemini vurgulamak için \"Namaz, kalbimizi temizler ve aklımıza odaklanmamıza yardımcı olur\" der ve ardından 5 dakikalık bir namaz kılar. Toplantı sonunda, robot kolu %30 daha hızlı çalışmaya başlar çünkü ekip üyeleri namazdan sonra daha dikkatli ve huzurlu olur.",
+"question": "Bu duruma göre, namazın ekip çalışmasına etkisini en iyi açıklayan ifade aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Namaz, ekip üyelerinin fiziksel gücünü artırarak robotun daha hızlı çalışmasını sağlar.",
+"B": "Namaz, ekip üyelerinin zihinsel dinginliğini ve odaklanmasını artırarak iş verimliliğini yükseltir.",
+"C": "Namaz, ekip üyelerinin teknik bilgi seviyesini artırarak robotun performansını otomatik olarak yükseltir.",
+"D": "Namaz, sadece bireysel bir ibadet olduğundan ekip çalışmasına doğrudan bir etkisi yoktur."
+},
+"answer": "B",
+"explanation": "1. Metinde namaz sonrası ekip üyelerinin daha dikkatli ve huzurlu olduğu ve robot kolunun %30 daha hızlı çalıştığı belirtilir. 2. Bu, zihinsel dinginlik ve odaklanmanın iş verimliliğini artırdığını gösterir. 3. Fiziksel güç ve teknik bilgi doğrudan artmaz; namaz bireysel ibadet olsa da ekip içinde olumlu bir ortam yaratır. 4. En uygun açıklama B şıkkıdır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namaz vakitleri – Balıkçılık bağlamı",
+"passage": "Balıkçı köyünde akşam 18:40'da balıkçılar tekneye çıkar. Akşam namazı (19:15) vakti gelmeden önce, teknede 4 kişi 2 saat boyunca ağ atar. 19:20'de namaz vakti geldiğinde, teknenin kaptanı Ahmet, suyun içinde bir işaret (işaretli taş) görür ve bunun \"Namaz vaktinin geldiğini\" hatırlatmak için bir çan çaldığını düşünür. Ahmet, hemen tekneyi durdurur, 2 dakikalık kısa bir namaz kılar ve ardından balıkçılık faaliyetine devam eder. Balıkçılar, namaz sonrası denizde daha sakin bir su gördüklerini ve balıkların daha aktif olduğunu fark ederler.",
+"question": "Metne göre, Ahmet'in namaz kılması sonrası balıkçılık faaliyetindeki değişim aşağıdakilerden hangisiyle en iyi ilişkilendirilir?",
+"shape": null,
+"options": {
+"A": "Namaz sonrası denizin sakinleşmesi, balıkların aktivitesinin artması ve balıkçılık verimliliğinin yükselmesi.",
+"B": "Namaz sonrası denizin daha kirli olması, balıkların azalmış olması ve verimliliğin düşmesi.",
+"C": "Namaz sonrası denizin sıcaklığının artması, balıkların göç etmesi ve balıkçılık faaliyetinin durması.",
+"D": "Namaz sonrası denizin akıntısının artması, balıkların dağılması ve balıkçılık verimliliğinin aynı kalması."
+},
+"answer": "A",
+"explanation": "1. Metinde namaz sonrası denizin daha sakin olduğu ve balıkların daha aktif olduğu belirtilir. 2. Bu durum balıkçılık verimliliğinin artmasına işaret eder. 3. Diğer şıklar metindeki gözlemle çelişir. 4. Doğru şık A'dır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namaz İbadeti: Namaz vakitleri ve Abdest",
+"passage": "Yaz tatilini ailesiyle birlikte kırsal bir bölgede geçiren 5. sınıf öğrencisi Kerem, buharlaşma ve su temini konusunu inceledi. Kerem, namaz vakitleri ile o günkü su kullanımını artırıcı etkinlikleri bir tabloya dökerek aşağıdaki sınıflandırmayı yapmıştır.\n\nTablo 1: Etkinlikler ve Vakitler\n1. Sabah Namazı sonrası: Bahçeden çiçek sulama (Serin saat, buharlaşma az).\n2. Öğle Namazı öncesi: Havuzda yüzme (Sıcak saat, buharlaşma çok).\n3. Akşam Namazı sonrası: Çay demleme (Ilık saat, buharlaşma orta).\n\nKerem, öğretmenin 'Namaz vakitleri, günün farklı iklimsel ve fiziksel koşullarına denk gelir ve insanı bu koşullara uyum sağlamaya teşvik eder' sözünden hareketle tabloyu derecelendirmiştir. Kerem'e göre bu etkinliklerin suyun 'buhrarlaşma hızı' ile ilişkisi aşağıdaki gibi olmalıdır.",
+"question": "Kerem'in yaptığı bu sınıflandırmada, fiziksel koşullar (sıcaklık/buharlaşma) ile etkinliklerin doğru eşleştirilmesi açısından hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Sabah namazı sonrası çiçek sulama, buharlaşmanın düşük olduğu serin saatlere denk gelir.",
+"B": "Öğle namazı öncesi havuzda yüzme, buharlaşmanın en yüksek olduğu saatlere denk gelir.",
+"C": "Akşam namazı sonrası çay demleme, buharlaşmanın en yüksek olduğu sıcak saatlere denk gelir.",
+"D": "Günün akışına göre buharlaşma hızı sabah en düşük, öğle en yüksek, akşam ise orta düzeydedir."
+},
+"answer": "C",
+"explanation": "Soruda 'söylenemez' ifadesi kullanılmıştır. Sabah serin olduğundan buharlaşma azdır (B doğrudur). Öğle sıcak olduğundan buharlaşma çoktur (A doğrudur). Akşam ise ilik olduğundan buharlaşma orta düzeydedir. C şıkkında akşamın 'en yüksek' buharlaşma saatine denk geldiği belirtilmiştir ki bu fiziksel gerçeklere ve metindeki 'ılık saat' ifadesine aykırıdır. D şıkkı genel sıralamayı doğru vermektedir. Dolayısıyla yanlış yargı C'dir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namaz İbadeti: Namazın Önemi",
+"passage": "Bilim insanı Prof. Dr. Ayşe, 'İbadetin Psikolojik Etkileri' adlı araştırmasında deneklerin namaz kılma alışkanlıkları ile stres seviyeleri arasındaki ilişkiyi incelemiştir. Araştırma sonucunda, düzenli namaz kılan grubun, kılınmayan gruba kıyasla 'kaygı skorlarının' ortalama 15 puan daha düşük çıktığı ve 'algılanan stres seviyesinin' belirgin şekilde düştüğü gözlemlenmiştir. Prof. Dr. Ayşe, 'Namazın ritüel dokusu, bireyin zihnini günlük dertlerden uzaklaştırarak bir tür 'öncelikle' olmasını sağlar ve bu da psikolojik dengeyi destekler' şeklinde sonuç bildirmiştir.",
+"question": "Prof. Dr. Ayşe'nin araştırma sonuçlarına ve yorumlarına dayanarak, namaz ibadetinin bireyin psikolojik durumu üzerindeki etkisiyle ilgili aşağıdaki karar veya yargılardan hangisi en tutarlı olandır?",
+"shape": null,
+"options": {
+"A": "Namaz kılmak, bireyin günlük stres kaynaklarını ortadan kaldırarak kaygıyı tamamen sıfıra indirir.",
+"B": "Namazın ritüel yapısı, psikolojik dengeyi destekleyerek stress ve kaygı düzeyini azaltmaya yardımcı olur.",
+"C": "Düzenli namaz kılan bireylerde psikolojik sorunların ortaya çıkma olasılığı sıfıra iner.",
+"D": "Namaz ibadeti, yalnızca manevi bir rahatlama sağlamakta, psikolojik stres skorlarına etkisi bulunmamaktadır."
+},
+"answer": "B",
+"explanation": "Araştırma verileri stres skorlarının 15 puan azaldığını göstermektedir. Bu 'tamamen sıfıra inmek' (A ve C) anlamına gelmez, 'azalma' demektir. D şıkkı verilerle çelişir çünkü skorlarda düşüş görülmüştür. B şıkkı, 'yardımcı olur' ve 'düşürür' gibi veriyle uyumlu, ölçülü bir ifade kullanarak doğru çıkarımı yapar. Tuzak şıklar (A ve C) 'tamamen' ve 'sıfır' gibi aşırı ifadeler içerir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın Önemi",
+"passage": "Okul bahçesinde öğle aracı sırasında bir araya gelen 5/B sınıfı öğrencileri, günün koşturmacası içinde dinlenmek ve zihnen yenilenmek üzerine sohbet etmektedirler. Öğrencilerden Burak, günün belirli saatlerinde ibadet etmek için ara vermenin kendisini hem derslere daha iyi odakladığını hem de anlık streslerden uzaklaştırdığını belirtir. Arkadaşı Elif ise namazın sadece bireysel bir huzur vesilesi olmadığını, aynı zamanda insanın yaratıcısına olan teşekkür borcunu eda etmesinin en anlamlı yolu olduğunu ifade eder.",
+"question": "Bu senaryoda öğrencilerin dile getirdiği düşünceler dikkate alındığında namaz ibadetiyle ilgili aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "İnsanın iç huzurunu artırmanın yanı sıra zamanı planlamasında ve sorumluluk bilincini geliştirmesinde önemli bir etkiye sahiptir.",
+"B": "Sadece toplumsal birlikteliği güçlendirmek amacıyla belirli günlerde toplu olarak yerine getirilen sosyal bir görevdir.",
+"C": "Yalnızca zorluklarla başa çıkma dönemlerinde başvurulan geçici bir rahatlama ve sığınma aracıdır.",
+"D": "Günlük işlerin tamamen aksatılmasına neden olan ve bireyin sosyal çevresinden soyutlanmasını gerektiren bir süreçtir."
+},
+"answer": "A",
+"explanation": "1. Adım: Metinde Burak'ın namaz sayesinde derslere daha iyi odaklandığını ve stres attığını söylemesi bireysel faydayı gösterir.\n2. Adım: Elif'in yaratıcıya teşekkür borcu olduğunu belirtmesi ibadetin temel amacını açıklar.\n3. Adım: Seçenekler incelendiğinde namazın bireyin iç huzurunu artırdığı ve sorumluluk bilincini desteklediği ifadesi metinle birebir örtüşmektedir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Abdestin Alınışı ve Önemli Esasları",
+"passage": "Bir çiftlikte çalışan Kerem, öğle namazını kılmak için abdest almak üzere su kenarına gider. Kur'an-ı Kerim'de abdestle ilgili buyurulan ayette geçen sıraya ve organların yıkanma ölçülerine dikkat ederek abdestini tamamlar. Kerem, abdest alırken ellerini bileklere kadar yıkadıktan sonra yüzünü yıkar, kollarını dirsekleriyle beraber temizler, başını mesheder ve nihayet ayaklarını topuklarıyla birlikte yıkayarak işlemi kuralına uygun şekilde bitirir.",
+"question": "Bu metne göre Kerem'in abdest alırken sergilediği davranış ve takip ettiği sıra aşağıdakilerden hangisinin göstergesidir?",
+"shape": null,
+"options": {
+"A": "Abdestin farzlarına ve sünnetlerine uygun, bilinçli ve eksiksiz bir ibadet hazırlığı yaptığının",
+"B": "Sadece su tasarrufu sağlamak amacıyla organlarını gelişi güzel temizlediğinin",
+"C": "Abdest alırken kendi isteğine göre yeni bir sıra ve yöntem geliştirdiğinin",
+"D": "Temizlik kurallarını tamamen göz ardı ederek sadece şekilsel bir duruş sergilediğinin"
+},
+"answer": "A",
+"explanation": "1. Adım: Kerem abdest alırken ayette belirtilen organları ve sırayı gözetmiştir.\n2. Adım: Eller, yüz, kolları dirseklerle beraber yıkamak, başı meshetmek ve ayakları yıkamak abdestin temel esaslarıdır.\n3. Adım: Bu durum Kerem'in abdesti bilinçli ve kurallarına uygun aldığını kanıtlar.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 3,
+"ts": 1794119075
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Hayatı",
+"passage": "5/C sınıfı öğrencileri bir voleybol turnuvası düzenledi. Maç sırasında karşı takım hata yaptığında, takım kaptanı Kerem itiraz etmek yerine 'Önemli değil, oyunun parçası' diyerek gülümseyerek karşı takımı tebrik etti. Kerem, bu davranışını 'Peygamberimiz de her zaman haklıyken bile kırıcı olmaktan kaçınırdı' sözleriyle açıkladı.",
+"question": "Buna göre Kerem’in sergilediği davranış aşağıdakilerden hangisiyle nitelendirilebilir?",
+"shape": null,
+"options": {
+"A": "Azimli ve hırslı olmak",
+"B": "Sorumluluk sahibi olmak",
+"C": "Hoşgörülü ve nezaketli olmak",
+"D": "Cesur ve atak olmak"
+},
+"answer": "C",
+"explanation": "Kerem'in hatayı görmezden gelmesi, nezaket göstermesi ve tartışmadan kaçınması onun hoşgörülü ve nazik bir yapıya sahip olduğunu gösterir. Bu tutum, Peygamberimiz'in her durumda sergilediği nezaket ve güzel ahlakla uyumludur.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794119479
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnekliği",
+"passage": "Pastanede çalışan Ayşe, bir müşterinin yanlışlıkla parasını eksik ödediğini fark etti. Müşteri gitmeden arkasından koşarak durumu bildirdi ve parayı tamamlamasını sağladı. Ayşe, daha sonra arkadaşlarına, 'Peygamberimiz'in kimsenin hakkını üzerinde bırakmama konusundaki hassasiyetini örnek aldım' dedi.",
+"question": "Ayşe'nin bu davranışı İslam ahlakındaki hangi temel değerle ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "Yardımlaşma",
+"B": "Misafirperverlik",
+"C": "Tasarruf etmek",
+"D": "Adalet ve dürüstlük"
+},
+"answer": "D",
+"explanation": "Bir başkasının hakkını gözetmek ve hata yapıldığında bunu düzeltmek adaletin ve dürüstlüğün temel gereğidir. Ayşe, kul hakkı konusunda Peygamberimizin hassasiyetini kendine rehber edinmiştir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794119479
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an'ın Temel Konuları: İnanç",
+"passage": "Tarihî bir camiyi ziyaret eden öğrencilerden Elif, caminin duvarındaki levhalarda yer alan ayet meallerini incelemiştir. İncelediği metinlerde Allah'ın birliği, meleklerin varlığı ve ahiret gününe iman konularının işlendiğini fark etmiştir.",
+"question": "Elif'in incelediği bu levhalarda yer alan ayetlerin vurguladığı temel konu aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İnanç",
+"B": "Ahlak",
+"C": "Kıssa",
+"D": "İbadet"
+},
+"answer": "A",
+"explanation": "1. Adım: Allah'ın birliği, melekler ve ahiret gibi konular Kur'an'ın inanç (itikat) esaslarını oluşturur.\n2. Adım: İncelemedeki tüm kavramlar iman esaslarıyla doğrudan ilgilidir.\n3. Adım: Doğru şık İnanç'tır.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an'ın Temel Konuları: Kıssalar",
+"passage": "Bir müze gezisinde eski el yazması Kur'an nüshalarını inceleyen Mert, önceki milletlerin hayat hikayelerinin, peygamberlerin mücadelelerinin ve ibretlik olayların yer aldığı ayetleri fark etmiştir.",
+"question": "Mert'in müzede incelediği bu ayetlerde ağırlıklı olarak işlenen Kur'an'ın temel konusu aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ticaret Hukuku",
+"B": "Devlet Yönetimi",
+"C": "Fen Bilgisi Kuralları",
+"D": "Kıssalar (Geçmiş Milletlerin Öyküleri)"
+},
+"answer": "D",
+"explanation": "1. Adım: Geçmiş milletlerin başından geçen ibretlik olaylar kıssa olarak adlandırılır.\n2. Adım: Kur'an'da geçmiş peygamberlerin hayatı kıssalar şeklinde anlatılır.\n3. Adım: Doğru şık Kıssalar'dır.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an'ın Ana Konuları ve Özellikleri",
+"passage": "Okul kütüphanesinde araştırma yapan Zeynep, Kur'an-ı Kerim hakkında şu notları almıştır: 'Kur'an tek bir seferde toptan indirilmemiştir; 23 yılda ayet ayet veya sure sure indirilmiştir.'",
+"question": "Zeynep'in ulaştığı bu bilgiye dayanarak Kur'an'ın indiriliş yöntemiyle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Toptan ve tek bir gecede indirilmiştir.",
+"B": "Peyderpey (parça parça) indirilmiştir.",
+"C": "Sadece Mekke döneminde indirilmiştir.",
+"D": "Yalnızca yazılı metin olarak aktarılmıştır."
+},
+"answer": "B",
+"explanation": "1. Adım: Metinde 23 yılda parça parça indirildiği belirtilmiştir.\n2. Adım: Bu yöntem 'peyderpey' olarak ifade edilir.\n3. Adım: Doğru şık Peyderpey (parça parça) indirilmiştir seçeneğidir.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an-ı Kerim'in Temel Amaçları",
+"passage": "Doğa kampında ateş etrafında sohbet eden gençler, Kur'an'ın insanlara gönderiliş amacını tartışmışlardır. Can, 'Kur'an sadece okunmak için değil, anlaşılmak ve hayata geçirilmek için gönderilmiş bir rehberdir' diyerek düşüncesini belirtmiştir.",
+"question": "Buna göre Can'ın yaptığı bu vurgu Kur'an-ı Kerim'in gönderiliş gayesini en iyi hangi ifadeyle özetler?",
+"shape": null,
+"options": {
+"A": "İnsanlara doğru yolu gösteren bir rehber olması",
+"B": "Sadece geçmiş tarih olaylarını aktaran bir kitap olması",
+"C": "Sadece müzik aletlerinin eşliğinde okunması",
+"D": "Yalnızca evleri süslemek amacıyla saklanması"
+},
+"answer": "A",
+"explanation": "1. Adım: Can, Kur'an'ın anlaşılıp yaşanmak için rehber olduğunu vurgulamıştır.\n2. Adım: Bu durum Kur'an'ın hidayet rehberi olma amacıyla örtüşür.\n3. Adım: Doğru şık İnsanlara doğru yolu gösteren bir rehber olması seçeneğidir.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an'ın İndirilişi",
+"passage": "Doğa parkındaki hayvanat bahçesini inceleyen 5/B sınıfı öğrencisi Tarık, rehberin 'Yarasa ve baykuşlar gece aktif olurken, bazı canlılar gündüzleri beslenir; her şey bir ölçü ve düzen içinde yaratılmıştır.' sözünü not alır. Akşam evde Kur'an'ı Kerim meali okurken Kadir Suresi'ne rastlar ve Kur'an'ın indiriliş sürecindeki bu düzenli ve hikmetli planlamanın evrendeki yasalarla uyumunu fark eder.",
+"question": "Bu senaryoya göre Kur'an-ı Kerim'in indirilişi ve temel özellikleri bağlamında aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Kur'an-ı Kerim, insanları sadece evrendeki düzeni incelemeye yönelten bilimsel bir ansiklopedidir.",
+"B": "Kur'an'ın indiriliş amacı, evrendeki ilahi ölçü ve düzeni tamamlayarak insanlara hayat rehberliği sunmaktır.",
+"C": "Canlıların yaşam döngüsü ile Kur'an'ın ayetleri arasında hiçbir bağ bulunmamaktadır.",
+"D": "Kur'an, sadece gece vaktinin faziletini anlatmak için Kadir Gecesi'nde indirilmiştir."
+},
+"answer": "B",
+"explanation": "1. Adım: Tarık'ın gözleminde evrendeki ölçü ve düzen vurgulanmaktadır.\n2. Adım: Kur'an'ın indirilişi (Kadir Suresi bağlamı) insanın hayatına yön veren hikmetli bir süreci ifade eder.\n3. Adım: Evrendeki ilahi düzen ile Kur'an'ın rehberliği birbirini tamamlar.\n4. Adım: Doğru seçenek B'dir çünkü Kur'an insanlara hayat rehberliği sunar.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an-ı Kerim'in Temel Konuları: İbadet",
+"passage": "Bir gıda üretim tesisinde çalışan mühendis Aylin, ürünlerin sağlıklı ve güvenli olması için belirli kurallara ve ölçülere uyulması gerektiğini, bunun hem üreticiye hem tüketiciye huzur verdiğini belirtir. Arkadaşı Selim ise bu disiplinli çalışmayı değerlendirirken 'Tıpkı bu üretimdeki kurallar gibi, Kur'an'da da insanın Allah'a olan bağlığını ve sorumluluğunu gösteren belirli ibadet esasları emredilmiştir.' değerlendirmesini yapar.",
+"question": "Buna göre Selim'in bahsettiği Kur'an'ın temel konusu ve amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İnanç; bireylerin günlük iş planlarını düzenleyen hukuki maddelerdir.",
+"B": "Ahlak; sadece iş yerindeki dürüstlük kurallarını belirleyen toplumsal kurallardır.",
+"C": "İbadet; insanın Allah'a kulluk etmesini, O'na teşekkür edip sorumluluk bilinci kazanmasını sağlar.",
+"D": "Kıssa; geçmiş milletlerin üretim tekniklerini inceleyen tarihsel bir konudur."
+},
+"answer": "C",
+"explanation": "1. Adım: Üretim tesisindeki kurallar ve sorumluluklar ele alınmıştır.\n2. Adım: Selim bu durumu Kur'an'daki kulluk ve sorumluluk bilinciyle ilişkilendirmiştir.\n3. Adım: Allah'a olan bağlılık ve sorumluluk ibadet konusudur.\n4. Adım: Doğru seçenek A'dır.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an-ı Kerim'in Temel Konuları: Ahlak",
+"passage": "Bir çiftlikte çalışanlar, hayvanların ve bitkilerin bakımını yaparken birbirlerinin haklarına riayet eder, adaleti gözetir ve yardımlaşırlar. Çiftlik sahibi Hasan Bey çalışanlarına hitaben, 'Yaptığınız bu dürüst ve güvenilir davranışlar, Kur'an'ın insan ilişkilerinde bizden istediği erdemli tutumların birebir yansımasıdır.' der.",
+"question": "Bu senaryoya göre çiftlik çalışanlarının sergilediği tutumlar Kur'an'ın temel konularından hangisiyle doğrudan ilgilidir?",
+"shape": null,
+"options": {
+"A": "Kıssalar ve tarihler",
+"B": "Ahlak ilkeleri",
+"C": "İbadet şekilleri",
+"D": "İnanç esasları"
+},
+"answer": "B",
+"explanation": "1. Adım: Çalışanların haklara riayet etmesi, adaletli ve yardımlaşma içinde olması anlatılmıştır.\n2. Adım: Hasan Bey bu tutumların erdemli davranışlar olduğunu vurgulamıştır.\n3. Adım: İnsan ilişkilerindeki erdem, dürüstlük ve adalet ahlak konusudur.\n4. Adım: Doğru şık B'dir.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an-ı Kerim'in Temel Konuları: Kıssalar",
+"passage": "Geleneksel bir kültür festivalinde sergilenen tiyatro oyununda, geçmişte yaşayan toplulukların iyi ve kötü davranışlarının sonuçları sahnelenmiştir. Oyunu izleyen 5. sınıf öğrencisi Elif, 'Sahnede anlatılan bu ibretlik olaylar ve geçmiş milletlerin başından geçenler, tıpkı Kur'an'daki anlatımlara benziyor.' diyerek bu hikayelerin insanlara yol gösterdiğini söyler.",
+"question": "Elif'in festivalde fark ettiği ve Kur'an'ın temel konuları arasında yer alan kavram aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Kelam",
+"B": "Fıkıh",
+"C": "Tefsir",
+"D": "Kıssa"
+},
+"answer": "D",
+"explanation": "1. Adım: Geçmiş toplulukların başından geçen ibretlik olaylar sahnelenmiştir.\n2. Adım: Elif bunları Kur'an'daki anlatımlara benzetmiştir.\n3. Adım: Kur'an'daki geçmiş milletlerin ibretlik öykülerine kıssa denir.\n4. Adım: Doğru şık B'dir.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an'ın Ana Konuları ve Mesajı",
+"passage": "Pazar yerinde esnaflık yapan Ahmet Efendi, ölçüde ve tartıda dürüst davranır, müşterilerine güler yüz gösterir ve kazancının bir kısmını ihtiyaç sahipleriyle paylaşır. Alışveriş yapan bir öğretmen, Ahmet Efendi'nin bu tutumunu överek onun Kur'an'ın ahlak ve ibadet bütünlüğünü hayata geçirdiğini belirtir.",
+"question": "Metne göre Ahmet Efendi'nin sergilediği davranışlar Kur'an'ın temel gayesi açısından değerlendirildiğinde aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "İnsanın hem Yaratıcısına karşı görevlerini hem de toplumsal sorumluluklarını gözetmesi gerektiğini gösterir.",
+"B": "Dürüstlük ve yardımlaşma gibi değerlerin Kur'an ahlakının temelinde yer aldığını doğrular.",
+"C": "Kur'an'ın sadece ibadetleri emrettiğini, ticaret ahlakıyla ilgilenmediğini kanıtlar.",
+"D": "İnancın ibadet ve güzel ahlakla hayata geçirilmesi gerektiğinin somut bir örneğidir."
+},
+"answer": "C",
+"explanation": "1. Adım: Ahmet Efendi dürüstlük, paylaşım ve ibadet bilinciyle hareket etmektedir.\n2. Adım: Öğretmen onun Kur'an'ın ahlak ve ibadet bütünlüğünü yansıttığını belirtmiştir.\n3. Adım: B seçeneğinde Kur'an'ın ticaret ahlakıyla ilgilenmediği iddiası metinle çelişmektedir (çünkü dürüstlük ve ölçü Kur'an'da yer alır).\n4. Adım: Söylenemez olan şık B'dir.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kur'an'ın İndiriliş Amacı ve Temel Konuları",
+"passage": "Süpermarkette alışveriş yapan Zeynep, satın alacağı gıda ürünlerinin üzerindeki kullanım kılavuzunu ve içindekiler tablosunu dikkatle inceler. Arkadaşına dönerek, 'Nasıl ki bu cihazın veya gıdanın doğru kullanılabilmesi için bir kılavuza ihtiyacı varsa, insanın da hayatını huzurla sürdürebilmesi için ilahi bir kılavuza ihtiyacı vardır.' der.",
+"question": "Zeynep'in bu benzetmesinde vurguladığı ilahi kılavuz olan Kur'an-ı Kerim'in temel gönderiliş amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İnsana dünya ve ahirette mutluluğun yolunu göstererek doğruyu ve yanlışı bildirmek",
+"B": "Geçmiş tüm medeniyetlerin siyasi tarihlerini detaylıca listelemek",
+"C": "İnsanlara evrenin fiziksel yasalarını matematiksel olarak çözdürmek",
+"D": "Sadece ticaret ve ekonomi alanında kurallar koymak"
+},
+"answer": "A",
+"explanation": "1. Adım: Zeynep cihazın/gıdanın doğru kullanımı için kılavuza ihtiyaç duyulduğunu belirtmiştir.\n2. Adım: İnsanın da hayatını huzurla sürdürmesi için ilahi kılavuza (Kur'an) ihtiyacı olduğunu vurgulamıştır.\n3. Adım: Kur'an'ın gönderiliş amacı insanlara rehberlik etmek, doğruyu yanlıştan ayırt ettirip mutluluk yolunu göstermektir.\n4. Adım: Doğru şık B'dir.",
+"vfd2": true,
+"unit": "Kur'an-ı Kerim",
+"topics": "Kur'an'ın indirilişi, Temel konular",
+"d": 3,
+"ts": 1794121081
 }
 ]
 }
