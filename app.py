@@ -3535,18 +3535,38 @@ def replace_wrong(w):
 
 # ---- tekrarsızlık için son soru gövdeleri
 def recent_stems():
-    return _load("stems.json", {})
+    """Son soru gövdeleri (rakamlar maskeli: yalnızca sayıları değişen sorular da 'görülmüş' sayılır)."""
+    import re
+    d = _load("stems.json", {})
+    return {k: [re.sub(r"\W+", " ", re.sub(r"\d+", "0", str(x))).strip()[:70] for x in v] for k, v in d.items()}
+
+
+def _sig_tokens(q):
+    import re
+    t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
+    return sorted({w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)})
+
+
+def recent_sigs():
+    return _load("qsigs.json", {})
 
 
 def add_stems(questions):
-    d = recent_stems()
+    import re
+    d = _load("stems.json", {})
+    sg = recent_sigs()
     for q in questions:
-        import re
-        s = re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
+        s = re.sub(r"\W+", " ", re.sub(r"\d+", "0", str(q.get("question", "")).lower())).strip()[:70]
         d.setdefault(q.get("subject", "Genel"), []).append(s)
+        tk = _sig_tokens(q)
+        if len(tk) >= 4:
+            sg.setdefault(q.get("subject", "Genel"), []).append(" ".join(tk))
     for k in d:
-        d[k] = d[k][-300:]
+        d[k] = d[k][-400:]
+    for k in sg:
+        sg[k] = sg[k][-800:]
     _save("stems.json", d)
+    _save("qsigs.json", sg)
 
 
 # ---- hatalı bildirilen sorular: bankadan ve yanlış arşivinden çıkar, bir daha üretilirse elenir
@@ -8513,22 +8533,31 @@ _MF_GENS += [
 
 
 # ---------------------------------------------------------------- KONU KİLİDİ: seçilen konu/ünite dışındaki soru KESİNLİKLE girmez
-_TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aranacak)
+_TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aranacak; None = yalnızca dışlama kuralı)
     "Matematik": [
-        ("geometri", r"geometri|şekil|çember|üçgen|dörtgen|doğru|ışın|açı\b|açılar|nokta", r"üçgen|dörtgen|dikdörtgen|kare|çember|daire|açı|kenar|köşe|doğru|ışın|nokta|çokgen|şekil|simetri|paralel|dik\b|köşegen|çevre|alan|yarıçap|çap\b|merkez|cetvel|iletki|pergel|birim kare"),
-        ("kesir", r"kesir", r"kesir|payda|\bpay\b|bütün|tam sayılı|\d\s*/\s*\d|bölü|\bve\b.*\bde\b"),
-        ("olasılık", r"olasılık", r"olasılık|imkânsız|imkansız|\\bkesin\\b|olay|şans|\\bzar\\b|madeni para|\\bpara\\b|torba|kura|çekil|çark"),
+        ("geometri", r"geometri|çember|üçgen|dörtgen|ışın|doğru parçası|açı ölç|inşa", r"üçgen|dörtgen|dikdörtgen|kare\b|çember|daire|açı|kenar|köşe|ışın|nokta|çokgen|şekil|simetri|paralel|dik\b|köşegen|çevre|alan|yarıçap|çap\b|merkez|cetvel|iletki|pergel|birim kare|doğru parçası|dik doğru|doğrusal|doğrular\b|doğrunun"),
+        ("kesir", r"kesir", r"kesir|payda|\bpay\b|\bbütün|tam sayılı|\d\s*/\s*\d|bölü"),
+        ("olasılık", r"olasılık", r"olasılık|imkânsız|imkansız|\bkesin\b|olay|şans|\bzar\b|madeni para|\bpara\b|torba|kura|çekil|çark"),
+        ("sayi", r"basamak|okuma ve yazma", None),
+        ("cebir", r"örüntü|işlem önceliği|eşitliğin|işlem özellik", None),
         ("veri", r"istatistik|veri\b|grafik", r"veri|tablo|grafik|sütun|çubuk|anket|sıklık|kategorik|en çok|en az|araştır"),
     ],
     "Fen Bilimleri": [
         ("ay", r"güneş|dünya|\bay\b|ay'ın|ayın|tutulma|evre", r"güneş|dünya|\bay\b|ay'|ayın|evre|tutulma|dolunay|hilal|dördün|yörünge|eksen|gece|gündüz|mevsim|uydu|gök"),
-        ("kuvvet", r"kuvvet|sürtünme|dinamometre|ağırlık", r"kuvvet|sürtünme|dinamometre|newton|ağırlık|kütle|\\byay\\b|\\bitme\\b|\\bçekme\\b|hareket"),
+        ("kuvvet", r"kuvvet|sürtünme|dinamometre|ağırlık", r"kuvvet|sürtünme|dinamometre|newton|ağırlık|kütle|\byay\b|\bitme\b|\bçekme\b|hareket"),
         ("madde", r"madde|ısı|sıcaklık|erime|donma", r"madde|ısı|sıcaklık|erime|donma|kaynama|buhar|katı|sıvı|gaz|termometre|hâl|hal\b|yoğuş|°"),
         ("ışık", r"ışık|gölge|yansıma", r"ışık|gölge|yansı|ayna|saydam|donuk|kaynak|işın|ışın|yayıl"),
         ("elektrik", r"elektrik|devre", r"devre|pil|ampul|akım|lamba|anahtar|elektrik|seri|paralel|iletken|yalıtkan"),
         ("hücre", r"hücre|canlı", r"hücre|organel|canlı|sınıflan|bitki|hayvan|mantar|bakteri|çekirdek|zar|mikroskop|doku"),
         ("çevre", r"ekosistem|besin|çevre|biyo", r"ekosistem|besin|çevre|zincir|atık|biyo|tür\b|üretici|tüketici|ayrıştırıcı|canlı|doğa|habitat"),
     ],
+}
+_MAT_STRONG = {  # ünite imzaları: soruda başka ünitenin imzası varsa ve seçilenin yoksa soru elenir
+    "sayi": r"(?<![a-zçğıöşü])(?:basamak|rakam|milyon|bölük|binler)",
+    "geometri": r"(?<![a-zçğıöşü])(?:üçgen|dörtgen|çember|daire|açı\b|açının|açılar|kenar|köşe|ışın|çokgen|köşegen|yarıçap|kiriş|paralelkenar|yamuk|dikdörtgen)",
+    "kesir": r"(?<![a-zçğıöşü])(?:kesir|payda|\d\s*/\s*\d)",
+    "olasılık": r"(?<![a-zçğıöşü])(?:olasılık|imkânsız|imkansız)",
+    "veri": r"(?<![a-zçğıöşü])(?:sütun grafi|çubuk grafi|daire grafi|çizgi grafi|sıklık tablosu|anket|kategorik veri)",
 }
 
 
@@ -8544,12 +8573,19 @@ def _on_topic(q, topics, subject=None):
         if groups:
             sel = [(n, c) for n, trig, c in groups if re.search(trig, tl)]
             if sel:
-                if subj == "Matematik" and not any(n == "geometri" for n, _c in sel):
-                    shp = q.get("shape")
-                    if isinstance(shp, dict) and str(shp.get("type", "")).lower() in ("geo", "triangle", "circle", "rectangle"):
-                        return False  # geometri şekli yalnızca geometri konularında
-                    if re.search(r"(?<![a-zçğıöşü])(?:üçgen|dörtgen|çember|daire|açı\b|açının|köşegen|paralelkenar|yamuk)", body):
-                        return False
+                if subj == "Matematik":
+                    names = {n for n, _c in sel}
+                    hits = {g for g, rx in _MAT_STRONG.items() if re.search(rx, body)}
+                    if hits and not (hits & names):
+                        return False  # başka ünitenin güçlü imzası var, seçilenin yok
+                    if "geometri" not in names:
+                        shp = q.get("shape")
+                        if isinstance(shp, dict) and str(shp.get("type", "")).lower() in ("geo", "triangle", "circle", "rectangle"):
+                            return False  # geometri şekli yalnızca geometri konularında
+                    req = [(n, c) for n, c in sel if c is not None]
+                    if len(req) < len(sel):
+                        return True  # 'sayı/işlem' gibi geniş ünite: yalnızca dışlama kuralı
+                    sel = req
                 return any(re.search(r"(?<![a-zçğıöşü])(?:" + c + ")", body) for _n, c in sel)
         if subj in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi"):
             want = _pool_tok(tl)
@@ -9262,6 +9298,31 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
     return out
 
 
+def _hist_sets(subjects):
+    """Önceki sınavlardan soru imzaları -> {ders: [küme]} (yoksa boş)."""
+    try:
+        from . import store
+        sg = store.recent_sigs()
+        return {sj: [set(x.split()) for x in (sg.get(sj) or [])] for sj in subjects}
+    except Exception:
+        return {}
+
+
+def _hist_similar(q, sets, thr=0.6):
+    """Soru, önceki sınavlardaki bir soruyla (rakam/harf/şık farkı hariç) aynı mı? Jaccard > thr -> True."""
+    try:
+        t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
+        w = {x[:5] for x in re.findall(r"[a-zçğıöşü]{4,}", t)}
+        if len(w) < 4 or not sets:
+            return False
+        for h in sets:
+            if h and len(w & h) / len(w | h) > thr:
+                return True
+    except Exception:
+        return False
+    return False
+
+
 def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False, count=True, like=""):
     """plan: [{subject, n, topics}] -> (questions, errors).
     Her ders BAĞIMSIZ ilerler (başka dersi beklemez): bankadan al -> paralel üret -> eksik kaldıkça yeniden tamamla
@@ -9273,6 +9334,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     bank_ok = use_bank and not demo_mode() and not focus.strip()
     dep_ok = deposit and not demo_mode() and not focus.strip()
     seen = set(s for v in avoid.values() for s in v)
+    hist = _hist_sets({p.get('subject') for p in plan}) if (not demo_mode() and not like) else {}
     seen_lock = threading.Lock()
     prog_lock = threading.Lock()
     prog = {"done": 0, "total": max(1, sum(-(-p["n"] // CHUNK) for p in plan))}
@@ -9294,6 +9356,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     continue  # seçilen konu dışı: yedeğe bile alınmaz
                 if s in seen:
                     res_.append(q)
+                elif not like and _hist_similar(q, hist.get(p.get("subject"))):
+                    res_.append(q)  # önceki sınavlarda gördüğün bir sorunun aynısı (yalnız sayı/harf farkı): son çare yedeği
                 elif (_relaxed_ok(q, qs_) if relax else accept_diverse(q, qs_, p["n"])):
                     seen.add(s)
                     qs_.append(q)
