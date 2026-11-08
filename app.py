@@ -2515,6 +2515,14 @@ def clean(t):
     return t.strip()
 
 
+def _rl(t):
+    try:
+        from core.ai_engine import fmt_roman_list
+        return fmt_roman_list(t)
+    except Exception:
+        return t
+
+
 def esc(t):
     return html.escape(clean(t), quote=False).replace("\n", "<br/>")
 
@@ -2592,13 +2600,13 @@ def _q_table(q, num, colw, S, answer_lines=0):
     body = []
     pas = clean(q.get("passage", ""))
     if pas and pas.lower() != "null":
-        pt = Table([[Paragraph(esc(pas), S["pas"])]], colWidths=[cw])
+        pt = Table([[Paragraph(esc(_rl(pas)), S["pas"])]], colWidths=[cw])
         pt.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, -1), LIGHT), ("LINEBEFORE", (0, 0), (0, -1), 2, BLUE),
                                 ("LEFTPADDING", (0, 0), (-1, -1), 5), ("RIGHTPADDING", (0, 0), (-1, -1), 4),
                                 ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 3)]))
         body += [pt, Spacer(1, 3)]
     body += _shape_flowables(q.get("shape"), cw, S)
-    body.append(Paragraph(esc(q.get("question", "")), S["q"]))
+    body.append(Paragraph(esc(_rl(q.get("question", ""))), S["q"]))
     body.append(Spacer(1, 2))
     body += _options(q, cw, S)
     if answer_lines:
@@ -6872,6 +6880,25 @@ def _trivial_geo(text):
     return bool(re.search(r"(iki|2)\s+açısı.*(üçüncü|diğer)\s+açı", t, re.I))
 
 
+_RL_ITEM = re.compile(r"(?:(?<=[.!?:;)])|(?<=\n)|^)[ \t]*\b(III|II|IV|V|I)[.)][ \t]+(?=[^\s])")
+_RL_TAIL = re.compile(r"(?<=[.!?])[ \t]+(?=(?:Buna göre|Yukarıdaki|Yukarıda|Bu ifadelerden|Bu bilgilere göre|Verilenlerden|Bu cümlelerden|Bu yargılardan|Bu yargılara göre)\b)")
+
+
+def fmt_roman_list(t):
+    """I. II. III. biçimindeki numaralı yargıları (metinle aynı satırda geliyorsa) ALT ALTA satırlara böler.
+    'II. Dünya Savaşı' gibi tek başına geçen romen rakamlarına dokunmaz: yalnızca I ve II birlikte madde işaretiyse böler."""
+    t = str(t or "")
+    ms = list(_RL_ITEM.finditer(t))
+    if len({m.group(1) for m in ms}) < 2 or not {"I", "II"} <= {m.group(1) for m in ms} or ms[0].group(1) != "I":
+        return t
+    out = _RL_ITEM.sub(lambda m: "\n" + m.group(1) + ". ", t)
+    last = max(m.start() for m in _RL_ITEM.finditer(out))
+    head, tail = out[:last], out[last:]
+    tail = _RL_TAIL.sub("\n", tail, count=1)
+    out = (head + tail).strip("\n")
+    return re.sub(r"\n{2,}", "\n", out)
+
+
 def _norm_q(q, subject):
     if not isinstance(q, dict):
         return None
@@ -6957,8 +6984,8 @@ def _norm_q(q, subject):
             return None
         if _GEO_BAN.search(f"{q.get('question', '')} {pas} {' '.join(opts.values())}"):
             return None
-    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": pas,
-           "question": qtext, "shape": shape, "options": opts, "answer": ans, "explanation": expl}
+    out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": fmt_roman_list(pas) if pas else pas,
+           "question": fmt_roman_list(qtext), "shape": shape, "options": opts, "answer": ans, "explanation": expl}
     return None if leaks_answer(out) else out
 
 
@@ -8455,6 +8482,162 @@ _FF_GENS = [(_ff_shift, ("ay", "evre")), (_ff_seq, ("ay", "evre")), (_ff_quarter
             (_ff_weight, ("kuvvet", "ağırlık", "dinamometre")), (_ff_spring, ("kuvvet", "dinamometre", "ölçül"))]
 
 
+def _ff_food(subject):
+    chains = [("ot", "çekirge", "kurbağa", "yılan"), ("bitki", "tırtıl", "serçe", "şahin"), ("fitoplankton", "zooplankton", "küçük balık", "büyük balık"),
+              ("ot", "fare", "yılan", "şahin"), ("yosun", "karides", "balık", "pelikan"), ("havuç", "tavşan", "tilki")]
+    ch = random.choice(chains)
+    chain = " → ".join(ch)
+    mode = random.choice(["pred", "prey", "count"])
+    lead = f"Bir ekosistemde canlılar arasındaki besin ilişkisi aşağıdaki besin zinciriyle gösterilmiştir (ok yönü, yenen canlıdan yiyen canlıya doğrudur).\n{chain}"
+    if mode == "count":
+        k = len(ch) - 1
+        o = _mf_opts(k, [k - 1, k + 1, k + 2], lambda v: f"{v}")
+        q = "Bu besin zincirinde kaç tane tüketici canlı vardır? (Üretici, tüketici sayılmaz.)"
+        return _mf_raw(subject, "Besin zinciri", q, o, f"Zincirde {len(ch)} canlı vardır; ilki ({ch[0]}) üreticidir, geri kalan {k} canlı tüketicidir.", passage=lead) if o else None
+    if mode == "pred":
+        last, prev = ch[-1], ch[-2]
+        q = f"Bu ekosistemde {last} sayısı kısa sürede çok azalırsa, diğer koşullar aynı kalmak şartıyla {prev} sayısı için ne söylenebilir?"
+        opts = (["Artar", "Azalır", "Değişmez", "Tamamen yok olur"], "Artar")
+        ex = f"{last}, {prev} ile beslenir. {last} azalınca {prev} daha az yenir ve sayısı başlangıçta artar."
+    else:
+        prey, nxt = ch[1], ch[2]
+        q = f"Bu ekosistemde {prey} sayısı kısa sürede çok azalırsa, diğer koşullar aynı kalmak şartıyla {nxt} sayısı için ne söylenebilir?"
+        opts = (["Azalır", "Artar", "Değişmez", "Hiç etkilenmez, çünkü doğrudan üreticiyle beslenir"], "Azalır")
+        ex = f"{nxt}, {prey} ile beslenir. {prey} azalınca besini azalacağından {nxt} sayısı azalır."
+    return _mf_raw(subject, "Besin zinciri", q, opts, ex, passage=lead)
+
+
+def _ff_boil(subject):
+    step = random.choice([10, 20])
+    t0 = random.choice([x for x in range(20, 60, 10) if (100 - x) % step == 0])
+    temps, t = [], t0
+    while t < 100:
+        temps.append(t)
+        t += step
+    first = len(temps)
+    temps += [100] * random.choice([3, 4])
+    rows = [[str(i), f"{v}"] for i, v in enumerate(temps)]
+    shape = {"type": "table", "title": "Saf suyun ısıtılması", "headers": ["Süre (dk)", "Sıcaklık (°C)"], "rows": rows}
+    lead = "Saf su bir ısıtıcı üzerinde sabit ısı verilerek ısıtılıyor ve her dakika sonunda sıcaklığı ölçülüp tabloya yazılıyor."
+    if random.random() < .5:
+        q = "Tablodaki verilere göre su kaçıncı dakikada kaynamaya başlamıştır? (Su kaynarken sıcaklığı sabit kalır.)"
+        o = _mf_opts(first, [first - 1, first + 1, first + 2, len(temps) - 1], lambda v: f"{v}. dakika")
+        ex = f"Sıcaklık {first}. dakikada 100 °C'ye ulaşmış ve sonra değişmemiştir; kaynama bu dakikada başlamıştır."
+    else:
+        k = len(temps) - 1 - first
+        q = "Tablodaki verilere göre su kaynamaya başladıktan sonra ısıtma kaç dakika daha sürmüştür?"
+        o = _mf_opts(k, [k - 1, k + 1, first], lambda v: f"{v} dakika")
+        ex = f"Su {first}. dakikada kaynamaya başlamış, ölçüm {len(temps) - 1}. dakikaya kadar sürmüştür: {len(temps) - 1} − {first} = {k} dakika."
+    return _mf_raw(subject, "Kaynama", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+def _ff_fric(subject):
+    surf = random.sample([("cam", 2), ("sırlı fayans", 3), ("ahşap parke", 5), ("halı", 9), ("zımpara", 14), ("çim", 11)], 4)
+    d = sorted(surf, key=lambda x: x[1])
+    mn, mx = d[0], d[-1]
+    diff = mx[1] - mn[1]
+    rows = [[n, str(v)] for n, v in surf]
+    shape = {"type": "table", "title": "Sabit hızla çekme kuvveti", "headers": ["Yüzey", "Dinamometre (N)"], "rows": rows}
+    lead = ("Aynı tuğla farklı yüzeylerde dinamometreyle yatay doğrultuda sabit hızla çekiliyor. Sabit hızla çekilirken dinamometrenin gösterdiği değer, "
+            "tuğlaya etki eden sürtünme kuvvetine eşittir.")
+    q = "Tabloya göre sürtünme kuvvetinin en büyük olduğu yüzey ile en küçük olduğu yüzeydeki sürtünme kuvvetleri arasındaki fark kaç N'dur?"
+    o = _mf_opts(diff, [diff + 2, diff - 2 if diff > 2 else diff + 4, mx[1], mx[1] + mn[1]], lambda v: f"{v} N")
+    return _mf_raw(subject, "Sürtünme kuvveti", q, o, f"En büyük {mx[1]} N ({mx[0]}), en küçük {mn[1]} N ({mn[0]}): {mx[1]} − {mn[1]} = {diff} N.", shape=shape, passage=lead) if o else None
+
+
+def _ff_shadow(subject):
+    h = random.choice([10, 12, 15])
+    ds = random.sample([20, 30, 40, 50, 60, 80], 4)
+    ds.sort()
+    sh = [h * 100 // d // 1 for d in ds]
+    sh = [round(h * 100 / d) for d in ds]
+    if len(set(sh)) < 4:
+        return None
+    rows = [[str(d), str(s)] for d, s in zip(ds, sh)]
+    shape = {"type": "table", "title": "Gölge boyunun değişimi", "headers": ["Cismin ışık kaynağına uzaklığı (cm)", "Gölge boyu (cm)"], "rows": rows}
+    lead = "Işık kaynağı sabit tutulup ışığı geçirmeyen bir cisim kaynağa farklı uzaklıklara konuyor ve perdedeki gölgenin boyu ölçülüyor."
+    q = "Tablodaki verilere göre aşağıdaki yargılardan hangisi doğrudur?"
+    o = (["Cisim ışık kaynağından uzaklaştıkça gölge boyu küçülür.", "Cisim ışık kaynağından uzaklaştıkça gölge boyu büyür.",
+          "Gölge boyu cismin uzaklığından etkilenmez.", "Gölge boyu cismin uzaklığıyla önce artar sonra azalır."],
+         "Cisim ışık kaynağından uzaklaştıkça gölge boyu küçülür.")
+    return _mf_raw(subject, "Gölge", q, o, f"Uzaklık {ds[0]} cm iken gölge {sh[0]} cm, {ds[-1]} cm iken {sh[-1]} cm'dir; uzaklaştıkça gölge küçülmektedir.", shape=shape, passage=lead)
+
+
+_FF_GENS += [(_ff_food, ("besin", "ekosistem", "zincir", "çevre", "biyoçeşit")), (_ff_boil, ("ısı", "sıcaklık", "kayna", "erime", "madde", "değişim")),
+             (_ff_fric, ("sürtünme", "kuvvet")), (_ff_shadow, ("gölge", "ışık"))]
+
+
+# ---------------------------------------------------------------- SOSYAL BİLGİLER: kodla hesaplanan veri soruları (5. sınıf)
+def _sf_budget(subject):
+    inc = random.choice([(120, 30), (150, 50), (200, 40), (180, 20)])
+    items = random.sample([("Kırtasiye", 25), ("Kitap", 40), ("Yiyecek", 35), ("Ulaşım", 20), ("Oyuncak", 30), ("Sinema", 15)], 3)
+    gelir, gider = inc[0] + inc[1], sum(v for _, v in items)
+    if gider >= gelir:
+        return None
+    save = gelir - gider
+    rows = [["Harçlık (gelir)", str(inc[0])], ["Ek gelir", str(inc[1])]] + [[n + " (gider)", str(v)] for n, v in items]
+    shape = {"type": "table", "title": "Bir öğrencinin aylık bütçesi (TL)", "headers": ["Kalem", "Tutar (TL)"], "rows": rows}
+    lead = "Bir öğrenci aylık gelirlerini ve giderlerini tabloda gösterildiği gibi kaydetmiştir."
+    q = "Bu öğrenci ay sonunda tüm giderlerini yaptıktan sonra kaç TL tasarruf edebilmiştir?"
+    o = _mf_opts(save, [gelir, gider, inc[0] - gider if inc[0] - gider != save else save + 10, save + 10], lambda v: f"{v} TL")
+    return _mf_raw(subject, "Bütçe ve tasarruf", q, o, f"Gelir: {inc[0]} + {inc[1]} = {gelir} TL; gider: {gider} TL; tasarruf: {gelir} − {gider} = {save} TL.", shape=shape, passage=lead) if o else None
+
+
+def _sf_rain(subject):
+    ms = random.choice([["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran"], ["Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]])
+    vals = random.sample(range(10, 130, 10), 6)
+    srt = sorted(zip(ms, vals), key=lambda x: -x[1])
+    top2 = srt[0][1] + srt[1][1]
+    tot = sum(vals)
+    shape = {"type": "bar_chart", "title": "Bir şehrin aylık yağış miktarı (mm)", "labels": ms, "values": vals}
+    lead = "Bir şehirde altı ay boyunca ölçülen aylık yağış miktarları grafikte verilmiştir."
+    if random.random() < .5:
+        q = "Grafiğe göre en çok yağış alan iki ayda düşen toplam yağış kaç mm'dir?"
+        o = _mf_opts(top2, [srt[0][1] + srt[2][1], srt[0][1], tot - top2, top2 + 10], lambda v: f"{v} mm")
+        ex = f"En çok yağış: {srt[0][0]} ({srt[0][1]}) ve {srt[1][0]} ({srt[1][1]}) → {top2} mm."
+    else:
+        d = srt[0][1] - srt[-1][1]
+        q = "Grafiğe göre en çok yağış alan ay ile en az yağış alan ay arasındaki yağış farkı kaç mm'dir?"
+        o = _mf_opts(d, [d + 10, d - 10 if d > 10 else d + 20, srt[0][1], tot], lambda v: f"{v} mm")
+        ex = f"{srt[0][1]} − {srt[-1][1]} = {d} mm."
+    return _mf_raw(subject, "Yağış ve iklim", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+_SF_GENS = [(_sf_budget, ("ekonomi", "bütçe", "tasarruf", "ihtiyaç", "gelir")), (_sf_rain, ("iklim", "yağış", "harita", "evimiz", "hava"))]
+
+
+def sosyal_questions(grade_label, n, topics="", seen=()):
+    """5. sınıf Sosyal için cevabı kodla hesaplanan, görselli sorular."""
+    gl = str(grade_label or "")
+    if n <= 0 or "5" not in gl[:2]:
+        return []
+    tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+    sel = [f for f, kw in _SF_GENS if any(k in tl for k in kw)]
+    if not sel:
+        return []
+    out, stems = [], set(seen)
+    rkey = ("gen", "Sosyal Bilgiler", "5")
+    byname = {f.__name__: f for f in sel}
+    for nm in _recent_order(rkey, list(byname)):
+        if len(out) >= n:
+            break
+        for _t in range(4):
+            try:
+                raw = byname[nm]("Sosyal Bilgiler")
+                x = _norm_q(raw, "Sosyal Bilgiler") if raw else None
+            except Exception:
+                x = None
+            if x and _stem(x) not in stems:
+                stems.add(_stem(x))
+                x["vfd"] = True
+                x["local"] = True
+                x["tpl"] = nm
+                _recent_mark(rkey, nm)
+                out.append(x)
+                break
+    return out
+
+
 def fen_questions(grade_label, n, topics="", seen=()):
     """5. sınıf Fen 'Ay'ın hareketleri ve evreleri' için cevabı kodla hesaplanan sorular."""
     gl = str(grade_label or "")
@@ -8730,6 +8913,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                         srcs.append(lambda k: math_questions(grade_label, k, p.get("topics", ""), seen=seen))
                     if subj == "Fen Bilimleri":
                         srcs.append(lambda k: fen_questions(grade_label, k, p.get("topics", ""), seen=seen))
+                    if subj == "Sosyal Bilgiler":
+                        srcs.append(lambda k: sosyal_questions(grade_label, k, p.get("topics", ""), seen=seen))
                     random.shuffle(srcs)
                     got_f = 0
                     for _r in range(max(1, fb)):
@@ -11058,13 +11243,13 @@ def exam():
         st.caption(f"{cur.SUBJECT_ICONS.get(sub, '')} {sub} • {q.get('kazanim') or q.get('topic')}")
     pas = str(q.get("passage") or "").strip()
     if pas and pas.lower() != "null":
-        st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül / Diyalog:</b><br>{pas}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül / Diyalog:</b><br>{ai.fmt_roman_list(pas).replace(chr(10), '<br>')}</div>", unsafe_allow_html=True)
     if isinstance(q.get("shape"), dict):
         draw_geometry_shape(q["shape"])
     if not isinstance(q.get("options"), dict) and m["kind"] == "mc":
         q["options"] = {"A": "-", "B": "-", "C": "-", "D": "-"}
     pts = f" ({q['points']} puan)" if q.get("points") else ""
-    st.markdown(f"<p class='question-title'>Soru {num} [{sub}]{pts}:\n\n{q['question']}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p class='question-title'>Soru {num} [{sub}]{pts}:\n\n{ai.fmt_roman_list(q['question']).replace(chr(10), '<br>')}</p>", unsafe_allow_html=True)
     if m["kind"] == "mc":
         opts = q["options"]
         keys = list(opts)
@@ -11087,7 +11272,8 @@ def exam():
             if st.session_state.get(f"rep_{idx}"):
                 st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
             else:
-                st.button("🚩 Bu soru hatalı", key=f"repq_{idx}", on_click=_report, args=(q, f"rep_{idx}"),
+                st.selectbox("Sorun nedir?", REPORT_REASONS, key=f"repr_{idx}", label_visibility="collapsed")
+                st.button("🚩 Bu soru hatalı", key=f"repq_{idx}", on_click=_report, args=(q, f"rep_{idx}", f"repr_{idx}"),
                           help="Şekil/veri eksik ya da mantık hatası varsa bildir; bir daha çıkmaz.")
     else:
         st.text_area("Cevabınız", value=st.session_state.open_answers.get(idx, ""), height=180, key=f"open_{idx}",
@@ -11147,10 +11333,10 @@ def selfscore():
             ic = VERDICT_ICON.get(g.get("verdict"), "📝")
             with st.expander(f"{ic} Soru {i + 1} • {q.get('subject', '')} • {q.get('kazanim', '')} • {g.get('points', 0):g}/{q.get('points')} puan", expanded=(i == 0)):
                 if q.get("passage"):
-                    st.markdown(f"> {q['passage']}")
+                    st.markdown("> " + ai.fmt_roman_list(q['passage']).replace(chr(10), "  \n> "))
                 if isinstance(q.get("shape"), dict):
                     draw_geometry_shape(q["shape"])
-                st.markdown(f"**{q['question']}**")
+                st.markdown(ai.fmt_roman_list(q['question']).replace(chr(10), "  \n"))
                 st.markdown(f"**Senin cevabın:** {st.session_state.open_answers.get(i) or '_(boş)_'}")
                 if g.get("feedback"):
                     st.info(f"👩‍🏫 **Öğretmen yorumu:** {g['feedback']}" + (f"\n\n💡 {g['tip']}" if g.get("tip") else ""))
@@ -11210,9 +11396,15 @@ def _like(q, flag, m):
     st.session_state[flag] = True
 
 
-def _report(q, flag):
+REPORT_REASONS = ["Sorun nedir? (seçin)", "Cevap anahtarı yanlış", "Şekil/tablo metinle uyumsuz", "Veri eksik, çözülemiyor",
+                  "Soru belirsiz (birden çok doğru şık)", "Bilgi yanlış / müfredat dışı", "Diğer"]
+
+
+def _report(q, flag, rkey=None):
     try:
-        store.report_bad(q, ai.diagnose(q, q.get("subject")))
+        why = st.session_state.get(rkey) if rkey else None
+        why = "" if (not why or why == REPORT_REASONS[0]) else f"[{why}] "
+        store.report_bad(q, why + str(ai.diagnose(q, q.get("subject"))))
     except Exception:
         pass
     st.session_state[flag] = True
@@ -11445,10 +11637,10 @@ def result():
                 u, c = st.session_state.answers.get(i, "Boş"), q["answer"]
                 st.markdown(f"### Soru {i + 1} [{q.get('subject', '')}] {'✅' if u == c else '❌'}")
                 if q.get("passage"):
-                    st.markdown(f"> **📖** {q['passage']}")
+                    st.markdown("> **📖** " + ai.fmt_roman_list(q['passage']).replace(chr(10), "  \n> "))
                 if isinstance(q.get("shape"), dict):
                     draw_geometry_shape(q["shape"])
-                st.markdown(f"**Soru:** {q['question']}")
+                st.markdown("**Soru:** " + ai.fmt_roman_list(q['question']).replace(chr(10), "  \n"))
                 for ok, ov in q["options"].items():
                     pre_ = "✅ **(Doğru Cevabınız)**" if ok == c == u else "🟢 **(Doğru Cevap)**" if ok == c else "❌ **(Sizin Cevabınız)**" if ok == u else "   "
                     st.markdown(f"- {pre_} **{ok})** {ov}")
@@ -11461,7 +11653,8 @@ def result():
                 if st.session_state.get(f"rep_{i}"):
                     st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
                 else:
-                    st.button("🚩 Bu soru hatalı", key=f"repb_{i}", on_click=_report, args=(q, f"rep_{i}"))
+                    st.selectbox("Sorun nedir?", REPORT_REASONS, key=f"repb_r_{i}", label_visibility="collapsed")
+                    st.button("🚩 Bu soru hatalı", key=f"repb_{i}", on_click=_report, args=(q, f"rep_{i}", f"repb_r_{i}"))
                 if st.session_state.get(f"lk_{i}"):
                     st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
                 else:
@@ -11789,10 +11982,10 @@ def archive():
         q = w["q"]
         with st.expander(f"{cur.SUBJECT_ICONS.get(w['subject'], '')} {w['subject']} • {w.get('topic') or ''} • {w['grade_label']}"):
             if q.get("passage"):
-                st.markdown(f"> {q['passage']}")
+                st.markdown("> " + ai.fmt_roman_list(q['passage']).replace(chr(10), "  \n> "))
             if isinstance(q.get("shape"), dict):
                 draw_geometry_shape(q["shape"])
-            st.markdown(f"**{q['question']}**")
+            st.markdown(ai.fmt_roman_list(q['question']).replace(chr(10), "  \n"))
             if w.get("kind") == "mc":
                 for ok, ov in q["options"].items():
                     mark = "🟢 **(Doğru)**" if ok == q["answer"] else ("❌ **(Senin cevabın)**" if ok == w.get("user") else "")
@@ -11948,11 +12141,11 @@ def review():
     st.progress(min(1.0, S.get("rev_done", 0) / max(1, S.get("rev_done", 0) + len(due))))
     st.markdown("<div class='question-card'>", unsafe_allow_html=True)
     if str(q.get("passage") or "").strip() not in ("", "null"):
-        st.markdown(f"<div class='passage-box'><b>📖</b> {q['passage']}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='passage-box'><b>📖</b> {ai.fmt_roman_list(q['passage']).replace(chr(10), '<br>')}</div>", unsafe_allow_html=True)
     if isinstance(q.get("shape"), dict):
         from core.visuals import draw_geometry_shape
         draw_geometry_shape(q["shape"])
-    st.markdown(f"<p class='question-title'>{q['question']}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p class='question-title'>{ai.fmt_roman_list(q['question']).replace(chr(10), '<br>')}</p>", unsafe_allow_html=True)
     opts = q["options"]
     keys = list(opts)
     checked = S.get("rev_checked_key") == w["key"]
