@@ -11265,25 +11265,24 @@ def exam():
         cv = st.session_state.answers.get(idx)
         st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
-        st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
-        with st.expander("⋯ Soru araçları (sesli oku, temizle, bildir)", expanded=False):  # soru altındaki yardımcı bölümler kapalı gelir
-            _tts_box(q, sub, m)
-            bc1, bc2, bc4 = st.columns([1, 1.4, 1])
-            with bc4:
-                if st.session_state.get(f"lk_{idx}"):
-                    st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
-                else:
-                    st.button("👍 Soruyu beğendim", key=f"likeq_{idx}", on_click=_like, args=(q, f"lk_{idx}", m),
-                              help="Benzer sorular arka planda üretilip havuzda birikir ve sonraki sınavlarda kullanılır.")
-            with bc1:
-                st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
-            with bc2:
-                if st.session_state.get(f"rep_{idx}"):
-                    st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
-                else:
-                    st.selectbox("Sorun nedir?", REPORT_REASONS, key=f"repr_{idx}", label_visibility="collapsed")
-                    st.button("🚩 Bu soru hatalı", key=f"repq_{idx}", on_click=_report, args=(q, f"rep_{idx}", f"repr_{idx}"),
-                              help="Şekil/veri eksik ya da mantık hatası varsa bildir; bir daha çıkmaz.")
+        _tts_box(q, sub, m)
+        bc1, bc2, bc4, bc3 = st.columns([1, 1, 1, 1.3])
+        with bc3:
+            st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
+        with bc4:
+            if st.session_state.get(f"lk_{idx}"):
+                st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
+            else:
+                st.button("👍 Soruyu beğendim", key=f"likeq_{idx}", on_click=_like, args=(q, f"lk_{idx}", m),
+                          help="Benzer sorular arka planda üretilip havuzda birikir ve sonraki sınavlarda kullanılır.")
+        with bc1:
+            st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
+        with bc2:
+            if st.session_state.get(f"rep_{idx}"):
+                st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
+            else:
+                st.button("🚩 Bu soru hatalı", key=f"repq_{idx}", on_click=_report, args=(q, f"rep_{idx}"),
+                          help="Şekil/veri eksik ya da mantık hatası varsa bildir; bir daha çıkmaz.")
     else:
         st.text_area("Cevabınız", value=st.session_state.open_answers.get(idx, ""), height=180, key=f"open_{idx}",
                      on_change=_set_open, args=(idx,))
@@ -11662,8 +11661,7 @@ def result():
                 if st.session_state.get(f"rep_{i}"):
                     st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
                 else:
-                    st.selectbox("Sorun nedir?", REPORT_REASONS, key=f"repb_r_{i}", label_visibility="collapsed")
-                    st.button("🚩 Bu soru hatalı", key=f"repb_{i}", on_click=_report, args=(q, f"rep_{i}", f"repb_r_{i}"))
+                    st.button("🚩 Bu soru hatalı", key=f"repb_{i}", on_click=_report, args=(q, f"rep_{i}"))
                 if st.session_state.get(f"lk_{i}"):
                     st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
                 else:
