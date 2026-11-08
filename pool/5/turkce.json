@@ -560,6 +560,546 @@
 "topics": "Şiir, Söz sanatı, Paragraf yapısı",
 "d": 2,
 "ts": 1794121010
+},
+{
+"subject": "Türkçe",
+"topic": "Sanat ve Estetik: Paragraf Yapısı",
+"passage": "Bahar mevsiminde açan rengârenk çiçekler, ressamın paletindeki boyalar gibidir. Doğanın bu büyüleyici estetiği, insan ruhuna huzur verir ve yaratıcılığı körükler. (I) Birçok sanatçı, eserlerinde bu doğal güzelliklerden ilham almıştır. (II) Sanat, insanın iç dünyasını dış dünyaya yansıtmasının en estetik yoludur. (III) Bu nedenle şehir hayatının gürültüsünden kaçanlar beton binaları tercih eder. (IV) Estetik bakış açısı kazanan bireyler, sıradan bir yaprakta bile sanat eseri görebilirler.",
+"question": "Bu metnin akışına göre numaralanmış yerlerden hangisine düşüncenin akışını bozan bir cümle eklenmiştir?",
+"shape": null,
+"options": {
+"A": "III",
+"B": "I",
+"C": "IV",
+"D": "II"
+},
+"answer": "A",
+"explanation": "1. Adım: Metin genel olarak doğanın estetiği, sanatın ilham kaynağı ve bireylerin estetik bakış açısı konularını ele almaktadır.\n2. Adım: III numaralı cümlede 'Bu nedenle şehir hayatının gürültüsünden kaçanlar beton binaları tercih eder.' denilmektedir ki bu cümle doğanın estetiği ve sanat bağlamıyla çelişmekte, akışı bozmaktadır.\n3. Adım: Doğru şık III numaralı yerdir.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Sanat ve Estetik: Sözcükte Anlam ve Deyimler",
+"passage": "Sanatçı, yeni sergisi için hazırlık yaparken uzun süre kafa yormuş ve sonunda harika bir tema bulmuştur. Eserlerinde toplumun inceliklerini ele alarak herkesin kalbine dokunmayı başarmıştır. Sergi açılışına gelen eleştirmenler, sanatçının bu eserlerle sanat dünyasında taşları yerinden oynatacağını belirtmişlerdir.\n\nMetinde geçen altı çizili söz gruplarının anlamları sırasıyla aşağıdakilerin hangisinde verilmiştir?\n1. Kafa yormak\n2. Kalbine dokunmak\n3. Taşları yerinden oynatmak",
+"question": "Buna göre altı çizili deyimlerin anlamları sırasıyla hangi seçenekte doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Hızlı karar vermek - Üzmek - Sıradan işler yapmak",
+"B": "Derinlemesine düşünmek - Duygulandırmak - Büyük bir değişiklik veya sarsıntı yaratmak",
+"C": "Yorulmak - Heyecanlandırmak - Yeni bir eser üretmek",
+"D": "Unutmak - Sevindirmek - Düzeni bozmak istememek"
+},
+"answer": "B",
+"explanation": "1. Adım: 'Kafa yormak' deyimi bir konu üzerinde derinlemesine düşünmek, zihinsel çaba harcamak anlamına gelir.\n2. Adım: 'Kalbine dokunmak' deyimi birinin duygularını harekete geçirmek, duygulandırmak anlamı taşır.\n3. Adım: 'Taşları yerinden oynatmak' deyimi ise alışılmış düzeni sarsacak büyük bir değişiklik veya etki yaratmak demektir.\n4. Adım: Bu anlamlar A seçeneğinde eksiksiz verilmiştir.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Şiirde Anlam ve Yapı",
+"passage": "Usta şair Kerim Bey, yeni şiir kitabının imza günü öncesinde bir söyleşiye katılmış ve şiirlerinde doğa imgelerini seçme nedenini şu sözlerle açıklamıştır: \"Şiir, yalnızca kelimeleri alt alta dizmek değildir; rüzgârın yaprağa değdiği anı, suyun taşa söylediği türküyü okurun zihninde canlandırabilmektir. Benim dizelerimde doğa, süs olsun diye değil, insanın iç dünyasını yansıtan birer aynadır.\" Söyleşiyi dinleyen genç bir yazar adayı ise Kerim Bey'in bu yaklaşımını değerlendirirken şu tespiti yapmıştır: \"Şair, doğayı insanileştirerek okura sunmakta ve böylece okurun doğayla kurduğu bağı daha samimi bir boyuta taşımaktadır.\"",
+"question": "Bu senaryoya ve açıklamaya göre, Kerim Bey'in şiir anlayışıyla ilgili olarak aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Doğa ögelerini insan ruhunun derinliklerini ifade eden birer araç olarak kullandığı",
+"B": "Şiirlerinde dış dünya ögelerini insani özelliklerle donatarak duygusal bir bağ kurduğu",
+"C": "Doğayı bağımsız bir varlık olarak ele alıp insan unsurundan tamamen soyutladığı",
+"D": "Kelimeleri özenle seçerek okuyucunun hayal dünyasında canlı sahneler oluşturmayı amaçladığı"
+},
+"answer": "C",
+"explanation": "Metinde Kerim Bey, doğayı insanın iç dünyasını yansıtan bir ayna olarak kullandığını belirtmiş, genç yazar ise doğanın insanileştirildiğini vurgulamıştır. Dolayısıyla doğanın insan unsurundan tamamen soyutlandığı iddiası metinle çelişmektedir.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Söz Sanatları",
+"passage": "Edebiyat kulübü öğrencileri, okulun sergi salonunda düzenleyecekleri \"Şiir ve Tabiat\" temalı pano için dört farklı dize seçmişlerdir. Öğrenciler seçtikleri dizelerde hangi söz sanatlarının kullanıldığını belirlemek amacıyla bir çalışma kartı hazırlamıştır:\n1. Dize: \"Gün ışığı erirken yorgun dağların eteklerinde / Akşam, sessiz adımlarla odaya girdi.\"\n2. Dize: \"Gözlerimin rengi saflıktan bir denizdi / İçinde binbir martı kanat çırparak yüzerdi.\"\n3. Dize: \"Baharla birlikte toprak uykudan uyandı / Bütün ağaçlar en güzel kıyafetlerini kuşandı.\"\n4. Dize: \"Kömür karası gözleriyle baktı bana / Dünyanın bütün ışıkları bir anda söndü.\"\nÖğrencilerden Elif, bu dizelerdeki söz sanatlarını incelediğinde bir dizede yaygın olarak yapılan hata tespit etmiştir.",
+"question": "Bu çalışma kartındaki numaralandırılmış dizelerle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "1. dizede akşamın sessiz adımlarla odaya girmesiyle tezat sanatına yer verilmiştir.",
+"B": "2. dizede gözler saflıktan bir denize benzetilerek benzetme (teşbih) yapılmıştır.",
+"C": "4. dizede gözlerin kömür karası olması kişileştirme sanatına örnek gösterilmiştir.",
+"D": "3. dizede ağaçların kıyafet kuşanması abartma sanatının bir örneğidir."
+},
+"answer": "B",
+"explanation": "2. dizede gözlerin rengi saflıktan bir denize benzetilmiş, göz (benzetilen) ve deniz (benzeyen) unsurlarıyla kurallı bir teşbih yapılmıştır. 1. dizede kişileştirme, 3. dizede kişileştirme, 4. dizede ise abartma/benzetme unsurları vardır. Doğru şık B'dir.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Paragrafta Anlam ve Duygu Çıkarımı",
+"passage": "Şehir kütüphanesinde okuma etkinlikleri yürüten Deniz Öğretmen, öğrencilerine sanat ve estetik bilinci kazandırmak amacıyla şu hikâyemsi kesiti okutmuştur:\n\"Selin, eski mahallelerindeki cumbalı ahşap evlerin pencerelerinden sarkan sardunyaları izlemeyi çok severdi. Ona göre bu evler yalnızca birer barınma yeri değil, geçmişin zarafetini bugüne taşıyan birer sanat eseriydi. Bir gün parkta gördüğü modern gri binalarla bu eski evleri kıyasladığında, estetik anlayışın zaman içinde nasıl kabuk değiştirdiğini fark etti; ancak yüreğindeki o eski melodi hiç susmadı.\"\nDeniz Öğretmen, öğrencilerden bu metne dayanarak Selin'in estetik bakış açısı hakkında bir sonuca varmalarını istemiştir.",
+"question": "Bu metne göre Selin'in estetik anlayışıyla ilgili olarak aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Geçmişteki mimari yapıların taşıdığı zarif ve sanatsal detaylara değer verdiği",
+"B": "Şehirdeki değişimleri tamamen olumsuz karşılayıp yeniliğe karşı çıktığı",
+"C": "Estetik değerlerin sadece büyük şehirlerde ve müzelerde korunabileceğine inandığı",
+"D": "Modern binaların işlevselliğini eski yapılardan çok daha üstün bulduğu"
+},
+"answer": "A",
+"explanation": "Metinde Selin'in eski ahşap evlerin pencerelerindeki sardunyaları izlemeyi sevdiği ve bu evleri geçmişin zarafetini taşıyan birer sanat eseri olarak gördüğü açıkça belirtilmiştir. Bu durum A seçeneğini doğrular.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Şiirde Duygu ve Tema",
+"passage": "Tarihî bir pastanede buluşan 5/B sınıfı öğrencileri, duvarı süsleyen eski İstanbul tablosunun altına iliştirilmiş şu anonim dörtlük üzerine sohbet etmektedir:\n\"Sokaklarda bir melodi, rüzgârın dilinde nakış,\nHer taşında bir tarih, her köşesinde bir bakış.\nİstanbul bir masaldır, dinlemesini bilene,\nGözlerini kapatıp geçmişten bir iz silene.\"\nÖğrencilerden Mert, tablonun ve şiirin ortak temasını incelemiş ve gruptakilere şu yorumu yapmıştır: \"Bu dizelerde şair, şehri sadece fiziksel özellikleriyle değil, hissettirdiği estetik ve kültürel derinlikle ele almaktadır.\"",
+"question": "Bu bilgilere ve dörtlükteki dizelere göre aşağıdakilerden hangisi şairin hissettirmek istediği duygulardan biri olamaz?",
+"shape": null,
+"options": {
+"A": "Şehrin tarihî ve estetik dokusuna duyulan hayranlık",
+"B": "Geçmişin izlerini bugünde yaşatmanın verdiği huzur",
+"C": "Doğa ile tarihin iç içe geçmişliğinden alınan estetik tat",
+"D": "Şehrin kalabalığından ve gürültüsünden duyulan rahatsızlık"
+},
+"answer": "D",
+"explanation": "Şiirde sokakların melodi, rüzgârın nakış gibi olduğu ve İstanbul'un bir masal gibi dinlenilmesi gerektiği vurgulanmıştır. Şehrin kalabalığından ve gürültüsünden duyulan rahatsızlık şiirde geçmemektedir.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Metinler Arası Karşılaştırma",
+"passage": "Okul kantininde düzenlenen \"Estetik ve Sanat\" panosunda, iki farklı yazarın sanat tanımına yer verilmiştir:\n1. Metin: \"Sanat, insanın içindeki coşkuyu dış dünyaya vurma biçimidir. Bir ressamın tuvale sürdüğü her renk, aslında kendi ruhunun birer yansımasıdır.\"\n2. Metin: \"Sanatçı, toplumun aynasıdır. Toplumda yaşanan sevinçleri, acıları ve güzellikleri en yalın biçimde eserine aktaran kişidir.\"\nKantin görevlisi Cemil Bey, öğrencilerin bu iki metni karşılaştırarak ortak bir sonuca ulaşmalarını istemiştir.",
+"question": "Bu iki metin ortak olarak incelendiğinde aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Her iki metin de sanatın bireysel duyguların dışa vurumu olduğunu savunmaktadır.",
+"B": "Her iki metin de sanatın temelinde insana ve hayata dair unsurların bulunduğunu vurgulamaktadır.",
+"C": "İlk metin sanatın toplumsal faydasını, ikinci metin ise tamamen hayalî yönünü öne çıkarır.",
+"D": "İkinci metin sanatçının bireysel yalnızlığını ve iç dünyasını merkeze alır."
+},
+"answer": "B",
+"explanation": "Birinci metin sanatın bireysel yönüne (ruh yansıması) değinirken, ikinci metin toplumsal yönüne değinmektedir. Ancak her iki metnin ortak noktası sanatın temelinde insana ve hayata dair unsurların bulunmasıdır (B seçeneği).",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Karşılaştırma Cümlesi",
+"passage": "Okulun düzenlediği 'Geleneksel Sanatlar' yarışmasında Elif, sulu boya çalışmasıyla; Kerem ise ebru sanatıyla katılmıştır. Jüri üyeleri, Elif'in tablosundaki renk geçişlerinin Kerem'in eserindekinden daha canlı olduğunu, ancak Kerem'in kullandığı desenlerin Elif'in desenlerine göre daha özgün ve detaylı olduğunu belirtmiştir.",
+"question": "Bu metindeki değerlendirmelere göre, sanat dallarının karşılaştırılmasıyla ilgili aşağıdakilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Jüri, her iki öğrencinin eserini de aynı kriterlere göre değerlendirmiştir.",
+"B": "Kerem'in eserindeki desenlerin özgünlüğü, Elif'in eserindekinden daha üstün bulunmuştur.",
+"C": "Ebru sanatı, sulu boya çalışmasına göre daha az renk içermektedir.",
+"D": "Elif'in çalışmasındaki renklerin canlılığı, Kerem'in çalışmasındaki renklerle kıyaslanmıştır."
+},
+"answer": "C",
+"explanation": "Metinde renk geçişlerinin canlılığı ve desenlerin özgünlüğü/detayı karşılaştırılmıştır. D seçeneğinde belirtilen 'daha az renk içerme' ifadesi, metinde yer alan canlılık veya teknik karşılaştırmasından çıkarılamaz; sadece tekniklerin niteliği karşılaştırılmıştır.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Öznel ve Nesnel Yargı",
+"passage": "5/A sınıfı öğrencileri 'Sanat Tarihi' panosu hazırlıyor. Öğrencilerin panoya yazdığı notlar şöyledir:\n1. 'Dünyanın en güzel heykeli, şehir meydanındaki mermer kadın figürüdür.'\n2. 'Mimar Sinan, 16. yüzyılda yaşamış ünlü bir Osmanlı mimarıdır.'\n3. 'Klasik müzik dinlemek, tüm insanlar için en keyifli etkinliktir.'\n4. 'Bu tablodaki mavi renk, gökyüzünün renginden daha koyu bir tona sahiptir.'",
+"question": "Buna göre öğrencilerin yazdığı notlardan hangileri 'nesnel' nitelik taşımaktadır?",
+"shape": null,
+"options": {
+"A": "3 ve 4",
+"B": "2 ve 4",
+"C": "1 ve 2",
+"D": "1 ve 3"
+},
+"answer": "B",
+"explanation": "2 numaralı cümle kanıtlanabilir tarihsel bir bilgidir. 4 numaralı cümle ise görsel bir gözlem sonucu ölçülebilir/karşılaştırılabilir bir niteliktir. 1 ve 3 numaralı cümleler ise tamamen kişisel zevk ve yorum içerdiği için özneldir.",
+"vfd2": true,
+"unit": "Sanat ve Estetik",
+"topics": "Şiir, Söz sanatı, Paragraf yapısı",
+"d": 4,
+"ts": 1794125330
+},
+{
+"subject": "Türkçe",
+"topic": "Bilgilendirici Metin ve Karşılaştırma",
+"passage": "Arkeologlar, antik bir yerleşkede yaptıkları kazı çalışmalarında iki farklı tabaka buldular. Üst tabakada, günümüze daha yakın dönemlere ait pişmiş toprak kaplar ve demir aletler gün yüzüne çıkarıldı. Alt tabakada ise çok daha eski bir döneme ait, süsleme içermeyen basit taş aletler ve yanmış hayvan kemikleri tespit edildi. Kazı başkanı, alt tabakadaki buluntuların teknolojik gelişimden uzak olduğunu ancak hayatta kalma mücadelesinin en saf halini temsil ettiğini belirtti.",
+"question": "Bu bilgilere göre, kazıdaki iki tabaka karşılaştırıldığında aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Üst tabakadaki buluntular, alt tabakadakilere göre daha ilkel bir yaşam tarzını yansıtmaktadır.",
+"B": "Arkeologlar, üst tabakadaki eserlerin daha yeni bir döneme, alt tabakadakilerin ise daha eski bir döneme ait olduğunu belirlemiştir.",
+"C": "Alt tabakada bulunan araç gereçler, üst tabakadakilere oranla daha karmaşık üretim süreçlerinden geçmiştir.",
+"D": "Her iki tabakada da kullanılan malzemelerin benzer olması, o bölgedeki yaşamın yüzyıllar boyunca değişmediğini kanıtlamaktadır."
+},
+"answer": "B",
+"explanation": "Metinde üst tabakanın daha yakın, alt tabakanın daha eski olduğu belirtilmiştir. A seçeneği tam tersini söyler, B seçeneği metinle çelişir (taş aletler basittir). D seçeneği metindeki farklılık vurgusuyla uyumsuzdur. C seçeneği metindeki tabaka tanımını doğru yansıtmaktadır.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Neden-Sonuç ve Tahmin",
+"passage": "Büyükşehir Belediyesi Kitap Fuarı'nın ilk gününde ziyaretçi sayıları şöyle kaydedildi: Doğa Bilimleri standı 450, Klasik Edebiyat standı 620, Macera Romanları standı 800 ve Çocuk Hikâyeleri standı 950 kişi tarafından ziyaret edildi. İkinci gün, hava muhalefeti nedeniyle genel ziyaretçi sayısının %20 azalacağı öngörülmüştü. Ancak, fuar alanı kapalı olduğu için Doğa Bilimleri standına ilginin artacağı tahmin ediliyordu.",
+"question": "Verilen bilgilere göre, ikinci günle ilgili aşağıdakilerden hangisi mantıksal bir çıkarımdır?",
+"shape": null,
+"options": {
+"A": "Genel azalma öngörülse bile, Doğa Bilimleri standının ziyaretçi sayısı 450'den yüksek olabilir.",
+"B": "Klasik Edebiyat standının ziyaretçi sayısı, ilk günkü Çocuk Hikâyeleri standı sayısından fazla olacaktır.",
+"C": "Macera Romanları standı, fuarın en az ilgi gören standı olmaya devam edecektir.",
+"D": "Tüm stantların ziyaretçi toplamı, ikinci gün birinci günden daha yüksek olacaktır."
+},
+"answer": "A",
+"explanation": "Genel ziyaretçi sayısı azalmasına rağmen Doğa Bilimleri standına özel bir ilgi artışı beklendiği için, bu standın sayısının 450'nin altına düşmemesi veya onu geçmesi öngörülebilir. Diğer şıklar verilen metinle çelişir veya doğrudan yanlış çıkarımdır.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Cümlede Anlam ve Tamamlama",
+"passage": "Okulumuzun 'Geri Dönüşüm Projesi' kapsamında; I. sınıflar plastik şişeleri, II. sınıflar kağıt atıklarını, III. sınıflar cam şişeleri, IV. sınıflar ise pil atıklarını toplamaktadır. Proje sonunda en çok atık toplayan sınıf birincilik ödülü alacaktır. Eylül ayında I. sınıflar 50 kg, II. sınıflar 70 kg, III. sınıflar 30 kg, IV. sınıflar 10 kg atık topladı.",
+"question": "Ekim ayında birinci olmak isteyen bir sınıfın, eylül ayı sonuçlarına göre atması gereken adım aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "IV. sınıf, mevcut toplama hızını korursa birinci olacaktır.",
+"B": "III. sınıfın birinciliği garantidir çünkü cam atıklar diğerlerinden ağırdır.",
+"C": "II. sınıf, en az atığı topladığı için proje dışı kalacaktır.",
+"D": "I. sınıf, topladığı plastik miktarını artırarak II. sınıfın seviyesini geçmeyi hedeflemelidir."
+},
+"answer": "D",
+"explanation": "Eylül ayında en çok atığı 70 kg ile II. sınıflar toplamıştır. Birinci olmak isteyen diğer sınıfların (özellikle 50 kg ile I. sınıfın) bu miktarı geçmesi gerekmektedir. A seçeneği mantıksal bir strateji önerisidir.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Neden-Sonuç ve Hata Bulma",
+"passage": "Su tasarrufu konulu bir afişte şu hatalı bilgi verilmiştir: 'Dişlerinizi fırçalarken musluğu açık bırakmak suyun daha hızlı akmasını sağlar, bu da fırçalama süresini kısalttığı için suyun az harcanmasına neden olur.'",
+"question": "Bu metindeki hangi ifade, bir neden-sonuç ilişkisi kurarken bilimsel gerçekle çelişmektedir?",
+"shape": null,
+"options": {
+"A": "Musluğun açık olması suyun daha hızlı akmasını sağlar.",
+"B": "Diş fırçalarken musluğu açık bırakmak.",
+"C": "Suyun hızlı akması fırçalama süresini kısalttığı için su az harcanır.",
+"D": "Su tasarrufu, diş fırçalarken musluğu kapatmayı gerektirir."
+},
+"answer": "C",
+"explanation": "Metinde musluğu açık bırakmanın suyun daha hızlı akmasına neden olduğu ve bunun da suyun 'az harcanmasını' sağladığı iddia edilmiştir. Bu, suyun boşa akmasıyla tüketimin artması gerçeğine aykırı, hatalı bir neden-sonuç ilişkisidir.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Karşılaştırma Cümleleri",
+"passage": "Deniz, evindeki akvaryumda iki farklı tür balık beslemektedir. Japon balığı, vantuz balığına göre çok daha yavaş hareket etmekte ve akvaryumun üst kısmında vakit geçirmektedir. Vantuz balığı ise akvaryumun camlarına tutunarak sürekli temizlik yapmaktadır. Deniz, Japon balığının yem yeme hızının vantuz balığından daha düşük olduğunu gözlemlemiştir.",
+"question": "Bu metne göre aşağıdakilerden hangisi bir karşılaştırma cümlesidir?",
+"shape": null,
+"options": {
+"A": "Vantuz balığı akvaryumun camlarına tutunarak temizlik yapmaktadır.",
+"B": "Japon balığı, vantuz balığına göre çok daha yavaş hareket etmektedir.",
+"C": "Deniz evindeki akvaryumda iki farklı tür balık beslemektedir.",
+"D": "Vantuz balığı gün boyu akvaryumun tabanında kalmaktadır."
+},
+"answer": "B",
+"explanation": "Metinde iki balık türünün hareket hızları karşılaştırılmıştır. 'Japon balığı, vantuz balığına göre daha yavaş' ifadesinde bir karşılaştırma söz konusudur.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Neden-Sonuç İlişkisi",
+"passage": "Bilim insanı Dr. Selin, ormanlık alandaki ağaçların son yıllarda neden kuruduğunu araştırmak için bir rapor hazırladı. Raporda şu ifadelere yer verdi: 'Bölgedeki yer altı sularının aşırı tüketimi nedeniyle ağaçların kökleri suya ulaşamamış, bu yüzden ormandaki yeşil alanlar hızla azalmıştır. Ayrıca düzensiz yağışlar da toprak kalitesini olumsuz etkilemiştir.'",
+"question": "Metne göre, ormandaki yeşil alanların hızla azalmasının nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Yer altı sularının aşırı tüketimi yüzünden ağaçların köklerinin suya ulaşamaması.",
+"B": "Dr. Selin'in bölgeyi detaylı bir şekilde incelemesi.",
+"C": "Ormanlık alanın çok geniş bir bölgeye yayılmış olması.",
+"D": "Düzensiz yağışların toprağın kalitesini düşürmesi."
+},
+"answer": "A",
+"explanation": "Metinde yeşil alanların azalması sonucunun nedeni, yer altı sularının tüketilmesi sonucu ağaçların susuz kalması olarak açıklanmıştır.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Bilgilendirici Metin",
+"passage": "Kek yapmak için gerekli malzemeler: 3 yumurta, 1 su bardağı şeker, yarım su bardağı sıvı yağ ve 2 su bardağı un. Ayşe, tarifi okuduktan sonra mutfağa geçti. Elinde sadece 2 yumurta olduğu için komşusundan 1 yumurta daha istedi. Şeker ve yağı karıştırıp ardından unu ekledi. Fırını 180 dereceye ayarlayarak kekini pişmeye bıraktı.",
+"question": "Bu metne göre Ayşe'nin keki yaparken izlediği süreçle ilgili hangisi çıkarılabilir?",
+"shape": null,
+"options": {
+"A": "Ayşe tarifteki tüm malzemeleri tam olarak evinde bulmuştur.",
+"B": "Malzeme eksikliğini gidermek için yardımlaşma yoluna gitmiştir.",
+"C": "Tarifteki un miktarını kendi isteğine göre azaltmıştır.",
+"D": "Kekin pişmesi için fırının sıcaklığını 200 dereceye yükseltmiştir."
+},
+"answer": "B",
+"explanation": "Metinde Ayşe'nin elinde 2 yumurta olduğu, 3 yumurta gerektiği için komşusundan 1 yumurta istediği belirtilmiştir. Bu bir yardımlaşma sürecidir.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Cümlede Anlam",
+"passage": "Çiftlikte yaşayan Ali, sabahın ilk ışıklarıyla kümese girdi. Tavukların yumurtalarını toplarken gördüğü manzara karşısında şaşırdı; çünkü kümesteki samanlar düzenli bir şekilde bir köşeye yığılmıştı. Ali, bu durumu tavukların yuva hazırlığı yapmasına bağladı.",
+"question": "Ali'nin yaşadığı bu duruma göre, 'bir işi bir şeye bağlamak' deyiminin metindeki anlamı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Samanları birbirine sıkıca düğümlemek.",
+"B": "Tavukları kümesten dışarıya çıkarmak.",
+"C": "Bir olayın sebebini bir şeye dayandırmak.",
+"D": "Çiftlikteki işleri planlı bir sıraya koymak."
+},
+"answer": "C",
+"explanation": "Ali kümesteki düzensizliğin nedenini tavukların yuva hazırlığına dayandırmaktadır. Deyim burada bir durumu bir nedene bağlamak anlamında kullanılmıştır.",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 1,
+"ts": 1794125508
+},
+{
+"subject": "Türkçe",
+"topic": "Metin Karşılaştırma ve Mantık",
+"passage": "Eski dönemlerde bilgiye ulaşmak için kütüphanelere gidip saatlerce kitap karıştırmak gerekirdi. Günümüzde ise dijital kütüphaneler sayesinde istediğimiz kaynağa saniyeler içinde ulaşabiliyoruz. Ancak bu hız, bazen derinlemesine okuma yapma alışkanlığımızı zayıflatıyor.",
+"question": "Bu parçada teknoloji ile ilgili aşağıdaki yargılardan hangisine değinilmemiştir?",
+"shape": null,
+"options": {
+"A": "Okuma biçimlerini değiştirdiğine",
+"B": "Bilgiye ulaşma süresini kısalttığına",
+"C": "Bilgi erişimini kolaylaştırdığına",
+"D": "Kütüphane kültürünü tamamen yok ettiğine"
+},
+"answer": "D",
+"explanation": "Metin, günümüzde kütüphanelerin yerini dijital kütüphanelerin aldığını belirtir ancak 'tamamen yok ettiğini' savunmaz. Sadece bir yöntem değişikliğinden ve derinlemesine okuma üzerindeki etkisinden bahseder.",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 1,
+"ts": 1794125658
+},
+{
+"subject": "Türkçe",
+"topic": "Bilim ve Teknoloji: Başlık Belirleme",
+"passage": "İnsanlık, tekerleğin icadından internetin keşfine kadar her zaman merak duygusuyla hareket etmiştir. Bilim insanları gecelerini gündüzlerine katarak laboratuvarlarda çalışmış, buldukları yöntemlerle yaşamımızı kolaylaştırmışlardır. Bugün kullandığımız uçaklar, bilgisayarlar ve ilaçlar, hep bu meraklı zihinlerin sabırlı çalışmaları sonucunda ortaya çıkmıştır.",
+"question": "Bu metnin içeriğine en uygun başlık aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Tekerleğin Tarihsel Gelişimi",
+"B": "Merakın İcatlarla Dansı",
+"C": "Dünyadaki İlaç Sektörü",
+"D": "İnternetin Kullanım Alanları"
+},
+"answer": "B",
+"explanation": "Metin genel olarak bilimin, keşiflerin ve meraktan doğan icatların yaşamı nasıl değiştirdiğini ele almaktadır. Diğer şıklar çok dar kapsamlıdır, metni tam karşılamaz.",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 1,
+"ts": 1794125658
+},
+{
+"subject": "Türkçe",
+"topic": "Sözcükte Anlam (Erdemler)",
+"passage": "Sağlık merkezindeki gönüllü rehberler; yaşlı hastaların poliklinik kapılarını bulmalarına yardım ediyor, onlara nazikçe eşlik ederek sıra beklerken hal hatır soruyorlar. Görevli hemşire, 'Gönüllülerimizin bu sağduyulu ve yardımsever tavırları, hastalarımızın kendini değerli hissetmesini sağlıyor,' açıklamasını yaptı.",
+"question": "Metne göre 'sağduyulu' ve 'yardımsever' kavramlarını karşılaştıran bir öğrenci aşağıdakilerden hangisine ulaşabilir?",
+"shape": null,
+"options": {
+"A": "Yardımseverlik, sağduyulu olmaktan daha zahmetli bir erdemdir.",
+"B": "Sağduyulu olmak sadece hastanelerde, yardımsever olmak ise her ortamda geçerlidir.",
+"C": "Sağduyu kişinin olayları doğru değerlendirme yetisiyle, yardımseverlik ise bu yetinin eyleme dönüşmesiyle ilgilidir.",
+"D": "Sağduyulu davranışlar hastanın sağlığını iyileştirirken, yardımseverlik sadece moral verir."
+},
+"answer": "C",
+"explanation": "Sağduyu olayları doğru anlama ve değerlendirme yeteneğini; yardımseverlik ise bu değerlendirme sonucu harekete geçmeyi ifade eder. Metinde hemşirenin sağduyulu tavır ile hastaların değer görmesini bağdaştırması, sağduyunun bir kavrayış, yardımseverliğin ise bu kavrayışın davranışa dökülmüş halidir.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Ana Fikir ve Geri Dönüşüm",
+"passage": "Okulun Geri Dönüşüm Kulübü, 'Atıklar Çöp Değildir, Kaynaktır' projesi için bir çizelge hazırladı. Cam atıklarını getiren öğrenciler sorumluluk erdemini, kâğıtları ayrıştıranlar çevre bilincini, metal kutuları getirenler ise tutumluluk değerini sergilemiş oldular. Ancak sadece kâğıt ve cam getiren öğrencilerin olduğu, metal kutu getirenin ise hiç olmadığı bir haftada tablo eksik kalmıştır.",
+"question": "Bu duruma göre, 'tutumluluk' erdemini temsil eden kategorinin eksik kalmasının temel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Metal kutuların geri dönüşümünün yapılamaması.",
+"B": "İlgili erdemi temsil eden fiziksel bir verinin veya davranışın gerçekleşmemesi.",
+"C": "Öğrencilerin kâğıt ve camın daha değerli olduğunu düşünmesi.",
+"D": "Okul yönetiminin metal kutu toplama kutusunu kaldırması."
+},
+"answer": "B",
+"explanation": "Metinde tutumluluk erdemini metal kutu getirenlerin temsil ettiği belirtilmiştir. Metal kutu getiren hiç kimse olmadığına göre, bu erdemin sütunu verisizlikten dolayı boş kalmıştır.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Erdemler ve Görsel Yorumlama",
+"passage": "5/A sınıfı öğrencileri okul bahçesinde 'Erdem Ağacı' panosu hazırladı. Ağacın dallarına erdemleri astılar: 'Dürüstlük' köke, 'Adalet' gövdeye, 'Sabır' ise meyvelere yazıldı. Öğrencilerden biri, 'Sabır meyvedir çünkü ancak uzun süreli bir çaba sonunda olgunlaşır.' dedi.",
+"question": "Bu modellemeye göre 'Adalet' kavramının ağacın gövdesine yazılmasının mantıksal gerekçesi hangisi olabilir?",
+"shape": null,
+"options": {
+"A": "Adaletin ağacın en görünür ve göze çarpan yeri olması.",
+"B": "Toplumsal düzenin tıpkı bir ağacın gövdesi gibi diğer erdemleri taşıyıcı ve dengeleyici bir role sahip olması.",
+"C": "Adaletin diğer erdemlerden daha ağır ve büyük olması.",
+"D": "Dürüstlük kök olarak tanımlandığı için adaletin ondan sonra gelmesi zorunluluğu."
+},
+"answer": "B",
+"explanation": "Ağaçta gövde, kökten beslenen yapıyı ayakta tutan ve dengeleyen kısımdır. Adaletin gövde ile eşleştirilmesi, adaletin toplumsal yapıyı taşıyan merkezi bir erdem olduğu fikrine dayanır.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Erdemlerin Uygulanması",
+"passage": "Bir inşaat alanının yanından geçen inşaat mühendisi, çalışan işçilerin mola verdiklerini gördü. Genç bir işçinin, yaşlı bir işçinin su matarasını ona uzatarak 'Siz önce içerseniz daha iyi olur, yorgun görünüyorsunuz.' dediğine şahit oldu.",
+"question": "Bu olaydaki işçinin davranışı, aşağıdaki erdemlerden hangisiyle doğrudan ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "Dürüstlük",
+"B": "Saygı",
+"C": "Sabır",
+"D": "Cesaret"
+},
+"answer": "B",
+"explanation": "Genç işçinin yaşlı olana öncelik tanıması, büyüklere duyulan hürmetin ve nezaketin bir göstergesidir; bu da saygı erdemini ifade eder.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Örnek/Karşı Örnek Bulma (Erdemler)",
+"passage": "Gıda üretim tesisinde 'Doğruluk' değerini anlatan bir kampanya yapılıyor. Kampanya sloganları: 'Ürünün içeriğini eksiksiz yaz!', 'Tartıda hile yapma!', 'Kaliteli malzemeyi seç!'. Bir çalışan ise 'Üretimdeki hatalı ürünü saklamadan ayırıp müşteriye doğru bilgiyi vermek en büyük erdemdir.' dedi.",
+"question": "Buna göre aşağıdaki davranışlardan hangisi, 'doğruluk' erdemine karşı bir örnektir?",
+"shape": null,
+"options": {
+"A": "Hatalı üretilen ürünü, sanki hatasızmış gibi piyasaya sürmek.",
+"B": "Üretim tarihini ambalaj üzerine net bir şekilde yazmak.",
+"C": "Ürünün ağırlığını etiket üzerinde doğru beyan etmek.",
+"D": "Kullanılan ham maddelerin menşeini müşteriye açıklamak."
+},
+"answer": "A",
+"explanation": "Doğruluk, dürüst ve şeffaf olmayı gerektirir. Hatalı bir ürünü gizleyerek hatasızmış gibi satmak, doğruluk erdeminin tam tersi olan aldatma davranışıdır.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Erdemler: Ana Fikir",
+"passage": "Okul bahçesindeki fidan dikme etkinliğinde, görevli öğretmen her öğrenciye bir fidan verdi. Melis, kendi fidanını dikerken yanındaki arkadaşının yorulduğunu görüp önce onun fidanını dikmesine yardım etti, sonra kendi fidanını dikti. Etkinlik sonunda öğretmen, Melis'in bu davranışını 'Başkalarına karşılık beklemeden yardım etmek, erdemlerin en güzelidir.' sözleriyle övdü.",
+"question": "Metne göre Melis'in sergilediği davranışın temel erdemi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Sabırlı olmak",
+"B": "Doğa sevgisi",
+"C": "Yardımseverlik",
+"D": "Sorumluluk"
+},
+"answer": "C",
+"explanation": "Melis, kendi işinden önce arkadaşının zor durumda olduğunu fark edip ona destek olmuştur. Bu durum, karşılık beklemeden başkasının iyiliğini gözetmek anlamına gelen yardımseverlik erdemini ifade eder.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Erdemler: Sözcükte Anlam (Zıt Anlam)",
+"passage": "Kütüphane sorumlusu Selin, öğrencilere şu notu bıraktı: 'Kitapları yerleştirirken düzenli olmaya özen gösterin. Dağınık raflar, aradığınız bilgiyi bulmanızı zorlaştırır.' Selin'in notunda geçen 'düzenli' kelimesinin zıt anlamlısı olan kelimeyi kullanarak bir cümle kuran öğrenci, erdemli bir çalışma disiplinine sahip olduğunu göstermiş olur.",
+"question": "Aşağıdaki öğrencilerden hangisi 'düzenli' kelimesinin zıt anlamlısını kullanarak doğru bir cümle kurmuştur?",
+"shape": null,
+"options": {
+"A": "Sınıfımızdaki kitaplık çok tertipli görünüyordu.",
+"B": "Aradığım dosyayı karmaşık bir ortamda bulamadım.",
+"C": "Odanın her yerini sistemli bir şekilde dizdi.",
+"D": "Masamın üzerindeki düzensiz kitapları hemen topladım."
+},
+"answer": "D",
+"explanation": "Düzenli kelimesinin zıt anlamlısı düzensizdir. A seçeneğinde düzensiz kelimesi kullanılmıştır. Diğer şıklarda bu kelime yer almamakta veya zıt anlamlısı bulunmamaktadır.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Erdemler: Cümle Bilgisi (Noktalama)",
+"passage": "Öğretmen, 'Dürüstlük bir erdemdir.' cümlesindeki noktanın görevini tahtaya şöyle yazdı: 'Nokta; tamamlanmış cümlelerin sonuna konur.' Ardından öğrencilerden erdemlerle ilgili benzer cümleler kurmalarını istedi.",
+"question": "Aşağıdaki öğrencilerden hangisi noktanın kullanım amacına uygun, erdemli bir davranışı ifade eden cümle kurmuştur?",
+"shape": null,
+"options": {
+"A": "Eyvah, fidanı yanlış yere diktim!",
+"B": "Sınıfa girerken kapıyı aç...",
+"C": "Yardımsever insanları sever misin?",
+"D": "Adalet, toplumun temel direğidir."
+},
+"answer": "D",
+"explanation": "Nokta, tamamlanmış yargı bildiren cümlelerin sonunda kullanılır. C şıkkındaki cümle tamamlanmış bir yargı bildirir ve doğru noktalanmıştır.",
+"vfd2": true,
+"unit": "Erdemler",
+"topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
+"d": 2,
+"ts": 1794126527
 }
 ]
 }

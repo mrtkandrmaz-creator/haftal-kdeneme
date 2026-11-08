@@ -800,6 +800,306 @@
 "topics": "Kur'an'ın indirilişi, Temel konular",
 "d": 3,
 "ts": 1794121081
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Tekvin (Yaratma)",
+"passage": "Orman Genel Müdürlüğü görevlisi Ahmet Bey, öğrencilere ormandaki ağaçların tohumdan yetişip gelişmesini anlatırken; 'Her bir fidanın topraktan filizlenip devasa bir ağaca dönüşmesi, hiçbir şey yokken var edilmesi, Yaratıcımızın yoktan var etme sıfatının bir eseridir.' demiştir.",
+"question": "Ahmet Bey'in ormandaki ağaçların oluşumu için vurguladığı 'yoktan var etme' sıfatı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Tekvin",
+"B": "İrade",
+"C": "Basar",
+"D": "Kudret"
+},
+"answer": "A",
+"explanation": "Allah'ın bir şeyi yoktan var etmesi, yaratması anlamına gelen sıfat Tekvin'dir. Diğer şıklar görme, güç yetirme veya dileme ile ilgilidir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın Gören ve İşiten Olması (Semi-Basar)",
+"passage": "Kodlama kulübündeki öğrenciler bir simülasyon hazırlamışlardır. Simülasyonda; 'X' fonksiyonu gizli bir mikrofonu, 'Y' fonksiyonu ise her köşeyi izleyen bir kamerayı temsil etmektedir. Öğrenciler bu iki fonksiyonu evrendeki düzeni kontrol eden ilahi sıfatlarla eşleştireceklerdir.",
+"question": "Buna göre, 'X' fonksiyonu (işitme) ve 'Y' fonksiyonu (görme) hangi sıfatlarla doğru eşleştirilmiştir?",
+"shape": null,
+"options": {
+"A": "Basar - Semi",
+"B": "Semi - Basar",
+"C": "Kudret - İrade",
+"D": "Tekvin - Tevhid"
+},
+"answer": "B",
+"explanation": "İşitmek anlamına gelen sıfat Semi, görmek anlamına gelen sıfat Basar'dır. X işitmeyi (mikrofon), Y görmeyi (kamera) temsil ettiğine göre doğru sıralama Semi - Basar olmalıdır.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın Gücü (Kudret) ve Dilemesi (İrade)",
+"passage": "5/C sınıfı öğrencileri, evdeki elektrik tasarrufu konusunda bir deney yaparlar. Deneyde enerji kaynaklarının sınırsız olmadığını, her şeyin bir güç (kaynak) ve bir tercih (açma-kapama) sonucunda işlediğini tartışırlar. Bu tartışma sırasında Merve şu çıkarımı yapar: 'Dünyadaki sınırlı enerji kaynaklarının aksine, Allah'ın her şeye gücünün yetmesi ve dilediğini dilediği şekilde gerçekleştirmesi sınırsızdır.'",
+"question": "Merve'nin yaptığı bu çıkarımda Allah'ın hangi iki sıfatı vurgulanmıştır?",
+"shape": null,
+"options": {
+"A": "Kudret - İrade",
+"B": "Tevhid - Tekvin",
+"C": "Semi - Basar",
+"D": "Rahman - Rahim"
+},
+"answer": "A",
+"explanation": "Her şeye gücünün yetmesi Kudret, dilediğini dilediği şekilde gerçekleştirmesi ise İrade sıfatının açıklamasıdır.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın Güzel İsimleri (Rahman ve Rahim)",
+"passage": "Kitap fuarındaki bir stantta görevli olan Can, gelen ziyaretçilere 'Allah'ın İsimleri' temalı kitapları tanıtırken şunları not etmiştir: 1. Allah, dünyadaki tüm varlıklara merhamet eder, rızıklarını verir. 2. Allah, ahirette sadece müminlere özel merhamet gösterir ve onları ödüllendirir.",
+"question": "Can'ın sırasıyla açıkladığı bu iki güzel isim aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Semi - Basar",
+"B": "Kudret - Tekvin",
+"C": "Rahman - Rahim",
+"D": "Rahim - Rahman"
+},
+"answer": "C",
+"explanation": "Dünyada tüm varlıklara merhamet eden Rahman, ahirette inananlara özel merhamet gösteren ise Rahim ismidir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Evrendeki Düzen ve Akıl",
+"passage": "Bir şehir planlama projesinde, parkların, yolların ve binaların birbirine olan mesafesi kusursuz bir matematiksel düzenle çizilmiştir. Şehir plancısı Zeynep, 'Bu plandaki ölçülerin tesadüfen oluşması imkansızdır, her şey bir planlayıcı gerektirir' diyerek tasarımını sunar.",
+"question": "Zeynep'in bu yargısı, evrenle ilgili aşağıdaki ayetlerden hangisiyle doğrudan ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "Biz her şeyi bir ölçü ve dengede yarattık.",
+"B": "De ki: O Allah tektir.",
+"C": "Allah her şeyin yaratıcısıdır.",
+"D": "Allah her şeyi işitendir."
+},
+"answer": "A",
+"explanation": "Zeynep'in şehir planındaki kusursuz düzen ve ölçü vurgusu, evrendeki her şeyin bir ölçü ve denge içinde yaratıldığını belirten ayetle örtüşmektedir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Değer ve Davranış İlişkisi",
+"passage": "Okul bahçesinde çiçek dikimi yapan Elif, 'Allah'ın her şeyi gördüğüne, işittiğine ve yaptığım her davranışın kaydedildiğine inanıyorum. Bu yüzden çevreme, bitkilere ve arkadaşlarıma karşı her zaman dürüst ve özenli olmalıyım.' düşüncesiyle hareket eder.",
+"question": "Elif'in bu yaklaşımı, Allah'ın hangi sıfatlarının onun davranışlarını güzelleştirdiğini gösterir?",
+"shape": null,
+"options": {
+"A": "Tekvin ve İrade",
+"B": "Rahman ve Rahim",
+"C": "Basar ve Semi",
+"D": "Kudret ve Tevhid"
+},
+"answer": "C",
+"explanation": "Elif, Allah'ın kendisini her an gördüğüne (Basar) ve işittiğine (Semi) olan inancının, davranışlarını güzelleştirdiğini ifade etmektedir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın güzel isimleri (Semi ve Basar)",
+"passage": "Doğa fotoğrafçısı Elif, ormanda gizli bir noktada kuşların yuvasını fotoğraflamak için saatlerce hareketsiz bekler. O anı zihninden geçirirken şöyle düşünür: 'Ben burada en ufak bir kıpırtıyı bile görüyor, en hafif kanat sesini bile duyuyorum. Ancak yarattığı her bir canlıyı, hiçbir an boş bırakmadan gözeten ve tüm varlıkların en gizli saklı hallerini işiten yüce bir varlığın yanında benim bu dikkatim ne kadar küçüktür.'",
+"question": "Elif'in bu düşüncesi Allah'ın hangi iki ismiyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "Semi - Basar",
+"B": "İrade - Kudret",
+"C": "Rahman - Rahim",
+"D": "Tekvin - Kudret"
+},
+"answer": "A",
+"explanation": "Metinde Elif'in 'görmesi' ve 'duyması' Allah'ın her şeyi işitmesi (Semi) ve her şeyi görmesi (Basar) sıfatlarına bir atıftır. Dolayısıyla kavramlar Semi ve Basar'dır.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın gücü ve yaratması (Kudret ve Tekvin)",
+"passage": "Pazar yerinde alışveriş yapan Ahmet Bey, tezgahlarda dizili meyve ve sebzelerin çeşitliliğine bakarak şu yorumu yapar: 'Her bir meyve farklı bir renk, farklı bir tat ve farklı bir mevsimde olgunlaşıyor. Hiçbir tohum birbirinin kopyası değil ama hepsi kendi türünün mükemmel örneği. Bu kadar farklı şeyi yoktan var eden güç, gerçekten her şeye yetendir.'",
+"question": "Ahmet Bey'in bu gözlemine göre, Allah'ın 'yoktan var etme' ve 'her şeye gücünün yetmesi' sıfatları hangi seçenekte doğru eşleştirilmiştir?",
+"shape": null,
+"options": {
+"A": "Kudret - Tevhid",
+"B": "Tekvin - Kudret",
+"C": "Semi - Basar",
+"D": "Tekvin - İrade"
+},
+"answer": "B",
+"explanation": "Yoktan var etmek yaratmak demektir ve bu 'Tekvin' sıfatıdır. Her şeye gücünün yetmesi ise 'Kudret' sıfatıdır.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 1,
+"ts": 1794126239
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Mekke Dönemi: Sabır ve Kararlılık",
+"passage": "Pazar yerinde bir ürünün fiyatını haksız yere yükselten satıcılara karşı mahalledeki esnaf gençlerden oluşan bir grup toplanır. Grup, Hz. Muhammed'in (s.a.v.) İslam'ı tebliğ ederken karşılaştığı baskılara, ambargolara ve zorluklara rağmen davasından vazgeçmeyip sabrettiğini hatırlatır. Grup, 'Haksız kazanç ve zulüm karşısında tıpkı Peygamberimiz gibi sabırla ve doğrulukla durmalıyız.' kararı alırlar.",
+"question": "Bu gençlerin Hz. Muhammed'in (s.a.v.) hayatından örnek aldıkları temel ahlaki ilke aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Zorluklar karşısında yılmadan hak ve adaleti savunmak",
+"B": "Toplumsal olaylara karışmayarak sadece ibadet etmek",
+"C": "Sadece akrabalara yardım ederek dayanışmayı sağlamak",
+"D": "Ekonomik kazancı her şeyin üzerinde tutmak"
+},
+"answer": "A",
+"explanation": "Hz. Muhammed'in (s.a.v.) hayatı, haksızlıklar karşısında dik durmayı ve zorluklara rağmen ilkelerinden taviz vermemeyi öğretir. Gençlerin haksız fiyat artışına karşı sabır ve doğruluk ilkeleriyle hareket etmeleri, peygamberin tebliğ sürecindeki kararlılığını örnek aldıklarını gösterir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 2,
+"ts": 1794126301
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnekliği: Merhamet ve Şefkat",
+"passage": "Bir uzay merkezinde staj yapan öğrenciler, ekip çalışması sırasında bir arkadaşının hata yapması üzerine ona bağıran bir grup arkadaşını uyarır. Grup sözcüsü Selin şunları söyler: 'Hz. Muhammed (s.a.v.) çevresindeki insanlara hataları karşısında asla kaba davranmaz, onları nezaketle uyarırdı. İnsanlara şefkat göstermek, başarılı bir ekip olmanın ilk şartıdır.'",
+"question": "Selin'in bu yaklaşımı, Hz. Muhammed'in (s.a.v.) hangi ahlaki özelliğini yansıtmaktadır?",
+"shape": null,
+"options": {
+"A": "İstişare",
+"B": "Hoşgörü ve nezaket",
+"C": "Cesaret",
+"D": "Siyasi deha"
+},
+"answer": "B",
+"explanation": "Peygamber Efendimiz (s.a.v.) insanlara karşı her zaman nazik ve hoşgörülü olmuştur. Selin'in arkadaşını uyarırken kaba davranmayıp şefkatle yaklaşması gerektiğini vurgulaması, onun hoşgörü ve nezaket anlayışını temsil etmektedir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 2,
+"ts": 1794126301
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Hayatı: Çalışkanlık ve Sorumluluk",
+"passage": "Bir arkeoloji kazısında görevli ekip, günlerce süren yoğun çalışma sonucunda önemli bir keşif yaparlar. Ekip sorumlusu Ahmet, kazı alanında çalışan gençlere şu konuşmayı yapar: 'Peygamberimiz Hz. Muhammed (s.a.v.), çalışmayı bir ibadet olarak görmüş, 'Alın teri kurumadan işçinin ücretini verin' diyerek emeğe değer vermiştir. Biz de bu kazıda disiplinli çalışarak O'nun ahlakına uygun davranıyoruz.'",
+"question": "Ahmet'in sözlerine göre, Hz. Muhammed'in (s.a.v.) çalışma hayatına bakışıyla ilgili hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Sadece ibadetlere odaklanılmasını istemiştir.",
+"B": "Emeğe değer verilmesini ve disiplini teşvik etmiştir.",
+"C": "Dünya işlerinin ahiret için terk edilmesini öğütlemiştir.",
+"D": "İşin zorluklarına karşı şikayet edilmemesini söylemiştir."
+},
+"answer": "B",
+"explanation": "Metinde Peygamber Efendimiz'in emeğe verdiği değere ve çalışmanın önemine dikkat çekilmiştir. Ahmet'in disiplin vurgusu, Hz. Muhammed'in (s.a.v.) iş hayatındaki sorumluluk ve disiplin ilkeleriyle doğrudan örtüşmektedir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 2,
+"ts": 1794126301
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnek Ahlakı: Bağışlayıcılık",
+"passage": "Tarihî bir yapının restorasyonunda çalışan iki usta, yanlış bir uygulama yüzünden tartışırlar. Diğer ustalar araya girerek, Hz. Muhammed'in (s.a.v.) Mekke'nin fethinde, kendisine yıllarca eziyet edenleri affettiğini hatırlatırlar. Bu hatırlatma üzerine tartışan ustalar birbirlerinden özür dileyerek barışırlar.",
+"question": "Bu olay, Hz. Muhammed'in (s.a.v.) hangi ahlaki yönünü günlük hayata uygulamaya örnektir?",
+"shape": null,
+"options": {
+"A": "Affedici ve barışçıl oluşu",
+"B": "Her konuda akıl danışması",
+"C": "Cesur ve güçlü oluşu",
+"D": "Doğayı korumaya önem vermesi"
+},
+"answer": "A",
+"explanation": "Hz. Muhammed (s.a.v.) en büyük düşmanlarını bile affedebilen engin bir hoşgörüye sahipti. Ustaların aralarındaki husumeti giderip barışmaları, O'nun affedici ve barışçıl yönünü örnek aldıklarını gösterir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 2,
+"ts": 1794126301
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Hayatı: İlim ve Öğrenme",
+"passage": "Bir kitap fuarında bir araya gelen öğrenciler, Hz. Muhammed'in (s.a.v.) 'İlim öğrenmek her Müslüman kadın ve erkeğe farzdır' hadisini tartışırlar. Bir öğrenci, 'Bu hadise göre sadece okumak yeterli değil, öğrendiklerimizi hayatımıza aktarmalıyız.' der.",
+"question": "Bu öğrencinin sınıflandırmasına göre, Hz. Muhammed'in (s.a.v.) ilimle ilgili mesajı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Bilgi edinmek, zenginler için bir ayrıcalıktır.",
+"B": "İlim sadece belirli sınıflara has bir görevdir.",
+"C": "Sadece dinî kitapların okunması yeterlidir.",
+"D": "Bilgi edinmek, hayatı güzelleştiren bir sorumluluktur."
+},
+"answer": "D",
+"explanation": "Öğrenci, ilmin sadece teorik kalmaması gerektiğini, hayatı güzelleştiren bir sorumluluk olduğunu ifade etmektedir. Bu yaklaşım, Hz. Muhammed'in (s.a.v.) faydalı bilgiye ve bu bilginin hayata yansıtılmasına verdiği önemi destekler.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 2,
+"ts": 1794126301
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnek Ahlakı: İsrafı Önleme",
+"passage": "Okulun 'Yeşil Adımlar' kulübü, çevre bilinci oluşturmak için bir etkinlik yapar. Etkinlik sırasında öğrenciler, Peygamberimizin 'Bir nehir kenarında olsanız bile suyu israf etmeyiniz.' hadisini temel alarak okul kantinindeki plastik atıkların ve su tüketiminin azaltılması için plan hazırlar. Ayşe, kantindeki su sebillerinin başına 'Suyu kullanırken dikkatli olalım, ihtiyacımız kadar alalım' yazılı bir uyarı levhası asar.",
+"question": "Ayşe'nin bu eylemi, Peygamberimizin aşağıdaki temel ahlaki ilkelerinden hangisiyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "Bilgiye değer verme",
+"B": "Yardımlaşma ve dayanışma",
+"C": "Tutumluluk ve israftan kaçınma",
+"D": "Affedici ve bağışlayıcı olma"
+},
+"answer": "C",
+"explanation": "Hadis, suyun gereksiz tüketilmemesini öğütlemektedir. Ayşe'nin suyu ihtiyacı kadar kullanma uyarısı, israfı önleme ve tutumlu olma ilkesiyle doğrudan örtüşmektedir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 2,
+"ts": 1794126301
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnek Ahlakı: Adalet",
+"passage": "Bir okul projesinde görev paylaşımı yapan Melis, arkadaşı Ahmet'in görevini tam yapmadığını görür. Melis, Ahmet'i diğer arkadaşlarına şikâyet edip dışlamak yerine, onunla özel olarak konuşur ve zorlandığı bir konu varsa yardım etmeyi teklif eder. Melis, 'Peygamberimiz hata yapanı azarlamaz, hatasını yapıcı bir şekilde düzeltmesine rehberlik ederdi' diye düşünür.",
+"question": "Melis'in bu davranışı Hz. Muhammed'in hangi yönünü örnek aldığını gösterir?",
+"shape": null,
+"options": {
+"A": "Çalışkanlığı ve hırsı",
+"B": "Eleştirel ve kırıcı üslubu",
+"C": "Hoşgörülü ve yapıcı rehberliği",
+"D": "Fiziksel güç kullanımı"
+},
+"answer": "C",
+"explanation": "Melis, arkadaşını dışlamayıp ona rehberlik etmeyi seçmiştir. Bu durum, Hz. Muhammed'in insanlara karşı hoşgörülü ve hataları yapıcı bir şekilde düzeltmeye odaklanan rehberliğiyle uyumludur.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 2,
+"ts": 1794126301
 }
 ]
 }

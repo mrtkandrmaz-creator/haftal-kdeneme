@@ -547,6 +547,584 @@
 "topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
 "d": 1,
 "ts": 1794120345
+},
+{
+"subject": "Matematik",
+"topic": "Olayları az ya da çok olasılıklı şeklinde yapılandırabilme",
+"passage": "Bir kültür festivalinde kurulan çark oyununda renkli eş dilimler bulunmaktadır. Öğrenciler bu festivaldeki bir stantta olasılık hesaplamaları üzerine bir etkinlik yaparken şu hatayı yapmışlardır:\n'Mavi bölge sayısı sarı bölge sayısının 3 katıdır. Bu durumda mavi bölgenin gelme olasılığı sarı bölgenin gelme olasılığından daha azdır.'",
+"question": "Öğrencinin yaptığı bu açıklamadaki hatayı düzelten doğru ifade aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Mavi bölge sayısı daha fazla olduğu için mavi gelme olasılığı sarı gelme olasılığından daha çok olasılıklıdır.",
+"B": "Mavi ve sarı bölgelerin gelme olasılıkları birbirine eşittir çünkü çarkta başka renk yoktur.",
+"C": "Sarı bölge sayısı daha az olduğu için sarı gelme olasılığı imkânsız olaydır.",
+"D": "Mavi bölge sayısı fazla olduğundan sarı bölgenin gelme olasılığı kesin olaydır."
+},
+"answer": "A",
+"explanation": "Bir olayda istenen durumun sayısı ne kadar fazlaysa o olayın gerçekleşme olasılığı o kadar 'çok olasılıklı' olur. Mavi bölge sayısı sarıdan 3 kat fazla ise mavi gelme olasılığı sarıya göre daha çok olasılıklıdır. Öğrenci az demişti, düzeltilmiş hali daha çok olasılıklıdır.",
+"vfd2": true,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794124775
+},
+{
+"subject": "Matematik",
+"topic": "Herhangi bir olayın olasılığının 0 ile 1 arasında olduğunu yorumlayabilme",
+"passage": "Okullar arası düzenlenen spor müsabakalarında basketbol, futbol ve voleybol takımları karşılaşmalar yapmaktadır. Turnuvada yarışan tüm takımların yaşları 10 ile 12 arasındadır ve turnuvaya katılan sporcuların tamamı insan öğrencilerden oluşmaktadır.",
+"question": "Bu spor müsabakasında rastgele seçilen bir sporcu için aşağıdakilerden hangisi 0 (imkânsız olay) olasılığına sahiptir?",
+"shape": null,
+"options": {
+"A": "Seçilen sporcunun bir spor dalında yarışıyor olması",
+"B": "Seçilen sporcunun 11 yaşında olması",
+"C": "Seçilen sporcunun 15 yaşında olması",
+"D": "Seçilen sporcunun okul takımı forması giymesi"
+},
+"answer": "C",
+"explanation": "Metinde turnuvaya katılan tüm sporcuların yaşlarının 10 ile 12 arasında olduğu açıkça belirtilmiştir. Bu durumda seçilen bir sporcunun 15 yaşında olması hiçbir şekilde gerçekleşemeyeceğinden imkânsız olaydır ve olasılığı 0'dır.",
+"vfd2": true,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794124775
+},
+{
+"subject": "Matematik",
+"topic": "Herhangi bir olayın olasılığının 0 ile 1 arasında olduğunu yorumlayabilme",
+"passage": "Doğa kampına katılan öğrencilerin çadırlarına göre dağılımı sütun grafiğinde verilmiştir. Kampta sadece çam, meşe ve kayın ağaçlarının bulunduğu bir bölgede konaklama yapılmaktadır.",
+"question": "Sütun grafiğindeki verilere göre kamp alanından rastgele ayrılan bir öğrenciyle ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çam Çadırı",
+"Meşe Çadırı",
+"Kayın Çadırı"
+],
+"values": [
+14,
+21,
+7
+],
+"title": "Çadır Türlerine Göre Öğrenci Sayıları",
+"show_names": false
+},
+"options": {
+"A": "Kayın çadırında kalan öğrenci seçilme olasılığı kesin olaydır.",
+"B": "Öğrencinin kamp alanındaki bir çadırda konaklıyor olması olasılığı 0'dır.",
+"C": "Öğrencinin çam, meşe veya kayın çadırlarından birinde olma olasılığı 1'dir.",
+"D": "Öğrencinin bitki örtüsü olmayan bir alanda olma olasılığı 1'dir."
+},
+"answer": "C",
+"explanation": "Grafikteki tüm öğrenciler çam, meşe ve kayın çadırlarında kalmaktadır. Kamp alanı tamamen ağaçlık bölgede olduğundan, seçilen bir öğrencinin bu üç çadır grubundan birinde bulunması kesin bir olaydır ve bu olayın olasılığı 1'e eşittir.",
+"vfd2": true,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794124775
+},
+{
+"subject": "Matematik",
+"topic": "Herhangi bir olayın olasılığının 0 ile 1 arasında olduğunu yorumlayabilme",
+"passage": "Bir şehirdeki akıllı bina sistemleri üzerine enerji tasarrufu çalışması yapılmaktadır. Sistemde kullanılan güneş enerjisi panellerinin günün farklı saatlerinde enerji üretme durumları gözlemlenmiştir. Aşağıdaki çizgisel grafik, bir haftalık test sürecinde panellerin tam kapasite verimle çalıştığı günlerin dağılımını gün bazında göstermektedir. Uzman mühendis bu verileri incelerken bir hata yapmış ve raporlamıştır.",
+"question": "Buna göre mühendisin yaptığı rapordaki hangi ifade olasılık spektrumu ilkelerine göre matematiksel olarak hatalıdır?\n\nGrafik Verileri:\nPazartesi: 1.0, Salı: 0.0, Çarşamba: 0.75, Perşembe: 0.25, Cuma: 0.5, Cumartesi: 1.25, Pazar: 0.0",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pzt",
+"Sal",
+"Çar",
+"Per",
+"Cum",
+"Cmt",
+"Paz"
+],
+"values": [
+1.0,
+0.0,
+0.75,
+0.25,
+0.5,
+1.25,
+0.0
+],
+"title": "Günlük Tam Kapasite Verim Olasılık Oranları",
+"show_names": false
+},
+"options": {
+"A": "Çarşamba günü panelin tam kapasite çalışma olasılığı yarı yarıyadan fazladır.",
+"B": "Cumartesi günü panelin tam kapasite çalışması olasılığı 1,25 olarak hesaplanmıştır.",
+"C": "Pazartesi günü panelin tam kapasite çalışması kesin olaydır (1).",
+"D": "Salı günü panelin tam kapasite çalışmama durumu kesin olaydır (0)."
+},
+"answer": "B",
+"explanation": "Bir olayın olasılığı en az 0 (imkânsız) ve en çok 1 (kesin) arasında bir değer alır veya bu değerlere eşit olur. Cumartesi günü için verilen 1,25 değeri 1'den büyük olduğu için bir olasılık değeri olamaz; bu durum olasılık ilkelerine aykırıdır.",
+"vfd2": true,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794124775
+},
+{
+"subject": "Matematik",
+"topic": "Herhangi bir olayın olasılığının 0 ile 1 arasında olduğunu yorumlayabilme",
+"passage": "Doğa kampında düzenlenen doğa yürüyüşü etkinlikleri için katılımcıların rotaları daire grafiği ile önceden planlanmıştır. Kamp alanındaki toplam 100 katılımcının tercih ettiği parkur zorluk derecelerine göre ayrılmıştır. Grafik, katılımcıların yüzdelik dağılımını vermektedir: Kolay parkur %40, Orta parkur %35, Zor parkur %20 ve Uzman parkur %5.",
+"question": "Bu kamp verilerine göre, rastgele seçilen bir katılımcının hangi parkurda olma durumu 0,20 olasılık değerine karşılık gelir?\n\nKamp Katılımcı Dağılımı:\n- Kolay: 40 kişi (%40)\n- Orta: 35 kişi (%35)\n- Zor: 20 kişi (%20)\n- Uzman: 5 kişi (%5)",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kolay",
+"Orta",
+"Zor",
+"Uzman"
+],
+"values": [
+40,
+35,
+20,
+5
+],
+"title": "Parkur Tercih Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Kolay Parkur",
+"B": "Orta Parkur",
+"C": "Uzman Parkur",
+"D": "Zor Parkur"
+},
+"answer": "D",
+"explanation": "Olasılık değeri 0,20 yüzde olarak %20 demektir. Grafikte %20'lik dilime denk gelen parkur Zor Parkur'dur.",
+"vfd2": true,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794124775
+},
+{
+"subject": "Matematik",
+"topic": "Herhangi bir olayın olasılığının 0 ile 1 arasında olduğunu yorumlayabilme",
+"passage": "Okullar arası turnuvada dart tahtasına atış yapan iki sporcunun isabet oranları grafik üzerinde karşılaştırılmıştır. Dart tahtası üzerinde 1'den 10'a kadar puanlı bölgeler vardır. Kerem'in isabet ettiği bölgelerin olasılık değerleri doğrusal çizgi grafiği ile verilmiştir.\n\nGrafik Verileri:\n1. Atış: 0.2\n2. Atış: 0.5\n3. Atış: 0.8\n4. Atış: 1.0\n5. Atış: 0.0",
+"question": "Kerem'in atış sonuçlarına bakıldığında hangi atış numarası 'imkânsız olay' kategorisinde yer alır?\n\nGrafik:\nAtış Sırası ve Olasılık Değerleri Eğrisi",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1.Atış",
+"2.Atış",
+"3.Atış",
+"4.Atış",
+"5.Atış"
+],
+"values": [
+0.2,
+0.5,
+0.8,
+1.0,
+0.0
+],
+"title": "Kerem Atış Olasılık Eğrisi",
+"show_names": false
+},
+"options": {
+"A": "2. Atış",
+"B": "5. Atış",
+"C": "4. Atış",
+"D": "1. Atış"
+},
+"answer": "B",
+"explanation": "Olasılık değeri 0 olan olaylar imkânsız olaydır. Grafikte 5. atışın olasılık değeri 0.0 olarak gösterildiği için imkânsız olaya karşılık gelir.",
+"vfd2": true,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794124775
+},
+{
+"subject": "Matematik",
+"topic": "Açı Ölçme ve Çeşitleri",
+"passage": "",
+"question": "Şekilde kesişen iki doğrunun oluşturduğu açılara göre x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "angles_two_lines",
+"degree": 60,
+"given": "60°",
+"ask": "x",
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "90°",
+"C": "120°",
+"D": "150°"
+},
+"answer": "C",
+"explanation": "Kesişen doğrularda komşu bütünler açılar toplamı 180°'dir. Verilen 60°'lik açının bütünleri x = 180° - 60° = 120° olarak hesaplanır.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 1,
+"ts": 1794125048
+},
+{
+"subject": "Matematik",
+"topic": "Çokgenlerin kenar ve açı özelliklerine yönelik deneyimlerini yansıtabilme",
+"passage": "",
+"question": "Şekilde verilen ABCDEF düzgün altıgeninde bir iç açının ölçüsü x tir. Buna göre x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "polygon",
+"sides": 6,
+"labels": [
+"A",
+"B",
+"C",
+"D",
+"E",
+"F"
+],
+"equal_ticks": true,
+"diagonals": false,
+"irregular": false,
+"show_names": false
+},
+"options": {
+"A": "108",
+"B": "120",
+"C": "135",
+"D": "144"
+},
+"answer": "B",
+"explanation": "1. Adım: n kenarlı bir çokgenin iç açılar toplamı (n - 2) × 180° formülü ile bulunur.\n2. Adım: Altıgen için n = 6 yazılarak (6 - 2) × 180° = 4 × 180° = 720° hesaplanır.\n3. Adım: Düzgün altıgenin tüm iç açılan eşit olduğundan 720° ÷ 6 = 120° bulunur.\n4. Adım: x açısının ölçüsü 120 derecedir.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 1,
+"ts": 1794125048
+},
+{
+"subject": "Matematik",
+"topic": "Temel geometrik inşa deneyimlerini yansıtabilme",
+"passage": "",
+"question": "Şekilde verilen ABCD dikdörtgeninde |AB| = 12 cm ve |BC| = 5 cm olduğuna göre, bu dikdörtgenin çevresi kaç santimetredir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rectangle",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"ticks": false,
+"diagonals": false,
+"sides": {
+"AB": "12 cm",
+"BC": "5 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "34",
+"C": "60",
+"D": "72"
+},
+"answer": "B",
+"explanation": "1. Adım: Dikdörtgenin karşılıklı kenar uzunlukları eşittir; uzun kenar 12 cm, kısa kenar 5 cm'dir.\n2. Adım: Çevre hesaplamak için tüm kenarlar toplanır veya (Kısa Kenar + Uzun Kenar) × 2 formülü kullanılır.\n3. Adım: (12 + 5) × 2 = 17 × 2 = 34 cm bulunur.\n4. Adım: Doğru sonuç 34'tür.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 1,
+"ts": 1794125048
+},
+{
+"subject": "Matematik",
+"topic": "Geometrik Nicelikler: Dikdörtgenin çevre ve alan ilişkisi",
+"passage": "",
+"question": "Bir dikdörtgenin alanı 48 cm² ve kenar uzunlukları birer doğal sayıdır. Bu dikdörtgenin çevre uzunluğu en az kaç cm olabilir?",
+"shape": {
+"type": "rectangle",
+"width": 6,
+"height": 8,
+"width_label": "6 cm",
+"height_label": "8 cm",
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "32",
+"C": "48",
+"D": "98"
+},
+"answer": "A",
+"explanation": "1. Alanı 48 olan dikdörtgenin kenar çiftleri: (1,48), (2,24), (3,16), (4,12), (6,8). 2. Çevreleri: (1+48)x2=98, (2+24)x2=52, (3+16)x2=38, (4+12)x2=32, (6+8)x2=28. 3. En küçük değer 28'dir.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 2,
+"ts": 1794125414
+},
+{
+"subject": "Matematik",
+"topic": "Altı basamaklı sayıları okuma ve yazma",
+"passage": "Bir pastanede günlük üretilen kurabiye miktarları not edilmektedir. Bugün üretilen kurabiye sayısı 'üç yüz beş bin on iki' olarak kaydedilmiştir.",
+"question": "Pastanenin günlük kurabiye üretim sayısının rakamla yazılışı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "305 012",
+"B": "305 120",
+"C": "350 012",
+"D": "350 120"
+},
+"answer": "A",
+"explanation": "Üç yüz beş bin ifadesi binler bölüğünü (305), on iki ifadesi ise birler bölüğünü (012) temsil eder. Sayı yazılırken bölükler arasına boşluk konulduğunda 305 012 elde edilir.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794125775
+},
+{
+"subject": "Matematik",
+"topic": "Doğal sayılarla işlemler ve problem çözme",
+"passage": "Bir köyde su tasarrufu sağlamak için iki ayrı depodaki su miktarları sayı doğrusunda işaretlenmiştir. A deposu 120 500 litre, B deposu ise 120 700 litre su içermektedir.",
+"question": "B deposundaki su miktarının A deposundaki su miktarından kaç litre fazla olduğunu gösteren işlem ve sonuç aşağıdakilerden hangisidir?",
+"shape": {
+"type": "number_line",
+"min": 120400,
+"max": 120800,
+"step": 100,
+"marks": [
+{
+"label": "A",
+"value": 120500
+},
+{
+"label": "B",
+"value": 120700
+}
+],
+"show_names": false
+},
+"options": {
+"A": "120 700 - 120 500 = 120 200",
+"B": "120 700 + 120 500 = 241 200",
+"C": "120 700 - 120 500 = 200",
+"D": "120 800 - 120 400 = 400"
+},
+"answer": "C",
+"explanation": "İki depo arasındaki farkı bulmak için B deposunun miktarından (120 700) A deposunun miktarını (120 500) çıkarmalıyız. İşlem: 120 700 - 120 500 = 200.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794125775
+},
+{
+"subject": "Matematik",
+"topic": "Doğal sayılarda basamak kavramı",
+"passage": "Okul bahçesindeki bir etkinlikte öğrenciler, üzerinde 6 basamaklı sayıların yazılı olduğu kartları sayı doğrusuna yerleştirmektedir. Ali'nin elindeki kartta 405623 sayısı yazılıdır.",
+"question": "Bu sayıdaki '5' rakamının basamak değeri ile '4' rakamının basamak değeri toplamı kaçtır?",
+"shape": {
+"type": "number_line",
+"min": 400000,
+"max": 410000,
+"step": 1000,
+"marks": [
+{
+"label": "A",
+"value": 405623
+}
+],
+"show_names": false
+},
+"options": {
+"A": "400500",
+"B": "405000",
+"C": "450000",
+"D": "504000"
+},
+"answer": "B",
+"explanation": "405623 sayısında 5 rakamı binler basamağındadır, basamak değeri 5000'dir. 4 rakamı yüz binler basamağındadır, basamak değeri 400000'dir. Toplamları 400000 + 5000 = 405000 eder.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794125775
+},
+{
+"subject": "Matematik",
+"topic": "Büyük sayıları karşılaştırma",
+"passage": "Bir aşçı, lokantadaki yıllık erzak tüketimini planlıyor. Un tüketimi 654200 gram, şeker tüketimi 645200 gram ve pirinç tüketimi 654020 gramdır.",
+"question": "Bu üç tüketim miktarının küçükten büyüğe doğru sıralanışı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "645200 < 654200 < 654020",
+"B": "654020 < 654200 < 645200",
+"C": "654200 < 654020 < 645200",
+"D": "645200 < 654020 < 654200"
+},
+"answer": "D",
+"explanation": "Sayıları karşılaştıralım: 645200 (şeker), 654020 (pirinç), 654200 (un). 645200 sayısı en küçüktür, 654020 sayısı 654200 sayısından küçüktür. Sıralama: 645200 < 654020 < 654200.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794125775
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerin karşılaştırılması",
+"passage": "Bir fotoğrafçılık atölyesinde üç farklı makine ile çekilen fotoğrafların toplam baskı kapasitelerine oranları tabloda verilmiştir.",
+"question": "Buna göre baskı doluluk oranları küçükten büyüğe doğru nasıl sıralanır?",
+"shape": {
+"type": "table",
+"title": "Makine Doluluk Oranları",
+"headers": [
+"Makine",
+"Doluluk Oranı"
+],
+"rows": [
+[
+"A",
+"3/4"
+],
+[
+"B",
+"2/5"
+],
+[
+"C",
+"7/10"
+]
+]
+},
+"options": {
+"A": "B < C < A",
+"B": "B < A < C",
+"C": "A < B < C",
+"D": "C < A < B"
+},
+"answer": "A",
+"explanation": "Paydaları 20'de eşitleyelim: A = 15/20, B = 8/20, C = 14/20. Sıralama: 8/20 < 14/20 < 15/20 olur. Yani B < C < A.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794125872
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerin karşılaştırılması",
+"passage": "Bir çiftlikte bulunan hayvanların türlerine göre dağılımı daire grafiğinde verilmiştir. Koyunların sayısı keçi sayısından fazladır.",
+"question": "Buna göre aşağıdakilerden hangisi kesinlikle doğrudur?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Koyun",
+"Keçi",
+"İnek",
+"Diğer"
+],
+"values": [
+40,
+20,
+30,
+10
+],
+"title": "Çiftlik Hayvanları Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Keçi sayısı tüm hayvanların 1/5'idir.",
+"B": "Koyun ve Keçi toplamı 1/2'den azdır.",
+"C": "Koyun sayısı tüm hayvanların 1/2'sidir.",
+"D": "İnek sayısı 1/3'tür."
+},
+"answer": "A",
+"explanation": "Toplam: 40+20+30+10 = 100 birim. Keçi: 20/100 = 1/5. Bu bilgi grafiğe göre kesinlikle doğrudur.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794125872
+},
+{
+"subject": "Matematik",
+"topic": "Gerçek yaşam durumlarına karşılık gelen kesirleri temsil etme",
+"passage": "Bir evdeki haftalık su tüketiminin kullanım alanlarına göre dağılımı yandaki daire grafiğinde verilmiştir. Evde haftalık toplam 140 litre su harcanmaktadır.",
+"question": "Buna göre banyo ve mutfak kullanımı için ayrılan toplam su miktarı, haftalık toplam su miktarının kaçta kaçıdır?",
+"shape": {
+"type": "pie_chart",
+"title": "Haftalık Su Kullanımı",
+"labels": [
+"Banyo",
+"Mutfak",
+"Bahçe",
+"Diğer"
+],
+"values": [
+70,
+35,
+25,
+10
+],
+"show_names": false
+},
+"options": {
+"A": "1/4",
+"B": "5/7",
+"C": "1/2",
+"D": "3/4"
+},
+"answer": "D",
+"explanation": "Banyo için 70 litre ve mutfak için 35 litre su harcanıyor. Toplam 70 + 35 = 105 litre. Toplam su 140 litre olduğuna göre kesir 105/140 olur. Bu kesri 35 ile sadeleştirirsek sonuç 3/4 bulunur.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794125872
+},
+{
+"subject": "Matematik",
+"topic": "Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılması",
+"passage": "Bir pazarcı 120 kg elmanın; Pazartesi 1/3'ünü, Salı 1/4'ünü, Çarşamba 1/6'sını satmıştır.",
+"question": "En az satışın yapıldığı gün ile en çok satışın yapıldığı gün arasındaki fark kaç kg'dır?",
+"shape": null,
+"options": {
+"A": "10",
+"B": "20",
+"C": "30",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Pazartesi: 120/3 = 40 kg. Salı: 120/4 = 30 kg. Çarşamba: 120/6 = 20 kg. En çok Pazartesi (40), en az Çarşamba (20). Fark 40-20 = 20 kg.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794125872
+},
+{
+"subject": "Matematik",
+"topic": "Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılması",
+"passage": "Bir arkeoloji kazısında 4 bölgeden çıkarılan eser sayıları şöyledir: A bölgesinden 2/5, B bölgesinden 1/10, C bölgesinden 3/20, D bölgesinden 7/20 oranında eser çıkmıştır.",
+"question": "Buna göre en az eserin çıktığı bölge hangisidir?",
+"shape": null,
+"options": {
+"A": "A",
+"B": "B",
+"C": "C",
+"D": "D"
+},
+"answer": "B",
+"explanation": "Paydaları 20'de eşitleyelim: A: 8/20, B: 2/20, C: 3/20, D: 7/20. Bu durumda 2/20 ile en az eser B bölgesinden çıkmıştır.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794125872
 }
 ]
 }

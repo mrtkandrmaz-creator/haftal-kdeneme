@@ -1180,6 +1180,186 @@
 "topics": "Body parts, Illnesses, Advice",
 "d": 1,
 "ts": 1794120642
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Energy Saving Habits",
+"passage": "Efe follows an eco-friendly daily routine. He wakes up at 07:00. He brushes his teeth, but he turns off the tap while scrubbing. He prepares his school bag, then he switches off all the lights before leaving the house at 08:00. In the evenings, he avoids using the dryer and hangs his clothes to dry naturally.",
+"question": "Which of the following actions demonstrates Efe's routine regarding resource conservation?",
+"shape": null,
+"options": {
+"A": "He stops the water flow during his dental hygiene.",
+"B": "He leaves the water running while brushing.",
+"C": "He uses electrical appliances for all his chores.",
+"D": "He keeps the lights on to be productive."
+},
+"answer": "A",
+"explanation": "Efe turns off the tap while brushing his teeth, which saves water. This corresponds to stopping the water flow during dental hygiene.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Canteen Habits",
+"passage": "Canteen Menu Log: 09:30 - Morning tea time, 12:00 - Healthy lunch service, 15:30 - Afternoon snack break. Students attend the canteen only during these hours. Ayşe arrives at the school at 08:30 and leaves at 16:00. She eats her lunch exactly at noon and buys a snack at 15:30.",
+"question": "According to the canteen log, which of the following is true about Ayşe?",
+"shape": null,
+"options": {
+"A": "She arrives at school after the first tea time.",
+"B": "She leaves the school before the afternoon snack.",
+"C": "She misses the healthy lunch service.",
+"D": "She visits the canteen twice during her stay."
+},
+"answer": "D",
+"explanation": "Ayşe is at school between 08:30 and 16:00. She goes to the canteen at 12:00 (lunch) and 15:30 (snack). Therefore, she visits twice.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Work Schedule",
+"passage": "Mr. Arda is a construction manager. His daily routine depends on the weather. If it is sunny, he starts work at 07:00. If it is rainy, he starts at 09:00 because of safety protocols. Today, the sky is cloudy with heavy rain, and the workers are waiting for it to stop.",
+"question": "When should Mr. Arda start his work today based on the provided condition?",
+"shape": null,
+"options": {
+"A": "At 07:00 because it is a workday.",
+"B": "At 10:00 because he is late.",
+"C": "At 09:00 due to the weather condition.",
+"D": "At 08:00 to avoid the rush hour."
+},
+"answer": "C",
+"explanation": "The rule states that if it is rainy, he starts at 09:00. Since it is currently raining, he must start at 09:00.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Robotic Workshop",
+"passage": "A robot is programmed for a school day: 08:00 - Power on, 09:00 - Start coding, 12:00 - Break, 13:00 - Continue project, 16:00 - Power off. The robot successfully executes the coding task but gets a 'Low Battery' warning at 11:00.",
+"question": "At which point in its routine will the robot experience the interruption?",
+"shape": null,
+"options": {
+"A": "While it is powering off.",
+"B": "During the coding session, before the break.",
+"C": "Exactly when the break starts.",
+"D": "Before starting the coding task."
+},
+"answer": "B",
+"explanation": "The coding task is between 09:00 and 12:00. Since the warning occurs at 11:00, it happens during the coding session before the break.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Gardening",
+"passage": "Gardeners follow this sequence: First, they water the flowers at 06:00. Second, they trim the bushes at 09:00. Third, they plant new seeds at 11:00. If it is windy, they skip trimming because it is dangerous.",
+"question": "If it is a windy day, what is the correct order of activities for the gardener?",
+"shape": null,
+"options": {
+"A": "Trimming - Watering - Planting.",
+"B": "Planting - Watering.",
+"C": "Watering - Planting.",
+"D": "Watering - Trimming - Planting."
+},
+"answer": "C",
+"explanation": "Watering occurs first at 06:00. Trimming is skipped due to wind. Planting occurs next at 11:00. The sequence is Watering then Planting.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Shopping Frequency",
+"passage": "Banu shops for fresh vegetables every Monday and Thursday. Can shops every Saturday. Today is Monday, and Banu is at the market. Can is at the cinema, as he has no shopping planned for today.",
+"question": "Which of the following is true about their shopping routines?",
+"shape": null,
+"options": {
+"A": "Banu shops more frequently than Can.",
+"B": "Banu will go shopping on Saturday.",
+"C": "Both of them are at the market today.",
+"D": "Can shops twice a week like Banu."
+},
+"answer": "A",
+"explanation": "Banu shops twice a week (Monday and Thursday). Can shops once a week (Saturday). Thus, Banu shops more frequently.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Cultural Festival",
+"passage": "Festival Schedule: 10:00 - Folk dance performance, 12:00 - Local food tasting, 14:00 - Traditional music concert. Selin wants to watch the dance and the concert, but she must be home by 15:00 to do her homework.",
+"question": "Which of the following shows the activities Selin can attend within her time limit?",
+"shape": null,
+"options": {
+"A": "Dance performance and food tasting.",
+"B": "Dance performance and the concert.",
+"C": "Only the food tasting.",
+"D": "Only the concert."
+},
+"answer": "B",
+"explanation": "Selin attends the dance at 10:00 and the concert at 14:00. The concert ends after 14:00 but before 15:00, allowing her to be home in time.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Weather and Routine",
+"passage": "Meteorologist Report for Coastal City: Monday is rainy, so residents stay indoors and read books. Tuesday is sunny, allowing citizens to cycle in the park. Wednesday is windy, so sailing is canceled. Thursday is snowy, and people go skiing.",
+"question": "According to the report, which of the following is true about the routines in Coastal City?",
+"shape": null,
+"options": {
+"A": "Cycling is a preferred activity on Tuesday.",
+"B": "Everyone goes sailing on Wednesday.",
+"C": "Citizens stay at home on Thursday.",
+"D": "People spend their time outdoors on Monday."
+},
+"answer": "A",
+"explanation": "Monday is rainy (indoor activity), Wednesday is windy (no sailing), Thursday is snowy (skiing is outdoor). Tuesday is sunny, which is perfect for cycling in the park.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "My Daily Routine: Sports Mismatch",
+"passage": "Ali's Daily Sports Log: 07:00 Jogging, 10:00 Swimming, 14:00 Tennis match, 18:00 Weightlifting. Coach's Error Note: 'Ali, you cannot swim after the tennis match because it is scheduled at 14:00 and swimming is at 10:00.'",
+"question": "Which statement best identifies the logical error in the coach's statement?",
+"shape": null,
+"options": {
+"A": "The coach claims weightlifting is at 10:00.",
+"B": "The coach says jogging occurs at the wrong time.",
+"C": "The coach says swimming is after tennis, but it is actually before.",
+"D": "The coach thinks jogging is an evening activity."
+},
+"answer": "C",
+"explanation": "The coach suggests swimming is after tennis, but according to the log, 10:00 (Swimming) comes before 14:00 (Tennis).",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794124624
 }
 ]
 }

@@ -1012,6 +1012,759 @@
 "topics": "Demokrasi, Seçim, Yönetim",
 "d": 3,
 "ts": 1794109577
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İhtiyaç ve İstekler",
+"passage": "5/A sınıfından Elif, okul kütüphanesindeki okuma alışkanlıklarını incelemek için haftalık kitap ödünç alma sayılarını not etmiştir. Grafik, pazartesiden cumaya kadar kütüphaneden alınan toplam kitap sayısını göstermektedir.",
+"question": "Verilen çizgi grafiğine göre, öğrencilerin kitap okuma eğilimi ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pzt",
+"Sal",
+"Çar",
+"Per",
+"Cum"
+],
+"values": [
+12,
+15,
+10,
+20,
+25
+],
+"title": "Haftalık Kitap Ödünç Alma Sayıları",
+"show_names": false
+},
+"options": {
+"A": "En az kitap ödünç alınan gün, hafta içindeki en verimli gün olmuştur.",
+"B": "Öğrencilerin kitap okuma ilgisi hafta sonuna doğru artış eğilimi göstermiştir.",
+"C": "Hafta ortasında kitap okuma talebi zirveye ulaşmıştır.",
+"D": "Her gün bir önceki günden daha fazla kitap ödünç alınmıştır."
+},
+"answer": "B",
+"explanation": "Grafik değerleri incelendiğinde Pazartesi 12, Salı 15, Çarşamba 10, Perşembe 20 ve Cuma 25 kitap alınmıştır. Cuma gününe doğru sayıların 20 ve 25 olması artış eğilimini gösterir. A şıkkı yanlıştır çünkü zirve Çarşamba değil Cuma'dır. C şıkkı yanlıştır çünkü Çarşamba düşüş vardır. D şıkkı çelişkilidir. B şıkkı doğrudur.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794125939
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Tasarruf Bilinci",
+"passage": "Okul kantininde Mert, kendi ihtiyaçlarını karşılamak için bir liste hazırlamıştır. Mert'in 50 TL harçlığı vardır. Listesindeki ürünler: Simit (10 TL), Ayran (5 TL), Kalem (15 TL), Defter (20 TL). Mert, önce ihtiyaçlarını alıp kalan parasıyla isteklerine yönelmeye karar vermiştir.",
+"question": "Mert'in öncelik sıralaması ve bütçe yönetimi düşünüldüğünde aşağıdakilerden hangisi tasarruf bilinciyle örtüşen bir karar olur?",
+"shape": null,
+"options": {
+"A": "Simit ve Ayran alıp kalanıyla kalem alarak defteri ertelemek.",
+"B": "Tüm parasıyla iki defter alıp yemek ihtiyacını karşılamamak.",
+"C": "Kalem ve defteri alıp simit yerine evden getirdiği elmayı yemek.",
+"D": "Harçlığının hepsini istekleri için harcayıp ihtiyaçlarını sonraki güne bırakmak."
+},
+"answer": "C",
+"explanation": "İhtiyaçlar (beslenme ve okul araç gereçleri) önceliklidir. Mert'in 50 TL bütçesi tüm kalemleri (10+5+15+20=50) tam karşılar. Ancak tasarruf, kaynakları verimli kullanmaktır. Evden yemek getirmek bir tasarruf davranışıdır. C şıkkı bilinçli bir bütçe yönetimidir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794125939
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İhtiyaç ve İstek Ayrımı",
+"passage": "Yaz tatili için plan yapan bir aile, bütçelerini 'zorunlu ihtiyaçlar' ve 'keyfi istekler' olarak ikiye ayırmıştır. Zorunlu: Konaklama, temel gıda. Keyfi: Eğlence parkı girişi, hediyelik eşya, ekstra tatlı.",
+"question": "Buna göre, ailenin ekonomik planlamasıyla ilgili aşağıdakilerden hangisi bir 'ihtiyaç' olarak değerlendirilemez?",
+"shape": null,
+"options": {
+"A": "Tatil süresince kalınacak otel ücreti.",
+"B": "Ziyaret edilen yerlerden alınan süs eşyaları.",
+"C": "Güvenli bir ulaşım için otobüs bileti.",
+"D": "Ailenin günlük sağlıklı beslenme maliyeti."
+},
+"answer": "B",
+"explanation": "İhtiyaç, yaşamın sürdürülmesi için gerekli olandır. Konaklama (barınma), beslenme ve ulaşım temel ihtiyaçtır. Hediyelik eşya ise bir istek/keyfi harcamadır. Dolayısıyla C şıkkı ihtiyaç değildir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794125939
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Tasarruf ve Bilinçli Tüketici",
+"passage": "Bir okulda yapılan enerji tasarrufu projesi kapsamında, sınıfların ay bazında tükettiği elektrik miktarları (kW) kaydedilmiştir. Proje Şubat ayında başlamıştır.",
+"question": "Grafiğe göre enerji tasarrufu bilinciyle ilgili hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+150,
+140,
+120,
+110
+],
+"title": "Sınıf Elektrik Tüketimi (kW)",
+"show_names": false
+},
+"options": {
+"A": "Mart ayında elektrik tüketimi, Şubat ayından daha yüksektir.",
+"B": "Nisan ayında tasarruf uygulamaları tamamen bırakılmıştır.",
+"C": "Tasarruf çalışmaları elektrik tüketimini kademeli olarak düşürmüştür.",
+"D": "Okulda Ocak ayından itibaren elektrik kullanımı artmıştır."
+},
+"answer": "C",
+"explanation": "Grafikte 150'den başlayarak 140, 120 ve 110'a düşüş vardır. Bu, bilinçli tüketim ve tasarrufun sonuç verdiğini gösterir. B, C ve D şıkları grafikteki azalan değerlerle çelişmektedir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794125939
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ekonomik Faaliyetler ve Meslekler",
+"passage": "Hayvanat bahçesinde görevli üç farklı meslek grubunun bir günde ilgilendiği hayvan sayısı sütun grafiğinde verilmiştir: Veteriner (15), Bakıcı (40), Biyolog (10).",
+"question": "Bu verilere dayanarak aşağıdaki yargılardan hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Veteriner",
+"Bakıcı",
+"Biyolog"
+],
+"values": [
+15,
+40,
+10
+],
+"title": "Günlük İlgilenilen Hayvan Sayısı",
+"show_names": false
+},
+"options": {
+"A": "Veterinerlerin ilgilendiği hayvan sayısı, biyologlarınkinin iki katıdır.",
+"B": "Biyologlar, tüm çalışanlar içinde en az hayvanla ilgilenen gruptur.",
+"C": "Her meslek grubunun ilgilendiği hayvan sayısı eşittir.",
+"D": "Bakıcılar, diğer iki grubun toplamından daha az hayvanla ilgilenmiştir."
+},
+"answer": "B",
+"explanation": "Veriler: Veteriner 15, Bakıcı 40, Biyolog 10. A) 10 en küçük değer olduğu için doğrudur. B) 40 < (15+10)=25 yanlıştır. C) 15, 10'un iki katı değildir. D) 15, 40, 10 eşit değildir. Sadece A doğrudur.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794125939
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ekonomi ve Tasarruf",
+"passage": "Bir gıda üretim tesisinde kullanılan kaynaklar ve maliyetleri tabloya yansıtılmıştır. Tesis yönetimi verimliliği artırmak için 'atık miktarını azaltma' kararı almıştır.",
+"question": "Tablo verilerine göre, üretimdeki verimlilik hatasını düzeltmek isteyen bir yönetici hangisini yapmalıdır?",
+"shape": {
+"type": "table",
+"title": "Üretim Kaynakları Kullanımı",
+"headers": [
+"Kaynak Türü",
+"Kullanılan Miktar (Ton)",
+"Atık Miktarı (Ton)"
+],
+"rows": [
+[
+"Tahıl",
+"100",
+"5"
+],
+[
+"Su",
+"200",
+"40"
+],
+[
+"Enerji",
+"50",
+"2"
+]
+]
+},
+"options": {
+"A": "Enerji kullanımını tamamen kısıtlayarak üretimi hızlandırmalı.",
+"B": "Tüm kaynakların kullanımını eşit miktara getirmeli.",
+"C": "Tahıl kullanımını durdurarak sadece suyla üretim yapmalı.",
+"D": "Atık oranı en yüksek olan su kullanımındaki kayıpları gidermeli."
+},
+"answer": "D",
+"explanation": "Tabloya bakıldığında su kullanımında 200 ton girişe karşılık 40 ton atık (yüzde 20) vardır. Tahılda yüzde 5, Enerjide yüzde 4 atık vardır. En büyük sorunlu alan su yönetimidir, bu nedenle B şıkkı verimliliği en çok artıracak adımdır.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794125939
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İhtiyaç ve İstekler",
+"passage": "Okulun düzenlediği kitap fuarına giden Kerem, yanında getirdiği harçlığıyla alışveriş yapacaktır. Kerem'in evdeki çalışma masasında kaynak kitapları eksiktir. Ayrıca, çok beğendiği bir fantastik roman serisini ve okul çantasının fermuarını süsleyecek şık bir figür anahtarlığı da fuarda görmektedir. Kerem, bütçesini planlarken önce derslerine yardımcı olacak kitapları alıp kalan parasını diğerleri için değerlendirmeye karar verir.",
+"question": "Kerem'in bütçesini planlama süreciyle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "İsteklerini temel ihtiyaçlarının önüne koymuştur.",
+"B": "Kaynak kitap alarak zorunlu ihtiyaçlarını öncelemiştir.",
+"C": "Tüm parasını fantastik roman serisine ayırması tasarruf etmesini sağlar.",
+"D": "Anahtarlığı bir ihtiyaç olarak tanımlamıştır."
+},
+"answer": "B",
+"explanation": "Kerem'in dersleri için gerekli olan kaynak kitaplar bir ihtiyaçtır. Kerem, ihtiyaçları olan kitapları aldıktan sonra kalan parayla diğer tercihlerini yapma kararı alarak öncelik sıralaması yapmıştır. Bu, bilinçli bir tüketici davranışı olarak temel ihtiyaçların öncelendiğini gösterir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 2,
+"ts": 1794125939
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Karar Alma Süreçleri",
+"passage": "Bir inşaat projesi sürecinde mahalleli, yapılacak olan sosyal tesisin kullanım amacını belirlemek için bir toplantı yapmıştır. Mahalle sakinlerinin önerdiği 4 farklı kullanım alanı için oy dağılımı grafikte gösterilmiştir.",
+"question": "Daire grafiğindeki verilere göre mahalle sakinlerinin demokrasi kültürüyle ilgili hangisi söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kütüphane",
+"Spor Alanı",
+"Oyun Parkı",
+"Taziye Evi"
+],
+"values": [
+40,
+25,
+20,
+15
+],
+"title": "Sosyal Tesis Önerileri Oy Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "Mahalle sakinleri kararlarını oy birliğiyle değil, çoğunluk görüşüyle almıştır.",
+"B": "Taziye evi yapılması kararı, halkın en çok desteklediği seçenektir.",
+"C": "Oyun parkı, katılımcıların yarısından fazlasının ortak tercihidir.",
+"D": "Demokraside herkesin fikri aynı değerde olmadığı için kütüphane seçilmiştir."
+},
+"answer": "A",
+"explanation": "Daire grafiğinde kütüphane %40 ile en yüksek oyu almıştır. Demokrasilerde kararlar çoğunluk ilkesiyle alınır. Seçenekleri incelediğimizde: A şıkkı, çoğunlukçu demokrasi ilkesiyle örtüşür. B şıkkı yanlıştır, en az taziye evi istenmiştir. C şıkkı yanlıştır, %20 yarısından azdır. D şıkkı demokrasi tanımına aykırıdır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 1,
+"ts": 1794126168
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Okul Yönetimi",
+"passage": "Bir okul kantininde 5 gün boyunca satılan sağlıklı ürün (meyve, süt, kuruyemiş) adedi çizgi grafiğinde verilmiştir. Kantin yönetimi, öğrencilerin talebine göre haftalık siparişlerini demokratik bir şekilde güncellemektedir.",
+"question": "Verilen grafiğe göre kantin yönetimi için aşağıdaki yargılardan hangisi doğrudur?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+50,
+65,
+80,
+70,
+95
+],
+"title": "Günlük Sağlıklı Ürün Satış Adedi",
+"show_names": false
+},
+"options": {
+"A": "Satışlar her gün bir önceki günden daha az gerçekleşmiştir.",
+"B": "Kantin yönetimi, demokratik katılımı sağlamak için ürün çeşitliliğini sadece Pazartesi günü düzenler.",
+"C": "Cuma günü gerçekleşen satış artışı, yönetimin öğrenci ihtiyaçlarını gözetmesi gerektiğini gösterir.",
+"D": "Haftanın en yüksek talebi, yönetimin dikkate alması gereken Çarşamba günüdür."
+},
+"answer": "C",
+"explanation": "Grafikte satışlar pazartesiden cumaya genel bir artış eğilimindedir. Cuma günü 95 ile en yüksek seviyededir. Kantin yönetimi, talebin arttığı günlerde tedarik planını buna göre yapmalıdır. C şıkkı, yönetimin öğrencilerin talebine göre hareket etmesi gerektiği yorumuyla tutarlıdır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 1,
+"ts": 1794126168
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Seçim ve Yönetim",
+"passage": "Bir uzay merkezi projesinde, 4 farklı ekip 'En iyi keşif aracı tasarımı' için oylanmıştır. Seçim sonuçları tabloda yer almaktadır. Yönetim, en çok oyu alan iki ekibin birleşerek tek proje oluşturmasına karar vermiştir.",
+"question": "Yönetimin bu kararı, demokrasi kültürünün hangi ilkesiyle en iyi açıklanır?",
+"shape": {
+"type": "table",
+"title": "Ekip Tasarım Oyları",
+"headers": [
+"Ekip Adı",
+"Oy Sayısı"
+],
+"rows": [
+[
+"Mars Kaşifi",
+"45"
+],
+[
+"Ay Gezgini",
+"38"
+],
+[
+"Güneş Gözcüsü",
+"12"
+],
+[
+"Yıldız Yolcusu",
+"5"
+]
+]
+},
+"options": {
+"A": "Uzlaşı ve iş birliği",
+"B": "Sadece çoğunluğun hükümranlığı",
+"C": "Seçimlerin tekrarlanması zorunluluğu",
+"D": "Bireysel başarıların önemsizliği"
+},
+"answer": "A",
+"explanation": "Yönetimin, en çok oyu alan ekiplerin birleşmesini istemesi, farklı grupların uzlaşmasını ve ortak bir paydada buluşarak iş birliği yapmalarını amaçlar. Bu durum demokrasideki uzlaşı kültürünün bir yansımasıdır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 1,
+"ts": 1794126168
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Sosyal Sorumluluk",
+"passage": "Okulda bir enerji tasarrufu projesi yürütülmektedir. Proje kapsamında öğrenciler, sınıflarındaki enerji tüketim alışkanlıklarını belirlemek için bir araştırma yapmıştır.",
+"question": "Daire grafiğine göre öğrencilerin 'en az' tasarruf yaptığı alan hangisidir ve bu durum nasıl yorumlanabilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Işık Kapatma",
+"Pencere Yalıtımı",
+"Atık Yönetimi",
+"Cihaz Fişini Çekme"
+],
+"values": [
+35,
+30,
+25,
+10
+],
+"title": "Öğrencilerin Tasarruf Eğilimleri (%)",
+"show_names": false
+},
+"options": {
+"A": "Tüm alanlardaki değerler eşit olduğu için proje başarıyla sonuçlanmıştır.",
+"B": "Işık kapatma, en az tasarruf edilen alandır ve dikkatsizliği gösterir.",
+"C": "Atık yönetimi %25 ile ideal seviyededir, herhangi bir eğitim çalışmasına gerek yoktur.",
+"D": "Cihaz fişini çekme, %10 ile en az tasarruf edilen alandır; öğrenciler bu konuda bilinçlendirilmelidir."
+},
+"answer": "D",
+"explanation": "Grafikte %10 değeri en küçük dilimdir, bu dilim 'Cihaz Fişini Çekme' alanına aittir. En az tasarruf edilen alan burasıdır. Bu, öğrencilerin bu konuda yeterli bilgiye veya sorumluluk bilincine sahip olmadığını gösterir ve eğitilmelidirler.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 1,
+"ts": 1794126168
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Tarihsel Gelişim",
+"passage": "Bir arkeolojik kazı alanında bulunan tabletlerde, tarihteki yönetim biçimlerinin zamanla geçirdiği değişim evreleri numaralandırılarak kaydedilmiştir. Kazı raporuna göre yönetim anlayışındaki demokratikleşme eğilimi şu şekildedir: 1. Krallık, 2. Meşrutiyet, 3. Cumhuriyet.",
+"question": "Tarihsel süreç ve yönetim biçimleri arasındaki bu değişime bakılarak aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Demokrasi, sadece Cumhuriyet ile başlamış, öncesinde hiçbir izi yoktur.",
+"B": "Tarihsel süreçte halkın karar alma süreçlerindeki etkisi giderek artmıştır.",
+"C": "Krallık döneminde halkın yönetime doğrudan etkisi en yüksek seviyededir.",
+"D": "Yönetim biçimleri değişse de halkın yönetime katılımı her zaman aynı kalmıştır."
+},
+"answer": "B",
+"explanation": "Grafik ve metin, yönetimin tek kişiden halkın katılımına doğru evrildiğini göstermektedir. Bu da yönetime katılımın zamanla arttığını kanıtlar.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 1,
+"ts": 1794126168
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Haklar ve Özgürlükler",
+"passage": "5/A sınıfı öğrencileri okul bahçesindeki oyun alanlarının kullanım kurallarını belirlemek için bir oylama yapmışlardır. Öğrencilerin oylama sonucu ve düşünceleri tabloda verilmiştir.",
+"question": "Verilen tabloya göre, öğrencilerin demokrasi anlayışlarıyla ilgili hangisi söylenemez?",
+"shape": {
+"type": "table",
+"title": "Oyun Alanı Kararları",
+"headers": [
+"Öğrenci",
+"Karar",
+"Gerekçe"
+],
+"rows": [
+[
+"Deniz",
+"Eşit kullanım",
+"Herkesin hakkı olması"
+],
+[
+"Emre",
+"Yaş sırası",
+"Büyüklerin önceliği"
+],
+[
+"Selin",
+"Kura çekimi",
+"Şansın eşit dağılması"
+]
+]
+},
+"options": {
+"A": "Tüm öğrenciler kararlarını ortak bir konsensüs ile almıştır.",
+"B": "Deniz, hak ve özgürlüklerin evrenselliğini savunmaktadır.",
+"C": "Selin, herkesin eşit şansa sahip olması gerektiğini düşünmektedir.",
+"D": "Öğrenciler farklı çözüm yöntemleri önererek demokrasiyi uygulamaya çalışmaktadır."
+},
+"answer": "A",
+"explanation": "Tabloda üç farklı görüş sunulmuştur; bu durum öğrencilerin farklı yöntemler önerdiğini gösterir ancak henüz ortak bir 'konsensüs' (uzlaşma) metni bulunmamaktadır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 1,
+"ts": 1794126168
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Gruplar ve Roller",
+"passage": "Bir inşaat projesinde iş bölümü yapan ekiplerin günlük tamamladıkları kat sayısı çizgi grafiğinde gösterilmiştir. 3. günde beklenen verimliliğe ulaşılamamıştır.",
+"question": "Bu bilgilere göre, 3. güne dair eksik bilgiyi tamamlama ve yorumlama açısından hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1. Gün",
+"2. Gün",
+"3. Gün"
+],
+"values": [
+2,
+4,
+1
+],
+"title": "Günlük İnşaat Kat Tamamlama",
+"show_names": false
+},
+"options": {
+"A": "Ekip, üçüncü günde hedeflerini tam olarak tutturmuştur.",
+"B": "Üçüncü günde yaşanan bir aksaklık (hava durumu, malzeme eksikliği) üretimi düşürmüştür.",
+"C": "Ekip, 3. günde diğer günlere oranla çok daha hızlı çalışmıştır.",
+"D": "İnşaat süreci boyunca her gün eşit sayıda kat tamamlanmıştır."
+},
+"answer": "B",
+"explanation": "Grafikte 3. gün değeri 1'e düşmüştür. Bu keskin düşüş, normal seyreden çalışma düzeninin aksadığını kanıtlar.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 1,
+"ts": 1794126168
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Kültürel Farklılıklara Saygı",
+"passage": "Okulun fotoğrafçılık kulübü, 'Kültürümüzün Renkleri' projesi kapsamında dört farklı yöreye ait el sanatlarını incelemiştir. Yapılan anket sonucunda öğrencilerin en çok ilgi gösterdiği alanlar aşağıda gösterilmiştir.",
+"question": "Verilen daire grafiğine göre, kültürel çeşitliliğin okul ortamında nasıl bir yansıması olduğu söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Halı Dokuma",
+"Çini Sanatı",
+"Bakır İşlemeciliği",
+"Ebru Sanatı"
+],
+"values": [
+30,
+20,
+10,
+40
+],
+"title": "Öğrencilerin İlgilendiği Kültürel Alanlar (%)",
+"show_names": false
+},
+"options": {
+"A": "Öğrencilerin farklı sanat dallarına ilgi duyması, kültürel zenginliğe olan ilgiyi gösterir.",
+"B": "Grafik, öğrencilerin sadece modern sanatlara ilgi duyduğunu kanıtlar.",
+"C": "Öğrencilerin ilgisi tek bir geleneksel sanat üzerinde yoğunlaşmıştır.",
+"D": "En az ilgi gösterilen alan, toplumsal birliğe katkı sağlamaz."
+},
+"answer": "A",
+"explanation": "Grafikte dört farklı sanat dalına da katılım olduğu görülmektedir. İlginin farklı alanlara dağılmış olması, kültürel zenginliğin okulda ilgi gördüğünü ve öğrencilerin bu mirasa sahip çıktığını kanıtlar. Diğer şıklar grafikteki çeşitliliği yansıtmaz.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Sorumluluk Bilinci: Doğal Kaynaklar",
+"passage": "5/C sınıfı, 'Suyu Korumak Geleceği Korumaktır' adlı bir proje başlatmıştır. Öğrenciler evlerinde bir hafta boyunca su tüketimini gözlemlemiş ve tasarruf yöntemlerini uygulamıştır. Aşağıdaki grafik, uygulamadan önceki ve sonraki haftalık su kullanım miktarlarını (m³) göstermektedir.",
+"question": "Grafiğe göre, projenin toplumsal sorumluluk ve birlikte yaşam açısından sonucu aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+12,
+10,
+15,
+11
+],
+"title": "Günlük Su Tüketimi (Proje Öncesi/Sonrası Farkı)",
+"show_names": false
+},
+"options": {
+"A": "Su tüketimi her gün artarak devam etmiştir.",
+"B": "Bireysel tasarruf, toplumsal su kaynaklarını korumak için gerekli değildir.",
+"C": "Sınıfın toplam su tüketimi, tasarruf alışkanlığıyla birlikte daha dengeli hale gelmiştir.",
+"D": "Proje, öğrencilerin sadece kendi sorumluluklarını değil, doğaya karşı ortak sorumluluklarını da geliştirmiştir."
+},
+"answer": "D",
+"explanation": "Proje sonucunda öğrencilerin tüketim alışkanlıklarında bilinçli bir düşüş (tasarruf) görülmektedir. Bu, öğrencilerin ortak bir amaç (su tasarrufu) etrafında birleşerek sorumluluk üstlendiklerini gösterir.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yardımlaşma ve Dayanışma",
+"passage": "Bir sahil kasabasında balıkçılıkla uğraşan aileler, fırtınalı bir gecede ağları parçalanan bir komşularının ağlarını onarmak için sabah erkenden bir araya geldiler. Kimse kimsenin işini beklemeden, tecrübelerine göre görev paylaşımı yaptı. Bazıları ağları dikti, bazıları tekneleri tamir etti, bazıları ise öğle yemeği hazırlayarak tüm ekibin aç kalmamasını sağladı.",
+"question": "Bu metne göre balıkçıların davranışı için aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Yardımlaşma sadece aile üyeleri arasında gerçekleşen bir durumdur.",
+"B": "Balıkçıların yaptığı çalışma, toplumsal birliğe zarar vermiştir.",
+"C": "Dayanışma, ortak bir sorun karşısında iş birliği yaparak çözüm üretmektir.",
+"D": "Bireyler, kişisel çıkarlarını toplumun ihtiyaçlarının önüne koymuştur."
+},
+"answer": "C",
+"explanation": "Metinde zor durumda olan bir komşuya, herkesin kendi yeteneklerine göre katkı sağladığı bir yardımlaşma örneği vardır. Bu, ortak bir sorunun dayanışma ile çözüldüğünü gösterir.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Okul Hayatı ve Görev Paylaşımı",
+"passage": "5/A sınıfı öğrencileri, okul bahçesini düzenlemek için bir plan yapmıştır. Bahçenin farklı bölümlerine çiçekler, süs bitkileri ve oturma alanları yerleştireceklerdir. Planlamaya göre her öğrenci grubuna düşen alan ve görevler tabloda verilmiştir.",
+"question": "Tabloya göre, 5/A sınıfının bahçe düzenleme süreciyle ilgili aşağıdakilerden hangisi çıkarılamaz?",
+"shape": {
+"type": "table",
+"title": "Bahçe Düzenleme Görev Dağılımı",
+"headers": [
+"Grup",
+"Görev",
+"Alan (m²)"
+],
+"rows": [
+[
+"1. Grup",
+"Çiçek Ekimi",
+"20"
+],
+[
+"2. Grup",
+"Oturma Alanı",
+"15"
+],
+[
+"3. Grup",
+"Süs Bitkisi",
+"10"
+],
+[
+"4. Grup",
+"Yürüyüş Yolu",
+"5"
+]
+]
+},
+"options": {
+"A": "Sınıftaki öğrenciler ortak bir amaç için görev paylaşımı yapmışlardır.",
+"B": "Öğrenciler kendi ilgi alanlarına göre seçim yapmadıkları için iş birliği başarısız olmuştur.",
+"C": "En geniş alanı çiçek ekimi grubu düzenlemektedir.",
+"D": "Her grubun görevi farklı bir ihtiyaca yönelik olarak belirlenmiştir."
+},
+"answer": "B",
+"explanation": "Tablo, görev paylaşımının yapıldığını ve sorumlulukların paylaşıldığını gösterir. D seçeneği metinle çelişmektedir, metinde iş birliğinin başarısız olduğuna dair hiçbir ifade yoktur.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Birlikte Yaşama: Haklar ve Sorumluluklar",
+"passage": "Hayvanat bahçesi gezisi sırasında sınıf başkanı Mehmet, arkadaşlarının hayvanları beslemek için yanlarında getirdikleri yiyecekleri hayvanların kafeslerine atmaya çalıştığını gördü. Görevlilerin uyarı levhalarını hatırlatan Mehmet, 'Hayvanların sağlığı ve bizim güvenliğimiz için kurallara uymalıyız' dedi. Arkadaşları bu uyarının ardından kurallara uyarak sadece belirlenen yem saatlerinde ve görevliler eşliğinde hayvanları izlediler.",
+"question": "Bu senaryoya göre aşağıdakilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Kurallara uymak, toplu yaşam alanlarında hem insan hem de diğer canlıların haklarını korur.",
+"B": "Sınıf başkanı, kuralları hatırlatarak sorumluluk bilincini ortaya koymuştur.",
+"C": "Mehmet'in uyarısı, grubun bir arada güvenle hareket etmesini sağlamıştır.",
+"D": "Öğrencilerin kendi başlarına hayvanları beslemeleri, kurallar çerçevesinde en doğal haktır."
+},
+"answer": "D",
+"explanation": "Kurallar, kamuya açık yerlerde (hayvanat bahçesi gibi) düzeni ve sağlığı korumak içindir. İzinsiz besleme yapmak bir hak değil, aksine diğer canlılara zarar verebilecek bir kural ihlalidir.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Kültür: Birlikte Yaşama ve Festival",
+"passage": "Şehrimizde düzenlenen Kültür Festivali'nde, farklı yörelerden gelen insanların kendi yemeklerini, müziklerini ve el sanatlarını sergiledikleri bölümler kurulmuştur. Festivali ziyaret eden 5. sınıf öğrencileri, farklı kültürlerin bir arada nasıl uyum içinde yaşadığını gözlemlemişlerdir.",
+"question": "Festivaldeki katılım verilerine göre, toplumsal birliktelik açısından aşağıdakilerden hangisi bir 'karşı örnek' oluşturur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Yemek",
+"Müzik",
+"El Sanatı",
+"Kavga"
+],
+"values": [
+45,
+30,
+25,
+0
+],
+"title": "Festival Katılım ve Gözlem Oranları (%)",
+"show_names": false
+},
+"options": {
+"A": "Festivalde en çok yemek bölümüne ilgi olması, kültürün sadece yemekten ibaret olduğunu gösterir.",
+"B": "Kavga oranının sıfır olması, festivalin hoşgörü ortamında gerçekleştiğini gösterir.",
+"C": "Katılımcıların farklı sanat dallarını merak etmesi kültürel gelişmeyi sağlar.",
+"D": "Farklı kültürlerin ortak bir alanda sergilenmesi birlik duygusunu güçlendirir."
+},
+"answer": "A",
+"explanation": "A, B ve C seçenekleri metinle ve grafik değerleriyle (kavga sıfır) uyumludur. D seçeneği ise 'sadece yemekten ibarettir' ifadesiyle mutlak bir genelleme hatası yapmakta ve kültürel çeşitliliği daraltmaktadır.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Kültür ve Miras: Birlikte Yaşamak",
+"passage": "Okulun yemek kulübünde 'Anadolu Lezzetleri' günü için yapılan planlamada; yöresel çorba, ana yemek ve tatlı çeşitlerinin hazırlanma maliyetleri (TL cinsinden) grafikte gösterilmiştir.",
+"question": "Grafikteki verilere göre kültürel çeşitliliği korumak adına yapılan bütçe planlaması için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çorba",
+"Ana Yemek",
+"Tatlı"
+],
+"values": [
+50,
+150,
+100
+],
+"title": "Yemek Maliyetleri (TL)",
+"show_names": false
+},
+"options": {
+"A": "Maliyetler arasında hiçbir orantı kurulamaz, rastgele belirlenmiştir.",
+"B": "Tatlı kategorisi, toplam bütçenin yarısından fazlasını oluşturmaktadır.",
+"C": "Ana yemek, maliyet bakımından diğer iki kategorinin toplamına eşittir.",
+"D": "Çorba ve tatlı toplamı, ana yemekten daha yüksek maliyetlidir."
+},
+"answer": "C",
+"explanation": "Çorba (50) + Tatlı (100) = 150 TL eder. Ana yemek (150) ile bu toplam birbirine eşittir. Bu nedenle A şıkkı doğrudur.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Birey ve Toplum: Birlikte Yaşamak",
+"passage": "Belediye, şehir parkında farklı sosyal grupların zaman geçirebileceği alanların dağılımını gösteren bir çalışma yapmıştır. Halkın kullanımına sunulan alanlar daire grafiğinde paylaşılmıştır.",
+"question": "Belediyenin 'Birlikte yaşama kültürü' hedefleri doğrultusunda, alanların kullanım oranı düşünüldüğünde aşağıdakilerden hangisi yapılamaz?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Spor Alanı",
+"Kültür Merkezi",
+"Dinlenme Alanı"
+],
+"values": [
+50,
+100,
+150
+],
+"title": "Park Alanları Dağılımı (Metrekare)",
+"show_names": false
+},
+"options": {
+"A": "Dinlenme alanı, spor alanının üç katı kadar yer kaplamaktadır.",
+"B": "Kültür merkezi ve spor alanının toplamı, dinlenme alanına eşittir.",
+"C": "En büyük paya sahip olan yer spor alanıdır.",
+"D": "Parkta sosyalleşme imkânı sunan alanların toplamı 300 metrekaredir."
+},
+"answer": "C",
+"explanation": "Verilere göre Spor=50, Kültür=100, Dinlenme=150. Toplam=300. C şıkkında en büyük payın spor alanı olduğu söylenmiştir, oysa en büyük pay 150 ile dinlenme alanınındır. Dolayısıyla C yanlıştır.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Birey ve Toplum: Rollerimiz",
+"passage": "5/A sınıfı öğrencileri, kantin sırasının düzenli olması ve herkesin hakkına saygı duyması için bir 'sıra nöbetçi listesi' oluşturmuştur. Bu listede her öğrenci haftada bir gün görev almaktadır. Kantinde yoğunluk yaşandığında, nöbetçi öğrenci olmayan biri sıraya kaynak yapmaya çalışmıştır. Nöbetçi öğrenci ise nazikçe durumu anlatarak arkadaşını sıranın sonuna yönlendirmiştir.",
+"question": "Bu senaryoda, nöbetçi öğrencinin sergilediği tutum aşağıdakilerden hangisiyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "Öğrenci rollerinin okul dışında da devam ettiğiyle",
+"B": "Toplumsal kuralların bireyler arasındaki eşitsizliği artırdığıyla",
+"C": "Sadece kuralların katı bir şekilde uygulanması gerektiğiyle",
+"D": "Birlikte yaşamanın sorumluluk alma ve kurallara uymayı gerektirdiğiyle"
+},
+"answer": "D",
+"explanation": "Senaryo, bir grubun uyum içinde yaşaması için bireylerin hem rol (nöbetçi) üstlenmesi hem de kurallara (sıra) uyması gerektiğini vurgulamaktadır. Bu durum 'birlikte yaşam' sorumluluğudur.",
+"vfd2": true,
+"unit": "Birlikte Yaşamak",
+"topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
+"d": 2,
+"ts": 1794126420
 }
 ]
 }

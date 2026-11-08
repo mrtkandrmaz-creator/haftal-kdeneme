@@ -584,6 +584,888 @@
 "topics": "Hücre ve organeller, Canlı sınıflandırma",
 "d": 4,
 "ts": 1794119857
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme ve Yüzey Karşılaştırması",
+"passage": "Doğa yürüyüşü sırasında sınıf, iki farklı kayalıkta kaykay yapmayı denedi. Kaykay A, pürüzsüz kayalıkta; Kaykay B ise çakıllı kayalıkta sürtünme katsayısı 0.30 ve 0.55 olarak ölçüldü. Her iki kaykayın kütlesi 15 kg, başlangıç hızı aynı ve fren uygulanmadı.",
+"question": "Bu koşullarda hangi kaykay daha uzun mesafe kayacak?",
+"shape": null,
+"options": {
+"A": "İkisi aynı mesafe",
+"B": "Kaykay A",
+"C": "Mesafeyi belirlemek mümkün değil",
+"D": "Kaykay B"
+},
+"answer": "B",
+"explanation": "1) Sürtünme kuvveti = μ × m × g. 2) Daha düşük μ, daha az frenleme, daha uzun mesafe. 3) Kaykay A'nin μ 0.30, B'nin 0.55. 4) Dolayısıyla Kaykay A daha uzun kayar.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 1,
+"ts": 1794124540
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Basınç ve Kuvvet Dağılımı",
+"passage": "Geri dönüşüm atıklarını sıkıştırmak için bir basınç pistonu tasarlandı. Pistonda 5 kg'lık bir çöp torbası üzerine 50 N'luk bir kuvvet uygulanıyor. Pistondaki temas alanı 100 cm² olarak ölçülmüş.",
+"question": "Bu durumda pistondaki basınç (Pa) kaçtır? (1 N = 1 kg·m/s², 1 cm² = 1×10⁻⁴ m²)",
+"shape": {
+"type": "fen",
+"sub_type": "basinc_kati",
+"cisim": "5 kg",
+"G": "50 N",
+"F": "50 N",
+"S": "100 cm²",
+"durus": "yatay",
+"show_names": false
+},
+"options": {
+"A": "5 000 Pa",
+"B": "500 Pa",
+"C": "50 Pa",
+"D": "0,5 Pa"
+},
+"answer": "A",
+"explanation": "1) Basınç = Kuvvet / Alan. 2) Alan = 100 cm² = 100 ×10⁻⁴ m² = 0.01 m². 3) Basınç = 50 N / 0.01 m² = 5 000 Pa. 4) Doğru şık 5 000 Pa.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 1,
+"ts": 1794124540
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Direnç ve Yüzey Etkisi",
+"passage": "Çiftlikteki bir sulama sistemi için iki farklı boru tipi incelendi. Boru K, geniş bir alana yayılmış; Boru L ise dar bir alanda. Ölçülen direnç değerleri: K = 2 Ω, L = 5 Ω. Öğrenciler, akımın aynı olduğunu varsayarak enerji kaybını karşılaştırdılar.",
+"question": "Bu verilere göre, hangi boru enerji kaybı açısından daha verimsizdir?",
+"shape": {
+"type": "fen",
+"sub_type": "direnc",
+"ortam": "su",
+"isimler": [
+"K",
+"L"
+],
+"alanlar": [
+"genis",
+"dar"
+],
+"show_names": false
+},
+"options": {
+"A": "Boru K",
+"B": "İkisi aynı",
+"C": "Boru L",
+"D": "Veri yetersiz"
+},
+"answer": "C",
+"explanation": "1) Enerji kaybı P = I²R. 2) Aynı akımda direnç yüksek olan boruda kayıp daha fazladır. 3) Boru L'nin direnci 5 Ω, K'nın 2 Ω. 4) Dolayısıyla L daha verimsizdir.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 1,
+"ts": 1794124540
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Dinamometre",
+"passage": "Bir pazar yerinde tezgah açan esnaf Kerem Usta, sattığı ürünleri tartmak ve esneme sınırlarını kontrol etmek amacıyla farklı kalınlıkta yaylar kullanarak ev yapımı üç adet dinamometre hazırlamıştır. Dinamometreleri test etmek için üzerlerine sırasıyla 10 N, 20 N ve 30 N ağırlığında standart kütleler asmıştır. Kerem Usta, hazırladığı sistemlerde yayların uzama miktarlarını kaydetmiş ancak üçüncü dinamometrede yay malzemenin esneklik sınırının aşıldığını ve yayda kalıcı şekil bozukluğu meydana geldiğini fark etmiştir.",
+"question": "Kerem Usta'nın yaşadığı bu durum ve dinamometre yapımında kullanılan yaylar dikkate alındığında, aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Dinamometreler kuvveti ölçerken içindeki yayın kalınlığı arttıkça uygulanan kuvvet ne olursa olsun uzama miktarı hep aynı kalır.",
+"B": "Kerem Usta'nın yaptığı tüm dinamometreler, her büyüklükteki kuvveti hatasız ölçebilecek ortak bir teknik kapasiteye sahiptir.",
+"C": "Üçüncü dinamometrede esneklik sınırının aşılması, yaya asılan kuvvetin büyüklüğünün yayın cinsinden bağımsız olduğunu gösterir.",
+"D": "Dinamometrelerin yapımında kullanılan yayların esneklik özellikleri ölçülecek kuvvetin büyüklüğüne uygun seçilmelidir."
+},
+"answer": "D",
+"explanation": "Dinamometreler esnek cisimlerin yaylanma özelliğinden yararlanılarak yapılır. Ölçülecek kuvvetin büyüklüğü yayın esneklik sınırını aşarsa yay bozulur. Bu durum, dinamometre yapımında kullanılacak yayın ölçülecek kuvvet aralığına uygun seçilmesi gerektiğini gösterir. A şıkkı bu bilimsel çıkarımla tam olarak örtüşmektedir.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 1,
+"ts": 1794124540
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme Kuvveti",
+"passage": "Bir çiftlikte çalışan gözlemci, traktörün römorkunu farklı zeminlerde hareket ettirirken tekerleklerin zemine uyguladığı sürtünme kuvvetini incelemiştir. Çiftlik içindeki beton, toprak, çakıl ve buzlu zemin üzerinde yapılan denemelerde römorku sabit hızla çekmek için uygulanan kuvvetler ölçülmüştür. Elde edilen veriler bir çizgi grafikte gösterilmiştir.",
+"question": "Grafikteki verilere ve yüzey özelliklerine göre, çakıl zemin ile buzlu zemin arasındaki sürtünme kuvveti farkını inceleyen bir araştırmacı aşağıdakilerden hangisine ulaşır?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Buzlu Zemin",
+"Toprak Zemin",
+"Beton Zemin",
+"Çakıl Zemin"
+],
+"values": [
+5,
+18,
+25,
+40
+],
+"title": "Zemin Türlerine Göre Römarku Çekme Kuvveti (N)",
+"show_names": false
+},
+"options": {
+"A": "Zeminlerin cinsi sürtünme kuvvetinin büyüklüğünü etkilemez, bu durum sadece römorkun ağırlığına bağlıdır.",
+"B": "Buzlu zemin pürüzsüzlüğe yakın olduğu için sürtünme kuvveti en az, çakıl zemin pürüzlü olduğu için sürtünme kuvveti en fazladır.",
+"C": "Beton zemindeki sürtünme kuvveti çakıl zemindeki sürtünme kuvvetinden daha büyüktür.",
+"D": "Pürüzlü yüzeylerde temas yüzeyi arttıkça sürtünme kuvveti her zaman sıfıra iner."
+},
+"answer": "B",
+"explanation": "Grafikte buzlu zeminde değer 5 N iken çakıl zeminde 40 N'dur. Pürüzlülük arttıkça sürtünme kuvveti artar; buzlu zemin en az pürüzlü olduğu için en az sürtünmeyi, çakıl ise en pürüzlü olduğu için en çok sürtünmeyi sağlar. Bu nedenle B şıkkı doğrudur.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 1,
+"ts": 1794124540
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kütle ve Ağırlık",
+"passage": "Büyük bir akvaryum kuran Akın Bey, akvaryuma koyacağı suyun kütlesini ve içerisindeki dekor malzemelerinin ağırlığını listelemiştir. Akın Bey, farklı gezegenlerde kütle ve ağırlık kavramlarının nasıl değiştiğini merak ederek Dünya'da ölçtüğü değerleri bir tabloya kaydetmiştir.",
+"question": "Tabloda verilen verilere göre, kütle ve ağırlık kavramlarıyla ilgili aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "table",
+"title": "Akvaryum Malzemelerinin Ölçüm Değerleri",
+"headers": [
+"Malzeme Adı",
+"Kütle (kg)",
+"Dünya'daki Ağırlık (N)"
+],
+"rows": [
+[
+"Dekor Taşı",
+"5",
+"50"
+],
+[
+"Su Pompası",
+"2",
+"20"
+],
+[
+"Filtre",
+"3",
+"30"
+]
+]
+},
+"options": {
+"A": "Ağırlık bir kuvvettir ve cisme etki eden yer çekimi kuvvetinin büyüklüğüne bağlıdır.",
+"B": "Dekor taşının kütlesi Ay'a götürüldüğünde 5 kg'dan daha küçük bir değer alır.",
+"C": "Kütle, maddelerin miktarını gösteren ve bulunduğu yere göre değişmeyen bir büyüklüktür.",
+"D": "Su pompasının Dünya'daki ağırlığı 20 N iken kütlesi 2 kg olarak ölçülmüştür."
+},
+"answer": "B",
+"explanation": "Kütle, madde miktarıdır ve uzayın her yerinde (Ay'da da olsa) aynı kalır, değişmez. C şıkkında dekor taşının kütlesinin Ay'a götürüldüğünde azalacağı söylenmiştir ki bu bilimsel olarak yanlıştır, kütle değişmez.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 1,
+"ts": 1794124540
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Erime ve donma noktası",
+"passage": "Bir balıkçı teknesinde dondurucudan çıkarılan saf buz kalıplarının deniz suyunda bekletildiğinde zamanla yapı değiştirdiği tablo ile kaydedilmiştir.",
+"question": "Tablodaki bilgilere ve maddenin hallerine göre, buzun erimesi sırasında gerçekleşen olaylarla ilgili aşağıdaki yargılardan hangisi kesinlikle doğrudur?",
+"shape": {
+"type": "table",
+"title": "Buz Kalıbının Zamanla Değişimi",
+"headers": [
+"Süre (Dakika)",
+"Madde Hali",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"0",
+"Katı",
+"-5"
+],
+[
+"10",
+"Katı - Sıvı",
+"0"
+],
+[
+"20",
+"Sıvı",
+"4"
+]
+]
+},
+"options": {
+"A": "Buz erirken dışarıya ısı vererek sıcaklığını sabit tutmuştur.",
+"B": "0. dakikadan 10. dakikaya kadar madde dışarıdan ısı alarak erime olayı gerçekleştirmiştir.",
+"C": "20. dakikada madde tamamen katı hâle geçmiştir.",
+"D": "Saf buzun erime noktası 4 °C olarak ölçülmüştür."
+},
+"answer": "B",
+"explanation": "Tabloda 0. dakikada -5 °C'de katı halde bulunan buz, ısı alarak 10. dakikada 0 °C'ye gelmiş ve erimeye başlayarak katı-sıvı bir arada bulunmuştur. Erime süresince madde dışarıdan ısı alır ve saf maddelerin erime noktası sabit kalır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794124883
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin halleri ve sıcaklık değişimi",
+"passage": "Meteoroloji istasyonunda bir hafta boyunca ölçülen en düşük hava sıcaklıkları çizgi grafiği ile rapor edilmiştir. Bu rapor, suyun doğadaki hal değişimlerini incelemek için kullanılmaktadır.",
+"question": "Grafikteki sıcaklık değerleri ve değişimleri dikkate alındığında, hangi gün suyun donma olayının gözlenmesi için en uygun ortam oluşmuştur?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pzt",
+"Sal",
+"Çar",
+"Per",
+"Cum"
+],
+"values": [
+4,
+1,
+0,
+-3,
+2
+],
+"title": "Günlük En Düşük Sıcaklıklar (°C)",
+"show_names": false
+},
+"options": {
+"A": "Çarşamba günü su donma sıcaklığına ulaşmış, Perşembe günü ise sıvı haldeki suyun donması için uygun koşullar oluşmuştur.",
+"B": "Cuma günü hava sıcaklığı en yüksek değere ulaştığı için buzlar erimektedir.",
+"C": "Salı günü su kaynamaya başlamıştır.",
+"D": "Pazartesi günü su tamamen gaz hâline geçmiştir."
+},
+"answer": "A",
+"explanation": "Çarşamba günü sıcaklık 0 °C olup suyun donma noktasıdır. Perşembe günü ise sıcaklık -3 °C'ye düşerek suyun tamamen donabileceği (veya donmuş suyun korunacağı) uygun sıcaklık koşullarını sağlamıştır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794124883
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı alarak hal değiştirme",
+"passage": "Sağlık ocağında muayene olan bir çocuğun vücut sıcaklığı termometre ile ölçülmüş, aynı zamanda odada bekletilen katı bir ilaç blisterinin oda ısısında yumuşadığı fark edilmiştir.",
+"question": "Bu duruma sebep olan süreçle ilgili öğrencinin defterine aldığı aşağıdaki notlardan hangisinde bilimsel bir hata bulunmaktadır?",
+"shape": {
+"type": "thermometer",
+"value": 38,
+"min": 34,
+"max": 42,
+"step": 1,
+"unit": "°C",
+"show_names": false
+},
+"options": {
+"A": "İlacın yumuşaması maddelerin ısı almasıyla gerçekleşen bir hal değişimidir.",
+"B": "Katı maddeler dışarıdan ısı alarak sıvı hâle geçebilir, buna erime denir.",
+"C": "Oda sıcaklığındaki ısı, katı maddenin donma noktasına düşmesini sağlamıştır.",
+"D": "Erime süresince katı madde çevreünden ısı çekmektedir."
+},
+"answer": "C",
+"explanation": "İlacın katı halden sıvı/yumuşak hale geçmesi erime olayıdır ve maddelerin ısı almasıyla gerçekleşir. C seçeneğinde 'donma noktasına düşmesini sağlamıştır' ifadesi yanlıştır çünkü erime olayı ısı alarak gerçekleşir, donma ise ısı vererek gerçekleşir.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794124883
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin halleri (Katı, Sıvı, Gaz)",
+"passage": "Okul kantininde buzlu meyve suyu satışı yapan görevli, buz akülerinin eridiğini ve gazlı içecek şişelerinin dış yüzeyinde su damlacıklarının oluştuğunu gözlemlemiştir.",
+"question": "Kantindeki bu gözlemlere dayanarak maddelerin halleri ve özellikleri ile ilgili yapılan aşağıdaki sınıflandırmalardan hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Buz aküsünün erimesi maddelerin ısı vererek katı hâle geçmesidir.",
+"B": "Şişenin dışındaki su damlacıkları, gaz halindeki su buharının ısı vererek sıvı hâle geçmesi (yoğuşma) sonucudur.",
+"C": "Meyve suyu buzu ve sıvı meyve suyu aynı fiziksel hallerde maddelerdir.",
+"D": "Gazlı içeceklerin içindeki gazlar sadece katı hâlde bulunabilir."
+},
+"answer": "B",
+"explanation": "Şişenin dış yüzeyinde görülen su damlacıkları, havadaki su buharının (gaz) soğuk şişe yüzeyine çarparak ısı vermesi ve sıvı hale geçmesi (yoğuşma) ile oluşmuştur. Diğer seçenekler hal değişim kurallarına ve bilimsel bilgilere aykırıdır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794124883
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Erime ve donma olayları",
+"passage": "Zeynep, evindeki akvaryum bakım odasında suyun sıcaklık değişimlerini incelemektedir. Akvaryumun su sıcaklığının oda koşullarında nasıl değiştiğini gözlemlemek için bir deney tasarlar ve elde ettiği verileri çizgi grafiğine aktarır.",
+"question": "Çizgi grafiğindeki verilere göre suyun sıcaklık değişimi ve hâl değişimi ile ilgili aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"0. Dk",
+"5. Dk",
+"10. Dk",
+"15. Dk",
+"20. Dk"
+],
+"values": [
+0,
+0,
+5,
+12,
+20
+],
+"title": "Akvaryum Su Sıcaklığının Zamanla Değişimi (°C)",
+"show_names": false
+},
+"options": {
+"A": "0. dakikadan 5. dakikaya kadar suyun sıcaklığı sabit kalmıştır çünkü bu sürede buz erümektedir.",
+"B": "Su, 10. dakikada tamamen sıvı hâle gelmiş ve sıcaklığı artmaya başlamıştır.",
+"C": "Maddeye dışarıdan ısı verilmeye devam edilmiştir.",
+"D": "5. ve 10. dakikalar arasında maddede yalnızca gaz çıkışı gözlenmiştir."
+},
+"answer": "D",
+"explanation": "1. Adım: Grafik incelendiğinde 0. ve 5. dakikalar arasında sıcaklık 0 °C'de sabit kalmıştır, bu da erime olayını gösterir.\n2. Adım: 5. dakikadan sonra sıcaklık artmaya başladığı için madde sıvı hâldedir.\n3. Adım: D seçeneğinde belirtilen 'yalnızca gaz çıkışı gözlenmiştir' ifadesi bilimsel olarak yanlıştır çünkü bu aralıkta erime (katıdan sıvıya geçiş) gerçekleşmektedir, kaynama veya buharlaşma gözlenmemektedir.\n4. Doğru seçenek D'dir.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794124883
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı ve Sıcaklık Değişimi",
+"passage": "Bir şehir planlama projesinde, açık hava havuzlarındaki suyun yaz ve kış aylarındaki sıcaklık değişimleri incelenmektedir. Mühendisler, havuz suyunun gün içindeki sıcaklık değişimini aşağıdaki çizgi grafiği ile kaydetmiştir.",
+"question": "Çizgi grafiğindeki verilere göre havuz suyu ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"06:00",
+"10:00",
+"14:00",
+"18:00"
+],
+"values": [
+2,
+8,
+18,
+10
+],
+"title": "Havuz Suyu Sıcaklığı (°C)",
+"show_names": false
+},
+"options": {
+"A": "Havuz suyu 06:00 ile 14:00 saatleri arasında ısı alarak sıcaklığını artırmıştır.",
+"B": "Su saat 06:00'da kaynama noktasına ulaşmıştır.",
+"C": "14:00 ile 18:00 saatleri arasında su ısı almaya devam etmiştir.",
+"D": "Sıcaklık artışı suyun kütlesini doğrudan artırmıştır."
+},
+"answer": "A",
+"explanation": "1. Adım: Grafik incelendiğinde 06:00'da 2 °C olan sıcaklık 14:00'te 18 °C'ye yükselmiştir.\n2. Adım: Bu durum suyun dışarıdan ısı aldığını ve sıcaklığının arttığını gösterir.\n3. Adım: 14:00'ten sonra sıcaklık düştüğü için su ısı kaybetmiştir.\n4. Doğru seçenek A'dır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794124883
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hücre ve Temel Kısımları",
+"passage": "Bir robotik atölyesinde öğrenciler, bir hücre modelinin temel kısımlarını akıllı tahta üzerindeki simülasyonda eşleştirmektedir. Beril, hücreyi dış etkenlerden koruyan ve madde alışverişini sağlayan yapıyı seçerken; Kerem ise hücre içi faaliyetlerin gerçekleştiği, yarı akışkan ve yumuşak kıvamlı sıvıyı seçmiştir.",
+"question": "Buna göre öğrencilerin simülasyonda seçtiği bu yapılar aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Beril: Hücre duvarı — Kerem: Çekirdek",
+"B": "Beril: Hücre zarı — Kerem: Sitoplazma",
+"C": "Beril: Çekirdek — Kerem: Hücre duvarı",
+"D": "Beril: Sitoplazma — Kerem: Hücre zarı"
+},
+"answer": "B",
+"explanation": "Adım 1: Hücreyi dış etkenlerden koruyan, ona şekil veren ve madde alışverişini seçici geçirgen özelliğiyle sağlayan yapı hücre zarıdır. Beril'in seçtiği özellik hücre zarına aittir.\nAdım 2: Hücre zarı ile çekirdek arasında yer alan, organellerin içinde bulunduğu, yumuşak kıvamlı ve büyük oranda su içeren sıvı kısım sitoplazmadır. Kerem'in seçtiği özellik sitoplazmaya aittir.\nAdım 3: Bu durumda Beril hücre zarını, Kerem ise sitoplazmayı seçmiştir.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Bitki ve Hayvan Hücresi Karşılaştırması",
+"passage": "Kodlama kulübündeki öğrenciler bir hücre karşılaştırma algoritması tasarlamaktadır. Algoritmada K, L, M ve N hücre tipleri incelenmekte ve bu hücrelerde hücre duvarı, kloroplast, koful ve çekirdek varlığı test edilmektedir.",
+"question": "Buna göre, sadece bitki hücresine ait özellikleri içeren model şemasına göre hangi hücre tipinde hem hücre duvarı hem de kloroplast ortak olarak bulunur?",
+"shape": null,
+"options": {
+"A": "Bakteri hücresinde",
+"B": "Ağaçtan alınan yaprak hücresinde",
+"C": "Gelişmiş bir hayvan hücresinde",
+"D": "İnsan kas hücresinde"
+},
+"answer": "B",
+"explanation": "Adım 1: Hücre duvarı ve kloroplast, hayvan hücrelerinde bulunmaz; bitki hücrelerinde ve bazı mikroskobik canlılarda bulunur ancak gelişmiş bitki hücresinde her ikisi de net olarak yer alır.\nAdım 2: Ağaçtan alınan yaprak hücresi bir bitki hücresidir ve hem hücre duvarına hem de kloroplast organeline sahiptir.\nAdım 3: Hayvan ve insan hücrelerinde hücre duvarı ve kloroplast bulunmaz.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hücreden Organa Biyolojik Organizasyon",
+"passage": "Okullar arası spor müsabakası hazırlıklarında antrenör, vücudumuzdaki yapı birimlerinin organizasyonunu bir spor takımının yapılanmasına benzetmiştir. Çizgi grafiğinde, küçük yapı biriminden büyük yapı birimine doğru birimlerin karmaşıklık dereceleri numaralandırılarak gösterilmiştir.",
+"question": "Grafikteki ilişkiye göre, 1, 2, 3 ve 4 numaralı basamaklar sırasıyla hangi biyolojik kavramları ifade eder?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Basamak I",
+"Basamak II",
+"Basamak III",
+"Basamak IV"
+],
+"values": [
+10,
+30,
+60,
+90
+],
+"title": "Biyolojik Organizasyon Basamakları",
+"show_names": false
+},
+"options": {
+"A": "Organ — Doku — Hücre — Organizma",
+"B": "Doku — Hücre — Sistem — Organ",
+"C": "Sistem — Organ — Doku — Hücre",
+"D": "Hücre — Doku — Organ — Sistem"
+},
+"answer": "D",
+"explanation": "Adım 1: Canlıların temel yapı birimi hücredir ve organizasyonun en küçük basamağını oluşturur (Basamak I).\nAdım 2: Aynı görev için özelleşmiş hücreler birleşerek dokuları oluşturur (Basamak II).\nAdım 3: Dokular birleşerek organları (Basamak III), organlar ise sistemleri (Basamak IV) oluşturur. Sıralama Hücre-Doku-Organ-Sistem şeklindedir.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlıların Sınıflandırılması",
+"passage": "Bir market alışverişinde reyon görevlisi ürünleri kuru gıda, temizlik maddeleri, sebze-meyve ve süt ürünleri olarak ayırmaktadır. Fen bilimleri öğretmeni bu durumu sınıftaki canlı sınıflandırması konusuna benzeterek öğrencilerden canlıları gruplara ayırmalarını istemiştir.",
+"question": "Buna göre, canlıların sınıflandırılmasıyla ilgili yapılan aşağıdaki gruplamalardan hangisi bilimsel olarak doğrudur?",
+"shape": null,
+"options": {
+"A": "Mikroskobik Canlılar, Bitkiler, Virüsler ve Taşlar",
+"B": "Çiçekli Bitkiler, Çiçeksiz Bitkiler, Kuşlar ve Mantarlar",
+"C": "Bitkiler, Hayvanlar, Mantarlar ve Mikroskobik Canlılar",
+"D": "Omurgalılar, Omurgasızlar, Sürüngenler ve Bakteriler"
+},
+"answer": "C",
+"explanation": "Adım 1: Canlılar ortak özellikleri ve yapıları dikkate alınarak dört ana gruba ayrılır.\nAdım 2: Bu dört ana grup; Mikroskobik Canlılar, Mantarlar, Bitkiler ve Hayvanlardır.\nAdım 3: Diğer seçeneklerde eksik gruplandırmalar veya canlı olmayan varlıklar (taş) yer almaktadır.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Mantarlar ve Mikroskobik Canlılar",
+"passage": "Bir bisiklet turu sırasında suluklarındaki suyu açıkta bırakan sporcular, bir süre sonra suyun tadının ve kokusunun değiştiğini fark etmişlerdir. Bu durumun nedenini araştıran sporcular, çıplak gözle görülemeyen ancak uygun sıcaklık ve nemde çoğalan canlıların suya etkisini incelemiştir.",
+"question": "Bu olaya neden olan canlı grubu ve özellikleri ile ilgili aşağıdakilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Sütten yoğurt veya hamurdan ekmek yapımında yararlı türleri kullanılır.",
+"B": "Tüm türleri insan sağlığına zararlıdır ve kesinlikle hastalık yapar.",
+"C": "Uygun nem, sıcaklık ve besin bulduklarında hızla çoğalabilirler.",
+"D": "Mikroskop adı verilen araçla incelenebilirler."
+},
+"answer": "B",
+"explanation": "Adım 1: Su ve besinlerin bozulmasına neden olanlar mikroskobik canlılardır (bakteriler vb.).\nAdım 2: Mikroskobik canlıların tamamı zararlı değildir; sütten yoğurt yapımı, turşu oluşumu gibi yararlı türleri de vardır.\nAdım 3: 'Tüm türleri insan sağlığına zararlıdır' ifadesi bilimsel olarak yanlıştır, çünkü yararlı mikroskobik canlılar da mevcuttur.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlı Sınıflandırma",
+"passage": "Doğa müzesini gezen Kerem, canlılar panosundaki eksik bırakılan özellikleri tamamlamak istemektedir. Panoda bitkiler, hayvanlar, mantarlar ve mikroskobik canlılar yer almaktadır.",
+"question": "Kerem'in panodaki mikroskobik canlılar grubuna ait özellikler sütununa yazması gereken doğru ifade aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Gözle görülemeyecek kadar küçük olup sadece mikroskopla incelenirler.",
+"B": "Aktif olarak yer değiştirme ve yürüme hareketini gelişmiş bacaklarıyla yaparlar.",
+"C": "Kendi besinlerini fotosentez yaparak kendileri üretirler.",
+"D": "Karasal ortamlarda büyük yapılı ormanlar oluşturarak yaşarlar."
+},
+"answer": "A",
+"explanation": "Mikroskobik canlılar çıplak gözle görülemeyen, tek hücreli veya basit yapılı canlılardır. Kendi besinlerini üretenler bitkilerdir, aktif yer değiştirenler hayvanlardır, büyük yapılı orman kuranlar bitkilerdir. Bu nedenle doğru ifade mikroskopla incelendikleridir.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hücrenin Temel Kısımları",
+"passage": "Akvaryum kuran Zeynep, akvaryumundaki bitki ve balıkların hücrelerini incelemiştir. Bitki hücresinde gözlemlediği yapıları ve bunların oranlarını daire grafiğinde özetlemiştir.",
+"question": "Buna göre, daire grafiğinde belirtilen oranlar ve bitki hücresine ait özellikler düşünüldüğünde aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Hücre Duvarı",
+"Sitoplazma",
+"Çekirdek",
+"Kloroplast"
+],
+"values": [
+25,
+35,
+20,
+20
+],
+"title": "Bitki Hücresindeki Temel Kısım ve Organel Dağılım Oranı",
+"show_names": false
+},
+"options": {
+"A": "Hücre duvarı cansız ve esnek olmayıp bitkiye koruma ve destek sağlar.",
+"B": "Sitoplazma, hücre zarı ile çekirdek arasında yer alan katı ve sert bir maddedir.",
+"C": "Kloroplast organeli sadece hayvan hücrelerinde bulunarak renk verir.",
+"D": "Çekirdek, hayatsal faaliyetleri yöneten organel değil sadece depo merkezidir."
+},
+"answer": "A",
+"explanation": "Bitki hücresinde bulunan hücre duvarı selüloz yapıdadır, cansızdır ve tam geçirgendir; bitkiye sertlik ve direnç kazandırır. Sitoplazma sıvı maddedir, katı değildir. Kloroplast bitkidedir. Çekirdek yönetim merkezidir. Dolayısıyla doğru şık A'dır.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlıların Sınıflandırılması ve Mantarlar",
+"passage": "Hayvanat bahçesi ve botanik parkı gezisinde görevli öğretmen, öğrencilere mantarların bitki olmadığını, kendi besinlerini üretemeyen ayrı bir canlı grubu olduğunu anlatmıştır. Öğrencilerin yaptığı sütun grafiğinde mantar türlerinin özellikleri gösterilmiştir.",
+"question": "Öğretmenin anlattığı bilgiler ve bar grafiğindeki veriler dikkate alındığında, öğrencilerin yaptığı aşağıdaki yorumlardan hangisi bilimsel olarak yanlıştır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Şapkalı Mantar",
+"Küf Mantarı",
+"Maya Mantarı",
+"Parazit Mantar"
+],
+"values": [
+15,
+30,
+45,
+60
+],
+"title": "Mantar Çeşitlerinin Çeşitli Özellik Skorları",
+"show_names": false
+},
+"options": {
+"A": "Küf mantarları ekmek gibi besinlerin üzerinde çoğalarak onların bozulmasına neden olur.",
+"B": "Şapkalı mantarlar toprak altında kalan ipliksi yapılarla besinlerini dışarıdan hazır alır.",
+"C": "Maya mantarları hamurun kabarmasını sağlayan ve gözle görülemeyen tek hücreli canlılardır.",
+"D": "Mantarlar kloroplastları sayesinde kendi besinlerini fotosentez yoluyla üretirler."
+},
+"answer": "D",
+"explanation": "Mantarlar fotosentez yapamazlar çünkü kloroplastları yoktur, besinlerini dışarıdan hazır alırlar. D seçeneğindeki 'kloroplastları sayesinde fotosentez yaparlar' ifadesi yanlıştır ve tipik bir kavram yanılgısıdır.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hücreden Organa Organizasyon",
+"passage": "Uzay merkezinde görevli bir biyolog, yeni keşfedilen bir uzay canlısının yapı birimlerini incelemektedir. Tabloda bu canlıya ait yapı birimlerinin basamakları verilmiştir.",
+"question": "Tabloda verilen karmaşıklık basamakları dikkate alındığında, hücreden organizmaya doğru yapılan sıralamada boş bırakılan yere aşağıdakilerden hangisi gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Canlılarda Yapısal Basamaklar Tablosu",
+"headers": [
+"Basamak Adı",
+"Örnek / Açıklama"
+],
+"rows": [
+[
+"1. Basamak",
+"Hücre (Temel yapı birimi)"
+],
+[
+"2. Basamak",
+"Doku (Benzer hücrelerin birleşimi)"
+],
+[
+"3. Basamak",
+"?"
+],
+[
+"4. Basamak",
+"Sistem (Sindirim, solunum vb.)"
+]
+]
+},
+"options": {
+"A": "Molekül",
+"B": "Atom",
+"C": "Organel",
+"D": "Organ"
+},
+"answer": "D",
+"explanation": "Canlılarda yapı birimlerinin basamak sıralaması küçükten büyüğe doğru: Hücre -> Doku -> Organ -> Sistem -> Organizm 형태로 gider. 3. basamakta dokuların birleşmesiyle oluşan yapı yani 'Organ' yer almalıdır.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Mikroskobik Canlılar ve Sağlık",
+"passage": "Okul sağlığı kontrolünde beslenme alışkanlıklarını inceleyen hemşire hanım, öğrencilerin ellerinde bulunan mikroskobik canlı türlerinin oranlarını daire grafiğiyle okul panosuna asmıştır.",
+"question": "Daire grafiğindeki verilere ve mikroskobik canlıların özelliklerine göre aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Bakteriler",
+"Amip",
+"Öglena",
+"Terliksi Hayvan"
+],
+"values": [
+40,
+20,
+20,
+20
+],
+"title": "İncelenen Örneklerdeki Mikroskobik Canlı Oranları",
+"show_names": false
+},
+"options": {
+"A": "Bakteriler zararlı hastalık yapıcı oldukları gibi sütten yoğurt yapımında da yararlıdır.",
+"B": "Mikroskobik canlıların tamamı insan sağlığı için zararlı ve hastalık yapıcıdır.",
+"C": "Öglena kamçısı sayesinde hareket eder ve sadece karanlıkta yaşar.",
+"D": "Terliksi hayvan kendi besinini fotosentez yaparak üreten hareketsiz bir canlıdır."
+},
+"answer": "A",
+"explanation": "Bakterilerin hepsi zararlı değildir; yararlı olanları da vardır (yoğurt yapımı, sindirim vb.). B şıkkı yanlıştır çünkü tamamı zararlı değildir. Öglena ışıkta fotosentez yapar. Terliksi hayvan fotosentez yapmaz, hareketlidir. Bu nedenle doğru şık A'dır.",
+"vfd2": true,
+"unit": "Canlıların Yapısı ve Hücre",
+"topics": "Hücre ve organeller, Canlı sınıflandırma",
+"d": 3,
+"ts": 1794125157
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Tutulmalar",
+"passage": "Güneş, Dünya ve Ay'ın aynı doğrultu üzerine geldiği özel anlarda tutulma olayları gerçekleşir. Bu durum gölge boylarının ve ışığın geçişinin engellenmesine neden olur.",
+"question": "Güneş tutulması olayında Güneş, Dünya ve Ay'ın dizilişi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "solar_eclipse",
+"title": "Tutulma Modeli",
+"show_names": false
+},
+"options": {
+"A": "Güneş - Dünya - Ay",
+"B": "Güneş - Ay - Dünya",
+"C": "Ay - Güneş - Dünya",
+"D": "Dünya - Ay - Güneş"
+},
+"answer": "B",
+"explanation": "Güneş tutulmasında Ay, Güneş ile Dünya arasına girerek Güneş'ten gelen ışığı bir bölge için engeller. Doğru dizilim Güneş - Ay - Dünya şeklindedir.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Yapısı",
+"passage": "Ay, Dünya'nın tek doğal uydusudur. Atmosferi yok denecek kadar azdır. Bu nedenle yüzeyindeki sıcaklık farkları çok fazladır ve gök taşlarının çarptığı yerlerde kraterler oluşur.",
+"question": "Ay'ın bu özellikleri dikkate alındığında aşağıdaki gözlemlerden hangisi Dünya'da gerçekleşip Ay'da gerçekleşmez?",
+"shape": null,
+"options": {
+"A": "Yağmur, rüzgar gibi hava olaylarının oluşması.",
+"B": "Gündüz ve gece arasında sıcaklık farkı olması.",
+"C": "Yüzeyde kraterlerin bulunması.",
+"D": "Gök taşlarının yüzeye çarpması."
+},
+"answer": "A",
+"explanation": "Ay'da atmosfer tabakası bulunmadığı için hava olayları (yağmur, rüzgar) gerçekleşmez.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in Yapısı ve Özellikleri",
+"passage": "Güneş, kendi ışığını üreten bir yıldızdır. Güneş'in yüzeyinde çevreye göre daha soğuk olan bölgeler 'Güneş lekeleri' olarak adlandırılır.",
+"question": "Güneş lekeleri ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Güneş'in yüzeyindeki en sıcak bölgedir.",
+"B": "Sadece teleskopsuz gözlemlenebilir.",
+"C": "Güneş'in kendi etrafında döndüğünü kanıtlar.",
+"D": "Güneş'in sabit kaldığının kanıtıdır."
+},
+"answer": "C",
+"explanation": "Güneş lekelerinin konumlarının zamanla değişmesi, Güneş'in kendi ekseni etrafında döndüğünü gösteren temel gözlemlerden biridir.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Evreleri",
+"passage": "Elif mutfakta kurabiye hamuruyla Ay'ın evrelerini modellemektedir. Elif'in hazırladığı 4 farklı evre görseldeki harflerle gösterilmiştir. Elif, bu evreleri sırasıyla gözlemlemek için belirli bir süre beklemiştir.",
+"question": "A harfi ile gösterilen 'Yeni Ay' evresinden başlayarak evrelerin ilerleyişi düşünüldüğünde, doğru sıralama aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+0,
+2,
+4,
+6
+],
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"title": "Elif'in Kurabiye Modelleri",
+"show_names": false
+},
+"options": {
+"A": "B - A - D - C",
+"B": "A - C - B - D",
+"C": "D - C - B - A",
+"D": "A - B - C - D"
+},
+"answer": "D",
+"explanation": "Ay'ın evreleri Yeni Ay (0) -> İlk Dördün (2) -> Dolunay (4) -> Son Dördün (6) şeklinde ilerler. Görseldeki harf eşleşmeleri A-0, B-2, C-4, D-6 olduğu için doğru sıra A-B-C-D şeklindedir.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in Yapısı",
+"passage": "Robotik atölyesinde öğrenciler Güneş'in yapısını temsil eden bir model hazırlamıştır. Öğrenci modeli; 'Güneş, kendi etrafında dönme hareketi yapar ve yüzeyinde soğuk bölgeler olan güneş lekeleri bulunur' prensibiyle kurmuştur.",
+"question": "Görseldeki model üzerinde çalışan bir öğrenci, 'Bu model Güneş'in kendi etrafındaki dönüş süresinin her yerinde aynı olduğunu kanıtlar' demiştir. Buna göre öğrencinin yaptığı bu yorumun yanlış olmasının temel nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 4,
+"label": "M",
+"show_names": false
+},
+"options": {
+"A": "Ay ve Güneş aynı büyüklükte değildir.",
+"B": "Güneş ışık kaynağı değildir.",
+"C": "Güneş, Dünya'nın çevresinde dolanır.",
+"D": "Güneş katı bir yapıya sahip değildir, gazlardan oluşur."
+},
+"answer": "D",
+"explanation": "Güneş gaz yapıda olduğu için kendi etrafındaki dönüşü her bölgede aynı değildir, ekvatorda daha hızlı döner. Öğrencinin 'dönüş süresi her yerde aynıdır' iddiası bilimsel olarak yanlıştır çünkü Güneş katı bir küre değildir.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Yapısı ve Özellikleri",
+"passage": "Bir kültür festivalinde Ay'ın yüzey özelliklerini tanıtan bir pano hazırlanmıştır. Pano üzerinde Ay'ın kraterleri, toz tabakası ve atmosferinin yok denecek kadar az olması vurgulanmıştır.",
+"question": "Buna göre, Ay'da hava olaylarının (yağmur, rüzgar vb.) gerçekleşmemesinin temel nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 6,
+"label": "L",
+"show_names": false
+},
+"options": {
+"A": "Ay'ın yüzeyinde kraterlerin bulunması.",
+"B": "Ay'ın şeklinin küreye benzemesi.",
+"C": "Ay'ın atmosferinin yok denecek kadar ince olması.",
+"D": "Ay'da yaşam için gerekli suyun bulunmaması."
+},
+"answer": "C",
+"explanation": "Hava olaylarının gerçekleşebilmesi için bir atmosfere ihtiyaç vardır. Ay'da atmosfer yok denecek kadar az olduğu için hava olayları yaşanmaz.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Hareketleri",
+"passage": "Kitap fuarında 'Gök Cisimlerinin Dansı' adlı bir sergide, Dünya'nın kendi ekseni etrafında ve Güneş etrafında yaptığı hareketler ile Ay'ın yaptığı hareketler kıyaslanmaktadır.",
+"question": "Aşağıdaki ifadelerden hangisi Ay'ın Dünya çevresindeki dolanma hareketi ile ilgili doğru bir bilgidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 0,
+"label": "Y",
+"show_names": false
+},
+"options": {
+"A": "Ay'ın kendi etrafındaki dönüşü, dolanma süresinden daha uzundur.",
+"B": "Ay, Dünya çevresindeki bir tam turunu yaklaşık 24 saatte tamamlar.",
+"C": "Ay, Dünya çevresindeki bir tam turunu yaklaşık 27,3 günde tamamlar.",
+"D": "Ay, kendi etrafında dönme hareketi yapmaz."
+},
+"answer": "C",
+"explanation": "Ay, Dünya çevresindeki bir dolanma turunu yaklaşık 27,3 günde (yaklaşık bir ay) tamamlar. 24 saat Dünya'nın kendi etrafındaki dönüş süresidir.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Hareketleri",
+"passage": "Müze gezisinde 'Uzay Köşesi'ni inceleyen Kerem, bir model üzerinde Ay'ın Dünya çevresindeki konumlarını görüyor. Modelde 1 numaralı konumdan başlayarak Ay'ın evreleri gösteriliyor.",
+"question": "Buna göre, Ay'ın Dünya çevresindeki dolanma hareketi ile ilgili aşağıdakilerden hangisi yanlıştır?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_orbit",
+"title": "Ay'ın Yörüngesi",
+"show_names": false
+},
+"options": {
+"A": "Ay'ın Dünya etrafındaki dolanma hareketi sonucunda Ay'ın evreleri oluşur.",
+"B": "Ay, Dünya etrafındaki dolanma hareketini saat yönünde gerçekleştirir.",
+"C": "Ay, Dünya etrafındaki bir tam turunu yaklaşık 27,3 günde tamamlar.",
+"D": "Ay'ın kendi etrafındaki dönüş süresi ile Dünya etrafındaki dolanma süresi birbirine eşittir."
+},
+"answer": "B",
+"explanation": "Ay, Dünya etrafındaki dolanma hareketini saat yönünün tersine (batıdan doğuya doğru) gerçekleştirir. D seçeneğindeki 'saat yönünde' ifadesi bilimsel olarak yanlıştır.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 4,
+"ts": 1794126079
 }
 ]
 }
