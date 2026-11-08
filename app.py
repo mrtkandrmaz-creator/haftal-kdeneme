@@ -7084,7 +7084,10 @@ def leaks_answer(q):
         hay = " | ".join(_alnum(x) for x in _strings(q["shape"]))
         if ans in hay and not is_label:
             return True
-    txt = _alnum(str(q.get("passage", "")) + " " + str(q.get("question", "")))
+    if q.get("subject") in ("Türkçe", "İngilizce", "Almanca") and str(q.get("passage") or "").strip():
+        txt = _alnum(str(q.get("question", "")))  # okuma/dinleme sorusunda cevabın metinde geçmesi doğaldır; yalnızca soru kökündeki sızıntı sayılır
+    else:
+        txt = _alnum(str(q.get("passage", "")) + " " + str(q.get("question", "")))
     if len(ans) >= 9 and ans in txt:
         listed = sum(1 for v in q["options"].values() if _alnum(v) and _alnum(v) in txt)
         return listed < 3  # şıkların çoğu metinde sayılıysa (hangi renk/grup?) soru listeden seçtiriyordur, sızıntı değil
@@ -8889,7 +8892,7 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
         un = q.get("unit", "")
         if per_unit.get(un, 0) >= max(2, -(-n // 2)):
             continue
-        clean = {k: v for k, v in q.items() if k not in ("unit", "topics", "d", "ts", "pool", "local", "seed", "vfd", "_gp", "id", "tpl", "pid")}
+        clean = {k: v for k, v in q.items() if k not in ("unit", "topics", "d", "ts", "pool", "local", "seed", "vfd", "_gp", "id", "tpl", "pid", "listen")}
         try:
             x = _norm_q(clean, subject)
         except Exception:
@@ -8899,6 +8902,8 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
         stems.add(_stem(x))
         x["vfd"] = True
         x["pool"] = True
+        if q.get("listen") and len(str(x.get("passage") or "").split()) >= 20:
+            x["listen"] = True  # dinleme sorusu: metin ekranda gizlenir, sesli çalınır
         use[_stem(q)] = use.get(_stem(q), 0) + 1
         per_unit[un] = per_unit.get(un, 0) + 1
         out.append(x)
@@ -11346,7 +11351,11 @@ def exam():
     if q.get("kazanim") or q.get("topic"):
         st.caption(f"{cur.SUBJECT_ICONS.get(sub, '')} {sub} • {q.get('kazanim') or q.get('topic')}")
     pas = str(q.get("passage") or "").strip()
-    if pas and pas.lower() != "null":
+    listen = bool(q.get("listen")) and m["kind"] == "mc" and bool(pas)
+    if listen:
+        st.markdown("<div class='passage-box'><b>🎧 Dinleme:</b> Düğmeye basıp konuşmayı dinle (en fazla 2 kez), sonra soruyu cevapla.</div>", unsafe_allow_html=True)
+        _listen_box(pas, key=f"lis_{idx}")
+    elif pas and pas.lower() != "null":
         st.markdown(f"<div class='passage-box'><b>📖 Metin / Öncül / Diyalog:</b><br>{ai.fmt_roman_list(pas).replace(chr(10), '<br>')}</div>", unsafe_allow_html=True)
     if isinstance(q.get("shape"), dict):
         draw_geometry_shape(q["shape"])
@@ -11360,7 +11369,7 @@ def exam():
         cv = st.session_state.answers.get(idx)
         st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
-        _tts_box(q, sub, m)
+        _tts_box({**q, "passage": ""} if listen else q, sub, m)  # dinlemede metin sesli okuma düğmesiyle sızmasın
         bc1, bc2, bc4, bc3 = st.columns([1, 1, 1, 1.3])
         with bc3:
             st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
@@ -11486,6 +11495,29 @@ def _tts_box(q, sub, m):
              "const v=ss.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith(L.slice(0,2).toLowerCase()));if(v)u.voice=v;ss.speak(u);};"
              "document.getElementById('s').onclick=()=>{if(ss)ss.cancel();};window.addEventListener('pagehide',()=>{if(ss)ss.cancel();});</script>")
         components.html(h, height=46)
+    except Exception:
+        pass
+
+
+def _listen_box(text, key=""):
+    """İngilizce dinleme sorusu: metin ekranda gösterilmez; tarayıcı sesiyle (iki konuşmacı için farklı ton) en çok 2 kez çalınır."""
+    try:
+        import json as _j
+        import re as _r
+        import streamlit.components.v1 as components
+        raw = _r.sub(r"<[^>]+>|[*_`#]", " ", str(text or ""))
+        lines = [l.strip() for l in raw.split("\n") if l.strip()]
+        h = ("<div style='font-family:sans-serif;padding:6px 0'><button id='p' style='padding:8px 16px;border-radius:12px;border:1px solid #7c3aed;background:#f5f3ff;cursor:pointer;font-weight:800;font-size:15px'>🎧 Dinle</button> "
+             "<button id='s' style='padding:8px 12px;border-radius:12px;border:1px solid #e2e8f0;background:#fff;cursor:pointer'>⏹</button> "
+             "<span id='k' style='margin-left:8px;color:#6b21a8;font-size:13px'>Kalan dinleme hakkı: 2</span></div>"
+             "<script>const L=" + _j.dumps(lines) + ";let left=2;const ss=window.speechSynthesis;const k=document.getElementById('k'),p=document.getElementById('p');"
+             "function voice(){return ss.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith('en'));}"
+             "p.onclick=()=>{if(!ss){alert('Tarayıcı seslendirmeyi desteklemiyor');return;}if(left<=0)return;left--;k.textContent=left>0?'Kalan dinleme hakkı: '+left:'Dinleme hakkın bitti';"
+             "if(left<=0){p.disabled=true;p.style.opacity=.5;}ss.cancel();const sp={};let n=0;"
+             "L.forEach(l=>{const m=l.match(/^([A-Za-z][A-Za-z .'-]{0,18}):\\s*(.*)$/);let who='_',t=l;if(m){who=m[1];t=m[2];}"
+             "if(!(who in sp))sp[who]=n++;const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.85;u.pitch=(sp[who]%2===0)?0.9:1.25;const v=voice();if(v)u.voice=v;ss.speak(u);});};"
+             "document.getElementById('s').onclick=()=>{if(ss)ss.cancel();};window.addEventListener('pagehide',()=>{if(ss)ss.cancel();});</script>")
+        components.html(h, height=58)
     except Exception:
         pass
 

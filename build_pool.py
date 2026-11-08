@@ -55,10 +55,11 @@ def collect_bad(bad_dir):
     out = set()
     if not bad_dir or not os.path.isdir(bad_dir):
         return out
-    files = [os.path.join(bad_dir, "bad.json")]
+    names = ("bad.json", "quarantine.json")  # hatalı bildirimler + şüpheli (çözüm verisinden) sorular
+    files = [os.path.join(bad_dir, n) for n in names]
     pd = os.path.join(bad_dir, "profiles")
     if os.path.isdir(pd):
-        files += [os.path.join(pd, p, "bad.json") for p in os.listdir(pd)]
+        files += [os.path.join(pd, p, n) for p in os.listdir(pd) for n in names]
     for fp in files:
         try:
             with open(fp, encoding="utf-8") as f:
@@ -92,6 +93,43 @@ def purge_bad(ai, root, bad):
     return removed
 
 
+def collect_liked(bad_dir):
+    """data/liked.json ve data/profiles/*/liked.json: beğenilen sorular (üretimde tarz örneği olur)."""
+    out = []
+    if not bad_dir or not os.path.isdir(bad_dir):
+        return out
+    files = [os.path.join(bad_dir, "liked.json")]
+    pd = os.path.join(bad_dir, "profiles")
+    if os.path.isdir(pd):
+        files += [os.path.join(pd, p, "liked.json") for p in os.listdir(pd)]
+    for fp in files:
+        try:
+            with open(fp, encoding="utf-8") as f:
+                out += [x for x in json.load(f) if isinstance(x, dict)]
+        except Exception:
+            pass
+    return out
+
+
+def load_passages(root):
+    """sources/<sınıf>/turkce_metinler.json: {ünite: [{id, baslik, metin}]}"""
+    out = {}
+    base = os.path.join(root, "sources")
+    if os.path.isdir(base):
+        for g in os.listdir(base):
+            fp = os.path.join(base, g, "turkce_metinler.json")
+            try:
+                with open(fp, encoding="utf-8") as f:
+                    out[g] = (json.load(f) or {}).get("units", {})
+            except Exception:
+                pass
+    return out
+
+
+def _norm_txt(t):
+    return re.sub(r"\s+", " ", str(t or "").strip().lower())
+
+
 def targets(cur, ai, grades, subjects):
     out = []
     for g in grades:
@@ -121,6 +159,8 @@ def build(ai, cur, args, gen=None, strict=None):
         strict = lambda qs, facts=None: ai.verify_strict(qs, _gk, _mk, facts=facts)
     t0 = time.time()
     bad = collect_bad(getattr(args, "bad_dir", ""))
+    liked = collect_liked(getattr(args, "bad_dir", ""))
+    passages = load_passages(os.environ.get("DENEMEMATIK_ROOT", ROOT))
     if bad:
         print("hatalı bildirimlerden silinen:", purge_bad(ai, os.environ["DENEMEMATIK_POOL_DIR"], bad))
     grades = [g.strip() for g in args.grades.split(",") if g.strip()]
@@ -133,7 +173,30 @@ def build(ai, cur, args, gen=None, strict=None):
         stems = {ai._stem(q) for q in have}
         di = random.choice(args.difficulty_idx)
         diff = cur.DIFFICULTIES[di]
-        plan = [{"subject": sj, "n": args.per_unit, "topics": f"{unit}: " + ", ".join(topics), "short": unit}]
+        topics_txt = f"{unit}: " + ", ".join(topics)
+        n_ask = args.per_unit
+        chosen = None
+        ps = (passages.get(g) or {}).get(unit) if sj == "Türkçe" else None
+        if ps:  # Türkçe: onaylı okuma metni seç (en az kullanılan); sorular yalnızca bu metne dayanır
+            used = {p["id"]: sum(1 for q in have if q.get("pid") == p["id"]) for p in ps}
+            chosen = min(ps, key=lambda p: (used[p["id"]], random.random()))
+            if used[chosen["id"]] >= args.max_per_passage:
+                continue
+            n_ask = min(n_ask, 4)
+            topics_txt += (f"\n📖 KAYNAK METİN (başlık: {chosen['baslik']}):\n{chosen['metin']}\n"
+                           "KURAL: Soruların TAMAMI yalnızca bu metne dayansın (ana fikir, konu, başlık, çıkarım, neden-sonuç, sözcük/deyim anlamı, anlatım özellikleri). "
+                           "'passage' alanına bu metni AYNEN, hiç değiştirmeden yaz. Metinde olmayan bilgiyi sorma; doğru cevap metinden kesin olarak çıkarılabilsin ve tek bir şık doğru olsun. "
+                           "Her soru farklı bir beceriyi ölçsün.")
+        listening = False
+        if sj == "İngilizce" and random.random() < args.listen_ratio:  # dinleme sorusu: metin ekranda gizlenir, sesli çalınır
+            listening = True
+            n_ask = min(n_ask, 4)
+            topics_txt += ("\n🎧 DİNLEME SORUSU KURALI: 'passage' alanına bu ünite konusunda 40-70 kelimelik, 5. sınıf düzeyinde, kısa bir İNGİLİZCE diyalog yaz "
+                           "(her konuşma ayrı satırda, 'Ali: ...' / 'Mia: ...' biçiminde, iki konuşmacı). Sorular ve şıklar İngilizce olsun; cevap YALNIZCA diyalogda söylenenlerden kesin çıkarılabilsin, "
+                           "yalnızca ezbere ya da genel bilgiye dayanmasın; sorularda 'text/dialogue' kelimelerine atıf yapma, 'In the conversation, ...' biçimini kullan.")
+        ex = [x["q"] for x in liked if (x.get("q") or {}).get("subject") == sj and x.get("grade_label") == label and isinstance(x.get("q"), dict)]
+        ai.STYLE_EXAMPLES[sj] = ex
+        plan = [{"subject": sj, "n": n_ask, "topics": topics_txt, "short": unit}]
         try:
             qs, err = gen(plan, label, diff, unit, {sj: list(stems)[-80:]})
         except Exception as e:
@@ -150,6 +213,16 @@ def build(ai, cur, args, gen=None, strict=None):
                 continue
             if s in bad:
                 continue
+            if chosen:  # metni değiştirmiş ya da metinden bağımsız soruları ele; metni AYNEN kaynak metinle değiştir
+                import difflib
+                if difflib.SequenceMatcher(None, _norm_txt(q.get("passage")), _norm_txt(chosen["metin"])).ratio() < 0.85:
+                    continue
+                q["passage"] = chosen["metin"]
+                q["pid"] = chosen["id"]
+            if listening:
+                if len(str(q.get("passage") or "").split()) < 25 or str(q.get("passage")).count(":") < 2:
+                    continue  # dinleme için yeterli diyalog yok
+                q["listen"] = True
             stems.add(s)
             new.append(q)
         ai.LAST_STRICT = {}
@@ -176,6 +249,8 @@ def main():
     ap.add_argument("--per-unit", type=int, default=10)
     ap.add_argument("--max-per-unit", type=int, default=80, help="bir ünitede bu kadar soruya ulaşılınca atlanır")
     ap.add_argument("--minutes", type=float, default=40)
+    ap.add_argument("--listen-ratio", type=float, default=0.4, help="İngilizce hedeflerinin dinleme sorusu olma olasılığı")
+    ap.add_argument("--max-per-passage", type=int, default=12, help="bir okuma metninden bu kadar soruya ulaşılınca metin atlanır")
     ap.add_argument("--bad-dir", default="", help="userdata dalındaki data/ klasörü (bad.json içerir); bildirilen sorular havuzdan silinir")
     ap.add_argument("--difficulty-idx", default="1,2,3,4", help="curriculum.DIFFICULTIES indeksleri (0-5), virgülle")
     args = ap.parse_args()
