@@ -1,0 +1,57 @@
+name: Soru havuzunu hazırla
+
+on:
+  schedule:
+    - cron: "0 1,13 * * *"   # günde iki kez: 04:00 ve 16:00 (TR)
+  workflow_dispatch:
+    inputs:
+      grades:
+        description: "Sınıflar (virgülle)"
+        default: "5"
+      per_unit:
+        description: "Ünite başına istenen soru"
+        default: "10"
+      minutes:
+        description: "En çok çalışma süresi (dk)"
+        default: "35"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pool
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install groq google-genai matplotlib numpy pandas altair reportlab requests pypdf
+      - name: Hatalı bildirimleri al (userdata dalı, varsa)
+        run: |
+          mkdir -p _ud
+          git fetch origin userdata:refs/remotes/origin/userdata || true
+          git archive origin/userdata data 2>/dev/null | tar -x -C _ud || true
+      - name: Havuzu üret
+        env:
+          GROQ_API_KEYS: ${{ secrets.GROQ_API_KEYS }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
+          CEREBRAS_API_KEYS: ${{ secrets.CEREBRAS_API_KEYS }}
+          OPENROUTER_API_KEYS: ${{ secrets.OPENROUTER_API_KEYS }}
+          MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
+          SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
+          NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
+        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit "${{ github.event.inputs.per_unit || '10' }}" --minutes "${{ github.event.inputs.minutes || '35' }}" --bad-dir _ud/data
+      - name: Değişiklikleri kaydet
+        run: |
+          git config user.name "denemematik-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add pool
+          git diff --cached --quiet || (git commit -m "Soru havuzu güncellendi" && git pull --rebase && git push)
