@@ -1121,6 +1121,48 @@
 "topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
 "d": 2,
 "ts": 1794142917
+},
+{
+"subject": "Türkçe",
+"topic": "Ana Fikir ve Çıkarım",
+"passage": "Teknolojik aletler hayatımızı kolaylaştırır. Telefon, bilgisayar ve tablet ile bilgiye hızlıca ulaşabiliriz. Ancak bu araçları çok uzun süre kullanmak gözlerimize, uykumuza ve derslerimize zarar verebilir. Bu nedenle ekran karşısında geçirilen süre sınırlandırılmalıdır. Ayrıca internette kişisel bilgilerimizi tanımadığımız kişilerle paylaşmamalıyız.",
+"question": "Bir çiftlik sahibi olan Ahmet Bey, çocuklarının gün içerisinde yaptığı aktiviteleri gözlemlemiştir. Metne göre Ahmet Bey'in, çocuklarının ekran kullanımıyla ilgili alması gereken en uygun karar aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Göz sağlıklarını korumak adına tüm teknolojik aletleri çiftlikten kaldırmalıdır.",
+"B": "Kişisel bilgilerini paylaşmaları için çocuklarına interneti serbest bırakmalıdır.",
+"C": "Derslerine daha çok vakit ayırabilmeleri için ekran süresini sınırlandırmalıdır.",
+"D": "Bilgiye daha hızlı ulaşmaları için ekran süresini artırmalıdır."
+},
+"answer": "C",
+"explanation": "Metinde teknolojik araçların uzun süre kullanımının derslere zarar verebileceği ve ekran süresinin sınırlandırılması gerektiği belirtilmiştir. Ahmet Bey'in metindeki tavsiyeye uygun olarak çocuklarının ders başarısı için süre sınırı koyması en doğru karardır.",
+"pid": "b2",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 3,
+"ts": 1794161885
+},
+{
+"subject": "Türkçe",
+"topic": "Metinden Bilgi Çıkarımı ve Yorumlama",
+"passage": "Ebru, suyun yüzeyine damlatılan boyaların özel bir fırça ve tarak yardımıyla şekillendirilip kâğıda aktarılması sanatıdır. Boyalar, kıvamlı bir sıvının üzerinde dağılmadan durur. Sanatçı desen vermek için ince bir çubuk kullanır. Ebru, Türkler tarafından yüzyıllardır yapılan geleneksel bir sanattır. Ebru sanatı UNESCO'nun Somut Olmayan Kültürel Miras listesinde yer almaktadır.",
+"question": "Bu metne göre ebru sanatıyla ilgili aşağıdaki yargılardan hangisine ulaşılamaz?",
+"shape": null,
+"options": {
+"A": "Uluslararası alanda kültürel bir değere sahip olduğu tescillenmiştir.",
+"B": "Yalnızca günümüzde ortaya çıkmış modern bir görsel sanat dalıdır.",
+"C": "Sanatçının çalışırken bazı özel araç gereçlerden yararlandığı görülür.",
+"D": "Uygulanış aşamasında su ve özel boyalar bir arada kullanılmaktadır."
+},
+"answer": "B",
+"explanation": "Metinde ebru sanatının Türkler tarafından yüzyıllardır yapılan geleneksel bir sanat olduğu belirtilmektedir. Bu nedenle 'modern bir sanat dalıdır' ifadesi metinle çelişmektedir ve ulaşılamaz.",
+"pid": "k3",
+"vfd2": true,
+"unit": "Millî Kültürümüz",
+"topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
+"d": 3,
+"ts": 1794163212
 }
 ]
 }

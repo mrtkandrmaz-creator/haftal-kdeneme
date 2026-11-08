@@ -1765,6 +1765,323 @@
 "topics": "Birey-toplum, Haklar ve sorumluluklar, Roller",
 "d": 2,
 "ts": 1794126420
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Anadolu Medeniyetleri ve Başkentleri",
+"passage": "Sosyal Bilgiler dersinde öğretmen, öğrencilerine Anadolu'da kurulmuş medeniyetleri ve bu medeniyetlerin yönetim merkezlerini tanıtan bir etkinlik hazırlamıştır. Sınıfa getirilen dairesel şemada medeniyetlerin başkentleri oranlarına göre gösterilmiştir. Şemada Hititler, Frigyalılar ve Urartular yer almaktadır.",
+"question": "Verilen bilgilere ve dairesel şemaya göre, başkenti Gordion olan medeniyet ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Hattuşa",
+"Gordion",
+"Tuşpa"
+],
+"values": [
+33,
+33,
+34
+],
+"title": "Medeniyetlerin Başkentleri Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Başkenti Hattuşa olup Mısırlılarla Kadeş Antlaşması'nı imzalamıştır.",
+"B": "Anadolu'da parayı ilk kullanan medeniyettir.",
+"C": "Başkenti Gordion olan Frigyalılar, tarım ve hayvancılığı koruyan sert kanunlar uygulamıştır.",
+"D": "Van çevresinde kurulmuş ve sulama kanalları yapmıştır."
+},
+"answer": "C",
+"explanation": "Dairesel şemada Gordion ile eşleşen medeniyet Frigyalılardır. Frigyalılar başkenti Gordion olan, tarım ve hayvancılığa büyük önem veren ve bu alanları korumak için sert kanunlar çıkaran bir Anadolu medeniyetidir.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Kültürel Miras Ögeleri",
+"passage": "Bir müze gezisinde öğrenciler, geçmişten günümüze kalan eserleri somut ve somut olmayan miras olarak sınıflandırmıştır. Aşağıdaki sütun grafiğinde öğrencilerin incelediği farklı kategorideki eser sayıları gösterilmektedir.",
+"question": "Grafikteki verilere göre kültürel miras unsurlarıyla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Göbeklitepe",
+"Halk Oyunları",
+"Ebru Sanatı",
+"Ayasofya"
+],
+"values": [
+1,
+4,
+3,
+2
+],
+"title": "İncelenen Eser Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Tüm eserler aynı kategoride yer almaktadır.",
+"B": "Somut olmayan miras unsurlarının sayısı, somut miras unsurlarının sayısından fazladır.",
+"C": "Ebru sanatı en eski somut kalıntıdır.",
+"D": "Göbeklitepe, İyonya bölgesinde yer alan bir somut mirastır."
+},
+"answer": "B",
+"explanation": "Grafikte halk oyunları (4) ve ebru sanatı (3) somut olmayan miras olup toplamı 7'dir; Göbeklitepe (1) ve Ayasofya (2) ise somut mirastır ve toplamı 3'tür. Bu nedenle somut olmayan miras sayısı diğerinden fazladır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Kültürel Mirası Koruma Sorumluluğu",
+"passage": "5/C sınıfı öğrencisi Elif, tarihi eserlerin korunması gerektiği hakkında bir konuşma yapmıştır. Konuşmasında, 'Geçmişten bize kalan kalıntılar ve yapılar geleceğe aktarılmalıdır. Ancak bu mirası korumak sadece devletin görevidir, vatandaşların bu konuda bir sorumluluğu yoktur.' ifadesine yer vermiştir.",
+"question": "Elif'in yaptığı bu konuşmadaki hata hangi seçenekte doğru açıklanmıştır?",
+"shape": null,
+"options": {
+"A": "Tarihi eserlerin sadece müzelerde sergilenmesi gerektiği belirtilmelidir.",
+"B": "Kültürel mirası korumak yalnızca devletin değil, toplumdaki tüm bireylerin ortak sorumluluğudur.",
+"C": "Somut olmayan mirasların korunmasına gerek yoktur.",
+"D": "Geçmişteki medeniyetlerin günümüzle hiçbir bağı bulunmamaktadır."
+},
+"answer": "B",
+"explanation": "Kültürel mirası korumak yalnızca devletin değil, her vatandaşın ortak sorumluluğudur. Elif'in 'sadece devletin görevidir' ifadesi bu nedenle yanlıştır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Anadolu Medeniyetleri ve Bilim",
+"passage": "Batı Anadolu'da Efes ve Milet gibi şehirlerde yaşamış olan İyon medeniyeti, özgür düşünce ortamı sayesinde pek çok bilim insanı yetiştirmiştir. Aşağıdaki daire grafiğinde İyonya'da gelişen alanların oranları gösterilmektedir.",
+"question": "Grafik ve metin birlikte değerlendirildiğinde İyonlar ile ilgili aşağıdakilerden hangisine ulaşılabilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Bilim ve Felsefe",
+"Ticaret",
+"Mimari ve Sanat"
+],
+"values": [
+45,
+30,
+25
+],
+"title": "İyonya'da Faaliyet Alanları Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "İyonlar başkentlerini Gordion olarak kurmuşlardır.",
+"B": "Mimari alandaki gelişmeler ticaretten daha az öneme sahiptir.",
+"C": "Bilim ve felsefe alanındaki çalışmaların oranı en yüksek seviyededir.",
+"D": "En çok gelişen alan ticaret olmuştur."
+},
+"answer": "C",
+"explanation": "Grafikte bilim ve felsefe %45 ile en yüksek paya sahiptir. Metinde de özgür düşünce ortamı sayesinde bilim insanı yetiştirdikleri vurgulanmıştır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Somut ve Somut Olmayan Kültürel Miras",
+"passage": "Berna, şehirdeki uluslararası kitap fuarını gezmiş ve bu yıl fuarda sergilenen kültürel miras unsurlarını incelemiştir. Berna, hazırladığı raporda bazı eserlerin bizzat yapı olarak sergilenemediğini, yalnızca kuşaktan kuşağa aktarılan bilgi, beceri ve uygulamalar şeklinde yaşatıldığını fark etmiştir. Fuar alanındaki Ziyaretçi Etkileşim Stantlarının dağılımı aşağıdaki sütun grafiğinde verilmiştir.",
+"question": "Verilen grafik ve bilgilere göre Berna'nın incelediği kültürel miras unsurlarıyla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"El Sanatları",
+"Tarihi Yapılar",
+"Halk Oyunları",
+"Müzeler"
+],
+"values": [
+30,
+45,
+25,
+50
+],
+"title": "Stantların Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Somut olmayan kültürel miras öğelerini içeren stantların toplamı, tarihi yapıların bulunduğu stant sayısından fazladır.",
+"B": "Tarihi yapılar ve müzeler kategorisindeki stantlar somut olmayan miras kapsamındadır.",
+"C": "Halk oyunları stant sayısı, el sanatları stant sayısından daha fazladır.",
+"D": "Müzeler stant sayısı bakımından en düşük orana sahiptir."
+},
+"answer": "A",
+"explanation": "Grafikte el sanatları 30, halk oyunları 25, müzeler 50, tarihi yapılar 45 stant olarak verilmiştir. Somut olmayan kültürel miras öğeleri olan el sanatları (30) ve halk oyunları (25) toplamı 55 yapar. Bu değer, tarihi yapıların bulunduğu stant sayısı olan 45'ten fazladır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Anadolu Medeniyetleri ve Yazılı Antlaşmalar",
+"passage": "Okulun tarih kulübünde araştırma yapan Kerem, Hititler ve Mısırlılar arasında gerçekleşen olayları incelemiştir. Kerem, not defterine şu bilgileri kaydetmiştir: 'Hititler ile Mısırlılar arasında uzun yıllar süren savaşların ardından Kadeş Antlaşması imzalanmıştır. Bu antlaşma, dünya tarihinin bilinen en eski yazılı barış antlaşması olma özelliğini taşımaktadır ve iki devlet arasındaki ilişkileri barışçıl bir zemine oturtmuştur.'",
+"question": "Kerem'in defterine aldığı bu bilgilere dayanarak Kadeş Antlaşması ile ilgili aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Mısırlılar tarafından tek taraflı olarak feshedilmiş askerî bir belgedir.",
+"B": "Antlaşma ile iki devlet arasındaki tüm kültürel bağlar tamamen kopmuştur.",
+"C": "Kadeş Antlaşması, Anadolu'da yazılı kültürün sona erdiğini göstermektedir.",
+"D": "Tarihte bilinen ilk yazılı barış belgesi olması bakımından önem taşımaktadır."
+},
+"answer": "D",
+"explanation": "Metinde Kadeş Antlaşması'nın dünya tarihinin bilinen en eski yazılı barış antlaşması olduğu açıkça belirtilmektedir. Diğer şıklar metindeki bilgilerle çelişmektedir.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Lidyalılar ve Ticaret Yolu",
+"passage": "Lidyalılar, tarihte parayı ilk kullanan medeniyetlerden biri olarak ticaretin gelişimine büyük katkı sağlamışlardır. Ayrıca Sard'dan başlayıp Mezopotamya'daki Susa'ya kadar uzanan Kral Yolu'nu aktif bir şekilde kullanarak kültürel ve ticari etkileşimi hızlandırmışlardır.",
+"question": "Lidyalıların bu faaliyetlerinin zaman içerisindeki ticari hacme etkisini gösteren çizgi grafiğine göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Para İcadı Öncesi",
+"Paranın İcadı",
+"Kral Yolu'nun Yapımı",
+"Ticaretin Zirve Dönemi"
+],
+"values": [
+10,
+35,
+70,
+95
+],
+"title": "Ticaret Hacmi Gelişimi",
+"show_names": false
+},
+"options": {
+"A": "Paranın icadı ile ticaret hacmi en düşük seviyeye gerilemiştir.",
+"B": "Para icadından sonra ticaret hacminde hiçbir değişiklik yaşanmamıştır.",
+"C": "Kral Yolu'nun yapımı, ticaret hacminde paranın icadına göre daha büyük bir artış sağlamıştır.",
+"D": "Ticaret hacmi sürekli olarak azalma eğilimi göstermiştir."
+},
+"answer": "C",
+"explanation": "Grafikte para icadından önce değer 10 iken paranın icadıyla 35'e, Kral Yolu'nun yapımıyla 70'e ve zirve döneminde 95'e çıkmıştır. Artış miktarları incelendiğinde Kral Yolu'nun yapımıyla yaşanan yükseliş en yüksek ivmeyi kazandırmıştır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Anadolu Medeniyetleri ve İyonlar",
+"passage": "Batı Anadolu'da kıyı kesiminde kurulan İyonlar; Efes ve Milet gibi şehir devletleri oluşturmuş, deniz ticareti sayesinde zenginleşmiş ve özgür düşünce ortamı sayesinde Tales gibi önemli bilim insanları yetiştirmiştir. Aşağıdaki sütun grafiğinde İyon şehir devletlerinin bilimsel ve kültürel faaliyetlerine katılım oranları gösterilmiştir.",
+"question": "Verilen bilgilere ve grafiğe göre İyon medeniyeti ile ilgili aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Bilimsel Çalışmalar",
+"Deniz Ticareti",
+"Mimari Eserler",
+"Tarım Üretimi"
+],
+"values": [
+35,
+50,
+25,
+15
+],
+"title": "İyonya Faaliyet Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Özgür düşünce ortamı bilimsel çalışmaların yapılmasında etkili olmuştur.",
+"B": "Deniz ticareti, toplumsal faaliyetler arasında en yüksek orana sahiptir.",
+"C": "Bilimsel çalışmalar için ayrılan oran mimari eserlerden daha fazladır.",
+"D": "İyonlar, tarımsal faaliyetleri ön planda tutarak diğer tüm ekonomik alanları terk etmiştir."
+},
+"answer": "D",
+"explanation": "Metinde İyonların deniz ticaretiyle zenginleştiği ve bilim insanları yetiştirdiği belirtilmektedir. C şıkkındaki 'diğer tüm ekonomik alanları terk etmiştir' ifadesi mutlak ve yanlış bir yargıdır.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Urartular ve Su Yönetimi",
+"passage": "Doğu Anadolu'da Van (Tushpa) çevresinde kurulan Urartular, dağlık bir coğrafyada yaşamışlardır. Bu coğrafi koşullara uyum sağlamak amacıyla taş işçiliğinde ilerlemiş, kaleler inşa etmiş ve tarım alanlarını sulamak için uzun sulama kanalları yapmışlardır.",
+"question": "Urartuların coğrafi özellikleri ve yaşam biçimlerini gösteren aşağıdaki tabloya göre hangi yargıya ulaşılabilir?",
+"shape": {
+"type": "table",
+"title": "Urartu Faaliyetleri",
+"headers": [
+"Faaliyet Alanı",
+"Kullanılan Yöntem",
+"Amaç"
+],
+"rows": [
+[
+"Sulama Kanalları",
+"Kaya Oymacılığı",
+"Tarım Verimliliğini Artırmak"
+],
+[
+"Kale Yapımı",
+"Taş İşçiliği",
+"Güvenliği Sağlamak"
+],
+[
+"Madencilik",
+"Metal İşleme",
+"Süs Eşyası ve Silah Üretimi"
+]
+]
+},
+"options": {
+"A": "Urartular, coğrafi şartların getirdiği zorlukları yenilikçi mühendislik çözümleriyle aşmışlardır.",
+"B": "Urartu medeniyeti ekonomik faaliyetlerini yalnızca deniz ticareti üzerine kurmuştur.",
+"C": "Kale yapımında metal işleme yöntemi doğrudan sulama amacıyla kullanılmıştır.",
+"D": "Tarım faaliyetleri tamamen dağlık kesimlerdeki deniz taşımacılığına dayanmaktadır."
+},
+"answer": "A",
+"explanation": "Tablo ve metin birlikte incelendiğinde, Urartuların dağlık coğrafyaya karşı kaya oymacılığı ve taş işçiliği ile sulama kanalları ve kaleler yaparak uyum sağladığı görülmektedir. Bu durum mühendislik çözümleriyle zorlukların aşıldığını kanıtlar.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Kültürel Miras ve Su Tasarrufu",
+"passage": "Belediye görevlisi Ahmet Bey, tarihi Roma dönemine ait su kemerlerinin bulunduğu mahallede su tasarrufu kampanyası başlatmıştır. Kampanya broşüründe, 'Geçmişten bize miras kalan bu tarihi yapılar suyun önemini hatırlatmaktadır. Evlerimizde muslukları boşa akıtmamak, eski tarihi çeşmeleri korumak ve günlük hayatta suyu idareli kullanmak hem geçmişimize saygıdır hem de geleceğe bırakacağımız en büyük somut olmayan ve somut değerlerin korunmasını sağlar.' ifadelerine yer vermiştir.",
+"question": "Bu metne göre kültürel mirasın korunması ve günlük yaşam ilişkisi ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Tarihi yapıların korunması sadece devlet görevlilerinin sorumluluğundadır.",
+"B": "Somut miras unsurları, su tasarrufu ile doğrudan yok olma tehlikesi yaşar.",
+"C": "Tarihi su kemerleri günümüzde aktif olarak su taşımaya devam etmektedir.",
+"D": "Geçmişten kalan eserlere değer vermek, doğal kaynakları bilinçli tüketme bilincini de destekler."
+},
+"answer": "D",
+"explanation": "Metinde tarihi su kemerlerinin suyun önemini hatırlattığı, suyu idareli kullanmanın geçmişe saygı ve değerlerin korunmasını sağlayacağı belirtilmiştir. Buradan geçmiş eserlere değer vermenin kaynakları bilinçli tüketme bilincini desteklediği sonucu çıkar. Diğer seçenekler metinden çıkarılamaz veya metinle çelişmektedir.",
+"vfd2": true,
+"unit": "Ortak Mirasımız",
+"topics": "Kültürel miras, Anadolu medeniyetleri",
+"d": 3,
+"ts": 1794162646
 }
 ]
 }

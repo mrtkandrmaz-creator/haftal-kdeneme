@@ -1360,6 +1360,166 @@
 "topics": "Daily routines, Time, Frequency",
 "d": 4,
 "ts": 1794124624
+},
+{
+"subject": "İngilizce",
+"topic": "Places and Directions",
+"passage": "A tourist is standing in front of the school and wants to visit the library. A local resident gives the following directions: 'Go straight ahead, turn right at the corner, and walk past the hospital. The library is between the hospital and the bakery.'",
+"question": "According to the directions, which of the following is the correct location of the library?",
+"shape": null,
+"options": {
+"A": "It is next to the post office.",
+"B": "It is behind the police station.",
+"C": "It is situated between the hospital and the bakery.",
+"D": "It is opposite the school."
+},
+"answer": "C",
+"explanation": "Step 1: Read the resident's directions carefully. Step 2: Locate the key landmarks mentioned (hospital, bakery, school). Step 3: Match the phrase 'between the hospital and the bakery' with the correct option. Step 4: The correct choice is C.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "Prepositions of Place",
+"passage": "Zeynep is describing her hometown layout to her penpal. She writes: 'Our town has a lovely park. The museum is right behind the park, and the police station is opposite the museum. The bank is next to the police station.'",
+"question": "Based on Zeynep's description, where is the museum located relative to the park?",
+"shape": null,
+"options": {
+"A": "It is in front of the park.",
+"B": "It is next to the park.",
+"C": "It is opposite the park.",
+"D": "It is behind the park."
+},
+"answer": "D",
+"explanation": "Step 1: Identify Zeynep's sentence about the museum and the park. Step 2: Note the preposition used: 'The museum is right behind the park'. Step 3: Match this detail with the options. Step 4: The correct choice is A.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "Places in Town",
+"passage": "Emre is writing a short paragraph about his weekend routine in his town: 'On Saturday mornings, I go to the bakery to buy fresh bread. Then, I visit the library to read books. In the afternoon, I send a letter at the post office.'",
+"question": "Which of the following places is NOT visited by Emre in his routine?",
+"shape": null,
+"options": {
+"A": "hospital",
+"B": "library",
+"C": "post office",
+"D": "bakery"
+},
+"answer": "A",
+"explanation": "Step 1: List the places mentioned in Emre's text: bakery, library, post office. Step 2: Compare this list with the given options. Step 3: Identify the place that does not appear in the text. Step 4: The correct choice is C.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "Directions",
+"passage": "During an English class activity, Ahmet follows a set of movement instructions on a town map: 1. Go straight ahead from the cinema. 2. Turn left at the corner. 3. Walk past the supermarket. Now, Ahmet is standing in front of a building.",
+"question": "Which command does Ahmet execute immediately after moving forward from the cinema?",
+"shape": null,
+"options": {
+"A": "Go straight ahead",
+"B": "Turn right",
+"C": "Stop at the park",
+"D": "Turn left"
+},
+"answer": "D",
+"explanation": "Step 1: Review the instruction sequence given in the text. Step 2: Locate the second instruction ('Turn left at the corner'). Step 3: Identify the action immediately following the initial forward movement. Step 4: The correct choice is B.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "Prepositions and Places",
+"passage": "A visitor asks for help at a town information desk. The officer explains: 'The pharmacy is next to the supermarket. The supermarket is opposite the large hospital, and the pharmacy is on the corner.'",
+"question": "Which of the following statements is true according to the officer's explanation?",
+"shape": null,
+"options": {
+"A": "The supermarket is behind the pharmacy.",
+"B": "The pharmacy is next to the supermarket.",
+"C": "The pharmacy is opposite the hospital.",
+"D": "The hospital is next to the pharmacy."
+},
+"answer": "B",
+"explanation": "Step 1: Analyze the relationships in the text: pharmacy is next to the supermarket. Step 2: Evaluate each option against this relational statement. Step 3: Confirm that the pharmacy being next to the supermarket is explicitly stated. Step 4: The correct choice is B.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "Places and Activities",
+"passage": "Four friends talk about where they are going today: \n- Aylin: 'I need to buy some medicine.' \n- Burak: 'I am going to report a lost bag.' \n- Can: 'I want to borrow a storybook.' \n- Demet: 'I need to send a postcard.'",
+"question": "Who is going to the police station according to the statements?",
+"shape": null,
+"options": {
+"A": "Aylin",
+"B": "Demet",
+"C": "Can",
+"D": "Burak"
+},
+"answer": "D",
+"explanation": "Step 1: Match each friend's need with the correct town place. Step 2: Aylin goes to the pharmacy, Burak to report a lost bag goes to the police station, Can goes to the library, Demet goes to the post office. Step 3: Identify Burak as the one visiting the police station. Step 4: The correct choice is B.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "Town Navigation",
+"passage": "A tourist looks at a map where the bank is located between the school and the cinema. The post office is opposite the bank, and the park is next to the school.",
+"question": "Which of the following describes the exact position of the bank?",
+"shape": null,
+"options": {
+"A": "It is next to the post office.",
+"B": "It is between the school and the cinema.",
+"C": "It is behind the cinema.",
+"D": "It is opposite the park."
+},
+"answer": "B",
+"explanation": "Step 1: Locate the sentence in the text describing the bank. Step 2: Read the phrase: 'the bank is located between the school and the cinema.' Step 3: Match this exact statement with the given options. Step 4: The correct choice is A.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
+},
+{
+"subject": "İngilizce",
+"topic": "My Town: Places and Directions",
+"passage": "Scientist Dr. Aras is working in his laboratory. He needs to go to the research center. He leaves his office and turns left, then he goes straight ahead for two blocks. The research center is behind the big hospital.",
+"question": "According to the passage, where is the research center located?",
+"shape": null,
+"options": {
+"A": "Opposite the laboratory.",
+"B": "In front of the laboratory.",
+"C": "Behind the hospital.",
+"D": "Next to the laboratory."
+},
+"answer": "C",
+"explanation": "Dr. Aras leaves his office and follows directions. The text explicitly states that the research center is behind the big hospital. Therefore, behind the hospital is the correct location.",
+"vfd2": true,
+"unit": "My Town",
+"topics": "Places, Directions, Prepositions",
+"d": 2,
+"ts": 1794163751
 }
 ]
 }

@@ -255,6 +255,123 @@
     "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
     "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+   "text": "Bir markette {a} kg elmanın birim fiyatı {p} TL'dir. Müşteri bu elmaları satın aldığında, kasadaki toplam tutarı hesaplamak için işlem önceliğine göre çarpma işlemini yapar. Buna göre, müşterinin ödemesi gereken toplam tutar kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 8,
+     "step": 1
+    },
+    "p": {
+     "lo": 10,
+     "hi": 50,
+     "step": 5
+    }
+   },
+   "derived": {
+    "total": "a * p"
+   },
+   "constraints": [
+    "a * p < 1000"
+   ],
+   "answer": "a * p",
+   "wrong": [
+    "a + p",
+    "p - a",
+    "a * p + a"
+   ],
+   "unit": "TL",
+   "explanation": "Toplam tutar, miktar ile birim fiyatın çarpımına eşittir. {a} kg ile {p} TL'nin çarpımı {ans} TL olur.",
+   "positive": true,
+   "id": "m5-0008",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+   "text": "Bir torbada {a} adet kırmızı ve {b} adet mavi bisküvi vardır. Bu torbadan rastgele çekilen bir bisküvinin kırmızı olma olasılığı spektrumda hangi değerdedir?",
+   "vars": {
+    "a": {
+     "lo": 0,
+     "hi": 0
+    },
+    "b": {
+     "lo": 5,
+     "hi": 20
+    }
+   },
+   "derived": {},
+   "constraints": [],
+   "answer": "0",
+   "wrong": [
+    "1",
+    "0.5",
+    "b"
+   ],
+   "unit": "",
+   "explanation": "Torrada hiç kırmızı bisküvi bulunmadığı için kırmızı bisküvi çekme olayı imkânsızdır ve olasılığı 0'dır.",
+   "positive": true,
+   "id": "m5-0009",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Mert, bir kırtasiyeden tanesi {a} TL olan defterden {b} adet ve tanesi {c} TL olan kalemden {d} adet almıştır. Mert kasiyere {e} TL vermiştir. Buna göre Mert'in alacağı para üstü kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 30
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    },
+    "c": {
+     "lo": 5,
+     "hi": 15
+    },
+    "d": {
+     "lo": 3,
+     "hi": 8
+    },
+    "e": {
+     "lo": 500,
+     "hi": 1000
+    }
+   },
+   "derived": {
+    "toplam": "a*b + c*d"
+   },
+   "constraints": [
+    "e > a*b + c*d"
+   ],
+   "answer": "e - (a*b + c*d)",
+   "wrong": [
+    "e - a*b",
+    "e - c*d",
+    "e + (a*b + c*d)"
+   ],
+   "unit": "TL",
+   "explanation": "Alışveriş tutarı {toplam} TL olup para üstü {ans} TL'dir.",
+   "positive": true,
+   "id": "m5-0010",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
   }
  ]
 }

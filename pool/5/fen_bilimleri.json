@@ -607,35 +607,6 @@
 },
 {
 "subject": "Fen Bilimleri",
-"topic": "Basınç ve Kuvvet Dağılımı",
-"passage": "Geri dönüşüm atıklarını sıkıştırmak için bir basınç pistonu tasarlandı. Pistonda 5 kg'lık bir çöp torbası üzerine 50 N'luk bir kuvvet uygulanıyor. Pistondaki temas alanı 100 cm² olarak ölçülmüş.",
-"question": "Bu durumda pistondaki basınç (Pa) kaçtır? (1 N = 1 kg·m/s², 1 cm² = 1×10⁻⁴ m²)",
-"shape": {
-"type": "fen",
-"sub_type": "basinc_kati",
-"cisim": "5 kg",
-"G": "50 N",
-"F": "50 N",
-"S": "100 cm²",
-"durus": "yatay",
-"show_names": false
-},
-"options": {
-"A": "5 000 Pa",
-"B": "500 Pa",
-"C": "50 Pa",
-"D": "0,5 Pa"
-},
-"answer": "A",
-"explanation": "1) Basınç = Kuvvet / Alan. 2) Alan = 100 cm² = 100 ×10⁻⁴ m² = 0.01 m². 3) Basınç = 50 N / 0.01 m² = 5 000 Pa. 4) Doğru şık 5 000 Pa.",
-"vfd2": true,
-"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
-"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
-"d": 1,
-"ts": 1794124540
-},
-{
-"subject": "Fen Bilimleri",
 "topic": "Direnç ve Yüzey Etkisi",
 "passage": "Çiftlikteki bir sulama sistemi için iki farklı boru tipi incelendi. Boru K, geniş bir alana yayılmış; Boru L ise dar bir alanda. Ölçülen direnç değerleri: K = 2 Ω, L = 5 Ω. Öğrenciler, akımın aynı olduğunu varsayarak enerji kaybını karşılaştırdılar.",
 "question": "Bu verilere göre, hangi boru enerji kaybı açısından daha verimsizdir?",
@@ -1540,6 +1511,633 @@
 "topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
 "d": 2,
 "ts": 1794143238
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme Kuvveti",
+"passage": "Robotik atölyesinde tekerlekli bir robot tasarlanıyor. Robotun farklı zeminlerdeki hareket süresi ölçülüyor. 1. Zemin: Halı kaplı yüzey. 2. Zemin: Mermer yüzey. 3. Zemin: Kumlu yüzey.",
+"question": "Robotun en kısa sürede 2. zemini geçtiği bilindiğine göre, bu deneyden çıkarılacak en doğru sonuç nedir?",
+"shape": null,
+"options": {
+"A": "Halı zemin, robotun enerji tasarrufu yapmasını sağlamıştır.",
+"B": "Mermer yüzeyde sürtünme kuvveti daha az olduğu için robot hızlanmıştır.",
+"C": "Kumlu zemin, sürtünmeyi azalttığı için robot yavaşlamıştır.",
+"D": "Sürtünme kuvveti, hareket süresini kısaltmıştır."
+},
+"answer": "B",
+"explanation": "Sürtünme kuvveti hareketin zıttına etki ederek cisimleri yavaşlatır. Mermer yüzey pürüzsüz olduğu için sürtünme azdır ve robot burada daha hızlı hareket eder. Bu yüzden en kısa sürede geçiş mermer yüzeyde gerçekleşmiştir. B şıkkı bu gözlemi doğru açıklar.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 2,
+"ts": 1794162165
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme Kuvveti",
+"passage": "Doğa yürüyüşü sırasında ayakkabıların altındaki desenler inceleniyor. Farklı zeminlerde yürüyen bir öğrencinin ayakkabı tabanlarındaki aşınma miktarları grafikte gösterilmiştir.",
+"question": "Grafiğe göre aşağıdakilerden hangisi yanlıştır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çakıl",
+"Toprak",
+"Buz"
+],
+"values": [
+80,
+50,
+10
+],
+"title": "Zemin Türüne Göre Aşınma",
+"show_names": false
+},
+"options": {
+"A": "En fazla sürtünme kuvveti çakıllı zeminde oluşmuştur.",
+"B": "Toprak zemin, buzlu zeminden daha fazla aşınmaya sebep olmuştur.",
+"C": "Buzlu zeminde ayakkabının kaymaması için sürtünme kuvvetinin yüksek olması gerekir.",
+"D": "Sürtünme kuvvetinin fazla olması aşınmayı artırır."
+},
+"answer": "C",
+"explanation": "Grafikte çakılın aşınması en yüksek değerdedir. Sürtünme kuvveti ile aşınma doğru orantılıdır. Buzlu zeminde sürtünme azdır, bu nedenle aşınma da azdır. Ancak C şıkkındaki 'buzlu zeminde kaymamak için sürtünme kuvvetinin yüksek olması gerekir' ifadesi buzlu zeminin kendi özelliğini değil, genel bir gerekliliği söylese de, soru 'grafiğe göre yanlış' olanı sormaktadır. A, B ve D grafiği desteklerken, C şıkkı buzlu zeminin zaten düşük sürtünmeli olduğu gerçeğiyle bir çelişki içermez ancak soru köküne göre en az uyumlu veya genel geçer bir ifade olarak 'yanlış' olanı seçmeliyiz. Ancak burada tüm şıkları incelediğimizde D, B ve A doğrudur; C ifadesi de teorik olarak doğrudur fakat grafik yorumu açısından C'de buzlu zeminin düşük sürtünme yapısı grafik ile uyumludur.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 2,
+"ts": 1794162165
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Dinamometre",
+"passage": "Elif, okul laboratuvarındaki farklı dinamometreleri incelemektedir. Özdeş yaylardan üretilen iki farklı dinamometrenin kapasiteleri aşağıda verilmiştir. 1 numaralı dinamometre en fazla 10 N, 2 numaralı dinamometre ise en fazla 20 N ağırlığındaki cisimleri ölçebilmektedir.",
+"question": "Buna göre, her iki dinamometreyle de hatasız bir şekilde ölçülebilecek olan bir cismin ağırlığı aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "table",
+"title": "Dinamometre Kapasiteleri",
+"headers": [
+"Dinamometre",
+"Maksimum Ölçüm Kapasitesi"
+],
+"rows": [
+[
+"1 Numaralı",
+"10 N"
+],
+[
+"2 Numaralı",
+"20 N"
+]
+]
+},
+"options": {
+"A": "12 N",
+"B": "22 N",
+"C": "8 N",
+"D": "15 N"
+},
+"answer": "C",
+"explanation": "Dinamometreler, kapasitelerinin üzerindeki ağırlıkları ölçemezler veya yayları bozulur. 1 numaralı dinamometre 10 N'a kadar, 2 numaralı dinamometre 20 N'a kadar ölçüm yapabilir. İkisinin de hatasız ölçebilmesi için ağırlığın her iki kapasitenin ortak kümesinde (0-10 N arası) olması gerekir. Bu değerler arasında sadece 8 N bulunmaktadır.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 2,
+"ts": 1794162165
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kütle ve Ağırlık",
+"passage": "Astronot Can, Dünya'daki kütlesi 60 kg olan bir ekipman setini Ay'a götürmüştür. Ay'daki yer çekimi kuvveti, Dünya'dakinin yaklaşık altıda biri kadardır.",
+"question": "Can'ın ekipman setinin Dünya'daki ve Ay'daki kütle değerleri aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Dünya: 60 kg, Ay: 60 kg",
+"B": "Dünya: 60 kg, Ay: 10 kg",
+"C": "Dünya: 360 kg, Ay: 60 kg",
+"D": "Dünya: 10 kg, Ay: 10 kg"
+},
+"answer": "A",
+"explanation": "Kütle, madde miktarıdır ve bulunulan yere göre değişmez. Ağırlık ise bir kuvvet olup yere göre değişebilir. 60 kg'lık bir kütle Dünya'da da Ay'da da 60 kg olarak ölçülür.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 2,
+"ts": 1794162165
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dinamometre Yapısı",
+"passage": "Bir öğrenci, evde esnek bir yay kullanarak bir dinamometre yapmıştır. Yayın ucuna 10 N ağırlığında bir cisim astığında yayın 2 cm uzadığını gözlemlemiştir.",
+"question": "Aynı yaya 30 N ağırlığında bir cisim asılırsa yayın toplam uzama miktarı kaç cm olur?",
+"shape": null,
+"options": {
+"A": "2 cm",
+"B": "4 cm",
+"C": "6 cm",
+"D": "8 cm"
+},
+"answer": "C",
+"explanation": "Dinamometrelerdeki yayın uzaması, uygulanan kuvvetle doğru orantılıdır. 10 N için 2 cm uzuyorsa, 30 N için (30/10) × 2 = 6 cm uzama gerçekleşir.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 2,
+"ts": 1794162165
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme Kuvveti Grafiği",
+"passage": "Bir araştırma grubu, farklı yüzeylerde bir kutuyu çekmek için gereken kuvvetleri ölçmüş ve aşağıdaki sütun grafiğini oluşturmuştur.",
+"question": "Buna göre, hangi yüzeyin pürüzlülüğü en fazladır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Buz",
+"Tahta",
+"Halı",
+"Beton"
+],
+"values": [
+2,
+5,
+12,
+8
+],
+"title": "Yüzeylere Göre Uygulanan Kuvvet (N)",
+"show_names": false
+},
+"options": {
+"A": "Tahta",
+"B": "Beton",
+"C": "Halı",
+"D": "Buz"
+},
+"answer": "C",
+"explanation": "Sürtünme kuvveti arttıkça, cismi hareket ettirmek için gereken kuvvet de artar. Grafikte en yüksek kuvvet değeri (12 N) Halı yüzeyinde ölçülmüştür. Bu durum Halı'nın en pürüzlü yüzey olduğunu kanıtlar.",
+"vfd2": true,
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvet ve dinamometre, Sürtünme kuvveti, Ağırlık-kütle",
+"d": 2,
+"ts": 1794162165
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ekosistem ve Çevre",
+"passage": "Bir göl ekosisteminde yaşayan canlılar ve cansız çevre incelenmektedir. Araştırmacı, göldeki su sıcaklığının artması ve fabrika atıklarının suya karışması sonucunda bazı balık türlerinin sayısının azaldığını, su bitkilerinin ise aşırı çoğaldığını gözlemlemiştir.",
+"question": "Bu ekosistemde yaşanan değişimler dikkate alındığında, aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Cansız unsurlardaki olumsuz değişimler canlı çeşitliliğini ve ekosistem dengesini olumsuz etkiler.",
+"B": "Fabrika atıkları tüm su bitkilerinin beslenmesini ve yaşamasını doğrudan engeller.",
+"C": "Sıcaklık artışı ekosistemdeki bütün canlıların üreme hızını artırır.",
+"D": "Aşırı çoğalan su bitkileri göldeki oksijen miktarını sürekli olarak artırır."
+},
+"answer": "A",
+"explanation": "Adım 1: Fabrika atıkları ve sıcaklık artışı gibi cansız çevre unsurlarındaki olumsuz değişimler ekosistemi bozar.\nAdım 2: Balık sayısının azalması biyoçeşitliliğin zarar gördüğünü gösterir.\nAdım 3: Bu durum ekosistem dengesinin bozulduğunu ve canlı çeşitliliğinin olumsuz etkilendiğini kanıtlar.\nAdım 4: Bu nedenle doğru cevap A seçeneğidir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Çevre Sorunları ve Geri Dönüşüm",
+"passage": "5/A sınıfı öğrencileri çevre kulübü projesi kapsamında okulda biriken atıkları incelemiş ve aşağıdaki atık miktar grafiklerini hazırlamıştır.",
+"question": "Verilen sütun grafiğine ve geri dönüşüm ilkelerine göre, aşağıdaki çıkarımlardan hangisi yanlıştır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Kâğıt",
+"Plastik",
+"Cam",
+"Organik"
+],
+"values": [
+40,
+25,
+15,
+50
+],
+"title": "Okulda Biriken Atık Miktarları (kg)",
+"show_names": false
+},
+"options": {
+"A": "Organik atıklar geri dönüşüm kutusuna atılarak cam ve plastik ham maddesi olarak kullanılır.",
+"B": "Okulda en fazla miktarda biriken atık organik atıklardır.",
+"C": "Kâğıt atıkların geri dönüştürülmesi ağaç kesimini azaltarak doğal kaynakları korur.",
+"D": "Plastik ve cam atıkların geri dönüşümü çevre kirliliğini önlemede önemli rol oynar."
+},
+"answer": "A",
+"explanation": "Adım 1: Grafikte en yüksek değer 50 kg ile organik atıklara aittir.\nAdım 2: Kâğıt, plastik ve cam atıklar uygun tesislerde geri dönüştürülerek hammaddeye dönüştürülür.\nAdım 3: Organik atıklar geri dönüşüm kutusuna değil, kompost yapımına veya uygun bertaraf alanlarına gider; cam ve plastik ham maddesi olmazlar.\nAdım 4: Bu sebeple B seçeneğindeki ifade yanlıştır.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ayrıştırıcılar ve Madde Döngüsü",
+"passage": "Bir tarım arazisinde bitki ve hayvan kalıntıları zamanla toprakta kaybolmakta ve toprak verimliliği artmaktadır. Öğretmen bu durumu sınıfta açıklarken ayrıştırıcı canlıların rolünden bahsetmiştir.",
+"question": "Ayrıştırıcı canlıların ekosistemdeki görevleri düşünüldüğünde, aşağıdaki özelliklerden hangisi bu canlılar için yanlıştır?",
+"shape": null,
+"options": {
+"A": "Ölü bitki ve hayvan kalıntılarını parçalayarak toprağı besin maddeleri bakımından zenginleştirirler.",
+"B": "Besin zincirinin ilk halkasını oluşturarak kendi besinlerini fotosentez ile üretirler.",
+"C": "Bakteri ve mantarlar bu grupta yer alan başlıca canlılardandır.",
+"D": "Madde döngüsünün gerçekleşmesinde hayati öneme sahiptirler."
+},
+"answer": "B",
+"explanation": "Adım 1: Ayrıştırıcılar (bakteri ve mantarlar) ölü artıkları parçalar.\nAdım 2: Besin zincirinin ilk halkası üreticilerdir (yeşil bitkiler), ayrıştırıcılar fotosentez yapmaz.\nAdım 3: Toprağın mineral bakımından zenginleşmesini sağlayarak madde döngüsüne katkı sunarlar.\nAdım 4: Bu durumda yanlış olan ifade B seçeneğinde verilmiştir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Çevre Sorunları ve Küresel Isınma",
+"passage": "Fen Bilimleri dersinde çevre sorunları konusunu işleyen 5. sınıf öğrencileri, atmosferdeki sera gazı miktarının artmasının dünyamız üzerindeki etkilerini araştıran bir sunum hazırlamıştır.",
+"question": "Bu sunuma göre, sera gazı miktarındaki artışın neden olduğu küresel ısınma sonucunda aşağıdakilerden hangisinin gerçekleşmesi beklenmez?",
+"shape": null,
+"options": {
+"A": "Kutuplardaki buzulların erimesiyle deniz seviyelerinin yükselmesi",
+"B": "Bazı canlı türlerinin yaşam alanlarının (habitat) daralması ve yok olması",
+"C": "Atmosferdeki zararlı gaz salınımının ve küresel sıcaklığın azalması",
+"D": "Kuraklık ve aşırı hava olaylarının sıklığında artış görülmesi"
+},
+"answer": "C",
+"explanation": "Adım 1: Küresel ısınma dünyada ortalama sıcaklıkların artmasına yol açar.\nAdım 2: Sıcaklık artışı buzulların erimesine, deniz seviyesinin yükselmesine ve habitatların bozulmasına neden olur.\nAdım 3: Sera gazı artışı sıcaklığı azaltmaz, aksine artırır.\nAdım 4: Bu nedenle C seçeneğindeki ifade beklenmeyen bir durumdur.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Besin Zinciri ve Enerji Akışı",
+"passage": "Bir deniz ekosistemindeki besin zincirini inceleyen Deniz, canlılar arasındaki enerji aktarımını gösteren bir şema hazırlamıştır. Şemada fitoplanktonlar (üretici), küçük balıklar, büyük balıklar ve martılar yer almaktadır.",
+"question": "Bu besin zinciri ile ilgili olarak aşağıdakilerden hangisi bilimsel olarak doğrudur?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Fitoplankton",
+"Küçük Balık",
+"Büyük Balık",
+"Martı"
+],
+"values": [
+40,
+30,
+20,
+10
+],
+"title": "Ekosistemdeki Canlı Oranları",
+"show_names": false
+},
+"options": {
+"A": "Martılar üretici canlılar grubunda yer alır ve kendi besinini kendisi üretir.",
+"B": "Besin zincirindeki oklar her zaman yenen canlıdan yiyen canlıya doğru çizilir.",
+"C": "Küçük balıklar etçil beslenen ve büyük balıkları avlayan tüketicilerdir.",
+"D": "Fitoplanktonlardan martılara doğru gidildikçe canlıların sahip olduğu toplam enerji miktarında azalma görülür."
+},
+"answer": "D",
+"explanation": "Adım 1: Besin zincirinde enerji üreticiden tüketiciye doğru aktarılır ve her basamakta enerji kaybı yaşandığı için toplam enerji azalır.\nAdım 2: Ok yönü yenen canlıdan yiyen canlıya (enerjinin aktarıldığı yöne) doğrudur.\nAdım 3: Küçük balıklar otçul veya hem otçul hem etçil olabilir, büyük balıkları avlamazlar.\nAdım 4: Doğru olan yargı C seçeneğinde belirtilmiştir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ekosistem",
+"passage": "Kerem, fen bilimleri dersindeki proje ödevi için yaşadığı çevredeki ekosistemi incelemektedir. İncelediği bölgede yeşil bitkilerin, otçul çekirgelerin, etçil kurbağaların, ayrıştırıcı mantar ve bakterilerin bir arada bulunduğunu gözlemlemiştir. Ayrıca bölgedeki su kaynaklarının, kayaçların ve hava sıcaklığının da canlıların yaşamını etkilediğini fark etmiştir.",
+"question": "Kerem'in incelediği bu ekosistemle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnızca üretici canlılardan oluşur ve dışarıdan hiçbir cansız madde almaz.",
+"B": "Canlı unsurlar ile cansız unsurların karşılıklı etkileşim içinde olduğu bir sistemdir.",
+"C": "Cansız unsurlar ekosistemin dengesini bozduğu için tamamen ortadan kaldırılmalıdır.",
+"D": "Ayrıştırıcılar bu ekosistemde yer almaz, sadece üreticiler ve tüketiciler bulunur."
+},
+"answer": "B",
+"explanation": "Ekosistem, bir bölgedeki canlılar ile cansız çevrenin (su, hava, kayaç vb.) birlikte oluşturduğu sistemdir. Kerem'in gözleminde hem canlı (bitki, çekirge, kurbağa, mantar) hem de cansız unsurlar (su, kayaç, sıcaklık) bir arada etkileşim halindedir. Bu nedenle B seçeneği doğrudur.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Besin Zinciri",
+"passage": "Bir göl ekosisteminde gerçekleşen enerji akışını inceleyen bir araştırmacı, aşağıdaki canlı gruplarını ve aralarındaki beslenme ilişkilerini saptamıştır:\nI. Sucul bitkiler\nII. Küçük balıklar\nIII. Büyük balıklar\nIV. Ayrıştırıcı mikroorganizmalar",
+"question": "Bu canlıların oluşturduğu besin zincirinde ok yönünün (enerji aktarımının) doğru sıralaması aşağıdakilerden hangisinde verilmiştir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"I",
+"II",
+"III",
+"IV"
+],
+"values": [
+100,
+80,
+50,
+20
+],
+"title": "Canlı Gruplarının Enerji Düzeyleri",
+"show_names": false
+},
+"options": {
+"A": "I -> II -> III -> IV",
+"B": "III -> II -> I -> IV",
+"C": "I -> III -> II -> IV",
+"D": "IV -> I -> II -> III"
+},
+"answer": "A",
+"explanation": "Besin zincirinde üretici olan bitkiler ilk halkadır (I). Otçul ya da küçük balıklar üreticileri yer (II), ardından büyük balıklar gelir (III). Ayrıştırıcılar ise zincirin her halkasındaki ölü organizmaları ayrıştırır (IV). Enerji akışı I'den II'ye, oradan III'e doğru ilerler ve ayrıştırıcılar sürece dâhildir. Doğru sıralama I -> II -> III -> IV şeklindedir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Çevre Sorunları ve Çözümleri",
+"passage": "Bir ortaokul öğrencisi olan Zeynep, mahallelerindeki geri dönüşüm oranlarını artırmak için bir kampanya başlatmıştır. Kampanya kapsamında toplanan atık maddelerin türlerine göre dağılımını incelemiş ve evsel atıkların doğada kalış süreleri hakkında bir araştırma yapmıştır.",
+"question": "Zeynep'in yaptığı araştırmaya ve çevre bilincine göre aşağıdakilerden hangisi yanlıştır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kâğıt",
+"Plastik",
+"Cam",
+"Metal"
+],
+"values": [
+40,
+30,
+20,
+10
+],
+"title": "Toplanan Geri Dönüşüm Atıklarının Oranı (%)",
+"show_names": false
+},
+"options": {
+"A": "Kâğıt, cam, plastik ve metal atıkların geri dönüştürülmesi doğal kaynakların korunmasını sağlar.",
+"B": "Metal atıklar geri dönüştürülemediği için sadece yakılarak yok edilmelidir.",
+"C": "Plastik ve cam atıkların doğada yok olma süresi kâğıda göre oldukça uzundur.",
+"D": "Evsel atıkların doğrudan doğaya bırakılması çevre kirliliğine ve biyoçeşitliliğin azalmasına neden olur."
+},
+"answer": "B",
+"explanation": "Metal, plastik, kâğıt ve cam gibi maddelerin tamamı uygun tesislerde geri dönüştürülebilir. Metal atıkların geri dönüştürülemediği ve sadece yakılması gerektiği bilgisi yanlıştır; aksine metaller defalarca geri dönüştürülebilir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Besin Zinciri ve Enerji Akışı",
+"passage": "Bir tarım alanında yaşayan çiftçi, zararlı böcekleri yok etmek için ilaçlama yapmıştır. Bu ilaçlamadan sonra bölgedeki çekirge sayısının azaldığı, bir süre sonra ise kurbağa ve yılan popülasyonlarında da büyük düşüşler olduğu gözlemlenmiştir.",
+"question": "Bu olayla ilgili olarak aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Tarım ilaçları sadece zararlı böcekleri yok eder, üretici bitkilere hiçbir zarar vermez.",
+"B": "Tüketiciler yok olsa bile üreticiler kendi besinlerini üretebildikleri için ekosistem etkilenmez.",
+"C": "Besin zincirindeki halkalardan birinin zarar görmesi diğer canlıları da doğrudan etkiler.",
+"D": "Ayrıştırıcı canlılar tüm kimyasal atıkları anında yok ederek çevre sorunlarını tamamen çözer."
+},
+"answer": "C",
+"explanation": "Besin zincirinde canlılar birbirine bağımlıdır. Bir halkadaki canlı sayısının azalması, o canlıyla beslenen ya da onunla besin ilişkisi olan diğer canlıları da zincirleme olarak etkiler. Bu durum ekosistemdeki dengenin hassasiyetini gösterir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Çevre Sorunları ve Küresel Isınma",
+"passage": "Sanayileşmenin artması ve fosil yakıtların (kömür, petrol vb.) aşırı kullanımı atmosferdeki sera gazı miktarını artırmıştır. Bu durum, Dünya genelinde sıcaklıkların artmasına ve iklim değişikliklerine yol açmaktadır.",
+"question": "Metinde bahsedilen çevre sorununun olumsuz etkilerini azaltmak için aşağıdakilerden hangisinin yapılması uygun olmaz?",
+"shape": null,
+"options": {
+"A": "Rüzgâr ve güneş gibi yenilenebilir enerji kaynaklarının kullanımının yaygınlaştırılması",
+"B": "Ormanlık alanların korunması ve yeni ağaçlandırma çalışmalarının yapılması",
+"C": "Enerji tasarrufu sağlanarak fosil yakıt tüketiminin azaltılması",
+"D": "Fabrika atıklarının hiçbir arıtma işleminden geçirilmeden akarsulara bırakılması"
+},
+"answer": "D",
+"explanation": "Fabrika atıklarının arıtılmadan akarsulara bırakılması su kirliliğine ve su ekosistemlerinin yok olmasına yol açar. Bu uygulama çevre sorunlarını azaltmak yerine daha da artırır. Diğer seçenekler ise küresel ısınma ve çevre sorunları ile mücadelede alınması gereken doğru önlemlerdir.",
+"vfd2": true,
+"unit": "Biyoçeşitlilik ve Çevre",
+"topics": "Ekosistem, Besin zinciri, Çevre sorunları",
+"d": 1,
+"ts": 1794163186
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin Halleri",
+"passage": "Bir fen bilimleri öğretmeni, katı, sıvı ve gaz maddelerin özelliklerini tahtaya yazmış ancak öğrencisi Elif bu özelliklerden bazılarını karıştırarak hatalı eşleştirmiştir.",
+"question": "Elif'in yaptığı aşağıdaki eşleştirmelerden hangisi bilimsel olarak yanlıştır?",
+"shape": null,
+"options": {
+"A": "Katı maddelerin belirli bir şekli ve belirli bir hacmi vardır.",
+"B": "Sıvı maddelerin belirli bir hacmi vardır ancak konuldukları kabın şeklini alırlar.",
+"C": "Gaz maddelerin ne belirli bir şekli ne de belirli bir hacmi vardır, bulundukları alanı tamamen doldururlar.",
+"D": "Sıvı maddeler katılar gibi sıkıştırılabilir ve bulundukları kabın her yönde hacmini değiştirirler."
+},
+"answer": "D",
+"explanation": "Katıların şekli ve hacmi bellidir. Sıvıların hacmi belirli olup şekli akışkanlık nedeniyle kabına bağlıdır. Gazların ne şekli ne hacmi belirlidir ve sıkıştırılabilirler. Ancak D seçeneğinde sıvılar için 'sıkıştırılabilir' denmesi ve hacmini değiştirdiği iddiası bilimsel olarak yanlıştır; sıvılar sıkıştırılamaz kabul edilir.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794163332
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hal Değişimleri",
+"passage": "Mutfakta yemek yapan Zeynep, kaynamakta olan suyun bulunduğu tencerenin kapağını kapattığında, kapağın iç yüzeyinde su damlacıklarının oluştuğunu fark etmiştir. Kapağı açtığında ise ocaktan çıkan su buharının havaya karıştığını gözlemlemiştir.",
+"question": "Zeynep'in mutfakta gözlemlediği bu olaylar sırasıyla hangi hal değişim örnekleridir?",
+"shape": {
+"type": "table",
+"title": "Hal Değişimi Olayları",
+"headers": [
+"Olay",
+"Gerçekleşen Durum"
+],
+"rows": [
+[
+"Kapakta su damlası",
+"Gazdan sıvıya geçiş"
+],
+[
+"Buharın yayılması",
+"Sıvıdan gaza geçiş"
+]
+]
+},
+"options": {
+"A": "Süblimleşme ve Erime",
+"B": "Yoğuşma ve Buharlaşma",
+"C": "Buharlaşma ve Donma",
+"D": "Erime ve Yoğuşma"
+},
+"answer": "B",
+"explanation": "Tencere kapağının iç yüzeyindeki su damlacıkları gaz halindeki su buharının ısı vererek sıvı hale geçmesi yani yoğuşmasıdır. Su buharının oluşması veya suyun kaynayıp gaz haline gelmesi ise buharlaşmadır. Bu nedenle doğru sıralama yoğuşma ve buharlaşmadır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794163332
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Erime ve Donma Noktası",
+"passage": "Şehir planlaması ve sanayi tesislerinde kullanılan saf maddelerin erime ve donma noktaları büyük önem taşır. Kış aylarında buzlanan yollara tuz dökülmesi veya laboratuvar kaplarında saf buzun eritilmesi işlemleri bu kurallara göre yapılır.",
+"question": "Saf bir maddeye ait aşağıdaki durumlardan hangisi bilimsel bilgiyle çelişmektedir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Buzun Erime Noktası",
+"Suyun Donma Noktası",
+"Suyun Kaynama Noktası"
+],
+"values": [
+"0",
+"0",
+"100"
+],
+"title": "Saf Su Hal Değişim Sıcaklıkları (°C)",
+"show_names": false
+},
+"options": {
+"A": "Saf su 0 °C'de donar ve aynı basınç altında buz 0 °C'de erir.",
+"B": "Saf bir sıvının donma noktası ile o sıvının katı halinin erime noktası aynı değerdedir.",
+"C": "Saf maddeler erirken dışarıya ısı verirler ve sıcaklıkları sürekli yükselir.",
+"D": "Saf su 100 °C'de kaynar ve buharlaşma hızı bu sıcaklıkta maksimuma ulaşır."
+},
+"answer": "C",
+"explanation": "Saf maddeler erirken çevrelerinden ısı alırlar (dışarıya ısı vermezler) ve erime süresince sıcaklıkları sabit kalır. C seçeneğinde 'dışarıya ısı verirler ve sıcaklıkları sürekli yükselir' denmesi hem ısı alışverişi yönü hem de hal değişim sıcaklığı kuralı açısından yanlıştır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794163332
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin halleri ve özellikleri",
+"passage": "Bir laboratuvarda özdeş üç kap içerisine konulan K, L ve M maddelerinin hacim ve şekil durumları incelenmiş ve elde edilen gözlem sonuçları aşağıdaki çizgi grafiğinde gösterilmiştir. Grafikte sütun yüksekliği maddenin o özelliğe (belirli şekil veya belirli hacim) sahip olup olmadığını göstermektedir.",
+"question": "Buna göre grafikteki verilere ve maddelerin hallerine ilişkin özelliklere bakıldığında aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"K - Belirli Şekil",
+"K - Belirli Hacim",
+"L - Belirli Şekil",
+"L - Belirli Hacim",
+"M - Belirli Şekil",
+"M - Belirli Hacim"
+],
+"values": [
+1,
+1,
+0,
+1,
+0,
+0
+],
+"title": "Maddelerin Belirli Şekil ve Hacim Durumları",
+"show_names": false
+},
+"options": {
+"A": "M maddesi gaz haldedir çünkü ne belirli bir şekli ne de belirli bir hacmi vardır.",
+"B": "K maddesi katı haldedir çünkü hem belirli bir şekli hem de belirli bir hacmi vardır.",
+"C": "L maddesi sıvı haldedir çünkü konulduğu kabın şeklini alır ancak belirli bir hacmi bulunur.",
+"D": "K maddesi ile L maddesi aynı fiziksel haldedir."
+},
+"answer": "D",
+"explanation": "Adım 1: K maddesinin hem belirli şekli (1) hem de belirli hacmi (1) vardır, bu yüzden K katıdır.\nAdım 2: L maddesinin belirli şekli yoktur (0) ancak belirli hacmi vardır (1), bu yüzden L sıvıdır.\nAdım 3: M maddesinin ne belirli şekli (0) ne de belirli hacmi (0) vardır, bu yüzden M gazdır.\nAdım 4: K katı, L sıvı olduğundan aynı fiziksel haldedirler yargısı yanlıştır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794163332
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı ve sıcaklık",
+"passage": "Bir grup öğrenci doğa yürüyüşü sırasında yanlarındaki termoslardan sıcak çay içmektedir. Öğretmenleri bu sırada ısı ve sıcaklık kavramları üzerine şu tabloyu hazırlatmıştır:",
+"question": "Tabloda verilen bu bilgilere göre öğrencilerden hangisinin yaptığı yorum bilimsel olarak yanlıştır?",
+"shape": {
+"type": "table",
+"title": "Isı ve Sıcaklık Karşılaştırma Tablosu",
+"headers": [
+"Özellik",
+"Isı",
+"Sıcaklık"
+],
+"rows": [
+[
+"Tanım",
+"Bir enerji türüdür.",
+"Maddenin taneciklerinin ortalama hareket enerjisinin göstergesidir."
+],
+[
+"Ölçüldüğü Alet",
+"Kalorimetre kabı ile hesaplanır.",
+"Termometre ile ölçülür."
+],
+[
+"Aktarım Yönü",
+"Sıcak cisimden soğuk cisme aktarılır.",
+"Aktarılan bir nicelik değildir, ölçülür."
+]
+]
+},
+"options": {
+"A": "Kerem: Termosun içindeki çayın sıcaklığı termometre ile ölçülebilir.",
+"B": "Arda: Isı bir enerji türü değildir, sadece maddelerin derecesini gösteren bir ölçüm değeridir.",
+"C": "Deniz: Termostaki çayın sıcaklığı, bardaktaki çayın sıcaklığından fazla ise bardaktaki çaya ısı aktarılır.",
+"D": "Elif: Çaydan bardağa geçen enerji bir ısı alışverişidir ve sıcak maddeden soğuk maddeye doğru akar."
+},
+"answer": "B",
+"explanation": "Adım 1: Sıcaklık termometre ile ölçülür (Kerem doğru).\nAdım 2: Isı sıcaktan soğuğa akar ve bir enerji türüdür (Elif ve Deniz doğru).\nAdım 3: Isı bir enerji türüdür; Arda'nın 'ısı enerji türü değildir' ifadesi tablodaki 'Bir enerji türüdür' bilgisiyle çelişir ve yanlıştır.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794163332
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Erime ve donma",
+"passage": "Bir sanat sergisinde buzdan yapılmış heykeller sergilenmektedir. Sergi salonunun sıcaklığı 0 °C olarak sabit tutulmaktadır. Görevli, sergi salonuna 0 °C sıcaklığında katı halde buz blokları yerleştirmiş ve bir süre sonra buzların bir kısmının eridiğini, bir kısmının ise donma noktası ile ilgili fen deneyi için su halinde kaldığını gözlemlemiştir.",
+"question": "Bu bilgilere ve saf maddelerin hal değişim kurallarına göre sergideki buz ve su ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Buz erirken çevresine ısı vererek sıcaklığını artırır.",
+"B": "Saf bir madde olan su 0 °C'de donar ve erime süresince sıcaklığı sabit kalır.",
+"C": "Erimekte olan buzun sıcaklığı sürekli olarak artmaktadır.",
+"D": "Katı haldeki buz eridiğinde kütlesi artar."
+},
+"answer": "B",
+"explanation": "Adım 1: Saf maddelerin erime ve donma sıcaklığı sabittir; buz 0 °C'de erir, su 0 °C'de donar.\nAdım 2: Erime ve donma süresince saf maddelerin sıcaklığı sabit kalır.\nAdım 3: Bu bağlamda B seçeneği bilimsel olarak tam ve doğrudur.",
+"vfd2": true,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin halleri, Isı ve sıcaklık, Erime-donma",
+"d": 2,
+"ts": 1794163332
 }
 ]
 }

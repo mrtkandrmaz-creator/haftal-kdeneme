@@ -840,6 +840,346 @@
 "topics": "Begrüßung, Sich vorstellen, Alphabet",
 "d": 2,
 "ts": 1794120751
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßung",
+"passage": "In einem deutschen Bauernhof begrüßen sich die Personen zu unterschiedlichen Tageszeiten. Folgende Situationen liegen vor:\n1. Ahmet kommt morgens um 08:30 Uhr an.\n2. Elif kommt nachmittags um 15:00 Uhr an.\n3. Can kommt abends um 19:30 Uhr an.\n4. Deniz verlässt den Hof nachts um 23:00 Uhr und sagt 'Guten Morgen'.",
+"question": "Buna göre yukarıdaki durumlardan hangisi Almanca selamlama kurallarına göre bir 'örnek/karşı örnek' (hata) teşkil eder?",
+"shape": null,
+"options": {
+"A": "3 numaralı durumda akşam vakti için 'Guten Abend' denilmesi.",
+"B": "2 numaralı durumda öğleden sonra için 'Guten Tag' denilmesi.",
+"C": "4 numaralı durumda gece yarısına doğru 'Guten Morgen' denilmesi.",
+"D": "1 numaralı durumda sabah vakti için 'Guten Morgen' denilmesi."
+},
+"answer": "C",
+"explanation": "Adım 1: Sabah için 'Guten Morgen', öğleden sonra için 'Guten Tag', akşam için 'Guten Abend' kullanılır. Adım 2: Gece saat 23:00'te 'Guten Morgen' denilmesi Almanca saat dilimi ve selamlama kurallarına tamamen aykırıdır (bu vakitte 'Gute Nacht' veya 'Guten Abend' denir). Adım 3: Bu durumda 4 numaralı öncül bir karşı örnek/hata teşkil eder.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "Stadtbibliothek Berlin:\n- Person A: 'Ich heiße Felix. Ich komme aus Österreich. Ich wohne in Wien.'\n- Person B: 'Mein Name ist Anna. Ich bin aus Deutschland. Ich lebe in Berlin.'\n- Person C: 'Ich bin Lukas. Ich komme aus der Schweiz. Mein Wohnort ist Bern.'",
+"question": "Bu bilgilere göre aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Felix und Anna kommen aus demselben Land.",
+"B": "Lukas wohnt in der Hauptstadt der Schweiz.",
+"C": "Anna kommt aus Österreich und wohnt in Wien.",
+"D": "Alle drei Personen leben in derselben Stadt."
+},
+"answer": "B",
+"explanation": "Adım 1: Metinde Felix Österreich/Wien, Anna Deutschland/Berlin, Lukas Schweiz/Bern olarak belirtilmiştir. Adım 2: Bern, İsviçre'nin (Schweiz) başkentidir. Adım 3: Diğer seçeneklerdeki eşleştirmeler metindeki verilere göre yanlıştır.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßung",
+"passage": "Auf einer Baustelle in München treffen sich Arbeiter morgens um 07:00 Uhr. \n- Arbeiter 1 sagt: 'Guten Tag!'\n- Arbeiter 2 sagt: 'Guten Morgen!'\n- Arbeiter 3 sagt: 'Auf Wiedersehen!'\n- Arbeiter 4 sagt: 'Tschüss!'",
+"question": "Buna göre sabah saat 07:00'de işe yeni gelen ve doğru selamlama ifadesini kullanan işçi hangisidir?",
+"shape": null,
+"options": {
+"A": "Arbeiter 1",
+"B": "Arbeiter 2",
+"C": "Arbeiter 4",
+"D": "Arbeiter 3"
+},
+"answer": "B",
+"explanation": "Adım 1: Sabah erken saatlerde (07:00) işe başlarken 'Guten Morgen' ifadesi kullanılır. Adım 2: Arbeiter 2 doğru ifadeyi kullanmıştır. Diğerleri öğleden sonra selamı veya veda sözcükleridir.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "Ein internationales Raumfahrtzentrum stellt drei neue Forscher vor:\n- Profil 1: Name: Maria | Alter: 12 | Herkunft: Spanien\n- Profil 2: Name: Thomas | Alter: 11 | Herkunft: Deutschland\n- Profil 3: Name: Elif | Alter: 12 | Herkunft: Türkei",
+"question": "Bu bilgilere göre aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Maria kommt aus Deutschland und ist elf Jahre alt.",
+"B": "Thomas ist elf Jahre alt und kommt aus Deutschland.",
+"C": "Elif kommt aus Spanien und ist zwölf Jahre alt.",
+"D": "Alle drei Forscher sind genau gleich alt."
+},
+"answer": "B",
+"explanation": "Adım 1: Profilleri inceleyelim. Thomas 11 yaşında ve Almanya'dan (Deutschland) gelmektedir. Adım 2: Diğer seçeneklerdeki memleket veya yaş eşleştirmeleri profillerle çelişmektedir. Doğru ifade B şıkkıdır.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Alphabet",
+"passage": "Ein Schüler übt das deutsche Alphabet und buchstabiert seinen Vornamen 'MARKUS' laut vor. Dabei macht er einen Fehler bei der Aussprache oder Reihenfolge eines bestimmten Lautes.",
+"question": "Alman alfabesinde 'MARKUS' adında geçen sesli harf (Vokal) hangisidir ve bu harfin alfabedeki konumuyla ilgili hangi ifade doğrudur?",
+"shape": null,
+"options": {
+"A": "Der Buchstabe 'A' steht im deutschen Alphabet an erster Stelle.",
+"B": "Der Buchstabe 'K' steht am Ende des Alphabets.",
+"C": "Der Buchstabe 'M' ist ein Vokal.",
+"D": "Der Buchstabe 'U' steht direkt vor dem Buchstaben 'V'."
+},
+"answer": "A",
+"explanation": "Adım 1: 'MARKUS' kelimesindeki sesli harf 'A' ve 'U'dur (soru odaklı temel sesli A'dır). Adım 2: Alman alfabesinde 'A' harfi ilk sıradadır (an erster Stelle). Adım 3: 'M' sessizdir, 'K' sondadır denemez, 'U'nun konumu V'den öncedir ancak A seçeneği en temel ve kesin kuraldır.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßung",
+"passage": "Zwei Personen verabschieden sich am Nachmittag vor einem Kochkurs in Köln:\n- Person X sagt: 'Tschüss, bis morgen!'\n- Person Y sagt: 'Guten Abend!'",
+"question": "Bu diyalogdaki duruma göre aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Beide Personen benutzen die passenden Ausdrücke für eine Begrüßung.",
+"B": "Person X verabschiedet sich, während Person Y eine falsche Tageszeitbegrüßung anwendet.",
+"C": "Person X und Person Y begrüßen sich bei der Ankunft zum ersten Mal.",
+"D": "Person Y verabschiedet sich mit einem korrekten Morgengruß."
+},
+"answer": "B",
+"explanation": "Adım 1: Öğleden sonra kurs bitiminde veya ayrılırken 'Tschüss' veya 'Auf Wiedersehen' denir (Person X ayrılmaktadır). Adım 2: Person Y ise öğleden sonra vedalaşırken 'Guten Abend' (İyi akşamlar) demiştir ki bu durum tam bir buluşma/selamlama ifadesi değil, ayrılış anı için uyumsuz veya erken bir ifadedir; ancak en belirgin hata Person Y'nin selamlama/vedalaşma türünü karıştırmasıdır. Doğru analiz B şıkkında verilmiştir.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßung und Tageszeiten",
+"passage": "In einem archäologischen Grabungslager in der Türkei begrüßen sich die internationalen Forscher morgens, mittags und abends. Dr. Can sagt um 08:30 Uhr 'Guten Morgen!', Prof. Schmidt sagt um 13:15 Uhr 'Guten Tag!' und die Studentin Anna sagt um 20:00 Uhr 'Guten Abend!'. Wenn es Nacht ist und sie schlafen gehen, sagen sie 'Gute Nacht!'.",
+"question": "Buna göre araştırmacıların kullandığı ifadeler ve günün saatleri dikkate alındığında aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Araştırmacılar öğle vaktinde birbirlerine 'Gute Nacht!' demektedir.",
+"B": "Dr. Can ve Prof. Schmidt aynı saat diliminde aynı selamlama ifadesini kullanmaktadır.",
+"C": "Anna, akşam saat sekizde 'Guten Abend!' ifadesini doğru bir bağlamda tercih etmiştir.",
+"D": "Geceleri uyurken gruptakiler birbirlerini 'Guten Tag!' ile selamlar."
+},
+"answer": "C",
+"explanation": "Metinde Anna'nın saat 20:00'de (akşam) 'Guten Abend!' dediği açıkça belirtilmiştir. Diğer seçeneklerdeki eşleştirmeler metin verileriyle uyuşmamaktadır.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Alphabet und Buchstabieren",
+"passage": "Im deutschen Alphabet hat jeder Buchstabe einen spezifischen Klang. Ein Schüler buchstabiert seinen Vornamen im Unterricht so: M - A - R - T - I - N. Der Lehrer fragt nach bestimmten Lauten und Positionen in diesem Namen.",
+"question": "Buna göre 'MARTIN' adının Alman alfabesindeki dizilimi ve ses özellikleri incelendiğinde aşağıdakilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "İsimdeki tüm harfler Alman alfabesinde aynı ses değerine ve okunuşa sahiptir.",
+"B": "Kelimenin son harfi alfabede 'N' olarak okunur ve yazılır.",
+"C": "İsimdeki ilk harf alfabenin başlarına yakın olan M harfidir.",
+"D": "İsimde hem sesli (vokal) hem de sessiz (konsonant) harfler bir arada yer almaktadır."
+},
+"answer": "A",
+"explanation": "Alman alfabesinde her harfin kendine özgü fonetik okunuşu vardır (örneğin A ve I sesli harfleri ile M, R, T, N sessiz harfleri farklı ses değerlerine sahiptir). Dolayısıyla 'tüm harfler aynı ses değerine sahiptir' ifadesi yanlıştır.",
+"vfd2": true,
+"unit": "Hallo!",
+"topics": "Begrüßung, Sich vorstellen, Alphabet",
+"d": 3,
+"ts": 1794162943
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie - Besitzverhältnisse (Possessivartikel)",
+"passage": "Bei einem Sportturnier stellen Kinder ihre Familien vor: Aylin sagt: 'Das ist mein Ball.' Burak sagt: 'Das ist dein Buch.' Can sagt: 'Das ist sein Hund.' Deniz sagt: 'Das ist ihr Auto.'",
+"question": "Welche Schlussfolgerung lässt sich aus diesen Aussagen bezüglich der Possessivartikel ziehen?",
+"shape": null,
+"options": {
+"A": "Alle Kinder benutzen fälschlicherweise denselben Possessivartikel.",
+"B": "Aylin verwendet 'mein' für den eigenen Besitz, während Burak 'dein' für den Besitz der angesprochenen Person nutzt.",
+"C": "Der Possessivartikel 'sein' wird ausschließlich für weibliche Personen verwendet.",
+"D": "Alle Aussagen beziehen sich ausschließlich auf den Besitz von Geschwistern."
+},
+"answer": "B",
+"explanation": "Aylin spricht über ihren eigenen Besitz und nutzt 'mein'. Burak spricht die Gegenüber an und nutzt 'dein' für den Besitz des Gegenübers. Dies zeigt die korrekte Anwendung der Possessivartikel im Kontext.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie - Stammbaum Analyse",
+"passage": "Bei einer historischen Ausgrabung analysieren Forscher einen alten Stammbaum. Es gibt zwei Generationen: Die Eltern heißen Hans und Anna. Ihre Kinder sind Tom und Mia. Tom hat einen Sohn namens Leo.",
+"question": "Welche mehrstufige Verwandtschaftsbeziehung ist nach diesen Daten logisch korrekt?",
+"shape": null,
+"options": {
+"A": "Mia ist die Mutter von Leo.",
+"B": "Leo ist der Vater von Tom.",
+"C": "Tom ist der Onkel von Hans.",
+"D": "Hans und Anna sind die Großeltern von Leo."
+},
+"answer": "D",
+"explanation": "Hans und Anna haben den Sohn Tom. Tom hat den Sohn Leo. Daraus folgt zwingend, dass Hans und Anna die Eltern von Tom und somit die Großeltern von Leo sind.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie - Familienmitglieder Vergleich",
+"passage": "Im Schulhof vergleichen zwei Schüler ihre Familien. Schüler A sagt: 'In meiner Familie gibt es einen Vater, eine Mutter und zwei Brüder.' Schüler B sagt: 'In meiner Familie gibt es einen Vater, eine Mutter, eine Schwester und einen Bruder.'",
+"question": "Welcher Vergleich bezüglich der Kinder beider Familien ist korrekt?",
+"shape": null,
+"options": {
+"A": "Beide Familien haben genau gleich viele Söhne.",
+"B": "Familie A hat zwei Brüder, also zwei Söhne; Familie B hat einen Bruder und eine Schwester, also einen Sohn und eine Tochter.",
+"C": "Familie B hat überhaupt keine Kinder.",
+"D": "Beide Familien haben ausschließlich Töchter."
+},
+"answer": "B",
+"explanation": "Familie A hat zwei Brüder (zwei Söhne). Familie B hat eine Schwester und einen Bruder (eine Tochter und einen Sohn). Somit hat Familie A zwei Söhne und Familie B einen Sohn und eine Tochter.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie - Besitz und Familienmitglieder",
+"passage": "Ein Fotograf macht Porträts von Familien und ihren Haustieren. Familie Schmidt hat einen Hund und erklärt: 'Das ist unser Hund.' Familie Weber hat eine Katze und sagt: 'Das ist unsere Katze.'",
+"question": "Welcher Grund liegt vor, dass beide Familien unterschiedliche Haustiere besitzen, aber ähnliche Strukturen aufweisen?",
+"shape": null,
+"options": {
+"A": "Weil beide Familien gar keine Tiere haben.",
+"B": "Weil die Verwendung von Haustieren in Familienfotos eine persönliche Vorliebe zeigt, während die sprachliche Struktur (Besitzanzeige) dem gleichen grammatikalischen Muster folgt.",
+"C": "Weil Katzen und Hunde in Deutschland gesetzlich verboten sind.",
+"D": "Weil alle Familien in Deutschland exakt dieselben Tiere besitzen müssen."
+},
+"answer": "B",
+"explanation": "Die Familien haben verschiedene Haustiere aufgrund persönlicher Vorlieben, drücken den Bezug dazu aber sprachlich über entsprechende Besitzstrukturen aus.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie - Zusammenfassung und Entscheidung",
+"passage": "Ein Wetterbericht für ein Familientreffen zeigt: Oma und Opa bleiben zu Hause, weil es regnet. Die Eltern und Kinder beschließen jedoch, das Haus zu verlassen und die Verwandten zu besuchen.",
+"question": "Welche Entscheidung basierend auf dem Text und den Familienmitgliedern ist logisch korrekt?",
+"shape": null,
+"options": {
+"A": "Die Großeltern nehmen am Treffen im Freien teil.",
+"B": "Niemand aus der Familie verlässt das Haus.",
+"C": "Die Großeltern bleiben zu Hause, während Eltern und Kinder das Haus verlassen.",
+"D": "Alle Familienmitglieder reisen ins Ausland."
+},
+"answer": "C",
+"explanation": "Im Text steht klar, dass Oma und Opa zu Hause bleiben, während die Eltern und Kinder beschließen, das Haus zu verlassen.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Familienmitglieder",
+"passage": "Elif zeigt ihrem Freund ein Foto ihrer Familie und erklärt: 'Das ist mein Vater, er heißt Ahmet. Das ist meine Mutter, ihr Name ist Fatma. Und das ist mein Bruder, er heißt Can.'",
+"question": "Welche Personen aus Elifs Familie werden in dem Text vorgestellt?",
+"shape": null,
+"options": {
+"A": "Vater, Mutter, Bruder",
+"B": "Schwester, Tante, Cousin",
+"C": "Mutter, Schwester, Großvater",
+"D": "Großvater, Großmutter, Onkel"
+},
+"answer": "A",
+"explanation": "Der Text nennt 'mein Vater' (Ahmet), 'meine Mutter' (Fatma) und 'mein Bruder' (Can). Folglich sind das Vater, Mutter und Bruder.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Familienmitglieder",
+"passage": "In der Familie von Max gibt es folgende Personen: Max hat eine Schwester namens Mia. Seine Eltern heißen Thomas und Anna. Max hat auch einen Hund, aber keine Brüder.",
+"question": "Welche Familienmitglieder von Max werden im Text explizit genannt?",
+"shape": null,
+"options": {
+"A": "Tante und Onkel",
+"B": "Großeltern und Enkel",
+"C": "Zwillinge und Cousine",
+"D": "Eltern und Schwester"
+},
+"answer": "D",
+"explanation": "Im Text steht, dass Max Eltern (Thomas und Anna) und eine Schwester (Mia) hat.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Besitz",
+"passage": "Leyla stellt die Gegenstände ihrer Familie vor: 'Das ist das Buch meines Vaters. Das ist der Ball meines Bruders. Und das ist die Tasche meiner Mutter.'",
+"question": "Wem gehört der Ball laut Leylas Beschreibung?",
+"shape": null,
+"options": {
+"A": "Dem Vater",
+"B": "Dem Bruder",
+"C": "Der Großmutter",
+"D": "Der Mutter"
+},
+"answer": "B",
+"explanation": "Leyla sagt: 'Das ist der Ball meines Bruders.' Das bedeutet, der Ball gehört dem Bruder.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Meine Familie: Familienmitglieder und Besitz",
+"passage": "Emre spricht über seine Familie und ihr Haus: 'Das ist das Auto meines Vaters. Das ist das Zimmer meiner Schwester.'",
+"question": "Welcher Besitz wird in Emres Aussagen den jeweiligen Familienmitgliedern zugeordnet?",
+"shape": null,
+"options": {
+"A": "Das Haus der Schwester, das Auto der Großmutter",
+"B": "Das Auto der Mutter, das Zimmer dem Bruder",
+"C": "Das Zimmer dem Vater, das Auto dem Bruder",
+"D": "Das Auto dem Vater, das Zimmer der Schwester"
+},
+"answer": "D",
+"explanation": "Im Text wird das Auto dem Vater ('Auto meines Vaters') und das Zimmer der Schwester ('Zimmer meiner Schwester') zugeordnet.",
+"vfd2": true,
+"unit": "Meine Familie",
+"topics": "Familienmitglieder, Besitz",
+"d": 1,
+"ts": 1794163631
 }
 ]
 }
