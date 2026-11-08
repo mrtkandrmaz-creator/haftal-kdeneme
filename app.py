@@ -2458,7 +2458,16 @@ def draw_geometry_shape(shape_data):
             return
         png = render_shape(sh)
         if png:
-            st.image(png, width=420)
+            w = 420
+            try:  # uzun (dikey) şekiller ekrana sığsın: yükseklik en çok ~340 px
+                import io as _io
+                from PIL import Image as _Im
+                _b = png if isinstance(png, (bytes, bytearray)) else png.getvalue()
+                _pw, _ph = _Im.open(_io.BytesIO(_b)).size
+                w = int(max(120, min(420, 340 * _pw / _ph)))
+            except Exception:
+                pass
+            st.image(png, width=w)
     except Exception:
         st.caption("📊 (Bu sorunun görseli yüklenemedi)")
 '''
@@ -11256,25 +11265,25 @@ def exam():
         cv = st.session_state.answers.get(idx)
         st.radio(f"**Soru {num} Şıkları:**", keys, index=keys.index(cv) if cv in keys else None,
                  format_func=lambda x: f"{x}) {opts[x]}", key=f"q_{idx}", on_change=_set_answer, args=(idx,))
-        _tts_box(q, sub, m)
-        bc1, bc2, bc4, bc3 = st.columns([1, 1, 1, 1.3])
-        with bc3:
-            st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
-        with bc4:
-            if st.session_state.get(f"lk_{idx}"):
-                st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
-            else:
-                st.button("👍 Soruyu beğendim", key=f"likeq_{idx}", on_click=_like, args=(q, f"lk_{idx}", m),
-                          help="Benzer sorular arka planda üretilip havuzda birikir ve sonraki sınavlarda kullanılır.")
-        with bc1:
-            st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
-        with bc2:
-            if st.session_state.get(f"rep_{idx}"):
-                st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
-            else:
-                st.selectbox("Sorun nedir?", REPORT_REASONS, key=f"repr_{idx}", label_visibility="collapsed")
-                st.button("🚩 Bu soru hatalı", key=f"repq_{idx}", on_click=_report, args=(q, f"rep_{idx}", f"repr_{idx}"),
-                          help="Şekil/veri eksik ya da mantık hatası varsa bildir; bir daha çıkmaz.")
+        st.markdown("<div class='pen-slot'></div>", unsafe_allow_html=True)
+        with st.expander("⋯ Soru araçları (sesli oku, temizle, bildir)", expanded=False):  # soru altındaki yardımcı bölümler kapalı gelir
+            _tts_box(q, sub, m)
+            bc1, bc2, bc4 = st.columns([1, 1.4, 1])
+            with bc4:
+                if st.session_state.get(f"lk_{idx}"):
+                    st.caption("👍 Beğenildi: benzerleri havuza ekleniyor.")
+                else:
+                    st.button("👍 Soruyu beğendim", key=f"likeq_{idx}", on_click=_like, args=(q, f"lk_{idx}", m),
+                              help="Benzer sorular arka planda üretilip havuzda birikir ve sonraki sınavlarda kullanılır.")
+            with bc1:
+                st.button("🧹 Cevabı temizle", key=f"clr_{idx}", on_click=_clear, args=(idx,))
+            with bc2:
+                if st.session_state.get(f"rep_{idx}"):
+                    st.caption("🚩 Bildirildi: bu soru bir daha çıkmayacak.")
+                else:
+                    st.selectbox("Sorun nedir?", REPORT_REASONS, key=f"repr_{idx}", label_visibility="collapsed")
+                    st.button("🚩 Bu soru hatalı", key=f"repq_{idx}", on_click=_report, args=(q, f"rep_{idx}", f"repr_{idx}"),
+                              help="Şekil/veri eksik ya da mantık hatası varsa bildir; bir daha çıkmaz.")
     else:
         st.text_area("Cevabınız", value=st.session_state.open_answers.get(idx, ""), height=180, key=f"open_{idx}",
                      on_change=_set_open, args=(idx,))
@@ -12408,9 +12417,7 @@ with st.sidebar:
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
     try:
         from core import store as _gstore
-        _gd, _gw, _gm = _gstore.gen_totals()
-        st.markdown("---")
-        st.markdown(f"<div style='font-size:.85rem;line-height:1.7'><b>📈 Üretilen soru</b><br>Bugün: <b>{_gd}</b><br>Bu hafta: <b>{_gw}</b><br>Bu ay: <b>{_gm}</b></div>", unsafe_allow_html=True)
+        _tech = str(st.query_params.get("admin", "")) == "1"  # teknik veriler yalnızca adres sonuna ?admin=1 eklenince görünür
         try:
             from core import ai_engine as _gai
             _gai.audit_pools_async()
@@ -12419,40 +12426,59 @@ with st.sidebar:
             pass
         try:
             _gstore.gh_sync_async()
-            _gs = _gstore.gh_status()
-            if _gs["on"]:
-                st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>☁️ GitHub yedeği</b><br>{'✅' if _gs['ok'] else ('⚠️' if _gs['ok'] is False else '⏳')} {_gs['msg'] or 'bekleniyor'}</div>", unsafe_allow_html=True)
-            else:
-                st.caption("☁️ GitHub yedeği kapalı (secrets: [github_sync])")
         except Exception:
             pass
-        _rp = _gstore.reports(None, 500)
-        _auto = sum(1 for x in _rp if x.get("reason") != "yakalanmadı")
-        st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🚩 Hata günlüğü</b><br>Bildirilen: <b>{len(_rp)}</b> • otomatik kurala takılan: <b>{_auto}</b></div>", unsafe_allow_html=True)
         try:
             from core import ai_engine as _qai
             _qai.qstat_flush()
-            _qs = _gstore.quality()
-            if _qs:
-                with st.expander("📊 Kalite sayacı", expanded=False):
-                    _rows = ["| Ders | Üretilen | Elenen | Doğrulandı | Reddedilen |", "|---|---|---|---|---|"]
-                    for _sj, _ev in sorted(_qs.items()):
-                        _el = sum(v for k, v in _ev.items() if k.startswith("elendi"))
-                        _rows.append(f"| {_sj} | {_ev.get('üretildi', 0)} | {_el} | {_ev.get('doğrulandı', 0)} | {_ev.get('doğrulayıcı reddetti', 0)} |")
-                    st.markdown("\n".join(_rows))
-                    _why = {}
-                    for _ev in _qs.values():
-                        for k, v in _ev.items():
-                            if k.startswith("elendi"):
-                                _why[k[8:]] = _why.get(k[8:], 0) + v
-                    if _why:
-                        st.caption("Eleme nedenleri: " + " • ".join(f"{k} {v}" for k, v in sorted(_why.items(), key=lambda kv: -kv[1])))
         except Exception:
             pass
-        _bs = _gstore.bank_stats()
-        st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🏦 Soru bankası</b><br>Hazır soru: <b>{_bs['total']}</b><br>" + "<br>".join(f"&nbsp;&nbsp;{k}: {v}" for k, v in sorted(_bs["per"].items(), key=lambda kv: -kv[1])[:8]) + "</div>", unsafe_allow_html=True)
-        _lp, _lk = _gstore.lpool_count(), len(_gstore.liked())
-        st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>👍 Beğenilen havuz</b><br>Beğenilen soru: <b>{_lk}</b><br>Havuzdaki benzer soru: <b>{_lp}</b></div>", unsafe_allow_html=True)
+        if _tech:
+            _gd, _gw, _gm = _gstore.gen_totals()
+            st.markdown("---")
+            st.markdown(f"<div style='font-size:.85rem;line-height:1.7'><b>📈 Üretilen soru</b><br>Bugün: <b>{_gd}</b><br>Bu hafta: <b>{_gw}</b><br>Bu ay: <b>{_gm}</b></div>", unsafe_allow_html=True)
+            try:
+                from core import ai_engine as _gai
+                _gai.audit_pools_async()
+                _gai.daily_fill_async()
+            except Exception:
+                pass
+            try:
+                _gstore.gh_sync_async()
+                _gs = _gstore.gh_status()
+                if _gs["on"]:
+                    st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>☁️ GitHub yedeği</b><br>{'✅' if _gs['ok'] else ('⚠️' if _gs['ok'] is False else '⏳')} {_gs['msg'] or 'bekleniyor'}</div>", unsafe_allow_html=True)
+                else:
+                    st.caption("☁️ GitHub yedeği kapalı (secrets: [github_sync])")
+            except Exception:
+                pass
+            _rp = _gstore.reports(None, 500)
+            _auto = sum(1 for x in _rp if x.get("reason") != "yakalanmadı")
+            st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🚩 Hata günlüğü</b><br>Bildirilen: <b>{len(_rp)}</b> • otomatik kurala takılan: <b>{_auto}</b></div>", unsafe_allow_html=True)
+            try:
+                from core import ai_engine as _qai
+                _qai.qstat_flush()
+                _qs = _gstore.quality()
+                if _qs:
+                    with st.expander("📊 Kalite sayacı", expanded=False):
+                        _rows = ["| Ders | Üretilen | Elenen | Doğrulandı | Reddedilen |", "|---|---|---|---|---|"]
+                        for _sj, _ev in sorted(_qs.items()):
+                            _el = sum(v for k, v in _ev.items() if k.startswith("elendi"))
+                            _rows.append(f"| {_sj} | {_ev.get('üretildi', 0)} | {_el} | {_ev.get('doğrulandı', 0)} | {_ev.get('doğrulayıcı reddetti', 0)} |")
+                        st.markdown("\n".join(_rows))
+                        _why = {}
+                        for _ev in _qs.values():
+                            for k, v in _ev.items():
+                                if k.startswith("elendi"):
+                                    _why[k[8:]] = _why.get(k[8:], 0) + v
+                        if _why:
+                            st.caption("Eleme nedenleri: " + " • ".join(f"{k} {v}" for k, v in sorted(_why.items(), key=lambda kv: -kv[1])))
+            except Exception:
+                pass
+            _bs = _gstore.bank_stats()
+            st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🏦 Soru bankası</b><br>Hazır soru: <b>{_bs['total']}</b><br>" + "<br>".join(f"&nbsp;&nbsp;{k}: {v}" for k, v in sorted(_bs["per"].items(), key=lambda kv: -kv[1])[:8]) + "</div>", unsafe_allow_html=True)
+            _lp, _lk = _gstore.lpool_count(), len(_gstore.liked())
+            st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>👍 Beğenilen havuz</b><br>Beğenilen soru: <b>{_lk}</b><br>Havuzdaki benzer soru: <b>{_lp}</b></div>", unsafe_allow_html=True)
     except Exception:
         pass
 
