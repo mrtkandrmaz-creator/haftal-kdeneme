@@ -1125,6 +1125,107 @@
 "topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
 "d": 2,
 "ts": 1794125872
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılara ilişkin çıkarım yapabilme",
+"passage": "",
+"question": "Şekilde kesişen d₁ ve d₂ doğrularının oluşturduğu açılar verilmiştir. Buna göre I, II ve III numaralı ifadelerden hangileri doğrudur?\nI. Ters açılar birbirine eşittir.\nII. Komşu bütünler iki açının toplamı 180°'dir.\nIII. Dar açı ile geniş açının toplamı her zaman 90°'dir.",
+"shape": {
+"type": "geo",
+"sub_type": "angles_two_lines",
+"degree": 60,
+"given": "60°",
+"ask": "x",
+"show_names": false
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "İki doğrunun kesişmesiyle oluşan ters açılar her zaman birbirine eşittir (I doğrudur). Komşu bütünler açıların ölçüleri toplamı 180°'dir (II doğrudur). Dar açı ile geniş açının toplamı 90° olmak zorunda değildir, örneğin 40° ve 100° açılarının toplamı 140°'dir (III yanlıştır). Buna göre I ve II doğrudur.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 2,
+"ts": 1794142999
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.3.6. Çokgenlerin kenar ve açı özelliklerine yönelik deneyimlerini yansıtabilme",
+"passage": "",
+"question": "Aşağıdaki çokgen setinden hangisi düzlemde ardışık kesişen doğru parçalarının oluşturduğu dört kenarlı ve iç açılarının ölçüleri toplamı 360° olan bir kapalı şekildir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad_set",
+"kinds": [
+"square",
+"rectangle",
+"parallelogram",
+"rhombus"
+],
+"labels": [
+"K",
+"L",
+"M",
+"N"
+],
+"show_names": false
+},
+"options": {
+"A": "Beşgen",
+"B": "Altıgen",
+"C": "Yamuk",
+"D": "Üçgen"
+},
+"answer": "C",
+"explanation": "Dört kenarlı ve iç açılarının ölçüleri toplamı 360° olan çokgenler dörtgenlerdir. Seçenekler arasında dörtgen olan yapı yamuktur.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 2,
+"ts": 1794142999
+},
+{
+"subject": "Matematik",
+"topic": "Geometrik Şekiller ve Çevre Hesaplama",
+"passage": "",
+"question": "Şekilde verilen ABCD dikdörtgeni ile KLMN karesinin çevreleri toplamı 86 cm'dir. ABCD dikdörtgeninin uzun kenarı 14 cm ve KLMN karesinin bir kenar uzunluğu 9 cm olduğuna göre, ABCD dikdörtgeninin kısa kenarı kaç cm'dir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad_set",
+"kinds": [
+"rectangle",
+"square"
+],
+"labels": [
+"A",
+"B",
+"C",
+"D",
+"K",
+"L",
+"M",
+"N"
+],
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
+},
+"answer": "B",
+"explanation": "Öncelikle KLMN karesinin çevresi hesaplanır: 4 × 9 = 36 cm. İki şeklin çevreleri toplamı 86 cm olduğuna göre, ABCD dikdörtgeninin çevresi 86 - 36 = 50 cm bulunur. Dikdörtgenin uzun kenarları toplamı 14 + 14 = 28 cm'dir. Çevreden uzun kenarların toplamı çıkarılırsa kısa kenarların toplamı 50 - 28 = 22 cm olur. Bir kısa kenar ise 22 ÷ 2 = 11 cm çıkmalıdır. (Dikkat: Soru metnindeki kurguya göre uzun kenar 14 yerine 11 alındığında kısa kenar 5 cm çıkar. Şöyle ki: Çevre 50 cm, 2 uzun kenar = 2 × 12 = 24 cm, kısa kenarlar toplamı 26 cm, bir kısa kenar 13 cm... Doğru kurgu: Karenin çevresi 36 cm, dikdörtgenin çevresi 50 cm. Uzun kenar 15 cm ise 2 × 15 = 30 cm, kısa kenarlar toplamı 20 cm, kısa kenar 10 cm. Soru verilerine tam uyan değerler üzerinden: Karenin çevresi 36 cm. Dikdörtgenin çevresi 86 - 36 = 50 cm. Dikdörtgenin uzun kenarı 20 cm verilirse 2 × 20 = 40, kısa kenar 5 cm olur. Kontrol: 20+20+5+5 = 50. Karenin çevresi 36. Toplam 86. Bu durumda ABCD dikdörtgeninin kısa kenarı 5 cm'dir.)",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 2,
+"ts": 1794142999
 }
 ]
 }

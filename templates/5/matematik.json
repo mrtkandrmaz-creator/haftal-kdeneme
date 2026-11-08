@@ -1,0 +1,260 @@
+{
+ "qs": [
+  {
+   "topic": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+   "text": "Ali bir markette {a} paket çikolata satın alıyor. Her pakette {p} TL bulunuyor. Ali'nin toplam harcaması kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0001",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Elif, bahçesinde {a} metre uzunluğunda bir çit yapacak. Çitin bir metre başına maliyeti {p} TL. Toplam çit maliyeti kaç TL olur?",
+   "vars": {
+    "a": {
+     "lo": 3,
+     "hi": 12
+    },
+    "p": {
+     "lo": 8,
+     "hi": 25
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0002",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+   "text": "Mert, sınıfına {a} adet kalem dağıtacak. Her kalem {p} TL. Mert'in toplam harcaması kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 4,
+     "hi": 15
+    },
+    "p": {
+     "lo": 6,
+     "hi": 20
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0003",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir spor salonunda {a} kişi antrenman yapıyor. Her kişi saat başına {p} TL ödeyecek. Toplam gelir kaç TL olur?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 14
+    },
+    "p": {
+     "lo": 7,
+     "hi": 30
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0004",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
+   "text": "Elif bir bahçeyi dikdörtgen şeklinde düzenlemiştir. Bahçenin alanı {a} metrekare ve kısa kenarı {k} metredir. Bu bahçenin uzun kenarı kaç metredir?",
+   "vars": {
+    "k": {
+     "lo": 2,
+     "hi": 5
+    },
+    "a": {
+     "lo": 20,
+     "hi": 60
+    }
+   },
+   "derived": {
+    "ans": "a / k"
+   },
+   "constraints": [
+    "a % k == 0",
+    "(a / k) > k"
+   ],
+   "answer": "a / k",
+   "wrong": [
+    "a - k",
+    "a + k",
+    "a * k"
+   ],
+   "unit": "metre",
+   "explanation": "Dikdörtgenin alanı (kısa kenar * uzun kenar) olduğundan, uzun kenar alanı kısa kenara bölerek bulunur.",
+   "positive": true,
+   "id": "m5-0005",
+   "unit_name": "4. Tema: Geometrik Nicelikler",
+   "topics": [
+    "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+    "MAT.5.4.2. Birim karelerden yola çıkarak dikdörtgenin alanını değerlendirebilme",
+    "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
+    "MAT.5.4.4. Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemleri çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+   "text": "Bir kütüphanede bir haftada ödünç alınan kitap türleri şöyledir: {a} adet macera, {b} adet bilimkurgu, {c} adet tarih. Tarih kitapları, macera kitaplarından {f} adet az ödünç alınmıştır. Buna göre bilimkurgu ve tarih kitaplarının toplam ödünç alınma sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 30,
+     "hi": 50
+    },
+    "f": {
+     "lo": 5,
+     "hi": 15
+    },
+    "b": {
+     "lo": 20,
+     "hi": 40
+    }
+   },
+   "derived": {
+    "c": "a-f"
+   },
+   "constraints": [
+    "a!=b",
+    "a!=c",
+    "b!=c",
+    "a>f"
+   ],
+   "answer": "b+(a-f)",
+   "wrong": [
+    "a+b+c",
+    "a+b",
+    "b-c"
+   ],
+   "unit": "adet",
+   "explanation": "Tarih kitabı {c} adettir, {b}+{c} toplamı {ans} olur.",
+   "positive": true,
+   "id": "m5-0006",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme",
+   "text": "Bir meyve sepetinde {a} adet elma, {b} adet armut vardır. Sepetten gözü kapalı bir meyve çekiliyor. Elma çekilmesi olayı armut çekilmesi olayına göre daha az olasılıklıdır çünkü elma sayısı daha azdır. Bu iki meyve sayısının toplamı olan örnek uzay eleman sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 4,
+     "hi": 12,
+     "step": 2
+    },
+    "b": {
+     "lo": 15,
+     "hi": 25,
+     "step": 2
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "b > a"
+   ],
+   "answer": "a + b",
+   "wrong": [
+    "b - a",
+    "b // a",
+    "a * b"
+   ],
+   "unit": "meyve",
+   "explanation": "Örnek uzayın eleman sayısı tüm meyvelerin toplamıdır: {a} + {b} = {ans}.",
+   "positive": true,
+   "id": "m5-0007",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  }
+ ]
+}

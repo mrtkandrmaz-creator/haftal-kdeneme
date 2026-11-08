@@ -1100,6 +1100,27 @@
 "topics": "Okuma anlama, Ana fikir, Sözcükte anlam, Eş/zıt anlam",
 "d": 2,
 "ts": 1794126527
+},
+{
+"subject": "Türkçe",
+"topic": "Metin İçi Çıkarım Yapma",
+"passage": "Cezeri, 12. yüzyılda yaşamış bir Türk-İslam bilim insanıdır. Otomatik makineler, su saatleri ve sulama araçları yapmıştır. Yazdığı kitapta birçok mekanik düzeneği çizimleriyle anlatmıştır. Bu çalışmaları nedeniyle \"robotların babası\" olarak da anılır. Cezeri'nin eserleri, bilimin yüzyıllar boyunca nasıl geliştiğini gösteren önemli örneklerdir.",
+"question": "Bu metne göre Cezeri ile ilgili aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Yaptığı çalışmalar günümüzdeki robotik biliminin temelleri arasında yer almaktadır.",
+"B": "Hayatı boyunca yalnızca su saatlerinin geliştirilmesi üzerine araştırmalar yapmıştır.",
+"C": "Bilimsel bulgularını tek bir kitapta toplamak yerine farklı ülkelerde sergilemiştir.",
+"D": "Yaşadığı dönemde eserleri halk tarafından anlaşılamadığı için unutulmuştur."
+},
+"answer": "A",
+"explanation": "Metinde Cezeri'nin otomatik makineler ve mekanik düzenekler yaptığı ve bu yüzden 'robotların babası' olarak anıldığı belirtilmiştir. Bu durum, onun çalışmalarının robotik bilimine öncülük ettiğini gösterir. Diğer seçeneklerdeki kısıtlamalar veya yanlış bilgiler metinden çıkarılamaz.",
+"pid": "b1",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 2,
+"ts": 1794142917
 }
 ]
 }

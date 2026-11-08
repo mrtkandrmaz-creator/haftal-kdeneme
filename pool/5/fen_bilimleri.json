@@ -1366,32 +1366,6 @@
 },
 {
 "subject": "Fen Bilimleri",
-"topic": "Güneş'in Yapısı",
-"passage": "Robotik atölyesinde öğrenciler Güneş'in yapısını temsil eden bir model hazırlamıştır. Öğrenci modeli; 'Güneş, kendi etrafında dönme hareketi yapar ve yüzeyinde soğuk bölgeler olan güneş lekeleri bulunur' prensibiyle kurmuştur.",
-"question": "Görseldeki model üzerinde çalışan bir öğrenci, 'Bu model Güneş'in kendi etrafındaki dönüş süresinin her yerinde aynı olduğunu kanıtlar' demiştir. Buna göre öğrencinin yaptığı bu yorumun yanlış olmasının temel nedeni aşağıdakilerden hangisidir?",
-"shape": {
-"type": "science_space",
-"sub_type": "moon_single",
-"phase": 4,
-"label": "M",
-"show_names": false
-},
-"options": {
-"A": "Ay ve Güneş aynı büyüklükte değildir.",
-"B": "Güneş ışık kaynağı değildir.",
-"C": "Güneş, Dünya'nın çevresinde dolanır.",
-"D": "Güneş katı bir yapıya sahip değildir, gazlardan oluşur."
-},
-"answer": "D",
-"explanation": "Güneş gaz yapıda olduğu için kendi etrafındaki dönüşü her bölgede aynı değildir, ekvatorda daha hızlı döner. Öğrencinin 'dönüş süresi her yerde aynıdır' iddiası bilimsel olarak yanlıştır çünkü Güneş katı bir küre değildir.",
-"vfd2": true,
-"unit": "Güneş, Dünya ve Ay",
-"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
-"d": 4,
-"ts": 1794126079
-},
-{
-"subject": "Fen Bilimleri",
 "topic": "Ay'ın Yapısı ve Özellikleri",
 "passage": "Bir kültür festivalinde Ay'ın yüzey özelliklerini tanıtan bir pano hazırlanmıştır. Pano üzerinde Ay'ın kraterleri, toz tabakası ve atmosferinin yok denecek kadar az olması vurgulanmıştır.",
 "question": "Buna göre, Ay'da hava olaylarının (yağmur, rüzgar vb.) gerçekleşmemesinin temel nedeni aşağıdakilerden hangisidir?",
@@ -1466,6 +1440,106 @@
 "topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
 "d": 4,
 "ts": 1794126079
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "Kerem, fen bilimleri dersindeki projesi için basit bir elektrik devresi kurmak istiyor. Çalışma masasının üzerinde pil, bağlantı kablosu, ampul ve anahtar gibi devre elemanları bulunuyor. Kerem, devreyi kurarken ampulün ışık vermesini sağlamak için parçaları birbirine bağlıyor ancak ilk denemesinde ampul yanmıyor.",
+"question": "Kerem'in kurduğu devrede ampulün ışık vermemesine yol açabilecek durumlar arasında aşağıdakilerden hangisi gösterilemez?",
+"shape": null,
+"options": {
+"A": "Anahtarın açık konumda olması nedeniyle devrenin kapalı devre olmaması",
+"B": "Bağlantı kablolarından birinin kopuk ya da gevşek olması",
+"C": "Devrede kullanılan pilin tükenmiş veya kutuplarının yanlış bağlanmış olması",
+"D": "Devredeki bağlantı kablolarının tamamen bakır telden ve iletken maddeden yapılmış olması"
+},
+"answer": "D",
+"explanation": "Basit bir elektrik devresinde akımın oluşması ve ampulün yanması için devrenin kapalı olması, kabloların sağlam ve pilin çalışır durumda olması gerekir. Anahtarın açık olması, kabloların kopuk olması veya pilin tükenmesi ampulün yanmamasına neden olur. Ancak kabloların bakır ve iletken olması ampulün yanmasını engelleyen değil, aksine kolaylaştıran bir durumdur.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 2,
+"ts": 1794143238
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Seri ve paralel bağlama",
+"passage": "Zeynep, özdeş pil ve ampuller kullanarak iki farklı devre kuruyor. Birinci devrede iki ampulü aynı kol üzerinde ard arda bağlıyor. İkinci devrede ise her ampulün kendine ait ayrı birer kolu bulunuyor. Zeynep, her iki devrede de anahtarları kapatarak gözlem yapıyor.",
+"question": "Zeynep'in kurduğu bu devrelerle ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "İkinci devrede ampuller seri bağlı olarak çalışmaktadır.",
+"B": "İkinci devrede bir ampul çıkarıldığında diğer ampulün parlaklığı değişmez.",
+"C": "Birinci devrede ampul sayısı arttıkça diğer ampullerin parlaklığı artar.",
+"D": "Birinci devrede bir ampul patlarsa diğer ampul yanmaya devam eder."
+},
+"answer": "B",
+"explanation": "Zeynep'in ilk devresi seri bağlıdır ve bu devrede bir ampul patlarsa akım kesileceği için diğer ampul de söner. İkinci devresi ise paralel bağlıdır; paralel kollarda her ampulün ayrı yolu olduğu için bir ampul çıkarıldığında diğer ampul yanmaya devam eder ve parlaklığı değişmez.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 2,
+"ts": 1794143238
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik güvenliği",
+"passage": "Okul bahçesinde düzenlenen bilim şenliğinde öğrenciler elektrik güvenliği ile ilgili doğru ve yanlış davranışları gösteren bir pano hazırlıyorlar. Panoda yer alan görsellerde günlük hayatta karşılaşılan bazı durumlar ele alınıyor.",
+"question": "Aşağıdakilerden hangisi evde veya okulda uyulması gereken elektrik güvenlik kurallarından biri değildir?",
+"shape": null,
+"options": {
+"A": "Islak ellerle elektrikli ev aletlerine ve prizlere dokunmamak",
+"B": "Elektrikli cihazların fişini çekerken kablosundan tutarak çekmek",
+"C": "Prizlere plastik priz koruma kapağı takmak",
+"D": "Hasar görmüş veya kablosu soyulmuş prizleri kullanmamak"
+},
+"answer": "B",
+"explanation": "Elektrik fişlerini prizden çıkarırken kablosundan çekmek, kablonun içindeki tellerinin kopmasına ve kısa devre yaparak elektrik çarpması veya yangın riskine yol açabilir. Bu nedenle fiş daima başlığından tutularak çekilmelidir.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 2,
+"ts": 1794143238
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "İletken ve yalıtkan maddeler",
+"passage": "Bir fen bilimleri laboratuvarında el feneri pilinden ve küçük bir ampulden oluşan test devresi kuran Mert, elindeki çeşitli maddeleri devreye bağlayarak ampulün ışık verip vermediğini kontrol ediyor. Mert'in test ettiği maddelerin sonuçları kaydediliyor.",
+"question": "Mert'in yaptığı bu deneyde, aşağıdaki maddelerden hangisinin devreye bağlanması durumunda ampulün ışık vermesi beklenir?",
+"shape": null,
+"options": {
+"A": "Plastik cetvel",
+"B": "Tahta parça",
+"C": "Cam bardak",
+"D": "Demir çivi"
+},
+"answer": "D",
+"explanation": "Elektrik devresinde ampulün ışık vermesi için devreyi tamamlayan maddenin elektrik akımını iletmesi gerekir. Plastik, tahta ve cam yalıtkan maddelerdir; demir çivi ise metal olduğundan iletkendir ve elektrik akımının geçişine izin vererek ampulün yanmasını sağlar.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 2,
+"ts": 1794143238
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları ve sembolleri",
+"passage": "Fen bilimleri dersinde elektrik devreleri konusunu işleyen öğretmen, tahtaya basit bir elektrik devresinin şemasını çiziyor ve öğrencilerden devre elemanlarının görevlerini açıklamalarını istiyor.",
+"question": "Öğretmenin tahtaya çizdiği basit elektrik devresindeki elemanlar ve görevleri ile ilgili aşağıdakilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Ampul, elektrik enerjisini tamamen yok ederek ısıya çevirir.",
+"B": "Bağlantı kablosu, elektrik enerjisini cihazlara iletir.",
+"C": "Anahtar, devreyi açıp kapatarak akım kontrolü yapar.",
+"D": "Pil, devreye elektrik enerjisi sağlar."
+},
+"answer": "A",
+"explanation": "Ampul, elektrik enerjisini ışık ve çevreye ısı enerjisine dönüştürür; ancak enerjiyi 'yok etmez', enerji korunumu kanununa göre başka bir tür enerjiye dönüştürür. Enerjinin yok edilmesi bilimsel olarak mümkün değildir.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 2,
+"ts": 1794143238
 }
 ]
 }

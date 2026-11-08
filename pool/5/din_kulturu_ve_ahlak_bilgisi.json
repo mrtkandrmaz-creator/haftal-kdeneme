@@ -1100,6 +1100,86 @@
 "topics": "Peygamberliği, Örnek ahlakı",
 "d": 2,
 "ts": 1794126301
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi ve Tevhid",
+"passage": "Robotik atölyesinde proje hazırlayan Kerem, tasarladığı akıllı sistemin tüm parçalarının tek bir merkezden kusursuz bir şekilde yönetildiğini arkadaşlarına anlatırken, 'Evrendeki her şeyin ve bu sistemlerin tek bir yaratıcısı ve yöneticisi vardır.' vurgusunu yapmıştır.",
+"question": "Kerem'in bu açıklaması ve İhlas Suresi'nin ana teması dikkate alındığında, İslam inancında Allah'ın bir ve tek olmasını ifade eden temel kavram aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Tevhid",
+"B": "Semi",
+"C": "Basar",
+"D": "Tekvin"
+},
+"answer": "A",
+"explanation": "Kerem'in evrendeki her şeyin tek bir yaratıcı tarafından yönetildiğini vurgulaması, İslam inancında Allah'ın bir ve tek olması inancını ifade eden Tevhid kavramıyla doğrudan ilişkilidir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 1,
+"ts": 1794143323
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi ve Allah'ın Sıfatları",
+"passage": "Ormancılık kulübündeki öğrenciler, doğadaki ağaçların çeşitliliğini incelemiş ve aralarında hiçbir ağacın tam olarak diğerinin eşiti olmadığını ancak hepsinin tek bir kanuna göre büyüdüğünü fark etmişlerdir.",
+"question": "Öğrencilerin bu gözlemine göre, İhlas Suresi'nin birinci ayeti olan 'Kul hüvallâhü ehad' ifadesinden çıkarılabilecek en temel inanç ilkesi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Allah birdir ve tektir.",
+"B": "Allah her şeyi işitendir.",
+"C": "Allah rızık verendir.",
+"D": "Allah her şeyi görendir."
+},
+"answer": "A",
+"explanation": "'Kul hüvallâhü ehad' ayeti 'De ki: O, Allah'tır, bir tektir' anlamına gelmektedir ve öğrencilerin gözlemindeki tek merkezli düzeni açıklayan inanç ilkesidir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 1,
+"ts": 1794143323
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi ve Tevhid",
+"passage": "Kerem, okul projesi için marketten aldığı kuru gıdaları ve temel ihtiyaç malzemelerini mahallelerindeki yardıma muhtaç bir aileye ulaştırmaktadır. Yolda yürürken evrendeki düzeni, gökyüzünü ve doğayı gözlemleyen Kerem, her şeyin bir sahibi ve yaratıcısı olduğunu düşünerek arkadaşı Deniz'e şöyle der: 'Evrendeki bu muazzam düzen ve her varlığın işleyişi bize tek bir Yaratıcı'nın varlığını ve O'nun hiçbir şeye muhtaç olmadığını, aksine her şeyin O'na muhtaç olduğunu açıkça gösteriyor.'",
+"question": "Kerem'in bu konuşmasında değindiği temel inanç ilkesi ve bu ilkeyi en doğrudan destekleyen İhlas Suresi ayeti aşağıdakilerin hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Tevhid inancı ve Allâhüs-samed (Allah hiçbir şeye muhtaç değildir, her şey O'na muhtaçtır.)",
+"B": "Kudret sıfatı ve Lem yelid ve lem yûled (O doğurmamış ve doğurulmamıştır.)",
+"C": "Tekvin inancı ve Kul hüvallâhü ehad (De ki: O, Allah'tır, bir tektir.)",
+"D": "Basar sıfatı ve Ve lem yekün lehû küfüven ehad (Hiçbir şey O'na denk ve benzer değildir.)"
+},
+"answer": "A",
+"explanation": "Kerem'in ifadesinde 'hiçbir şeye muhtaç olmadığını, aksine her şeyin O'na muhtaç olduğunu' vurgulaması İhlas Suresi'ndeki 'Allâhüs-samed' ayetinin anlamıyla birebir örtüşmektedir ve bu durum tevhid inancının temelini oluşturur.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 1,
+"ts": 1794143323
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi'nin Meali",
+"passage": "5. sınıf öğrencisi Zeynep, kütüphanede İhlas Suresi üzerine bir araştırma yapmaktadır. İncelediği güvenilir bir kaynakta surenin ayetlerinin Türkçe anlamlarını alt alta not almış ancak bazı yerlerde eksiklikler fark etmiştir. Zeynep'in not defterine yazdığı bilgiler şunlardır:\n1. Ayet: \"(Resûlüm!) De ki: O, Allah'tır, bir tektir.\"\n2. Ayet: \"Allah Samed'dir (her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir).\"\n3. Ayet: \"O doğurmamış ve doğurulmamıştır.\"\n4. Ayet: \"Hiçbir şey O'na denk ve benzer değildir.\"",
+"question": "Zeynep'in not aldığı bu mealler sırasıyla İhlas Suresi'nin hangi Arapça ifadeleriyle eşleşmektedir?",
+"shape": null,
+"options": {
+"A": "Lem yelid ve lem yûled - Kul hüvallâhü ehad - Allâhüs-samed - Ve lem yekün lehû küfüven ehad",
+"B": "Allâhüs-samed - Kul hüvallâhü ehad - Ve lem yekün lehû küfüven ehad - Lem yelid ve lem yûled",
+"C": "Ve lem yekün lehû küfüven ehad - Lem yelid ve lem yûled - Kul hüvallâhü ehad - Allâhüs-samed",
+"D": "Kul hüvallâhü ehad - Allâhüs-samed - Lem yelid ve lem yûled - Ve lem yekün lehû küfüven ehad"
+},
+"answer": "D",
+"explanation": "Sürenin 1. ayeti 'Kul hüvallâhü ehad', 2. ayeti 'Allâhüs-samed', 3. ayeti 'Lem yelid ve lem yûled', 4. ayeti ise 'Ve lem yekün lehû küfüven ehad' şeklindedir ve verilen meallerle sırasıyla tam olarak eşleşmektedir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 1,
+"ts": 1794143323
 }
 ]
 }
