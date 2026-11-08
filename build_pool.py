@@ -213,6 +213,9 @@ def build(ai, cur, args, gen=None, strict=None):
                 continue
             if s in bad:
                 continue
+            if sj in ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi") and not ai._on_topic(q, f"{unit}: {topics_txt}", sj, label):
+                print(f"   ✗ ünite dışı: {str(q.get('question'))[:70]}")
+                continue
             if chosen:  # metni değiştirmiş ya da metinden bağımsız soruları ele; metni AYNEN kaynak metinle değiştir
                 import difflib
                 if difflib.SequenceMatcher(None, _norm_txt(q.get("passage")), _norm_txt(chosen["metin"])).ratio() < 0.85:
