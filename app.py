@@ -2338,9 +2338,69 @@ def _shape_set(ax, d, kind_fn, default):
 _geo_basic = _geo
 
 
+def _nested_circles(ax, d):
+    """İç içe / yan yana çemberler. mode: concentric (ortak merkezli, radii), chain (n eş çember yan yana), inner_tangent (küçük çember büyüğün içinde, merkezden geçer)."""
+    mode = str(d.get("mode", "concentric")).lower()
+    labs = [str(x) for x in (d.get("labels") or [])]
+    cols = ["#f0f9ff", "#e0f2fe", "#bae6fd", "#7dd3fc"]
+    if mode == "chain":
+        n = max(2, min(5, int(_f(d.get("n", 3), 3))))
+        R = 1.0
+        for i in range(n):
+            ax.add_patch(Circle((R + 2 * R * i, 0), R, fc=cols[i % 3], ec=INK, lw=2, zorder=2))
+            ax.plot(R + 2 * R * i, 0, "o", color=ORANGE, ms=3.5, zorder=4)
+        ax.plot([R, R + R], [0, 0], color=BLUE, lw=2, zorder=5)
+        ax.text(R + R / 2, .13, labs[0] if labs else "r", fontsize=8, fontweight="bold", color=BLUE, ha="center", zorder=6,
+                bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+        ax.annotate("", xy=(0, -R - .35), xytext=(2 * R * n, -R - .35), arrowprops=dict(arrowstyle="<->", color=GREEN, lw=1.6))
+        ax.text(R * n, -R - .75, labs[1] if len(labs) > 1 else "?", fontsize=10, fontweight="bold", color=GREEN, ha="center")
+        ax.set_xlim(-.6, 2 * R * n + .6)
+        ax.set_ylim(-R - 1.2, R + .6)
+        return
+    big = 2.4
+    if mode == "inner_tangent":
+        ax.add_patch(Circle((0, 0), big, fc=cols[0], ec=INK, lw=2.2, zorder=2))
+        ax.add_patch(Circle((big / 2, 0), big / 2, fc=cols[2], ec=INK, lw=2.2, zorder=3))
+        ax.plot(0, 0, "o", color=ORANGE, ms=5, zorder=5)
+        ax.text(-.25, -.42, "O", fontsize=10, fontweight="bold", color=ORANGE, zorder=6)
+        ax.plot([-big, big], [0, 0], ls="--", color=SLATE, lw=1.4, zorder=4)
+        ax.text(-big / 2, .2, labs[0] if labs else "", fontsize=9.5, fontweight="bold", color=BLUE, ha="center", zorder=6)
+        ax.set_xlim(-3.3, 3.3)
+        ax.set_ylim(-3.1, 3.1)
+        return
+    radii = [float(x) for x in (d.get("radii") or [2, 4])][:4]
+    mx = max(radii)
+    sc = big / mx
+    for i, r in sorted(enumerate(radii), key=lambda t: -t[1]):
+        ax.add_patch(Circle((0, 0), r * sc, fc=cols[min(3, len(radii) - 1 - sorted(radii).index(r))] if len(radii) > 1 else cols[0], ec=INK, lw=2, zorder=2 + (len(radii) - i)))
+    ax.plot(0, 0, "o", color=ORANGE, ms=5, zorder=9)
+    ax.text(.12, -.38, str(d.get("center", "O")), fontsize=10, fontweight="bold", color=ORANGE, zorder=10)
+    for k, r in enumerate(sorted(radii)):
+        t = labs[k] if k < len(labs) else ""
+        if not t:
+            continue
+        ang = np.radians(25 + 38 * k)
+        ax.plot([0, r * sc * np.cos(ang)], [0, r * sc * np.sin(ang)], color=BLUE if k % 2 == 0 else GREEN, lw=1.8, zorder=8)
+        ax.text(r * sc * np.cos(ang) * .55, r * sc * np.sin(ang) * .55 + .12, t, fontsize=8.5, fontweight="bold", color=INK, ha="center", zorder=10,
+                bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=.85))
+    rs = sorted(radii)
+    for k, t in enumerate(d.get("bands") or []):
+        if k + 1 >= len(rs):
+            break
+        a, b = rs[k] * sc, rs[k + 1] * sc
+        ax.plot([a, b], [0, 0], color=ORANGE, lw=3.2, zorder=8, solid_capstyle="butt")
+        ax.annotate("", xy=(a, -.28), xytext=(b, -.28), arrowprops=dict(arrowstyle="<->", color=ORANGE, lw=1.4), zorder=9)
+        ax.text((a + b) / 2, -.62 - .42 * (k % 2), str(t), fontsize=8.5, fontweight="bold", color=INK, ha="center", zorder=10,
+                bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=.85))
+    ax.set_xlim(-3.2, 3.2)
+    ax.set_ylim(-3.2, 3.2)
+
+
 def _geo(ax, d):
     sub = str(d.get("sub_type", "polygon")).lower()
     ax.set_aspect("equal")
+    if sub in ("nested_circles", "iç_içe_çember"):
+        return _nested_circles(ax, d)
     if sub in ("triangle", "triangle_kind"):
         return _triangle_geo(ax, d)
     if sub in ("triangle_set",):
@@ -5660,9 +5720,29 @@ def _trivial_chart_q(shape, qtext, opts, ans):
     return an is not None and any(abs(v - an) < 1e-9 for _l, v in pairs) and bool(re.search(r"kaç", qtext, re.I))
 
 
+_UD_SAFE = re.compile(r"çevre|ikizkenar|eşkenar|dik üçgen|dik açılı|pisagor|en az|en fazla|en büyük|en küçük|aralığ|tam sayı|alan|açı|derece|°|toplam|oran|kat[ıi]|köşegen|yükseklik|hipotenüs|benzer|eş ", re.I)
+_UD_Q = (
+    re.compile(r"üçüncü\s+kenar|diğer\s+kenar|kalan\s+kenar|bilinmeyen\s+kenar|\b[A-Z]{2}\s+kenar[ıi]n[ıi]n\s+uzunlu", re.I),
+    re.compile(r"(?:üçgen|dörtgen|dikdörtgen|paralelkenar|yamuk)[^?.]{0,80}kenar[^?.]{0,40}(?:kaç|uzunluğu)", re.I),
+)
+
+
+def _underdetermined(full, shape):
+    """Geometride sorulan uzunluğu belirleyecek veri yoksa (örn. üçgende iki kenar verilmiş, üçüncüsü soruluyor) True."""
+    low = str(full or "")
+    if not any(rx.search(low) for rx in _UD_Q):
+        return False
+    if not re.search(r"üçgen|dörtgen|dikdörtgen|paralelkenar|yamuk|şekil", low, re.I):
+        return False
+    blob = low + " " + json.dumps(shape or {}, ensure_ascii=False)
+    return not _UD_SAFE.search(blob)
+
+
 def _complete_ok(qtext, pas, opts, shape):
     """Soru metni + şıklar + görsel arasında eksik/uyumsuz bilgi var mı? (False -> soruyu ele)"""
     full = f"{qtext}\n{pas}"
+    if _underdetermined(full, shape):
+        return False
     if _PLACEHOLDER.search(full) or any(_PLACEHOLDER.search(str(v)) or not str(v).strip() for v in opts.values()):
         return False
     if not _figure_complete(shape):
@@ -7668,7 +7748,7 @@ def seed_questions(subject, grade_label, topics="", limit=3, seen=()):
     for grades, subj, kws, topic, qq, opts, ai, ex in _SEEDS:
         if subj != subject or (gd and gd not in grades):
             continue
-        if tl and not any(k in tl for k in kws):
+        if tl and not any(_kw_hit(tl, k) for k in kws):
             continue
         pool.append((topic, qq, opts, ai, ex))
     rkey = ("seed", subject, gd)
@@ -8432,6 +8512,113 @@ _MF_GENS += [
 ]
 
 
+# ---------------------------------------------------------------- KONU KİLİDİ: seçilen konu/ünite dışındaki soru KESİNLİKLE girmez
+_TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aranacak)
+    "Matematik": [
+        ("geometri", r"geometri|şekil|çember|üçgen|dörtgen|doğru|ışın|açı\b|açılar|nokta", r"üçgen|dörtgen|dikdörtgen|kare|çember|daire|açı|kenar|köşe|doğru|ışın|nokta|çokgen|şekil|simetri|paralel|dik\b|köşegen|çevre|alan|yarıçap|çap\b|merkez|cetvel|iletki|pergel|birim kare"),
+        ("kesir", r"kesir", r"kesir|payda|\bpay\b|bütün|tam sayılı|\d\s*/\s*\d|bölü|\bve\b.*\bde\b"),
+        ("olasılık", r"olasılık", r"olasılık|imkânsız|imkansız|kesin|olay|şans|zar|para|torba|kura|çekil"),
+        ("veri", r"istatistik|veri\b|grafik", r"veri|tablo|grafik|sütun|çubuk|anket|sıklık|kategorik|en çok|en az|araştır|sınıf"),
+    ],
+    "Fen Bilimleri": [
+        ("ay", r"güneş|dünya|\bay\b|ay'ın|ayın|tutulma|evre", r"güneş|dünya|\bay\b|ay'|ayın|evre|tutulma|dolunay|hilal|dördün|yörünge|eksen|gece|gündüz|mevsim|uydu|gök"),
+        ("kuvvet", r"kuvvet|sürtünme|dinamometre|ağırlık", r"kuvvet|sürtünme|dinamometre|newton|ağırlık|kütle|yay|itme|çekme|hareket"),
+        ("madde", r"madde|ısı|sıcaklık|erime|donma", r"madde|ısı|sıcaklık|erime|donma|kaynama|buhar|katı|sıvı|gaz|termometre|hâl|hal\b|yoğuş|°"),
+        ("ışık", r"ışık|gölge|yansıma", r"ışık|gölge|yansı|ayna|saydam|donuk|kaynak|işın|ışın|yayıl"),
+        ("elektrik", r"elektrik|devre", r"devre|pil|ampul|akım|lamba|anahtar|elektrik|seri|paralel|iletken|yalıtkan"),
+        ("hücre", r"hücre|canlı", r"hücre|organel|canlı|sınıflan|bitki|hayvan|mantar|bakteri|çekirdek|zar|mikroskop|doku"),
+        ("çevre", r"ekosistem|besin|çevre|biyo", r"ekosistem|besin|çevre|zincir|atık|biyo|tür\b|üretici|tüketici|ayrıştırıcı|canlı|doğa|habitat"),
+    ],
+}
+
+
+def _on_topic(q, topics, subject=None):
+    """Soru, seçilen konu/ünite metnine uygun mu? Emin olmadığında True (gereksiz eleme yapmaz)."""
+    try:
+        tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+        if not tl.strip():
+            return True
+        subj = subject or q.get("subject")
+        body = " ".join(str(x) for x in (q.get("topic", ""), q.get("question", ""), q.get("passage", ""), " ".join(str(v) for v in (q.get("options") or {}).values()))).lower()
+        groups = _TOPIC_GROUPS.get(subj)
+        if groups:
+            sel = [(n, c) for n, trig, c in groups if re.search(trig, tl)]
+            if sel:
+                return any(re.search(c, body) for _n, c in sel)
+        if subj in ("Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi"):
+            want = _pool_tok(tl)
+            qt = str(q.get("topic") or "")
+            if want and qt.strip() and not (want & _pool_tok(qt)) and not (want & _pool_tok(body)):
+                return False
+        return True
+    except Exception:
+        return True
+
+
+def _kw_hit(tl, k):
+    """Konu anahtar sözcüğü: kısa sözcükler (ay, ısı...) yalnızca tam sözcük olarak eşleşir; 'ayrıca' içindeki 'ay' sayılmaz."""
+    if len(k) <= 3:
+        return re.search(r"(?<![a-zçğıöşü])" + re.escape(k) + r"(?![a-zçğıöşü])", tl) is not None
+    return re.search(r"(?<![a-zçğıöşü])" + re.escape(k), tl) is not None
+
+
+def _mf_nest(subject):
+    """5. sınıf: iç içe çemberler (ortak merkezli / yan yana eş / içten teğet). Metindeki her değer şekilde yazılıdır."""
+    kind = random.choice(["gap", "outer_d", "chain", "inner", "ring3"])
+    if kind == "gap":
+        r1 = random.randint(2, 6)
+        r2 = r1 + random.randint(2, 6)
+        c = r2 - r1
+        q = f"Şekilde O merkezli iç içe iki çemberin yarıçapları verilmiştir. İki çember arasındaki uzaklık (halkanın genişliği) kaç cm’dir?"
+        sh = {"type": "geo", "sub_type": "nested_circles", "mode": "concentric", "radii": [r1, r2], "labels": [f"{r1} cm", f"{r2} cm"]}
+        wr = [r1 + r2, r2 * 2 - r1, r1, c + 1, r2]
+        ex = f"Halka genişliği = büyük yarıçap − küçük yarıçap = {r2} − {r1} = {c} cm."
+        o = _mf_opts(c, wr, lambda v: f"{v} cm")
+    elif kind == "outer_d":
+        r1 = random.randint(2, 5)
+        w = random.randint(2, 4)
+        r2 = r1 + w
+        c = 2 * r2
+        q = f"Şekilde O merkezli iç içe iki çemberde küçük çemberin yarıçapı {r1} cm, iki çember arasındaki uzaklık {w} cm’dir. Büyük çemberin çapı kaç cm’dir?"
+        sh = {"type": "geo", "sub_type": "nested_circles", "mode": "concentric", "radii": [r1, r2], "labels": [f"{r1} cm", ""], "bands": [f"{w} cm"]}
+        wr = [r2, r1 + 2 * w, 2 * r1 + w, r1 + w + 2, c + 2]
+        ex = f"Büyük yarıçap = {r1} + {w} = {r2} cm; çap = 2 × {r2} = {c} cm."
+        o = _mf_opts(c, wr, lambda v: f"{v} cm")
+    elif kind == "ring3":
+        r1 = random.randint(1, 3)
+        w1, w2 = random.randint(1, 3), random.randint(1, 3)
+        r2, r3 = r1 + w1, r1 + w1 + w2
+        c = 2 * r3
+        q = (f"Şekilde O merkezli üç çemberin en küçüğünün yarıçapı {r1} cm’dir. Küçük ile orta çember arası {w1} cm, orta ile büyük çember arası {w2} cm’dir. "
+             "Büyük çemberin çapı kaç cm’dir?")
+        sh = {"type": "geo", "sub_type": "nested_circles", "mode": "concentric", "radii": [r1, r2, r3], "labels": [f"{r1} cm", "", ""], "bands": [f"{w1} cm", f"{w2} cm"]}
+        wr = [r3, r1 + w1 + w2 + r1, 2 * (w1 + w2), c + 2, c - 2]
+        ex = f"Büyük yarıçap = {r1} + {w1} + {w2} = {r3} cm; çap = 2 × {r3} = {c} cm."
+        o = _mf_opts(c, wr, lambda v: f"{v} cm")
+    elif kind == "chain":
+        n = random.choice([3, 4, 5])
+        r = random.randint(2, 6)
+        c = 2 * r * n
+        q = f"Şekilde birbirine teğet {n} eş çember yan yana dizilmiştir. Her bir çemberin yarıçapı {r} cm olduğuna göre dizinin toplam uzunluğu kaç cm’dir?"
+        sh = {"type": "geo", "sub_type": "nested_circles", "mode": "chain", "n": n, "labels": [f"r = {r} cm", "?"]}
+        wr = [r * n, 2 * r * (n - 1), r * (n + 1), c + r, c - r]
+        ex = f"Her çemberin çapı 2 × {r} = {2 * r} cm; {n} çember: {n} × {2 * r} = {c} cm."
+        o = _mf_opts(c, wr, lambda v: f"{v} cm")
+    else:
+        k = random.randint(2, 6)
+        D = 4 * k
+        c = k
+        q = (f"Şekildeki büyük çemberin çapı {D} cm’dir. Küçük çemberin çapı büyük çemberin yarıçapına eşit ve küçük çember O merkezinden geçtiğine göre küçük çemberin yarıçapı kaç cm’dir?")
+        sh = {"type": "geo", "sub_type": "nested_circles", "mode": "inner_tangent", "labels": [f"Çap = {D} cm"]}
+        wr = [2 * k, D // 2, D, 3 * k, k + 1, k * 4 + 2]
+        ex = f"Büyük çemberin yarıçapı {D}/2 = {2 * k} cm; küçük çemberin çapı {2 * k} cm, yarıçapı {2 * k}/2 = {k} cm."
+        o = _mf_opts(c, wr, lambda v: f"{v} cm")
+    return _mf_raw(subject, "Çember", q, o, ex, shape=sh) if o else None
+
+
+_MF_GENS += [(_mf_nest, ("çember", "geometri", "geometrik", "iç içe"), (5,))]
+
+
 def math_questions(grade_label, n, topics="", seen=()):
     """Cevabı kodla hesaplanan Matematik soruları (MEB 'Kazanım Kavrama' tarzı). API kullanmaz, hata içermez."""
     if n <= 0:
@@ -8443,7 +8630,7 @@ def math_questions(grade_label, n, topics="", seen=()):
     pool = [(f, kw) for f, kw, gs in _MF_GENS if g in gs]
     if not pool:
         return []
-    sel = [f for f, kw in pool if any(k in tl for k in kw)] or ([f for f, _ in pool] if not tl else [])
+    sel = [f for f, kw in pool if any(_kw_hit(tl, k) for k in kw)] or ([f for f, _ in pool] if not tl else [])
     if not sel:
         return []
     out, stems = [], set(seen)
@@ -8461,6 +8648,8 @@ def math_questions(grade_label, n, topics="", seen=()):
                     x = _norm_q(raw, "Matematik") if raw else None
                 except Exception:
                     x = None
+                if x and not _on_topic(x, topics, "Matematik"):
+                    x = None  # seçilen ünite dışı kalıp: atla
                 if x and _stem(x) not in stems:
                     stems.add(_stem(x))
                     x["vfd"] = True
@@ -8634,7 +8823,7 @@ def _ff_shadow(subject):
     return _mf_raw(subject, "Gölge", q, o, f"Uzaklık {ds[0]} cm iken gölge {sh[0]} cm, {ds[-1]} cm iken {sh[-1]} cm'dir; uzaklaştıkça gölge küçülmektedir.", shape=shape, passage=lead)
 
 
-_FF_GENS += [(_ff_food, ("besin", "ekosistem", "zincir", "çevre", "biyoçeşit")), (_ff_boil, ("ısı", "sıcaklık", "kayna", "erime", "madde", "değişim")),
+_FF_GENS += [(_ff_food, ("besin", "ekosistem", "zincir", "çevre", "biyoçeşit")), (_ff_boil, ("ısı", "sıcaklık", "kaynama", "erime", "madde", "değişim")),
              (_ff_fric, ("sürtünme", "kuvvet")), (_ff_shadow, ("gölge", "ışık"))]
 
 
@@ -8683,7 +8872,7 @@ def sosyal_questions(grade_label, n, topics="", seen=()):
     if n <= 0 or "5" not in gl[:2]:
         return []
     tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
-    sel = [f for f, kw in _SF_GENS if any(k in tl for k in kw)]
+    sel = [f for f, kw in _SF_GENS if any(_kw_hit(tl, k) for k in kw)]
     if not sel:
         return []
     out, stems = [], set(seen)
@@ -8716,7 +8905,7 @@ def fen_questions(grade_label, n, topics="", seen=()):
         return []
     g_key = "5"
     tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
-    sel = [f for f, kw in _FF_GENS if any(k in tl for k in kw)]
+    sel = [f for f, kw in _FF_GENS if any(_kw_hit(tl, k) for k in kw)]
     if not sel:
         return []
     out, stems = [], set(seen)
@@ -8733,6 +8922,8 @@ def fen_questions(grade_label, n, topics="", seen=()):
                     raw = byname[nm]("Fen Bilimleri")
                     x = _norm_q(raw, "Fen Bilimleri") if raw else None
                 except Exception:
+                    x = None
+                if x and not _on_topic(x, topics, "Fen Bilimleri"):
                     x = None
                 if x and _stem(x) not in stems:
                     stems.add(_stem(x))
@@ -9093,6 +9284,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 s = _stem(q)
                 if not s:
                     continue
+                if not _on_topic(q, p.get("topics", ""), p.get("subject")):
+                    continue  # seçilen konu dışı: yedeğe bile alınmaz
                 if s in seen:
                     res_.append(q)
                 elif (_relaxed_ok(q, qs_) if relax else accept_diverse(q, qs_, p["n"])):
