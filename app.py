@@ -3918,7 +3918,7 @@ def bank_key(grade_label, subject, difficulty, topics):
 
 
 def _bstem(q):
-    return re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
+    return re.sub(r"\W+", " ", re.sub(r"\d+", "0", str(q.get("question", "")).lower()))[:70].strip()
 
 
 def _bank():
@@ -5757,6 +5757,7 @@ LGS_STYLE = (
     "- Soru, bir BAĞLAM ya da VERİ (kısa senaryo, deney, metin, tablo, grafik) sunar; sonra ölçtüğü beceriye yönelik TEK net soru sorar: 'Buna göre … hangisidir?', "
     "'Bu verilere göre aşağıdakilerden hangisi söylenemez?', 'I, II ve III yargılarından hangileri doğrudur?'.\n"
     "- Soru kökü çeşitli olsun: yargı değerlendirme (I-II-III), olumsuz kök (yanlış/söylenemez), sıralama, eşleştirme, çıkarım, karşılaştırma, hata bulma. Tüm sorular aynı kalıpta olmasın.\n"
+    "- 🔁 ÖZGÜNLÜK: Aynı soruyu yalnızca sayıları/isimleri değiştirerek çoğaltma YASAK. Her soru FARKLI bir bağlam (günlük yaşam, deney, harita, metin, tablo, grafik…), FARKLI bir soru kökü ve FARKLI bir beceri ölçsün; sık kullanılan örnek kalıplardan (market alışverişi, 'x kg elma', 'Ali ile Ayşe' vb.) kaçın, özgün ve beklenmedik senaryolar kur.\n"
     "- 🚫 Doğrudan tanım/ezber ('… nedir?', tek bilgiyi hatırlama) ve TEK İŞLEMLİ/TEK ADIMLI sorular YASAK; her soru en az iki adımlı muhakeme (veriyi oku → ilişki kur → sonuca var) gerektirsin.\n"
     "- Çeldiriciler rastgele olmasın: öğrencilerin yapabileceği tipik yanılgılardan ve işlem hatalarından türesin; şıklar benzer uzunlukta olsun, doğru şık uzunluğuyla ya da ifadesiyle ele vermesin.\n")
 
@@ -6932,12 +6933,12 @@ def leaks_answer(q):
 
 
 def _stem(q):
-    return re.sub(r"\W+", " ", str(q.get("question", "")).lower())[:70].strip()
+    return re.sub(r"\W+", " ", re.sub(r"\d+", "0", str(q.get("question", "")).lower()))[:70].strip()
 
 
 def _qwords(q):
     t = str(q.get("question", "")) + " " + str(q.get("passage", "")) + " " + " ".join(str(v) for v in (q.get("options") or {}).values())
-    return {w for w in re.sub(r"[^\w\s]", " ", t.lower()).split() if len(w) > 2}
+    return {w for w in re.sub(r"[^\w\s]", " ", t.lower()).split() if len(w) > 2 and not w.isdigit()}
 
 
 def _vsig(q):
@@ -7475,6 +7476,27 @@ _SEEDS = [
 ]
 
 
+_RECENT = {}  # (ders, sınıf) -> son kullanılan kalıp/tohum kimlikleri (sınavlar arası tekrarı azaltır)
+
+
+def _recent_order(key, ids):
+    """Kimlikleri karıştırır; yakın zamanda kullanılanları sona atar."""
+    rec = set(_RECENT.get(key, ()))
+    fresh = [i for i in ids if i not in rec]
+    old = [i for i in ids if i in rec]
+    random.shuffle(fresh)
+    random.shuffle(old)
+    return fresh + old
+
+
+def _recent_mark(key, tpl):
+    L = _RECENT.setdefault(key, [])
+    if tpl in L:
+        L.remove(tpl)
+    L.append(tpl)
+    del L[:-60]
+
+
 def seed_questions(subject, grade_label, topics="", limit=3, seen=()):
     """Elle yazılmış onaylı sorulardan kapsama uyanları döndürür (aynı soru tekrar gelmesin diye `seen` süzülür)."""
     gl = str(grade_label or "")
@@ -7487,9 +7509,10 @@ def seed_questions(subject, grade_label, topics="", limit=3, seen=()):
         if tl and not any(k in tl for k in kws):
             continue
         pool.append((topic, qq, opts, ai, ex))
-    random.shuffle(pool)
+    rkey = ("seed", subject, gd)
     out = []
-    for topic, qq, opts, ai, ex in pool:
+    for i in _recent_order(rkey, [p[1] for p in pool]):
+        topic, qq, opts, ai, ex = next(p for p in pool if p[1] == i)
         if len(out) >= limit:
             break
         raw = {"subject": subject, "topic": topic, "passage": "", "question": qq, "options": dict(zip("ABCD", opts)), "answer": "ABCD"[ai], "explanation": ex}
@@ -7500,6 +7523,7 @@ def seed_questions(subject, grade_label, topics="", limit=3, seen=()):
         if x and _stem(x) not in seen:
             x["vfd"] = True
             x["seed"] = True
+            _recent_mark(rkey, qq)
             out.append(x)
     return out
 
@@ -7991,6 +8015,261 @@ _MF_GENS = [
 ]
 
 
+# ---------------------------------------------------------------- 6-8. SINIF MATEMATİK / FEN / TÜRKÇE FABRİKALARI (kodla hesaplanan)
+import math as _m
+
+
+def _mf_gcdlcm(subject):
+    a, b = random.sample([6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 24, 30, 36, 40, 45], 2)
+    g, l = _m.gcd(a, b), a * b // _m.gcd(a, b)
+    kind = random.choice(["ebob", "ekok"])
+    c = g if kind == "ebob" else l
+    wr = [l if kind == "ebob" else g, a + b, a * b, c * 2, c + a, max(a, b)]
+    wr = [w for w in wr if w != c]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, str)
+    nm = "en büyük ortak böleni (EBOB)" if kind == "ebob" else "en küçük ortak katı (EKOK)"
+    return _mf_raw(subject, "EBOB-EKOK", f"{a} ve {b} sayılarının {nm} kaçtır?", o, f"{a} = …, {b} = … asal çarpanlarından {kind.upper()} = {c}.") if o else None
+
+
+def _mf_intops(subject):
+    a, b, c = random.randint(2, 15), random.randint(2, 15), random.randint(2, 15)
+    forms = [(f"(–{a}) + {b} – (–{c})", -a + b + c), (f"{a} – (–{b}) + (–{c})", a + b - c), (f"(–{a}) × {b} + {c}", -a * b + c),
+             (f"(–{a}) – {b} – (–{c})", -a - b + c), (f"{a} × (–{b}) – (–{c})", -a * b + c if False else a * -b + c)]
+    ex_, v = random.choice(forms)
+    wr = [v + 2, v - 2, -v, abs(v) + 1, v + 2 * (a % 5 + 1)]
+    wr = [w for w in wr if w != v]
+    random.shuffle(wr)
+    o = _mf_opts(v, wr, lambda x: str(x).replace("-", "–"))
+    return _mf_raw(subject, "Tam sayılar", f"{ex_} işleminin sonucu kaçtır?", o, f"{ex_} = {str(v).replace('-', '–')}.") if o else None
+
+
+def _mf_prop(subject):
+    kg1, kg2 = random.choice([(2, 5), (3, 7), (4, 9), (5, 8), (2, 9), (6, 11)])
+    unit = random.choice([6, 8, 9, 12, 15])
+    p1 = kg1 * unit
+    c = kg2 * unit
+    wr = [p1 + (kg2 - kg1), c + unit, p1 * 2, c - unit, kg2 * kg1]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, lambda x: f"{x} TL")
+    item = random.choice(["elma", "portakal", "şeker", "fındık"])
+    return _mf_raw(subject, "Oran-orantı", f"{kg1} kg {item} {p1} TL olduğuna göre aynı fiyattan {kg2} kg {item} kaç TL’dir?", o, f"1 kg = {p1} ÷ {kg1} = {unit} TL; {kg2} kg = {kg2}×{unit} = {c} TL.") if o else None
+
+
+def _mf_fracops(subject):
+    from fractions import Fraction as Fr
+    d1, d2 = random.choice([(2, 3), (3, 4), (2, 5), (3, 5), (4, 5), (6, 4), (3, 6)])
+    n1, n2 = random.randint(1, d1 - 1 if d1 > 1 else 1), random.randint(1, d2 - 1 if d2 > 1 else 1)
+    f1, f2 = Fr(n1, d1), Fr(n2, d2)
+    sub = random.choice([True, False])
+    if sub and f1 <= f2:
+        f1, f2 = f2, f1
+        n1, d1, n2, d2 = f1.numerator, f1.denominator, f2.numerator, f2.denominator
+    r = f1 - f2 if sub else f1 + f2
+    show = lambda f: f"{f.numerator}/{f.denominator}"
+    wr = [Fr(n1 + n2, d1 + d2), f1 * f2, abs(f1 - f2) + Fr(1, d1 * d2) if sub else r + Fr(1, d1 * d2), r + Fr(1, max(d1, d2)), Fr(abs(n1 - n2) if sub else n1 + n2, d1 * d2)]
+    wr = [w for w in wr if w != r and w > 0]
+    random.shuffle(wr)
+    o = _mf_opts(show(r), [show(w) for w in wr], str, sort=False)
+    sym = "–" if sub else "+"
+    return _mf_raw(subject, "Kesirlerle işlemler", f"{show(f1)} {sym} {show(f2)} işleminin sonucu aşağıdakilerden hangisidir? (Kesirler en sade biçimde yazılmıştır.)", o, f"{show(f1)} {sym} {show(f2)} = {show(r)}.") if o else None
+
+
+def _mf_tri_angle(subject):
+    a, b = random.choice(range(30, 90, 5)), random.choice(range(30, 90, 5))
+    if a + b >= 170:
+        return None
+    c = 180 - a - b
+    shape = {"type": "geo", "sub_type": "triangle", "kind": "scalene", "labels": ["A", "B", "C"], "angles": {"A": f"{a}°", "B": f"{b}°", "C": "?"}}
+    wr = [180 - a, 180 - b, a + b, 90 - a, c + 10, c - 10]
+    wr = [w for w in wr if w != c and w > 0]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, lambda x: f"{x}°")
+    return _mf_raw(subject, "Üçgenin açıları", f"Şekildeki ABC üçgeninde m(A) = {a}° ve m(B) = {b}° olduğuna göre m(C) kaç derecedir?", o, f"İç açılar toplamı 180°: 180 − {a} − {b} = {c}°.", shape=shape) if o else None
+
+
+def _mf_eq1(subject):
+    x = random.randint(2, 12)
+    a, b = random.randint(2, 9), random.randint(1, 15)
+    sign = random.choice([1, -1])
+    c = a * x + sign * b
+    wr = [x + 1, x - 1, (c + b) // a if a * x != c + b else x + 2, c - b, x * 2]
+    wr = [w for w in wr if w != x and w > 0]
+    random.shuffle(wr)
+    o = _mf_opts(x, wr, str)
+    eq = f"{a}x {'+' if sign == 1 else '–'} {b} = {c}"
+    return _mf_raw(subject, "Denklemler", f"{eq} denkleminde x kaçtır?", o, f"{a}x = {c - sign * b} → x = {x}.") if o else None
+
+
+def _mf_discount(subject):
+    p = random.choice([10, 20, 25, 30, 40, 50])
+    base = {10: 10, 20: 5, 25: 4, 30: 10, 40: 5, 50: 2}[p]
+    price = base * random.randint(5, 40)
+    new = price - price * p // 100
+    wr = [price * p // 100, price + price * p // 100, new + 10, price - p, new - 10]
+    wr = [w for w in wr if w != new and w > 0]
+    random.shuffle(wr)
+    o = _mf_opts(new, wr, lambda x: f"{x} TL")
+    return _mf_raw(subject, "Yüzde problemleri", f"Etiket fiyatı {price} TL olan bir ürüne %{p} indirim uygulanıyor. İndirimli fiyat kaç TL olur?", o, f"İndirim = {price}×{p}/100 = {price * p // 100}; {price} − {price * p // 100} = {new} TL.") if o else None
+
+
+def _mf_circle(subject):
+    r = random.choice([2, 3, 4, 5, 6, 7, 10])
+    kind = random.choice(["per", "area"])
+    c = 2 * 3 * r if kind == "per" else 3 * r * r
+    wr = [3 * r, c * 2, r * r, 2 * r, c + r] if kind == "per" else [2 * 3 * r, 3 * r, r * r, c * 2, c + r]
+    wr = [w for w in wr if w != c]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, lambda v: f"{v} cm" if kind == "per" else f"{v} cm²")
+    q = f"Yarıçapı {r} cm olan bir çemberin çevresi kaç cm’dir? (π yerine 3 alınız.)" if kind == "per" else f"Yarıçapı {r} cm olan bir dairenin alanı kaç cm²’dir? (π yerine 3 alınız.)"
+    return _mf_raw(subject, "Çember ve daire", q, o, f"{'2πr = 2×3×' + str(r) if kind == 'per' else 'πr² = 3×' + str(r) + '²'} = {c}.") if o else None
+
+
+def _mf_exp8(subject):
+    b = random.choice([2, 3, 5])
+    m, n = random.randint(2, 6), random.randint(2, 5)
+    kind = random.choice(["mul", "pow", "solve"])
+    sup = _sup
+    if kind == "mul":
+        c = m + n
+        q = f"{b}{sup(m)} × {b}{sup(n)} = {b}ˣ eşitliğinde x kaçtır?"
+        wr = [m * n, m - n if m > n else m + n + 1, c + 1, c - 1, b * c]
+        ex = f"Tabanlar aynı: üsler toplanır, x = {m} + {n} = {c}."
+    elif kind == "pow":
+        c = m * n
+        q = f"({b}{sup(m)}){sup(n)} = {b}ˣ eşitliğinde x kaçtır?"
+        wr = [m + n, m ** n if m ** n < 100 else m + n + 2, c + 1, c - 1, b * c]
+        ex = f"Üssün üssü: üsler çarpılır, x = {m}×{n} = {c}."
+    else:
+        c = m
+        q = f"{b}ˣ = {b ** m} olduğuna göre x kaçtır?"
+        wr = [m + 1, m - 1, b, b * m, m * 2]
+        ex = f"{b}{sup(m)} = {b ** m} olduğundan x = {m}."
+    wr = [w for w in wr if w != c and w > 0]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, str)
+    return _mf_raw(subject, "Üslü ifadeler", q, o, ex) if o else None
+
+
+def _mf_sqrt8(subject):
+    b = random.choice([2, 3, 5])
+    k1, k2 = random.sample(range(1, 7), 2)
+    c = k1 + k2
+    kind = random.choice(["add", "sub"])
+    if kind == "sub":
+        if k1 == k2:
+            return None
+        k1, k2 = max(k1, k2), min(k1, k2)
+        c = k1 - k2
+        sym = "–"
+    else:
+        sym = "+"
+    wr = [f"{c + 1}√{b}", f"{abs(c - 1)}√{b}" if c > 1 else f"{c + 2}√{b}", f"{c}√{b * 2}", f"√{k1 * k1 * b + k2 * k2 * b}", f"{k1 * k2}√{b}"]
+    cor = f"{c}√{b}" if c != 1 else f"√{b}"
+    wr = [w for w in wr if w != cor and not w.startswith("0")]
+    random.shuffle(wr)
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kareköklü ifadeler", f"√{k1 * k1 * b} {sym} √{k2 * k2 * b} işleminin sonucu aşağıdakilerden hangisidir?", o, f"√{k1 * k1 * b} = {k1}√{b}, √{k2 * k2 * b} = {k2}√{b}; sonuç {cor}.") if o else None
+
+
+def _mf_slope(subject):
+    x1, y1 = random.randint(-3, 4), random.randint(-3, 5)
+    m = random.choice([2, 3, -1, -2, 4, 1])
+    dx = random.randint(1, 4)
+    x2, y2 = x1 + dx, y1 + m * dx
+    wr = [-m, m + 1, m - 1, dx, m * 2]
+    wr = [w for w in wr if w != m]
+    random.shuffle(wr)
+    o = _mf_opts(m, wr, lambda v: str(v).replace("-", "–"))
+    return _mf_raw(subject, "Doğrusal denklemler", f"A({x1}, {y1}) ve B({x2}, {y2}) noktalarından geçen doğrunun eğimi kaçtır?".replace("-", "–"), o, f"Eğim = ({y2} − {y1}) ÷ ({x2} − {x1}) = {m}.".replace("-", "–")) if o else None
+
+
+def _mf_prob8(subject):
+    k, y, m = random.sample(range(2, 9), 3)
+    n = k + y + m
+    pick = random.choice([("kırmızı", k), ("mavi", y), ("yeşil", m)])
+    from fractions import Fraction as Fr
+    c = Fr(pick[1], n)
+    show = lambda f: f"{f.numerator}/{f.denominator}"
+    wr = [Fr(pick[1], n - pick[1]), Fr(n - pick[1], n), Fr(1, 3), Fr(pick[1] + 1, n)]
+    wr = [w for w in wr if w != c]
+    o = _mf_opts(show(c), [show(w) for w in wr], str, sort=False)
+    return _mf_raw(subject, "Olasılık", f"Bir torbada {k} kırmızı, {y} mavi ve {m} yeşil bilye vardır. Torbadan rastgele çekilen bir bilyenin {pick[0]} olma olasılığı kaçtır? (Kesir en sade biçimde yazılmıştır.)", o, f"Toplam {n} bilye var; {pick[0]} olan {pick[1]} tane → {pick[1]}/{n} = {show(c)}.") if o and len(set(o[0])) == 4 else None
+
+
+def _mf_ineq(subject):
+    a, b, c = random.randint(2, 5), random.randint(1, 9), random.randint(10, 40)
+    # a x - b < c  ->  x < (c+b)/a ; en büyük tam sayı
+    lim = (c + b) / a
+    ans = int(lim) - 1 if lim == int(lim) else int(lim)
+    wr = [ans + 1, ans - 1, ans + 2, int(lim) + 1, ans - 2]
+    wr = [w for w in wr if w != ans and w > 0]
+    random.shuffle(wr)
+    o = _mf_opts(ans, wr, str)
+    return _mf_raw(subject, "Eşitsizlikler", f"{a}x – {b} < {c} eşitsizliğini sağlayan en büyük x tam sayısı kaçtır?", o, f"{a}x < {c + b} → x < {c + b}/{a}; en büyük tam sayı {ans}.") if o and ans > 0 else None
+
+
+def _mf_cyl(subject):
+    r, h = random.choice([2, 3, 4, 5]), random.randint(2, 10)
+    kind = random.choice(["vol", "lat"])
+    c = 3 * r * r * h if kind == "vol" else 2 * 3 * r * h
+    wr = [3 * r * h, 3 * r * r, 2 * 3 * r * r * h, c * 2, c + r] if kind == "vol" else [3 * r * r * h, 2 * 3 * r, 3 * r * h, c * 2, c + h]
+    wr = [w for w in wr if w != c]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, lambda v: f"{v} cm³" if kind == "vol" else f"{v} cm²")
+    q = f"Taban yarıçapı {r} cm ve yüksekliği {h} cm olan dik silindirin " + ("hacmi kaç cm³’tür?" if kind == "vol" else "yanal alanı kaç cm²’dir?") + " (π yerine 3 alınız.)"
+    return _mf_raw(subject, "Silindir", q, o, ("V = πr²h = 3×" + f"{r}²×{h}" if kind == "vol" else "A = 2πrh = 2×3×" + f"{r}×{h}") + f" = {c}.") if o else None
+
+
+def _mf_pyth(subject):
+    a, b, c = random.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (9, 12, 15), (8, 15, 17), (12, 16, 20), (15, 20, 25)])
+    wr = [a + b, c + 1, c - 1, a * b // 2, b + 1]
+    wr = [w for w in wr if w != c and w > 0]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, lambda v: f"{v} cm")
+    return _mf_raw(subject, "Pisagor bağıntısı", f"Dik kenar uzunlukları {a} cm ve {b} cm olan bir dik üçgenin hipotenüs uzunluğu kaç cm’dir?", o, f"{a}² + {b}² = {a * a + b * b} = {c}².") if o else None
+
+
+def _mf_ident(subject):
+    a = random.randint(2, 9)
+    kind = random.choice(["sq", "diff"])
+    if kind == "sq":
+        c = 2 * a
+        q = f"(x + {a})² ifadesinin açılımında x’li terimin katsayısı kaçtır?"
+        wr = [a, a * a, c + 1, a + 1]
+        ex = f"(x+{a})² = x² + {2 * a}x + {a * a}."
+    else:
+        c = a * a
+        q = f"(x – {a})(x + {a}) çarpımının sonucunda sabit terim kaç olur?".replace("sonucunda sabit terim kaç olur", "açılımının sabit terimi kaçtır")
+        wr = [-c, c + 1, 2 * a, a, -a]
+        ex = f"(x–{a})(x+{a}) = x² – {a * a}; sabit terim –{a * a}."
+        c = -c
+        wr = [w for w in wr if w != c]
+    wr = [w for w in wr if w != c]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr, lambda v: str(v).replace("-", "–"))
+    return _mf_raw(subject, "Cebirsel ifadeler ve özdeşlikler", q, o, ex) if o else None
+
+
+# (üretici, anahtar sözcükler, geçerli sınıflar) — 6-8. sınıf eklemeleri
+_MF_GENS += [
+    (_mf_gcdlcm, ("ebob", "ekok", "çarpan", "asal", "doğal sayı"), (5, 6)),
+    (_mf_intops, ("tam sayı",), (6, 7)),
+    (_mf_prop, ("oran", "orantı"), (6, 7)),
+    (_mf_fracops, ("kesir", "rasyonel"), (6, 7)),
+    (_mf_eq1, ("denklem", "cebirsel"), (6, 7, 8)),
+    (_mf_discount, ("yüzde", "problem"), (6, 7)),
+    (_mf_exp8, ("üslü",), (8,)),
+    (_mf_sqrt8, ("kök",), (8,)),
+    (_mf_slope, ("doğrusal", "eğim", "denklem"), (8,)),
+    (_mf_prob8, ("olasılık",), (8,)),
+    (_mf_ineq, ("eşitsizlik",), (8,)),
+    (_mf_cyl, ("silindir", "geometrik cisim", "hacim"), (8,)),
+    (_mf_pyth, ("pisagor", "üçgen"), (8,)),
+    (_mf_ident, ("özdeşlik", "cebirsel"), (8,)),
+]
+
+
 def math_questions(grade_label, n, topics="", seen=()):
     """Cevabı kodla hesaplanan Matematik soruları (MEB 'Kazanım Kavrama' tarzı). API kullanmaz, hata içermez."""
     if n <= 0:
@@ -7998,26 +8277,38 @@ def math_questions(grade_label, n, topics="", seen=()):
     gl = str(grade_label or "")
     g = int(next((c for c in gl if c.isdigit()), "0"))
     tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+    g_key = str(g)
     pool = [(f, kw) for f, kw, gs in _MF_GENS if g in gs]
     if not pool:
         return []
     sel = [f for f, kw in pool if any(k in tl for k in kw)] or ([f for f, _ in pool] if not tl else [])
     if not sel:
         return []
-    out, stems, tries = [], set(seen), 0
-    while len(out) < n and tries < n * 15:
-        tries += 1
-        try:
-            raw = random.choice(sel)("Matematik")
-            x = _norm_q(raw, "Matematik") if raw else None
-        except Exception:
-            x = None
-        if not x or _stem(x) in stems:
-            continue
-        stems.add(_stem(x))
-        x["vfd"] = True
-        x["local"] = True
-        out.append(x)
+    out, stems = [], set(seen)
+    rkey = ("gen", "Matematik", g_key)
+    byname = {f.__name__: f for f in sel}
+    for _pass in range(2):  # her kalıptan sınav başına en çok 1 soru (2. tur yalnızca eksik kalırsa)
+        for nm in _recent_order(rkey, list(byname)):
+            if len(out) >= n:
+                break
+            if _pass == 0 and any(x.get("tpl") == nm for x in out):
+                continue
+            for _t in range(4):
+                try:
+                    raw = byname[nm]("Matematik")
+                    x = _norm_q(raw, "Matematik") if raw else None
+                except Exception:
+                    x = None
+                if x and _stem(x) not in stems:
+                    stems.add(_stem(x))
+                    x["vfd"] = True
+                    x["local"] = True
+                    x["tpl"] = nm
+                    _recent_mark(rkey, nm)
+                    out.append(x)
+                    break
+        if len(out) >= n:
+            break
     return out
 
 
@@ -8105,24 +8396,141 @@ def fen_questions(grade_label, n, topics="", seen=()):
     gl = str(grade_label or "")
     if n <= 0 or "5" not in gl[:2]:
         return []
+    g_key = "5"
     tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
     sel = [f for f, kw in _FF_GENS if any(k in tl for k in kw)]
     if not sel:
         return []
-    out, stems, tries = [], set(seen), 0
-    while len(out) < n and tries < n * 15:
-        tries += 1
+    out, stems = [], set(seen)
+    rkey = ("gen", "Fen Bilimleri", g_key)
+    byname = {f.__name__: f for f in sel}
+    for _pass in range(2):  # her kalıptan sınav başına en çok 1 soru (2. tur yalnızca eksik kalırsa)
+        for nm in _recent_order(rkey, list(byname)):
+            if len(out) >= n:
+                break
+            if _pass == 0 and any(x.get("tpl") == nm for x in out):
+                continue
+            for _t in range(4):
+                try:
+                    raw = byname[nm]("Fen Bilimleri")
+                    x = _norm_q(raw, "Fen Bilimleri") if raw else None
+                except Exception:
+                    x = None
+                if x and _stem(x) not in stems:
+                    stems.add(_stem(x))
+                    x["vfd"] = True
+                    x["local"] = True
+                    x["tpl"] = nm
+                    _recent_mark(rkey, nm)
+                    out.append(x)
+                    break
+        if len(out) >= n:
+            break
+    return out
+
+
+# ---------------------------------------------------------------- ÖNCEDEN ÜRETİLMİŞ + DOĞRULANMIŞ HAVUZ (repodaki pool/ klasörü; API kotası harcamaz)
+_POOL_CACHE = {}
+
+
+def _pool_slug(t):
+    t = str(t or "").replace("İ", "i").replace("I", "ı").lower()
+    for a, b in zip("ıöüşçğ", "iouscg"):
+        t = t.replace(a, b)
+    return re.sub(r"[^a-z0-9]+", "_", t).strip("_")
+
+
+def _pool_path(subject, grade_label):
+    gl = str(grade_label or "")
+    gd = "lgs" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))
+    root = os.environ.get("DENEMEMATIK_POOL_DIR")
+    if not root:
+        from . import store
+        root = os.path.join(os.path.dirname(store.DATA), "pool")
+    return os.path.join(root, gd, _pool_slug(subject) + ".json")
+
+
+def _pool_tok(t):
+    t = str(t or "").replace("İ", "i").replace("I", "ı").lower()
+    return {w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)}
+
+
+def _pool_read(path):
+    try:
+        mt = os.path.getmtime(path)
+    except Exception:
+        return []
+    c = _POOL_CACHE.get(path)
+    if c and c[0] == mt:
+        return c[1]
+    try:
+        with open(path, encoding="utf-8") as f:
+            qs = (json.load(f) or {}).get("qs", [])
+    except Exception:
+        qs = []
+    _POOL_CACHE[path] = (mt, qs)
+    return qs
+
+
+def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty=""):
+    """Gece/haftalık çalışan betiğin ürettiği, kural + çapraz model doğrulamasından geçmiş soruları döndürür.
+    En az kullanılanlar önce gelir; görülmüş (geçmiş) sorular ve konu dışı sorular atlanır."""
+    if n <= 0 or demo_mode() or os.environ.get("DENEMEMATIK_NO_POOL") == "1":
+        return []
+    qs = _pool_read(_pool_path(subject, grade_label))
+    if not qs:
+        return []
+    want = _pool_tok(topics)
+    store = None
+    use = {}
+    try:
+        from . import store
+        use = store._load("pool_use.json", {})
+    except Exception:
+        pass
+    dw = None
+    try:
+        from . import curriculum as _cu
+        dw = _cu.DIFFICULTIES.index(difficulty)
+    except Exception:
+        pass
+    cand = []
+    for q in qs:
+        s = _stem(q)
+        if not s or s in seen:
+            continue
+        ov = len(want & _pool_tok(f"{q.get('unit', '')} {q.get('topic', '')} {q.get('topics', '')}")) if want else 0
+        if want and not ov:
+            continue
+        far = dw is not None and isinstance(q.get("d"), int) and abs(q["d"] - dw) > 1
+        cand.append((far, use.get(s, 0), -ov, random.random(), q))
+    cand.sort(key=lambda t: t[:4])
+    out, stems = [], set(seen)
+    per_unit = {}
+    for far, _u, _o, _r, q in cand:
+        if len(out) >= n:
+            break
+        un = q.get("unit", "")
+        if per_unit.get(un, 0) >= max(2, -(-n // 2)):
+            continue
+        clean = {k: v for k, v in q.items() if k not in ("unit", "topics", "d", "ts", "pool", "local", "seed", "vfd", "_gp", "id", "tpl")}
         try:
-            raw = random.choice(sel)("Fen Bilimleri")
-            x = _norm_q(raw, "Fen Bilimleri") if raw else None
+            x = _norm_q(clean, subject)
         except Exception:
             x = None
         if not x or _stem(x) in stems:
             continue
         stems.add(_stem(x))
         x["vfd"] = True
-        x["local"] = True
+        x["pool"] = True
+        use[_stem(q)] = use.get(_stem(q), 0) + 1
+        per_unit[un] = per_unit.get(un, 0) + 1
         out.append(x)
+    if out and store is not None:
+        try:
+            store._save("pool_use.json", use)
+        except Exception:
+            pass
     return out
 
 
@@ -8213,15 +8621,29 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     store.lpool_remove([_stem(q) for q in st_["qs"]])
                 except Exception:
                     pass
-            if not demo_mode() and not like and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "Matematik", "Fen Bilimleri"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
-                try:
-                    take(st_, seed_questions(subj, grade_label, p.get("topics", ""), limit=max(1, int(n * 0.4)), seen=seen))
-                    if len(st_["qs"]) < n:
-                        take(st_, local_questions(subj, grade_label, max(1, int(n * 0.3)), p.get("topics", ""), seen=seen))
+            if not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_FACTORY") != "1" and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "Matematik", "Fen Bilimleri"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
+                try:  # çekirdek/hesaplanan soruların toplam payı en çok ~%25 (çoğunluk yapay zekâ); kaynaklar sırayla, dönüşümlü
+                    fb = max(1 if n >= 4 else 0, int(n * 0.25))
+                    srcs = [lambda k: seed_questions(subj, grade_label, p.get("topics", ""), limit=k, seen=seen),
+                            lambda k: local_questions(subj, grade_label, k, p.get("topics", ""), seen=seen)]
                     if subj == "Matematik":
-                        take(st_, math_questions(grade_label, max(1, int(n * 0.5)), p.get("topics", ""), seen=seen))
+                        srcs.append(lambda k: math_questions(grade_label, k, p.get("topics", ""), seen=seen))
                     if subj == "Fen Bilimleri":
-                        take(st_, fen_questions(grade_label, max(1, int(n * 0.3)), p.get("topics", ""), seen=seen))
+                        srcs.append(lambda k: fen_questions(grade_label, k, p.get("topics", ""), seen=seen))
+                    random.shuffle(srcs)
+                    got_f = 0
+                    for _r in range(max(1, fb)):
+                        for src in srcs:
+                            if got_f >= fb or len(st_["qs"]) >= n:
+                                break
+                            before = len(st_["qs"])
+                            take(st_, src(1))
+                            got_f += len(st_["qs"]) - before
+                except Exception:
+                    pass
+            if not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_POOL") != "1":  # 00c) önceden üretilip doğrulanmış havuz (yapay zekâ kaynaklı; API'siz)
+                try:
+                    take(st_, pool_questions(subj, grade_label, p.get("topics", ""), n - len(st_["qs"]), seen=seen, difficulty=difficulty))
                 except Exception:
                     pass
             if bank_ok:  # 0) bankadan doldur
