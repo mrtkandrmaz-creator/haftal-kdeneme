@@ -107,6 +107,11 @@ def targets(cur, ai, grades, subjects):
     return out
 
 
+def _ls_txt(ai):
+    d = getattr(ai, "LAST_STRICT", None) or {}
+    return f"şık tutmadı {d.get('mismatch', 0)}, hatalı(X) {d.get('x', 0)}, ÇÖZÜCÜYE ULAŞILAMADI {d.get('unreach', 0)}"
+
+
 def build(ai, cur, args, gen=None, strict=None):
     """gen(plan, label, difficulty, scope) -> (qs, err); testte sahte üretici verilebilir."""
     gen = gen or (lambda plan, label, diff, scope, avoid: ai.generate_mc(
@@ -147,6 +152,7 @@ def build(ai, cur, args, gen=None, strict=None):
                 continue
             stems.add(s)
             new.append(q)
+        ai.LAST_STRICT = {}
         before = len(new)
         facts = ai.src_facts(sj, label, f"{unit}: " + ", ".join(topics))
         try:
@@ -158,7 +164,7 @@ def build(ai, cur, args, gen=None, strict=None):
         if new:
             write_pool(path, have + new)
             added_total += len(new)
-        print(f"{label} | {sj} | {unit[:40]} | +{len(new)} (sıkı doğrulamada elenen {rejected_strict}) (havuz {len(have) + len(new)})" + (f" | {err}" if err and not new else ""))
+        print(f"{label} | {sj} | {unit[:40]} | +{len(new)} (elenen {rejected_strict}: {_ls_txt(ai)}) (havuz {len(have) + len(new)})" + (f" | {err}" if err and not new else ""))
     print("TOPLAM eklenen:", added_total)
     return added_total
 

@@ -5146,16 +5146,31 @@ def verify_strict(qs, gk, mk, offset=0, batch=8, facts=None):
                 pass
         return got
 
+    st = {"ok": 0, "mismatch": 0, "x": 0, "unreach": 0}
     for b0 in range(0, len(qs), batch):
         chunk = qs[b0:b0 + batch]
-        answers = [solve(chunk, ex, off) for ex, off in passes]
+        answers = []
+        for ex, off in passes:
+            a = solve(chunk, ex, off)
+            for wait in (20, 60):  # kota/ağ takılması: boş yanıtta bekleyip farklı anahtar/model ile yeniden dene
+                if a:
+                    break
+                time.sleep(wait)
+                a = solve(chunk, ex, off + int(wait))
+            answers.append(a)
         for i, q in enumerate(chunk, 1):
-            if all(a.get(i) == q.get("answer") for a in answers):
+            got_l = [a.get(i) for a in answers]
+            if any(not a for a in answers):
+                st["unreach"] += 1  # çözücüye ulaşılamadı: kalite kararı değil, soru bu turda alınmaz
+            elif all(g == q.get("answer") for g in got_l):
                 q["vfd"] = True
                 q["vfd2"] = True
                 out.append(q)
+                st["ok"] += 1
             else:
+                st["x" if "X" in got_l else "mismatch"] += 1
                 qstat(q.get("subject"), "sıkı doğrulama reddetti")
+    globals()["LAST_STRICT"] = st
     return out
 
 
