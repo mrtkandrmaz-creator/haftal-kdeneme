@@ -1,0 +1,55 @@
+{
+ "v": 1,
+ "grade": "5",
+ "units": {
+  "Güneş, Dünya ve Ay": [
+   "Güneş bir yıldızdır; kendi ışığını ve ısısını yayar. Dünya ve Ay Güneş'ten ışık alır, kendi ışıklarını yaymazlar.",
+   "Dünya kendi ekseni etrafında dönerken gece-gündüz oluşur; bu dönüş yaklaşık 24 saat sürer.",
+   "Dünya Güneş etrafında dolanırken (yaklaşık 365 gün 6 saat) ve eksen eğikliği nedeniyle mevsimler oluşur.",
+   "Ay, Dünya'nın doğal uydusudur ve Dünya etrafında dolanır; Ay'ın evreleri yaklaşık 29,5 günde tekrarlanır.",
+   "Ay evreleri: yeni ay, ilk dördün, dolunay, son dördün. Ay her zaman aynı yüzünü Dünya'ya gösterir.",
+   "Güneş tutulması Ay'ın Dünya ile Güneş arasına girmesiyle, Ay tutulması Dünya'nın Güneş ile Ay arasına girmesiyle olur."
+  ],
+  "Canlıların Yapısı ve Hücre": [
+   "Hücre, canlıların yapı ve görev birimidir; mikroskop ile görülür.",
+   "Hücre zarı madde geçişini düzenler, sitoplazma organelleri bulundurur, çekirdek hücreyi yönetir ve kalıtım bilgisini taşır.",
+   "Mitokondri hücreye enerji sağlar; kloroplast bitki hücresinde fotosentez yapar. Hücre duvarı ve kloroplast bitki hücresindedir, hayvan hücresinde yoktur.",
+   "Tek hücreli canlılar (amip, bakteri) ve çok hücreli canlılar vardır. Çok hücreli canlıda hücre → doku → organ → sistem → organizma sıralaması vardır.",
+   "Canlılar bitkiler, hayvanlar, mantarlar ve bakteriler gibi gruplara ayrılır; hayvanlar omurgalı ve omurgasız olarak sınıflandırılır."
+  ],
+  "Kuvvetin Ölçülmesi ve Sürtünme": [
+   "Kuvvet birimi Newton (N), ölçüm aleti dinamometredir. Dinamometredeki yayın uzaması uygulanan kuvvetle doğru orantılıdır.",
+   "Kütle madde miktarıdır (kg) ve değişmez; ağırlık ise yerçekimi kuvvetidir ve Newton ile ölçülür. Ay'da ağırlık Dünya'dakinin yaklaşık altıda biridir.",
+   "Sürtünme kuvveti temas eden yüzeyler arasında hareketi zorlaştıran, hareket yönüne zıt bir kuvvettir.",
+   "Yüzey pürüzlü oldukça sürtünme artar; yağlama sürtünmeyi azaltır. Sürtünme yürümeyi ve fren yapmayı sağlar ama aşınma ve ısınma yapar.",
+   "Kuvvet cismin hareketini (hızını, yönünü) veya şeklini değiştirebilir."
+  ],
+  "Madde ve Değişim": [
+   "Katıların şekli ve hacmi belirlidir; sıvıların hacmi belirli, şekli kabına bağlıdır; gazların ne şekli ne hacmi belirlidir.",
+   "Isı bir enerji türüdür ve sıcak cisimden soğuk cisme akar; sıcaklık termometreyle (°C) ölçülür.",
+   "Saf bir maddenin erime ve donma sıcaklığı sabittir; buz 0 °C'de erir, su 0 °C'de donar, su 100 °C'de kaynar.",
+   "Buharlaşma sıvının gaz olması, yoğuşma gazın sıvıya dönüşmesidir; ısı alan madde genleşir."
+  ],
+  "Işığın Yayılması": [
+   "Işık kaynağı kendi ışığını yayan cisimdir (Güneş, ampul); Ay ışık kaynağı değildir.",
+   "Işık doğrusal yollarla yayılır; ışığı geçirmeyen cisim gölge oluşturur. Cisim ışık kaynağına yaklaşırsa gölge büyür.",
+   "Cisimler ışığı geçirme özelliğine göre saydam, yarı saydam veya opak olabilir.",
+   "Işık bir yüzeye çarpıp geri döner (yansıma); düzgün yüzeylerde (ayna) yansıma düzgündür. Gelme açısı yansıma açısına eşittir.",
+   "Işık çok hızlı yayılır (yaklaşık 300 000 km/s); Güneş ışığı Dünya'ya yaklaşık 8 dakikada ulaşır."
+  ],
+  "Elektrik Devreleri": [
+   "Basit bir elektrik devresi pil (üreteç), ampul, anahtar ve bağlantı kablolarından oluşur; akım için devre kapalı olmalıdır.",
+   "Seri bağlı devrede ampuller aynı yol üzerindedir; biri çıkarılırsa diğerleri de söner, ampul sayısı arttıkça parlaklık azalır.",
+   "Paralel bağlı devrede her ampulün ayrı yolu vardır; biri çıkarılırsa diğerleri yanmaya devam eder.",
+   "Metaller iletken; plastik, cam, kauçuk ve ahşap yalıtkandır.",
+   "Elektrik güvenliği: ıslak elle prize dokunulmaz, prizlere cisim sokulmaz, açıkta kablo bırakılmaz; elektrik tasarruf edilmelidir."
+  ],
+  "Biyoçeşitlilik ve Çevre": [
+   "Ekosistem bir bölgedeki canlıların ve cansız çevrenin birlikte oluşturduğu sistemdir.",
+   "Besin zincirinde üretici (bitki) ilk halkadır; tüketiciler otçul, etçil, hem otçul hem etçil olabilir; ayrıştırıcılar (bakteri, mantar) ölü canlıları ayrıştırır.",
+   "Besin zincirindeki ok yönü, yenen canlıdan yiyen canlıya enerji aktarımını gösterir.",
+   "Biyoçeşitlilik, bir bölgedeki canlı tür çeşitliliğidir; habitat canlının yaşadığı ortamdır.",
+   "Hava, su ve toprak kirliliği ile küresel ısınma çevre sorunlarıdır; geri dönüşüm (kâğıt, cam, plastik, metal) ve tasarruf çözüm olur; nesli tükenen türler korunmalıdır."
+  ]
+ }
+}

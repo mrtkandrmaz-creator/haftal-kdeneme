@@ -1,0 +1,58 @@
+{
+ "v": 1,
+ "grade": "5",
+ "units": {
+  "Birlikte Yaşamak": [
+   "Birey; aile, okul, mahalle gibi gruplara üye olarak toplum içinde yaşar. Bir kişi aynı anda birden çok gruba üye olabilir (aile, sınıf, spor takımı).",
+   "Rol, bir kişinin grup içinde beklenen davranışlarıdır (örneğin grup lideri, sunucu, sözcü); sorumluluk ise bu role bağlı yerine getirilmesi gereken görevlerdir.",
+   "Haklar ve sorumluluklar birbirini tamamlar: herkesin hakkı olduğu gibi başkalarının haklarına saygı gösterme sorumluluğu da vardır.",
+   "Çocukların temel hakları arasında eğitim, sağlık, korunma, oyun ve fikrini söyleme hakkı vardır.",
+   "Kurallar, grup içinde düzeni, adaleti ve güvenliği sağlar.",
+   "Yardımlaşma, hoşgörü ve empati farklı kültürlerden insanların bir arada barış içinde yaşamasını kolaylaştırır.",
+   "Grup çalışmasında görev paylaşımı yapılır; işbirliği başarıyı artırır.",
+   "Türk toplumunda misafirperverlik ve komşuluk önemli bir değerdir."
+  ],
+  "Evimiz Dünya": [
+   "Ana yönler kuzey, güney, doğu ve batıdır; ara yönler kuzeydoğu, kuzeybatı, güneydoğu ve güneybatıdır. Pusulanın iğnesi kuzeyi gösterir.",
+   "Haritada lejant (işaret anahtarı) kullanılan sembolleri açıklar; ölçek gerçek uzaklığın haritaya kaç kat küçültülerek çizildiğini gösterir.",
+   "Fiziki haritalarda genellikle yeşil alçak yerleri (ova), kahverengi yüksek yerleri (dağ), mavi suları gösterir.",
+   "Yer şekilleri: dağ, ova, plato (yayla), vadi, ada, yarımada, göl, akarsu.",
+   "Türkiye'nin üç tarafı denizlerle çevrilidir: kuzeyde Karadeniz, batıda Ege Denizi, güneyde Akdeniz. Türkiye bir yarımadadır (Anadolu).",
+   "Türkiye'nin en yüksek dağı Ağrı Dağı'dır (5137 m), en büyük gölü Van Gölü'dür, en uzun akarsuyu Kızılırmak'tır.",
+   "Hava durumu kısa süreli atmosfer olaylarıdır; iklim ise bir yerde uzun yıllar boyunca görülen hava olaylarının ortalamasıdır.",
+   "Karadeniz kıyılarında her mevsim yağışlı Karadeniz iklimi; Akdeniz kıyılarında yazları sıcak ve kurak, kışları ılık ve yağışlı Akdeniz iklimi görülür.",
+   "Doğal afetler: deprem, sel, heyelan, çığ, fırtına, orman yangını. Deprem anında 'çök-kapan-tutun' uygulanır; acil durum çantası hazır bulundurulur ve toplanma alanı bilinmelidir."
+  ],
+  "Ortak Mirasımız": [
+   "Kültürel miras, geçmişten bugüne aktarılan değerlerdir. Somut miras (Ayasofya, Göbeklitepe gibi yapılar ve eserler) ve somut olmayan miras (ebru, halk oyunları, masallar, el sanatları) olarak ayrılır.",
+   "Göbeklitepe (Şanlıurfa) bilinen en eski tapınak alanlarından biridir ve yaklaşık 12 bin yıl öncesine aittir.",
+   "Hititler, Anadolu'da yaşamış medeniyetlerdendir; Mısırlılarla yaptıkları Kadeş Antlaşması bilinen en eski yazılı barış antlaşmalarındandır.",
+   "Lidyalılar parayı ilk kullanan medeniyetlerdendir; Sard'dan Susa'ya uzanan Kral Yolu'nu yaptılar.",
+   "Frigyalıların başkenti Gordion'dur. Urartular Van çevresinde yaşamış, kale ve sulama kanalları yapmıştır.",
+   "İyonlar Batı Anadolu'da yaşamış; Tales gibi bilim insanları yetiştirmiştir (Efes, Milet).",
+   "Kültürel mirası korumak herkesin sorumluluğudur; müzeler ve ören yerleri bu mirası korur."
+  ],
+  "Yaşayan Demokrasi": [
+   "Demokraside yönetime halk katılır; seçme ve seçilme hakkı vardır. Türkiye'de oy kullanma yaşı 18'dir.",
+   "Seçimler serbest, eşit, gizli oy ve açık sayım-döküm ilkelerine göre yapılır; oy kullanmak vatandaşlık sorumluluğudur.",
+   "Demokraside çoğunluğun kararı uygulanır, azınlığın hakları da korunur; farklı düşüncelere saygı gösterilir.",
+   "TBMM 23 Nisan 1920'de açılmıştır; Cumhuriyet 29 Ekim 1923'te ilan edilmiştir.",
+   "Devlet yönetiminde yasama (TBMM), yürütme (Cumhurbaşkanı ve bakanlar) ve yargı (mahkemeler) görevleri ayrıdır.",
+   "Okulda sınıf başkanı seçimi, demokratik katılımın küçük bir örneğidir. Muhtar ve belediye yerel yönetim örnekleridir."
+  ],
+  "Hayatımızdaki Ekonomi": [
+   "İhtiyaçlar yaşamak için zorunlu olanlardır (yiyecek, su, barınma); istekler ise zorunlu olmayan, vazgeçilebilir arzulardır.",
+   "Kaynaklar sınırlıdır, ihtiyaçlar sınırsızdır; bu yüzden tercih yapılır.",
+   "Bütçe, gelir ve giderlerin planlanmasıdır. Tasarruf, gelirin bir kısmını gelecekteki ihtiyaçlar için biriktirmektir; israf kaynakların gereksiz harcanmasıdır.",
+   "Ürünler üretilir, dağıtılır ve tüketilir. Meslekler, mal ve hizmet üreterek ekonomiye katkı sağlar.",
+   "Bilinçli tüketici alışveriş yaparken ihtiyacını, fiyatı, kaliteyi, son kullanma tarihini ve garantiyi dikkate alır."
+  ],
+  "Teknoloji ve Sosyal Bilimler": [
+   "Yazının icadı (Sümerler, çivi yazısı), tekerlek, matbaa ve kâğıt insanlık tarihini değiştiren icatlardır.",
+   "İbrahim Müteferrika, Osmanlı'da 1727'de ilk matbaayı kurmuştur.",
+   "Cezeri, 12. yüzyılda otomatik makineler ve su saatleri yapmış bir Türk-İslam bilim insanıdır. El-Harezmi cebirin, İbn-i Sina tıbbın önemli bilginlerindendir; Piri Reis dünya haritasıyla tanınır.",
+   "Teknoloji hayatı kolaylaştırır ama bilinçsiz kullanımın zararları olabilir.",
+   "Bilişim güvenliği: kişisel bilgiler (adres, şifre, telefon) paylaşılmaz, güçlü şifre kullanılır, tanımadığın kişilerle iletişim kurulmaz, siber zorbalığa karşı yetişkinlere haber verilir."
+  ]
+ }
+}
