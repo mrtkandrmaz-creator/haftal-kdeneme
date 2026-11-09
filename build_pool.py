@@ -154,6 +154,7 @@ def build(ai, cur, args, gen=None, strict=None):
     """gen(plan, label, difficulty, scope) -> (qs, err); testte sahte üretici verilebilir."""
     gen = gen or (lambda plan, label, diff, scope, avoid: ai.generate_mc(
         plan, label, diff, scope, avoid=avoid, use_bank=False, deposit=False, verify=True, count=False))
+    _gk, _mk = [], []
     if strict is None:
         _gk, _mk = ai.load_keys()
         strict = lambda qs, facts=None: ai.verify_strict(qs, _gk, _mk, facts=facts)
@@ -228,6 +229,14 @@ def build(ai, cur, args, gen=None, strict=None):
                 q["listen"] = True
             stems.add(s)
             new.append(q)
+        if new and (_gk or _mk) and os.environ.get("DENEMEMATIK_NO_CRITIC") != "1":
+            n0 = len(new)
+            try:
+                new = ai.critique_fix(new, _gk, _mk)  # uzman-eleştirmen: hata/muğlaklık/olumsuz kök düzelt ya da ele
+            except Exception as e:
+                print(f"   ! eleştirmen atlandı: {type(e).__name__}")
+            if len(new) != n0 or any(q.get("crit") for q in new):
+                print(f"   🔎 eleştirmen: {n0} → {len(new)} (düzeltilen {sum(1 for q in new if q.get('crit'))})")
         ai.LAST_STRICT = {}
         before = len(new)
         facts = ai.src_facts(sj, label, f"{unit}: " + ", ".join(topics))
