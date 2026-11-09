@@ -81,10 +81,12 @@ C = {
        _u("Daily Life", "Daily routines; Time"), _u("Food and Drinks", "Likes/dislikes; Ordering"), _u("Hobbies", "Free time; Can/can't")],
  },
  "5": {
-  TR: [_u("Erdemler", "Okuma anlama; Ana fikir; Sözcükte anlam; Eş/zıt anlam"), _u("Millî Mücadele ve Atatürk", "Metin türleri; Anlatım biçimleri; Noktalama"),
-      _u("Doğa ve Evren", "Bilgilendirici metin; Neden-sonuç; Cümlede anlam"), _u("Millî Kültürümüz", "Deyim ve atasözü; Hikâye unsurları; Ses bilgisi"),
-      _u("Bilim ve Teknoloji", "Grafik/tablo yorumlama; Başlık; Yazım kuralları"), _u("Sanat ve Estetik", "Şiir; Söz sanatı; Paragraf yapısı"),
-      _u("Birey ve Toplum", "Kelime türleri; Ad-sıfat; Cümle öğeleri giriş")],
+  TR: [_u("Oyun Dünyası", "Geleneksel çocuk oyunları; Kurallı oyunlar; Anahtar kelimeler; Metnin yüzey anlamı; Söz varlığı"),
+      _u("Atatürk'ü Tanımak", "Atatürk'ün hayatı; Millî Mücadele; Cumhuriyet; İstiklal Marşı; 23 Nisan; Metnin ana fikri"),
+      _u("Duygularımı Tanıyorum", "Temel duygular; Duygu ve davranış ilişkisi; Duygu yönetimi; Görselle iletilen anlam"),
+      _u("Geleneklerimiz", "Gelenek ve görenekler; Kutlamalar; Misafirperverlik; El sanatları; Halk oyunları; Mutfak kültürü; Deyim ve atasözü"),
+      _u("İletişim ve Sosyal İlişkiler", "Aile, arkadaş ve komşuluk iletişimi; Olumlu dil; Empati; İletişim kazaları; Metin türleri"),
+      _u("Sağlıklı Yaşıyorum", "Dengeli beslenme; Hijyen; Uyku ve egzersiz; İlk yardım; Spor; Bilgilendirici metin")],
   MAT: [_u("Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)", "Doğru, ışın, doğru parçası; Paralel ve dik doğrular; Geometrik çizimler"),
        _u("Açı Ölçme (MAT.5.3.3-4)", "Açı ölçme ve çizme; Açı türleri; Açıortay"),
        _u("Açı İlişkileri: Tümler, Bütünler, Komşu ve Ters Açılar (MAT.5.3.4)", "Tümler açılar (toplamı 90°); Bütünler açılar (toplamı 180°); Komşu açılar; Ters (karşıt) açılar; Kesişen iki doğrunun oluşturduğu açılar"),
@@ -95,21 +97,38 @@ C = {
        _u("Kesirler", "Kesir türleri; Kesir sıralama; Kesirlerle toplama-çıkarma"),
        _u("Ondalık Gösterim ve Yüzdeler", "Ondalık gösterim; Yüzde kavramı"),
        _u("Veri Toplama ve Değerlendirme", "Sütun grafiği; Veri yorumlama; Örüntüler")],
-  FEN: [_u("Güneş, Dünya ve Ay", "Güneş'in yapısı; Dünya'nın hareketleri; Ay'ın evreleri; Tutulmalar"), _u("Canlıların Yapısı ve Hücre", "Hücre ve organeller; Canlı sınıflandırma"),
-       _u("Kuvvetin Ölçülmesi ve Sürtünme", "Kuvvet ve dinamometre; Sürtünme kuvveti; Ağırlık-kütle"), _u("Madde ve Değişim", "Maddenin halleri; Isı ve sıcaklık; Erime-donma"),
-       _u("Işığın Yayılması", "Işık kaynakları; Yansıma; Gölge"), _u("Elektrik Devreleri", "Devre elemanları; Seri-paralel bağlama; Elektrik güvenliği"),
-       _u("Biyoçeşitlilik ve Çevre", "Ekosistem; Besin zinciri; Çevre sorunları")],
-  SOS: [_u("Birlikte Yaşamak", "Birey-toplum; Haklar ve sorumluluklar; Roller"), _u("Evimiz Dünya", "Harita; Yer şekilleri; İklim; Doğal afetler"),
-       _u("Ortak Mirasımız", "Kültürel miras; Anadolu medeniyetleri"), _u("Yaşayan Demokrasi", "Demokrasi; Seçim; Yönetim"),
-       _u("Hayatımızdaki Ekonomi", "İhtiyaç-istek; Tasarruf; Meslekler"), _u("Teknoloji ve Sosyal Bilimler", "Bilim ve teknoloji tarihi; Bilişim güvenliği")],
-  DIN: [_u("Allah İnancı", "Allah'ın varlığı; Güzel isimler; Tevhid; Tekvin; Semi ve Basar; Kudret ve İrade; Evrendeki düzen ve akıl"), _u("Namaz İbadeti", "Namazın önemi; Abdest; Namaz vakitleri"), _u("Hz. Muhammed'in Hayatı", "Peygamberliği; Örnek ahlakı"),
-       _u("Kur'an-ı Kerim", "Kur'an'ın indirilişi; Temel konular"), _u("İhlas Suresi", "İhlas Suresi'nin okunuşu; İhlas Suresi'nin meali; Tevhid ve Allah'ın birliği"),
-       _u("Değerlerimiz", "Dürüstlük; Adalet; Hoşgörü")],
-  ING: [_u("Hello!", "Greetings; Introducing; Alphabet"), _u("My Town", "Places; Directions; Prepositions"), _u("Games and Hobbies", "Free time; Can/can't; Likes"),
-       _u("My Daily Routine", "Daily routines; Time; Frequency"), _u("Health", "Body parts; Illnesses; Advice"), _u("Movies", "Genres; Opinions; Past simple basics"),
-       _u("Party Time", "Invitations; Food; Dates"), _u("Fitness", "Sports; Healthy life")],
-  ALM: [_u("Hallo!", "Begrüßung; Sich vorstellen; Alphabet"), _u("Meine Familie", "Familienmitglieder; Besitz"), _u("Zahlen und Farben", "Zahlen 1-100; Farben"),
-       _u("Schule", "Schulfächer; Schulsachen"), _u("Essen und Trinken", "Lebensmittel; Vorlieben")],
+  FEN: [_u("Gökyüzündeki Komşularımız ve Biz", "Güneş'in yapısı ve dönme hareketi; Ay'ın özellikleri, dönme ve dolanma hareketleri; Ay'ın evreleri; Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri"),
+       _u("Kuvveti Tanıyalım", "Kuvvetin büyüklüğü, dinamometre ve newton; Dinamometre modeli; Yer çekimi ve ağırlık; Sürtünme kuvveti"),
+       _u("Canlıların Yapısına Yolculuk", "Bitki ve hayvan hücresi; Hücre-doku-organ-sistem-organizma; Destek ve hareket sistemi (iskelet, kas); Sistem sağlığı"),
+       _u("Işığın Dünyası", "Işığın doğrusal yayılması; Saydam, yarı saydam ve opak maddeler; Tam gölge"),
+       _u("Maddenin Doğası", "Maddenin tanecikli yapısı; Isı ve sıcaklık; Isı alışverişi; Hâl değişimi; Isı iletimi; Isı yalıtımı"),
+       _u("Yaşamımızdaki Elektrik", "Devre elemanları ve sembolleri; Devre şeması ve deney; Ampul parlaklığını etkileyen değişkenler"),
+       _u("Sürdürülebilir Yaşam ve Geri Dönüşüm", "Evsel atıklar; Geri dönüştürülebilen maddeler; Kaynakların etkili kullanımı; Atık yönetimi")],
+  SOS: [_u("Birlikte Yaşamak", "Gruplar ve roller; Kültürel özelliklere saygı; Yardımlaşma ve dayanışma"),
+       _u("Evimiz Dünya", "Göreceli konum; Doğal ve beşerî çevre; Afetler ve farkındalık; Komşu devletler"),
+       _u("Ortak Mirasımız", "Ortak miras ögeleri; Anadolu'daki ilk yerleşimler (Göbeklitepe, Çatalhöyük); Mezopotamya ve Anadolu medeniyetleri"),
+       _u("Yaşayan Demokrasimiz", "Demokrasi ve cumhuriyet; Etkin vatandaş; Hak ve sorumluluklar; Başvuru yapılabilecek kurumlar"),
+       _u("Hayatımızdaki Ekonomi", "Kaynakların verimli kullanımı; İhtiyaç, istek ve bütçe; Yaşadığı ildeki ekonomik faaliyetler"),
+       _u("Teknoloji ve Sosyal Bilimler", "Teknolojik gelişmelerin toplum hayatına etkisi; Teknolojik ürünlerin bilinçli kullanımı")],
+  DIN: [_u("Allah İnancı", "Evrendeki düzen ve akıl yürütme; Allah'ın varlığı ve birliği; Allah'ın güzel isimleri; İhlas suresi ve anlamı"),
+       _u("Namaz", "Namaz ibadeti; Namazın kılınışı; Namazın insan hayatına etkileri; Tahiyyat duası ve anlamı"),
+       _u("Kur'an-ı Kerim", "Kur'an-ı Kerim'in iç düzeni; Temel özellikleri; Ana konuları; Kevser suresi ve anlamı"),
+       _u("Peygamber Kıssaları", "Peygamberlik; Peygamber kıssalarındaki öğütler; Kureyş suresi ve anlamı"),
+       _u("Mimarimizde Dinî Motifler", "Dinin mimariye etkisi; Camilerin bölümleri (mihrap, minber, kubbe, minare); Cami örnekleri")],
+  ING: [_u("School Life", "School places and rules; Clubs; Countries; National days; Simple Present; Mustn't/can't; Imperatives"),
+       _u("Classroom Life", "Classroom objects; School subjects; Timetable; Days of the week; Telling the time; There is/are"),
+       _u("Personal Life", "Body parts and appearance; Clothes; Daily routines; Adverbs of frequency; Question tags"),
+       _u("Family Life", "Family members' routines; Hobbies and activities; Chores; Present Progressive; Present Progressive vs Simple Present"),
+       _u("Life in the Neighbourhood & City", "Places for recreation; Types of houses; Comparatives; Possessive 's; There is/are"),
+       _u("Life in the World", "Food types; Ordering in a restaurant; Food events; Countable/uncountable nouns; Have got; Can for permission"),
+       _u("Life in Nature", "Types of animals; Wild animals; Habitats; Can/must; Comparatives and superlatives"),
+       _u("Life in the Universe & Future", "Planet Earth; Continents and climate; Seasons; School holidays; Be going to")],
+  ALM: [_u("Ich und Du", "Sich vorstellen; Das Alphabet; Begrüßen und verabschieden; Nach dem Befinden fragen"),
+       _u("Das bin ich", "Alter und Zahlen; Länder und Sprachen; Herkunft und Wohnort"),
+       _u("Meine Familie", "Familienmitglieder; Berufe von Familienmitgliedern"),
+       _u("Meine Schule", "Schulsachen; Das Klassenzimmer; Die Schulräume"),
+       _u("Schulalltag", "Schulfächer; Wochentage und Tageszeiten; Mein Stundenplan"),
+       _u("Sport", "Sportarten; Einzel- und Mannschaftssportarten; Mein Lieblingssport")],
  },
  "6": {
   TR: [_u("Erdemler", "Okuma anlama; Ana fikir; Deyim ve atasözü"), _u("Millî Mücadele ve Atatürk", "Metin türleri; Sözcükte anlam; Anlatım bozukluğu giriş"),
@@ -424,7 +443,7 @@ def units(g, subject):
     if subject == MAT and b in MEB_MAT:  # resmî MEB (tymm.meb.gov.tr) tema adları ve kazanımları kesin kaynaktır
         return MEB_MAT[b]
     lv = LIVE.get(f"{b}|{subject}")
-    if lv:
+    if lv and b != "5":  # 5. sınıf yerleşik listesi resmî TYMM programına göre doğrulandı: canlı çekim onu "1. Ünite" gibi genel adlarla ezmesin
         return lv
     return C[b].get(subject, [])
 
@@ -5300,6 +5319,56 @@ def verify_questions(qs, gk, mk, offset=0):
     return keep
 
 
+CRITIC_PROMPT = (
+    "Sen Ölçme ve Değerlendirme alanında uzman, LGS/YKS/MEB yeni nesil soru yazan deneyimli bir BAŞ YAZAR ve MADDE ELEŞTİRMENİSİN. "
+    "Aşağıdaki çoktan seçmeli soruları tek tek, acımasızca eleştir. Her soru için kontrol et: "
+    "(1) bilimsel/tarihsel/dilbilgisel HATA var mı, (2) soru ya da şıklar muğlak mı, (3) BİRDEN FAZLA şık savunulabilir mi ya da HİÇBİRİ doğru mu, işaretli cevap gerçekten doğru mu, "
+    "(4) veri eksik ya da çelişkili mi (soru metni - görsel - şıklar uyumlu mu), (5) soru kökü OLUMSUZ mu ('hangisi yanlıştır/söylenemez/değildir' → yasak; öncüllü I-II-III ya da olumlu kök olmalı), "
+    "(6) doğru şık uzunluğuyla/ifadesiyle ipucu veriyor mu, çeldiriciler tipik yanılgılardan mı, (7) kazanım/üniteden taşma var mı.\n"
+    "Her soru için karar ver: OK (kusursuz), FIX (küçük düzeltmeyle kurtarılabilir: düzeltilmiş TAM soruyu 'fixed' alanında ver; olumsuz kökü olumlu/öncüllü yeniden yaz) ya da DROP (kurtarılamaz).\n"
+    'ÇIKTI SADECE JSON: {"reviews":[{"id":1,"verdict":"OK|FIX|DROP","issue":"kısa gerekçe","fixed":{"passage":"..veya null","question":"..","options":{"A":"..","B":"..","C":"..","D":".."},"answer":"A","explanation":".."}}]}\n'
+    "SORULAR:\n")
+
+
+def critique_fix(qs, gk, mk, offset=0, batch=6):
+    """Uzman-eleştirmen geçişi: sorunlu soruyu düzeltir ya da eler. Yalnızca gece üreticisinde kullanılır (kullanıcı kotasını yemez).
+    Şekilli sorularda düzeltme yapılmaz (şekil-metin uyumu bozulmasın): yalnızca OK/DROP uygulanır. API'ye ulaşılamazsa sorular olduğu gibi kalır."""
+    out = []
+    qs = list(qs or [])
+    for b0 in range(0, len(qs), batch):
+        chunk = qs[b0:b0 + batch]
+        payload = [{"id": i + 1, "subject": q.get("subject"), "topic": q.get("topic"), "passage": q.get("passage"), "question": q.get("question"),
+                    "shape": q.get("shape"), "options": q.get("options"), "answer": q.get("answer"), "explanation": q.get("explanation")} for i, q in enumerate(chunk)]
+        try:
+            raw, _err = multi_pool_generate(CRITIC_PROMPT + json.dumps(payload, ensure_ascii=False), gk, mk, offset=offset + b0, temperature=0.2)
+            data = parse_json(raw) if raw else None
+            revs = {int(r.get("id")): r for r in (data or {}).get("reviews", []) if isinstance(r, dict) and str(r.get("id", "")).isdigit()}
+        except Exception:
+            revs = {}
+        for i, q in enumerate(chunk):
+            r = revs.get(i + 1)
+            v = str((r or {}).get("verdict", "OK")).upper()
+            if v == "DROP":
+                continue
+            if v == "FIX" and isinstance(r.get("fixed"), dict) and not q.get("shape"):
+                fx = dict(q)
+                fx.update({k: r["fixed"][k] for k in ("passage", "question", "options", "answer", "explanation") if k in r["fixed"]})
+                try:
+                    nq = _norm_q(fx, q.get("subject"))
+                except Exception:
+                    nq = None
+                if nq and not _negative_stem(nq):
+                    for k, val in q.items():
+                        nq.setdefault(k, val)
+                    nq["crit"] = 1
+                    out.append(nq)
+                continue
+            if v == "FIX":
+                continue  # şekilli soru kurtarılamaz
+            out.append(q)
+    return out
+
+
 def verify_strict(qs, gk, mk, offset=0, batch=8, facts=None):
     """HAVUZA girecek sorular için sıkı doğrulama: soru, cevap anahtarı gösterilmeden İKİ bağımsız çözümden geçer
     (mümkünse farklı model aileleri). İkisi de anahtarla aynı şıkkı vermezse ya da çözücüye ulaşılamazsa soru ELENİR."""
@@ -5787,6 +5856,25 @@ def _underdetermined(full, shape):
     return not _UD_SAFE.search(blob)
 
 
+_NEG_TAIL = re.compile(
+    r"(?:hangisi(?:dir)?|hangileri(?:dir)?|hangisinde)\b[^?.]{0,120}?(?:yanlış|doğru\s+değil|söylenemez|olamaz|çıkarılamaz|bulunmaz|değildir|dışındadır|ortak\s+değil)"
+    r"|(?:yanlıştır|söylenemez|çıkarılamaz|olamaz|değildir|dışındadır)\s*[?.]?\s*$"
+    r"|which\b[^?]{0,100}\b(?:NOT|false|incorrect|except)\b|\bwelche\b[^?]{0,100}\b(?:nicht|falsch)\b|\b(?:EXCEPT|NOT TRUE)\b", re.I)
+_PREMISE = re.compile(r"(?m)^\s*(?:I{1,3}|IV)\s*[.)-]|\bI\.\s|\bII\.\s|\bIII\.\s")
+
+
+def _negative_stem(q):
+    """Olumsuz soru kökü ('hangisi yanlıştır/söylenemez/değildir') var mı? Öncüllü (I-II-III) sorular serbest."""
+    try:
+        t = str(q.get("question", ""))
+        if _PREMISE.search(t) or _PREMISE.search(str(q.get("passage", ""))):
+            return False
+        tail = t.strip()[-220:]
+        return bool(_NEG_TAIL.search(tail))
+    except Exception:
+        return False
+
+
 def _complete_ok(qtext, pas, opts, shape):
     """Soru metni + şıklar + görsel arasında eksik/uyumsuz bilgi var mı? (False -> soruyu ele)"""
     full = f"{qtext}\n{pas}"
@@ -6019,11 +6107,28 @@ def bump_difficulty(difficulty):
     return difficulty, 4
 
 
+PERSONA = (
+    "ROLÜN: Ölçme ve Değerlendirme alanında uzman, LGS/YKS/MEB yeni nesil sınavlar için nitelikli soru hazırlayan deneyimli bir BAŞ YAZARSIN. "
+    "Soruları yazdıktan sonra bir de ÖLÇME-DEĞERLENDİRME UZMANI olarak kendi sorunu acımasızca eleştir: bilimsel/tarihsel hata, muğlaklık, "
+    "birden fazla doğru cevap, hiç doğru cevap olmaması, eksik ya da çelişen veri, kazanım dışı çeldirici var mı? Varsa soruyu düzelt ya da baştan yaz; "
+    "yalnızca kusursuz soruları çıktıya koy.\n")
+
+STEM_POLICY = (
+    "SORU KÖKÜ POLİTİKASI (KATI): 'Aşağıdakilerden hangisi yanlıştır?', 'hangisi söylenemez / değildir / olamaz / çıkarılamaz', 'ortak değildir' gibi OLUMSUZ kök kalıpları YASAK "
+    "(bu istemin başka yerlerinde örnek olarak geçseler de kullanma). Bunların yerine şunları tercih et: "
+    "(1) ÖNCÜLLÜ sorular: I., II., III. yargıları (her biri ayrı satırda) ve 'Buna göre I, II ve III numaralı ifadelerden hangileri doğrudur?' / 'hangileri kesinlikle gerçekleşir?'; "
+    "(2) OLUMLU KÖKLÜ analitik sorular: 'Buna göre … hangisidir?', 'Bu verilere göre … için hangisi söylenebilir?', 'Sonuç olarak … nedir?', 'Bu durumun nedeni hangisidir?'; "
+    "(3) analiz & günlük yaşam senaryolu sorular: gerçek bir durum/veri verilir, öğrenci veriyi yorumlayıp çıkarım yapar. "
+    "Yanlış-doğru ayıklatmak istiyorsan bunu önermeleri (I-II-III) olumlu kökle sorarak yap.\n"
+    "ÇOKLU VARYANT: Aynı kazanıma birden çok soru düşüyorsa her biri FARKLI bir senaryo türünde olsun (günlük yaşam/alışveriş, deney-gözlem verisi, tablo-grafik yorumu, "
+    "öğrenci/öğretmen diyaloğu, haber-duyuru, şema-harita) ve FARKLI bir beceri ölçsün; yalnızca sayı/isim değiştirilmiş kopya YASAK.\n")
+
+
 LGS_STYLE = (
     "LGS / MEB YENİ NESİL SORU TARZI (KATI):\n"
     "- Soru, bir BAĞLAM ya da VERİ (kısa senaryo, deney, metin, tablo, grafik) sunar; sonra ölçtüğü beceriye yönelik TEK net soru sorar: 'Buna göre … hangisidir?', "
-    "'Bu verilere göre aşağıdakilerden hangisi söylenemez?', 'I, II ve III yargılarından hangileri doğrudur?'.\n"
-    "- Soru kökü çeşitli olsun: yargı değerlendirme (I-II-III), olumsuz kök (yanlış/söylenemez), sıralama, eşleştirme, çıkarım, karşılaştırma, hata bulma. Tüm sorular aynı kalıpta olmasın.\n"
+    "'Bu verilere göre … için aşağıdakilerden hangisi söylenebilir?', 'I, II ve III yargılarından hangileri doğrudur?'.\n"
+    "- Soru kökü çeşitli olsun: öncüllü yargı değerlendirme (I-II-III), olumlu köklü çıkarım, sıralama, eşleştirme, karşılaştırma, neden-sonuç, veri yorumlama. OLUMSUZ kök (yanlıştır/söylenemez/değildir) YASAK. Tüm sorular aynı kalıpta olmasın.\n"
     "- 🔁 ÖZGÜNLÜK: Aynı soruyu yalnızca sayıları/isimleri değiştirerek çoğaltma YASAK. Her soru FARKLI bir bağlam (günlük yaşam, deney, harita, metin, tablo, grafik…), FARKLI bir soru kökü ve FARKLI bir beceri ölçsün; sık kullanılan örnek kalıplardan (market alışverişi, 'x kg elma', 'Ali ile Ayşe' vb.) kaçın, özgün ve beklenmedik senaryolar kur.\n"
     "- 🚫 Doğrudan tanım/ezber ('… nedir?', tek bilgiyi hatırlama) ve TEK İŞLEMLİ/TEK ADIMLI sorular YASAK; her soru en az iki adımlı muhakeme (veriyi oku → ilişki kur → sonuca var) gerektirsin.\n"
     "- Çeldiriciler rastgele olmasın: öğrencilerin yapabileceği tipik yanılgılardan ve işlem hatalarından türesin; şıklar benzer uzunlukta olsun, doğru şık uzunluğuyla ya da ifadesiyle ele vermesin.\n")
@@ -6033,7 +6138,7 @@ LOGIC_RULES = (
     "(1) Doğru şık TEK ve gerçekten doğru; diğer üç şık KESİNLİKLE yanlış (hiçbiri savunulabilir olmasın). "
     "(2) Soru ve görseldeki tüm sayılar/ifadeler birbiriyle TUTARLI (açı toplamları, yüzde/oran toplamları, tablo-toplam uyumu, birimler). "
     "(3) Cevap için gereken TÜM veri verilmiş; eksik, fazla ya da çelişen veri yok. "
-    "(4) Olumsuz kökte (yanlış/söylenemez/değildir) doğru cevabın 'yanlış olan' şık olduğunu karıştırma. "
+    "(4) Soru kökü OLUMLU ya da öncüllü olsun (olumsuz kök kullanma); kökte sorulan şey ile işaretlediğin doğru şık birebir örtüşsün. "
     "(5) Bilimsel ve tarihsel bilgiler doğru; gerçek kişi/olay/tarih uydurma. Gerçek hayat büyüklükleri mantıklı (süre, uzunluk, kütle, fiyat). "
     "(6) Şıklar birbirinden farklı olsun, aynı anlama gelen iki şık YOK.\n"
     "GERÇEKÇİLİK: Sayılar gerçek hayatta makul olsun (yaş, boy, fiyat, hız, süre, kütle, sıcaklık); birimler tutarlı; adlar ve yerler Türkçe ve doğal (Ayşe, Mehmet, İzmir…); "
@@ -6048,7 +6153,7 @@ _LGS25 = {
         "(a) Sorular senaryolu ve günlük hayatla ilişkili olsun; en az yarısı tablo, çizgi/sütun grafiği ya da şekle dayalı VERİ YORUMU içersin: önce görselden çıkarım yap, sonra işlem yap. "
         "(b) Birden çok beceriyi birleştir (oran-orantı + yüzde, denklem kurma + eşitsizlik, üslü/köklü ifade + bilimsel gösterim, eğim + doğrusal ilişki, olasılık + veri analizi). "
         "(c) Ezber formül uygulatan tek adımlı soru yok; eleyici kalıp: tek bir veri kaynağı (tablo/şekil) üzerinde iki-üç özelliği birlikte sorgulayan, çok adımlı soru. "
-        "(d) Soru kökü çeşitli: 'hangisi doğrudur', 'hangisi yanlıştır', 'kaç tanesi', I-II-III yargı değerlendirme, sıralama. "
+        "(d) Soru kökü çeşitli ve OLUMLU: 'hangisi doğrudur', 'kaç tanesi', I-II-III öncüllü yargı değerlendirme, sıralama (olumsuz kök 'yanlıştır' YOK). "
         "(e) Konu ağırlığı: üslü-kareköklü ifadeler, cebirsel ifadeler-özdeşlikler, doğrusal denklem-eğim-grafik, eşitsizlik, olasılık, veri analizi, üçgenler, oran-orantı; geometrik cisimlerden en çok bir silindir/koni/prizma sorusu. "
         "(f) ÇIKMIŞ SORU KALIPLARI (birebir kopyalama; aynı kalıpla FARKLI sayı/bağlam üret): "
         "1) kenar uzunluğu verilen eşkenar üçgen/düzgün altıgende çevre-alan (kareköklü ifade şıklı); "
@@ -6109,7 +6214,7 @@ _MEB_SENARYO = (
 _DIN5_ALLAH = (
     "\n🕌 5. SINIF DİN 'ALLAH İNANCI' ÜNİTE TARZI: Kısa, sade, 5. sınıf düzeyinde, kavram odaklı sorular. Şu kalıpları çeşitlendir: "
     "(1) boşluk doldurma: 'Allah'ın bir ve tek olması, eşi ve benzerinin olmaması ……… kavramı ile ifade edilir' (Tevhid); 'her şeyi görmesine ………, işitmesine ………' (Basar–Semi); 'her şeyi yaratması ………' (Tekvin); "
-    "(2) 'aşağıdakilerden hangisi yanlış bir ifadedir / çıkarılamaz / söylenemez'; "
+    "(2) 'aşağıdaki ifadelerden hangisi doğru bir çıkarımdır / söylenebilir'; "
     "(3) maddeli özellik listesi verip ('Hiçbir varlığa benzemez; tektir, eşi ortağı yoktur; hiçbir şeye ihtiyaç duymaz') hangi varlığa ait olduğunu ya da hangi sorunun cevabı olduğunu sordurma; "
     "(4) evrendeki düzen ve ayet (ör. Kamer Suresi 49. ayet: 'Gerçekten biz her şeyi bir ölçü ve dengede yarattık.') üzerinden genel yargı çıkarma; "
     "(5) 'Allah'ın her şeyi gördüğüne inanan birinden beklenmeyen davranış' gibi değer-davranış ilişkisi; "
@@ -6120,7 +6225,7 @@ _DIN5_ALLAH = (
 
 _BURS5 = (
     "\n🏆 MEB BURSLULUK SINAVI (5. sınıf) TARZI: tüm derslerde bir yaşam durumu/senaryo + tablo/görsel + TEK net kök; her soru çok adımlı düşünme ister (doğrudan okuma değil). "
-    "Kalıplar: iki marka/ürün fiyat tablosundan para üstü ve en az tutar yargıları (hangisi yanlıştır); işlem problemi (bir kovandaki arıların kanat sayısı verilip ayak+göz toplamı); "
+    "Kalıplar: iki marka/ürün fiyat tablosundan para üstü ve en az tutar yargıları (I-II-III, 'hangileri doğrudur'); işlem problemi (bir kovandaki arıların kanat sayısı verilip ayak+göz toplamı); "
     "kelimenin farklı anlamları ve öğrenci cevaplarından uygun olmayanı bulma; metinden kişilik özelliği/atasözü eşleştirme; Fen'de dinamometre okuma, Dünya-Ay ağırlık karşılaştırması, Ay evreleri gözlemi, yay uzaması; "
     "Sosyal'de harita, grafik ve tablo yorumu. Şıklar birbirinden net ayrılsın, doğru şık tek ve kesin olsun.\n")
 
@@ -6128,8 +6233,8 @@ _BURS5 = (
 _YZ5 = {
     "Fen Bilimleri": (
         "\n🔬 5. SINIF FEN (MEM İZLEME SINAVI) SORU TARZI: Sorular kısa bir bilgi/gözlem/deney cümlesiyle başlar, sonra tek net kök gelir. Kalıplar (birebir kopyalama, aynı kalıpla FARKLI içerik üret): "
-        "(1) 'Aşağıdaki özelliklerden I., II., III., IV. hangileri X ve Y için ortak değildir?'; "
-        "(2) '… hareketleriyle ilgili aşağıdakilerden hangisi doğrudur/yanlıştır?'; "
+        "(1) 'Aşağıdaki özelliklerden I., II., III., IV. hangileri X ve Y için ortaktır?'; "
+        "(2) '… hareketleriyle ilgili aşağıdakilerden hangisi doğrudur?'; "
         "(3) Ay'ın konumlarını (1-2-3-4 numaralı şema) ve evrelerini (hilal, ilk/son dördün, şişkin ay, dolunay, yeni ay) yorumlama; ara evre bulma; "
         "(4) bilim insanının gözleminden sonuç çıkarma (ör. Galileo'nun Güneş lekesi gözlemi); "
         "(5) 'Bu durumla benzerlik göstermez/benzetilebilir' türü analoji (sınıflandırma = marketteki ürünlerin reyonlara ayrılması gibi); "
@@ -6144,7 +6249,7 @@ _YZ5 = {
         "öğrenci-öğrenci diyaloğunda 'hangisi kuramamıştır'. Şiir ve metin parçaları eksiksiz verilsin; metinde ve sorudaki her bilgi çözüme yetsin.\n"),
     "Sosyal Bilgiler": (
         "\n🌍 5. SINIF SOSYAL (MEM İZLEME SINAVI) SORU TARZI: Kısa bir kaynak metin (Sümerler, Hammurabi Kanunları, Anadolu medeniyetleri, Çanakkale, haklar ve sorumluluklar, yöresel kültür) verip "
-        "'Verilen metne göre … doğru olduğu söylenebilir / söylenemez' kalıbıyla yorum sor; I-II-III yargılarla 'hangileri ihlal edilmiş olabilir / etkili olmuştur'; "
+        "'Verilen metne göre … söylenebilir' kalıbıyla yorum sor; I-II-III yargılarla 'hangileri ihlal edilmiş olabilir / etkili olmuştur'; "
         "neden-sonuç ve çok nedenli olaylar; kültürel görselden (yemek, el sanatı, türkü) genel yargıya ulaşma. Şıklar metinden çıkarılabilen/çıkarılamayan yargılar olsun; "
         "mutlak ifadeler ('sadece', 'hiçbir zaman', 'bütün') genellikle yanlış şık olsun ama doğru şık da mutlaka bulunsun.\n"),
     "Matematik": (
@@ -6157,7 +6262,7 @@ _YZ5 = {
 _YZ_ALL = {
     "Fen Bilimleri": (
         "\n🔬 FEN SORU MANTIĞI (tüm sınıflar; MEM/MEB izleme sınavı tarzı): kısa bilgi/gözlem/deney cümlesi + tek net kök. Kalıplar: "
-        "özellik listesinde (I-II-III-IV) 'ortak/ortak değildir'; 'doğrudur/yanlıştır' yargı ayıklama; bilim insanının ya da öğrencinin gözleminden SONUÇ çıkarma; "
+        "özellik listesinde (I-II-III-IV) 'ortak olanlar'; 'hangileri doğrudur' öncüllü yargı ayıklama; bilim insanının ya da öğrencinin gözleminden SONUÇ çıkarma; "
         "'bu durumla benzerlik gösterir/göstermez' analoji; tablo-grafik-şema (numaralı konum, kavram haritası K-L-M-N) yorumlama; öğretmen-öğrenci diyaloğunda yanlış yorumu bulma; "
         "deneyde bağımsız/bağımlı/kontrol değişkeni; boşluk doldurma ('… nedeniyle ………'). Her soru bir kavram yanılgısını yoklasın; çeldirici bilimsel olarak KESİN yanlış, doğru şık kesin doğru olsun. "
         "'Yalnız I / I ve II' türü şıklarda yargıların her biri metinde numaralı satır olarak YAZILI olsun.\n"),
@@ -6165,13 +6270,13 @@ _YZ_ALL = {
         "\n📘 TÜRKÇE SORU MANTIĞI (tüm sınıflar): öğretmen kutusunda kısa kural/tanım ver, sonra yeni örneklere UYGULAT (öznel-nesnel, karşılaştırma cümlesi, söz sanatı, noktalama görevleri, "
         "sözlük sırası ve hata düzeltme, sözcüklerden anlamlı cümle kurma, zıt/eş anlam, hikâye unsurları, anlatım bozukluğu). Parçalar eksiksiz, soru köküne yetecek bilgi içinde olsun.\n"),
     "Sosyal Bilgiler": (
-        "\n🌍 SOSYAL SORU MANTIĞI (tüm sınıflar): kısa kaynak metin/belge + 'Verilen metne göre … söylenebilir/söylenemez'; I-II-III yargı; neden-sonuç; "
+        "\n🌍 SOSYAL SORU MANTIĞI (tüm sınıflar): kısa kaynak metin/belge + 'Verilen metne göre … söylenebilir'; I-II-III yargı; neden-sonuç; "
         "şıklar yalnız metinden çıkarılabilen ya da çıkarılamayan yargılar olsun, doğru şık metinle birebir örtüşsün; mutlak ifadeler ('sadece', 'hiçbir zaman') çoğunlukla yanlış şıkta olsun ama doğru şık da bulunsun.\n"),
     "Matematik": (
         "\n🔢 MATEMATİK SORU MANTIĞI (tüm sınıflar): günlük hayat senaryosu + model/şekil; verinin tamamı soruda/şekilde yazılı, sonuç tek; çeldiriciler tipik işlem hatalarından (birim, işaret, basamak) türesin; "
         "'en az/en çok kaç' ve çok adımlı problemler tercih edilsin.\n"),
     "Din Kültürü ve Ahlak Bilgisi": (
-        "\n🕌 DİN KÜLTÜRÜ SORU MANTIĞI (tüm sınıflar): kavram (ör. tevhid-tekvin-semi-basar), ayet/hadis meali ve değer-davranış ilişkisi; boşluk doldurma, 'yanlıştır/çıkarılamaz', "
+        "\n🕌 DİN KÜLTÜRÜ SORU MANTIĞI (tüm sınıflar): kavram (ör. tevhid-tekvin-semi-basar), ayet/hadis meali ve değer-davranış ilişkisi; boşluk doldurma, 'hangisi doğrudur', "
         "maddeli özellikten varlığı/kavramı bulma, günlük durumda uygun davranışı seçme. Dinî bilgiler doğru ve saygılı olsun.\n"),
     "T.C. İnkılap Tarihi ve Atatürkçülük": (
         "\n🏛️ İNKILAP SORU MANTIĞI: kısa kaynak (bildiri, mektup, harita, kronoloji) + neden-sonuç, sıralama, I-II-III yargı; tarih ve olay bilgisi kesin doğru olsun.\n"),
@@ -6213,22 +6318,23 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
     if subject in ("Türkçe", "Sosyal Bilgiler"):
         fc += ("\n🎯 GRAFİK/TABLO/ŞEMA SORULARINDA ZORLUK: Cevap görsele bakınca DOĞRUDAN okunmasın ('en çok/en az hangisi', 'X kaçtır' YASAK). "
                "Bunun yerine: iki-üç adımlı çıkarım (karşılaştırma + fark/oran/toplam), numaralı yargılardan (I, II, III) doğru/yanlış ayıklama, "
-               "'hangisi söylenemez', nedensellik/sonuç çıkarma, görseldeki veriyi paragraftaki bilgiyle birleştirme, yorumlama. "
+               "'hangisi söylenebilir', nedensellik/sonuç çıkarma, görseldeki veriyi paragraftaki bilgiyle birleştirme, yorumlama. "
                "Çeldiriciler görseldeki gerçek değerlerden türetilsin (yakın ama yanlış sonuçlar).")
     if like:
         fc += ("\n👍 ÖĞRENCİNİN BEĞENDİĞİ ÖRNEK SORU:\n" + like[:900] + "\nTÜM soruları bu örneğe BENZER yaz: aynı kazanım/beceri, aynı yapı, tür ve zorluk; "
                "ama FARKLI sayı, ad, bağlam ve görsel verisi kullan. Örneği kopyalama; metindeki her değer görselde de olsun.")
     return (
-        f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
+        PERSONA + f"Türkiye Cumhuriyeti MEB {grade_label} {subject} dersi resmî öğretim programı (Türkiye Yüzyılı Maarif Modeli) kazanımlarına "
         f"tam uygun, TAM {n} adet ÇOKTAN SEÇMELİ (A,B,C,D) yeni nesil soru hazırla.\n"
         f"KAPSAM: {scope_label}\nKONULAR/KAZANIMLAR: {topics}{fc}\n"
         f"ZORLUK KADEMESİ: '{eff}'. Bu kademeye kesin uy → {DIFF_SPEC.get(lvl, '')}\n"
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
         + ("MEB/LGS geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz ama ÇOK ADIMLI muhakeme gerektiren sorular.\n" if geo_on else LGS_STYLE) + (_lgs25(subject, grade_label) if not geo_on else "LGS geometri: eleyici kalıp = şeklin birden fazla özelliğini (kenar, açı, eşlik/benzerlik, çevre/alan) birlikte sorgulayan çok adımlı soru.\n" if _lgs25(subject, grade_label) else "") +
-        "Sınıf düzeyinin dışına (üst sınıf konusuna) taşma; kazanım kapsamında kal.\n" + (MATH_NOTATION if (subject == "Matematik" and not geo_on) else "") + LOGIC_RULES +
+        "Sınıf düzeyinin dışına (üst sınıf konusuna) taşma; kazanım kapsamında kal.\n" + (MATH_NOTATION if (subject == "Matematik" and not geo_on) else "") + STEM_POLICY + LOGIC_RULES +
         f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{'' if plain else _variety_plan(subject, n, topics)}"
         f"{av}\n{_subject_lock(subject, topics)}\n{PLAIN_RULE if plain else shape_rules(subject, geo_on) + (GEO_STYLE if geo_on else '')}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, adım adım 'explanation' (çözüm) ve çözümden SONRA 'answer' (A/B/C/D) olsun.\n"
+        "SON KONTROL: Çıktıyı vermeden önce her soruyu uzman gözüyle yeniden incele (tek doğru cevap, bilimsel doğruluk, muğlaklık, olumsuz kök yok); kusurlu soruyu düzelt.\n"
         'ÇIKTI SADECE şu JSON: {"questions":[{"id":%d,"subject":"%s","topic":"...","passage":"... veya null","question":"...",'
         '"shape":null,"options":{"A":"..","B":"..","C":"..","D":".."},"explanation":"..","answer":"A"}]}' % (start_id, subject))
 
@@ -7614,49 +7720,49 @@ _SEEDS = [
     (("5",), "Din Kültürü ve Ahlak Bilgisi", ("allah", "tevhid", "sıfat"), "Allah İnancı",
      "Allah'ın her yerde ve her zaman kendisini gördüğüne inanan Elif'ten aşağıdakilerden hangisini yapması beklenmez?",
      ["Kimse görmese de çöpünü çöp kutusuna atmasını", "Yalnızken de doğruyu söylemesini", "Kimse görmeyecek diye başkasının eşyasını alması", "Verdiği sözü tutmasını"], 2, "Allah'ın gördüğüne inanan kişi gizlide de doğru davranır."),
-    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "Allah İnancı",
      "'Lem yelid ve lem yûled.' ayetinin anlamı aşağıdakilerden hangisidir?",
      ["O, Allah'tır, bir tektir.", "O doğurmamış ve doğurulmamıştır.", "Hiçbir şey O'na denk ve benzer değildir.", "Allah Samed'dir."], 1, "Ayetin meali: O doğurmamış ve doğurulmamıştır."),
-    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "Allah İnancı",
      "'De ki: O, Allah'tır, bir tektir.' mealine sahip ayet aşağıdakilerden hangisidir?",
      ["Kul hüvallâhü ehad.", "Allâhüs-samed.", "Lem yelid ve lem yûled.", "Ve lem yekün lehû küfüven ehad."], 0, "İhlas Suresi'nin ilk ayeti: Kul hüvallâhü ehad."),
-    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "Allah İnancı",
      "Ahmet, 'Hiçbir şey O'na denk ve benzer değildir.' ayetini öğrenmiştir.\nBu ayet Allah'ın hangi özelliğini vurgular?",
      ["Eşinin ve benzerinin bulunmadığını", "Her şeyi gördüğünü", "Rızık verdiğini", "İnsanları sevdiğini"], 0, "Ayet, Allah'ın eşi ve benzerinin olmadığını bildirir."),
-    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "Allah İnancı",
      "İhlas Suresi'nde geçen 'Samed' ifadesi aşağıdakilerden hangisini anlatır?",
      ["Allah'ın her şeyi yaratmasını", "Her şeyin Allah'a muhtaç olup Allah'ın hiçbir şeye muhtaç olmamasını", "Allah'ın sadece insanlara yardım etmesini", "Allah'ın yalnızca işitmesini"], 1, "Samed: her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir."),
-    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "İhlas Suresi",
+    (("5",), "Din Kültürü ve Ahlak Bilgisi", ("ihlas",), "Allah İnancı",
      "İhlas Suresi ile ilgili aşağıdakilerden hangisi doğrudur?",
      ["Dört ayetten oluşur.", "Yalnızca namazda okunur.", "Allah'ın birliğini (tevhid) anlatmaz.", "Peygamberlerin kıssalarını anlatır."], 0, "İhlas Suresi 4 ayettir ve Allah'ın birliğini anlatır."),
-    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'hareket'), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'hareket'), 'Gökyüzündeki Komşularımız ve Biz',
      "Dünya, Güneş'in etrafında 2 tam tur dolandığında kendi ekseni etrafında yaklaşık kaç kez döner?",
      ['12', '52', '365', '730'], 3, '1 turda yaklaşık 365 kez döner; 2 turda yaklaşık 730 kez.'),
-    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'ay '), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'ay '), 'Gökyüzündeki Komşularımız ve Biz',
      'Aşağıda verilen özelliklerden;\nI. Küresel şekle sahip olması\nII. Kendi ekseni etrafında dönmesi\nIII. Işık kaynağı olması\nhangileri Dünya ve Ay için ortaktır?',
      ['Yalnız I', 'I ve II', 'I ve III', 'II ve III'], 1, 'Dünya ve Ay küresel ve kendi ekseni etrafında dönen gök cisimleridir; ışık kaynağı değillerdir (Güneş ışık kaynağıdır).'),
-    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'ay '), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ('dünya', 'güneş', "ay'ın", 'ay '), 'Gökyüzündeki Komşularımız ve Biz',
      "Ay'ın atmosferi yok denecek kadar azdır.\nBuna göre aşağıdakilerden hangisinin Ay'da gözlemlenmesi beklenmez?",
      ['Gökyüzünde bulutların oluşması', 'Yüzeyde çok sayıda krater bulunması', 'Ayak izlerinin uzun süre bozulmadan kalması', 'Gece ve gündüz sıcaklığının çok farklı olması'], 0, 'Atmosfer olmadığı için bulut ve hava olayları oluşmaz.'),
-    (('5',), 'Fen Bilimleri', ("ay'ın", 'evre', 'ay '), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ("ay'ın", 'evre', 'ay '), 'Gökyüzündeki Komşularımız ve Biz',
      "Ay'ın evreleri belirli bir sırayla döngüsel olarak tekrar eder.\nBuna göre Dolunay evresinden hemen sonra gelen evre aşağıdakilerden hangisidir?",
      ['Yeni Ay', 'İlk Dördün', 'Şişkin Ay', 'Son Dördün'], 2, "Dolunay'dan sonra Ay küçülmeye başlar ve önce şişkin ay evresi görülür."),
-    (('5',), 'Fen Bilimleri', ("ay'ın", 'dünya', 'ay '), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ("ay'ın", 'dünya', 'ay '), 'Gökyüzündeki Komşularımız ve Biz',
      "Ay'ın kendi ekseni etrafında dönme süresi ile Dünya etrafında dolanma süresi aynıdır.\nBu durumun sonucu aşağıdakilerden hangisidir?",
      ["Dünya'dan bakıldığında Ay'ın hep aynı yüzünün görülmesi", "Ay'da gece ve gündüzün hiç oluşmaması", "Dünya'da mevsimlerin oluşması", "Ay'ın evrelerinin hiç değişmemesi"], 0, "Dönme ve dolanma süreleri eşit olduğu için Dünya'dan hep aynı yüz görülür."),
-    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), 'Gökyüzündeki Komşularımız ve Biz',
      'Galileo, teleskopla yaptığı gözlemlerde Güneş lekelerinin aynı yöne doğru kaydığını fark etmiştir.\nGalileo bu gözlemiyle hangi sonuca ulaşmıştır?',
      ['Güneş, kendi ekseni etrafında döner.', "Güneş lekeleri Ay'ın gölgesidir.", "Güneş lekeleri Dünya'dan kopan parçalardır.", "Güneş'in yüzeyi hiç hareket etmez."], 0, "Lekelerin aynı yönde kayması Güneş'in kendi ekseni etrafında döndüğünü gösterir."),
-    (('5',), 'Fen Bilimleri', ('sınıflandırma', 'canlı', 'hücre'), 'Canlıların Sınıflandırılması',
+    (('5',), 'Fen Bilimleri', ('sınıflandırma', 'canlı', 'hücre'), 'Canlıların Yapısına Yolculuk',
      'Canlıların belli özelliklerine göre gruplara ayrılmasına sınıflandırma denir.\nBuna göre aşağıdakilerden hangisi sınıflandırmaya benzetilebilir?',
      ['Öğrencilerin boy sırasına göre dizilmesi', 'Evlerin kapılarına numara verilmesi', 'Kitapların konularına göre kütüphanede ayrı raflara yerleştirilmesi', 'Arabaların otoparka rastgele park edilmesi'], 2, 'Kitapların konularına göre gruplanması, ortak özelliklere göre ayırmadır.'),
-    (('5',), 'Fen Bilimleri', ('sınıflandırma', 'canlı', 'hücre'), 'Canlıların Sınıflandırılması',
+    (('5',), 'Fen Bilimleri', ('sınıflandırma', 'canlı', 'hücre'), 'Canlıların Yapısına Yolculuk',
      'Amip, öglena ve paramesyum canlı sınıflandırmasında hangi grupta yer alır?',
      ['Bitkiler', 'Hayvanlar', 'Mantarlar', 'Mikroskobik canlılar'], 3, 'Bunlar mikroskopla görülebilen tek hücreli canlılardır.'),
-    (('5',), 'Fen Bilimleri', ('ay ', 'tutulma', 'güneş'), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ('ay ', 'tutulma', 'güneş'), 'Gökyüzündeki Komşularımız ve Biz',
      "Ay, Güneş ile Dünya arasına girerek üçü aynı doğrultuya geldiğinde Dünya'nın bir bölgesine Ay'ın gölgesi düşer.\nBu olay aşağıdakilerden hangisidir?",
      ['Güneş tutulması', 'Ay tutulması', 'Mevsimlerin oluşması', 'Dolunay evresi'], 0, "Ay'ın gölgesinin Dünya'ya düşmesi Güneş tutulmasıdır."),
-    (('5',), 'Fen Bilimleri', ('dünya', 'hareket'), 'Güneş, Dünya ve Ay',
+    (('5',), 'Fen Bilimleri', ('dünya', 'hareket'), 'Gökyüzündeki Komşularımız ve Biz',
      "Dünya'nın kendi ekseni etrafında dönmesinin sonucu aşağıdakilerden hangisidir?",
      ['Mevsimlerin oluşması', 'Gece ve gündüzün oluşması', "Ay'ın evrelerinin oluşması", 'Ay tutulmasının oluşması'], 1, 'Dönme hareketi gece-gündüzü oluşturur.'),
     (('4', '5', '6', '7', '8'), 'Türkçe', ('sözcük', 'yazım', 'anlam'), 'Sözlük Sırası',
@@ -7713,25 +7819,25 @@ _SEEDS = [
     (('8',), 'Fen Bilimleri', ('enerji', 'dönüşüm', 'çevre'), 'Enerji Dönüşümleri',
      'Bir hidroelektrik santralde enerji dönüşümü aşağıdakilerden hangisinde doğru verilmiştir?',
      ['Potansiyel enerji → kinetik enerji → elektrik enerjisi', 'Kimyasal enerji → ısı enerjisi → elektrik enerjisi', 'Işık enerjisi → ısı enerjisi → kinetik enerji', 'Nükleer enerji → ses enerjisi → elektrik enerjisi'], 0, 'Yüksekteki suyun potansiyel enerjisi kinetik enerjiye, türbinde elektrik enerjisine dönüşür.'),
-    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), "Güneş'in Yapısı",
+    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), "Gökyüzündeki Komşularımız ve Biz'in Yapısı",
      "Güneş'in yapısında en fazla bulunan gaz aşağıdakilerden hangisidir?",
      ['Oksijen', 'Hidrojen', 'Karbondioksit', 'Metan'], 1, 'Güneş, büyük oranda hidrojen ve helyum gazlarından oluşur; en çok hidrojen bulunur.'),
-    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), "Güneş'in Yapısı",
+    (('5',), 'Fen Bilimleri', ('güneş', 'dünya', 'ay '), "Gökyüzündeki Komşularımız ve Biz'in Yapısı",
      'Güneş ile ilgili öğrencilerin verdiği bilgilerden hangisi yanlıştır?',
      ['Isı ve ışık kaynağıdır.', 'Katı hâldedir.', 'Kendi ekseni etrafında döner.', 'Küre biçimindedir.'], 1, 'Güneş gaz hâlindeki maddelerden oluşur; katı değildir.'),
-    (('5',), 'Fen Bilimleri', ('güneş', 'tutulma', 'dünya'), "Güneş'in Yapısı",
+    (('5',), 'Fen Bilimleri', ('güneş', 'tutulma', 'dünya'), "Gökyüzündeki Komşularımız ve Biz'in Yapısı",
      'Güneş tutulması izlenirken özel filtreli gözlükler kullanılır.\nBunun öncelikli nedeni aşağıdakilerden hangisidir?',
      ["Güneş'in görüntüsünü büyütmek", 'Gözleri zararlı ışınlardan korumak', "Güneş'in rengini değiştirmek", "Güneş'i daha yakın göstermek"], 1, "Güneş'e doğrudan bakmak gözlere zarar verir; filtre zararlı ışınları engeller."),
-    (('5',), 'Fen Bilimleri', ('ay ', "ay'ın", 'güneş'), "Ay'ın Yapısı",
+    (('5',), 'Fen Bilimleri', ('ay ', "ay'ın", 'güneş'), "Gökyüzündeki Komşularımız ve Biz'ın Yapısı",
      "• Dünya'nın doğal uydusudur.\n• Kendi ışığı yoktur.\n• Yüzeyinde kraterler bulunur.\nYukarıdaki özellikler aşağıdaki gök cisimlerinden hangisine aittir?",
      ['Güneş', 'Ay', 'Samanyolu', 'Dünya'], 1, "Bu özellikler Ay'a aittir."),
-    (('5',), 'Fen Bilimleri', ('ay ', "ay'ın", 'güneş'), "Ay'ın Yapısı",
+    (('5',), 'Fen Bilimleri', ('ay ', "ay'ın", 'güneş'), "Gökyüzündeki Komşularımız ve Biz'ın Yapısı",
      "Ay'a ilk ayak basan insan aşağıdakilerden hangisidir?",
      ['Yuri Gagarin', 'Galileo Galilei', 'Neil Armstrong', 'Kopernik'], 2, "Neil Armstrong, Apollo 11 görevi ile 1969'da Ay'a ilk ayak basan kişidir."),
-    (('5',), 'Fen Bilimleri', ('doğa olay', 'afet', 'deprem', 'güneş'), 'Yıkıcı Doğa Olayları',
+    (('5',), 'Fen Bilimleri', ('doğa olay', 'afet', 'deprem', 'güneş'), 'Gökyüzündeki Komşularımız ve Biz',
      'Aşağıdakilerden hangisi yıkıcı doğa olaylarından biri değildir?',
      ['Deprem', 'Sel', 'Yanardağ patlaması', 'Gün batımı'], 3, "Gün batımı Dünya'nın dönmesiyle oluşan sıradan bir olaydır; yıkıcı değildir."),
-    (('5',), 'Fen Bilimleri', ('doğa olay', 'afet', 'deprem', 'güneş'), 'Yıkıcı Doğa Olayları',
+    (('5',), 'Fen Bilimleri', ('doğa olay', 'afet', 'deprem', 'güneş'), 'Gökyüzündeki Komşularımız ve Biz',
      'Deprem sırasında kapalı bir yerdeyken aşağıdakilerden hangisi yapılmalıdır?',
      ['Asansöre binmek', 'Çök-kapan-tutun hareketini yapmak', 'Balkona çıkmak', 'Cam kenarına gitmek'], 1, 'Deprem anında sağlam bir masa gibi bir yerin yanında çök-kapan-tutun yapılır.'),
     (('5', '6'), 'Türkçe', ('anlam', 'sözcük', 'okuma'), 'Sözcükte Anlam',
@@ -8233,7 +8339,7 @@ def _mf_geo(subject):
 
 
 def _mf_market(subject):
-    """Bursluluk tarzı: iki marka × üç ürün fiyat tablosu; 'hangisi yanlıştır' (3 doğru + 1 yanlış ifade, hepsi kodla hesaplanır)."""
+    """Bursluluk tarzı: iki marka × üç ürün fiyat tablosu; öncüllü I-II-III yargılar (doğru/yanlış karışık, hepsi kodla hesaplanır), olumlu kök."""
     prods = random.choice([["Kalem", "Silgi", "Kalemtıraş"], ["Defter", "Cetvel", "Pergel"], ["Ekmek", "Süt", "Peynir"], ["Elma", "Armut", "Portakal"]])
     A = [random.choice(range(10, 60, 5)) for _ in range(3)]
     B = [random.choice(range(10, 60, 5)) for _ in range(3)]
@@ -8244,31 +8350,36 @@ def _mf_market(subject):
     mn = min(tA, tB)
     mixed = A[0] + A[1] + B[2] if random.random() < .5 else B[0] + B[1] + A[2]
     mixed_lbl = ("İlk iki ürünü A markasından, üçüncü ürünü B markasından" if mixed == A[0] + A[1] + B[2] else "İlk iki ürünü B markasından, üçüncü ürünü A markasından")
-    cand = []
-    cand.append((f"Üç ürüne ödeyeceği en az tutar {mn} TL olur.", True))
-    cand.append((f"Üç ürüne ödeyeceği en az tutar {mn + random.choice([5, 10])} TL olur.", False))
+    claims = [(f"Üç ürüne ödeyeceği en az tutar {mn} TL olur.", f"Üç ürüne ödeyeceği en az tutar {mn + random.choice([5, 10])} TL olur.")]
     for nm, tot in (("A", tA), ("B", tB)):
         if money >= tot:
-            cand.append((f"Üç ürünü {nm} markasından alırsa {money - tot} TL para üstü alır.", True))
-            cand.append((f"Üç ürünü {nm} markasından alırsa {money - tot + random.choice([5, 10])} TL para üstü alır.", False))
+            claims.append((f"Üç ürünü {nm} markasından alırsa {money - tot} TL para üstü alır.", f"Üç ürünü {nm} markasından alırsa {money - tot + random.choice([5, 10])} TL para üstü alır."))
         else:
-            cand.append((f"Üç ürünü {nm} markasından alırsa parası yetmez.", True))
-            cand.append((f"Üç ürünü {nm} markasından alırsa parası yeterli olur.", False))
-    cand.append((f"{mixed_lbl} alırsa {mixed} TL öder.", True))
-    cand.append((f"{mixed_lbl} alırsa {mixed + random.choice([5, 10])} TL öder.", False))
-    trues = [c for c in cand if c[1]]
-    falses = [c for c in cand if not c[1]]
-    random.shuffle(trues); random.shuffle(falses)
-    stmts = [t[0] for t in trues[:3]] + [falses[0][0]]
-    bad = falses[0][0]
-    if len(set(stmts)) < 4:
+            claims.append((f"Üç ürünü {nm} markasından alırsa parası yetmez.", f"Üç ürünü {nm} markasından alırsa parası yeterli olur."))
+    claims.append((f"{mixed_lbl} alırsa {mixed} TL öder.", f"{mixed_lbl} alırsa {mixed + random.choice([5, 10])} TL öder."))
+    pick = random.sample(claims, 3)
+    flags = [random.random() < .5 for _ in range(3)]
+    if not any(flags):
+        flags[random.randrange(3)] = True
+    stmts = [c[0] if f else c[1] for c, f in zip(pick, flags)]
+    if len(set(stmts)) < 3:
         return None
-    random.shuffle(stmts)
+    rom = ["I", "II", "III"]
+    truth = [rom[i] for i, f in enumerate(flags) if f]
+
+    def lab(ix):
+        return "Yalnız " + ix[0] if len(ix) == 1 else (" ve ".join(ix) if len(ix) == 2 else "I, II ve III")
+    allsets = [["I"], ["II"], ["III"], ["I", "II"], ["I", "III"], ["II", "III"], ["I", "II", "III"]]
+    correct = lab(truth)
+    others = [lab(x) for x in allsets if lab(x) != correct]
+    random.shuffle(others)
+    opts = sorted([correct] + others[:3], key=lambda t: (len(t.replace("Yalnız ", "").replace(" ve ", ",").replace(", ", ",").split(",")), t))
     shape = {"type": "table", "title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)", "headers": ["Marka"] + prods,
              "rows": [["A Marka"] + [str(x) for x in A], ["B Marka"] + [str(x) for x in B]]}
     lead = f"Bir kırtasiyedeki A ve B markalarına ait {prods[0].lower()}, {prods[1].lower()} ve {prods[2].lower()} ürünlerinin birer adedinin Türk lirası cinsinden satış fiyatları tabloda verilmiştir."
-    q = f"{money} TL’si olan Can, bu kırtasiyeden A veya B marka birer adet {prods[0].lower()}, {prods[1].lower()} ve {prods[2].lower()} satın alacaktır.\nBuna göre, aşağıdakilerden hangisi yanlıştır?"
-    return _mf_raw(subject, "Tablo yorumlama", q, (stmts, bad), f"Doğru olmayan ifade: {bad}", shape=shape, passage=lead)
+    q = (f"{money} TL’si olan Can, bu kırtasiyeden A veya B marka birer adet {prods[0].lower()}, {prods[1].lower()} ve {prods[2].lower()} satın alacaktır.\n"
+         + "\n".join(f"{r}. {t}" for r, t in zip(rom, stmts)) + "\nBuna göre yukarıdaki ifadelerden hangileri doğrudur?")
+    return _mf_raw(subject, "Tablo yorumlama", q, (opts, correct), "Doğru ifadeler: " + ", ".join(truth) + ".", shape=shape, passage=lead)
 
 
 def _mf_wings(subject):
@@ -8578,7 +8689,8 @@ _TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aran
         ("madde", r"madde|ısı|sıcaklık|erime|donma", r"madde|ısı|sıcaklık|erime|donma|kaynama|buhar|katı|sıvı|gaz|termometre|hâl|hal\b|yoğuş|°"),
         ("ışık", r"ışık|gölge|yansıma", r"ışık|gölge|yansı|ayna|saydam|donuk|kaynak|işın|ışın|yayıl"),
         ("elektrik", r"elektrik|devre", r"devre|pil|ampul|akım|lamba|anahtar|elektrik|seri|paralel|iletken|yalıtkan"),
-        ("hücre", r"hücre|canlı", r"hücre|organel|canlı|sınıflan|bitki|hayvan|mantar|bakteri|çekirdek|zar|mikroskop|doku"),
+        ("hücre", r"hücre|canlı|iskelet|destek ve hareket", r"hücre|organel|canlı|sınıflan|bitki|hayvan|mantar|bakteri|çekirdek|zar|mikroskop|doku|organ|sistem|iskelet|\bkas|kemik|eklem|destek"),
+        ("geridonusum", r"geri dönüşüm|atık|sürdürülebilir", r"geri dönüş|atık|kaynak|tasarruf|sürdürül|çöp|kâğıt|kağıt|cam\b|plastik|metal|kompost|israf|çevre"),
         ("çevre", r"ekosistem|besin|çevre|biyo", r"ekosistem|besin|çevre|zincir|atık|biyo|tür\b|üretici|tüketici|ayrıştırıcı|canlı|doğa|habitat"),
     ],
 }
@@ -9547,6 +9659,10 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     continue
                 if not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
                     continue  # seçilen konu dışı: yedeğe bile alınmaz
+                if not like and _negative_stem(q):
+                    if q.get("seed") or q.get("local"):
+                        res_.append(q)  # hazır soru: yalnızca son çare
+                    continue  # olumsuz kök ('hangisi yanlıştır') yok
                 if s in seen:
                     res_.append(q)
                 elif not like and _hist_similar(q, hist.get(p.get("subject"))):
