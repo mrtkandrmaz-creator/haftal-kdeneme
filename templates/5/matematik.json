@@ -774,6 +774,246 @@
     "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
     "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
    ]
+  },
+  {
+   "topic": "MAT.5.4.1",
+   "text": "Bir bahçenin çevresini çit ile çevirmek isteyen Ali, bahçenin kenar uzunluklarının doğal sayı olduğunu belirtiyor. Bahçenin çevre uzunluğu {a} cm olarak ölçülmüştür. Bahçenin uzun kenarının kısa kenarından {b} cm daha uzun olduğu biliniyorsa, bahçenin kısa kenar uzunluğu kaç cm'dir?",
+   "vars": {
+    "a": {
+     "lo": 20,
+     "hi": 80,
+     "step": 4
+    },
+    "b": {
+     "lo": 1,
+     "hi": 10
+    }
+   },
+   "derived": {
+    "kisa": "a / 4 - b / 2"
+   },
+   "constraints": [
+    "a % 4 == 0",
+    "b % 2 == 0",
+    "a / 4 - b / 2 > 0",
+    "(a / 4 - b / 2) + (a / 4 - b / 2 + b) < a"
+   ],
+   "answer": "a / 4 - b / 2",
+   "wrong": [
+    "a / 2 - b",
+    "a / 4 - b",
+    "a - b"
+   ],
+   "unit": "cm",
+   "explanation": "Çevre = 2*(Uzun + Kısa). Uzun = Kısa + b. 2*(Kısa + b + Kısa) = a => 4*Kısa + 2*b = a => Kısa = a/4 - b/2. {a} cm çevre ve {b} cm fark verildiğinde: {a} / 4 - {b} / 2 = {ans} cm.",
+   "positive": true,
+   "id": "m5-0021",
+   "unit_name": "4. Tema: Geometrik Nicelikler",
+   "topics": [
+    "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+    "MAT.5.4.2. Birim karelerden yola çıkarak dikdörtgenin alanını değerlendirebilme",
+    "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
+    "MAT.5.4.4. Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemleri çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.4.2",
+   "text": "Elif, kenar uzunlukları {a} cm ve {b} cm olan dikdörtgen şeklindeki bir not defterinin alanını hesaplamak istiyor. Birim karelerden yola çıkarak defterin alanını bulduğunda kaç cm² olduğunu bulur?",
+   "vars": {
+    "a": {
+     "lo": 3,
+     "hi": 15
+    },
+    "b": {
+     "lo": 3,
+     "hi": 15
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "a != b"
+   ],
+   "answer": "a * b",
+   "wrong": [
+    "a + b",
+    "2 * (a + b)",
+    "a * b + a + b"
+   ],
+   "unit": "cm²",
+   "explanation": "Dikdörtgenin alanı = Uzun Kenar x Kısa Kenar. {a} cm x {b} cm = {ans} cm². Öğrenci genellikle Alan (a*b) ile Çevre (2*(a+b)) veya sadece Kenar Toplamı (a+b) ile karıştırır.",
+   "positive": true,
+   "id": "m5-0022",
+   "unit_name": "4. Tema: Geometrik Nicelikler",
+   "topics": [
+    "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+    "MAT.5.4.2. Birim karelerden yola çıkarak dikdörtgenin alanını değerlendirebilme",
+    "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
+    "MAT.5.4.4. Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemleri çözebilme"
+   ]
+  },
+  {
+   "topic": "Olasılık Spektrumu ve Kesin Olay",
+   "text": "Bir torbanın içinde {a} adet kırmızı top ve {b} adet mavi top vardır. Toplam top sayısı {t} adettir. Torbadan rastgele bir top çekildiğinde, çekilen topun kırmızı veya mavi olması olayının olasılığı nedir?",
+   "vars": {
+    "a": {
+     "lo": 1,
+     "hi": 10
+    },
+    "b": {
+     "lo": 1,
+     "hi": 10
+    }
+   },
+   "derived": {
+    "t": "a + b"
+   },
+   "constraints": [
+    "a + b > 0"
+   ],
+   "answer": "1",
+   "wrong": [
+    "(a)/(t)",
+    "(b)/(t)",
+    "0"
+   ],
+   "unit": "",
+   "explanation": "Çekilen topun kırmızı veya mavi olması kesin bir olaydır. Kesin olayların olasılığı her zaman 1'dir.",
+   "positive": true,
+   "id": "m5-0023",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Zeynep {total} soruluk bir deneme sınavındaki soruların {a} tanesini doğru yanıtlamıştır. Buna göre Zeynep soruların yüzde kaçını doğru yanıtlamıştır?",
+   "vars": {
+    "total": {
+     "choices": [
+      20,
+      25,
+      50,
+      100
+     ]
+    },
+    "a": {
+     "lo": 4,
+     "hi": 40
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "a < total",
+    "(a * 100) % total == 0"
+   ],
+   "answer": "(a * 100) // total",
+   "wrong": [
+    "a",
+    "total - a",
+    "((total - a) * 100) // total"
+   ],
+   "unit": "%",
+   "explanation": "{a} / {total} kesri 100 paydasına genişletildiğinde yüzdelik oranı {ans} olarak bulunur.",
+   "positive": true,
+   "id": "m5-0024",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+   "text": "Bir markette alışveriş yapan Mert, fiyatı {a} TL olan ürünlerden {b} adet almıştır. Mert kasaya geldiğinde kasiyer, {c} TL tutarındaki indirimi toplam ücretten düşmüş ve kalan tutarı {d} kişiye eşit olarak paylaştırmıştır. Buna göre her bir kişinin ödeyeceği tutar kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 30
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    },
+    "c": {
+     "lo": 5,
+     "hi": 20
+    },
+    "d": {
+     "lo": 2,
+     "hi": 5
+    }
+   },
+   "derived": {
+    "t": "(a * b - c) // d"
+   },
+   "constraints": [
+    "(a * b - c) % d == 0",
+    "a * b > c"
+   ],
+   "answer": "(a * b - c) // d",
+   "wrong": [
+    "a * b - c // d",
+    "(a * b + c) // d",
+    "a * (b - c) // d"
+   ],
+   "unit": "TL",
+   "explanation": "Önce toplam tutar bulunur ({a} x {b}), indirim çıkarılır ve kişi sayısına bölünür: ({a} x {b} - {c}) // {d} = {ans}.",
+   "positive": true,
+   "id": "m5-0025",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme",
+   "text": "Bir dijital oyun robotu, girilen bir sayıya sırasıyla şu adımları uygulamaktadır: Adım 1: Sayıyı {a} ile çarp. Adım 2: Çıkan sonuçtan {b} çıkar. Adım 3: Sonucu {c} ile topla. Bu robota başlangıç sayısı olarak {d} girilmiştir. Buna göre robotun bulduğu son sonuç kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 5
+    },
+    "b": {
+     "lo": 5,
+     "hi": 15
+    },
+    "c": {
+     "lo": 10,
+     "hi": 30
+    },
+    "d": {
+     "lo": 4,
+     "hi": 12
+    }
+   },
+   "derived": {
+    "t": "d * a - b + c"
+   },
+   "constraints": [
+    "d * a - b + c > 0"
+   ],
+   "answer": "d * a - b + c",
+   "wrong": [
+    "d * a + b - c",
+    "d * (a - b + c)",
+    "d + a * b - c"
+   ],
+   "unit": "",
+   "explanation": "Sırasıyla işlemler yapılır: ({d} x {a}) - {b} + {c} = {ans}.",
+   "positive": true,
+   "id": "m5-0026",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

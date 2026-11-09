@@ -2082,6 +2082,1001 @@
 "topics": "Kültürel miras, Anadolu medeniyetleri",
 "d": 3,
 "ts": 1794162646
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İhtiyaç ve İstekler",
+"passage": "Elif'in ailesi bir hafta sonu alışveriş planı yapmıştır. İhtiyaç listesinde 200 TL'lik temel mutfak erzakları, 150 TL'lik okul kıyafeti ve 100 TL'lik ev temizlik malzemesi bulunmaktadır. Elif ise 150 TL değerinde çok istediği ancak zorunlu olmayan bir oyuncak bebeği listeye eklemek istemektedir. Ailenin toplam bütçesi ise 500 TL'dir.",
+"question": "Elif'in ailesinin bütçe planlaması dikkate alındığında, aşağıdakilerden hangisi aile bütçesinin doğru yönetildiğini gösterir?",
+"shape": {
+"type": "table",
+"title": "Alışveriş Listesi",
+"headers": [
+"Ürün Grubu",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Mutfak Erzakları",
+"200"
+],
+[
+"Okul Kıyafeti",
+"150"
+],
+[
+"Temizlik Malzemeleri",
+"100"
+],
+[
+"Oyuncak Bebek",
+"150"
+]
+]
+},
+"options": {
+"A": "Elif'in oyuncağını alıp bütçeyi 100 TL aşarak kredi kartı kullanmak.",
+"B": "Tüm ürünleri alıp bütçenin dışına çıkmadan tasarrufu göz ardı etmek.",
+"C": "Okul kıyafetlerinden vazgeçip oyuncağı listeye eklemek.",
+"D": "Temel ihtiyaçları önceliklendirip oyuncağı bir sonraki aya ertelemek."
+},
+"answer": "D",
+"explanation": "Toplam temel ihtiyaçlar 200+150+100 = 450 TL'dir. Toplam bütçe 500 TL olduğu için geriye sadece 50 TL kalmaktadır. İhtiyaçlar yaşamak için zorunlu olanlardır, istekler ise ertelenebilir. Bu nedenle oyuncağın alınması bütçeyi zorlar veya ihtiyaçların karşılanmasını tehlikeye atar. En sağlıklı ekonomik davranış ihtiyaçları önceliklendirip isteği ertelemektir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Tasarruf ve İsraf",
+"passage": "Bir okulun yemekhanesinde öğrenciler bir hafta boyunca israf edilen yiyecek miktarlarını takip etmişlerdir. Yemekhane görevlisi, öğrencilere bilinçli tüketici olmaları gerektiğini hatırlatmıştır.",
+"question": "Grafiğe göre öğrencilerin yemekhane israfını azaltmak için yapacakları hangi çalışma en etkili sonuçları verir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+12,
+15,
+8,
+20,
+18
+],
+"title": "Günlere Göre İsraf Edilen Ekmek Miktarı (kg)",
+"show_names": false
+},
+"options": {
+"A": "Hafta genelinde porsiyonları kontrol ederek israfı dengelemek.",
+"B": "En çok israfın olduğu günlerde yemek menüsünü değiştirmekten kaçınmak.",
+"C": "Perşembe günü yemekleri tamamen durdurmak.",
+"D": "Sadece Çarşamba günü tasarruf kampanyası düzenlemek."
+},
+"answer": "A",
+"explanation": "Grafikte israfın günlere göre değiştiği görülmektedir (özellikle Perşembe ve Cuma yüksek). Bilinçli bir tutum, israfın yoğun olduğu günlere özel planlama yapmak veya hafta genelinde porsiyonları öğrencilerin ihtiyacına göre ayarlamaktır. Sadece bir güne odaklanmak veya yemekleri durdurmak gerçekçi değildir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Meslekler ve Ekonomiye Katkı",
+"passage": "Bir okulda düzenlenen 'Meslekler Tanıtım Günü'ne katılan öğrencilere, gelecekte seçecekleri mesleklerin topluma katkısı üzerine bir anket uygulanmıştır.",
+"question": "Daire grafiğindeki verilere göre, öğrencilerin ilgi gösterdiği meslek grupları düşünüldüğünde, hangisi söylenemez?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Mühendislik",
+"Sağlık",
+"Eğitim",
+"Sanat"
+],
+"values": [
+40,
+30,
+20,
+10
+],
+"title": "Öğrencilerin Tercih Ettiği Sektörler (%)",
+"show_names": false
+},
+"options": {
+"A": "Öğrencilerin tercihleri mesleklerin topluma farklı yönlerden hizmet sunduğunu göstermektedir.",
+"B": "Mühendislik, üretim ve teknoloji alanında en çok tercih edilen sektördür.",
+"C": "Sağlık ve Eğitim sektörleri, toplamda öğrencilerin yarısının tercihini oluşturmaktadır.",
+"D": "Sanat sektörü, toplumun temel hizmet ihtiyaçları arasında ilk sırada yer almaktadır."
+},
+"answer": "D",
+"explanation": "Grafikte Sanat sektörü %10 ile en az tercih edilen alandır. Mühendislik %40, Sağlık %30, Eğitim %20 paya sahiptir. Sanatın temel hizmet (barınma, gıda, sağlık) ihtiyaçları arasında ilk sırada yer aldığı söylenemez çünkü veriler öğrencilerin kişisel ilgi ve tercihlerini yansıtmaktadır.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Ekonomik Faaliyetler",
+"passage": "Bölgesel ekonomik faaliyetlerin gösterildiği bir grafik aşağıda verilmiştir. Bir şehirde sanayi, tarım ve hizmet sektörlerinin yıllık üretim payları karşılaştırılmıştır.",
+"question": "Bu grafiğe göre, bölgenin ekonomik yapısı ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Tarım",
+"Sanayi",
+"Hizmet"
+],
+"values": [
+30,
+50,
+20
+],
+"title": "Sektörlerin Üretim Payları (%)",
+"show_names": false
+},
+"options": {
+"A": "Hizmet sektörü bölgenin ana geçim kaynağıdır.",
+"B": "Tarım sektörü, hizmet sektöründen daha yüksek bir üretim payına sahiptir.",
+"C": "Bölgede en az gelişen sektör sanayidir.",
+"D": "Üç sektörün de üretim payları birbirine eşittir."
+},
+"answer": "B",
+"explanation": "Grafik verilerine bakıldığında Sanayi %50, Tarım %30, Hizmet %20 paya sahiptir. Bu durumda Tarım (%30), Hizmet (%20) sektöründen daha büyük bir paya sahiptir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Üretim, Dağıtım, Tüketim",
+"passage": "Bir marketteki zeytinyağı satışlarında, tüketicilerin tercihlerini etkileyen unsurlar bir anketle belirlenmiştir. Tüketicilerin %45'i markaya, %30'u fiyata, %15'i ambalaja ve %10'u tavsiyeye önem vermektedir.",
+"question": "Buna göre, bilinçli bir tüketicinin ürün alırken sadece fiyata odaklanması hakkında ne söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Marka",
+"Fiyat",
+"Ambalaj",
+"Tavsiye"
+],
+"values": [
+45,
+30,
+15,
+10
+],
+"title": "Tüketici Tercihleri Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "Fiyat, tüketicilerin en büyük önceliği olduğu için doğru bir davranıştır.",
+"B": "Bilinçli tüketici sadece tek bir kritere değil, kalite ve ihtiyaç dengesine odaklanmalıdır.",
+"C": "Sadece fiyata odaklananlar her zaman en kaliteli ürüne ulaşır.",
+"D": "Ambalaj tercihi daha önemli olduğu için fiyatı göz ardı etmek gerekir."
+},
+"answer": "B",
+"explanation": "Bilinçli tüketici, ürünün sadece fiyatına bakarak değil; kalitesine, markanın güvenilirliğine ve kendi ihtiyacına uygunluğuna bakarak karar vermelidir. Sadece bir kritere odaklanmak (fiyat) çoğu zaman kalite kaybına neden olabilir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İhtiyaç ve İstek",
+"passage": "Bir grup astronot, yeni kurulacak bir uzay istasyonuna gönderilmeden önce yanlarına alacakları eşyaları seçmektedir. İstasyondaki sınırlı depolama alanı nedeniyle sadece yaşamlarını sürdürmelerini sağlayacak temel gıdalar, oksijen sistemleri ve hayati teknik ekipmanları yanlarına almaları istenmiştir. Astronotlar, yanlarında kişisel konforları için getirmek istedikleri bazı özel kitapları ve küçük dekoratif objeleri yer darlığı nedeniyle bırakmak zorunda kalmışlardır.",
+"question": "Bu duruma göre astronotların yaptıkları seçimle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "İsteklerin karşılanması her zaman ihtiyaçların karşılanmasından önce gelir.",
+"B": "Kişisel tercihler, hayati sorumluluklardan daha değerli kabul edilmelidir.",
+"C": "İhtiyaçlar ile istekler birbirine bağlı olarak sınırsız bir şekilde karşılanabilir.",
+"D": "Sınırlı kaynaklar nedeniyle insanlar önceliklerini ihtiyaçlara göre belirlemelidir."
+},
+"answer": "D",
+"explanation": "Kaynaklar sınırlı olduğunda öncelik hayatta kalmak için zorunlu olan ihtiyaçlara verilmelidir. Metinde astronotların sınırlı alan nedeniyle isteklerini (kitap, dekor) bırakıp ihtiyaçlara odaklanması, sınırlı kaynakların rasyonel kullanımı gerektiğini gösterir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Meslekler ve Ekonomi",
+"passage": "Aşağıdaki tabloda, bir orman köyünde faaliyet gösteren üç farklı meslek grubunun bir ay boyunca ürettikleri mal veya hizmet miktarı ile sağladıkları ekonomik fayda belirtilmiştir.",
+"question": "Tablodaki verilere bakılarak, köy ekonomisiyle ilgili hangi yargı yanlıştır?",
+"shape": {
+"type": "table",
+"title": "Köy Meslek Verileri",
+"headers": [
+"Meslek",
+"Üretim Miktarı",
+"Ekonomik Katkı"
+],
+"rows": [
+[
+"Marangoz",
+"50 Birim",
+"Yüksek"
+],
+[
+"Arıcı",
+"120 Birim",
+"Orta"
+],
+[
+"Dokumacı",
+"30 Birim",
+"Yüksek"
+]
+]
+},
+"options": {
+"A": "Üretim miktarı fazla olan her meslek, ekonomiye en yüksek katkıyı sağlar.",
+"B": "Arıcı, en fazla miktarda ürün üreten meslek grubudur.",
+"C": "Ekonomik katkısı 'Düşük' olan bir meslek grubu tabloya eklenmemiştir.",
+"D": "Marangozun ürettiği birim miktarı dokumacıdan fazladır."
+},
+"answer": "A",
+"explanation": "Tabloda marangoz ve dokumacı en yüksek katkıyı sağlamasına rağmen üretim miktarları arıcıdan (120 birim) daha azdır. Dolayısıyla D şıkkındaki 'miktar fazla olanın katkısı en yüksektir' yargısı tablodaki verilerle çelişmektedir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Tasarruf ve Bilinçli Tüketici",
+"passage": "Belediye otobüsünü her gün kullanan Kerem, öğrenci kartına her hafta 100 TL yükleme yapmaktadır. Ancak okul çıkışlarında çok kısa mesafeler için dahi otobüse bindiğini fark etmiştir. Kerem, yürüyerek gidebileceği bu mesafeler için yaptığı harcamaları biriktirerek ay sonunda almak istediği bir fen deney setine ayırmaya karar vermiştir.",
+"question": "Kerem'in bu davranışı aşağıdakilerden hangisiyle doğrudan ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "İsrafın önlenmesi ve bilinçli kaynak kullanımı",
+"B": "Toplu taşıma hizmetlerinin verimsiz kullanılması",
+"C": "İsteklerin ihtiyaçlardan daha öncelikli tutulması",
+"D": "Gelir ve gider dengesinin göz ardı edilmesi"
+},
+"answer": "A",
+"explanation": "Kerem gereksiz harcama yapmaktan kaçınarak (yürüyebileceği mesafe için otobüse binmeyerek) tasarruf sağlamaktadır. Bu durum israfı önleme ve bilinçli tüketim ile doğrudan ilişkilidir.",
+"vfd2": true,
+"unit": "Hayatımızdaki Ekonomi",
+"topics": "İhtiyaç-istek, Tasarruf, Meslekler",
+"d": 3,
+"ts": 1794210084
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilim ve teknoloji tarihi",
+"passage": "Okul kütüphanesinde araştırma yapan Zeynep, insanlık tarihini değiştiren önemli buluşları incelemiştir. İncelediği kaynaklarda Sümerlerin bulduğu çivi yazısının bilgilerin kalıcı olmasını sağladığını, 12. yüzyılda yaşayan Türk-İslam bilgini Cezeri'nin otomatik makineler ve su saatleri tasarladığını, 1727 yılında ise İbrahim Müteferrika'nın Osmanlı Devleti'nde ilk matbaayı kurduğunu öğrenmiştir.",
+"question": "Bu bilgilere göre, bilim ve teknoloji tarihiyle ilgili aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "table",
+"title": "Tarihî Gelişmeler ve Öncüleri",
+"headers": [
+"Gelişme / İcat",
+"Öncü Medeniyet / Bilgin",
+"Yüzyıl / Dönem"
+],
+"rows": [
+[
+"Çivi Yazısı",
+"Sümerler",
+"İlk Çağ"
+],
+[
+"Su Saatleri",
+"Cezeri",
+"12. Yüzyıl"
+],
+[
+"İlk Matbaa (Osmanlı)",
+"İbrahim Müteferrika",
+"18. Yüzyıl (1727)"
+]
+]
+},
+"options": {
+"A": "Bilimsel ve teknolojik gelişmeler farklı medeniyetlerin katkılarıyla günümüze ulaşmıştır.",
+"B": "Yazının icadı, bilgilerin gelecek kuşaklara aktarılmasını kolaylaştırmıştır.",
+"C": "Cezeri, yalnızca tıp alanındaki çalışmalarıyla tanınan bir Türk-İslam bilginidir.",
+"D": "Osmanlı Devleti'nde matbaanın kurulması İbrahim Müteferrika vesilesiyle gerçekleşmiştir."
+},
+"answer": "C",
+"explanation": "Metinde Cezeri'nin otomatik makinler ve su saatleri yaptığı belirtilmektedir. Tıp alanında çalışmalar yapan bilgin İbn-i Sina'dır. Bu nedenle Cezeri'nin yalnızca tıp alanında çalıştığı ifadesi yanlıştır.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Teknolojinin hayatımızdaki yeri ve bilinçli kullanımı",
+"passage": "Kerem, hafta sonu ödevini yapmak için internetten araştırma yaparken karşısına çıkan bir oyun reklamına tıklamıştır. Reklamdaki ödülü kazanabilmek için adını, ev adresini, telefon numarasını ve aile bireylerinin kimlik bilgilerini ilgili forma yazması istenmiştir. Kerem, bu bilgileri paylaşmanın sakıncalı olabileceğini düşünerek durumu hemen babasına anlatmıştır.",
+"question": "Bu senaryoda Kerem'in sergilediği tutum ve bilişim güvenliği kuralları dikkate alındığında aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Kişisel bilgiler güvenli olmayan internet sitelerinde ve tanımayan kişilerle paylaşılmamalıdır.",
+"B": "Tanımayan kişilerden gelen mesajlar ve reklamlar doğrulanmadan cevaplanmalıdır.",
+"C": "Bilişim güvenliğini sağlamak için sadece güçlü şifre kullanmak yeterlidir, başka önleme gerek yoktur.",
+"D": "İnternette karşılaşılan her ödüllü yarışmaya katılarak kişisel bilgiler verilmelidir."
+},
+"answer": "A",
+"explanation": "Kerem'in adını, adresini ve kimlik bilgilerini paylaşmayıp yetişkinlere haber vermesi, kişisel bilgilerin gizliliği ve güvenliği kuralıyla birebir örtüşmektedir. A seçeneği bu durumu doğru açıklar.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilim ve teknoloji tarihi",
+"passage": "Sosyal bilgiler dersinde projelerini sunan öğrenciler geçmişten günümüze bilgi aktarım araçlarını ele almıştır. Elif hazırladığı raporda, insanlık tarihinde bilginin saklanması ve çoğaltılmasında çivi yazısı ile kâğıdın yaygınlaşmasının dönüm noktası olduğunu, İslam medeniyetinde ise astronomi, tıp ve mühendislik alanında önemli eserler bırakıldığını vurgulamıştır.",
+"question": "Bu metne göre aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Bilginin kalıcı hale gelmesinde ve yayılmasında çivi yazısı ile kâğıt gibi buluşlar etkili olmuştur.",
+"B": "Tarihteki tüm teknolojik buluşlar yalnızca tek bir medeniyetin ortak ürünüdür.",
+"C": "İslam bilginleri çalışmalarını sadece coğrafi harita çizimi üzerinde yoğunlaştırmıştır.",
+"D": "Teknolojik aletlerin bilinçsiz kullanımı hiçbir zaman olumsuz sonuç doğurmamıştır."
+},
+"answer": "A",
+"explanation": "Metinde yazının ve kâğıdın bilginin saklanması ve yayılmasında dönüm noktası olduğu belirtilmektedir. Bu durum A seçeneğindeki yargıyı doğrudan destekler.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilişim güvenliği ve dijital okuryazarlık",
+"passage": "5/A sınıfı öğrencileri dijital vatandaşlık ve bilişim güvenliği konusunda bir farkındalık grafiği hazırlamıştır. Bu grafikte öğrencilerin sosyal medyada karşılaştıkları riskli durumlar ve bu durumlarda başvurdukları güvenli davranışlar oranlandırılmıştır.",
+"question": "Verilen sütun grafiğine göre bilişim güvenliği ile ilgili aşağıdaki yargılardan hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"title": "Güvenli İnternet Davranışları Dağılımı",
+"labels": [
+"Güçlü Şifre Kullanımı",
+"Kişisel Bilgi Paylaşmama",
+"Yetişkine Haber Verme",
+"Tanımayanı Ekleme"
+],
+"values": [
+45,
+60,
+50,
+15
+],
+"show_names": false
+},
+"options": {
+"A": "Güçlü şifre kullanımı, kişisel bilgileri paylaşmama oranından daha yüksektir.",
+"B": "Öğrencilerin en çok tercih ettiği güvenli davranış kişisel bilgileri kimseyle paylaşmamaktır.",
+"C": "Tanımayan kişileri arkadaş olarak ekleme oranı diğer güvenli davranışlardan daha fazladır.",
+"D": "Siber zorbalık veya şüpheli bir durumla karşılaşıldığında yetişkinlere haber verme oranı %80'dir."
+},
+"answer": "B",
+"explanation": "Grafik incelendiğinde 'Kişisel Bilgi Paylaşmama' değeri 60 ile en yüksek orana sahiptir. Dolayısıyla öğrencilerin en çok tercih ettiği güvenli davranış budur.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Teknolojinin hayatımızdaki yeri",
+"passage": "Teknolojinin hayatımızı kolaylaştırdığı ancak bilinçli kullanılmadığında bazı sorunlara yol açabileceği bilinmektedir. Mert, ödevlerini yapmak ve araştırmalarını yürütmek için bilgisayardan yararlanırken saatlerce ekran başında kalmış, bu durum göz sağlığının bozulmasına ve fiziksel aktivitelerinin azalmasına neden olmuştur.",
+"question": "Bu duruma göre aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Teknolojik araçlar hayatımızı kolaylaştırsa da bilinçsiz ve aşırı kullanım sağlığımızı olumsuz etkileyebilir.",
+"B": "Bilgisayar ve internet kullanımı hiçbir planlama gerektirmeden sınırsızca sürdürülmelidir.",
+"C": "Teknolojinin zararları yalnızca yetişkinleri etkiler, çocukların sağlığı üzerinde etkisi yoktur.",
+"D": "Ders çalışmak için kullanılan teknolojik aletler fiziksel aktiviteyi her zaman artırır."
+},
+"answer": "A",
+"explanation": "Metinde teknolojinin hayatı kolaylaştırdığı fakat bilinçsiz kullanımın Mert'in göz sağlığını bozduğu ve fiziksel aktivitelerini azalttığı belirtilmiştir. Bu durum A seçeneği ile birebir örtüşmektedir.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Teknolojinin Bilinçsiz Kullanımı ve Hayatımız",
+"passage": "Teknolojinin hayatımızı kolaylaştırdığı bilinen bir gerçektir; ancak bilinçsiz ve aşırı kullanımın insan sağlığı ve sosyal ilişkiler üzerinde olumsuz etkileri de bulunmaktadır. Mahallelerinde yapılan bir araştırmada çocukların günlük boş vakitlerini nasıl geçirdikleri incelenmiştir. Araştırma sonucunda, ekran başında uzun süre kalan çocukların açık havada oyun oynama sürelerinin azaldığı, göz yorgunluğu ve aile içi iletişimde zayıflama yaşandığı tespit edilmiştir.",
+"question": "Bu duruma ve teknoloji kullanımına ilişkin aşağıdakilerden hangisi söylenemez?",
+"shape": null,
+"options": {
+"A": "Teknolojinin sunduğu imkânlardan yararlanırken süre ve ölçü bilincine dikkat edilmelidir.",
+"B": "Aşırı ekran kullanımı yüz yüze iletişimi ve sosyal bağları olumsuz etkileyebilir.",
+"C": "Teknolojik araçlar hayatımızı tamamen zorlaştıran ve hiçbir faydası olmayan aletlerdir.",
+"D": "Bilinçsiz teknoloji kullanımı fiziksel sağlığımızı (göz yorgunluğu vb.) tehdit edebilir."
+},
+"answer": "C",
+"explanation": "Metinde ve genel bilgilerimizde teknolojinin hayatı kolaylaştırdığı ancak bilinçsiz kullanımın zararları olabileceği vurgulanmıştır. C seçeneğinde yer alan 'teknolojik araçlar hayatımızı tamamen zorlaştıran ve hiçbir faydası olmayan aletlerdir' ifadesi aşırı (mutlak) ve yanlıştır; teknoloji hayatımızı kolaylaştırır ancak bilinçsiz kullanım zarar verebilir.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilişim Güvenliği",
+"passage": "Zeynep, okulda düzenlenen 'Güvenli İnternet Kullanımı' projesi kapsamında internette geçirdiği bir haftayı daire grafiği ile özetlemiştir. Grafikte interneti hangi amaçlarla kullandığını ve dijital güvenliğe dikkat ettiği alanları oranlamıştır.",
+"question": "Verilen daire grafiğine ve bilişim güvenliği kurallarına göre aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Ödev Araştırması",
+"Eğitici Oyun",
+"Tanımadıklarla Sohbet",
+"Güçlü Şifre Kullanımı"
+],
+"values": [
+40,
+30,
+5,
+25
+],
+"title": "İnternet Kullanım ve Güvenlik Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Zeynep, tanımadığı kişilerle iletişim kurma oranını en yüksek seviyede tutmuştur.",
+"B": "Zeynep, kişisel verilerin korunması ve güvenliği için güçlü şifre kullanımına yer vermiştir.",
+"C": "Zeynep'in ödev araştırması için harcadığı oran, eğitici oyun oranından daha düşüktür.",
+"D": "Grafikteki 'Tanımadıklarla Sohbet' oranı bilişim güvenliği kurallarına tamamen uygundur."
+},
+"answer": "B",
+"explanation": "Grafikte 'Güçlü Şifre Kullanımı' %25 oranında yer almakta olup bu durum bilişim güvenliği kurallarıyla birebir örtüşmektedir. A seçeneği yanlıştır çünkü tanımadıklarla sohbet %5'tir (en düşük orandır). C seçeneği yanlıştır çünkü ödev araştırması (%40) eğitici oyundan (%30) daha yüksektir. D seçeneği yanlıştır çünkü tanımadıklarla iletişim kurmak bilişim güvenliği kurallarına aykırıdır.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Bilişim Güvenliği ve Dijital Vatandaşlık",
+"passage": "Kerem internette oyun oynarken tanımadığı bir kişiden gelen 'Özel hediyeler kazanmak için ev adresini ve şifreni paylaşmalısın' mesajıyla karşılaşmıştır. Kerem bu durumda ne yapması gerektiğini düşünmüş ve bilişim güvenliği kurallarını hatırlayarak bu isteği reddetmiştir. Durumu hemen ailesine ve okul rehber öğretmenine bildirmiştir.",
+"question": "Bu senaryoya ve bilişim güvenliği kurallarına göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Kişisel Bilgi Paylaşımı",
+"Güçlü Şifre Kullanımı",
+"Tanımadıklarla İletişim",
+"Yetişkinlere Haber Verme"
+],
+"values": [
+0,
+100,
+0,
+100
+],
+"title": "Kerem'in Güvenlik Davranışları Puanı",
+"show_names": false
+},
+"options": {
+"A": "Kerem, kişisel bilgilerini ve şifresini paylaşarak dijital güvenliği artırmıştır.",
+"B": "Kerem, siber zorbalık ve tehlikeli durumlarla karşılaştığında yetişkinlere haber vererek doğru davranmıştır.",
+"C": "Kerem, tanımadığı kişilerden gelen mesajlara güvenerek onlarla kişisel adresini paylaşmıştır.",
+"D": "Kerem'in grafikteki 'Tanımadıklarla İletişim' puanı yüksek seviyededir."
+},
+"answer": "B",
+"explanation": "Grafikte 'Yetişkinlere Haber Verme' ve 'Güçlü Şifre Kullanımı' 100 puan; 'Kişisel Bilgi Paylaşımı' ve 'Tanımadıklarla İletişim' 0 puandır. Bu durum Kerem'in kurallara uygun hareket ettiğini gösterir. B seçeneği metinle ve grafik değerleriyle tamamen örtüşmektedir.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İnsanlık Tarihini Değiştiren İcatlar",
+"passage": "Sosyal bilgiler kulübünde öğrencilere insanlık tarihini değiştiren icatlar hakkında bir tablo sunulmuştur. Tabloda icadın adı, yayan medeniyet veya kişi ve bilginin insanlığa katkısı yer almaktadır.",
+"question": "Bu tabloya ve tarihsel bilgilere göre aşağıdakilerden hangisi yanlıştır?",
+"shape": {
+"type": "table",
+"title": "İnsanlık Tarihini Değiştiren İcatlar ve Öncüleri",
+"headers": [
+"İcat / Eser",
+"Öncü İsim / Medeniyet",
+"Yüzyıl / Dönem"
+],
+"rows": [
+[
+"Çivi Yazısı",
+"Sümerler",
+"İlk Çağ"
+],
+[
+"İlk Matbaa (Osmanlı)",
+"İbrahim Müteferrika",
+"18. Yüzyıl"
+],
+[
+"Otomatik Makineler",
+"Cezeri",
+"12. Yüzyıl"
+],
+[
+"Cebir Bilimi",
+"Piri Reis",
+"Orta Çağ"
+]
+]
+},
+"options": {
+"A": "İbrahim Müteferrika, Osmanlı'da 1727 yılında ilk matbaayı kurmuştur.",
+"B": "Cezeri, 12. yüzyılda otomatik makineler ve su saatleri yapan bir Türk-İslam bilginidir.",
+"C": "Piri Reis, cebir biliminin önemli bir bilgini olarak tabloda doğru eşleştirilmiştir.",
+"D": "Sümerler, çivi yazısını bularak insanlık tarihinde yazılı dönemi başlatmıştır."
+},
+"answer": "C",
+"explanation": "Tablonun son satırında 'Cebir Bilimi' için 'Piri Reis' yazılmıştır; ancak cebir biliminin önemli bilgini El-Harezmi'dir. Piri Reis dünya haritasıyla tanınır. Bu nedenle C seçeneğindeki eşleştirme yanlıştır.",
+"vfd2": true,
+"unit": "Teknoloji ve Sosyal Bilimler",
+"topics": "Bilim ve teknoloji tarihi, Bilişim güvenliği",
+"d": 2,
+"ts": 1794210554
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Okulda Demokratik Katılım",
+"passage": "Okul kantini işletme komisyonu için 5/A sınıfından temsilci seçilecektir. Sınıf öğretmeni bu göreve talip olan öğrencilerin, oylama öncesinde projelerini arkadaşlarına anlatmalarını ve kararın gizli oy, açık sayım yöntemiyle alınacağını duyurmuştur. Adaylardan Kerem, kantinde satılan ürünlerin çeşitlendirilmesini; Zeynep ise fiyatların düşürülmesini savunmuştur. Sınıftaki 24 öğrencinin tamamı oy kullanmış, yapılan açık sayım sonucunda Kerem 14, Zeynep 10 oy almıştır. Bunun üzerine Kerem sınıf temsilcisi seçilmiştir.",
+"question": "Bu senaryoya ve demokrasinin temel ilkelerine göre aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Azınlıkta kalan öğrencilerin fikirlerinin dikkate alınması zorunludur ve bu nedenle Zeynep'in önerisi doğrudan uygulanmıştır.",
+"B": "Seçim sürecinde çoğunluğun kararı geçerli kabul edilmiş ancak farklı düşünce sahiplerinin katılım hakkı güvence altına alınmıştır.",
+"C": "Oy kullanma yetkisi yalnızca sınıfın en başarılı öğrencilerine verilmiş, böylece eşitlik ilkesi sağlanmıştır.",
+"D": "Kerem'in seçilmesiyle birlikte Zeynep'in düşüncelerini savunması tamamen yasaklanmıştır."
+},
+"answer": "B",
+"explanation": "1. Adım: Metinde 24 öğrencinin tamamının oy kullandığı ve gizli oy - açık sayım ilkesinin uygulandığı belirtilmiştir. 2. Adım: Kerem 14 oy alarak çoğunluğun desteğiyle seçilmiştir. 3. Adım: Demokraside çoğunluğun kararı uygulanır ancak farklı düşüncelere (Zeynep'in önerisi) saygı gösterilmesi ve katılım hakkı demokrasinin gereğidir. 4. Adım: A şıkkı Zeynep'in önerisinin uygulandığını söyler ki bu yanlıştır; C şıkkı sadece başarılı öğrencilerin oy kullandığını iddia eder ki metinde tüm sınıfın oy kullandığı yazar; D şıkkı ise yasaklamadan bahseder. Doğru cevap B seçeneğidir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Yönetim Biçimleri ve Katılım",
+"passage": "Bir sosyal bilgiler dersinde öğretmen, öğrencilerine farklı yönetim biçimlerini anlatan bir grafik göstermiş ve öğrencilerden bu grafik üzerinden yorum yapmalarını istemiştir. Grafikte bir ülkede karar alma sürecine katılan kesimlerin oranları gösterilmektedir.",
+"question": "Verilen daire grafiğine ve demokrasi anlayışına göre, bu ülkenin yönetim biçimi hakkında aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Halkın Seçtiği Temsilciler",
+"Tek Bir Yöneticinin İnisiyatifi",
+"Danışma Meclisi"
+],
+"values": [
+70,
+20,
+10
+],
+"title": "Yönetimde Karar Alınırken Yetki Dağılımı Oranı (%)",
+"show_names": false
+},
+"options": {
+"A": "Ülke yönetiminde halkın iradesi ve seçilmiş temsilciler çoğunlukla belirleyicidir.",
+"B": "Yönetim yetkisi tamamen tek bir kişinin elinde toplanmıştır.",
+"C": "Kararların alınmasında halkın hiçbir katılım hakkı bulunmamaktadır.",
+"D": "Ülkede sadece danışma meclisinin kararları kanun hükmündedir."
+},
+"answer": "A",
+"explanation": "1. Adım: Grafikte 'Halkın Seçtiği Temsilciler' oranı %70 ile en yüksek paya sahiptir. 2. Adım: Demokraside halkın seçtiği temsilcilerin yönetimde yetki sahibi olması temel esastır. 3. Adım: Tek yöneticinin oranı %20, danışma meclisi ise %10'dur. 4. Adım: Bu durum, yönetimin büyük oranda halkın temsilcilerine dayandığını gösterir. B, C ve D şıkları grafikteki %70'lik demokratik temsil oranını reddeden yanlış ifadelerdir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Seçim ve Demokrasi Tarihi",
+"passage": "Okul kütüphanesinde araştırma yapan Burak, Türkiye'de millî egemenliğin gelişim aşamalarını incelemiştir. İncelediği tarihlerde Meclisin açılışını ve Cumhuriyetin ilanını kronolojik olarak not etmiş, bu süreçteki değişimleri bir çizgi grafiği ile modellemiştir.",
+"question": "Çizgi grafiğindeki verilere ve tarihsel bilgilere göre aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"23 Nisan 1920",
+"1 Kasım 1922",
+"29 Ekim 1923"
+],
+"values": [
+1,
+2,
+3
+],
+"title": "Millî Egemenlik Yolundaki Önemli Aşamalarda İlerleme Seviyesi",
+"show_names": false
+},
+"options": {
+"A": "Türkiye Büyük Millet Meclisi 23 Nisan 1920'de açılmıştır.",
+"B": "Meclisin açılmasıyla birlikte devlet yönetimindeki yasama yetkisi halkın temsilcilerine verilmiştir.",
+"C": "Grafikte yer alan tarihlerde tek kişinin mutlak egemenliği süresiz olarak kanunlaştırılmıştır.",
+"D": "Cumhuriyet yönetimi 29 Ekim 1923 tarihinde ilan edilmiştir."
+},
+"answer": "C",
+"explanation": "1. Adım: Grafikteki tarihler ve olaylar Türkiye'nin demokrasi ve egemenlik tarihinin dönüm noktalarıdır. 2. Adım: 23 Nisan 1920 TBMM'nin açılışı, 29 Ekim 1923 Cumhuriyetin ilanıdır (A ve B söylenebilir). 3. Adım: Meclisin açılması yasama yetkisinin halkın temsilcilerine verilmesini sağlar (C söylenebilir). 4. Adım: D seçeneğindeki 'tek kişinin mutlak egemenliği süresiz olarak kanunlaştırılmıştır' ifadesi millî egemenlik ve cumhuriyet ilkesiyle tamamen çelişmektedir, bu nedenle söylenemez.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Devlet Yönetimi ve Kuvvetler Ayrılığı",
+"passage": "Sosyal bilgiler dersinde 'Devlet Yönetimi' konusunu işleyen öğretmen, devletin temel organlarını ve bu organların görev dağılımını gösteren bir tablo hazırlamıştır. Tabloda yasama, yürütme ve yargı güçlerinin görevleri ve ilgili kurumlar eşleştirilmiştir.",
+"question": "Verilen tabloya ve devlet yönetimindeki görev dağılımına göre aşağıdakilerden hangisi yanlıştır?",
+"shape": {
+"type": "table",
+"title": "Devlet Organları ve Görev Dağılımı Tablosu",
+"headers": [
+"Devlet Organı",
+"İlgili Kurum / Makam",
+"Temel Görevi"
+],
+"rows": [
+[
+"Yasama",
+"Türkiye Büyük Millet Meclisi (TBMM)",
+"Kanun yapmak, değiştirmek ve kaldırmak"
+],
+[
+"Yürütme",
+"Cumhurbaşkanı ve Bakanlar",
+"Kanunları uygulamak ve devleti yönetmek"
+],
+[
+"Yargı",
+"Bağımsız Mahkemeler",
+"Kanunlara uymayanları yargılamak"
+]
+]
+},
+"options": {
+"A": "Yasama yetkisini kullanan kurum kanun yapma ve değiştirme görevini üstlenmiştir.",
+"B": "Yürütme görevi Cumhurbaşkanı ve bakanlar tarafından yerine getirilmektedir.",
+"C": "Yargı yetkisi bağımsız mahkemeler aracılığıyla yürütülmektedir.",
+"D": "Kanun yapma yetkisi yürütme organı olan Cumhurbaşkanlığına aittir."
+},
+"answer": "D",
+"explanation": "1. Adım: Tablo incelendiğinde yasama organının TBMM olduğu ve kanun yapma görevi taşıdığı görülür (A doğrudur). 2. Adım: Yürütme organının Cumhurbaşkanı ve bakanlar olduğu, kanunları uyguladığı belirtilmiştir (B doğrudur). 3. Adım: Yargı organının bağımsız mahkemeler olduğu görülmektedir (C doğrudur). 4. Adım: D seçeneğinde kanun yapma yetkisinin yürütmeye ait olduğu söylenmiştir, oysa tabloda kanun yapma görevi yasama organı olan TBMM'ye aittir. Bu nedenle D yanlıştır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Yerel Yönetimler ve Demokrasi Bilinci",
+"passage": "5. sınıf öğrencisi Elif, mahallesindeki muhtarlık seçimleri ile belediye başkanlığı seçimlerini incelemiştir. Hazırladığı projede yerel yönetimlerin halkın günlük yaşamındaki yerini vurgulamak için bir daire grafiği kullanmıştır. Grafikte yerel yönetimlerin hizmet alanlarının ağırlıkları oranlanmıştır.",
+"question": "Bu bilgilere ve daire grafiğine göre yerel yönetimlerle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Muhtarlık seçimlerinde gizli oy ve açık sayım ilkesi hiçbir şekilde uygulanmaz.",
+"B": "Muhtar ve belediye başkanı, yerel yönetim birimlerine örnek olup halkın seçimiyle göreve gelir.",
+"C": "Yerel yönetimlerde görev alabilmek için 18 yaş şartı aranmamaktadır ve her yaş grubu aday olabilir.",
+"D": "Belediye hizmetleri tamamen merkezi hükümetin doğrudan bakanlıkları tarafından yürütülür."
+},
+"answer": "B",
+"explanation": "1. Adım: Metinde Elif'in muhtarlık ve belediye başkanlığı seçimlerini incelediği belirtilmiştir. 2. Adım: Kaynak bilgilerde muhtar ve belediyenin yerel yönetim örnekleri olduğu ve demokrasilerde seçimle iş başına geldikleri ifade edilmiştir. 3. Adım: Grafik yerel yönetimlerin hizmet oranlarını gösterirken, A şıktındaki bilgi yerel yönetimlerin tanımı ve seçimle iş başına gelme kuralıyla tam örtüşmektedir. 4. Adım: B, C ve D şıkları demokratik kurallarla ve yerel yönetimlerin yapısıyla çelişmektedir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Seçim İlkeleri ve Vatandaşlık Sorumluluğu",
+"passage": "Bir okulda düzenlenen 'Demokrasi Haftası' etkinliklerinde öğretmen tahtaya seçimlerin temel ilkelerini yazmış ve öğrencilerden bu ilkelerin anlamını tartışmalarını istemiştir. Öğrencilerden Can şu değerlendirmeyi yapmıştır: 'Demokratik bir seçimde vatandaşlar oylarını baskı altında kalmadan, kimsenin görmeyeceği şekilde kullanır ve oylar herkesin gözü önünde sayılır.'",
+"question": "Can'ın yaptığı bu açıklama, seçimlerin temel ilkelerinden hangileriyle doğrudan eşleşmektedir?",
+"shape": null,
+"options": {
+"A": "Açık oy ve gizli sayım",
+"B": "Genel oy ve eşit oy",
+"C": "Tek dereceli seçim ve çoğunluk sistemi",
+"D": "Gizli oy ve açık sayım"
+},
+"answer": "D",
+"explanation": "1. Adım: Can'ın açıklamasında 'kimsenin görmeyeceği şekilde kullanır' ifadesi oy verme işleminin gizli yapıldığını gösterir (Gizli oy). 2. Adım: Açıklamadaki 'oylar herkesin gözü önünde sayılır' ifadesi ise oyların sayım ve dökümünün şeffaf bir şekilde yapıldığını ifade eder (Açık sayım). 3. Adım: Kaynak bilgilere göre seçimler serbest, eşit, gizli oy ve açık sayım ilkelerine göre yapılır. 4. Adım: Can'ın vurguladığı unsurlar gizli oy ve açık sayım ilkeleridir, bu nedenle doğru cevap B seçeneğidir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Karar Alma Süreçleri",
+"passage": "5/A sınıfı öğrencileri hafta sonu yapılacak doğa yürüyüşü rotasını belirlemek için daire grafiğinde gösterilen dört farklı güzergah üzerinde oylama yapmıştır. Sınıftaki 40 öğrencinin tamamı oy kullanmış ve çoğunluk kuralı benimsenmiştir. Öğretmen, azınlıkta kalan öğrencilerin görüşlerinin de bir sonraki etkinlikte dikkate alınacağını belirtmiştir.",
+"question": "Verilen bilgilere ve daire grafiğine göre, sınıfın yürüyüş rotası seçimiyle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Koru Yolu",
+"Şelale Patikası",
+"Gölet Tepesi",
+"Tarihi Vadi"
+],
+"values": [
+50,
+25,
+15,
+10
+],
+"title": "Doğa Yürüyüşü Rota Tercihleri Yüzdesi",
+"show_names": false
+},
+"options": {
+"A": "Gölet Tepesi'ni seçen öğrenci sayısı Şelale Patikası'nı seçenlerden fazladır.",
+"B": "En az tercih edilen rota Tarihi Vadi olup oylamanın onda birini oluşturur.",
+"C": "Öğrencilerin yarısı Şelale Patikası'nı tercih etmiştir.",
+"D": "Demokratik kurallar gereği sadece azınlıkta kalanların kararı uygulanmıştır."
+},
+"answer": "B",
+"explanation": "Daire grafiğinde Koru Yolu %50 (20 öğrenci) ile en çok tercih edilen rotadır. Şelale Patikası %25 (10 öğrenci), Gölet Tepesi %15 (6 öğrenci), Tarihi Vadi ise %10 (4 öğrenci) oranındadır. Tarihi Vadi %10 yani 10'da 1'dir. Demokraside çoğunluğun kararı uygulanır, azınlığın hakları korunur.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasi: Okul Yaşamında Hak ve Sorumluluklar",
+"passage": "Bir okulun kantininde öğrencilerin sağlıklı beslenmesi amacıyla hazırlanan yeni ürünlerin hafta içindeki günlük satış miktarları çizgi grafiğinde gösterilmiştir. Okul meclisi, kantin denetim komisyonuyla birlikte bu verileri inceleyerek öğrencilerin en çok hangi sağlıklı ürüne ilgi gösterdiğini değerlendirmiş ve karar alma süreçlerine öğrencileri dahil etmiştir.",
+"question": "Bu bilgilere ve çizgi grafiğine göre, öğrencilerin tüketim eğilimleriyle ilgili aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+30,
+45,
+40,
+60,
+55
+],
+"title": "Taze Meyve Suyu Günlük Satış Miktarı (Bardak)",
+"show_names": false
+},
+"options": {
+"A": "Çarşamba günü satılan bardak sayısı salı gününe göre azalmıştır.",
+"B": "En yüksek satış perşembe günü gerçekleşmiştir.",
+"C": "Haftanın ilk günü en düşük satış kaydedilmiştir.",
+"D": "Satış miktarı hafta boyunca sürekli artış göstermiştir."
+},
+"answer": "D",
+"explanation": "Grafikte satışlar Pazartesi 30, Salı 45, Çarşamba 40, Perşembe 60, Cuma 55 şeklindedir. Çarşamba günü satış 45'ten 40'a düşmüştür. Ancak Salı'dan Çarşamba'ya düşüş olduğu için 'hafta boyunca sürekli artış göstermiştir' ifadesi yanlıştır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Demokratik Vatandaşlık ve Sorumluluk",
+"passage": "5/A sınıfı doğa yürüyüşü kulübü öğrencileri, yıl sonu gezisi için güzergâh ve etkinlik planı hazırlamaktadır. Sınıf başkanı Deniz, tüm öğrencilerin katılabileceği demokratik bir karar süreci yürütmek istemektedir. Kulüp faaliyetleri için hazırlanan alternatif planların dağılımı aşağıdaki tabloda verilmiştir.",
+"question": "Verilen tabloya ve demokrasi ilkelerine göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "table",
+"title": "Doğa Yürüyüşü Alternatif Planları",
+"headers": [
+"Plan Adı",
+"Zorluk Derecesi",
+"Katılımcı Öğrenci Sayısı",
+"Oy Oranı (%)"
+],
+"rows": [
+[
+"Orman Patikası",
+"Kolay",
+"18",
+"60"
+],
+[
+"Dere Kenarı",
+"Orta",
+"9",
+"30"
+],
+[
+"Tepe Tırmanışı",
+"Zor",
+"3",
+"10"
+]
+]
+},
+"options": {
+"A": "Sınıftaki tüm öğrenciler yalnızca en kolay etkinliği tercih etmiştir.",
+"B": "Karar alınırken çoğunluğun tercihi uygulanmış ancak azınlıkta kalanların da fikrine yer verilmiştir.",
+"C": "Seçim sonuçlarına göre azınlığın görüşleri tamamen yok sayılmıştır.",
+"D": "Oy kullanmak zorunlu olmadığı için sınıftaki bazı öğrenciler sürece hiç katılmamıştır."
+},
+"answer": "B",
+"explanation": "Tabloda oylamaya katılan öğrencilerin yüzdeleri ve sayıları verilmiştir. Orman patikası %60 oy alarak çoğunluğun kararını oluşturmuş, diğer planlara oy verenler de azınlık hakları ve farklı tercihler kapsamında tabloda yer almıştır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Demokratik Yönetim ve Kurumlar",
+"passage": "Okul öğrenci meclisi başkanı seçilen Kerem, mahallesindeki yerel yönetim birimlerinin çalışmalarını incelemek üzere bir araştırma yapmıştır. Mahalle muhtarlığı ve belediye birimlerinin yıl içindeki bilgilendirme toplantılarına katılım oranlarını aylara göre incelemiş ve aşağıdaki çizgi grafiğini elde etmiştir.",
+"question": "Çizgi grafiğindeki verilere ve yerel yönetimlerin yapısına göre aşağıdakilerden hangisi söylenemez?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ekim",
+"Kasım",
+"Aralık",
+"Ocak"
+],
+"values": [
+40,
+65,
+50,
+85
+],
+"title": "Yerel Toplantılara Katılım Sayısı",
+"show_names": false
+},
+"options": {
+"A": "Yerel yönetim birimleri mahalle halkının yönetime katılımını destekleyen toplantılar düzenlemiştir.",
+"B": "Ocak ayında katılım sayısının en yüksek seviyeye ulaşması vatandaşların sorumluluk bilincinin arttığını gösterir.",
+"C": "Muhtarlık ve belediye seçimleri sadece ocak ayında yapılmaktadır.",
+"D": "Aylara göre katılım miktarında dalgalanmalar yaşanmıştır."
+},
+"answer": "C",
+"explanation": "Grafikte katılım sayıları aylara göre gösterilmiştir. Ancak seçimlerin sadece ocak ayında yapıldığına dair grafikte veya yerel yönetim bilgilerinde herhangi bir ifade yer almamaktadır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasi",
+"topics": "Demokrasi, Seçim, Yönetim",
+"d": 4,
+"ts": 1794210754
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "İklim ve İnsan Faaliyetleri",
+"passage": "Karadeniz kıyısında yaşayan balıkçı Hasan, bölgenin her mevsim yağışlı iklimine uygun olarak balıkçılık yapmaktadır. Ancak son yıllarda kıyı boyunca yapılan kontrolsüz şehirleşme, kıyı şeridindeki ormanlık alanların azalmasına ve aşırı yağışlarda toprak kayması riskinin artmasına neden olmuştur.",
+"question": "Verilen metne göre, yerleşim faaliyetlerinin doğal çevre üzerindeki etkileri hakkında hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Ormanların azalması, bölgedeki yağış miktarının düşmesine neden olmuştur.",
+"B": "İklim değişikliği, Karadeniz'deki balıkçılık faaliyetlerinin tamamen bitmesine yol açmıştır.",
+"C": "Balıkçılık, bölgenin iklim şartlarından etkilenmeyen tek ekonomik faaliyettir.",
+"D": "Beşerî faaliyetler, bölgedeki doğal afet riskini artıran bir etkiye sahiptir."
+},
+"answer": "D",
+"explanation": "Metinde ormanlık alanların azalmasının aşırı yağışlarda toprak kayması (heyelan) riskini artırdığı ifade edilmiştir. Bu durum, insan kaynaklı faaliyetlerin doğal afetleri tetiklediğini gösterir.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794211750
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Türkiye'nin Yer Şekilleri",
+"passage": "Beşinci sınıf öğrencileri, Türkiye'deki bazı doğal unsurları özelliklerine göre tabloya kaydetmiştir.",
+"question": "Buna göre, tablodaki bilgilerin hangisinde hata yapılmıştır?",
+"shape": {
+"type": "table",
+"title": "Coğrafi Özellikler",
+"headers": [
+"Unsur Adı",
+"Türü",
+"Özellik"
+],
+"rows": [
+[
+"Ağrı Dağı",
+"Dağ",
+"En yüksek yerimiz"
+],
+[
+"Van Gölü",
+"Göl",
+"En büyük gölümüz"
+],
+[
+"Kızılırmak",
+"Akarsu",
+"En uzun akarsuyumuz"
+],
+[
+"Ege",
+"Deniz",
+"Anadolu'nun kuzeyinde yer alır"
+]
+]
+},
+"options": {
+"A": "Ege",
+"B": "Van Gölü",
+"C": "Kızılırmak",
+"D": "Ağrı Dağı"
+},
+"answer": "A",
+"explanation": "Türkiye'nin üç tarafı denizlerle çevrilidir. Ege Denizi batıda yer alır, kuzeyde yer alan deniz Karadeniz'dir. Bu yüzden D şıkkındaki bilgi yanlıştır.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794211750
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Hava Durumu ve İklim",
+"passage": "Bir meteoroloji istasyonu, bir hafta boyunca ölçülen sıcaklık verilerini grafikleştirmiştir. Ancak grafik, pazartesi 10 derece, salı 12 derece, çarşamba 15 derece ve perşembe 15 derece olacak şekilde seyretmiştir.",
+"question": "Verilen bilgilere göre, bu ilin iklimiyle ilgili hangisine ulaşılabilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pzt",
+"Sal",
+"Çar",
+"Per"
+],
+"values": [
+10,
+12,
+15,
+15
+],
+"title": "Günlük Sıcaklık Değişimi",
+"show_names": false
+},
+"options": {
+"A": "Bu bölgede her zaman güneşli bir hava hakimdir.",
+"B": "Sadece 4 günlük ölçüm, bölgenin iklimi hakkında kesin bilgi vermez.",
+"C": "Hava sıcaklığı sürekli artış göstermiştir.",
+"D": "Bölgede sadece Akdeniz iklimi görülmektedir."
+},
+"answer": "B",
+"explanation": "İklim, uzun yıllar boyunca görülen hava olaylarının ortalamasıdır. 4 günlük veri sadece hava durumunu yansıtır, iklim hakkında kesin yargıda bulunulamaz.",
+"vfd2": true,
+"unit": "Evimiz Dünya",
+"topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
+"d": 2,
+"ts": 1794211750
 }
 ]
 }

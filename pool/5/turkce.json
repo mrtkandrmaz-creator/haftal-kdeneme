@@ -1436,6 +1436,111 @@
 "topics": "Deyim ve atasözü, Hikâye unsurları, Ses bilgisi",
 "d": 4,
 "ts": 1794166626
+},
+{
+"subject": "Türkçe",
+"topic": "Kelime türleri: ad‑sıfat",
+"passage": "Sınıfımızdaki arkadaşlarımız farklı şehirlerden gelmiştir. Kimi Karadeniz'den, kimi Ege'den, kimi de Doğu Anadolu'dan. Her birinin kendine özgü yemeği, türküsü ve oyunu vardır. Öğretmenimiz, \"Farklılıklarımız bizim zenginliğimizdir.\" dedi. Biz de her hafta bir arkadaşımızın yöresini tanıttık. Böylece birbirimize daha çok saygı duymayı öğrendik.",
+"question": "Metinde \"özgü\" sözcüğü hangi kelime türüne aittir?",
+"shape": null,
+"options": {
+"A": "Sıfat (ad‑sıfat)",
+"B": "Zarf (belirteç)",
+"C": "Zamir (adıl)",
+"D": "İsim (ad)"
+},
+"answer": "A",
+"explanation": "\"özgü\" sözcüğü bir sıfat görevi görerek \"özgü yemeği\" ifadesini nitelendirir. Dolayısıyla sıfat (ad‑sıfat) türündedir.",
+"pid": "t3",
+"vfd2": true,
+"unit": "Birey ve Toplum",
+"topics": "Kelime türleri, Ad-sıfat, Cümle öğeleri giriş",
+"d": 4,
+"ts": 1794210212
+},
+{
+"subject": "Türkçe",
+"topic": "Bilgi ve Çıkarım",
+"passage": "Cezeri, 12. yüzyılda yaşamış bir Türk-İslam bilim insanıdır. Otomatik makineler, su saatleri ve sulama araçları yapmıştır. Yazdığı kitapta birçok mekanik düzeneği çizimleriyle anlatmıştır. Bu çalışmaları nedeniyle \"robotların babası\" olarak da anılır. Cezeri'nin eserleri, bilimin yüzyıllar boyunca nasıl geliştiğini gösteren önemli örneklerdir.",
+"question": "Bu metne göre Cezeri ile ilgili aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Çalışmalarını sadece tarım alanındaki araçlar üzerine yoğunlaştırmıştır.",
+"B": "Eserlerinde mekanik düzeneklere yer vererek bunları çizimlerle aktarmıştır.",
+"C": "Günümüzdeki tüm robot teknolojisinin temelini tek başına atmıştır.",
+"D": "Yazdığı kitapta yalnızca su saatlerinin yapım aşamalarını açıklamıştır."
+},
+"answer": "B",
+"explanation": "Metinde Cezeri'nin yazdığı kitapta birçok mekanik düzeneği çizimleriyle anlattığı açıkça ifade edilmektedir. Diğer seçeneklerdeki sınırlamalar ve aşırı genellemeler metinde yer almamaktadır.",
+"pid": "b1",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 2,
+"ts": 1794210621
+},
+{
+"subject": "Türkçe",
+"topic": "Metin Başlığı Belirleme",
+"passage": "Cezeri, 12. yüzyılda yaşamış bir Türk-İslam bilim insanıdır. Otomatik makineler, su saatleri ve sulama araçları yapmıştır. Yazdığı kitapta birçok mekanik düzeneği çizimleriyle anlatmıştır. Bu çalışmaları nedeniyle \"robotların babası\" olarak da anılır. Cezeri'nin eserleri, bilimin yüzyıllar boyunca nasıl geliştiğini gösteren önemli örneklerdir.",
+"question": "Bu metnin içeriği ve ana düşüncesi göz önüne alındığında, metne en uygun başlık aşağıdakilerden hangisi olur?",
+"shape": null,
+"options": {
+"A": "Geçmişten Günümüze Su Saatleri",
+"B": "Yüzyılların Ötesinde Bir Bilim İnsanı: Cezeri",
+"C": "Türk-İslam Dünyasında Kitap Yazarlığı",
+"D": "Robot Teknolojisinin Tarihçesi ve Gelişimi"
+},
+"answer": "B",
+"explanation": "Metin doğrudan 12. yüzyılda yaşayan bilim insanı Cezeri'nin kimliğini, çalışmalarını ve önemini anlattığı için en kapsamlı ve doğru başlık \"Yüzyılların Ötesinde Bir Bilim İnsanı: Cezeri\"dir.",
+"pid": "b1",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 2,
+"ts": 1794210621
+},
+{
+"subject": "Türkçe",
+"topic": "Neden-Sonuç İlişkisi",
+"passage": "Cezeri, 12. yüzyılda yaşamış bir Türk-İslam bilim insanıdır. Otomatik makineler, su saatleri ve sulama araçları yapmıştır. Yazdığı kitapta birçok mekanik düzeneği çizimleriyle anlatmıştır. Bu çalışmaları nedeniyle \"robotların babası\" olarak da anılır. Cezeri'nin eserleri, bilimin yüzyıllar boyunca nasıl geliştiğini gösteren önemli örneklerdir.",
+"question": "Metne göre Cezeri'nin \"robotların babası\" olarak anılmasının nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "12. yüzyılda yaşamış önemli bir Türk-İslam bilim insanı olması",
+"B": "Otomatik makineler, su saatleri ve sulama araçları gibi çalışmaları bulunması",
+"C": "Yazdığı kitabın basımının yüzyıllar boyunca sürmüş olması",
+"D": "Eserlerinin bilimin gelişimini gösteren tek örnek kabul edilmesi"
+},
+"answer": "B",
+"explanation": "Metinde Cezeri'nin otomatik makineler, su saatleri ve sulama araçları gibi çalışmaları nedeniyle 'robotların babası' olarak anıldığı belirtilmiştir.",
+"pid": "b1",
+"vfd2": true,
+"unit": "Bilim ve Teknoloji",
+"topics": "Grafik/tablo yorumlama, Başlık, Yazım kuralları",
+"d": 2,
+"ts": 1794210621
+},
+{
+"subject": "Türkçe",
+"topic": "Ana fikir",
+"passage": "Bal arıları kovanlarda topluluk hâlinde yaşar. Bir kovanda görevler paylaşılmıştır: İşçi arılar çiçeklerden nektar toplar, kovanı temizler ve yavruları besler. Ana arı ise yumurta bırakır. Arılar çiçekten çiçeğe konarken bitkilerin tozlaşmasına yardımcı olur. Tozlaşma olmazsa birçok meyve ve sebze oluşamaz. Bu yüzden arılar doğadaki dengenin önemli canlılarındandır.",
+"question": "Metnin ana fikri aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ana arı yumurta bırakır.",
+"B": "İşçi arılar nektar toplar ve yavruları besler.",
+"C": "Arıların tozlaşma sürecindeki rolü doğa dengesine etki eder.",
+"D": "Arıların kovan içinde görev dağılımı vardır."
+},
+"answer": "C",
+"explanation": "Metinde arıların topluluk hâlinde yaşadığı, görev dağılımı ve tozlaşma sayesinde doğadaki dengenin sağlandığı vurgulanıyor. En geniş kapsamlı ifade B şıkkıdır.",
+"pid": "d2",
+"vfd2": true,
+"unit": "Doğa ve Evren",
+"topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
+"d": 3,
+"ts": 1794210790
 }
 ]
 }

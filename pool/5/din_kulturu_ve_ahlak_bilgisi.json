@@ -1180,6 +1180,946 @@
 "topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
 "d": 1,
 "ts": 1794143323
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnek Ahlakı",
+"passage": "Biyolog Dr. Selim, laboratuvarda uzun süredir üzerinde çalıştığı bir araştırmanın sonucunu açıklamıştır. Selim Bey, çalışmalarında hiçbir aşamada verileri gizlemediğini, hatalı olduğunu fark ettiğinde bunu açıkça belirttiğini ve meslektaşlarına karşı her zaman dürüst davrandığını ifade etmiştir. Dr. Selim, bu davranışının mesleki başarısından daha değerli olduğunu belirtmiştir.",
+"question": "Metne göre, Dr. Selim'in sergilediği bu tutum Hz. Muhammed'in hangi ahlaki özelliği ile doğrudan ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "Merhamet",
+"B": "Adalet",
+"C": "el-Emin (Güvenilirlik)",
+"D": "Sabır"
+},
+"answer": "C",
+"explanation": "Hz. Muhammed, hayatı boyunca doğruluğu ve güvenilirliği ile tanınmış, kendisine 'el-Emin' lakabı verilmiştir. Metindeki dürüstlük, hata paylaşıp verileri saklamama davranışı, kişinin söz ve davranışlarında güvenilir olmasını temsil eder. Bu durum el-Emin sıfatı ile birebir örtüşür.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Hayatı",
+"passage": "Okul bahçesinde oyun oynayan 5/A sınıfı öğrencileri, kimin oyun kurallarını belirleyeceğine dair tartışmaya başlar. Sınıf temsilcisi olan Kerem, 'Peygamberimiz bir olay olduğunda tarafları dinler ve herkesin hakkını gözetirdi' diyerek önce tarafların dinlenmesini önerir. Ancak bir öğrenci, 'Sadece en güçlü olanın sözü geçsin, böylece tartışma hemen biter' diyerek bu yöntemi reddeder.",
+"question": "Metindeki öğrencilerin önerdiği çözüm yöntemleri dikkate alındığında, hangisi Hz. Muhammed'in toplumsal hayata dair uygulamalarıyla örtüşen bir yaklaşım değildir?",
+"shape": null,
+"options": {
+"A": "Adalet ve hakkaniyet ilkelerine göre karar vermek",
+"B": "Tarafların görüşlerine başvurmak",
+"C": "Tartışmaları barışçıl yollarla çözmek",
+"D": "Güçlü olanın kararına göre hareket etmek"
+},
+"answer": "D",
+"explanation": "Hz. Muhammed'in hayatında adalet ve herkesin hakkının korunması esastır. Sadece güçlü olanın kararına göre hareket etmek (zorbalık/tek taraflılık), İslam'ın getirdiği adalet ve kardeşlik ilkeleriyle tamamen çelişmektedir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Peygamberliği",
+"passage": "Müze gezisinde İslam Tarihi bölümünü inceleyen öğrencilerden Elif, bir panoda şu bilgileri okur: '610 yılında Hira Mağarası'nda gelen ilk emir ile başlayan vahiy süreci, 632 yılında Peygamber Efendimizin vefatına kadar devam etmiştir.' Bu süreçte ilk inen Alak suresi ayetlerinde okuma, yazma ve ilmin önemi vurgulanmıştır.",
+"question": "Bu bilgilere göre, İslam'ın ilk yıllarında önem verilen temel unsur aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Siyasi güç kazanmak",
+"B": "Okumayı ve bilgiyi temel almak",
+"C": "Sadece fiziksel ibadetlere odaklanmak",
+"D": "Göç hazırlıkları yapmak"
+},
+"answer": "B",
+"explanation": "Alak suresinde gelen ilk emrin 'Oku' olması, İslam'ın ilme, öğrenmeye ve bilginin gelişimine verdiği önemi gösterir. Metinde belirtilen ilk vahiy içeriği, bilginin bir başlangıç değeri olduğunu doğrulamaktadır.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnek Ahlakı",
+"passage": "Bir yemek yarışması düzenleyen okul kulübü, öğrencilerinden 'yardımlaşma' temalı bir proje hazırlamalarını istemiştir. Ahmet, yarışmada ihtiyaç sahiplerine nasıl yemek ulaştırılacağını gösteren bir şema hazırlamıştır. Şemada, sadece kendi grubundaki kişilere yemek dağıtan bir model çizmiştir. Yarışma jürisi ise Ahmet'in projesini inceleyip, 'Peygamberimizin (s.a.v.) Veda Hutbesi'ndeki kardeşlik ilkelerini düşünürsek projenin kapsamını genişletmelisin' demiştir.",
+"question": "Jürinin uyarısı dikkate alındığında, Ahmet'in projesinde eksik olan değer aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Sadece kendi yakın çevresini koruma",
+"B": "Yarışmayı kazanma arzusu",
+"C": "Toplumsal dayanışma ve ayrım gözetmeme",
+"D": "Yemek kalitesini ön planda tutma"
+},
+"answer": "C",
+"explanation": "Veda Hutbesi'nde Hz. Muhammed, insanların kardeşliğini ve toplumsal dayanışmanın evrenselliğini vurgulamıştır. Sadece kendi grubuna yardım etmek, bu evrensel dayanışma ilkesiyle çelişir; bu yüzden Ahmet'in projeye evrensellik ve kapsayıcılık eklemesi gerekir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Hayatı",
+"passage": "Bir çiftlikte çalışan gönüllüler, çevre temizliği konusunda farklı fikirler öne sürmüştür. Mehmet; 'Sadece kendi bölgemiz temiz olsun, gerisi bizi ilgilendirmez' demiştir. Zeynep ise, 'Peygamber Efendimiz Mescid-i Nebevi'nin yapımında herkese görev vermiş ve herkesin huzuru için çalışmıştır' diyerek, tüm çiftliğin ortak temizlenmesi gerektiğini savunmuştur.",
+"question": "Zeynep'in sergilediği bu yaklaşım, İslam ahlakındaki hangi temel ilkeyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "Bireysel kazanç sağlama",
+"B": "Toplumsal sorumluluk ve yardımlaşma",
+"C": "Sadece kurallara itaat etme",
+"D": "Yalnız başına hareket etme"
+},
+"answer": "B",
+"explanation": "Hz. Muhammed'in Mescid-i Nebevi'nin inşasında gösterdiği yaklaşım, herkesin katılımını içeren bir toplumsal sorumluluktur. Zeynep'in herkesin huzurunu öncelemesi, bu toplumsal dayanışma ve sorumluluk anlayışını yansıtır.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnek Ahlakı",
+"passage": "Bir bahçe düzenleme projesinde görevli olan öğrenciler, çiçekleri dikerken bazı fidelerin zarar gördüğünü fark ederler. Gruptan bazıları zarar gören fideleri hemen atmayı önerir. Ancak Ayşe, 'Peygamberimiz merhamet peygamberidir, zarar görmüş fideleri iyileştirip tekrar bahçeye kazandıralım' diyerek onları kurtarmaya çalışır.",
+"question": "Ayşe'nin bu davranışı, Hz. Muhammed'in (s.a.v.) hangi ahlaki yönünü yansıtmaktadır?",
+"shape": null,
+"options": {
+"A": "Merhamet ve şefkat",
+"B": "Sabırlı olma",
+"C": "Cesur olma",
+"D": "Sözünde durma"
+},
+"answer": "A",
+"explanation": "Zarar gören fideleri atmak yerine onları şefkatle iyileştirmeye çalışmak, merhamet ve canlıya değer verme davranışıdır. Bu, Hz. Muhammed'in tüm canlılara karşı gösterdiği engin merhamet anlayışıyla doğrudan örtüşür.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Hayatı ve Hicret",
+"passage": "Hayvanat bahçesinde inceleme yapan öğrenciler, göç eden kuşlar hakkında bilgi alırlar. Rehber, bazı kuşların zorlu iklimlerden kaçıp daha güvenli ve yaşamaya uygun bölgelere gittiğini anlatır. Bu durumu dinleyen Ali, 'Bu süreç bana 622 yılında yaşanan Hicret olayını hatırlattı. Peygamberimizin Mekke'den Medine'ye gidişi de sadece bir yer değişikliği değil, bir inanç ve huzur arayışıydı' der.",
+"question": "Ali'nin yaptığı bu karşılaştırmaya göre, hicretin temel amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Farklı iklim şartlarını denemek",
+"B": "Ticari faaliyetleri artırmak",
+"C": "Daha zengin bir yere yerleşmek",
+"D": "İnanç özgürlüğü ve huzurlu bir ortamı tercih etmek"
+},
+"answer": "D",
+"explanation": "Hicret, Mekke'deki baskı ve zorluklardan dolayı İslam'ı özgürce yaşayabilmek ve huzur bulmak için gerçekleştirilen bir harekettir. Bu, ekonomik veya keyfi bir göç değil, inanç özgürlüğünü merkeze alan tarihsel bir adımdır.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Örnek Ahlakı",
+"passage": "5/A sınıfı öğretmeni, öğrencilerden 'el-Emin' sıfatı üzerine bir araştırma yapmalarını ister. Öğrencilerden Kerem şu bilgiyi paylaşır: 'Hz. Muhammed, gençliğinde ticaret yaptığı kişilerle her zaman sözünde durmuş, asla hile yapmamış ve emanetlere sadakatle sahip çıkmıştır. Bu yüzden Mekkeliler ona el-Emin demiştir.' Ahmet ise bu bilgiyi şöyle yorumlar: 'Demek ki Hz. Muhammed bu sıfatı, peygamber olduktan sonra insanların ona güvenmesini sağlamak için sonradan kazanmıştır.'",
+"question": "Metne göre Ahmet'in yaptığı yorumla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Yanlıştır, el-Emin sıfatı peygamberlik öncesi dürüstlüğüyle kazanılmıştır.",
+"B": "Doğrudur, peygamberlik göreviyle birlikte davranışları değişmiştir.",
+"C": "Eksiktir, peygamberlik görevi ile ticaret hayatı birbirinden bağımsızdır.",
+"D": "Doğrudur, toplumda güvenilir olmak ancak statü sahibi olmakla mümkündür."
+},
+"answer": "A",
+"explanation": "Hz. Muhammed, peygamberlikten önce de dürüstlüğü ve güvenilirliği sayesinde 'el-Emin' lakabıyla anılmıştır. Ahmet'in peygamberlikten sonra kazandığı yönündeki iddiası tarihsel bilgiyle çelişmektedir. Bu nedenle Ahmet'in yorumu yanlıştır.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Hayatı",
+"passage": "Medine'deki bir balıkçı kooperatifinde çalışan Hasan ve Ömer, Hz. Muhammed'in hayatını konuşmaktadır. Hasan, 'Hz. Muhammed, Medine'ye hicret ettikten sonra Mescid-i Nebevi'yi inşa etmiş ve Müslümanları tek bir çatı altında birleştirmiştir.' der. Ömer ise 'Evet, o ayrıca Veda Hutbesi'nde de insan haklarından ve kardeşlikten bahsederek toplumsal dayanışmayı güçlendirmiştir.' diye ekler.",
+"question": "Bu iki arkadaşın konuşmasından hareketle aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Peygamberimiz yalnızca ibadet konularıyla ilgilenmiştir.",
+"B": "Mescid-i Nebevi sadece namaz kılınan bir yer olarak tasarlanmıştır.",
+"C": "Hz. Muhammed'in faaliyetleri toplum birliğini ve hakları merkeze almıştır.",
+"D": "Veda Hutbesi, hicretin hemen ardından yazılan bir metindir."
+},
+"answer": "C",
+"explanation": "Metinde geçen Mescid-i Nebevi'nin inşası ve Veda Hutbesi'ndeki kardeşlik vurgusu, Hz. Muhammed'in toplumsal birliği ve hakları önemsediğini göstermektedir. A seçeneği eksik, B ve D ise metinle çelişen veya metinde vurgulanmayan ifadelerdir.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hz. Muhammed'in Peygamberliği",
+"passage": "5. sınıf öğrencisi Zeynep, bir hayvanat bahçesi gezisi sırasında Hz. Muhammed'in doğduğu çevreyi ve çocukluğunu anlatan bir kitap okumaktadır. Kitapta şu bilgiler yer almaktadır: 'Hz. Muhammed yaklaşık 571 yılında Mekke'de doğmuştur. Babası Abdullah'ı doğumundan önce, annesi Âmine'yi ise küçük yaşta kaybetmiştir. O, dedesi Abdülmuttalib'in ve daha sonra amcası Ebu Talib'in himayesinde yetişmiştir.'",
+"question": "Kitaptaki bilgilere göre aşağıdakilerden hangisi Hz. Muhammed'in çocukluk dönemi hakkında söylenemez?",
+"shape": null,
+"options": {
+"A": "Doğumu yaklaşık 6. yüzyılın sonlarına denk gelmektedir.",
+"B": "Doğumundan hemen sonra babası ile ticaret yapmaya başlamıştır.",
+"C": "Çocukluk yıllarında yakın akrabalarının desteğini almıştır.",
+"D": "Anne ve babasını erken yaşta kaybetme üzüntüsünü yaşamıştır."
+},
+"answer": "B",
+"explanation": "Metinde babasının doğumdan önce vefat ettiği açıkça belirtilmiştir. Bu durumda, Hz. Muhammed'in babasıyla ticaret yapması mümkün değildir. Diğer seçenekler metinle uyumludur.",
+"vfd2": true,
+"unit": "Hz. Muhammed'in Hayatı",
+"topics": "Peygamberliği, Örnek ahlakı",
+"d": 3,
+"ts": 1794210262
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Adalet",
+"passage": "Okul yemekhanesinde görevli olan Zeynep Hanım, yemek dağıtımı sırasında sırasını bekleyen öğrencilere porsiyonları eşit şekilde paylaştırır. Arkadaşları arasında ayrım yapmadan herkese hakkı olan miktarda yemek sunarak adil bir düzen kurmaya özen gösterir.",
+"question": "Metne göre Zeynep Hanım'ın bu davranışı aşağıdaki kavramlardan hangisiyle en doğrudan açıklanır?",
+"shape": null,
+"options": {
+"A": "Yardımlaşma",
+"B": "Dürüstlük",
+"C": "Adalet",
+"D": "Hoşgörü"
+},
+"answer": "C",
+"explanation": "Zeynep Hanım'ın herkese hakkını vermesi ve ayrım yapmaması adalet kavramının tanımıyla birebir örtüşmektedir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hoşgörü",
+"passage": "5/A sınıfı öğrencileri proje ödevi için farklı kültürler üzerine araştırma yapmaktadır. Grup üyesi Kerem, arkadaşı Deniz'in kendisinden tamamen farklı bir yaşam tarzına ve düşünce yapısına sahip olduğunu görür. Kerem, bu farklılığı eleştirmek yerine Deniz'in görüşlerine saygı gösterir ve onu anlayışla karşılar.",
+"question": "Bu duruma göre Kerem'in sergilediği yaklaşım aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Her tarafa eşit mesafede durup hak dağıtmak",
+"B": "Zor durumdaki insanlara maddi destek sağlamak",
+"C": "Verilen sözü zamanında tutmak ve doğru sözlü olmak",
+"D": "Farklı düşünce ve davranışlara saygı gösterip anlayışla karşılamak"
+},
+"answer": "D",
+"explanation": "Kerem farklı düşüncelere saygı duyarak hoşgörü değerini uygulamıştır. Hoşgörünün tanımı farklı düşüncelere anlayışla yaklaşmaktır.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Dürüstlük ve Sözünde Durma",
+"passage": "Burak, sınıf başkanı seçilirken arkadaşlarına kütüphaneyi her gün düzenli olarak açık tutacağına dair söz verir. Birkaç gün sonra gitmek istemese de verdiği sözü tutarak kütüphaneyi vaktinde açar.",
+"question": "Metne göre Burak'ın bu davranışı aşağıdaki ilkelerden hangisiyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "Farklılıklara saygı duymak",
+"B": "Herkes hakkını almak",
+"C": "Verilen sözü tutmak",
+"D": "Yardım istemek"
+},
+"answer": "C",
+"explanation": "Burak'ın verdiği sözü yerine getirmesi dürüstlük kapsamında doğru sözlü olmak ve verilen sözü tutmak ilkesiyle ilgilidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hoşgörü ve Anlayış",
+"passage": "Resim sergisinde farklı tarzlarda eserler sergileyen sanatçıları inceleyen Aylin, bazı tabloları kendi zevkine aykırı bulsa da sanatçıların farklı bakış açılarlarına değer verir ve eserleri eleştirmek yerine saygıyla inceler.",
+"question": "Bu bilgilere dayanarak Aylin ile ilgili aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Farklı düşünce ve davranışlara karşı hoşgörülü bir tutum sergilemektedir.",
+"B": "Toplumsal yardımlaşmayı tamamen reddetmektedir.",
+"C": "Verdiği sözlerden zaman zaman vazgeçmektedir.",
+"D": "İnsanlar arasında ayrım yaparak hak ihlalinde bulunmaktadır."
+},
+"answer": "A",
+"explanation": "Aylin'in farklı bakış açılarına değer verip saygıyla yaklaşması hoşgörü sahibi olduğunu gösterir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Dürüstlük",
+"passage": "Kerem, okul kütüphanesinden ödünç aldığı kitabı evde okurken yanlışlıkla sayfalarından birini yırtmıştır. Kütüphaneye kitabı iade ederken görevliye durumu dürüstçe anlatmış, hatasını telafi etmek için yeni bir kopyasını temin etmeyi teklif etmiştir. Kütüphane görevlisi Kerem'in bu erdemli davranışını takdir etmiştir.",
+"question": "Bu senaryoya göre Kerem'in sergilediği tutum dürüstlük değerinin hangi yönünü doğrudan örneklemektedir?",
+"shape": null,
+"options": {
+"A": "Toplumsal kurallara uyarak ortak eşyaların korunmasını teşvik etmesi",
+"B": "Verilen sözlerin zamanında yerine getirilmesini sağlaması",
+"C": "Hata veya yanlış durumlarda gerçeği saklamadan açıkça ifade etmesi",
+"D": "Farklı düşünce sahiplerine karşı hoşgörülü ve anlayışlı yaklaşması"
+},
+"answer": "C",
+"explanation": "Kerem yırtılan sayfa durumunu gizlememiş, görevliye durumu dürüstçe anlatarak gerçeği ifade etmiştir. Bu durum dürüstlüğün doğru sözlü olmak ve hatayı saklamamak yönüyle örtüşür. Doğru şik 'Hata veya yanlış durumlarda gerçeği saklamadan açıkça ifade etmesi' seçeneğidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Hoşgörü",
+"passage": "Resim dersinde farklı kültürlerden gelen öğrencilerin katıldığı bir grup çalışmasında, Burak arkadaşı Maya'nın kendi kültürüne ait farklı renk ve desenlerle yaptığı çizimi ilk başta yadırgamıştır. Ancak öğretmenin rehberliğinde Maya'nın bu farklı bakış açısını dinlemiş, onun tercihlerine saygı göstererek çalışmayı ortaklaşa tamamlamışlardır.",
+"question": "Bu duruma göre Burak'ın sergilediği değişim aşağıdaki değerlerden hangisini örneklendirir?",
+"shape": null,
+"options": {
+"A": "Doğru sözlü olup hiçbir durumda yalandan kaçınma",
+"B": "Verilen görevleri eksiksiz ve zamanında yerine getirme",
+"C": "Maddi yardımlarda bulunarak toplumsal dayanışmayı artırma",
+"D": "Farklı düşünce ve davranışlara saygı gösterme ve anlayışla karşılama"
+},
+"answer": "D",
+"explanation": "Burak, arkadaşının farklı düşünce ve tercihlerine saygı gösterip anlayışla yaklaşmıştır. Bu tutum hoşgörü değerini ifade eder. Doğru şik 'Farklı düşünce ve davranışlara saygı gösterme ve anlayışla karşılama' seçeneğidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Değerlerimiz ve Toplum",
+"passage": "Bir mahallede düzenlenen yardım kampanyasında, mahalle sakinleri ortak bir huzur ortamı oluşturmak amacıyla bir araya gelmiştir. Bu süreçte komşular birbirlerinin haklarına riayet etmiş, eksiklikleri dürüstçe paylaşmış ve farklı görüşlere sahip olmalarına rağmen birbirlerini hoşgörüyle karşılamıştır.",
+"question": "Metne göre mahallede huzurun artmasında aşağıdakilerden hangisinin etkisinden söz edilemez?",
+"shape": null,
+"options": {
+"A": "İletişimde dürüstlük ilkesine bağlı kalınması",
+"B": "Haklara riayet edilerek tarafsız davranılması",
+"C": "Bireylerin maddi kazançlarının eşitlenmesi",
+"D": "Farklı görüşlere karşı hoşgörülü olunması"
+},
+"answer": "C",
+"explanation": "Metinde haklara riayet (adalet), dürüstlük ve hoşgörü vurgulanmıştır; ancak bireylerin maddi kazançlarının eşitlenmesinden bahsedilmemiştir. Söylenemez olan şik maddi kazançların eşitlenmesidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Dürüstlük ve Sözde Durumlar",
+"passage": "Okul kantininde sıra bekleyen Mert, önündeki arkadaşının tezgah üzerinde unuttuğu para cüzdanını fark etmiştir. Cüzdanı hemen kantin görevlisine teslim eden Mert, arkadaşına ulaştırılmasını sağlamıştır. Arkadaşı teşekkür ettiğinde ise 'Önemli değil, her zaman doğru olanı yapmalıyız.' yanıtını vermiştir.",
+"question": "Bu senaryoda Mert'in sergilediği davranış ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Farklı kültürlerden gelen insanlara hoşgörüyle yaklaşmıştır.",
+"B": "Emanete riayet ederek dürüst ve güvenilir bir tutum sergilemiştir.",
+"C": "Toplumsal yardımlaşma sandığına maddi katkı sağlamıştır.",
+"D": "Verilen bir görevi zamanında bitirme sorumluluğunu göstermiştir."
+},
+"answer": "B",
+"explanation": "Mert'in başkasına ait bir eşyayı sahibine ulaştırılması için yetkiliye teslim etmesi ve dürüst davranması, güvenilirlik ve dürüstlük değerinin bir yansımasıdır. Doğru şik 'Emanete riayet ederek dürüst ve güvenilir bir tutum sergilemiştir' seçeneğidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Değerlerin Toplumsal Hayattaki Yeri",
+"passage": "Toplumsal yaşamda huzur ve güvenin sağlanması için bireylerin birbirine karşı merhametli, sorumlu ve dürüst olması beklenir. Ayrıca toplumda farklı düşünce ve inançların bir arada barış içinde yaşayabilmesi için tahammül ve anlayış gösterilmesi şarttır.",
+"question": "Bu bilgilere dayanarak aşağıdakilerden hangisi toplumda huzuru artıran değerler arasında yer almaz?",
+"shape": null,
+"options": {
+"A": "Sorumluluk",
+"B": "Merhamet",
+"C": "Bencillik",
+"D": "Yardımlaşma"
+},
+"answer": "C",
+"explanation": "Metinde ve temel dini/ahlaki kaynaklarda toplum huzurunu artıran değerler arasında yardımlaşma, merhamet, sorumluluk, dürüstlük ve hoşgörü sayılmaktadır; bencillik ise huzuru bozan olumsuz bir tutumdur. Doğru şik 'Bencillik' seçeneğidir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Değerlerimiz: Dürüstlük",
+"passage": "Okul bahçesinde düzenlenen kermes sırasında 5/A sınıfı öğrencisi Kerem, yere düşmüş ve içinde bir miktar para olan cüzdanı bulmuştur. Kerem, cüzdanı hemen sınıf rehber öğretmeni Zeynep Hanım'a teslim etmiştir. Yapılan incelemede cüzdanın 6/B sınıfı öğrencisi Deniz'e ait olduğu belirlenmiş ve para eksiksiz olarak sahibine verilmiştir. Ancak Kerem bu olaydan sonra bazı arkadaşlarının 'Bulmasaydın kimse bilmezdi, parasını alabilirdin.' şeklindeki eleştirilerine maruz kalmıştır. Bu duruma karşı Kerem, 'Verilen sözü tutmak ve doğru sözlü olmak kadar, başkasının hakkını korumak ve dürüst kalmak her şeyden önemlidir.' diyerek doğru olanı yaptığını vurgulamıştır.",
+"question": "Metne göre Kerem'in sergilediği tutum ve yaptığı değerlendirme dikkate alındığında, dürüstlük değeriyle ilgili aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Dürüstlük yalnızca başkalarının övgüsünü kazanmak için gösterilen geçici bir erdemdir.",
+"B": "Doğru sözlü olmak ve emanete riayet etmek, maddi kazançtan üstün tutulması gereken temel bir ahlaki ilkedir.",
+"C": "Ortamda şahit bulunmadığı durumlarda dürüstlük kuralından esneme payı bırakılabilir.",
+"D": "Dürüst bir insan, çevresinden eleştiri aldığında kendi doğrularından vazgeçmelidir."
+},
+"answer": "B",
+"explanation": "Kerem'in cüzdanı sahibine eksiksiz teslim etmesi ve eleştirilere rağmen doğru olanı yaptığını savunması, dürüstlüğün maddi kazançtan veya çevrenin baskısından bağımsız olarak emanete riayet etmeyi ve doğru sözlü olmayı gerektiren temel bir ahlaki ilke olduğunu gösterir. A seçeneği çıkarılamaz çünkü övgü için yapılmamıştır. C seçeneği dürüstlüğe aykırıdır. D seçeneği ise Kerem'in tavrıyla çelişmektedir; çünkü Kerem eleştirilere rağmen doğruluktan vazgeçmemiştir.",
+"vfd2": true,
+"unit": "Değerlerimiz",
+"topics": "Dürüstlük, Adalet, Hoşgörü",
+"d": 1,
+"ts": 1794211117
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi'nin Özellikleri",
+"passage": "Kamp yapan doğa gözlemcisi Burak, ateşin etrafında arkadaşlarına İhlas Suresi hakkında bilgi vermektedir. Burak, surenin nerede indiğini, ayet sayısını ve içerdiği temel inanç esasını doğru bir şekilde özetlemiştir.",
+"question": "Burak'ın verdiği bilgilere göre İhlas Suresi ile ilgili aşağıdakilerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Allah'ın birliğini (tevhid) konu alır.",
+"B": "Sadece ahiret hayatındaki aşamaları anlatır.",
+"C": "Toplamda 4 ayetten oluşur.",
+"D": "Mekke'de inmiştir."
+},
+"answer": "B",
+"explanation": "İhlas Suresi Mekke'de inmiştir, 4 ayettir ve Allah'ın birliğini (tevhid) anlatır. Ancak ahiret hayatındaki aşamaları detaylıca anlatmaz; temel konusu Allah'ın sıfatları ve birliğidir. Bu nedenle C seçeneği yanlıştır.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Samed Kavramı ve İhlas Suresi",
+"passage": "Kütüphanede araştırma yapan Elif, İhlas Suresi'nin ikinci ayeti olan 'Allâhüs-samed' ifadesinin anlamını incelemektedir. Araştırma notlarında bu kavramın açıklamasını bulmuş ve arkadaşlarrıyla paylaşmıştır.",
+"question": "Elif'in incelediği 'Samed' kavramı ile ilgili aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Allah'ın her şeyin yaratıcısı ve yapıcısı olduğuna",
+"B": "Allah'ın hiçbir şeye muhtaç olmadığı, her şeyin O'na muhtaç olduğuna",
+"C": "Allah'ın evrendeki her sesi işittiğine",
+"D": "Allah'ın dilediğini dilediği şekilde yarattığına"
+},
+"answer": "B",
+"explanation": "Kaynak metne ve Diyanet mealine göre 'Samed' kelimesi, Allah'ın hiçbir şeye muhtaç olmadığını ve her şeyin O'na muhtaç olduğunu ifade eder. İşitme (Semi) veya yaratma (Tekvin) kavramları bu ayetin doğrudan karşılığı değildir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Lem Yelid ve Lem Yûled",
+"passage": "Balıkçılık kooperatifinde çalışan Deniz, ağları toplarken doğadaki neslin devam edişini gözlemlemiş ve İslam inancındaki yaratıcı inancını arkadaşlarına şu cümleyle aktarmıştır: 'Bizim ve tüm evrendeki canlıların bir başlangıcı ve ebeveyni vardır; fakat Yaratıcı'mızın böyle bir durumu yoktur.'",
+"question": "Deniz'in yaptığı bu açıklama, İhlas Suresi'nde yer alan hangi ayetin anlamıyla doğrudan örtüşmektedir?",
+"shape": null,
+"options": {
+"A": "Lem yelid ve lem yûled",
+"B": "Kul hüvallâhü ehad",
+"C": "Ve lem yekün lehû küfüven ehad",
+"D": "Allâhüs-samed"
+},
+"answer": "A",
+"explanation": "Deniz'in açıklaması Yaratıcı'nın doğurmadığını ve doğurulmadığını, yani bir başlangıca veya ebeveyne sahip olmadığını vurgulamaktadır. Bu durum 'Lem yelid ve lem yûled' ayetinin mealidir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi Bütüncül Değerlendirme",
+"passage": "Çiftlikte hayvanları besleyen Selim, babasına İhlas Suresi'ni ezberlediğini söyler ve surenin tamamının anlamını şu şekilde sıralar:\nI. O, Allah'tır, bir tektir.\nII. Allah Samed'dir.\nIII. O doğurmamış ve doğurulmamıştır.\nIV. Hiçbir şey O'na denk ve benzer değildir.",
+"question": "Selim'in sıraladığı bu maddelerden hareketle İhlas Suresi ile ilgili aşağıdaki çıkarımlardan hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Allah'ın tek ve bir olduğu inancı temellendirilmiştir.",
+"B": "Allah'ın benzersiz ve eşsiz olduğu vurgulanmıştır.",
+"C": "Allah'ın kimseye muhtaç olmadığı belirtilmiştir.",
+"D": "Allah'ın çocukları olduğu ve bir ailesi bulunduğu ifade edilmiştir."
+},
+"answer": "D",
+"explanation": "III. maddede 'O doğurmamış ve doğurulmamıştır' denilmektedir. C seçeneğinde yer alan 'Allah'ın çocukları olduğu ve bir ailesi bulunduğu ifade edilmiştir' yargısı ayetle tamamen çelişmektedir ve yanlıştır.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi ve Tevhid İnancı",
+"passage": "5. sınıf öğrencisi Burak, okulun tarihî kütüphanesini gezerken yüzyıllar öncesine ait el yazması bir levha bulmuştur. Levhanın üzerinde Mekke'de indirildiği, toplam 4 ayetten oluştuğu ve Allah'ın birliğini anlattığı belirtilen bir sure yer almaktadır. Burak, bu surenin son ayetinde geçen 'Ve lem yekün lehû küfüven ehad' ifadesini incelemiştir.",
+"question": "Metinde sözü edilen ayetin Türkçe meali aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "De ki: O, Allah'tır, bir tektir.",
+"B": "Hiçbir şey O'na denk ve benzer değildir.",
+"C": "Allah Samed'dir (her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir).",
+"D": "O doğurmamış ve doğurulmamıştır."
+},
+"answer": "B",
+"explanation": "Metinde bahsedilen İhlas Suresi'nin son ayeti olan 'Ve lem yekün lehû küfüven ehad', Diyanet mealine göre 'Hiçbir şey O'na denk ve benzer değildir.' anlamına gelmektedir. Bu ifade Allah'ın hiçbir varlığa benzemediğini, eşi ve benzerinin olmadığını vurgular. Doğru seçenek D şıkkıdır.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi Mealleri ve Ayetler",
+"passage": "Bir kitap fuarında düzenlenen 'Kur'an-ı Kerim'in Kısa Sureleri' standında görevli olan Elif, gelen ziyaretçilere İhlas Suresi'nin ayetlerinin anlamlarını açıklamaktadır. Elif, ziyaretçilerden birine surenin ikinci ayeti olan ve 'Allah Samed'dir' diye başlayan kısmın derin anlamını sormuştur.",
+"question": "Elif'in bahsettiği 'Samed' kavramı ve ilgili ayetin açıklaması dikkate alındığında, bu kavramın vurguladığı temel mesaj aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Allah'ın her şeyi işittiği ve gördüğü",
+"B": "Her şeyin Allah'a muhtaç olduğu, O'nun hiçbir şeye muhtaç olmadığı",
+"C": "Allah'ın evrende kusursuz bir düzen yarattığı",
+"D": "O'nun evreni yoktan var ettiği"
+},
+"answer": "B",
+"explanation": "İhlas Suresi'nin ikinci ayeti olan 'Allâhüs-samed', Allah'ın Samed olduğunu, yani her şeyin O'na muhtaç olduğunu ancak O'nun hiçbir şeye muhtaç olmadığını ifade eder. Bu durum B seçeneğinde doğru olarak verilmiştir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "",
+"passage": "Bir müze gezisinde İslam sanatları bölümünü inceleyen öğrenciler, duvara asılmış hat sanatıyla yazılmış levhaları incelemektedir. Rehber öğretmen, öğrencilere Kur'an-ı Kerim'in 112. suresi olan bu kısa surenin özellikleri hakkında bilgi vermiş ve eksik bırakılan bir bilgi kartını öğrencilerin tamamlamasını istemiştir.",
+"question": "Öğretmenin bahsettiği bu sure ile ilgili verilen özelliklerden hangisi yanlıştır?",
+"shape": null,
+"options": {
+"A": "Mekke'de inmiştir.",
+"B": "Toplam 4 ayetten oluşur.",
+"C": "Allah'ın birliğini ve tevhid inancını anlatır.",
+"D": "Kur'an-ı Kerim'in en uzun suresidir."
+},
+"answer": "D",
+"explanation": "İhlas Suresi Mekke'de inmiştir, 4 ayettir ve tevhid inancını anlatır; ancak Kur'an-ı Kerim'in en uzun suresi değildir (en uzun sure Bakara Suresi'dir). Bu nedenle D şıkkındaki ifade yanlıştır.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "",
+"passage": "Bir ormancılık projesinde görev alan Ahmet öğretmen, öğrencileriyle birlikte doğadaki ekosistemi incelemektedir. Ahmet öğretmen öğrencilerine: 'Doğadaki hiçbir varlık kendi kendine var olmamıştır. Her şeyin üstünde, hiçbir şeye muhtaç olmayan, doğmamış ve doğurmamış, eşi benzeri bulunmayan yüce bir Yaratıcı vardır.' diyerek İhlas Suresi'nin bütüncül mesajını aktarmıştır.",
+"question": "Ahmet öğretmenin öğrencilerine aktardığı bu açıklama dikkate alındığında, İhlas Suresi'nin bütününde vurgulanan temel gaye aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İnsanlara temizlik kurallarını öğretmek",
+"B": "Allah'ın birliğini, eşi ve benzerinin olmadığını zihinlere yerleştirmek",
+"C": "Geçmiş milletlerin başından geçen olayları aktarmak",
+"D": "Günlük ibadetlerin yapılma vakitlerini bildirmek"
+},
+"answer": "B",
+"explanation": "İhlas Suresi'nin tamamı, Allah'ın birliğini (tevhid), hiçbir şeye muhtaç olmadığını, doğmamış ve doğurmamış olduğunu ve hiçbir şeyin O'na denk olmadığını anlatarak inanç esaslarını en öz şekilde özetler. Bu durum B seçeneğinde doğru olarak ifade edilmiştir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi ve Tevhid İnancı",
+"passage": "5. sınıf öğrencisi Burak, din kültürü ve ahlak bilgisi dersi proje ödevi için İhlas Suresi'ni incelemektedir. Araştırmaları sırasında surenin Kur'an-ı Kerim'in 112. suresi olduğunu, Mekke'de indiğini ve toplam 4 ayetten oluştuğunu öğrenmiştir. Burak, surenin özellikle Allah'ın birliğini, eşi ve benzerinin olmadığını vurgulayan temel inanç ilkesini ödevine ana tema olarak kaydetmiştir.",
+"question": "Bu bilgilere ve İhlas Suresi'nin temel konusuna göre aşağıdakilerden hangisi Burak'ın ödevinde vurguladığı ana inanç ilkesiyle doğrudan ilgilidir?",
+"shape": null,
+"options": {
+"A": "Allah'ın evrendeki gece ve gündüzü bir ölçüye göre düzenlemesi",
+"B": "Allah'ın bir ve tek olması, hiçbir şeye muhtaç olmayıp eşi ve benzerinin bulunmaması",
+"C": "İnsanın evrendeki diğer canlılarla uyum içerisinde yaşama sorumluluğu",
+"D": "Allah'ın her şeyi işitmesi ve kullarının gizli saklı her halini görmesi"
+},
+"answer": "B",
+"explanation": "İhlas Suresi, Allah'ın birliğini (tevhid), O'nun hiçbir şeye muhtaç olmadığını (Samed), doğurmadığını ve doğurulmadığını, hiçbir şeyin O'na denk olmadığını bildirir. Doğru şans bu temel inanç ilkesini eksiksiz yansıtan B seçeneğidir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "İhlas Suresi Meali ve Ayetler",
+"passage": "Kerem, din kültürü dersinde İhlas Suresi'nin Arapça okunuşunu ve Türkçe meallerini eşleştiren bir kart oyunu hazırlamaktadır. Hazırladığı kartlardan birinde 'Lem yelid ve lem yûled' yazarken, diğer kartta bu ayetin Türkçe anlamı yer almaktadır. Kerem, bu ayetle Allah'ın doğmamış ve doğurmamış olma özelliğinin vurgulandığını arkadaşlarına açıklamıştır.",
+"question": "Buna göre Kerem'in elindeki 'Lem yelid ve lem yûled' okunuşuna sahip ayetin Diyanet meali aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "(Resûlüm!) De ki: O, Allah'tır, bir tektir.",
+"B": "Hiçbir şey O'na denk ve benzer değildir.",
+"C": "Allah Samed'dir (her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir).",
+"D": "O doğurmamış ve doğurulmamıştır."
+},
+"answer": "D",
+"explanation": "İhlas Suresi'nin üçüncü ayeti olan 'Lem yelid ve lem yûled' ifadesinin Türkçe meali 'O doğurmamış ve doğurulmamıştır.' şeklindedir. Bu nedenle doğru seçenek C'dir.",
+"vfd2": true,
+"unit": "İhlas Suresi",
+"topics": "İhlas Suresi'nin okunuşu, İhlas Suresi'nin meali, Tevhid ve Allah'ın birliği",
+"d": 3,
+"ts": 1794211284
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Semi ve Basar",
+"passage": "Bir sağlık kontrolünde doktor, hastanın nabız ve göz muayenesi sonuçlarını şu tabloya işler: [Kontrol Türü: Nabız - Durum: Düzenli], [Kontrol Türü: Görme - Durum: Net]. Hasta, bu muayene sırasında 'Doktor benim neler hissettiğimi duyamasa da, her şeyimden haberdar olan Rabbim tüm gizli sesleri işitendir' diyerek dua eder.",
+"question": "Metindeki hastanın duası, Allah'ın güzel isimlerinden hangisine bir örnektir?",
+"shape": null,
+"options": {
+"A": "es-Semî",
+"B": "el-Alîm",
+"C": "el-Kadîr",
+"D": "el-Basîr"
+},
+"answer": "A",
+"explanation": "Gizli sesleri işitmek ve işitilen her şeyi bilmek es-Semî ismi ile ilgilidir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Tekvin",
+"passage": "Bir resim sergisinde sanatçı, 'Eserlerimde kullandığım her rengi ve çizgiyi yoktan var ettim, kimseden kopya çekmedim' diyerek kendini ifade ediyor. Arkadaşı ise ona, 'Sanatında yaratıcılık gücün var ama evrendeki tüm varlıkları örneksiz ve yoktan var eden yalnızca Allah'tır' diye karşılık veriyor.",
+"question": "Arkadaşının vurguladığı, Allah'ın 'yoktan var etme' sıfatı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İrade",
+"B": "Tekvin",
+"C": "Basar",
+"D": "Kudret"
+},
+"answer": "B",
+"explanation": "Allah'ın evreni ve içindekileri yoktan var etmesi, yaratma sıfatı olan Tekvin ile ifade edilir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Evrendeki Düzen ve Akıl",
+"passage": "Robotik atölyesinde öğrenciler bir robotun kendi başına hareket etmesi için kod yazıyorlar. Öğretmenleri, 'Bu robotun dengeli yürümesi için yazdığınız kodlar bir düzen gerektirir. Peki, evrenin bu kadar karmaşık bir düzenle işlemesi tesadüf olabilir mi?' diye soruyor.",
+"question": "Öğretmenin bu sorusu ile öğrencilerin hangi inanç ilkesine odaklanması beklenmektedir?",
+"shape": null,
+"options": {
+"A": "Robotların her şeyi kendiliğinden yapması",
+"B": "İnsanın gücünün Allah'ın gücüne eşit olması",
+"C": "Evrendeki düzenin Allah'ın varlığına delil olması",
+"D": "Kodların Allah'ın isimlerinden türetilmesi"
+},
+"answer": "C",
+"explanation": "Evrendeki kusursuz düzen ve sistem, bir yaratıcının varlığına ve onun birliğine delil olarak kabul edilir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Esmaül Hüsna",
+"passage": "Kültür festivalinde bir grup genç 'Er-Rahman ve Er-Rahim' isimlerinin anlamlarını bir tabloya döküyor: 1. Merhameti bol olan, 2. Her şeyi bilen, 3. Bağışlayan, 4. Gücü yeten. Gençler bu isimlerin 'esirgeyici ve bağışlayıcı' yönünü ön plana çıkarmak istiyor.",
+"question": "Gençlerin vurgulamak istediği 'merhamet' anlamı hangi isimlerle tam olarak örtüşmektedir?",
+"shape": null,
+"options": {
+"A": "1 ve 2",
+"B": "1 ve 3",
+"C": "3 ve 4",
+"D": "2 ve 4"
+},
+"answer": "B",
+"explanation": "Er-Rahman ve Er-Rahim isimleri Allah'ın merhametli, esirgeyici ve bağışlayıcı olduğunu ifade eder.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın Görmesi ve İşitmesi",
+"passage": "Otobüs durağında bekleyen bir öğrenci, yanlışlıkla yere çöp atan arkadaşına dönüp, 'Kimse görmese bile, her şeyi gören ve her şeye şahit olan bir Yaratıcı olduğunu unutmamalıyız' diyor.",
+"question": "Öğrencinin bu uyarısı, Allah'ın aşağıdaki hangi sıfatıyla doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "er-Rahmân",
+"B": "el-Kadîr",
+"C": "el-Alîm",
+"D": "el-Basîr"
+},
+"answer": "D",
+"explanation": "Her şeyi görme sıfatı el-Basîr kavramı ile ifade edilir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın Varlığı ve Birliği",
+"passage": "Bir uzay merkezinde görevli olan astronomlar, galaksilerin hareketlerini ve yıldızların birbirine olan uzaklıklarını incelemektedir. Ekip şefi, 'Evrendeki her bir yıldızın ve gezegenin, birbirine çarpmadan belirli bir yörüngede, kusursuz bir dengeyle hareket etmesi tesadüf olamaz; bu durum çok üstün bir planlayıcının varlığını kanıtlar' demiştir.",
+"question": "Astronotların bu gözlemi, Allah'ın varlığına delil olarak kullanılan aşağıdakilerden hangisiyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "Evrendeki düzen",
+"B": "Allah'ın her şeyi bilmesi",
+"C": "Allah'ın her şeyi işitmesi",
+"D": "Allah'ın eşsiz merhameti"
+},
+"answer": "A",
+"explanation": "Astronotlar uzaydaki kusursuz hareketten ve yörüngelerdeki dengeden bahsetmektedir. Evrendeki bu sistemli düzen, Allah'ın varlığına ve birliğine işaret eden en önemli delillerden biri olarak kabul edilir. Bu nedenle doğru cevap evrendeki düzendir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın Güzel İsimleri",
+"passage": "Okuldaki geri dönüşüm projesinde öğrenciler atıkları gruplara ayırıyor. Ayşe, 'Plastikleri ayrı bir kutuya koyalım ki işimiz kolaylaşsın' diyor. Öğretmenleri ise projeyi överek, 'Allah'ın her şeyi çok iyi bildiğini, her şeyin yerini ve miktarını ayrıntılarıyla tanıdığını bilmek, bizlere dünyayı daha dikkatli kullanma sorumluluğu yükler' der.",
+"question": "Öğretmenin bahsettiği, Allah'ın her şeyi hakkıyla bilmesi anlamına gelen ismi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "es-Semî",
+"B": "el-Basîr",
+"C": "er-Rahmân",
+"D": "el-Alîm"
+},
+"answer": "D",
+"explanation": "Öğretmen Allah'ın her şeyi çok iyi bildiğinden bahsetmektedir. İslam inancında Allah'ın her şeyi bilmesi 'el-Alîm' ismiyle ifade edilir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Semi ve Basar",
+"passage": "Bir enerji tasarrufu kulübü öğrencileri, 'Doğayı korumak sadece enerji tasarrufu yapmak değil, yaptıklarımızın Allah tarafından bilindiğinin bilincinde olmaktır' temalı bir pano hazırlamıştır. Panoya şu maddeleri eklemişlerdir: 1. Allah her şeyi işitir. 2. Allah her şeyi görür. 3. ...",
+"question": "Panodaki eksik maddenin kavramsal olarak tamamlanması gerekirse aşağıdakilerden hangisi getirilmelidir?",
+"shape": null,
+"options": {
+"A": "Allah dilediğini yaratır.",
+"B": "Allah her şeyi bilir.",
+"C": "Allah'ın benzeri yoktur.",
+"D": "Allah yardım etmeyi sever."
+},
+"answer": "B",
+"explanation": "Panoda Semi (işitme) ve Basar (görme) özellikleri verilmiştir. Bu iki kavram 'her şeyi bilen' (el-Alîm) veya benzer ilahi sıfatlarla tamamlanabilir. Şıklar incelendiğinde en uygun kavram 'her şeyi bilir' (el-Alîm) bilgisidir.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Allah'ın Her Şeyi Görmesi (Basar)",
+"passage": "Bisiklet turuna katılan bir grup arkadaş, kimsenin olmadığı bir parkurda mola vermiştir. Grubun en küçüğü olan Can, 'Burada bizi kimse görmüyor, yarış kurallarını biraz esnetebiliriz' demiştir. Diğer arkadaşı ise, 'Yalnız olduğumuzu düşünme, Allah her şeyi görür ve bizim yaptığımız her işten haberdardır' diyerek karşılık vermiştir.",
+"question": "Bu metne göre, Allah'ın her şeyi görmesiyle ilgili olan kavram aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Rahim",
+"B": "Semi",
+"C": "Tekvin",
+"D": "Basar"
+},
+"answer": "D",
+"explanation": "Allah'ın görme sıfatı 'Basar'dır. Metinde Allah'ın her şeyi görmesinden bahsedildiği için doğru cevap Basar'dır.",
+"vfd2": true,
+"unit": "Allah İnancı",
+"topics": "Allah'ın varlığı, Güzel isimler, Tevhid, Tekvin, Semi ve Basar, Kudret ve İrade, Evrendeki düzen ve akıl",
+"d": 4,
+"ts": 1794211864
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın Önemi",
+"passage": "Bahçe düzenleme projesi kapsamında ekip lideri olan Kerem, arkadaşlarına saat 13.30'da başlayacak olan öğle vakti molasının, hem dinlenmek hem de öğle namazını eda etmek için en uygun zaman olduğunu hatırlattı. Ekip üyelerinden bazıları namazın vakti çıkmadan kılınmasının disiplinli bir sorumluluk olduğunu ifade etti.",
+"question": "Kerem'in bu hatırlatması namazın hangi yönüne vurgu yapmaktadır?",
+"shape": null,
+"options": {
+"A": "İbadet için bahçe gibi açık alanların zorunlu olduğuna",
+"B": "Namazın her yaşta aynı rekât sayısıyla kılındığına",
+"C": "Sadece belirli mekânlarda yerine getirilmesi gerektiğine",
+"D": "Zaman planlaması ile ibadet sorumluluğunun birleştirilebileceğine"
+},
+"answer": "D",
+"explanation": "Kerem, namaz vakti ile mola saatini eşleştirerek ibadetin hayatın akışı içerisinde ihmal edilmemesi ve zamanında (vaktinde) yapılması gerektiğini vurgulamıştır. Doğru yanıt, zaman planlaması ve sorumlulukla ilgili olan şıktır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Abdestin Farzları",
+"passage": "Akvaryum temizliği yapan Selin, elindeki eldivenleri çıkarıp namaz abdesti alacaktır. Selin şu sıralamayı yapmıştır: 1. Yüzünü yıkadı, 2. Kollarını dirseklerle birlikte yıkadı, 3. Başının dörtte birini mesh etti, 4. Ayaklarını topuklarla birlikte yıkadı. İşlemi bitirip namazına hazırlandı.",
+"question": "Selin'in uyguladığı bu adımlar incelendiğinde abdestin farzlarıyla ilgili aşağıdakilerden hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Ellerini yıkamadığı için abdesti geçersiz sayılır.",
+"B": "Sadece başını mesh ederek abdestin farzını tamamlamıştır.",
+"C": "Abdestin tüm farzlarını eksiksiz yerine getirmiştir.",
+"D": "Ayaklarını yıkaması abdestin farzlarından biri değildir."
+},
+"answer": "C",
+"explanation": "Abdestin farzları; yüzü yıkamak, kolları dirseklerle birlikte yıkamak, başın dörtte birini mesh etmek ve ayakları topuklarla birlikte yıkamaktır. Selin'in uyguladığı 4 adım da bu farzları kapsamaktadır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın Önemi",
+"passage": "Bir spor kulübünde antrenman yapan gençler, öğle arası verildiğinde cuma namazına gitmek için bir araya geldiler. Takım kaptanı, 'Bugün günlerden cuma, hep birlikte cemaatle namazımızı kılıp antrenmana öyle dönelim' diyerek arkadaşlarına çağrıda bulundu.",
+"question": "Bu duruma göre gençlerin sergilediği davranışın temel amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Cuma namazını cemaatle kılmanın faziletine ulaşmak",
+"B": "Sadece spor yaparken dinlenmek",
+"C": "Antrenmanı vaktinden önce bitirmek",
+"D": "Takım içi kuralları belirlemek"
+},
+"answer": "A",
+"explanation": "Gençlerin cuma günü cemaatle namaz kılma vurgusu, cuma namazının cemaatle eda edilmesi gerekliliği ile doğrudan ilgilidir. Doğru cevap, ibadeti topluca yapmanın önemini yansıtan seçenektir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Ezan ve Kamet",
+"passage": "Bir inşaat alanında çalışan Ahmet, ezan okunduğunda işi bırakıp abdestini aldı. Camiye gitmeden önce kendi kendine 'Kameti getirip namaza başlamalıyım' dedi.",
+"question": "Ahmet'in kamet ile ilgili düşüncesi namaz ibadeti açısından neyi ifade eder?",
+"shape": null,
+"options": {
+"A": "Namaz vaktinin girdiğini duyurmayı",
+"B": "Namazın bittiğini ilan etmeyi",
+"C": "Abdestin tamamlandığını kanıtlamayı",
+"D": "Namazın başlamak üzere olduğunu bildirmeyi"
+},
+"answer": "D",
+"explanation": "Ezan namaz vaktinin girdiğini duyururken, kamet ise namaza başlamadan hemen önce okunarak namazın başlayacağını bildirir. Ahmet'in düşüncesi namazın başlamasıyla ilgilidir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın Dışındaki Şartlar",
+"passage": "Doğa yürüyüşüne çıkan bir grup, mola verdiklerinde namaz kılacak bir yer aradılar. Temiz bir alan buldular, yönlerini kıbleye çevirdiler, abdestlerini aldılar ancak namaz vaktinin girip girmediğini tam olarak bilemediler.",
+"question": "Grubun namaza başlamadan önce tamamlaması gereken eksik bilgi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Kıble yönünü tekrar belirlemek",
+"B": "Namaz vaktinin girip girmediğini kontrol etmek",
+"C": "Namazın rekât sayısını öğrenmek",
+"D": "Abdestin farzlarını tekrar etmek"
+},
+"answer": "B",
+"explanation": "Namazın dışındaki şartlar arasında 'vaktin girmesi' önemli bir unsurdur. Metinde diğer şartların sağlandığı ancak vaktin durumuyla ilgili eksiklik olduğu belirtilmiştir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın Önemi",
+"passage": "Okulun voleybol takımında oynayan Mert, maç saatleri ile namaz vakitleri çakıştığında antrenörüyle konuşarak namaz vaktinde kısa bir izin istemektedir. Takım arkadaşı Can ise namazın sadece camide cemaatle kılınması gerektiğini düşünerek, antrenman sahasında veya soyunma odasında namaz kılmayı uygun bulmamaktadır.",
+"question": "Mert'in namaz ibadetini hayatına yayma çabası göz önüne alındığında, namazın önemi ile ilgili hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Namaz, Müslümanın günlük yaşamının her anında Allah ile bağını korumasını sağlar.",
+"B": "Namaz vakitleri, spor gibi sosyal etkinliklerden sonra ikinci planda tutulmalıdır.",
+"C": "Cemaatle kılınmayan namazların hiçbir geçerliliği yoktur.",
+"D": "Namaz sadece belirli mekânlarda yerine getirilmesi gereken bir ibadettir."
+},
+"answer": "A",
+"explanation": "Mert'in tutumu, namazın bir mekân kısıtı olmaksızın hayatın her anında Allah'ı anma amacı taşıdığını göstermektedir. Namazın önemi, zamanı geldiğinde yerine getirilerek Allah ile olan bağın sürekli kılınmasıdır. Diğer şıklar İslam'ın namaza dair genel ilkeleri ve Mert'in tutumu ile çelişmektedir.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Abdestin Farzları",
+"passage": "Bir orman koruma projesinde görevli olan Elif, arazide suyun kısıtlı olduğu bir bölgede abdest alacaktır. Yanındaki su matarasını kullanarak abdestin farzlarını eksiksiz yerine getirmek istemektedir. Elif; önce yüzünü yıkamış, ardından kollarını dirsekleriyle birlikte yıkamış, sonrasında başının dörtte birini mesh etmiştir.",
+"question": "Buna göre Elif'in abdestinin tam olması için aşağıdakilerden hangisini gerçekleştirmesi gerekir?",
+"shape": null,
+"options": {
+"A": "Ayaklarını topuklarıyla birlikte yıkaması",
+"B": "Ağzına ve burnuna su vermesi",
+"C": "Kulağının içini ve dışını temizlemesi",
+"D": "Ensesini hafifçe mesh etmesi"
+},
+"answer": "A",
+"explanation": "Abdestin farzları Kur'an'da belirtilen dört temel eylemdir: Yüzü yıkamak, kolları dirseklerle birlikte yıkamak, başın dörtte birini mesh etmek ve ayakları topuklarla birlikte yıkamak. Elif ilk üçünü yapmıştır, eksik olan tek farz ayakların yıkanmasıdır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın Şartları",
+"passage": "Okul hemşiresi Ayşe Hanım, öğrencilere sağlıklı yaşam için hijyen eğitimi verirken namaz ibadeti ile temizlik arasındaki bağı açıklamıştır. Ayşe Hanım: 'Namazın dışındaki şartlardan biri olan 'temiz yer' kavramı ile namazın içindeki şartlardan olan 'abdestli olmak' birbirini tamamlar.' demiştir.",
+"question": "Ayşe Hanım'ın açıklamasındaki hata aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Abdestli olmak namazın dışındaki şartlardan biridir.",
+"B": "Namazın temizlikle hiçbir ilgisi yoktur.",
+"C": "Açıklamada herhangi bir hata bulunmamaktadır.",
+"D": "Temiz yer namazın içindeki şartlardan biridir."
+},
+"answer": "A",
+"explanation": "Abdestli olmak, namazın hazırlık aşaması olduğu için namazın dışındaki şartlar (namaza başlamadan önce gerekenler) arasındadır. Ayşe Hanım, abdesti 'namazın içindeki şartlar' diyerek yanlış sınıflandırmıştır.",
+"vfd2": true,
+"unit": "Namaz İbadeti",
+"topics": "Namazın önemi, Abdest, Namaz vakitleri",
+"d": 1,
+"ts": 1794212077
 }
 ]
 }

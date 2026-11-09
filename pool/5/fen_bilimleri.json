@@ -2405,6 +2405,405 @@
 "topics": "Işık kaynakları, Yansıma, Gölge",
 "d": 2,
 "ts": 1794166772
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in Yapısı ve Özellikleri",
+"passage": "Berna, fen bilimleri projesi için hazırladığı şehir planlaması maketinde Güneş'i temsil etmek üzere sarı renkli, kendi ışığını üreten küresel bir lamba yerleştirmiştir. Maketin açıklama kartına Güneş ile ilgili dört temel özellik yazmıştır: \nI. Isı ve ışık yayar.\nII. Yapısında çoğunlukla hidrojen ve helyum gazları bulunur.\nIII. Dünyamızın en yakın uydusudur.\nIV. Küresel bir şekle sahiptir.",
+"question": "Berna'nın hazırladığı bu karttaki özelliklerden hangileri Güneş için bilimsel olarak yanlıştır?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "II ve IV",
+"D": "I, III ve IV"
+},
+"answer": "A",
+"explanation": "Güneş bir yıldızdır ve kendi ısı ile ışığını yayar (I doğru). Yapısında hidrojen ve helyum gazları yoğun olarak bulunur (II doğru). Küresel bir yapıya sahiptir (IV doğru). Ancak Güneş Dünya'nın uydusu değil, orta büyüklükte bir yıldızdır; Dünya'nın tek doğal uydusu Ay'dır (III yanlış). Yanlış olan seçenek Yalnız III'tür.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 1,
+"ts": 1794210485
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dünya'nın Hareketleri",
+"passage": "Enerji tasarrufu haftası kapsamında iki farklı okul, Dünya'nın hareketleri ile ilgili pano hazırlamıştır. 5/A sınıfı öğrencileri Dünya'nın kendi ekseni etrafındaki dönüş süresini ve sonuçlarını, 5/B sınıfı öğrencileri ise Güneş etrafındaki dolanım süresini ve sonuçlarını araştırmıştır.",
+"question": "Bu iki sınıfın araştırdığı hareketler ve sonuçları karşılaştırıldığında aşağıdaki yargılardan hangisi doğrudur?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+2,
+4,
+6,
+0
+],
+"labels": [
+"K",
+"L",
+"M",
+"N"
+],
+"title": "Ana Evreler",
+"show_names": false
+},
+"options": {
+"A": "Mevsimlerin oluşması Dünya'nın kendi ekseni etrafındaki dönüşünün sonucudur.",
+"B": "Dünya'nın kendi ekseni etrafındaki bir tam turu yaklaşık 365 gün sürer.",
+"C": "Dünya'nın kendi ekseni etrafında dönmesi yaklaşık 24 saatte tamamlanır ve gece-gündüz oluşur.",
+"D": "Dünya'nın Güneş etrafındaki dolanımı gece ve gündüzün ard arda gelmesini sağlar."
+},
+"answer": "C",
+"explanation": "Dünya kendi ekseni etrafındaki dönüşünü yaklaşık 24 saatte (1 günde) tamamlar ve bu hareket sonucunda gece ve gündüz oluşur (C doğru). A seçeneğindeki 365 gün süresi Güneş etrafındaki dolanımına aittir. B ve D seçeneklerindeki açıklamalar birbiriyle ters verilmiştir, mevsimler Güneş etrafında dolanım ve eksen eğikliği ile oluşur.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 1,
+"ts": 1794210485
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Özellikleri ve Hareketleri",
+"passage": "Geri dönüşüm tesisinde çalışan Kerem, okul projesi için Ay'ın yüzey ve hareket özellikleriyle ilgili bilgi kartları hazırlamıştır. Kartlarda Ay'ın atmosferinin yok denecek kadar az olduğu, bu nedenle hava olaylarının görülmediği ve yüzeyinde kraterler bulunduğu bilgisine yer vermiştir.",
+"question": "Kerem'in hazırladığı bu bilgilere dayanarak Ay ile ilgili aşağıdaki çıkarımlardan hangisi yapılabilir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+0,
+2,
+4,
+6
+],
+"labels": [
+"1",
+"2",
+"3",
+"4"
+],
+"title": "Ay Evreleri Gözlem",
+"show_names": false
+},
+"options": {
+"A": "Ay kendi ekseni etrafında dönmediği için Dünya'dan hep aynı yüzü görünür.",
+"B": "Ay'ın atmosferi çok kalın olduğu için Güneş'ten gelen zararlı ışınları tamamen engeller.",
+"C": "Ay, Güneş'ten aldığı ışığı yansıtmadığı için kendi başına bir ışık kaynağıdır.",
+"D": "Ay'da rüzgar, yağmur gibi hava olayları gerçekleşmediği için ayak izleri uzun süre bozulmadan kalabilir."
+},
+"answer": "D",
+"explanation": "Ay'da atmosferin yok denecek kadar ince olması hava olaylarının (rüzgar, yağmur, kar vb.) görülmesini engeller. Bu nedenle Ay yüzeyine basan astronotların ayak izleri rüzgarla silinmediği için uzun süre kalabilir (A doğru). Ay kendi ekseni etrafında döner (B yanlış), atmosferi kalındır diyemeyiz (C yanlış), Ay kendi ışık kaynağı değildir (D yanlış).",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 1,
+"ts": 1794210485
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dünya, Güneş ve Ay'ın Şekli ve Büyüklüğü",
+"passage": "Doğa yürüyüşü sırasında öğretmen, öğrencilerine gök cisimlerinin büyüklüklerini modellemelerini istemiştir. Öğrenciler ellerindeki toplarla bir model kurmuş; futbol topunu Güneş, tenis topunu Dünya, toplu iğne başını ise Ay olarak seçmişlerdir.",
+"question": "Bu modelleme ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 0,
+"label": "Gök Cismi",
+"show_names": false
+},
+"options": {
+"A": "Ay, Dünya'dan büyük olduğu için toplu iğne başı yerine basketbol topu seçilmeliydi.",
+"B": "Seçilen cisimlerin büyüklük oranları gök cisimlerinin gerçek boyut oranlarıyla birebir uyuşmaktadır.",
+"C": "Dünya'yı temsil eden tenis topu, Güneş'i temsil eden futbol topundan daha büyüktür.",
+"D": "Güneş, Dünya ve Ay küresel şekle sahip gök cisimleri olduklarından seçilen küre şeklindeki nesneler biçim bakımından uygundur."
+},
+"answer": "D",
+"explanation": "Güneş, Dünya ve Ay küresel yapıdadır. Öğrencilerin küre şeklinde nesneler seçmesi şekil (biçim) olarak uygundur (C doğru). Gerçekte Güneş Dünya'dan çok büyüktür (A yanlış, B ve D'deki büyüklük ilişkileri hatalıdır).",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 1,
+"ts": 1794210485
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dünya'nın Hareketleri",
+"passage": "Fotoğrafçılık kulübünden Defne, gece boyunca aynı sabit noktadan gökyüzünün fotoğrafını çekerek Dünya'nın hareketlerini incelemektedir.",
+"question": "Dünya'nın kendi ekseni etrafındaki dönme hareketi ve sonuçları göz önüne alındığında, aşağıdakilerden hangisi bu hareketin doğrudan sonuçlarından biridir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_orbit",
+"title": "Yörünge Konumları",
+"show_names": false
+},
+"options": {
+"A": "Gece ve gündüzün birbirini takip etmesi",
+"B": "Yıl içinde sıcaklık farklarının oluşması ve mevsimlerin değişmesi",
+"C": "Ay'ın evrelerinin 29,5 günde bir tekrarlanması",
+"D": "Güneş'in gökyüzündeki konumunun yıl boyunca değişmesi"
+},
+"answer": "A",
+"explanation": "Dünya'nın kendi ekseni etrafında dönmesi yaklaşık 24 saat sürer ve bu hareket sonucunda gece ile gündüz oluşur.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 1,
+"ts": 1794210485
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "Bir geri dönüşüm atölyesinde çalışan Can, okul sergisi için Güneş, Dünya ve Ay'ın birbirine göre büyüklüklerini ve hareketlerini temsil eden bir pano hazırlamıştır.",
+"question": "Can'ın hazırladığı panodaki bilgiler incelendiğinde, gök cisimleriyle ilgili yapılan aşağıdaki yorumlardan hangisi yanlıştır?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+4,
+0,
+2,
+6
+],
+"labels": [
+"K",
+"L",
+"M",
+"N"
+],
+"title": "Evre Özeti",
+"show_names": false
+},
+"options": {
+"A": "Ay, Dünya'nın tek doğal uydusudur ve kendi ışığını üretebilir.",
+"B": "Güneş orta büyüklükte bir yıldızdır ve kendi enerjisini üretir.",
+"C": "Dünya, Güneş'in etrafında dolanırken aynı zamanda kendi ekseni etrafında döner.",
+"D": "Ay'ın Dünya etrafındaki bir tam dolunumu yaklaşık 29,5 gün sürer."
+},
+"answer": "A",
+"explanation": "Ay bir ışık kaynağı değildir; Güneş'ten aldığı ışığı yansıtır. Kendi ışığını ürettiği iddiası yanlıştır.",
+"vfd2": true,
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı, Dünya'nın hareketleri, Ay'ın evreleri, Tutulmalar",
+"d": 1,
+"ts": 1794210485
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devreleri - Seri ve Paralel Bağlama",
+"passage": "Kerem, laboratuar etkinliğinde özdeş pil ve ampuller kullanarak iki ayrı devre kurmuştur. 1. devrede iki ampulü aynı kol üzerinde ard arda bağlamış, 2. devrede ise her ampul için ayrı kollar oluşturmuştur. Kerem, 1. devredeki ampullerden birini duyundan çıkardığında diğer ampulün söndüğünü, 2. devredeki ampullerden birini çıkardığında ise diğerinin yanmaya devam ettiğini gözlemlemiştir.",
+"question": "Kerem'in yaptığı bu deney ve gözlemlere dayanarak aşağıdaki çıkarımlardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Paralel bağlı devrelerde ampuller bağımsız kollara sahip olduğu için birbirinin çalışmasını etkilemez.",
+"B": "Seri bağlı devrede ampul sayısı arttıkça diğer ampullerin parlaklığı artar.",
+"C": "Paralel bağlı devrelerde bir ampul duyundan çıkarılırsa tüm ampuller söner.",
+"D": "Seri bağlı devrelerde ampullerin her biri için bağımsız birer kol bulunur."
+},
+"answer": "A",
+"explanation": "Paralel bağlı devrelerde her ampulün ayrı bir kolu vardır; bu nedenle bir ampul çıkarıldığında diğer koldaki ampul yanmaya devam eder. A şıkkı ve B şıkkı yanlıştır, C şıkkı seri bağlı devre tanımına uymamaktadır. Doğru ifade D seçeneğinde verilmiştir.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devreleri - Seri Bağlı Ampuller",
+"passage": "Bir fen laboratuvarında öğrencilerin hazırladığı özdeş pil ve özdeş ampullerden oluşan seri bağlı devrelerdeki ampul sayısı ile devreye bağlı ampullerin parlaklık değişimleri incelenmiştir. Aşağıdaki çizgi grafiğinde devreye eklenen ampul sayısı ile ampul parlaklığındaki değişim gösterilmiştir.",
+"question": "Çizgi grafiğindeki verilere göre seri bağlı devrelerle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1 Ampul",
+"2 Ampul",
+"3 Ampul",
+"4 Ampul"
+],
+"values": [
+100,
+50,
+33,
+25
+],
+"title": "Ampul Sayısına Göre Parlaklık Değişimi (%)",
+"show_names": false
+},
+"options": {
+"A": "Seri bağlı devrelerde ampul sayısı parlaklığı etkilemez.",
+"B": "Ampul sayısı arttıkça devreden geçen elektrik akımı artar.",
+"C": "Seri bağlı devrelerde ampul sayısı arttıkça ampullerin parlaklığı azalır.",
+"D": "Seri bağlı bir devrede ampullerden biri patlarsa diğerleri daha parlak yanar."
+},
+"answer": "C",
+"explanation": "Grafik incelendiğinde ampul sayısı 1'den 4'e çıkarıldığında parlaklık yüzdesinin 100'den 25'e düştüğü görülmektedir. Bu durum, seri bağlı devrelerde ampul sayısı arttıkça toplam direncin arttığını ve ampullerin parlaklığının azaldığını gösterir.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devreleri - İletken ve Yalıtkan Maddeler",
+"passage": "Zeynep, elindeki test kartına çeşitli malzemeler yerleştirerek bir devre test cihazı hazırlamıştır. Cihazın uçlarını sırasıyla demir çivi, tahta kaşık, plastik cetvel, bakır tel ve alüminyum folyoya dokundurmuş ve gözlemlerini aşağıdaki tabloya kaydetmiştir.\nTablodaki bazı bölümler soru işareti (?) ile boş bırakılmıştır.",
+"question": "Buna göre Zeynep'in hazırladığı tabloda soru işareti (?) yerine sırasıyla hangi ifadeler yazılmalıdır?",
+"shape": {
+"type": "table",
+"title": "Madde Test Sonuçları",
+"headers": [
+"Madde Türü",
+"Malzeme",
+"Ampulün Işık Verme Durumu",
+"Madde Sınıfı"
+],
+"rows": [
+[
+"Metal",
+"Demir Çivi",
+"Işık Veriyor",
+"İletken"
+],
+[
+"Ahşap",
+"Tahta Kaşık",
+"?",
+"Yalıtkan"
+],
+[
+"Plastik",
+"Plastik Cetvel",
+"Işık Vermiyor",
+"?"
+],
+[
+"Metal",
+"Bakır Tel",
+"Işık Veriyor",
+"İletken"
+]
+]
+},
+"options": {
+"A": "Işık Veriyor - Yalıtkan",
+"B": "Işık Vermiyor - İletken",
+"C": "Işık Vermiyor - Yalıtkan",
+"D": "Işık Veriyor - İletken"
+},
+"answer": "C",
+"explanation": "Tahta kaşık yalıtkan bir madde olduğundan elektrik akımını iletmez, bu nedenle ampul ışık vermez. Plastik cetvel yalıtkan maddedir, tablodaki sınıf kısmına da 'Yalıtkan' yazılmalıdır. Dolayısıyla birinci boşluk 'Işık Vermiyor', ikinci boşluk 'Yalıtkan' olmalıdır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devreleri - Devre Elemanları ve Görevleri",
+"passage": "Fen bilimleri dersinde öğretmen tahtaya basit bir elektrik devresini oluşturan elemanları ve bu elemanların görevlerini karışık olarak yazmıştır. Öğrencilerden doğru eşleştirmeleri yapmaları istenmiştir:\n- Pil: Devreye elektrik enerjisi sağlar.\n- Anahtar: Devredeki akımı kontrol ederek devreyi açıp kapatır.\n- Ampul: Elektrik enerjisini ışık enerjisine dönüştürür.\n- Kablo: Elektrik enerjisinin iletimini sağlar.",
+"question": "Buna göre verilen devre elemanları ve görevleri eşleştirmelerinden kaç tanesi bilimsel olarak doğrudur?",
+"shape": null,
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "D",
+"explanation": "Pil elektrik enerjisi üretir/sağlar; anahtar devreyi açıp kapatarak akımı kontrol eder; ampul ışık enerjisine dönüştürür; kablo ise enerjinin taşınmasını (iletilmesini) sağlar. Verilen 4 eşleştirme de eksiksiz ve doğrudur.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devreleri - Paralel Bağlı Ampuller ve Ev Tesisatı",
+"passage": "Meltem evindeki odaları incelediğinde, tavandaki lambaların ve odalardaki prizlerin birbirine paralel bağlı olduğunu fark etmiştir. Annesi Meltem'e evimizdeki bu aydınlatma sisteminin paralel bağlanmasının temel nedeninin, odalardan birindeki lamba bozulduğunda veya kapatıldığında diğer odalardakilerin yanmaya devam etmesi olduğunu açıklamıştır.",
+"question": "Meltem'in evindeki elektrik tesisatı ile ilgili yapılan bu açıklamaya göre aşağıdaki çıkarımlardan hangisi kesinlikle doğrudur?",
+"shape": null,
+"options": {
+"A": "Ev tesisatında bir ampul patladığında tüm ev karanlıkta kalır.",
+"B": "Paralel bağlı devrelerde ampul sayısı arttıkça her bir ampulün parlaklığı sürekli artar.",
+"C": "Paralel bağlı devre elemanları bağımsız çalıştığı için ev tesisatlarında tercih edilir.",
+"D": "Evlerdeki tüm ampuller seri bağlanırsa toplam parlaklık artar."
+},
+"answer": "C",
+"explanation": "Ev tesisatlarında paralel bağlama tercih edilir çünkü paralel bağlı devrelerde kollar bağımsızdır; bir ampul bozulduğunda ya da anahtarla kapatıldığında diğer cihazlar çalışmaya devam eder. B seçeneği bu durumu tam olarak açıklamaktadır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik güvenliği",
+"passage": "Kamp alanında akşam saatlerinde aydınlatma ihtiyacı için kurulan elektrik sisteminde bazı güvenlik önlemleri alınmıştır. Çadırların etrafından geçen açıkta kalmış kablolar toplanmış, elleri ıslak olan kampçıların prizlere dokunmaması konusunda uyarı levhaları asılmıştır.",
+"question": "Alınan bu önlemler ve elektrik güvenliği ilkeleri dikkate alındığında, aşağıdakilerden hangisi elektrik çarpmalarını önlemek için yapılan doğru uygulamalardan biri değildir?",
+"shape": null,
+"options": {
+"A": "Prizlere metal çubuk veya örgü şişi gibi iletken cisimler sokulmamalıdır.",
+"B": "Elektrikli cihazlara ıslak ellerle müdahale edilmemelidir.",
+"C": "Açıkta kalan kablolar yalıtkan bantlarla sarılmalı veya ortadan kaldırılmalıdır.",
+"D": "Elektrik tasarrufu sağlamak amacıyla prizlerin dış kısımları ıslak bezle silinmelidir."
+},
+"answer": "D",
+"explanation": "1. Prizlerin ıslak bezle silinmesi suyun iletkenlik özelliği nedeniyle elektrik çarpması riskini artırır ve tehlikelidir.\n2. Diğer seçeneklerdeki metal cisim sokmama, ıslak elle dokunmama ve kabloları yalıtma işlemleri doğru güvenlik önlemleridir.\n3. Bu nedenle D seçeneğindeki ifade elektrik güvenliği kurallarına aykırıdır ve yanlıştır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "Bir pastanenin vitrinindeki hareketli süslemeyi inceleyen Mert, süslemenin içerisinde farklı devre elemanlarının kullanıldığını fark etmiştir. Vitrindeki tasarımı defterine çizen Mert, devredeki enerji kaynağını ve ışık veren elemanı incelemiştir.",
+"question": "Mert'in incelediği bu sistemde elektrik enerjisini üreten üreteç (pil) aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 2,
+"label": "K",
+"show_names": false
+},
+"options": {
+"A": "Devreye elektrik enerjisi sağlayan pil",
+"B": "Devrede akımın geçmesini sağlayan metal tel",
+"C": "Elektrik enerjisini ışık enerjisine çeviren ampul",
+"D": "Devrenin açılıp kapanmasını kontrol eden anahtar"
+},
+"answer": "A",
+"explanation": "1. Basit bir elektrik devresinde pil, devrenin enerji kaynağı (üreteç) görevini üstlenir.\n2. Bağlantı kablosu iletkenlik sağlar, ampul ışık verir, anahtar kontrolü sağlar.\n3. Soru kökü üreteç (pil) elemanını sormaktadır; bu tanıma uyan ifade C seçeneğinde verilmiştir.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik güvenliği",
+"passage": "Okulun fen laboratuvarında yapılacak bir etkinlik öncesi öğretmen, öğrencilere elektrik araç gereçlerinin güvenli kullanımıyla ilgili kuralları hatırlatmıştır. Etkinlik masasında pillerin yanı sıra prizden güç alan adaptörler ve soyulmuş kablolar da yer almaktadır. Öğrencilerden Ezgi, masadaki açıkta kalan kabloları düzenlemek isterken ellerinin hafif nemli olduğunu fark etmiştir.",
+"question": "Ezgi'nin bu durumda laboratuvarda elektrik güvenliğini sağlamak için yapması gereken doğru davranış aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Nemli ellerini kurulamadan açıkta kalan kabloları doğrudan eline alarak kenara çekmelidir.",
+"B": "Açıkta kalan kabloların yalıtkan kısımlarını makasla kesip metal kısımlarına çıplak elle dokunmalıdır.",
+"C": "Prizlere herhangi bir metal cisim sokarak devredeki akımın kesilip kesilmediğini test etmelidir.",
+"D": "Elektrik güvenliği kurallarına uygun olarak ellerini kurulayıp öğretmenden yardım istemelidir."
+},
+"answer": "D",
+"explanation": "Elektrik güvenliği açısından ıslak veya nemli elle elektrikli araçlara ya da kablolara dokunulmamalıdır. Ezgi önce ellerini kurulamalı ve tehlikeli durumlarda öğretmeninden destek almalıdır. Prizlere metal cisim sokmak ve yalıtkanları kesmek ölümcül tehlikeler yaratır.",
+"vfd2": true,
+"unit": "Elektrik Devreleri",
+"topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
+"d": 4,
+"ts": 1794211384
 }
 ]
 }

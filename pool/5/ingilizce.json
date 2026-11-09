@@ -1880,6 +1880,926 @@
 "topics": "Greetings, Introducing, Alphabet",
 "d": 2,
 "ts": 1794166583
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Invitations and responses",
+"passage": "Burak organizes a weekend activity and sends messages to his friends:\n- Can: 'Would you like to come to my birthday party on May the fifth?' -> 'Yes, I'd love to.'\n- Ece: 'Can you join my guitar club meeting?' -> 'Sorry, I can't.'\n- Ozan: 'Would you like to play chess?' -> 'Yes, I'd love to.'",
+"question": "According to the messages, which of the following is correct?",
+"shape": null,
+"options": {
+"A": "Burak invites Ozan to a birthday party.",
+"B": "Ozan accepts the invitation to play chess.",
+"C": "Can refuses the birthday party invitation.",
+"D": "Ece accepts the guitar club meeting invitation."
+},
+"answer": "B",
+"explanation": "Step 1: Check Can's response to the birthday party; he says 'Yes, I'd love to' (accepts). Step 2: Check Ece's response; she says 'Sorry, I can't' (refuses). Step 3: Check Ozan's response; he says 'Yes, I'd love to' to playing chess (accepts). Step 4: Ozan accepts playing chess, making option C correct.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Hobbies and daily routines",
+"passage": "Four students keep a hobby log for the week:\n- Sibel: 'I collect stamps on Mondays and read books on Tuesdays.'\n- Murat: 'I swim on Wednesdays and paint on Thursdays.'\n- Gizem: 'I ride a bike on Fridays and play the guitar on Saturdays.'\n- Hakan: 'I dance on Sundays and collect stamps on Mondays.'",
+"question": "Who does a hobby related to water and swimming during the week?",
+"shape": null,
+"options": {
+"A": "Gizem",
+"B": "Hakan",
+"C": "Murat",
+"D": "Sibel"
+},
+"answer": "C",
+"explanation": "Step 1: Look at Sibel's hobbies (collect stamps, read books). Step 2: Look at Murat's hobbies (swim, paint). Step 3: Look at Gizem's hobbies (ride a bike, play the guitar). Step 4: Look at Hakan's hobbies (dance, collect stamps). Murat does swimming, which is a water hobby.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Expressing dislikes with like/don't like",
+"passage": "Teacher asks students about what they dislike in their free time:\n- Aslı: 'I don't like dancing.'\n- Kerem: 'I don't like painting.'\n- Defne: 'I don't like collecting stamps.'\n- Mert: 'I don't like playing chess.'",
+"question": "Which of the following sentences matches Aslı's statement?",
+"shape": null,
+"options": {
+"A": "Aslı dislikes dancing.",
+"B": "Aslı can dance well.",
+"C": "Aslı enjoys dancing very much.",
+"D": "Aslı loves painting."
+},
+"answer": "A",
+"explanation": "Step 1: Read Aslı's statement: 'I don't like dancing.' Step 2: 'Don't like' means disliking an activity. Step 3: Match this with option B, which states Aslı dislikes dancing.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Months and dates",
+"passage": "Ayşe talks about her friends' birthdays:\n- 'My birthday is on the first month of the year, January.'\n- 'Bora's birthday is on the fifth month, May.'\n- 'Cem's birthday is on the twelfth month, December.'",
+"question": "Which of the following matches Bora's birthday month?",
+"shape": null,
+"options": {
+"A": "January",
+"B": "December",
+"C": "September",
+"D": "May"
+},
+"answer": "D",
+"explanation": "Step 1: Find Bora in the passage. Step 2: Read the sentence about Bora: 'Bora's birthday is on the fifth month, May.' Step 3: Match the fifth month to May, which corresponds to option B.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies: Food, drinks and party requests",
+"passage": "At a birthday party, children make polite requests:\n- Ali: 'Can I have some pizza, please?'\n- Selin: 'Can I have some lemonade, please?'\n- Mert: 'Can I have some cake, please?'",
+"question": "What does Selin ask for according to the conversation?",
+"shape": null,
+"options": {
+"A": "Lemonade",
+"B": "Pizza",
+"C": "Juice",
+"D": "Cake"
+},
+"answer": "A",
+"explanation": "Step 1: Locate Selin in the conversation. Step 2: Read Selin's request: 'Can I have some lemonade, please?' Step 3: Identify the requested item as lemonade, matching option C.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies - Free time activities",
+"passage": "Emre wants to organize a weekend activity with his friends. He prepares a list of preferences based on what they like and can do:\n- Kerem: Likes reading books, but he can't swim.\n- Deniz: Loves painting and enjoys playing chess, but she can't ride a bike.\n- Zeynep: Enjoys swimming and can play the guitar, but she doesn't like painting.\n- Burak: Can ride a bike and play chess, but he dislikes reading books.",
+"question": "According to the notes above, which activity is suitable for BOTH Deniz and Burak?",
+"shape": null,
+"options": {
+"A": "Swimming",
+"B": "Riding a bike",
+"C": "Playing chess",
+"D": "Painting"
+},
+"answer": "C",
+"explanation": "Step 1: Check Deniz's hobbies: loves painting and enjoys playing chess. Step 2: Check Burak's hobbies: can ride a bike and play chess, but dislikes reading. Step 3: Find the common activity between Deniz and Burak. Both like or can play chess. Step 4: Therefore, the common activity is playing chess.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies - Invitations and Responses",
+"passage": "Selin organizes a birthday party and invites her friends via text messages. Here are the invitations and responses:\n- Invitation 1: 'Would you like to come to my party on May the fifth?' -> Response: 'Yes, I'd love to.'\n- Invitation 2: 'Can you join my birthday party?' -> Response: 'Sorry, I can't. I have a piano lesson.'\n- Invitation 3: 'Do you want to come to my party?' -> Response: 'I am sorry, but I can't make it.'",
+"question": "According to the messages, how many friends accepted Selin's invitation?",
+"shape": null,
+"options": {
+"A": "One",
+"B": "Zero",
+"C": "Two",
+"D": "Three"
+},
+"answer": "A",
+"explanation": "Step 1: Check Invitation 1 response: 'Yes, I'd love to.' (Accepted). Step 2: Check Invitation 2 response: 'Sorry, I can't.' (Refused). Step 3: Check Invitation 3 response: 'I am sorry, but I can't make it.' (Refused). Step 4: Only 1 friend accepted the invitation.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Games and Hobbies - Party food and drinks",
+"passage": "Tolga prepares a shopping list for his party. The table below shows what he needs and what is missing:\n- Item 1: Pizza (Needed: 3 | Bought: 3)\n- Item 2: Sandwich (Needed: 5 | Bought: 4)\n- Item 3: Lemonade (Needed: 2 bottles | Bought: 2 bottles)\n- Item 4: Cake (Needed: 1 | Bought: 0)",
+"question": "According to the shopping list, which items does Tolga still need to buy?",
+"shape": null,
+"options": {
+"A": "Pizza and lemonade",
+"B": "Sandwich and cake",
+"C": "Lemonade and cake",
+"D": "Pizza and sandwich"
+},
+"answer": "B",
+"explanation": "Step 1: Check Pizza: needed 3, bought 3 (Complete). Step 2: Check Sandwich: needed 5, bought 4 (Missing 1). Step 3: Check Lemonade: needed 2, bought 2 (Complete). Step 4: Check Cake: needed 1, bought 0 (Missing 1). Therefore, Tolga still needs a sandwich and a cake.",
+"vfd2": true,
+"unit": "Games and Hobbies",
+"topics": "Free time, Can/can't, Likes",
+"d": 3,
+"ts": 1794210158
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Invitations",
+"passage": "Ayla is organizing a birthday party for Saturday. She talks to her friends about the invitation. \n- Mete says: 'I'd love to come to your party.'\n- Defne says: 'Sorry, I can't join because I am visiting my grandparents.'\n- Kerem says: 'Yes, please. Thank you for inviting me.'",
+"question": "Which of the following statements is true according to the conversation?",
+"shape": null,
+"options": {
+"A": "Defne accepts the invitation and wants to join.",
+"B": "Kerem cannot come because of his grandparents.",
+"C": "Two friends accept the invitation and one refuses it.",
+"D": "Mete and Kerem refuse the invitation."
+},
+"answer": "C",
+"explanation": "Step 1: Mete says 'I'd love to come', which means he accepts. Step 2: Kerem says 'Yes, please. Thank you', which means he also accepts. Step 3: Defne says 'Sorry, I can't', which means she refuses. Step 4: Therefore, two friends accept and one refuses.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Dates and Months",
+"passage": "A school notice board shows the dates of upcoming class birthday parties for the spring season:\n- Zeynep's Birthday: March the second\n- Emre's Birthday: April the fourth\n- Melis's Birthday: May the fifth\n- Burak's Birthday: January the first",
+"question": "Which of the following dates is NOT in the spring season mentioned on the board?",
+"shape": null,
+"options": {
+"A": "March the second",
+"B": "May the fifth",
+"C": "April the fourth",
+"D": "January the first"
+},
+"answer": "D",
+"explanation": "Step 1: Identify the spring months from the options and general knowledge (March, April, May). Step 2: Check Zeynep's date (March), Emre's date (April), and Melis's date (May) - all are in spring. Step 3: Check Burak's date (January the first) - January is a winter month, not spring. Step 4: Therefore, January the first is not in the spring season.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Invitations and Requests",
+"passage": "Read the dialogue at a party:\n- Host: 'Would you like to come to my birthday party?'\n- Guest 1: 'Yes, I'd love to.'\n- Host: 'Would you like some cake?'\n- Guest 2: 'Sorry, I can't eat cake, but can I have some juice, please?'",
+"question": "Which of the following is correct about Guest 2's responses?",
+"shape": null,
+"options": {
+"A": "Guest 2 refuses the party invitation and asks for juice.",
+"B": "Guest 2 accepts both the cake and the juice.",
+"C": "Guest 2 accepts the party invitation and asks for a drink.",
+"D": "Guest 2 refuses the party invitation and wants cake."
+},
+"answer": "C",
+"explanation": "Step 1: Guest 2 answers the invitation with 'Yes, I'd love to' (which is part of the party invitation context). Step 2: When offered cake, Guest 2 says 'Sorry, I can't eat cake'. Step 3: Then Guest 2 asks 'can I have some juice, please?'. Step 4: Therefore, Guest 2 accepts the party invitation and asks for a drink (juice) while refusing cake.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Ordinal Numbers and Dates",
+"passage": "Four friends talk about when their birthdays are:\n- Tolga: 'My birthday is on January the first.'\n- Seda: 'My birthday is on February the second.'\n- Hakan: 'My birthday is on March the third.'\n- Cansu: 'My birthday is on April the fourth.'",
+"question": "Whose birthday is on the third month of the year according to the statements?",
+"shape": null,
+"options": {
+"A": "Cansu",
+"B": "Hakan",
+"C": "Tolga",
+"D": "Seda"
+},
+"answer": "B",
+"explanation": "Step 1: Recall the months of the year in order: 1st is January, 2nd is February, 3rd is March, 4th is April. Step 2: Identify the third month as March. Step 3: Look at who has a birthday in March: Hakan says his birthday is on March the third. Step 4: Therefore, Hakan's birthday is in the third month.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Food and Invitations",
+"passage": "A party shopping list and notes:\n- Shopping List: 2 pizzas, 1 big cake, 3 sandwiches, 5 juices, 4 lemonades.\n- Note from organizer: 'All guests love pizza and cake, but two guests don't drink lemonade, they want juice.'",
+"question": "Which of the following can be deduced from the notes about the party?",
+"shape": null,
+"options": {
+"A": "Pizza and cake are popular among the guests.",
+"B": "Guests prefer lemonade over juice.",
+"C": "The organizer forgot to buy drinks.",
+"D": "No one wants sandwiches at the party."
+},
+"answer": "A",
+"explanation": "Step 1: Read the note: 'All guests love pizza and cake'. Step 2: Evaluate option A (no data on preference between lemonade and juice). Step 3: Evaluate option B (pizza and cake are loved by all guests, matching the note). Step 4: Evaluate option C (sandwiches are on the list, so they are wanted). Step 5: Evaluate option D (juices and lemonades are on the list). Therefore, option B is correct.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Time: Dates and Invitations",
+"passage": "An invitation card details:\n- Event: Birthday Party\n- Date: May the fifth\n- Time: 2 p.m.\n- Place: Garden Cafe\n- RSVP: Please tell me if you can come by April the twentieth.",
+"question": "According to the invitation card, which of the following statements is true?",
+"shape": null,
+"options": {
+"A": "The party is in January.",
+"B": "The event takes place in the morning.",
+"C": "Guests should reply after May the fifth.",
+"D": "Guests must reply before the party date."
+},
+"answer": "D",
+"explanation": "Step 1: Check the party date: May the fifth. Step 2: Check the RSVP deadline: April the twentieth. Step 3: Compare dates: April the twentieth comes before May the fifth. Step 4: Therefore, guests must reply by April the twentieth, which is before the party date.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Invitation",
+"passage": "Friend A: \"Would you like to come to my party on May the fifth?\" \nFriend B: \"Yes, I'd love to. Can I have some juice, please?\" \nFriend A: \"Sure, we will have juice and lemonade.\"\n",
+"question": "According to the conversation, which of the following is true?",
+"shape": null,
+"options": {
+"A": "Friend A does not want juice",
+"B": "The party will be held on May the fifth",
+"C": "Friend B will bring cake to the party",
+"D": "The party will be on June the first"
+},
+"answer": "B",
+"explanation": "1. Friend A says the party is on May the fifth. 2. Friend B agrees to come. 3. Juice will be served. 4. No mention of cake or June. Therefore the correct statement is that the party will be on May the fifth.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Food List",
+"passage": "Party Menu\nCake: 3 pieces\nPizza: 6 slices\nSandwich: 8 pieces\nJuice: 10 cups\nLemonade: 5 cups\n",
+"question": "Which food item will have the highest number of servings?",
+"shape": null,
+"options": {
+"A": "Cake",
+"B": "Sandwich",
+"C": "Pizza",
+"D": "Juice"
+},
+"answer": "D",
+"explanation": "1. Count servings: Cake 3, Pizza 6, Sandwich 8, Juice 10, Lemonade 5. 2. Highest is Juice with 10 cups. 3. Other options are lower.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Party Date Announcement",
+"passage": "Announcement: \"You are invited to the birthday party on the first Saturday of June. Please bring a small gift.\" \n",
+"question": "Based on the announcement, which of the following statements is correct?",
+"shape": null,
+"options": {
+"A": "The party will be on the first Saturday of June",
+"B": "The party will be on the first Saturday of May",
+"C": "The party will be on the first Saturday of April",
+"D": "The party will be on the first Saturday of July"
+},
+"answer": "A",
+"explanation": "1. Announcement states first Saturday of June. 2. Other months are not mentioned. 3. Therefore correct answer is June.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Two Party Comparisons",
+"passage": "Party X: Held on May the fifth, served cake and lemonade. \nParty Y: Held on June the first, served pizza and juice. \n",
+"question": "Which of the following statements is true?",
+"shape": null,
+"options": {
+"A": "Both parties serve cake",
+"B": "Party X is held on June the first",
+"C": "Party Y serves juice but not lemonade",
+"D": "Party X has more food items than Party Y"
+},
+"answer": "C",
+"explanation": "1. Party X serves cake and lemonade: 2 items. Party Y serves pizza and juice: 2 items. 2. Both have same number of items, so statement A is false. 3. Party Y serves juice but not lemonade: true. 4. Only B is correct.",
+"vfd2": true,
+"unit": "Party Time",
+"topics": "Invitations, Food, Dates",
+"d": 2,
+"ts": 1794210416
+},
+{
+"subject": "İngilizce",
+"topic": "Daily routines and Time",
+"passage": "Melis has a busy weekday schedule. She wakes up at seven o'clock. She has breakfast at quarter past seven (7:15). Then, she goes to school at half past seven (7:30). In the evening, she does her homework at quarter to eight (7:45).",
+"question": "According to the text above, which of the following time-routine matchings is CORRECT?",
+"shape": null,
+"options": {
+"A": "Goes to school - 7:15",
+"B": "Wakes up - 7:00",
+"C": "Has breakfast - 7:30",
+"D": "Does her homework - 7:00"
+},
+"answer": "B",
+"explanation": "1. Read the text to find Melis's routine times: she wakes up at seven o'clock (7:00), has breakfast at quarter past seven (7:15), goes to school at half past seven (7:30), and does her homework at quarter to eight (7:45). 2. Compare these times with the options. 3. Option A correctly matches 'Wakes up' with 7:00. 4. Therefore, the correct matching is A) Wakes up - 7:00.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Frequency adverbs",
+"passage": "Cem wants to see how often his friends do their evening routines. Here are their notes:\n- Kerem: 'I always brush my teeth before I go to bed.'\n- Aylin: 'I never watch TV on weekdays.'\n- Burak: 'I usually have dinner at half past seven.'\n- Deniz: 'I sometimes get up at eight o'clock on Sundays.'",
+"question": "Which of the following frequency statements is FALSE according to the notes?",
+"shape": null,
+"options": {
+"A": "Kerem always brushes his teeth before sleeping.",
+"B": "Deniz sometimes gets up at eight o'clock on Sundays.",
+"C": "Burak never has dinner at half past seven.",
+"D": "Aylin never watches TV on weekdays."
+},
+"answer": "C",
+"explanation": "1. Check each note against the options. 2. Kerem says he always brushes his teeth before bed (matches A). 3. Aylin says she never watches TV on weekdays (matches B). 4. Deniz says he sometimes gets up at eight o'clock on Sundays (matches D). 5. Burak says he *usually* has dinner at half past seven, but option C claims he *never* does, which contradicts his note. 6. Therefore, the false statement is C.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Party Invitations and Food/Drinks",
+"passage": "Aslı is organizing a birthday party for next month. She writes a shopping list for party food and drinks: \n- She needs a big chocolate cake for her friends.\n- She wants to order some pizza.\n- She also needs fresh lemonade because her friends love cold drinks.",
+"question": "Which of the following items is NOT on Aslı's shopping list for the party?",
+"shape": null,
+"options": {
+"A": "Sandwich",
+"B": "Cake",
+"C": "Pizza",
+"D": "Lemonade"
+},
+"answer": "A",
+"explanation": "1. Look at Aslı's shopping list in the passage: chocolate cake, pizza, and fresh lemonade. 2. Check the options to see which item is missing from this list. 3. Cake, pizza, and lemonade are mentioned. 4. Sandwich is not mentioned anywhere in the text. 5. Therefore, the correct answer is C.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Months and Ordinal Numbers",
+"passage": "A school calendar shows special days for different events. \n- The science fair is in the fourth month of the year.\n- The spring festival is on May the fifth.\n- The school picnic is in the tenth month of the year.",
+"question": "According to the calendar notes, which of the following months represents the science fair?",
+"shape": null,
+"options": {
+"A": "October",
+"B": "March",
+"C": "May",
+"D": "April"
+},
+"answer": "D",
+"explanation": "1. Identify the month order: January (1), February (2), March (3), April (4), May (5), June (6), July (7), August (8), September (9), October (10), November (11), December (12). 2. The science fair is in the fourth month of the year. 3. The fourth month is April. 4. Therefore, the correct answer is B.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Daily routines with He/She/It (-s)",
+"passage": "Hakan talks about his sister's daily routine:\n'My sister Zeynep wakes up early. She gets up at seven o'clock. She has breakfast with our parents. Then, she goes to school by bus.'",
+"question": "Which of the following questions does the text NOT provide an answer for?",
+"shape": null,
+"options": {
+"A": "What time does Zeynep get up?",
+"B": "What does Zeynep eat for breakfast?",
+"C": "How does Zeynep go to school?",
+"D": "Who does Zeynep have breakfast with?"
+},
+"answer": "B",
+"explanation": "1. Check each option against the text: 'She gets up at seven o'clock' answers A. 'she goes to school by bus' answers B. 'She has breakfast with our parents' answers D. 2. The text mentions she has breakfast with her parents, but it does *not* state what she eats for breakfast. 3. Therefore, C is the correct answer because it has no answer in the text.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Invitations and Accepting/Refusing",
+"passage": "Read the short dialogues below between two friends, Mert and Arda:\n- Mert: 'Would you like to come to my birthday party on Saturday?'\n- Arda: 'Yes, I'd love to.'\n- Mert: 'Can I have some juice, please?'\n- Arda: 'Sure, here you are.'",
+"question": "Which of the following is correct according to the dialogues?",
+"shape": null,
+"options": {
+"A": "Arda accepts the party invitation.",
+"B": "Arda refuses Mert's invitation.",
+"C": "Mert invites Arda to a basketball match.",
+"D": "Mert accepts the juice from Arda."
+},
+"answer": "A",
+"explanation": "1. Examine the dialogues: Mert invites Arda to his birthday party, and Arda says 'Yes, I'd love to' (accepting). 2. Mert asks for juice, and Arda gives it to him ('Sure, here you are'). 3. Check the options: A is false (Arda accepts). B is incorrect regarding who accepts the juice offer. D is false (it is a birthday party, not a basketball match). C is true because Arda accepts the party invitation ('Yes, I'd love to'). 4. Therefore, the correct answer is C.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Time and Daily Routine Integration",
+"passage": "Ayla writes down her afternoon schedule:\n- 12:30: Have lunch at the school cafeteria.\n- 15:15: Arrive home from school (quarter past three).\n- 16:45: Do homework (quarter to five).\n- 19:30: Have dinner with family (half past seven).",
+"question": "According to Ayla's afternoon schedule, which activity takes place at quarter past three?",
+"shape": null,
+"options": {
+"A": "Doing homework",
+"B": "Arriving home from school",
+"C": "Having lunch",
+"D": "Having dinner with family"
+},
+"answer": "B",
+"explanation": "1. Locate 'quarter past three' in the text, which is written as 15:15. 2. Look at the activity listed at 15:15 in Ayla's schedule: 'Arrive home from school'. 3. Match this with the options. 4. Option B matches this activity exactly. 5. Therefore, the correct answer is B.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Daily routines",
+"passage": "During a photography workshop, instructor Mert asks participants to share their morning habits. Ceren says, 'I wake up at seven o'clock, brush my teeth, and have breakfast.' Kerem says, 'I always get up at half past seven, have my breakfast, and go to school.'",
+"question": "Which of the following actions is mentioned by both Ceren and Kerem in their morning routines?",
+"shape": null,
+"options": {
+"A": "Waking up at seven o'clock",
+"B": "Brushing teeth",
+"C": "Going to school",
+"D": "Having breakfast"
+},
+"answer": "D",
+"explanation": "Step 1: Read Ceren's routine: wake up at seven, brush teeth, have breakfast. Step 2: Read Kerem's routine: get up at half past seven, have breakfast, go to school. Step 3: Compare both routines to find the common activity. Step 4: Both participants mention having breakfast. Therefore, the correct option is Having breakfast.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Time",
+"passage": "At a local open-air market, stall owners set their operating hours on a schedule board. The fruit seller starts at quarter past seven (7:15), the vegetable seller starts at half past seven (7:30), and the bakery stall opens at quarter to eight (7:45).",
+"question": "According to the market schedule board, which stall opens earliest in the morning?",
+"shape": null,
+"options": {
+"A": "All stalls open at the same time",
+"B": "The fruit seller",
+"C": "The bakery stall",
+"D": "The vegetable seller"
+},
+"answer": "B",
+"explanation": "Step 1: Identify the opening times: fruit seller is at quarter past seven (7:15), vegetable seller is at half past seven (7:30), and bakery stall is at quarter to eight (7:45). Step 2: Compare the times chronologically. 7:15 is earlier than 7:30 and 7:45. Step 3: Match 7:15 with the fruit seller. Therefore, the correct option is The fruit seller.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Frequency adverbs",
+"passage": "A student is writing sentences about daily habits for an English project but makes a mistake with third-person singular grammar rules. Here is the student's log:\n1. I usually get up at seven o'clock.\n2. We always watch TV in the evening.\n3. She never have breakfast at eight.\n4. He sometimes does his homework after school.",
+"question": "Which of the numbered sentences contains a grammar error according to the rules for third-person singular pronouns?",
+"shape": null,
+"options": {
+"A": "Sentence 2",
+"B": "Sentence 4",
+"C": "Sentence 1",
+"D": "Sentence 3"
+},
+"answer": "D",
+"explanation": "Step 1: Review grammar rules for frequency adverbs and pronouns where He/She/It takes -s on verbs. Step 2: Check Sentence 1 (I usually get up) - correct. Step 3: Check Sentence 2 (We always watch) - correct. Step 4: Check Sentence 3 (She never have breakfast) - incorrect because 'She' requires 'has', not 'have'. Therefore, the correct option is Sentence 3.",
+"vfd2": true,
+"unit": "My Daily Routine",
+"topics": "Daily routines, Time, Frequency",
+"d": 4,
+"ts": 1794210692
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Genres",
+"passage": "Four students talk about their favorite movie types in a film club meeting:\n- Kerem: \"I hate dull things. I love fast-moving plots, fights, and heroes saving the world.\"\n- Aslı: \"I prefer films about futuristic technology, space travels, and robots.\"\n- Mert: \"I love learning about real-life events, nature, and history through educational films.\"\n- Deniz: \"I enjoy laughing at funny characters and humorous situations.\"",
+"question": "Which of the following shows the correct movie genres for Kerem and Aslı respectively?",
+"shape": null,
+"options": {
+"A": "Action – Science fiction",
+"B": "Comedy – Horror",
+"C": "Animation – Documentary",
+"D": "Adventure – Fantasy"
+},
+"answer": "A",
+"explanation": "Kerem likes fast-moving plots and heroes saving the world, which corresponds to Action. Aslı prefers futuristic technology and space travels, which corresponds to Science fiction. Thus, the correct pair is Action – Science fiction.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Past simple basics (was / were)",
+"passage": "Read the sentences about where the students were last weekend:\nI. Aylin and Berk were at the local cinema yesterday to watch an adventure movie.\nII. Cem was at home because he watched a cartoon on TV.\nIII. Funda and Gizem were at the theatre, not at the cinema.",
+"question": "Which of the following statements is INCORRECT according to the sentences above?",
+"shape": null,
+"options": {
+"A": "Cem was not at the cinema; he was at home.",
+"B": "Funda and Gizem were at the cinema watching an action movie.",
+"C": "Aylin and Berk were at the cinema yesterday.",
+"D": "Cem was at home watching a cartoon."
+},
+"answer": "B",
+"explanation": "Sentence III states that Funda and Gizem were at the theatre, not at the cinema. Option C claims they were at the cinema watching an action movie, which contradicts the text. Thus, C is incorrect.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Regular verbs (-ed)",
+"passage": "Emre kept a film diary last week. Here are his notes:\n- Monday: I watched a comedy film with my sister. (watch -> watched)\n- Wednesday: We liked the funny characters very much. (like -> liked)\n- Friday: We visited our grandparents, but we didn't go to the cinema.",
+"question": "Which of the following regular verbs from Emre's diary expresses an action related to watching a movie?",
+"shape": null,
+"options": {
+"A": "watched",
+"B": "stayed",
+"C": "didn't go",
+"D": "visited"
+},
+"answer": "A",
+"explanation": "Emre's diary mentions that he watched a comedy film on Monday. The regular verb used for this action is 'watched'.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Past simple basics & Genres",
+"passage": "Read the dialogue between two friends:\n- Zeynep: \"Where were you yesterday evening, Burak?\"\n- Burak: \"I was at home. I watched a fantastic science fiction movie about space.\"\n- Zeynep: \"Was it exciting?\"\n- Burak: \"Yes, it was! I liked it very much.\"",
+"question": "Which of the following questions is answered in the dialogue?",
+"shape": null,
+"options": {
+"A": "Why did Burak hate the film?",
+"B": "Who was with Burak at the cinema?",
+"C": "What kind of movie did Burak watch?",
+"D": "What time did the movie start?"
+},
+"answer": "C",
+"explanation": "Burak says he watched a science fiction movie about space, which answers what kind of movie he watched. The other options are not mentioned in the dialogue.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Vocabulary & Context",
+"passage": "Defne wants to watch a movie tonight. She checks her options:\n- Option 1: A film about ghosts, dark houses, and monsters.\n- Option 2: A film that makes people laugh a lot with funny jokes.\n- Option 3: A film with real facts about wild animals and nature.\nDefne says: \"I hate ghosts and monsters because I get very scared, and I don't like laughing tonight. I want to learn real facts about nature.\"",
+"question": "Which movie genre should Defne choose for tonight?",
+"shape": null,
+"options": {
+"A": "Comedy",
+"B": "Horror",
+"C": "Cartoon",
+"D": "Documentary"
+},
+"answer": "D",
+"explanation": "Defne states she does not want horror (ghosts/monsters) or comedy (laughing), and she wants to learn real facts about nature. This description matches a Documentary.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Genres",
+"passage": "At the movie club, students were asked about their favorite movie genres. Here are their responses: I. Deniz: 'I like comedies.' II. Kerem: 'I enjoy horror movies.' III. Selin: 'I prefer science fiction.' IV. Ayşe: 'I love cartoons.'",
+"question": "According to the responses, which genre is not mentioned as a favorite by any of the students?",
+"shape": null,
+"options": {
+"A": "Comedy",
+"B": "Fantasy",
+"C": "Horror",
+"D": "Science Fiction"
+},
+"answer": "B",
+"explanation": "I. Deniz mentions comedies, II. Kerem mentions horror movies, III. Selin mentions science fiction, and IV. Ayşe mentions cartoons. Fantasy is not mentioned by any of the students.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Opinions",
+"passage": "At the cinema, three friends were discussing their opinions about a new movie. Here is what they said: I. Deniz: 'I think it's funny.' II. Kerem: 'I think it's boring.' III. Selin: 'I think it's exciting.'",
+"question": "Which of the following opinions is not mentioned by any of the friends?",
+"shape": null,
+"options": {
+"A": "Exciting",
+"B": "Funny",
+"C": "Boring",
+"D": "Scary"
+},
+"answer": "D",
+"explanation": "I. Deniz mentions that the movie is funny, II. Kerem mentions that the movie is boring, and III. Selin mentions that the movie is exciting. Scary is not mentioned by any of the friends.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Past simple basics and Genres",
+"passage": "Last month, four friends watched different movies. Here is what they said: I. Deniz: 'I watched a comedy last month.' II. Kerem: 'We watched a horror movie last month.' III. Selin: 'She watched a science fiction movie last month.' IV. Ayşe: 'They watched a cartoon last month.'",
+"question": "Which of the following statements is not true according to the passage?",
+"shape": null,
+"options": {
+"A": "Kerem watched a horror movie last month.",
+"B": "Selin watched a fantasy movie last month.",
+"C": "Ayşe watched a cartoon last month.",
+"D": "Deniz watched a comedy last month."
+},
+"answer": "B",
+"explanation": "I. Deniz watched a comedy last month, II. Kerem watched a horror movie last month, III. Selin watched a science fiction movie last month, and IV. Ayşe watched a cartoon last month. Selin did not watch a fantasy movie last month.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Past simple basics (was / were)",
+"passage": "Emre and Arda talked about their weekend. Emre said, 'I was at the cinema yesterday because there was an exciting action movie.' Arda replied, 'Really? I was at home with my family, and we watched a funny comedy on TV. It was very funny.'",
+"question": "Which of the following is correct according to the conversation?",
+"shape": null,
+"options": {
+"A": "Emre was at the cinema yesterday to see an action movie.",
+"B": "Emre was at home watching TV with his family yesterday.",
+"C": "Arda was at the cinema to watch an exciting action movie.",
+"D": "Arda and Emre were together at home to watch a comedy."
+},
+"answer": "A",
+"explanation": "Step 1: Read Emre's statement where he says he was at the cinema yesterday for an action movie. Step 2: Read Arda's statement where he says he was at home with his family watching a comedy. Step 3: Match these facts with the options. Option C correctly states that Emre was at the cinema yesterday for an action movie, while the other options misattribute the locations or activities.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Movies: Opinions",
+"passage": "Gizem and Cem are choosing a movie for tonight. Gizem says, 'Let's watch an adventure movie. I think it is exciting.' Cem says, 'No, I don't like adventure films. I think they are boring. I want to watch a comedy.' Gizem asks, 'Why a comedy?' Cem replies, 'Because I think comedies are funny, and we can laugh together.'",
+"question": "Which of the following opinions do Gizem and Cem share or disagree on according to the dialogue?",
+"shape": null,
+"options": {
+"A": "Gizem thinks adventure movies are boring.",
+"B": "Cem wants to watch an adventure film.",
+"C": "Gizem thinks comedies are boring.",
+"D": "Cem thinks comedies are funny."
+},
+"answer": "D",
+"explanation": "Step 1: Identify Gizem's opinion about adventure movies (she thinks they are exciting). Step 2: Identify Cem's opinion about adventure movies (he thinks they are boring). Step 3: Identify Cem's opinion about comedies (he thinks they are funny). Step 4: Compare with the options; option C correctly reflects Cem's opinion that comedies are funny.",
+"vfd2": true,
+"unit": "Movies",
+"topics": "Genres, Opinions, Past simple basics",
+"d": 4,
+"ts": 1794210885
+},
+{
+"subject": "İngilizce",
+"topic": "Health - Illnesses and Advice",
+"passage": "School Canteen Health Log: \n- Student A: Has a stomachache. Ate too much junk food.\n- Student B: Has a cold. Needs rest and warm drinks.\n- Student C: Has a headache. Needs to drink plenty of water.\n- Student D: Has a sore throat. Needs to avoid cold drinks.",
+"question": "According to the canteen log, which student should avoid cold drinks?",
+"shape": null,
+"options": {
+"A": "Student B",
+"B": "Student C",
+"C": "Student A",
+"D": "Student D"
+},
+"answer": "D",
+"explanation": "Student A has a stomachache. Student B has a cold. Student C has a headache. Student D has a sore throat and needs to avoid cold drinks. Therefore, Student D matches the condition.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Health - Illnesses and Advice",
+"passage": "Dr. Smith's Advice Board:\n1. If you have a fever, you should take medicine.\n2. If you have a toothache, you should see a dentist.\n3. If you have a cough, you should drink herbal tea.\n4. If you have a headache, you should rest in a dark room.",
+"question": "Aylin tells her mom: 'My teeth hurt so much!' Based on the board, what should she do?",
+"shape": null,
+"options": {
+"A": "She should take medicine.",
+"B": "She should see a dentist.",
+"C": "She should drink herbal tea.",
+"D": "She should rest in a dark room."
+},
+"answer": "B",
+"explanation": "Aylin says her teeth hurt, which means she has a toothache. According to rule 2 on the board, when one has a toothache, one should see a dentist.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Health - Body Parts",
+"passage": "In a physical education class, the teacher gives instructions: \n- 'Touch your head.'\n- 'Touch your feet.'\n- 'Raise your arm.'\n- 'Bend your leg.'\nMelis touches her hand to her head, then reaches down to touch her feet. Then she raises her right arm high.",
+"question": "Which part of her body did Melis NOT touch or move according to the instructions?",
+"shape": null,
+"options": {
+"A": "Head",
+"B": "Feet",
+"C": "Arm",
+"D": "Leg"
+},
+"answer": "D",
+"explanation": "Melis touched her head, her feet, and raised her arm. She did not perform the action 'Bend your leg'.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Health - Advice",
+"passage": "Healthy Life Checklist:\n- Eat vegetables: Yes\n- Play sports: Yes\n- Eat lots of candy: No\n- Drink water: Yes",
+"question": "Which of the following is NOT a good piece of advice according to the checklist?",
+"shape": null,
+"options": {
+"A": "You should drink water.",
+"B": "You should eat lots of candy.",
+"C": "You should eat vegetables.",
+"D": "You should play sports."
+},
+"answer": "B",
+"explanation": "The checklist says 'Eat lots of candy: No'. Therefore, advising someone to eat lots of candy is incorrect.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Health - Body Parts and Illnesses",
+"passage": "Puzzle Box:\n- I have a pain in my mouth. (1)\n- I have a pain in my stomach. (2)\n- I have a pain in my head. (3)\n- I have a pain in my throat. (4)",
+"question": "Which illness correctly matches 'I have a pain in my mouth'?",
+"shape": null,
+"options": {
+"A": "Sore throat",
+"B": "Stomachache",
+"C": "Headache",
+"D": "Toothache"
+},
+"answer": "D",
+"explanation": "A toothache is a pain related to the teeth, which are located in the mouth. Thus, the statement 'I have a pain in my mouth' corresponds to a toothache.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Illnesses and Body Parts",
+"passage": "In the school library, three students are talking about their health problems: \n- Can: 'I have a terrible pain in my head. I can't read this book.'\n- Ece: 'My throat is very red and it hurts when I swallow.'\n- Mert: 'I ate too much chocolate and now my stomach hurts.'",
+"question": "Which of the following matches the students with their illnesses correctly?",
+"shape": null,
+"options": {
+"A": "Can: Cough - Ece: Sore throat - Mert: Stomachache",
+"B": "Can: Headache - Ece: Sore throat - Mert: Stomachache",
+"C": "Can: Headache - Ece: Cold - Mert: Toothache",
+"D": "Can: Stomachache - Ece: Sore throat - Mert: Headache"
+},
+"answer": "B",
+"explanation": "Can mentions a pain in his head (headache). Ece says her throat hurts when swallowing (sore throat). Mert ate too much and his stomach hurts (stomachache). These match the B option.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Body Parts and Illnesses",
+"passage": "During a cycling tour, four friends have minor problems:\n- Ayşe: 'My leg hurts because I fell down.'\n- Burak: 'My arm is bleeding.'\n- Ceren: 'I can't hear well because of the wind in my ear.'\n- Deniz: 'I have a high fever.'",
+"question": "Which student has an illness related to body temperature?",
+"shape": null,
+"options": {
+"A": "Ayşe",
+"B": "Ceren",
+"C": "Deniz",
+"D": "Burak"
+},
+"answer": "C",
+"explanation": "Ayşe has a leg injury, Burak has an arm injury, and Ceren has an ear problem. Deniz mentions having a fever, which is a symptom of an illness related to body temperature.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Health: Illnesses and Advice",
+"passage": "At the space center, astronauts have a health checklist for their long missions:\n- Cold: Drink hot soup.\n- Headache: Get some fresh air.\n- Stomachache: Don't eat heavy food.\n- Toothache: Use medicine.",
+"question": "Which of the following is an incorrect piece of advice according to the checklist?",
+"shape": null,
+"options": {
+"A": "You should eat heavy food if you have a stomachache.",
+"B": "You should drink hot soup if you have a cold.",
+"C": "You should get some fresh air if you have a headache.",
+"D": "You should use medicine if you have a toothache."
+},
+"answer": "A",
+"explanation": "The checklist says 'Don't eat heavy food' for a stomachache. Option B suggests 'You should eat heavy food', which is the opposite of the advice given.",
+"vfd2": true,
+"unit": "Health",
+"topics": "Body parts, Illnesses, Advice",
+"d": 1,
+"ts": 1794211963
 }
 ]
 }

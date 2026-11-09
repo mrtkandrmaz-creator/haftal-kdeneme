@@ -2303,6 +2303,417 @@
 "topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
 "d": 3,
 "ts": 1794166421
+},
+{
+"subject": "Matematik",
+"topic": "Alan ve Çevre İlişkisi",
+"passage": "",
+"question": "Kenar uzunlukları tam sayı olan bir karenin çevre uzunluğu 20 cm olduğuna göre, bu karenin alanı kaç cm²'dir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "square",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"ticks": true,
+"angles": {},
+"sides": {
+"AB": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "25",
+"C": "40",
+"D": "100"
+},
+"answer": "B",
+"explanation": "1) Karenin çevre uzunluğu 4a = 20 cm olarak verilmiştir. 2) Karenin bir kenar uzunluğu a = 20 ÷ 4 = 5 cm bulunur. 3) Karenin alanı a² formülüyle hesaplanır. 4) Alan = 5 × 5 = 25 cm² olur.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794210011
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve Alan Karşılaştırması",
+"passage": "Ali ve Veli, eşit kare çit malzemesiyle bahçeleri için dikdörtgen şeklinde çit yapmak istiyor. Ali'nin bahçesinin kenar uzunlukları 6 m ve 10 m, Veli'nin bahçesinin kenar uzunlukları 8 m ve 6 m olsun. Her iki bahçe de 1 metre aralıklarla çitleniyor.",
+"question": "Veli'nin bahçesi için Ali'nin bahçesine göre kaç metre daha az çit malzemesi gerekir?",
+"shape": {
+"type": "table",
+"title": "Bahçe Ölçüleri",
+"headers": [
+"Kişi",
+"Uzun Kenar (m)",
+"Kısa Kenar (m)"
+],
+"rows": [
+[
+"Ali",
+"10",
+"6"
+],
+[
+"Veli",
+"8",
+"6"
+]
+]
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "1) Ali'nin bahçesi çevresi = 2(10 + 6) = 2(16) = 32 m'dir. 2) Veli'nin bahçesi çevresi = 2(8 + 6) = 2(14) = 28 m'dir. 3) Fark = Ali'nin çevresi - Veli'nin çevresi = 32 - 28 = 4 m bulunur. 4) Veli 4 metre daha az çit kullanır.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794210011
+},
+{
+"subject": "Matematik",
+"topic": "Dikdörtgenin Çevre Uzunluğu",
+"passage": "",
+"question": "Çevre uzunluğu 48 cm olan dikdörtgen şeklindeki bir bahçenin kısa kenarı 8 cm'dir. Bu bahçenin uzun kenarı kaç cm'dir?",
+"shape": {
+"type": "rectangle",
+"width": 8,
+"height": 16,
+"width_label": "8 cm",
+"height_label": "16 cm",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "16",
+"C": "24",
+"D": "32"
+},
+"answer": "B",
+"explanation": "Dikdörtgenin çevresi 2 × (kısa kenar + uzun kenar) formülü ile bulunur. 48 ÷ 2 = 24 cm (kısa + uzun kenar toplamı). 24 - 8 = 16 cm uzun kenardır.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794210011
+},
+{
+"subject": "Matematik",
+"topic": "Dikdörtgenin Çevre Uzunluğu",
+"passage": "",
+"question": "Şekildeki ABCD dikdörtgeninin alanı 48 cm²'dir. Kısa kenarı 6 cm olan bu dikdörtgenin çevre uzunluğu kaç cm'dir?",
+"shape": {
+"type": "rectangle",
+"width": 8,
+"height": 6,
+"width_label": "8 cm",
+"height_label": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "22 cm",
+"B": "28 cm",
+"C": "32 cm",
+"D": "44 cm"
+},
+"answer": "B",
+"explanation": "Dikdörtgenin alanı (kısa kenar × uzun kenar) formülü ile bulunur. 48 = 6 × uzun kenar ise uzun kenar 8 cm'dir. Dikdörtgenin çevresi 2 × (kısa kenar + uzun kenar) formülüyle 2 × (6 + 8) = 2 × 14 = 28 cm olarak hesaplanır.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794210011
+},
+{
+"subject": "Matematik",
+"topic": "Dikdörtgen Problemleri",
+"passage": "",
+"question": "Bir oyun parkının kenar uzunlukları doğal sayı olan dikdörtgen biçimindeki oyun alanının çevresi 40 metredir. Bu alanın en büyük alana sahip olması için kenar uzunlukları kaçar metre olmalıdır?",
+"shape": {
+"type": "rectangle",
+"width": 10,
+"height": 10,
+"width_label": "10 m",
+"height_label": "10 m",
+"show_names": false
+},
+"options": {
+"A": "10 m ve 10 m",
+"B": "9 m ve 11 m",
+"C": "5 m ve 15 m",
+"D": "8 m ve 12 m"
+},
+"answer": "A",
+"explanation": "Çevresi sabit olan dikdörtgenlerde kenarlar birbirine yaklaştıkça alan büyür. 2 × (a + b) = 40 ise a + b = 20 olur. Birbirine en yakın değerler 10 ve 10 olduğu için kare formunda en büyük alana (100 m²) ulaşılır.",
+"vfd2": true,
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794210011
+},
+{
+"subject": "Matematik",
+"topic": "Dik Üçgen ve Pisagor Bağıntısı ile Çevre Hesabı",
+"passage": "",
+"question": "Şekilde m(ABC) = 90° olan dik üçgende |AB| = 6 cm, |AC| = 10 cm ve dik kenarlar üzerinden oluşturulan çevre hesaplandığında üçgenin çevresi kaç cm'dir?",
+"shape": {
+"type": "geo",
+"sub_type": "triangle",
+"kind": "right",
+"labels": [
+"A",
+"B",
+"C"
+],
+"ticks": false,
+"apex": "A",
+"right_at": "B",
+"sides": {
+"AB": "6 cm",
+"AC": "10 cm"
+},
+"angles": {
+"B": "90°"
+},
+"show_names": false
+},
+"options": {
+"A": "16 cm",
+"B": "20 cm",
+"C": "24 cm",
+"D": "30 cm"
+},
+"answer": "C",
+"explanation": "1. ABC dik üçgeninde Pisagor bağıntısı (|AB|² + |BC|² = |AC|²) uygulanır. 2. 6² + |BC|² = 10² ise 36 + |BC|² = 100 ve |BC|² = 64 bulunur, buradan |BC| = 8 cm olur. 3. Üçgenin çevresi tüm kenar uzunluklarının toplamıdır. 4. Çevre = |AB| + |BC| + |AC| = 6 + 8 + 10 = 24 cm olarak hesaplanır.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 4,
+"ts": 1794211011
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.3.1. Temel geometrik inşalar (Çember)",
+"passage": "",
+"question": "Şekilde verilen O merkezli çemberde yarıçap uzunluğu 7 cm'dir. Çember üzerinde alınan A ve B noktaları arasındaki en uzun doğru parçasının uzunluğu kaç santimetredir?",
+"shape": {
+"type": "circle",
+"center": "O",
+"radius": "7 cm",
+"show_diameter": true,
+"show_names": false
+},
+"options": {
+"A": "7 cm",
+"B": "14 cm",
+"C": "21 cm",
+"D": "28 cm"
+},
+"answer": "B",
+"explanation": "Çember üzerinde iki nokta arasındaki en uzun doğru parçası çaptır. Çap, yarıçapın 2 katı olduğundan 7 × 2 = 14 cm bulunur.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 4,
+"ts": 1794211011
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılar",
+"passage": "",
+"question": "Şekilde d₁ ve d₂ doğruları k keseni ile kesişmektedir. Oluşan yöndeş açıların ölçüleri sırasıyla 4x + 10° ve 3x + 25° olduğuna göre x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d2_l",
+"E": "k_up"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "E",
+"label": "4x+10°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "3x+25°"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10°",
+"B": "15°",
+"C": "20°",
+"D": "25°"
+},
+"answer": "B",
+"explanation": "Paralel doğruların kesenle oluşturduğu yöndeş açılar birbirine eşittir. 4x + 10 = 3x + 25 denklemi çözüldüğünde x = 15° elde edilir.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 4,
+"ts": 1794211011
+},
+{
+"subject": "Matematik",
+"topic": "Çokgenin iç ve dış açı toplamları",
+"passage": "",
+"question": "Şekildeki ABCD dörtgeninde m(ABC) = 3x + 10° ve m(ADC) = 2x + 20° olarak verilmiştir. Karşılıklı açıların toplamı ve dörtgenin iç açılar toplamı dikkate alındığında x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"ticks": false,
+"diagonals": false,
+"angles": {
+"B": "3x + 10°",
+"D": "2x + 20°"
+},
+"sides": {},
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "30°",
+"C": "35°",
+"D": "40°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılar toplamı 360°'dir. Verilen açıların cebirsel toplamı ve diğer açılarla olan denklemi çözüldüğünde 5x + 30° = 180° (karşılıklı iki açının toplamı için) veya toplam denklemden x = 30° bulunur.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 4,
+"ts": 1794211011
+},
+{
+"subject": "Matematik",
+"topic": "Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
+"passage": "",
+"question": "Şekilde kesişen d₁ ve d₂ doğrularının oluşturduğu ters açılardan biri 3x - 20° ve diğer yöndeki komşu bütünler açılardan biri 2x + 10° olarak verilmiştir. Buna göre x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "angles_two_lines",
+"degree": 60,
+"given": "3x - 20°",
+"ask": "x",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "34°",
+"C": "38°",
+"D": "42°"
+},
+"answer": "C",
+"explanation": "Kesişen iki doğrunun oluşturduğu bir ters açı ve komşu bütünler açısının toplamı 180°'dir. (3x - 20°) + (2x + 10°) = 180° ise 5x - 10 = 180 => 5x = 190 => x = 38° bulunur.",
+"vfd2": true,
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 4,
+"ts": 1794211011
+},
+{
+"subject": "Matematik",
+"topic": "Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+"passage": "Bir ormancılık projesinde fidan dikilen alanların kilometre cinsinden uzunlukları sayı doğrultusunda işaretlenmiştir. Uzmanlar, fidan dikim sınırını belirleyen bir işaretçinin yerini incelemektedir.",
+"question": "Sayı doğrusunda ok ile gösterilen değere karşılık gelen doğal sayı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "number_line",
+"min": 400000,
+"max": 500000,
+"step": 20000,
+"marks": [
+{
+"label": "A",
+"value": 460000
+}
+],
+"show_names": false
+},
+"options": {
+"A": "440 000",
+"B": "450 000",
+"C": "460 000",
+"D": "480 000"
+},
+"answer": "C",
+"explanation": "Sayı doğrusu 400 000 ile 500 000 arasındadır ve her bir aralık yirmi binlik artmaktadır. 400 000'den sonraki üçüncü çizgi (400 000 + 3 × 20 000) 460 000 değerini gösterir.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794211632
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.1. Altı basamaklı sayıların çözümlenmesi",
+"passage": "Bir lojistik firması, gönderdiği paketlerin üzerine 6 basamaklı takip numaraları vermektedir. Bir paketin numarası; 5 tane yüz binlik, 2 tane binlik ve 8 tane onluktan oluşmaktadır.",
+"question": "Bu takip numarası aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "502 080",
+"B": "502 800",
+"C": "520 080",
+"D": "520 800"
+},
+"answer": "A",
+"explanation": "5 yüz binlik = 500 000, 2 binlik = 2 000, 8 onluk = 80. Sayıların toplamı: 500 000 + 2 000 + 80 = 502 080.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794211632
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.1. Çok basamaklı sayıları okuma ve yazma",
+"passage": "Bir araştırmacı, 840 bin 507 şeklinde okunan bir nüfus verisini bir raporda yazacaktır.",
+"question": "Bu sayının rakamla doğru yazılışı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "804 507",
+"B": "840 057",
+"C": "840 507",
+"D": "840 570"
+},
+"answer": "C",
+"explanation": "840 bin = 840 000, 507 = 507. Birleştirildiğinde 840 507 elde edilir.",
+"vfd2": true,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794211632
 }
 ]
 }

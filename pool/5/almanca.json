@@ -1180,6 +1180,206 @@
 "topics": "Familienmitglieder, Besitz",
 "d": 1,
 "ts": 1794163631
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen",
+"passage": "In der Schultasche von Aylin befinden sich folgende Utensilien: ein Radiergummi (blau), ein Lineal (gelb), drei Bleistifte (grau) und ein Heft (rot).",
+"question": "Bu bilgilere göre aşağıdakilerden hangisi Aylin'in çantasındaki eşyaların renk ve miktar dağılımı için doğrudur?",
+"shape": null,
+"options": {
+"A": "Es gibt drei Bleistifte und das Radiergummi ist blau.",
+"B": "Das Lineal ist blau und es gibt nur ein Heft.",
+"C": "Das Lineal ist rot und es gibt zwei Radiergummis.",
+"D": "Das Heft ist gelb und die Bleistifte sind rot."
+},
+"answer": "A",
+"explanation": "Adım 1: Metinde radiergummi (silgi) mavidir (blau). Adım 2: Bleistift (kurşun kalem) sayısı üçtür (drei). Adım 3: Şıkları incelediğimizde B seçeneğinde 'Es gibt drei Bleistifte und das Radiergummi ist blau' ifadesi metinle birebir uyuşmaktadır.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schulfächer",
+"passage": "In der Klasse 5/A gibt es am Montag drei Stunden: Erste Stunde Mathematik, zweite Stunde Sport, dritte Stunde Musik.",
+"question": "Welche Aussage beschreibt den Stundenplan der Klasse 5/A am Montag korrekt?",
+"shape": null,
+"options": {
+"A": "Die erste Stunde ist Musik und die letzte ist Sport.",
+"B": "Mathematik findet nach der Musikstunde statt.",
+"C": "Nach Mathematik haben die Schüler zuerst Sport und dann Musik.",
+"D": "Sport ist das einzige Schulfach an diesem Tag."
+},
+"answer": "C",
+"explanation": "Adım 1: Pazartesi günü ders sırası: 1. Matematik, 2. Spor, 3. Müzik. Adım 2: Matematikten sonra sırasıyla Spor ve Müzik gelmektedir. Adım 3: B seçeneği bu sıralamayı doğru doğrulamaktadır.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schulfächer",
+"passage": "Drei Schüler sprechen über ihre Lieblingsfächer:\n- Lukas: 'Ich mag Zahlen und Rechnen.'\n- Sophie: 'Ich liebe Farben und Zeichnen.'\n- Tim: 'Ich spreche gern über Länder und Karten.'",
+"question": "Buna göre öğrencilerin bahsettiği dersler sırasıyla hangi seçenekte doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Mathematik – Geografie – Kunst",
+"B": "Mathematik – Kunst – Geografie",
+"C": "Geografie – Mathematik – Kunst",
+"D": "Kunst – Mathematik – Geografie"
+},
+"answer": "B",
+"explanation": "Adım 1: Lukas sayılardan bahsettiği için ders Mathematik'tir. Adım 2: Sophie renkler ve çizimden bahsettiği için ders Kunst'tür. Adım 3: Tim ülkeler ve haritalardan bahsettiği için ders Geografie'dir. Sıralama: Matematik – Kunst – Geografie.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen",
+"passage": "Für das Fach Kunst braucht man: einen Pinsel, Farbkasten und ein Zeichenblatt. Für das Fach Geografie braucht man einen Atlas.",
+"question": "Welcher Gegenstand gehört laut diesen Informationen eindeutig zum Fach Geografie?",
+"shape": null,
+"options": {
+"A": "Der Farbkasten",
+"B": "Das Zeichenblatt",
+"C": "Der Atlas",
+"D": "Der Pinsel"
+},
+"answer": "C",
+"explanation": "Adım 1: Sanat (Kunst) dersi için pencereler, boya kutusu ve resim kağıdı gereklidir. Adım 2: Coğrafya (Geografie) dersi için atlas (Atlas) gereklidir. Adım 3: Doğru şık Atlas'tır.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schulfächer und Schulsachen",
+"passage": "In der Schultasche von Marie sind ein Buch für das Fach Deutsch, ein Heft für Mathematik und ein Kasten für Kunst. Marie hat heute Deutsch und Kunst.",
+"question": "Bu bilgilere göre Marie'nin bugün çantasında bulundurması gereken ders araç gereçleri hangi seçenekte eksiksiz verilmiştir?",
+"shape": null,
+"options": {
+"A": "Das Deutschbuch und der Farbkasten für Kunst",
+"B": "Das Matheheft und das Deutschbuch",
+"C": "Nur der Farbkasten",
+"D": "Nur das Matheheft"
+},
+"answer": "A",
+"explanation": "Adım 1: Marie'nin bugün Deutsch ve Kunst dersleri vardır. Adım 2: Deutsch dersi için kitap (Buch), Kunst dersi için boya kutusu (Farbkasten) gereklidir. Adım 3: Doğru seçenek Deutsch kitabı ve Kunst boya kutusunu içeren B seçeneğidir.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulfächer und Wochentage",
+"passage": "In einem Gartenprojekt für den Stundenplan erstellen Schüler einen Wochenplan. Anna mag die Natur und hat am Dienstag Biologie. Max interessiert sich für Zahlen und hat am Mittwoch Mathematik. Lisa mag Farben und Formen, deshalb hat sie am Donnerstag Kunst. Tim liebt Töne und Rhythmen, bei ihm steht am Freitag Musik auf dem Plan.",
+"question": "Welche Schülerin oder welcher Schüler hat das Schulfach, das sich mit Farben, Formen und kreativem Malen beschäftigt, an welchem Wochentag?",
+"shape": null,
+"options": {
+"A": "Tim am Freitag",
+"B": "Anna am Dienstag",
+"C": "Lisa am Donnerstag",
+"D": "Max am Mittwoch"
+},
+"answer": "C",
+"explanation": "Der Text besagt, dass Lisa sich für Farben und Formen interessiert und das Fach Kunst am Donnerstag hat. Daher ist die richtige Zuordnung Lisa am Donnerstag.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulsachen und Roboter-Werkstatt",
+"passage": "In einer Roboter-Werkstatt sortieren Kinder ihre Arbeitsmaterialien. In Roboterbox 1 befinden sich ein Spitzer und ein Radiergummi. In Roboterbox 2 liegen ein Lineal und ein Heft. In Roboterbox 3 sind ein Buch und ein Bleistift. Jedes Kind benötigt genau zwei Gegenstände zum Zeichnen von geraden Linien und zum Schreiben von Texten.",
+"question": "Welche Roboterbox enthält die spezifischen Utensilien, die für das Messen von geraden Linien und das Schreiben beziehungsweise Notieren von Wörtern auf Papier verwendet werden?",
+"shape": null,
+"options": {
+"A": "Keine der Boxen",
+"B": "Roboterbox 2",
+"C": "Roboterbox 1",
+"D": "Roboterbox 3"
+},
+"answer": "B",
+"explanation": "Das Messen beziehungsweise Zeichnen von geraden Linien erfordert ein Lineal, und das Notieren von Texten erfordert ein Heft (oder Buch). In Roboterbox 2 befinden sich ein Lineal und ein Heft.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulfächer im Stadtplan-Kontext",
+"passage": "In einer Modellstadt gibt es verschiedene Gebäude für Schulfächer. Im Gebäude Nord findet man Karten und Globen für das Fach Erdkunde. Im Gebäude Süd lernt man Grammatik und Vokabeln im Fach Deutsch. Im Gebäude Ost wird mit Reagenzgläsern im Fach Chemie experimentiert. Im Gebäude West singen die Schüler im Fach Musik.",
+"question": "Ein Schüler möchte Vokabeln lernen und Grammatikregeln üben. Welches Gebäude der Modellstadt muss er aufsuchen?",
+"shape": null,
+"options": {
+"A": "Gebäude Süd",
+"B": "Gebäude Nord",
+"C": "Gebäude West",
+"D": "Gebäude Ost"
+},
+"answer": "A",
+"explanation": "Laut Text lernt man Grammatik und Vokabeln im Fach Deutsch, welches sich im Gebäude Süd befindet.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulsachen in einer Kunstausstellung",
+"passage": "Auf einer Schulausstellung präsentieren Kinder ihre Kunstwerke und Utensilien. Wand A zeigt Bilder mit Wachsmalstiften. Wand B stellt Collagen aus mit Scheren ausgeschnittenen Papieren dar. Wand C zeigt Malereien mit Pinseln und Tuschkästen. Wand D präsentiert geometrische Muster, die mit Zirkeln gezeichnet wurden.",
+"question": "Welche Wand zeigt die Utensilien, die typischerweise zum Schneiden von Papier im Kunstunterricht verwendet werden?",
+"shape": null,
+"options": {
+"A": "Wand A",
+"B": "Wand C",
+"C": "Wand B",
+"D": "Wand D"
+},
+"answer": "C",
+"explanation": "Das Schneiden von Papier wird mit Scheren durchgeführt, und Wand B stellt Collagen aus mit Scheren ausgeschnittenen Papieren dar.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Schule: Schulsachen-Klassifizierung",
+"passage": "In einem großen Kaufhaus gibt es Schulbedarf in verschiedenen Regalen. Regal 1 enthält einen Füller, einen Bleistift und einen Buntstift zum Schreiben. Regal 2 enthält ein Etui und einen Schulranzen zum Transportieren. Regal 3 enthält Äpfel, Bananen und Säfte aus der Cafeteria. Regal 4 enthält ein Geo-Dreieck und ein Lineal für den Geometrieunterricht.",
+"question": "Welches Regal enthält irrtümlicherweise Gegenstände, die nicht zur Kategorie der typischen Schulsachen oder Schreibwaren gehören?",
+"shape": null,
+"options": {
+"A": "Regal 2",
+"B": "Regal 1",
+"C": "Regal 4",
+"D": "Regal 3"
+},
+"answer": "D",
+"explanation": "Regal 3 enthält Äpfel, Bananen und Säfte, welche zu Lebensmitteln und zur Cafeteria gehören, nicht aber zu den klassischen Schulsachen wie Schreibwaren oder Transportmitteln.",
+"vfd2": true,
+"unit": "Schule",
+"topics": "Schulfächer, Schulsachen",
+"d": 4,
+"ts": 1794210326
 }
 ]
 }
