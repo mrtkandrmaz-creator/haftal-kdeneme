@@ -4854,7 +4854,7 @@ def _extra_models(name, base, key):
     return (have + extra) or pref
 
 
-def _compat_call(name, base, key, prompt_text, system=None, temperature=0.85, model=None, reasoning=None):
+def _compat_call(name, base, key, prompt_text, system=None, temperature=0.3, model=None, reasoning=None):
     """OpenAI uyumlu /chat/completions çağrısı (stdlib ile; ek paket gerekmez)."""
     import urllib.request
     import urllib.error
