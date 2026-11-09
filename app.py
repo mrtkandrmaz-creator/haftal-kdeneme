@@ -2444,9 +2444,116 @@ def _nested_circles(ax, d):
     ax.set_ylim(-3.2, 3.2)
 
 
+def _two_triangles(ax, d):
+    """Ortak kenarlı iki üçgen: ABC ikizkenar (|AB| = |AC|, tepe A), ACD eşkenar; B ve D, AC'nin zıt taraflarında. Ölçüler parametreyle verilir."""
+    import math as _mm
+    from matplotlib.patches import Arc
+    al = float(d.get("alpha", 40))
+    names = (list(map(str, d.get("names") or [])) + ["A", "B", "C", "D"])[:4]
+    A = np.array([-1.0, 0.0])
+    C = np.array([1.0, 0.0])
+    D = np.array([0.0, _mm.sqrt(3)])
+    B = A + 2 * np.array([_mm.cos(_mm.radians(al)), -_mm.sin(_mm.radians(al))])
+    sc = 1.0
+    ax.add_patch(Polygon([A, B, C], closed=True, fc="#e0f2fe", ec=INK, lw=2, zorder=2))
+    ax.add_patch(Polygon([A, C, D], closed=True, fc="#fef3c7", ec=INK, lw=2, zorder=2))
+
+    def tick(p, q, n=1, col=ORANGE, shift=0.0):
+        m = (p + q) / 2
+        v = (q - p) / np.linalg.norm(q - p)
+        nv = np.array([-v[1], v[0]])
+        for k in range(n):
+            c = m + v * ((k - (n - 1) / 2) * .09 + shift)
+            ax.plot([c[0] - nv[0] * .1, c[0] + nv[0] * .1], [c[1] - nv[1] * .1, c[1] + nv[1] * .1], color=col, lw=2, zorder=6)
+    tick(A, B, 1); tick(A, C, 1, shift=-.28)          # |AB| = |AC| (turuncu tek çizgi)
+    tick(A, C, 2, col=GREEN, shift=.28); tick(C, D, 2, col=GREEN); tick(D, A, 2, col=GREEN)  # ACD eşkenar (yeşil çift çizgi)
+    for p, q in ((A, B), (B, C), (A, C), (C, D), (D, A)):
+        ax.plot([p[0], q[0]], [p[1], q[1]], color=INK, lw=2, zorder=5)
+
+    def arc(v, p, q, lab, r=.38, col=BLUE):
+        a1 = _mm.degrees(_mm.atan2(*(p - v)[::-1]))
+        a2 = _mm.degrees(_mm.atan2(*(q - v)[::-1]))
+        lo, hi = sorted([a1, a2])
+        if hi - lo > 180:
+            lo, hi = hi, lo + 360
+        ax.add_patch(Arc(v, 2 * r, 2 * r, theta1=lo, theta2=hi, color=col, lw=1.8, zorder=7))
+        mid = _mm.radians((lo + hi) / 2)
+        dy = .26 if lab == "?" else 0.0  # sorulan açı etiketi AC üzerindeki çentiklerin üstüne binmesin
+        ax.text(v[0] + (r + .3) * _mm.cos(mid), v[1] + (r + .3) * _mm.sin(mid) + dy, lab, fontsize=10.5, fontweight="bold", color=col, ha="center", va="center", zorder=9,
+                bbox=dict(boxstyle="round,pad=0.1", fc="white", ec="none", alpha=.85))
+    ang = d.get("angles") or {}
+    if ang.get("A"):
+        arc(A, C, B, str(ang["A"]))
+    if ang.get("B"):
+        arc(B, A, C, str(ang["B"]), r=.5)
+    if ang.get("BCD"):
+        arc(C, B, D, str(ang["BCD"]), r=.45, col=GREEN)
+    if ang.get("BAD"):
+        arc(A, B, D, str(ang["BAD"]), r=.45, col=GREEN)
+    for pt, nm, off in ((A, names[0], (-.32, -.05)), (B, names[1], (0, -.38)), (C, names[2], (.3, -.05)), (D, names[3], (0, .3))):
+        ax.plot(*pt, "o", color=INK, ms=5, zorder=8)
+        ax.text(pt[0] + off[0], pt[1] + off[1], nm, fontsize=11, fontweight="bold", ha="center", va="center", zorder=9)
+    ax.set_xlim(-2.4, 2.6)
+    ax.set_ylim(-2.4, 2.2)
+
+
+def _nested_triangles(ax, d):
+    """İç içe/bölünmüş üçgenler. mode: fan (tepeden tabana m doğru parçası), midpoint (eşkenar üçgen + orta noktaları birleştiren iç eşkenar üçgen), grid (n×n eş üçgene bölünmüş üçgen)."""
+    mode = str(d.get("mode", "fan")).lower()
+    labs = [str(x) for x in (d.get("labels") or [])]
+    P0, P1, P2 = np.array([-2.3, -1.5]), np.array([2.3, -1.5]), np.array([0.0, 2.49])
+
+    def seg(p, q, col=INK, lw=2.0, z=5):
+        ax.plot([p[0], q[0]], [p[1], q[1]], color=col, lw=lw, zorder=z)
+
+    def dot(p, t, dx, dy):
+        ax.plot(*p, "o", color=INK, ms=4.5, zorder=8)
+        if t:
+            ax.text(p[0] + dx, p[1] + dy, t, fontsize=11, fontweight="bold", ha="center", va="center", zorder=9)
+    ax.add_patch(Polygon([P0, P1, P2], closed=True, fc="#e0f2fe", ec=INK, lw=2.2, zorder=2))
+    if mode == "fan":
+        m = max(0, min(5, int(_f(d.get("m", 2), 2))))
+        names = (labs + ["A", "B", "C"] + [f"P{i}" for i in range(9)])
+        apex, left, right = names[0], names[1], names[2]
+        mids = names[3:3 + m]
+        pts = [P0 + (P1 - P0) * (i + 1) / (m + 1) for i in range(m)]
+        for p in pts:
+            seg(P2, p)
+        dot(P2, apex, 0, .3); dot(P0, left, -.28, -.1); dot(P1, right, .28, -.1)
+        for p, t in zip(pts, mids):
+            dot(p, t, 0, -.32)
+    elif mode == "midpoint":
+        a = str(d.get("outer", ""))
+        b = str(d.get("inner", ""))
+        D, E, F = (P0 + P1) / 2, (P1 + P2) / 2, (P2 + P0) / 2
+        ax.add_patch(Polygon([D, E, F], closed=True, fc="#fef3c7", ec=ORANGE, lw=2.2, zorder=3))
+        dot(P2, "A", 0, .3); dot(P0, "B", -.28, -.1); dot(P1, "C", .28, -.1)
+        dot(D, "D", 0, -.33); dot(E, "E", .3, .05); dot(F, "F", -.3, .05)
+        if a:
+            ax.text(*(P0 + (P1 - P0) * .16 + np.array([0, -.5])), a, fontsize=10, fontweight="bold", color=BLUE, ha="center", zorder=9,
+                    bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+        if b:
+            ax.text(*((E + F) / 2 + np.array([0, .3])), b, fontsize=10, fontweight="bold", color=ORANGE, ha="center", va="center", zorder=9,
+                    bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+    else:
+        n = max(2, min(4, int(_f(d.get("n", 2), 2))))
+        for k in range(1, n):
+            t = k / n
+            seg(P0 + (P2 - P0) * t, P1 + (P2 - P1) * t, lw=1.7)            # tabana paralel
+            seg(P0 + (P1 - P0) * t, P1 + (P2 - P1) * (1 - t), lw=1.7)      # AB'ye paralel
+            seg(P0 + (P1 - P0) * t, P0 + (P2 - P0) * t, lw=1.7)            # AC'ye paralel
+        dot(P2, "A", 0, .3); dot(P0, "B", -.28, -.1); dot(P1, "C", .28, -.1)
+    ax.set_xlim(-3.2, 3.2)
+    ax.set_ylim(-2.6, 3.1)
+
+
 def _geo(ax, d):
     sub = str(d.get("sub_type", "polygon")).lower()
     ax.set_aspect("equal")
+    if sub in ("nested_triangles", "iç_içe_üçgen"):
+        return _nested_triangles(ax, d)
+    if sub == "two_triangles":
+        return _two_triangles(ax, d)
     if sub in ("nested_circles", "iç_içe_çember"):
         return _nested_circles(ax, d)
     if sub in ("triangle", "triangle_kind"):
@@ -5455,6 +5562,8 @@ _SR_GEO = (
     '   {"type":"geo","sub_type":"triangle_set","kinds":["right","equilateral","isosceles","scalene"],"labels":["K","L","M","N"]}\n'
     '   {"type":"geo","sub_type":"quad","kind":"square|rectangle|parallelogram|rhombus|trapezoid|isosceles_trapezoid|kite","labels":["A","B","C","D"],"ticks":true,"diagonals":false,"angles":{"B":"2x+10°","D":"?"},"sides":{"AB":"8 cm"}}  |  {"type":"geo","sub_type":"quad_set","kinds":["square","rectangle","parallelogram","rhombus"]}\n'
     '   {"type":"geo","sub_type":"circle_parts","center":"O","parts":["radius","diameter","chord","arc","tangent","sector"],"labels":["A","B","C","D","E"]} (yarıçap OA, çap BC, kiriş DE; seçilen parçalar çizilir)\n'
+    '   İÇ İÇE / KESİŞEN ÇEMBER (5. sınıf): {"type":"geo","sub_type":"nested_circles","mode":"concentric","radii":[3,8],"labels":["3 cm","8 cm"]} (O merkezli iç içe çemberler; labels: küçükten büyüğe yarıçaplar, bilinmeyen için "" bırak; "bands":["2 cm"] iki çember ARASINDAKİ uzaklığı gösterir)  |  {"type":"geo","sub_type":"nested_circles","mode":"chain","n":3,"labels":["r = 3 cm","?"]} (yan yana eş çemberler)  |  {"type":"geo","sub_type":"nested_circles","mode":"intersect","r1":5,"r2":5,"d":4,"names":["A","B","C"],"sides":{"AC":"5 cm","BC":"5 cm","AB":"4 cm"}} (A ve B merkezli çemberler C noktasında kesişir, ABC üçgeni çizilir)\n'
+    '   İÇ İÇE / BÖLÜNMÜŞ ÜÇGEN (5. sınıf): {"type":"geo","sub_type":"nested_triangles","mode":"fan","m":2,"labels":["A","B","C","D","E"]} (A tepesinden BC tabanına m doğru parçası; üçgen sayma)  |  {"type":"geo","sub_type":"nested_triangles","mode":"grid","n":2} (kenarlara paralel doğrularla n×n eş üçgene bölünmüş ABC; n=2 ya da 3)  |  {"type":"geo","sub_type":"nested_triangles","mode":"midpoint","outer":"12 cm","inner":"6 cm"} (ABC eşkenar üçgeninin içinde DEF eşkenar üçgeni; yazılan ölçüler soruda da geçmeli)\n'
     '   ⚠ Soru metni çizilenle BİREBİR aynı olsun: köşe sayısı, harfler, açı ölçüsü, çizim türü çelişmesin; şekil türünün adını (ışın, altıgen…) görselde ipucu olarak yazma.\n'
 )
 
@@ -5879,6 +5988,8 @@ def _complete_ok(qtext, pas, opts, shape):
     """Soru metni + şıklar + görsel arasında eksik/uyumsuz bilgi var mı? (False -> soruyu ele)"""
     full = f"{qtext}\n{pas}"
     if _underdetermined(full, shape):
+        return False
+    if _fig_text_mismatch(full, shape):
         return False
     if _PLACEHOLDER.search(full) or any(_PLACEHOLDER.search(str(v)) or not str(v).strip() for v in opts.values()):
         return False
@@ -8382,6 +8493,128 @@ def _mf_market(subject):
     return _mf_raw(subject, "Tablo yorumlama", q, (opts, correct), "Doğru ifadeler: " + ", ".join(truth) + ".", shape=shape, passage=lead)
 
 
+def _mf_twotri(subject):
+    """6-8. sınıf: ortak kenarlı iki üçgen (ABC ikizkenar |AB| = |AC|, ACD eşkenar). Şekil ve metin aynı ölçüleri taşır; sonuç kodla hesaplanır."""
+    kind = random.choice(["bcd_apex", "bcd_base", "bad_base"])
+    head = "Şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. "
+    base = {"type": "geo", "sub_type": "two_triangles", "names": ["A", "B", "C", "D"]}
+    if kind == "bcd_apex":
+        al = random.choice(range(20, 101, 2))
+        be = (180 - al) // 2
+        c = be + 60
+        q = head + f"m(BAC) = {al}° olduğuna göre m(BCD) kaç derecedir?"
+        sh = dict(base, alpha=al, angles={"A": f"{al}°", "BCD": "?"})
+        ex = f"|AB| = |AC| olduğundan m(ABC) = m(ACB) = (180 − {al}) / 2 = {be}°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = {be} + 60 = {c}°."
+        wr = [be, 60, al + 60, 180 - al, 2 * be + 60, c + 10, c - 10]
+    elif kind == "bcd_base":
+        be = random.choice(range(35, 81, 5))
+        al = 180 - 2 * be
+        c = be + 60
+        q = head + f"m(ABC) = {be}° olduğuna göre m(BCD) kaç derecedir?"
+        sh = dict(base, alpha=al, angles={"B": f"{be}°", "BCD": "?"})
+        ex = f"|AB| = |AC| olduğundan m(ACB) = m(ABC) = {be}°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = {be} + 60 = {c}°."
+        wr = [be, 60, al + 60, 180 - be, 2 * be, c + 10, c - 10]
+    else:
+        be = random.choice(range(35, 81, 5))
+        al = 180 - 2 * be
+        c = al + 60
+        q = head + f"m(ABC) = {be}° olduğuna göre m(BAD) kaç derecedir?"
+        sh = dict(base, alpha=al, angles={"B": f"{be}°", "BAD": "?"})
+        ex = f"|AB| = |AC| olduğundan m(ACB) = {be}° ve m(BAC) = 180 − 2 × {be} = {al}°. ACD eşkenar olduğundan m(CAD) = 60°. m(BAD) = {al} + 60 = {c}°."
+        wr = [al, 60, be + 60, 180 - al, 2 * be, c + 10, c - 10]
+    wr = [w for w in wr if 0 < w < 180]
+    if str(c) in re.findall(r"\d+", q):
+        return None  # cevap soruda zaten yazılıysa ipucu olur
+    o = _mf_opts(c, wr, lambda v: f"{v}°")
+    return _mf_raw(subject, "Üçgenlerde açı", q, o, ex, shape=sh) if o else None
+
+
+
+
+def _mf_ntri(subject):
+    """5. sınıf: iç içe / bölünmüş üçgenler. Sayma (kaç üçgen var) ve iç içe eşkenar üçgenlerin çevreleri. Şekilde gösterilen her ölçü metinde de yazılıdır."""
+    import math as _m
+    kind = random.choice(["fan", "fan", "grid2", "grid3", "perim_sum", "perim_diff"])
+    base = {"type": "geo", "sub_type": "nested_triangles"}
+    if kind == "fan":
+        m = random.choice([1, 2, 3, 4])
+        c = (m + 2) * (m + 1) // 2
+        q = "Şekilde A köşesinden BC kenarına çizilen doğru parçaları ile oluşan üçgenlerin hepsi sayılacaktır. Buna göre şekilde kaç tane üçgen vardır?"
+        names = ["A", "B", "C"] + ["D", "E", "F", "G"][:m]
+        sh = dict(base, mode="fan", m=m, labels=names)
+        ex = f"Tabanda B ve C dahil {m + 2} nokta vardır. Tepe A ile taban üzerindeki her iki nokta bir üçgen oluşturur: {m + 2} noktadan 2 seçme = {c}."
+        wr = [m + 1, m + 2, c - 1, c + 1, 2 * (m + 1), c + 2]
+    elif kind in ("grid2", "grid3"):
+        n = 2 if kind == "grid2" else 3
+        c = 5 if n == 2 else 13
+        small = n * n
+        q = (f"Şekildeki ABC üçgeni, kenarlarına paralel doğru parçalarıyla {small} eş küçük üçgene bölünmüştür. Şekilde her boyuttaki üçgenler sayıldığında toplam kaç üçgen vardır?")
+        sh = dict(base, mode="grid", n=n)
+        ex = ("Yukarı bakan: boyu 1 olan 3, boyu 2 olan 1 (ABC) = 4; aşağı bakan boyu 1 olan 1. Toplam 4 + 1 = 5." if n == 2 else
+              "Yukarı bakan: boyu 1 olan 6, boyu 2 olan 3, boyu 3 olan 1 (ABC) = 10; aşağı bakan boyu 1 olan 3. Toplam 10 + 3 = 13.")
+        wr = [small, small + 1, c - 1, c + 1, c + 2, small - 1]
+    else:
+        a = random.choice(range(6, 21, 2))
+        b = a // 2
+        if kind == "perim_sum":
+            c = 3 * a + 3 * b
+            q = (f"Şekilde kenar uzunluğu {a} cm olan ABC eşkenar üçgeninin içinde, kenar uzunluğu {b} cm olan DEF eşkenar üçgeni bulunmaktadır. "
+                 "Buna göre iki üçgenin çevreleri toplamı kaç cm’dir?")
+            ex = f"ABC'nin çevresi 3 × {a} = {3 * a} cm; DEF'in çevresi 3 × {b} = {3 * b} cm. Toplam {3 * a} + {3 * b} = {c} cm."
+            wr = [a + b, 3 * a, 3 * b, 3 * (a - b), c + 3, 2 * a + 2 * b]
+        else:
+            c = 3 * (a - b)
+            q = (f"Şekilde kenar uzunluğu {a} cm olan ABC eşkenar üçgeninin içinde, kenar uzunluğu {b} cm olan DEF eşkenar üçgeni bulunmaktadır. "
+                 "Buna göre ABC üçgeninin çevresi, DEF üçgeninin çevresinden kaç cm fazladır?")
+            ex = f"ABC'nin çevresi {3 * a} cm; DEF'in çevresi {3 * b} cm. Fark {3 * a} − {3 * b} = {c} cm."
+            wr = [a - b, 3 * a, 3 * b, 3 * (a + b), c + 3, 2 * (a - b)]
+        sh = dict(base, mode="midpoint", outer=f"{a} cm", inner=f"{b} cm")
+        o = _mf_opts(c, [w for w in wr if w > 0], lambda v: f"{v} cm")
+        return _mf_raw(subject, "Çokgenlerde çevre", q, o, ex, shape=sh) if o else None
+    o = _mf_opts(c, [w for w in wr if w > 0], str)
+    return _mf_raw(subject, "Üçgenleri sayma", q, o, ex, shape=sh) if o else None
+
+
+
+
+def _fig_vertex_count(shape):
+    try:
+        sub = str(shape.get("sub_type", "")).lower()
+        if sub == "polygon":
+            return int(shape.get("sides") or len(shape.get("labels") or []) or 0)
+        if sub == "triangle":
+            return 3
+        if sub == "quad":
+            return 4
+        if sub == "two_triangles":
+            return 4
+    except Exception:
+        pass
+    return 0
+
+
+_TRI_NAME = re.compile(r"(?<![A-Za-zÇĞİÖŞÜ])([A-ZÇĞİÖŞÜ]{3})\s+üçgen")
+_UP_TOK = re.compile(r"(?<![A-Za-zÇĞİÖŞÜ])([A-ZÇĞİÖŞÜ]{1,5})(?![A-Za-zÇĞİÖŞÜ])")
+
+
+def _fig_text_mismatch(full, shape):
+    """Metinde birden çok üçgen (ABC üçgeni, ACD üçgeni ...) anlatılıyor ama şekil bu köşe sayısıyla örtüşmüyor mu (ör. 4 harfli iki üçgen için beşgen)? -> True"""
+    try:
+        if not isinstance(shape, dict) or str(shape.get("type", "")).lower() != "geo":
+            return False
+        names = {m.group(1) for m in _TRI_NAME.finditer(full)}
+        if len(names) < 2:
+            return False
+        U = set()
+        for t in _UP_TOK.findall(full):
+            if len(t) >= 2 and not set(t) <= set("IVXLCDM") and t not in ("LGS", "MEB", "TL", "KDV"):
+                U |= set(t)
+        n = _fig_vertex_count(shape)
+        return len(U) >= 4 and n > 0 and n != len(U)
+    except Exception:
+        return False
+
+
 def _mf_wings(subject):
     legs, eyes, wings = random.choice([(6, 5, 4), (6, 5, 2)])
     total_w = wings * random.choice([6000, 9000, 12000, 15000, 18000])
@@ -8886,6 +9119,8 @@ def _mf_nest(subject):
 
 
 _MF_GENS += [(_mf_nest, ("çember", "iç içe"), (5,))]
+_MF_GENS += [(_mf_ntri, ("üçgen", "çokgen", "iç içe"), (5,))]
+_MF_GENS += [(_mf_twotri, ("üçgen", "ikizkenar", "eşkenar", "açı"), (6, 7, 8))]
 
 
 def _mf_inter(subject):
