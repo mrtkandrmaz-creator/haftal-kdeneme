@@ -3077,6 +3077,250 @@
 "topics": "Harita, Yer şekilleri, İklim, Doğal afetler",
 "d": 2,
 "ts": 1794211750
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Başvuru yapılabilecek kurumlar",
+"passage": "Belediye sınırları içerisinde yaşayan vatandaşların temizlik, su, park ve ulaşım gibi ortak ihtiyaçlarını karşılamak amacıyla kurulan yerel yönetim birimi belediyedir. Aşağıdaki tabloda bir ilçede vatandaşların belediyeye yaptığı bazı başvuru türleri ve bu başvuruları değerlendiren ilgili birimler yer almaktadır.",
+"question": "Tablodaki verilere göre yerel yönetimlerin işleyişi ve başvuru kurumlarıyla ilgili durumlardan hangisi söylenebilir?",
+"shape": {
+"type": "table",
+"title": "Belediye Başvuru Dağılım Tablosu",
+"headers": [
+"Başvuru Konusu",
+"İlgili Birim",
+"Hizmet Alanı"
+],
+"rows": [
+[
+"Kaldırım Onarımı",
+"Fen İşleri",
+"Ulaşım ve Altyapı"
+],
+[
+"Park ve Bahçe Düzenlemesi",
+"Park ve Bahçeler",
+"Çevre ve Rekreasyon"
+],
+[
+"Su Arızası",
+"Su ve Kanalizasyon İdaresi",
+"Temel Altyapı"
+]
+]
+},
+"options": {
+"A": "Belediyeler yalnızca park ve bahçe yapımıyla ilgilenen merkezi olmayan birimlerdir.",
+"B": "Vatandaşların yerel yönetimlere yaptığı başvurular farklı birimler aracılığıyla ortak ihtiyaçları karşılamak üzere çözüme kavuşturulur.",
+"C": "Su arızaları doğrudan merkezi hükümetin bakanlıkları tarafından çözülür.",
+"D": "Kaldırım onarımı ve park düzenlemesi aynı birim tarafından yürütülmektedir."
+},
+"answer": "B",
+"explanation": "Tabloda farklı konuların farklı ilgili birimler tarafından ele alındığı ve bu birimlerin vatandaşların ortak ihtiyaçlarını karşılamak üzere belediye bünyesinde çalıştığı görülmektedir. Bu durum B seçeneğinde doğru ifade edilmiştir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Demokrasi ve cumhuriyet",
+"passage": "Demokratik toplumlarda yönetim yetkisi millete aittir ve millet bu yetkiyi seçtiği temsilciler aracılığıyla kullanır. Türkiye Cumhuriyeti'nde egemenlik kayıtsız şartsız milletindir ilkesi benimsenmiştir. 23 Nisan 1920'de Türkiye Büyük Millet Meclisi'nin açılmasıyla millî egemenlik yolunda en büyük adım atılmış, 29 Ekim 1923'te ise Cumhuriyet'in ilanıyla yönetim biçimi netleşmiştir.",
+"question": "Bu bilgilere göre cumhuriyet yönetimi ve demokrasi anlayışıyla ilgili durumlardan hangisi kesinlikle söylenebilir?",
+"shape": null,
+"options": {
+"A": "Yönetme yetkisinin millete ait olması, seçimler yoluyla temsilcilerin belirlenmesini zorunlu kılar.",
+"B": "Meclisin açıldığı tarih ile Cumhuriyet'in ilan edildiği tarih aynı yıldır.",
+"C": "Demokratik ülkelerde kararlar sadece yöneticilerin kişisel görüşlerine göre alınır.",
+"D": "Millî egemenlik anlayışı yalnızca yerel yönetim seçimlerinde geçerlidir."
+},
+"answer": "A",
+"explanation": "Metinde yönetimin millete ait olduğu ve bu yetkinin seçilen temsilciler aracılığıyla kullanıldığı belirtilmiştir. Bu durum A seçeneğiyle birebir örtüşmektedir. B seçeneğindeki yıllar farklıdır (1920 ve 1923), C ve D seçenekleri ise metinle çelişmektedir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Etkin vatandaş",
+"passage": "Okulunda sınıf başkanı seçim sürecini inceleyen Zeynep, öğretmeninin tahtaya çizdiği katılım şeması üzerinde çalışmaktadır. Şemada adayların propaganda süreçleri, gizli oy kullanma kabininin kurulması ve açık sayım-döküm aşamaları gösterilmektedir. Zeynep, bu aşamaların demokratik seçim ilkeleriyle olan bağını arkadaşlarına sunacaktır.",
+"question": "Bu bilgilere ve demokratik katılım süreçlerine göre aşağıdakilerden hangisi etkin bir vatandaşın okul seçimlerinde sergilemesi gereken tutumlardan biridir?",
+"shape": null,
+"options": {
+"A": "Seçim sonuçlarını beğenmediğinde sınıf eşyalarına zarar vermek",
+"B": "Oy kullanırken kime oy verdiğini çevresindekilere yüksek sesle söylemek",
+"C": "Seçimlerin gizli oy ve açık sayım ilkesine uygun yapılmasına özen göstermek",
+"D": "Sadece kendi arkadaşının kazanması için diğer adayların konuşmasını engellemek"
+},
+"answer": "C",
+"explanation": "Demokratik seçimlerde oy kullanma gizli, sayım ve döküm ise açık yapılmalıdır. Etkin bir vatandaş bu ilkelere uyar ve sürecin adil gerçekleşmesine özen gösterir. Bu durum C seçeneğinde verilmiştir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Hak ve sorumluluklar",
+"passage": "Mahalle pazarında alışveriş yapan Kerem, pazarcı esnafının tartıda adil davranıp davranmadığını gözlemlemiştir. Tüketici olarak haklarını bilen Kerem, aldığı ürünlerin etiket fiyatı ile kasadaki fiyatı uyuşmadığında hakkını aramak için mahalle muhtarlığına ve tüketici hakları danışma birimlerine başvurabileceğini bilmektedir.",
+"question": "Buna göre Kerem'in sergilediği tutum ve başvuru yolları hakkında aşağıdaki çıkarımlardan hangisi yapılabilir?",
+"shape": null,
+"options": {
+"A": "Haklarını bilen bilinçli bir birey, karşılaştığı haksızlıklar karşısında yasal başvuru yollarını kullanır.",
+"B": "Pazar alışverişlerindeki fiyat farkları sadece merkezi hükümetin doğrudan kararıyla çözülür.",
+"C": "Tüketicilerin haklarını korumak yalnızca pazar esnafının sorumluluğundadır.",
+"D": "Mahalle muhtarlığı ekonomik denetimlerin ve fiyatlandırmaların tek denetim merciidir."
+},
+"answer": "A",
+"explanation": "Kerem haklarını bilen bilinçli bir birey olarak yasal başvuru yollarını bilmekte ve hak aramaktadır. Bu durum A seçeneğinde doğru ifade edilmiştir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Başvuru yapılabilecek kurumlar",
+"passage": "Devlet yönetiminde görevlerin ve yetkilerin dağılımı Anayasa ile belirlenmiştir. Yasama yetkisi TBMM'ye, yürütme yetkisi Cumhurbaşkanı ve bakanlıklara, yargı yetkisi ise bağımsız mahkemelere verilmiştir. Aşağıdaki tabloda devlet kurumları ve temel görev alanları eşleştirilmiştir.",
+"question": "Tablodaki verilere ve devlet yönetimindeki görev dağılımına göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "table",
+"title": "Devlet Kurumları ve Görevleri Tablosu",
+"headers": [
+"Kurum / Organ",
+"Yetki Türü",
+"Temel Görev Alanı"
+],
+"rows": [
+[
+"TBMM",
+"Yasama",
+"Kanun yapmak, değiştirmek ve kaldırmak"
+],
+[
+"Cumhurbaşkanlığı ve Bakanlıklar",
+"Yürütme",
+"Kanunları uygulamak ve kamu hizmetlerini yürütmek"
+],
+[
+"Bağımsız Mahkemeler",
+"Yargı",
+"Adaleti sağlamak ve uyuşmazlıkları çözmek"
+]
+]
+},
+"options": {
+"A": "Adaleti sağlama görevi TBMM'nin doğrudan yetki alanındadır.",
+"B": "Kanun yapma yetkisi yürütme organı olan bakanlıklara aittir.",
+"C": "Yürütme yetkisini kullanan kurum bağımsız mahkemelerdir.",
+"D": "Güçler ayrılığı ilkesi gereği yasama, yürütme ve yargı görevleri farklı kurumlar tarafından yerine getirilmektedir."
+},
+"answer": "D",
+"explanation": "Tabloda ve metinde yasama, yürütme ve yargı yetkilerinin sırasıyla TBMM, Cumhurbaşkanlığı/bakanlıklar ve bağımsız mahkemeler tarafından yürütüldüğü açıkça görülmektedir. Bu durum güçler ayrılığı ilkesini ve A seçeneğini doğrular.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Demokrasi ve cumhuriyet",
+"passage": "5/A sınıfı öğrencileri, okul bahçesinde düzenlenecek olan ağaç dikme etkinliği için görev dağılımı yapmak üzere bir toplantı düzenlemiştir. Toplantıda konuşan sınıf başkanı Deniz, 'Bahçenin hangi bölümüne hangi fidanların dikileceğini ve sulama işini kimlerin üstleneceğini ortak bir kararla belirlemeliyiz.' demiştir. Öğrenciler yapılan oylama sonucunda çoğunluğun tercihi olan planı kabul etmiş, ancak azınlıkta kalan grubun fidan türü önerisine de okul bahçesinin farklı bir köşesinde yer ayırmışlardır.",
+"question": "Bu senaryoda sergilenen tutumlar göz önüne alındığında, demokrasinin temel ilkeleriyle ilgili olarak aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Azınlıkta kalan grubun fikirleri tamamen göz ardı edilmiştir.",
+"B": "Yönetimde söz sahibi olmak yalnızca sınıf başkanının yetkisindedir.",
+"C": "Kararlar alınırken oylama yöntemiyle çoğunluğun iradesi yansıtılırken farklı düşüncelere de saygı gösterilmiştir.",
+"D": "Etkinlikteki tüm görevler kura yöntemiyle ve zorunlu olarak dağıtılmıştır."
+},
+"answer": "C",
+"explanation": "Senaryoda öğrencilerin ortak kararla hareket ettiği, oylama sonucunda çoğunluğun tercihini uyguladığı ve azınlıkta kalan grubun önerisine de yer ayırarak farklı düşüncelere saygı gösterdiği açıkça belirtilmiştir. Bu durum, demokraside çoğunluğun kararının uygulanırken azınlık haklarının ve farklı görüşlerin korunması ilkesiyle birebir örtüşmektedir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Hak ve sorumluluklar",
+"passage": "Mahallesindeki parkta oyun oynayan Mert, parkın aydınlatma direklerinin akşam saatlerinde yanmadığını ve bazı oyun aletlerinin kırık olduğunu fark etmiştir. Babasıyla birlikte bu durumu belediyeye bildirmeye karar vermişlerdir. Belediyeye yazılı olarak başvuran Mert, dilekçesinde hem kendi hakkı olan güvenli oyun alanını talep etmiş hem de vatandaş olarak çevrenin korunmasına katkı sunma sorumluluğunu yerine getirmiştir.",
+"question": "Bu duruma göre Mert'in gerçekleştirdiği başvuru süreci ve sergilediği tutum için aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Mert, yalnızca kişisel çıkarlarını korumak amacıyla hareket etmiştir.",
+"B": "Mert, haklarını ararken aynı zamanda toplumsal sorumluluk bilinciyle hareket etmiştir.",
+"C": "Belediyeler yalnızca park onarımıyla ilgilenir, vatandaşların başvurularını dikkate almaz.",
+"D": "Parkın onarımı için başvuru yapmak yalnızca mahalle muhtarının görevidir."
+},
+"answer": "B",
+"explanation": "Mert, parkın eksikliklerini yetkili kuruma bildirerek hem güvenli oyun alanı hakkını aramış hem de çevrenin korunmasına katkı sunarak toplumsal sorumluluk bilinci göstermiştir. Doğru şık bu durumu net bir şekilde açıklamaktadır.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Başvuru yapılabilecek kurumlar",
+"passage": "Devlet kurumlarının yapısını inceleyen bir grup öğrenci, yasama, yürütme ve yargı organlarının görevlerini ve vatandaşların başvuru yapabileceği kurumları araştırarak aşağıdaki şemayı hazırlamıştır. Şemada Türkiye'nin yönetim yapısındaki temel organlar gösterilmiştir.",
+"question": "Verilen şemaya ve devlet yönetimindeki görev dağılımına göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Yasama (TBMM)",
+"Yürütme (Cumhurbaşkanı ve Bakanlar)",
+"Yargı (Mahkemeler)"
+],
+"values": [
+33,
+34,
+33
+],
+"title": "Devlet Yönetimindeki Temel Organlar Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Kanun tekliflerini hazırlamak ve onaylamak yargı organlarının görevidir.",
+"B": "Türkiye Büyük Millet Meclisi (TBMM) yasama yetkisini elinde bulunduran kurumdur ve 23 Nisan 1920'de açılmıştır.",
+"C": "Cumhurbaşkanlığı ve bakanlıklar mahkemelerin kararlarını doğrudan değiştirebilir.",
+"D": "Devlet yönetimindeki tüm görevler tek bir elde toplanmıştır."
+},
+"answer": "B",
+"explanation": "Demokratik devletlerde güç ayrılığı ilkesi geçerlidir. Yasama görevi TBMM'ye (23 Nisan 1920'de açılmıştır) aittir. Şemada ve temel bilgilerde yasama organı TBMM olarak belirtilmiştir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Etkin vatandaş",
+"passage": "Yerel yönetimlerin işleyişini yerinde incelemek isteyen 5/C sınıfı öğrencileri, mahallelerindeki muhtarlık ve belediye birimlerini ziyaret etmişlerdir. Muhtarın mahalle sakinlerinin ihtiyaçlarını belirleyip ilgili kurumlara ilettiğini, belediye başkanının ise su, temizlik ve ulaşım gibi yerel hizmetleri yürüttüğünü gözlemlemişlerdir.",
+"question": "Bu gözlemlere ve yerel yönetimlerin yapısına göre aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Muhtar ve belediye başkanı yerel yönetim birimleridir ve halkın katılımıyla demokratik yollarla seçilir.",
+"B": "Muhtar ve belediye başkanı merkezi yönetim tarafından atanarak göreve gelir.",
+"C": "Yerel yönetimler halkın sorunlarıyla ilgilenmez, sadece merkezi kanunları uygular.",
+"D": "Belediye başkanı yasama faaliyetlerini yürütmekle görevli en üst düzey yöneticidir."
+},
+"answer": "A",
+"explanation": "Muhtar ve belediye başkanı yerel yönetim örnekleridir ve seçimle iş başına gelirler. Bu durum yerel demokrasi ve etkin vatandaşlık anlayışının bir gereğidir.",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 4,
+"ts": 1794266747
 }
 ]
 }

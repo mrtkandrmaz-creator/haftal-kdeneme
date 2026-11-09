@@ -1014,6 +1014,380 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+   "text": "Bir spor salonunda yapılan ankette üyelerin katıldığı branşlar listelenmiştir. Futbol kursuna gelenlerin sayısı {k}, basketbol kursuna gelenlerin sayısı futbolun {m} katıdır. Voleybol kursuna gelenlerin sayısı ise basketbol kursuna gelenlerden {n} azdır. Buna göre voleybol kursuna gelenlerin sayısı kaçtır?",
+   "vars": {
+    "k": {
+     "lo": 15,
+     "hi": 35,
+     "step": 5
+    },
+    "m": {
+     "lo": 2,
+     "hi": 3
+    },
+    "n": {
+     "lo": 5,
+     "hi": 15,
+     "step": 5
+    }
+   },
+   "derived": {
+    "bask": "k*m",
+    "vol": "k*m-n"
+   },
+   "constraints": [
+    "k*m > n"
+   ],
+   "answer": "k*m-n",
+   "wrong": [
+    "k*m+n",
+    "k+m-n",
+    "k*n-m"
+   ],
+   "unit": "kişi",
+   "explanation": "Basketbolcu sayısı olan {k}*{m} değerinden {n} çıkarılarak {ans} elde edilir.",
+   "positive": true,
+   "id": "m5-0027",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+   "text": "Bir torbada {a} adet kırmızı, {b} adet mavi ve {c} adet sarı bilye vardır. Bu torbadan rastgele çekilen bir bilyenin rengi ile ilgili yapılan yorumlar inceleniyor. Buna göre imkânsız olan olayın gerçekleşme olasılığını gösteren sayı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 1,
+     "hi": 5
+    },
+    "b": {
+     "lo": 1,
+     "hi": 5
+    },
+    "c": {
+     "lo": 0,
+     "hi": 0
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "a != b"
+   ],
+   "answer": "0",
+   "wrong": [
+    "1",
+    "a",
+    "b"
+   ],
+   "unit": "",
+   "explanation": "Torrada sarı bilye olmadığı için sarı bilye çekme olayı imkânsızdır ve olasılığı 0'dır.",
+   "positive": true,
+   "id": "m5-0028",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+   "text": "Bir sepette sadece {a} adet armut vardır. Bu sepetten rastgele seçilen bir meyvenin armut olma olasılığı ile ilgili değer isteniyor. Buna göre bu olayın kesin olmasını belirten sayı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 20
+    }
+   },
+   "derived": {},
+   "constraints": [],
+   "answer": "1",
+   "wrong": [
+    "0",
+    "a",
+    "a/2"
+   ],
+   "unit": "",
+   "explanation": "Sepette sadece armut olduğu için seçilen meyvenin armut olması kesin olaydır ve değeri 1'dir.",
+   "positive": true,
+   "id": "m5-0029",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Bir okulun bahçesinde düzenlenen kermes için Elif bir tepsi börek hazırlamıştır. Elif, tepsideki böreğin tamamını eşit büyüklükte {a} eş dilime ayırmıştır. Kermes sırasında bu dilimlerden {b} tanesi satılmıştır. Buna göre satılan börek miktarını belirten kesrin pay ve paydasının toplamı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 8,
+     "hi": 20,
+     "step": 2
+    },
+    "b": {
+     "lo": 3,
+     "hi": 7
+    }
+   },
+   "derived": {
+    "top": "b",
+    "bot": "a"
+   },
+   "constraints": [
+    "a > b",
+    "a % 2 == 0"
+   ],
+   "answer": "a+b",
+   "wrong": [
+    "a-b",
+    "a*b",
+    "b"
+   ],
+   "unit": "",
+   "explanation": "Satılan miktar b/a kesri ile ifade edilir. Pay ve payda toplamı a + b olur.",
+   "positive": true,
+   "id": "m5-0030",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Mert, doğum günü pastasını eşit büyüklükte {a} dilime ayırmıştır. Partiye gelen misafirler pastanın {b} dilimini yemiştir. Buna göre yenilmeyen pasta miktarını gösteren kesrin payı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 24,
+     "step": 2
+    },
+    "b": {
+     "lo": 3,
+     "hi": 8
+    }
+   },
+   "derived": {
+    "kalan": "a-b"
+   },
+   "constraints": [
+    "a > b"
+   ],
+   "answer": "a-b",
+   "wrong": [
+    "a+b",
+    "b",
+    "a"
+   ],
+   "unit": "dilim",
+   "explanation": "Toplam dilim a iken yenilen b kadardır. Yenilmeyen miktar a - b olur.",
+   "positive": true,
+   "id": "m5-0031",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme",
+   "text": "Bir fırında üretilen ekmekler {a} adetlik kolilere yerleştirilecektir. Fırında o gün üretilen toplam ekmek sayısı {b} adettir. Kolileme işlemi bittikten sonra artan ekmekler ise günlük tüketim için ayrılmıştır. Buna göre günlük tüketim için ayrılan ekmek sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 6,
+     "hi": 15
+    },
+    "b": {
+     "lo": 120,
+     "hi": 250,
+     "step": 10
+    }
+   },
+   "derived": {
+    "ans": "b%a"
+   },
+   "constraints": [
+    "b > a",
+    "b%a > 0"
+   ],
+   "answer": "b % a",
+   "wrong": [
+    "b // a",
+    "b - a",
+    "b + a"
+   ],
+   "unit": "adet",
+   "explanation": "Artan ekmekleri bulmak için toplam ekmek sayısı koli kapasitesine bölünür ve kalana bakılır. {b} % {a} işleminden kalan {ans} adet ekmek tüketim için ayrılmıştır.",
+   "positive": true,
+   "id": "m5-0032",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+   "text": "Bir doğa koruma derneği, ormanlardaki kuş sayısını dijital sayaçlarla takip etmektedir. Kuzey Ormanı'ndaki sayaçta {a} yüz bin, {b} bin, {c} yüz ve {d} birlik olduğu okunmuştur. Buna göre bu ormandaki toplam kuş sayısını gösteren doğal sayı kaç basamaklıdır?",
+   "vars": {
+    "a": {
+     "lo": 1,
+     "hi": 9
+    },
+    "b": {
+     "lo": 1,
+     "hi": 9
+    },
+    "c": {
+     "lo": 1,
+     "hi": 9
+    },
+    "d": {
+     "lo": 1,
+     "hi": 9
+    }
+   },
+   "derived": {
+    "ans": "6"
+   },
+   "constraints": [
+    "a>0"
+   ],
+   "answer": "6",
+   "wrong": [
+    "5",
+    "7",
+    "8"
+   ],
+   "unit": "basamak",
+   "explanation": "Yüz binlik birim 6 basamaklı en büyük basamak basamak grubunu belirler, bu yüzden sayı 6 basamaklıdır.",
+   "positive": true,
+   "id": "m5-0033",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir belediye, şehir parkına dikilmek üzere her biri {a} TL olan {p} adet süs bitkisi satın almıştır. Buna göre bu bitkiler için toplam kaç TL ödenmiştir?",
+   "vars": {
+    "a": {
+     "lo": 20,
+     "hi": 90,
+     "step": 10
+    },
+    "p": {
+     "lo": 10,
+     "hi": 50,
+     "step": 5
+    }
+   },
+   "derived": {
+    "ans": "a*p"
+   },
+   "constraints": [
+    "a*p<5000"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "a*p+a",
+    "a*p-p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} ile {p} çarpılarak toplam ödenen tutar bulunur.",
+   "positive": true,
+   "id": "m5-0034",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir okul kütüphanesinde toplam {a} adet raf bulunmaktadır. Her bir rafa eşit sayıda olmak üzere toplam {b} adet hikâye kitabı yerleştirilecektir. Buna göre her bir rafa tam olarak kaç adet kitap düşer?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 30,
+     "step": 5
+    },
+    "b": {
+     "lo": 100,
+     "hi": 900,
+     "step": 50
+    }
+   },
+   "derived": {
+    "ans": "b//a",
+    "k": "b%a"
+   },
+   "constraints": [
+    "b%a==0"
+   ],
+   "answer": "b//a",
+   "wrong": [
+    "b+a",
+    "b-a",
+    "b*a"
+   ],
+   "unit": "adet",
+   "explanation": "Toplam kitap sayısı raf sayısına bölünerek her rafa düşen kitap sayısı bulunur.",
+   "positive": true,
+   "id": "m5-0035",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir çiftçi, bahçesinden topladığı elmaların {a} kilogramını yerel pazarda sattıktan sonra geriye {b} kilogram elması kalmıştır. Buna göre çiftçi bahçesinden toplam kaç kilogram elma toplamıştır?",
+   "vars": {
+    "a": {
+     "lo": 50,
+     "hi": 200,
+     "step": 10
+    },
+    "b": {
+     "lo": 100,
+     "hi": 400,
+     "step": 20
+    }
+   },
+   "derived": {
+    "ans": "a+b"
+   },
+   "constraints": [
+    "a+b<600"
+   ],
+   "answer": "a+b",
+   "wrong": [
+    "b-a",
+    "a*b",
+    "b//2"
+   ],
+   "unit": "kg",
+   "explanation": "Satılan miktar ile kalan miktar toplanarak toplam elma miktarı bulunur.",
+   "positive": true,
+   "id": "m5-0036",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
   }
  ]
 }

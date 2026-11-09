@@ -1380,6 +1380,726 @@
 "topics": "Schulfächer, Schulsachen",
 "d": 4,
 "ts": 1794210326
+},
+{
+"subject": "Almanca",
+"topic": "Mein Lieblingssport",
+"passage": "Ein Lehrer fragt drei Schüler nach ihrem Lieblingssport und der Grund:\n- Ayşe: \"Ich spiele Badminton, weil es ein Einzelsport ist und ich alleine üben kann.\"\n- Metin: \"Ich spiele Hockey, weil es ein Mannschaftssport ist und wir zusammen arbeiten.\"\n- Zeynep: \"Ich spiele Tennis, weil es auch ein Einzelsport oder Doppel sein kann, aber ich mag es, gegen meine Schwester zu spielen (Doppel).\"\n\nDie Regel im Unterricht: \"Ein Einzelsport wird normalerweise von einer Person gespielt. Ein Mannschaftssport wird von einer Gruppe gespielt.\"",
+"question": "Welche Aussage über den Sport von Zeynep ist gemäß der Unterrichtsrage korrekt?",
+"shape": null,
+"options": {
+"A": "Zeynep spielt keinen Sport, der in der Liste der Sportarten steht.",
+"B": "Zeynep spielt ein Spiel, das als Mannschaftssport (Doppel) klassifiziert werden kann.",
+"C": "Zeynep spielt nur Mannschaftssportarten.",
+"D": "Zeynep spielt nur Einzelsportarten."
+},
+"answer": "B",
+"explanation": "1. Zeynep spielt Tennis. 2. Sie spielt im \"Doppel\" gegen ihre Schwester. 3. Doppel-Tennis wird von zwei Personen gespielt, was der Definition eines Mannschaftssports oder zumindest eines Spiels mit mehreren Personen entspricht (im Gegensatz zum reinen Einzelsport von Ayşe). 4. Die Aussage B erkennt an, dass ihr Spiel (Doppel) eine Gruppeneigenschaft hat, die sich vom reinen Einzelsport unterscheidet. Option A ist falsch, weil sie mit einer anderen spielt. Option C ist stärk falsch, da Tennis auch Einzelsport ist, aber B ist die beste Passung zur Beschreibung \"gegen meine Schwester\" (Zwei Personen). Option D ist falsch. *Korrektur*: Lässig: Tennis kann beides sein. Im Kontext \"gegen meine Schwester\" ist es ein Spiel zu zweit. Option B ist die einzige, die die Doppel-Natur korrekt einschlägt, ohne es ausschließlich als Mannschaftssport zu definieren, aber im Kontext der Unterscheidung \"Einzel vs. Gruppe/Partner\" passt B am besten zur Logik, dass sie nicht *allein* spielt wie Ayşe.",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 2,
+"ts": 1794264914
+},
+{
+"subject": "Almanca",
+"topic": "Sportarten",
+"passage": "Ein Sportwetten-Simulator für Kinder zeigt die Wahrscheinlichkeit von Siegen in verschiedenen Sportarten basierend auf der Geschichte der letzten 10 Spiele:\n- Schwimmen (Einzel): 8 Siege, 2 Niederlagen.\n- Handball (Mannschaft): 5 Siege, 5 Niederlagen.\n- Reiten (Einzel): 7 Siege, 3 Niederlagen.\n\nDer Computer sagt: \"Die Wahrscheinlichkeit für einen Sieg ist höher, wenn die Anzahl der Siege größer als die Anzahl der Niederlagen ist.\"",
+"question": "Welche Sportart hat laut diesem Algorithmus die höchste \"Siegeswahrscheinlichkeit\" (Siege > Niederlagen + 2) und ist gleichzeitig ein Einzelsport?",
+"shape": null,
+"options": {
+"A": "Fußball",
+"B": "Reiten",
+"C": "Schwimmen",
+"D": "Handball"
+},
+"answer": "C",
+"explanation": "1. Bedingung 1: Einzelsport. Kandidaten: Schwimmen, Reiten. (Handball ist Mannschaft). 2. Bedingung 2: Siege > Niederlagen + 2. 3. Schwimmen: 8 Siege, 2 Niederlagen. 8 > 2+2 (8>4) ist WAHR. 4. Reiten: 7 Siege, 3 Niederlagen. 7 > 3+2 (7>5) ist WAHR. 5. Beide erfüllen die Bedingung. Wir müssen die \"höchste\" Wahrscheinlichkeit bestimmen. 8 Siege bei Schwimmen ist mehr als 7 bei Reiten. Also hat Schwimmen die höhere Anzahl an Siegen. 6. C ist die Antwort.",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 2,
+"ts": 1794264914
+},
+{
+"subject": "Almanca",
+"topic": "Einzel- und Mannschaftssportarten",
+"passage": "In der Turnhalle sind zwei Gruppen von Kindern.\nGruppe A: 6 Kinder spielen Volleyball (Mannschaftssport, 6 Spieler pro Team nötig, hier 2 Teams à 6? Nein, Volleyball ist 6v6. Lass uns sagen, sie spielen Trainingsspiele).\nGruppe B: 4 Kinder fahren Rad (Einzelaktivität, aber sie fahren zusammen). \n\nEin Beobachter sagt: \"Gruppe A braucht eine Regeln für Teams. Gruppe B kann individuell lernen, aber sie tun es gemeinsam.\"",
+"question": "Welcher Unterschied zwischen Gruppe A und Gruppe B wird im Text korrekt beschrieben?",
+"shape": null,
+"options": {
+"A": "Gruppe A fährt Rad, Gruppe B spielt Volleyball.",
+"B": "Gruppe A erfordert Teamregeln, Gruppe B ist individuell, wird aber gemeinsam ausgeführt.",
+"C": "Gruppe A hat 4 Spieler, Gruppe B hat 6 Spieler.",
+"D": "Gruppe A spielt einen Einzelsport, Gruppe B einen Mannschaftssport."
+},
+"answer": "B",
+"explanation": "1. Der Text sagt: Gruppe A (Volleyball) ist Mannschaftssport und braucht Teamregeln. 2. Der Text sagt: Gruppe B (Rad) ist Einzelaktivität (individuell lernen), aber sie tun es gemeinsam. 3. Option B fasst dies exakt zusammen: A=Teamregeln, B=individuell aber gemeinsam. 4. Option A ist falsch (Volleyball ist nicht Einzel). 5. Option C vertauscht die Sportarten. 6. Option D hat die falschen Zahlen (A hat 6, B hat 4, Option D sagt A=4, B=6).",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 2,
+"ts": 1794264914
+},
+{
+"subject": "Almanca",
+"topic": "Sportarten",
+"passage": "Ein Bus fährt zu einem Sportwettkampf.\n- Stelle 1-10: Schüler, die Fußball spielen (Mannschaftssport).\n- Stelle 11-15: Schüler, die Schwimmen (Einzelsport).\n- Stelle 16-20: Schüler, die Tischtennis (Einzel oder Doppel).\n\nDer Fahrer sagt: \"Die Hälfte der ersten 10 Plätze sind Fußballspieler. Die anderen 10 Plätze sind gemischt.\"",
+"question": "Wie viele Schüler sitzen in den Plätzen 11-20?",
+"shape": null,
+"options": {
+"A": "5",
+"B": "10",
+"C": "15",
+"D": "20"
+},
+"answer": "B",
+"explanation": "1. Es gibt insgesamt Plätze 1 bis 20. 2. Plätze 1-10: Fußball. 3. Plätze 11-15: Schwimmen. 4. Plätze 16-20: Tischtennis. 5. Die Frage ist: Wie viele Schüler sitzen in Plätzen 11-20? 6. Plätze 11, 12, 13, 14, 15 (5 Schüler) und 16, 17, 18, 19, 20 (5 Schüler). 7. Gesamt: 5 + 5 = 10 Schüler. 8. Die Aussage des Fahrers \"Die anderen 10 Plätze sind gemischt\" bezieht sich auf die Plätze nach den ersten 10, also 11-20. Es sitzen also 10 Schüler dort.",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 2,
+"ts": 1794264914
+},
+{
+"subject": "Almanca",
+"topic": "Sport: Sportarten, Mein Lieblingssport",
+"passage": "Prof. Dr. Ayşe is a sports scientist. She asks 4 students: \"Which sport do you play?\" and \"How many times a week?\"\n- Ben: Ich spiele Fußball. 2 Mal pro Woche.\n- Ayşe: Ich spiele Tennis. 1 Mal pro Woche.\n- Mehmet: Ich schwimme. 3 Mal pro Woche.\n- Zeynep: Ich tanze. 2 Mal pro Woche.\nProf. Ayşe sagt: \"Sportarten, die man ALLEIN machen kann, brauchen meistens WENIGER Zeit pro Woche als Mannschaftssportarten.\"\nBewerte die Aussagen:\nI. Fußball ist eine Mannschaftssportart.\nII. Nach der Aussage der Professorin muss Zeynep (Tanz) mehr Zeit pro Woche investieren als Ben (Fußball), weil Tanz ein Einzelsport ist, der mehr Zeit braucht.\nIII. Mehmet investiert die meiste Zeit pro Woche in seinen Sport.",
+"question": "Welche Aussagen sind laut der Logik von Prof. Ayşe und den Daten der Schüler korrekt?",
+"shape": null,
+"options": {
+"A": "Nur I",
+"B": "Nur I und III",
+"C": "Nur II und III",
+"D": "I, II und III"
+},
+"answer": "B",
+"explanation": "1. Fußball ist eine klassische Mannschaftssportart, daher ist Aussage I wahr.\n2. Prof. Ayşe behauptet, dass Einzelsportarten (wie Tanz) *weniger* Zeit brauchen. Zeynep (Einzelsport) und Ben (Mannschaftssport) geben beide 2 Mal an. Wenn Einzelsport weniger *braucht* (oder weniger beansprucht im Vergleich zu Mannschaftssport, der oft komplexer ist), dann ist die Aussage II, dass Tanz *mehr* Zeit braucht, im Widerspruch zur Prämisse oder zumindest nicht logisch zwingend aus 'weniger brauchen' ableitbar, aber der Punkt ist: Die Prämisse sagt 'Einzelsport braucht weniger'. Zeynep macht es 2x, Ben 2x. Wenn Einzelsport weniger braucht, warum macht sie es gleich souvent? Der Fehler in Aussage II liegt in der Kausalität: 'weil Tanz ein Einzelsport ist, der mehr Zeit braucht'. Das widerspricht der Definition der Professorin. Also ist II falsch.\n3. Mehmet schwimmt 3 Mal. Ben (2), Ayşe (1), Zeynep (2). 3 ist die höchste Zahl. Also ist Aussage III wahr.\nErgebnis: I und III sind wahr. II ist falsch.",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 2,
+"ts": 1794264914
+},
+{
+"subject": "Almanca",
+"topic": "Sport: Einzel- und Mannschaftssportarten",
+"passage": "Ein Arzt untersucht die Herzfrequenz von vier Kindern nach dem Sport. Die Tabelle zeigt die Frequenz in Schlägen pro Minute (bpm):\n\n- Emre (Volleyball, Mannschaft): 140 bpm\n- Seda (Schwimmen, Einzel): 135 bpm\n- Can (Basketball, Mannschaft): 145 bpm\n- Elif (Laufen, Einzel): 130 bpm\n\nBeobachtung: Mannschaftssportarten erzeugen oft eine *höhere* durchschnittliche Herzfrequenz bei Kindern im selben Alter als Einzelsportarten, wegen der intensiven Team-Interaktion.\n\nVergleiche die Gruppen:\n- Gruppe A (Mannschaft): Durchschnittliche Herzfrequenz = ?\n- Gruppe B (Einzel): Durchschnittliche Herzfrequenz = ?",
+"question": "Welche Schlussfolgerung über die durchschnittliche Herzfrequenz der beiden Gruppen ist korrekt?",
+"shape": null,
+"options": {
+"A": "Die Durchschnittswerte von Gruppe A und B sind gleich.",
+"B": "Der Durchschnitt von Gruppe A ist niedriger als der von Gruppe B.",
+"C": "Der Durchschnitt von Gruppe A ist höher als der von Gruppe B.",
+"D": "Man kann keinen Durchschnitt berechnen, weil die Sportarten unterschiedlich sind."
+},
+"answer": "C",
+"explanation": "1. Berechnen Sie den Durchschnitt für Gruppe A (Mannschaft: Emre 140, Can 145): (140 + 145) / 2 = 285 / 2 = 142.5 bpm.\n2. Berechnen Sie den Durchschnitt für Gruppe B (Einzel: Seda 135, Elif 130): (135 + 130) / 2 = 265 / 2 = 132.5 bpm.\n3. Vergleichen Sie die Werte: 142.5 (Gruppe A) ist größer als 132.5 (Gruppe B).\n4. Also ist der Durchschnitt der Mannschaftssportart-Gruppe höher.",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 2,
+"ts": 1794264914
+},
+{
+"subject": "Almanca",
+"topic": "Sport: Mein Lieblingssport",
+"passage": "In einer Sportart-Galerie gibt es vier Bilder. Die Besucher sollen ihre Lieblingskategorie wählen: \"Adrenalin\" oder \"Ruhe\".\n\n- Bild 1: Segeln (Einzel/Mannschaft je nach Boot, hier Segelboot) -> Stimme: 12 für \"Ruhe\".\n- Bild 2: Eisklettern (Einzel) -> Stimme: 8 für \"Adrenalin\".\n- Bild 3: Fußball (Mannschaft) -> Stimme: 10 für \"Adrenalin\".\n- Bild 4: Yoga (Einzel) -> Stimme: 15 für \"Ruhe\".\n\nEine Besucherin, Frau Kaya, sagt: \"Ich habe ein Bild mit der höchsten Anzahl an 'Ruhe'-Stimmen als mein Lieblingssportbild gewählt. Außerdem ist dieser Sport eine Einzelsportart.\"\n\nWelches Bild hat Frau Kaya gewählt?",
+"question": "Welches Sportart-Bild entspricht der Beschreibung von Frau Kaya?",
+"shape": null,
+"options": {
+"A": "Yoga",
+"B": "Segeln",
+"C": "Fußball",
+"D": "Eisklettern"
+},
+"answer": "A",
+"explanation": "1. Identifiziere die Bilder mit der Kategorie \"Ruhe\": Segeln (12 Stimmen) und Yoga (15 Stimmen).\n2. Finde das Bild mit der *höchsten* Anzahl an \"Ruhe\"-Stimmen: 15 (Yoga) ist größer als 12 (Segeln).\n3. Prüfe die zweite Bedingung: Ist Yoga eine Einzelsportart? Ja, Yoga wird typischerweise als Einzelsport betrachtet.\n4. Segeln ist auch ein ruhiger Sport, hat aber weniger Stimmen. Eisklettern und Fußball sind \"Adrenalin\". Also ist die Antwort Yoga.",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 2,
+"ts": 1794264914
+},
+{
+"subject": "Almanca",
+"topic": "Herkunft und Wohnort",
+"passage": "In einer internationalen Roboter-AG treffen sich Schüler aus verschiedenen Städten. Lukas sagt: 'Ich wohne in Berlin, aber ich komme aus Wien.' Sarah antwortet: 'Ich lebe in München, aber ich bin in Paris geboren.' Tom fügt hinzu: 'Ich komme aus Rom und wohne auch dort.'",
+"question": "Buna göre, ifadelerden hangileri doğrudur?\nI. Lukas wohnt in Berlin.\nII. Sarah kommt aus München.\nIII. Tom lebt in Rom.",
+"shape": null,
+"options": {
+"A": "I ve II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Lukas wohnt in Berlin (doğru). Sarah ist in Paris geboren, kommt also aus Paris, nicht aus München (yanlış). Tom wohnt in Rom und kommt aus Rom (doğru). I ve III ifadeleri doğrudur.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Alter und Zahlen",
+"passage": "Beim Besuch eines historischen Schlosses in Deutschland liest eine Schülergruppe die Informationen über die Erbauer. Architekt Hans ist 45 Jahre alt. Sein Assistent Klaus ist 12 Jahre jünger als Hans. Die Restauratorin Anna ist so alt wie Klaus.",
+"question": "Bu bilgilere göre Anna kaç yaşındadır?",
+"shape": null,
+"options": {
+"A": "23",
+"B": "33",
+"C": "45",
+"D": "57"
+},
+"answer": "B",
+"explanation": "Hans ist 45. Klaus ist 12 Jahre jünger: 45 - 12 = 33. Anna ist so alt wie Klaus, also ist sie 33 Jahre alt.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Sprachen",
+"passage": "Während der Sommerferien unterhalten sich vier Freunde über die Sprachen, die sie sprechen. \n- Ali: 'Ich spreche Türkisch und Deutsch.' \n- Maria: 'Ich spreche Spanisch und Englisch.' \n- Jan: 'Ich spreche Deutsch und Französisch.' \n- Elif: 'Ich spreche Türkisch und Englisch.'",
+"question": "Buna göre, Deutsch (Almanca) konuşan kişiler hangileridir?",
+"shape": null,
+"options": {
+"A": "Ali ve Maria",
+"B": "Ali ve Jan",
+"C": "Maria ve Elif",
+"D": "Jan ve Elif"
+},
+"answer": "B",
+"explanation": "Ali spricht Türkisch und Deutsch. Jan spricht Deutsch und Französisch. Beide sprechen Deutsch.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Alter und Zahlen",
+"passage": "In einem Aquarium werden die Fische nach ihrem Alter in Monaten klassifiziert. Der Goldfisch 'Goldi' ist 14 Monate alt. Der Buntbarsch 'Bunti' ist 26 Monate alt. Der Wels 'Welli' ist die Differenz der beiden.",
+"question": "Bu bilgilere göre Welli kaç aylıktır?",
+"shape": null,
+"options": {
+"A": "10",
+"B": "12",
+"C": "14",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Bunti ist 26, Goldi ist 14. Die Differenz ist 26 - 14 = 12.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Länder",
+"passage": "Im Zoo gibt es Tiere aus verschiedenen Ländern. \n- Der Löwe kommt aus Kenia (Afrika). \n- Der Eisbär kommt aus Deutschland (Europa). \n- Das Känguru kommt aus Australien. \n- Der Pinguin kommt aus der Antarktis.",
+"question": "Buna göre, Eisbär (Kutup ayısı) hangi ülkeye aittir?",
+"shape": null,
+"options": {
+"A": "Deutschland",
+"B": "Kenia",
+"C": "Antarktis",
+"D": "Australien"
+},
+"answer": "A",
+"explanation": "Metinde Eisbär'in Almanya (Deutschland) ile ilişkilendirildiği açıkça belirtilmiştir.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Alter und Zahlen",
+"passage": "Beim Campen zählen die Schüler ihre Ausrüstungsgegenstände. \n- Max: 'Ich habe 15 Zelte.' \n- Lena: 'Ich habe 10 Zelte mehr als Max.' \n- Tim: 'Ich habe 5 Zelte weniger als Lena.'",
+"question": "Bu bilgilere göre Tim kaç tane çadıra sahiptir?",
+"shape": null,
+"options": {
+"A": "15",
+"B": "20",
+"C": "25",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Max = 15. Lena = 15 + 10 = 25. Tim = 25 - 5 = 20.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Herkunft",
+"passage": "Bei einer archäologischen Ausgrabung finden Forscher Aufzeichnungen über drei Entdecker: \n- Peter kommt aus Österreich. \n- Sarah kommt aus der Schweiz. \n- Ahmet kommt aus der Türkei.",
+"question": "Buna göre, Ahmet'in ülkesi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Österreich",
+"B": "Deutschland",
+"C": "Türkei",
+"D": "Schweiz"
+},
+"answer": "C",
+"explanation": "Metinde açıkça 'Ahmet kommt aus der Türkei' ifadesi yer almaktadır.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Herkunft und Wohnort",
+"passage": "Ein Fotograf stellt seine Gäste vor: 'Hier sind meine Freunde. Lukas kommt aus Berlin und wohnt jetzt in İzmir. Selin ist aus Istanbul und lebt auch in İzmir. Hans kommt aus Wien, aber er wohnt seit zwei Jahren in Antalya.'",
+"question": "Buna göre aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Lukas kommt aus İzmir.",
+"B": "Lukas wohnt in der gleichen Stadt wie Selin.",
+"C": "Hans wohnt in Wien.",
+"D": "Selin kommt aus Antalya."
+},
+"answer": "B",
+"explanation": "Lukas kommt aus Berlin (Herkunft) und wohnt in İzmir (Wohnort). Selin kommt aus Istanbul (Herkunft) und wohnt in İzmir (Wohnort). Da beide in İzmir wohnen, ist die Aussage, dass Lukas in der gleichen Stadt wie Selin wohnt, korrekt.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Alter und Zahlen",
+"passage": "Lehrerin: 'Hallo Kinder! Heute machen wir ein Spiel im Garten. Wie alt seid ihr?'\nCan: 'Ich bin elf Jahre alt.'\nElif: 'Ich bin zehn Jahre alt.'\nKerem: 'Ich bin zwölf Jahre alt.'",
+"question": "Lehrerin möchte die Schüler nach ihrem Alter sortieren. Buna göre küçükten büyüğe doğru sıralama hangisidir?",
+"shape": null,
+"options": {
+"A": "Elif - Can - Kerem",
+"B": "Elif - Kerem - Can",
+"C": "Can - Elif - Kerem",
+"D": "Kerem - Can - Elif"
+},
+"answer": "A",
+"explanation": "Elif ist 10 (zehn), Can ist 11 (elf) und Kerem ist 12 (zwölf). Die richtige Reihenfolge von klein nach groß (10, 11, 12) ist Elif, Can, Kerem.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Herkunft und Sprachen",
+"passage": "In einem Fischerdorf am Meer treffen sich Urlauber. Der Fischer notiert die Herkunft der Gäste: \n- Ahmet kommt aus der Türkei und spricht Türkisch.\n- Hans kommt aus Deutschland und spricht Deutsch.\n- Jean kommt aus Frankreich und spricht Französisch.",
+"question": "Buna göre aşağıdaki eşleştirmelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ahmet - Französisch",
+"B": "Jean - Türkisch",
+"C": "Hans - Deutsch",
+"D": "Ahmet - Deutsch"
+},
+"answer": "C",
+"explanation": "Ahmet kommt aus der Türkei (Türkisch), Hans kommt aus Deutschland (Deutsch), Jean kommt aus Frankreich (Französisch). Die einzige korrekte Übereinstimmung in den Optionen ist Hans mit der Sprache Deutsch.",
+"vfd2": true,
+"unit": "Das bin ich",
+"topics": "Alter und Zahlen, Länder und Sprachen, Herkunft und Wohnort",
+"d": 1,
+"ts": 1794265396
+},
+{
+"subject": "Almanca",
+"topic": "Tageszeiten",
+"passage": "Die Schüler beschreiben ihren täglichen Ablauf in der Schule und zu Hause. Tim sagt: 'Um acht Uhr beginnt der Unterricht morgens.' Sara sagt: 'In der Mittagspause essen wir in der Kantine.' Jonas sagt: 'Am Nachmittag machen wir Sport auf dem Schulhof.'",
+"question": "Bu metne göre öğrencilerin bahsettiği günün zaman dilimleri sırasıyla hangi seçenekte verilmiştir?",
+"shape": null,
+"options": {
+"A": "Montag - Freitag - Sonntag",
+"B": "Morgen - Mittag - Nachmittag",
+"C": "Montag - Dienstag - Mittwoch",
+"D": "Frühling - Sommer - Herbst"
+},
+"answer": "B",
+"explanation": "Tim erwähnt die Schule am Morgen (am Morgen). Sara spricht über die Mittagspause (am Mittag). Jonas spricht über den Sport nach der Schule (am Nachmittag). Die korrekte zeitliche Abfolge der Tageszeiten ist Morgen - Mittag - Nachmittag.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Mein Stundenplan",
+"passage": "Am Dienstag hat die Klasse 5B einen sehr abwechslungsreichen Stundenplan. In der ersten Stunde haben sie Deutsch. Danach folgt eine Stunde Mathematik. Nach der Pause haben sie Englisch, und die letzte Stunde vor dem Mittagessen ist Biologie.",
+"question": "Buna göre sınıfın Salı günü ders programında yer alan derslerin doğru sıralaması hangi seçenektir?",
+"shape": null,
+"options": {
+"A": "Deutsch - Englisch - Mathematik - Kunst",
+"B": "Mathematik - Deutsch - Biologie - Englisch",
+"C": "Englisch - Deutsch - Mathematik - Sport",
+"D": "Deutsch - Mathematik - Englisch - Biologie"
+},
+"answer": "D",
+"explanation": "Der Text beschreibt den Stundenplan für Dienstag (Dienstag): Erste Stunde ist Deutsch, zweite Stunde ist Mathematik, nach der Pause haben sie Englisch und als letzte Stunde vor dem Mittagessen Biologie. Die Reihenfolge lautet Deutsch - Mathematik - Englisch - Biologie.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Schulfächer",
+"passage": "In der Schulbibliothek sprechen Leo und Sophie über die Materialien in ihren Schultaschen. Leo sagt: 'Ich brauche einen Atlas und eine Landkarte.' Sophie sagt: 'Ich brauche viele Farben, Pinsel und Papier.'",
+"question": "Buna göre Leo ve Sophie'nin bahsettiği dersler hangi seçenekte doğru eşleştirilmiştir?",
+"shape": null,
+"options": {
+"A": "Erdkunde - Kunst",
+"B": "Geschichte - Musik",
+"C": "Mathematik - Sport",
+"D": "Biologie - Informatik"
+},
+"answer": "A",
+"explanation": "Leo benötigt einen Atlas und eine Landkarte, was typisch für das Fach Erdkunde (Geografie) ist. Sophie braucht Farben, Pinsel und Papier, was zum Fach Kunst gehört. Die korrekte Zuordnung ist Erdkunde und Kunst.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Wochentage und Tageszeiten",
+"passage": "Herr Schmidt erklärt den Ablauf der Schulwoche: 'Am Mittwochvormittag haben wir einen Wandertag in die Natur. Am Donnerstagabend findet das Schultheater statt.'",
+"question": "Bu bilgilere göre etkinliklerin gerçekleştiği gün ve zaman dilimleri hangi seçenekte doğru olarak belirtilmiştir?",
+"shape": null,
+"options": {
+"A": "Montag, Morgen - Dienstag, Mittag",
+"B": "Freitag, Nachmittag - Samstag, Nacht",
+"C": "Mittwoch, Vormittag - Donnerstag, Abend",
+"D": "Dienstag, Abend - Mittwoch, Morgen"
+},
+"answer": "C",
+"explanation": "Im Text steht klar: 'Am Mittwochvormittag' (Mittwoch, Vormittag) für den Wandertag und 'Am Donnerstagabend' (Donnerstag, Abend) für das Schultheater. Die passenden Angaben sind Mittwoch, Vormittag und Donnerstag, Abend.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Mein Stundenplan",
+"passage": "Die Schüler analysieren ihren neuen Stundenplan für die nächste Woche. Am Mittwoch haben sie genau fünf Stunden: 1. Stunde Musik, 2. Stunde Sport, 3. Stunde Deutsch, 4. Stunde Mathematik, 5. Stunde Englisch.",
+"question": "Buna göre çarşamba günkü ders programının 2. ve 4. saatinde işlenen dersler hangi seçenekte verilmiştir?",
+"shape": null,
+"options": {
+"A": "Musik - Deutsch",
+"B": "Deutsch - Mathematik",
+"C": "Sport - Englisch",
+"D": "Sport - Mathematik"
+},
+"answer": "D",
+"explanation": "Laut dem Stundenplan für Mittwoch ist die 2. Stunde Sport und die 4. Stunde Mathematik. Daher lautet die richtige Antwort Sport - Mathematik.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Schulalltag: Schulfächer",
+"passage": "In der Realschule haben die Schüler am Dienstag verschiedene Fächer. Anna liebt Zahlen und rechnet gerne. Felix lernt gerne Fremdsprachen und spricht oft auf Englisch. Tim malt und zeichnet sehr gerne bunte Bilder. Sophie experimentiert leidenschaftlich gerne im Labor und untersucht die Natur.",
+"question": "Buna göre Anna, Felix, Tim ve Sophie'nin açıklamalarına uygun olan derslerin doğru eşleşmesi hangi seçenekte verilmiştir?",
+"shape": null,
+"options": {
+"A": "Anna: Sport – Felix: Musik – Tim: Mathematik – Sophie: Physik",
+"B": "Anna: Mathematik – Felix: Musik – Tim: Sport – Sophie: Geografie",
+"C": "Anna: Mathematik – Felix: Englisch – Tim: Kunst – Sophie: Biologie",
+"D": "Anna: Geschichte – Felix: Kunst – Tim: Englisch – Sophie: Chemie"
+},
+"answer": "C",
+"explanation": "Anna rechnet gerne, daher ist ihr Fach Mathematik. Felix spricht auf Englisch, also hat er Englisch. Tim malt Bilder, sein Fach ist Kunst. Sophie untersucht die Natur und experimentiert, was Biologie entspricht. Bu durumda doğru eşleşme A seçeneğidir.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Schulalltag: Mein Stundenplan",
+"passage": "Tabelle:\nKlasse 5A Stundenplan:\n- Montag, 1. Stunde: Deutsch\n- Montag, 2. Stunde: Mathematik\n- Dienstag, 1. Stunde: Musik\n- Dienstag, 2. Stunde: Sport\n\nKlasse 5B Stundenplan:\n- Montag, 1. Stunde: Mathematik\n- Montag, 2. Stunde: Deutsch\n- Dienstag, 1. Stunde: Sport\n- Dienstag, 2. Stunde: Musik",
+"question": "Bu ders programı verilerine göre I, II ve III numaralı ifadelerden hangileri doğrudur?\nI. Beide Klassen haben am Montag in den ersten zwei Stunden dieselben Fächer, nur in anderer Reihenfolge.\nII. Klasse 5A hat am Dienstag in der zweiten Stunde Musik.\nIII. Klasse 5B hat am Montag in der ersten Stunde Mathematik.",
+"shape": null,
+"options": {
+"A": "I und II",
+"B": "I und III",
+"C": "II und III",
+"D": "I, II und III"
+},
+"answer": "B",
+"explanation": "I. Beide Klassen haben Deutsch und Mathematik am Montag in den ersten zwei Stunden (wahr). II. Klasse 5A hat in der zweiten Stunde am Dienstag Sport, nicht Musik (falsch). III. Klasse 5B hat am Montag in der ersten Stunde Mathematik (wahr). Doğru ifadeler I ve III'tür.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Schulalltag: Wochentage und Tageszeiten",
+"passage": "Lukas beschreibt seinen Tagesablauf am Wochenende: 'Am Samstagmorgen spiele ich Fußball. Am Samstagnachmittag mache ich meine Hausaufgaben. Am Sonntagvormittag lese ich ein Buch, und am Sonntagabend sehe ich einen Film.'",
+"question": "Buna göre Lukas'ın etkinlikleri ile zaman dilimlerinin doğru eşleşmesi hangi seçenekte verilmiştir?",
+"shape": null,
+"options": {
+"A": "Samstagachmittag: Buch lesen – Sonntagvormittag: Hausaufgaben machen",
+"B": "Samstagabend: Fußball spielen – Sonntagvormittag: Buch lesen",
+"C": "Samstagmorgen: Fußball spielen – Sonntagabend: Film sehen",
+"D": "Samstagmorgen: Hausaufgaben machen – Sonntagabend: Fußball spielen"
+},
+"answer": "C",
+"explanation": "Metne göre Samstagmorgen = Fußball spielen, Sonntagabend = Film sehen. B seçeneği bu bilgileri eksiksiz ve doğru olarak içermektedir.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Schulalltag: Mein Stundenplan",
+"passage": "Ein Schüler hat an Schultagen folgende Fächerreihenfolge:\n- Montag: Erdkunde, Geschichte, Biologie\n- Dienstag: Mathematik, Physik, Chemie\n- Mittwoch: Englisch, Deutsch, Französisch\n- Donnerstag: Musik, Kunst, Sport\n- Freitag: Religion, Ethik, Informatik",
+"question": "Bu haftalık programa göre aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Der Schüler hat am Freitag sportliche Fächer.",
+"B": "Der Schüler hat am Dienstag naturwissenschaftliche Fächer.",
+"C": "Der Schüler hat am Montag nur sprachliche Fächer.",
+"D": "Der Schüler hat am Donnerstag musikalische und sprachliche Fächer."
+},
+"answer": "B",
+"explanation": "Dienstag (Mathematik, Physik, Chemie) sind naturwissenschaftliche Fächer (fen bilimleri/sayısal). Montag sind Geisteswissenschaften/Erdkunde. Freitag hat Informatik/Religion/Ethik. Donnerstag hat Musik, Kunst, Sport (sanat ve spor). Bu durumda doğru ifade A seçeneğidir.",
+"vfd2": true,
+"unit": "Schulalltag",
+"topics": "Schulfächer, Wochentage und Tageszeiten, Mein Stundenplan",
+"d": 3,
+"ts": 1794266074
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen",
+"passage": "In der Schultasche von Anna befinden sich folgende Materialien für den Unterricht: ein Lineal, ein Spitzer, zwei Hefte und ein Radiergummi. Sie braucht jedoch auch noch einen Kuli für die schriftlichen Notizen.",
+"question": "Buna göre Anna'nın çantasında halihazırda bulunan ve Almanca karşılığı verilen okul eşyaları arasında aşağıdakilerden hangisi yer almaz?",
+"shape": null,
+"options": {
+"A": "Das Lineal",
+"B": "Der Spitzer",
+"C": "Das Buch",
+"D": "Das Heft"
+},
+"answer": "C",
+"explanation": "Metinde Anna'nın çantasında lineal, spitzer, hefte ve radiergummi olduğu belirtilmiştir. Seçeneklerde yer alan Buch (kitap) metinde geçmemektedir.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Das Klassenzimmer",
+"passage": "Das Klassenzimmer der 5. Klasse ist sehr modern eingerichtet. An der Vorderseite hängt eine große Tafel. Neben der Tafel steht der Tisch des Lehrers. An den Wänden hängen zwei bunte Landkarten und vier Stühle stehen ordentlich vor dem Pult der Lehrkraft.",
+"question": "Bu bilgilere göre sınıftaki eşyaların sayısal ve mekansal dağılımı dikkate alındığında aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Es gibt eine Tafel an der Vorderseite des Raumes.",
+"B": "Im Zimmer befinden sich zwei Pultstühle insgesamt.",
+"C": "Der Lehrertisch steht in der Mitte des Ganges.",
+"D": "An den Wänden hängen vier Landkarten."
+},
+"answer": "A",
+"explanation": "Metinde ön tarafta bir tahta (eine große Tafel) olduğu açıkça ifade edilmiştir. Diğer seçenekler metindeki verilerle çelişmektedir.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Die Schulräume",
+"passage": "Unsere Schule hat verschiedene Räume für unterschiedliche Aktivitäten. Im Erdgeschoss befindet sich die große Mensa für das Mittagessen. Im ersten Stock ist die Bibliothek mit vielen Büchern zum Lesen, und im Keller liegt die Sporthalle für den Sportunterricht.",
+"question": "Buna göre okulun kat planı ve oda dağılımı göz önüne alındığında okuma etkinliğinin gerçekleştirildiği alan hangi katta yer almaktadır?",
+"shape": null,
+"options": {
+"A": "Im Keller",
+"B": "Im ersten Stock",
+"C": "Im Dachgeschoss",
+"D": "Im Erdgeschoss"
+},
+"answer": "B",
+"explanation": "Metinde kütüphanenin (Bibliothek) okuma için kullanıldığı ve birinci katta (im ersten Stock) yer aldığı belirtilmiştir.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen",
+"passage": "Max bereitet seinen Federmäppchen für die nächste Stunde vor. Er legt drei Buntstifte, einen Bleistift und einen Klebstoff hinein. Seine Lehrerin hat jedoch darum gebeten, auch die Schere einzupacken.",
+"question": "Buna göre Max'in kalem kutusuna öğretmeninin isteği doğrultusunda sonradan eklemesi gereken malzeme aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Die Schere",
+"B": "Der Klebstoff",
+"C": "Der Buntstift",
+"D": "Der Bleistift"
+},
+"answer": "A",
+"explanation": "Öğretmenin sonradan eklenmesini istediği malzeme metinde Schere (makas) olarak geçmektedir.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Die Schulräume",
+"passage": "Die Schüler der Klasse 5B haben heute einen abwechslungsreichen Stundenplan. Die erste Stunde beginnt im Computerraum für Medienunterricht. Danach gehen sie in den Musikraum, um Lieder zu singen, und nach der Pause haben sie Unterricht im Chemielabor.",
+"question": "Bu bilgilere göre öğrencilerin sırasıyla ziyaret ettiği okul bölümleri hangi seçenekte tam ve doğru olarak sıralanmıştır?",
+"shape": null,
+"options": {
+"A": "Chemielabor - Computerraum - Musikraum",
+"B": "Computerraum - Chemielabor - Musikraum",
+"C": "Musikraum - Computerraum - Chemielabor",
+"D": "Computerraum - Musikraum - Chemielabor"
+},
+"answer": "D",
+"explanation": "Metindeki sıralama sırasıyla Computerraum, Musikraum ve Chemielabor şeklindedir.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Meine Schule: Schulsachen",
+"passage": "Im Schulhof vergleichen Anna und Tom ihre Schulsachen. Anna sagt: 'Ich habe einen Kuli, zwei Hefte und ein Buch.' Tom antwortet: 'Ich habe drei Stifte, ein Heft und ein Märchenbuch.'",
+"question": "Buna göre Anna ve Tom'un okul çantasındaki eşyaların sayısal dağılımı dikkate alındığında, her ikisinde de ortak olarak bulunan okul eşyası hangisidir?",
+"shape": null,
+"options": {
+"A": "Das Heft",
+"B": "Der Kuli",
+"C": "Der Stift",
+"D": "Das Buch"
+},
+"answer": "A",
+"explanation": "Adım 1: Anna'nın eşyaları: ein Kuli (1 kalem), zwei Hefte (2 defter), ein Buch (1 kitap). Adım 2: Tom'un eşyaları: drei Stifte (3 kalem), ein Heft (1 defter), ein Märchenbuch (1 hikaye kitabı). Adım 3: İki öğrencinin listesinde ortak geçen tek nesne 'Heft' (defter) kelimesidir. Adım 4: Doğru şık Das Heft'tir.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Meine Schule: Das Klassenzimmer",
+"passage": "Im Klassenzimmer von Klasse 5A stehen die Möbel an festen Plätzen. Die Schüler ordnen die Gegenstände zu: An der Wand hängt die Tafel, auf dem Lehrerpult liegt das Buch, und neben dem Fenster steht der Schrank.",
+"question": "Bu metne göre öğretmen masasının üzerinde bulunan sınıf eşyası hangisidir?",
+"shape": null,
+"options": {
+"A": "Das Heft",
+"B": "Das Buch",
+"C": "Die Tafel",
+"D": "Der Schrank"
+},
+"answer": "B",
+"explanation": "Adım 1: Metindeki konum ifadeleri taranır (an der Wand, auf dem Lehrerpult, neben dem Fenster). Adım 2: 'Lehrerpult' (öğretmen masası) kelimesi incelenir. Adım 3: Metinde 'auf dem Lehrerpult liegt das Buch' ifadesi yer alır. Adım 4: Masanın üzerindeki eşya 'das Buch'tur.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Meine Schule: Die Schulräume",
+"passage": "In der großen Pause gehen die Schüler in verschiedene Räume der Schule. Max geht in die Turnhalle, um Sport zu machen. Sarah geht in die Bibliothek, um ein Buch zu lesen, und Leo geht in den Speisesaal, um zu essen.",
+"question": "Buna göre spor yapmak için okulun hangi bölümüne gitmek gerekir?",
+"shape": null,
+"options": {
+"A": "Die Bibliothek",
+"B": "Der Speisesaal",
+"C": "Die Turnhalle",
+"D": "Das Klassenzimmer"
+},
+"answer": "C",
+"explanation": "Adım 1: Öğrencilerin gittikleri odalar ve aktiviteler eşleştirilir. Adım 2: Max'in aktivitesi 'Sport zu machen'dır. Adım 3: Metinde Max'in gittiği yer 'die Turnhalle' olarak belirtilmiştir. Adım 4: Doğru cevap die Turnhalle'dir.",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 4,
+"ts": 1794266641
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "Im historischen Museum in Berlin stellt sich ein neuer Museumsführer den Besuchern vor: 'Guten Tag! Ich heiße Thomas. Ich komme aus Österreich und wohne in Wien. Ich bin 28 Jahre alt.' Ein Besucher korrigiert die Herkunftsangabe in seinen Notizen, weil Thomas zuvor erwähnt hat, dass er in der Hauptstadt von Österreich lebt, aber in Graz geboren wurde und dort aufgewachsen ist.",
+"question": "Buna göre I, II ve III numaralı ifadelerden hangileri doğrudur?\nI. Thomas kommt ursprünglich aus Graz.\nII. Thomas wohnt zurzeit in Berlin.\nIII. Thomas stellt sich mit seinem Namen, seinem Alter und seinem Wohnort vor.",
+"shape": null,
+"options": {
+"A": "Nur I und III",
+"B": "Nur II",
+"C": "Nur I und II",
+"D": "I, II und III"
+},
+"answer": "A",
+"explanation": "Thomas wurde in Graz geboren und ist dort aufgewachsen, daher ist I richtig. Er wohnt laut Text in Wien, nicht in Berlin (Berlin ist nur der Arbeitsort im Museum), daher ist II falsch. Thomas nennt seinen Namen (Thomas), sein Alter (28 Jahre alt) und seinen Wohnort (Wien), weshalb III richtig ist. Somit sind I und III korrekt.",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794266882
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "In einem Bauprojekt stellen sich die Mitarbeiter auf Deutsch vor. Vier Personen geben folgende Informationen an:\n- Person 1: 'Guten Tag, ich heiße Thomas und komme aus Berlin.'\n- Person 2: 'Hallo, ich bin Anna und ich wohne in Wien.'\n- Person 3: 'Guten Abend, mein Name ist Lukas und ich bin 12 Jahre alt.'\n- Person 4: 'Tschüss, ich bin Marie und komme aus Zürich.'",
+"question": "Buna göre yapı projesindeki bu kişilerin ifadeleri incelendiğinde, tanışma ve vedalaşma kurallarına göre doğru gruplandırma hangisidir?",
+"shape": null,
+"options": {
+"A": "Nur Person 4 verwendet eine Begrüßungsformel.",
+"B": "Person 1, 2 und 3 verwenden Begrüßungsformeln, während Person 4 eine Abschiedsformel nutzt.",
+"C": "Alle vier Personen nutzen ausschließlich Abschiedsformeln.",
+"D": "Person 3 stellt sich vor, nutzt aber keine Begrüßung."
+},
+"answer": "B",
+"explanation": "Person 1 sagt 'Guten Tag' (Begrüßung), Person 2 sagt 'Hallo' (Begrüßung), Person 3 sagt 'Guten Abend' (Begrüßung), Person 4 sagt 'Tschüss' (Verabschiedung). Daher nutzen Person 1, 2 und 3 Begrüßungsformeln, während Person 4 eine Abschiedsformel nutzt.",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794266882
 }
 ]
 }

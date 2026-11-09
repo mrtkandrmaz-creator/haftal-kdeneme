@@ -2804,6 +2804,1494 @@
 "topics": "Devre elemanları, Seri-paralel bağlama, Elektrik güvenliği",
 "d": 4,
 "ts": 1794211384
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Büyüklüğü ve Dinamometre",
+"passage": "Meteoroloji uzmanı Kerem Bey, çalışma masasında hava durumu raporlarını hazırlarken dışarıdaki rüzgârın yönünü ve şiddetini incelemektedir. Raporda havanın hareket durumunu tam olarak belirleyebilmek için esinti hızına ait ölçüm verilerini tabloya kaydetmiştir.",
+"question": "Buna göre tablodaki eksik bırakılan ölçüm değerini ve bu büyüklüğün birimini doğru tamamlayan ifade hangisidir?",
+"shape": {
+"type": "table",
+"title": "Hava Rüzgâr Ölçüm Raporu",
+"headers": [
+"Zaman Dilimi",
+"Hava Durumu",
+"Rüzgâr Büyüklüğü"
+],
+"rows": [
+[
+"08:00",
+"Hafif Esinti",
+"12 Newton"
+],
+[
+"12:00",
+"Kuvvetli Rüzgâr",
+"28 Newton"
+],
+[
+"16:00",
+"Fırtına Öncesi",
+"45 Newton"
+]
+]
+},
+"options": {
+"A": "Tabloda yer alan değerler yer çekimi ivmesini ifade eder.",
+"B": "Rüzgârın şiddetini ölçmek için kullanılan kuvvet birimi Newton'dur ve tablodaki tüm değerler bu birimle ifade edilmiştir.",
+"C": "Hava olaylarında kuvvet birimi olarak gram tercih edilir.",
+"D": "Rüzgârın yarattığı etki sadece kütle birimi olan kilogram ile ölçülebilir."
+},
+"answer": "B",
+"explanation": "Rüzgâr gibi hareketli hava kütlelerinin uyguladığı itme veya çekme etkisi birer kuvvettir. Kuvvetin birimi Newton (N)'dur. Tablodaki veriler de kuvvet büyüklüğünü gösterdiği için doğru ifade A seçeneğidir.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Cisimler Üzerindeki Etkileri",
+"passage": "Okul kantininde çalışan Burak, tezgah üzerine bırakılan esnek malzemelerin ve hareketli kutuların üzerine uygulanan kuvvetlerin etkilerini incelemektedir. Çizgi grafiğinde, kutulara uygulanan itme kuvveti büyüklükleri ile cisimlerde gözlenen şekil ve hareket değişimleri gösterilmiştir.",
+"question": "Bu verilere göre, kuvvetin cisimler üzerindeki etkileri ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1. Kutu",
+"2. Kutu",
+"3. Kutu",
+"4. Kutu"
+],
+"values": [
+10,
+20,
+35,
+50
+],
+"title": "Uygulanan Kuvvet Miktarları (Newton)",
+"show_names": false
+},
+"options": {
+"A": "Uygulanan kuvvet arttıkça cisimlerin hareket durumunda ya da şekillerinde belirgin değişimler gözlenir.",
+"B": "Kuvvet uygulanan cisimlerin kütle miktarı her zaman artar.",
+"C": "Kuvvetin büyüklüğü cismin rengini doğrudan değiştirir.",
+"D": "Daha az kuvvet uygulanan cisimler her zaman daha çok ısınır."
+},
+"answer": "A",
+"explanation": "Grafikte uygulanan kuvvet değerleri 10 N'dan 50 N'a kadar artmaktadır. Kuvvet cisimlerin hızını, yönünü veya şeklini değiştirebilir; bu nedenle kuvvet arttıkça cisim üzerindeki etki de artış gösterir.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme Kuvveti",
+"passage": "Doğa yürüyüşüne çıkan Ayşe, farklı zeminlerde yürürken tabanlıklarının sürtünme etkisini test etmektedir. Farklı yüzeylerde uyguladığı adımların kayma durumunu gözlemleyen Ayşe, yanındaki fen defterine makara ve yüzey sürtünme ilişkisiyle ilgili aşağıdaki şemayı çizmiştir.",
+"question": "Buna göre yürüyüş sırasında karşılaşılan sürtünme kuvveti ile ilgili I, II ve III numaralı ifadelerden hangileri doğrudur?\nI. Pürüzlü yüzeyler hareketi zorlaştırarak sürtünme kuvvetini artırır.\nII. Sürtünme kuvveti her zaman cismin hareket yönüyle aynı yöndedir.\nIII. Yağlama veya pürüzsüzleştirme sürtünme kuvvetini azaltıcı etki yapar.",
+"shape": {
+"type": "fen",
+"sub_type": "makara",
+"tur": "sabit",
+"yuk": "30 N",
+"kuvvet": "F",
+"show_names": false
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Sürtünme kuvveti hareket yönüne zıt yöndedir (II yanlıştır). Pürüzlü yüzeylerde sürtünme artar (I doğrudur). Yağlama sürtünmeyi azaltır (III doğrudur). Bu durumda I ve III doğrudur.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yer Çekimi ve Ağırlık",
+"passage": "Mutfakta yemek tarifi hazırlayan Zeynep, un paketlerini tartarken kütle ve ağırlık kavramlarının farklı olduğunu fark eder. Dünya'daki kütlesi belirli olan bir cismin, gök cisimlerinin çekim kuvvetine göre farklı ağırlık değerlerine sahip olabileceğini düşünür.",
+"question": "Buna göre kütle ve ağırlık kavramlarıyla ilgili I, II ve III numaralı ifadelerden hangileri doğrudur?\nI. Kütle madde miktarıdır ve bulunduğu yere göre değişiklik göstermez.\nII. Ağırlık bir yer çekimi kuvvetidir ve birimi Newton'dur.\nIII. Bir cismin Ay'daki ağırlığı, Dünya'daki ağırlığının yaklaşık altıda biridir.",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "D",
+"explanation": "Kütle değişmez madde miktarıdır (I doğrudur). Ağırlık yer çekimi kuvvetidir, birimi Newton'dur (II doğrudur). Ay'daki ağırlık Dünya'dakinin yaklaşık 1/6'sıdır (III doğrudur).",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Cisimlerin Hareketine Etkisi",
+"passage": "Kodlama kulübünde hareketli oyuncak araba tasarlayan Can, farklı büyüklükteki itme ve çekme kuvvetlerinin arabanın hızına ve yönüne etkisini test etmektedir. Tasarladığı sistemde farklı yönlerden uygulanan kuvvetlerin net etkisini gözlemler.",
+"question": "Bu verilere göre, arabanın hareket durumu için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "forces",
+"left": [
+15
+],
+"right": [
+25
+],
+"unit": "N",
+"object_label": "Oyuncak Araba",
+"show_names": false
+},
+"options": {
+"A": "Uygulanan kuvvetler cismin kütlesini tamamen ortadan kaldırır.",
+"B": "Zıt yönlü kuvvetlerin uygulandığı araç, büyük olan kuvvetin yönünde hareketinde değişiklik yaşar.",
+"C": "Duran bir cisme etki eden kuvvetler dengelenmişse cisim kesinlikle hızla uzaklaşır.",
+"D": "Kuvvetlerin yönü farklı olsa bile eşit büyüklükteyse araç sürekli hızlanır."
+},
+"answer": "B",
+"explanation": "Zıt yönlü kuvvetlerin uygulandığı durumlarda net kuvvet büyük olan kuvvetin yönündedir ve cismin hareket yönü ile hızında buna bağlı değişim görülür.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Etkileri ve Dinamometre",
+"passage": "Yaz tatilinde kamp yapan Deniz, çadırını kurarken farklı nesnelere uyguladığı kuvvetlerin etkilerini incelemektedir. Çadır ipini gererken, metal kazığı zemine çakarken ve sırt çantasını dinamometre ile tartarken gözlemlerini not etmiştir.",
+"question": "Deniz'in yaz kampındaki gözlemlerine ve aşağıdaki grafik verilerine göre kuvvetin etkileri için hangisi söylenebilir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"İpin Gerilmesi",
+"Yay Uzaması",
+"Çantanın Tartılması"
+],
+"values": [
+15,
+25,
+40
+],
+"title": "Uygulanan Kuvvet Büyüklükleri (N)",
+"show_names": false
+},
+"options": {
+"A": "Çantanın tartılması sırasında uygulanan kuvvet 40 N olup dinamometredeki yayın uzama miktarını artırmıştır.",
+"B": "Çadır kazığının çakılması olayında kuvvetin hızı artırıcı etkisi gözlenmiştir.",
+"C": "İpin gerilmesi sırasında kuvvet sadece cismin yönünü değiştirmiştir.",
+"D": "Grafikteki en küçük kuvvet, çantanın tartılması işlemine aittir."
+},
+"answer": "A",
+"explanation": "Adım 1: Grafikte çantanın tartılması 40 N olarak en yüksek değere sahiptir ve dinamometrede yayı uzatmıştır (A seçeneği doğrudur).\nAdım 2: İpin gerilmesi şekil değiştirme etkisine örnektir, yön değiştirme değildir (B yanlıştır).\nAdım 3: Kazık çakma hareketi şekil değiştirme etkisidir (C yanlıştır).\nAdım 4: En küçük kuvvet 15 N ile ipin gerilmesidir (D yanlıştır).\nSonuç: Doğru ifade A seçeneğinde verilmiştir.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvveti Tanıyalım",
+"passage": "Doğa yürüyüşü yapan Kerem, engebeli bir arazide ilerlemektedir. Çantasındaki ağır yükün etkisiyle dinamometresinin yayında meydana gelen uzamayı gözlemler.",
+"question": "Buna göre, dinamometre içindeki yayın uzama miktarı ve uygulanan kuvvet ilişkisi hakkında aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "forces",
+"left": [
+0
+],
+"right": [
+5
+],
+"unit": "N",
+"object_label": "Çanta",
+"show_names": false
+},
+"options": {
+"A": "Dinamometrenin ölçüm kapasitesi arttıkça yayın esneklik özelliği yok olur.",
+"B": "Yaydaki uzama miktarı, çantanın ağırlığı ile doğru orantılıdır.",
+"C": "Dinamometredeki yay, sadece cismin hareket yönünde uzar.",
+"D": "Çantanın kütlesi azalsa bile yaydaki uzama miktarı değişmez."
+},
+"answer": "B",
+"explanation": "Dinamometreler esnek cisimlerin (yayların) üzerine uygulanan kuvvetle orantılı olarak uzaması prensibine göre çalışır. Çanta ağırlaştıkça kuvvet artar, yay daha fazla uzar. Bu doğru orantıdır.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin büyüklüğü ve dinamometre",
+"passage": "Pazar yerinde alışveriş yapan Ayşe, bir file dolusu meyveyi dinamometreye asarak tartmaktadır.",
+"question": "Dinamometrenin ibresi görseldeki gibi 4 N değerini gösterdiğine göre, bu meyvelerin uyguladığı kuvvetle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "dynamometer",
+"value": 4,
+"max_value": 10,
+"unit": "N",
+"mass_label": "Meyve",
+"show_names": false
+},
+"options": {
+"A": "Dinamometreye daha ağır bir cisim asılırsa yay daha az uzar.",
+"B": "Meyvelerin dinamometreye uyguladığı kuvvetin büyüklüğü 4 Newton'dur.",
+"C": "Meyvelerin toplam kütlesi dinamometrenin gösterdiği değer ile aynı birime sahiptir.",
+"D": "Dinamometrenin ölçebileceği maksimum kuvvet değeri 4 N'dur."
+},
+"answer": "B",
+"explanation": "Dinamometre kuvvet ölçer ve birimi Newton'dur. Görselde ibre 4 sayısını gösterdiği için uygulanan kuvvet 4 Newton'dur. Kütle ve ağırlık birimleri farklıdır.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Okul bahçesinde su tasarrufu projesi kapsamında farklı zeminlerde sürtünme kuvvetini inceleyen öğrenciler, bir kutuyu üç farklı yüzeyde hareket ettirerek harcanan kuvveti grafiklemiştir.",
+"question": "Buna göre, sürtünme kuvveti ile yüzey pürüzlülüğü arasındaki ilişki düşünüldüğünde, en pürüzlü zemin aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Mermer",
+"Halı",
+"Zımpara"
+],
+"values": [
+2,
+6,
+9
+],
+"title": "Zeminlere Göre Uygulanan Kuvvet (N)",
+"show_names": false
+},
+"options": {
+"A": "Mermer",
+"B": "Her üç yüzeyde de sürtünme eşittir.",
+"C": "Halı",
+"D": "Zımpara"
+},
+"answer": "D",
+"explanation": "Pürüzlü yüzeylerde sürtünme kuvveti daha fazladır. Kutuyu hareket ettirmek için zımpara zemininde 9 N'luk en büyük kuvvet gerektiğinden, en pürüzlü zemin zımparadır.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yer çekimi ve ağırlık",
+"passage": "Bir orman araştırmasında görevli bilim insanları, 60 kg kütleli bir gözlem ekipmanını Dünya'da ve Ay'da tartmışlardır.",
+"question": "Ay'daki yer çekimi kuvveti Dünya'nın yaklaşık 1/6'sı olduğuna göre, bu ekipmanın Ay'daki ağırlığı ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ekipmanın ağırlığı Ay'da, Dünya'dakinin altıda biri kadardır.",
+"B": "Ekipmanın kütlesi Dünya'da farklı, Ay'da farklı ölçülür.",
+"C": "Ekipman Ay'da ağırlıksızdır, bu yüzden kuvvet uygulanmasına gerek yoktur.",
+"D": "Ekipmanın kütlesi Ay'da 10 kg olur."
+},
+"answer": "A",
+"explanation": "Kütle değişmez, ancak ağırlık yer çekimine bağlıdır. Ay'daki yer çekimi Dünya'nın 1/6'sı olduğundan, ağırlık da Dünya'dakinin 1/6'sına düşer.",
+"vfd2": true,
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 1,
+"ts": 1794265058
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hâl Değişimi",
+"passage": "Bir pastanede dondurma yapımı sırasında soğutucuya konulan sütlü karışım donarken, sıcak fırından çıkan kurabiyelerin üzerindeki nemin havaya karışması gözlenmiştir.",
+"question": "Bu olaylarda gerçekleşen hâl değişimleri için hangisi söylenebilir?",
+"shape": {
+"type": "table",
+"title": "Hâl Değişimi Analizi",
+"headers": [
+"Olay",
+"Isı Alışverişi"
+],
+"rows": [
+[
+"Dondurmanın donması",
+"Isı verir"
+],
+[
+"Kurabiyeden nemin gitmesi",
+"Isı alır"
+]
+]
+},
+"options": {
+"A": "Dondurma oluşurken dışarıya ısı verir, buharlaşma gerçekleşirken madde ısı alır.",
+"B": "Dondurmanın donması yoğuşma, nemin havaya karışması erime olayıdır.",
+"C": "Her iki olayda da madde dışarıdan ısı alarak hâl değiştirir.",
+"D": "Donma olayı gerçekleştikten sonra dondurmanın sıcaklığı sürekli artmaya devam eder."
+},
+"answer": "A",
+"explanation": "Dondurma donarken çevresine ısı verir (donma). Kurabiyedeki su buharlaşırken (buharlaşma) çevreden ısı alır. Saf maddeler donarken sıcaklığı sabit kalır.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı İletimi",
+"passage": "Bir mühendis, evlerin çatı yalıtımında kullanılacak malzemelerin ısı iletim hızlarını incelemek için aşağıdaki tabloyu oluşturmuştur.",
+"question": "Buna göre, evini en iyi şekilde ısı yalıtımı yaparak korumak isteyen bir kişi hangi malzemeyi seçmelidir?",
+"shape": {
+"type": "table",
+"title": "Malzemelerin Isı İletim Hızları",
+"headers": [
+"Malzeme",
+"İletim Hızı (W/mK)"
+],
+"rows": [
+[
+"Alüminyum",
+"237"
+],
+[
+"Cam Yünü",
+"0.04"
+],
+[
+"Ahşap",
+"0.15"
+],
+[
+"Bakır",
+"390"
+]
+]
+},
+"options": {
+"A": "Alüminyum",
+"B": "Bakır",
+"C": "Ahşap",
+"D": "Cam Yünü"
+},
+"answer": "D",
+"explanation": "Isı yalıtımı için ısıyı en yavaş ileten (en düşük iletim hızına sahip) malzeme seçilmelidir. Tablodaki verilere göre en düşük değer 0.04 ile cam yünüdür.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı Yalıtımı",
+"passage": "Bir kış gününde dışarıda bekleyen metal bir bankın ahşap banka göre neden daha soğuk hissedildiği tartışılmaktadır.",
+"question": "Bu durumun bilimsel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Metal bankın sıcaklığı ahşap banktan daha düşüktür.",
+"B": "Ahşap, ısıyı metalden daha hızlı soğurduğu için daha sıcak kalır.",
+"C": "Metal, ısıyı ahşaba göre daha hızlı ilettiği için vücut ısısını hızla dışarı alır.",
+"D": "Metal bankın yüzey alanı daha geniştir, bu yüzden daha fazla soğuk tutar."
+},
+"answer": "C",
+"explanation": "Metal maddeler iyi birer ısı iletkenidir. Vücudumuzdaki ısıyı metale hızlıca aktardığımız için metal soğuk hissedilir; ahşap ise ısı yalıtkanıdır, ısı iletimi yavaştır.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı Alışverişi",
+"passage": "Öğretmen tahtaya 'Sıcaklığı 20 °C olan bir miktar suyun içine 80 °C sıcaklığında bir metal parça atılıyor' cümlesini yazmıştır.",
+"question": "Isı dengesine ulaşıldığı an için aşağıdakilerden hangisi kesinlikle doğrudur?",
+"shape": null,
+"options": {
+"A": "Metal parçanın son sıcaklığı, suyun ilk sıcaklığından düşük olur.",
+"B": "Sistemin son sıcaklığı 20 °C ile 80 °C arasında bir değerdedir.",
+"C": "Sıcaklığı yüksek olan metal, suya ısı vermeyi bırakır ve sıcaklığı artar.",
+"D": "Her iki madde de ısı vermeyi durdurur ve sıcaklıkları 0 °C'de eşitlenir."
+},
+"answer": "B",
+"explanation": "Sıcak maddeden soğuk maddeye ısı geçişi olur. Denge sıcaklığı, başlangıçtaki iki sıcaklık değerinin arasında bir yerde oluşur.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin Tanecikli Yapısı",
+"passage": "Bir uzay merkezinde maddelerin tanecikli yapısı üzerine araştırma yapan bilim insanları, katı, sıvı ve gaz örneklerinin tanecik hareketliliklerini incelemiştir. Yapılan deneyde birim hacimdeki taneciklerin hareket hızı ve aralarındaki boşluk miktarı ölçülmüştür.",
+"question": "Aşağıdaki grafikte maddelerin taneciklerinin hareketlilik düzeyleri gösterilmiştir. Verilere göre hangi maddelerin 'gaz' olma ihtimali en yüksektir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Madde K",
+"Madde L",
+"Madde M",
+"Madde N"
+],
+"values": [
+12,
+45,
+88,
+25
+],
+"title": "Tanecik Hareketlilik Düzeyi",
+"show_names": false
+},
+"options": {
+"A": "Madde M",
+"B": "Madde L",
+"C": "Madde K",
+"D": "Madde N"
+},
+"answer": "A",
+"explanation": "Gaz halindeki maddelerin tanecikleri en hızlı hareket eder ve aralarındaki boşluk en fazladır. Grafikte hareketlilik düzeyi en yüksek olan madde M (88 birim) olduğu için gaz olma ihtimali en yüksek olandır.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı ve Sıcaklık",
+"passage": "Bir bilim insanı laboratuvar ortamında özdeş iki beherden birine 20°C, diğerine 80°C sıcaklığında su koymuştur. Bu iki beher birbirine temas ettirilerek ısı alışverişi gözlemlenmiştir.",
+"question": "Termometreler denge sıcaklığına ulaştığında aşağıdakilerden hangisi gerçekleşmiş olur?",
+"shape": {
+"type": "thermometer",
+"value": 50,
+"min": 0,
+"max": 100,
+"step": 10,
+"unit": "°C",
+"show_names": false
+},
+"options": {
+"A": "Isı alışverişi 50°C'de durur ve her iki kabın son sıcaklığı birbirine eşit olur.",
+"B": "20°C olan suyun sıcaklığı artarken 80°C olan suyun sıcaklığı değişmez.",
+"C": "Denge sıcaklığına ulaşıldığında ısı akışı devam eder.",
+"D": "Isı akışı 80°C olan sudan 20°C olan suya doğru gerçekleşir."
+},
+"answer": "A",
+"explanation": "Isı alışverişi sıcak maddeden soğuk maddeye doğru gerçekleşir. Maddeler denge sıcaklığına (ikisi için de 50°C) ulaşana kadar ısı akışı devam eder, denge sağlandığında ise ısı alışverişi durur.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı İletimi",
+"passage": "Tarihî bir yapının restorasyonunda kullanılan metal bir çubuk ve bu çubuğun etrafındaki plastik kaplama incelenmiştir. Çubuğun bir ucundan ısıtılmasıyla diğer ucundaki sıcaklık artışı 20 dakika boyunca takip edilmiştir.",
+"question": "Aşağıdaki grafik metal çubuğun ucundaki sıcaklık artışını göstermektedir. Bu verilere göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"0",
+"5",
+"10",
+"15",
+"20"
+],
+"values": [
+20,
+35,
+50,
+65,
+80
+],
+"title": "Metal Çubuğun Isınma Grafiği",
+"show_names": false
+},
+"options": {
+"A": "Isı miktarı zamanla azaldığı için grafik yükselmiştir.",
+"B": "Metal çubuk ısıyı iyi ilettiği için sıcaklık düzenli artmıştır.",
+"C": "Metal çubuk ısınırken hacmi küçülmüştür.",
+"D": "Plastik kaplama ısıyı metalden daha hızlı iletmektedir."
+},
+"answer": "B",
+"explanation": "Grafik, metal çubuğun zamanla sıcaklığının yükseldiğini göstermektedir. Bu durum metalin ısıyı ileten bir madde olduğunu kanıtlar. Plastik ise genellikle ısı yalıtkanıdır.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı ve Sıcaklık",
+"passage": "Sağlık kontrolünde kullanılan bir dijital termometre, ortam sıcaklığını ölçtükten sonra el ile tutulduğunda farklı bir değer göstermektedir.",
+"question": "Termometrenin aldığı bu yeni değerin nedeni aşağıdakilerden hangisiyle açıklanabilir?",
+"shape": {
+"type": "thermometer",
+"value": 36.5,
+"min": 30,
+"max": 42,
+"step": 2,
+"unit": "°C",
+"show_names": false
+},
+"options": {
+"A": "Vücut ısısı termometrenin soğukluğunu artırmıştır.",
+"B": "Sıcaklık termometreye geçerek ısıyı soğutmuştur.",
+"C": "Termometre ortamdaki ısıyı yok etmiştir.",
+"D": "El ile termometre arasında ısı alışverişi gerçekleşmiştir."
+},
+"answer": "D",
+"explanation": "Termometre ele alındığında, vücut sıcaklığı termometreye ısı aktarır (sıcak maddeden soğuk maddeye). Bu enerji transferi termometrenin ölçüm değerini yükseltir.",
+"vfd2": true,
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794265098
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlıların Yapısı (Hücre-Doku-Organ-Sistem)",
+"passage": "Bir fen projesinde öğrenciler canlıların organizasyon basamaklarını gösteren bir karton hazırlamışlardır. Ancak kartonun bazı bölümleri eksik kalmıştır: Hücre -> Doku -> ? -> Sistem -> Organizma.",
+"question": "Organizasyon basamaklarını tamamlamak için soru işareti yerine aşağıdakilerden hangisi getirilmelidir?",
+"shape": null,
+"options": {
+"A": "Organ",
+"B": "Atom",
+"C": "Organel",
+"D": "Molekül"
+},
+"answer": "A",
+"explanation": "Canlıların organizasyon basamakları; Hücre, Doku, Organ, Sistem ve Organizma şeklindedir. Sıralamada eksik olan kısım Organdır.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sistem Sağlığı",
+"passage": "Bir sağlıklı yaşam seminerinde, iskelet ve kas sağlığını korumak için yapılması gerekenler üzerine bir anket yapılmıştır. Ankete katılan öğrencilerin tercihleri daire grafiğinde gösterilmiştir.",
+"question": "Grafikteki verilere göre, öğrencilerin en büyük oranda tercih ettiği sağlıklı yaşam alışkanlığı hangisidir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Dengeli Beslenme",
+"Düzenli Egzersiz",
+"Doğru Duruş",
+"Uyku"
+],
+"values": [
+20,
+50,
+15,
+15
+],
+"title": "Tercih Edilen Alışkanlıklar",
+"show_names": false
+},
+"options": {
+"A": "Dengeli Beslenme",
+"B": "Uyku",
+"C": "Düzenli Egzersiz",
+"D": "Doğru Duruş"
+},
+"answer": "C",
+"explanation": "Grafikte en büyük dilim (%50 ile) düzenli egzersiz alışkanlığına aittir.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Destek ve Hareket Sistemi (Kaslar)",
+"passage": "Ahmet, bir hafta boyunca yaptığı günlük egzersizlerin kas yorgunluğu üzerindeki etkisini takip etmiş ve verileri çizgi grafiğine aktarmıştır.",
+"question": "Grafikteki verilere göre 3. günden 4. güne geçilirken gerçekleşen durum için hangisi söylenebilir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1. Gün",
+"2. Gün",
+"3. Gün",
+"4. Gün"
+],
+"values": [
+10,
+15,
+30,
+20
+],
+"title": "Egzersiz Yoğunluğu",
+"show_names": false
+},
+"options": {
+"A": "Kas gelişimi durmuştur.",
+"B": "Egzersiz yoğunluğu azalmıştır.",
+"C": "Egzersiz yoğunluğu artmıştır.",
+"D": "Yorgunluk düzeyi sıfırlanmıştır."
+},
+"answer": "B",
+"explanation": "Grafiğin değerleri 3. günde 30 iken 4. günde 20'ye düşmüştür. Bu durum egzersiz yoğunluğunun azaldığını gösterir.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Destek ve Hareket Sistemi (Eklemler)",
+"passage": "İnsan vücudundaki eklemler hareket yeteneklerine göre sınıflandırılır. Bir öğretmen öğrencilerine kol ve bacaklarındaki eklemleri sormuştur.",
+"question": "Aşağıdaki kaldıraç şemasında uygulanan kuvvet ve destek noktası dikkate alındığında, insan kolunun çalışma prensibi hangisine benzer?",
+"shape": {
+"type": "fen",
+"sub_type": "kaldirac",
+"tur": "ucuncu",
+"yuk": "Elin tuttuğu ağırlık",
+"kuvvet": "Pazı kası",
+"yuk_kolu": "Dirsekten ele kadar mesafe",
+"kuvvet_kolu": "Dirsekten dirsek eklemine",
+"show_names": false
+},
+"options": {
+"A": "Birinci tip kaldıraç",
+"B": "Sabit makara sistemi",
+"C": "Eğik düzlem",
+"D": "Üçüncü tip kaldıraç"
+},
+"answer": "D",
+"explanation": "İnsan kolunda dirsek destek noktası, pazı kası kuvvet, elin tuttuğu ağırlık yüktür. Kuvvetin destek ve yük arasında olduğu sistem üçüncü tip kaldıraçtır.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hücre",
+"passage": "Pastanede çalışan bir usta, hücreyi bir mutfağa benzetmektedir. Usta, 'Hücre zarı mutfağın kapısı, çekirdek aşçı, mitokondri ise fırındır' der.",
+"question": "Ustanın bu benzetmesine göre mitokondri (fırın) hücrede hangi görevi üstlenir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Yönetim",
+"Enerji Üretimi",
+"Madde Geçişi",
+"Destek"
+],
+"values": [
+10,
+90,
+5,
+5
+],
+"title": "Organel Görevleri",
+"show_names": false
+},
+"options": {
+"A": "Madde geçişini sağlama",
+"B": "Atık boşaltımı",
+"C": "Hücreyi yönetme",
+"D": "Enerji üretimi"
+},
+"answer": "D",
+"explanation": "Mutfaktaki fırın pişirme (enerji) işini yaptığı gibi, hücredeki mitokondri de enerji üretimi işini üstlenir. Grafik de en yüksek değerin enerji üretimine ait olduğunu doğrular.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Bitki ve hayvan hücresi",
+"passage": "Bir hayvanat bahçesinde görevli olan Deniz, mikroskop altında incelediği iki farklı hücreye ait özellikleri bir tabloda not etmiştir. Bu tablodaki yapıların hangi hücre türüne ait olduğunu belirlemek istemektedir.",
+"question": "Buna göre Deniz'in tablodaki yapıları inceleyerek ulaştığı bilgilere dayanarak hazırladığı özelliklerden hangisi yalnızca hayvan hücresine ait bir yapının varlığını gösterir?",
+"shape": {
+"type": "table",
+"title": "Hücre Yapıları İnceleme Tablosu",
+"headers": [
+"Yapı Adı",
+"1. Hücre",
+"2. Hücre"
+],
+"rows": [
+[
+"Hücre Zarı",
+"Var",
+"Var"
+],
+[
+"Sitoplazma",
+"Var",
+"Var"
+],
+[
+"Çekirdek",
+"Var",
+"Var"
+],
+[
+"Hücre Duvarı",
+"Yok",
+"Var"
+],
+[
+"Kloroplast",
+"Yok",
+"Var"
+]
+]
+},
+"options": {
+"A": "Çekirdeğin kalıtım bilgisi taşıması",
+"B": "Hücre zarının madde geçişini düzenlemesi",
+"C": "Hücre duvarının bulunmaması",
+"D": "Sitoplazma sıvısının içermesi"
+},
+"answer": "C",
+"explanation": "Hayvan hücresinde hücre duvarı ve kloroplast bulunmazken, bitki hücresinde bulunur. Tabloda 1. hücrede hücre duvarı ve kloroplast yoktur, bu durum hayvan hücresine özgüdür.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Destek ve hareket sistemi",
+"passage": "Bir çiftlikte çalışan Kerem, omurgalı hayvanların iskelet sistemlerini incelemektedir. İnceleme sırasında bazı hayvanların hareket yeteneklerini ve destek sistemlerini gözlemleyerek notlar almıştır.",
+"question": "Kerem'in yaptığı gözlemler sonucunda iskelet ve kas sistemi ile ilgili hazırladığı aşağıdaki yargılardan hangisi doğrudur?",
+"shape": {
+"type": "forces",
+"left": [
+20
+],
+"right": [
+35
+],
+"unit": "N",
+"object_label": "Kutup",
+"show_names": false
+},
+"options": {
+"A": "Çizgili kaslar isteğimiz dışında hızlı ve ritmik çalışır.",
+"B": "İskelet sistemi vücuda destek sağlar ve iç organları korur.",
+"C": "Düz kaslar iskeletimize bağlı olarak kemikleri hareket ettirir.",
+"D": "Kalp kası yapısı bakımından düz kasa, çalışması bakımından çizgili kasa benzer."
+},
+"answer": "B",
+"explanation": "İskelet sistemi vücuda dik duruş sağlar, iç organları dış etkenlerden korur ve hareket etmeye yardımcı olur. Düz kaslar iç organların yapısında bulunur ve isteğimiz dışında çalışır.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sistem sağlığı",
+"passage": "Okul sağlık kulübünde görevli olan 5/B sınıfı öğrencileri, destek ve hareket sisteminin sağlığını korumak amacıyla bir araştırma yapmıştır. Öğrenciler, sistem sağlığını korumak için alınması gereken tedbirleri listelemiştir.",
+"question": "Bu araştırmaya göre, destek ve hareket sistemi sağlığını korumak isteyen bir öğrencinin yapması gereken doğru davranış aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Kalsiyum ve D vitamini açısından zengin besinler tüketmek",
+"B": "Düzenli egzersiz yapmaktan kaçınmak",
+"C": "Ağır yükleri kaldırırken dizleri bükmeden belden eğilmek",
+"D": "Sürekli aynı pozisyonda ve hareketsiz kalmak"
+},
+"answer": "A",
+"explanation": "Kemik ve kas gelişimi için kalsiyum ve D vitamini içeren besinlerin tüketilmesi destek ve hareket sistemi sağlığı açısından çok önemlidir.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Mitokondri ve kloroplast",
+"passage": "Bir pastane çalışanının kullandığı enerji üretim mekanizmaları ile bitki hücresindeki enerji dönüşüm organeli karşılaştırılmaktadır. Bitki hücresinde fotosentez yaparak besin üreten yapı ile hücresel solunumla enerji sağlayan yapı incelenmektedir.",
+"question": "Bu duruma göre, bitki hücresindeki kloroplast ve mitokondri organellerinin görevleri ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Kloroplast sadece hayvan hücresinde besin üretir.",
+"B": "Mitokondri fotosentez yaparak kloroplasta destek olur.",
+"C": "Kloroplast bitki hücresinde fotosentez ile besin ve oksijen üretir.",
+"D": "Mitokondri hücrenin yönetim merkezidir."
+},
+"answer": "C",
+"explanation": "Kloroplast, bitki hücrelerinde güneş enerjisini kullanarak fotosentez yoluyla besin ve oksijen üretir. Mitokondri ise hücreye gerekli enerjiyi sağlar.",
+"vfd2": true,
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794265167
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları ve sembolleri",
+"passage": "Bir şehrin elektrik altyapısı planlanırken, her bir mahallenin (devre elemanı) enerji dağıtımındaki rolü önemlidir. Aşağıdaki grafik, bir elektrik devresinde bulunan farklı elemanların görevlerini sembolize eden karakteristik özelliklerini (voltaj, direnç, akım kontrolü) göstermektedir.",
+"question": "Buna göre, devrede elektriğin akışını kontrol eden ve akımı kesip başlatmaya yarayan anahtarın grafikteki temsilcisi hangisidir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Pil",
+"Ampul",
+"Bağlantı Kablosu",
+"Anahtar"
+],
+"values": [
+12,
+5,
+2,
+0
+],
+"title": "Devre Elemanlarının Akım Geçirgenlik Kapasitesi",
+"show_names": false
+},
+"options": {
+"A": "Pil",
+"B": "Bağlantı Kablosu",
+"C": "Ampul",
+"D": "Anahtar"
+},
+"answer": "D",
+"explanation": "Grafikte 0 değerine sahip olan eleman, açık durumdayken akımı kesen yani devrede akışa izin vermeyen elemandır. Bu özellik anahtara aittir.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığını etkileyen değişkenler",
+"passage": "Pazar yerinde bir tezgahtaki aydınlatma sistemini kuran teknik ekip, farklı güç kaynakları ve ampul sayılarıyla aşağıdaki kombinasyonları denemiştir:\n- 1. Durum: 1 pil, 1 ampul (Parlaklık: Çok parlak)\n- 2. Durum: 2 pil, 1 ampul (Parlaklık: En parlak)\n- 3. Durum: 1 pil, 2 ampul (Parlaklık: Az parlak)",
+"question": "Bu verilere göre, ampul parlaklığını etkileyen değişkenler ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ampul sayısı pil sayısından bağımsızdır.",
+"B": "Pil sayısı arttıkça ampul parlaklığı azalır.",
+"C": "Ampul parlaklığı sadece bağlantı kablosunun uzunluğuna bağlıdır.",
+"D": "Pil sayısı arttıkça parlaklık artar, ampul sayısı arttıkça parlaklık azalır."
+},
+"answer": "D",
+"explanation": "Verilen durumlar incelendiğinde; pil sayısındaki artışın enerjiyi artırarak parlaklığı yükselttiği, ampul sayısındaki artışın ise enerjinin paylaşılmasına neden olarak parlaklığı düşürdüğü görülür.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları ve sembolleri",
+"passage": "Bir inşaat projesinin elektrik planında, devrenin belirli noktalarına koruma sistemleri yerleştirilmiştir. Devre elemanlarının sembolleri ile gösterimi standarttır. Bir öğrenci, elindeki çizimlerde pilin 'uzun ve kısa' çizgilerle, ampulün ise 'içinde çarpı olan daire' ile gösterildiğini not etmiştir.",
+"question": "Buna göre, aşağıda verilen devre elemanı ve sembol eşleştirmelerinden hangisi bu standart bilgilere uygundur?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+7
+],
+"labels": [
+"PİL",
+"AMPUL",
+"ANAHTAR",
+"KABLO",
+"DİRENÇ",
+"DUY",
+"PİLEK",
+"SİGORTA"
+],
+"title": "Elektrik Devre Elemanları Kavram Haritası",
+"show_names": false
+},
+"options": {
+"A": "Anahtar: Sadece düz bir çizgi",
+"B": "Pil: İçi boş daire",
+"C": "Ampul: İçinde çarpı olan daire",
+"D": "Kablo: Artı işareti"
+},
+"answer": "C",
+"explanation": "Fen bilimlerinde devre şemalarında standart olarak ampul, içinde 'x' işareti bulunan bir daire ile sembolize edilir.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığını etkileyen değişkenler",
+"passage": "Bir resim sergisindeki aydınlatma panosunda her resim için ayrı bir devre kurulmuştur. Pano görevlisi, 1 numaralı devrede 1 pil ve 1 ampul, 2 numaralı devrede 1 pil ve 2 ampul, 3 numaralı devrede 2 pil ve 1 ampul kullanmıştır.",
+"question": "Buna göre, en düşük parlaklığa sahip olan devrenin özellikleri ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Tüm devrelerin parlaklığı eşittir.",
+"B": "3 numaralı devredir çünkü pil sayısı fazladır.",
+"C": "1 numaralı devredir çünkü temel devredir.",
+"D": "2 numaralı devredir çünkü aynı pil iki ampulü beslemektedir."
+},
+"answer": "D",
+"explanation": "Ampul sayısı arttığında, pilin sağladığı elektrik enerjisi daha fazla sayıda ampul arasında paylaşıldığı için ampul başına düşen enerji miktarı azalır, bu da en düşük parlaklığa neden olur.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması ve deney",
+"passage": "Bir robotik atölyesinde, öğrencilerden basit bir elektrik devresi kurmaları istenmiştir. Öğrenciler devreyi kurarken pilin uçlarını ampule, araya da bir anahtar ekleyerek bağlamışlardır. Devrenin şeması aşağıdaki yörünge modelinde olduğu gibi kapalı bir döngü oluşturmaktadır.",
+"question": "Bu çalışmaya göre, anahtarın kapalı olması devrede hangi durumu sağlar?",
+"shape": {
+"type": "science_space",
+"sub_type": "orbit",
+"title": "Elektrik Devresi Kapalı Döngü Modeli",
+"show_names": false
+},
+"options": {
+"A": "Ampulün ışık vermesini sağlar.",
+"B": "Ampulün patlamasına neden olur.",
+"C": "Elektrik akımının durmasını sağlar.",
+"D": "Pil akımının tükenmesini engeller."
+},
+"answer": "A",
+"explanation": "Basit bir elektrik devresinde anahtarın kapalı olması, devrenin tamamlanarak üzerinden elektrik akımının geçmesine ve dolayısıyla ampulün ışık vermesine neden olur.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları ve sembolleri",
+"passage": "Toplu taşıma araçlarındaki uyarı lambalarının sistemleri incelendiğinde, bazı lambaların seri, bazılarının ise paralel bağlı olduğu görülür. Bir araçta iki lamba aynı hat üzerinde seri bağlanmıştır. Bu araçtaki iki lambanın parlaklık durumları ile ilgili gözlem yapılmıştır.",
+"question": "Seri bağlı lambalardan bir tanesi devreden çıkarıldığında, diğeri için aşağıdakilerden hangisi gerçekleşir?",
+"shape": {
+"type": "science_space",
+"sub_type": "lunar_eclipse",
+"title": "Seri Bağlı Devrelerin Kesilme Etkisi",
+"show_names": false
+},
+"options": {
+"A": "Diğer lamba ışık vermeye devam eder.",
+"B": "Diğer lamba kısa devre yapar.",
+"C": "Diğer lamba sönerek devre çalışmaz hale gelir.",
+"D": "Diğer lamba daha parlak yanmaya başlar."
+},
+"answer": "C",
+"explanation": "Seri bağlı bir devrede akım yolu tektir; bu nedenle elemanlardan biri devreden çıkarıldığında yol kesilmiş olur ve diğer elemanlar da akım alamayacağı için söner.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları ve sembolleri",
+"passage": "5/A sınıfından Can, fen bilimleri dersinde hazırladığı basit bir elektrik devresinde pil, ampul, anahtar ve bağlantı kablosu kullanmıştır. Can, devresindeki elemanları sembolleriyle göstermek için bir şema çizmiştir.",
+"question": "Can'ın çizdiği devre şemasında aşağıdaki sembollerden hangisinin yer alması beklenir?",
+"shape": null,
+"options": {
+"A": "Yatay iki paralel çizgi (direnç)",
+"B": "Daire içinde nokta (sigorta)",
+"C": "İçi çarpılı daire (ampul)",
+"D": "Kesik çizgili üçgen (yalıtkan)"
+},
+"answer": "C",
+"explanation": "Basit bir elektrik devresinde ampul, bir daire içinde çarpı işareti ile gösterilir. Pil uzun ve kısa paralel çizgilerle, anahtar ise kapalı veya açık konumuna göre sembolize edilir. Seçenekler arasında ampulü temsil eden doğru sembol A şıkkında verilmiştir.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığını etkileyen değişkenler",
+"passage": "Bir deney düzeneğinde özdeş iki devre kurulmuştur. 1. devrede 1 pil ve 1 ampul bulunmaktadır. 2. devrede ise seri bağlı 2 pil ve 1 ampul bulunmaktadır.",
+"question": "Bu deneyde ampul parlaklığının pilden kaynaklı değişimini gözlemlemek için belirlenen 'bağımsız değişken' aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ampul parlaklığı",
+"B": "Ampul sayısı",
+"C": "Kullanılan kablo uzunluğu",
+"D": "Pil sayısı"
+},
+"answer": "D",
+"explanation": "Deneyde sonucu etkilemesi beklenen, araştırmacının değiştirdiği etken bağımsız değişkendir. Burada pil sayısı değiştirilerek ampulün parlaklığı (bağımlı değişken) ölçülmektedir. Bu nedenle bağımsız değişken pil sayısıdır.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması ve deney",
+"passage": "Elif, hazırladığı elektrik devresinde anahtarı kapattığında ampulün ışık vermediğini fark ediyor. Devreyi incelediğinde bağlantı kablolarının sağlam olduğunu, pilin takılı olduğunu ve ampulün de duya tam oturduğunu görüyor.",
+"question": "Buna göre Elif'in devresindeki sorunun kaynağı aşağıdakilerden hangisi olabilir?",
+"shape": null,
+"options": {
+"A": "Ampulün duyda gevşek durması",
+"B": "Bağlantı kablolarının kısa olması",
+"C": "Pil yatağındaki pilin tükenmiş olması",
+"D": "Devre anahtarının kapalı olması"
+},
+"answer": "C",
+"explanation": "Devre elemanları tam ve bağlantılar düzgün olduğu halde ışık yanmıyorsa, enerji kaynağı olan pil bitmiş olabilir. Diğer şıklar (anahtarın kapalı olması, duyun gevşek olması) metinde zaten kontrol edildiği belirtildiği için (kapalı olduğu veya tam oturduğu) elenir.",
+"vfd2": true,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794265276
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Dünyası - Işık Kaynakları",
+"passage": "Robotik atölyesinde proje hazırlayan bir grup öğrenci, hazırladıkları gece görüşlü robotun çevreyi algılayabilmesi için farklı aydınlatma araçları ve cisimler kullanmaktadır. Öğrenciler test aşamasında çevrelerindeki bazı cisimlerin kendi başlarına ışık yaymadığını, sadece üzerlerine gelen ışığı yansıttığını tespit etmiştir.",
+"question": "Buna göre robotik atölyesinde incelenen cisimlerden hangisi doğal ya da yapay bir ışık kaynağı olarak sınıflandırılamaz?",
+"shape": null,
+"options": {
+"A": "Karanlıkta ışık yayan laboratuvar feneri",
+"B": "Geceleri dünyamızı aydınlatan dolunay evresindeki Ay",
+"C": "Atölye masasını aydınlatող tavan lambası",
+"D": "Gökyüzünde parlayan Kutup Yıldızı"
+},
+"answer": "B",
+"explanation": "Güneş ve diğer yıldızlar doğal ışık kaynağı, ampul ve el feneri gibi araçlar ise yapay ışık kaynağıdır. Ay, bir ışık kaynağı olmayıp Güneş'ten aldığı ışığı yansıtan bir gök cismidir. Bu nedenle Ay ışık kaynağı olarak sınıflandırılamaz.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Dünyası - Işığın Doğrusal Yayılması ve Gölgeler",
+"passage": "Hafta sonu doğa yürüyüşüne çıkan Deniz, güneşli bir öğle vakti ağaç gölgelerini incelemiş, yaprakların ve dalların arkasında oluşan karanlık bölgelerin günün farklı saatlerinde yön değiştirdiğini ve boylarının uzayıp kısaldığını fark etmiştir.",
+"question": "Deniz'in doğa yürüyüşü sırasında gözlemlediği gölge boyu değişimlerinin temel bilimsel nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "orbit",
+"title": "Güneş'in Konumu ve Gölge",
+"show_names": false
+},
+"options": {
+"A": "Işığın opak maddelerden geçememesi ve doğrusal yollarla yayılması",
+"B": "Ağaç yapraklarının ışığı tamamen soğurarak ısı enerjisine dönüştürmesi",
+"C": "Dünya'nın kendi ekseni etrafındaki hareketinden dolayı ışık kaynağının özellik değiştirmesi",
+"D": "Havadaki su buharının ışığı kırarak farklı renklerde gölgeler oluşturması"
+},
+"answer": "A",
+"explanation": "Gölge oluşumunun ve gün içinde gölge boyu ile yönünün değişmesinin temel nedeni ışığın doğrusal yollarla yayılması ve Güneş'in gökyüzündeki konumunun gün boyunca değişmesidir. Opak cisimlerin arkasında ışığın ulaşamadığı alanlar tam gölgeyi oluşturur.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yayıldığı Yol",
+"passage": "Buse, akşam ders çalışırken çalışma masasının üzerindeki lambanın ışığının karşısına kalemini dik tutuyor. Kalemin masada oluşturduğu görüntüyü inceleyen Buse, kalemin gölgesinin kenarlarının keskin ve net bir şekilde duvara yansıdığını fark ediyor.",
+"question": "Buse'nin bu gözlemi ve elde ettiği sonuçlar dikkate alındığında ışığın yayılmasıyla ilgili numaralandırılmış ifadelerden hangileri doğrudur?\nI. Işık, engellerle karşılaştığında yön değiştirmeden doğrusal bir yolla yayılır.\nII. Işık kaynağından çıkan ışınlar her yöne ve eğrisel yollar izleyerek yayılır.\nIII. Opak bir cisim ışık kaynağının önüne konulduğunda ışığın geçişini engeller ve arkasında gölge oluşur.",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Metinde kalemin gölgesinin oluşması ve net bir sınırla yansıtılması, ışığın doğrusal yollarla yayıldığını ve opak maddeler tarafından engellendiğini gösterir. II numaralı ifadedeki 'eğrisel yollar' ifadesi yanlıştır, çünkü ışık doğrusal yayılır. Dolayısıyla I ve III numaralı ifadeler doğrudur.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın doğrusal yayılması",
+"passage": "Tarihî bir kervansarayın kalın taş duvarlarında yer alan mazgal pencerelerden içeri süzülen Güneş ışınları, içerideki toz taneciklerini aydınlatarak yere doğru düz çizgiler hâlinde inmektedir. Kervansaraydaki araştırmacılar bu durumu inceleyerek ışığın yayılma biçimini rapor etmiştir.",
+"question": "Bu tarihî yapıdaki incelemede elde edilen gözleme göre ışığın yayılması ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Işık, engellerle karşılaştığında yön değiştirerek yayılmasına devam eder.",
+"B": "Işık, boşlukta ve her türlü maddesel ortamda doğrusal yollar boyunca yayılır.",
+"C": "Işık, yalnızca dalgalar hâlinde ve eğrisel yörüngeler izleyerek yayılmaktadır.",
+"D": "Işık, kaynağından çıktıktan sonra her yöne dairesel dalgalar yayar."
+},
+"answer": "B",
+"explanation": "Adım 1: Kervansaraydaki mazgal pencerelerden süzülen ışık ışınlarının düz çizgiler hâlinde ilerlediği belirtilmektedir. Adım 2: Bu durum, ışığın doğrusal yollar boyunca yayıldığının en belirgin kanıtıdır. Adım 3: Seçenekler incelendiğinde, ışığın doğrusal yolla yayıldığını ifade eden tek doğru bilimsel yargı B seçeneğinde yer almaktadır.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Tam gölge",
+"passage": "Bahçesindeki bitkileri korumak için tarh oluşturan Can, gece projektör ışığı kullanarak gölge boyu değişimi deneyi yapmaktadır. Noktasal ışık kaynağının önüne dik olarak yerleştirdiği özdeş levhalar yardımıyla duvarda oluşan gölgeleri incelemektedir.",
+"question": "Can'ın yaptığı bu gözlemde duvarda oluşan tam gölgenin boyutunu büyütmek için aşağıdakilerden hangisi uygulanmalıdır?",
+"shape": null,
+"options": {
+"A": "Perdeyi opak cisimden uzaklaştırıp ışık kaynağını sabitlemek",
+"B": "Işık kaynağı ile perde arasındaki mesafeyi aynı tutarak cisme yaklaşmak",
+"C": "Opak cismi ışık kaynağından uzaklaştırıp perdeye yaklaştırmak",
+"D": "Işık kaynağını opak cisme daha yakın bir konuma getirmek"
+},
+"answer": "D",
+"explanation": "Adım 1: Tam gölgenin boyutu, ışık kaynağının cisme olan uzaklığına ve cismin perdeye olan uzaklığına bağlıdır. Adım 2: Işık kaynağı cisme yaklaştırıldığında veya cisim perdeye yaklaştırılıp ışık kaynağına yaklaştırıldığında gölge büyür. Adım 3: Verilen seçenekler arasında ışık kaynağını opak cisme yaklaştırmak, engelin arkasında oluşan gölgeyi büyüten temel uygulamadır.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Dünyası kavramları",
+"passage": "Tarihî bir kazı alanında bulunan buluntuları inceleyen arkeologlar, eski dönemlerde yapılmış cam parçaları ve metal levhaların ışıkla etkileşimini tablo halinde kaydetmiştir. Tabloda maddelerin ışık geçirgenlik oranları yüzde olarak verilmiştir.",
+"question": "Bu kazı verilerine göre hazırlanan tabloda ışığı geçirme yüzdesi %0 olan bir metal levha ile ilgili aşağıdaki yargılardan hangisi doğrudur?",
+"shape": {
+"type": "table",
+"title": "Arkeolojik Madde Işık Geçirgenlik Analizi",
+"headers": [
+"Madde Adı",
+"Işık Geçirgenlik (%)",
+"Madde Türü"
+],
+"rows": [
+[
+"Düz Cam Parçası",
+"%95",
+"Saydam"
+],
+[
+"Buzlu Cam",
+"%40",
+"Yarı Saydam"
+],
+[
+"Metal Levha",
+"%0",
+"Opak"
+]
+]
+},
+"options": {
+"A": "Arkasına konulan cisimlerin net görünmesini sağlar.",
+"B": "Doğal bir ışık kaynağı gibi etki göstererek çevreye ışık yayar.",
+"C": "Üzerine düşen ışığın tamamını diğer tarafa iletir.",
+"D": "Arkasına düşen bölgede net bir tam gölge oluşturur."
+},
+"answer": "D",
+"explanation": "Adım 1: Tabloya göre metal levhanın ışık geçirgenliği %0'dır ve madde türü opak maddedir. Adım 2: Opak maddeler ışığı geçirmedikleri için arkalarında tam gölge oluşmasına neden olur. Adım 3: Doğru ifade C seçeneğinde verilmiştir.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın doğrusal yayılması",
+"passage": "Güneşli bir öğle vaktinde bahçede oyun oynayan Mert, yere dikilen bayrak direğinin gölgesinin boyunu saatlere göre gözlemlemiştir. Sabah saatlerinde direğin gölgesi uzunken, öğle vakti gölgenin boyunun en kısa olduğunu, akşamüstü ise tekrar uzadığını fark etmiştir.",
+"question": "Mert'in gözlemlediği bu durumun temel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Güneş ışınlarının yeryüzüne farklı açılarla gelmesi ve ışığın doğrusal yayılması",
+"B": "Dünya'nın kendi ekseni etrafındaki dönüş hızının gün içinde değişmesi",
+"C": "Bayrak direğinin yapıldığı maddelerin gün içinde genleşmesi",
+"D": "Sabah saatlerinde havanın bulutlu ve ışık kaynağının yetersiz olması"
+},
+"answer": "A",
+"explanation": "Gün içindeki gölge boyu değişimleri, Güneş'in gökyüzündeki konumuna bağlı olarak ışık ışınlarının yere gelme açısının değişmesinden ve ışığın engeller arkasında doğrusal yayılmasından kaynaklanır.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Saydam, yarı saydam ve opak maddeler",
+"passage": "Elif, odasının camına farklı kumaş parçaları asarak odanın içindeki ışık miktarını gözlemlemek istemiştir. 1 numaralı kumaş odanın içi hiç görünmeyecek şekilde ışığı tamamen engellemiş, 2 numaralı kumaş ışığın bir kısmını içeri geçirmiş, 3 numaralı kumaş ise dışarısının tamamen net görünmesini sağlamıştır.",
+"question": "Bu gözleme göre kumaşların ışığı geçirme özelliklerinin doğru eşleştirilmesi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "1: Opak, 2: Yarı saydam, 3: Saydam",
+"B": "1: Saydam, 2: Yarı saydam, 3: Opak",
+"C": "1: Opak, 2: Saydam, 3: Yarı saydam",
+"D": "1: Yarı saydam, 2: Opak, 3: Saydam"
+},
+"answer": "A",
+"explanation": "Işığı tamamen engelleyen kumaş opak (1), ışığı kısmen geçiren yarı saydam (2), net geçiren ise saydam (3) maddedir. Buna göre doğru eşleştirme A seçeneğinde verilmiştir.",
+"vfd2": true,
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 2,
+"ts": 1794265980
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"passage": "5/A sınıfı öğrencileri, sürdürülebilir yaşam ve kaynakların etkili kullanımı konusunda bir müze sergisini incelemişlerdir. Sergide, günlük hayatta kullanılan evsel atıkların doğada kalış süreleri ile bu maddelerin geri dönüştürülebilir olup olmadığına dair iki farklı bilgi panosu yer almaktadır. Öğrencilerden Kerem, bu panolardaki verileri defterine kaydetmiştir.",
+"question": "Kerem'in müze sergisinde incelediği bilgilere dayanarak evsel atıklar ve geri dönüşüm süreci ile ilgili aşağıdaki ifadelerden hangileri doğrudur?\nI. Plastik şişeler ve cam kavanozlar geri dönüştürülebilir atık sınıfına girer.\nII. Geri dönüşüm sayesinde doğal kaynakların tükenmesi yavaşlatılır ve enerji tasarrufu sağlanır.\nIII. Evsel atıkların tamamının doğada yok olma süresi birkaç haftadan kısa sürmektedir.",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "I. Plastik ve cam gibi maddeler geri dönüştürülebilir evsel atıklardandır, doğrudur. II. Geri dönüşüm doğal kaynakları korur ve enerji tasarrufu sağlar, doğrudur. III. Plastik, metal ve cam gibi atıkların doğada yok olma süresi yüzlerce hatta binlerce yılı bulur, bu nedenle tamamı birkaç haftadan kısa sürmez, yanlıştır. Doğru yargılar I ve II'dir.",
+"vfd2": true,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794266335
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir yaşam ve kaynakların etkili kullanımı",
+"passage": "Bir arkeoloji kazı alanında bulunan eski yerleşim yerindeki atık çukurlarının içerikleri incelenmiştir. Kazı ekibi, elde ettikleri bulguları daire grafiği ile modelleyerek antik dönemdeki atık yönetimini ve madde kullanım oranlarını raporlamıştır.",
+"question": "Daire grafiğindeki oranlar dikkate alındığında, I. Seramik ve çömlek kırıkları en yüksek orana sahip kalıntılardır, II. Metal kalıntılar organik atıklara göre daha yüksek orandadır, III. Antik dönemde doğada çözünmeyen inorganik atıkların oranı toplam atıkların yarısından fazladır yargılarından hangileri doğrudur?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Seramik",
+"Organik Atık",
+"Metal",
+"Cam"
+],
+"values": [
+50,
+25,
+15,
+10
+],
+"title": "Kazı Alanı Atık Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Grafikte seramik %50 ile en yüksek orandadır (I doğru). Metal %15, organik atık %25'tir; yani metal organik atıktan azdır (II yanlış). Seramik (%50), metal (%15) ve cam (%10) inorganik olup toplamı %75'tir, bu da yarısından (%50) fazladır (III doğru). Dolayısıyla I ve III doğrudur.",
+"vfd2": true,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794266335
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm: Evsel atıklar",
+"passage": "Kerem, okulundaki çevre kulübü için evsel atıkların geri dönüşüm potansiyelini inceleyen bir araştırma yapmıştır. Yaptığı araştırma sonucunda evinde bir haftada biriken atıkların kütle dağılımını belirlemiş ve bu verileri bir daire grafiğinde göstermiştir. Grafiğe göre evsel atıkların çeşitlerine göre dağılım oranları belirlenmiştir.",
+"question": "Bu bilgilere ve daire grafiğine göre, Kerem'in evinde biriken atıkların yönetimi ve kaynakların etkili kullanımı ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Organik Atıklar",
+"Plastik ve Ambalaj",
+"Kâğıt ve Karton",
+"Cam Atıklar"
+],
+"values": [
+40,
+30,
+20,
+10
+],
+"title": "Evsel Atıkların Haftalık Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "Organik atıklar en yüksek oranı oluşturduğundan, bu atıkların kompost yapılarak toprak için verimli maddeye dönüştürülmesi kaynakların etkili kullanımını sağlar.",
+"B": "Kâğıt ve karton atıklar doğrudan çöpe atılırsa doğal kaynakların tükenmesi yavaşlar.",
+"C": "Plastik ve ambalaj atıklarının geri dönüşümü, doğada uzun süre bozulmadıkları için evsel atık miktarını artırır.",
+"D": "Cam atıkların oranı en az olduğundan, cam şişelerin geri dönüştürülmesi hammadde tasarrufuna hiçbir katkı sağlamaz."
+},
+"answer": "A",
+"explanation": "Adım 1: Daire grafiği incelendiğinde organik atıkların %40 ile en büyük paya sahip olduğu görülür. Adım 2: Organik atıkların evde kompostlaştırılarak değerlendirilmesi, atık yönetiminde ve kaynakların etkili kullanımında önemli bir adımdır. Adım 3: Diğer seçeneklerdeki ifadeler geri dönüşüm ve doğa koruma ilkeleriyle çelişmektedir. Adım 4: Bu durumda doğru şık A seçeneğidir.",
+"vfd2": true,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794266335
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm: Kaynakların etkili kullanımı",
+"passage": "Bir bisiklet turu organizasyonunda atık yönetimini optimize etmek amacıyla hareketli parçaların ve atık ayrıştırma sistemlerinin çalışma prensipleri incelenmiştir. Aşağıdaki dişli mekanizması, atık taşıma bandının çalışma hızını ayarlamak için tasarlanmıştır.",
+"question": "Bu fen şemasına ve kaynakların etkili kullanımı ilkesine göre, atık ayrıştırma sistemindeki mekanik düzenleme için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "fen",
+"sub_type": "disli",
+"dislerin_sayisi": [
+20,
+40
+],
+"isimler": [
+"K",
+"L"
+],
+"yonler": [
+"saat"
+],
+"show_names": false
+},
+"options": {
+"A": "K dişlisi saat yönünde döndürüldüğünde, daha az enerji harcanarak atıkların bant üzerinde kontrollü taşınması sağlanır.",
+"B": "Dişli sistemleri atıkların geri dönüştürülmesinde hammadde üretimini doğrudan gerçekleştirir.",
+"C": "K ve L dişlilerinin diş sayıları farklı olduğu için dönüş yönleri her zaman aynı olur.",
+"D": "Bu mekanizma yalnızca evsel organik atıkların kompostlaştırılmasında kullanılır."
+},
+"answer": "A",
+"explanation": "Adım 1: Şemadaki dişli sistemi, sistemin mekanik gücünü düzenleyerek atıkların taşınmasında enerji tasarrufu ve kaynakların etkili kullanımına katkı sağlar. Adım 2: K ve L dişlileri birbirine bağlı olup farklı diş sayılarına sahiptir. Adım 3: Dişliler zıt yönlerde döner ve sistemin kontrollü çalışmasını sağlar. Adım 4: Bu durum enerji ve kaynak verimliliği açısından A seçeneğini doğru kılar.",
+"vfd2": true,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794266335
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm: Atık yönetimi",
+"passage": "Fotoğrafçılık kulübü öğrencileri, doğa yürüyüşü sırasında çevreye bırakılan atıkların doğada kalış sürelerini ve çevreye verdikleri zararları konu alan bir sergi hazırlamıştır. Sergi panosunda atıkların doğada yok olma süreçlerine dair eksik bırakılan bazı bilimsel notlar bulunmaktadır.",
+"question": "Atık yönetimi ve doğanın korunması ilkeleri dikkate alındığında, bu sergi panosunda yer alması gereken en doğru bilimsel bilgi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Plastik ve cam atıklar doğada yüzlerce yıl bozulmadan kaldığı için bu maddelerin kaynağında azaltılması ve geri dönüştürülmesi hayati önem taşır.",
+"B": "Organik atıklar doğaya bırakıldığında hiçbir zaman ayrışmaz ve kalıcı kirlilik oluşturur.",
+"C": "Atık yönetiminde temel amaç, tüm evsel atıkların yakılarak enerjiye dönüştürülmesidir.",
+"D": "Cam şişeler doğada birkaç ay içinde kendiliğinden tamamen kaybolur."
+},
+"answer": "A",
+"explanation": "Adım 1: Plastik ve cam gibi maddeler doğada çok uzun süre kalarak çevre kirliliğine yol açar. Adım 2: Bu nedenle bu atıkların kaynağında azaltılması ve geri dönüşüme kazandırılması atık yönetiminin temelini oluşturur. Adım 3: Organik atıklar ise doğada kısa sürede ayrışabilir. Adım 4: Bu bilimsel açıklamalarla birebir uyuşan seçenek A'dır.",
+"vfd2": true,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794266335
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm: Geri dönüştürülebilen maddeler",
+"passage": "Bir market alışverişinde tüketicilerin geri dönüştürülebilir ambalajlı ürünleri tercih etme durumları incelenmiştir. Tabloda farklı ürünlerin ambalaj türleri ve geri dönüşüm durumları verilmiştir.",
+"question": "Bu tabloya ve sürdürülebilir yaşam bilincine göre, tüketicilerin yapacağı tercihlerle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "table",
+"title": "Ürün Ambalajları ve Geri Dönüşüm Durumları",
+"headers": [
+"Ürün Adı",
+"Ambalaj Malzemesi",
+"Geri Dönüşüm Durumu"
+],
+"rows": [
+[
+"Reçel",
+"Cam",
+"Geri dönüştürülebilir"
+],
+[
+"Süt",
+"Karton (Tetra Pak)",
+"Geri dönüştürülebilir"
+],
+[
+"Şampuan",
+"Plastik",
+"Geri dönüştürülebilir"
+]
+]
+},
+"options": {
+"A": "Tabloda yer alan cam, karton ve plastik ambalajlı ürünlerin tercih edilmesi ve sonrasında ayrıştırılması kaynakların etkili kullanımını destekler.",
+"B": "Karton ambalajlar hiçbir şekilde geri dönüştürülemediğinden doğrudan doğaya atılmalıdır.",
+"C": "Plastik ambalajlı ürünler tercih edildiğinde doğal kaynakların tükenmesi engellenmiş olur.",
+"D": "Cam ambalajların geri dönüşüm süreci çevreye zarar veren gazlar üretir."
+},
+"answer": "A",
+"explanation": "Adım 1: Tablodaki cam, karton ve plastik ambalajların tamamı geri dönüştürülebilir niteliktedir. Adım 2: Bu tür ambalajların seçilmesi ve doğru atık kutularına atılması kaynakların etkili kullanımına katkı sağlar. Adım 3: Diğer seçeneklerdeki ifadeler yanlış bilgi içermektedir. Adım 4: Buna göre doğru cevap A seçeneğidir.",
+"vfd2": true,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794266335
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm: Atık yönetimi",
+"passage": "Bir sağlık merkezinde atıkların türlerine göre ayrılması ve geri kazanımı amacıyla mekanik sistemler kurulmuştur. Sistem içindeki dişli düzenekleri, tıbbi ve evsel atıkların işlenme hızını dengelemektedir.",
+"question": "Bu fen şemasına ve atık yönetimi ilkelerine göre, sağlık merkezindeki bu düzenleme için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "fen",
+"sub_type": "disli",
+"dislerin_sayisi": [
+30,
+15
+],
+"isimler": [
+"X",
+"Y"
+],
+"yonler": [
+"saat"
+],
+"show_names": false
+},
+"options": {
+"A": "X ve Y dişlilerinin uyumlu çalışması, atık işleme makinelerinin verimli çalışmasını sağlayarak atık yönetimini kolaylaştırır.",
+"B": "Dişli sistemleri atıkların doğada kendiliğinden yok olmasını sağlar.",
+"C": "Bu mekanizma yalnızca hastane dışındaki evsel plastiklerin yakılmasında kullanılır.",
+"D": "X dişlisi büyüdükçe atık miktarı kendiliğinden sıfırlanır."
+},
+"answer": "A",
+"explanation": "Adım 1: Şemadaki dişli sistemi atık işleme makinelerinin hızını ve gücünü ayarlamak için tasarlanmıştır. Adım 2: Uyumlu mekanik çalışma, tesisin atık yönetimini etkin şekilde yürütmesini sağlar. Adım 3: Diğer seçenekler fen bilimleri ve atık yönetimi esaslarına aykırıdır. Adım 4: Bu nedenle doğru şık A seçeneğidir.",
+"vfd2": true,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794266335
 }
 ]
 }

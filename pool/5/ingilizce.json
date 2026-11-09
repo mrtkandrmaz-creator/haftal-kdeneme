@@ -2800,6 +2800,1271 @@
 "topics": "Body parts, Illnesses, Advice",
 "d": 1,
 "ts": 1794211963
+},
+{
+"subject": "İngilizce",
+"topic": "Family Life: Daily routines (present simple) & frequency adverbs",
+"passage": "Mother: \"What time does your brother get up each morning?\"\nTom: \"He usually gets up at seven o'clock, but on Saturdays he gets up at eight because he likes to watch cartoons.\"\nFather: \"And when does he have breakfast?\"",
+"question": "According to the conversation, which of the following statements is true?",
+"shape": null,
+"options": {
+"A": "He never gets up later than seven o'clock.",
+"B": "Tom’s brother gets up at eight o'clock every day.",
+"C": "He usually gets up at seven o'clock, but on Saturdays he gets up at eight o'clock.",
+"D": "He always gets up at seven o'clock on weekdays and Saturdays."
+},
+"answer": "C",
+"explanation": "1. Identify the routine mentioned: \"He usually gets up at seven o'clock\" → regular habit.\n2. Note the exception: \"on Saturdays he gets up at eight\".\n3. Combine both pieces: the correct statement must contain the usual time and the Saturday exception.\n4. Option C matches exactly.",
+"vfd2": true,
+"unit": "Family Life",
+"topics": "Family members' routines, Hobbies and activities, Chores, Present Progressive, Present Progressive vs Simple Present",
+"d": 3,
+"ts": 1794264809
+},
+{
+"subject": "İngilizce",
+"topic": "Hobbies and activities",
+"passage": "Lila loves reading books and painting. She says, \"I enjoy reading books more than painting.\" Her friend Max says, \"I like swimming and riding a bike.\" Lila’s brother, Sam, says, \"I can’t play the guitar, but I love dancing.\"",
+"question": "Based on the passage, which activity does Sam enjoy the most?",
+"shape": null,
+"options": {
+"A": "Dancing",
+"B": "Playing the guitar",
+"C": "Swimming",
+"D": "Riding a bike"
+},
+"answer": "A",
+"explanation": "Sam says he loves dancing. He cannot play guitar. The passage does not mention swimming or biking for Sam. Thus dancing is the most enjoyed activity.",
+"vfd2": true,
+"unit": "Family Life",
+"topics": "Family members' routines, Hobbies and activities, Chores, Present Progressive, Present Progressive vs Simple Present",
+"d": 3,
+"ts": 1794264809
+},
+{
+"subject": "İngilizce",
+"topic": "Daily routines and time expressions",
+"passage": "Bora writes down his morning schedule before going to school:\n- 07:00 : Wake up and get up\n- 07:15 : Brush teeth and wash face\n- 07:30 : Have breakfast with family\n- 07:45 : Leave home for school",
+"question": "Which of the following activities does Bora do at quarter past seven according to his morning schedule?",
+"shape": null,
+"options": {
+"A": "He leaves home and walks to school.",
+"B": "He wakes up and gets out of bed.",
+"C": "He has breakfast with his family.",
+"D": "He brushes his teeth and washes his face."
+},
+"answer": "D",
+"explanation": "Quarter past seven means 7:15. According to Bora's schedule, at 07:15 he brushes his teeth and washes his face.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Clothes and appearance",
+"passage": "Four friends are talking about what they wear in different weather conditions:\n- Kerem: 'I wear my thick wool jumper and boots when it snows.'\n- Deniz: 'I wear my sunglasses and a sun hat on sunny days.'\n- Aylin: 'I wear my raincoat and waterproof boots on rainy days.'\n- Mert: 'I wear my heavy winter coat and scarf in the summer season.'",
+"question": "According to the statements above, which person makes a logical mistake regarding seasonal clothing matching?",
+"shape": null,
+"options": {
+"A": "Mert",
+"B": "Aylin",
+"C": "Deniz",
+"D": "Kerem"
+},
+"answer": "A",
+"explanation": "Mert says he wears a heavy winter coat and scarf in the summer season, which is logically incorrect because winter coats are worn in cold weather, not in summer.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Daily routines and frequency adverbs",
+"passage": "Selin and Burak compare their after-school routines:\n- Selin: 'I always do my homework right after I arrive home, and then I watch TV.'\n- Burak: 'I never do my homework immediately; I usually play computer games first and do my homework late at night.'",
+"question": "Which of the following statements is correct according to the dialogue between Selin and Burak?",
+"shape": null,
+"options": {
+"A": "Burak never plays computer games after school.",
+"B": "Burak always completes his homework right after school.",
+"C": "Selin finishes her homework before watching TV.",
+"D": "Selin watches TV before doing her homework."
+},
+"answer": "C",
+"explanation": "Selin states that she always does her homework right after arriving home and 'then' watches TV, meaning she finishes her homework before watching TV.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Body parts and daily health",
+"passage": "School nurse Meltem examines students who visit the clinic:\n- Student 1: 'I have a terrible toothache because I ate too much candy.'\n- Student 2: 'I cannot hear my teacher well because my ears hurt.'\n- Student 3: 'I have a high fever and my forehead is very hot.'\n- Student 4: 'I cannot walk easily because I injured my knee while running.'",
+"question": "Which student mentions a health problem related to the lower part of their leg?",
+"shape": null,
+"options": {
+"A": "Student 4",
+"B": "Student 2",
+"C": "Student 3",
+"D": "Student 1"
+},
+"answer": "A",
+"explanation": "Student 4 states that they injured their knee while running, which is a body part located on the lower limb / leg.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Clothes and daily life",
+"passage": "Hande is packing her suitcase for a two-week trip. She checks the weather forecast for her destination, which shows that it will be rainy and windy every day. She needs to select appropriate items from her wardrobe: a thick winter coat, shorts, a raincoat, sandals, a windbreaker, and a sun hat.",
+"question": "Which of the following two items should Hande definitely put in her suitcase according to the weather forecast?",
+"shape": null,
+"options": {
+"A": "Shorts and sandals",
+"B": "Winter coat and sandals",
+"C": "Sun hat and shorts",
+"D": "Raincoat and windbreaker"
+},
+"answer": "D",
+"explanation": "Since the weather forecast predicts rainy and windy conditions every day, Hande needs protective clothing against rain and wind, which are a raincoat and a windbreaker.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Body parts and appearance",
+"passage": "Medical student Emma examines her patient's health chart. The doctor's notes say: 'The patient has dark brown hair, green eyes, and a tall posture. She wears glasses because she cannot see distant objects clearly.'",
+"question": "According to the doctor's notes, which of the following physical features belongs to the patient?",
+"shape": null,
+"options": {
+"A": "Dark brown hair and green eyes",
+"B": "Short hair and brown eyes",
+"C": "Short posture and blue eyes",
+"D": "Blonde hair and wearing a hat"
+},
+"answer": "A",
+"explanation": "According to the passage, the patient has 'dark brown hair' and 'green eyes'. Option B matches these exact physical features.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Clothes",
+"passage": "Can is preparing his suitcase for a winter trip to Erzurum. He opens his wardrobe and lists his items:\n- 2 thick woolen sweaters\n- 1 pair of sunglasses\n- 3 pairs of heavy winter boots\n- 1 thin summer T-shirt",
+"question": "Which of the following items is completely unsuitable for Can's winter trip weather conditions?",
+"shape": null,
+"options": {
+"A": "Heavy winter boots",
+"B": "Thin summer T-shirt",
+"C": "Thick jackets",
+"D": "Woolen sweaters"
+},
+"answer": "B",
+"explanation": "Can is going to a cold winter trip in Erzurum. A thin summer T-shirt is not suitable for cold weather.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Daily routines",
+"passage": "Mert writes down his evening schedule after school:\n16:00 - Arrive home and rest\n16:30 - Do my homework\n18:00 - Have dinner with family\n19:30 - Watch TV\n21:30 - Go to bed",
+"question": "What does Mert do immediately after having dinner with his family?",
+"shape": null,
+"options": {
+"A": "He does his homework",
+"B": "He arrives home",
+"C": "He goes to bed",
+"D": "He watches TV"
+},
+"answer": "D",
+"explanation": "According to the schedule, he has dinner at 18:00 and watches TV at 19:30. Therefore, he watches TV immediately after dinner.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "Adverbs of frequency",
+"passage": "Zeynep keeps a weekly habit log about her school days:\n- Wake up at 7:00 AM (Monday to Friday): 5 times out of 5\n- Eat breakfast in the morning: 3 times out of 5\n- Walk to school: 1 time out of 5",
+"question": "Which of the following frequency adverbs best describes Zeynep's habit of waking up at 7:00 AM on school days?",
+"shape": null,
+"options": {
+"A": "Never",
+"B": "Sometimes",
+"C": "Always",
+"D": "Usually"
+},
+"answer": "C",
+"explanation": "Zeynep wakes up at 7:00 AM on all 5 out of 5 school days. Therefore, she 'always' wakes up at 7:00 AM.",
+"vfd2": true,
+"unit": "Personal Life",
+"topics": "Body parts and appearance, Clothes, Daily routines, Adverbs of frequency, Question tags",
+"d": 3,
+"ts": 1794264976
+},
+{
+"subject": "İngilizce",
+"topic": "School Rules",
+"passage": "School Policy: 1. You must wear your school uniform. 2. You mustn't run in the corridors. 3. You must be on time for lessons. 4. You mustn't bring your mobile phone to school.",
+"question": "Which of the following actions is permitted according to the school policy?",
+"shape": null,
+"options": {
+"A": "Wearing a clean and tidy school uniform.",
+"B": "Coming to the classroom five minutes late.",
+"C": "Bringing a smartphone to take photos during break.",
+"D": "Running quickly to catch a friend in the hallway."
+},
+"answer": "A",
+"explanation": "Rule 1 states students must wear uniforms. Option A violates Rule 3 (be on time). Option B violates Rule 2 (no running). Option D violates Rule 4 (no phones). Wearing a uniform is the only permitted action.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "School Clubs",
+"passage": "School Club Schedule: Monday: Chess Club (Focus: Logical thinking). Wednesday: Drama Club (Focus: Acting and performance). Friday: Painting Club (Focus: Colors and drawing).",
+"question": "Selin says, 'I love performing on stage and expressing feelings through characters.' According to the schedule, which day should she attend?",
+"shape": null,
+"options": {
+"A": "Saturday",
+"B": "Wednesday",
+"C": "Monday",
+"D": "Friday"
+},
+"answer": "B",
+"explanation": "Performing on stage and playing characters is the definition of Drama. The Drama Club is scheduled for Wednesday.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "Countries and Nationalities",
+"passage": "We have an international school project. Ali is from Turkey. Hans is from Germany. Elena is from Italy. Ken is from Japan.",
+"question": "Which of the following is correct regarding their origins?",
+"shape": null,
+"options": {
+"A": "Hans is Turkish.",
+"B": "Ali is Italian.",
+"C": "Ken is Japanese.",
+"D": "Elena is German."
+},
+"answer": "C",
+"explanation": "Ali is from Turkey (Turkish), Hans is from Germany (German), Elena is from Italy (Italian), Ken is from Japan (Japanese). Only Ken is Japanese is factually consistent with the text.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "Simple Present Tense",
+"passage": "Demir's Daily Routine: 08:00 - Wake up. 09:00 - Go to school. 12:30 - Have lunch at the canteen. 16:00 - Leave school.",
+"question": "Which sentence correctly describes Demir's routine?",
+"shape": null,
+"options": {
+"A": "He wakes up at noon.",
+"B": "He has lunch at school at half past twelve.",
+"C": "He leaves school at nine o'clock.",
+"D": "He goes to school at four o'clock."
+},
+"answer": "B",
+"explanation": "Based on the routine: 08:00 is wake up, 09:00 is go to school, 12:30 is lunch, 16:00 is leave school. Only Option A matches the time and activity correctly.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "Imperatives",
+"passage": "Teacher's instructions for the classroom: 1. Open your books. 2. Sit down. 3. Be quiet. 4. Listen to the teacher.",
+"question": "Which action should a student take if the teacher says 'Be quiet'?",
+"shape": null,
+"options": {
+"A": "Stop making noise.",
+"B": "Open the window.",
+"C": "Stand up and walk.",
+"D": "Start talking to a friend."
+},
+"answer": "A",
+"explanation": "The imperative 'Be quiet' means to stop talking or making noise. Therefore, the correct action is to stop making noise.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "National Days",
+"passage": "In Turkey, we celebrate Children's Day on April 23rd. It is a special day for all children around the world.",
+"question": "What should children do on April 23rd according to the cultural context?",
+"shape": null,
+"options": {
+"A": "Go to the school to have a math exam.",
+"B": "Celebrate and participate in joyful activities.",
+"C": "Stay at home and sleep all day.",
+"D": "Clean the classrooms very carefully."
+},
+"answer": "B",
+"explanation": "Children's Day is a celebration. Participating in joyful activities is the only option that fits the spirit of a national celebration.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "School Life: Countries and Nationalities",
+"passage": "Fishing Competition Data: \nTeam A (Japan): 15 fish caught. \nTeam B (Turkey): 22 fish caught. \nTeam C (Italy): 18 fish caught.",
+"question": "Which of the following comparisons is true based on the data?",
+"shape": null,
+"options": {
+"A": "Team A caught more fish than Team C.",
+"B": "Team C caught fewer fish than Team A.",
+"C": "Team B and Team C caught the same amount of fish.",
+"D": "Team B caught the highest number of fish."
+},
+"answer": "D",
+"explanation": "Team A has 15, Team B has 22, and Team C has 18. Comparing these, 22 is the highest number. Thus, Team B caught the most.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "School Life: School rules",
+"passage": "In our school: \nI. Students must wear a uniform. \nII. Students mustn't run in the corridors. \nIII. Students can eat in the cafeteria.",
+"question": "According to the rules, which of the following situations is appropriate?",
+"shape": null,
+"options": {
+"A": "Students play ball in the hallway.",
+"B": "Ali runs to the class during the break.",
+"C": "Mehmet wears his school uniform to class.",
+"D": "Ayşe eats her sandwich in the library."
+},
+"answer": "C",
+"explanation": "Rule I states students must wear a uniform. Rule II prohibits running. Rule III allows eating in the cafeteria (not the library). Wearing a uniform is the only rule followed.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "School Life: Library rules",
+"passage": "Librarian: 'Please be quiet in the library. You can borrow two books for ten days. You mustn't write inside the books.'",
+"question": "Which of the following is true according to the librarian's instructions?",
+"shape": null,
+"options": {
+"A": "You must remain silent in the library.",
+"B": "You can take three books at the same time.",
+"C": "You are allowed to draw on the pages.",
+"D": "You can keep a book for fifteen days."
+},
+"answer": "A",
+"explanation": "The librarian explicitly mentions 'be quiet', 'two books', and 'mustn't write inside'. Therefore, being silent is the correct instruction.",
+"vfd2": true,
+"unit": "School Life",
+"topics": "School places and rules, Clubs, Countries, National days, Simple Present, Mustn't/can't, Imperatives",
+"d": 4,
+"ts": 1794265239
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the City - Types of Houses",
+"passage": "Cultural Festival Housing List: Traditional stone houses (High durability). Modern apartments (Great city view). Wooden bungalows (Near the forest).",
+"question": "Mr. Smith wants a house that is close to nature. Which house should he choose according to the list?",
+"shape": null,
+"options": {
+"A": "Traditional stone houses",
+"B": "Wooden bungalows",
+"C": "City centre buildings",
+"D": "Modern apartments"
+},
+"answer": "B",
+"explanation": "The list specifies that the wooden bungalows are located near the forest, which fits the preference of being close to nature.",
+"vfd2": true,
+"unit": "Life in the Neighbourhood & City",
+"topics": "Places for recreation, Types of houses, Comparatives, Possessive 's, There is/are",
+"d": 2,
+"ts": 1794265416
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the Neighbourhood - Possessive 's",
+"passage": "Museum Guide: There is a local history section on the left. Mr. Brown’s office is at the entrance. The children’s workshop is next to Mr. Brown’s office.",
+"question": "Where can the children go to join a workshop?",
+"shape": null,
+"options": {
+"A": "Inside the local history section.",
+"B": "At the entrance of the museum.",
+"C": "Next to the office of Mr. Brown.",
+"D": "In the local history section's garden."
+},
+"answer": "C",
+"explanation": "The text states that the children's workshop is next to Mr. Brown's office. Therefore, they go to the location adjacent to his office.",
+"vfd2": true,
+"unit": "Life in the Neighbourhood & City",
+"topics": "Places for recreation, Types of houses, Comparatives, Possessive 's, There is/are",
+"d": 2,
+"ts": 1794265416
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the City - Weather & Activity",
+"passage": "City Weather Report: Monday: Rainy. Tuesday: Sunny. Wednesday: Windy. Planned activities: Park picnic (Sunny), Museum visit (Rainy), Flying kites (Windy).",
+"question": "Which of the following is the most suitable plan for Wednesday?",
+"shape": null,
+"options": {
+"A": "They go to the park for a picnic.",
+"B": "They go out to fly their kites.",
+"C": "They visit the local museum.",
+"D": "They stay home to read books."
+},
+"answer": "B",
+"explanation": "The weather on Wednesday is windy. Flying kites requires wind, so it is the most suitable activity for this specific day.",
+"vfd2": true,
+"unit": "Life in the Neighbourhood & City",
+"topics": "Places for recreation, Types of houses, Comparatives, Possessive 's, There is/are",
+"d": 2,
+"ts": 1794265416
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the Neighbourhood - There is/are",
+"passage": "Neighbourhood Profile: There is a large park in our district. There are two primary schools and three cafes on the main street.",
+"question": "Which of the following is correct according to the neighbourhood description?",
+"shape": null,
+"options": {
+"A": "There is only one cafe on the main street.",
+"B": "There are three primary schools in the district.",
+"C": "There are no schools in this neighbourhood.",
+"D": "There is a park and three cafes in the neighbourhood."
+},
+"answer": "D",
+"explanation": "The passage confirms the existence of a park, two schools, and three cafes. Option B correctly identifies a subset of these features.",
+"vfd2": true,
+"unit": "Life in the Neighbourhood & City",
+"topics": "Places for recreation, Types of houses, Comparatives, Possessive 's, There is/are",
+"d": 2,
+"ts": 1794265416
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the Neighbourhood & City",
+"passage": "Historical structures in our city:\n- The Grand Bazaar: It is older than the city library but smaller than the new museum.\n- The Ancient Clock Tower: It is the oldest structure in the city. \n- The City Library: It is more modern than the Clock Tower but less visited than the Bazaar.",
+"question": "Based on the text, which statement is true regarding the historical structures?",
+"shape": null,
+"options": {
+"A": "The Grand Bazaar is the oldest structure.",
+"B": "The Clock Tower is the most ancient one.",
+"C": "The museum is smaller than the Grand Bazaar.",
+"D": "The City Library is older than the Grand Bazaar."
+},
+"answer": "B",
+"explanation": "The text states the Clock Tower is the oldest structure. The Grand Bazaar is older than the library. The new museum is larger than the Bazaar. Thus, the Clock Tower is the most ancient.",
+"vfd2": true,
+"unit": "Life in the Neighbourhood & City",
+"topics": "Places for recreation, Types of houses, Comparatives, Possessive 's, There is/are",
+"d": 2,
+"ts": 1794265416
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the Neighbourhood & City",
+"passage": "Tourist Information Desk: \n- You can visit the museum from 09:00 to 17:00.\n- To reach the park, turn left after the bank.\n- The post office is closed on Sundays.\n- The bus stop is opposite the bakery.",
+"question": "Which of the following completes the missing instruction: 'If you want to see the flowers and trees, you should go to the ... and walk along the paths.'?",
+"shape": null,
+"options": {
+"A": "post office",
+"B": "bakery",
+"C": "park",
+"D": "museum"
+},
+"answer": "C",
+"explanation": "Flowers and trees are typically found in a park, which is a place for recreation in a city environment.",
+"vfd2": true,
+"unit": "Life in the Neighbourhood & City",
+"topics": "Places for recreation, Types of houses, Comparatives, Possessive 's, There is/are",
+"d": 2,
+"ts": 1794265416
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the Neighbourhood & City",
+"passage": "Farm life vs. City life:\n- City life: There are many skyscrapers. The streets are noisier than the farm.\n- Farm life: There are few houses. It is greener than the city. It is quieter than the city.",
+"question": "Which sentence correctly compares the two environments based on the passage?",
+"shape": null,
+"options": {
+"A": "The city is quieter than the farm.",
+"B": "The farm is more crowded than the city.",
+"C": "The city is greener than the farm.",
+"D": "The farm is quieter than the city."
+},
+"answer": "D",
+"explanation": "The passage explicitly states 'It (the farm) is quieter than the city', making D the correct comparison.",
+"vfd2": true,
+"unit": "Life in the Neighbourhood & City",
+"topics": "Places for recreation, Types of houses, Comparatives, Possessive 's, There is/are",
+"d": 2,
+"ts": 1794265416
+},
+{
+"subject": "İngilizce",
+"topic": "Planet Earth and Continents",
+"passage": "Garden project members listed their research areas: \n- Ali: Studies the dry deserts of Africa.\n- Ayşe: Explores the icy poles of Antarctica.\n- Can: Investigates the rainforests of South America.\n- Ece: Examines the tall mountains of Asia.",
+"question": "Which of the following matches the students with their research locations correctly?",
+"shape": null,
+"options": {
+"A": "Ayşe: Antarctica - Can: South America",
+"B": "Ali: Africa - Ece: South America",
+"C": "Ayşe: Asia - Can: Antarctica",
+"D": "Ali: South America - Ece: Asia"
+},
+"answer": "A",
+"explanation": "According to the passage, Ali studies Africa, Ayşe studies Antarctica, Can studies South America, and Ece studies Asia. Option B matches Ayşe and Can correctly.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Water Saving",
+"passage": "Water Conservation Club Data:\n- Morning: Turn off the tap while brushing teeth.\n- Noon: Water the garden with collected rain water.\n- Evening: Wash the dishes in a full dishwasher.",
+"question": "According to the data, which action helps save water in the evening?",
+"shape": null,
+"options": {
+"A": "Using collected rain water in the morning",
+"B": "Brushing teeth with a running tap",
+"C": "Washing dishes only when the machine is full",
+"D": "Watering the garden during the evening"
+},
+"answer": "C",
+"explanation": "The evening action listed is 'Wash the dishes in a full dishwasher', which means operating the machine only when it is full to save water. This matches option C.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Seasons and Climate",
+"passage": "Market Stall Schedule:\n- Winter Stall: Sells wool sweaters and gloves because the weather is freezing.\n- Spring Stall: Sells umbrellas and raincoats because it is rainy.\n- Summer Stall: Sells sun hats and sunglasses because it is sunny and hot.",
+"question": "Why does the Winter Stall sell wool sweaters and gloves?",
+"shape": null,
+"options": {
+"A": "Because the weather is freezing.",
+"B": "Because the weather is rainy.",
+"C": "Because people need sun hats.",
+"D": "Because it is sunny and hot."
+},
+"answer": "A",
+"explanation": "The text explicitly states that the Winter Stall sells wool items because the weather is freezing.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Be going to / Future Plans",
+"passage": "Three friends are planning their next week's bike tour activities:\n- Mert: I am going to fix my bike on Monday.\n- Zeynep: I am going to buy a new helmet on Tuesday.\n- Kerem: I am going to join the city bike tour on Wednesday.",
+"question": "Which of the following is true according to the plans?",
+"shape": null,
+"options": {
+"A": "Mert is going to join the tour on Tuesday.",
+"B": "Zeynep is going to join the tour on Wednesday.",
+"C": "Mert is going to buy a helmet on Monday.",
+"D": "Kerem is going to join the tour on Wednesday."
+},
+"answer": "D",
+"explanation": "The text identifies that Kerem is going to join the city bike tour on Wednesday. This aligns with option C.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Recycling",
+"passage": "Recycling Center Report:\n- Paper: 50 kg collected in March.\n- Plastic: 30 kg collected in March.\n- Glass: 20 kg collected in March.",
+"question": "Which of the following can be deduced from the report?",
+"shape": null,
+"options": {
+"A": "Plastic and glass amounts are equal.",
+"B": "Paper is the most collected material.",
+"C": "Glass is the most collected material.",
+"D": "More plastic was collected than paper."
+},
+"answer": "B",
+"explanation": "Comparing the weights: Paper (50kg) > Plastic (30kg) > Glass (20kg). Therefore, paper is the most collected material.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Nature Walk",
+"passage": "Student's notes for the nature walk:\nI. Wear comfortable shoes.\nII. Carry a heavy bag with food.\nIII. Follow the marked paths.",
+"question": "Which of the following is the most suitable advice for a safe nature walk based on the notes?",
+"shape": null,
+"options": {
+"A": "I and II",
+"B": "I and III",
+"C": "II and III",
+"D": "I, II and III"
+},
+"answer": "B",
+"explanation": "Wearing comfortable shoes (I) and following marked paths (III) are essential for a safe walk. Carrying a heavy bag (II) is generally avoided as it makes walking difficult.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Future / Life in the Universe",
+"passage": "Space Center Predictions:\n- Scientists say we are going to live on Mars in the future.\n- We are going to build new space stations.\n- We are not going to move to the Sun because it is too hot.",
+"question": "According to the predictions, which of the following is a possible future action?",
+"shape": null,
+"options": {
+"A": "Living on Mars",
+"B": "Making the Sun colder",
+"C": "Closing all space stations",
+"D": "Moving to the Sun"
+},
+"answer": "A",
+"explanation": "The passage states that living on Mars is a predicted future event, while moving to the Sun is excluded due to the heat.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the Universe",
+"passage": "Farmer John is checking his farm. He says, 'Tomorrow, the weather will be very sunny. I am going to plant corn in the big field because it needs a lot of sunlight. Next week, it will be rainy, so I am going to harvest the vegetables before that day.'",
+"question": "Which statement represents the correct plan for John's farm according to the text?",
+"shape": null,
+"options": {
+"A": "He is going to harvest the corn when it is sunny.",
+"B": "He is going to harvest vegetables when it is sunny.",
+"C": "He is going to plant vegetables next week.",
+"D": "He is going to plant corn in the field tomorrow."
+},
+"answer": "D",
+"explanation": "John states he will plant corn tomorrow (sunny day) and harvest vegetables next week (rainy day). Option B matches the planting schedule.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Continents and Climate",
+"passage": "The International Culture Festival presents these data about continents: \n- Africa: Hot and dry, mostly deserts.\n- Antarctica: Extremely cold and icy.\n- Europe: Generally mild, four seasons. \nStudents are preparing costumes for the parade based on these climates.",
+"question": "If a student wants to represent Africa, which of the following is the most suitable costume?",
+"shape": null,
+"options": {
+"A": "A heavy fur coat and thick gloves.",
+"B": "A light t-shirt and a sun hat.",
+"C": "A thick scarf and a woolen hat.",
+"D": "A raincoat and rubber boots."
+},
+"answer": "B",
+"explanation": "Africa is described as hot and dry. A light t-shirt and sun hat are the most suitable items for a hot climate.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Future",
+"passage": "At the Space Research Center, scientists are tracking two satellites. Satellite X is going to reach Mars in June. Satellite Y is going to send photos of Jupiter in August. The mission director says, 'We must prioritize the project that happens first to allocate our budget.'",
+"question": "Which mission should the director prioritize first?",
+"shape": null,
+"options": {
+"A": "The mission to Mars.",
+"B": "The mission to the Sun.",
+"C": "The mission to the Moon.",
+"D": "The mission to Jupiter."
+},
+"answer": "A",
+"explanation": "Satellite X reaches Mars in June, and Satellite Y reaches Jupiter in August. Since June comes before August, the Mars mission is the priority.",
+"vfd2": true,
+"unit": "Life in the Universe & Future",
+"topics": "Planet Earth, Continents and climate, Seasons, School holidays, Be going to",
+"d": 2,
+"ts": 1794265459
+},
+{
+"subject": "İngilizce",
+"topic": "Party food and drinks",
+"passage": "A bakery prepares orders: 1. Birthday Party: 2 cakes and 5 lemonades. 2. Picnic: 3 sandwiches and 1 pizza. 3. Class Event: 4 cakes and 2 sandwiches.",
+"question": "If the bakery runs out of cake, which of the following orders is affected?",
+"shape": null,
+"options": {
+"A": "The Picnic and the Birthday Party.",
+"B": "Only the Class Event.",
+"C": "The Birthday Party and the Class Event.",
+"D": "Only the Birthday Party."
+},
+"answer": "C",
+"explanation": "Cakes are included in the Birthday Party (2 cakes) and the Class Event (4 cakes).",
+"vfd2": true,
+"unit": "Classroom Life",
+"topics": "Classroom objects, School subjects, Timetable, Days of the week, Telling the time, There is/are",
+"d": 4,
+"ts": 1794265709
+},
+{
+"subject": "İngilizce",
+"topic": "Days of the week",
+"passage": "A swimming tournament schedule: First day (Monday): Junior Finals. Second day (Tuesday): Relay Race. Third day (Wednesday): Diving show.",
+"question": "The coach says, 'We won the gold medal on the third day.' According to the schedule, when did they win?",
+"shape": null,
+"options": {
+"A": "Thursday",
+"B": "Tuesday",
+"C": "Monday",
+"D": "Wednesday"
+},
+"answer": "D",
+"explanation": "The third day is Wednesday. The Diving show happens on Wednesday.",
+"vfd2": true,
+"unit": "Classroom Life",
+"topics": "Classroom objects, School subjects, Timetable, Days of the week, Telling the time, There is/are",
+"d": 4,
+"ts": 1794265709
+},
+{
+"subject": "İngilizce",
+"topic": "Invitations",
+"passage": "Ali's birthday is on May the fifth. He sends invitations: 'Would you like to come to my party? We will have pizza and juice.' Ayşe replies: 'Yes, I'd love to.' Mehmet replies: 'Sorry, I can't.'",
+"question": "Which of the following is correct according to the responses?",
+"shape": null,
+"options": {
+"A": "Ayşe rejects the pizza and juice invitation.",
+"B": "Mehmet wants to have juice at the party.",
+"C": "Ayşe will attend the party on May the fifth.",
+"D": "Mehmet accepts the invitation for May the fifth."
+},
+"answer": "C",
+"explanation": "Ayşe says 'Yes, I'd love to', so she accepts. The birthday is on May the fifth.",
+"vfd2": true,
+"unit": "Classroom Life",
+"topics": "Classroom objects, School subjects, Timetable, Days of the week, Telling the time, There is/are",
+"d": 4,
+"ts": 1794265709
+},
+{
+"subject": "İngilizce",
+"topic": "Classroom objects",
+"passage": "Teacher: 'Class, please look at the board. I need a red marker for the math problems, but I have a blue one in my hand. Can someone check the pencil case on my desk?' \nStudent: 'Teacher, there is a blue marker and a ruler in the pencil case, but there isn't a red marker.'",
+"question": "Which of the following is correct according to the teacher's need and the student's observation?",
+"shape": null,
+"options": {
+"A": "There is a red marker in the pencil case for the math lesson.",
+"B": "The student identifies that the required object is missing.",
+"C": "The teacher finds the item she needs in the pencil case.",
+"D": "The teacher has a red marker in her hand."
+},
+"answer": "B",
+"explanation": "The teacher needs a red marker. The student checks the pencil case and confirms there is only a blue marker and a ruler, meaning the red marker is missing. Therefore, the student identifies that the required object is not present.",
+"vfd2": true,
+"unit": "Classroom Life",
+"topics": "Classroom objects, School subjects, Timetable, Days of the week, Telling the time, There is/are",
+"d": 4,
+"ts": 1794265709
+},
+{
+"subject": "İngilizce",
+"topic": "Telling the time",
+"passage": "School breaks: \n- First break: 10:00 \n- Second break: 11:30 \n- Lunch: 12:45 \n- Last bell: 15:00",
+"question": "If it is 12:45, which of the following is the students' activity?",
+"shape": null,
+"options": {
+"A": "They are having lunch.",
+"B": "They are having their first break.",
+"C": "They are having their second break.",
+"D": "They are leaving school."
+},
+"answer": "A",
+"explanation": "The schedule shows lunch is at 12:45. Therefore, at this time, the students are having lunch.",
+"vfd2": true,
+"unit": "Classroom Life",
+"topics": "Classroom objects, School subjects, Timetable, Days of the week, Telling the time, There is/are",
+"d": 4,
+"ts": 1794265709
+},
+{
+"subject": "İngilizce",
+"topic": "Invitations",
+"passage": "Melis is organizing a birthday party on May the fifth. She sends messages: \n- 'Would you like to come to my party?' \n- Ahmet: 'Yes, I'd love to.' \n- Zeynep: 'Sorry, I can't.'",
+"question": "Which of the following is true?",
+"shape": null,
+"options": {
+"A": "Zeynep accepts the invitation.",
+"B": "The party date is May the second.",
+"C": "The party is in the fifth month of the year.",
+"D": "Ahmet declines the invitation."
+},
+"answer": "C",
+"explanation": "Ahmet says 'I'd love to' (accepts). Zeynep says 'Sorry, I can't' (declines). May is the fifth month, and the date is May the fifth.",
+"vfd2": true,
+"unit": "Classroom Life",
+"topics": "Classroom objects, School subjects, Timetable, Days of the week, Telling the time, There is/are",
+"d": 4,
+"ts": 1794265709
+},
+{
+"subject": "İngilizce",
+"topic": "Food events",
+"passage": "Mert's school organizes a traditional 'International Food Festival' on Friday. Students bring dishes from different cultures. Mert prepares a traditional Turkish pastry called 'börek', Zeynep brings sushi from Japan, and David brings tacos from Mexico. They arrange their dishes on a large classroom table to share with their teachers and friends.",
+"question": "According to the passage, what is the main purpose of the school event on Friday?",
+"shape": null,
+"options": {
+"A": "To share traditional dishes from different cultures",
+"B": "To organize a sports competition in the school garden",
+"C": "To learn how to cook Mexican tacos in the school kitchen",
+"D": "To sell fast food to earn money for the school library"
+},
+"answer": "A",
+"explanation": "The text states that students bring dishes from different cultures to share at the International Food Festival, which matches option B.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Countable/uncountable nouns",
+"passage": "Cem and Defne are preparing a picnic basket. Defne writes down what they need: 'We need some bread, a packet of cheese, five tomatoes, two cucumbers, and some orange juice.' Cem checks the items to see which ones they can count individually.",
+"question": "Based on Defne's list, which of the following groups contains only countable items?",
+"shape": null,
+"options": {
+"A": "Cheese and bread",
+"B": "Orange juice and cheese",
+"C": "Bread and orange juice",
+"D": "Tomatoes and cucumbers"
+},
+"answer": "D",
+"explanation": "Tomatoes and cucumbers are countable nouns (you can say five tomatoes, two cucumbers), whereas bread, cheese, and orange juice require units or are uncountable in this context. Thus, option C is correct.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the World",
+"passage": "Ayşe is doing a project about traditional breakfasts around the world. She reads that people in England usually eat eggs, beans, and toast for breakfast, while people in Japan prefer rice, fish, and miso soup. She notes down these different dietary habits to present to her class.",
+"question": "According to Ayşe's notes, what is the main focus of her classroom project?",
+"shape": null,
+"options": {
+"A": "Famous restaurants in London and Tokyo",
+"B": "How to cook fish and rice step by step",
+"C": "Traditional breakfast habits around the world",
+"D": "Healthy sports activities for teenagers"
+},
+"answer": "C",
+"explanation": "Ayşe's project focuses on traditional breakfast foods in different countries (England and Japan), which corresponds to option B.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the World: Ordering in a restaurant",
+"passage": "Mert and his friends are at a traditional Turkish restaurant. Look at their preferences: Mert wants a hot soup and a main dish. Defne dislikes hot food, so she wants a cold beverage and a dessert. Can wants only a main dish and a beverage.",
+"question": "Based on the preferences, which of the following food combinations is suitable for Can?",
+"shape": null,
+"options": {
+"A": "Tomato soup and meatballs",
+"B": "Grilled chicken and ayran",
+"C": "Lentil soup and lemonade",
+"D": "Chocolate cake and fruit salad"
+},
+"answer": "B",
+"explanation": "Can wants only a main dish and a beverage. Grilled chicken is a main dish and ayran is a beverage. The other options include soups, desserts, or no beverages.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the World: Food events",
+"passage": "A local community center is organizing a 'Global Food Festival' next weekend. The event schedule shows: Saturday morning is for traditional breakfasts from different cultures, Saturday afternoon is for tasting street food, and Sunday is entirely dedicated to international desserts and baking workshops.",
+"question": "Based on the schedule, what can visitors do at the festival on Sunday?",
+"shape": null,
+"options": {
+"A": "Prepare organic vegetables for lunch",
+"B": "Taste traditional breakfast items",
+"C": "Try spicy local street foods",
+"D": "Learn how to make international desserts"
+},
+"answer": "D",
+"explanation": "The schedule states that Sunday is entirely dedicated to international desserts and baking workshops, which means visitors can learn how to make international desserts.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the World: Food types and quantities",
+"passage": "Ahmet is checking his kitchen pantry to make a shopping list. He sees: - 2 packets of biscuits (snacks) - 1 loaf of bread (bakery) - 0 bottles of milk (dairy) - 4 tomatoes (vegetables). He needs dairy products and more snacks for his guests arriving tonight.",
+"question": "Based on the pantry check, what should Ahmet definitely buy from the supermarket?",
+"shape": null,
+"options": {
+"A": "Only bread",
+"B": "Milk and biscuits",
+"C": "Bread and tomatoes",
+"D": "Tomatoes and bread"
+},
+"answer": "B",
+"explanation": "Ahmet needs dairy products (he has 0 bottles of milk) and more snacks (he only has 2 packets of biscuits and guests are arriving). Therefore, he should buy milk and biscuits.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the World: Food types",
+"passage": "A nutrition club prepared a weekly bulletin about healthy food groups. The notes state: 'We need energy-giving foods for our daily activities, and we must balance them with fresh vegetables. Dairy products are essential for strong bones, while fruits provide natural vitamins.'",
+"question": "Based on the club's notes, which of the following food categories is primarily recommended for strong bones?",
+"shape": null,
+"options": {
+"A": "Energy-giving foods",
+"B": "Natural fruits",
+"C": "Fresh vegetables",
+"D": "Dairy products"
+},
+"answer": "D",
+"explanation": "The passage clearly states that dairy products are essential for strong bones. Therefore, the correct category is dairy products.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the World: Ordering in a restaurant",
+"passage": "Mert and his friend are at a traditional restaurant for dinner. Mert looks at the menu and says, 'I am very thirsty after our long walk.' His friend replies, 'You can choose something cold to drink, and we can also share a plate of soup before the main course.'",
+"question": "According to the dialogue, what is Mert's primary need after their walk?",
+"shape": null,
+"options": {
+"A": "A sweet dessert",
+"B": "A traditional main course",
+"C": "Something cold to drink",
+"D": "A plate of warm soup"
+},
+"answer": "C",
+"explanation": "Mert states that he is very thirsty after the walk, which means he needs something cold to drink.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in the World: Food events",
+"passage": "A local community center organizes a traditional weekend food festival. Visitors can taste homemade pastries on Saturday morning and join a workshop about organic farming on Sunday afternoon.",
+"question": "According to the festival schedule, when can visitors join the workshop about organic farming?",
+"shape": null,
+"options": {
+"A": "Sunday morning",
+"B": "Sunday afternoon",
+"C": "Saturday afternoon",
+"D": "Saturday morning"
+},
+"answer": "B",
+"explanation": "The text states that visitors can join the workshop about organic farming on Sunday afternoon.",
+"vfd2": true,
+"unit": "Life in the World",
+"topics": "Food types, Ordering in a restaurant, Food events, Countable/uncountable nouns, Have got, Can for permission",
+"d": 1,
+"ts": 1794266425
+},
+{
+"subject": "İngilizce",
+"topic": "Life in Nature: Types of animals",
+"passage": "A teacher asks students to classify animals into two groups: Farm animals and Wild animals. \nStudent 1: 'A cow produces milk and lives on a farm.'\nStudent 2: 'A lion hunts other animals and lives in the jungle.'\nStudent 3: 'A sheep has thick wool and stays in the barn.'\nStudent 4: 'A horse runs fast and carries loads on the farm.'",
+"question": "Based on the students' descriptions, which student talks about a wild animal?",
+"shape": null,
+"options": {
+"A": "Student 4",
+"B": "Student 1",
+"C": "Student 3",
+"D": "Student 2"
+},
+"answer": "D",
+"explanation": "Student 1 talks about a cow (farm animal), Student 3 talks about a sheep (farm animal), and Student 4 talks about a horse (farm animal). Student 2 talks about a lion that hunts in the jungle, which is a wild animal. Therefore, the correct student is Student 2.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Life in Nature: Habitats",
+"passage": "Here is a list of animals and their natural habitats:\n1. Polar bear -> Arctic / Ice and snow\n2. Camel -> Desert / Hot and dry sand\n3. Dolphin -> Ocean / Deep blue water\n4. Eagle -> Sky and high mountains",
+"question": "According to the list, which animal lives in the hot and dry sand?",
+"shape": null,
+"options": {
+"A": "Camel",
+"B": "Polar bear",
+"C": "Eagle",
+"D": "Dolphin"
+},
+"answer": "A",
+"explanation": "Polar bears live in the Arctic, dolphins live in the ocean, and eagles live in mountains. The animal that lives in the hot and dry sand is the camel.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Life in Nature: Can/must",
+"passage": "A ranger is giving rules about visiting a national park where wild animals live:\n- Rule I: Visitors must protect nature and keep the forest clean.\n- Rule II: Visitors can take photos of animals from a safe distance.\n- Rule III: Visitors must not feed the wild animals.",
+"question": "According to the ranger's rules, which action is allowed for visitors?",
+"shape": null,
+"options": {
+"A": "Leaving plastic bottles on the grass",
+"B": "Hunting animals in the park",
+"C": "Feeding the wild animals",
+"D": "Taking photos of animals safely"
+},
+"answer": "D",
+"explanation": "Rule III states visitors must not feed animals (A is wrong). Rule I states keeping the forest clean, so leaving bottles is forbidden (B is wrong). Hunting is never allowed in national parks (D is wrong). Rule II states visitors can take photos of animals from a safe distance (C is correct).",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Life in Nature: Comparatives and superlatives",
+"passage": "A biology student compares the sizes and speeds of three animals:\n- Cheetah: It can run up to 120 km/h.\n- Lion: It can run up to 80 km/h.\n- Elephant: It can run up to 40 km/h.",
+"question": "Based on the speeds given, which of the following statements is correct?",
+"shape": null,
+"options": {
+"A": "A cheetah is faster than a lion.",
+"B": "An elephant is faster than a cheetah.",
+"C": "An elephant is faster than a lion.",
+"D": "A lion is faster than a cheetah."
+},
+"answer": "A",
+"explanation": "Cheetah speed is 120 km/h, lion is 80 km/h, elephant is 40 km/h. Comparing them: Cheetah (120) is faster than Lion (80). Therefore, a cheetah is faster than a lion.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Life in Nature: Wild animals",
+"passage": "A nature magazine gives information about four different creatures:\n- Creature A is a bird that cannot fly, and it lives in very cold snowy places.\n- Creature B is a huge sea animal that lives in the ocean and breathes air.\n- Creature C is an insect that makes honey and flies from flower to flower.\n- Creature D is a reptile with a hard shell that moves very slowly on land.",
+"question": "Which creature in the magazine is a bee?",
+"shape": null,
+"options": {
+"A": "Creature B",
+"B": "Creature C",
+"C": "Creature D",
+"D": "Creature A"
+},
+"answer": "B",
+"explanation": "Creature A is a penguin, Creature B is a whale, Creature D is a turtle. Creature C is described as an insect that makes honey and flies from flower to flower, which is a bee.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Life in Nature: Comparatives and superlatives",
+"passage": "A science teacher writes weights of three wild animals on the board:\n- Hippo: 1,500 kg\n- Rhino: 2,000 kg\n- Blue Whale: 140,000 kg",
+"question": "According to the weights on the board, which animal is the heaviest of all?",
+"shape": null,
+"options": {
+"A": "Elephant",
+"B": "Hippo",
+"C": "Blue Whale",
+"D": "Rhino"
+},
+"answer": "C",
+"explanation": "Comparing the weights: Hippo is 1,500 kg, Rhino is 2,000 kg, Blue Whale is 140,000 kg. The Blue Whale has the highest number, making it the heaviest animal among the choices.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Types of animals",
+"passage": "A wildlife magazine gives information about four different creatures. Lion is a big wild cat and lives in grasslands. Eagle is a large bird with strong wings and builds nests on high mountains. Dolphin is a smart mammal and swims in deep oceans. Frog is a small amphibian and lives near lakes or rivers.",
+"question": "According to the text, which of the following animals is an amphibian?",
+"shape": null,
+"options": {
+"A": "Dolphin",
+"B": "Eagle",
+"C": "Lion",
+"D": "Frog"
+},
+"answer": "D",
+"explanation": "Step 1: Read the descriptions of the animals in the text. Step 2: Identify the classification of each animal. Step 3: Find that the lion is a wild cat, the eagle is a bird, the dolphin is a mammal, and the frog is an amphibian. Step 4: Therefore, the correct option is Frog.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Wild animals",
+"passage": "During a nature documentary night, students take notes about where specific predators hunt and sleep. Cheetahs run fast in grasslands and catch zebras. Polar bears walk on thick ice in snowy regions and hunt seals. Snakes hide under rocks in deserts and wait for mice.",
+"question": "Which of the following animals lives and hunts in snowy regions according to the notes?",
+"shape": null,
+"options": {
+"A": "Zebra",
+"B": "Snake",
+"C": "Polar bear",
+"D": "Cheetah"
+},
+"answer": "C",
+"explanation": "Step 1: Review the habitats and hunting locations mentioned in the notes. Step 2: Match the animals with their specific environments. Step 3: Notice that polar bears walk on thick ice in snowy regions. Step 4: Therefore, the correct option is Polar bear.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Habitats",
+"passage": "Look at the habitat chart prepared for a school project:\n\n| Animal | Habitat |\n|--------|---------|\n| Camel  | Desert  |\n| Whale  | Ocean   |\n| Owl    | Forest  |\n| Penguin| Ice/Snow|",
+"question": "According to the chart, which animal lives in the forest?",
+"shape": {
+"type": "table",
+"headers": [
+"Animal",
+"Habitat"
+],
+"rows": [
+[
+"Camel",
+"Desert"
+],
+[
+"Whale",
+"Ocean"
+],
+[
+"Owl",
+"Forest"
+],
+[
+"Penguin",
+"Ice/Snow"
+]
+],
+"title": ""
+},
+"options": {
+"A": "Penguin",
+"B": "Owl",
+"C": "Camel",
+"D": "Whale"
+},
+"answer": "B",
+"explanation": "Step 1: Examine the habitat chart carefully. Step 2: Locate the row where the habitat is 'Forest'. Step 3: See that the animal matching the forest habitat is 'Owl'. Step 4: Therefore, the correct option is Owl.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Can/must",
+"passage": "A nature reserve park has strict rules for visitors to protect wild animals and their environment. The guide explains: 'You can take photos of the animals from a safe distance, but you must not feed them with human food because it harms their health.'",
+"question": "Which of the following actions are visitors allowed to do according to the park rules?",
+"shape": null,
+"options": {
+"A": "Leave plastic rubbish in the forest",
+"B": "Feed the animals with human food",
+"C": "Get very close to wild bears",
+"D": "Take photos of the animals from a safe distance"
+},
+"answer": "D",
+"explanation": "Step 1: Analyze the modal verbs 'can' and 'must not' in the park guide's statement. Step 2: Identify what visitors are permitted to do ('You can take photos...'). Step 3: Eliminate actions that are forbidden. Step 4: Therefore, the correct option is taking photos from a safe distance.",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 1,
+"ts": 1794266552
 }
 ]
 }

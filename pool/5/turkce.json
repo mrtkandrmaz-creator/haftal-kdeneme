@@ -1541,6 +1541,886 @@
 "topics": "Bilgilendirici metin, Neden-sonuç, Cümlede anlam",
 "d": 3,
 "ts": 1794210790
+},
+{
+"subject": "Türkçe",
+"topic": "Duygu ve Davranış İlişkisi",
+"passage": "Can, hafta sonu yapılacak bisiklet turu için günlerdir heyecanla hazırlanıyordu. Ancak tur sabahı sağanak yağış başlayınca tur iptal edildi. Can, odasına gidip pencereden yağmuru izlerken derin bir hayal kırıklığı yaşadı ve annesinin 'Hadi gel, evde güzel bir oyun oynayalım.' teklifine önce tepkisiz kaldı, ardından 'Şu an oynamak içimden gelmiyor.' diyerek odasında yalnız kalmayı tercih etti.",
+"question": "Metindeki bu duruma göre Can'ın davranışının temel sebebi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Planının gerçekleşmemesinin yarattığı olumsuz duyguyu yönetmekte zorlanması",
+"B": "Bisiklet sürme becerisinin yeterli olmadığını fark etmesi",
+"C": "Hava koşullarının fiziksel sağlığını tehdit edeceğinden endişe duyması",
+"D": "Annesinin sunduğu alternatif etkinliğin yetersiz olduğunu düşünmesi"
+},
+"answer": "A",
+"explanation": "Can'ın yoğun heyecanla beklediği etkinliğin iptali hayal kırıklığı duygusunu doğurmuştur. 'İçimden gelmiyor' tepkisi, yaşadığı bu duygusal durumun davranışlarına yansımasıdır. Seçenekler arasında en makul neden duygusal yönetimin bir parçası olan bu tepkidir.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Temel Duygular",
+"passage": "Yaz tatilinde dedesinin köyüne giden Elif, ilk gün büyük bir şaşkınlık ve merak içindeydi. Şehirde görmediği kadar çok yıldızı gökyüzünde fark ettiğinde 'Ne kadar çoklar!' diye bağırdı. Bir hafta sonra ise köydeki çocuklarla her gün oyun oynadığı için artık kendini çok huzurlu hissediyordu.",
+"question": "Metinde Elif'in yaşadığı değişimle ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Şehirdeki yaşamı ile köydeki yaşamı arasında belirgin bir fark bulamamıştır.",
+"B": "Zamanla farklı durumlar karşısında yeni duygular geliştirmiştir.",
+"C": "Köydeki çocuklarla oyun oynamak onda sadece şaşkınlık duygusunu artırmıştır.",
+"D": "Tatilin başında hissettiği merak duygusu, zamanla yerini korkuya bırakmıştır."
+},
+"answer": "B",
+"explanation": "Metinde Elif'in şaşkınlık ve merakla başlayıp zamanla huzura dönüştüğü bir süreç anlatılmıştır. A şıkkı, duyguların zaman içindeki değişimini en doğru şekilde tanımlamaktadır.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Duygu Yönetimi",
+"passage": "Kerem, evde enerji tasarrufu sağlamak için ışıkları kapatmaya karar verdiğinde kardeşi yanlışlıkla onun önemli bir notunun olduğu defteri yere düşürdü. Kerem, önce çok öfkelendi ancak bir an durup derin nefes aldı ve 'Kardeşim istemeden yaptı, ona bağırmam sorunu çözmez.' diye düşündü.",
+"question": "Kerem'in bu davranışı ile ilgili hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Öfke duygusunu kontrol ederek sağlıklı bir iletişim yolu seçmiştir.",
+"B": "Düşüncelerini ifade etmede kararsız kalarak susmayı seçmiştir.",
+"C": "Enerji tasarrufu yapma düşüncesini tamamen terk etmiştir.",
+"D": "Kardeşine karşı kırgınlığını uzun süre devam ettirmiştir."
+},
+"answer": "A",
+"explanation": "Kerem, öfke duygusu anında mantıklı bir çıkarım yaparak (isteyerek yapmadı) davranışını frenlemiştir. Bu, duygusal yönetimin doğru bir uygulamasıdır.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Görselle İletilen Anlam",
+"passage": "Pastanede doğum günü pastası seçen bir çocuk, vitrindeki renkli süslemelere bakarak gülümsemektedir. Yanındaki arkadaşı ise pastanın çok pahalı olduğunu görünce kaşlarını çatarak üzgün bir ifade takınmıştır.",
+"question": "Bu senaryoda iki arkadaşın farklı duygular hissetmesinin sebebi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Geçmişte benzer pastaları yedikleri için nostalji yaşamaları",
+"B": "Pastanenin sunduğu hizmetin kalitesini tartışmaları",
+"C": "Arkadaşların birbirlerine karşı ön yargılı davranmaları",
+"D": "Aynı görsel uyarıcıyı farklı bakış açılarıyla değerlendirmeleri"
+},
+"answer": "D",
+"explanation": "Aynı ortama (pastane vitrini) bakan iki kişiden biri görsel estetiğe odaklanırken diğeri ekonomik boyuta odaklanmış, bu da farklı duygular doğurmuştur.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Temel Duygular",
+"passage": "Bir gıda üretim tesisinde çalışanların yüz ifadeleri incelenmiş; kaliteli bir ürün ortaya çıktığında çalışanların gözlerinin parladığı ve birbirlerine gülümsedikleri, üretimde aksaklık olduğunda ise çalışanların kaygılı bir şekilde çözüm aradıkları gözlemlenmiştir.",
+"question": "Bu gözleme göre aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Çalışanların duyguları yaptıkları işin başarı durumuyla ilişkilidir.",
+"B": "Üretim tesisindeki çalışanlar genellikle mutsuz bir ruh hali içindedir.",
+"C": "Kaliteli üretim, çalışanların sadece kaygı duygusunu artırmıştır.",
+"D": "Başarı veya hata, çalışanların iletişimini tamamen koparmıştır."
+},
+"answer": "A",
+"explanation": "Metin, başarıyla gülümseme, aksaklıkla kaygı arasında doğrudan bir bağ kurmaktadır.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Duygu Yönetimi",
+"passage": "Ormancılık projesinde çalışan genç bir görevli, ağaçların kurumasına çok üzüldü. 'Bu ağaçları kurtarmak için hiçbir şey yapamam, doğa böyle bozuluyor.' dedi ve projeden çekilmek istedi. Takım arkadaşı ise ona 'Üzülmek yerine bu ağaçları neden kurtarabileceğimizi düşünmeliyiz.' diyerek durumu yeniden çerçeveledi.",
+"question": "Takım arkadaşının bu yaklaşımı için hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Projenin başarısız olduğunu kabullenerek ekibi sakinleştirmiştir.",
+"B": "Doğanın bozulması konusunda görevliyle aynı umutsuzluğu paylaşmıştır.",
+"C": "Görevlinin ağaçlar için üzülmesini doğru bulmadığını ifade etmiştir.",
+"D": "Görevlinin çaresizlik duygusunu, çözüm odaklı bir duyguya dönüştürmeye çalışmıştır."
+},
+"answer": "D",
+"explanation": "Takım arkadaşı, duyguyu (üzüntü/çaresizlik) yöneterek eyleme dönüştürmeyi (çözüm arayışı) önermiştir.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Duygu ve Davranış İlişkisi",
+"passage": "Kütüphanede ders çalışan iki öğrenciden biri, aradığı kitabı bulduğunda büyük bir sevinçle parmak uçlarında sekerek ilerledi. Diğeri ise aradığı kitabı bulamadığında kütüphaneciye sert bir ses tonuyla, 'Bu kütüphanede hiçbir şey yok!' diye bağırdı.",
+"question": "Bu iki öğrencinin kütüphanedeki davranışları ile ilgili aşağıdakilerden hangisi kesinlikle doğrudur?",
+"shape": null,
+"options": {
+"A": "Kitabı bulan öğrenci, diğer arkadaşından daha başarılıdır.",
+"B": "Yaşadıkları duygular, kütüphane içindeki davranışlarını farklı biçimlerde etkilemiştir.",
+"C": "Kitabı bulamayan öğrenci, kütüphaneciye karşı her zaman saygısızdır.",
+"D": "Her iki öğrenci de kütüphane kurallarına tam olarak uymuştur."
+},
+"answer": "B",
+"explanation": "Sevinç durumu olumlu bir davranışı (sekerek ilerleme), hayal kırıklığı/öfke ise olumsuz bir davranışı (bağırma) tetiklemiştir. Duygunun davranış üzerindeki etkisi net bir şekilde görülmektedir.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Duygu Yönetimi",
+"passage": "Okul bahçesinde top oynayan Kerem, yanlışlıkla topu arkadaşı Elif'in elindeki boya kutusuna fırlattı. Elif'in boyaları etrafa saçıldı. Kerem hemen yanına gelerek 'Üzgünüm, dikkatsiz davrandım, telafi etmek istiyorum.' dedi. Elif ise derin bir nefes alıp durumu değerlendirdi ve 'Öfkelenmek yerine beraber temizlemeye ne dersin?' yanıtını verdi.",
+"question": "Metne göre Elif'in gösterdiği davranışla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Yaşanan olayın sorumluluğunu tamamen karşı tarafa yüklemiştir.",
+"B": "Duygularını ifade etmekten kaçınarak sessiz kalmayı tercih etmiştir.",
+"C": "Duygularını yöneterek yapıcı bir çözüm yolu seçmiştir.",
+"D": "Yaşadığı ani öfkeyi bastıramamıştır."
+},
+"answer": "C",
+"explanation": "Elif, olumsuz bir durum karşısında öfke yerine sakin kalmayı seçmiş ve çözüm üretmiştir. Bu, duygu yönetimi becerisini sergilediğini gösterir.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Temel Duygular",
+"passage": "Öğretmen, sınıf tahtasına bazı durumlar yazdı ve öğrencilerden bu durumların hangi temel duyguya karşılık geldiğini eşleştirmelerini istedi: \nI. Sınavdan yüksek not almak: Mutluluk\nII. En sevdiği oyuncağın kırılması: Üzüntü\nIII. Karanlıkta tek başına kalmak: Korku",
+"question": "Buna göre I, II ve III numaralı eşleştirmelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I.",
+"B": "I ve II.",
+"C": "II ve III.",
+"D": "I, II ve III."
+},
+"answer": "D",
+"explanation": "I numarada başarı mutlulukla, II numarada kayıp üzüntüyle, III numarada ise güvensizlik hissi korkuyla eşleşir. Üç ifade de doğrudur.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Duygu ve Davranış İlişkisi",
+"passage": "Doğa yürüyüşü sırasında grubun lideri olan Can, patikanın sarp olduğunu görünce hafif bir endişe yaşadı. Ancak bu endişesini bir kenara bırakıp 'Arkadaşlar, dikkatli olursak bu yolu güvenle geçebiliriz.' dedi ve gruptakileri sakinleştirdi.",
+"question": "Metne göre Can'ın yaşadığı duygunun davranışına etkisi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Heyecanı, grubun hızlıca ilerlemesini sağlamıştır.",
+"B": "Endişesi, grubun motivasyonunu artıracak bir iş birliğine dönüşmüştür.",
+"C": "Korkusu, grubun geri dönmesine neden olmuştur.",
+"D": "Kaygısı, yürüyüşün iptal edilmesine yol açmıştır."
+},
+"answer": "B",
+"explanation": "Can, endişeli hissetmesine rağmen bunu olumlu bir davranış olan 'dikkatli olma ve güvenle geçme' telkinine dönüştürmüştür.",
+"vfd2": true,
+"unit": "Duygularımı Tanıyorum",
+"topics": "Temel duygular, Duygu ve davranış ilişkisi, Duygu yönetimi, Görselle iletilen anlam",
+"d": 3,
+"ts": 1794265211
+},
+{
+"subject": "Türkçe",
+"topic": "Atatürk'ün Hayatı",
+"passage": "Deniz, tarih ödevi için Atatürk'ün hayatını araştırırken şu bilgileri not etti: 1881 yılında Selanik'te dünyaya geldi. Eğitim hayatına mahalle mektebinde başladı, ardından Şemsi Efendi Mektebi'ne geçti. Vatan sevgisiyle dolu bir çocukluk geçiren Mustafa Kemal, çocukluğundan itibaren askerlik mesleğine büyük bir ilgi duymuştur.",
+"question": "Deniz'in notlarına göre Atatürk ile ilgili aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "Eğitim hayatına Selanik dışındaki bir şehirde başlamıştır.",
+"B": "Çocukluk yıllarında gelecekteki mesleğine yönelik ilgi ve yönelim göstermiştir.",
+"C": "Askerlik mesleğine ilgisi, Millî Mücadele yıllarında başlamıştır.",
+"D": "Mahalle mektebindeki eğitimini tamamlayamadan okuldan ayrılmıştır."
+},
+"answer": "B",
+"explanation": "Metinde Atatürk'ün çocukluğundan itibaren askerlik mesleğine ilgi duyduğu açıkça belirtilmiştir. Diğer seçenekler metinle çelişmektedir veya metinde yer almamaktadır.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Millî Mücadele ve Kavramlar",
+"passage": "Sınıfta öğretmen, 'Bağımsızlığımızın sembolü olan İstiklal Marşı'mız 12 Mart 1921 tarihinde kabul edilmiştir. Şairimiz Mehmet Akif Ersoy, bu eseri Türk milletine armağan etmiştir.' bilgisini paylaştı.",
+"question": "Öğretmenin verdiği bilgilere göre aşağıdaki eşleştirmelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "İstiklal Marşı - 29 Ekim 1923",
+"B": "23 Nisan 1920 - İstiklal Marşı'nın yazılışı",
+"C": "Mehmet Akif Ersoy - Cumhuriyet'in ilan tarihi",
+"D": "12 Mart 1921 - İstiklal Marşı'nın kabulü"
+},
+"answer": "D",
+"explanation": "Metin içerisinde İstiklal Marşı'nın kabul tarihinin 12 Mart 1921 olduğu açıkça ifade edilmiştir. C seçeneği metindeki veriyle birebir örtüşmektedir.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Noktalama İşaretleri",
+"passage": "Sınıf panosu için bir yazı hazırlayan Zeynep, şu cümleleri yazdı: (I) Atatürk 1881'de Selanik'te doğdu. (II) Ne mutlu Türküm diyene! (III) Türkiye Büyük Millet Meclisi ne zaman açıldı? (IV) 19 Mayıs 1919'da Samsun'a çıktı.",
+"question": "Buna göre Zeynep'in kullandığı noktalama işaretleri ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "I numaralı cümlede nokta, cümlenin sonunda kullanılmıştır.",
+"B": "II numaralı cümlede ünlem işareti, soru anlamı katmak için kullanılmıştır.",
+"C": "IV numaralı cümle bir emir cümlesidir.",
+"D": "III numaralı cümlenin sonuna nokta konulmalıdır."
+},
+"answer": "A",
+"explanation": "I numaralı cümlede 'doğdu' kelimesinden sonra gelen nokta, tamamlanmış bir cümlenin sonunu belirterek doğru kullanım sergilemiştir.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Metnin Ana Fikri",
+"passage": "Atatürk, 'Yurtta sulh, cihanda sulh' diyerek barışın önemini vurgulamıştır. Sadece Türkiye'de değil, tüm dünyada huzur ve güven içinde yaşanmasını arzu etmiş, devletler arası ilişkilerde her zaman uzlaşmacı ve barışçıl bir yol izlemiştir.",
+"question": "Bu metnin ana fikri aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Diplomasi, savaşmaktan daha kolay bir yöntemdir.",
+"B": "Dünya devletleri ile her konuda aynı fikirde olmalıyız.",
+"C": "Atatürk'ün askeri başarıları dünyaca bilinmektedir.",
+"D": "Barış, hem ülkemizde hem de dünyada korunması gereken bir değerdir."
+},
+"answer": "D",
+"explanation": "Metin, Atatürk'ün barışçıl kişiliğini ve barışın hem yurtta hem cihanda önemini vurguladığı için ana fikir B seçeneğidir.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Söz Sanatı ve Şiir",
+"passage": "Atatürk bir güneşti, doğdu Anadolu'ya,\nKaranlıkları dağıttı, ışık saçtı her yana.\nBir ümit oldu halkıma, yol gösterdi yarına,\nMinnetle anıyoruz, büyük önderimizi.",
+"question": "Şiirdeki altı çizili dizede Atatürk ile ilgili hangi benzetme yapılmıştır?",
+"shape": null,
+"options": {
+"A": "Atatürk'ün çocukluğunun çok zor geçtiği",
+"B": "Atatürk'ün bir güneş gibi aydınlatıcı olduğu",
+"C": "Atatürk'ün doğa olaylarına müdahale ettiği",
+"D": "Atatürk'ün sadece bir bölgeye hitap ettiği"
+},
+"answer": "B",
+"explanation": "Atatürk'ün bir güneş gibi (aydınlatıcı) olduğu benzetmesi yapılmıştır. Bu, Atatürk'ün halkı aydınlatıcı özelliğini vurgular.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Atatürk'ü Tanımak ve Değerler",
+"passage": "Mustafa, 'Cumhuriyet 29 Ekim 1923'te ilan edildi, bu bizim bayramımızdır' dedi. Ayşe ise, 'Atatürk'ün 19 Mayıs 1919'da Samsun'a çıkışı da Millî Mücadele'nin başlangıcıdır' diye ekledi.",
+"question": "Öğrencilerin bu konuşmalarından yola çıkılarak aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Samsun, Cumhuriyet'in ilan edildiği yerdir.",
+"B": "Cumhuriyet'in ilanı ile Millî Mücadele aynı tarihte başlamıştır.",
+"C": "Atatürk'ün hayatındaki önemli dönüm noktaları Türkiye'nin kaderini belirlemiştir.",
+"D": "29 Ekim ile 19 Mayıs tarihleri arasında hiçbir fark yoktur."
+},
+"answer": "C",
+"explanation": "Konuşmalarda belirtilen iki önemli tarih (19 Mayıs 1919 ve 29 Ekim 1923) Türkiye'nin bağımsızlık ve yönetim sürecindeki dönüm noktalarını ifade eder.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Atatürk'ün Hayatı",
+"passage": "Mustafa Kemal, 1881 yılında Selanik'te doğdu. Eğitim hayatına mahalle mektebinde başladı, ardından Şemsi Efendi İlkokuluna devam etti. Askerî okullarda gösterdiği başarılar onu Millî Mücadele'nin liderliğine taşıdı. Bir arkadaşına yazdığı mektupta, 'Çocukluğumda en büyük zevkim kitap okumaktı, eğer kitaplara olan bu tutkum olmasaydı, hayatımın ileriki aşamalarında başardığım pek çok şeyi gerçekleştiremezdim.' ifadesini kullanmıştır.",
+"question": "Bu metne göre Atatürk'ün hayatındaki başarısının temelindeki en önemli etken aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Askerî okullarda gördüğü disiplinli eğitim",
+"B": "Çocukluk yıllarında başlayan yoğun kitap okuma tutkusu",
+"C": "Doğduğu yer olan Selanik'in kültürel ortamı",
+"D": "Mahalle mektebindeki öğretmenlerinin desteği"
+},
+"answer": "B",
+"explanation": "Metinde Atatürk, başardığı pek çok şeyi kitap okuma tutkusuna bağlamıştır. Bu durum, başarısının temelinde okuma alışkanlığının yattığını kanıtlar.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Millî Mücadele ve Ana Fikir",
+"passage": "Samsun'dan başlayan Millî Mücadele ateşi, Amasya, Erzurum ve Sivas kongreleri ile tüm yurda yayıldı. 23 Nisan 1920'de Türkiye Büyük Millet Meclisinin açılmasıyla milletin kendi kaderini tayin etme gücü kurumsallaştı. Atatürk, bu süreci 'Hâkimiyet kayıtsız şartsız milletindir.' ilkesiyle özetlemiş ve bağımsızlığın ancak birlik içinde kazanılabileceğini vurgulamıştır.",
+"question": "Bu metne göre Millî Mücadele sürecinin temel amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Millî egemenliğe dayalı tam bağımsız bir devlet oluşturmak",
+"B": "Askerî başarılarla sınırları genişletmek",
+"C": "Kongrelerin düzenlenerek halkı bilgilendirmek",
+"D": "Sadece Ankara'da yeni bir devlet yönetimi kurmak"
+},
+"answer": "A",
+"explanation": "Metinde meclisin açılışı ve 'hâkimiyet milletindir' ifadesi vurgulanmaktadır. Bu, halkın kendi yönetimini eline alarak tam bağımsızlığa ulaşma hedefini gösterir.",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "Atatürk'ü Tanımak ve Hikâye Unsurları",
+"passage": "Küçük Mustafa, Selanik'te arkadaşlarıyla sokakta oyun oynarken bir yandan da okul ödevlerini düşünüyordu. Bir gün annesi Zübeyde Hanım'a 'Okumayı çok seviyorum, bir gün büyük bir lider olacağım.' dedi. Annesi gülümsedi ve ona destek oldu. Mustafa, o küçük yaşta bile vatanı için neler yapabileceğini hayal ediyordu.",
+"question": "Bu hikâye ile ilgili aşağıda verilen unsurlardan hangisi metinle örtüşmektedir?",
+"shape": null,
+"options": {
+"A": "Olay: Atatürk'ün çocukluk hayalleri",
+"B": "Kişiler: Mustafa Kemal ve babası Ali Rıza Bey",
+"C": "Zaman: Millî Mücadele dönemi",
+"D": "Yer: Ankara"
+},
+"answer": "A",
+"explanation": "Metinde olay, Mustafa'nın liderlik hayali üzerinedir. Diğer şıklar ya metinde geçmemekte ya da yanlış bilgi içermektedir (Baba, yer veya dönem bilgisi).",
+"vfd2": true,
+"unit": "Atatürk'ü Tanımak",
+"topics": "Atatürk'ün hayatı, Millî Mücadele, Cumhuriyet, İstiklal Marşı, 23 Nisan, Metnin ana fikri",
+"d": 4,
+"ts": 1794265367
+},
+{
+"subject": "Türkçe",
+"topic": "İletişim ve Sosyal İlişkiler",
+"passage": "Robotik atölyesindeki proje sunumunda Kerem, arkadaşı Zeynep'e 'Bu parça buraya kesinlikle olmaz, yanlış yapıyorsun.' demişti. Zeynep ise, 'Fikrini söylemen güzel ama daha yapıcı bir dille anlatırsan çözüm bulmamız kolaylaşır.' cevabını verdi.",
+"question": "Zeynep'in verdiği bu cevaba göre iletişimi olumsuz etkileyen tutum aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Karşı tarafın hatasını yargılayıcı bir dille ifade etmek",
+"B": "Çözüm odaklı yaklaşmak",
+"C": "Eleştiriyi kişiselleştirmeden yapmak",
+"D": "Empati kurarak geri bildirim vermek"
+},
+"answer": "A",
+"explanation": "Kerem, 'yanlış yapıyorsun' diyerek yargılayıcı bir dil kullanmıştır. Bu tarz, karşı tarafı savunmaya iter ve iletişimi olumsuz etkiler. Seçenekler incelendiğinde C şıkkı, Kerem'in yaptığı olumsuz tutumun tanımıdır.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "Aile ve Arkadaş İletişimi",
+"passage": "5/A sınıfından Can, dedesinin çiftliğini ziyaret etti. Dedesine, 'Bu yıl mısır verimi neden daha düşük oldu?' diye sordu. Dede, 'Toprakla konuşmak gerekir; onu dinlemezsen, ihtiyacı olanı vermezsen sana ürününü sunmaz.' dedi.",
+"question": "Dedenin 'toprakla konuşmak' sözüyle vurguladığı kavram hangisidir?",
+"shape": null,
+"options": {
+"A": "İnsan dışındaki varlıklarla karşılıklı konuşma yapmak",
+"B": "Toprağa karşı sorumlulukları bir başkasına yüklemek",
+"C": "Sadece sözcüklerle iletişim kurmak",
+"D": "Doğayı gözlemleyip onun gereksinimlerini anlamak"
+},
+"answer": "D",
+"explanation": "Dede, burada 'konuşmak' sözcüğünü gerçek anlamında değil, doğanın dilini anlama ve onunla uyum içinde olma anlamında (metaforik olarak) kullanmıştır. Bu, gözlem ve empati ile ilgilidir.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "Metin Türleri ve İletişim",
+"passage": "Deniz kenarında ağlarını tamir eden yaşlı balıkçı, genç çırağına şu öğüdü verdi: 'Deniz rüzgâr gibidir; bazen sertleşir, bazen durulur. Eğer sen denize öfkeyle bakarsan, o da sana dalgalarla cevap verir. Sakinleş ki, balıklar sana yol göstersin.'",
+"question": "Balıkçının kurduğu bu cümlelerde kullandığı anlatım biçimi hangisidir?",
+"shape": null,
+"options": {
+"A": "Abartma: Denizin devasa boyutlarından bahsedilmesi",
+"B": "Kişileştirme: Denizin duygularının varmış gibi anlatılması",
+"C": "Benzetme: Denizin rüzgârla fiziksel olarak aynı olması",
+"D": "Zıtlık: Balıkçının mesleki zorluklarını anlatması"
+},
+"answer": "B",
+"explanation": "Balıkçı, denizin 'öfkeyle bakarsan sana cevap verir' diyerek, insan özelliklerini (öfke, cevap verme) denize yüklemiştir. Bu bir kişileştirmedir.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "İletişim Kazaları",
+"passage": "Akvaryumdaki balıkları izleyen Ece ve Berk, balıkların yem için birbirini kovaladığını gördü. Ece, 'Sanırım birbirlerine kızdılar.' derken, Berk 'Hayır, sadece yemek paylaşımıyla ilgili bir iletişim kuruyorlar.' dedi.",
+"question": "Berk'in bakış açısına göre aşağıdaki durumlardan hangisi bir iletişim kazası olarak değerlendirilebilir?",
+"shape": null,
+"options": {
+"A": "Balıkların kendi aralarında sesli konuşması",
+"B": "İletişimin hiç gerçekleşmemesi",
+"C": "İzleyicilerin sessiz kalması",
+"D": "Mesajın, göndericinin amaçladığı anlamdan farklı yorumlanması"
+},
+"answer": "D",
+"explanation": "İletişim kazası, gönderilen bir mesajın alıcı tarafından yanlış yorumlanmasıdır. Ece, balıkların davranışını 'kızgınlık' olarak yorumlarken, Berk 'paylaşım' olarak yorumlamıştır. Berk'in yaklaşımı, durumun yanlış anlaşılma riskine vurgu yapar.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "Olumlu Dil ve Empati",
+"passage": "Hayvanat bahçesinde gezen Selin, bakıcıya şu soruyu sordu: 'Bu aslanlar neden sürekli yatıyor?' Bakıcı, 'Onlar yorgun değiller, enerjilerini koruyorlar. Sen bir gün boyunca hiç durmadan koşsaydın, dinlenmeye ihtiyaç duyardın; onlar da senin gibi hissediyor.'",
+"question": "Bakıcının aslanın durumunu Selin'e açıklarken kullandığı yöntem hangisidir?",
+"shape": null,
+"options": {
+"A": "Sadece bilgi vererek açıklamıştır",
+"B": "Selin'in yerine kendini koymasını sağlayarak empati kurdurmuştur",
+"C": "Aslanları Selin'den daha zeki göstermiştir",
+"D": "Selin'e aslanları sevmesi için baskı yapmıştır"
+},
+"answer": "B",
+"explanation": "Bakıcı, 'Sen bir gün boyunca koşsaydın... onlar da senin gibi' diyerek Selin'in kendi deneyimiyle aslanın durumunu anlamasını sağlamış, yani empati yöntemini kullanmıştır.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "İletişim ve Sosyal İlişkiler",
+"passage": "Doğa yürüyüşü sırasında grup lideri Mert, 'Yol ayrımında sessizce bekleyin, diğer arkadaşların işaretini almadan gitmeyin.' dedi. Ancak Ayşe, lideri tam duymadan yürümeye devam etti ve gruptan uzaklaştı.",
+"question": "Metne göre gerçekleşen bu iletişim kopukluğunun temel nedeni hangisidir?",
+"shape": null,
+"options": {
+"A": "Liderin ses tonunun çok yüksek olması",
+"B": "Grubun rotasının çok uzun olması",
+"C": "Gönderilen mesajın alıcı tarafından eksik işitilmesi",
+"D": "İşaret dilinin kullanılmaması"
+},
+"answer": "C",
+"explanation": "Ayşe'nin 'tam duymadan' eyleme geçmesi, iletişimin temel unsurlarından olan 'dinleme' aşamasında bir eksiklik olduğunu ve mesajın alıcı tarafından tam alınamadığını gösterir.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "İletişim ve Sosyal İlişkiler",
+"passage": "Belediye geri dönüşüm kutularındaki atık oranlarını takip eden bir sistem kurmuştur. Aylık raporlara göre; kâğıt atıkları %40, plastik atıklar %30, cam atıklar %20, metal atıklar %10 oranında toplanmıştır. Şehir konseyi, halkın kâğıt atıklarını ayrıştırma konusundaki duyarlılığının en yüksek seviyede olduğunu, ancak metal atıkların geri dönüşüm döngüsüne kazandırılması için yeni bilgilendirme çalışmaları yapılması gerektiğini belirtmiştir.",
+"question": "Bu bilgilere göre şehir konseyinin aşağıdaki çıkarımlardan hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Kâğıt atıkların oranı, plastik ve cam atıkların toplamına eşittir.",
+"B": "Plastik atıklar, geri dönüşümde en düşük paya sahiptir.",
+"C": "Halk, tüm atık türlerini eşit düzeyde geri dönüşüme kazandırmaktadır.",
+"D": "Metal atıkların oranını artırmak için toplumsal iletişim çalışmaları gereklidir."
+},
+"answer": "D",
+"explanation": "Verilere göre metal atıklar %10 ile en düşüktür. Metin, bu düşük oranın artırılması için çalışma yapılması gerektiğini vurgulamaktadır. Diğer şıklar verilerle çelişmektedir (Kâğıt %40, Plastik+Cam %50; eşit değildir).",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "Olumlu Dil ve Empati",
+"passage": "Zeynep ve arkadaşları doğa yürüyüşünde iki farklı grupla karşılaşmıştır. 1. grup, patikayı temiz tutanlardan oluşur. 2. grup ise çöplerini geride bırakanlardan oluşur. Zeynep, 1. gruptaki kişilere 'Doğamızı koruduğunuz için teşekkürler, bu harika bir davranış.' demiştir. 2. gruptakilere ise 'Çöplerimizi doğada bırakmak canlılara zarar verir, lütfen toplar mısınız?' diyerek nazikçe uyarıda bulunmuştur.",
+"question": "Bu metne göre Zeynep’in kurduğu cümlelerle ilgili hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Zeynep, 1. gruptaki kişilere karşı eleştirel bir dil tercih etmiştir.",
+"B": "Zeynep, 2. gruptaki kişilere doğrudan emir vererek iletişimi koparmıştır.",
+"C": "Zeynep, olumlu dil ve empatiyi kullanarak etkili iletişim süreci yürütmüştür.",
+"D": "Zeynep, her iki grupta da aynı ifadeyi kullanarak iletişim kurmuştur."
+},
+"answer": "C",
+"explanation": "Zeynep teşekkür ederek olumlu dil kullanmış, uyarıda ise 'canlılara zarar verir' diyerek empati kurulmasını sağlamıştır. Bu, etkili bir iletişim örneğidir.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "İletişim Kazaları",
+"passage": "Bir pastanede müşteri, 'Hızlı bir şeyler istiyorum.' der. Çalışan, müşterinin acele ettiğini düşünerek hemen elindeki soğuk sandviçi verir. Ancak müşteri aslında taze ve sıcak bir poğaça beklemektedir. Müşteri durumu ifade edince çalışan, 'Siz hızlı bir şeyler istediniz, bu yüzden en çabuk servis edilen şeyi verdim.' diye cevap verir.",
+"question": "Bu durumla ilgili hangisi bir iletişim kazası nedenidir?",
+"shape": null,
+"options": {
+"A": "Çalışanın, müşteriye karşı kaba ve saldırgan bir üslup kullanması.",
+"B": "Müşterinin pastaneye çok geç bir saatte gelmiş olması.",
+"C": "Müşterinin çok net ve belirgin ifadeler kullanması.",
+"D": "Çalışanın, müşterinin beklentisini doğru anlamak için soru sormadan tahmin yürütmesi."
+},
+"answer": "D",
+"explanation": "İletişim kazası, tarafların birbirini anlamadan varsayımlarla hareket etmesinden kaynaklanmıştır. Çalışan, 'hızlı' sözcüğünü yorumlamış ancak teyit etmemiştir.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "Metin Türleri",
+"passage": "Arkeoloji kazısında iki farklı metin bulunmuştur. Birinci metinde; 'Dün kazı alanına vardığımızda gün batımı altın sarısı bir renkteydi, kendimi tarihin içinde kaybolmuş gibi hissettim.' yazılıdır. İkinci metinde; 'Kazı alanı 500 metrekarelik bir bölgeden oluşmaktadır ve burada 12. yüzyıla ait çanak çömlek parçaları keşfedilmiştir.' bilgisi verilmiştir.",
+"question": "Bu metinlerin türleri aşağıdakilerin hangisinde doğru eşleştirilmiştir?",
+"shape": null,
+"options": {
+"A": "Birinci metin: Günlük (anı) türü / İkinci metin: Bilgilendirici metin",
+"B": "Birinci metin: Deneme / İkinci metin: Fabl",
+"C": "Birinci metin: Masal / İkinci metin: Şiir",
+"D": "Birinci metin: Bilgilendirici metin / İkinci metin: Hikâye edici metin"
+},
+"answer": "A",
+"explanation": "Birinci metin öznel ve duygu ağırlıklı (anı/günlük), ikinci metin ise nesnel veriler içeren bilgilendirici bir metindir.",
+"vfd2": true,
+"unit": "İletişim ve Sosyal İlişkiler",
+"topics": "Aile, arkadaş ve komşuluk iletişimi, Olumlu dil, Empati, İletişim kazaları, Metin türleri",
+"d": 2,
+"ts": 1794265508
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneklerimiz - Misafirperverlik",
+"passage": "Bir evde misafir ağırlarken dikkat edilmesi gerekenler şöyledir:\nI. Misafiri kapıda güler yüzle karşılamak.\nII. İkramları en güzel tabaklarla sunmak.\nIII. Misafir gelmeden önce evi detaylıca temizlemek.",
+"question": "Ayşe, arkadaşı Elif'i evine davet ettiğinde bu üç kuraldan sadece ikisini yerine getirmiştir. Ayşe; Elif gelmeden önce evi tertemiz yapmış, onu kapıda çok güler yüzle karşılamış ancak ikramlıkları günlüğe kullandığı eski tabaklarla servis etmiştir. Buna göre Ayşe hangi kuralı yerine getirmemiştir?",
+"shape": null,
+"options": {
+"A": "Yalnızca I. kuralı",
+"B": "Yalnızca II. kuralı",
+"C": "Yalnızca III. kuralı",
+"D": "I ve II numaralı kuralları"
+},
+"answer": "B",
+"explanation": "I. (Güler yüz) yapıldı, III. (Temizlik) yapıldı. Ancak II. kural olan güzel tabakla sunum yapılmadığı için II numaralı kural yerine getirilmemiştir.",
+"vfd2": true,
+"unit": "Geleneklerimiz",
+"topics": "Gelenek ve görenekler, Kutlamalar, Misafirperverlik, El sanatları, Halk oyunları, Mutfak kültürü, Deyim ve atasözü",
+"d": 4,
+"ts": 1794265632
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneklerimiz - El Sanatları",
+"passage": "Anadolu'da icra edilen geleneksel sanatların listesi şöyledir: Çini Sanatı (Toprak pişirilerek yapılır), Ebru Sanatı (Su üzerine boyalarla desen verilir), Hat Sanatı (Güzel yazı yazma sanatıdır).",
+"question": "Bir sanat atölyesinde öğrenciler şu çalışmaları yapmaktadır: 1. Öğrenci: Su dolu kaba boyaları damlatıp kâğıda aktardı. 2. Öğrenci: Killi toprağı fırınlayıp boyadı. 3. Öğrenci: Kalemiyle kağıda estetik harfler yazdı. Buna göre öğrencilerin yaptığı çalışmalarla eşleşen sanat dalları hangisidir?",
+"shape": null,
+"options": {
+"A": "1. Ebru, 2. Çini, 3. Hat",
+"B": "1. Hat, 2. Ebru, 3. Çini",
+"C": "1. Ebru, 2. Hat, 3. Çini",
+"D": "1. Çini, 2. Hat, 3. Ebru"
+},
+"answer": "A",
+"explanation": "Su üzerine desen 1. öğrenci (Ebru), pişirilmiş toprak 2. öğrenci (Çini), güzel yazı 3. öğrenci (Hat) sanatını icra etmiştir.",
+"vfd2": true,
+"unit": "Geleneklerimiz",
+"topics": "Gelenek ve görenekler, Kutlamalar, Misafirperverlik, El sanatları, Halk oyunları, Mutfak kültürü, Deyim ve atasözü",
+"d": 4,
+"ts": 1794265632
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneklerimiz - Hikâye Unsurları",
+"passage": "Büyükannemin evine bayram için gittik. Bahçedeki asırlık çınar ağacının altında, kuzenlerimle eski günleri anımsayarak sohbet ettik. Büyükannem bize eski bayramlarda yapılan şekerlemelerden ikram etti. Bu bayram bizim için unutulmaz oldu.",
+"question": "Metinde geçen hikâye unsurları dikkate alındığında, aşağıdaki eşleştirmelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Olay: Bayram ziyareti, Kişi: Büyükbaba ve kuzenler, Yer: Büyükannenin evi",
+"B": "Olay: Sohbet etmek, Zaman: Geçmiş bayramlar, Kişi: Büyükbaba",
+"C": "Olay: Bayram ziyareti ve sohbet, Kişi: Yazar, kuzenler ve büyükanne, Yer: Bahçe",
+"D": "Olay: Şekerleme yapmak, Zaman: Bayram sabahı, Yer: Çınar ağacı"
+},
+"answer": "C",
+"explanation": "Olay bayram ziyareti, kişiler anlatıcı (yazar), kuzenler ve büyükanne, yer ise büyükannenin evindeki bahçedir.",
+"vfd2": true,
+"unit": "Geleneklerimiz",
+"topics": "Gelenek ve görenekler, Kutlamalar, Misafirperverlik, El sanatları, Halk oyunları, Mutfak kültürü, Deyim ve atasözü",
+"d": 4,
+"ts": 1794265632
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneklerimiz - Mutfak Kültürü",
+"passage": "Mutfak kültürümüz, bayram ve özel günlerde bir araya gelmemizi sağlar. Tabloda bazı geleneksel yemeklerin yapım aşamaları verilmiştir: Mantı (Hamur açılır, içi doldurulur, haşlanır), Baklava (Yufka açılır, yağlanır, şerbetlenir), Sarma (Yaprak sarmalanır, pişirilir).",
+"question": "Sınıfta yapılan bir yemek etkinliğinde Elif sadece haşlama işlemini, Mert ise sadece şerbetleme işlemini yapmıştır. Bu bilgilere göre Elif ve Mert hangi yemekleri yapmış olabilir?",
+"shape": null,
+"options": {
+"A": "Elif: Baklava, Mert: Sarma",
+"B": "Elif: Mantı, Mert: Sarma",
+"C": "Elif: Sarma, Mert: Mantı",
+"D": "Elif: Mantı, Mert: Baklava"
+},
+"answer": "D",
+"explanation": "Mantı tarifinde haşlama geçmektedir. Baklava tarifinde ise şerbetleme işlemi yer almaktadır.",
+"vfd2": true,
+"unit": "Geleneklerimiz",
+"topics": "Gelenek ve görenekler, Kutlamalar, Misafirperverlik, El sanatları, Halk oyunları, Mutfak kültürü, Deyim ve atasözü",
+"d": 4,
+"ts": 1794265632
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneklerimiz - Sözcükte Anlam",
+"passage": "Geleneklerimizi yaşatmak, geçmişten gelen bir mirası korumaktır. Kültürümüz, bir milletin 'kimliği' gibidir. Bu kimliği koruyanlar, geleceğe güçlü bir şekilde yürürler.",
+"question": "Metindeki 'kimlik' sözcüğüyle aynı anlamda kullanılmış bir cümleyi aşağıdakilerden hangisi oluşturur?",
+"shape": null,
+"options": {
+"A": "Kayıp kimliğini bulmak için karakola gitti.",
+"B": "Nüfus kimliğimi yenilemek için başvuru yaptım.",
+"C": "Bu sanat eseri, şehrin kültürel kimliğini yansıtıyor.",
+"D": "Cebinden çıkardığı kimliği görevliye gösterdi."
+},
+"answer": "C",
+"explanation": "Metindeki 'kültürel kimlik' (özellikler, karakter, değerler) mecaz anlamdadır. B şıkkında da şehrin kültürel kimliği ifadesiyle aynı anlamda mecaz olarak kullanılmıştır.",
+"vfd2": true,
+"unit": "Geleneklerimiz",
+"topics": "Gelenek ve görenekler, Kutlamalar, Misafirperverlik, El sanatları, Halk oyunları, Mutfak kültürü, Deyim ve atasözü",
+"d": 4,
+"ts": 1794265632
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneklerimiz: Halk Oyunları",
+"passage": "5/A sınıfı öğrencileri, okullarındaki 'Kültür Şenliği' için Türkiye'nin farklı bölgelerinden halk oyunları seçmişlerdir. Deniz Ege yöresinden zeybek, Arda Doğu Anadolu'dan halay, Pelin ise Karadeniz'den horon oyununu çalışacaktır. Sınıf öğretmeni, 'Halk oyunlarımız, ait olduğu bölgenin sosyal yaşamını ve duygularını yansıtan kültürel mirasımızdır.' demiştir.",
+"question": "Öğretmenin yaptığı açıklamaya göre, öğrencilerin seçtiği halk oyunları ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Tüm halk oyunları aynı bölgenin sosyal yaşantısını yansıtır.",
+"B": "Halk oyunları, yörelerin kültürel özelliklerini taşıyan birer geleneksel ifadedir.",
+"C": "Halk oyunlarının temel amacı sadece eğlenmek ve vakit geçirmektir.",
+"D": "Deniz, Arda ve Pelin oyunlarını seçerken kendi bölgelerinden olmayanları tercih etmiştir."
+},
+"answer": "B",
+"explanation": "Öğretmen, halk oyunlarının ait olduğu bölgenin sosyal yaşamını ve duygularını yansıtan kültürel mirasımız olduğunu belirtmiştir. Bu tanım, halk oyunlarının yöresel kültürel özellikleri yansıttığı sonucuna doğrudan ulaşılmasını sağlar.",
+"vfd2": true,
+"unit": "Geleneklerimiz",
+"topics": "Gelenek ve görenekler, Kutlamalar, Misafirperverlik, El sanatları, Halk oyunları, Mutfak kültürü, Deyim ve atasözü",
+"d": 4,
+"ts": 1794265632
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneklerimiz: Deyimler ve Atasözleri",
+"passage": "Mahalle sakinleri, geleneksel 'İmece Usulü' ile ortak bir çalışma yaparak mahalle parkını temizliyorlar. Ayşe Hanım, 'Bugün herkes bir ucundan tuttu, kısa sürede parkı tertemiz yaptık.' derken; Ahmet Bey, 'Damlaya damlaya göl olur, hepimizin emeği birleşince büyük bir işi başardık.' diye ekliyor.",
+"question": "Metindeki konuşmalarda geçen ifadelerle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ahmet Bey, deyim kullanarak yapılan işin sonucunu değerlendirmiştir.",
+"B": "Her iki konuşmacı da aynı deyimi kullanarak yardımlaşmayı açıklamıştır.",
+"C": "Ayşe Hanım, atasözü kullanarak yardımlaşmanın önemini vurgulamıştır.",
+"D": "Ayşe Hanım 'bir ucundan tutmak' deyimini, Ahmet Bey ise 'damlaya damlaya göl olur' atasözünü kullanmıştır."
+},
+"answer": "D",
+"explanation": "Bir ucundan tutmak kalıplaşmış bir deyimdir. Damlaya damlaya göl olur ise birikim yapmanın veya küçük çabaların büyük sonuçlar doğuracağını öğütleyen bir atasözüdür.",
+"vfd2": true,
+"unit": "Geleneklerimiz",
+"topics": "Gelenek ve görenekler, Kutlamalar, Misafirperverlik, El sanatları, Halk oyunları, Mutfak kültürü, Deyim ve atasözü",
+"d": 4,
+"ts": 1794265632
+},
+{
+"subject": "Türkçe",
+"topic": "Dengeli beslenme ve bilgilendirici metin - Öznel ve Nesnel Cümleler",
+"passage": "Öğretmen, pazardan taze meyve ve sebze alışverişi yapan Selim Bey'in günlüğünden şu cümleleri tahtaya yazdı ve öğrencilerden nesnel yargı içeren cümleyi bulmalarını istedi:\nI. Pazardaki en tatlı portakallar bu tezgâhta satılıyor.\nII. Kırmızı elmaların kilogram fiyatı yirmi Türk lirasıdır.\nIII. Sağlıklı yaşam için herkes her gün mutlaka ıspanak yemelidir.\nIV. Tezgahtaki sebzelerin etrafa yaydığı koku insanı canlandırıyor.",
+"question": "Buna göre Selim Bey'in günlüğünden alınan numaralanmış cümlelerden hangisi nesnel bir yargıdır?",
+"shape": null,
+"options": {
+"A": "III",
+"B": "II",
+"C": "IV",
+"D": "I"
+},
+"answer": "B",
+"explanation": "I. cümlede kişisel bir değerlendirme vardır (en tatlı). III. cümlede öneri ve öznel bir zorunluluk vardır (mutlaka yemelidir). IV. cümlede kişisel duygu ve duyuş bildirilmiştir (insanı canlandırıyor). II. cümlede ise kanıtlanabilir, kişiden kişiye değişmeyen ölçülebilir bir bilgi verildiği için cümle nesneldir. Doğru cevap II numaralı cümledir.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "Uyku ve egzersiz - Sözcükte Anlam ve Zıt Anlam",
+"passage": "Okul bahçesinde beden eğitimi dersi yapan 5/B sınıfı öğrencileri, düzenli spor yapmanın ve erken yatmanın vücut sağlığına etkilerini tartışmaktadır. Öğretmen tahtaya şu cümleleri yazmıştır:\n- Akşamları erken saatlerde uyumak güne dinç başlamayı sağlar.\n- Düzenli egzersiz yapan bireylerin kas yapısı güçlenir.",
+"question": "Bu metinde geçen \"erken\" ve \"düzenli\" sözcüklerinin zıt anlamlıları sırasıyla aşağıdakilerin hangisinde verilmiştir?",
+"shape": null,
+"options": {
+"A": "Uzun - Eğri",
+"B": "Geç - Dağınık",
+"C": "Geç - Düzensiz",
+"D": "Sabah - Seyrek"
+},
+"answer": "C",
+"explanation": "\"Erken\" sözcüğünün zıt anlamlısı \"geç\" kelimesidir. \"Düzenli\" sözcüğünün zıt anlamlısı ise \"düzensiz\" kelimesidir. Bu eşleştirme A ve B seçeneklerinde verilmiştir; ancak \"dağınık\" sözcüğü \"düzenli\"nin tam zıttı değil, daha çok eş anlamlı veya farklı bir bağlamın zıttı olabileceğinden, kurala ve kök anlamına en uygun zıt anlamlılar \"geç\" ve \"düzensiz\"dir.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "Hijyen ve Temizlik - Karşılaştırma Cümlesi",
+"passage": "Toplu taşıma araçlarını kullanan Kerem, günlük yaşamda hijyen kurallarına uymanın önemini fark etmiştir. Gözlemlerini arkadaşlarına şu sözlerle aktarmıştır:\n- Otobüsteki metal tutamaklar, koltuk kumaşlarına göre çok daha fazla bakteri barındırır.\n- El antiseptiğini çantamda taşımak, kolonya taşımaktan daha pratik bir yöntemdir.",
+"question": "Kerem'in kurduğu bu cümlelerin ortak yönü aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İki varlığın durumunu kıyaslayan karşılaştırma anlamı taşıması",
+"B": "Gerçekleşmesi mümkün olmayan hayali unsurlar içermesi",
+"C": "Bir olayın sebebini ve sonucunu birlikte vermesi",
+"D": "Konuşmacının kişisel duygularını abartılı şekilde yansıtması"
+},
+"answer": "A",
+"explanation": "Kerem'in cümlelerinde metal tutamaklar koltuklarla, antiseptik kullanmak ise kolonya taşımakla kıyaslanmıştır. Bu durum cümlelerde karşılaştırma yapıldığını gösterir. Diğer seçeneklerdeki özellikler metindeki cümlelerde yer almamaktadır.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "İlk Yardım ve Bilgilendirici Metin - Anlamlı ve Kurallı Cümbür Kurma",
+"passage": "İnşaat alanında çalışanların dikkat etmesi gereken güvenlik ve ilk yardım tedbirleriyle ilgili bir broşür hazırlayan Zeynep öğretmen, öğrencilerden aşağıdaki numaralanmış sözcük gruplarını kurallı ve anlamlı bir cümle oluşturacak şekilde sıralamalarını istemiştir:\n1. güvenli bir şekilde\n2. ilk yardım malzemeleri\n3. kaza anında\n4. hayat kurtarır",
+"question": "Buna göre bu sözcük gruplarının kurallı ve anlamlı bir cümle oluşturacak biçimde doğru sıralaması aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "2 - 1 - 4 - 3",
+"B": "3 - 1 - 2 - 4",
+"C": "3 - 2 - 1 - 4",
+"D": "1 - 3 - 2 - 4"
+},
+"answer": "B",
+"explanation": "Türkçe dilbilgisi kurallarına ve anlamsal bütünlüğe göre yüklem en sonda ('hayat kurtarır' -> 4) yer almalıdır. Zaman/durum bildiren unsur başa gelmelidir ('Kaza anında' -> 3). Nasıl yapıldığı 'güvenli bir şekilde' (1) belirtilmeli, özne konumundaki 'ilk yardım malzemeleri' (2) araya girerek tam bir cümle oluşturmalıdır: 'Kaza anında güvenli bir şekilde ilk yardım malzemeleri hayat kurtarır' (3 - 1 - 2 - 4). Doğru sıralama D seçeneğidir.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "Dengeli beslenme ve bilgilendirici metin",
+"passage": "Kerem, hafta sonu doğa yürüyüşü yaparken çantasında sadece karbonhidrat ağırlıklı atıştırmalıklar bulundurmuştu. Yürüyüşün ortasında aniden yorgunluk ve baş dönmesi hissetti. Rehber öğretmenleri Berna Hanım, Kerem'in durumunu fark edince ona protein ve lif içeren kuruyemişler verdi. Berna Hanım, sağlıklı bir yaşam için vücudun tüm besin gruplarına dengeli bir şekilde ihtiyaç duyduğunu, tek tip beslenmenin enerji düşüklüğüne yol açabileceğini belirtti.",
+"question": "Buna göre metne konu olan durumun temel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Yürüyüş sırasında su tüketiminin tamamen unutulması",
+"B": "Çantadaki atıştırmalıkların son kullanma tarihinin geçmiş olması",
+"C": "Vücudun ihtiyaç duyduğu besin çeşitliliğine dikkat edilmemesi",
+"D": "Doğa yürüyüşünün planlanan saatten çok daha uzun sürmesi"
+},
+"answer": "C",
+"explanation": "Kerem çantasında sadece karbonhidrat bulundurmuş, rehber ise vücudun tüm besin gruplarına dengeli ihtiyaç duyduğunu belirtmiştir. Bu nedenle durumun nedeni besin çeşitliliğine dikkat edilmemesidir. Doğru seçenek A'dır.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "Uyku ve egzersiz ilişkisi",
+"passage": "Okul basketbol turnuvasına hazırlanan 5/B sınıfı öğrencisi Mert, maç akşamı geç saatlere kadar telefon ekranına bakmış ve sabah yorgun uyanmıştır. Antrenmanda çabuk yorulmuş ve pas hataları yapmıştır. Koç Deniz Bey, Mert'e akşamları ekran kullanımını sınırlandırmasını ve yeterli uykunun kas onarımı ile odaklanma için elzem olduğunu hatırlatmıştır.",
+"question": "Bu metne göre Mert'in antrenmandaki performans düşüklüğü ile ilgili aşağıdaki çıkarımlardan hangisi yapılabilir?",
+"shape": null,
+"options": {
+"A": "Takım sporlarında başarı için sadece yeteneğin yeterli olduğu",
+"B": "Telefon ekranlarının göz sağlığını kalıcı olarak bozduğu",
+"C": "Akşam yapılan antrenmanların her zaman yorgunluğa sebep olduğu",
+"D": "Düzenli uyku alışkanlığı edinilmemesinin zihinsel ve fiziksel olumsuz etkileri"
+},
+"answer": "D",
+"explanation": "Mert'in geç yatıp yorgun uyanması ve antrenmanda hata yapması, yetersiz uykunun performans üzerindeki olumsuz etkisini gösterir. Doğru seçenek A'dır.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "Hijyen kuralları ve bilgilendirici metin",
+"passage": "Okul resim sergisi açılışında öğrenciler atölye masalarını ortak kullanıyordu. Zeynep, boya yaparken ellerini sık sık sabunla yıkıyor ve araç gereçlerini toplu tutuyordu. Yan masadaki Burak ise ellerini yıkamadan atıştırmalık yemiş ve kısa süre sonra karın ağrısı şikayetiyle hemşireye gitmiştir.",
+"question": "Bu metne göre Zeynep ve Burak'ın sergi sürecindeki durumları göz önüne alındığında aşağıdaki yargılardan hangisi kesinlikle söylenebilir?",
+"shape": null,
+"options": {
+"A": "Kişisel hijyen kurallarına uymak bulaşıcı rahatsızlıkların önlenmesinde etkilidir.",
+"B": "Zeynep resim yapma konusunda Burak'tan daha yeteneklidir.",
+"C": "Okul hemşiresi en çok karın ağrısı vakalarıyla ilgilenmektedir.",
+"D": "Resim atölyelerinde yiyecek tüketmek yasaklanmalıdır."
+},
+"answer": "A",
+"explanation": "Zeynep hijyene dikkat edip sağlıklı kalırken, Burak dikkat etmeyip rahatsızlanmıştır. Bu durum hijyenin önemini kanıtlar. Doğru seçenek A'dır.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "Enerji tasarrufu ve sağlıklı yaşam alanı",
+"passage": "Okulun ekoloji kulübü, kış mevsiminde sınıf sıcaklığının 24 derece yerine 21 derecede sabitlenmesini ve öğrencilerin hırka giymesini kararlaştırmıştır. Bu sayede hem havanın aşırı kuruyup solunum yollarını olumsuz etkilemesinin önüne geçilmiş hem de enerji tasarrufu sağlanmıştır.",
+"question": "Bu bilgilere göre kulübün aldığı kararın gerekçeleri arasında aşağıdakilerden hangisi yer alır?",
+"shape": null,
+"options": {
+"A": "Sınıfların ısınma maliyetini tamamen ortadan kaldırmak",
+"B": "Öğrencilerin kış aylarında dışarı çıkmasını engellemek",
+"C": "Solunum sağlığını koruyarak hem tasarruf sağlamak hem de konforu dengelemek",
+"D": "Okul binasındaki pencerelerin değiştirilmesini sağlamak"
+},
+"answer": "C",
+"explanation": "Metinde sıcaklığın düşürülmesinin hem solunum sağlığını koruduğu hem de tasarruf sağladığı belirtilmiştir. Doğru seçenek A'dır.",
+"vfd2": true,
+"unit": "Sağlıklı Yaşıyorum",
+"topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
+"d": 1,
+"ts": 1794266500
 }
 ]
 }

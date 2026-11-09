@@ -2120,6 +2120,386 @@
 "topics": "Namazın önemi, Abdest, Namaz vakitleri",
 "d": 1,
 "ts": 1794212077
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın İnsan Hayatına Etkileri",
+"passage": "Okul bahçesinde arkadaşlarıyla sohbet eden Can, namazın insan üzerindeki etkilerini tartışmaktadır. Can, 'Namaz kılan kişi günün belli vakitlerinde Allah'ın huzuruna çıkar, hatalarından arınmak için O'na yönelir ve bu sayede davranışlarında daha dikkatli olur.' demiştir.",
+"question": "Can'ın bu açıklamasına göre namazın insan hayatına sağladığı temel katkı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Toplumdaki statüsünü yükseltmesi",
+"B": "Sadece fiziksel hareketlilik sağlaması",
+"C": "Zaman yönetimi konusunda ders vermesi",
+"D": "İnsanı kötülüklerden uzaklaştırıp ahlakını güzelleştirmesi"
+},
+"answer": "D",
+"explanation": "Can'ın vurgusu, namazın manevi arınma ve davranışları düzenleme etkisidir, bu da ahlaki gelişimi işaret eder.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Ezan ve Kamet",
+"passage": "Hava durumunu takip eden bir grup öğrenci, akşam namazı vaktinin girmesiyle birlikte dışarıdan gelen sesi duyar. Bu ses namaz vaktinin girdiğini müjdelemektedir. Ardından cami içerisinde namaza başlamadan hemen önce farklı bir çağrı daha yapılır.",
+"question": "Öğrencilerin bahsettiği bu iki farklı çağrı ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "İkisi de sadece farz namazlar için okunur.",
+"B": "Birincisi ezan, namaza başlamadan önce okunan ise kamettir.",
+"C": "Birincisi kamet, ikincisi ezandır.",
+"D": "İkisi de sadece namazın bittiğini haber verir."
+},
+"answer": "B",
+"explanation": "Namaz vaktinin girdiğini duyuran ezan, namaza başlamadan hemen önce okunan ise kamettir.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Cuma Namazı",
+"passage": "Okul kantininde oturan öğrenciler, haftanın belirli bir gününde öğle vaktinde camide toplanan insanların oluşturduğu kalabalığı konuşmaktadır. Bu durum, Müslümanların haftalık olarak bir araya gelip ibadet ettikleri bir zaman dilimini ifade eder.",
+"question": "Öğrencilerin bahsettiği bu ibadet ve kılınış şekliyle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnızca bireysel olarak kılınır.",
+"B": "Cuma günü öğle vakti cemaatle kılınır.",
+"C": "Her gün aynı vakitte tekrar edilir.",
+"D": "Sadece bayramlarda kılınan bir namazdır."
+},
+"answer": "B",
+"explanation": "Cuma namazı, Cuma günü öğle vaktinde cemaatle kılınan haftalık bir ibadettir.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namaz İbadeti",
+"passage": "Okul bahçesinde arkadaşlarıyla sohbet eden Mert, namaz ibadetinin Müslümanın hayatındaki yerini anlatırken şöyle demiştir: 'Namaz, günün belirli vakitlerinde Allah'a yönelerek O'na olan bağlılığımızı gösterdiğimiz, bizi kötülüklerden uzaklaştıran ve iç huzuru sağlayan en temel ibadetlerdendir.'",
+"question": "Mert'in ifadelerine göre, namaz ibadeti ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Müslümanlar arasında sosyal bir statü farkı oluşturur.",
+"B": "İnsanın sadece belirli zamanlarda Allah'ı hatırlamasını sağlar.",
+"C": "Namazın kılınması için sadece temiz bir yerin bulunması yeterlidir.",
+"D": "Kişinin manevi dinginliğine ve ahlaki gelişimine katkı sunar."
+},
+"answer": "D",
+"explanation": "Mert'in ifadesinde namazın Allah'a bağlılığı gösterme, kötülüklerden uzaklaştırma ve iç huzuru sağlama yönlerine değinilmiştir. C şıkkı, 'manevi dinginlik' ve 'ahlaki gelişim' kavramları ile metindeki 'iç huzuru sağlama' ve 'kötülüklerden uzaklaştırma' ifadelerini tam olarak karşılamaktadır.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın Dışındaki Şartları",
+"passage": "Pastane işleten Ahmet Bey, iş yerindeki hijyen kurallarını anlatırken; 'İşlerimize başlamadan önce ortamın temiz olması, üzerimizdeki kıyafetlerin düzenli olması ve işe doğru zamanda başlamamız gerekir.' demiştir. Ahmet Bey'in bu çalışma disiplini, namazın hazırlık aşamalarıyla benzerlik taşımaktadır.",
+"question": "Ahmet Bey'in vurguladığı bu disiplin anlayışı, namazın dışındaki şartlardan hangilerine karşılık gelmektedir?",
+"shape": null,
+"options": {
+"A": "Hadesten taharet - Kıbleye yönelmek - Niyet",
+"B": "Necasetten taharet - Niyet - Vakit",
+"C": "Necasetten taharet - Setr-i avret - Vakit",
+"D": "Kıbleye yönelmek - Vakit - İftitah tekbiri"
+},
+"answer": "C",
+"explanation": "Ahmet Bey'in bahsettiği temiz ortam 'necasetten taharet', kıyafetlerin düzenli olması 'setr-i avret' (avret yerlerini örtmek), işe doğru zamanda başlamak ise 'vakit' şartıyla eşleşmektedir.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Tahiyyat Duası",
+"passage": "Kitap fuarında namaz duaları üzerine bir çalışma yapan öğrenciler, Tahiyyat duasının anlamını bir panoya asmışlardır: 'Dil ile yapılan ibadetler, beden ile yapılan ibadetler ve mal ile yapılan ibadetler Allah'a mahsustur. Ey Peygamber! Selam, Allah'ın rahmeti ve bereketi senin üzerine olsun. Selam, bizim ve Allah'ın salih kullarının üzerine olsun.'",
+"question": "Metne göre, Tahiyyat duasıyla ilgili olarak aşağıdakilerden hangisi çıkarılabilir?",
+"shape": null,
+"options": {
+"A": "Hz. Muhammed'e ve tüm salih kullara selam gönderilmektedir.",
+"B": "Sadece bedeni ibadetlerin Allah'a ait olduğu vurgulanmaktadır.",
+"C": "Duanın sonunda sadece mal ile yapılan yardımlardan bahsedilmektedir.",
+"D": "Namazın sadece Allah'a şükretmek amacıyla kılındığı belirtilmektedir."
+},
+"answer": "A",
+"explanation": "Metinde 'Dil, beden ve mal ile yapılan ibadetlerin Allah'a mahsus olduğu' ve 'Peygamber ile salih kullara selam gönderildiği' açıkça ifade edilmektedir. B şıkkı, metnin ikinci ve üçüncü cümlelerini destekler niteliktedir.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Cuma Namazı",
+"passage": "Bir çiftlikte çalışan işçiler, her hafta cuma günü öğle vaktinde çiftlikteki büyük salonda toplanmaktadır. İşçilerden biri, 'Bugün vaktin girmesiyle birlikte topluca ibadet ederek hem Allah'ın emrini yerine getiriyoruz hem de birbirimizin halini hatırını soruyoruz.' demiştir.",
+"question": "İşçilerin bu ifadelerine göre, cuma namazı ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Cuma namazı, sabah vaktinde kılınan bir namazdır.",
+"B": "Cuma namazı bireysel olarak evde kılınabilen bir namazdır.",
+"C": "İşçilerin bu namazı kılması, namazın vaktinden önce gerçekleştiğini gösterir.",
+"D": "İbadetin cemaatle yapılması toplumsal dayanışmayı güçlendirir."
+},
+"answer": "D",
+"explanation": "Metinde cuma günü öğle vaktinde cemaatle (topluca) toplanıldığı ifade edilmiştir. Topluca ibadet etmenin 'birbirimizin halini hatırını soruyoruz' ifadesiyle birleşmesi, ibadetin cemaatle kılınmasının toplumsal dayanışma üzerindeki etkisini açıklar.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Ezan ve Kamet",
+"passage": "Robotik atölyesindeki öğrenciler bir 'Vakit Hatırlatıcı' projesi hazırlamıştır. Öğrenciler, sistemin çalışma mantığını şu şekilde kodlamıştır: '1. Adım: Namaz vaktinin girdiği ilan edilir. 2. Adım: Cemaat saf tutar. 3. Adım: Namaza başlamadan hemen önce ibadetin başladığı duyurulur.'",
+"question": "Öğrencilerin kodladığı 1. ve 3. adımlarda sırasıyla hangi kavramlar yer almaktadır?",
+"shape": null,
+"options": {
+"A": "Tekbir - Ezan",
+"B": "Kamet - Tekbir",
+"C": "Ezan - Kamet",
+"D": "Kamet - Ezan"
+},
+"answer": "C",
+"explanation": "1. adımda namaz vaktinin girdiğini duyuran çağrı 'Ezan'dır. 3. adımda ise namaza başlamadan hemen önce yapılan duyuru 'Kamet'tir.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Namazın dışındaki şartlar",
+"passage": "5/B sınıfı öğrencileri okul kantininde 'Namazın Hazırlık Şartları' konulu bir poster çalışması yapmaktadır. Öğrencilerin belirlediği kurallar şöyledir: I. Namaz kılınacak yerin temiz olması, II. Vaktin girmiş olması, III. Kıbleye yönelmek, IV. Kıyafetin şık ve pahalı olması.",
+"question": "Buna göre, öğrencilerin posterine eklediği maddelerden hangisi namazın dışındaki şartlar arasında yer almaz?",
+"shape": null,
+"options": {
+"A": "I",
+"B": "II",
+"C": "III",
+"D": "IV"
+},
+"answer": "D",
+"explanation": "Namazın dışındaki şartlar arasında temizlik, vaktin girmesi ve kıbleye yönelmek bulunur. Ancak namazın şartları arasında kıyafetin pahalı veya şık olması gibi bir zorunluluk yoktur; sadece avret yerlerinin örtülmesi yeterlidir.",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 2,
+"ts": 1794265567
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler: Dinin mimariye etkisi",
+"passage": "5/A sınıfı öğrencileri, tarih dersinde Osmanlı camilerindeki mimari detayları incelemektedir. Öğretmenleri, camilerin sadece ibadet yeri olmadığını, aynı zamanda estetik ve dinî sembollerin iç içe geçtiği yapılar olduğunu belirtir. Öğrencilerden biri, bir camideki mihrabın kıbleyi göstermesinin ve estetik bir görünüme sahip olmasının altında yatan temel düşünceyi merak eder.",
+"question": "Buna göre, bir camideki mihrabın kıbleye yönelerek inşa edilmesi ve üzerindeki süslemelerin özenle yapılması, mimarideki hangi dinî anlayışla doğrudan ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "Mimarın kişisel sanatsal tercihlerinin ön plana çıkarılması",
+"B": "Mekânın sadece fiziksel dayanıklılığına önem verilmesi",
+"C": "Caminin yapıldığı bölgenin iklim koşullarına göre tasarlanması",
+"D": "Allah'ın huzurunda bulunma bilincinin estetikle yansıtılması"
+},
+"answer": "D",
+"explanation": "Mihrap kıble yönünü tayin eder. İslam mimarisinde ibadethanelerdeki estetik (süsleme, sanat), Allah'a duyulan saygının ve O'nun huzurunda olma bilincinin bir yansımasıdır. Seçenekler içinde dinî yönü en güçlü ve doğru olan ifade, ibadet bilincinin estetikle birleştirilmesidir.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler: Camilerin bölümleri",
+"passage": "Okul kütüphanesinde araştırma yapan Elif, cami mimarisi ile ilgili bir metin okumaktadır. Metinde şu bilgilere yer verilmiştir: 'Camilerde imamın cemaate namaz kıldırırken durduğu, duvarın iç kısmına doğru girintili olan bölüme mihrap denir. İmamın hutbe okumak için çıktığı merdivenli yüksek yere minber adı verilir.'",
+"question": "Buna göre, cami içerisindeki bu bölümlerin görevleri dikkate alındığında aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Mihrap ve minber, cemaatin düzenli ibadet etmesine katkı sağlar.",
+"B": "Mihrap, sadece süsleme amacıyla yapılan mimari bir unsurdur.",
+"C": "Bu bölümlerin olması, caminin dış mimarisi ile ilgili bir durumdur.",
+"D": "Minber, imamın cemaatle aynı hizada durduğu bir bölümdür."
+},
+"answer": "A",
+"explanation": "Mihrap ve minber namaz ibadetinin işleyişi (imamın yerleşimi ve hutbe) için gerekli olan işlevsel bölümlerdir. A seçeneği yanlıştır çünkü işlevi vardır. B yanlıştır çünkü minber yüksektir. D yanlıştır çünkü bunlar iç mekân öğesidir. Doğru olan C'dir.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler: Camilerin bölümleri",
+"passage": "Okul bahçesinde arkadaşlarıyla sohbet eden Ahmet, camilerin dış mimarisi üzerine bir gözlemde bulunmuştur. Ahmet: 'Camilerin tepesindeki kubbenin yarım küre şeklinde yapılması, sanki gökyüzünü ve sonsuzluğu hatırlatıyor. Ayrıca minarelerin ince, uzun ve göğe doğru yükselmesi de sanki insanı Allah'a yönlendiriyor.' der.",
+"question": "Ahmet'in yaptığı bu gözlem, cami mimarisindeki hangi temel amaca işaret eder?",
+"shape": null,
+"options": {
+"A": "Cami mimarisinin sadece tarihî eser statüsü kazanması",
+"B": "Kubbenin sadece yağmur sularını tahliye etmek için yapılması",
+"C": "Minarelerin sadece ezan okunması için birer kule olması",
+"D": "İbadethanelerin estetik sembollerle tevhid inancını yansıtması"
+},
+"answer": "D",
+"explanation": "Ahmet, cami mimarisindeki şekillerin manevi anlamlarını (sonsuzluk, Allah'a yönelim) vurgulamaktadır. Bu, İslam mimarisinde estetiğin tevhid inancını ve manevi duyguları pekiştirmek için kullanılmasıdır.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler: Dinin mimariye etkisi",
+"passage": "Bir orman köyünde yaşayan Kerem, şehir merkezine gittiğinde yeni yapılan bir camiyi görür. Cami, çevresindeki ağaçların yüksekliğini geçmeyecek şekilde ve doğayla uyumlu malzemelerden inşa edilmiştir. Kerem, bu durumun İslam'ın çevreye ve doğaya verdiği önemi yansıttığını düşünür.",
+"question": "Kerem'in bu değerlendirmesi İslam'ın hangi ilkesi ile doğrudan bağlantılıdır?",
+"shape": null,
+"options": {
+"A": "İnsanın çevresiyle uyum içinde yaşama ve tabiatı koruma sorumluluğu",
+"B": "Camilerin sadece mermer ve taş malzemelerden inşa edilmesi zorunluluğu",
+"C": "Mimaride sadece günümüz teknolojisinin kullanılması gerektiği",
+"D": "İbadethanelerin her zaman şehir merkezinden uzak yapılması"
+},
+"answer": "A",
+"explanation": "Doğa ile uyumlu bir cami mimarisi, İslam'ın kainatı emanet olarak görme ve çevre bilinci ilkesiyle örtüşür. Kerem'in değerlendirmesi çevreye verilen değerle ilgilidir.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler: Cami örnekleri",
+"passage": "Bir resim sergisinde Selimiye Camii'nin çizimlerini inceleyen Ayşe, Mimar Sinan'ın bu eseri hakkında şu notu alır: 'Selimiye, kubbesinin yüksekliği ve dört minaresinin uyumuyla eşsiz bir dengeye sahiptir.' Yanındaki arkadaşı ise başka bir şehirdeki caminin çok farklı tarzda olduğunu, ancak her ikisinde de ortak bazı unsurlar bulunduğunu ifade eder.",
+"question": "Her iki caminin farklı mimari tarzlara sahip olmasına rağmen ortak unsurlar içermesi neyi kanıtlar?",
+"shape": null,
+"options": {
+"A": "Tüm camilerin yapımında aynı mimar çalışmıştır.",
+"B": "Farklı cami mimarileri, İslam dininin ibadet esaslarını değiştirmiştir.",
+"C": "Camilerin görünümü sadece bulunulan bölgenin modasına göre belirlenir.",
+"D": "İslam mimarisinin temelinde, çeşitlilik içerisinde ortak bir inanç ve estetik anlayışı vardır."
+},
+"answer": "D",
+"explanation": "Farklı mimari tarzlar olsa da mihrap, minber, kubbe gibi unsurların bulunması ve camilerin ortak bir İslam sanat anlayışına hizmet etmesi, ortak bir inanç ve estetik geleneğini gösterir.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler: Dinin mimariye etkisi",
+"passage": "Akvaryumdaki cam yüzeyleri inceleyen bir öğrenci, ışığın camdan geçişini ve yansımasını gözlemler. Öğretmeni ona, 'Tıpkı bu camdaki ışık oyunları gibi, cami mimarisinde de pencerelerden giren ışık, mekânı aydınlatır ve iç mekânda Allah'ın nuruna dair bir sembolik hava oluşturur.' der.",
+"question": "Bu bilgilere göre cami mimarisindeki pencere düzenlemelerinin temel amacı aşağıdakilerden hangisi olabilir?",
+"shape": null,
+"options": {
+"A": "İbadet edilen ortamın aydınlık ve ferah bir manevi atmosfere sahip olması",
+"B": "Dışarıdaki manzarayı cemaatin daha rahat izlemesi",
+"C": "Pencere sayısının caminin büyüklüğünü kanıtlaması",
+"D": "Sadece caminin elektrik tüketimini azaltmak için ışık alması"
+},
+"answer": "A",
+"explanation": "Cami mimarisinde ışık kullanımı, ruhani bir atmosfer oluşturmak ve ferahlık sağlamakla ilişkilidir. Bu durum, ibadet edilen ortamın manevi derinliğini artırır.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler",
+"passage": "Okul bahçesindeki tarih dersi projesi kapsamında öğrenciler, Türk-İslam mimarisindeki yapı bölümlerini gruplandırarak bir tablo oluşturmuştur. Tabloda yapılar ve bu yapıların temel işlevleri şu şekilde eşleştirilmiştir: \n1. Mihrap: İmamın namaz kıldırırken yöneldiği, kıbleyi gösteren girintili kısım.\n2. Minber: Hutbe okumak için çıkılan, merdivenli yüksek yer.\n3. Kubbe: Caminin üzerini örten, gökyüzünü ve birliği simgeleyen yarım küre yapı.",
+"question": "Öğrencilerin hazırladığı bilgilere göre, bir camide cemaatin imamı en iyi görebileceği ve sesini duyabileceği hutbe anında kullanılan mimari bölüm hangisidir?",
+"shape": null,
+"options": {
+"A": "Minare",
+"B": "Kubbe",
+"C": "Mihrap",
+"D": "Minber"
+},
+"answer": "D",
+"explanation": "Metinde mihrap namaz kıldırılan yer, kubbe yapı örtüsü, minber ise hutbe okunan yüksek yer olarak tanımlanmıştır. Hutbe anında imamın çıktığı yer minberdir.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler",
+"passage": "Yaz tatilinde dedesiyle Edirne Selimiye Camii'ni ziyaret eden Elif, caminin iç kısmındaki süslemeleri incelemiştir. Elif dedesine, 'Caminin içindeki hat sanatları ve geometrik şekiller sadece süs olsun diye yapılmış, dinden bağımsızdır.' demiştir. Dedesi ise ona mimarideki her motifin bir inanç gerçeğini yansıttığını anlatmıştır.",
+"question": "Elif'in yaptığı değerlendirmedeki temel hata aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Edirne'nin mimari önemini belirtmemesi",
+"B": "Dedesinin görüşlerine katılmaması",
+"C": "Sanatsal motiflerin inançla ilişkisini yok sayması",
+"D": "Caminin sanat eserine sahip olması"
+},
+"answer": "C",
+"explanation": "İslam mimarisinde kullanılan hat, tezhip ve geometrik motifler rastgele değil, tevhid, sonsuzluk ve Allah'ın isimlerini yansıtan estetik ve dini değerler taşır. Elif bunların dinden bağımsız olduğunu savunarak hatalı bir yorum yapmıştır.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler",
+"passage": "Bir inşaat mühendisliği öğrencisi, cami projelerinde neden daire formunda kubbelerin tercih edildiğini araştırmaktadır. Araştırmasında, kubbenin evrenin ve birliğin merkezi olduğunu, İslam mimarisinde estetik bir denge kurduğunu ve yapının iç akustiğini optimize ettiğini öğrenmiştir.",
+"question": "Bu bilgilere göre kubbe mimarisinin tercih edilmesinde aşağıdakilerden hangisi etkili olmuştur?",
+"shape": null,
+"options": {
+"A": "Maddi değeri yüksek malzemeler kullanmak",
+"B": "Sadece yapının yüksekliğini artırmak",
+"C": "Caminin diğer yapılardan daha büyük görünmesi",
+"D": "Hem inanç sembolü olması hem de işlevselliği"
+},
+"answer": "D",
+"explanation": "Metinde kubbenin hem inançla ilgili (birlik/evren) sembolik anlamı hem de akustik gibi işlevsel katkısı belirtilmiştir. Bu durum, mimarideki dengeyi ifade eder.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler",
+"passage": "Bir sağlık kontrolü sonrası mahalle camisini ziyaret eden Ahmet, mihrabın önünde durup yöneldiği kıbleyi düşünmüştür. Müslümanların namaz kılarken ortak bir noktaya (Kabe) yönelmesinin, cami içinde cemaat olmanın ve birliğin en büyük göstergesi olduğunu fark etmiştir.",
+"question": "Bu durum, caminin hangi mimari bölümünün İslam'daki 'birlik' vurgusunu en iyi temsil ettiğini göstermektedir?",
+"shape": null,
+"options": {
+"A": "Minare",
+"B": "Minber",
+"C": "Mihrap",
+"D": "Şadırvan"
+},
+"answer": "C",
+"explanation": "Mihrap, cemaatin namaz kılarken aynı yöne, yani kıbleye yönelmesini sağlayan bölümdür. Ortak bir yöne yönelmek birliği simgeler.",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 2,
+"ts": 1794265802
 }
 ]
 }

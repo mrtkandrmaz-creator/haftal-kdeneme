@@ -2618,33 +2618,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
-"passage": "",
-"question": "Şekilde kesişen d₁ ve d₂ doğrularının oluşturduğu ters açılardan biri 3x - 20° ve diğer yöndeki komşu bütünler açılardan biri 2x + 10° olarak verilmiştir. Buna göre x kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "angles_two_lines",
-"degree": 60,
-"given": "3x - 20°",
-"ask": "x",
-"show_names": false
-},
-"options": {
-"A": "30°",
-"B": "34°",
-"C": "38°",
-"D": "42°"
-},
-"answer": "C",
-"explanation": "Kesişen iki doğrunun oluşturduğu bir ters açı ve komşu bütünler açısının toplamı 180°'dir. (3x - 20°) + (2x + 10°) = 180° ise 5x - 10 = 180 => 5x = 190 => x = 38° bulunur.",
-"vfd2": true,
-"unit": "3. Tema: Geometrik Şekiller",
-"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
-"d": 4,
-"ts": 1794211011
-},
-{
-"subject": "Matematik",
 "topic": "Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
 "passage": "Bir ormancılık projesinde fidan dikilen alanların kilometre cinsinden uzunlukları sayı doğrultusunda işaretlenmiştir. Uzmanlar, fidan dikim sınırını belirleyen bir işaretçinin yerini incelemektedir.",
 "question": "Sayı doğrusunda ok ile gösterilen değere karşılık gelen doğal sayı aşağıdakilerden hangisidir?",
