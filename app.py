@@ -10347,6 +10347,174 @@ _DIFF_OF.update({"_mf_tum_x": 2, "_mf_but_x": 2, "_mf_tum_cebir": 4, "_mf_but_ce
                  "_mf_kom_oran": 3, "_mf_kom_cebir": 5, "_mf_ters_x": 2, "_mf_ters_cebir": 5})
 
 
+# ================================================================ 5. SINIF: TÜM ÜNİTELER İÇİN GENİŞ KALIP SETİ
+def _stmt_q(subject, topic, stem, T, F, ex_t):
+    """Tek doğru ifade: doğrulanmış doğru ifadelerden biri + yanlış ifadelerden üçü (olumlu kök)."""
+    c = random.choice(T)
+    return _fact_q(subject, topic, stem, c, random.sample(F, 3) if len(F) >= 3 else F, ex_t.format(c=c))
+
+
+# ---------------------------------------------------------------- MATEMATİK
+def _lset(subject, want):
+    kinds = ["segment", "ray", "line"]
+    random.shuffle(kinds)
+    lab = ["I", "II", "III"]
+    c = lab[kinds.index(want)]
+    nm = {"segment": "doğru parçası", "ray": "ışın", "line": "doğru"}[want]
+    sh = {"type": "geo", "sub_type": "lines_set", "kinds": kinds}
+    o = _mf_opts(c, [x for x in lab if x != c] + ["Hiçbiri"], str, sort=False)
+    q = {"segment": "Şekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir doğru parçasıdır?", "ray": "Şekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir ışındır?", "line": "Şekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir doğrudur?"}[want]
+    return _mf_raw(subject, "Doğru, ışın, doğru parçası", q, o,
+                   {"segment": "Doğru parçasının iki ucu da sınırlıdır.", "ray": "Işının bir başlangıç noktası vardır ve bir yönde sonsuza gider.", "line": "Doğru iki yönde de sonsuza uzanır."}[want], shape=sh) if o else None
+
+
+_mf_lset_dogru = _mk_kind(lambda sj, kind=None: _lset(sj, "line"), None, "_mf_lset_dogru")
+_mf_lset_isin = _mk_kind(lambda sj, kind=None: _lset(sj, "ray"), None, "_mf_lset_isin")
+_mf_lset_parca = _mk_kind(lambda sj, kind=None: _lset(sj, "segment"), None, "_mf_lset_parca")
+
+
+def _mf_dik_par(subject):
+    par = random.random() < .5
+    sh = {"type": "geo", "sub_type": "parallel" if par else "perpendicular", "labels": ["d₁", "d₂"], "tilt": random.choice([0, 15, 30])}
+    c = "Paralel" if par else "Dik"
+    o = _mf_opts(c, [x for x in ["Paralel", "Dik", "Çakışık", "Birbirine teğet"] if x != c], str, sort=False)
+    return _mf_raw(subject, "Paralel ve dik doğrular", "Şekildeki d₁ ve d₂ doğrularının birbirine göre durumu aşağıdakilerden hangisidir?", o,
+                   "Hiç kesişmeyen ve aralarındaki uzaklık değişmeyen doğrular paralel doğrulardır." if par else "Kesişince 90° açı oluşturan doğrular birbirine diktir.", shape=sh) if o else None
+
+
+def _mf_aci_topla(subject):
+    a, b = random.sample(range(15, 80, 5), 2)
+    c = a + b
+    sh = _split_shape(c, a, f"{a}°", f"{b}°")
+    o = _mf_opts(c, [abs(a - b), c + 10, c - 10, a * 2, b * 2, c + 5], str)
+    return _mf_raw(subject, "Açı ölçme", f"Şekilde OC ışını AOB açısını iki açıya ayırmıştır. m(AOC) = {a}° ve m(COB) = {b}° olduğuna göre m(AOB) kaç derecedir?", o, f"{a}° + {b}° = {c}°.", shape=sh) if o else None
+
+
+def _mf_aortay_a(subject):
+    a = random.choice(range(15, 80, 5))
+    sh = _split_shape(2 * a, a, f"{a}°", "")
+    o = _mf_opts(2 * a, [a, a + 10, 3 * a, 2 * a + 10, 2 * a - 10], str)
+    return _mf_raw(subject, "Açıortay", f"Şekilde OC ışını AOB açısının açıortayıdır. m(AOC) = {a}° olduğuna göre m(AOB) kaç derecedir?", o, f"Açıortay açıyı iki eşit parçaya böler: 2 × {a}° = {2 * a}°.", shape=sh) if o else None
+
+
+def _mf_aortay_cebir(subject):
+    x = random.randint(8, 25)
+    a, b = random.randint(5, 20), random.randint(1, 15)
+    # 2x + a = 3x - b  -> x = a + b  ; seç: x = a + b
+    x = a + b
+    d = 2 * x + a
+    if d * 2 >= 180 or d < 20:
+        return None
+    sh = _split_shape(2 * d, d, f"2x+{a}", f"3x−{b}")
+    o = _mf_opts(x, [x + 5, x - 5, d, x + 10, 2 * d], str)
+    return _mf_raw(subject, "Açıortay", f"Şekilde OC ışını AOB açısının açıortayıdır. m(AOC) = 2x + {a}° ve m(COB) = 3x − {b}° olduğuna göre x kaçtır?", o,
+                   f"Açıortay açıyı eşit böler: 2x + {a} = 3x − {b} → x = {x}.", shape=sh) if o else None
+
+
+def _mf_cember_cap(subject):
+    r = random.randint(2, 15)
+    kind = random.choice(["cap", "yarim"])
+    sh = {"type": "circle", "center": "O", "radius": f"{r} cm", "show_diameter": True}
+    if kind == "cap":
+        c = 2 * r
+        o = _mf_opts(c, [r, r + 2, 2 * r + 2, 3 * r, r * r], str)
+        return _mf_raw(subject, "Çember ve daire elemanları", f"Şekildeki O merkezli çemberin yarıçapı {r} cm’dir. Bu çemberin çapı kaç santimetredir?", o, f"Çap, yarıçapın 2 katıdır: 2 × {r} = {c} cm.", shape=sh) if o else None
+    c = r
+    o = _mf_opts(c, [2 * r, r + 1, r - 1 if r > 2 else r + 3, 4 * r], str)
+    return _mf_raw(subject, "Çember ve daire elemanları", f"Şekildeki O merkezli çemberin yarıçapı {r} cm’dir. Çemberin merkezinden geçen bir kirişin yarısının uzunluğu kaç santimetredir?", o, f"Merkezden geçen kiriş çaptır; yarısı yarıçaptır: {r} cm.", shape=sh) if o else None
+
+
+def _mf_cember_ad(subject):
+    sh = {"type": "geo", "sub_type": "circle_parts", "center": "O", "parts": ["radius", "diameter", "chord"], "labels": ["A", "B", "C", "D", "E"]}
+    seg, c, ex = random.choice([("OA", "Yarıçap", "Merkezi ile çember üzerindeki bir noktayı birleştiren doğru parçası yarıçaptır."),
+                                ("BC", "Çap", "Merkezden geçen ve çember üzerinde iki noktayı birleştiren doğru parçası çaptır."),
+                                ("DE", "Kiriş", "Merkezden geçmeyen, çember üzerinde iki noktayı birleştiren doğru parçası kiriştir.")])
+    o = _mf_opts(c, [x for x in ["Çap", "Yarıçap", "Kiriş", "Yay"] if x != c], str, sort=False)
+    return _mf_raw(subject, "Çember ve daire elemanları", f"Şekildeki O merkezli çemberde gösterilen {seg} doğru parçasına ne ad verilir?", o, ex, shape=sh) if o else None
+
+
+def _mf_poly_set(subject):
+    nm = {3: "üçgen", 4: "dörtgen", 5: "beşgen", 6: "altıgen"}
+    ks = random.sample(list(nm), 4)
+    want = random.choice(ks)
+    lab = ["K", "L", "M", "N"]
+    sh = {"type": "geo", "sub_type": "polygon_set", "kinds": [nm[k] for k in ks], "labels": lab}
+    c = lab[ks.index(want)]
+    return _mf_raw(subject, "Çokgenlerin elemanları", f"Şekilde K, L, M ve N ile gösterilen çokgenlerden hangisinin {want} kenarı vardır?",
+                   (sorted(lab), c), f"{nm[want].capitalize()}in {want} kenarı vardır; şekilde bu çokgen {c} harfiyle gösterilmiştir.", shape=sh)
+
+
+def _mf_kare(subject):
+    a = random.randint(3, 15)
+    kind = random.choice(["cevre", "alan", "kenar"])
+    if kind == "kenar":
+        sh = {"type": "rectangle", "width": a, "height": a, "width_label": "?", "height_label": "?", "center_label": f"Çevre = {4 * a} cm"}
+        o = _mf_opts(a, [4 * a, a + 2, a * a, 2 * a, a - 1], str)
+        return _mf_raw(subject, "Çevre uzunluğu", "Şekilde çevresi verilen karenin bir kenarı kaç santimetredir?", o, f"Kare 4 eşit kenarlıdır: {4 * a} ÷ 4 = {a}.", shape=sh) if o else None
+    sh = {"type": "rectangle", "width": a, "height": a, "width_label": f"{a} cm", "height_label": f"{a} cm"}
+    if kind == "cevre":
+        o = _mf_opts(4 * a, [a * a, 2 * a, a + 4, 4 * a + 4], str)
+        return _mf_raw(subject, "Çevre uzunluğu", "Şekildeki karenin çevresi kaç santimetredir?", o, f"4 × {a} = {4 * a} cm.", shape=sh) if o else None
+    o = _mf_opts(a * a, [4 * a, 2 * a, a * a + a, a * a - a], str)
+    return _mf_raw(subject, "Alan ölçme", "Şekildeki karenin alanı kaç santimetrekaredir?", o, f"{a} × {a} = {a * a} cm².", shape=sh) if o else None
+
+
+def _mf_say_kars(subject):
+    ns = random.sample(range(100000, 9999999), 4)
+    big = random.random() < .5
+    c = max(ns) if big else min(ns)
+    f = lambda v: f"{v:,}".replace(",", ".")
+    if len({len(str(n)) for n in ns}) < 2 and len(set(str(n)[:3] for n in ns)) < 4:
+        return None
+    o = _mf_opts(f(c), [f(n) for n in ns if n != c], str, sort=False)
+    return _mf_raw(subject, "Doğal sayılar", f"Aşağıdaki sayılardan hangisi en {'büyüktür' if big else 'küçüktür'}?", o, f"Basamak sayısı çok olan ve en yüksek basamağı büyük olan sayı daha büyüktür; en {'büyük' if big else 'küçük'} sayı {f(c)}.") if o else None
+
+
+def _mf_prb_gun(subject):
+    pg, k = random.choice([120, 150, 180, 240, 300, 360, 420]), random.choice([5, 6, 10, 12, 15, 20, 30])
+    if pg % k:
+        return None
+    c = pg // k
+    o = _mf_opts(c, [pg - k, c + 2, c - 2, pg + k, c * 2], str)
+    nm = random.choice(["Elif", "Mert", "Ali"])
+    return _mf_raw(subject, "Dört işlem problemleri", f"{nm} {pg} sayfalık bir kitabı her gün {k} sayfa okuyarak bitirecektir. {nm} kitabı kaç günde bitirir?", o, f"{pg} ÷ {k} = {c} gün.") if o else None
+
+
+def _mf_prb_arac(subject):
+    k, c = random.choice([4, 5, 8, 9, 12]), random.randint(3, 9)
+    n = k * (c - 1) + random.randint(1, k - 1)
+    o = _mf_opts(c, [c - 1, c + 1, c + 2, n // k + 2], str)
+    return _mf_raw(subject, "Dört işlem problemleri", f"Bir okuldan {n} öğrenci gezi için servislere bindirilecektir. Her servise en fazla {k} öğrenci binebildiğine göre en az kaç servis gerekir?", o,
+                   f"{n} ÷ {k} = {n // k} kalan {n % k}; kalan öğrenciler için bir servis daha gerekir: {c}.") if o and len(set(o[0])) == 4 else None
+
+
+def _mf_prb_alis(subject):
+    a, b, p = random.randint(12, 60), random.randint(8, 40), random.randint(2, 9)
+    tot = a * p + b * p
+    o = _mf_opts(tot, [a * p + b, a + b * p, (a + b) + p, tot + p, tot - p], str)
+    return _mf_raw(subject, "Dört işlem problemleri", f"Bir kırtasiyede defterin tanesi {a} TL, kalemin tanesi {b} TL’dir. Zeynep {p} defter ve {p} kalem aldığına göre kaç TL öder?", o, f"({a} + {b}) × {p} = {tot} TL.") if o else None
+
+
+def _mf_orun_kural(subject):
+    a, d = random.randint(2, 9), random.randint(2, 7)
+    n = random.choice([8, 10, 12, 15])
+    t = [a + d * i for i in range(3)]
+    c = a + d * (n - 1)
+    o = _mf_opts(c, [c + d, c - d, a + d * n + 1, n * d, c + 1], str)
+    return _mf_raw(subject, "Örüntüler", f"Bir sayı örüntüsünün ilk üç terimi {t[0]}, {t[1]}, {t[2]} biçimindedir ve örüntü aynı kuralla devam etmektedir. Bu örüntünün {n}. terimi kaçtır?", o,
+                   f"Her adımda {d} artıyor: {a} + {n - 1} × {d} = {c}.") if o else None
+
+
+_MF_GENS += [(_mf_lset_dogru, ("doğru",), (5,)), (_mf_lset_isin, ("ışın",), (5,)), (_mf_lset_parca, ("doğru parçası",), (5,)), (_mf_dik_par, ("paralel", "dik doğru", "dik"), (5,)),
+             (_mf_aci_topla, ("açı ölçme", "açı ölç"), (5,)), (_mf_aortay_a, ("açıortay",), (5,)), (_mf_aortay_cebir, ("açıortay",), (5,)),
+             (_mf_cember_cap, ("çember", "daire", "yarıçap", "çap"), (5,)), (_mf_cember_ad, ("çember", "daire elemanları", "yarıçap", "çap", "kiriş"), (5,)),
+             (_mf_poly_set, ("çokgen",), (5,)), (_mf_kare, ("çevre", "alan", "kare"), (5,)), (_mf_say_kars, ("doğal sayı", "milyon", "sayı okuma", "basamak"), (5,)),
+             (_mf_prb_gun, ("dört işlem",), (5,)), (_mf_prb_arac, ("dört işlem",), (5,)), (_mf_prb_alis, ("dört işlem",), (5,)),
+             (_mf_orun_kural, ("örüntü",), (5,))]
+_DIFF_OF.update({"_mf_lset_dogru": 1, "_mf_lset_isin": 1, "_mf_lset_parca": 1, "_mf_dik_par": 1, "_mf_aci_topla": 2, "_mf_aortay_a": 2, "_mf_aortay_cebir": 5, "_mf_cember_cap": 2,
+                 "_mf_cember_ad": 1, "_mf_poly_set": 2, "_mf_kare": 2, "_mf_say_kars": 2, "_mf_prb_gun": 3, "_mf_prb_arac": 4, "_mf_prb_alis": 3, "_mf_orun_kural": 4})
+
+
 def _ff_isi(subject):
     kind = random.choice(["hal", "yon", "iletken", "yalitkan"])
     if kind == "hal":
@@ -10433,6 +10601,164 @@ def _tf_tur(subject):
 _TF_GENS += [(_tf_tur, ("metin türü", "metin tür", "iletişim"))]
 
 _DIFF_OF.update({"_mf_ang_tumler": 2, "_mf_ang_butunler": 2, "_mf_ang_tur": 2, "_mf_ang_komsu": 3, "_mf_ang_ters": 3, "_mf_poly_el": 2, "_mf_rect_eksik": 3, "_ff_isi": 2, "_ff_iskelet": 2, "_sf_kurum": 2, "_sf_ihtiyac": 1, "_sf_afet": 1, "_sf_hak": 2, "_tf_tur": 2})
+
+
+# ================================================================ 5. SINIF KALIPLAR — 2. PARTİ (Mat / Fen / Sosyal / Türkçe)
+def _mf_yuzde_hes(subject):
+    p, n = random.choice([10, 20, 25, 50, 75]), random.choice([40, 60, 80, 120, 200, 240, 400])
+    c = n * p // 100
+    if n * p % 100:
+        return None
+    who, what = random.choice([("Bir okuldaki", "öğrencinin"), ("Bir kütüphanedeki", "kitabın")])
+    o = _mf_opts(c, [n - c, c + 10, c * 2, p, n // 10 + 5, c - 5], str)
+    return _mf_raw(subject, "Yüzde", f"{who} {n} {what} %{p}’i bir etkinliğe katılmıştır. Etkinliğe katılan sayısı kaçtır?", o, f"{n} × {p}/100 = {c}.") if o else None
+
+
+def _mf_ond_sira(subject):
+    ns = random.sample([round(x / 100, 2) for x in range(101, 999) if x % 10], 4)
+    big = random.random() < .5
+    c = max(ns) if big else min(ns)
+    f = lambda v: f"{v:.2f}".replace(".", ",")
+    if len({round(n, 1) for n in ns}) < 3:
+        return None
+    o = _mf_opts(f(c), [f(n) for n in ns if n != c], str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", random.choice(["Aşağıdaki ondalık gösterimlerden hangisi en {0}?", "Verilen ondalık gösterimler arasında değeri en {1} olan hangisidir?", "Ondalık gösterimlerle yazılmış bu sayılardan hangisi sayı doğrusunda {2} yer alır?"]).format(*(("büyüktür","büyük","en sağda") if big else ("küçüktür","küçük","en solda"))), o, f"Önce tam kısımlar, eşitse ondalık basamaklar soldan sağa karşılaştırılır; en {'büyük' if big else 'küçük'} sayı {f(c)}.") if o else None
+
+
+def _mf_kes_kars(subject):
+    d = random.choice([6, 8, 10, 12])
+    ns = random.sample(range(1, d), 4) if d > 5 else None
+    big = random.random() < .5
+    c = max(ns) if big else min(ns)
+    fs = [f"{n}/{d}" for n in ns]
+    o = _mf_opts(f"{c}/{d}", [f for f in fs if f != f"{c}/{d}"], str, sort=False)
+    return _mf_raw(subject, "Kesirler", random.choice(["Paydaları eşit olan kesirlerden hangisi en {0}?", "Aşağıdaki kesirleri karşılaştırdığımızda değeri en {1} olan hangisidir?"]).format(*(("büyüktür","büyük") if big else ("küçüktür","küçük"))), o, f"Paydalar eşitken payı {'en büyük' if big else 'en küçük'} olan kesir {'en büyüktür' if big else 'en küçüktür'}: {c}/{d}.") if o else None
+
+
+_MF_GENS += [(_mf_yuzde_hes, ("yüzde",), (5,)), (_mf_ond_sira, ("ondalık",), (5,)), (_mf_kes_kars, ("kesir",), (5,))]
+_DIFF_OF.update({"_mf_yuzde_hes": 3, "_mf_ond_sira": 2, "_mf_kes_kars": 1})
+
+
+# ---- FEN: doğrulanmış ifade havuzları
+def _fen_stmt(topic, T, F, S=None):
+    """Doğrulanmış doğru ifade + yanlış ifadeler. S: her doğru ifadenin konu etiketi (gövdeyi benzersizleştirir)."""
+    def g(subject):
+        i = random.randrange(len(T))
+        c = T[i]
+        ws = [x for x in F]
+        random.shuffle(ws)
+        if i < len(F):
+            ws.remove(F[i]); ws.insert(0, F[i])
+        lab = S[i] if S else topic
+        return _fact_q(subject, topic, f"{lab} ile ilgili aşağıdaki ifadelerden hangisi doğrudur?", c, ws[:3], f"“{c}” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.")
+    return g
+
+
+_ff_kuvvet = _fen_stmt("Kuvvet", ["Kuvvet dinamometre ile ölçülür.", "Kuvvetin birimi newton (N)’dur.", "Sürtünme kuvveti hareket yönüne zıt yöndedir.", "Yüzey pürüzlü olduğunda sürtünme kuvveti artar.", "Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.", "Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar."],
+                       ["Kuvvet termometre ile ölçülür.", "Kuvvetin birimi kilogram (kg)’dır.", "Sürtünme kuvveti her zaman hareket yönündedir.", "Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.", "Yer çekimi kuvveti cisimleri yukarı doğru iter.", "Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır."], ["Kuvvetin ölçülmesi", "Kuvvetin birimi", "Sürtünme kuvvetinin yönü", "Yüzey pürüzlülüğü ve sürtünme", "Yer çekimi kuvveti", "Dinamometredeki yay"])
+_ff_kuvvet.__name__ = "_ff_kuvvet"
+_ff_gokcismi = _fen_stmt("Gökyüzündeki Komşularımız", ["Güneş, kendi ışığını yayan bir yıldızdır.", "Ay, Dünya’nın doğal uydusudur.", "Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.", "Ay, Dünya’nın etrafında dolanır.", "Güneş, Dünya’dan çok daha büyüktür."],
+                         ["Ay, kendi ışığını yayan bir yıldızdır.", "Güneş, Dünya’nın doğal uydusudur.", "Güneş, Dünya’nın etrafında dolanır.", "Dünya, Ay’dan daha küçüktür.", "Ay, Güneş’ten daha büyüktür."], ["Güneş", "Ay’ın Dünya ile ilişkisi", "Ay’ın ışığı", "Ay’ın hareketi", "Güneş ile Dünya’nın büyüklükleri"])
+_ff_gokcismi.__name__ = "_ff_gokcismi"
+_ff_isik2 = _fen_stmt("Işığın Dünyası", ["Işık, doğrusal yollarla yayılır.", "Opak maddeler ışığı geçirmez.", "Saydam maddelerden ışığın büyük bölümü geçer.", "Gölge, ışığın opak bir cisim tarafından engellenmesiyle oluşur.", "Işık kaynağı cisme yaklaştıkça gölge büyür."],
+                      ["Işık, kıvrımlı yollarla yayılır.", "Opak maddeler ışığın tamamını geçirir.", "Saydam maddeler ışığı hiç geçirmez.", "Gölge, ışığın cismin içinden geçmesiyle oluşur.", "Işık kaynağı cisme yaklaştıkça gölge küçülür."], ["Işığın yayılması", "Opak maddeler", "Saydam maddeler", "Gölgenin oluşumu", "Gölgenin boyutu"])
+_ff_isik2.__name__ = "_ff_isik2"
+_ff_hucre2 = _fen_stmt("Canlıların Yapısı", ["Bitki hücresinde hücre duvarı bulunur.", "Hayvan hücresinde hücre duvarı bulunmaz.", "Hücre çekirdeği hücrenin yönetim merkezidir.", "Doku, benzer görevli hücrelerin bir araya gelmesiyle oluşur.", "Farklı dokular bir araya gelerek organları oluşturur.", "Organlar bir araya gelerek sistemleri oluşturur."],
+                       ["Hayvan hücresinde kloroplast bulunur.", "Bitki hücresinde hücre duvarı bulunmaz.", "Hücre çekirdeği hücrenin besin deposudur.", "Organlar bir araya gelerek hücreleri oluşturur.", "Sistemler bir araya gelerek dokuları oluşturur.", "Dokular bir araya gelerek hücreleri oluşturur."], ["Bitki hücresi", "Hayvan hücresi", "Hücre çekirdeği", "Doku", "Organ", "Sistem"])
+_ff_hucre2.__name__ = "_ff_hucre2"
+_ff_elek2 = _fen_stmt("Elektrik", ["Pil, devreye elektrik enerjisi sağlar.", "Anahtar, devreyi açıp kapatmaya yarar.", "Elektrik akımının geçmesi için devrenin kapalı olması gerekir."],
+                      ["Ampul, devreye elektrik enerjisi sağlar.", "Anahtar açıkken ampul ışık verir.", "Devrenin açık olduğu durumda elektrik akımı geçer."], ["Pil", "Anahtar", "Elektrik devresinin kapalı olması"])
+_ff_elek2.__name__ = "_ff_elek2"
+_ff_atik2 = _fen_stmt("Geri Dönüşüm", ["Cam, geri dönüştürülebilen bir maddedir.", "Kâğıt geri dönüştürüldüğünde ağaç kesimi azalır.", "Atık piller, çevreye zarar vermemesi için atık pil kutularına atılmalıdır.", "Kaynakları tasarruflu kullanmak gelecek nesillere de kaynak bırakmayı sağlar."],
+                      ["Cam şişeler geri dönüştürülemez.", "Kâğıt geri dönüştürüldüğünde daha fazla ağaç kesilir.", "Atık piller evsel çöpe atılmalıdır.", "Doğal kaynaklar sonsuzdur, bu yüzden tasarruf gerekmez."], ["Camın geri dönüşümü", "Kâğıdın geri dönüşümü", "Atık piller", "Kaynakların kullanımı"])
+_ff_atik2.__name__ = "_ff_atik2"
+_ff_madde2 = _fen_stmt("Maddenin Doğası", ["Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.", "Sıcaklık termometre ile ölçülür.", "Metaller ısıyı iyi ileten maddelerdir.", "Yün kazak ısı yalıtımı sağlar.", "Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir."],
+                       ["Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.", "Sıcaklık dinamometre ile ölçülür.", "Tahta, metallerden daha iyi ısı iletir.", "Isı yalıtımı ısı kaybını artırır.", "Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir."], ["Isı alışverişi", "Sıcaklık ölçümü", "Metaller", "Isı yalıtımı", "Erime"])
+_ff_madde2.__name__ = "_ff_madde2"
+
+_FF_GENS += [(_ff_kuvvet, ("kuvvet", "dinamometre", "sürtünme", "yer çekimi")), (_ff_gokcismi, ("ay", "güneş'in", "gökyüzü")), (_ff_isik2, ("ışık", "ışığ", "gölge", "saydam")),
+             (_ff_hucre2, ("hücre", "doku", "organ")), (_ff_elek2, ("elektrik", "devre")), (_ff_atik2, ("atık", "geri dönüşüm", "kaynak")), (_ff_madde2, ("ısı", "sıcaklık", "hâl değişimi", "madde"))]
+_DIFF_OF.update({"_ff_kuvvet": 2, "_ff_gokcismi": 2, "_ff_isik2": 2, "_ff_hucre2": 2, "_ff_elek2": 2, "_ff_atik2": 1, "_ff_madde2": 3})
+
+
+# ---- SOSYAL
+_sf_stmt = _fen_stmt
+
+
+_sf_grup = _sf_stmt("Birlikte Yaşamak", ["Aile, okul ve arkadaş grupları toplumsal gruplara örnektir.", "Yardımlaşma ve dayanışma toplumsal birliği güçlendirir.", "Farklı kültürlere saygı göstermek barış içinde yaşamaya katkı sağlar.", "Bir kişi aynı anda birden fazla grubun üyesi olabilir."],
+                    ["Bir kişi aynı anda yalnızca bir grubun üyesi olabilir.", "Yardımlaşma ve dayanışma toplumsal birliği zayıflatır.", "Farklı kültürlere saygı göstermemek barışı sağlar.", "Kültürel farklılıklar toplumda her zaman çatışma nedenidir."], ["Toplumsal gruplar", "Yardımlaşma ve dayanışma", "Kültürel farklılıklara saygı", "Grup üyeliği"])
+_sf_grup.__name__ = "_sf_grup"
+_sf_demo = _sf_stmt("Yaşayan Demokrasimiz", ["Demokraside yöneticiler halk tarafından seçilir.", "Seçme ve seçilme hakkı demokrasinin temel haklarındandır.", "Demokraside çoğunluğun kararı esas alınırken azınlığın hakları da korunur.", "Cumhuriyet, devlet başkanının seçimle işbaşına geldiği bir yönetim biçimidir."],
+                    ["Demokraside yöneticiler halkın oyuna sorulmadan belirlenir.", "Demokraside seçimler yapılmaz.", "Demokraside yalnızca tek kişinin görüşü dikkate alınır.", "Cumhuriyette devlet başkanı doğuştan gelen hak ile belirlenir."], ["Demokraside yöneticiler", "Seçme ve seçilme hakkı", "Demokraside karar alma", "Cumhuriyet"])
+_sf_demo.__name__ = "_sf_demo"
+_sf_tekn = _sf_stmt("Teknoloji ve Sosyal Bilimler", ["Teknolojik gelişmeler iletişimi kolaylaştırmıştır.", "Teknolojik ürünleri bilinçli kullanmak zamanı ve sağlığı korumaya yardımcı olur.", "Teknolojik ürünler, kullanım amacına uygun ve ölçülü kullanılmalıdır."],
+                    ["Teknolojik ürünlerin aşırı kullanımı sağlığa hiçbir zarar vermez.", "Teknolojik gelişmeler toplum hayatını hiç etkilememiştir.", "Teknolojik ürünler kullanım kurallarına bakılmadan kullanılmalıdır."], ["Teknolojik gelişmeler", "Teknolojik ürünlerin bilinçli kullanımı", "Teknolojik ürünlerin kullanımı"])
+_sf_tekn.__name__ = "_sf_tekn"
+
+
+def _sf_cevre(subject):
+    dog = ["Dağ", "Akarsu", "Göl", "Orman", "Ova"]
+    bes = ["Köprü", "Baraj", "Hastane", "Okul", "Yol"]
+    if random.random() < .5:
+        c = random.choice(bes)
+        return _fact_q(subject, "Doğal ve Beşerî Çevre", "Aşağıdakilerden hangisi beşerî (insan yapımı) çevre ögesidir?", c, random.sample(dog, 3), f"{c} insanlar tarafından yapılmıştır; diğerleri doğal çevre ögesidir.")
+    c = random.choice(dog)
+    return _fact_q(subject, "Doğal ve Beşerî Çevre", "Aşağıdakilerden hangisi doğal çevre ögesidir?", c, random.sample(bes, 3), f"{c} doğada kendiliğinden oluşmuştur; diğerleri insan yapımıdır.")
+
+
+def _sf_oren(subject):
+    L = [("Göbeklitepe", "Şanlıurfa"), ("Çatalhöyük", "Konya"), ("Truva Antik Kenti", "Çanakkale"), ("Efes Antik Kenti", "İzmir"), ("Ani Harabeleri", "Kars")]
+    n, c = random.choice(L)
+    return _fact_q(subject, "Ortak Miras", f"{n} hangi ilimizde yer almaktadır?", c, [x for _n, x in L if x != c] + ["Ankara"], f"{n}, {c} ilimizde bulunmaktadır.")
+
+
+def _sf_butce(subject):
+    g, d = random.choice([8000, 10000, 12000, 15000]), 0
+    d = g - random.choice([1000, 1500, 2000, 2500, 3000])
+    c = g - d
+    o = _mf_opts(c, [g + d, d, c + 500, c - 500, c * 2], str)
+    return _mf_raw(subject, "İhtiyaç, İstek ve Bütçe", f"Bir ailenin aylık geliri {g} TL, aylık gideri {d} TL’dir. Bu ailenin bir ayda tasarruf edebileceği para kaç TL’dir?", o, f"Tasarruf = gelir − gider = {g} − {d} = {c} TL.") if o else None
+
+
+_SF_GENS += [(_sf_grup, ("grup", "rol", "dayanışma", "yardımlaşma", "kültürel", "birlikte")), (_sf_demo, ("demokrasi", "cumhuriyet", "vatandaş")), (_sf_tekn, ("teknoloji", "teknolojik")),
+             (_sf_cevre, ("doğal", "beşerî", "göreceli")), (_sf_oren, ("miras", "göbeklitepe", "çatalhöyük", "yerleşim")), (_sf_butce, ("bütçe", "ekonomi", "tasarruf", "ihtiyaç"))]
+_DIFF_OF.update({"_sf_grup": 2, "_sf_demo": 2, "_sf_tekn": 1, "_sf_cevre": 1, "_sf_oren": 2, "_sf_butce": 3})
+
+
+# ---- TÜRKÇE
+_DUYGU = [("Sınavdan yüksek not alınca çok sevindi.", "Sevinç"), ("Karanlık odada tek başına kalınca korktu.", "Korku"), ("Kaybettiği oyuncağı için çok üzüldü.", "Üzüntü"), ("Arkadaşı yalan söyleyince çok kızdı.", "Öfke"),
+          ("Yeni arkadaşının ona sarılması onu çok mutlu etti.", "Sevinç"), ("Gece yarısı gelen gürültüden ürktü.", "Korku")]
+
+
+def _tf_duygu(subject):
+    s, c = random.choice(_DUYGU)
+    o = _fact_q(subject, "Duygularımı Tanıyorum", f"“{s}” cümlesinde aşağıdaki duygulardan hangisi ifade edilmiştir?", c, [x for x in ["Sevinç", "Korku", "Üzüntü", "Öfke"] if x != c], f"Cümledeki durum {c.lower()} duygusunu anlatır.")
+    return o
+
+
+_ESANLAM = [("hızlı", "çabuk"), ("cevap", "yanıt"), ("dost", "arkadaş"), ("savaş", "harp"), ("soru", "sual"), ("öğrenci", "talebe")]
+
+
+def _tf_esanlam(subject):
+    a, b = random.choice(_ESANLAM)
+    others = [w for p in _ESANLAM if a not in p for w in p]
+    return _fact_q(subject, "Söz Varlığı", f"“{a}” sözcüğünün eş anlamlısı aşağıdakilerden hangisidir?", b, random.sample(others, 3), f"“{a}” ve “{b}” aynı anlama gelen sözcüklerdir.")
+
+
+_ATA = [("Atatürk’ün Samsun’a çıktığı", "19 Mayıs 1919"), ("Türkiye Büyük Millet Meclisi’nin açıldığı", "23 Nisan 1920"), ("Cumhuriyet’in ilan edildiği", "29 Ekim 1923")]
+
+
+def _tf_atatarih(subject):
+    d, c = random.choice(_ATA)
+    return _fact_q(subject, "Atatürk’ü Tanımak", f"{d} tarih aşağıdakilerden hangisidir?", c, [x for _d, x in _ATA if x != c] + ["10 Kasım 1938"], f"{d} tarih {c}’dur.")
+
+
+_tf_saglik = _fen_stmt("Sağlıklı Yaşıyorum", ["Dengeli beslenmek sağlıklı büyümeye yardımcı olur.", "Yemekten önce ellerin yıkanması hastalıklardan korunmaya yardımcı olur.", "Düzenli uyku ve egzersiz sağlığı korur.", "Taze sebze ve meyve tüketmek sağlıklı beslenmenin bir parçasıdır."],
+                       ["Her öğünde yalnızca tatlı yemek dengeli beslenmedir.", "Ellerin yıkanması hastalıklardan korunmaya etki etmez.", "Uyku sağlığı korumak için gereksizdir.", "Sebze ve meyve tüketmek sağlığa zarar verir."], ["Beslenme", "El yıkama", "Uyku ve egzersiz", "Sebze ve meyve tüketimi"])
+_tf_saglik.__name__ = "_tf_saglik"
+
+_TF_GENS += [(_tf_duygu, ("duygu",)), (_tf_esanlam, ("söz varlığı", "anlam", "sözcük")), (_tf_atatarih, ("atatürk", "cumhuriyet", "millî mücadele", "23 nisan")), (_tf_saglik, ("sağlık", "beslen", "hijyen"))]
+_DIFF_OF.update({"_tf_duygu": 2, "_tf_esanlam": 1, "_tf_atatarih": 2, "_tf_saglik": 1})
 
 
 # ---------------------------------------------------------------- ÖNCEDEN ÜRETİLMİŞ + DOĞRULANMIŞ HAVUZ (repodaki pool/ klasörü; API kotası harcamaz)
