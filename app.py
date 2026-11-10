@@ -3863,7 +3863,8 @@ def report_log(q, reason=""):
     """Hata günlüğü: bildirilen soru + otomatik teşhis."""
     L = _load("reports.json", [])
     L.append({"ts": int(time.time()), "subject": q.get("subject", ""), "topic": str(q.get("topic", ""))[:60],
-              "reason": reason or "yakalanmadı", "head": str(q.get("question", ""))[:140], "has_shape": bool(q.get("shape"))})
+              "reason": reason or "yakalanmadı", "head": str(q.get("question", ""))[:140], "has_shape": bool(q.get("shape")),
+              "tpl": str(q.get("tpl") or ""), "src": ("kalıp" if q.get("tpl") else "havuz" if q.get("pool") else "banka/yapay zekâ")})
     _save("reports.json", L[-500:])
 
 
@@ -14257,6 +14258,33 @@ with st.sidebar:
             _rp = _gstore.reports(None, 500)
             _auto = sum(1 for x in _rp if x.get("reason") != "yakalanmadı")
             st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🚩 Hata günlüğü</b><br>Bildirilen: <b>{len(_rp)}</b> • otomatik kurala takılan: <b>{_auto}</b></div>", unsafe_allow_html=True)
+            try:  # hatalı soru raporu: ders / kaynak / kalıp bazında + devre dışı kalıplar (tek tıkla geri aç)
+                _all = _gstore.reports(None, 500)
+                if _all:
+                    with st.expander("🔎 Hatalı soru raporu (ders / kalıp)", expanded=False):
+                        _by = {}
+                        for _x in _all:
+                            _k = (_x.get("subject") or "?", _x.get("src") or "?", _x.get("tpl") or "-")
+                            _by[_k] = _by.get(_k, 0) + 1
+                        _rows = ["| Ders | Kaynak | Kalıp | Bildirim |", "|---|---|---|---|"]
+                        for (_sj, _sc, _tp), _n in sorted(_by.items(), key=lambda kv: -kv[1])[:25]:
+                            _rows.append(f"| {_sj} | {_sc} | {_tp} | {_n} |")
+                        st.markdown("\n".join(_rows))
+                        _why2 = {}
+                        for _x in _all:
+                            _r0 = str(_x.get("reason", "")).split("]")[0].lstrip("[")[:40] or "?"
+                            _why2[_r0] = _why2.get(_r0, 0) + 1
+                        st.caption("Nedenler: " + " • ".join(f"{k}: {v}" for k, v in sorted(_why2.items(), key=lambda kv: -kv[1])[:6]))
+                _bt = _gstore._load("bad_tpls.json", {})
+                if _bt:
+                    with st.expander(f"⛔ Devre dışı kalıplar ({len(_bt)})", expanded=False):
+                        for _nm, _e in _bt.items():
+                            st.caption(f"{_nm} • {_e.get('n', 0)} bildirim • örnek: {str(_e.get('ex', ''))[:90]}")
+                            if st.button("Yeniden etkinleştir", key=f"retpl_{_nm}"):
+                                _gstore.reenable_tpl(_nm)
+                                st.rerun()
+            except Exception:
+                pass
             try:
                 from core import ai_engine as _qai
                 _qai.qstat_flush()
