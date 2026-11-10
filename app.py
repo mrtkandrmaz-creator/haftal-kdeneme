@@ -4298,8 +4298,16 @@ def bank_peek_similar(grade_label, subject, difficulty, topics, limit=20, exclud
     out = []
     for k, e in _bank().items():
         m = e.get("meta", {})
-        if k == exclude_key or m.get("grade_label") != grade_label or m.get("subject") != subject or m.get("difficulty") != difficulty:
+        if k == exclude_key or m.get("grade_label") != grade_label or m.get("subject") != subject:
             continue
+        if m.get("difficulty") != difficulty:  # komşu zorluk kademesindeki (±1) banka soruları da uygundur
+            try:
+                from . import curriculum as _cu
+                _L = list(_cu.DIFFICULTIES)
+                if abs(_L.index(m.get("difficulty")) - _L.index(difficulty)) > 1:
+                    continue
+            except Exception:
+                continue
         et = str(m.get("topics", "")).lower()
         if not tl or not et or et[:40] in tl or any(c in et for c in chunks):
             for q in e["qs"]:
@@ -10711,7 +10719,7 @@ def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
         todo = []
         for p in plan:
             key = bank_key_for(p, grade_label, difficulty)
-            need = p["n"] - store.bank_count(key)
+            need = min(p["n"] * 2, 12) - store.bank_count(key)  # bankada en az iki sınavlık hazır soru dursun
             with _FILL_LOCK:
                 if need > 0 and key not in _FILLING:
                     _FILLING.add(key)
