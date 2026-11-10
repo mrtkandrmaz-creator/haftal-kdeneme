@@ -3321,6 +3321,236 @@
 "topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
 "d": 4,
 "ts": 1794266747
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Başvuru Yapılabilecek Kurumlar",
+"passage": "Arkeolojik bir kazı alanında bulunan tarihi eserlerin korunması ve hak ihlalleri durumunda izlenecek yollarla ilgili 5. sınıf öğrencileri bir araştırma yapmaktadır.",
+"question": "Aşağıdakilerden hangisi, vatandaşın hakkını aramak veya bir kurumu bilgilendirmek için kullandığı demokratik bir başvuru yolu veya yöntemidir?",
+"shape": null,
+"options": {
+"A": "CİMER (Cumhurbaşkanlığı İletişim Merkezi) üzerinden dilekçe vermek",
+"B": "Olayı görmezden gelip hiçbir kuruma bildirimde bulunmamak",
+"C": "Kurumdan izinsiz şekilde tarihi eserleri evine götürmek",
+"D": "Haksızlığa uğradığında kendi adaletini sağlamaya çalışmak"
+},
+"answer": "A",
+"explanation": "Demokraside vatandaşlar, CİMER veya BİMER gibi resmi kanallar aracılığıyla devlet kurumlarına dilekçe ile başvurma, bilgi edinme ve sorunlarını bildirme hakkına sahiptir.",
+"_sty": "s:|başvur yolu veya yöntem",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Etkin Vatandaş",
+"passage": "Okul kantininde 'Sağlıklı Beslenme Projesi' kapsamında bir anket yapılmış ve öğrencilerin tercihleri tabloya kaydedilmiştir.",
+"question": "Tablodaki verilere göre, kantin yönetiminin etkin bir vatandaşlık bilinciyle yapması gereken ilk adım nedir?",
+"shape": {
+"type": "table",
+"title": "Besin Tercihleri",
+"headers": [
+"Ürün Türü",
+"Tercih Eden Öğrenci"
+],
+"rows": [
+[
+"Taze Meyve",
+"80"
+],
+[
+"Paketli Bisküvi",
+"30"
+],
+[
+"Kuru Yemiş",
+"50"
+],
+[
+"Gazlı İçecek",
+"10"
+]
+]
+},
+"options": {
+"A": "Öğrenci taleplerini görmezden gelerek ürünleri değiştirmek",
+"B": "En çok tercih edilen taze meyvelerin teminini önceliklendirmek",
+"C": "Sadece paketli gıdaların satışına odaklanmak",
+"D": "En az tercih edilen gazlı içeceklerin miktarını artırmak"
+},
+"answer": "B",
+"explanation": "Demokratik bir katılımda talepler dikkate alınır. 80 kişi taze meyve istediğine göre, kantinin bu talebi karşılayacak önlemleri alması en mantıklı yoldur.",
+"_sty": "s:table|gereke ilk adım nedir",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz",
+"passage": "İki farklı okulun yıl boyunca gerçekleştirdiği çevre temizliği etkinliklerine katılan gönüllü öğrenci sayıları çizgi grafiğinde gösterilmiştir.",
+"question": "Grafikteki verilere göre, etkinliklere katılım ile ilgili hangi yargı doğrudur?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1. Dönem",
+"2. Dönem"
+],
+"values": [
+30,
+50
+],
+"title": "Gönüllü Katılımı",
+"show_names": false
+},
+"options": {
+"A": "1. dönemde katılım 2. dönemden daha fazladır.",
+"B": "Katılım oranı iki dönemde de aynıdır.",
+"C": "Gönüllü katılımı 2. dönemde azalmıştır.",
+"D": "Gönüllü sayısı 2. dönemde 1. döneme göre artış göstermiştir."
+},
+"answer": "D",
+"explanation": "Grafikte 1. dönem 30, 2. dönem 50 olarak görülmektedir. 30'dan 50'ye bir artış mevcuttur.",
+"_sty": "s:line_chart|ilgili hangi yargı doğrud",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Etkin Vatandaş",
+"passage": "Bir kodlama kulübünde öğrenciler, okulun eksiklerini gidermek için bir yazılım projesi geliştirmektedir. Öğrenciler; okul kütüphanesi, bahçe düzenlemesi ve akıllı geri dönüşüm kutuları arasında bir seçim yapacaktır. Yapılan ön görüşmede 15 öğrenci geri dönüşüm, 10 öğrenci kütüphane, 5 öğrenci ise bahçe düzenlemesini desteklemiştir.",
+"question": "Bu duruma göre, demokratik bir süreçte öğrencilerin atması gereken en doğru adım nedir?",
+"shape": null,
+"options": {
+"A": "Çoğunluğun tercihi olan geri dönüşüm projesini başlatmak",
+"B": "Herkesin kendi istediği projeyi tek başına yapması",
+"C": "Sadece en az oy alan bahçe düzenlemesini yapmak",
+"D": "Proje yapmaktan vazgeçip oy kullanmamak"
+},
+"answer": "A",
+"explanation": "Demokraside çoğunluğun kararına uyulması esastır. 15 oy ile en çok tercih edilen geri dönüşüm projesi demokratik olarak kabul edilen karardır.",
+"_sty": "s:|gereke doğru adım nedir",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Başvuru Yapılabilecek Kurumlar",
+"passage": "Aşağıdaki tabloda, bir mahallede yaşanan bazı sorunlar ve başvurulacak yerler eşleştirilmiştir.",
+"question": "Tabloya göre hangi eşleştirme, vatandaşın hak ve sorumlulukları açısından doğrudur?",
+"shape": {
+"type": "table",
+"title": "Kurum ve Görev Eşleşmesi",
+"headers": [
+"Sorun",
+"Başvurulacak Kurum"
+],
+"rows": [
+[
+"Sokak Lambası Arızası",
+"Belediye"
+],
+[
+"Sağlık Sorunu",
+"Hastane"
+],
+[
+"Okul Kaydı",
+"İlçe Milli Eğitim Müdürlüğü"
+],
+[
+"Tüm Sorunlar",
+"Sadece Muhtarlık"
+]
+]
+},
+"options": {
+"A": "Sokak lambası arızası için hastaneye gidilmeli.",
+"B": "Tüm sorunlar için sadece muhtara gidilmeli.",
+"C": "Sokak lambası arızası için belediyeye başvurulmalı.",
+"D": "Okul kaydı için belediyeye başvurulmalı."
+},
+"answer": "C",
+"explanation": "Sokak lambası, elektrik ve altyapı hizmetleri belediyenin sorumluluk alanındadır. Tabloya göre de bu eşleştirme doğrudur.",
+"_sty": "s:table|hak soruml açısın doğrud",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Hak ve Sorumluluklar",
+"passage": "Bir okulda düzenlenen 'Demokrasi Haftası' kapsamında öğrencilere 'Demokratik bir toplumda sahip olduğumuz temel haklar ve vatandaşlık sorumlulukları' konulu bir sunum yapılmıştır. Sınıf temsilcisi olan Ayşe, arkadaşlarına bir bireyin hem haklarını bilmesi hem de topluma karşı görevlerini yerine getirmesi gerektiğini vurgulamıştır.",
+"question": "Buna göre aşağıdakilerden hangisi bir vatandaşın sahip olduğu temel haklardan biridir?",
+"shape": null,
+"options": {
+"A": "Seçme ve seçilme hakkını kullanmak",
+"B": "Kurallara uymak",
+"C": "Vatan savunmasına katılmak",
+"D": "Vergi ödemek"
+},
+"answer": "A",
+"explanation": "Vergi ödemek, vatan savunması ve kurallara uymak birer vatandaşlık sorumluluğudur. Seçme ve seçilme hakkı ise Anayasa ile güvence altına alınmış temel haklardan biridir.",
+"_sty": "s:|olduğu temel haklar biridi",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Demokrasi ve Cumhuriyet",
+"passage": "Cumhuriyet yönetimi, egemenliğin kayıtsız şartsız millete ait olduğu bir yönetim biçimidir. Halk, temsilcilerini seçim yoluyla belirler ve bu temsilciler Türkiye Büyük Millet Meclisi'nde halkın haklarını savunur.",
+"question": "Verilen bilgilere göre Cumhuriyet yönetiminde demokrasi anlayışının işleyişi hakkında aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Kararlar sadece devlet büyükleri tarafından alınır.",
+"B": "Seçimlere sadece belirli gruplar katılabilir.",
+"C": "Yönetim babadan oğula geçerek devam eder.",
+"D": "Halk, yöneticilerini kendi oylarıyla belirleme hakkına sahiptir."
+},
+"answer": "D",
+"explanation": "Cumhuriyet yönetiminde egemenlik millete aittir ve halk, kendisini yönetecek kişileri seçimler aracılığıyla belirleyerek yönetime katılır.",
+"_sty": "s:|hakkın aşağıd hangis söylen",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
+},
+{
+"subject": "Sosyal Bilgiler",
+"topic": "Yaşayan Demokrasimiz: Etkin Vatandaşlık",
+"passage": "Etkin bir vatandaş çevresinde gördüğü sorunları çözmek için ilgili kurumlara başvuruda bulunur. Örneğin, bir çocuk okul çevresinde yaya geçidi olmadığını fark ederse belediyeye dilekçe vererek bu konuda talepte bulunabilir.",
+"question": "Buna göre etkin bir vatandaşın sergilediği davranış için hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Hukuki süreçlerden tamamen uzak durur.",
+"B": "Sorunların kendiliğinden çözülmesini bekler.",
+"C": "Demokratik yolları kullanarak toplumsal sorunlara çözüm arar.",
+"D": "Sadece kendi çıkarlarını korur."
+},
+"answer": "C",
+"explanation": "Etkin vatandaş, sorumluluk sahibi bir birey olarak toplumsal sorunlara karşı duyarlıdır ve çözüm için demokratik mekanizmaları (dilekçe, başvuru vb.) kullanır.",
+"_sty": "s:|davran için hangis söylen",
+"vfd2": true,
+"unit": "Yaşayan Demokrasimiz",
+"topics": "Demokrasi ve cumhuriyet, Etkin vatandaş, Hak ve sorumluluklar, Başvuru yapılabilecek kurumlar",
+"d": 1,
+"ts": 1794342193
 }
 ]
 }

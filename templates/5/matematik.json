@@ -2541,6 +2541,395 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.3.3.",
+   "text": "Elif, sınıfta üç farklı açıyı ölçüyor: birincisi {a}°, ikincisi {p}°, üçüncüsü ise {k}° olarak bulunuyor. Bu üç açının toplamının kaç derece olduğunu bulması isteniyor. Buna göre toplam açı ölçüsü kaç derecedir?",
+   "vars": {
+    "a": {
+     "lo": 30,
+     "hi": 80
+    },
+    "p": {
+     "lo": 20,
+     "hi": 70
+    },
+    "k": {
+     "choices": [
+      30,
+      40,
+      50
+     ]
+    }
+   },
+   "derived": {
+    "t": "a+p+k"
+   },
+   "constraints": [
+    "a+p+k==180"
+   ],
+   "answer": "a+p+k",
+   "wrong": [
+    "a*p",
+    "a-p",
+    "p-k"
+   ],
+   "unit": "°",
+   "explanation": "{a} + {p} + {k} = {ans}",
+   "positive": true,
+   "id": "m5-0065",
+   "unit_name": "3. Tema: Geometrik Şekiller",
+   "topics": [
+    "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru)",
+    "MAT.5.3.2. Temel geometrik inşa deneyimlerini yansıtabilme",
+    "MAT.5.3.3. Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
+    "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılara ilişkin çıkarım yapabilme",
+    "MAT.5.3.5. Çokgenleri düzlemde ardışık kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme",
+    "MAT.5.3.6. Çokgenlerin kenar ve açı özelliklerine yönelik deneyimlerini yansıtabilme",
+    "MAT.5.3.7. İki çemberin kesişimiyle oluşan üçgenlerin kenar özelliklerine ilişkin çıkarım yapabilme (eşkenar, ikizkenar, çeşitkenar)"
+   ]
+  },
+  {
+   "topic": "MAT.5.3.7.",
+   "text": "Ali, iki çemberin kesişmesiyle oluşan bir ikizkenar üçgenin iki eşit kenarı {a} cm, taban kenarı ise {p} cm uzunluğunda. Üçgenin çevresini (perimetresini) bulması isteniyor. Buna göre üçgenin çevresi kaç santimetredir?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 15
+    },
+    "p": {
+     "lo": 8,
+     "hi": 20,
+     "step": 2
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "2*a + p"
+   },
+   "constraints": [
+    "2*a + p<200"
+   ],
+   "answer": "2*a + p",
+   "wrong": [
+    "a+p",
+    "2*a",
+    "a* p"
+   ],
+   "unit": "cm",
+   "explanation": "2 × {a} + {p} = {ans}",
+   "positive": true,
+   "id": "m5-0066",
+   "unit_name": "3. Tema: Geometrik Şekiller",
+   "topics": [
+    "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru)",
+    "MAT.5.3.2. Temel geometrik inşa deneyimlerini yansıtabilme",
+    "MAT.5.3.3. Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
+    "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılara ilişkin çıkarım yapabilme",
+    "MAT.5.3.5. Çokgenleri düzlemde ardışık kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme",
+    "MAT.5.3.6. Çokgenlerin kenar ve açı özelliklerine yönelik deneyimlerini yansıtabilme",
+    "MAT.5.3.7. İki çemberin kesişimiyle oluşan üçgenlerin kenar özelliklerine ilişkin çıkarım yapabilme (eşkenar, ikizkenar, çeşitkenar)"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Bir tarla {p} eş parselere ayrılmıştır. Bu parsellerin {a} tanesine domates ekilmiştir. Buna göre domates ekili alanın tüm tarlaya oranını gösteren kesir aşağıdakilerden hangisidir yazmak yerine bu kesrin pay ve payda toplamı kaçtır?",
+   "vars": {
+    "p": {
+     "choices": [
+      10,
+      100
+     ]
+    },
+    "a": {
+     "lo": 3,
+     "hi": 9
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "a < p"
+   ],
+   "answer": "a + p",
+   "wrong": [
+    "p - a",
+    "a * p",
+    "p // a"
+   ],
+   "unit": "",
+   "explanation": "Kesir {a}/{p} şeklindedir. Pay ve payda toplamı {a} + {p} = {ans} olur.",
+   "positive": true,
+   "id": "m5-0067",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme",
+   "text": "Bir koşu pistinin uzunluğu {p} metredir. Kerem bu pistin {a} metresini koşmuştur. Koşulmayan kısmın uzunluğunun pistin tamamına oranı olan kesrin payı kaçtır?",
+   "vars": {
+    "p": {
+     "choices": [
+      50,
+      100
+     ]
+    },
+    "a": {
+     "lo": 10,
+     "hi": 40
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "a < p"
+   ],
+   "answer": "p - a",
+   "wrong": [
+    "a",
+    "p + a",
+    "p // 2"
+   ],
+   "unit": "metre",
+   "explanation": "Koşulmayan mesafe {p} - {a} = {ans} metredir.",
+   "positive": true,
+   "id": "m5-0068",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+   "text": "Okul kantini bir gün boyunca satılan meyve sularının türlerini kaydetmiştir. Elma suyu {a} adet, portakal suyu {b} adet, vişne suyu {c} adet satılmıştır. Toplam satılan meyve suyu adedi kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 20,
+     "hi": 50
+    },
+    "b": {
+     "lo": 30,
+     "hi": 60
+    },
+    "c": {
+     "lo": 10,
+     "hi": 40
+    }
+   },
+   "derived": {
+    "toplam": "a+b+c"
+   },
+   "constraints": [
+    "a+b+c < 200"
+   ],
+   "answer": "a+b+c",
+   "wrong": [
+    "a+b",
+    "b+c",
+    "a+c"
+   ],
+   "unit": "adet",
+   "explanation": "{a} + {b} + {c} = {ans}",
+   "id": "m5-0069",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+   "text": "Bir sınıftaki öğrencilerin en sevdiği spor dalları anketinde voleybolu tercih edenlerin sayısı {v}, basketbolu tercih edenlerin sayısı ise voleybolu tercih edenlerden {f} fazladır. Basketbolu tercih eden öğrenci sayısı kaçtır?",
+   "vars": {
+    "v": {
+     "lo": 10,
+     "hi": 20
+    },
+    "f": {
+     "lo": 5,
+     "hi": 15
+    }
+   },
+   "derived": {
+    "bask": "v+f"
+   },
+   "constraints": [
+    "v+f < 50"
+   ],
+   "answer": "v+f",
+   "wrong": [
+    "v-f",
+    "v*f",
+    "f"
+   ],
+   "unit": "öğrenci",
+   "explanation": "{v} + {f} = {ans}",
+   "id": "m5-0070",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+   "text": "Bir kütüphanede bir hafta boyunca ödünç alınan kitap türleri incelenmiştir. Roman türünde {r} kitap, macera türünde {m} kitap ödünç alınmıştır. Macera türünde ödünç alınan kitap sayısı, roman türünden kaç fazladır?",
+   "vars": {
+    "r": {
+     "lo": 40,
+     "hi": 60
+    },
+    "m": {
+     "lo": 70,
+     "hi": 90
+    }
+   },
+   "derived": {
+    "fark": "m-r"
+   },
+   "constraints": [
+    "m > r"
+   ],
+   "answer": "m-r",
+   "wrong": [
+    "m+r",
+    "r",
+    "m"
+   ],
+   "unit": "kitap",
+   "explanation": "{m} - {r} = {ans}",
+   "id": "m5-0071",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir okulda {a} sınıf var. Her sınıfta {p} öğrenci var. Okulda toplam kaç öğrenci var?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    }
+   },
+   "derived": {
+    "t": "a * p"
+   },
+   "constraints": [
+    "a * p < 400"
+   ],
+   "answer": "a * p",
+   "wrong": [
+    "a + p",
+    "p - a",
+    "a * p + p"
+   ],
+   "unit": "adet",
+   "explanation": "{a} sınıf ve her sınıfta {p} öğrenci olduğu için, okulda toplam {a} x {p} = {ans} öğrenci var.",
+   "positive": true,
+   "id": "m5-0072",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+   "text": "Bir oyuncak fabrikasında sol kefesinde {a} adet eşit ağırlıkta kutu ve {b} kg demir kütle bulunan bir terazinin sağ kefesinde ise {c} kg demir kütle bulunmaktadır. Terazi dengede olduğuna göre, kutulardan birinin kütlesi kaç kg'dır?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 8
+    },
+    "b": {
+     "lo": 5,
+     "hi": 20,
+     "step": 5
+    },
+    "c": {
+     "lo": 30,
+     "hi": 90,
+     "step": 5
+    }
+   },
+   "derived": {
+    "diff": "c - b"
+   },
+   "constraints": [
+    "c > b",
+    "(c - b) % a == 0"
+   ],
+   "answer": "(c - b) // a",
+   "wrong": [
+    "(c + b) // a",
+    "c // a - b",
+    "(c - b) * a"
+   ],
+   "unit": "kg",
+   "explanation": "Sağ kefedeki kütleden sol kefedeki ek demir çıkarılır: {c} - {b} = {diff}. Kalan ağırlık {a} kutuya eşit olarak paylaştırılır: {diff} // {a} = {ans}.",
+   "positive": true,
+   "id": "m5-0073",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+   "text": "Bir spor salonunda ilk gün {a} dakika koşu yapan Can, takip eden her gün koşu süresini {b} dakika artırmaktadır. Bu kurala göre Can, bu programın {c}. gününde toplam kaç dakika koşu yapmıştır?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 20,
+     "step": 5
+    },
+    "b": {
+     "lo": 3,
+     "hi": 7
+    },
+    "c": {
+     "lo": 5,
+     "hi": 10
+    }
+   },
+   "derived": {},
+   "constraints": [],
+   "answer": "a + (c - 1) * b",
+   "wrong": [
+    "a + c * b",
+    "a * c + b",
+    "a + (c + 1) * b"
+   ],
+   "unit": "dakika",
+   "explanation": "Örüntü kuralı ilk terim artı (gün sayısı eksi bir) çarpı artış miktarıdır: {a} + ({c} - 1) * {b} = {ans}.",
+   "positive": true,
+   "id": "m5-0074",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

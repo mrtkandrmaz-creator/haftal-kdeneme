@@ -2731,6 +2731,384 @@
 "topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
 "d": 4,
 "ts": 1794326380
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamberlik",
+"passage": "5/A sınıfı öğrencisi Burak, Hz. İbrahim'in hayatını incelediği bir ödev hazırlamaktadır. Burak, Hz. İbrahim'in putları kırdıktan sonra halkını tek olan Allah'a (tevhid inancına) davet ettiğini, bu uğurda ateşe atılmayı göze aldığını ve hiçbir zaman inancından taviz vermediğini fark eder. Burak ödevinin sonuç kısmında, peygamberlerin ortak özelliğini vurgulayan bir değerlendirme yapar.",
+"question": "Buna göre Burak'ın ödevinde vurguladığı temel mesaj aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Peygamberler, zorluklar karşısında yılmadan ilahi mesajı insanlara ulaştırmıştır.",
+"B": "Peygamberler, çağlarının en zengin ve güçlü insanları arasından seçilmiştir.",
+"C": "Peygamberlerin temel görevi toplumsal düzeni yasalarla sağlamaktır.",
+"D": "Peygamberler, insanları her zaman maddi yardımlarla desteklemiştir."
+},
+"answer": "A",
+"explanation": "Hz. İbrahim'in yaşadığı zorluklar ve tebliğ mücadelesi, peygamberlerin karşılaştıkları zorluklara rağmen inançlarından vazgeçmeden ilahi mesajı insanlara ulaştırma sorumluluğunu gösterir.",
+"_sty": "s:|temel mesaj aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamber kıssalarındaki öğütler",
+"passage": "Okul kütüphanesinde araştırma yapan Deniz, Hz. Nuh'un kıssasını okumaktadır. Metne göre Hz. Nuh, yüz yıllar boyunca kavmini inkârdan vazgeçmeye ve doğru yola gelmeye çağırmış, ancak kavminden çok az kişi ona inanmıştır. Buna rağmen Hz. Nuh, bıkıp usanmadan insanlara tebliğ görevini sürdürmüştür.",
+"question": "Bu bilgilere göre Hz. Nuh'un kıssasından çıkarılması gereken en temel ders aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İyiliği yayma ve hakikati savunma konusunda sabırlı ve kararlı olunmalıdır.",
+"B": "Toplumsal projelerde başarılı olmak için kalabalık gruplara ihtiyaç vardır.",
+"C": "Zor durumlarla karşılaşıldığında mücadeleden hemen vazgeçilmelidir.",
+"D": "İnsanların inançlarını değiştirmek için maddi imkanlar kullanılmalıdır."
+},
+"answer": "A",
+"explanation": "Hz. Nuh'un uzun yıllar süren mücadelesi sabır, azim ve kararlılık erdemlerinin peygamber kıssalarındaki en önemli öğütlerinden biri olduğunu gösterir.",
+"_sty": "s:|temel ders aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kureyş Suresi ve Anlamı",
+"passage": "Din Kültürü ve Ahlak Bilgisi dersinde öğretmen, Kureyş Suresi'ni işlerken öğrencilerine Kureyş kabilesinin ticaret için kışın Yemen'e, yazın Şam'a güven içinde seyahat ettiğini anlatır. Öğretmen, surenin sonunda bu büyük nimet karşısında kabilenin ne yapması gerektiğini vurgular.",
+"question": "Kureyş Suresi'nin ana anlamı dikkate alındığında, bu surenin insanlara verdiği temel öğüt aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Yılın belirli dönemlerinde farklı bölgelere göç etmek",
+"B": "Sadece ticaretle uğraşarak zenginliğe ulaşmak",
+"C": "Kabileler arası savaşları tamamen durdurmak",
+"D": "Kendilerine rızık veren ve güven sağlayan Allah'a kulluk etmek"
+},
+"answer": "D",
+"explanation": "Kureyş Suresi, Allah'ın kabileye verdiği güvenlik ve rızık nimetlerini hatırlatarak, onların bu nimetin sahibine (Kabe'nin Rabbine) ibadet etmeleri gerektiğini vurgular.",
+"_sty": "s:|temel öğüt aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamberlik",
+"passage": "5. sınıf öğrencisi Zeynep, Hz. Yusuf'un hayatını anlatan bir tiyatro oyunu için senaryo yazmaktadır. Senaryosunda Hz. Yusuf'un kardeşleri tarafından kuyuya atılmasını, ardından Mısır'da saraya köle olarak satılmasını ama hiçbir zaman doğruluktan ve dürüstlükten ayrılmayarak vezirliğe kadar yükselmesini ele alır.",
+"question": "Bu senaryoda Hz. Yusuf'un hayatından çıkarılması gereken temel ahlaki ilke aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Zorluklar karşısında sabırlı ve dürüst kalmak",
+"B": "İnsanlar arasında mal paylaşımını adil yapmak",
+"C": "Gelecekteki olayları önceden tahmin etmek",
+"D": "Yabancı ülkelerde ticaret ağları kurmak"
+},
+"answer": "A",
+"explanation": "Hz. Yusuf'un yaşadığı tüm sıkıntılara rağmen ahlakından ve dürüstlüğünden ödün vermemesi sabır ve dürüstlük erdemini ortaya koyar.",
+"_sty": "s:|ahlaki ilke aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamber kıssalarındaki öğütler",
+"passage": "Kerem, Hz. Yunus'un kıssasını okurken onun denize atıldığını ve bir balığın karnındayken yaptığı tövbe ve dualarla Allah'a sığındığını öğrenir. Kerem, bu olay üzerine arkadaşlar人に, insanların hata yapabileceğini ancak önemli olanın hatayı fark edip hemen Allah'a yönelmek olduğunu söyler.",
+"question": "Buna göre Kerem'in Hz. Yunus kıssasından çıkardığı sonuç aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Doğa olayları insanlar tarafından önceden tahmin edilebilir.",
+"B": "Deniz yolculuklarında her zaman dikkatli olunmalıdır.",
+"C": "Peygamberler hata yapmayan kusursuz varlıklardır.",
+"D": "İnsan zor durumda kaldığında içtenlikle tövbe etmelidir."
+},
+"answer": "D",
+"explanation": "Hz. Yunus'un balığın karnındaki tövbesi, insanın hata yaptığında samimi bir şekilde Allah'a sığınması ve af dilemesi gerektiğini öğrete.",
+"_sty": "s:|çıkard sonuç aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Kureyş Suresi ve Anlamı",
+"passage": "Bir bilgi yarışmasına katılan 5/C sınıfı ekibine şu soru yöneltilmiştir: 'Kureyş suresinde geçen ve Kureyş kabilesinin yaz ve kış yolculuklarında elde ettiği en büyük iki nimet vurgulanmaktadır.' Ekip sözcüsü Elif, bu surenin anlamını düşünerek doğru cevabı bulur.",
+"question": "Elif'in yarışmada vereceği doğru cevap aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "açlık ve susuzluk",
+"B": "zenginlik ve şöhret",
+"C": "rızık (beslenme) ve güvenlik",
+"D": "ilim ve teknoloji"
+},
+"answer": "C",
+"explanation": "Kureyş Suresi'nde Allah'ın onları açlıktan doyurduğu ve korkudan (güvensizlikten) emin kıldığı açıkça ifade edilmektedir.",
+"_sty": "s:|doğru cevap aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamberlik",
+"passage": "Sosyal bilgiler ve din kültürü ortak projesinde görev alan Ahmet, Hz. Şuayb'ın Medyen halkına gönderildiğini ve bu halkın ticaretle uğraşırken ölçü ve tartıda hile yaptığını öğrenir. Hz. Şuayb halkını bu kötülükten sakındırmış, adil ve dürüst olmalarını istemiştir.",
+"question": "Bu bilgilere göre Hz. Şuayb'ın mücadelesinin temel amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Halkın tarım alanlarını genişletmesini sağlamak",
+"B": "Medyen şehrinin ekonomik gelirini artırmak",
+"C": "Farklı ülkelerle ticaret anlaşmaları imzalamak",
+"D": "Ticaret hayatında dürüstlüğü ve adaleti hâkim kılmak"
+},
+"answer": "D",
+"explanation": "Hz. Şuayb'ın ölçü ve tartıda hile yapan kavmini uyarması, ticari hayatta dürüstlük ve adaletin önemini vurgulamaktadır.",
+"_sty": "s:|temel amacı aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamber kıssalarındaki öğütler",
+"passage": "Din kültürü dersinde öğretmen, Hz. Eyüp'ün ağır bir hastalığa yakalandığını, mallarını ve evlatlarını kaybettiğini ancak bu büyük imtihan karşısında asla isyan etmeyip sabrettiğini anlatmıştır. Öğretmen, bu kıssanın öğrencilere hayatın zorlukları karşısında tutum belirlemede rehberlik ettiğini belirtir.",
+"question": "Buna göre Hz. Eyüp'ün kıssasından çıkarılması gereken erdem aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Zorluklar karşısında sabırlı olmak ve Allah'a güvenmek",
+"B": "Hastalık durumunda sadece tıbbi tedaviye başvurmak",
+"C": "Sosyal ilişkilerde mesafeli durmak",
+"D": "Maddi kayıpları kısa sürede telafi etmek"
+},
+"answer": "A",
+"explanation": "Hz. Eyüp kıssası, başa gelen musibetler ve hastalıklar karşısında sabır göstermenin ve Allah'a sığınmanın en güzel örneğidir.",
+"_sty": "s:|gereke erdem aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamberlik",
+"passage": "Melis, okul kütüphanesinde Peygamber Kıssaları kitabını incelemektedir. Kitapta Hz. İbrahim Peygamber'in hikâyesi anlatılmaktadır. Melis, Hz. İbrahim'in Allah'a sadakatini ve insanlara karşı nazikliğini takdir eder.",
+"question": "Melis'in okuduğu hikâyeye göre Hz. İbrahim Peygamber'in en önemli özellikleri aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Allah'a sadakat ve insanlara karşı naziklik",
+"B": "Kendini gösterme ve övünme",
+"C": "Halkıyla çatışma ve tartışma",
+"D": "Kendini tanıtma ve övünme"
+},
+"answer": "A",
+"explanation": "Hz. İbrahim Peygamber'in hikâyesinde, Allah'a sadakat ve insanlara karşı naziklik en önemli özelliklerdir. Bu hikâye Melis'in okuduğu Peygamber Kıssaları kitabında anlatılmaktadır.",
+"_sty": "s:|önemli özelli aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 2,
+"ts": 1794343538
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Dinin Mimariye Etkisi",
+"passage": "Yaz tatilinde ailesiyle birlikte Edirne'yi ziyaret eden Berk, Osmanlı dönemine ait tarihi sokaklarda gezerken şehirdeki evlerin ve yapıların konumlanışının belli bir merkeze doğru yöneldiğini fark eder. Şehirdeki mahallelerin kurulmasında camilerin merkez alındığını, sokakların ibadethaneye ulaşacak şekilde planlandığını rehberinden öğrenir.",
+"question": "Buna göre Berk'in fark ettiği bu durum, Türk-İslam mimarisinin temel özelliklerinden hangisiyle doğrudan ilişkilendirilebilir?",
+"shape": null,
+"options": {
+"A": "Camilerin şehir planlamasında merkezî bir konumda yer almasıyla",
+"B": "Yalnızca saray çevresinde büyük mabetlerin inşa edilmesiyle",
+"C": "Evlerin dış cephelerinde geometrik süslemelerin yer almasıyla",
+"D": "İbadethanelerin yerleşim yerlerinin dışına yapılmasıyla"
+},
+"answer": "A",
+"explanation": "Metinde Berk'in şehirdeki yapıların camiyi merkez alacak şekilde konumlandığını fark ettiği belirtilmektedir. Bu durum, Türk-İslam şehir dokusunda dinî hayatın ve caminin hayatın merkezinde yer aldığını gösterir. Doğru seçenek Camilerin şehir planlamasında merkezî bir konumda yer almasıyla ifadesidir.",
+"_sty": "s:|özelli hangis doğrud ilişki",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Camilerin Bölümleri",
+"passage": "Toplu taşıma aracıyla mahallesindeki camiye giden Kerim, caminin dış mimarisini incelemektedir. Camiye yaklaşırken yüksekten ezan okunmasını sağlayan ince, uzun yapıyı ve bu yapının üzerindeki kubbe örtüsünü gözlemler. Arkadaşına dönerek bu yapı unsurlarının ibadetteki işlevlerinden bahseder.",
+"question": "Buna göre Kerim'in gözlemlediği, ezan okunan ince ve uzun yapı ile caminin üzerini örten kubbe sırasıyla hangi adla anılır?",
+"shape": null,
+"options": {
+"A": "Minare - Kubbe",
+"B": "Şadırvan - Mahfil",
+"C": "Mihrap - Minber",
+"D": "Minber - Mihrap"
+},
+"answer": "A",
+"explanation": "Metinde ezan okunan ince uzun yapı minare, caminin üstünü örten yuvarlak örtü ise kubbedir. Doğru seçenek Minare - Kubbe olmalıdır.",
+"_sty": "s:|sırası hangi adla anılır",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Dinin Mimarimize Etkisi",
+"passage": "Yeni inşa edilen bir mahalle camisinin iç planlamasını yapan mimar ekibi, sesin cami içinde eşit şekilde dağılmasını ve cemaatin hatasız bir şekilde ibadet edebilmesini sağlamak amacıyla akustik düzenlemeler ve kubbe yüksekliği üzerine çalışmaktadır. Ekip başkanı, bu estetik ve işlevsel yapının dinî motiflerle uyumlu olması gerektiğini vurgular.",
+"question": "Bu duruma göre mimar ekibinin yaptığı çalışmaların temel amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İbadet mekânının hem akustik hem de mimari açıdan işlevsel ve estetik olmasını sağlamak",
+"B": "Camilerin dış görünüşünü diğer binalardan tamamen farklı kılmak",
+"C": "Yalnızca süsleme sanatlarına ağırlık vererek ses düzenini ihmal etmek",
+"D": "Bina yüksekliğini mahalledeki tüm evlerden daha az yapmak"
+},
+"answer": "A",
+"explanation": "Metinde mimarların hem sesin dağılımı hem de estetik/dinî motif uyumu üzerinde çalıştığı ifade edilmektedir. Bu durum ibadet mekânının işlevsel ve estetik olmasını amaçlar.",
+"_sty": "s:|temel amacı aşağıd hangis",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Cami Örnekleri",
+"passage": "Okulun düzenlediği resim sergisinde Türk-İslam mimarisine ait eserleri inceleyen Deniz, özellikle İstanbul'daki Sultan Ahmet Camii ve Selimiye Camii'nin ihtişamlı yapılarını, çok kubbeli tasarımlarını ve zarif minarelerini büyük bir hayranlıkla inceler ve bu eserlerin medeniyetimizdeki yerini tartar.",
+"question": "Buna göre Deniz'in incelediği bu camilerle ilgili olarak aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Türk-İslam mimarisinin estetik, inanç ve sanatı yansıtan somut örnekleridir.",
+"B": "Yalnızca modern mimari teknikleriyle inşa edilmiş yapılardır.",
+"C": "Dinî motiflerin mimariden tamamen bağımsız olduğunu gösterir.",
+"D": "Şehir merkezlerinin dışına inşa edilen sivil mimari örnekleridir."
+},
+"answer": "A",
+"explanation": "Sultan Ahmet ve Selimiye gibi eserler Türk-İslam mimarisinin inanç, estetik ve sanat anlayışını yansıtan en önemli mabetlerdendir. Bu nedenle A seçeneği doğrudur.",
+"_sty": "s:|olarak aşağıd hangis söylen",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Dinin Mimariye Etkisi",
+"passage": "Arkeoloji kazılarında görev alan bir grup araştırmacı, eski bir İslam kentinde buldukları yapı kalıntılarında su alma yerlerinin, abdest alma alanlarının ve ibadet yönünün özel olarak tasarlandığını görürler. Araştırmacılardan Burak, bu yapıların günlük yaşam ile dinî vecibelerin mimaride nasıl iç içe geçtiğini açıklar.",
+"question": "Bu bulgulara göre dinin mimari üzerindeki etkisiyle ilgili aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": null,
+"options": {
+"A": "İbadetlerin gereksinimleri (abdest alma, kıbleye yönelme vb.) yapıların tasarımını doğrudan şekillendirmiştir.",
+"B": "Mimari yapılar yalnızca estetik kaygılarla inşa edilmiştir.",
+"C": "Dinî yapılar günlük yaşam alanlarından tamamen kopuk bölgelere kurulmuştur.",
+"D": "Su kaynakları ibadet alanlarının dışına yerleştirilmiştir."
+},
+"answer": "A",
+"explanation": "Metinde abdest alma yerleri ve kıble yönüne göre tasarım yapılması dinî gereksinimlerin mimariyi şekillendirdiğini gösterir.",
+"_sty": "s:|aşağıd yargıl hangis ulaşıl",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Camilerin Bölümleri",
+"passage": "Okul bahçesinde cami maketi hazırlayan 5/B sınıfı öğrencileri, kubbe ve minare yerleşimini planlarken cemaatin namaz kılacağı ana alanın ve vaaz dinlenen bölümlerin oranlarını tartışırlar. Zeynep, mihrap ve minberin yerini doğru belirledikten sonra kadın mahfili için uygun bir köşe tasarlar.",
+"question": "Buna göre öğrencilerin maket üzerinde belirledikleri mahfil bölümünün camilerdeki temel işlevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Cemaatin bir kısmının namaz kılabilmesi veya hutbeyi takip edebilmesi için ayrılmış yüksek alan",
+"B": "Ezanın ilk kez okunduğu cami avlusu",
+"C": "Ayakkabıların bırakıldığı giriş koridoru",
+"D": "Abdest almak için kullanılan musluklu bölüm"
+},
+"answer": "A",
+"explanation": "Cami mimarisinde mahfil, cemaatin namaz kılabilmesi ya da vaaz dinleyebilmesi için ana mekân içerisinde ayrılan yüksekçe platform veya bölümdür.",
+"_sty": "s:|temel işlevi aşağıd hangis",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Cami Örnekleri",
+"passage": "Fotoğrafçılık kulübünden Mert, geleneksel Türk mimarisini konu alan albümü için çektiği iki farklı cami fotoğrafını karşılaştırır. Birinci fotoğrafta Selçuklu dönemine ait taş işçiliğinin ağırlık basan sadeliğini, ikinci fotoğrafta ise Osmanlı dönemine ait devasa kubbe ve çini süslemelerinin zenginliğini fark eder.",
+"question": "Mert'in yaptığı bu karşılaştırmaya dayanarak Türk-İslam mimarisi için aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Farklı dönemlerde estetik anlayış ve malzeme kullanımıyla zenginleşerek gelişmiştir.",
+"B": "Bütün dönemlerde tamamen aynı plan ve süsleme teknikleri kullanılmıştır.",
+"C": "Dinî motifler yalnızca Osmanlı döneminde mimariye dahil edilmiştir.",
+"D": "Selçuklu camilerinde kubbe mimarisi hiç tercih edilmemiştir."
+},
+"answer": "A",
+"explanation": "Mert'in farklı dönemlere ait camilerde gördüğü taş işçiliği, çini ve kubbe zenginlikleri, Türk-İslam mimarisinin zamanla farklı estetik unsurlarla geliştiğini gösterir.",
+"_sty": "s:|için aşağıd hangis söylen",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Dinin Mimariye Etkisi",
+"passage": "Doğa yürüyüşü sırasında tarihi bir köyü ziyaret eden Ayşe, köy camisinin avlusundaki şadırvanı ve su yapılarının mimari estetiğini inceler. Köyün yaşlılarından dinî inancın temizliğe verdiği önemin, cami mimarisinde şadırvanların konumunu nasıl belirlediğini öğrenir ve günlüğüne not eder.",
+"question": "Bu bilgilere göre cami mimarisinde şadırvanların yer almasının temel gerekçesi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İbadete hazırlık olan temizlik ihtiyacını karşılamak ve mimari bütünlük sağlamak",
+"B": "Yalnızca süs havuzu olarak görsel zenginlik katmak",
+"C": "Caminin ısıtma sistemine su sağlamak",
+"D": "Mahallenin içme suyu ihtiyacını tek başına karşılamak"
+},
+"answer": "A",
+"explanation": "Şadırvanlar, camilerde abdest alınmasını sağlayarak ibadete hazırlık ihtiyacını karşılayan ve mimari bütünlük oluşturan yapılardır.",
+"_sty": "s:|temel gerekç aşağıd hangis",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Mimarimizde Dinî Motifler - Cami Unsurları",
+"passage": "Mahallelerindeki marketten alışveriş yaparken cami tasarımlı kurabiye kalıpları satan Zeynep, bu kalıpların üzerinde caminin karakteristik dış yapısının ve ezan okunan yüksek kısımlarının detaylıca işlendiğini görür.",
+"question": "Bu bilgilere göre caminin dış siluetini tamamlayan, kubbenin etrafında yer alan ve müezzinin ezan okuduğu yüksek yapı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Minber",
+"B": "Mihrap",
+"C": "Şadırvan",
+"D": "Minare"
+},
+"answer": "D",
+"explanation": "1. Kurabiye kalıbındaki detaylarda ezan okunan yüksek ince yapı vurgulanmaktadır. 2. İslam mimarisinde minare, ezan okunması ve sala verilmesi için camilerin yanına inşa edilen yüksek yapıdır. 3. Doğru seçenek minaredir.",
+"_sty": "s:|yüksek yapı aşağıd hangis",
+"vfd2": true,
+"unit": "Mimarimizde Dinî Motifler",
+"topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
+"d": 4,
+"ts": 1794343727
 }
 ]
 }

@@ -5006,6 +5006,437 @@
 "topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
 "d": 1,
 "ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın konumları ve evreleri",
+"passage": "Bir astronomi kulübü, Ay'ın Dünya etrafındaki 8 konumunu bir diyagramda numaralandırdı. Konum 1: Yeni Ay, 2: İlk Dördün, 3: Dolunay, 4: Son Dördün, 5: Yeni Ay, 6: İlk Dördün, 7: Dolunay, 8: Son Dördün şeklinde tekrarlanıyor.",
+"question": "Kulübün diyagramına göre Ay'ın konum 7'deki evre hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_orbit",
+"title": "Ay'ın Dünya etrafındaki konumları",
+"show_names": false
+},
+"options": {
+"A": "Son Dördün",
+"B": "İlk Dördün",
+"C": "Yeni Ay",
+"D": "Dolunay"
+},
+"answer": "D",
+"explanation": "Konum dizilimi 1‑Yeni,2‑İlk Dördün,3‑Dolunay,4‑Son Dördün,5‑Yeni,6‑İlk Dördün,7‑Dolunay,8‑Son Dördün şeklindedir. 7. konum Dolunaydır. Doğru seçenek C'dir.",
+"vfd2": true,
+"_sty": "s:science_space|konum deki evre hangis",
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 3,
+"ts": 1794341722
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Özellikleri ve Evreleri",
+"passage": "Sağlık kontrolü için gelen Beril, laboratuvardaki bir astronomi panosunda Ay'ın tek bir evresine ait görseli incelemektedir. Pano üzerinde evrenin adı eksik bırakılmış ve sadece 'K' harfi ile simgelenmiştir.",
+"question": "Şekildeki Ay evresi (K) göz önüne alındığında, bu evrenin adı ve aydınlık yüzeyinin konumu için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 2,
+"label": "K",
+"show_names": false
+},
+"options": {
+"A": "Yeni ay evresidir ve Ay tamamen karanlık görünür.",
+"B": "Dolunay evresidir ve Ay'ın tamamı aydınlıktır.",
+"C": "İlk dördün evresidir ve Ay'ın sağ tarafı aydınlıktır.",
+"D": "Son dördün evresidir ve Ay'ın sol tarafı aydınlıktır."
+},
+"answer": "C",
+"explanation": "Görselde verilen tekli Ay evresi (phase 2) ilk dördün evresini göstermektedir ve bu evrede Ay'ın sağ yarısı aydınlık görülür.",
+"vfd2": true,
+"_sty": "s:science_space|için aşağıd hangis söylen",
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 3,
+"ts": 1794341722
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay'ın Yapısı",
+"passage": "Bilim insanlarının çalışma odasını inceleyen bir grup öğrenci, Galileo'nun Güneş lekeleri gözlemleri ile Ay kraterleri üzerine aldığı notları karşılaştırmaktadır.",
+"question": "Buna göre, Güneş ve Ay ortak özellikleri bakımından karşılaştırıldığında aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 4,
+"label": "M",
+"show_names": false
+},
+"options": {
+"A": "Her ikisi de küresel şekle sahiptir ve kendi eksenleri etrafında dönme hareketi yapar.",
+"B": "Her ikisi de kendi ısı ve ışığını üreten birer yıldızdır.",
+"C": "Her ikisinin de atmosfer kalınlığı ve yüzey sıcaklığı eşittir.",
+"D": "Her ikisi de Dünya'nın doğal uydusu konumundadır."
+},
+"answer": "A",
+"explanation": "Güneş ve Ay küresel şekle sahiptir ve kendi eksenleri etrafında dönme hareketi yapar. Ancak Ay bir uydu, Güneş ise bir yıldızdır.",
+"vfd2": true,
+"_sty": "s:science_space|karşıl aşağıd hangis söylen",
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 3,
+"ts": 1794341722
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Hareketleri ve Evreleri",
+"passage": "Doğa yürüyüşüne çıkan Kerem, kamp ateşinin etrafında gökyüzünü gözlemlemektedir. Arkadaşına Ay'ın ana evrelerinin oluşum süresini ve bir evreden diğer ana evreye geçiş süresini anlatmaktadır.",
+"question": "Şekildeki tekli Ay evresinden (ilk dördün) tam 1 hafta sonra gözlemlenecek ana evre aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 2,
+"label": "K",
+"show_names": false
+},
+"options": {
+"A": "Son dördün",
+"B": "Dolunay",
+"C": "Yeni ay",
+"D": "İlk dördün"
+},
+"answer": "B",
+"explanation": "İlk dördün evresinden yaklaşık 1 hafta (7 gün) sonra dolunay evresi gerçekleşir. Dolayısıyla doğru cevap Dolunay'dır.",
+"vfd2": true,
+"_sty": "s:science_space|ana evre aşağıd hangis",
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 3,
+"ts": 1794341722
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Dolanma Hareketi ve Evreleri",
+"passage": "Müze gezisi sırasında bir Fen Bilimleri tablosunu inceleyen öğrenciler, Ay'ın Dünya çevresindeki yörünge hareketlerini gösteren bir şema ile karşılaştırlar. Şemada Ay'ın farklı konumlardaki durumları numaralandırılmıştır.",
+"question": "Bu bilgilere göre, Ay'ın Dünya etrafındaki dolanımını gösteren şemada dolunay evresinin gerçekleştiği konum için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_orbit",
+"title": "Ay'ın Yörünge Hareketleri",
+"show_names": false
+},
+"options": {
+"A": "Ay'ın Dünya'ya bakan yüzü karanlıkta kalır.",
+"B": "Dünya, Güneş ile Ay'ın tam ortasında yer alır.",
+"C": "Ay'ın aydınlık yüzü Dünya'dan hiç görülmez.",
+"D": "Ay, Güneş ile Dünya arasında yer alır."
+},
+"answer": "B",
+"explanation": "Dolunay evresinde Dünya, Güneş ile Ay'ın arasında bulunur ve Ay'ın Dünya'ya bakan yüzü tamamen aydınlanır.",
+"vfd2": true,
+"_sty": "s:science_space|için aşağıd hangis söylen",
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 3,
+"ts": 1794341722
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın doğrusal yayılması",
+"passage": "Kütüphanede çalışma yapan Mert, el fenerini bir kitabın üzerine tuttuğunda kitabın arkasında karanlık bir bölge oluştuğunu fark ediyor. Mert, ışığın yayılma özelliğini anlamak için feneri farklı açılardan tutarak gözlemler yapıyor.",
+"question": "Buna göre, Mert'in gözlemlediği bu durum ışığın hangi özelliği ile doğrudan açıklanabilir?",
+"shape": null,
+"options": {
+"A": "Işığın yansıma yapması",
+"B": "Işığın doğrusal yollarla yayılması",
+"C": "Işığın her yöne yayılması",
+"D": "Işığın camdan geçebilmesi"
+},
+"answer": "B",
+"explanation": "Işık doğrusal yolla yayılır. Bir opak madde ışığın yolunu kestiğinde, ışığın geçemediği bölgelerde gölge oluşur. Mert'in gözlemi ışığın düz bir hat boyunca ilerlediğini kanıtlar.",
+"vfd2": true,
+"_sty": "s:|özelli ile doğrud açıkla",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Saydam ve opak maddeler",
+"passage": "Bisiklet turuna çıkan bir grup öğrenci, farklı malzemelerden yapılmış kask vizörlerini inceliyor. K, L ve M vizörlerinden bakıldığında karşıdaki nesnelerin netlikleri farklı derecelerde görülüyor.",
+"question": "Buna göre, ışığı en az geçiren (opak özellik gösteren) vizör aşağıdakilerden hangisi olabilir?",
+"shape": null,
+"options": {
+"A": "Siyah mat metal vizör",
+"B": "Tam şeffaf cam vizör",
+"C": "İnce renkli plastik vizör",
+"D": "Buzlu cam vizör"
+},
+"answer": "A",
+"explanation": "Saydam maddeler ışığı tamamen geçirir, yarı saydam maddeler kısmen geçirir, opak maddeler ışığı hiç geçirmez. Siyah mat metal ışığı geçirmediği için opak maddedir.",
+"vfd2": true,
+"_sty": "s:|vizör aşağıd hangis olabil",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın madde ile etkileşimi",
+"passage": "Sağlık kontrolünde doktorlar, röntgen filmi çekerken X ışınlarının vücuttan geçişini kullanır. Bazı dokular ışığı geçiremezken bazıları daha rahat geçiş sağlar.",
+"question": "Bu duruma göre, kemik dokusunun ışığı geçirme özelliği ile ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Saydam bir maddedir",
+"B": "Işık kaynağıdır",
+"C": "Opak bir maddedir",
+"D": "Yarı saydam bir maddedir"
+},
+"answer": "C",
+"explanation": "Röntgen filminde kemikler beyaz (gölge) olarak görünür, bu da kemiklerin X ışınlarını büyük oranda engellediğini, yani opak olduğunu gösterir.",
+"vfd2": true,
+"_sty": "s:|ilgili aşağıd hangis söylen",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Saydam, yarı saydam ve opak maddeler",
+"passage": "Bir su tasarrufu projesi kapsamında, atıkların ışığı geçirme özelliklerine göre sınıflandırılması planlanıyor. Grafikte maddelerin sınıflandırılma oranları verilmiştir.",
+"question": "Buna göre ışığı geçirmeyen maddelerin (opak) grafikteki karşılığı hangisidir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Saydam",
+"Yarı Saydam",
+"Opak"
+],
+"values": [
+30,
+20,
+50
+],
+"title": "Madde Sınıflandırma Oranı",
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "30",
+"C": "50",
+"D": "100"
+},
+"answer": "C",
+"explanation": "Grafikte verilen verilerde opak maddeler %50'lik paya sahip olan kategoridir.",
+"vfd2": true,
+"_sty": "s:pie_chart|opak grafik karşıl hangis",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Tam gölge",
+"passage": "Bir çiftlikte güneş altında duran bir traktör ve traktörün yere düşen gölgesi gözlemleniyor. Gün içinde Güneş'in konumu değiştikçe gölge boyunun ve yönünün değiştiği kayıt altına alınıyor.",
+"question": "Bu bilgilere göre, gün içerisinde gölge boyunun değişme nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Sabah",
+"Öğle",
+"Akşam"
+],
+"values": [
+5,
+2,
+5
+],
+"title": "Gölge Boyu Değişimi",
+"show_names": false
+},
+"options": {
+"A": "Dünya'nın kendi ekseni etrafında dönmesi ile ışık kaynağının geliş açısının değişmesi",
+"B": "Işık kaynağının şiddetinin artması",
+"C": "Havanın sıcaklığının artması",
+"D": "Cismin sürekli hareket etmesi"
+},
+"answer": "A",
+"explanation": "Gölge boyu, ışık kaynağının cisim üzerine düşme açısına bağlıdır. Dünya'nın dönmesiyle Güneş'in konumunun değişmesi bu açıyı değiştirir.",
+"vfd2": true,
+"_sty": "s:bar_chart|değişm nedeni aşağıd hangis",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Saydam, yarı saydam ve opak",
+"passage": "Ormancılık projesinde, farklı yaprak türlerinin ışığı geçirme özellikleri inceleniyor. İnce bir yaprak ışığın bir kısmını geçirirken, kalın bir ağaç gövdesi ışığı hiç geçirmiyor.",
+"question": "Buna göre, 'ışığın bir kısmını geçiren' yaprak türü hangi grup ile isimlendirilir?",
+"shape": null,
+"options": {
+"A": "Işık kaynağı",
+"B": "Saydam",
+"C": "Yarı Saydam",
+"D": "Opak"
+},
+"answer": "C",
+"explanation": "Işığın bir kısmını geçiren, arkasındaki nesneleri net göstermeyen maddelere yarı saydam maddeler denir.",
+"vfd2": true,
+"_sty": "s:|hangi grup ile isimle",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işık ve gölge",
+"passage": "Şehir planlamacıları, bir caddede yeni yapılacak binanın çevresindeki binaların güneş almasını engelleyip engellemeyeceğini hesaplıyor. Binanın yüksekliği ve Güneş'in konumu temel verilerdir.",
+"question": "Bu verilere göre, gölge oluşumu ile ilgili aşağıdakilerden hangisi kesinlikle doğrudur?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 4,
+"label": "Güneş",
+"show_names": false
+},
+"options": {
+"A": "Güneş tam tepedeyken gölge oluşmaz",
+"B": "Opak maddeler ışığı keserek gölge oluşturur",
+"C": "Gölge boyu sadece mevsimlere göre değişir",
+"D": "Binanın yüksekliği arttıkça gölge boyu küçülür"
+},
+"answer": "B",
+"explanation": "Opak maddeler ışığı geçiremez ve arkasında tam gölge oluşturur. Bu, ışığın temel bir fiziksel kuralıdır.",
+"vfd2": true,
+"_sty": "s:science_space|aşağıd hangis kesinl doğrud",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Dünyası: Saydam, yarı saydam ve opak maddeler",
+"passage": "Bir ev tasarımcısı, odalara giren gün ışığı miktarını kontrol etmek için farklı yapraklara sahip materyaller kullanmaktadır. Tasarımcı incelediği malzemelerin özelliklerini bir tablo halinde raporluyor: K malzemesi ışığın tamamına yakınını geçiriyor, L malzemesi ışığın bir kısmını geçiriyor fakat net görüntü vermiyor, M malzemesi ise ışığı hiç geçirmiyor.",
+"question": "Buna göre raporlanan K, L ve M malzemelerinin ışığı geçirme özelliklerine göre sınıflandırılması aşağıdakilerin hangisinde doğru verilmiştir?",
+"shape": {
+"type": "table",
+"title": "Malzeme Işık Geçirgenlik Raporu",
+"headers": [
+"Malzeme",
+"Işık Geçirgenlik Durumu"
+],
+"rows": [
+[
+"K",
+"Işığın çoğunu geçirir"
+],
+[
+"L",
+"Işığın bir kısmını geçirir"
+],
+[
+"M",
+"Işığı hiç geçirmez"
+]
+]
+},
+"options": {
+"A": "K: Yarı saydam, L: Opak, M: Saydam",
+"B": "K: Saydam, L: Opak, M: Yarı saydam",
+"C": "K: Opak, L: Saydam, M: Yarı saydam",
+"D": "K: Saydam, L: Yarı saydam, M: Opak"
+},
+"answer": "D",
+"explanation": "Işığın çoğunu geçiren maddeler saydam, bir kısmını geçirenler yarı saydam, hiç geçirmeyenler ise opak (saydam olmayan) maddedir. Buna göre K saydam, L yarı saydam, M opak maddedir.",
+"vfd2": true,
+"_sty": "s:table|aşağıd hangis doğru verilm",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Dünyası: Tam gölge",
+"passage": "5. sınıf öğrencisi Zeynep, karanlık bir odada el feneri, top ve perde kullanarak bir gölge oyunu düzeneği kuruyor. Zeynep el feneri ile top arasındaki mesafeyi sabit tutarak topu perdeye doğru yaklaştırdığında perdedeki tam gölgenin boyutunda değişim gözlemliyor.",
+"question": "Buna göre Zeynep'in topu perdeye yaklaştırması sonucunda perdede oluşan tam gölgenin boyutu ve nedeni ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uzak Konum",
+"Yaxın Konum"
+],
+"values": [
+40,
+20
+],
+"title": "Gölge Boyu Değişimi (cm)",
+"show_names": false
+},
+"options": {
+"A": "Cismin perdeye yaklaşması ışık ışınlarının yayılma doğrultusunu değiştirerek gölgeyi ortadan kaldırır.",
+"B": "Top perdeye yaklaştıkça perdede engellenen ışık alanı azaldığı için gölge boyu küçülür.",
+"C": "Top perdeye yaklaştıkça ışık kaynağına olan mesafesi arttığı için gölge boyu büyür.",
+"D": "Topun boyutu değişmediği için perdedeki gölgenin boyutu her durumda sabit kalır."
+},
+"answer": "B",
+"explanation": "Cisim perdeye yaklaştırıldığında ışık kaynağı ile cisim arasındaki mesafe ilişkisi nedeniyle gölge alanı küçülür. Verilen grafikte de uzak konumda 40 cm iken yakın konumda 20 cm olduğu görülmektedir.",
+"vfd2": true,
+"_sty": "s:bar_chart|ilgili aşağıd hangis doğrud",
+"unit": "Işığın Dünyası",
+"topics": "Işığın doğrusal yayılması, Saydam, yarı saydam ve opak maddeler, Tam gölge",
+"d": 4,
+"ts": 1794341924
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları ve sembolleri",
+"passage": "Kerem, fen bilimleri dersinde basit bir elektrik devresi çizerken devre elemanlarını uluslararası ortak sembollerle göstermek istemiştir. Defterine çizdiği devrede enerji kaynağı olarak pil, devre elemanlarını birbirine bağlayan iletken tel, devreyi açıp kapamaya yarayan anahtar ve ışık veren ampul kullanmıştır.",
+"question": "Buna göre Kerem'in defterine çizdiği sembol şemasında aşağıdaki devre elemanlarından hangisinin sembolü yer almaz?",
+"shape": null,
+"options": {
+"A": "Dinamometre",
+"B": "Anahtar",
+"C": "Pil",
+"D": "Ampul"
+},
+"answer": "A",
+"explanation": "Basit bir elektrik devresinde pil, ampul, anahtar ve bağlantı kabloları bulunur. Dinamometre ise elektrik devresi elemanı olmayıp kuvvet ölçmeye yarayan bir araçtır.",
+"vfd2": true,
+"_sty": "s:|hangis sembol yer almaz",
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 1,
+"ts": 1794342499
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hücre yapısı ve fonksiyonları",
+"passage": "",
+"question": "Aşağıdaki organellerden hangisi hücrede madde geçişini düzenler?",
+"shape": null,
+"options": {
+"A": "Mitokondri",
+"B": "Hücre zarı",
+"C": "Kloroplast",
+"D": "Hücre duvarı"
+},
+"answer": "B",
+"explanation": "Hücre zarı madde geçişini düzenler. Mitokondri hücreye enerji sağlar, kloroplast bitki hücresinde fotosentez yapar, hücre duvarı bitki hücresinde bulunur.",
+"vfd2": true,
+"_sty": "s:|hücred madde geçişi düzenl",
+"unit": "Canlıların Yapısına Yolculuk",
+"topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
+"d": 1,
+"ts": 1794342645
 }
 ]
 }
