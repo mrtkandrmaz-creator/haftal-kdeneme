@@ -1491,6 +1491,8 @@ def _rectangle(ax, d):
     ax.add_patch(Rectangle((0, 0), W, H, fc="#e0f2fe", ec=INK, lw=2))
     ax.text(W / 2, -.5, str(d.get("width_label", f"{w:g} cm")), ha="center", fontsize=9.5, fontweight="bold", color=BLUE)
     ax.text(-.25, H / 2, str(d.get("height_label", f"{h:g} cm")), ha="right", va="center", fontsize=9.5, fontweight="bold", color=BLUE)
+    if d.get("center_label"):
+        ax.text(W / 2, H / 2, str(d.get("center_label")), ha="center", va="center", fontsize=10.5, fontweight="bold", color=INK)
     ax.set_xlim(-2.2, W + 1)
     ax.set_ylim(-1.3, H + 1)
 
@@ -10127,6 +10129,164 @@ def _meb_types(subject, lvl):
             "5. sınıf için dil sade, ama soru yapısı MEB/LGS gibi olsun (metin/görsel/tablo → çıkarım → işlem ya da yargı).\n")
 
 
+# ---------------------------------------------------------------- 5. SINIF: KALAN ÜNİTELER (açı ilişkileri, çokgen, dikdörtgen; ısı, iskelet; kurum, ihtiyaç, afet; metin türü)
+def _mf_ang_tum(subject):
+    kind = random.choice(["tumler", "butunler", "tur"])
+    if kind == "tur":
+        d = random.choice([20, 35, 45, 60, 75, 90, 110, 120, 135, 150, 165])
+        c = "Dar açı" if d < 90 else ("Dik açı" if d == 90 else "Geniş açı")
+        sh = {"type": "geo", "sub_type": "angle", "degree": d, "rotation": random.choice([0, 10, 20]), "labels": ["O", "A", "B"], "angle_label": f"{d}°"}
+        o = _mf_opts(c, [x for x in ["Dar açı", "Dik açı", "Geniş açı", "Doğru açı"] if x != c], str, sort=False)
+        return _mf_raw(subject, "Açı türleri", "Şekilde ölçüsü verilen AOB açısının türü aşağıdakilerden hangisidir?", o, f"{d}° ölçülü açı: " + ("90°’den küçük → dar açı." if d < 90 else "90° → dik açı." if d == 90 else "90°’den büyük, 180°’den küçük → geniş açı."), shape=sh) if o else None
+    if kind == "tumler":
+        d = random.choice(range(10, 81, 5))
+        c, base, nm = 90 - d, 90, "tümleri"
+    else:
+        d = random.choice(range(20, 161, 10))
+        c, base, nm = 180 - d, 180, "bütünleri"
+    sh = {"type": "geo", "sub_type": "angle", "degree": d, "rotation": random.choice([0, 10, 20]), "labels": ["O", "A", "B"], "angle_label": f"{d}°"}
+    wr = [d, base - d + 10, base - d - 10, base + d, abs(base - 2 * d) or base]
+    o = _mf_opts(c, [w for w in wr if w > 0], str)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekilde ölçüsü verilen AOB açısının {nm} kaç derecedir?", o, f"{'Tümler' if base == 90 else 'Bütünler'} açıların toplamı {base}°’dir: {base} − {d} = {c}.", shape=sh) if o else None
+
+
+def _mf_ang_kom(subject):
+    d = random.choice(range(30, 151, 10))
+    if d == 90:
+        return None
+    c = 180 - d
+    sh = {"type": "geo", "sub_type": "angles_two_lines", "degree": d, "given": f"{d}°", "ask": "x"}
+    o = _mf_opts(c, [d, c + 10, c - 10, 90 - d if d < 90 else d - 90, 360 - d], str)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekilde kesişen iki doğrunun oluşturduğu açılardan biri {d}° olarak verilmiştir. Bu açının komşusu olan x açısı kaç derecedir?", o,
+                   f"Komşu açılar bütünlerdir: 180 − {d} = {c}.", shape=sh) if o else None
+
+
+def _mf_poly_el(subject):
+    n = random.choice([3, 4, 5, 6, 7, 8])
+    names = {3: "Üçgen", 4: "Dörtgen", 5: "Beşgen", 6: "Altıgen", 7: "Yedigen", 8: "Sekizgen"}
+    sh = {"type": "geo", "sub_type": "polygon", "sides": n, "labels": list("ABCDEFGH")[:n], "equal_ticks": True}
+    if random.random() < .5:
+        c = names[n]
+        o = _mf_opts(c, [v for k, v in names.items() if k != n], str, sort=False)
+        return _mf_raw(subject, "Çokgenler", "Şekilde köşeleri harflerle gösterilen çokgenin adı aşağıdakilerden hangisidir?", o, f"Şekilde {n} kenar ve {n} köşe vardır; {n} kenarlı çokgen {c.lower()}dir.".replace("üçgendir", "üçgendir"), shape=sh) if o else None
+    c = 2 * n
+    o = _mf_opts(c, [n, n + 2, 3 * n, c - 1, c + 1], str)
+    return _mf_raw(subject, "Çokgenler", "Şekildeki çokgenin kenar sayısı ile köşe sayısının toplamı kaçtır?", o, f"Bir çokgenin kenar sayısı köşe sayısına eşittir: {n} + {n} = {c}.", shape=sh) if o else None
+
+
+def _mf_rect_eksik(subject):
+    kind = random.choice(["alan", "cevre"])
+    a, b = random.randint(4, 15), random.randint(2, 12)
+    if a == b:
+        return None
+    A = a * b
+    if kind == "alan":
+        sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} cm", "height_label": "?", "center_label": f"Alan = {A} cm²"}
+        c = b
+        q = "Şekildeki dikdörtgenin alanı ve bir kenarının uzunluğu verilmiştir. Bu dikdörtgenin diğer kenarının uzunluğu kaç santimetredir?"
+        ex = f"{A} ÷ {a} = {b}."
+        wr = [a, A - a, a + b, A // 2 if A // 2 != b else A + 1, b + 1, b - 1]
+    else:
+        sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} cm", "height_label": f"{b} cm", "center_label": ""}
+        c = 2 * (a + b)
+        q = "Şekilde kenar uzunlukları verilen dikdörtgen biçimindeki bahçenin etrafı bir sıra tel ile çevrilecektir. Bunun için kaç santimetre tel gerekir?"
+        ex = f"Çevre = 2 × ({a} + {b}) = {c} cm."
+        wr = [a * b, a + b, c + 2, c - 2, 4 * a]
+    o = _mf_opts(c, [w for w in wr if w > 0], str)
+    return _mf_raw(subject, "Çevre ve alan", q, o, ex, shape=sh) if o else None
+
+
+_MF_GENS += [(_mf_ang_tum, ("açı",), (5,)), (_mf_ang_kom, ("açı", "komşu", "kesişen"), (5,)), (_mf_poly_el, ("çokgen",), (5,)), (_mf_rect_eksik, ("çevre", "alan", "dikdörtgen"), (5,))]
+
+
+def _ff_isi(subject):
+    kind = random.choice(["hal", "yon", "iletken", "yalitkan"])
+    if kind == "hal":
+        pairs = [("Katı bir maddenin ısı alarak sıvı hâle geçmesi", "Erime"), ("Sıvı bir maddenin ısı alarak gaz hâline geçmesi", "Buharlaşma"),
+                 ("Gaz hâlindeki bir maddenin ısı vererek sıvı hâle geçmesi", "Yoğuşma"), ("Sıvı bir maddenin ısı vererek katı hâle geçmesi", "Donma")]
+        d, c = random.choice(pairs)
+        return _fact_q(subject, "Hâl Değişimi", f"{d} olayına ne ad verilir?", c, [x for _d, x in pairs if x != c], f"{d} olayına {c.lower()} denir.")
+    if kind == "yon":
+        a, b = random.sample(range(10, 95, 5), 2)
+        hot, cold = max(a, b), min(a, b)
+        c = "Sıcak olandan soğuk olana doğru"
+        return _fact_q(subject, "Isı Alışverişi", f"K kabındaki suyun sıcaklığı {hot} °C, L kabındaki suyun sıcaklığı {cold} °C’dir. Bu iki kap birbirine temas ettirilirse ısı hangi yönde akar?", c,
+                       ["Soğuk olandan sıcak olana doğru", "Isı akışı olmaz", "Her iki kaptan dışarıya doğru"], f"Isı her zaman sıcaklığı yüksek olandan düşük olana doğru akar ({hot} °C → {cold} °C).")
+    ilet = ["bakır tel", "alüminyum kaşık", "demir çubuk", "çelik tencere"]
+    yal = ["strafor", "yün kazak", "tahta kaşık", "cam yünü", "plastik kap"]
+    if kind == "iletken":
+        c = random.choice(ilet)
+        return _fact_q(subject, "Isı İletimi", "Aşağıdaki maddelerden hangisi ısıyı iyi ileten bir maddedir?", c, random.sample(yal, 3), f"Metaller ısıyı iyi iletir; {c} metaldir. Diğerleri ısı yalıtkanıdır.")
+    c = random.choice(yal)
+    return _fact_q(subject, "Isı Yalıtımı", "Aşağıdakilerden hangisi ısıyı az ileten (ısı yalıtkanı) bir maddedir?", c, random.sample(ilet, 3), f"{c} ısıyı az iletir; diğer seçenekler metal olduğu için ısıyı iyi iletir.")
+
+
+def _ff_iskelet(subject):
+    kind = random.choice(["koru", "oynar"])
+    if kind == "koru":
+        L = [("Kafatası", "Beyin", ["Kalp", "Akciğer", "Mide"]), ("Kaburga kemikleri", "Kalp ve akciğerler", ["Beyin", "Omurilik", "Gözler"]),
+             ("Omurga", "Omurilik", ["Beyin", "Kalp", "Mide"])]
+        n, c, w = random.choice(L)
+        return _fact_q(subject, "Destek ve Hareket Sistemi", f"İskelet sisteminde {n} aşağıdaki organlardan hangisini korur?", c, w, f"{n}, {c.lower()} korur.")
+    c = "Kafatası kemiklerinin birleştiği yer"
+    return _fact_q(subject, "Destek ve Hareket Sistemi", "Aşağıdakilerden hangisi kemiklerin hareket etmediği (oynamaz) bir eklemdir?", c, ["Dirsek", "Diz", "Omuz"], "Kafatası kemikleri arasındaki eklem oynamaz; dirsek, diz ve omuz hareketli eklemlerdir.")
+
+
+_FF_GENS += [(_ff_isi, ("ısı", "sıcaklık", "hâl değişimi", "yalıtım", "iletim")), (_ff_iskelet, ("iskelet", "destek", "kas", "sistem sağlığı", "hareket sistemi"))]
+
+
+def _sf_kurum(subject):
+    L = [("Mahallenizdeki sokak lambalarının yanmadığını bildirmek istiyorsunuz.", "Belediye"), ("Kimlik kartınızı yenilemek istiyorsunuz.", "Nüfus müdürlüğü"),
+         ("Satın aldığınız ürünün bozuk çıktığını ve değiştirilmediğini bildirmek istiyorsunuz.", "Tüketici hakem heyeti"), ("Sınıf içindeki bir sorunu çözmek için başvuracağınız kişi.", "Okul müdürlüğü"),
+         ("Hastalandığınızda muayene olmak için gideceğiniz yer.", "Hastane veya sağlık ocağı")]
+    d, c = random.choice(L)
+    return _fact_q(subject, "Başvuru Yapılabilecek Kurumlar", f"{d} Bu durumda başvurulması gereken kurum aşağıdakilerden hangisidir?", c, [x for _d, x in L if x != c], f"Bu durumda {c} kurumuna başvurulur.")
+
+
+def _sf_ihtiyac(subject):
+    ih = ["Temiz su", "Ekmek", "Barınma", "Sağlık hizmeti"]
+    ist = ["Oyun konsolu", "Sinema bileti", "Tatil gezisi", "Oyuncak araba"]
+    if random.random() < .5:
+        c = random.choice(ih)
+        return _fact_q(subject, "İhtiyaç ve İstek", "Aşağıdakilerden hangisi insanın temel bir ihtiyacıdır?", c, random.sample(ist, 3), f"{c} yaşamı sürdürmek için gereklidir; diğerleri isteklerdir.")
+    c = random.choice(ist)
+    return _fact_q(subject, "İhtiyaç ve İstek", "Aşağıdakilerden hangisi bir istek olarak değerlendirilir?", c, random.sample(ih, 3), f"{c} yaşamak için zorunlu değildir, bir istektir; diğerleri temel ihtiyaçtır.")
+
+
+def _sf_afet(subject):
+    c = random.choice(["Çök-Kapan-Tutun hareketini yapmak", "Sağlam bir masanın altına girip başını korumak"])
+    return _fact_q(subject, "Afetler ve Farkındalık", "Deprem anında aşağıdakilerden hangisi yapılmalıdır?", c, ["Asansörle hemen dışarı çıkmak", "Balkona çıkıp beklemek", "Merdivenlerden koşarak inmek"],
+                   "Deprem sırasında sağlam bir yerin altında başı koruyarak beklenmelidir; asansör kullanılmaz, balkona çıkılmaz, koşulmaz.")
+
+
+def _sf_hak(subject):
+    hak = ["Eğitim görmek", "Sağlık hizmetinden yararlanmak", "Güvenli bir ortamda yaşamak", "Dinlenmek ve oyun oynamak"]
+    sor = ["Okul kurallarına uymak", "Çevreyi temiz tutmak", "Başkalarının haklarına saygı göstermek", "Ortak eşyaları korumak"]
+    if random.random() < .5:
+        c = random.choice(sor)
+        return _fact_q(subject, "Hak ve Sorumluluklar", "Aşağıdakilerden hangisi bir sorumluluktur?", c, random.sample(hak, 3), f"{c} bir sorumluluktur; diğerleri çocukların haklarıdır.")
+    c = random.choice(hak)
+    return _fact_q(subject, "Hak ve Sorumluluklar", "Aşağıdakilerden hangisi bir haktır?", c, random.sample(sor, 3), f"{c} bir haktır; diğerleri sorumluluktur.")
+
+
+_SF_GENS += [(_sf_kurum, ("başvuru", "kurum", "demokrasi", "vatandaş")), (_sf_ihtiyac, ("ihtiyaç", "istek", "bütçe", "ekonomi")), (_sf_afet, ("afet", "deprem", "farkındalık")),
+             (_sf_hak, ("hak", "sorumluluk", "demokrasi", "vatandaş"))]
+
+
+def _tf_tur(subject):
+    L = [("Olağanüstü olayların anlatıldığı, çoğunlukla “Bir varmış, bir yokmuş” gibi sözlerle başlayan metin", "Masal"),
+         ("Genellikle güldürürken düşündüren, kısa ve esprili anlatı", "Fıkra"),
+         ("Uzaktaki birine duygu ve düşünceleri iletmek için yazılan, hitap ve imza bölümleri bulunan yazı", "Mektup"),
+         ("Dize ve kıtalardan oluşan, duyguların ahenkli ve yoğun anlatıldığı metin", "Şiir")]
+    d, c = random.choice(L)
+    return _fact_q(subject, "Metin Türleri", f"“{d}” tanımı hangi metin türüne aittir?", c, [x for _d, x in L if x != c], f"Bu özellikler {c.lower()} türünü tanımlar.")
+
+
+_TF_GENS += [(_tf_tur, ("metin türü", "metin tür", "iletişim"))]
+
+_DIFF_OF.update({"_mf_ang_tum": 2, "_mf_ang_kom": 3, "_mf_poly_el": 2, "_mf_rect_eksik": 3, "_ff_isi": 2, "_ff_iskelet": 2, "_sf_kurum": 2, "_sf_ihtiyac": 1, "_sf_afet": 1, "_sf_hak": 2, "_tf_tur": 2})
+
+
 # ---------------------------------------------------------------- ÖNCEDEN ÜRETİLMİŞ + DOĞRULANMIŞ HAVUZ (repodaki pool/ klasörü; API kotası harcamaz)
 _POOL_CACHE = {}
 
@@ -10755,13 +10915,16 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             if _fn:
                 try:
                     inx = {_stem(q) for q in qs_}
-                    for q in _fn(grade_label, (p["n"] - len(qs_)) * 2, p.get("topics", ""), seen=inx, dl=0):
+                    for _dd in ((dl, 0) if dl else (0,)):  # önce seçilen zorluğa uyanlar, yetmezse zorluk gözetmeden
+                        for q in _fn(grade_label, (p["n"] - len(qs_)) * 2, p.get("topics", ""), seen=inx, dl=_dd):
+                            if len(qs_) >= p["n"]:
+                                break
+                            if _stem(q) in inx or not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
+                                continue
+                            inx.add(_stem(q))
+                            qs_.append(q)
                         if len(qs_) >= p["n"]:
                             break
-                        if _stem(q) in inx or not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
-                            continue
-                        inx.add(_stem(q))
-                        qs_.append(q)
                 except Exception:
                     pass
         if len(qs_) < p["n"] and st_.get("unv") and p.get("subject") not in STRICT_MODE:  # 3. kademe (sıkı modda YOK: doğrulanmamış soru girmez) = doğrulayıcıya ulaşılamayan ama diğer tüm kontrolleri geçen sorular (ünite/olumsuz kök/tutarlılık)
