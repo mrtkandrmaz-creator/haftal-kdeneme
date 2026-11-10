@@ -2029,7 +2029,17 @@ def _geo(ax, d):
         o = np.array([0., 0])
         p = o + 3.2 * _rot([1, 0], base); q = o + 3.2 * _rot([1, 0], base + deg)
         _arrow(ax, o, p); _arrow(ax, o, q)
-        _arc_mark(ax, o, base, base + deg, r=.9, label=str(d.get("angle_label", "")) or None)
+        sp = d.get("split")
+        if sp is not None:  # açı bir ışınla ikiye bölünmüş: iki yay (etiketli)
+            sp = _f(sp, deg / 2)
+            sl = d.get("split_labels") or ["x", "y"]
+            rr = o + 3.2 * _rot([1, 0], base + sp)
+            _arrow(ax, o, rr, color=GREEN)
+            _arc_mark(ax, o, base, base + sp, r=.9, label=str(sl[0]))
+            _arc_mark(ax, o, base + sp, base + deg, r=1.35, color=BLUE, label=str(sl[1]))
+            ax.text(*(rr + .4 * _rot([1, 0], base + sp)), (L + ["A", "B", "C", "D"])[3], fontsize=11, fontweight="bold", ha="center", va="center", color=INK)
+        else:
+            _arc_mark(ax, o, base, base + deg, r=.9, label=str(d.get("angle_label", "")) or None)
         ln = (L + ["A", "B", "C"])[:3]  # köşe=ln[0]
         _dot(ax, o, ln[0], off=_rot([1, 0], base + deg / 2) * -.45)
         ax.text(*(p + .4 * _rot([1, 0], base)), ln[1], fontsize=11, fontweight="bold", ha="center", va="center", color=INK)
@@ -2040,7 +2050,10 @@ def _geo(ax, d):
         o = np.array([0., 0]); u, v = _rot([1, 0], 0), _rot([1, 0], deg)
         _arrow(ax, o - 3 * u, o + 3 * u, both=True); _arrow(ax, o - 3 * v, o + 3 * v, both=True)
         _arc_mark(ax, o, 0, deg, r=.9, label=str(d.get("given", f"{deg:g}°")))
-        _arc_mark(ax, o, deg, 180, r=1.3, color=BLUE, label=str(d.get("ask", "x")))
+        if d.get("vertical"):  # ters (karşıt) açı: verilen açının tam karşısındaki açı sorulur
+            _arc_mark(ax, o, 180, 180 + deg, r=.9, color=BLUE, label=str(d.get("ask", "x")))
+        else:
+            _arc_mark(ax, o, deg, 180, r=1.3, color=BLUE, label=str(d.get("ask", "x")))
         _dot(ax, o, "O", off=(.1, -.42)); ax.set_xlim(-3.8, 3.8); ax.set_ylim(-3.2, 3.2)
     elif sub == "polygon_set":  # K, L, M, N: farklı çokgenler (adı yazmaz)
         ks = [str(k).lower() for k in (d.get("kinds") or ["üçgen", "dörtgen", "beşgen", "altıgen"])][:4]
@@ -9287,7 +9300,7 @@ def _mf_inter(subject):
     return _mf_raw(subject, "Çember ve üçgen", q, o, f"|AC| = |BC| = {r} cm. Çevre = {r} + {r} + |AB| = {c}, buradan |AB| = {c} − {2 * r} = {dd} cm.", shape=sh) if o else None
 
 
-_MF_GENS += [(_mf_inter, ("çember", "kesişim", "kesişen"), (5,))]
+_MF_GENS += [(_mf_inter, ("çember", "kesişen çember", "iki çember"), (5,))]
 
 
 # ---------------------------------------------------------------- 5-6. SINIF: OLASILIK ve VERİ (kodla hesaplanan, görselle birebir uyumlu)
@@ -10130,8 +10143,8 @@ def _meb_types(subject, lvl):
 
 
 # ---------------------------------------------------------------- 5. SINIF: KALAN ÜNİTELER (açı ilişkileri, çokgen, dikdörtgen; ısı, iskelet; kurum, ihtiyaç, afet; metin türü)
-def _mf_ang_tum(subject):
-    kind = random.choice(["tumler", "butunler", "tur"])
+def _mf_ang_tum(subject, kind=None):
+    kind = kind or random.choice(["tumler", "butunler", "tur"])
     if kind == "tur":
         d = random.choice([20, 35, 45, 60, 75, 90, 110, 120, 135, 150, 165])
         c = "Dar açı" if d < 90 else ("Dik açı" if d == 90 else "Geniş açı")
@@ -10150,13 +10163,16 @@ def _mf_ang_tum(subject):
     return _mf_raw(subject, "Açı ilişkileri", f"Şekilde ölçüsü verilen AOB açısının {nm} kaç derecedir?", o, f"{'Tümler' if base == 90 else 'Bütünler'} açıların toplamı {base}°’dir: {base} − {d} = {c}.", shape=sh) if o else None
 
 
-def _mf_ang_kom(subject):
+def _mf_ang_kom(subject, ters=None):
     d = random.choice(range(30, 151, 10))
     if d == 90:
         return None
     c = 180 - d
     sh = {"type": "geo", "sub_type": "angles_two_lines", "degree": d, "given": f"{d}°", "ask": "x"}
     o = _mf_opts(c, [d, c + 10, c - 10, 90 - d if d < 90 else d - 90, 360 - d], str)
+    if (random.random() < .5) if ters is None else ters:  # ters (karşıt) açı: x açısının ters açısı x'e eşittir
+        return _mf_raw(subject, "Açı ilişkileri", f"Şekilde kesişen iki doğrunun oluşturduğu açılardan biri {d}° olarak verilmiştir. Komşu açısı x ile gösterilen bu iki doğrunun oluşturduğu, x açısının ters (karşıt) açısı kaç derecedir?", o,
+                       f"Komşu açılar bütünlerdir: x = 180 − {d} = {c}. Ters açılar eşittir; x’in ters açısı da {c}°’dir.", shape=sh) if o else None
     return _mf_raw(subject, "Açı ilişkileri", f"Şekilde kesişen iki doğrunun oluşturduğu açılardan biri {d}° olarak verilmiştir. Bu açının komşusu olan x açısı kaç derecedir?", o,
                    f"Komşu açılar bütünlerdir: 180 − {d} = {c}.", shape=sh) if o else None
 
@@ -10196,7 +10212,139 @@ def _mf_rect_eksik(subject):
     return _mf_raw(subject, "Çevre ve alan", q, o, ex, shape=sh) if o else None
 
 
-_MF_GENS += [(_mf_ang_tum, ("açı",), (5,)), (_mf_ang_kom, ("açı", "komşu", "kesişen"), (5,)), (_mf_poly_el, ("çokgen",), (5,)), (_mf_rect_eksik, ("çevre", "alan", "dikdörtgen"), (5,))]
+_mf_ang_tumler = _mk_kind(_mf_ang_tum, "tumler", "_mf_ang_tumler")
+_mf_ang_butunler = _mk_kind(_mf_ang_tum, "butunler", "_mf_ang_butunler")
+_mf_ang_tur = _mk_kind(_mf_ang_tum, "tur", "_mf_ang_tur")
+_mf_ang_komsu = _mk_kind(_mf_ang_kom, False, "_mf_ang_komsu")
+_mf_ang_ters = _mk_kind(_mf_ang_kom, True, "_mf_ang_ters")
+_MF_GENS += [(_mf_ang_tumler, ("tümler",), (5,)), (_mf_ang_butunler, ("bütünler",), (5,)),
+             (_mf_ang_tur, ("açı türleri", "açı ölçme", "açı ölç"), (5,)), (_mf_ang_komsu, ("komşu açı", "kesişen iki doğru"), (5,)),
+             (_mf_ang_ters, ("ters", "karşıt", "kesişen iki doğru"), (5,)),
+             (_mf_poly_el, ("çokgen",), (5,)), (_mf_rect_eksik, ("çevre", "alan", "dikdörtgen"), (5,))]
+
+
+def _mf_tb_oran(subject, base=90):
+    """Tümler/bütünler iki açıdan biri diğerinin k katı: küçük ya da büyük açıyı bulma (metin temelli, cebirsel akıl yürütme)."""
+    k = random.choice([2, 3, 4, 5] if base == 180 else [2, 4, 5])
+    if base % (k + 1):
+        return None
+    x = base // (k + 1)
+    big = random.random() < .5
+    c = k * x if big else x
+    wr = [x if big else k * x, base - c + 10, c + 10, c - 10 if c > 10 else c + 20, base // 2]
+    nm = "tümler" if base == 90 else "bütünler"
+    o = _mf_opts(c, [w for w in wr if w > 0 and w != c], str)
+    sh = {"type": "geo", "sub_type": "angle", "degree": base, "rotation": 0, "labels": ["O", "A", "B", "C"], "split": x, "split_labels": ["x", f"{k}x"], "angle_label": f"{base}°"}
+    top = "dik açı olan AOB açısı" if base == 90 else "AOB doğru açısı"
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekildeki {top} OC ışınıyla iki açıya ayrılmıştır. Bu iki açıdan AOC açısının ölçüsü x, COB açısının ölçüsü {k}x ile gösterilmiştir. Buna göre {'COB' if big else 'AOC'} açısının ölçüsü kaç derecedir?", o,
+                   f"x + {k}x = {base}° → x = {x}°; AOC = {x}°, COB = {k * x}°.", shape=sh) if o else None
+
+
+_mf_tumler_oran = _mk_kind(lambda sj, kind=None: _mf_tb_oran(sj, 90), None, "_mf_tumler_oran")
+_mf_butunler_oran = _mk_kind(lambda sj, kind=None: _mf_tb_oran(sj, 180), None, "_mf_butunler_oran")
+_MF_GENS += [(_mf_tumler_oran, ("tümler",), (5,)), (_mf_butunler_oran, ("bütünler",), (5,))]
+_DIFF_OF.update({"_mf_tumler_oran": 4, "_mf_butunler_oran": 4})
+
+
+# ---- tümler / bütünler / komşu / ters açı: çok sayıda ayrı kalıp (her biri farklı soru kökü; anında üretilir)
+def _split_shape(base, a, l1, l2):
+    return {"type": "geo", "sub_type": "angle", "degree": base, "rotation": random.choice([0, 10]), "labels": ["O", "A", "B", "C"], "split": a, "split_labels": [l1, l2], "angle_label": f"{base}°"}
+
+
+def _top_txt(base):
+    return "dik açı olan AOB açısı" if base == 90 else "AOB doğru açısı"
+
+
+def _mf_ab_x(subject, base=90):
+    a = random.choice([v for v in range(10, base - 9, 5) if v * 2 != base])
+    c = base - a
+    sh = _split_shape(base, a, f"{a}°", "x")
+    wr = [a, c + 10, c - 10, base + a, base - 2 * a if base - 2 * a > 0 else c + 20]
+    o = _mf_opts(c, [w for w in wr if w > 0 and w != c], str)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekildeki {_top_txt(base)} OC ışınıyla iki açıya ayrılmıştır. m(AOC) = {a}° ve m(COB) = x olduğuna göre x kaç derecedir?", o,
+                   f"{a}° + x = {base}° olduğundan x = {base} − {a} = {c}°.", shape=sh) if o else None
+
+
+def _mf_ab_cebir(subject, base=90):
+    x = random.choice(range(15, 41 if base == 90 else 71, 5))
+    k = base - 2 * x
+    if k <= 0:
+        return None
+    sh = _split_shape(base, x, "x", f"x+{k}")
+    wr = [x + 10, x - 10, k, base - x, x + 5]
+    o = _mf_opts(x, [w for w in wr if w > 0 and w != x], str)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekildeki {_top_txt(base)} OC ışınıyla iki açıya ayrılmıştır. m(AOC) = x ve m(COB) = x + {k}° olduğuna göre x kaç derecedir?", o,
+                   f"x + (x + {k}) = {base}° → 2x = {base - k} → x = {x}°.", shape=sh) if o else None
+
+
+def _mf_ab_cift(subject, base=90):
+    nm = "tümler" if base == 90 else "bütünler"
+    a = random.choice(range(15, base - 14, 5))
+    c = base - a
+    sh = {"type": "geo", "sub_type": "angle", "degree": a, "rotation": 0, "labels": ["O", "A", "B"], "angle_label": f"{a}°"}
+    wr = [c + 10, c - 10 if c > 10 else c + 20, base + a if base + a < 200 else a + 5, a]
+    o = _mf_opts(f"{c}°", [f"{w}°" for w in wr if w > 0 and w != c], str, sort=False)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekilde ölçüsü verilen açı, aşağıdaki ölçülerden hangisiyle birlikte {nm} açı çifti oluşturur?", o,
+                   f"{nm.capitalize()} açıların toplamı {base}° olur: {base} − {a} = {c}°.", shape=sh) if o and len(set(o[0])) == 4 else None
+
+
+def _mf_kom_oran(subject):
+    k = random.choice([2, 3, 4, 5])
+    x = 180 // (k + 1)
+    if x * (k + 1) != 180:
+        return None
+    sh = {"type": "geo", "sub_type": "angles_two_lines", "degree": k * x, "given": f"{k}x", "ask": "x"}
+    o = _mf_opts(x, [k * x, x + 10, x - 10 if x > 10 else x + 20, 180 - x, 90 - x if 90 - x != x else x + 15], str)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekilde kesişen iki doğrunun oluşturduğu komşu açılardan biri {k}x, diğeri x ile gösterilmiştir. Buna göre x kaç derecedir?", o,
+                   f"Komşu açılar bütünlerdir: {k}x + x = 180° → x = {x}°.", shape=sh) if o else None
+
+
+def _mf_kom_cebir(subject):
+    x = random.randint(55, 68)
+    a = random.randint(5, 30)
+    b = 3 * x + a - 180
+    d1, d2 = x + a, 2 * x - b
+    if b <= 0 or d1 + d2 != 180 or d1 >= 175 or d2 <= 5 or d1 == 90:
+        return None
+    sh = {"type": "geo", "sub_type": "angles_two_lines", "degree": d1, "given": f"x+{a}", "ask": f"2x−{b}"}
+    o = _mf_opts(x, [x + 5, x - 5, x + 10, d1, d2], str)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekilde kesişen iki doğrunun oluşturduğu komşu açıların ölçüleri x + {a} ve 2x − {b} derecedir. Buna göre x kaçtır?", o,
+                   f"Komşu açılar bütünlerdir: (x + {a}) + (2x − {b}) = 180 → 3x = {180 - a + b} → x = {x}.", shape=sh) if o else None
+
+
+def _mf_ters_x(subject):
+    d = random.choice([30, 40, 50, 55, 65, 70, 110, 120, 125, 130, 140])
+    sh = {"type": "geo", "sub_type": "angles_two_lines", "degree": d, "given": f"{d}°", "ask": "x", "vertical": True}
+    o = _mf_opts(d, [180 - d, 90 - d if d < 90 else d - 90, d + 10, d - 10, 360 - d], str)
+    return _mf_raw(subject, "Açı ilişkileri", "Şekilde kesişen iki doğrunun oluşturduğu ters (karşıt) açılardan birinin ölçüsü verilmiştir. Buna göre x kaç derecedir?", o,
+                   f"Ters açıların ölçüleri eşittir: x = {d}°.", shape=sh) if o else None
+
+
+def _mf_ters_cebir(subject):
+    x = random.randint(20, 40)
+    a = random.randint(5, 15)
+    k = x - a
+    d = 2 * x + a
+    if k <= 0 or d >= 175 or d == 90:
+        return None
+    sh = {"type": "geo", "sub_type": "angles_two_lines", "degree": d, "given": f"2x+{a}", "ask": f"3x−{k}", "vertical": True}
+    o = _mf_opts(x, [x + 5, x - 5, d, x + 10, 180 - d], str)
+    return _mf_raw(subject, "Açı ilişkileri", f"Şekilde kesişen iki doğrunun oluşturduğu ters açıların ölçüleri 2x + {a} ve 3x − {k} derecedir. Buna göre x kaçtır?", o,
+                   f"Ters açılar eşittir: 2x + {a} = 3x − {k} → x = {x}.", shape=sh) if o else None
+
+
+_mf_tum_x = _mk_kind(lambda sj, kind=None: _mf_ab_x(sj, 90), None, "_mf_tum_x")
+_mf_but_x = _mk_kind(lambda sj, kind=None: _mf_ab_x(sj, 180), None, "_mf_but_x")
+_mf_tum_cebir = _mk_kind(lambda sj, kind=None: _mf_ab_cebir(sj, 90), None, "_mf_tum_cebir")
+_mf_but_cebir = _mk_kind(lambda sj, kind=None: _mf_ab_cebir(sj, 180), None, "_mf_but_cebir")
+_mf_tum_cift = _mk_kind(lambda sj, kind=None: _mf_ab_cift(sj, 90), None, "_mf_tum_cift")
+_mf_but_cift = _mk_kind(lambda sj, kind=None: _mf_ab_cift(sj, 180), None, "_mf_but_cift")
+_TUM, _BUT, _KOM, _TER = ("tümler",), ("bütünler",), ("komşu açı", "kesişen iki doğru"), ("ters", "karşıt", "kesişen iki doğru")
+_MF_GENS += [(_mf_tum_x, _TUM, (5,)), (_mf_tum_cebir, _TUM, (5,)), (_mf_tum_cift, _TUM, (5,)),
+             (_mf_but_x, _BUT, (5,)), (_mf_but_cebir, _BUT, (5,)), (_mf_but_cift, _BUT, (5,)),
+             (_mf_kom_oran, _KOM, (5,)), (_mf_kom_cebir, _KOM, (5,)), (_mf_ters_x, _TER, (5,)), (_mf_ters_cebir, _TER, (5,))]
+_DIFF_OF.update({"_mf_tum_x": 2, "_mf_but_x": 2, "_mf_tum_cebir": 4, "_mf_but_cebir": 4, "_mf_tum_cift": 2, "_mf_but_cift": 2,
+                 "_mf_kom_oran": 3, "_mf_kom_cebir": 5, "_mf_ters_x": 2, "_mf_ters_cebir": 5})
 
 
 def _ff_isi(subject):
@@ -10284,7 +10432,7 @@ def _tf_tur(subject):
 
 _TF_GENS += [(_tf_tur, ("metin türü", "metin tür", "iletişim"))]
 
-_DIFF_OF.update({"_mf_ang_tum": 2, "_mf_ang_kom": 3, "_mf_poly_el": 2, "_mf_rect_eksik": 3, "_ff_isi": 2, "_ff_iskelet": 2, "_sf_kurum": 2, "_sf_ihtiyac": 1, "_sf_afet": 1, "_sf_hak": 2, "_tf_tur": 2})
+_DIFF_OF.update({"_mf_ang_tumler": 2, "_mf_ang_butunler": 2, "_mf_ang_tur": 2, "_mf_ang_komsu": 3, "_mf_ang_ters": 3, "_mf_poly_el": 2, "_mf_rect_eksik": 3, "_ff_isi": 2, "_ff_iskelet": 2, "_sf_kurum": 2, "_sf_ihtiyac": 1, "_sf_afet": 1, "_sf_hak": 2, "_tf_tur": 2})
 
 
 # ---------------------------------------------------------------- ÖNCEDEN ÜRETİLMİŞ + DOĞRULANMIŞ HAVUZ (repodaki pool/ klasörü; API kotası harcamaz)
