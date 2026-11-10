@@ -4001,8 +4001,16 @@ def lpool_peek(subject, grade_label, difficulty, topics, limit=10):
     tl = str(topics or "").lower()
     out = []
     for x in _load("lpool.json", []):
-        if x.get("subject") != subject or x.get("grade_label") != grade_label or x.get("difficulty") != difficulty:
+        if x.get("subject") != subject or x.get("grade_label") != grade_label:
             continue
+        if x.get("difficulty") != difficulty:  # komşu zorluk kademesi (±1) de kabul
+            try:
+                from . import curriculum as _cu
+                _L = list(_cu.DIFFICULTIES)
+                if abs(_L.index(x.get("difficulty")) - _L.index(difficulty)) > 1:
+                    continue
+            except Exception:
+                continue
         ok = (x.get("code") and x["code"] in str(topics)) or (x.get("kz") and x["kz"] in tl) or (not x.get("code") and not x.get("kz"))
         if ok:
             out.append(dict(x["q"]))
@@ -6465,7 +6473,7 @@ def _meb_extra(grade_label, subject, topics):
 
 def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, focus="", start_id=1, plain=False, like=""):
     nonce = uuid.uuid4().hex[:8]
-    av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-18:])) if avoid else ""
+    av = ("\nAŞAĞIDAKİ SORULARI/KONULARI TEKRARLAMA (farklı bağlam ve veri kullan):\n- " + "\n- ".join(avoid[-30:])) if avoid else ""
     geo_on = subject == "Matematik" and bool(_GEO_PLAN_RX.search(topics or ""))
     plain = plain and not geo_on  # geometri şekilsiz olmaz
     eff, lvl = bump_difficulty(difficulty)
@@ -9902,7 +9910,7 @@ def _ff_atik(subject):
                    f"{c} geri dönüştürülerek yeniden hammadde olarak kullanılabilir; diğerleri organik ya da kirli atıktır.")
 
 
-_FF_GENS += [(_ff_ortam, ("ışık", "saydam", "gölge")), (_ff_devre, ("elektrik", "devre")),
+_FF_GENS += [(_ff_ortam, ("ışık", "ışığ", "saydam", "gölge")), (_ff_devre, ("elektrik", "devre")),
              (_ff_hucre, ("hücre", "organ", "doku", "yapısına")), (_ff_atik, ("atık", "geri dönüşüm", "sürdürülebilir"))]
 
 
@@ -10388,7 +10396,19 @@ def _style_key(q):
         return ""
 
 
-def _hist_similar(q, sets, thr=0.6):
+def _hist_maxsim(q, sets):
+    """Soru, geçmiş sınav sorularına en çok ne kadar benziyor (0-1)? Yedek sıralamasında en az benzeyen önce gelir."""
+    try:
+        t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
+        w = {x[:5] for x in re.findall(r"[a-zçğıöşü]{4,}", t)}
+        if not w or not sets:
+            return 0.0
+        return max((len(w & h) / len(w | h) for h in sets if h), default=0.0)
+    except Exception:
+        return 0.0
+
+
+def _hist_similar(q, sets, thr=0.5):
     """Soru, önceki sınavlardaki bir soruyla (rakam/harf/şık farkı hariç) aynı mı? Jaccard > thr -> True."""
     try:
         t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
@@ -10617,6 +10637,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     errors, questions = [], []
     for st_ in state:
         p, qs_ = st_["p"], st_["qs"]
+        st_["reserve"].sort(key=lambda q: (_stem(q) in seen, _hist_maxsim(q, hist.get(p.get("subject")) if not like else None)))  # en az benzeyen / hiç görülmemiş önce
         if len(qs_) < p["n"] and st_["reserve"]:  # son çare: elenenlerden (tam kopya olmayanlar) tamamla
             have = [_qwords(q) for q in qs_]
             for q in st_["reserve"]:
@@ -10627,7 +10648,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     continue
                 if _stem(q) in seen:
                     continue  # önceki sınavlarda çıkmış birebir soru asla tekrar verilmez
-                if p.get("subject") == "Matematik" and not like and _hist_similar(q, hist.get(p.get("subject"))):
+                if not like and _hist_similar(q, hist.get(p.get("subject"))):
                     continue  # Matematik: geçmişteki sorunun sayı-harf farkıyla kopyası da verilmez
                 qs_.append(q)
                 have.append(w)
