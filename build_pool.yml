@@ -8,9 +8,12 @@ on:
       grades:
         description: "Sınıflar (virgülle)"
         default: "5"
+      subjects:
+        description: "Dersler (virgülle)"
+        default: "Matematik,Fen Bilimleri"
       per_unit:
         description: "Ünite başına istenen soru"
-        default: "2"
+        default: "1"
       minutes:
         description: "En çok çalışma süresi (dk)"
         default: "35"
@@ -48,7 +51,7 @@ jobs:
           MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
           SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
           NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
-        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit "${{ github.event.inputs.per_unit || '2' }}" --minutes "${{ github.event.inputs.minutes || '35' }}" --bad-dir _ud/data
+        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5' }}" --subjects "${{ github.event.inputs.subjects || 'Matematik,Fen Bilimleri' }}" --per-unit "${{ github.event.inputs.per_unit || '1' }}" --minutes "${{ github.event.inputs.minutes || '35' }}" --bad-dir _ud/data
       - name: Matematik şablonlarını üret
         continue-on-error: true
         env:
@@ -59,7 +62,7 @@ jobs:
           MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
           SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
           NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
-        run: python tools/build_templates.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit 2 --minutes 15
+        run: python tools/build_templates.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit 1 --minutes 15
       - name: Değişiklikleri kaydet
         run: |
           git config user.name "denemematik-bot"

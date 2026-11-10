@@ -130,7 +130,7 @@ def build(ai, cur, args, gen=None, strict=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--grades", default="5")
-    ap.add_argument("--per-unit", type=int, default=2)
+    ap.add_argument("--per-unit", type=int, default=1)
     ap.add_argument("--max-per-unit", type=int, default=30)
     ap.add_argument("--minutes", type=float, default=20)
     ap.add_argument("--out", default=os.path.join(ROOT, "templates"))
