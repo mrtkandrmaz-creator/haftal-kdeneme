@@ -10488,7 +10488,9 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
                     pass
                 if subj in FAIL_CLOSED_SUBJECTS:  # Matematik: bağımsız modelce doğrulanmayan soru ASLA sınava girmez (hatalı soru yerine kodla hesaplanan soru gelir)
-                    qs = [q for q in qs if q.get("vfd") or q.get("local") or q.get("tpl") or q.get("pool")]
+                    _ok = [q for q in qs if q.get("vfd") or q.get("local") or q.get("tpl") or q.get("pool")]
+                    st_.setdefault("unv", []).extend([q for q in qs if q not in _ok])  # son çare yedeği: doğrulanamayanlar (yalnızca soru sayısı tamamlanamazsa)
+                    qs = _ok
             for _q in qs:
                 _q.pop("_gp", None)
             return qs, (err if not qs else None)
@@ -10584,7 +10586,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     sizes.append(c)
                     left -= c
                 extra_av = [_stem(q) for q in st_["qs"]] + st_["bank_stems"]
-                futs = [E.submit(work_chunk, st_, c + EXTRA_FIRST + min(rnd, 3), rnd == 0 and k == 0, extra_av, rnd >= 3) for k, c in enumerate(sizes)]
+                futs = [E.submit(work_chunk, st_, c + EXTRA_FIRST + min(rnd, 3) + (2 if subj in FAIL_CLOSED_SUBJECTS else 0), rnd == 0 and k == 0, extra_av, rnd >= 3) for k, c in enumerate(sizes)]
                 before = len(st_["qs"])
                 for f in futs:
                     qs, err = f.result()
@@ -10604,8 +10606,6 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
             list(SX.map(run_item, state))
     finally:
         E.shutdown(wait=False)
-    if no_keys and not any(s_["qs"] for s_ in state):
-        return [], ["API anahtarı bulunamadı"]
     errors, questions = [], []
     for st_ in state:
         p, qs_ = st_["p"], st_["qs"]
@@ -10623,6 +10623,45 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     continue  # Matematik: geçmişteki sorunun sayı-harf farkıyla kopyası da verilmez
                 qs_.append(q)
                 have.append(w)
+        if len(qs_) < p["n"]:  # SORU SAYISI MUTLAKA TAMAMLANIR: 2. kademe = daha önce görülmüş doğrulanmış/hazır soru (ama aynı sınavda kopya olmadan)
+            have = [_qwords(q) for q in qs_]
+            for q in st_["reserve"]:
+                if len(qs_) >= p["n"]:
+                    break
+                w = _qwords(q)
+                if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have) or not (q.get("vfd") or q.get("local") or q.get("tpl") or q.get("pool")):
+                    continue
+                qs_.append(q)
+                have.append(w)
+        if len(qs_) < p["n"] and not like:  # 2b. kademe = hazır kalıplardan (kodla hesaplanan, hatasız) önceki sınavlara bakmadan; yalnızca bu sınavdaki kopyalar hariç
+            _fn = {"Matematik": math_questions, "Fen Bilimleri": fen_questions, "Sosyal Bilgiler": sosyal_questions, "Türkçe": turkce_questions}.get(p.get("subject"))
+            if _fn:
+                try:
+                    inx = {_stem(q) for q in qs_}
+                    for q in _fn(grade_label, (p["n"] - len(qs_)) * 2, p.get("topics", ""), seen=inx, dl=0):
+                        if len(qs_) >= p["n"]:
+                            break
+                        if _stem(q) in inx or not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
+                            continue
+                        inx.add(_stem(q))
+                        qs_.append(q)
+                except Exception:
+                    pass
+        if len(qs_) < p["n"] and st_.get("unv"):  # 3. kademe = doğrulayıcıya ulaşılamayan ama diğer tüm kontrolleri geçen sorular (ünite/olumsuz kök/tutarlılık)
+            have = [_qwords(q) for q in qs_]
+            for q in st_["unv"]:
+                if len(qs_) >= p["n"]:
+                    break
+                w = _qwords(q)
+                if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have):
+                    continue
+                if not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label) or _negative_stem(q):
+                    continue
+                qs_.append(q)
+                have.append(w)
+                st_["used_unv"] = st_.get("used_unv", 0) + 1
+        if st_.get("used_unv"):
+            errors.append(f"ℹ️ {p['subject']}: {st_['used_unv']} soru ikinci model tarafından doğrulanamadı (yoğunluk); şüpheli görürsen 🚩 ile bildir")
         if len(qs_) < p["n"]:
             errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru hazırlanabildi (yoğunluk nedeniyle); tekrar denersen tamamlanır" if _quota_like(st_.get("err")) else
                           f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi" + (f" ({st_['err'][:90]})" if st_.get("err") and not qs_ else ""))
@@ -10639,6 +10678,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     store.bank_put(bank_key_for(p, grade_label, difficulty), _bank_meta(p, grade_label, difficulty), extra)
         except Exception:
             pass
+    if no_keys and not questions:
+        return [], ["API anahtarı bulunamadı"]
     _spread_answers(questions)
     for i, q in enumerate(questions, 1):
         q["id"] = i

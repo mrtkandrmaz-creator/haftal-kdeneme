@@ -258,7 +258,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--grades", default="5")
     ap.add_argument("--subjects", default="")
-    ap.add_argument("--per-unit", type=int, default=10)
+    ap.add_argument("--per-unit", type=int, default=2)
     ap.add_argument("--max-per-unit", type=int, default=80, help="bir ünitede bu kadar soruya ulaşılınca atlanır")
     ap.add_argument("--minutes", type=float, default=40)
     ap.add_argument("--listen-ratio", type=float, default=0.4, help="İngilizce hedeflerinin dinleme sorusu olma olasılığı")
