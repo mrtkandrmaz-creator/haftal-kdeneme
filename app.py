@@ -802,7 +802,7 @@ import itertools
 import re
 import textwrap
 import numpy as np
-from matplotlib.patches import Arc, FancyBboxPatch, Polygon, Rectangle, Wedge
+from matplotlib.patches import Arc, Circle, FancyBboxPatch, Polygon, Rectangle, Wedge
 import matplotlib.pyplot as plt
 
 
@@ -1344,9 +1344,46 @@ def _disli_ciz(ax, et):
 # --- ANA ÇİZİCİ ---
 
 
+
+# --- ELEKTRİK DEVRESİ (5. sınıf): pil, anahtar, ampul, kablo; harf etiketli (adları yazmaz)
+def _devre_ciz(ax, et):
+    lab = et.get("etiketler") if isinstance(et.get("etiketler"), dict) else {}
+    L = {k: _t(str(lab.get(k, ""))) for k in ("pil", "anahtar", "ampul", "kablo")}
+    acik = _norm(et.get("acik", "hayir")) in ("evet", "true", "1", "acik")
+    x0, x1, y0, y1 = 0.9, 5.1, 1.0, 3.8
+    ym, xm = (y0 + y1) / 2, (x0 + x1) / 2
+    kw = dict(color='#0f172a', linewidth=2.4, solid_capstyle='round')
+    ax.plot([x0, x0], [y0, ym - 0.35], **kw); ax.plot([x0, x0], [ym + 0.35, y1], **kw)     # sol kenar (pil için boşluk)
+    ax.plot([x0, xm - 0.45], [y1, y1], **kw); ax.plot([xm + 0.45, x1], [y1, y1], **kw)    # üst kenar (anahtar için boşluk)
+    ax.plot([x1, x1], [y1, ym + 0.4], **kw); ax.plot([x1, x1], [ym - 0.4, y0], **kw)      # sağ kenar (ampul için boşluk)
+    ax.plot([x0, x1], [y0, y0], **kw)                                                      # alt kenar
+    # pil: uzun çizgi (+) ve kısa çizgi (-)
+    ax.plot([x0 - 0.3, x0 + 0.3], [ym + 0.35, ym + 0.35], color='#0f172a', linewidth=3)
+    ax.plot([x0 - 0.17, x0 + 0.17], [ym - 0.35, ym - 0.35], color='#0f172a', linewidth=5)
+    ax.text(x0 + 0.42, ym + 0.45, "+", fontsize=11, fontweight='bold', color='#dc2626', va='center')
+    ax.text(x0 + 0.42, ym - 0.45, "−", fontsize=12, fontweight='bold', color='#2563eb', va='center')
+    ax.text(x0 - 0.5, ym, L["pil"], fontsize=13, fontweight='bold', color='#7c3aed', ha='center', va='center')
+    # anahtar
+    ax.add_patch(Circle((xm - 0.45, y1), 0.06, fc='#0f172a', zorder=4)); ax.add_patch(Circle((xm + 0.45, y1), 0.06, fc='#0f172a', zorder=4))
+    if acik:
+        ax.plot([xm - 0.45, xm + 0.3], [y1, y1 + 0.38], **kw)
+    else:
+        ax.plot([xm - 0.45, xm + 0.45], [y1, y1], **kw)
+    ax.text(xm, y1 + 0.62, L["anahtar"], fontsize=13, fontweight='bold', color='#7c3aed', ha='center', va='center')
+    # ampul
+    ax.add_patch(Circle((x1, ym), 0.4, fc='#fef9c3', ec='#0f172a', linewidth=2.2, zorder=3))
+    ax.plot([x1 - 0.28, x1 + 0.28], [ym - 0.28, ym + 0.28], color='#0f172a', linewidth=1.6, zorder=4)
+    ax.plot([x1 - 0.28, x1 + 0.28], [ym + 0.28, ym - 0.28], color='#0f172a', linewidth=1.6, zorder=4)
+    ax.text(x1 + 0.75, ym, L["ampul"], fontsize=13, fontweight='bold', color='#7c3aed', ha='center', va='center')
+    # kablo etiketi (alt kenar)
+    ax.annotate(L["kablo"], xy=(xm, y0), xytext=(xm, y0 - 0.6), fontsize=13, fontweight='bold', color='#7c3aed', ha='center', va='center',
+                arrowprops=dict(arrowstyle='-', color='#7c3aed', lw=1.4))
+    ax.set_aspect('equal')
+
+
 KINDS = {"surtunme": _surtunme_ciz, "basinc_kati": _basinc_kati, "basinc_sivi": _basinc_sivi, "mevsim": _mevsim_ciz, "dna": _dna_ciz,
          "caprazlama": _caprazlama_ciz, "direnc": _direnc_ciz, "kaldirac": _kaldirac_ciz, "egik_duzlem": _egik_duzlem_ciz,
-         "makara": _makara_ciz, "disli": _disli_ciz}
+         "makara": _makara_ciz, "disli": _disli_ciz, "devre": _devre_ciz}
 _HINT_KEYS = ("surtunme_goster", "kuvvet_goster", "hucreleri_goster", "tarih_goster", "mevsim_goster", "etiket_goster", "deger_goster", "deger_yaz", "gorunum_goster")
 
 
@@ -4646,6 +4683,7 @@ EXTRA_FIRST = 2    # ilk turda fazladan istenen soru (elenenler için yedek; tam
 CALL_TIMEOUT = 25  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
 GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
 # İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
+STRICT_MODE = ("Matematik", "Fen Bilimleri") if os.environ.get("DENEMEMATIK_SIKI", "1") != "0" else ()  # SIKI MOD: bu derslerde canlı yapay zekâ sorusu ancak İKİ bağımsız çözücü cevabı onaylarsa girer; hazır kalıp/şablon/havuz önceliklidir
 FAIL_CLOSED_SUBJECTS = ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "İngilizce")  # doğrulanamayan canlı soru elenir
 STRICT_VERIFY = ("Türkçe", "Sosyal Bilgiler")  # bu derslerde canlı üretimde de ikinci model doğrulaması yapılır (katı mod)
 VERIFY_SUBJECTS = ()  # boş = arka plandaki banka/havuz dolumunda TÜM dersler ikinci modelle doğrulanır (eskiden yalnız Matematik/Fen).  # sayısal muhakeme dersleri doğrulanır; diğerleri doğrulama beklemeden hızlı akar
@@ -5533,7 +5571,7 @@ def critique_fix(qs, gk, mk, offset=0, batch=6):
     return out
 
 
-def verify_strict(qs, gk, mk, offset=0, batch=8, facts=None):
+def verify_strict(qs, gk, mk, offset=0, batch=8, facts=None, fast=False):
     """HAVUZA girecek sorular için sıkı doğrulama: soru, cevap anahtarı gösterilmeden İKİ bağımsız çözümden geçer
     (mümkünse farklı model aileleri). İkisi de anahtarla aynı şıkkı vermezse ya da çözücüye ulaşılamazsa soru ELENİR."""
     out = []
@@ -5569,7 +5607,7 @@ def verify_strict(qs, gk, mk, offset=0, batch=8, facts=None):
         answers = []
         for ex, off in passes:
             a = solve(chunk, ex, off)
-            for wait in (20, 60):  # kota/ağ takılması: boş yanıtta bekleyip farklı anahtar/model ile yeniden dene
+            for wait in ((20, 60) if not fast else ()):  # kota/ağ takılması: boş yanıtta bekleyip farklı anahtar/model ile yeniden dene
                 if a:
                     break
                 time.sleep(wait)
@@ -5728,6 +5766,7 @@ _FEN_REQ = {
     "egik_duzlem": r"eğik düzlem|basit makine|yük|kuvvet|rampa",
     "makara": r"makara|basit makine|yük|kuvvet",
     "disli": r"dişli|basit makine|dönüş|devir|diş",
+    "devre": r"devre|pil|ampul|anahtar|kablo|elektrik",
 }
 _FEN_KINDS = set(_FEN_REQ)
 
@@ -9249,6 +9288,22 @@ _MF_GENS += [(_mf_inter, ("çember", "kesişim", "kesişen"), (5,))]
 
 
 # ---------------------------------------------------------------- 5-6. SINIF: OLASILIK ve VERİ (kodla hesaplanan, görselle birebir uyumlu)
+
+_SKINS = [  # (kap, tek-kap-eki hali, tür-1, tür-2, tür-3, tür-4, nesne)  -> aynı olasılık problemi, farklı bağlam
+    ("kutuda", "kutudan", ["kırmızı", "mavi", "yeşil", "sarı"], "bilye"),
+    ("torbada", "torbadan", ["kırmızı", "beyaz", "siyah", "turuncu"], "top"),
+    ("sepette", "sepetten", ["elma", "armut", "portakal", "muz"], "meyve"),
+    ("çantada", "çantadan", ["mavi", "kırmızı", "yeşil", "mor"], "kalem"),
+    ("poşette", "poşetten", ["çilekli", "vişneli", "limonlu", "portakallı"], "şeker"),
+    ("kavanozda", "kavanozdan", ["kırmızı", "sarı", "mavi", "yeşil"], "düğme"),
+]
+
+
+def _skin_q(nm_kinds):
+    cap, capn, kinds, obj = random.choice(_SKINS)
+    return cap, capn, random.sample(kinds, nm_kinds), obj
+
+
 def _mf_prob5(subject, kind=None):
     from fractions import Fraction as Fr
     show = lambda f: "0" if f == 0 else ("1" if f == 1 else f"{f.numerator}/{f.denominator}")
@@ -9278,22 +9333,28 @@ def _mf_prob5(subject, kind=None):
         return _mf_raw(subject, "Olasılık", q, o, f"1’den {N}’e kadar {nm} olan {cnt} kart vardır; toplam {N} kart → {show(c)}.") if o else None
     k, y, m = random.sample(range(1, 9), 3)
     n = k + y + m
-    cols = ["kırmızı", "mavi", "yeşil"]
+    cap, capn, cols, obj = _skin_q(3)
     cnt = [k, y, m]
     pi = random.randrange(3)
     c = Fr(cnt[pi], n)
     wr = [Fr(cnt[pi], n - cnt[pi]), Fr(n - cnt[pi], n), Fr(cnt[pi] + 1, n), Fr(1, 3), Fr(cnt[(pi + 1) % 3], n)]
     wr = [w for w in wr if w != c]
     o = _mf_opts(show(c), [show(w) for w in wr], str, sort=False)
-    q = f"Bir torbada {k} kırmızı, {y} mavi ve {m} yeşil bilye vardır. Torbadan rastgele çekilen bir bilyenin {cols[pi]} olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)"
-    return _mf_raw(subject, "Olasılık", q, o, f"Toplam {n} bilye, {cols[pi]} olan {cnt[pi]} tane → {show(c)}.") if o and len(set(o[0])) == 4 else None
+    ad = (lambda t: f"{t} {obj}") if obj != "meyve" else (lambda t: t)
+    q = f"{cap.capitalize()} {k} {ad(cols[0])}, {y} {ad(cols[1])} ve {m} {ad(cols[2])} vardır. Rastgele seçilen birinin {cols[pi]}{' ' + obj if obj != 'meyve' else ''} olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)"
+    return _mf_raw(subject, "Olasılık", q, o, f"Toplam {n}; {cols[pi]} olan {cnt[pi]} tane → {show(c)}.") if o and len(set(o[0])) == 4 else None
 
 
 def _mf_bar5(subject, kind=None):
     sets = [("Bir okulda öğrencilerin sevdiği meyveler", ["Elma", "Muz", "Çilek", "Kiraz"], "öğrenci"),
             ("Bir sınıfta öğrencilerin okuduğu kitap sayısı (aylara göre)", ["Ocak", "Şubat", "Mart", "Nisan"], "kitap"),
             ("Bir kütüphaneye gelen ziyaretçi sayısı (günlere göre)", ["Pzt", "Sal", "Çar", "Per"], "kişi"),
-            ("Bir markette satılan ürün sayısı", ["Süt", "Ekmek", "Yumurta", "Peynir"], "adet")]
+            ("Bir markette satılan ürün sayısı", ["Süt", "Ekmek", "Yumurta", "Peynir"], "adet"),
+            ("Bir okulda spor kulüplerine kayıtlı öğrenciler", ["Futbol", "Voleybol", "Yüzme", "Satranç"], "öğrenci"),
+            ("Bir çiftlikteki hayvan sayısı", ["İnek", "Koyun", "Tavuk", "At"], "adet"),
+            ("Bir sınıfta hafta içi günlük okunan sayfa sayısı", ["Pzt", "Sal", "Çar", "Per"], "sayfa"),
+            ("Bir parkta toplanan atık kâğıt miktarı (haftalara göre)", ["1. hafta", "2. hafta", "3. hafta", "4. hafta"], "kg"),
+            ("Bir kantinde satılan içecekler", ["Su", "Süt", "Meyve suyu", "Ayran"], "adet")]
     ttl, labs, unit = random.choice(sets)
     vals = random.sample(range(4, 31), 4)
     kind = kind or random.choice(["toplam", "fark", "enaz", "iki"])
@@ -9302,7 +9363,7 @@ def _mf_bar5(subject, kind=None):
     if kind == "toplam":
         c = sum(vals)
         wr = [c - mn, c + 5, c - 10, sum(vals[:3]), c + 10]
-        q, ex = f"Şekildeki sütun grafiği “{ttl}” verisini göstermektedir. Buna göre dört sütunun toplamı kaç {unit}dir?".replace("kaç adetdir", "kaç adettir").replace("kaç kitapdır", "kaç kitaptır"), f"{' + '.join(map(str, vals))} = {c}."
+        q, ex = f"Şekildeki sütun grafiği “{ttl}” verisini göstermektedir. Buna göre dört sütunun toplamı kaç {unit}dir?".replace("kaç adetdir", "kaç adettir").replace("kaç kitapdır", "kaç kitaptır").replace("kaç sayfadir", "kaç sayfadır").replace("kaç kgdir", "kaç kg’dır"), f"{' + '.join(map(str, vals))} = {c}."
     elif kind == "fark":
         c = mx - mn
         wr = [mx + mn, c + 2, c - 2, mx - sorted(vals)[1], c + 5]
@@ -9350,17 +9411,18 @@ def _mf_probdeg(subject):
 
 
 def _mf_probmost(subject):
-    """Torbada hangi renk çekilme olasılığı en yüksek/en düşük (tek doğru)."""
-    cols = random.sample(["kırmızı", "mavi", "yeşil", "sarı"], 4)
+    """Hangi tür seçilme olasılığı en yüksek/en düşük (tek doğru; farklı bağlamlar)."""
+    cap, capn, cols, obj = _skin_q(4)
     cnt = random.sample(range(1, 13), 4)
     hi = random.choice([True, False])
     t = max(cnt) if hi else min(cnt)
     i = cnt.index(t)
     n = sum(cnt)
-    lst = ", ".join(f"{c_} {k_} tane" for c_, k_ in zip(cols[:-1], cnt[:-1])) + f" ve {cols[-1]} {cnt[-1]} tane"
-    o = _mf_opts(cols[i], [c_ for j, c_ in enumerate(cols) if j != i], str, sort=False)
-    return _mf_raw(subject, "Olasılık", f"Bir torbada özdeş bilyelerden {lst} vardır. Torbadan rastgele bir bilye çekiliyor. Çekilen bilyenin hangi renkte olma olasılığı {'en yüksektir' if hi else 'en düşüktür'}?", o,
-                   f"Olasılık, bilye sayısıyla orantılıdır; {'en çok' if hi else 'en az'} bilye {cols[i]} renkte ({t} tane, toplam {n}).") if o else None
+    ad = (lambda t_: f"{t_} {obj}") if obj != "meyve" else (lambda t_: t_)
+    lst = ", ".join(f"{k_} {ad(c_)}" for c_, k_ in zip(cols[:-1], cnt[:-1])) + f" ve {cnt[-1]} {ad(cols[-1])}"
+    o = _mf_opts(cols[i], [c_ for j_, c_ in enumerate(cols) if j_ != i], str, sort=False)
+    return _mf_raw(subject, "Olasılık", f"{cap.capitalize()} {lst} vardır. Rastgele seçilen birinin hangi türden olma olasılığı {'en yüksektir' if hi else 'en düşüktür'}?", o,
+                   f"Olasılık, sayıyla orantılıdır; {'en çok' if hi else 'en az'} olan {cols[i]} ({t} tane, toplam {n}).") if o else None
 
 
 def _mk_kind(fn, kind, name):
@@ -9401,11 +9463,11 @@ def _mf_fr_addsub(subject):
         return None
     nm = random.choice(["Elif", "Mert", "Zeynep", "Can"])
     if add:
-        q = f"{nm} bir pizzanın {_fr_s(a, d)}’ünü, kardeşi ise aynı pizzanın {_fr_s(b, d)}’ünü yedi. İkisi birlikte pizzanın kaçını yemiştir?"
+        q = f"{nm} bir pizzanın {_fr_s(a, d)} kadarını, kardeşi ise aynı pizzanın {_fr_s(b, d)} kadarını yedi. İkisi birlikte pizzanın kaçını yemiştir?"
         ex, wr = f"{a}/{d} + {b}/{d} = {c}/{d}.", [a - b if a > b else b - a, c + 1, c - 1, a + b + d]
     else:
         q = f"{nm}’in kurdelesinin {_fr_s(a, d)}’si kırmızı boyanmıştır. Boyalı kısmın {_fr_s(b, d)}’i (bütünün {b}/{d}’i) solmuştur; solmayan boyalı kısım kurdelenin kaçıdır?"
-        q = f"Bir su deposunun {_fr_s(a, d)}’i doludur. Depodan bütünün {_fr_s(b, d)}’i kadar su kullanılırsa depoda bütünün kaçı kalır?"
+        q = f"Bir su deposunun {_fr_s(a, d)} kadarı doludur. Depodan bütünün {_fr_s(b, d)} kadar su kullanılırsa depoda bütünün kaçı kalır?"
         ex, wr = f"{a}/{d} − {b}/{d} = {c}/{d}.", [a + b, c + 1, c - 1 if c > 1 else c + 2, b]
     o = _mf_opts(c, [w for w in wr if 0 < w], lambda v: _fr_s(v, d), sort=False)
     return _mf_raw(subject, "Kesirler", q, o, ex) if o else None
@@ -9419,7 +9481,7 @@ def _mf_fr_whole(subject):
         c = d - n
         wr = [n, d + n, c + 1, c - 1 if c > 1 else c + 2, d]
         o = _mf_opts(c, [w for w in wr if w > 0], lambda v: _fr_s(v, d), sort=False)
-        return _mf_raw(subject, "Kesirler", f"Bir kitabın {_fr_s(n, d)}’ü okunmuştur. Kitabın okunmayan kısmı bütünün kaçıdır?", o, f"1 = {d}/{d}; {d}/{d} − {n}/{d} = {c}/{d}.") if o else None
+        return _mf_raw(subject, "Kesirler", f"Bir kitabın {_fr_s(n, d)} kadarı okunmuştur. Kitabın okunmayan kısmı bütünün kaçıdır?", o, f"1 = {d}/{d}; {d}/{d} − {n}/{d} = {c}/{d}.") if o else None
     t = random.randint(1, 5)
     if kind == "bilesik":
         num = t * d + n
@@ -9442,10 +9504,12 @@ def _mf_fr_of(subject):
     c = n * u
     wr = [tot - c, c + u, u, tot // 2 if tot // 2 != c else tot + 1, c * 2]
     o = _mf_opts(c, [w for w in wr if w > 0], str)
-    nm = random.choice(["Bir sınıfta", "Bir koşuda", "Bir bahçede"])
-    q = {"Bir sınıfta": f"Bir sınıfta {tot} öğrenci vardır. Öğrencilerin {_fr_s(n, d)}’si gözlüklüdür. Gözlüklü kaç öğrenci vardır?",
-         "Bir koşuda": f"Bir koşu parkuru {tot} km’dir. Ece parkurun {_fr_s(n, d)}’ünü koştu. Ece kaç km koşmuştur?",
-         "Bir bahçede": f"Bir bahçede {tot} ağaç vardır. Ağaçların {_fr_s(n, d)}’si meyve ağacıdır. Bahçede kaç meyve ağacı vardır?"}[nm]
+    nm = random.choice(["Bir sınıfta", "Bir koşuda", "Bir bahçede", "Bir kütüphanede", "Bir kantinde"])
+    q = {"Bir sınıfta": f"Bir sınıfta {tot} öğrenci vardır. Öğrencilerin {_fr_s(n, d)} kadarı gözlüklüdür. Gözlüklü kaç öğrenci vardır?",
+         "Bir koşuda": f"Bir koşu parkuru {tot} km’dir. Ece parkurun {_fr_s(n, d)} kadarını koştu. Ece kaç km koşmuştur?",
+         "Bir bahçede": f"Bir bahçede {tot} ağaç vardır. Ağaçların {_fr_s(n, d)} kadarı meyve ağacıdır. Bahçede kaç meyve ağacı vardır?",
+         "Bir kütüphanede": f"Bir kütüphanede {tot} kitap vardır. Kitapların {_fr_s(n, d)} kadarı hikâye kitabıdır. Kütüphanede kaç hikâye kitabı vardır?",
+         "Bir kantinde": f"Bir kantinde gün boyunca {tot} sandviç hazırlanmıştır. Sandviçlerin {_fr_s(n, d)} kadarı satılmıştır. Kaç sandviç satılmıştır?"}[nm]
     return _mf_raw(subject, "Kesirler", q, o, f"{tot} ÷ {d} = {u}; {u} × {n} = {c}.") if o else None
 
 
@@ -9929,6 +9993,25 @@ def _sf_miras(subject):
                    f"{n}, {il} ilimizin sınırları içindedir.")
 
 
+def _ff_devre2(subject):
+    """Şekildeki basit elektrik devresinde (harf etiketli) elemanın görevine göre harfi bulma; şekil ile metin kodla uyumlu."""
+    letters = random.sample(["K", "L", "M", "N", "P", "R", "S", "T"], 4)
+    el = dict(zip(["pil", "anahtar", "ampul", "kablo"], letters))
+    kind = random.choice(["ampul", "anahtar", "pil"])
+    qs = {"ampul": "Şekildeki basit elektrik devresinde elektrik enerjisini ışık enerjisine dönüştüren devre elemanı hangi harfle gösterilmiştir?",
+          "anahtar": "Şekildeki basit elektrik devresinde devreyi açıp kapatmaya yarayan devre elemanı hangi harfle gösterilmiştir?",
+          "pil": "Şekildeki basit elektrik devresinde devreye elektrik enerjisi sağlayan devre elemanı hangi harfle gösterilmiştir?"}
+    ex = {"ampul": "Ampul, elektrik enerjisini ışık enerjisine dönüştürür.", "anahtar": "Anahtar devreyi açıp kapatır.", "pil": "Pil devrenin enerji kaynağıdır."}
+    c = el[kind]
+    allv = sorted(letters)
+    o = (allv, c)
+    shape = {"type": "fen", "sub_type": "devre", "etiketler": el, "acik": random.choice(["evet", "hayir"])}
+    return _mf_raw(subject, "Devre Elemanları", qs[kind], o, ex[kind] + f" Şekilde bu eleman {c} harfiyle gösterilmiştir.", shape=shape)
+
+
+_FF_GENS += [(_ff_devre2, ("elektrik", "devre", "yaşamımızdaki"))]
+
+
 _SF_GENS += [(_sf_komsu, ("komşu", "evimiz", "dünya", "çevre")), (_sf_miras, ("miras", "göbeklitepe", "çatalhöyük", "anadolu", "medeniyet"))]
 
 _ZIT = [("sıcak", "soğuk"), ("uzun", "kısa"), ("hızlı", "yavaş"), ("aydınlık", "karanlık"), ("temiz", "kirli"), ("zengin", "fakir"), ("cesur", "korkak"),
@@ -10003,7 +10086,7 @@ _DIFF_OF = {  # hazır kalıbın zorluk kademesi (1-6); seçilen kademeden en ç
     "_mf_pattern": 3, "_mf_fracorder": 2, "_mf_fracmax": 3, "_mf_decimal": 2, "_mf_percent_odd": 3, "_mf_percent_of": 2, "_mf_geo": 3, "_mf_market": 4,
     "_mf_wings": 4, "_mf_nest": 4, "_mf_ntri": 4, "_mf_inter": 4, "_mf_twotri": 4, "_mf_prob_zar": 2, "_mf_prob_kart": 3, "_mf_prob_bilye": 2, "_mf_probdeg": 3,
     "_mf_probmost": 2, "_mf_bar_top": 2, "_mf_bar_fark": 2, "_mf_bar_enaz": 1, "_mf_bar_iki": 3, "_mf_fr_addsub": 2, "_mf_fr_whole": 2, "_mf_fr_of": 3,
-    "_mf_dec_addsub": 2, "_mf_dec_conv": 2, "_mf_eqlty": 3, "_ff_ortam": 2, "_ff_devre": 2, "_ff_hucre": 2, "_ff_atik": 1, "_ff_food": 3, "_ff_boil": 4,
+    "_mf_dec_addsub": 2, "_mf_dec_conv": 2, "_mf_eqlty": 3, "_ff_ortam": 2, "_ff_devre": 2, "_ff_devre2": 2, "_ff_hucre": 2, "_ff_atik": 1, "_ff_food": 3, "_ff_boil": 4,
     "_ff_fric": 4, "_ff_shadow": 3, "_ff_weight": 3, "_ff_spring": 4, "_ff_shift": 3, "_ff_seq": 2, "_ff_quarter": 3, "_ff_props": 2,
     "_sf_komsu": 2, "_sf_miras": 2, "_sf_budget": 4, "_sf_rain": 4, "_tf_zit": 1, "_tf_deyim": 2, "_tf_atasozu": 3,
 }
@@ -10510,11 +10593,15 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 return out
 
             qs, err = _ask_questions(prompt, gk, mk, idx, validate, reasoning=GEN_REASONING.get(subj))
-            if verify and qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS or subj in STRICT_VERIFY) and (gk or mk or extra_keys()):  # yalnız arka plan (banka/havuz) dolumunda
+            if (verify or subj in STRICT_MODE) and qs and (not VERIFY_SUBJECTS or subj in VERIFY_SUBJECTS or subj in STRICT_VERIFY) and (gk or mk or extra_keys()):  # yalnız arka plan (banka/havuz) dolumunda
                 try:
-                    qs = verify_questions(qs, gk, mk, offset=idx)
+                    if subj in STRICT_MODE:
+                        qs = verify_strict(qs, gk, mk, offset=idx, fast=True)  # SIKI MOD: iki bağımsız çözücü aynı şıkkı vermeli
+                    else:
+                        qs = verify_questions(qs, gk, mk, offset=idx)
                 except Exception:  # doğrulayıcı hatası üretimi engellemesin
-                    pass
+                    if subj in STRICT_MODE:
+                        qs = []
                 if subj in FAIL_CLOSED_SUBJECTS:  # Matematik: bağımsız modelce doğrulanmayan soru ASLA sınava girmez (hatalı soru yerine kodla hesaplanan soru gelir)
                     _ok = [q for q in qs if q.get("vfd") or q.get("local") or q.get("tpl") or q.get("pool")]
                     st_.setdefault("unv", []).extend([q for q in qs if q not in _ok])  # son çare yedeği: doğrulanamayanlar (yalnızca soru sayısı tamamlanamazsa)
@@ -10539,7 +10626,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     pass
             if not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_FACTORY") != "1" and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "Matematik", "Fen Bilimleri"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
                 try:  # çekirdek/hesaplanan soruların toplam payı en çok ~%25 (çoğunluk yapay zekâ); kaynaklar sırayla, dönüşümlü
-                    fb = max(1 if n >= 4 else 0, int(n * (0.6 if subj == "Matematik" else 0.25)))  # Matematikte kodla hesaplanan soru payı yüksek (hatasız); AI soruları yalnızca doğrulanırsa girer
+                    fb = max(1 if n >= 4 else 0, int(n * (0.6 if subj in STRICT_MODE else 0.25)))  # Matematikte kodla hesaplanan soru payı yüksek (hatasız); AI soruları yalnızca doğrulanırsa girer
                     srcs = [lambda k: seed_questions(subj, grade_label, p.get("topics", ""), limit=k, seen=seen),
                             lambda k: local_questions(subj, grade_label, k, p.get("topics", ""), seen=seen)]
                     if subj == "Matematik":
@@ -10676,7 +10763,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                         qs_.append(q)
                 except Exception:
                     pass
-        if len(qs_) < p["n"] and st_.get("unv"):  # 3. kademe = doğrulayıcıya ulaşılamayan ama diğer tüm kontrolleri geçen sorular (ünite/olumsuz kök/tutarlılık)
+        if len(qs_) < p["n"] and st_.get("unv") and p.get("subject") not in STRICT_MODE:  # 3. kademe (sıkı modda YOK: doğrulanmamış soru girmez) = doğrulayıcıya ulaşılamayan ama diğer tüm kontrolleri geçen sorular (ünite/olumsuz kök/tutarlılık)
             have = [_qwords(q) for q in qs_]
             for q in st_["unv"]:
                 if len(qs_) >= p["n"]:
