@@ -2121,6 +2121,426 @@
 "topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
 "d": 3,
 "ts": 1794289638
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "In einem Bio-Bauernhof stellen sich drei neue Mitarbeiter vor. Hans sagt: 'Ich bin Hans und ich arbeite mit den Kühen.' Maria sagt: 'Ich bin Maria und meine Aufgabe sind die Hühner.' Lukas sagt: 'Hallo, ich bin Lukas und ich kümmere mich um die Pferde.'",
+"question": "Buna göre, çalışanların sorumluluk alanları ile isimlerinin doğru eşleşmesi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Hans - Pferde / Maria - Kühe / Lukas - Hühner",
+"B": "Hans - Kühe / Maria - Hühner / Lukas - Pferde",
+"C": "Hans - Hühner / Maria - Pferde / Lukas - Kühe",
+"D": "Hans - Hühner / Maria - Kühe / Lukas - Pferde"
+},
+"answer": "B",
+"explanation": "Metinde Hans'ın ineklerle (Kühe), Maria'nın tavuklarla (Hühner) ve Lukas'ın atlarla (Pferde) ilgilendiği açıkça belirtilmiştir. Bu eşleşme B şıkkında tam olarak karşılanmaktadır.",
+"_sty": "s:|doğru eşleşm aşağıd hangis",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Nach dem Befinden fragen",
+"passage": "Vier Freunde machen eine Wanderung. Am Gipfel angekommen, fragen sie einander: Sarah: 'Ich bin sehr müde.', Thomas: 'Mir geht es super!', Julia: 'Es geht so.', Felix: 'Ich bin nicht gut drauf.'",
+"question": "Bu bilgilere göre kimin durumu 'sehr gut' (çok iyi) olarak nitelendirilebilir?",
+"shape": null,
+"options": {
+"A": "Thomas",
+"B": "Julia",
+"C": "Felix",
+"D": "Sarah"
+},
+"answer": "A",
+"explanation": "Thomas 'Mir geht es super!' diyerek kendini çok iyi hissettiğini ifade etmiştir. 'Super' ifadesi 'sehr gut' ile aynı anlama gelir.",
+"_sty": "s:|çok iyi olarak nitele",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Das Alphabet",
+"passage": "An einer Weltraumstation sind die Tore mit Buchstaben markiert. Das Tor A hat das Symbol 'Sterne', das Tor B hat 'Planeten', das Tor C hat 'Raketen', das Tor D hat 'Kometen'.",
+"question": "Bir astronot 'Raketen' yazan kapıdan girmek istiyorsa, hangi harfi takip etmelidir?",
+"shape": null,
+"options": {
+"A": "B",
+"B": "D",
+"C": "A",
+"D": "C"
+},
+"answer": "D",
+"explanation": "Metinde 'Raketen' için C kapısının (Tor C) işaretlendiği belirtilmiştir. Bu durumda doğru harf C'dir.",
+"_sty": "s:|hangi harfi takip etmeli",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Begrüßen und verabschieden",
+"passage": "In der Schule treffen sich Schüler zu verschiedenen Tageszeiten. 08:00 Uhr: Herr Müller begrüßt die Klasse. 13:00 Uhr: Die Schüler verabschieden sich von der Lehrerin. 20:00 Uhr: Jan sagt seinem Vater eine gute Nacht.",
+"question": "Buna göre, zaman dilimlerine uygun ifadeler sırasıyla hangi seçenekte verilmiştir?",
+"shape": null,
+"options": {
+"A": "Guten Tag - Tschüss - Guten Morgen",
+"B": "Guten Tag - Hallo - Guten Abend",
+"C": "Guten Morgen - Auf Wiedersehen - Gute Nacht",
+"D": "Hallo - Auf Wiedersehen - Guten Tag"
+},
+"answer": "C",
+"explanation": "08:00 sabah (Guten Morgen), 13:00 öğleden sonra (Auf Wiedersehen), 20:00 ise gece vakti (Gute Nacht) için uygun selamlama veya vedalaşma ifadeleridir.",
+"_sty": "s:|sırası hangi seçene verilm",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Nach dem Befinden fragen",
+"passage": "Zwei Fischer vergleichen ihren Tag. Fischer A sagt: 'Ich bin heute sehr glücklich, weil ich viele Fische gefangen habe.' Fischer B sagt: 'Ich bin traurig, ich habe keinen Fisch gefangen.'",
+"question": "Bu bilgilere göre Fischer A için hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Er hat keine Fische.",
+"B": "Er ist traurig.",
+"C": "Er ist glücklich.",
+"D": "Er ist müde."
+},
+"answer": "C",
+"explanation": "Metinde Fischer A'nın 'sehr glücklich' (çok mutlu) olduğu ifade edilmiştir. B şıkkı bu ifadeyle örtüşmektedir.",
+"_sty": "s:|fische için hangis söylen",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "Auf einer Baustelle arbeiten drei Personen. Der Architekt heißt Peter. Der Ingenieur heißt Klaus. Der Bauarbeiter heißt Max.",
+"question": "Buna göre, verilen isimlerin meslek eşleştirmesi hangi seçenekte tam ve doğru olarak verilmiştir?",
+"shape": null,
+"options": {
+"A": "Peter: Bauarbeiter / Klaus: Architekt / Max: Ingenieur",
+"B": "Peter: Architekt / Klaus: Bauarbeiter / Max: Ingenieur",
+"C": "Peter: Ingenieur / Klaus: Architekt / Max: Bauarbeiter",
+"D": "Peter: Architekt / Klaus: Ingenieur / Max: Bauarbeiter"
+},
+"answer": "D",
+"explanation": "Metin sırasıyla Peter-Architekt, Klaus-Ingenieur ve Max-Bauarbeiter olarak meslekleri tanıtmaktadır. B şıkkı bu bilgiyi tam yansıtmaktadır.",
+"_sty": "s:|tam doğru olarak verilm",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Sich vorstellen",
+"passage": "Dört öğrenci kendilerini tanıtan kısa bilgiler vermiştir: 1. Hans: 'Ich komme aus Deutschland.', 2. Maria: 'Ich bin 11 Jahre alt.', 3. Can: 'Mein Name ist Can.', 4. Elif: 'Ich wohne in Istanbul.'",
+"question": "Buna göre, verilen tanıtım cümleleri ve kategorileri eşleştirildiğinde hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "1-Alter, 2-Name, 3-Wohnort, 4-Herkunft",
+"B": "1-Wohnort, 2-Herkunft, 3-Name, 4-Alter",
+"C": "1-Herkunft, 2-Alter, 3-Name, 4-Wohnort",
+"D": "1-Herkunft, 2-Name, 3-Alter, 4-Wohnort"
+},
+"answer": "C",
+"explanation": "1. Hans kökenini (Herkunft), 2. Maria yaşını (Alter), 3. Can ismini (Name), 4. Elif ise yaşadığı yeri (Wohnort) ifade etmektedir.",
+"_sty": "s:|katego eşleşt hangis doğrud",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Ich und Du (Kişisel Tanıtım)",
+"passage": "Dört arkadaşın bilgileri şöyledir: Peter (12 yaşında, Almanya'dan), Maria (10 yaşında, İtalya'dan), Klaus (12 yaşında, Avusturya'dan), Sofia (10 yaşında, İsviçre'den).",
+"question": "Buna göre, '12 yaşındayım ve Almanya'dan geliyorum' diyen öğrenci hangisidir?",
+"shape": null,
+"options": {
+"A": "Klaus",
+"B": "Peter",
+"C": "Sofia",
+"D": "Maria"
+},
+"answer": "B",
+"explanation": "Metinde 12 yaşında olanlar Peter ve Klaus'tur. Bunlardan Almanya'dan gelen Peter olarak belirtilmiştir.",
+"_sty": "s:|geliyo diyen öğrenc hangis",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794298067
+},
+{
+"subject": "Almanca",
+"topic": "Sport - Einzel- und Mannschaftssportarten",
+"passage": "Beim Sportfest gibt es zwei Kategorien für die Schüler: 'Gruppe A: Einzelsport' und 'Gruppe B: Mannschaftssport'. Die Teilnehmer sind: Ahmet (Tennis), Burcu (Handball), Cem (Tischtennis), Deniz (Fußball).",
+"question": "Buna göre, 'Gruppe A' ve 'Gruppe B' listeleri hangi seçenekte doğru eşleştirilmiştir?",
+"shape": null,
+"options": {
+"A": "Gruppe A: Ahmet, Cem / Gruppe B: Burcu, Deniz",
+"B": "Gruppe A: Ahmet, Burcu / Gruppe B: Cem, Deniz",
+"C": "Gruppe A: Ahmet, Deniz / Gruppe B: Burcu, Cem",
+"D": "Gruppe A: Burcu, Deniz / Gruppe B: Ahmet, Cem"
+},
+"answer": "A",
+"explanation": "Einzelsportarten sind Tennis (Ahmet) und Tischtennis (Cem). Mannschaftssportarten sind Handball (Burcu) und Fußball (Deniz). Gruppe A beinhaltet Ahmet und Cem, Gruppe B beinhaltet Burcu und Deniz.",
+"_sty": "s:|hangi seçene doğru eşleşt",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 3,
+"ts": 1794298674
+},
+{
+"subject": "Almanca",
+"topic": "Sport - Lieblingssport",
+"passage": "In einem Museum für Sportgeschichte gibt es eine interaktive Tafel. Besucher müssen eine Sportart auswählen: Wenn man 'Mannschaftssport' wählt, leuchtet ein grünes Licht. Wenn man 'Einzelsport' wählt, leuchtet ein blaues Licht. Aylin wählt Volleyball.",
+"question": "Aylin'in seçimi sonucunda tahtada hangi renk ışık yanar?",
+"shape": null,
+"options": {
+"A": "Rot",
+"B": "Gelb",
+"C": "Blau",
+"D": "Grün"
+},
+"answer": "D",
+"explanation": "Volleyball ist eine Mannschaftssportart. Da für Mannschaftssportarten ein grünes Licht definiert ist, leuchtet es grün.",
+"_sty": "s:|hangi renk ışık yanar",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 3,
+"ts": 1794298674
+},
+{
+"subject": "Almanca",
+"topic": "Sport - Vergleich",
+"passage": "Foto 1 zeigt zwei Personen, die sich einen Ball zuspielen. Foto 2 zeigt eine einzelne Person, die alleine auf einem Laufband rennt.",
+"question": "Bu iki durum karşılaştırıldığında hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Foto 1 ist eine Einzelsportart, Foto 2 ist eine Mannschaftssportart.",
+"B": "Beide Fotos zeigen Mannschaftssportarten.",
+"C": "Foto 1 zeigt eine Mannschaftssportart, Foto 2 zeigt eine Einzelsportart.",
+"D": "Beide Fotos zeigen Einzelsportarten."
+},
+"answer": "C",
+"explanation": "Das Zuspielen eines Balls (Foto 1) impliziert ein Team (Mannschaft), während das Laufen auf einem Laufband alleine (Foto 2) eine Einzelsportart ist.",
+"_sty": "s:|durum karşıl hangis söylen",
+"vfd2": true,
+"unit": "Sport",
+"topics": "Sportarten, Einzel- und Mannschaftssportarten, Mein Lieblingssport",
+"d": 3,
+"ts": 1794298674
+},
+{
+"subject": "Almanca",
+"topic": "Das Klassenzimmer",
+"passage": "Die Lehrerin zeigt auf die Gegenstände im Klassenzimmer: 'Hier ist die Wandtafel, dort stehen die Tische für die Schüler und an der Wand hängt eine Landkarte.'",
+"question": "Buna göre öğretmenin bahsettiği okul eşyalarının kullanım amaçları düşünüldüğünde hangisi sınıfın fiziksel düzeninde öğrenme sürecini destekleyen temel öğelerden biridir?",
+"shape": null,
+"options": {
+"A": "Die Landkarte dient dazu, geografische Informationen visuell darzustellen.",
+"B": "Die Tische werden ausschließlich zur Dekoration des Zimmers genutzt.",
+"C": "Die Wandtafel ist ein Platz für persönliche Notizen der Schüler.",
+"D": "Alle genannten Gegenstände sind nur für den Sportunterricht bestimmt."
+},
+"answer": "A",
+"explanation": "Eine Landkarte wird im Unterricht genutzt, um geografische Zusammenhänge zu lernen. Dies ist eine zentrale Aufgabe zur Unterstützung des Lernprozesses.",
+"_sty": "s:|destek temel öğeler biridi",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Die Schulräume",
+"passage": "Die Schule hat drei wichtige Räume für Aktivitäten: Raum 1 ist die Bibliothek für Bücher. Raum 2 ist die Turnhalle für Sport. Raum 3 ist das Labor für Experimente. Heute hat Ahmet Biologie und möchte Pflanzen untersuchen.",
+"question": "Buna göre Ahmet'in yapacağı çalışma için gitmesi gereken okul bölümü aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Raum 2",
+"B": "Raum 3",
+"C": "Raum 1",
+"D": "Bibliothek"
+},
+"answer": "B",
+"explanation": "Pflanzen untersuchen (Experimente machen) findet typischerweise im Labor statt, welches als Raum 3 definiert ist.",
+"_sty": "s:|okul bölümü aşağıd hangis",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen",
+"passage": "Ich habe einen Füller, ein Heft und ein Buch. Meine Freundin hat eine Schere, ein Buch und einen Füller.",
+"question": "Buna göre her iki öğrencide de bulunan ortak eşyalar hangileridir?",
+"shape": null,
+"options": {
+"A": "Buch und Schere",
+"B": "Heft und Schere",
+"C": "Füller und Heft",
+"D": "Füller und Buch"
+},
+"answer": "D",
+"explanation": "Beide besitzen ein Buch und einen Füller. Die Schere hat nur die Freundin, das Heft hat nur die sprechende Person.",
+"_sty": "s:|buluna ortak eşyala hangil",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Die Schulräume",
+"passage": "I. In der Kantine essen die Schüler ihr Mittagessen.\nII. Im Lehrerzimmer ruhen sich die Schüler in der Pause aus.\nIII. Auf dem Schulhof spielen die Schüler Fußball.",
+"question": "Buna göre I, II ve III numaralı ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Nur I",
+"B": "I und III",
+"C": "II und III",
+"D": "I, II und III"
+},
+"answer": "B",
+"explanation": "Kantine zum Essen ist korrekt (I). Das Lehrerzimmer ist für Lehrer, nicht für Schüler (II falsch). Schulhof für Sport/Spielen ist korrekt (III).",
+"_sty": "s:|numara ifadel hangil doğrud",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Das Klassenzimmer",
+"passage": "In unserem Klassenzimmer gibt es: 20 Stühle, 10 Tische (jeder Tisch ist für zwei Schüler), 1 Lehrerpult und 1 Computer.",
+"question": "Bu bilgilere göre sınıfın mevcut durumuyla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Der Raum bietet Platz für genau 20 Schüler.",
+"B": "Jeder Schüler hat seinen eigenen Tisch.",
+"C": "Es gibt mehr Computer als Lehrerpulte.",
+"D": "In der Klasse gibt es mehr Tische als Stühle."
+},
+"answer": "A",
+"explanation": "10 Tische für je 2 Schüler bedeutet Platz für 20 Schüler. Da 20 Stühle vorhanden sind, passt die Anzahl zusammen.",
+"_sty": "s:|ilgili aşağıd hangis söylen",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen",
+"passage": "Klaus sucht seine Schulsachen: 'Mein Buntstift ist blau. Mein Heft ist gelb. Mein Buch ist rot.'",
+"question": "Klaus'un eşyalarının renkleri dikkate alındığında aşağıdaki eşleşmelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Buntstift - gelb",
+"B": "Heft - rot",
+"C": "Heft - blau",
+"D": "Buch - rot"
+},
+"answer": "D",
+"explanation": "Im Text steht: Buntstift = blau, Heft = gelb, Buch = rot. Die einzige korrekte Übereinstimmung ist Buch - rot.",
+"_sty": "s:|aşağıd eşleşm hangis doğrud",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Schulsachen",
+"passage": "Dr. Weber ist ein Wissenschaftler. Er sortiert seine Arbeitsmaterialien für die Forschung in seinem Büro. In seiner Kiste befinden sich: Ein Lineal (30 cm), zwei Spitzer, drei Bleistifte, ein Radiergummi und eine Schere. Er braucht für seine Messungen das Objekt, das eine gerade Linie ziehen kann, und für seine Zeichnungen die Objekte, die aus Holz bestehen und Graphit enthalten.",
+"question": "Welche Materialien nutzt Dr. Weber für seine Messungen und Zeichnungen?",
+"shape": null,
+"options": {
+"A": "Das Lineal und die Bleistifte",
+"B": "Die Schere und der Radiergummi",
+"C": "Die Spitzer und das Lineal",
+"D": "Der Radiergummi und die Bleistifte"
+},
+"answer": "A",
+"explanation": "Dr. Weber benötigt für Messungen (gerade Linie) ein Lineal und für Zeichnungen (aus Holz mit Graphit) Bleistifte. Die anderen Gegenstände erfüllen diese spezifischen Kriterien nicht. Die Kombination aus Lineal und Bleistiften ist korrekt.",
+"_sty": "s:|seine messun und zeichn",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Das Klassenzimmer",
+"passage": "Im Robotik-Workshop gibt es klare Regeln für die Ausstattung. Ein Tisch ist für den Laptop vorgesehen, der zweite Tisch für das Roboter-Kit. Der Lehrer sagt: 'Der Stuhl steht unter dem Tisch für den Laptop. Der Mülleimer steht neben dem Regal, in dem die Werkzeuge liegen. Der Lehrerpult steht gegenüber der Tafel.'",
+"question": "Warum steht der Stuhl genau an dieser Position?",
+"shape": null,
+"options": {
+"A": "Weil der Lehrerpult gegenüber der Tafel steht",
+"B": "Weil das Regal neben dem Mülleimer steht",
+"C": "Weil er für den Arbeitsplatz am Laptop gedacht ist",
+"D": "Weil das Roboter-Kit auf dem ersten Tisch liegt"
+},
+"answer": "C",
+"explanation": "Die Position des Stuhls wird im Text direkt mit dem Tisch für den Laptop verknüpft, um dort arbeiten zu können. Die anderen Optionen beschreiben zwar existierende Gegenstände, begründen aber nicht die spezifische Platzierung des Stuhls.",
+"_sty": "s:|stuhl genau dieser positi",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
+},
+{
+"subject": "Almanca",
+"topic": "Die Schulräume",
+"passage": "Die Schule 'Zukunft' achtet auf Energie. In der Sporthalle brennen von 08:00 bis 14:00 Uhr die Lichter. In der Bibliothek brennen sie nur, wenn Schüler dort lesen. Im Lehrerzimmer ist das Licht von 07:00 bis 16:00 Uhr an. Der Rektor sagt: 'Wir sparen Energie, indem wir Räume nutzen, die viel Tageslicht haben, wie den Kunstsaal.'",
+"question": "Welche Schlussfolgerung lässt sich über den Energieverbrauch der Räume ziehen?",
+"shape": null,
+"options": {
+"A": "Das Lehrerzimmer hat die längste Beleuchtungszeit",
+"B": "Die Sporthalle verbraucht weniger Strom als der Kunstsaal",
+"C": "Die Bibliothek ist immer hell erleuchtet",
+"D": "Der Kunstsaal ist der einzige Raum ohne Licht"
+},
+"answer": "A",
+"explanation": "Das Lehrerzimmer (07:00-16:00 Uhr = 9 Stunden) ist länger beleuchtet als die Sporthalle (08:00-14:00 Uhr = 6 Stunden). Die anderen Aussagen sind entweder falsch oder durch den Text nicht belegbar.",
+"_sty": "s:|energi der ume ziehen",
+"vfd2": true,
+"unit": "Meine Schule",
+"topics": "Schulsachen, Das Klassenzimmer, Die Schulräume",
+"d": 3,
+"ts": 1794299385
 }
 ]
 }

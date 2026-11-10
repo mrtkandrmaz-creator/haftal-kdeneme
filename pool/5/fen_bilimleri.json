@@ -4356,6 +4356,656 @@
 "topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
 "d": 2,
 "ts": 1794290105
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in Yapısı ve Özellikleri",
+"passage": "Bilim insanı Galileo, Güneş gözlemleri sırasında yüzeyde karanlık bölgeler tespit etmiş ve bu bölgelerin hareketini inceleyerek önemli sonuçlara ulaşmıştır.",
+"question": "Bu bilimsel gözleme dayanarak Güneş ile ilgili aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 2,
+"label": "K",
+"show_names": false
+},
+"options": {
+"A": "Kendi ekseni etrafında dönme hareketi yapar.",
+"B": "Dünya'nın etrafında dolanma hareketi gerçekleştirir.",
+"C": "Katmanlı yapısında yalnızca katı maddeler bulunur.",
+"D": "Çevresine ısı yaymayan soğuk bir gök cismidir."
+},
+"answer": "A",
+"explanation": "1. Güneş lekelerinin zamanla yer değiştirmesi, Güneş'in kendi ekseni etrafında döndüğünü kanıtlar.\n2. Güneş gaz ve plazma hâlinde maddelerden oluşan bir yıldızdır.\n3. Bu hareket kendi ekseni etrafındaki dönme hareketiyle açıklanır.",
+"vfd2": true,
+"_sty": "s:science_space|aşağıd yargıl hangis ulaşıl",
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 4,
+"ts": 1794297833
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"passage": "Yaz tatilinde bir grup öğrenci, okulun atık kutularında biriken bir haftalık atık miktarlarını incelemiş ve bu verileri daire grafiğine aktarmıştır. Grafikteki verilere göre öğrenciler en çok geri dönüştürülebilir atık türünün kağıt olduğunu fark etmişlerdir.",
+"question": "Daire grafiğindeki verilere göre, hangi atık türünün geri dönüştürülmesi toplam atık miktarının tam olarak yarısını oluşturmaktadır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kağıt",
+"Plastik",
+"Cam",
+"Metal"
+],
+"values": [
+50,
+20,
+20,
+10
+],
+"title": "Haftalık Atık Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "Kağıt",
+"B": "Cam",
+"C": "Metal",
+"D": "Plastik"
+},
+"answer": "A",
+"explanation": "Grafik incelendiğinde 'Kağıt' dilimi 50 değerine sahiptir. Bir dairenin tamamı 100 birim kabul edildiğinde, 50 değeri 100'ün yarısıdır. Bu nedenle kağıt atıkları toplamın yarısını oluşturur.",
+"vfd2": true,
+"_sty": "s:pie_chart|tam olarak yarısı oluştu",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Evsel Atıklar",
+"passage": "Bir bisiklet turu etkinliğinde, farklı mola noktalarında toplanan plastik atık miktarları kaydedilmiştir. Grafiğe göre atık miktarı zamanla değişim göstermektedir.",
+"question": "Grafikteki verilere göre, toplam plastik atık miktarının en yüksek olduğu mola noktası hangisidir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1.Mola",
+"2.Mola",
+"3.Mola",
+"4.Mola"
+],
+"values": [
+5,
+12,
+8,
+15
+],
+"title": "Mola Noktalarındaki Plastik Atık Miktarı (kg)",
+"show_names": false
+},
+"options": {
+"A": "1.Mola",
+"B": "2.Mola",
+"C": "3.Mola",
+"D": "4.Mola"
+},
+"answer": "D",
+"explanation": "Çizgi grafiğinde değerler sırasıyla 5, 12, 8 ve 15'tir. En büyük değer 15 olduğu için 4. mola noktası en yüksek atık miktarına sahiptir.",
+"vfd2": true,
+"_sty": "s:line_chart|olduğu mola noktas hangis",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Atık Yönetimi",
+"passage": "Toplu taşıma araçları atık miktarını azaltmak için geri dönüşüm kutuları ile donatılmıştır. Bir dişli mekanizması ile çalışan atık ayrıştırma sistemi, kutu dolduğunda mekanizmayı hareket ettirerek uyarı vermektedir.",
+"question": "Sistemdeki K dişlisi 20 dişli, L dişlisi 60 dişlidir. K dişlisi saat yönünde 3 tur döndüğünde, L dişlisi hangi yönde ve kaç tur döner?",
+"shape": {
+"type": "fen",
+"sub_type": "disli",
+"dislerin_sayisi": [
+20,
+60
+],
+"isimler": [
+"K",
+"L"
+],
+"yonler": [
+"saat"
+],
+"show_names": false
+},
+"options": {
+"A": "Saat yönünde 1 tur",
+"B": "Saat yönünün tersinde 3 tur",
+"C": "Saat yönünün tersinde 1 tur",
+"D": "Saat yönünde 9 tur"
+},
+"answer": "C",
+"explanation": "Dişli oranında: (K'nin diş sayısı) × (K'nin tur sayısı) = (L'nin diş sayısı) × (L'nin tur sayısı). 20 × 3 = 60 × X; 60 = 60X; X = 1. Bağlı dişliler zıt yönde döner, bu yüzden saat yönünün tersi.",
+"vfd2": true,
+"_sty": "s:fen|yönde kaç tur döner",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam",
+"passage": "Bir arkeoloji kazısında, geçmiş uygarlıklara ait atıklar incelenmiş ve bunların doğada çözünme süreleri belirlenmiştir. Araştırmacılar, bu verilere dayanarak günümüzdeki plastik kullanımının sürdürülebilirlik üzerindeki etkisini vurgulamıştır.",
+"question": "Daire grafiğine göre, kazı alanında bulunan atıkların yüzde kaçı plastikten oluşmaktadır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Plastik",
+"Cam",
+"Metal",
+"Organik"
+],
+"values": [
+40,
+25,
+20,
+15
+],
+"title": "Kazı Alanı Atık Çeşitliliği (%)",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "20",
+"C": "25",
+"D": "40"
+},
+"answer": "D",
+"explanation": "Daire grafiğinde 'Plastik' dilimine karşılık gelen değer 40 olarak verilmiştir. Bu da toplam atık içindeki yüzde payını temsil eder.",
+"vfd2": true,
+"_sty": "s:pie_chart|yüzde kaçı plasti oluşma",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kaynakların Etkili Kullanımı",
+"passage": "Pazar yerinde plastik poşet kullanımı yerine bez torba kullanımını teşvik etmek amacıyla bir kampanya başlatılmıştır. Grafik, kampanya öncesi ve sonrası plastik poşet kullanımındaki değişimi göstermektedir.",
+"question": "Grafiğe göre, kampanya sonrası plastik poşet kullanımındaki azalma kaç birimdir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Kampanya Öncesi",
+"Kampanya Sonrası"
+],
+"values": [
+90,
+30
+],
+"title": "Plastik Poşet Kullanımı (Adet)",
+"show_names": false
+},
+"options": {
+"A": "30",
+"B": "60",
+"C": "90",
+"D": "120"
+},
+"answer": "B",
+"explanation": "Kampanya öncesi 90, sonrası 30 birimdir. Azalma miktarı: 90 - 30 = 60 birimdir.",
+"vfd2": true,
+"_sty": "s:line_chart|kullan azalma kaç birimd",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Atık Yönetimi",
+"passage": "Enerji tasarrufu sağlamak için evlerdeki cihazların enerji sınıfları önemlidir. A sınıfı bir buzdolabı, diğer sınıflara göre %30 daha az enerji tüketerek kaynakların korunmasına yardımcı olur.",
+"question": "Aşağıdaki tabloda enerji tüketim verileri verilen buzdolaplarından hangisi sürdürülebilir yaşam için en uygundur?",
+"shape": {
+"type": "table",
+"title": "Buzdolabı Enerji Tüketim Tablosu",
+"headers": [
+"Model",
+"Tüketim (kWh/yıl)"
+],
+"rows": [
+[
+"Model X",
+"350"
+],
+[
+"Model Y",
+"280"
+],
+[
+"Model Z",
+"400"
+],
+[
+"Model T",
+"320"
+]
+]
+},
+"options": {
+"A": "Model X",
+"B": "Model Y",
+"C": "Model Z",
+"D": "Model T"
+},
+"answer": "B",
+"explanation": "Sürdürülebilir yaşam için enerji tüketiminin en düşük olması gerekir. Tabloda en düşük değer 280 kWh/yıl ile Model Y'ye aittir.",
+"vfd2": true,
+"_sty": "s:table|sürdür yaşam için uygund",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"passage": "Bir çevre mühendisi atık yönetimi projesinde şu maddeleri gruplandırmıştır: I. Cam şişe, II. Plastik kapak, III. Sebze artıkları, IV. Gazete kağıdı. Mühendis, bu maddelerden I, II ve IV numaralı olanların geri dönüştürülebilir olduğunu, III numaralı olanın ise kompost (doğal gübre) yapımında kullanılabileceğini belirtmiştir.",
+"question": "Buna göre, I, II ve IV numaralı atıkların ortak özelliği hangisidir?",
+"shape": null,
+"options": {
+"A": "Doğada kendiliğinden yok olma sürelerinin çok kısa olması",
+"B": "Doğrudan toprağa karıştırılarak gübre olarak kullanılmaları",
+"C": "Doğal süreçlerle hızla çözünmeleri",
+"D": "Ekonomik değere sahip hammadde olarak yeniden işlenebilmeleri"
+},
+"answer": "D",
+"explanation": "Cam, plastik ve kağıt gibi maddeler geri dönüşüm tesislerinde işlenerek hammadde olarak tekrar üretilebilen atıklardır. Bu nedenle ortak özellikleri yeniden işlenebilir olmalarıdır.",
+"vfd2": true,
+"_sty": "s:|atıkla ortak özelli hangis",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Evsel Atıklar ve Yönetimi",
+"passage": "Bir belediyenin 'Geri Dönüşüm Bilgi Kartları'nda şu bilgiler verilmiştir: \n- I. Geri dönüşüm, doğal kaynakların korunmasını sağlar.\n- II. Atıkların ayrıştırılması, enerji tasarrufu sağlar.\n- III. .............................................................",
+"question": "III numaralı satıra aşağıdaki bilgilerden hangisi getirilirse atık yönetimiyle ilgili doğru bir yargı olur?",
+"shape": null,
+"options": {
+"A": "Her türlü atık tek bir çöp poşetinde toplanmalıdır.",
+"B": "Doğal kaynakların tüketimi geri dönüşümle artar.",
+"C": "Geri dönüşüm sayesinde çevre kirliliği azalır.",
+"D": "Tüm maddeler doğada çok kısa sürede yok olur."
+},
+"answer": "C",
+"explanation": "Geri dönüşüm hem doğal kaynakları korur, hem enerji tasarrufu sağlar hem de çöplük alanlarına giden atık miktarını azaltarak çevre kirliliğini önler.",
+"vfd2": true,
+"_sty": "s:|doğru bir yargı olur",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürdürülebilir Yaşam",
+"passage": "Ormanları korumak amacıyla bir dernek, 5 yıl boyunca ağaçlandırma ve geri dönüşüm kampanyaları düzenlemiştir. Grafik, her yıl geri dönüştürülen kağıt miktarı sayesinde kurtarılan ağaç sayısını göstermektedir.",
+"question": "Verilere göre, ağaç kurtarma başarısının en yüksek olduğu yıl hangisidir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"1. Yıl",
+"2. Yıl",
+"3. Yıl",
+"4. Yıl",
+"5. Yıl"
+],
+"values": [
+100,
+150,
+130,
+200,
+250
+],
+"title": "Kurtarılan Ağaç Sayısı",
+"show_names": false
+},
+"options": {
+"A": "4. Yıl",
+"B": "2. Yıl",
+"C": "3. Yıl",
+"D": "5. Yıl"
+},
+"answer": "D",
+"explanation": "Çizgi grafiğinde değerin en yüksek noktaya ulaştığı yıl 5. yıldır (250 ağaç).",
+"vfd2": true,
+"_sty": "s:line_chart|yüksek olduğu yıl hangis",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kaynakların Etkili Kullanımı",
+"passage": "Bir robotik atölyesinde, 'Atık Malzemelerle Robot Yapımı' projesi düzenlenmiştir. Öğrenciler ellerindeki atık metal parçalarını kullanarak ağırlık dengesini kurmaya çalışmışlardır. İki farklı grup atık miktarını ve oluşan ürünün ağırlığını tabloda paylaşmıştır.",
+"question": "Buna göre, her iki grupta da atıkların yeniden kullanılmasıyla ilgili çıkarımlardan hangisi doğrudur?",
+"shape": {
+"type": "table",
+"title": "Proje Verileri",
+"headers": [
+"Grup",
+"Atık Miktarı (kg)",
+"Robot Ağırlığı (kg)"
+],
+"rows": [
+[
+"1. Grup",
+"5",
+"5"
+],
+[
+"2. Grup",
+"8",
+"8"
+]
+]
+},
+"options": {
+"A": "Atık malzemeler hammadde olarak kullanılarak yeni ürünler üretilebilir.",
+"B": "Geri dönüşümde her zaman atığın yarısı kadar ürün elde edilir.",
+"C": "Atıkların miktarı arttıkça elde edilen ürün azalmaktadır.",
+"D": "Atıkların ağırlığı robotun sağlamlığını belirleyen tek unsurdur."
+},
+"answer": "A",
+"explanation": "Tablo, atıkların ağırlığı ile oluşan yeni ürünün ağırlığının birebir örtüştüğünü göstererek malzemelerin tekrar işlenip bir ürün haline getirildiğini kanıtlar.",
+"vfd2": true,
+"_sty": "s:table|ilgili çıkarı hangis doğrud",
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 4,
+"ts": 1794298572
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin tanecikli yapısı",
+"passage": "Sağlık kontrolü yapılan bir laboratuvar ortamında, incelenen üç farklı maddenin (K, L, M) taneciklerinin hareketlilik düzeyleri tabloyla sunulmuştur.",
+"question": "Bu tabloya göre, taneciklerin hareketliliği en fazla olan madde hangisidir?",
+"shape": {
+"type": "table",
+"title": "Tanecik Hareketlilik Düzeyi",
+"headers": [
+"Madde",
+"Hareket Türü"
+],
+"rows": [
+[
+"K",
+"Sadece Titreşim"
+],
+[
+"L",
+"Titreşim, Öteleme, Dönme"
+],
+[
+"M",
+"Titreşim, Öteleme"
+]
+]
+},
+"options": {
+"A": "K maddesi",
+"B": "L maddesi",
+"C": "M maddesi",
+"D": "Hepsi eşittir"
+},
+"answer": "B",
+"explanation": "Gazlar en fazla hareketliliğe (titreşim, öteleme ve dönme) sahip maddelerdir. Tabloda üç hareket türünü de barındıran madde L olduğu için L maddesi gaz formundadır ve hareketliliği en fazladır.",
+"vfd2": true,
+"_sty": "s:table|fazla olan madde hangis",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin tanecikli yapısı",
+"passage": "Bir spor müsabakasında antrenör, öğrencilerine maddenin tanecikli yapısını anlatmak için tribündeki taraftarları örnek vermiştir. Taraftarların koltuklarda belirli bir düzenle oturduğu, birbiri etrafında sadece titreşim hareketi yaptığı bir durumu tanımlamıştır.",
+"question": "Antrenörün verdiği bu örnek, maddenin hangi hâli ile benzerlik gösterir?",
+"shape": null,
+"options": {
+"A": "Sıvı hâli",
+"B": "Plazma hâli",
+"C": "Katı hâli",
+"D": "Gaz hâli"
+},
+"answer": "C",
+"explanation": "Katı maddelerin tanecikleri birbirine çok yakındır ve sadece titreşim hareketi yaparlar. Taraftarların koltukta sabit oturup hareket etmemesi katı maddelerin tanecikli yapısını temsil eder.",
+"vfd2": true,
+"_sty": "s:|hangi ile benzer göster",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı ve sıcaklık",
+"passage": "Okul kantininde farklı sıcaklıktaki iki su örneği, özdeş cam bardaklarda bekletiliyor. 1. bardaktaki su 80 °C, 2. bardaktaki su 20 °C'dir.",
+"question": "Bu bardaklar birbirine temas ettirildiğinde gerçekleşen enerji akışı ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"1. Bardak",
+"2. Bardak"
+],
+"values": [
+80,
+20
+],
+"title": "Başlangıç Sıcaklıkları (°C)",
+"show_names": false
+},
+"options": {
+"A": "Isı, 2. bardaktan 1. bardağa doğru akar.",
+"B": "Isı, 1. bardaktan 2. bardağa doğru akar.",
+"C": "Sıcaklık, 1. bardaktan 2. bardağa doğru akar.",
+"D": "Her iki bardağın da sıcaklığı 80 °C'de sabit kalır."
+},
+"answer": "B",
+"explanation": "Isı her zaman sıcak maddeden soğuk maddeye doğru akar. 80 °C'lik su sıcak, 20 °C'lik su soğuk olduğu için enerji akışı 1. bardaktan 2. bardağa doğrudur.",
+"vfd2": true,
+"_sty": "s:bar_chart|ilgili aşağıd hangis doğrud",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Hâl değişimi",
+"passage": "Bir bisiklet turcusu, güneş altında elinde tuttuğu buz kalıbının zamanla eridiğini gözlemliyor. Tur başlangıcında buzun sıcaklığı -5 °C olarak ölçülmüştür.",
+"question": "Buz tamamen eriyip su hâline gelene kadar termometre değerindeki değişim için aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "thermometer",
+"value": -5,
+"min": -20,
+"max": 40,
+"step": 5,
+"unit": "°C",
+"show_names": false
+},
+"options": {
+"A": "Sıcaklık erime boyunca sıfırın altına düşer.",
+"B": "Sıcaklık önce artar, erime başladığında sabit kalır.",
+"C": "Sıcaklık sadece buzun tamamı eridikten sonra artar.",
+"D": "Sıcaklık erime süresince sürekli artar."
+},
+"answer": "B",
+"explanation": "Saf maddeler hâl değiştirirken sıcaklıkları sabit kalır. Buz -5 °C'den 0 °C'ye gelinceye kadar ısınır, 0 °C'de ise erime tamamlanana kadar sıcaklık sabit kalır.",
+"vfd2": true,
+"_sty": "s:thermometer|için aşağıd hangis söylen",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı iletimi",
+"passage": "Yaz tatilinde kamp yapan bir öğrenci, tencere seçiminin yemek pişirme süresine etkisini incelemek istiyor. Metal ve plastik saplı iki tencereyi aynı ateş üzerinde deniyor.",
+"question": "Öğrencinin gözlem sonuçlarına göre, ısı iletimi konusunda hangisi doğrudur?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Metal Sap",
+"Plastik Sap"
+],
+"values": [
+90,
+10
+],
+"title": "Isı İletim Kapasitesi (Birim)",
+"show_names": false
+},
+"options": {
+"A": "Metal sap, ısıyı iyi ilettiği için daha hızlı ısınır.",
+"B": "Plastik sap, ısıyı metalden daha hızlı iletir.",
+"C": "Metal ısıyı hiç iletmez, plastik ise hapseder.",
+"D": "Her iki malzeme de ısıyı aynı oranda iletir."
+},
+"answer": "A",
+"explanation": "Metaller ısıyı iyi ileten maddelerdir, plastikler ise ısı yalıtkanıdır. Bu yüzden metal sap çok daha hızlı ısınır.",
+"vfd2": true,
+"_sty": "s:line_chart|iletim konusu hangis doğrud",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Maddenin hâlleri",
+"passage": "Bir inşaat şantiyesinde farklı maddeler taşınmaktadır: 1. Kum (Tanecikli katı), 2. Su (Sıvı), 3. Hava (Gaz tankı).",
+"question": "Bu maddelerin fiziksel özellikleri dikkate alındığında hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Su tanecikleri sadece titreşim hareketi yapar.",
+"B": "Hava, içinde bulunduğu kabın her yerine yayılır.",
+"C": "Kumun hacmi konulduğu kaba göre değişir.",
+"D": "Kumun belirli bir şekli vardır, suyun yoktur."
+},
+"answer": "B",
+"explanation": "Gazlar, içinde bulundukları kabın her tarafına yayılırlar ve kabın şeklini alırlar. Diğer şıklar katı ve sıvı tanecik özellikleri açısından hatalıdır.",
+"vfd2": true,
+"_sty": "s:|dikkat alındı hangis söylen",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı alışverişi",
+"passage": "Hava durumu raporunda, öğle saatlerinde sıcaklığın 30 °C'ye yükseldiği belirtiliyor. Bir kapta duran suyun sıcaklığı ise dış ortamdan gelen ısı ile sürekli ölçülüyor.",
+"question": "Suyun sıcaklığının 30 °C'ye çıkması durumu ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "thermometer",
+"value": 30,
+"min": 0,
+"max": 50,
+"step": 5,
+"unit": "°C",
+"show_names": false
+},
+"options": {
+"A": "Su çevresine ısı vermiştir.",
+"B": "Su ortamdan ısı almıştır.",
+"C": "Su ve ortam arasında ısı alışverişi yoktur.",
+"D": "Suyun sıcaklığı değişse de ısı enerjisi aynı kalmıştır."
+},
+"answer": "B",
+"explanation": "Sıcaklığın artması, maddenin çevresinden ısı aldığının bir göstergesidir.",
+"vfd2": true,
+"_sty": "s:thermometer|ilgili aşağıd hangis doğrud",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı yalıtımı",
+"passage": "Enerji tasarrufu sağlamak isteyen bir ev sahibi, ısı kaybını önlemek için evinde çeşitli yalıtım malzemeleri kullanmayı planlıyor.",
+"question": "Aşağıdaki tabloda yalıtım malzemelerinin verimlilik oranları verilmiştir. En verimli ısı yalıtımını sağlamak için hangi malzeme seçilmelidir?",
+"shape": {
+"type": "table",
+"title": "Isı Kaybını Önleme Oranı",
+"headers": [
+"Malzeme",
+"Verim (%)"
+],
+"rows": [
+[
+"Cam yünü",
+"85"
+],
+[
+"Plastik levha",
+"40"
+],
+[
+"Metal panel",
+"10"
+],
+[
+"Ahşap",
+"60"
+]
+]
+},
+"options": {
+"A": "Metal panel",
+"B": "Ahşap",
+"C": "Plastik levha",
+"D": "Cam yünü"
+},
+"answer": "D",
+"explanation": "Tabloda en yüksek verim (%) oranına sahip olan cam yünü, en etkili yalıtımı sağlar.",
+"vfd2": true,
+"_sty": "s:table|için hangi malzem seçilm",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı Yalıtımı",
+"passage": "Bilim insanları, binalarda ısı tasarrufu sağlamak için farklı yalıtım malzemelerinin özelliklerini araştırmaktadır. Malzemeler; iletkenlik, dayanıklılık ve yoğunluk açısından sınıflandırılmaktadır.",
+"question": "Isı yalıtımı için bir malzemede bulunması gereken en temel özellik aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Isıyı çok hızlı iletmesi",
+"B": "Yüksek yoğunluklu ve ağır olması",
+"C": "Sadece metalik maddelerden üretilmesi",
+"D": "Isıyı yavaş ileten veya iletmeyen yapıda olması"
+},
+"answer": "D",
+"explanation": "İyi bir ısı yalıtım malzemesi, ısının bir ortamdan diğerine geçişini zorlaştırmalı, yani ısıyı çok yavaş iletmelidir.",
+"vfd2": true,
+"_sty": "s:|temel özelli aşağıd hangis",
+"unit": "Maddenin Doğası",
+"topics": "Maddenin tanecikli yapısı, Isı ve sıcaklık, Isı alışverişi, Hâl değişimi, Isı iletimi, Isı yalıtımı",
+"d": 1,
+"ts": 1794299145
 }
 ]
 }

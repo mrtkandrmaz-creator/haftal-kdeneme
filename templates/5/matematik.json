@@ -1842,6 +1842,382 @@
     "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
     "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
    ]
+  },
+  {
+   "topic": "MAT.5.5.2. Baştకాలు tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+   "text": "Bir manavda günlük satılan meyve türlerine ait kategorik veriler incelenmektedir. Manavda gün boyunca satılan toplam meyve kasası sayısı {x} kadardır. Bu kasaların {b} tanesi elma, kalanları ise armuttur. Buna göre satılan armut kasası sayısı kaçtır?",
+   "vars": {
+    "x": {
+     "lo": 80,
+     "hi": 150,
+     "step": 10
+    },
+    "b": {
+     "lo": 30,
+     "hi": 60,
+     "step": 5
+    }
+   },
+   "derived": {
+    "t": "x-b"
+   },
+   "constraints": [
+    "x > b"
+   ],
+   "answer": "t",
+   "wrong": [
+    "x+b",
+    "x*b",
+    "x-b+10"
+   ],
+   "unit": "kasa",
+   "explanation": "Toplam {x} kasadan elma kasası olan {b} çıkarıldığında armut kasası sayısı {t} olarak bulunur.",
+   "positive": true,
+   "id": "m5-0048",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+   "text": "Okul kantininde yapılan bir ankette öğrencilere en çok tercih ettikleri içecekler sorulmuştur. Ankete katılan toplam {n} öğrenci arasından ayranı seçenlerin sayısı, meyve suyunu seçenlerin sayısının {m} katıdır. Meyve suyunu seçen öğrenci sayısı {s} olduğuna göre ayranı seçen öğrenci sayısı kaçtır?",
+   "vars": {
+    "n": {
+     "lo": 100,
+     "hi": 200,
+     "step": 10
+    },
+    "m": {
+     "choices": [
+      2,
+      3,
+      4
+     ]
+    },
+    "s": {
+     "lo": 15,
+     "hi": 35,
+     "step": 5
+    }
+   },
+   "derived": {
+    "t": "s*m"
+   },
+   "constraints": [
+    "s*m < n"
+   ],
+   "answer": "t",
+   "wrong": [
+    "s+m",
+    "n-s",
+    "s*m+n"
+   ],
+   "unit": "öğrenci",
+   "explanation": "Meyve suyunu seçen {s} öğrencinin {m} katı alındığında ayranı seçenlerin sayısı {t} bulunur.",
+   "positive": true,
+   "id": "m5-0049",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.2. Baştకాలు tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+   "text": "Bir kütüphanede öğrencilerin ödünç aldığı kitap türleri incelenmiştir. Roman türündeki kitapların sayısı hikaye türündeki kitapların sayısından {f} fazladır. Kütüphanede toplam {h} adet hikaye kitabı olduğuna göre roman kitabı sayısı kaçtır?",
+   "vars": {
+    "f": {
+     "lo": 12,
+     "hi": 45,
+     "step": 3
+    },
+    "h": {
+     "lo": 50,
+     "hi": 120,
+     "step": 10
+    }
+   },
+   "derived": {
+    "t": "h+f"
+   },
+   "constraints": [
+    "h+f < 300"
+   ],
+   "answer": "t",
+   "wrong": [
+    "h-f",
+    "h*f",
+    "h+f+10"
+   ],
+   "unit": "kitap",
+   "explanation": "Hikaye kitaplarının sayısı olan {h} üzerine {f} eklendiğinde roman kitaplarının sayısı {t} olarak bulunur.",
+   "positive": true,
+   "id": "m5-0050",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Bir tarla sahibi olan Can, tarlasının {a} metrekaresine domates, {b} metrekaresine biber dikmiştir. Tarlanın geri kalan kısmına ise patates ekecektir. Toplam tarla alanı {t} metrekare olduğuna göre patates ekilen alanın tüm tarlaya oranı olan kesir aşağıdakilerden hangisidir?",
+   "vars": {
+    "a": {
+     "lo": 20,
+     "hi": 40
+    },
+    "b": {
+     "lo": 10,
+     "hi": 30
+    },
+    "t": {
+     "lo": 100,
+     "hi": 200
+    }
+   },
+   "derived": {
+    "k": "t - a - b",
+    "g": "gcd(t - a - b, t)"
+   },
+   "constraints": [
+    "t > a + b",
+    "t % g == 0"
+   ],
+   "answer": "k // g / (t // g)",
+   "wrong": [
+    "(a + b) // g / (t // g)",
+    "t // g / (k // g)",
+    "a // g / (t // g)"
+   ],
+   "unit": "",
+   "explanation": "Önce patates ekilen alan bulunur ve toplam alana oranlanarak sadeleştirilir.",
+   "positive": true,
+   "id": "m5-0051",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Mert, kilosu {a} TL olan kuru yemişten {p} kilogram ve metresi {k} TL olan hediye paketleme ipinden {b} metre satın almıştır. Buna göre Mert satıcıya toplam kaç TL ödeme yapmalıdır?",
+   "vars": {
+    "a": {
+     "lo": 40,
+     "hi": 90,
+     "step": 10
+    },
+    "p": {
+     "lo": 3,
+     "hi": 8
+    },
+    "k": {
+     "lo": 5,
+     "hi": 15,
+     "step": 5
+    },
+    "b": {
+     "lo": 10,
+     "hi": 20
+    }
+   },
+   "derived": {
+    "t": "a*p + k*b"
+   },
+   "constraints": [
+    "a*p != k*b"
+   ],
+   "answer": "a*p + k*b",
+   "wrong": [
+    "(a+p) * (k+b)",
+    "a*p - k*b",
+    "a*b + k*p"
+   ],
+   "unit": "TL",
+   "explanation": "Kuru yemiş ücreti ile ip ücreti toplanmıştır.",
+   "positive": true,
+   "id": "m5-0052",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir okulun düzenlediği doğa yürüyüşü etkinliğinde öğrenciler {a} kilometre uzunluğundaki parkurun her gün eşit uzunlukta yürüyerek {p} günde tamamlamayı planlamıştır. Etkinliğin ilk gününde planlanan günlük mesafeden {k} kilometre daha fazla yürüyen öğrenciler, ilk gün toplam kaç kilometre yürümüş olur?",
+   "vars": {
+    "a": {
+     "lo": 60,
+     "hi": 120,
+     "step": 10
+    },
+    "p": {
+     "lo": 4,
+     "hi": 8
+    },
+    "k": {
+     "lo": 2,
+     "hi": 5
+    }
+   },
+   "derived": {
+    "gun": "a // p"
+   },
+   "constraints": [
+    "a % p == 0"
+   ],
+   "answer": "(a // p) + k",
+   "wrong": [
+    "(a // p) - k",
+    "a // (p + k)",
+    "(a // p) * k"
+   ],
+   "unit": "kilometre",
+   "explanation": "Toplam yol gün sayısına bölünerek günlük planlanan mesafe bulunmuş ve üzerine eklenmiştir.",
+   "positive": true,
+   "id": "m5-0053",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+   "text": "Mert, bir kırtasiyeden tanesi {a} TL olan defterlerden {b} adet ve tanesi {c} TL olan kalemlerden {d} adet almıştır. Mert kasiyere {p} TL verdiğine göre, kasiyerin Mert'e vereceği para üstü kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 20
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    },
+    "c": {
+     "lo": 5,
+     "hi": 15
+    },
+    "d": {
+     "lo": 2,
+     "hi": 6
+    },
+    "p": {
+     "lo": 200,
+     "hi": 300
+    }
+   },
+   "derived": {
+    "toplam": "a*b + c*d",
+    "ans": "p - (a*b + c*d)"
+   },
+   "constraints": [
+    "p > (a*b + c*d)"
+   ],
+   "answer": "p - (a*b + c*d)",
+   "wrong": [
+    "p - a*b + c*d",
+    "p - a + b*c + d",
+    "p - (a+b) * (c+d)"
+   ],
+   "unit": "TL",
+   "explanation": "Önce defter ve kalemlerin toplam ücreti bulunur: ({a} x {b}) + ({c} x {d}) = {toplam}. Para üstü için verilen paradan toplam ücret çıkarılır: {p} - {toplam} = {ans}.",
+   "positive": true,
+   "id": "m5-0054",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+   "text": "Elif, boncukları dizerek bir örüntü oluşturmuştur. Bu örüntünün ilk adımında {a} adet boncuk bulunmaktadır ve sonraki her adımda boncuk sayısı bir önceki adıma {b} adet eklenerek artmaktadır. Buna göre bu örüntünün {n}. adımında kaç boncuk vardır?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 15
+    },
+    "b": {
+     "lo": 3,
+     "hi": 8
+    },
+    "n": {
+     "lo": 5,
+     "hi": 10
+    }
+   },
+   "derived": {
+    "ans": "a + (n - 1) * b"
+   },
+   "constraints": [
+    "n > 1"
+   ],
+   "answer": "a + (n - 1) * b",
+   "wrong": [
+    "a + n * b",
+    "a * n + b",
+    "(a + b) * n"
+   ],
+   "unit": "adet",
+   "explanation": "Örüntünün kuralı ilk terim ile adım farkının artış miktarıyla çarpımının toplamıdır: {a} + ({n} - 1) x {b} = {ans}.",
+   "positive": true,
+   "id": "m5-0055",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme",
+   "text": "Bir fırıncı, hazırladığı {toplam} adet simidi her birinde {k} adet simit alabilen tepsilere dizmek istemektedir. Tepsiler tamamen dolduktan sonra artan simitler başka bir tepsiye konulacaktır. Buna göre artan simitleri taşımak için kullanılacak son tepside kaç simit bulunmaktadır?",
+   "vars": {
+    "toplam": {
+     "lo": 50,
+     "hi": 120
+    },
+    "k": {
+     "choices": [
+      6,
+      8,
+      10,
+      12
+     ]
+    }
+   },
+   "derived": {
+    "ans": "toplam % k"
+   },
+   "constraints": [
+    "toplam % k > 0"
+   ],
+   "answer": "toplam % k",
+   "wrong": [
+    "toplam // k",
+    "toplam - k",
+    "toplam + k"
+   ],
+   "unit": "adet",
+   "explanation": "Artan simit miktarını bulmak için toplam simit sayısının tepsi kapasitesine bölümünden kalan hesaplanır: {toplam} % {k} = {ans}.",
+   "positive": true,
+   "id": "m5-0056",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

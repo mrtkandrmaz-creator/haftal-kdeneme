@@ -2542,6 +2542,174 @@
 "topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
 "d": 1,
 "ts": 1794289601
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları",
+"passage": "Hayvanat bahçesi gezisinde görevli olan Mert, 'Hz. Süleyman'ın (a.s.) hayvanlarla konuşması ve onlara şefkat göstermesi, her canlının Allah'ın bir eseri olduğunu ve O'nun mülkünde yer aldığını anlamamızı sağlar.' diyerek arkadaşlarına bilgi vermiştir. Bir arkadaşı ise, 'Yani bu, peygamberlerin sadece insanlar için değil, tüm yaratılanlar için bir sorumluluk taşıdığını gösterir.' demiştir.",
+"question": "Bu duruma göre peygamberlerin sorumluluk anlayışı hakkında aşağıdakilerden hangisi çıkarılabilir?",
+"shape": null,
+"options": {
+"A": "Doğayı ve canlıları koruma bilincini temsil ederler.",
+"B": "Sadece mucize göstermekle yetinirler.",
+"C": "Hayvanların dillerini öğrenmeyi temel görev sayarlar.",
+"D": "Kendi dönemlerindeki kralların yönetimlerini üstlenirler."
+},
+"answer": "A",
+"explanation": "Hz. Süleyman (a.s.) örneğinde vurgulanan şefkat ve her canlının Allah'ın eseri olması, peygamberlerin merhamet ve koruyuculuk misyonunu, yani yaratılanlara karşı sorumluluğu ifade eder.",
+"_sty": "s:|hakkın aşağıd hangis çıkarı",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları",
+"passage": "Orman haftası etkinliklerinde bir grup öğrenci, 'Hz. Nuh'un (a.s.) gemisini yaparken gösterdiği azim, bir amaç uğruna çalışmanın önemini gösterir. O, herkes alay etse de inancından ve görevinden vazgeçmedi.' dediler. Öğretmenleri ise ekledi: 'Bu tutum, kıssalardan almamız gereken en önemli derslerden biridir.'",
+"question": "Bu senaryoda Hz. Nuh (a.s.) kıssasından hareketle hangi ahlaki davranışın önemi vurgulanmaktadır?",
+"shape": null,
+"options": {
+"A": "Her işte sabırlı ve kararlı olma",
+"B": "Zor durumlarda hemen pes etme",
+"C": "Toplumsal baskılara uyum sağlama",
+"D": "Kendi başına çalışma ve kimseden yardım almama"
+},
+"answer": "A",
+"explanation": "Hz. Nuh'un (a.s.) gemi inşa süreci ve çevresindekilerin tutumu karşısındaki duruşu, sabır ve istikrarın (kararlılığın) sembolüdür.",
+"_sty": "s:|ahlaki davran önemi vurgul",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları",
+"passage": "Yaz tatilinde dedesinin köyüne giden Ayşe, dedesinin 'Hz. Yusuf (a.s.) kıssasında, iyilikten asla vazgeçmemenin ve kardeşlik bağlarını korumanın insana kazandırdığı yücelik anlatılır.' dediğini duyar. Ayşe de arkadaşı Zehra'ya bu kıssanın kendilerini birbirlerine daha anlayışlı davranmaya teşvik ettiğini söyler.",
+"question": "Buna göre kıssaların temel işlevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Peygamberlerin aile hayatlarını magazinleştirmek",
+"B": "Kıssalardaki örnek davranışları kendi hayatına yansıtmak",
+"C": "İnsanların geçmişteki olaylar hakkında bilgi sahibi olması",
+"D": "Geçmiş toplumların şehir mimarilerini öğrenmek"
+},
+"answer": "B",
+"explanation": "Kıssalar, Kur'an'da sadece tarihsel hikayeler olarak değil, insanı iyiye, doğruya ve erdeme yönlendiren dersler olarak yer alır. En temel işlevi örnek alınarak davranışları güzelleştirmektir.",
+"_sty": "s:|temel işlevi aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları",
+"passage": "Uzay merkezindeki bir sergide, 'Hz. İbrahim'in (a.s.) evreni ve gökyüzündeki değişimleri gözlemleyerek yaratıcıyı bulma arayışı, insanın aklını kullanma sorumluluğuna işaret eder.' yazısını okuyan Selim, 'Demek ki peygamberler sadece vahiyle değil, akıl ve gözlemle de hakikate ulaşmamız için bize yol gösteriyorlar.' yorumunu yapar.",
+"question": "Selim'in bu çıkarımı, peygamberlerin hangi yönüyle doğrudan ilişkilidir?",
+"shape": null,
+"options": {
+"A": "Toplumsal huzuru sağlama yönüyle",
+"B": "Tarih boyunca yaşanan olayları kaydetmesiyle",
+"C": "Sadece mucizeler aracılığıyla insanları inandırmasıyla",
+"D": "İnsanın düşünme ve akıl etme yetisini kullanmaya teşvik etmesiyle"
+},
+"answer": "D",
+"explanation": "Hz. İbrahim (a.s.) kıssasında aklın kullanılması ve evrenin incelenmesi, peygamberlerin insanı düşünmeye ve tefekkür etmeye davet eden yönünü vurgular.",
+"_sty": "s:|hangi yönüyl doğrud ilişki",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları",
+"passage": "Pastanede arkadaşları için pasta paylaşımı yapan Emre, 'Hz. Peygamber'in (s.a.v.) ve diğer peygamberlerin adaletli paylaşım ilkelerini örnek almalıyız.' demiştir. Yanındaki arkadaşı bu düşünceyi: I. Başkalarının hakkına saygılı olma, II. Eşitlik ve dürüstlükten taviz vermeme, III. Sadece kendi grubuna fayda sağlama şeklinde değerlendirmiştir.",
+"question": "Emre'nin peygamberlerin ahlak anlayışına uygun davranması için, arkadaşının değerlendirmelerinden hangilerini uygulaması gerekir?",
+"shape": null,
+"options": {
+"A": "I ve II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Peygamberlerin adalet ilkesi, herkesin hakkına saygılı olmayı ve dürüst paylaşımı gerektirir. Sadece kendi grubuna fayda sağlamak ise adaletsizliktir, bu yüzden III. madde yanlıştır.",
+"_sty": "s:|değerl hangil uygula gereki",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları",
+"passage": "Okul bahçesinde fidan diken öğrencilerden biri, 'Hz. Musa'nın (a.s.) zalimlere karşı duruşu, bugün bizim de okulda akran zorbalığına karşı sessiz kalmamamız gerektiğini hatırlatıyor.' demiştir. Bir başka öğrenci, 'Evet, hakkın ve adaletin yanında durmak, peygamberlerin bizlere miras bıraktığı en temel değerlerden biridir.' şeklinde yanıt vermiştir.",
+"question": "Öğrencilerin bu yaklaşımı, peygamber kıssalarının hangi yönüne dair bir çıkarımdır?",
+"shape": null,
+"options": {
+"A": "Sadece tarihte kalmış hikâyelerden ibaret olduğu",
+"B": "Peygamberlerin her zaman fiziksel güç kullandığı",
+"C": "Sadece ibadet yerlerinde dikkate alınması gerektiği",
+"D": "Günümüzdeki ahlaki sorunlara karşı yol gösterici olduğu"
+},
+"answer": "D",
+"explanation": "Öğrenciler, geçmişteki bir kıssayı (Hz. Musa) günümüzdeki bir sorun (akran zorbalığı) ile bağdaştırarak, peygamber kıssalarının güncel ahlaki sorunlara ışık tuttuğunu ve yol gösterici olduğunu ifade etmişlerdir.",
+"_sty": "s:|yönüne dair bir çıkarı",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssalarındaki İbretler",
+"passage": "Bir uzay merkezi ziyareti sırasında müze rehberi, 'Gök cisimlerini inceleyen bilim insanları, evrenin düzenini ve kusursuzluğunu gözlemliyorlar. İslam inancında peygamber kıssalarında da bu düzen ve yaratılışın tek bir kaynaktan geldiği vurgulanır. Nuh (a.s) kavminin, evrendeki düzeni görüp yinede inatçılık etmesi, kıssalardan bir ibret kaynağıdır.' açıklamasını yapar.",
+"question": "Rehberin açıklamasında Nuh (a.s) kıssasından çıkarılan 'inatçılık' ibreti ile evrenin düzeni arasındaki ilişkiyi en doğru wayandıran yargı hangisidir?",
+"shape": null,
+"options": {
+"A": "Bilim insanlarının evreni incelemesi, peygamberlerin gönderilme gerekçesini ortadan kaldırır.",
+"B": "Evrenin düzeni, inkarcıların bile inancını artırmak zorundadır.",
+"C": "Yaratılış delillerine rağmen aklını kullanmayan ve hakikate kapalı olanlar azapla karşılaşabilir.",
+"D": "Nuh (a.s) kavmi, evrenin düzenini bilmedikleri için putlara tapmışlardır."
+},
+"answer": "C",
+"explanation": "Peygamber kıssaları, yaratılış delillerine rağmen inat edip hakikati kabul etmeyenlerin akıbetini gösterir. Bilgiye sahip olmak tek başına kurtarıcı değildir; aklın ve kalbin bu bilgiyle uyum içinde olması gerekir. Nuh kavmi delilleri görüp reddetmiştir.",
+"_sty": "s:|doğru wayand yargı hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamberlik Özellikleri (Sıdık ve Emîn)",
+"passage": "Kütüphanede görevli görevli, öğrencilere 'Güvenilir olmak, bir üyeliğin temel şartıdır. Hz. Muhammed (s.a.v), peygamber olmadan önce bile halk arasında 'Emîn' (güvenilir) lakabıyla anılırdı. Bu özellik, ona peygamberlik verilmeden önceki hayatında kazandığı bir terbiye ve ahlaki olgunluğun sonucudur.' şeklinde bilgi verir.",
+"question": "Görevlinin açıklamasında belirtilen 'Emîn' lakabı ve peygamberlik öncesi bu konuma gelinmesi, peygamberlerin hangi ortak özelliğini kanıtlar?",
+"shape": null,
+"options": {
+"A": "Peygamberlerin sadece mucizelerle seçildikleri",
+"B": "Peygamberlerin üstün ahlaki karaktere sahip oldukları ve güvenilirdikleri",
+"C": "Peygamberlerin savaşçı liderler olarak yetiştikleri",
+"D": "Peygamberlerin siyasi nüfuzlarını aile bağlarıyla korudukları"
+},
+"answer": "B",
+"explanation": "Hz. Muhammed'in 'Emîn' lakabı, onun doğruluğunu ve güvenilirliğini vurgular. Sıdık (doğruluk) ve Emîn (güvenilirlik) peygamberlerin ortak ahlaki özellikleridir. Bu, mucize veya siyasi nüfuzdan bağımsız, kişisel ahlaki mükemmelliğe işaret eder.",
+"_sty": "s:|hangi ortak özelli kanıtl",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 3,
+"ts": 1794297972
 }
 ]
 }
