@@ -2100,6 +2100,27 @@
 "topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
 "d": 3,
 "ts": 1794266882
+},
+{
+"subject": "Almanca",
+"topic": "Das Alphabet",
+"passage": "Ein Schüler buchstabiert zwei verschiedene Vornamen auf Deutsch, um sie an der Tafel zu vergleichen:\n- Vorname 1: L - U - K - A - S\n- Vorname 2: A - N - N - A",
+"question": "Bu iki ismin harf dizilimi incelendiğinde, her iki isimde de ortak olarak bulunan ilk harf alfabetik sıralamaya göre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "U",
+"B": "L",
+"C": "K",
+"D": "A"
+},
+"answer": "D",
+"explanation": "Vorname 1 (L, U, K, A, S) und Vorname 2 (A, N, N, A) haben gemeinsam den Buchstaben 'A'. Im deutschen Alphabet steht 'A' an erster Stelle und ist in beiden Namen vorhanden.",
+"_sty": "s:|sırala göre aşağıd hangis",
+"vfd2": true,
+"unit": "Ich und Du",
+"topics": "Sich vorstellen, Das Alphabet, Begrüßen und verabschieden, Nach dem Befinden fragen",
+"d": 3,
+"ts": 1794289638
 }
 ]
 }

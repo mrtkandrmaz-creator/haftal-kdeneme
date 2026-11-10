@@ -1388,6 +1388,91 @@
     "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
     "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
    ]
+  },
+  {
+   "topic": "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+   "text": "Elif, boncuklar kullanarak bir sayı örüntüsü oluşturuyor. Örüntünün ilk terimi {a} olup her adımda sayı {b} artmaktadır. Buna göre bu örüntünün {c}. adımındaki sayı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 15
+    },
+    "b": {
+     "lo": 3,
+     "hi": 9
+    },
+    "c": {
+     "lo": 4,
+     "hi": 10
+    }
+   },
+   "derived": {
+    "adim": "c-1"
+   },
+   "constraints": [
+    "c > 2"
+   ],
+   "answer": "a+b*(c-1)",
+   "wrong": [
+    "a*b+c",
+    "a+b*c",
+    "a*(c-1)+b"
+   ],
+   "unit": "adet",
+   "explanation": "Örüntünün kuralı ilk terime artış miktarının adım sayısının bir eksiği ile çarpımının eklenmesidir: {a} + {b} x ({c} - 1) = {ans}.",
+   "id": "m5-0037",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme",
+   "text": "Bir akıllı robot, girilen bir sayı için sırasıyla şu adımları uygulamaktadır: 1. Adım: Sayıyı {a} ile çarp. 2. Adım: Çıkan sonuca {b} ekle. 3. Adım: Elde edilen toplamı {c} sayısına böl. Bu robot kutusuna başlangıç sayısı olarak {d} sayısını yazdığında, sonuç ekranında hangi sayı görünür?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 5
+    },
+    "b": {
+     "lo": 10,
+     "hi": 30
+    },
+    "c": {
+     "lo": 2,
+     "hi": 6
+    },
+    "d": {
+     "lo": 4,
+     "hi": 12
+    }
+   },
+   "derived": {
+    "adim1": "d*a",
+    "toplam": "d*a+b"
+   },
+   "constraints": [
+    "toplam % c == 0"
+   ],
+   "answer": "(d*a+b)//c",
+   "wrong": [
+    "d*a+b+c",
+    "(d+a)*b//c",
+    "d*a*b//c"
+   ],
+   "unit": "",
+   "explanation": "1. Adım: {d} x {a} = {adim1}. 2. Adım: {adim1} + {b} = {toplam}. 3. Adım: {toplam} / {c} = {ans}.",
+   "id": "m5-0038",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

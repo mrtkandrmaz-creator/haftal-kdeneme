@@ -4065,6 +4065,48 @@
 "topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
 "d": 1,
 "ts": 1794266552
+},
+{
+"subject": "İngilizce",
+"topic": "Family Life: Hobbies and activities",
+"passage": "Read the information about the members of the Digital Coding Club and their weekend preferences:\n- Leo: \"I like playing chess on Saturdays.\"\n- Mia: \"I love painting in my free time.\"\n- Sam: \"I enjoy riding a bike in the park.\"",
+"question": "Based on the information above, which of the following statements is correct regarding their activities?",
+"shape": null,
+"options": {
+"A": "Sam enjoys painting in her free time.",
+"B": "Mia likes riding a bike in the park.",
+"C": "Leo prefers playing chess on Saturdays.",
+"D": "Leo and Mia both love playing chess."
+},
+"answer": "C",
+"explanation": "Step 1: Read Leo's statement where he says he likes playing chess on Saturdays. Step 2: Check Mia's statement which says she loves painting. Step 3: Check Sam's statement which says he enjoys riding a bike. Step 4: Match these with the options to find that Leo preferring chess is the correct statement.",
+"_sty": "s:|correc regard their activi",
+"vfd2": true,
+"unit": "Family Life",
+"topics": "Family members' routines, Hobbies and activities, Chores, Present Progressive, Present Progressive vs Simple Present",
+"d": 1,
+"ts": 1794289709
+},
+{
+"subject": "İngilizce",
+"topic": "Family Life: Family members' routines",
+"passage": "Look at the daily routine schedule of the students in the school garden:\n- Tim: \"I usually get up at seven o'clock and have breakfast.\"\n- Anna: \"I brush my teeth and go to school at half past eight.\"\n- John: \"I do my homework in the afternoon and go to bed at nine o'clock.\"",
+"question": "According to the schedule, which of the following activities belongs to Anna?",
+"shape": null,
+"options": {
+"A": "Doing homework in the afternoon",
+"B": "Going to bed at nine o'clock",
+"C": "Getting up at seven o'clock",
+"D": "Brushing her teeth and going to school"
+},
+"answer": "D",
+"explanation": "Step 1: Locate Anna in the schedule. Step 2: Read her routine details. Step 3: Anna states that she brushes her teeth and goes to school at half past eight. Step 4: Match this with the correct option.",
+"_sty": "s:|follow activi belong anna",
+"vfd2": true,
+"unit": "Family Life",
+"topics": "Family members' routines, Hobbies and activities, Chores, Present Progressive, Present Progressive vs Simple Present",
+"d": 1,
+"ts": 1794289709
 }
 ]
 }

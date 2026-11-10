@@ -4292,6 +4292,44 @@
 "topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
 "d": 2,
 "ts": 1794266335
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri ve ara evreler",
+"passage": "Gıda üretim tesisinde çalışan mühendisler, gece vardiyasında gökyüzünü gözlemlerken Ay'ın yarısından büyük olduğu ve şişkin bir görünüm sergilediği bir geceyi rapor etmişlerdir.",
+"question": "Gözlemlenen bu durum sonucunda, Ay'ın ana evreleri arasında yer almayan ve dolunaya geçiş sürecinde görülen bu ara evre aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+3,
+5,
+4,
+0
+],
+"labels": [
+"K",
+"L",
+"M",
+"N"
+],
+"title": "Ara Evre Gözlemi",
+"show_names": false
+},
+"options": {
+"A": "Hilal",
+"B": "Yeni Ay",
+"C": "Son Dördün",
+"D": "Şişkin Ay"
+},
+"answer": "D",
+"explanation": "Ana evreler arasında olmayan ve yarım ile dolunay arasında görülen ara evre şişkin aydır.",
+"_sty": "s:science_space|ara evre aşağıd hangis",
+"vfd2": true,
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 2,
+"ts": 1794289564
 }
 ]
 }

@@ -2500,6 +2500,48 @@
 "topics": "Dinin mimariye etkisi, Camilerin bölümleri (mihrap, minber, kubbe, minare), Cami örnekleri",
 "d": 2,
 "ts": 1794265802
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Peygamberlik ve Öğütler",
+"passage": "5/B sınıfı öğrencileri bir müze gezisi sırasında Hz. İbrahim'in hayatını anlatan sergi alanını incelemektedir. Rehber, Hz. İbrahim'in putları kırdıktan sonra halkına hakikati anlatmasını, kâinattaki düzeni gözlemleyerek tek bir yaratıcıya ulaşmasını ve ateşe atıldığında gösterdiği teslimiyeti anlatır. Öğrencilerden Deniz, bu kıssadan çıkarılacak temel öğüdün insanların zorluklar karşısında sabırlı olması ve hakikatten asla vazgeçmemesi gerektiğini söyler.",
+"question": "Buna göre Deniz'in vurguladığı bu temel öğüt ile Hz. İbrahim'in kıssası arasındaki ilişki aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Peygamberlerin yalnızca kendi dönemlerindeki yöneticilerle mücadele ettiğini göstermesi",
+"B": "Karşılaşılan tüm zorluklara rağmen inançtan ve doğrudan sapmamanın önemini vurgulaması",
+"C": "Geçmişteki toplulukların sosyal yapılarını günümüzle birebir karşılaştırma imkânı sunması",
+"D": "Tabiat olaylarının gerçekleşme sebeplerini bilimsel yöntemlerle açıklaması"
+},
+"answer": "B",
+"explanation": "Adım 1: Müze gezisinde Hz. İbrahim'in kıssası ve onun inancını savunurken gösterdiği kararlılık ele alınmıştır. Adım 2: Deniz, bu kıssadan insanların zorluklar karşısında sabırlı olması ve hakikatten vazgeçmemesi gerektiği sonucunu çıkarmıştır. Adım 3: Bu durum, peygamber kıssalarındaki ana öğütlerden biri olan inançta sebat etme ve teslimiyet ile doğrudan uyuşmaktadır. Adım 4: B seçeneği bu ilişkiyi tam olarak yansıtmaktadır.",
+"_sty": "s:|arasın ilişki aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 1,
+"ts": 1794289601
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Peygamber Kıssaları: Kıssalardan Çıkarılacak Dersler",
+"passage": "Okul kütüphanesinde araştırma yapan Elif, peygamber kıssalarının Kur'an-ı Kerim'de neden yer aldığı üzerine bir makale okumaktadır. Makalede, geçmiş milletlerin başından geçen olayların hikaye edilmesinin sadece tarihî bir bilgi olmadığını, insanlara ibret ve öğüt sunmayı amaçladığını ifade eder.",
+"question": "Bu açıklamaya göre peygamber kıssalarının kütüphanedeki araştırma kitaplarında yer almasının temel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İnsanlara geçmişteki medeniyetlerin mimari yapılarını öğretmek",
+"B": "Okuyucuların ahlaki değerleri kavramasını ve doğru yolu bulmasını sağlamak",
+"C": "Geçmişteki coğrafi değişiklikleri haritalar üzerinde göstermek",
+"D": "Toplumların ekonomik sistemlerindeki değişimleri incelemek"
+},
+"answer": "B",
+"explanation": "Adım 1: Metinde peygamber kıssalarının tarihî bilgi aktarmaktan ziyade ibret ve öğüt sunmak için Kur'an'da yer aldığı belirtilmiştir. Adım 2: Kıssaların temel amacı ahlaki dersler çıkarmak ve insanları doğru yola yönlendirmektir. Adım 3: Bu durum seçeneklerle karşılaştırıldığında B seçeneği ile örtüşmektedir. Adım 4: Diğer seçenekler kıssaların ana amacının dışındadır.",
+"_sty": "s:|temel nedeni aşağıd hangis",
+"vfd2": true,
+"unit": "Peygamber Kıssaları",
+"topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
+"d": 1,
+"ts": 1794289601
 }
 ]
 }
