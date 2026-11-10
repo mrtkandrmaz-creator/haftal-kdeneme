@@ -2421,6 +2421,27 @@
 "topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
 "d": 1,
 "ts": 1794266500
+},
+{
+"subject": "Türkçe",
+"topic": "Geleneksel çocuk oyunları ve kurallı oyunlar",
+"passage": "Arkeologlar yeni bir kazı alanında buldukları eski oyuncakları incelediklerinde, bu oyuncakların geleneksel çocuk oyunlarına benzediğini fark ediyorlar. Bu oyuncaklar, belirli kurallarla oynanan bir 'top yakalama' oyununa ait parçalar. Oyunun kuralları şu şekilde: Oyuncular iki takıma ayrılır. Bir takım topu korur, diğer takım topu yakalamaya çalışır. Topu yakalayan oyuncu diğer takımdan bir oyuncuyu diskalifiye eder. Oyun, bir takımın tüm üyeleri diskalifiye olana kadar sürer. Kazı alanında bulunan topun ağırlığı 200 gram, çapı 10 santimetre. Oyuncuların yaş aralığı 8-12. Oyun sahası çim kaplı, kaymaz zemin.",
+"question": "Bu geleneksel oyunun kurallarına göre, 10 yaşındaki bir öğrencinin oyuna katılması ve topu yakalamasıyla ilgili aşağıdaki ifadelerden hangisi kesinlikle doğrudur?",
+"shape": null,
+"options": {
+"A": "Topu yakalaması, rakip takımdan bir oyuncunun oyun dışı kalmasına neden olur.",
+"B": "Topu yakalaması, oyunun bitmesine neden olur.",
+"C": "Topu yakalaması, onun takımını doğrudan kazanan yapar.",
+"D": "Topu yakalaması, onun takım arkadaşlarını diskalifiye etmesini sağlar."
+},
+"answer": "A",
+"explanation": "1. Adım: Kurallar: 'Topu yakalayan oyuncu diğer takımdan bir oyuncuyu diskalifiye eder.'\n2. Adım: Bu ifade, topu yakalayan oyuncunun rakip takımdan birinin oyun dışı kalmasına neden olduğunu gösterir.\n3. Adım: A şıkkı 'takım arkadaşlarını diskalifiye eder' diyor, yanlış. B şıkkı 'rakip takımdan bir oyuncunun oyun dışı kalmasına neden olur' diyor, doğru. C şıkkı 'oyun bitmesine neden olur' diyor, yanlış (tüm üyeler diskalifiye olana kadar sürer). D şıkkı 'doğrudan kazanan yapar' diyor, yanlış (sadece bir kişi diskalifiye eder). Doğru cevap B.",
+"_sty": "s:|ifadel hangis kesinl doğrud",
+"vfd2": true,
+"unit": "Oyun Dünyası",
+"topics": "Geleneksel çocuk oyunları, Kurallı oyunlar, Anahtar kelimeler, Metnin yüzey anlamı, Söz varlığı",
+"d": 3,
+"ts": 1794290023
 }
 ]
 }

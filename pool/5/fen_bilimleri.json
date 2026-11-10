@@ -4330,6 +4330,32 @@
 "topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
 "d": 2,
 "ts": 1794289564
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın Hareketleri ve Evreleri",
+"passage": "Arkeoloji müzesinde sergilenen eski takvim tabletlerini inceleyen bir grup araştırmacı, Ay'ın gökyüzündeki konumlarının zamanla nasıl değiştiğini incelemektedir. Araştırmacılar, Ay'ın Dünya çevresindeki dolanma hareketi sırasında kazandığı evrelerin belirli bir döngüde tekrarlandığını saptamıştır.",
+"question": "Buna göre Ay'ın Dünya çevresindeki dolanma hareketiyle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_orbit",
+"title": "Ay'ın Dolanma Yörüngesi",
+"show_names": false
+},
+"options": {
+"A": "Ay, kendi ekseni etrafında dönerken aynı zamanda Güneş etrafında dolanır.",
+"B": "Ay'ın ana evrelerinin tümünün tamamlanması yaklaşık 29,5 gün sürer.",
+"C": "Dünya, Ay'ın etrafındaki dolanma hareketini 24 saatte tamamlar.",
+"D": "Ay'ın her zaman Dünya'ya farklı yüzü görünür."
+},
+"answer": "B",
+"explanation": "Adım 1: Ay'ın evreleri döngüsü ve dolanma süresi yaklaşık 29,5 gündür.\nAdım 2: Dünya Ay etrafında değil, Ay Dünya etrafında dolanır.\nAdım 3: Ay kendi ekseni etrafında döner ve Dünya etrafında dolanır, Güneş etrafında doğrudan dolanmaz.\nAdım 4: Ay kendi etrafındaki dönme süresi ile Dünya etrafındaki dolanma süresi eşit olduğu için her zaman aynı yüzünü Dünya'ya gösterir. Bu nedenle doğru seçenek A'dır.",
+"_sty": "s:science_space|ilgili aşağıd hangis doğrud",
+"vfd2": true,
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 2,
+"ts": 1794290105
 }
 ]
 }

@@ -1473,6 +1473,375 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+   "text": "Bir sıfır atık projesinde bir hafta boyunca toplanan geri dönüşüm malzemeleri kategorilere ayrılmıştır. Toplanan kâğıt miktarı {a} kg, plastik miktarı {b} kg ve cam miktarı {c} kg olarak ölçülmüştür. En çok toplanan atık türünün miktarı, en az toplanan atık türünün miktarından kaç kg fazladır? Buna göre aradaki miktar farkı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 40,
+     "hi": 80,
+     "step": 5
+    },
+    "b": {
+     "lo": 15,
+     "hi": 35,
+     "step": 5
+    },
+    "c": {
+     "lo": 85,
+     "hi": 130,
+     "step": 5
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "c>a",
+    "a>b"
+   ],
+   "answer": "c-b",
+   "wrong": [
+    "c-a",
+    "a-b",
+    "c+b"
+   ],
+   "unit": "kg",
+   "explanation": "En çok toplanan atık cam ({c} kg) ve en az toplanan atık plastiktir ({b} kg). Aradaki fark {c} - {b} = {ans} kg olarak hesaplanır.",
+   "positive": true,
+   "id": "m5-0039",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+   "text": "Bir kutuda yalnızca {a} adet özdeş yeşil top vardır. Bu kutudan gözü kapalı bir top çekiliyor. Buna göre, çekilen topun yeşil olma olayı için aşağıdakilerden hangisi doğrudur?",
+   "vars": {
+    "a": {
+     "lo": 5,
+     "hi": 20
+    }
+   },
+   "derived": {
+    "ans": "1"
+   },
+   "constraints": [
+    "a>0"
+   ],
+   "answer": "1",
+   "wrong": [
+    "0",
+    "0.5",
+    "a"
+   ],
+   "unit": "",
+   "explanation": "Kutudaki tüm toplar yeşil olduğu için yeşil top çekme olayı kesin olaydır ve olasılığı 1'dir.",
+   "positive": true,
+   "id": "m5-0040",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme",
+   "text": "Bir okulun kütüphanesinde {a} adet hikaye kitabı, {b} adet şiir kitabı ve {c} adet roman vardır. Kütüphaneden rastgele seçilen bir kitabın şiir kitabı olma olasılığı inceleniyor. Buna göre, şiir kitabı seçme olayı sayıca en az olduğu için olasılık spektrumunda hangi ifadeyle adlandırılır?",
+   "vars": {
+    "a": {
+     "lo": 50,
+     "hi": 80
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    },
+    "c": {
+     "lo": 30,
+     "hi": 50
+    }
+   },
+   "derived": {
+    "ans": "b"
+   },
+   "constraints": [
+    "b<a",
+    "b<c"
+   ],
+   "answer": "b",
+   "wrong": [
+    "a",
+    "c",
+    "1"
+   ],
+   "unit": "",
+   "explanation": "Şiir kitabı sayısı diğer kitap türlerine göre çok daha az olduğu için şiir kitabı seçme olayı az olasılıklıdır.",
+   "positive": true,
+   "id": "m5-0041",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Bir okulun bahçesinde düzenlenen kermeste hazırlanan toplam {toplam} adet biletin {pay} tanesi satılmıştır. Buna göre satılmayan biletlerin tüm biletlere oranını gösteren kesrin payı kaçtır?",
+   "vars": {
+    "toplam": {
+     "lo": 40,
+     "hi": 100,
+     "step": 10
+    },
+    "pay": {
+     "lo": 10,
+     "hi": 30,
+     "step": 5
+    }
+   },
+   "derived": {
+    "payda": "toplam - pay",
+    "ans": "toplam - pay"
+   },
+   "constraints": [
+    "toplam > pay",
+    "(toplam - pay) > 0"
+   ],
+   "answer": "toplam - pay",
+   "wrong": [
+    "pay",
+    "toplam",
+    "toplam + pay"
+   ],
+   "unit": "adet",
+   "explanation": "Satılmayan bilet sayısını bulmak için toplam bilet sayısından satılan bilet sayısı çıkarılır: {toplam} - {pay} = {ans}.",
+   "positive": true,
+   "id": "m5-0042",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme",
+   "text": "Ayşe, günün {birinci_pay} / {payda} oranındaki kısmını kitap okuyarak, {ikinci_pay} / {payda} oranındaki kısmını ise spor yaparak geçirmiştir. Buna göre Ayşe'nin kitap okumaya ayırdığı sürenin spor yapmaya ayırdığı süreden kaçta kaç fazla olduğunu gösteren paydaki değer kaçtır?",
+   "vars": {
+    "payda": {
+     "choices": [
+      10,
+      20,
+      50,
+      100
+     ]
+    },
+    "birinci_pay": {
+     "lo": 6,
+     "hi": 9,
+     "step": 1
+    },
+    "ikinci_pay": {
+     "lo": 1,
+     "hi": 5,
+     "step": 1
+    }
+   },
+   "derived": {
+    "ans": "birinci_pay - ikinci_pay"
+   },
+   "constraints": [
+    "birinci_pay > ikinci_pay"
+   ],
+   "answer": "birinci_pay - ikinci_pay",
+   "wrong": [
+    "birinci_pay + ikinci_pay",
+    "payda",
+    "birinci_pay"
+   ],
+   "unit": "",
+   "explanation": "Paydaları eşit kesirlerde karşılaştırma ve çıkarma yapılırken paylar çıkarılır: {birinci_pay} - {ikinci_pay} = {ans}.",
+   "positive": true,
+   "id": "m5-0043",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+   "text": "Bir okul kütüphanesindeki eşit kollu terazinin sol kefesinde {a} adet eşit ağırlıkta kitap ve sağ kefesinde ise {b} kg'lık bir demir ağırlık bulunmaktadır. Terazi dengededir ve sağ kefeye {c} kg daha eklendiğinde terazinin dengeye gelmesi için sol kefeye her biri {d} kg olan kitaplardan kaç adet eklenmelidir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 5
+    },
+    "b": {
+     "lo": 10,
+     "hi": 20
+    },
+    "c": {
+     "lo": 6,
+     "hi": 15
+    },
+    "dp": {
+     "choices": [
+      2,
+      3,
+      4
+     ]
+    },
+    "d": {
+     "lo": 2,
+     "hi": 4
+    }
+   },
+   "derived": {
+    "top": "c",
+    "alt": "d"
+   },
+   "constraints": [
+    "c % d == 0"
+   ],
+   "answer": "c // d",
+   "wrong": [
+    "c // d + a",
+    "c // d - 1",
+    "d * c"
+   ],
+   "unit": "adet",
+   "explanation": "Terazinin sağ kefesindeki artış {c} kg'dır. Sol kefenin de dengede kalması için {c} kg eklenmelidir. Her biri {d} kg olan kitaplardan {c} // {d} = {ans} adet eklenmelidir.",
+   "positive": true,
+   "id": "m5-0044",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+   "text": "Bir etkinlik salonunda düzenlenen tiyatro gösterisi için Mert, {a} adet tam bilet ve her biri tam bilet fiyatından {b} TL daha ucuz olan {c} adet öğrenci bileti almıştır. Tam biletin fiyatı {d} TL olduğuna göre Mert biletler için toplam kaç TL ödemiştir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 5
+    },
+    "b": {
+     "lo": 10,
+     "hi": 20
+    },
+    "c": {
+     "lo": 3,
+     "hi": 8
+    },
+    "d": {
+     "lo": 40,
+     "hi": 80
+    }
+   },
+   "derived": {
+    "tam": "a*d",
+    "ogr": "c*(d-b)"
+   },
+   "constraints": [
+    "d > b"
+   ],
+   "answer": "a*d + c*(d-b)",
+   "wrong": [
+    "(a+c)*(d-b)",
+    "a*d + c*b",
+    "a*d - c*(d-b)"
+   ],
+   "unit": "TL",
+   "explanation": "Tam biletler için {a} * {d} = {tam} TL, öğrenci biletleri için {c} * ({d} - {b}) = {ogr} TL ödenmiştir. Toplam ücret {tam} + {ogr} = {ans} TL'dir.",
+   "positive": true,
+   "id": "m5-0045",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme",
+   "text": "Bir fırında üretilen {a} adet ekmek, her birinde {b} adet ekmek alabilen sepetlere yerleştirilecektir. Tüm ekmeklerin sepete konulabilmesi için tam dolu sepetler dışında kalan ekmekleri taşımak üzere en az kaç ekmek kapasiteli ek bir sepete ihtiyaç vardır?",
+   "vars": {
+    "a": {
+     "lo": 50,
+     "hi": 90
+    },
+    "b": {
+     "lo": 6,
+     "hi": 12
+    }
+   },
+   "derived": {
+    "mod": "a%b"
+   },
+   "constraints": [
+    "a % b != 0"
+   ],
+   "answer": "a % b",
+   "wrong": [
+    "a // b",
+    "b - (a % b)",
+    "a // b + 1"
+   ],
+   "unit": "adet",
+   "explanation": "Toplam {a} ekmek {b}'lik sepetlere bölündüğünde {a} // {b} sepet tam dolur. Artan ekmek sayısı {a} % {b} = {ans} kadardır ve bunlar için ek sepet gerekir.",
+   "positive": true,
+   "id": "m5-0046",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir teknoloji mağazası, açılışa özel olarak {a} adet tablet satışı hedeflemiştir. Mağaza, hedeflenen bu tabletlerin satışından toplam {b} TL gelir elde etmeyi planlamıştır. Satılan her bir tabletin fiyatı aynı olduğuna göre, bir tabletin fiyatı kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 20,
+     "hi": 50,
+     "step": 5
+    },
+    "b": {
+     "lo": 10000,
+     "hi": 50000,
+     "step": 5000
+    }
+   },
+   "derived": {
+    "kalansiz": "b % a"
+   },
+   "constraints": [
+    "kalansiz == 0"
+   ],
+   "answer": "b // a",
+   "wrong": [
+    "b + a",
+    "b - a",
+    "b // a + 10"
+   ],
+   "unit": "TL",
+   "explanation": "Toplam gelir {b} TL, tablet sayısı {a} adet olduğundan bir tablet {ans} TL'dir.",
+   "positive": true,
+   "id": "m5-0047",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
   }
  ]
 }
