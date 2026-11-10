@@ -2218,6 +2218,329 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+   "text": "Ali bir markette {a} adet çikolata paketi gördü. Her paket {p} TL fiyatındadır. Toplam harcama miktarını bul.",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0057",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme",
+   "text": "Mert bahçede {a} kg domates topladı. Her kilogram domates {k} TL değerindedir. Toplam gelir nedir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*k"
+   },
+   "constraints": [
+    "a*k<200"
+   ],
+   "answer": "a*k",
+   "wrong": [
+    "a+k",
+    "a-k",
+    "a*k+k"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {k} = {ans}",
+   "positive": true,
+   "id": "m5-0058",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "Kategorik veri ile çalışabilme",
+   "text": "Ali markette {a} adet elma buldu. Her elmanın fiyatı {p} TL. Buna göre elmaların toplam fiyatı kaç TL?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0059",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "Başkaları tarafından oluşturulan veriyle yorum",
+   "text": "Elif okuldaki 12 sınıf öğrencilerinden {a} öğrenci muz sevişti. Her bir muz sevginin puanı {p} olarak belirlendi. Toplam muz sevgi puanı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "puan",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0060",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "Spor etkinliği istatistikleri",
+   "text": "Mert basketbol maçı sırasında {a} sayı attı. Her sayının değeri {p} puandı. Mertin toplam puanı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "puan",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0061",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Okul kütüphanesine bağışlanan romanları yerleştirmek için gelen Elif, her birinde eşit sayıda kitap alabilen {a} adet raf hazırlamıştır. Bu rafların her birine {b} adet kitap yerleştirilmiştir. Artan kitaplar için ise ayrı bir kutuda {c} adet kitap biriktirilmiştir. Buna göre kütüphaneye bağışlanan toplam kitap sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 30
+    },
+    "b": {
+     "lo": 15,
+     "hi": 50
+    },
+    "c": {
+     "lo": 5,
+     "hi": 25
+    }
+   },
+   "derived": {
+    "ans": "a*b+c"
+   },
+   "constraints": [
+    "a*b+c < 2000"
+   ],
+   "answer": "a*b+c",
+   "wrong": [
+    "a+b+c",
+    "a*b",
+    "a*b-c"
+   ],
+   "unit": "kitap",
+   "explanation": "Raf sayısı ile raftaki kitap sayısı çarpılır ve artan kitap eklenir: {a} x {b} + {c} = {ans}.",
+   "positive": true,
+   "id": "m5-0062",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+   "text": "Bir okuldaki doğa dostu dönüşüm projesinde atık plastik kapaklar toplanmaktadır. Mert, proje kapsamında ilk ay {a} adet kapak toplamıştır. İkinci ay ise topladığı kapak sayısını ilk aya göre {b} katına çıkarmıştır. İki ayın sonunda toplanan toplam kapak sayısının {c} adeti okulun bahçesindeki geri dönüşüm kutusuna atılmıştır. Buna göre geriye kalan kapak sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 120,
+     "hi": 500
+    },
+    "b": {
+     "lo": 2,
+     "hi": 5
+    },
+    "c": {
+     "lo": 50,
+     "hi": 200
+    }
+   },
+   "derived": {
+    "ans": "a+a*b-c"
+   },
+   "constraints": [
+    "a+a*b > c"
+   ],
+   "answer": "a+a*b-c",
+   "wrong": [
+    "a*b-c",
+    "a+a*b",
+    "a+b-c"
+   ],
+   "unit": "kapak",
+   "explanation": "İkinci ay toplanan kapak {a} x {b} kadardır. İki ay toplamından {c} çıkarılır.",
+   "positive": true,
+   "id": "m5-0063",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.4. Algoritma yorumlama",
+   "text": "Ece bir sayı oyunu oynuyor. Seçtiği sayıya {a} ekliyor, çıkan sonucu {b} ile çarpıyor ve en son {c} çıkarıyor. Ece başlangıçta {x} sayısını seçerse sonuç kaç olur?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 5
+    },
+    "b": {
+     "lo": 2,
+     "hi": 4
+    },
+    "c": {
+     "lo": 1,
+     "hi": 10
+    },
+    "x": {
+     "lo": 5,
+     "hi": 15
+    }
+   },
+   "derived": {
+    "ans": "(x+a)*b-c"
+   },
+   "constraints": [],
+   "answer": "(x+a)*b-c",
+   "wrong": [
+    "x+a*b-c",
+    "(x+a+b)-c",
+    "x+a*b+c"
+   ],
+   "unit": "",
+   "explanation": "İşlem sırasına göre: ({x}+{a})*{b}-{c} = {ans} sonucu bulunur.",
+   "id": "m5-0064",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

@@ -2710,6 +2710,27 @@
 "topics": "Peygamberlik, Peygamber kıssalarındaki öğütler, Kureyş suresi ve anlamı",
 "d": 3,
 "ts": 1794297972
+},
+{
+"subject": "Din Kültürü ve Ahlak Bilgisi",
+"topic": "Tahiyyat Duası ve Anlamı",
+"passage": "Bir uzay merkezindeki astronotlar, Dünya'dan uzaktayken ibadetlerini yerine getirmektedirler. Görevli bilim insanı, 'Namazda okuduğumuz Tahiyyat duası, Allah'a olan bağlılığımızı, Hz. Muhammed'in peygamberliğini ve tüm müslümanların huzurunu içerir' şeklinde bir açıklama yapar.",
+"question": "Tahiyyat duasının anlamı dikkate alındığında, duanın içeriği ile ilgili hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Sadece geçmiş peygamberlerden bahseder.",
+"B": "Dua, kulun Allah'a olan sevgi ve saygısını ifade eder.",
+"C": "Namazın kaç rekât olduğunu anlatır.",
+"D": "Kıyamet gününün ne zaman kopacağını belirtir."
+},
+"answer": "B",
+"explanation": "Tahiyyat duası, 'Et-tahiyyatu lillahi...' ifadesiyle başlar ve Allah'ın yüceliğini, Peygamberimize selamı ve Allah'ın rahmetini ifade eder. Kulun Allah'a sunduğu bir saygı ifadesidir.",
+"_sty": "s:|ile ilgili hangis söylen",
+"vfd2": true,
+"unit": "Namaz",
+"topics": "Namaz ibadeti, Namazın kılınışı, Namazın insan hayatına etkileri, Tahiyyat duası ve anlamı",
+"d": 4,
+"ts": 1794326380
 }
 ]
 }

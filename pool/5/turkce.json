@@ -2925,6 +2925,27 @@
 "topics": "Dengeli beslenme, Hijyen, Uyku ve egzersiz, İlk yardım, Spor, Bilgilendirici metin",
 "d": 3,
 "ts": 1794299244
+},
+{
+"subject": "Türkçe",
+"topic": "Metnin yüzey anlamı ve çıkarım",
+"passage": "5-A sınıfı öğrencileri okul bahçesinde geleneksel oyunlar oynamak için bir plan hazırladı. Pazartesi günü 'Yağ Satarım Bal Satarım', Salı günü 'Mendil Kapmaca', Çarşamba günü 'Yakan Top' oyunlarını oynayacaklar. Yağ Satarım Bal Satarım oyunu en az 6 kişiyle, Mendil Kapmaca 10 kişiyle, Yakan Top ise en az 8 kişiyle oynanmaktadır.",
+"question": "Buna göre en kalabalık grupla oynanan oyun aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Yakan Top",
+"B": "Yağ Satarım Bal Satarım",
+"C": "Mendil Kapmaca",
+"D": "Tüm oyunlar eşit sayıda kişiyle oynanmaktadır."
+},
+"answer": "C",
+"explanation": "Yağ Satarım Bal Satarım (6), Mendil Kapmaca (10) ve Yakan Top (8) kişiyle oynanmaktadır. Sayısal veriler karşılaştırıldığında 10 değeri en yüksek olandır.",
+"_sty": "s:|oynana oyun aşağıd hangis",
+"vfd2": true,
+"unit": "Oyun Dünyası",
+"topics": "Geleneksel çocuk oyunları, Kurallı oyunlar, Anahtar kelimeler, Metnin yüzey anlamı, Söz varlığı",
+"d": 1,
+"ts": 1794326050
 }
 ]
 }
