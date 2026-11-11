@@ -2930,6 +2930,97 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.3.1",
+   "text": "Ali, bir bahçeye dikmek istediği çiçek tarhı için {a} metre uzunluğunda bir çit alıyor. Çitin bir metre fiyatı {p} TL'dir. Ali çitin toplam maliyetini hesaplarken sadece çitin uzunluğunu ve birim fiyatı çarpıyor. Buna göre çitin toplam maliyeti kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0075",
+   "unit_name": "3. Tema: Geometrik Şekiller",
+   "topics": [
+    "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru)",
+    "MAT.5.3.2. Temel geometrik inşa deneyimlerini yansıtabilme",
+    "MAT.5.3.3. Açı ölçmede matematiksel araç ve teknolojiyi kullanabilme",
+    "MAT.5.3.4. Düzlemde iki ya da üç doğrunun oluşturduğu açılara ilişkin çıkarım yapabilme",
+    "MAT.5.3.5. Çokgenleri düzlemde ardışık kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme",
+    "MAT.5.3.6. Çokgenlerin kenar ve açı özelliklerine yönelik deneyimlerini yansıtabilme",
+    "MAT.5.3.7. İki çemberin kesişimiyle oluşan üçgenlerin kenar özelliklerine ilişkin çıkarım yapabilme (eşkenar, ikizkenar, çeşitkenar)"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+   "text": "Bir eğlence merkezinde Mert, kişi başı {b} TL olan giriş ücretinden {a} kişi ödeme yapmıştır. Ayrıca grup için toplam {p} TL tutarında ortak atıştırmalık almıştır. Buna göre Mert ve arkadaşları bu eğlence merkezi için toplam kaç TL ödemiştir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 6
+    },
+    "b": {
+     "lo": 30,
+     "hi": 80,
+     "step": 10
+    },
+    "p": {
+     "lo": 40,
+     "hi": 100,
+     "step": 10
+    }
+   },
+   "derived": {
+    "toplam": "a*b+p"
+   },
+   "constraints": [
+    "a*b+p<600"
+   ],
+   "answer": "a*b+p",
+   "wrong": [
+    "a*(b+p)",
+    "a*b-p",
+    "(a+b)*p"
+   ],
+   "unit": "TL",
+   "explanation": "Önce kişi başı ücret ile kişi sayısı çarpılır, ardından atıştırmalık ücreti eklenir: ({a} x {b}) + {p} = {ans}",
+   "positive": true,
+   "id": "m5-0076",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

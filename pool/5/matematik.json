@@ -2687,6 +2687,214 @@
 "topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
 "d": 2,
 "ts": 1794211632
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme",
+"passage": "Bir kültür festivalinde stant açan el sanatları dallarının günlük ziyaretçi sayıları sütun grafiğinde gösterilmiştir. Festival komitesi bu verilere bakarak en çok ilgi gören sanat dalına ödül verecektir.",
+"question": "Sütun grafiğinde seramik 350, ebru 500, ahşap oymacılığı 450 ve cam üfleme 300 ziyaretçi almıştır. Bu grafiği inceleyen festival görevlisi şu yorumu yapmıştır: 'Ebru sanatı en çok ziyaret edilen dal olmuştur ve cam üfleme sanatına gelen ziyaretçi sayısı seramik sanatına gelen ziyaretçi sayısından fazladır.' Bu yorumdaki hatalı kısmı düzelten bir uzman hangi sonuca varır?",
+"shape": {
+"type": "bar_chart",
+"title": "Festival Ziyaretçi Sayıları",
+"labels": [
+"Seramik",
+"Ebru",
+"Ahşap Oymacılığı",
+"Cam Üfleme"
+],
+"values": [
+350,
+500,
+450,
+300
+],
+"show_names": false
+},
+"options": {
+"A": "Seramik ve cam üfleme eşit ziyaretçi almıştır.",
+"B": "Ebru en çok ziyaret edilen daldır ancak cam üfleme seramikten azdır.",
+"C": "Cam üfleme sanatı en çok ziyaret edilen daldır.",
+"D": "Ahşap oymacılığı en çok ziyaret edilen daldır."
+},
+"answer": "B",
+"explanation": "Ebru 500 ziyaretçi ile en çok ziyaret edilen daldır (yorumun ilk kısmı doğru). Ancak cam üfleme 300, seramik ise 350 ziyaretçi almıştır; yani cam üfleme seramikten azdır, fazla değildir (yorumun ikinci kısmı hatalıdır). Doğru değerlendirme: Ebru en çok ziyaret edilen daldır ancak cam üfleme seramikten azdır.",
+"vfd2": true,
+"_sty": "s:bar_chart|uzman hangi sonuca varır",
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 1,
+"ts": 1794375956
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+"passage": "Bir ortaokul kütüphanesindeki öğrencilerin en çok ödünç aldığı kitap türleri üzerinde bir istatistiksel araştırma yürütülmüştür. 250 öğrencinin katıldığı araştırmada öğrencilerin 95'i macera, 75'i bilim kurgu, 50'si tarih ve geri kalanları masal türünü tercih etmiştir.",
+"question": "Bu araştırmada masal türünü tercih eden öğrenci sayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "25",
+"B": "30",
+"C": "35",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Macera (95), bilim kurgu (75) ve tarih (50) türlerini tercih eden öğrencilerin toplamı 95 + 75 + 50 = 220'dir. Toplam öğrenci sayısı 250 olduğundan masal türünü tercih eden öğrenci sayısı 250 - 220 = 30'dur.",
+"vfd2": true,
+"_sty": "s:|eden öğrenc sayısı kaçtır",
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 1,
+"ts": 1794375956
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerin Karşılaştırılması",
+"passage": "Bir kütüphanedeki üç farklı rafta bulunan kitapların doluluk oranları verilmiştir. 1. raf 5/8, 2. raf 3/4, 3. raf 7/16 oranında doludur.",
+"question": "Bu bilgilere göre, doluluk oranı en fazla olan raftan en az olan rafa doğru sıralama aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "1. Raf > 2. Raf > 3. Raf",
+"B": "2. Raf > 1. Raf > 3. Raf",
+"C": "2. Raf > 3. Raf > 1. Raf",
+"D": "3. Raf > 2. Raf > 1. Raf"
+},
+"answer": "B",
+"explanation": "Paydaları 16'da eşitleyelim: 1. raf 10/16, 2. raf 12/16, 3. raf 7/16. Payları karşılaştırdığımızda 12/16 > 10/16 > 7/16 sıralaması oluşur. Yani 2. Raf > 1. Raf > 3. Raf.",
+"vfd2": true,
+"_sty": "s:|doğru sırala aşağıd hangis",
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 1,
+"ts": 1794376018
+},
+{
+"subject": "Matematik",
+"topic": "Geometrik Nicelikler: Dikdörtgenin Çevresi",
+"passage": "",
+"question": "Şekildeki ABCD dikdörtgeninde |AB| = 8 cm ve |BC| = 5 cm ise bu dikdörtgenin çevresi kaç cm'dir?",
+"shape": {
+"type": "rectangle",
+"width": 8,
+"height": 5,
+"width_label": "8 cm",
+"height_label": "5 cm",
+"show_names": false
+},
+"options": {
+"A": "13 cm",
+"B": "21 cm",
+"C": "26 cm",
+"D": "40 cm"
+},
+"answer": "C",
+"explanation": "Dikdörtgenin çevresi, iki uzun ve iki kısa kenarın toplamıdır. (8 + 5) × 2 = 13 × 2 = 26 cm.",
+"vfd2": true,
+"_sty": "s:rectangle|dikdör çevres kaç dir",
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 3,
+"ts": 1794376111
+},
+{
+"subject": "Matematik",
+"topic": "Geometrik Nicelikler: Dikdörtgende Alan",
+"passage": "",
+"question": "Çevresi 32 cm olan bir dikdörtgenin uzun kenarı 10 cm ise bu dikdörtgenin alanı kaç cm²'dir?",
+"shape": {
+"type": "rectangle",
+"width": 10,
+"height": 6,
+"width_label": "10 cm",
+"height_label": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "32 cm²",
+"B": "60 cm²",
+"C": "64 cm²",
+"D": "96 cm²"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × (uzun + kısa) = 32. 10 + kısa = 16, kısa kenar 6 cm olur. Alan = 10 × 6 = 60 cm².",
+"vfd2": true,
+"_sty": "s:rectangle|dikdör alanı kaç dir",
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 3,
+"ts": 1794376111
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.2. Doğal sayılarla gerçek yaşam problemleri",
+"passage": "Bir gıda üretim tesisinde paketleme ünitesinde iki farklı makine çalışmaktadır. Tabloda makinelerin bir saatte paketlediği ürün sayıları verilmiştir.",
+"question": "A ve B makineleri 3 saat boyunca birlikte çalışırsa toplamda kaç paket ürün üretirler?",
+"shape": {
+"type": "table",
+"title": "Üretim Miktarı (Saatlik)",
+"headers": [
+"Makine",
+"Paket Sayısı"
+],
+"rows": [
+[
+"A Makinesi",
+"1250"
+],
+[
+"B Makinesi",
+"1150"
+]
+]
+},
+"options": {
+"A": "6400",
+"B": "7200",
+"C": "7500",
+"D": "8100"
+},
+"answer": "B",
+"explanation": "1 saatlik toplam üretim: 1250 + 1150 = 2400. 3 saatlik üretim: 2400 × 3 = 7200.",
+"vfd2": true,
+"_sty": "s:table|kaç paket ürün üretir",
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 3,
+"ts": 1794376205
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.2. Doğal sayılarla işlemler",
+"passage": "Okul bahçesine 1000 adet fidan dikilecektir. Grafikte günlere göre dikilen fidanların dağılımı gösterilmiştir.",
+"question": "İlk iki günde toplam kaç fidan dikilmiştir?",
+"shape": {
+"type": "pie_chart",
+"title": "Fidan Dikim Dağılımı",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba"
+],
+"values": [
+300,
+450,
+250
+],
+"show_names": false
+},
+"options": {
+"A": "650",
+"B": "700",
+"C": "750",
+"D": "800"
+},
+"answer": "C",
+"explanation": "Pazartesi 300, Salı 450. Toplam: 300 + 450 = 750.",
+"vfd2": true,
+"_sty": "s:pie_chart|toplam kaç fidan dikilm",
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 3,
+"ts": 1794376205
 }
 ]
 }

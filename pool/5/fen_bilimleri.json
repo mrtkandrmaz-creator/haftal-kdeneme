@@ -5437,6 +5437,109 @@
 "topics": "Bitki ve hayvan hücresi, Hücre-doku-organ-sistem-organizma, Destek ve hareket sistemi (iskelet, kas), Sistem sağlığı",
 "d": 1,
 "ts": 1794342645
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay'ın Büyüklükleri",
+"passage": "Mutfakta yemek hazırlayan Elif, portakal, erik ve mercimek tanesini kullanarak Güneş, Dünya ve Ay'ın büyüklüklerini modellemek istemiştir. Öğretmeninin derste verdiği 'Güneş en büyük, Ay ise en küçüktür' kuralını dikkate alarak cisimleri sırasıyla dizmiştir.",
+"question": "Elif'in hazırladığı bu modelde Güneş, Dünya ve Ay'ı temsil eden cisimlerin büyüklük sıralaması aşağıdakilerden hangisi gibi olmalıdır?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+0,
+2,
+4,
+6
+],
+"labels": [
+"K",
+"L",
+"M",
+"N"
+],
+"title": "Cisim Modelleri",
+"show_names": false
+},
+"options": {
+"A": "Portakal - Erik - Mercimek tanesi",
+"B": "Portakal - Mercimek tanesi - Erik",
+"C": "Erik - Mercimek tanesi - Portakal",
+"D": "Mercimek tanesi - Erik - Portakal"
+},
+"answer": "A",
+"explanation": "Gerçek boyutlar dikkate alındığında Güneş en büyük (portakal), Dünya orta büyüklükte (erik), Ay ise en küçük (mercimek tanesi) gök cismidir. Sıralama Portakal, Erik ve Mercimek tanesi şeklinde olmalıdır.",
+"vfd2": true,
+"_sty": "s:science_space|aşağıd hangis gibi olmalı",
+"unit": "Gökyüzündeki Komşularımız ve Biz",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 1,
+"ts": 1794375671
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması ve deney",
+"passage": "Bir öğrenci, özdeş pil ve ampullerle aşağıda şemaları verilen dört farklı düzeneği hazırlıyor.",
+"question": "Buna göre, hangi devredeki ampulün ışık vermesi beklenir? (Devrelerdeki anahtarların kapalı olduğu kabul edilecektir.)",
+"shape": null,
+"options": {
+"A": "Şema IV: Pilin ters kutuplarına kablonun boşta kalan uçlarla bağlandığı açık devre",
+"B": "Şema II: Pilin her iki kutbunun kablo ile ampulün duya bağlandığı tam devre",
+"C": "Şema I: Sadece pilin kutuplarına ampulün dokundurulduğu ancak kablo bağlantısı olmayan düzenek",
+"D": "Şema III: Kablonun pilin sadece tek kutbuna bağlı olduğu düzenek"
+},
+"answer": "B",
+"explanation": "Elektrik enerjisinin iletimi için kesintisiz ve kapalı bir iletken yol gereklidir. Sadece B şıkkında enerji akışını sağlayacak tam devre kurulmuştur.",
+"vfd2": true,
+"_sty": "s:|hangis ampul ışık verir",
+"crit": 1,
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 2,
+"ts": 1794375750
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yer Çekimi ve Ağırlık",
+"passage": "Bir astronot, Dünya'da dinamometre ile ölçtüğünde 600 N gelen bir ekipmanı Ay yüzeyine götürüyor. Ay'da yer çekimi kuvveti Dünya'dakinin yaklaşık altıda biri kadardır.",
+"question": "Astronotun Ay yüzeyinde yapacağı ölçüm sonucunda dinamometrenin gösterdiği değer aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "600 N",
+"B": "360 N",
+"C": "60 N",
+"D": "100 N"
+},
+"answer": "D",
+"explanation": "Dünya'daki ağırlığı 600 N olan bir cismin Ay'daki ağırlığı yer çekimi etkisiyle 600 ÷ 6 = 100 N olarak ölçülür.",
+"vfd2": true,
+"_sty": "s:|göster değer aşağıd hangis",
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 3,
+"ts": 1794375839
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kaynakların Etkili Kullanımı",
+"passage": "Okul spor müsabakalarında öğrenciler 3 farklı çöp kutusu (Metal, Kağıt, Plastik) kullanarak atık yönetimi yapmaktadır. Üç arkadaşın atıkları şöyledir: Can (alüminyum içecek kutusu), Ece (kullanılmış defter yaprakları), Mert (su şişesi kapağı - plastik).",
+"question": "Arkadaşların atıklarını doğru kutulara yerleştirmesi sonucu oluşan eşleşme aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Can-Plastik, Ece-Kağıt, Mert-Metal",
+"B": "Can-Metal, Ece-Plastik, Mert-Kağıt",
+"C": "Can-Metal, Ece-Kağıt, Mert-Plastik",
+"D": "Can-Kağıt, Ece-Metal, Mert-Plastik"
+},
+"answer": "C",
+"explanation": "Alüminyum içecek kutusu metal kutuya, defter yaprakları kağıt kutusuna, plastik kapak ise plastik kutusuna atılmalıdır. Doğru eşleşme D seçeneğidir.",
+"vfd2": true,
+"_sty": "s:|doğru kutula yerleş göster",
+"crit": 1,
+"unit": "Sürdürülebilir Yaşam ve Geri Dönüşüm",
+"topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
+"d": 2,
+"ts": 1794376555
 }
 ]
 }
