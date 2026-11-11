@@ -130,6 +130,9 @@ def _norm_txt(t):
     return re.sub(r"\s+", " ", str(t or "").strip().lower())
 
 
+CORE_SUBJECTS = ("Matematik", "Fen Bilimleri")
+
+
 def targets(cur, ai, grades, subjects):
     out = []
     for g in grades:
@@ -141,7 +144,8 @@ def targets(cur, ai, grades, subjects):
             for unit, topics in cur.units(g, sj):
                 cnt = sum(1 for q in have if q.get("unit") == unit)
                 out.append((cnt, random.random(), g, label, sj, unit, topics))
-    out.sort(key=lambda t: t[:2])
+    # Matematik ve Fen öncelikli: bu derslerde ünite başına soru sayısı yarıya sayılır (aynı doluluktaki hedefte önce onlar)
+    out.sort(key=lambda t: ((t[0] / 2 if t[4] in CORE_SUBJECTS else t[0]), t[1]))
     return out
 
 
@@ -154,6 +158,7 @@ def build(ai, cur, args, gen=None, strict=None):
     """gen(plan, label, difficulty, scope) -> (qs, err); testte sahte üretici verilebilir."""
     gen = gen or (lambda plan, label, diff, scope, avoid: ai.generate_mc(
         plan, label, diff, scope, avoid=avoid, use_bank=False, deposit=False, verify=True, count=False))
+    _gk, _mk = [], []
     if strict is None:
         _gk, _mk = ai.load_keys()
         strict = lambda qs, facts=None: ai.verify_strict(qs, _gk, _mk, facts=facts)
@@ -174,7 +179,7 @@ def build(ai, cur, args, gen=None, strict=None):
         di = random.choice(args.difficulty_idx)
         diff = cur.DIFFICULTIES[di]
         topics_txt = f"{unit}: " + ", ".join(topics)
-        n_ask = args.per_unit
+        n_ask = getattr(args, "per_unit_core", args.per_unit) if sj in CORE_SUBJECTS else args.per_unit
         chosen = None
         ps = (passages.get(g) or {}).get(unit) if sj == "Türkçe" else None
         if ps:  # Türkçe: onaylı okuma metni seç (en az kullanılan); sorular yalnızca bu metne dayanır
@@ -187,6 +192,13 @@ def build(ai, cur, args, gen=None, strict=None):
                            "KURAL: Soruların TAMAMI yalnızca bu metne dayansın (ana fikir, konu, başlık, çıkarım, neden-sonuç, sözcük/deyim anlamı, anlatım özellikleri). "
                            "'passage' alanına bu metni AYNEN, hiç değiştirmeden yaz. Metinde olmayan bilgiyi sorma; doğru cevap metinden kesin olarak çıkarılabilsin ve tek bir şık doğru olsun. "
                            "Her soru farklı bir beceriyi ölçsün.")
+        listening = False
+        if sj == "İngilizce" and random.random() < args.listen_ratio:  # dinleme sorusu: metin ekranda gizlenir, sesli çalınır
+            listening = True
+            n_ask = min(n_ask, 4)
+            topics_txt += ("\n🎧 DİNLEME SORUSU KURALI: 'passage' alanına bu ünite konusunda 40-70 kelimelik, 5. sınıf düzeyinde, kısa bir İNGİLİZCE diyalog yaz "
+                           "(her konuşma ayrı satırda, 'Ali: ...' / 'Mia: ...' biçiminde, iki konuşmacı). Sorular ve şıklar İngilizce olsun; cevap YALNIZCA diyalogda söylenenlerden kesin çıkarılabilsin, "
+                           "yalnızca ezbere ya da genel bilgiye dayanmasın; sorularda 'text/dialogue' kelimelerine atıf yapma, 'In the conversation, ...' biçimini kullan.")
         ex = [x["q"] for x in liked if (x.get("q") or {}).get("subject") == sj and x.get("grade_label") == label and isinstance(x.get("q"), dict)]
         ai.STYLE_EXAMPLES[sj] = ex
         plan = [{"subject": sj, "n": n_ask, "topics": topics_txt, "short": unit}]
@@ -206,14 +218,29 @@ def build(ai, cur, args, gen=None, strict=None):
                 continue
             if s in bad:
                 continue
+            if sj in ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi") and not ai._on_topic(q, f"{unit}: {topics_txt}", sj, label):
+                print(f"   ✗ ünite dışı: {str(q.get('question'))[:70]}")
+                continue
             if chosen:  # metni değiştirmiş ya da metinden bağımsız soruları ele; metni AYNEN kaynak metinle değiştir
                 import difflib
                 if difflib.SequenceMatcher(None, _norm_txt(q.get("passage")), _norm_txt(chosen["metin"])).ratio() < 0.85:
                     continue
                 q["passage"] = chosen["metin"]
                 q["pid"] = chosen["id"]
+            if listening:
+                if len(str(q.get("passage") or "").split()) < 25 or str(q.get("passage")).count(":") < 2:
+                    continue  # dinleme için yeterli diyalog yok
+                q["listen"] = True
             stems.add(s)
             new.append(q)
+        if new and (_gk or _mk) and os.environ.get("DENEMEMATIK_NO_CRITIC") != "1":
+            n0 = len(new)
+            try:
+                new = ai.critique_fix(new, _gk, _mk)  # uzman-eleştirmen: hata/muğlaklık/olumsuz kök düzelt ya da ele
+            except Exception as e:
+                print(f"   ! eleştirmen atlandı: {type(e).__name__}")
+            if len(new) != n0 or any(q.get("crit") for q in new):
+                print(f"   🔎 eleştirmen: {n0} → {len(new)} (düzeltilen {sum(1 for q in new if q.get('crit'))})")
         ai.LAST_STRICT = {}
         before = len(new)
         facts = ai.src_facts(sj, label, f"{unit}: " + ", ".join(topics))
@@ -234,10 +261,12 @@ def build(ai, cur, args, gen=None, strict=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--grades", default="5")
-    ap.add_argument("--subjects", default="")
-    ap.add_argument("--per-unit", type=int, default=10)
+    ap.add_argument("--subjects", default="Matematik,Fen Bilimleri,Türkçe,Sosyal Bilgiler,Din Kültürü ve Ahlak Bilgisi,İngilizce")
+    ap.add_argument("--per-unit", type=int, default=1, help="Matematik/Fen dışındaki derslerde ünite başına istenen soru")
+    ap.add_argument("--per-unit-core", type=int, default=2, help="Matematik ve Fen'de ünite başına istenen soru")
     ap.add_argument("--max-per-unit", type=int, default=80, help="bir ünitede bu kadar soruya ulaşılınca atlanır")
-    ap.add_argument("--minutes", type=float, default=40)
+    ap.add_argument("--minutes", type=float, default=17)
+    ap.add_argument("--listen-ratio", type=float, default=0.4, help="İngilizce hedeflerinin dinleme sorusu olma olasılığı")
     ap.add_argument("--max-per-passage", type=int, default=12, help="bir okuma metninden bu kadar soruya ulaşılınca metin atlanır")
     ap.add_argument("--bad-dir", default="", help="userdata dalındaki data/ klasörü (bad.json içerir); bildirilen sorular havuzdan silinir")
     ap.add_argument("--difficulty-idx", default="1,2,3,4", help="curriculum.DIFFICULTIES indeksleri (0-5), virgülle")
