@@ -3754,6 +3754,13 @@ def _sig_tokens(q):
     return sorted({w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)})
 
 
+def _num_tokens(q):
+    import re, json
+    sh = q.get("shape")
+    blob = " ".join([str(q.get("question", "")), str(q.get("passage", "")), " ".join(str(v) for v in (q.get("options") or {}).values()), json.dumps(sh, ensure_ascii=False) if isinstance(sh, dict) else ""])
+    return sorted({"#" + n for n in re.findall(r"\d+(?:[.,]\d+)?", blob)})[:12]
+
+
 def recent_sigs():
     return _load("qsigs.json", {})
 
@@ -3785,6 +3792,8 @@ def add_stems(questions):
         s = re.sub(r"\W+", " ", re.sub(r"\d+", "0", str(q.get("question", "")).lower())).strip()[:70]
         d.setdefault(q.get("subject", "Genel"), []).append(s)
         tk = _sig_tokens(q)
+        if len(tk) >= 4 and q.get("tpl"):  # hazır kalıp (sayıları kodla seçilir): sayı belirteçleri de saklanır; yalnız sayısı farklı olan soru "aynı" sayılmaz
+            tk = tk + _num_tokens(q)
         if len(tk) >= 4:
             sg.setdefault(q.get("subject", "Genel"), []).append(" ".join(tk))
     for k in d:
@@ -6118,7 +6127,8 @@ def _complete_ok(qtext, pas, opts, shape):
     # I, II, III yargıları metinde gerçekten yazılı mı?
     romans = set()
     for v in opts.values():
-        romans |= set(_ROMAN_OPT.findall(str(v)))
+        if re.fullmatch(r"(?:[Yy]aln[ıi]z\s+|[Ss]adece\s+)?(?:IV|V|I{1,3})\.?(?:\s*(?:,|ve|ile|veya|ya da)\s*(?:IV|V|I{1,3})\.?)*\.?", str(v).strip()):  # yalnızca yargı numarası şıkları (İngilizce "I’m" zamiri sayılmaz)
+            romans |= set(_ROMAN_OPT.findall(str(v)))
     for r in romans:
         if not re.search(rf"(?:^|[\s(]){r}\s*[.):\-–]", full, re.M):
             return False
@@ -9839,7 +9849,7 @@ def _sf_rain(subject):
     return _mf_raw(subject, "Yağış ve iklim", q, o, ex, shape=shape, passage=lead) if o else None
 
 
-_SF_GENS = [(_sf_budget, ("ekonomi", "bütçe", "tasarruf", "ihtiyaç", "gelir")), (_sf_rain, ("iklim", "yağış", "harita", "evimiz", "hava"))]
+_SF_GENS = [(_sf_budget, ("ekonomi", "bütçe", "tasarruf", "ihtiyaç", "gelir")), (_sf_rain, ("iklim", "yağış", "harita", "hava durumu"))]
 
 
 def sosyal_questions(grade_label, n, topics="", seen=(), dl=0):
@@ -10651,6 +10661,7 @@ def _fen_stmt(topic, T, F, S=None):
             ws.remove(F[i]); ws.insert(0, F[i])
         lab = S[i] if S else topic
         return _fact_q(subject, topic, f"{lab} ile ilgili aşağıdaki ifadelerden hangisi doğrudur?", c, ws[:3], f"“{c}” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.")
+    g.TF = (topic, T, F, S)
     return g
 
 
@@ -10759,6 +10770,1162 @@ _tf_saglik.__name__ = "_tf_saglik"
 
 _TF_GENS += [(_tf_duygu, ("duygu",)), (_tf_esanlam, ("söz varlığı", "anlam", "sözcük")), (_tf_atatarih, ("atatürk", "cumhuriyet", "millî mücadele", "23 nisan")), (_tf_saglik, ("sağlık", "beslen", "hijyen"))]
 _DIFF_OF.update({"_tf_duygu": 2, "_tf_esanlam": 1, "_tf_atatarih": 2, "_tf_saglik": 1})
+
+
+# ================================================================ 5. SINIF DİN KÜLTÜRÜ VE AHLAK BİLGİSİ — kodla kurulan, doğru-cevaplı kalıplar
+_DIN = "Din Kültürü ve Ahlak Bilgisi"
+_DF_GENS = []
+
+
+def _df_eslestir(topic, L, stem, ex, extra=()):
+    """L: (ad, açıklama) çiftleri. Soru: açıklama -> ad."""
+    def g(subject):
+        a, b = random.choice(L)
+        wr = [x for x, _y in L if x != a] + list(extra)
+        return _fact_q(subject, topic, stem.format(b=b), a, wr, ex.format(a=a, b=b))
+    return g
+
+
+def _df_ters(topic, L, stem, ex, extra=()):
+    """Ad -> açıklama."""
+    def g(subject):
+        a, b = random.choice(L)
+        wr = [y for x, y in L if x != a] + list(extra)
+        return _fact_q(subject, topic, stem.format(a=a), b, wr, ex.format(a=a, b=b))
+    return g
+
+
+_SIFAT = [("Semi", "Allah’ın her şeyi işitmesi"), ("Basar", "Allah’ın her şeyi görmesi"), ("İlim", "Allah’ın her şeyi bilmesi"), ("Kudret", "Allah’ın her şeye gücünün yetmesi"),
+          ("Tekvin", "Allah’ın her şeyi yoktan var etmesi"), ("Kelam", "Allah’ın söz söylemesi")]
+_df_sifat = _df_eslestir("Allah İnancı", _SIFAT, "“{b}” anlamına gelen Allah’ın sıfatı aşağıdakilerden hangisidir?", "“{b}” anlamındaki sıfat: {a}.")
+_df_sifat.__name__ = "_df_sifat"
+_ISIM = [("Er-Rahman", "çok merhametli"), ("El-Halik", "yaratan"), ("El-Gaffar", "günahları çok bağışlayan"), ("Es-Selam", "esenlik veren"), ("El-Aziz", "üstün ve güçlü olan"), ("El-Alim", "her şeyi bilen")]
+_df_isim = _df_ters("Allah İnancı", _ISIM, "Allah’ın güzel isimlerinden “{a}” isminin anlamı aşağıdakilerden hangisidir?", "“{a}” ismi “{b}” anlamına gelir.")
+_df_isim.__name__ = "_df_isim"
+
+
+def _df_rekat(subject):
+    V = [("Sabah", 2), ("Öğle", 4), ("İkindi", 4), ("Akşam", 3), ("Yatsı", 4)]
+    kind = random.choice(["tek", "top"])
+    if kind == "tek":
+        n, r = random.choice(V)
+        o = _mf_opts(r, [2, 3, 4, 5, 6], str)
+        return _mf_raw(subject, "Namaz", f"{n} namazının farzı kaç rekâttır?", o, f"{n} namazının farzı {r} rekâttır.") if o else None
+    a, b = random.sample(V, 2)
+    c = a[1] + b[1]
+    o = _mf_opts(c, [c + 1, c - 1, c + 2, 17, 9, 5], str)
+    return _mf_raw(subject, "Namaz", f"{a[0]} ve {b[0].lower()} namazlarının farz rekâtları toplamı kaçtır?", o, f"{a[0]} namazı {a[1]}, {b[0].lower()} namazı {b[1]} rekâttır; toplam {c}.") if o else None
+
+
+_df_rekat.__name__ = "_df_rekat"
+
+
+def _df_vakit(subject):
+    V = ["Sabah", "Öğle", "İkindi", "Akşam", "Yatsı"]
+    i = random.randrange(4)
+    a, c = V[i], V[i + 1]
+    return _fact_q(subject, "Namaz", f"Günlük beş vakit namazda {a} namazından hemen sonra kılınan namaz aşağıdakilerden hangisidir?", c, [x for x in V if x not in (a, c)] + ["Cuma"], f"Vakit sırası sabah, öğle, ikindi, akşam, yatsıdır; {a} namazından sonra {c} gelir.")
+
+
+_df_vakit.__name__ = "_df_vakit"
+_df_namaz = _fen_stmt("Namaz", ["Namazda yönelinen yön Kâbe’dir (kıble).", "Müslümanlar günde beş vakit namaz kılar.", "Cuma namazı haftada bir kez kılınır.", "Namaz kılmadan önce abdest alınır.", "Namaz, insanın düzenli ve disiplinli olmasına yardımcı olur."],
+                      ["Namazda yönelinen yön her gün değişir.", "Müslümanlar günde üç vakit namaz kılar.", "Cuma namazı her gün kılınır.", "Namaz kılmadan önce abdest alınmaz.", "Namaz, insanı düzensiz yaşamaya yöneltir."],
+                      ["Kıble", "Namaz vakitlerinin sayısı", "Cuma namazı", "Abdest", "Namazın hayata etkisi"])
+_df_namaz.__name__ = "_df_namaz"
+
+_KURAN = [("Kur’an-ı Kerim’in ilk inen ayetlerinin bulunduğu sure", "Alak suresi"), ("Kur’an-ı Kerim’in ilk suresi", "Fatiha suresi"), ("Kur’an-ı Kerim’in son suresi", "Nas suresi")]
+
+
+def _df_kuran(subject):
+    k = random.choice(["ilk", "ilks", "sayi", "ay", "ayet", "kisa"])
+    if k in ("ilk", "ilks"):
+        d, c = random.choice(_KURAN)
+        return _fact_q(subject, "Kur’an-ı Kerim", f"{d} aşağıdakilerden hangisidir?", c, ["Fatiha suresi", "Alak suresi", "Nas suresi", "Kevser suresi", "İhlas suresi", "Kureyş suresi"], f"{d} {c}dir.")
+    if k == "sayi":
+        o = _mf_opts(114, [99, 110, 120, 30, 124], str)
+        return _mf_raw(subject, "Kur’an-ı Kerim", "Kur’an-ı Kerim’de kaç sure vardır?", o, "Kur’an-ı Kerim 114 sureden oluşur.") if o else None
+    if k == "ay":
+        return _fact_q(subject, "Kur’an-ı Kerim", "Kur’an-ı Kerim’in inmeye başladığı ay aşağıdakilerden hangisidir?", "Ramazan", ["Muharrem", "Şaban", "Zilhicce", "Recep"], "Kur’an-ı Kerim Ramazan ayında inmeye başlamıştır.")
+    if k == "ayet":
+        S = [("Kevser", 3), ("İhlas", 4), ("Kureyş", 4), ("Fatiha", 7)]
+        n, c = random.choice(S)
+        o = _mf_opts(c, [2, 3, 4, 5, 6, 7, 8, 10], str)
+        return _mf_raw(subject, "Kur’an-ı Kerim", f"{n} suresi kaç ayetten oluşur?", o, f"{n} suresi {c} ayettir.") if o else None
+    return _fact_q(subject, "Kur’an-ı Kerim", "Kur’an-ı Kerim’i Hz. Muhammed’e getiren melek aşağıdakilerden hangisidir?", "Cebrail", ["Mikail", "İsrafil", "Azrail"], "Vahiy meleği Cebrail’dir.")
+
+
+_df_kuran.__name__ = "_df_kuran"
+_df_kuran2 = _fen_stmt("Kur’an-ı Kerim", ["Kur’an-ı Kerim sure ve ayetlerden oluşur.", "Kur’an-ı Kerim, Hz. Muhammed’e vahiy yoluyla indirilmiştir.", "Kur’an-ı Kerim’in ilk inen ayeti “Oku” emriyle başlar.", "Kur’an-ı Kerim, insanlara doğru yolu göstermek için indirilmiştir."],
+                       ["Kur’an-ı Kerim yalnızca ayetlerden oluşur, sure içermez.", "Kur’an-ı Kerim, Hz. İsa’ya indirilmiştir.", "Kur’an-ı Kerim’in ilk inen ayeti “Yaz” emriyle başlar.", "Kur’an-ı Kerim, yalnızca tarih anlatmak için indirilmiştir."],
+                       ["Kur’an’ın yapısı", "Kur’an’ın indirilişi", "İlk inen ayet", "Kur’an’ın amacı"])
+_df_kuran2.__name__ = "_df_kuran2"
+
+_KISSA = [("Hz. Nuh", "Gemi yapması"), ("Hz. Yusuf", "Kardeşleri tarafından kuyuya atılması"), ("Hz. Musa", "Firavun’a Allah’ın mesajını iletmesi"), ("Hz. Eyüp", "Hastalığında sabretmesi"),
+          ("Hz. Yunus", "Balığın karnında Allah’a dua etmesi"), ("Hz. İbrahim", "Oğlu İsmail ile Kâbe’yi yeniden inşa etmesi")]
+_df_kissa = _df_ters("Peygamber Kıssaları", _KISSA, "Aşağıdaki olaylardan hangisi {a} ile ilgilidir?", "{a} ile ilgili olay: {b}.")
+_df_kissa.__name__ = "_df_kissa"
+
+
+def _df_kissa2(subject):
+    a, b = random.choice(_KISSA)
+    wr = [x for x, _y in _KISSA if x != a]
+    return _fact_q(subject, "Peygamber Kıssaları", f"“{b}” olayı hangi peygamberin kıssasında yer alır?", a, wr, f"“{b}” olayı {a}’in kıssasında anlatılır.".replace("Hz. Eyüp’in", "Hz. Eyüp’ün").replace("Hz. Yusuf’in", "Hz. Yusuf’un").replace("Hz. Nuh’in", "Hz. Nuh’un").replace("Hz. Musa’in", "Hz. Musa’nın").replace("Hz. Yunus’in", "Hz. Yunus’un").replace("Hz. İbrahim’in", "Hz. İbrahim’in"))
+
+
+_df_kissa2.__name__ = "_df_kissa2"
+_df_kissa3 = _fen_stmt("Peygamber Kıssaları", ["Peygamber kıssalarından ibret ve ders alınır.", "Peygamberler insanlara Allah’ın mesajını ileten kişilerdir.", "Hz. Eyüp, hastalığında sabrıyla örnek olmuştur.", "Hz. İbrahim, Allah’a olan teslimiyetiyle örnek olmuştur."],
+                       ["Peygamber kıssaları yalnızca eğlenmek için anlatılır.", "Peygamberler insanlara kendi mesajlarını iletmek için gönderilmiştir.", "Hz. Eyüp, hastalığında sabırsızlık göstermiştir.", "Hz. İbrahim, putlara tapmayı insanlara öğütlemiştir."],
+                       ["Kıssaların amacı", "Peygamberlerin görevi", "Hz. Eyüp", "Hz. İbrahim"])
+_df_kissa3.__name__ = "_df_kissa3"
+
+_CAMI = [("Mihrap", "imamın namazda durduğu, kıbleyi gösteren girinti"), ("Minber", "cuma hutbesinin okunduğu merdivenli yüksek yer"), ("Minare", "ezanın okunduğu ince, yüksek kule"),
+         ("Kubbe", "caminin üstünü örten yarım küre biçimindeki yapı"), ("Şadırvan", "abdest alınan, musluklu yer")]
+_df_cami = _df_eslestir("Mimarimizde Dinî Motifler", _CAMI, "Camilerde “{b}” bölümüne ne ad verilir?", "“{b}” bölümüne {a} denir.")
+_df_cami.__name__ = "_df_cami"
+_df_cami2 = _df_ters("Mimarimizde Dinî Motifler", _CAMI, "Camilerin bölümlerinden “{a}” aşağıdakilerden hangisidir?", "{a}: {b}.")
+_df_cami2.__name__ = "_df_cami2"
+
+_DF_GENS += [(_df_sifat, ("allah", "sıfat", "tevhid")), (_df_isim, ("güzel isim", "allah")), (_df_rekat, ("namaz",)), (_df_vakit, ("namaz",)), (_df_namaz, ("namaz", "abdest")),
+             (_df_kuran, ("kur'an", "kur’an", "kevser", "sure")), (_df_kuran2, ("kur'an", "kur’an")), (_df_kissa, ("kıssa", "peygamber")), (_df_kissa2, ("kıssa", "peygamber")), (_df_kissa3, ("kıssa", "peygamber")),
+             (_df_cami, ("mimari", "cami", "mihrap", "minber")), (_df_cami2, ("mimari", "cami", "mihrap", "minber"))]
+_DIFF_OF.update({"_df_sifat": 2, "_df_isim": 3, "_df_rekat": 2, "_df_vakit": 1, "_df_namaz": 2, "_df_kuran": 1, "_df_kuran2": 2, "_df_kissa": 2, "_df_kissa2": 3, "_df_kissa3": 2, "_df_cami": 1, "_df_cami2": 2})
+
+
+def din_questions(grade_label, n, topics="", seen=(), dl=0):
+    """5. sınıf Din Kültürü: kodla kurulan, cevabı kesin sorular."""
+    gl = str(grade_label or "")
+    if n <= 0 or "5" not in gl[:2]:
+        return []
+    tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+    sel = [f for f, kw in _DF_GENS if any(_kw_hit(tl, k) for k in kw)]
+    if not sel:
+        return []
+    out, stems = [], set(seen)
+    rkey = ("gen", "Din", "5")
+    byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
+    if dl:
+        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
+    for nm in _recent_order(rkey, list(byname)):
+        if len(out) >= n:
+            break
+        for _t in range(4):
+            try:
+                raw = byname[nm](_DIN)
+                x = _norm_q(raw, _DIN) if raw else None
+            except Exception:
+                x = None
+            if x and _stem(x) not in stems:
+                stems.add(_stem(x))
+                x["vfd"] = True
+                x["local"] = True
+                x["tpl"] = nm
+                _recent_mark(rkey, nm)
+                out.append(x)
+                break
+    return out
+
+
+# ================================================================ 5. SINIF İNGİLİZCE — dilbilgisi kuralıyla kodla kurulan kalıplar
+_ENG = "İngilizce"
+_EF_GENS = []
+_NAMES = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
+_FEM = {"Ayşe", "Elif", "Zeynep"}
+
+
+def _en_q(topic, q, c, wrongs, ex):
+    return _fact_q(_ENG, topic, q, c, wrongs, ex)
+
+
+def _s3(v):
+    if v == "have":
+        return "has"
+    if v.endswith(("s", "sh", "ch", "x", "o")):
+        return v + "es"
+    if v.endswith("y") and v[-2] not in "aeiou":
+        return v[:-1] + "ies"
+    return v + "s"
+
+
+def _ing(v):
+    if v.endswith("ie"):
+        return v[:-2] + "ying"
+    if v.endswith("e") and v not in ("be", "see"):
+        return v[:-1] + "ing"
+    if v in ("run", "swim", "sit", "get", "stop", "cut"):
+        return v + v[-1] + "ing"
+    return v + "ing"
+
+
+_VB = ["play", "watch", "go", "study", "brush", "wash", "read", "write", "help", "have", "do", "listen", "clean", "cook", "drink", "eat", "swim", "run", "make", "sit"]
+_OBJ = {"play": "football", "watch": "TV", "go": "to school", "study": "English", "brush": "her teeth", "wash": "the dishes", "read": "a book", "write": "a letter", "help": "his mother", "have": "breakfast",
+        "do": "homework", "listen": "to music", "clean": "the room", "cook": "dinner", "drink": "milk", "eat": "an apple", "swim": "in the pool", "run": "in the park", "make": "a cake", "sit": "on the chair"}
+
+
+def _en_pres(subject):
+    nm = random.choice(_NAMES)
+    v = random.choice(_VB)
+    third = random.random() < .6
+    subj = nm if third else random.choice(["I", "You", "We", "They"])
+    form = _s3(v) if third else v
+    poss = {"I": "my", "You": "your", "We": "our", "They": "their"}.get(subj) or ("her" if nm in _FEM else "his")
+    obj = _OBJ[v].replace("her ", poss + " ").replace("his ", poss + " ").replace("my ", poss + " ")
+    adv = random.choice(["every day", "on Sundays", "every morning", "after school"])
+    wrongs = [w for w in {v, _s3(v), _ing(v), "is " + v} if w != form]
+    return _en_q("Simple Present", f"{subj} ________ {obj} {adv}.", form, wrongs, f"“{adv}” düzenli bir alışkanlığı gösterir; Simple Present kullanılır. {'He/she/it ile fiile -s/-es eklenir' if third else 'I/you/we/they ile fiil yalın kalır'}: {form}.")
+
+
+_en_pres.__name__ = "_en_pres"
+
+
+def _en_prog(subject):
+    nm = random.choice(_NAMES)
+    v = random.choice(["play", "watch", "read", "write", "run", "swim", "make", "sit", "cook", "listen", "study", "clean"])
+    subj = nm if random.random() < .5 else random.choice(["I", "We", "They", "You"])
+    be = "is" if subj == nm else {"I": "am", "We": "are", "They": "are", "You": "are"}[subj]
+    c = f"{be} {_ing(v)}"
+    wr = [f"{_s3(v)}", f"{'are' if be != 'are' else 'is'} {_ing(v)}", f"{v}", f"{be} {v}"]
+    mark = random.choice(["Look! ", "Listen! ", "Right now, ", "At the moment, "])
+    return _en_q("Present Progressive", f"{mark}{subj} ________.", c, wr, f"“{mark.strip(' ,!')}” şu anda olan bir eylemi gösterir; Present Progressive: be + fiil-ing → {c}.")
+
+
+_en_prog.__name__ = "_en_prog"
+
+
+def _en_sp(subject):
+    nm = random.choice(_NAMES)
+    v = random.choice(["play", "watch", "read", "study", "cook", "clean", "help", "listen"])
+    now = random.random() < .5
+    if now:
+        c = f"is {_ing(v)}"
+        q = f"{nm} ________ at the moment."
+    else:
+        c = _s3(v)
+        q = f"{nm} ________ every day."
+    wr = [x for x in {_s3(v), f"is {_ing(v)}", v, _ing(v)} if x != c]
+    return _en_q("Present Progressive vs Simple Present", q, c, wr, "“at the moment” → Present Progressive; “every day” → Simple Present.")
+
+
+_en_sp.__name__ = "_en_sp"
+
+
+def _en_adv(subject):
+    L = [("always", "100%"), ("usually", "90%"), ("sometimes", "50%"), ("rarely", "10%"), ("never", "0%")]
+    a, p = random.choice(L)
+    nm = random.choice(_NAMES)
+    q = f"Look at the table: {nm} goes to the library {p} of the weeks. Which adverb of frequency completes the sentence? “{nm} ________ goes to the library.”"
+    return _en_q("Adverbs of Frequency", q, a, [x for x, _p in L if x != a], f"{p} → {a}.")
+
+
+_en_adv.__name__ = "_en_adv"
+
+
+def _en_tag(subject):
+    T = [("She is a student", "isn’t she"), ("They are at school", "aren’t they"), ("He likes pizza", "doesn’t he"), ("You play football", "don’t you"), ("We are friends", "aren’t we"),
+         ("Ali can swim", "can’t he"), ("Ayşe has a bike", "doesn’t she"), ("It is a cat", "isn’t it")]
+    s, c = random.choice(T)
+    pool = ["isn’t she", "aren’t they", "doesn’t he", "don’t you", "aren’t we", "can’t he", "doesn’t she", "isn’t it", "is he", "do they", "does she", "can he"]
+    return _en_q("Question Tags", f"{s}, ________?", c, [x for x in pool if x != c], f"Olumlu cümlenin soru eki olumsuz olur ve aynı yardımcı fiili kullanır: {c}.")
+
+
+_en_tag.__name__ = "_en_tag"
+
+
+def _en_there(subject):
+    n = random.choice([1, 2, 3, 4, 5])
+    th = random.choice(["book", "pen", "chair", "ball", "bag"])
+    pl = {"book": "books", "pen": "pens", "chair": "chairs", "ball": "balls", "bag": "bags"}[th]
+    place = random.choice(["on the desk", "in the classroom", "in my bag", "under the table"])
+    c = "is" if n == 1 else "are"
+    q = f"There ________ {'a' if n == 1 else n} {th if n == 1 else pl} {place}."
+    return _en_q("There is / There are", q, c, ["is" if c == "are" else "are", "am", "be"], f"{'Tekil' if n == 1 else 'Çoğul'} isimle there {c} kullanılır.")
+
+
+_en_there.__name__ = "_en_there"
+
+
+def _en_day(subject):
+    D = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    i = random.randrange(7)
+    after = random.random() < .5
+    c = D[(i + 1) % 7] if after else D[(i - 1) % 7]
+    wr = [d for d in D if d not in (D[i], c)]
+    return _en_q("Days of the Week", f"Which day comes {'after' if after else 'before'} {D[i]}?", c, random.sample(wr, 3), f"Haftanın günleri sırasıyla Monday … Sunday’dir; {D[i]} gününden {'sonra' if after else 'önce'} {c} gelir.")
+
+
+_en_day.__name__ = "_en_day"
+
+
+def _en_time(subject):
+    H = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
+    h = random.randint(1, 12)
+    m, w = random.choice([(0, "o’clock"), (15, "quarter past"), (30, "half past"), (45, "quarter to")])
+    hh = h if m != 45 else (h % 12) + 1
+    nm = H[hh - 1]
+    c = f"{nm} o’clock" if m == 0 else f"{w} {nm}"
+    shown = f"{h}:{m:02d}"
+    wr = []
+    for (w2, m2) in [("o’clock", 0), ("quarter past", 15), ("half past", 30), ("quarter to", 45)]:
+        hh2 = h if m2 != 45 else (h % 12) + 1
+        t = f"{H[hh2 - 1]} o’clock" if m2 == 0 else f"{w2} {H[hh2 - 1]}"
+        if t != c:
+            wr.append(t)
+    wr.append(f"half past {H[(h % 12)]}")
+    wr = [x for x in dict.fromkeys(wr) if x != c]
+    return _en_q("Telling the Time", f"What time is it? ({shown})", c, wr, f"{shown} → {c}.")
+
+
+_en_time.__name__ = "_en_time"
+
+_ADJ = [("tall", "taller", "the tallest", ("The tower", "the house"), "building in the city"), ("big", "bigger", "the biggest", ("The elephant", "the mouse"), "animal in the zoo"),
+        ("fast", "faster", "the fastest", ("The cheetah", "the turtle"), "animal in the zoo"), ("heavy", "heavier", "the heaviest", ("The truck", "the bike"), "vehicle on the road"),
+        ("small", "smaller", "the smallest", ("The mouse", "the cat"), "animal in the zoo"), ("expensive", "more expensive", "the most expensive", ("The car", "the bike"), "thing in the shop"),
+        ("dangerous", "more dangerous", "the most dangerous", ("The lion", "the rabbit"), "animal in the zoo"), ("good", "better", "the best", ("This book", "that book"), "book in the library"),
+        ("long", "longer", "the longest", ("The river", "the road"), "river in the country"), ("beautiful", "more beautiful", "the most beautiful", ("The rose", "the grass"), "flower in the garden")]
+
+
+def _en_comp(subject):
+    a, cmp_, sup, (x, y), _n = random.choice(_ADJ)
+    wr = [sup, f"more {a}" if cmp_ != f"more {a}" else f"{a}er", a, f"{a}est"]
+    wr = [w for w in dict.fromkeys(wr) if w != cmp_]
+    return _en_q("Comparatives", f"{x} is ________ than {y}.", cmp_, wr[:3], f"İki şey karşılaştırılırken karşılaştırma (comparative) kullanılır ve “than” gelir: {a} → {cmp_}.")
+
+
+_en_comp.__name__ = "_en_comp"
+
+
+def _en_sup(subject):
+    a, cmp_, sup, _p, noun = random.choice(_ADJ)
+    wr = [cmp_, a, f"more {a}" if not cmp_.startswith("more") else f"{a}er"]
+    return _en_q("Superlatives", f"This is ________ {noun}. (“{a}”)", sup, wr, f"İkiden fazla şey içinde “en …” anlamı için superlative kullanılır: {a} → {sup}.")
+
+
+_en_sup.__name__ = "_en_sup"
+
+
+def _en_much(subject):
+    C = [("apples", "many"), ("books", "many"), ("eggs", "many"), ("pens", "many"), ("milk", "much"), ("water", "much"), ("juice", "much"), ("sugar", "much")]
+    n, c = random.choice(C)
+    return _en_q("Countable / Uncountable Nouns", f"How ________ {n} do you need?", c, [x for x in ["many", "much", "a", "an", "few"] if x != c][:3], f"{n} {'sayılabilir' if c == 'many' else 'sayılamaz'} bir isimdir; how {c} kullanılır.")
+
+
+_en_much.__name__ = "_en_much"
+
+
+def _en_have(subject):
+    nm = random.choice(_NAMES)
+    subj, c = random.choice([(nm, "has got"), ("I", "have got"), ("They", "have got"), ("We", "have got"), ("She", "has got"), ("He", "has got")])
+    thing = random.choice(["a bike", "two brothers", "a red pencil case", "a big house", "a pet cat"])
+    wr = [x for x in ["has got", "have got", "is got", "are got", "got"] if x != c]
+    return _en_q("Have got", f"{subj} ________ {thing}.", c, wr[:3], f"{subj} ile {c} kullanılır (he/she/it → has got; I/you/we/they → have got).")
+
+
+_en_have.__name__ = "_en_have"
+
+
+def _en_going(subject):
+    subj, be = random.choice([("I", "am"), ("She", "is"), ("He", "is"), ("We", "are"), ("They", "are"), ("You", "are"), ("Ali", "is")])
+    act = random.choice(["visit my grandmother", "play football", "watch a film", "go to the beach", "study English", "have a picnic"])
+    tm = random.choice(["Tomorrow", "Next week", "Next summer", "Next Saturday"])
+    c = f"{be} going to"
+    wr = [x for x in ["am going to", "is going to", "are going to", "going to", "will going"] if x != c]
+    return _en_q("Be going to", f"{tm}, {subj if subj in ('I', 'Ali') else subj.lower()} ________ {act}.", c, wr[:3], f"Gelecekteki planlar “be going to” ile anlatılır; {subj} ile be = {be}.")
+
+
+_en_going.__name__ = "_en_going"
+
+
+def _en_season(subject):
+    S = [("Which season comes after winter?", "Spring"), ("Which season comes after spring?", "Summer"), ("Which season comes after summer?", "Autumn"), ("Which season comes after autumn?", "Winter")]
+    q, c = random.choice(S)
+    return _en_q("Seasons", q, c, [x for x in ["Spring", "Summer", "Autumn", "Winter"] if x != c], f"Mevsim sırası: winter, spring, summer, autumn; cevap {c}.")
+
+
+_en_season.__name__ = "_en_season"
+
+
+def _en_modal(subject):
+    L = [("You ________ run in the school corridor.", "mustn’t", "Koşmak yasak; yasak için mustn’t."), ("You ________ wear a seat belt in the car.", "must", "Zorunluluk için must."),
+         ("Birds ________ fly.", "can", "Yetenek için can."), ("Fish ________ fly.", "can’t", "Balıklar uçamaz; can’t."), ("You ________ shout in the library.", "mustn’t", "Kütüphanede bağırmak yasak; mustn’t."),
+         ("Excuse me, ________ I go to the toilet?", "can", "İzin istemek için can."), ("Students ________ listen to the teacher.", "must", "Zorunluluk için must.")]
+    q, c, ex = random.choice(L)
+    return _en_q("Modals (can / must / mustn’t)", q, c, [x for x in ["can", "can’t", "must", "mustn’t"] if x != c], ex)
+
+
+_en_modal.__name__ = "_en_modal"
+
+_EF_GENS += [(_en_pres, ("simple present", "routines", "school life")), (_en_prog, ("present progressive", "family life")), (_en_sp, ("present progressive vs",)),
+             (_en_adv, ("adverbs of frequency", "personal life")), (_en_tag, ("question tags", "personal life")), (_en_there, ("there is", "classroom")), (_en_day, ("days of the week", "classroom")),
+             (_en_time, ("telling the time", "classroom")), (_en_comp, ("comparatives", "neighbourhood")), (_en_sup, ("superlatives",)), (_en_much, ("countable", "life in the world")),
+             (_en_have, ("have got", "life in the world")), (_en_going, ("be going to", "universe")), (_en_season, ("seasons", "universe")), (_en_modal, ("can/must", "mustn", "imperatives", "can for permission", "school life"))]
+_DIFF_OF.update({"_en_pres": 2, "_en_prog": 2, "_en_sp": 4, "_en_adv": 3, "_en_tag": 5, "_en_there": 1, "_en_day": 1, "_en_time": 2, "_en_comp": 3, "_en_sup": 4, "_en_much": 3, "_en_have": 2, "_en_going": 3, "_en_season": 1, "_en_modal": 3})
+
+
+def eng_questions(grade_label, n, topics="", seen=(), dl=0):
+    """5. sınıf İngilizce: dilbilgisi kuralıyla kodla kurulan, cevabı kesin sorular."""
+    gl = str(grade_label or "")
+    if n <= 0 or "5" not in gl[:2]:
+        return []
+    tl = str(topics or "").replace("İ", "i").replace("I", "ı").lower()
+    sel = [f for f, kw in _EF_GENS if any(_kw_hit(tl, k) for k in kw)]
+    if not sel:
+        return []
+    out, stems = [], set(seen)
+    rkey = ("gen", "Eng", "5")
+    byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
+    if dl:
+        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
+    for nm in _recent_order(rkey, list(byname)):
+        if len(out) >= n:
+            break
+        for _t in range(4):
+            try:
+                raw = byname[nm](_ENG)
+                x = _norm_q(raw, _ENG) if raw else None
+            except Exception:
+                x = None
+            if x and _stem(x) not in stems:
+                stems.add(_stem(x))
+                x["vfd"] = True
+                x["local"] = True
+                x["tpl"] = nm
+                _recent_mark(rkey, nm)
+                out.append(x)
+                break
+    return out
+
+
+# ================================================================ 5. SINIF İNGİLİZCE — 2. PARTİ (diyalog, okuma, kelime, tablo)
+_DIA = [("What’s your name?", "My name is Ali."), ("How old are you?", "I’m ten years old."), ("Where are you from?", "I’m from Turkey."), ("What time is it?", "It’s half past two."),
+        ("What’s the weather like today?", "It’s sunny."), ("Can you swim?", "Yes, I can."), ("Do you like pizza?", "Yes, I do."), ("What’s your favourite colour?", "It’s blue."),
+        ("How many brothers have you got?", "I’ve got two brothers."), ("What day is it today?", "It’s Monday."), ("Who is she?", "She is my sister.")]
+
+
+def _en_dia(subject):
+    q, a = random.choice(_DIA)
+    wr = [y for x, y in _DIA if x != q]
+    # yanlış cevaplar farklı soru sınıflarından: soru sözcüğüyle çelişmeyenler elenir
+    qw = q.split()[0].lower()
+    if qw in ("can", "do"):
+        wr = [w for w in wr if not w.startswith(("Yes", "No"))]
+    return _en_q("Dialogues", f"A: {q}\nB: ________", a, wr, f"Soruya uygun cevap: “{a}”.") if len(wr) >= 3 else None
+
+
+_en_dia.__name__ = "_en_dia"
+
+_CITY = ["Ankara", "Izmir", "Bursa", "Konya", "Antalya", "Trabzon"]
+_HOB = [("football", "plays football"), ("painting", "paints pictures"), ("reading", "reads books"), ("swimming", "swims in the pool"), ("cycling", "rides a bike")]
+_PET = ["cat", "dog", "bird", "rabbit"]
+
+
+def _en_read(subject):
+    nm = random.choice(_NAMES)
+    he = "She" if nm in _FEM else "He"
+    age = random.randint(9, 12)
+    city = random.choice(_CITY)
+    hob, hv = random.choice(_HOB)
+    pet = random.choice(_PET)
+    day = random.choice(["Saturday", "Sunday"])
+    passage = f"{nm} is {age} years old. {he} lives in {city}. {he} has got a {pet}. On {day}s, {he.lower()} {hv} with {'her' if he == 'She' else 'his'} friends."
+    k = random.choice(["age", "city", "pet", "day", "act"])
+    if k == "age":
+        q, c, wr = f"How old is {nm}?", f"{age} years old", [f"{age + 1} years old", f"{age - 1} years old", f"{age + 2} years old"]
+    elif k == "city":
+        q, c, wr = f"Where does {nm} live?", city, [x for x in _CITY if x != city][:3]
+    elif k == "pet":
+        q, c, wr = f"What pet has {nm} got?", f"A {pet}", [f"A {x}" for x in _PET if x != pet]
+    elif k == "day":
+        q, c, wr = f"When does {nm} meet {'her' if he == 'She' else 'his'} friends?", f"On {day}s", [f"On {d}s" for d in ["Monday", "Wednesday", "Friday"]]
+    else:
+        q, c, wr = f"What does {nm} do with {'her' if he == 'She' else 'his'} friends?", hv[0].upper() + hv[1:], [h[1][0].upper() + h[1][1:] for h in _HOB if h[1] != hv][:3]
+    r = _en_q("Reading", q, c, wr, f"Metne göre cevap: {c}.")
+    if r:
+        r["passage"] = passage
+    return r
+
+
+_en_read.__name__ = "_en_read"
+
+_PLACE = [("library", "We borrow books from this place."), ("hospital", "Doctors and nurses work in this place."), ("bakery", "We buy bread from this place."), ("zoo", "We can see wild animals in this place."),
+          ("museum", "We can see old and historical things in this place."), ("cinema", "We watch films in this place."), ("pharmacy", "We buy medicine from this place."), ("school", "Students learn lessons in this place.")]
+def _en_place(subject):
+    a, b = random.choice(_PLACE)
+    return _fact_q(_ENG, "Places", f"{b} Which place is it?", a, [x for x, _y in _PLACE if x != a], f"“{b}” → {a}.")
+
+
+_en_place.__name__ = "_en_place"
+
+_FAM = [("aunt", "your mother’s sister"), ("grandfather", "your father’s father"), ("grandmother", "your mother’s mother"), ("cousin", "your uncle’s son"), ("uncle", "your father’s brother"), ("sister", "your parents’ daughter")]
+
+
+def _en_fam(subject):
+    a, b = random.choice(_FAM)
+    return _fact_q(_ENG, "Family Members", f"Who is {b}?", a, [x for x, _y in _FAM if x != a], f"{b} = {a}.")
+
+
+_en_fam.__name__ = "_en_fam"
+_CAT = {"fruits": ["apple", "banana", "grape", "orange", "pear"], "animals": ["cat", "dog", "horse", "rabbit", "tiger"], "colours": ["red", "blue", "green", "yellow", "black"],
+        "school things": ["pencil", "ruler", "book", "eraser", "notebook"], "clothes": ["shirt", "jacket", "skirt", "socks", "hat"], "family": ["mother", "father", "sister", "uncle", "cousin"],
+        "places": ["library", "hospital", "museum", "bakery", "cinema"], "drinks": ["milk", "water", "juice", "tea", "lemonade"]}
+
+
+def _en_odd(subject):
+    a, b = random.sample(list(_CAT), 2)
+    ws = random.sample(_CAT[a], 3)
+    odd = random.choice(_CAT[b])
+    if odd in _CAT[a]:
+        return None
+    o = ws + [odd]
+    return _fact_q(_ENG, "Vocabulary", random.choice(["Which word is the odd one out?", "Choose the word that does not belong to the group.", "Three of the words are in the same group. Which one is different?"]), odd, ws, f"“{', '.join(ws)}” aynı gruptandır ({a}); “{odd}” farklı gruptandır ({b}).")
+
+
+_en_odd.__name__ = "_en_odd"
+
+
+def _en_table(subject):
+    L = ["Maths", "English", "Science", "Music", "Art", "P.E.", "Turkish", "Social Studies"]
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    ls = random.sample(L, 5)
+    rows = "Day | Lesson\n" + "\n".join(f"{d} | {l}" for d, l in zip(days, ls))
+    i = random.randrange(5)
+    if random.random() < .5:
+        q, c = f"What lesson do the students have on {days[i]}?", ls[i]
+        wr = [x for x in ls if x != c] + [x for x in L if x not in ls]
+    else:
+        q, c = f"On which day do the students have {ls[i]}?", days[i]
+        wr = [d for d in days if d != c]
+    r = _fact_q(_ENG, "Timetable", q, c, wr, f"Tabloya göre cevap: {c}.")
+    if r:
+        r["passage"] = rows
+    return r
+
+
+_en_table.__name__ = "_en_table"
+
+_EF_GENS += [(_en_dia, ("dialogue", "school life", "personal life", "family life")), (_en_read, ("reading", "family life", "personal life", "school life", "neighbourhood", "life in")),
+             (_en_place, ("places", "recreation", "neighbourhood")), (_en_fam, ("family members", "family life")), (_en_odd, ("clothes", "food", "animals", "classroom objects", "vocabulary", "school subjects")),
+             (_en_table, ("timetable", "school subjects", "classroom"))]
+_DIFF_OF.update({"_en_dia": 2, "_en_read": 3, "_en_place": 2, "_en_fam": 2, "_en_odd": 1, "_en_table": 3})
+
+
+# ================================================================ 5. SINIF — LGS TARZI ÖNCÜLLÜ (I-II-III) SORULAR + YENİ BİLGİ HAVUZLARI + MATEMATİK EK KALIPLAR
+def _tfpool(topic, T, F, S, name, reg, kw, d=2, fn=_fen_stmt):
+    g = fn(topic, T, F, S)
+    g.__name__ = name
+    reg.append((g, kw))
+    _DIFF_OF[name] = d
+    return g
+
+
+# ---- yeni bilgi havuzları (her ifade ayrı ayrı doğru / kesin yanlış)
+_tfpool("İletişim ve Sosyal İlişkiler", ["Empati, karşımızdakinin duygularını anlamaya çalışmaktır.", "Karşımızdaki konuşurken onu dinlemek iyi iletişimin gereğidir.", "Nazik ve olumlu bir dil iletişimi güçlendirir.", "Mektup, uzaktaki kişilerle iletişim kurmayı sağlayan bir yazı türüdür."],
+        ["Empati, karşımızdakinin duygularını önemsememektir.", "Karşımızdaki konuşurken sözünü kesmek iyi iletişimin gereğidir.", "Kırıcı bir dil iletişimi güçlendirir.", "Mektup, yalnızca sözlü iletişim aracıdır."], ["Empati", "Dinleme", "İletişim dili", "Mektup"], "_tf_iletisim", _TF_GENS, ("iletişim", "empati"))
+_tfpool("Duygularımı Tanıyorum", ["Öfkelendiğimizde derin nefes alıp sakinleşmek duygu yönetimine yardımcı olur.", "Duygularımızı doğru ifade etmek ilişkilerimizi güçlendirir.", "Sevinç, üzüntü, korku ve öfke temel duygulardandır.", "Duygular davranışlarımızı etkiler."],
+        ["Öfkelendiğimizde karşımızdakine bağırmak duygu yönetimine yardımcı olur.", "Duygularımızı hiç ifade etmemek ilişkilerimizi güçlendirir.", "Yalnızca üzüntü temel bir duygudur.", "Duygular davranışlarımızı hiç etkilemez."], ["Öfke yönetimi", "Duyguları ifade etme", "Temel duygular", "Duygu ve davranış"], "_tf_duygu2", _TF_GENS, ("duygu",), 3)
+_tfpool("Metin Türleri", ["Şiir, duyguların dize ve kıtalarla anlatıldığı yazı türüdür.", "Hikâyede olay, kişi, yer ve zaman unsurları bulunur.", "Anı, yaşanmış olayların sonradan anlatıldığı yazı türüdür.", "Mektupta hitap ve imza bölümleri bulunur."],
+        ["Şiir, yalnızca bilimsel bilgi veren bir yazı türüdür.", "Hikâyede olay, kişi, yer ve zaman unsurları bulunmaz.", "Anı, geleceğe yönelik tahminlerin yazıldığı yazı türüdür.", "Mektupta hitap ve imza bölümleri bulunmaz."], ["Şiir", "Hikâye", "Anı", "Mektup"], "_tf_metintur", _TF_GENS, ("metin tür",), 3)
+_tfpool("Bilgilendirici Metin", ["Bilgilendirici metinlerde amaç okuru bilgilendirmektir.", "Bilgilendirici metinlerde anlatım açık ve anlaşılırdır.", "Bilgilendirici metinler gerçek bilgilere dayanır."],
+        ["Bilgilendirici metinlerde amaç yalnızca okuru eğlendirmektir.", "Bilgilendirici metinlerde anlatım kapalı ve anlaşılmazdır.", "Bilgilendirici metinler hayal ürünü olaylara dayanır."], ["Amaç", "Anlatım", "İçerik"], "_tf_bilgi", _TF_GENS, ("bilgilendirici",), 3)
+_tfpool("Oyun Dünyası", ["Anahtar kelimeler metnin ana konusunu anlamamıza yardımcı olur.", "Eş anlamlı sözcükler aynı ya da çok yakın anlamlı sözcüklerdir.", "Zıt anlamlı sözcükler birbirinin karşıtı olan sözcüklerdir.", "Metnin yüzey anlamı, doğrudan okuduğumuz sözlerden anlaşılan anlamdır."],
+        ["Anahtar kelimelerin metinle hiçbir ilgisi yoktur.", "Eş anlamlı sözcükler birbirinin karşıtı olan sözcüklerdir.", "Zıt anlamlı sözcükler her zaman aynı anlamdadır.", "Metnin yüzey anlamı, satır aralarında gizli kalan anlamdır."], ["Anahtar kelime", "Eş anlam", "Zıt anlam", "Yüzey anlam"], "_tf_oyun", _TF_GENS, ("anahtar", "yüzey", "söz varlığı"), 3)
+_tfpool("Evimiz Dünya", ["Göreceli konum, bir yerin çevresindeki yerlere göre tarif edilmesidir.", "Deprem, doğal afetlerden biridir.", "Afetlere karşı önceden hazırlıklı olmak zararı azaltır.", "Yunanistan, Türkiye’nin komşu devletlerinden biridir."],
+        ["Göreceli konum, yalnızca enlem ve boylamla belirtilir.", "Deprem, insan yapımı bir afettir.", "Afetlere karşı önceden hazırlıklı olmak zararı artırır.", "Japonya, Türkiye’nin komşu devletlerinden biridir."], ["Göreceli konum", "Deprem", "Afet hazırlığı", "Komşu devletler"], "_sf_evimiz", _SF_GENS, ("göreceli", "afet", "komşu", "evimiz"), 2)
+_tfpool("Ortak Mirasımız", ["Göbeklitepe, Şanlıurfa’da bulunan çok eski bir yapı topluluğudur.", "Çatalhöyük, Konya’da bulunan çok eski bir yerleşim yeridir.", "Mezopotamya, Dicle ve Fırat nehirleri arasındaki verimli topraklardır.", "Ortak miras ögeleri, bir toplumun geçmişten devraldığı değerlerdir."],
+        ["Göbeklitepe, Konya’da bulunan bir yerleşim yeridir.", "Çatalhöyük, Şanlıurfa’da bulunmaktadır.", "Mezopotamya, Nil Nehri çevresindeki topraklardır.", "Ortak miras ögeleri, yalnızca yeni yapılan eserlerdir."], ["Göbeklitepe", "Çatalhöyük", "Mezopotamya", "Ortak miras"], "_sf_miras2", _SF_GENS, ("miras", "göbeklitepe", "çatalhöyük", "mezopotamya"), 3)
+_tfpool("Hayatımızdaki Ekonomi", ["İhtiyaçlar yaşamak için gereklidir.", "Bütçe, gelir ve giderlerin planlanmasıdır.", "Tasarruf, gelirin bir kısmını biriktirmektir.", "Kaynakları verimli kullanmak israfı önler."],
+        ["İstekler yaşamak için zorunludur.", "Bütçe, yalnızca harcama yapmaktır.", "Tasarruf, gelirin tamamını harcamaktır.", "Kaynakları verimli kullanmak israfı artırır."], ["İhtiyaç", "Bütçe", "Tasarruf", "Kaynak kullanımı"], "_sf_ekonomi2", _SF_GENS, ("bütçe", "ekonomi", "tasarruf", "ihtiyaç", "kaynak"), 2)
+_tfpool("Maddenin Doğası", ["Maddeler çok küçük taneciklerden oluşur.", "Katılarda tanecikler birbirine çok yakındır.", "Gazlarda tanecikler birbirinden uzaktır ve her yöne serbestçe hareket eder.", "Sıvılar akışkandır ve bulundukları kabın şeklini alır."],
+        ["Maddeler taneciklerden oluşmaz, sürekli bir bütündür.", "Katılarda tanecikler birbirinden çok uzaktır.", "Gazlarda tanecikler birbirine çok yakın ve sabittir.", "Sıvıların kendine ait sabit bir şekli vardır."], ["Madde", "Katılar", "Gazlar", "Sıvılar"], "_ff_tanecik", _FF_GENS, ("tanecik", "katı", "sıvı"), 3)
+_tfpool("Canlıların Yapısına Yolculuk", ["Kaslar kemiklere bağlanarak hareketi sağlar.", "İskelet vücuda destek olur ve organları korur.", "Kafatası beyni korur.", "Kaburga kemikleri akciğer ve kalbi korur."],
+        ["Kaslar hareket sağlamaz, yalnızca vücudu sıcak tutar.", "İskelet organları korumaz.", "Kafatası kalbi korur.", "Kaburga kemikleri beyni korur."], ["Kaslar", "İskelet", "Kafatası", "Kaburga kemikleri"], "_ff_iskelet2", _FF_GENS, ("iskelet", "kas", "destek", "hareket sistemi"), 2)
+_tfpool("Allah İnancı", ["Allah birdir ve eşi benzeri yoktur.", "İhlas suresi Allah’ın birliğini anlatır.", "Allah’ın güzel isimlerine Esmaü’l-Hüsna denir.", "Allah her şeyi bilir ve görür."],
+        ["Allah’ın eşi ve benzeri vardır.", "İhlas suresi namaz vakitlerini anlatır.", "Allah’ın güzel isimleri yalnızca üç tanedir.", "Allah’ın bilgisi bazı şeylerle sınırlıdır."], ["Allah’ın birliği", "İhlas suresi", "Güzel isimler", "Allah’ın bilgisi"], "_df_allah2", _DF_GENS, ("allah", "ihlas", "tevhid"), 2)
+_tfpool("Namaz", ["Namaz, Müslümanların en önemli ibadetlerindendir.", "Tahiyyat, namazın oturuşlarında okunan duadır.", "Namaz vakitlerinden biri akşam namazıdır.", "Namazdan önce temizlik için abdest alınır."],
+        ["Namaz, Müslümanlar için ibadet sayılmaz.", "Tahiyyat, namazın ayakta okunan ilk duasıdır.", "Namaz vakitleri arasında sabah namazı yoktur.", "Namazdan önce abdest almak gerekmez."], ["Namazın önemi", "Tahiyyat", "Namaz vakitleri", "Abdest"], "_df_namaz2", _DF_GENS, ("namaz", "tahiyyat"), 2)
+_tfpool("Peygamber Kıssaları", ["Peygamberler Allah’ın mesajlarını insanlara ulaştıran kişilerdir.", "Peygamberler dürüst ve güvenilir kişilerdir.", "Kureyş suresi, Kureyş kabilesine verilen nimetleri hatırlatır."],
+        ["Peygamberler insanlara kendi mesajlarını iletmek için gönderilmiştir.", "Peygamberler yalan söyleyen kişilerdir.", "Kureyş suresi, namaz vakitlerini anlatır."], ["Peygamberlerin görevi", "Peygamberlerin özellikleri", "Kureyş suresi"], "_df_peygamber2", _DF_GENS, ("peygamber", "kıssa", "kureyş"), 2)
+
+
+# ---- LGS tarzı öncüllü soru: aynı havuzlardan I, II, III ifadeleri; şıklar "Yalnız I / I ve II / ..." (kodla hesaplanır)
+_ONC_OPT = ["Yalnız I", "Yalnız II", "Yalnız III", "I ve II", "I ve III", "II ve III", "I, II ve III"]
+
+
+def _oncul(topic, T, F, S, subj_name, stem_t):
+    def g(subject):
+        k = random.choice([1, 2])
+        if len(T) < k or len(F) < 3 - k:
+            return None
+        ti = random.sample(range(len(T)), k)
+        pool_f = [i for i in range(len(F)) if i not in ti] if len(F) - len([i for i in ti if i < len(F)]) >= 3 - k else list(range(len(F)))
+        fi = random.sample(pool_f, 3 - k)
+        items = [(T[i], True) for i in ti] + [(F[i], False) for i in fi]
+        random.shuffle(items)
+        rom = ["I", "II", "III"]
+        true_set = [rom[i] for i, (_s, v) in enumerate(items) if v]
+        corr = f"Yalnız {true_set[0]}" if len(true_set) == 1 else " ve ".join(true_set)
+        wr = [x for x in _ONC_OPT if x != corr]
+        random.shuffle(wr)
+        wr = wr[:3]
+        body = "\n".join(f"{rom[i]}. {s}" for i, (s, _v) in enumerate(items))
+        q = f"{body}\n{stem_t.format(topic=topic.replace('İ', 'i').replace('I', 'ı').lower())}"
+        ex = "Doğru ifadeler: " + ", ".join(rom[i] for i, (_s, v) in enumerate(items) if v) + ". Diğer ifadeler yanlıştır."
+        o = (([corr] + wr), corr)
+        o = (sorted(o[0], key=_ONC_OPT.index), corr)
+        return _mf_raw(subject, topic, q, o, ex)
+    g.__name__ = subj_name
+    return g
+
+
+_ONC_STEM = ["Yukarıda {topic} ile ilgili verilen bilgilerden hangileri doğrudur?", "{topic} konusunda numaralanmış ifadelerden hangileri doğrudur?", "{topic} hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?"]
+for _reg, _sub in ((_FF_GENS, "Fen Bilimleri"), (_SF_GENS, "Sosyal Bilgiler"), (_TF_GENS, "Türkçe"), (_DF_GENS, "Din Kültürü ve Ahlak Bilgisi")):
+    for _f, _kw in list(_reg):
+        _tf = getattr(_f, "TF", None)
+        if _tf and _f.__name__ + "_onc" not in _DIFF_OF:
+            _topic, _T, _F, _S = _tf
+            _stem_t = random.choice(_ONC_STEM)
+            _gg = _oncul(_topic, _T, _F, _S, _f.__name__ + "_onc", _stem_t)
+            _reg.append((_gg, _kw))
+            _DIFF_OF[_f.__name__ + "_onc"] = 4
+
+
+# ---- MATEMATİK ek kalıplar
+def _mf_basdeg(subject):
+    ds = random.sample("123456789", 7)
+    n = "".join(ds)
+    pos = random.randrange(7)
+    d = int(n[pos])
+    k = 6 - pos
+    c = d * 10 ** k
+    f = lambda v: f"{v:,}".replace(",", ".")
+    wr = [d, d * 10 ** (k - 1) if k > 0 else d * 10, d * 10 ** (k + 1), d * 10 ** k + 10 ** k]
+    o = _mf_opts(f(c), [f(w) for w in wr if w != c], str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"{f(int(n))} sayısında {d} rakamının basamak değeri kaçtır?", o, f"{d} rakamı {['birler','onlar','yüzler','binler','on binler','yüz binler','milyonlar'][k]} basamağındadır; basamak değeri {f(c)}.") if o else None
+
+
+def _mf_cozum(subject):
+    a, b, c = random.sample(range(1, 10), 3)
+    n = a * 1000000 + b * 1000 + c
+    f = lambda v: f"{v:,}".replace(",", ".")
+    wr = [a * 100000 + b * 1000 + c, a * 1000000 + b * 100 + c, a * 1000000 + c * 1000 + b, a * 10000000 + b * 1000 + c]
+    o = _mf_opts(f(n), [f(w) for w in wr], str, sort=False)
+    return _mf_raw(subject, "Sayıların çözümlenmesi", f"{a} × 1.000.000 + {b} × 1.000 + {c} işleminin sonucu aşağıdakilerden hangisidir?", o, f"{f(a * 1000000)} + {f(b * 1000)} + {c} = {f(n)}.") if o else None
+
+
+def _mf_rect_cevre(subject):
+    a, b = random.sample(range(3, 20), 2)
+    kind = random.choice(["cevre", "alan", "kenar"])
+    if kind == "kenar":
+        sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} cm", "height_label": "?", "center_label": f"Çevre = {2 * (a + b)} cm"}
+        o = _mf_opts(b, [a + b, 2 * b, b + 2, a, b - 1], str)
+        return _mf_raw(subject, "Çevre uzunluğu", "Şekilde çevresi verilen dikdörtgenin “?” ile gösterilen kenarı kaç santimetredir?", o, f"Yarım çevre: {a + b}; {a + b} − {a} = {b} cm.", shape=sh) if o else None
+    sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} cm", "height_label": f"{b} cm"}
+    if kind == "cevre":
+        o = _mf_opts(2 * (a + b), [a * b, a + b, 2 * a + b, 2 * (a + b) + 2], str)
+        return _mf_raw(subject, "Çevre uzunluğu", "Şekildeki dikdörtgenin çevresi kaç santimetredir?", o, f"2 × ({a} + {b}) = {2 * (a + b)} cm.", shape=sh) if o else None
+    o = _mf_opts(a * b, [2 * (a + b), a + b, a * b + a, a * b - b], str)
+    return _mf_raw(subject, "Alan ölçme", "Şekildeki dikdörtgenin alanı kaç santimetrekaredir?", o, f"{a} × {b} = {a * b} cm².", shape=sh) if o else None
+
+
+def _mf_bahce(subject):
+    a, b = random.sample(range(4, 30), 2)
+    kind = random.choice(["tel", "cim"])
+    if kind == "tel":
+        c = 2 * (a + b)
+        o = _mf_opts(c, [a * b, a + b, c + 4, c - 4], str)
+        return _mf_raw(subject, "Çevre uzunluğu", f"Kenar uzunlukları {a} m ve {b} m olan dikdörtgen biçimli bir bahçenin etrafı bir tur tel ile çevrilecektir. Kaç metre tel gerekir?", o, f"Çevre = 2 × ({a} + {b}) = {c} m.") if o else None
+    c = a * b
+    o = _mf_opts(c, [2 * (a + b), a + b, c + a, c - b], str)
+    return _mf_raw(subject, "Alan problemleri", f"Kenar uzunlukları {a} m ve {b} m olan dikdörtgen biçimli bir bahçenin tamamına çim ekilecektir. Çim ekilecek alan kaç metrekaredir?", o, f"Alan = {a} × {b} = {c} m².") if o else None
+
+
+def _mf_zaman(subject):
+    h, m = random.randint(1, 10), random.choice([0, 15, 30, 45])
+    add = random.choice([30, 45, 60, 75, 90, 120])
+    tot = h * 60 + m + add
+    nh, nm = tot // 60, tot % 60
+    f = lambda H, M: f"{H}:{M:02d}"
+    c = f(nh, nm)
+    wr = [f(nh, (nm + 15) % 60), f(nh + 1, nm), f(nh - 1, nm), f(nh, (nm + 30) % 60)]
+    o = _mf_opts(c, [w for w in wr if w != c], str, sort=False)
+    return _mf_raw(subject, "Zaman ölçme", f"Başlama saati {f(h, m)} olan bir film {add} dakika sürmüştür. Film saat kaçta bitmiştir?", o, f"{f(h, m)} + {add} dakika = {c}.") if o and nh < 24 else None
+
+
+def _mf_para(subject):
+    a, p = random.randint(3, 9), random.choice([6, 8, 12, 15, 18, 25])
+    tot = a * p
+    pay = next((x for x in (50, 100, 200) if x > tot), None)
+    if pay is None:
+        return None
+    c = pay - tot
+    o = _mf_opts(c, [tot, pay + tot, c + p, c - p if c > p else c + 2 * p], str)
+    return _mf_raw(subject, "Dört işlem problemleri", f"Bir markette tanesi {p} TL olan {a} çikolata alan Elif kasiyere {pay} TL vermiştir. Elif’e kaç TL para üstü verilir?", o, f"{a} × {p} = {tot} TL öder; {pay} − {tot} = {c} TL para üstü alır.") if o else None
+
+
+_MF_GENS += [(_mf_basdeg, ("basamak", "milyon"), (5,)), (_mf_cozum, ("basamak", "çözümle", "milyon"), (5,)), (_mf_rect_cevre, ("çevre", "alan ölç", "dikdörtgen"), (5,)),
+             (_mf_bahce, ("çevre", "alan problem", "dikdörtgen"), (5,)), (_mf_zaman, ("zaman", "dört işlem", "zihinden"), (5,)), (_mf_para, ("dört işlem",), (5,))]
+_DIFF_OF.update({"_mf_basdeg": 2, "_mf_cozum": 3, "_mf_rect_cevre": 2, "_mf_bahce": 4, "_mf_zaman": 4, "_mf_para": 3})
+
+
+# ================================================================ 5. SINIF — EKSİK ÜNİTELERİ TAMAMLAYAN EK KALIPLAR (her ünitede en az ~6 kalıp)
+def _choice_fam(topic, name, reg, kw, rows, d=2, subject_override=None):
+    """rows: [(soru, doğru, [yanlışlar], açıklama)] -> soru satırı rastgele seçilir; yanlışlardan 3'ü alınır."""
+    def g(subject):
+        q, c, w, ex = random.choice(rows)
+        return _fact_q(subject_override or subject, topic, q, c, random.sample(w, 3) if len(w) > 3 else w, ex)
+    g.__name__ = name
+    reg.append((g, kw))
+    _DIFF_OF[name] = d
+    return g
+
+
+# ---- Sosyal
+_tfpool("Birlikte Yaşamak", ["Öğrencinin okuldaki rollerinden biri derslerine çalışmaktır.", "Komşuluk ilişkilerinde karşılıklı saygı önemlidir.", "Doğal afet sonrası yardım toplamak dayanışma örneğidir.", "Aile içinde herkesin üstlendiği görevler vardır."],
+        ["Öğrencinin okuldaki rolü yalnızca oyun oynamaktır.", "Komşuluk ilişkilerinde saygı gerekli değildir.", "Doğal afet sonrası yardım toplamak dayanışma örneği değildir.", "Aile içinde kimsenin bir görevi yoktur."], ["Öğrencinin rolü", "Komşuluk", "Dayanışma", "Aile içi roller"], "_sf_rol", _SF_GENS, ("grup", "rol", "birlikte", "dayanışma"), 2)
+_choice_fam("Yardımlaşma ve Dayanışma", "_sf_dayan", _SF_GENS, ("dayanışma", "yardımlaşma", "birlikte"),
+            [("Aşağıdakilerden hangisi yardımlaşma ve dayanışmaya örnektir?", "Depremzedeler için kıyafet ve yiyecek toplamak", ["Sırada beklemeden öne geçmek", "Arkadaşının ödevini kopyalamak", "Sınıfta gürültü yapmak", "Kendi eşyalarını paylaşmamak"], "Depremzedelere yardım toplamak dayanışmadır."),
+             ("Aşağıdakilerden hangisi farklı kültürel özelliklere saygı örneğidir?", "Farklı bir bayramı kutlayan arkadaşını tebrik etmek", ["Arkadaşının gelenekleriyle alay etmek", "Farklı dil konuşanlarla oynamamak", "Kendi kültürünü herkese zorla kabul ettirmek"], "Saygı, farklılıkları kabul etmeyi gerektirir.")], 2)
+_tfpool("Teknoloji ve Sosyal Bilimler", ["Teknolojik ürünlerin ölçülü kullanılması sağlığı korur.", "Kişisel bilgilerimizi tanımadığımız kişilerle paylaşmamalıyız.", "Teknoloji, iş yapmayı kolaylaştırabilir.", "Teknolojik ürünlerin kullanım kılavuzunu okumak güvenli kullanım sağlar."],
+        ["Teknolojik ürünleri gece boyunca kullanmak sağlığa yararlıdır.", "Kişisel bilgilerimizi tanımadığımız kişilerle paylaşmak güvenlidir.", "Teknoloji hiçbir işi kolaylaştırmaz.", "Teknolojik ürünlerin kullanım kılavuzunu okumak gereksizdir."], ["Ölçülü kullanım", "Kişisel bilgiler", "Teknolojinin etkisi", "Güvenli kullanım"], "_sf_tekn2", _SF_GENS, ("teknoloji", "teknolojik"), 2)
+_choice_fam("Teknoloji ve Sosyal Bilimler", "_sf_tekn3", _SF_GENS, ("teknoloji", "teknolojik"),
+            [("Aşağıdakilerden hangisi bir iletişim teknolojisi ürünüdür?", "Akıllı telefon", ["Çamaşır makinesi", "Elektrikli süpürge", "Mikser", "Ütü"], "Akıllı telefon insanların uzaktan iletişim kurmasını sağlar."),
+             ("Aşağıdakilerden hangisi teknolojik ürünleri bilinçli kullanmaya örnektir?", "Ekran süresini sınırlamak", ["Ders çalışmak yerine sürekli oyun oynamak", "Tanımadığı kişilere kişisel bilgi vermek", "Gece boyunca ekran başında kalmak"], "Ekran süresini sınırlamak bilinçli kullanımdır.")], 2)
+_tfpool("Yaşayan Demokrasimiz", ["Sınıf başkanının oylamayla seçilmesi demokratik bir uygulamadır.", "Etkin vatandaş, haklarını bilen ve sorumluluklarını yerine getiren kişidir.", "Başvuru yapabileceğimiz kurumlardan biri muhtarlıktır."],
+        ["Sınıf başkanının oylama yapılmadan atanması demokratik bir uygulamadır.", "Etkin vatandaş, haklarını isteyip sorumluluklarını yerine getirmeyen kişidir.", "Başvuru yapabileceğimiz kurumlardan biri futbol kulübüdür."], ["Sınıf başkanı seçimi", "Etkin vatandaş", "Başvuru kurumları"], "_sf_demo2", _SF_GENS, ("demokrasi", "vatandaş", "başvuru", "etkin"), 2)
+_choice_fam("Ortak Mirasımız", "_sf_mezo", _SF_GENS, ("mezopotamya", "miras", "medeniyet"),
+            [("Mezopotamya hangi iki nehir arasındaki topraklara verilen addır?", "Dicle ve Fırat", ["Kızılırmak ve Sakarya", "Nil ve Amazon", "Ceyhan ve Seyhan"], "Mezopotamya Dicle ile Fırat arasındaki topraklardır."),
+             ("Aşağıdaki yapılardan hangisi Mimar Sinan’ın eseridir?", "Selimiye Camii", ["Ayasofya", "Anıtkabir", "Galata Kulesi"], "Selimiye Camii Mimar Sinan’ın ustalık eseridir."),
+             ("Selimiye Camii hangi ilimizde bulunur?", "Edirne", ["Bursa", "Konya", "Erzurum"], "Selimiye Camii Edirne’dedir.")], 3)
+# ---- Türkçe
+_tfpool("Atatürk’ü Tanımak", ["Atatürk 1881 yılında Selanik’te doğmuştur.", "İstiklal Marşı’nın şairi Mehmet Akif Ersoy’dur.", "23 Nisan, Ulusal Egemenlik ve Çocuk Bayramı olarak kutlanır.", "Cumhuriyet 29 Ekim 1923’te ilan edilmiştir.", "Atatürk, Millî Mücadele’yi başlatmak için 19 Mayıs 1919’da Samsun’a çıkmıştır."],
+        ["Atatürk 1881 yılında Ankara’da doğmuştur.", "İstiklal Marşı’nın şairi Namık Kemal’dir.", "23 Nisan, Zafer Bayramı olarak kutlanır.", "Cumhuriyet 29 Ekim 1938’de ilan edilmiştir.", "Atatürk, Millî Mücadele’yi başlatmak için 19 Mayıs 1919’da İzmir’e çıkmıştır."], ["Atatürk’ün doğumu", "İstiklal Marşı", "23 Nisan", "Cumhuriyetin ilanı", "19 Mayıs 1919"], "_tf_ata2", _TF_GENS, ("atatürk", "cumhuriyet", "millî mücadele", "istiklal", "23 nisan"), 3)
+_choice_fam("Atatürk’ü Tanımak", "_tf_ata3", _TF_GENS, ("atatürk", "istiklal", "23 nisan", "cumhuriyet"),
+            [("İstiklal Marşı’nın şairi aşağıdakilerden hangisidir?", "Mehmet Akif Ersoy", ["Ziya Gökalp", "Namık Kemal", "Tevfik Fikret"], "İstiklal Marşı’nı Mehmet Akif Ersoy yazmıştır."),
+             ("Atatürk hangi şehirde doğmuştur?", "Selanik", ["İstanbul", "Ankara", "İzmir"], "Atatürk 1881’de Selanik’te doğmuştur."),
+             ("Çocuklara armağan edilen bayram aşağıdakilerden hangisidir?", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı", ["30 Ağustos Zafer Bayramı", "29 Ekim Cumhuriyet Bayramı", "19 Mayıs Atatürk’ü Anma, Gençlik ve Spor Bayramı"], "23 Nisan çocuklara armağan edilmiştir.")], 2)
+_tfpool("Geleneklerimiz", ["Bayramlarda büyükleri ziyaret etmek geleneklerimizdendir.", "Misafirperverlik, misafire iyi davranmak ve onu ağırlamaktır.", "Atasözleri, uzun deneyimlerden doğan öğüt veren kalıplaşmış sözlerdir.", "Deyimler, genellikle gerçek anlamından farklı bir anlamda kullanılan kalıplaşmış sözlerdir."],
+        ["Bayramlarda büyükleri ziyaret etmek geleneklerimizden değildir.", "Misafirperverlik, misafire kayıtsız kalmaktır.", "Atasözleri, yalnızca şiirlerde kullanılan sözlerdir.", "Deyimler, her zaman gerçek anlamıyla kullanılır."], ["Bayramlar", "Misafirperverlik", "Atasözleri", "Deyimler"], "_tf_gelenek", _TF_GENS, ("gelenek", "misafir", "deyim", "atasöz"), 2)
+_choice_fam("Geleneklerimiz", "_tf_elsanat", _TF_GENS, ("gelenek", "el sanat", "kutlama"),
+            [("Aşağıdakilerden hangisi geleneksel el sanatlarımızdan biridir?", "Ebru", ["Satranç", "Yüzme", "Basketbol", "Voleybol"], "Ebru geleneksel bir el sanatıdır."),
+             ("Türk kültüründe yüzyıllardır yaşatılan sanatlardan biri aşağıdakilerden hangisidir?", "Çini", ["Futbol", "Atletizm", "Satranç", "Tenis"], "Çini geleneksel bir el sanatıdır."),
+             ("Usta-çırak geleneğiyle yaşatılan el sanatlarımızdan biri hangisidir?", "Kilim dokumacılığı", ["Basketbol", "Yüzme", "Satranç", "Tenis"], "Kilim dokumacılığı geleneksel bir el sanatıdır.")], 1)
+_tfpool("Sağlıklı Yaşıyorum", ["Dişlerimizi günde en az iki kez fırçalamak ağız ve diş sağlığını korur.", "Bol su içmek sağlıklı yaşamın bir parçasıdır.", "İlk yardım, kazazedeye sağlık görevlileri gelene kadar yapılan ilk müdahaledir.", "Düzenli spor yapmak kas ve kemiklerin gelişmesine yardımcı olur."],
+        ["Dişlerimizi hiç fırçalamamak ağız ve diş sağlığını korur.", "Su içmek sağlıklı yaşam için gereksizdir.", "İlk yardım, kazazedeyi sağlık görevlileri gelmeden hastaneye uzaklaştırmaktır.", "Spor yapmak kas ve kemiklerin gelişmesini engeller."], ["Ağız sağlığı", "Su tüketimi", "İlk yardım", "Spor"], "_tf_saglik2", _TF_GENS, ("sağlık", "beslen", "hijyen", "ilk yardım", "egzersiz"), 2)
+# ---- Din
+_tfpool("Mimarimizde Dinî Motifler", ["Mihrap, kıble yönünü gösterir.", "Minareden ezan okunur.", "Minber, hutbenin okunduğu yerdir.", "Kubbe, caminin üst örtüsüdür."],
+        ["Mihrap, hutbenin okunduğu yerdir.", "Minareden hutbe okunur.", "Minber, kıble yönünü gösterir.", "Kubbe, caminin zeminini oluşturur."], ["Mihrap", "Minare", "Minber", "Kubbe"], "_df_cami3", _DF_GENS, ("mimari", "cami", "mihrap", "minber", "kubbe"), 2)
+_choice_fam("Mimarimizde Dinî Motifler", "_df_cami4", _DF_GENS, ("mimari", "cami", "örnek"),
+            [("Selimiye Camii hangi mimarın eseridir?", "Mimar Sinan", ["Mimar Kemaleddin", "Mimar Vedat", "Mimar Ziya"], "Selimiye Camii Mimar Sinan’ın eseridir."),
+             ("Selimiye Camii hangi ilimizdedir?", "Edirne", ["İstanbul", "Konya", "Bursa"], "Selimiye Camii Edirne’dedir.")], 3)
+_tfpool("Kur’an-ı Kerim", ["Kur’an-ı Kerim’in bölümlerinden her birine sure denir.", "Surelerin her bir cümlesine ayet denir.", "Kevser suresi üç ayettir.", "Kur’an-ı Kerim Arapça indirilmiştir."],
+        ["Kur’an-ı Kerim’in bölümlerinden her birine kıssa denir.", "Surelerin her bir cümlesine hadis denir.", "Kevser suresi on ayettir.", "Kur’an-ı Kerim Türkçe indirilmiştir."], ["Sure", "Ayet", "Kevser suresi", "Kur’an’ın dili"], "_df_kuran3", _DF_GENS, ("kur'an", "kur’an", "kevser", "sure"), 2)
+# ---- Fen
+_tfpool("Kuvveti Tanıyalım", ["Kütle, bir cismin içerdiği madde miktarıdır.", "Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.", "Ağırlığın birimi newton (N)’dur.", "Bir cismin kütlesi Dünya’da ve Ay’da aynıdır."],
+        ["Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.", "Ağırlığın birimi kilogram (kg)’dır.", "Bir cismin ağırlığı Dünya’da ve Ay’da aynıdır.", "Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır."], ["Kütle", "Ağırlık", "Ağırlığın birimi", "Kütle ve konum"], "_ff_kutle", _FF_GENS, ("kuvvet", "ağırlık", "yer çekimi", "newton"), 3)
+_tfpool("Yaşamımızdaki Elektrik", ["Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.", "Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.", "Ampul, elektrik enerjisini ışık enerjisine dönüştürür.", "Devre elemanları sembollerle gösterilir."],
+        ["Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.", "Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı artar.", "Ampul, ışık enerjisini elektrik enerjisine dönüştürür.", "Devre elemanları sembollerle gösterilemez."], ["Pil sayısı", "Ampul sayısı", "Ampul", "Devre sembolleri"], "_ff_elek3", _FF_GENS, ("elektrik", "devre", "ampul"), 3)
+_tfpool("Gökyüzündeki Komşularımız ve Biz", ["Ay’ın evreleri yaklaşık bir ayda tekrarlanır.", "Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.", "Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır."],
+        ["Ay’ın evreleri her gün tekrarlanır.", "Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.", "Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez."], ["Evrelerin tekrarı", "Ay’ın evreleri", "Ay’ın hareketleri"], "_ff_ay2", _FF_GENS, ("ay", "evre", "gökyüzü"), 3)
+# ---- Matematik (Temel geometrik / Açı ölçme)
+def _mf_dogru_say(subject):
+    ks = [random.choice(["segment", "ray", "line"]) for _ in range(4)]
+    want = random.choice(["segment", "ray", "line"])
+    n = ks.count(want)
+    if n == 0 or n == 4:
+        return None
+    nm = {"segment": "doğru parçası", "ray": "ışın", "line": "doğru"}[want]
+    o = _mf_opts(n, [x for x in (1, 2, 3, 4) if x != n], str)
+    sh = {"type": "geo", "sub_type": "lines_set", "kinds": ks}
+    return _mf_raw(subject, "Doğru, ışın, doğru parçası", f"Şekilde I., II., III. ve IV. ile numaralandırılmış çizimlerin kaç tanesi {nm} olarak adlandırılır?" if want != "line" else "Şekilde I., II., III. ve IV. ile numaralandırılmış çizimlerin kaç tanesi doğrudur?", o, f"Çizimlerin {n} tanesi {nm}dır.".replace("doğrudır", "doğrudur").replace("ışındır", "ışındır"), shape=sh) if o else None
+
+
+def _mf_aci_cikar(subject):
+    t = random.choice([90, 120, 130, 150, 100, 110, 140])
+    a = random.randrange(20, t - 10, 5)
+    c = t - a
+    sh = _split_shape(t, a, f"{a}°", "")
+    sh["angle_label"] = f"{t}°"
+    o = _mf_opts(c, [a, t, c + 10, c - 10, t + a], str)
+    return _mf_raw(subject, "Açı ölçme", f"Şekilde OC ışını ölçüsü {t}° olan AOB açısını iki açıya ayırmıştır. m(AOC) = {a}° olduğuna göre m(COB) kaç derecedir?", o, f"m(COB) = {t}° − {a}° = {c}°.", shape=sh) if o else None
+
+
+def _mf_aci_tur2(subject):
+    a, b = random.sample(range(10, 100, 5), 2)
+    s = a + b
+    if s > 180 or s == 0:
+        return None
+    sh = _split_shape(s, a, f"{a}°", f"{b}°")
+    tur = "Dar açı" if s < 90 else "Dik açı" if s == 90 else "Geniş açı" if s < 180 else "Doğru açı"
+    o = _mf_opts(tur, [x for x in ["Dar açı", "Dik açı", "Geniş açı", "Doğru açı"] if x != tur], str, sort=False)
+    return _mf_raw(subject, "Açı türleri", f"Şekilde OC ışını AOB açısını iki açıya ayırmıştır. m(AOC) = {a}° ve m(COB) = {b}° olduğuna göre AOB açısı hangi açı türündedir?", o, f"m(AOB) = {a}° + {b}° = {s}° olduğundan bu açı {tur.lower()}dır.", shape=sh) if o else None
+
+
+_MF_GENS += [(_mf_dogru_say, ("doğru", "ışın"), (5,)), (_mf_aci_cikar, ("açı ölç",), (5,)), (_mf_aci_tur2, ("açı tür", "açı ölç"), (5,))]
+_DIFF_OF.update({"_mf_dogru_say": 3, "_mf_aci_cikar": 3, "_mf_aci_tur2": 4})
+# ---- İngilizce
+def _en_month(subject):
+    S = {"summer": ["June", "July", "August"], "winter": ["December", "January", "February"], "spring": ["March", "April", "May"], "autumn": ["September", "October", "November"]}
+    s = random.choice(list(S))
+    c = random.choice(S[s])
+    wr = [m for k, v in S.items() if k != s for m in v]
+    return _en_q("Seasons", f"Which month is in {s} in Turkey?", c, random.sample(wr, 3), f"{c} ayı {s} mevsimindedir.")
+
+
+_en_month.__name__ = "_en_month"
+
+
+def _en_weather(subject):
+    L = [("It’s raining. You need an ________.", "umbrella", ["sunglasses", "scarf", "swimsuit"]), ("It’s very hot and sunny. You can wear ________.", "shorts", ["a coat", "gloves", "boots"]),
+         ("It’s snowing. You should wear a ________.", "coat", ["swimsuit", "T-shirt", "hat for the beach"]), ("It’s windy. Let’s fly a ________.", "kite", ["boat", "snowman", "swing"])]
+    q, c, w = random.choice(L)
+    return _en_q("Weather", q, c, w, f"Hava durumuna uygun seçenek: {c}.")
+
+
+_en_weather.__name__ = "_en_weather"
+
+
+def _en_poss(subject):
+    nm = random.choice(_NAMES)
+    thing = random.choice(["bag", "book", "bike", "pencil", "cat"])
+    c = f"{nm}’s"
+    wr = [f"{nm} is", f"{nm} has", f"{nm} are", f"the {nm}"]
+    return _en_q("Possessive ’s", f"This is ________ {thing}. It belongs to {nm}.", c, wr[:3], f"Sahiplik ’s ile gösterilir: {c} {thing}.")
+
+
+_en_poss.__name__ = "_en_poss"
+
+
+def _en_house(subject):
+    L = [("People live in an ________ in a big building with many floors.", "apartment", ["igloo", "farm", "castle"]), ("An ________ is a house made of ice.", "igloo", ["apartment", "villa", "tent"]),
+         ("A ________ is a small house near the sea or in the countryside, mostly used on holidays.", "cottage", ["skyscraper", "supermarket", "museum"]), ("A ________ is a very tall building.", "skyscraper", ["cottage", "tent", "barn"])]
+    q, c, w = random.choice(L)
+    return _en_q("Types of Houses", q, c, w, f"Doğru sözcük: {c}.")
+
+
+_en_house.__name__ = "_en_house"
+_EF_GENS += [(_en_month, ("seasons", "universe")), (_en_weather, ("climate", "seasons", "universe")), (_en_poss, ("possessive", "neighbourhood")), (_en_house, ("types of houses", "neighbourhood"))]
+_DIFF_OF.update({"_en_month": 2, "_en_weather": 1, "_en_poss": 2, "_en_house": 2})
+
+# öncül sürümleri (yeni havuzlar için)
+for _reg, _sub in ((_FF_GENS, "Fen Bilimleri"), (_SF_GENS, "Sosyal Bilgiler"), (_TF_GENS, "Türkçe"), (_DF_GENS, "Din Kültürü ve Ahlak Bilgisi")):
+    for _f, _kw in list(_reg):
+        _tf = getattr(_f, "TF", None)
+        if _tf and _f.__name__ + "_onc" not in _DIFF_OF:
+            _topic, _T, _F, _S = _tf
+            _gg = _oncul(_topic, _T, _F, _S, _f.__name__ + "_onc", random.choice(_ONC_STEM))
+            _reg.append((_gg, _kw))
+            _DIFF_OF[_f.__name__ + "_onc"] = 4
+
+
+
+_tfpool("Işığın Dünyası", ["Güneş, doğal bir ışık kaynağıdır.", "Ampul, yapay bir ışık kaynağıdır.", "Tam gölge, ışığın hiç ulaşamadığı bölgedir.", "Işık, boşlukta da yayılabilir."],
+        ["Ay, kendi ışığını yayan doğal bir ışık kaynağıdır.", "Mum alevi, doğal bir ışık kaynağıdır.", "Tam gölge, ışığın tamamen geçtiği bölgedir.", "Işık, boşlukta yayılamaz."], ["Güneş", "Ampul", "Tam gölge", "Işığın yayılması"], "_ff_isik3", _FF_GENS, ("ışık", "ışığ", "gölge", "saydam"), 3)
+_choice_fam("Işığın Dünyası", "_ff_kaynak", _FF_GENS, ("ışık", "ışığ", "gölge"),
+            [("Aşağıdakilerden hangisi doğal bir ışık kaynağıdır?", "Güneş", ["Ay", "Ayna", "Cam", "Kitap"], "Güneş kendi ışığını yayar; Ay ve ayna ışığı yansıtır."),
+             ("Aşağıdakilerden hangisi yapay bir ışık kaynağıdır?", "Ampul", ["Güneş", "Yıldız", "Şimşek"], "Ampul insan yapımı bir ışık kaynağıdır."),
+             ("Aşağıdakilerden hangisi kendi ışığını yayan bir cisimdir?", "Güneş", ["Ay", "Ayna", "Defter", "Masa"], "Kendi ışığını yayan cisimler ışık kaynağıdır.")], 2)
+_choice_fam("Atatürk’ü Tanımak", "_tf_ata4", _TF_GENS, ("atatürk", "cumhuriyet", "millî mücadele", "istiklal"),
+            [("Atatürk, 19 Mayıs 1919’da hangi ilimize çıkmıştır?", "Samsun", ["İzmir", "Trabzon", "Ankara"], "Atatürk 19 Mayıs 1919’da Samsun’a çıkmıştır."),
+             ("Türkiye Büyük Millet Meclisi hangi şehirde açılmıştır?", "Ankara", ["İstanbul", "Sivas", "Erzurum"], "TBMM 23 Nisan 1920’de Ankara’da açılmıştır."),
+             ("Cumhuriyet’in ilk Cumhurbaşkanı kimdir?", "Mustafa Kemal Atatürk", ["İsmet İnönü", "Celâl Bayar", "Fevzi Çakmak"], "Cumhuriyet’in ilk Cumhurbaşkanı Mustafa Kemal Atatürk’tür.")], 2)
+for _reg in (_FF_GENS,):
+    for _f, _kw in list(_reg):
+        _tf = getattr(_f, "TF", None)
+        if _tf and _f.__name__ + "_onc" not in _DIFF_OF:
+            _topic, _T, _F, _S = _tf
+            _gg = _oncul(_topic, _T, _F, _S, _f.__name__ + "_onc", random.choice(_ONC_STEM))
+            _reg.append((_gg, _kw))
+            _DIFF_OF[_f.__name__ + "_onc"] = 4
+
+
+# ================================================================ SORU KÖKÜ ÇEŞİTLERİ (aynı kalıp, farklı anlatım / bağlam; anlam aynı kalır)
+_PARA = {
+    "_mf_say": [(r"sayısının okunuşu aşağıdakilerden hangisidir\?", ["sayısının okunuşu aşağıdakilerden hangisidir?", "sayısı aşağıdaki seçeneklerin hangisinde doğru okunmuştur?", "sayısı hangi seçenekteki gibi okunur?"])],
+    "_mf_addsub": [(r"işleminin sonucu kaçtır\?", ["işleminin sonucu kaçtır?", "işlemi yapıldığında sonuç kaç olur?", "işleminin sonucu aşağıdakilerden hangisidir?"])],
+    "_mf_order": [(r"işleminin sonucu kaçtır\?", ["işleminin sonucu kaçtır?", "işlemi yapıldığında sonuç kaç olur?", "işleminin sonucu aşağıdakilerden hangisidir?"])],
+    "_mf_power": [(r"işleminin sonucu kaçtır\?", ["işleminin sonucu kaçtır?", "işlemi yapıldığında sonuç kaç olur?", "işleminin sonucu aşağıdakilerden hangisidir?"])],
+    "_mf_cozum": [(r"işleminin sonucu aşağıdakilerden hangisidir\?", ["işleminin sonucu aşağıdakilerden hangisidir?", "işlemi yapıldığında elde edilen sayı aşağıdakilerden hangisidir?", "işlemiyle elde edilen sayı hangisidir?"])],
+    "_mf_basdeg": [(r"rakamının basamak değeri kaçtır\?", ["rakamının basamak değeri kaçtır?", "rakamının bulunduğu basamağa göre değeri kaçtır?", "rakamı hangi değeri gösterir?"])],
+    "_mf_ang_tumler": [(r"Şekilde ölçüsü verilen AOB açısının tümleri kaç derecedir\?", ["Şekilde ölçüsü verilen AOB açısının tümleri kaç derecedir?", "Şekilde verilen AOB açısı ile toplamı 90° olan açının ölçüsü kaç derecedir?", "AOB açısı şekilde gösterilmiştir. Bu açının tümler açısı kaç derecedir?"])],
+    "_mf_ang_butunler": [(r"Şekilde ölçüsü verilen AOB açısının bütünleri kaç derecedir\?", ["Şekilde ölçüsü verilen AOB açısının bütünleri kaç derecedir?", "Şekilde verilen AOB açısı ile toplamı 180° olan açının ölçüsü kaç derecedir?", "AOB açısı şekilde gösterilmiştir. Bu açının bütünler açısı kaç derecedir?"])],
+    "_mf_ang_tur": [(r"Şekilde ölçüsü verilen AOB açısının türü aşağıdakilerden hangisidir\?", ["Şekilde ölçüsü verilen AOB açısının türü aşağıdakilerden hangisidir?", "Şekildeki AOB açısı, ölçüsüne göre hangi açı türüne girer?", "AOB açısının ölçüsü şekilde verilmiştir. Bu açı hangi türdendir?"])],
+    "_mf_lset_dogru": [(r"Şekilde I\., II\. ve III\. ile numaralandırılmış çizimlerden hangisi bir doğrudur\?", ["Şekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir doğrudur?", "Şekilde I., II. ve III. ile gösterilen çizimlerden hangisi iki yönde de sonsuza uzanır?"])],
+    "_mf_lset_isin": [(r"Şekilde I\., II\. ve III\. ile numaralandırılmış çizimlerden hangisi bir ışındır\?", ["Şekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir ışındır?", "Şekilde I., II. ve III. ile gösterilen çizimlerden hangisinin bir başlangıç noktası vardır ve bir yönde sonsuza uzanır?"])],
+    "_mf_lset_parca": [(r"Şekilde I\., II\. ve III\. ile numaralandırılmış çizimlerden hangisi bir doğru parçasıdır\?", ["Şekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir doğru parçasıdır?", "Şekilde I., II. ve III. ile gösterilen çizimlerden hangisinin iki ucu da sınırlıdır?"])],
+    "_mf_dik_par": [(r"Şekildeki d₁ ve d₂ doğrularının birbirine göre durumu aşağıdakilerden hangisidir\?", ["Şekildeki d₁ ve d₂ doğrularının birbirine göre durumu aşağıdakilerden hangisidir?", "Şekildeki d₁ ve d₂ doğruları birbirine göre nasıl bir konumdadır?"])],
+    "_mf_cember_ad": [(r"Şekildeki O merkezli çemberde gösterilen (\w+) doğru parçasına ne ad verilir\?", [r"Şekildeki O merkezli çemberde gösterilen \1 doğru parçasına ne ad verilir?", r"Şekildeki O merkezli çemberde \1 doğru parçası aşağıdakilerden hangisidir?", r"O merkezli çemberin şekilde verilen \1 doğru parçası neyi gösterir?"])],
+    "_mf_poly_set": [(r"hangisinin (\d) kenarı vardır\?", [r"hangisinin \1 kenarı vardır?", r"hangisi \1 kenarlı bir çokgendir?"])],
+    "_mf_orun_kural": [(r"Bir sayı örüntüsünün ilk üç terimi (\d+), (\d+), (\d+) biçimindedir ve örüntü aynı kuralla devam etmektedir\. Bu örüntünün (\d+)\. terimi kaçtır\?",
+                        [r"Bir sayı örüntüsünün ilk üç terimi \1, \2, \3 biçimindedir ve örüntü aynı kuralla devam etmektedir. Bu örüntünün \4. terimi kaçtır?",
+                         r"Bir örüntünün ilk üç terimi şöyledir: \1, \2, \3. Örüntü aynı kuralla sürdüğüne göre \4. terim kaçtır?"])],
+    "_mf_prb_arac": [(r"Bir okuldan (\d+) öğrenci gezi için servislere bindirilecektir\. Her servise en fazla (\d+) öğrenci binebildiğine göre en az kaç servis gerekir\?",
+                      [r"Bir okuldan \1 öğrenci gezi için servislere bindirilecektir. Her servise en fazla \2 öğrenci binebildiğine göre en az kaç servis gerekir?",
+                       r"Bir kampa katılacak \1 kişi minibüslerle taşınacaktır. Her minibüse en fazla \2 kişi binebildiğine göre en az kaç minibüs gerekir?",
+                       r"Bir tiyatroya gidecek \1 öğrenci otobüslere bindirilecektir. Her otobüse en fazla \2 öğrenci binebildiğine göre en az kaç otobüs gerekir?"])],
+    "_mf_prb_alis": [(r"Bir kırtasiyede defterin tanesi (\d+) TL, kalemin tanesi (\d+) TL’dir\. Zeynep (\d+) defter ve \3 kalem aldığına göre kaç TL öder\?",
+                      [r"Bir kırtasiyede defterin tanesi \1 TL, kalemin tanesi \2 TL’dir. Zeynep \3 defter ve \3 kalem aldığına göre kaç TL öder?",
+                       r"Bir kantinde simidin tanesi \1 TL, ayranın tanesi \2 TL’dir. Zeynep \3 simit ve \3 ayran aldığına göre kaç TL öder?",
+                       r"Bir hediyelik eşya dükkânında anahtarlığın tanesi \1 TL, mıknatısın tanesi \2 TL’dir. Zeynep \3 anahtarlık ve \3 mıknatıs aldığına göre kaç TL öder?"])],
+    "_mf_zaman": [(r"olan bir film (\d+) dakika sürmüştür\. Film saat kaçta bitmiştir\?", [r"olan bir film \1 dakika sürmüştür. Film saat kaçta bitmiştir?", r"olan bir konser \1 dakika sürmüştür. Konser saat kaçta bitmiştir?",
+                                                                                    r"olan bir tiyatro oyunu \1 dakika sürmüştür. Oyun saat kaçta bitmiştir?", r"olan bir maç \1 dakika sürmüştür. Maç saat kaçta bitmiştir?"])],
+    "_mf_para": [(r"tanesi (\d+) TL olan (\d+) çikolata alan", [r"tanesi \1 TL olan \2 çikolata alan", r"tanesi \1 TL olan \2 simit alan", r"tanesi \1 TL olan \2 bisküvi paketi alan", r"tanesi \1 TL olan \2 balon alan"])],
+    "_ff_atik": [(r"Aşağıdaki atıklardan hangisi geri dönüşüm kutusuna atılmalıdır\?", ["Aşağıdaki atıklardan hangisi geri dönüşüm kutusuna atılmalıdır?", "Aşağıdakilerden hangisi geri dönüşüm için ayrı toplanması gereken bir atıktır?"])],
+    "_sf_komsu": [(r"Aşağıdaki ülkelerden hangisi Türkiye ile kara sınırına sahip bir komşu devlettir\?", ["Aşağıdaki ülkelerden hangisi Türkiye ile kara sınırına sahip bir komşu devlettir?", "Türkiye’nin kara sınırı bulunan komşu devletlerinden biri aşağıdakilerden hangisidir?"])],
+    "_sf_afet": [(r"Deprem anında aşağıdakilerden hangisi yapılmalıdır\?", ["Deprem anında aşağıdakilerden hangisi yapılmalıdır?", "Bir deprem sırasında güvende kalmak için aşağıdakilerden hangisi yapılmalıdır?"])],
+    "_en_time": [(r"What time is it\? \((\d+:\d+)\)", [r"What time is it? (\1)", r"Look at the clock: \1. What time is it?", r"Look at the clock: \1. What is the time in words?"])],
+}
+
+
+def _wrap_para(f, rules):
+    def g(subject, *a, **k):
+        r = f(subject, *a, **k)
+        if not r:
+            return r
+        q = r.get("question", "")
+        for rx, alts in rules:
+            m = re.search(rx, q)
+            if m:
+                q = q[:m.start()] + m.expand(random.choice(alts)) + q[m.end():]
+        r = dict(r)
+        r["question"] = q
+        return r
+    g.__name__ = f.__name__
+    for at in ("TF",):
+        if hasattr(f, at):
+            setattr(g, at, getattr(f, at))
+    return g
+
+
+def _apply_para():
+    for reg in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
+        for i, (f, kw) in enumerate(reg):
+            if f.__name__ in _PARA and not getattr(f, "_paraed", False):
+                w = _wrap_para(f, _PARA[f.__name__])
+                w._paraed = True
+                reg[i] = (w, kw)
+    for i, (f, kw, gr) in enumerate(_MF_GENS):
+        if f.__name__ in _PARA and not getattr(f, "_paraed", False):
+            w = _wrap_para(f, _PARA[f.__name__])
+            w._paraed = True
+            _MF_GENS[i] = (w, kw, gr)
+    for n, rules in _PARA.items():
+        gl = globals().get(n)
+        if gl is not None and not getattr(gl, "_paraed", False):
+            w = _wrap_para(gl, rules)
+            w._paraed = True
+            globals()[n] = w
+
+
+_apply_para()
+
+
+# ================================================================ SORU KÖKÜ ÇEŞİTLERİ + EK KALIPLAR (özgünlük: aynı kök arka arkaya gelmesin)
+_STEM_ALTS = {
+    "Aşağıdakilerden hangisinin değeri diğerlerinden farklıdır?": ["Verilenlerden hangisinin değeri diğer üçünden farklıdır?", "Seçeneklerden üçü aynı değeri ifade eder. Değeri farklı olan hangisidir?", "Aşağıdaki gösterimlerden hangisi diğerlerinden farklı bir değeri ifade eder?"],
+    "Şekilde ölçüsü verilen açı, aşağıdaki ölçülerden hangisiyle birlikte tümler açı çifti oluşturur?": ["Şekilde ölçüsü verilen açının tümleyeni aşağıdaki ölçülerden hangisidir?", "Şekildeki açı ile toplamı 90° olan açının ölçüsü aşağıdakilerden hangisidir?"],
+    "Şekilde ölçüsü verilen açı, aşağıdaki ölçülerden hangisiyle birlikte bütünler açı çifti oluşturur?": ["Şekilde ölçüsü verilen açının bütünleyeni aşağıdaki ölçülerden hangisidir?", "Şekildeki açı ile toplamı 180° olan açının ölçüsü aşağıdakilerden hangisidir?"],
+    "Şekilde kesişen iki doğrunun oluşturduğu ters (karşıt) açılardan birinin ölçüsü verilmiştir. Buna göre x kaç derecedir?": ["Kesişen iki doğrunun oluşturduğu ters açılardan biri şekilde verilmiştir. Buna göre x değeri kaç derecedir?", "Şekilde iki doğru kesişmiş ve ters (karşıt) açılar oluşmuştur. Açılardan birinin ölçüsü verildiğine göre x kaç derecedir?"],
+    "Tablodaki verilere göre su kaçıncı dakikada kaynamaya başlamıştır? (Su kaynarken sıcaklığı sabit kalır.)": ["Tabloya bakıldığında suyun kaynamaya başladığı an kaçıncı dakikadır? (Su kaynarken sıcaklığı sabit kalır.)"],
+    "Tablodaki verilere göre su kaynamaya başladıktan sonra ısıtma kaç dakika daha sürmüştür?": ["Tablodaki verilere göre su kaynamaya başladıktan sonra ısıtma kaç dakika daha devam etmiştir?"],
+    "Tabloya göre sürtünme kuvvetinin en büyük olduğu yüzey ile en küçük olduğu yüzeydeki sürtünme kuvvetleri arasındaki fark kaç N'dur?": ["Verilen tabloya göre sürtünme kuvvetinin en çok ve en az olduğu yüzeylerdeki değerlerin farkı kaç N'dur?"],
+    "Tablodaki verilere göre aşağıdaki yargılardan hangisi doğrudur?": ["Tablodaki verilere göre aşağıdaki sonuçlardan hangisine ulaşılabilir?", "Tabloda verilen ölçümler incelendiğinde aşağıdakilerden hangisi söylenebilir?"],
+    "Bu öğrenci ay sonunda tüm giderlerini yaptıktan sonra kaç TL tasarruf edebilmiştir?": ["Tablodaki gelir ve giderlere göre bu öğrencinin ay sonunda biriktirebildiği para kaç TL’dir?", "Tablodaki bilgilere göre öğrencinin bir aylık tasarrufu kaç TL’dir?"],
+}
+
+
+def _stem_vary(fn):
+    def g(subject, *a, **k):
+        r = fn(subject, *a, **k)
+        if isinstance(r, dict):
+            alts = _STEM_ALTS.get(str(r.get("question", "")))
+            if alts:
+                r = dict(r)
+                r["question"] = random.choice([r["question"]] + alts)
+        return r
+    g.__name__ = fn.__name__
+    g.__wrapped__ = fn
+    if hasattr(fn, "TF"):
+        g.TF = fn.TF
+    return g
+
+
+# ---- ek bilgi/hesap kalıpları
+def _tf_zit2(subject):
+    a, b = random.choice(_ZIT)
+    if random.random() < .5:
+        a, b = b, a
+    fam = {x for p in _ZIT if a in p for x in p}
+    others = [w for p in _ZIT for w in p if w not in fam]
+    return _fact_q(subject, "Söz Varlığı", f"“{a} – ………” sözcük çiftinin zıt (karşıt) anlamlı olması için boşluğa aşağıdakilerden hangisi getirilmelidir?", b, random.sample(others, 3), f"“{a}” sözcüğünün zıt anlamlısı “{b}” sözcüğüdür.")
+
+
+_tf_zit2.__name__ = "_tf_zit2"
+_TF_GENS.append((_tf_zit2, ("söz varlığı", "anlam", "sözcük")))
+_DIFF_OF["_tf_zit2"] = 2
+
+_ROL = [("Öğretmen", "öğrencilere ders anlatır"), ("Doktor", "hastaları muayene eder"), ("Çiftçi", "toprağı işleyip ürün yetiştirir"), ("Trafik polisi", "trafiğin akışını düzenler"),
+        ("Aşçı", "yemek hazırlar"), ("İtfaiyeci", "yangınları söndürür")]
+
+
+def _sf_meslek(subject):
+    r, d = random.choice(_ROL)
+    if random.random() < .5:
+        return _fact_q(subject, "Gruplar ve Roller", f"Toplumda “{d}” görevini üstlenen kişi aşağıdakilerden hangisidir?", r, [x for x, _y in _ROL if x != r], f"“{d}” görevi {r.lower()} rolüne aittir.")
+    return _fact_q(subject, "Gruplar ve Roller", f"{r} rolünü üstlenen bir kişinin görevi aşağıdakilerden hangisidir?", d[0].upper() + d[1:], [y[0].upper() + y[1:] for x, y in _ROL if x != r], f"{r} rolünün görevi: {d}.")
+
+
+_sf_meslek.__name__ = "_sf_meslek"
+_TEK = {"iletişim": ["Telefon", "Radyo", "Televizyon", "Bilgisayar"], "ulaşım": ["Uçak", "Tren", "Otomobil", "Gemi"], "mutfak": ["Buzdolabı", "Fırın", "Mikser", "Ocak"]}
+
+
+def _sf_arac(subject):
+    a, b = random.sample(list(_TEK), 2)
+    c = random.choice(_TEK[a])
+    nm = {"iletişim": "bir iletişim aracıdır", "ulaşım": "bir ulaşım aracıdır", "mutfak": "mutfakta kullanılan bir araçtır"}[a]
+    wr = random.sample(_TEK[b], 3)
+    return _fact_q(subject, "Teknoloji ve Sosyal Bilimler", f"Aşağıdakilerden hangisi {nm}?", c, wr, f"{c}, {nm}; diğer seçenekler {b} alanındandır.")
+
+
+_sf_arac.__name__ = "_sf_arac"
+_SF_GENS += [(_sf_meslek, ("grup", "rol", "birlikte")), (_sf_arac, ("teknoloji", "teknolojik"))]
+_DIFF_OF.update({"_sf_meslek": 2, "_sf_arac": 2})
+_ORG = [("Hücre zarı", "hücreye giren ve çıkan maddeleri kontrol eder"), ("Çekirdek", "hücrenin yönetim merkezidir"), ("Hücre duvarı", "bitki hücresine şekil verir ve destek sağlar"), ("Kloroplast", "bitki hücresine yeşil rengini verir")]
+
+
+def _ff_organel(subject):
+    a, d = random.choice(_ORG)
+    plant_only = a in ("Hücre duvarı", "Kloroplast")
+    pool = [x for x, _y in _ORG if x != a]
+    if random.random() < .5:
+        return _fact_q(subject, "Hücre", f"“{d}” ifadesi hücrenin hangi kısmını tanımlar?", a, pool, f"“{d}”: {a}.")
+    return _fact_q(subject, "Hücre", f"{a} ile ilgili aşağıdaki ifadelerden hangisi doğrudur?", d[0].upper() + d[1:] + ".", [y[0].upper() + y[1:] + "." for x, y in _ORG if x != a], f"{a}: {d}.")
+
+
+_ff_organel.__name__ = "_ff_organel"
+_FF_GENS.append((_ff_organel, ("hücre",)))
+_DIFF_OF["_ff_organel"] = 2
+
+
+def _en_wh(subject):
+    L = [("________ is your birthday? — It’s in May.", "When"), ("________ do you live? — In Ankara.", "Where"), ("________ is she? — She is my mother.", "Who"), ("________ old are you? — I’m ten.", "How"),
+         ("________ is your favourite subject? — Maths.", "What"), ("________ is the library? — It’s next to the school.", "Where")]
+    q, c = random.choice(L)
+    return _en_q("Question Words", q, c, [x for x in ["When", "Where", "Who", "How", "What", "Why"] if x != c and {x, c} != {"Who", "What"}][:3], f"Cevaba uygun soru sözcüğü: {c}.")
+
+
+_en_wh.__name__ = "_en_wh"
+
+
+def _en_plural(subject):
+    P = [("box", "boxes"), ("child", "children"), ("man", "men"), ("bus", "buses"), ("city", "cities"), ("tooth", "teeth"), ("watch", "watches"), ("baby", "babies"), ("woman", "women"), ("foot", "feet")]
+    s, c = random.choice(P)
+    wr = [s + "s", s + "es", s + "ies", c + "s"]
+    wr = [w for w in dict.fromkeys([s + "s", s + "es", (s[:-1] + "ies") if s.endswith("y") else s + "ies", s + "en", c + "s"]) if w != c]
+    return _en_q("Plurals", f"one {s} – two ________", c, wr[:3], f"“{s}” sözcüğünün çoğulu “{c}” biçimindedir.")
+
+
+_en_plural.__name__ = "_en_plural"
+
+
+def _en_poss2(subject):
+    nm = random.choice(["Ali", "Ayşe", "Mert", "Elif"])
+    th = random.choice(["book", "bag", "bike", "pencil"])
+    c = f"{nm}’s"
+    wr = [nm, f"{nm}es", f"of {nm}"]
+    return _en_q("Possessive ’s", f"This is ________ {th}. (It belongs to {nm}.)", c, wr[:3], f"Sahiplik bildirmek için ismin sonuna ’s eklenir: {c}.")
+
+
+_en_poss2.__name__ = "_en_poss2"
+_EF_GENS += [(_en_wh, ("question words", "personal life", "school life", "family life", "dialogue")), (_en_plural, ("countable", "plural", "life in the world", "classroom objects")), (_en_poss2, ("possessive", "neighbourhood"))]
+_DIFF_OF.update({"_en_wh": 2, "_en_plural": 2, "_en_poss2": 2})
+
+
+def _mf_pct_esit(subject):
+    P = {5: ("1/20", "0,05"), 10: ("1/10", "0,1"), 20: ("1/5", "0,2"), 25: ("1/4", "0,25"), 50: ("1/2", "0,5"), 75: ("3/4", "0,75")}
+    p = random.choice(list(P))
+    form = random.choice([0, 1])
+    c = P[p][form]
+    wr = [P[x][form] for x in P if x != p]
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Yüzde", f"Aşağıdakilerden hangisi %{p} ile aynı değeri gösterir?", o, f"%{p} = {P[p][0]} = {P[p][1]}.") if o else None
+
+
+def _mf_kalan(subject):
+    d, q, r = random.randint(4, 12), random.randint(8, 60), 0
+    r = random.randint(1, d - 1)
+    n = d * q + r
+    kind = random.choice(["toplam", "bolum", "kalan"])
+    ans = {"toplam": q + r, "bolum": q, "kalan": r}[kind]
+    ask = {"toplam": "bölüm ile kalanın toplamı", "bolum": "bölüm", "kalan": "kalan"}[kind]
+    o = _mf_opts(ans, [q + r + 1, q, r, q - 1, q + 1, d, q + r - 1], str)
+    return _mf_raw(subject, "Dört işlem problemleri", f"{n} ÷ {d} işleminde {ask} kaçtır?", o, f"{n} = {d} × {q} + {r}; bölüm {q}, kalan {r}; {ask}: {ans}.") if o else None
+
+
+def _mf_yuvarla(subject):
+    n = random.randint(110, 9899) * 10 + random.choice([1, 2, 3, 4, 6, 7, 8, 9])
+    kind = random.choice([10, 100, 1000])
+    c = (n + kind // 2) // kind * kind
+    nm = {10: "onluğa", 100: "yüzlüğe", 1000: "binliğe"}[kind]
+    f = lambda v: f"{v:,}".replace(",", ".")
+    fl = n // kind * kind
+    o = _mf_opts(f(c), [f(c + kind), f(c - kind), f(fl) if fl != c else f(c + 2 * kind), f(c + 2 * kind)], str, sort=False)
+    return _mf_raw(subject, "Tahmin", f"{f(n)} sayısı en yakın {nm} yuvarlanırsa kaç olur?", o, f"{f(n)} sayısına en yakın {nm} yuvarlanmış sayı {f(c)}’dir.") if o else None
+
+
+_MF_GENS += [(_mf_pct_esit, ("yüzde",), (5,)), (_mf_kalan, ("dört işlem",), (5,)), (_mf_yuvarla, ("tahmin", "dört işlem"), (5,))]
+_DIFF_OF.update({"_mf_pct_esit": 3, "_mf_kalan": 3, "_mf_yuvarla": 3})
+
+# soru kökü çeşitlerini tüm kayıtlara uygula
+_MF_GENS[:] = [(_stem_vary(f), k, g) for f, k, g in _MF_GENS]
+for _r in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
+    _r[:] = [(_stem_vary(f), k) for f, k in _r]
+
+
+# ================================================================ 5. SINIF MATEMATİK — Temel geometrik çizimler ünitesine ek kalıplar
+def _mf_cizim_ad(subject):
+    sub = random.choice(["line", "ray", "segment"])
+    lab = random.choice([["A", "B"], ["K", "L"], ["M", "N"], ["P", "R"]])
+    c = {"line": "Doğru", "ray": "Işın", "segment": "Doğru parçası"}[sub]
+    o = _mf_opts(c, [x for x in ["Doğru", "Işın", "Doğru parçası", "Açı"] if x != c], str, sort=False)
+    ex = {"line": "Her iki yönde sonsuza uzanıyorsa doğrudur.", "ray": "Bir ucu sınırlı, diğer yönde sonsuza giden çizim ışındır.", "segment": "İki ucu da sınırlı olan çizim doğru parçasıdır."}[sub]
+    q = random.choice(["Şekilde gösterilen geometrik çizimin adı aşağıdakilerden hangisidir?", "Şekildeki çizim aşağıdakilerden hangisini temsil eder?", "Aşağıdakilerden hangisi şekilde gösterilen çizime verilen addır?"])
+    return _mf_raw(subject, "Doğru, ışın, doğru parçası", q, o, ex, shape={"type": "geo", "sub_type": sub, "labels": lab}) if o else None
+
+
+_mf_cizim_ad.__name__ = "_mf_cizim_ad"
+
+
+def _mf_isin_bas(subject):
+    lab = random.choice([["A", "B"], ["K", "L"], ["M", "N"], ["P", "R"]])
+    o = _mf_opts(f"{lab[0]} noktası", [f"{lab[1]} noktası", "Her iki nokta", "Hiçbiri"], str, sort=False)
+    return _mf_raw(subject, "Doğru, ışın, doğru parçası", f"Şekildeki ışının başlangıç noktası aşağıdakilerden hangisidir?", o, f"Işının başlangıç noktası, sınırlı olan uçtur: {lab[0]}.", shape={"type": "geo", "sub_type": "ray", "labels": lab}) if o else None
+
+
+_mf_isin_bas.__name__ = "_mf_isin_bas"
+
+
+def _mf_dik_olcu(subject):
+    k = random.choice(["bir", "toplam"])
+    sh = {"type": "geo", "sub_type": "perpendicular", "labels": ["d₁", "d₂"], "tilt": random.choice([0, 15, 30])}
+    if k == "bir":
+        o = _mf_opts(90, [45, 60, 180, 120, 30], str)
+        return _mf_raw(subject, "Paralel ve dik doğrular", "Şekildeki d₁ ve d₂ doğruları birbirine diktir. Doğruların kesiştiği noktada oluşan bir açının ölçüsü kaç derecedir?", o, "Dik doğrular 90°’lik açı oluşturur.", shape=sh) if o else None
+    o = _mf_opts(360, [180, 270, 90, 450], str)
+    return _mf_raw(subject, "Paralel ve dik doğrular", "Şekildeki d₁ ve d₂ doğruları birbirine diktir. Kesişme noktasında oluşan dört açının ölçüleri toplamı kaç derecedir?", o, "4 × 90° = 360°.", shape=sh) if o else None
+
+
+_mf_dik_olcu.__name__ = "_mf_dik_olcu"
+def _mf_par_kesis(subject):
+    sh = {"type": "geo", "sub_type": "parallel", "labels": ["d₁", "d₂"]}
+    k = random.choice(["kesis", "uzak"])
+    if k == "kesis":
+        o = _mf_opts("0", ["1", "2", "Sonsuz sayıda"], str, sort=False)
+        return _mf_raw(subject, "Paralel ve dik doğrular", "Şekildeki d₁ ve d₂ doğruları birbirine paraleldir. Bu iki doğru kaç noktada kesişir?", o, "Paralel doğrular hiçbir noktada kesişmez.", shape=sh) if o else None
+    o = _mf_opts("Paralel doğrular", ["Dik doğrular", "Kesişen doğrular", "Çakışık doğru parçaları"], str, sort=False)
+    return _mf_raw(subject, "Paralel ve dik doğrular", "Şekildeki d₁ ve d₂ doğruları, aralarındaki uzaklık her yerde aynı kalacak biçimde çizilmiştir. Bu doğrular için aşağıdakilerden hangisi söylenebilir?", o, "Aralarındaki uzaklık değişmeyen ve hiç kesişmeyen doğrular paraleldir.", shape=sh) if o else None
+
+
+_mf_par_kesis.__name__ = "_mf_par_kesis"
+_MF_GENS += [(_mf_cizim_ad, ("doğru", "ışın", "geometrik çizim"), (5,)), (_mf_isin_bas, ("ışın", "doğru, ışın"), (5,)), (_mf_dik_olcu, ("dik", "paralel"), (5,)), (_mf_par_kesis, ("paralel",), (5,))]
+_DIFF_OF.update({"_mf_cizim_ad": 1, "_mf_isin_bas": 2, "_mf_dik_olcu": 2, "_mf_par_kesis": 2})
 
 
 # ---------------------------------------------------------------- ÖNCEDEN ÜRETİLMİŞ + DOĞRULANMIŞ HAVUZ (repodaki pool/ klasörü; API kotası harcamaz)
@@ -11114,27 +12281,94 @@ def _style_key(q):
         return ""
 
 
+def _hist_parts(q):
+    t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
+    w = {x[:5] for x in re.findall(r"[a-zçğıöşü]{4,}", t)}
+    n = set()
+    if q.get("tpl"):
+        from . import store as _st
+        n = set(_st._num_tokens(q))
+    return w, n
+
+
+def _hist_sim1(w, n, h):
+    """Tek geçmiş soruyla benzerlik: sözcük Jaccard'ı; ikisi de hazır kalıpsa ve sayıları farklıysa düşürülür (aynı kök, başka sayılar = başka soru)."""
+    hw = {x for x in h if not x.startswith("#")}
+    hn = {x for x in h if x.startswith("#")}
+    if not hw:
+        return 0.0
+    s = len(w & hw) / len(w | hw)
+    if n and hn:
+        ov = len(n & hn) / len(n | hn)
+        s *= (0.4 + 0.6 * ov)
+    return s
+
+
 def _hist_maxsim(q, sets):
     """Soru, geçmiş sınav sorularına en çok ne kadar benziyor (0-1)? Yedek sıralamasında en az benzeyen önce gelir."""
     try:
-        t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
-        w = {x[:5] for x in re.findall(r"[a-zçğıöşü]{4,}", t)}
+        w, n = _hist_parts(q)
         if not w or not sets:
             return 0.0
-        return max((len(w & h) / len(w | h) for h in sets if h), default=0.0)
+        return max((_hist_sim1(w, n, h) for h in sets if h), default=0.0)
     except Exception:
         return 0.0
+
+
+def _fam_of(q):
+    return str(q.get("tpl") or q.get("_sty") or _style_key(q))
+
+
+def _greedy_fill(qs_, cands, n, hsets, seen_, allow_hist=False, allow_seen=False, need_ready=False):
+    """Eksik soruları, aynı kalıptan çok soru girmeyecek ve geçmişe en az benzeyecek biçimde tek tek seçerek tamamlar.
+    Önce her kalıptan en çok 2 soru, olmazsa sınır kalkar; aday sırası: (aynı kalıp sayısı, geçmişe benzerlik)."""
+    from collections import Counter
+    cnt = Counter(_fam_of(q) for q in qs_)
+    have = [_qwords(q) for q in qs_]
+    sigs = {(q.get("question"), tuple((q.get("options") or {}).values())) for q in qs_}
+    pool = list(cands)
+    for cap in (2, 3, 99):
+        while len(qs_) < n:
+            best, bk = None, None
+            for q in pool:
+                f = _fam_of(q)
+                if cnt[f] >= cap:
+                    continue
+                if need_ready and not (q.get("vfd") or q.get("local") or q.get("tpl") or q.get("pool")):
+                    continue
+                w = _qwords(q)
+                if allow_hist:  # son çare: yalnızca birebir aynı soru (metin + şıklar) engellenir; sayıları farklı hazır kalıp örnekleri geçerlidir
+                    if (q.get("question"), tuple((q.get("options") or {}).values())) in sigs:
+                        continue
+                elif any(h and w and len(h & w) / len(h | w) > 0.85 for h in have):
+                    continue
+                s_in = _stem(q) in seen_
+                if s_in and not allow_seen:
+                    continue
+                ms = _hist_maxsim(q, hsets)
+                if ms > 0.5 and not allow_hist:
+                    continue
+                k = (cnt[f], s_in, round(ms, 1))
+                if bk is None or k < bk:
+                    best, bk = q, k
+            if best is None:
+                break
+            qs_.append(best)
+            sigs.add((best.get("question"), tuple((best.get("options") or {}).values())))
+            pool.remove(best)
+            cnt[_fam_of(best)] += 1
+            have.append(_qwords(best))
+    return qs_
 
 
 def _hist_similar(q, sets, thr=0.5):
     """Soru, önceki sınavlardaki bir soruyla (rakam/harf/şık farkı hariç) aynı mı? Jaccard > thr -> True."""
     try:
-        t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
-        w = {x[:5] for x in re.findall(r"[a-zçğıöşü]{4,}", t)}
+        w, n = _hist_parts(q)
         if len(w) < 4 or not sets:
             return False
         for h in sets:
-            if h and len(w & h) / len(w | h) > thr:
+            if h and _hist_sim1(w, n, h) > thr:
                 return True
     except Exception:
         return False
@@ -11261,7 +12495,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     pass
             if not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_FACTORY") != "1" and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "Matematik", "Fen Bilimleri"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
                 try:  # çekirdek/hesaplanan soruların toplam payı en çok ~%25 (çoğunluk yapay zekâ); kaynaklar sırayla, dönüşümlü
-                    fb = max(1 if n >= 4 else 0, int(n * (0.6 if subj in STRICT_MODE else 0.25)))  # Matematikte kodla hesaplanan soru payı yüksek (hatasız); AI soruları yalnızca doğrulanırsa girer
+                    fb = max(1 if n >= 4 else 0, int(n * (0.6 if subj in STRICT_MODE else (0.5 if str(grade_label)[:1] == "5" else 0.25))))  # Matematikte kodla hesaplanan soru payı yüksek (hatasız); AI soruları yalnızca doğrulanırsa girer
                     srcs = [lambda k: seed_questions(subj, grade_label, p.get("topics", ""), limit=k, seen=seen),
                             lambda k: local_questions(subj, grade_label, k, p.get("topics", ""), seen=seen)]
                     if subj == "Matematik":
@@ -11272,6 +12506,10 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                         srcs.append(lambda k: sosyal_questions(grade_label, k, p.get("topics", ""), seen=seen, dl=dl))
                     if subj == "Türkçe":
                         srcs.append(lambda k: turkce_questions(grade_label, k, p.get("topics", ""), seen=seen, dl=dl))
+                    if subj == "İngilizce":
+                        srcs.append(lambda k: eng_questions(grade_label, k, p.get("topics", ""), seen=seen, dl=dl))
+                    if subj == "Din Kültürü ve Ahlak Bilgisi":
+                        srcs.append(lambda k: din_questions(grade_label, k, p.get("topics", ""), seen=seen, dl=dl))
                     random.shuffle(srcs)
                     got_f = 0
                     for _r in range(max(1, fb)):
@@ -11359,46 +12597,29 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     errors, questions = [], []
     for st_ in state:
         p, qs_ = st_["p"], st_["qs"]
-        st_["reserve"].sort(key=lambda q: (_stem(q) in seen, _hist_maxsim(q, hist.get(p.get("subject")) if not like else None)))  # en az benzeyen / hiç görülmemiş önce
-        if len(qs_) < p["n"] and st_["reserve"]:  # son çare: elenenlerden (tam kopya olmayanlar) tamamla
-            have = [_qwords(q) for q in qs_]
-            for q in st_["reserve"]:
-                if len(qs_) >= p["n"]:
-                    break
-                w = _qwords(q)
-                if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have):
-                    continue
-                if _stem(q) in seen:
-                    continue  # önceki sınavlarda çıkmış birebir soru asla tekrar verilmez
-                if not like and _hist_similar(q, hist.get(p.get("subject"))):
-                    continue  # Matematik: geçmişteki sorunun sayı-harf farkıyla kopyası da verilmez
-                qs_.append(q)
-                have.append(w)
-        if len(qs_) < p["n"]:  # SORU SAYISI MUTLAKA TAMAMLANIR: 2. kademe = daha önce görülmüş doğrulanmış/hazır soru (ama aynı sınavda kopya olmadan)
-            have = [_qwords(q) for q in qs_]
-            for q in st_["reserve"]:
-                if len(qs_) >= p["n"]:
-                    break
-                w = _qwords(q)
-                if any(h and w and len(h & w) / len(h | w) > 0.85 for h in have) or not (q.get("vfd") or q.get("local") or q.get("tpl") or q.get("pool")):
-                    continue
-                qs_.append(q)
-                have.append(w)
+        _hs = hist.get(p.get("subject")) if not like else None
+        if len(qs_) < p["n"] and st_["reserve"]:  # son çare 1: elenenlerden; aynı kalıp en çok 2, geçmişe benzeyen ve önceki sınav sorusu yok
+            _greedy_fill(qs_, st_["reserve"], p["n"], _hs, seen)
         if len(qs_) < p["n"] and not like:  # 2b. kademe = hazır kalıplardan (kodla hesaplanan, hatasız) önceki sınavlara bakmadan; yalnızca bu sınavdaki kopyalar hariç
-            _fn = {"Matematik": math_questions, "Fen Bilimleri": fen_questions, "Sosyal Bilgiler": sosyal_questions, "Türkçe": turkce_questions}.get(p.get("subject"))
+            _fn = {"Matematik": math_questions, "Fen Bilimleri": fen_questions, "Sosyal Bilgiler": sosyal_questions, "Türkçe": turkce_questions, "Din Kültürü ve Ahlak Bilgisi": din_questions, "İngilizce": eng_questions}.get(p.get("subject"))
             if _fn:
                 try:
                     inx = {_stem(q) for q in qs_}
+                    _cand = []
                     for _dd in ((dl, 0) if dl else (0,)):  # önce seçilen zorluğa uyanlar, yetmezse zorluk gözetmeden
-                        for q in _fn(grade_label, (p["n"] - len(qs_)) * 2, p.get("topics", ""), seen=inx, dl=_dd):
-                            if len(qs_) >= p["n"]:
-                                break
-                            if _stem(q) in inx or not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
-                                continue
-                            inx.add(_stem(q))
-                            qs_.append(q)
+                        for _rep in range(3):  # her çağrı kalıp başına bir örnek verir; çeşitlilik için birkaç tur
+                            for q in _fn(grade_label, (p["n"] - len(qs_)) * 3, p.get("topics", ""), seen=inx, dl=_dd):
+                                if _stem(q) in inx or not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
+                                    continue
+                                inx.add(_stem(q))
+                                _cand.append(q)
+                        _greedy_fill(qs_, _cand, p["n"], _hs, seen)
                         if len(qs_) >= p["n"]:
                             break
+                    if len(qs_) < p["n"]:  # hâlâ eksikse: geçmişe benzeyen taze örnekler dahil
+                        _greedy_fill(qs_, _cand, p["n"], _hs, seen, allow_hist=True, allow_seen=True)
+                    if len(qs_) < p["n"]:  # son: rezervdeki daha önce görülmüş hazır sorular
+                        _greedy_fill(qs_, st_["reserve"], p["n"], _hs, seen, allow_hist=True, allow_seen=True, need_ready=True)
                 except Exception:
                     pass
         if len(qs_) < p["n"] and st_.get("unv") and p.get("subject") not in STRICT_MODE:  # 3. kademe (sıkı modda YOK: doğrulanmamış soru girmez) = doğrulayıcıya ulaşılamayan ama diğer tüm kontrolleri geçen sorular (ünite/olumsuz kök/tutarlılık)
