@@ -2,18 +2,24 @@ name: Soru havuzunu hazırla
 
 on:
   schedule:
-    - cron: "0 1,13 * * *"   # günde iki kez: 04:00 ve 16:00 (TR)
+    - cron: "0 1 * * *"   # günde bir kez: 04:00 (TR); toplam ~20 dk
   workflow_dispatch:
     inputs:
       grades:
         description: "Sınıflar (virgülle)"
         default: "5"
+      subjects:
+        description: "Dersler (virgülle)"
+        default: "Matematik,Fen Bilimleri,Türkçe,Sosyal Bilgiler,Din Kültürü ve Ahlak Bilgisi,İngilizce"
       per_unit:
-        description: "Ünite başına istenen soru"
-        default: "10"
+        description: "Matematik/Fen dışı derslerde ünite başına istenen soru"
+        default: "1"
+      per_unit_core:
+        description: "Matematik ve Fen'de ünite başına istenen soru"
+        default: "2"
       minutes:
-        description: "En çok çalışma süresi (dk)"
-        default: "35"
+        description: "Havuz üretimi en çok çalışma süresi (dk)"
+        default: "16"
 
 permissions:
   contents: write
@@ -25,7 +31,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,7 +54,7 @@ jobs:
           MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
           SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
           NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
-        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit "${{ github.event.inputs.per_unit || '10' }}" --minutes "${{ github.event.inputs.minutes || '35' }}" --bad-dir _ud/data
+        run: python tools/build_pool.py --grades "${{ github.event.inputs.grades || '5' }}" --subjects "${{ github.event.inputs.subjects || 'Matematik,Fen Bilimleri,Türkçe,Sosyal Bilgiler,Din Kültürü ve Ahlak Bilgisi,İngilizce' }}" --per-unit "${{ github.event.inputs.per_unit || '1' }}" --per-unit-core "${{ github.event.inputs.per_unit_core || '2' }}" --minutes "${{ github.event.inputs.minutes || '16' }}" --bad-dir _ud/data
       - name: Matematik şablonlarını üret
         continue-on-error: true
         env:
@@ -59,7 +65,7 @@ jobs:
           MISTRAL_API_KEYS: ${{ secrets.MISTRAL_API_KEYS }}
           SAMBANOVA_API_KEYS: ${{ secrets.SAMBANOVA_API_KEYS }}
           NVIDIA_API_KEYS: ${{ secrets.NVIDIA_API_KEYS }}
-        run: python tools/build_templates.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit 4 --minutes 15
+        run: python tools/build_templates.py --grades "${{ github.event.inputs.grades || '5' }}" --per-unit 1 --minutes 4
       - name: Değişiklikleri kaydet
         run: |
           git config user.name "denemematik-bot"
