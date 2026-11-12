@@ -3751,7 +3751,14 @@ def recent_stems():
 def _sig_tokens(q):
     import re
     t = (str(q.get("question", "")) + " " + str(q.get("passage", ""))).replace("İ", "i").replace("I", "ı").lower()
-    return sorted({w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)})
+    tk = {w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)}
+    if q.get("tpl"):  # hazır kalıp: kök aynı olsa da doğru cevabın içeriği farklıysa farklı soru sayılır (yalnızca şıkları karışan "aynı" soru olmasın)
+        try:
+            at = str((q.get("options") or {}).get(q.get("answer"), "")).replace("İ", "i").replace("I", "ı").lower()
+            tk |= {"@" + w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", at)}
+        except Exception:
+            pass
+    return sorted(tk)
 
 
 def _num_tokens(q):
@@ -6564,7 +6571,7 @@ def mc_prompt(grade_label, subject, n, topics, difficulty, scope_label, avoid, f
         f"DERS YÖNERGESİ: {SUBJECT_HINT.get(subject, '')}\n"
         + ("MEB/LGS geometri soru anlayışı: kısa, şekle dayalı, hikâyesiz ama ÇOK ADIMLI muhakeme gerektiren sorular.\n" if geo_on else LGS_STYLE) + (_lgs25(subject, grade_label) if not geo_on else "LGS geometri: eleyici kalıp = şeklin birden fazla özelliğini (kenar, açı, eşlik/benzerlik, çevre/alan) birlikte sorgulayan çok adımlı soru.\n" if _lgs25(subject, grade_label) else "") +
         "Sınıf düzeyinin dışına (üst sınıf konusuna) taşma; kazanım kapsamında kal.\n" + (MATH_NOTATION if (subject == "Matematik" and not geo_on) else "") + STEM_POLICY + LOGIC_RULES + _meb_types(subject, _diff_level(difficulty) or lvl) +
-        f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{'' if plain else _variety_plan(subject, n, topics)}"
+        f"Çeşitlilik tohumu: {nonce}. Her soru birbirinden bağımsız ve farklı olsun.{'' if plain else _variety_plan(subject, n, topics)}{_scope_plan(subject, n, topics, grade_label)}"
         f"{av}\n{_subject_lock(subject, topics)}\n{PLAIN_RULE if plain else shape_rules(subject, geo_on) + (GEO_STYLE if geo_on else '')}\n"
         "Her soruda: kısa 'topic' (kazanım adı), gerekirse 'passage', 'question', 4 şık, adım adım 'explanation' (çözüm) ve çözümden SONRA 'answer' (A/B/C/D) olsun.\n"
         "SON KONTROL: Çıktıyı vermeden önce her soruyu uzman gözüyle yeniden incele (tek doğru cevap, bilimsel doğruluk, muğlaklık, olumsuz kök yok); kusurlu soruyu düzelt.\n"
@@ -9620,10 +9627,9 @@ def math_questions(grade_label, n, topics="", seen=(), dl=0):
     out, stems = [], set(seen)
     rkey = ("gen", "Matematik", g_key)
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
-    if dl:
-        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
+    byname = _dl_filter(byname, dl, "Matematik", grade_label, topics)
     for _pass in range(2):  # her kalıptan sınav başına en çok 1 soru (2. tur yalnızca eksik kalırsa)
-        for nm in _recent_order(rkey, list(byname)):
+        for nm in _bal_order(rkey, byname, "Matematik", grade_label, topics, n):
             if len(out) >= n:
                 break
             if _pass == 0 and any(x.get("tpl") == nm for x in out):
@@ -9864,9 +9870,9 @@ def sosyal_questions(grade_label, n, topics="", seen=(), dl=0):
     out, stems = [], set(seen)
     rkey = ("gen", "Sosyal Bilgiler", "5")
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
-    if dl:
-        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
-    for nm in _recent_order(rkey, list(byname)):
+    byname = _item_scope(byname, "Sosyal Bilgiler", grade_label, topics)
+    byname = _dl_filter(byname, dl, "Sosyal Bilgiler", grade_label, topics)
+    for nm in _bal_order(rkey, byname, "Sosyal Bilgiler", grade_label, topics, n):
         if len(out) >= n:
             break
         for _t in range(4):
@@ -9899,10 +9905,10 @@ def fen_questions(grade_label, n, topics="", seen=(), dl=0):
     out, stems = [], set(seen)
     rkey = ("gen", "Fen Bilimleri", g_key)
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
-    if dl:
-        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
+    byname = _item_scope(byname, "Fen Bilimleri", grade_label, topics)
+    byname = _dl_filter(byname, dl, "Fen Bilimleri", grade_label, topics)
     for _pass in range(2):  # her kalıptan sınav başına en çok 1 soru (2. tur yalnızca eksik kalırsa)
-        for nm in _recent_order(rkey, list(byname)):
+        for nm in _bal_order(rkey, byname, "Fen Bilimleri", grade_label, topics, n):
             if len(out) >= n:
                 break
             if _pass == 0 and any(x.get("tpl") == nm for x in out):
@@ -10083,9 +10089,9 @@ def turkce_questions(grade_label, n, topics="", seen=(), dl=0):
     out, stems = [], set(seen)
     rkey = ("gen", "Türkçe", "5")
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
-    if dl:
-        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
-    for nm in _recent_order(rkey, list(byname)):
+    byname = _item_scope(byname, "Türkçe", grade_label, topics)
+    byname = _dl_filter(byname, dl, "Türkçe", grade_label, topics)
+    for nm in _bal_order(rkey, byname, "Türkçe", grade_label, topics, n):
         if len(out) >= n:
             break
         for _t in range(4):
@@ -10903,9 +10909,9 @@ def din_questions(grade_label, n, topics="", seen=(), dl=0):
     out, stems = [], set(seen)
     rkey = ("gen", "Din", "5")
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
-    if dl:
-        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
-    for nm in _recent_order(rkey, list(byname)):
+    byname = _item_scope(byname, "Din Kültürü ve Ahlak Bilgisi", grade_label, topics)
+    byname = _dl_filter(byname, dl, "Din Kültürü ve Ahlak Bilgisi", grade_label, topics)
+    for nm in _bal_order(rkey, byname, "Din Kültürü ve Ahlak Bilgisi", grade_label, topics, n):
         if len(out) >= n:
             break
         for _t in range(4):
@@ -11172,9 +11178,9 @@ def eng_questions(grade_label, n, topics="", seen=(), dl=0):
     out, stems = [], set(seen)
     rkey = ("gen", "Eng", "5")
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
-    if dl:
-        byname = {k: v for k, v in byname.items() if abs(_DIFF_OF.get(k, 3) - dl) <= 1}
-    for nm in _recent_order(rkey, list(byname)):
+    byname = _item_scope(byname, "İngilizce", grade_label, topics)
+    byname = _dl_filter(byname, dl, "İngilizce", grade_label, topics)
+    for nm in _bal_order(rkey, byname, "İngilizce", grade_label, topics, n):
         if len(out) >= n:
             break
         for _t in range(4):
@@ -11928,6 +11934,2441 @@ _MF_GENS += [(_mf_cizim_ad, ("doğru", "ışın", "geometrik çizim"), (5,)), (_
 _DIFF_OF.update({"_mf_cizim_ad": 1, "_mf_isin_bas": 2, "_mf_dik_olcu": 2, "_mf_par_kesis": 2})
 
 
+# ================================================================ 5. SINIF DİN KÜLTÜRÜ — BİLGİ BANKASI (her ünitede onlarca ayrı bilgi; her sınavda farklı bilgiler seçilir)
+# (etiket, soru, doğru, yanlışlar(>=3), doğru_ifade, yanlış_ifade)
+_DFACTS = {
+    "Allah İnancı": [
+        ("İhlas suresi", "“De ki: O, Allah’tır, bir tektir.” ayeti hangi surede yer alır?", "İhlas suresi", ["Kevser suresi", "Fatiha suresi", "Nas suresi", "Kureyş suresi"], "“De ki: O, Allah’tır, bir tektir.” ayeti İhlas suresinde yer alır.", "“De ki: O, Allah’tır, bir tektir.” ayeti Kevser suresinde yer alır."),
+        ("Tevhid", "Allah’ın bir olduğuna inanmaya ne ad verilir?", "Tevhid", ["Şükür", "Sabır", "Tevekkül", "İnfak"], "Allah’ın bir olduğuna inanmaya tevhid denir.", "Allah’ın bir olduğuna inanmaya şükür denir."),
+        ("Güzel isimler", "Esmaü’l-Hüsna olarak bilinen Allah’ın güzel isimleri kaç tanedir?", "99", ["33", "66", "114", "77"], "Allah’ın güzel isimleri (Esmaü’l-Hüsna) 99 tanedir.", "Allah’ın güzel isimleri (Esmaü’l-Hüsna) 33 tanedir."),
+        ("Er-Rezzak", "“Er-Rezzak” ismi Allah’ın hangi özelliğini ifade eder?", "Rızık vermesini", ["Yaratmasını", "Korumasını", "Bağışlamasını", "Her şeyi görmesini"], "Er-Rezzak, Allah’ın rızık veren olduğunu bildiren güzel isimdir.", "Er-Rezzak, Allah’ın yaratan olduğunu bildiren güzel isimdir."),
+        ("El-Hafız", "“El-Hafız” ismi Allah’ın hangi özelliğini ifade eder?", "Her şeyi korumasını", ["Rızık vermesini", "Her şeyi bilmesini", "Her şeyi işitmesini", "Yaratmasını"], "El-Hafız, Allah’ın her şeyi koruyan olduğunu ifade eder.", "El-Hafız, Allah’ın her şeyi işiten olduğunu ifade eder."),
+        ("Es-Semi", "“Es-Semi” ismi Allah’ın hangi özelliğini ifade eder?", "Her şeyi işitmesini", ["Her şeyi görmesini", "Her şeyi bilmesini", "Her şeyi yaratmasını", "Rızık vermesini"], "Es-Semi, Allah’ın her şeyi işittiğini ifade eder.", "Es-Semi, Allah’ın her şeyi gördüğünü ifade eder."),
+        ("El-Basir", "“El-Basir” ismi Allah’ın hangi özelliğini ifade eder?", "Her şeyi görmesini", ["Her şeyi işitmesini", "Rızık vermesini", "Bağışlamasını", "Her şeyi korumasını"], "El-Basir, Allah’ın her şeyi gördüğünü ifade eder.", "El-Basir, Allah’ın her şeyi işittiğini ifade eder."),
+        ("Evrendeki düzen", "Evrendeki düzen ve uyum neye işaret eder?", "Evrenin bir yaratıcısı olduğuna", ["Evrenin tesadüfen oluştuğuna", "Evrenin düzensiz olduğuna", "Evrenin kendi kendini yarattığına"], "Evrendeki düzen ve uyum, bir yaratıcının varlığına işaret eder.", "Evrendeki düzen ve uyum, evrenin tesadüfen oluştuğunu gösterir."),
+        ("İhlas suresi ayet sayısı", "İhlas suresi kaç ayettir?", "4", ["3", "5", "7", "10"], "İhlas suresi dört ayettir.", "İhlas suresi yedi ayettir."),
+        ("İhlas suresinin mesajı", "İhlas suresindeki “O doğurmamış ve doğurulmamıştır; hiçbir şey O’na denk değildir.” ifadesi neyi vurgular?", "Allah’ın eşsiz ve benzersiz olduğunu", ["Allah’ın bir ailesi olduğunu", "Allah’ın yardıma muhtaç olduğunu", "Allah’ın zamanla değiştiğini"], "İhlas suresi, Allah’ın eşi ve benzeri olmadığını bildirir.", "İhlas suresi, Allah’ın bir ailesi olduğunu bildirir."),
+        ("Er-Rahman", "“Er-Rahman” ismi Allah’ın hangi özelliğini ifade eder?", "Çok merhametli olmasını", ["Her şeyi işitmesini", "Her şeyi yaratmasını", "Rızık vermesini", "Her şeyi görmesini"], "Er-Rahman, Allah’ın çok merhametli olduğunu ifade eder.", "Er-Rahman, Allah’ın her şeyi işittiğini ifade eder."),
+        ("El-Gaffar", "“El-Gaffar” ismi Allah’ın hangi özelliğini ifade eder?", "Çok bağışlayıcı olmasını", ["Rızık vermesini", "Her şeyi korumasını", "Her şeyi görmesini", "Yaratmasını"], "El-Gaffar, Allah’ın çok bağışlayıcı olduğunu ifade eder.", "El-Gaffar, Allah’ın rızık veren olduğunu ifade eder."),
+    ],
+    "Namaz": [
+        ("Beş vakit", "Günlük farz namazlar kaç vakittir?", "5", ["3", "4", "6", "7"], "Günlük farz namazlar beş vakittir.", "Günlük farz namazlar üç vakittir."),
+        ("Cuma namazı", "Cuma namazı haftanın hangi günü kılınır?", "Cuma", ["Pazar", "Pazartesi", "Cumartesi", "Salı"], "Cuma namazı Cuma günü kılınır.", "Cuma namazı Cumartesi günü kılınır."),
+        ("Abdest", "Namaza başlamadan önce hangi hazırlık yapılır?", "Abdest alınır", ["Oruç tutulur", "Kurban kesilir", "Zekât verilir"], "Namaza başlamadan önce abdest alınır.", "Namaza başlamadan önce abdest alınmasına gerek yoktur."),
+        ("Ezan", "Ezan ne amaçla okunur?", "Namaz vaktinin girdiğini duyurmak için", ["Hutbe okumak için", "Dua etmeyi öğretmek için", "Namaz kılanları saymak için"], "Ezan, namaz vaktinin girdiğini duyurmak için okunur.", "Ezan, hutbe okumak için okunur."),
+        ("İmam", "Namazı cemaate kıldıran kişiye ne denir?", "İmam", ["Müezzin", "Hafız", "Mürit"], "Namazı cemaate kıldıran kişiye imam denir.", "Namazı cemaate kıldıran kişiye müezzin denir."),
+        ("Kıble", "Müslümanların namazda yöneldiği yöne ne ad verilir?", "Kıble", ["Mihrap", "Minber", "Minare"], "Namazda Kâbe’ye doğru yönelinir ve bu yöne kıble denir.", "Namazda yönelinen yöne minber denir."),
+        ("Tahiyyat", "Namazın oturuşlarında okunan dua aşağıdakilerden hangisidir?", "Tahiyyat", ["Sübhaneke", "Fatiha suresi", "Kevser suresi"], "Tahiyyat, namazın oturuşlarında okunan duadır.", "Tahiyyat, namazda ayakta okunan ilk duadır."),
+        ("Cemaatle namaz", "Cemaatle namaz kılmak toplumda neyi güçlendirir?", "Birlik ve beraberliği", ["Yalnız kalmayı", "Rekabeti", "Yarışmayı"], "Cemaatle namaz kılmak birlik ve beraberliği güçlendirir.", "Cemaatle namaz kılmak insanları birbirinden uzaklaştırır."),
+        ("Düzen ve disiplin", "Namaz, insana hangi alışkanlığı kazandırır?", "Düzenli ve disiplinli olmayı", ["Tembel olmayı", "Savurgan olmayı", "Düzensiz yaşamayı"], "Namaz, insana düzenli ve disiplinli olmayı öğretir.", "Namaz, insana düzensiz yaşamayı öğretir."),
+        ("Sabah namazı", "Sabah namazının farzı kaç rekâttır?", "2", ["3", "4", "5"], "Sabah namazının farzı iki rekâttır.", "Sabah namazının farzı dört rekâttır."),
+        ("Akşam namazı", "Akşam namazının farzı kaç rekâttır?", "3", ["2", "4", "5"], "Akşam namazının farzı üç rekâttır.", "Akşam namazının farzı iki rekâttır."),
+        ("Rekât", "Namazın kıyam, rüku ve secdelerden oluşan her bir bölümüne ne denir?", "Rekât", ["Tekbir", "Ayet", "Sure"], "Namazın kıyam, rüku ve secdeden oluşan her bir bölümüne rekât denir.", "Namazın her bir bölümüne ayet denir."),
+    ],
+    "Kur'an-ı Kerim": [
+        ("İlk inen ayetler", "Kur’an-ı Kerim’in ilk inen ayetleri hangi surede yer alır?", "Alak suresi", ["Fatiha suresi", "Nas suresi", "Kevser suresi"], "Kur’an-ı Kerim’in ilk inen ayetleri Alak suresinde yer alır.", "Kur’an-ı Kerim’in ilk inen ayetleri Nas suresinde yer alır."),
+        ("İlk emir", "Kur’an-ı Kerim’de ilk inen ayet hangi emirle başlar?", "Oku", ["Yaz", "Say", "Dinle"], "İlk inen ayet “Oku” emriyle başlar.", "İlk inen ayet “Yaz” emriyle başlar."),
+        ("Vahiy meleği", "Kur’an-ı Kerim’i Hz. Muhammed’e getiren melek aşağıdakilerden hangisidir?", "Cebrail", ["Mikail", "İsrafil", "Azrail"], "Kur’an-ı Kerim’i Hz. Muhammed’e Cebrail getirmiştir.", "Kur’an-ı Kerim’i Hz. Muhammed’e Azrail getirmiştir."),
+        ("Sure sayısı", "Kur’an-ı Kerim kaç sureden oluşur?", "114", ["99", "110", "120", "30"], "Kur’an-ı Kerim 114 sureden oluşur.", "Kur’an-ı Kerim 99 sureden oluşur."),
+        ("İlk sure", "Kur’an-ı Kerim’in ilk suresi aşağıdakilerden hangisidir?", "Fatiha suresi", ["Bakara suresi", "Nas suresi", "İhlas suresi"], "Kur’an-ı Kerim’in ilk suresi Fatiha suresidir.", "Kur’an-ı Kerim’in ilk suresi Nas suresidir."),
+        ("Son sure", "Kur’an-ı Kerim’in son suresi aşağıdakilerden hangisidir?", "Nas suresi", ["Fatiha suresi", "Bakara suresi", "Kevser suresi"], "Kur’an-ı Kerim’in son suresi Nas suresidir.", "Kur’an-ı Kerim’in son suresi Fatiha suresidir."),
+        ("Ayet", "Kur’an-ı Kerim’de surelerin her bir cümlesine ne denir?", "Ayet", ["Cüz", "Rekât", "Tekbir"], "Kur’an-ı Kerim’de surelerin her bir cümlesine ayet denir.", "Kur’an-ı Kerim’de surelerin her bir cümlesine cüz denir."),
+        ("Cüz sayısı", "Kur’an-ı Kerim kaç cüzden oluşur?", "30", ["20", "40", "99", "114"], "Kur’an-ı Kerim 30 cüzden oluşur.", "Kur’an-ı Kerim 20 cüzden oluşur."),
+        ("En uzun sure", "Kur’an-ı Kerim’in en uzun suresi aşağıdakilerden hangisidir?", "Bakara suresi", ["Fatiha suresi", "Kevser suresi", "İhlas suresi"], "Kur’an-ı Kerim’in en uzun suresi Bakara suresidir.", "Kur’an-ı Kerim’in en uzun suresi Kevser suresidir."),
+        ("Kevser ayet sayısı", "Kevser suresi kaç ayettir?", "3", ["2", "4", "5", "7"], "Kevser suresi üç ayettir.", "Kevser suresi yedi ayettir."),
+        ("Kevser suresi", "Kevser suresinde hangi ibadetler emredilir?", "Namaz kılmak ve kurban kesmek", ["Oruç tutmak ve zekât vermek", "Hacca gitmek ve zekât vermek", "Yalnızca oruç tutmak"], "Kevser suresinde Rabbimiz için namaz kılmak ve kurban kesmek emredilir.", "Kevser suresinde oruç tutmak ve zekât vermek emredilir."),
+        ("Kur’an’ın dili", "Kur’an-ı Kerim hangi dilde indirilmiştir?", "Arapça", ["Türkçe", "İbranice", "Farsça"], "Kur’an-ı Kerim Arapça indirilmiştir.", "Kur’an-ı Kerim İbranice indirilmiştir."),
+        ("Ana konular", "Aşağıdakilerden hangisi Kur’an-ı Kerim’in ana konularını doğru ifade eder?", "İman, ibadet ve ahlak ilkeleri", ["Yalnızca ticaret kuralları", "Yalnızca tarih bilgileri", "Yalnızca spor kuralları"], "Kur’an-ı Kerim’in ana konuları iman, ibadet ve ahlak ilkeleridir.", "Kur’an-ı Kerim’in tek konusu spor kurallarıdır."),
+    ],
+    "Peygamber Kıssaları": [
+        ("Peygamber", "Allah’ın mesajını insanlara ileten kişiye ne denir?", "Peygamber", ["Melek", "İmam", "Hafız"], "Allah’ın mesajlarını insanlara ileten kişilere peygamber denir.", "Allah’ın mesajlarını insanlara ileten kişilere melek denir."),
+        ("İlk peygamber", "İlk peygamber aşağıdakilerden hangisidir?", "Hz. Âdem", ["Hz. Nuh", "Hz. İbrahim", "Hz. Muhammed"], "İlk peygamber Hz. Âdem’dir.", "İlk peygamber Hz. Muhammed’dir."),
+        ("Son peygamber", "Son peygamber aşağıdakilerden hangisidir?", "Hz. Muhammed", ["Hz. İsa", "Hz. Musa", "Hz. İbrahim"], "Son peygamber Hz. Muhammed’dir.", "Son peygamber Hz. İsa’dır."),
+        ("Hz. Nuh", "Tufandan kurtulmak için gemi yapan peygamber kimdir?", "Hz. Nuh", ["Hz. Yusuf", "Hz. Eyüp", "Hz. Yunus"], "Gemi yapan peygamber Hz. Nuh’tur.", "Gemi yapan peygamber Hz. Yusuf’tur."),
+        ("Hz. İbrahim", "Ateşe atıldığında ateşin kendisine serin ve selamet olduğu peygamber kimdir?", "Hz. İbrahim", ["Hz. Nuh", "Hz. Musa", "Hz. Süleyman"], "Ateşin serin olduğu peygamber Hz. İbrahim’dir.", "Ateşin serin olduğu peygamber Hz. Nuh’tur."),
+        ("Hz. Yusuf", "Kardeşleri tarafından kuyuya atılan peygamber kimdir?", "Hz. Yusuf", ["Hz. Yunus", "Hz. Eyüp", "Hz. Musa"], "Kuyuya atılan peygamber Hz. Yusuf’tur.", "Kuyuya atılan peygamber Hz. Yunus’tur."),
+        ("Hz. Eyüp", "Hastalığında sabrıyla örnek olan peygamber kimdir?", "Hz. Eyüp", ["Hz. Süleyman", "Hz. Nuh", "Hz. Musa"], "Hastalığında sabrıyla örnek olan peygamber Hz. Eyüp’tür.", "Hastalığında sabrıyla örnek olan peygamber Hz. Süleyman’dır."),
+        ("Hz. Yunus", "Balığın karnında Allah’a dua eden peygamber kimdir?", "Hz. Yunus", ["Hz. İbrahim", "Hz. Yusuf", "Hz. Nuh"], "Balığın karnında dua eden peygamber Hz. Yunus’tur.", "Balığın karnında dua eden peygamber Hz. İbrahim’dir."),
+        ("Hz. Musa", "Firavun’a gönderilen peygamber kimdir?", "Hz. Musa", ["Hz. Nuh", "Hz. Davud", "Hz. İsa"], "Firavun’a gönderilen peygamber Hz. Musa’dır.", "Firavun’a gönderilen peygamber Hz. Nuh’tur."),
+        ("Hz. Süleyman", "Kuşların ve hayvanların dilinden anlayan peygamber kimdir?", "Hz. Süleyman", ["Hz. Musa", "Hz. Eyüp", "Hz. Yunus"], "Hayvanların dilinden anlayan peygamber Hz. Süleyman’dır.", "Hayvanların dilinden anlayan peygamber Hz. Eyüp’tür."),
+        ("Tevrat", "Tevrat hangi peygambere indirilmiştir?", "Hz. Musa", ["Hz. İsa", "Hz. Davud", "Hz. Muhammed"], "Tevrat Hz. Musa’ya indirilmiştir.", "Tevrat Hz. İsa’ya indirilmiştir."),
+        ("İncil", "İncil hangi peygambere indirilmiştir?", "Hz. İsa", ["Hz. Musa", "Hz. Davud", "Hz. Muhammed"], "İncil Hz. İsa’ya indirilmiştir.", "İncil Hz. Musa’ya indirilmiştir."),
+        ("Zebur", "Zebur hangi peygambere indirilmiştir?", "Hz. Davud", ["Hz. Musa", "Hz. İsa", "Hz. Muhammed"], "Zebur Hz. Davud’a indirilmiştir.", "Zebur Hz. Muhammed’e indirilmiştir."),
+        ("Kureyş ayet sayısı", "Kureyş suresi kaç ayettir?", "4", ["3", "5", "7", "10"], "Kureyş suresi dört ayettir.", "Kureyş suresi yedi ayettir."),
+        ("Kureyş suresi", "Kureyş suresi Kureyş kabilesinin hangi yolculuklarını hatırlatır?", "Kış ve yaz ticaret yolculuklarını", ["Savaş seferlerini", "Hac yolculuklarını", "Deniz yolculuklarını"], "Kureyş suresi, Kureyş’in kış ve yaz ticaret yolculuklarını hatırlatır.", "Kureyş suresi, Kureyş’in savaş seferlerini hatırlatır."),
+    ],
+    "Mimarimizde Dinî Motifler": [
+        ("Mihrap", "Camilerde imamın durduğu, kıble yönünü gösteren girintiye ne denir?", "Mihrap", ["Minber", "Minare", "Kubbe"], "Mihrap, camilerde kıble yönünü gösteren girintidir.", "Mihrap, camilerde ezan okunan yüksek kuledir."),
+        ("Minber", "Cuma hutbesinin okunduğu merdivenli yüksek yere ne denir?", "Minber", ["Mihrap", "Şadırvan", "Minare"], "Minber, hutbenin okunduğu merdivenli yüksek yerdir.", "Minber, abdest alınan çeşmedir."),
+        ("Minare", "Camilerde ezanın okunduğu yüksek ve ince yapıya ne denir?", "Minare", ["Kubbe", "Mihrap", "Şadırvan"], "Minare, ezanın okunduğu yüksek ve ince yapıdır.", "Minare, camiyi örten yarım küre biçimli yapıdır."),
+        ("Kubbe", "Camilerin üstünü örten yarım küre biçimli yapıya ne denir?", "Kubbe", ["Minare", "Mihrap", "Minber"], "Kubbe, camilerin üstünü örten yarım küre biçimli yapıdır.", "Kubbe, hutbe okunan merdivenli yerdir."),
+        ("Şadırvan", "Cami avlularında abdest almak için kullanılan musluklu yere ne denir?", "Şadırvan", ["Minber", "Mihrap", "Kubbe"], "Şadırvan, abdest almak için kullanılan musluklu yerdir.", "Şadırvan, kıble yönünü gösteren girintidir."),
+        ("Selimiye", "Selimiye Camii hangi ilimizde yer alır?", "Edirne", ["İstanbul", "Bursa", "Konya"], "Selimiye Camii Edirne’dedir.", "Selimiye Camii Konya’dadır."),
+        ("Selimiye mimarı", "Selimiye Camii’nin mimarı aşağıdakilerden hangisidir?", "Mimar Sinan", ["Mimar Kemaleddin", "Vedat Tek", "Sedefkâr Mehmed Ağa"], "Selimiye Camii’nin mimarı Mimar Sinan’dır.", "Selimiye Camii’nin mimarı Vedat Tek’tir."),
+        ("Sultanahmet", "Sultanahmet Camii hangi ilimizde yer alır?", "İstanbul", ["Edirne", "Bursa", "Ankara"], "Sultanahmet Camii İstanbul’dadır.", "Sultanahmet Camii Ankara’dadır."),
+        ("Ulu Cami", "Bursa Ulu Camii hangi ilimizde yer alır?", "Bursa", ["Edirne", "Konya", "İzmir"], "Ulu Cami Bursa’dadır.", "Bursa Ulu Camii İzmir’dedir."),
+        ("Kocatepe", "Kocatepe Camii hangi ilimizde yer alır?", "Ankara", ["İstanbul", "Konya", "İzmir"], "Kocatepe Camii Ankara’dadır.", "Kocatepe Camii İstanbul’dadır."),
+        ("Şadırvanın amacı", "Camilerdeki şadırvanlar hangi ibadet için gereklidir?", "Abdest almak", ["Hac yapmak", "Oruç tutmak", "Zekât vermek"], "Camilerdeki şadırvanlar abdest almak için yapılır.", "Camilerdeki şadırvanlar oruç tutmak için yapılır."),
+        ("Camii örnekleri", "Aşağıdakilerden hangisi bir camiye örnek olarak verilebilir?", "Süleymaniye Camii", ["Anıtkabir", "Galata Kulesi", "Topkapı Sarayı"], "Süleymaniye Camii, mimarimizin önemli cami örneklerindendir.", "Anıtkabir, mimarimizin önemli cami örneklerindendir."),
+    ],
+}
+# ---- ek bilgiler (her ünite ~20'ye çıkar)
+_DFACTS["Allah İnancı"] += [
+    ("Evrendeki varlıklar", "Bir eseri gören kişinin onun bir yapıcısı olduğunu düşünmesi gibi, evrendeki varlıklar neyi düşündürür?", "Evrenin bir yaratıcısı olduğunu", ["Evrenin kendiliğinden var olduğunu", "Evrenin sahipsiz olduğunu", "Yaratıcının bulunmadığını"], "Evrendeki varlıklar, bir yaratıcının varlığını düşündürür.", "Evrendeki varlıklar, yaratıcının bulunmadığını düşündürür."),
+    ("El-Halik", "“El-Halik” ismi Allah’ın hangi özelliğini ifade eder?", "Yaratan olmasını", ["Rızık vermesini", "Her şeyi bilmesini", "Her şeyi işitmesini", "Bağışlamasını"], "El-Halik, Allah’ın yaratan olduğunu ifade eder.", "El-Halik, Allah’ın her şeyi gördüğünü ifade eder."),
+    ("El-Alim", "“El-Alim” ismi Allah’ın hangi özelliğini ifade eder?", "Her şeyi bilmesini", ["Rızık vermesini", "Yaratmasını", "Her şeyi işitmesini", "Bağışlamasını"], "El-Alim, Allah’ın her şeyi bildiğini ifade eder.", "El-Alim, Allah’ın rızık verdiğini ifade eder."),
+    ("Es-Selam", "“Es-Selam” ismi Allah’ın hangi özelliğini ifade eder?", "Esenlik ve güven vermesini", ["Her şeyi görmesini", "Yaratmasını", "Rızık vermesini", "Her şeyi bilmesini"], "Es-Selam, Allah’ın esenlik ve güven verdiğini ifade eder.", "Es-Selam, Allah’ın her şeyi gördüğünü ifade eder."),
+    ("Tevhid inancı", "“De ki: O, Allah’tır, bir tektir.” ayetinde vurgulanan inanç ilkesi hangisidir?", "Tevhid", ["Sabır", "Şükür", "Zekât"], "“De ki: O, Allah’tır, bir tektir.” ayeti tevhidi (Allah’ın birliğini) vurgular.", "“De ki: O, Allah’tır, bir tektir.” ayeti sabrı vurgular."),
+    ("Tevhid ve davranış", "Allah’ın birliğine inanan bir kişinin davranışı aşağıdakilerden hangisidir?", "Yalnızca Allah’a ibadet etmesi", ["Putlara tapması", "Allah’ın yanında başkalarına ibadet etmesi", "Her şeyi şans sanması"], "Allah’ın birliğine inanan kişi yalnızca Allah’a ibadet eder.", "Allah’ın birliğine inanan kişi putlara tapar."),
+    ("El-Aziz", "“El-Aziz” ismi Allah’ın hangi özelliğini ifade eder?", "Üstün ve güçlü olmasını", ["Rızık vermesini", "Her şeyi işitmesini", "Yaratmasını"], "El-Aziz, Allah’ın üstün ve güçlü olduğunu ifade eder.", "El-Aziz, Allah’ın rızık veren olduğunu ifade eder."),
+    ("Şükür", "Allah’ın verdiği nimetler için teşekkür etmeye ne denir?", "Şükür", ["Sabır", "Tevekkül", "İnfak"], "Allah’ın verdiği nimetlere teşekkür etmeye şükür denir.", "Allah’ın verdiği nimetlere teşekkür etmeye sabır denir."),
+]
+_DFACTS["Namaz"] += [
+    ("Öğle namazı", "Öğle namazının farzı kaç rekâttır?", "4", ["2", "3", "5"], "Öğle namazının farzı dört rekâttır.", "Öğle namazının farzı iki rekâttır."),
+    ("İkindi namazı", "İkindi namazının farzı kaç rekâttır?", "4", ["2", "3", "5"], "İkindi namazının farzı dört rekâttır.", "İkindi namazının farzı üç rekâttır."),
+    ("Yatsı namazı", "Yatsı namazının farzı kaç rekâttır?", "4", ["2", "3", "5"], "Yatsı namazının farzı dört rekâttır.", "Yatsı namazının farzı iki rekâttır."),
+    ("Sabah vakti", "Güneş doğmadan önce kılınan farz namaz hangisidir?", "Sabah namazı", ["Öğle namazı", "İkindi namazı", "Yatsı namazı"], "Sabah namazı güneş doğmadan önce kılınır.", "Sabah namazı güneş battıktan sonra kılınır."),
+    ("Akşam vakti", "Güneşin batmasından hemen sonra kılınan farz namaz hangisidir?", "Akşam namazı", ["Sabah namazı", "Öğle namazı", "İkindi namazı"], "Akşam namazı güneşin batmasından hemen sonra kılınır.", "Akşam namazı güneş doğmadan önce kılınır."),
+    ("Hutbe", "Cuma namazından önce okunan ve öğüt verilen konuşmaya ne denir?", "Hutbe", ["Ezan", "Kamet", "Tekbir"], "Cuma namazından önce okunan konuşmaya hutbe denir.", "Cuma namazından önce okunan konuşmaya ezan denir."),
+    ("Namazın şartı", "Namazın geçerli olması için aşağıdakilerden hangisi gereklidir?", "Beden, elbise ve namaz kılınan yerin temiz olması", ["Camide bulunmak", "Yüksek sesle konuşmak", "Yemek yemek"], "Namaz için beden, elbise ve namaz kılınan yerin temiz olması gerekir.", "Namaz için yüksek sesle konuşmak gerekir."),
+    ("Selam", "Namaz sağa ve sola ne verilerek tamamlanır?", "Selam", ["Tekbir", "Rüku", "Secde"], "Namaz, selam verilerek tamamlanır.", "Namaz, secde edilerek başlar."),
+    ("Secde", "Namazda alnın yere konulduğu bölüme ne denir?", "Secde", ["Rüku", "Kıyam", "Selam"], "Namazda alnın yere konulması secdedir.", "Namazda alnın yere konulması rükudur."),
+    ("Rüku", "Namazda ellerin dizlere konarak eğilmesine ne denir?", "Rüku", ["Secde", "Kıyam", "Selam"], "Namazda eller dizlere konarak eğilmeye rüku denir.", "Namazda eller dizlere konarak eğilmeye selam denir."),
+]
+_DFACTS["Kur'an-ı Kerim"] += [
+    ("İlk vahiy", "Hz. Muhammed’e ilk vahiy nerede gelmiştir?", "Hira Mağarası’nda", ["Mescid-i Nebevi’de", "Sevr Mağarası’nda", "Şam’da"], "Hz. Muhammed’e ilk vahiy Hira Mağarası’nda gelmiştir.", "Hz. Muhammed’e ilk vahiy Şam’da gelmiştir."),
+    ("İlk inen şehir", "Kur’an-ı Kerim’in inmeye başladığı şehir hangisidir?", "Mekke", ["Medine", "Şam", "Kudüs"], "Kur’an-ı Kerim Mekke’de inmeye başlamıştır.", "Kur’an-ı Kerim Şam’da inmeye başlamıştır."),
+    ("Kur’an’ın adı", "Aşağıdakilerden hangisi Kur’an-ı Kerim’in isimlerinden biridir?", "Furkan", ["Tevrat", "İncil", "Zebur"], "Furkan, Kur’an-ı Kerim’in isimlerinden biridir.", "Furkan, Hz. Musa’ya indirilen kitabın adıdır."),
+    ("Hafız", "Kur’an-ı Kerim’i baştan sona ezberleyen kişiye ne denir?", "Hafız", ["İmam", "Müezzin", "Hatip"], "Kur’an-ı Kerim’i baştan sona ezberleyen kişiye hafız denir.", "Kur’an-ı Kerim’i baştan sona ezberleyen kişiye müezzin denir."),
+    ("Fatiha ayet sayısı", "Fatiha suresi kaç ayettir?", "7", ["3", "4", "5", "10"], "Fatiha suresi yedi ayettir.", "Fatiha suresi üç ayettir."),
+    ("İniş süresi", "Kur’an-ı Kerim yaklaşık kaç yılda indirilmiştir?", "23", ["10", "40", "114"], "Kur’an-ı Kerim yaklaşık 23 yılda indirilmiştir.", "Kur’an-ı Kerim bir gecede, tek seferde indirilmiştir."),
+    ("Kur’an’a saygı", "Kur’an-ı Kerim okurken aşağıdakilerden hangisine dikkat edilir?", "Temiz olmaya ve saygılı davranmaya", ["Yüksek sesle gürültü yapmaya", "Acele ederek rastgele okumaya", "Dikkat dağıtıcı şeylerle ilgilenmeye"], "Kur’an-ı Kerim okurken temizliğe ve saygıya dikkat edilir.", "Kur’an-ı Kerim okurken gürültü yapmaya özen gösterilir."),
+]
+_DFACTS["Peygamber Kıssaları"] += [
+    ("Hz. Salih", "Semud kavmine gönderilen ve mucize olarak deveyi gösteren peygamber kimdir?", "Hz. Salih", ["Hz. Nuh", "Hz. Musa", "Hz. Yunus"], "Semud kavmine gönderilen peygamber Hz. Salih’tir.", "Semud kavmine gönderilen peygamber Hz. Nuh’tur."),
+    ("Doğum yeri", "Hz. Muhammed nerede doğmuştur?", "Mekke", ["Medine", "Şam", "Kudüs"], "Hz. Muhammed Mekke’de doğmuştur.", "Hz. Muhammed Medine’de doğmuştur."),
+    ("Hicret", "Hz. Muhammed’in Mekke’den Medine’ye yaptığı yolculuğa ne denir?", "Hicret", ["Hac", "Zekât", "Oruç"], "Hz. Muhammed’in Mekke’den Medine’ye yolculuğuna hicret denir.", "Hz. Muhammed’in Mekke’den Medine’ye yolculuğuna zekât denir."),
+    ("Peygamberlerin özelliği", "Peygamberlerin ortak özelliklerinden biri hangisidir?", "Doğru sözlü ve güvenilir olmaları", ["Yalan söylemeleri", "Mesajı gizlemeleri", "İnsanları aldatmaları"], "Peygamberler doğru sözlü ve güvenilir kişilerdir.", "Peygamberler yalan söyleyen kişilerdir."),
+    ("Hz. Yusuf’un affı", "Hz. Yusuf kardeşlerini bağışlayarak hangi değeri göstermiştir?", "Affediciliği", ["Kinciliği", "İntikamcılığı", "Bencilliği"], "Hz. Yusuf kardeşlerini bağışlayarak affediciliği göstermiştir.", "Hz. Yusuf kardeşlerinden intikam alarak affediciliği göstermiştir."),
+    ("Kâbe’nin inşası", "Kâbe’yi oğlu İsmail ile birlikte yeniden inşa eden peygamber kimdir?", "Hz. İbrahim", ["Hz. Nuh", "Hz. Yunus", "Hz. Eyüp"], "Kâbe’yi oğlu İsmail ile birlikte Hz. İbrahim yeniden inşa etmiştir.", "Kâbe’yi oğlu İsmail ile birlikte Hz. Nuh yeniden inşa etmiştir."),
+]
+_DFACTS["Mimarimizde Dinî Motifler"] += [
+    ("Süleymaniye", "Süleymaniye Camii hangi ilimizde yer alır?", "İstanbul", ["Edirne", "Bursa", "Konya"], "Süleymaniye Camii İstanbul’dadır.", "Süleymaniye Camii Edirne’dedir."),
+    ("Süleymaniye mimarı", "Süleymaniye Camii’nin mimarı aşağıdakilerden hangisidir?", "Mimar Sinan", ["Mimar Kemaleddin", "Vedat Tek", "Sedefkâr Mehmed Ağa"], "Süleymaniye Camii’nin mimarı Mimar Sinan’dır.", "Süleymaniye Camii’nin mimarı Mimar Kemaleddin’dir."),
+    ("Ayakkabı", "Camiye girerken ayakkabıların çıkarılması hangi değere özen gösterildiğini gösterir?", "Temizliğe", ["Süse", "Hıza", "Yarışmaya"], "Camiye girerken ayakkabı çıkarılması temizliğe özen göstermektir.", "Camiye girerken ayakkabı çıkarılması süs içindir."),
+    ("Camilerin görevi", "Camiler ibadetin yanında hangi görevi de üstlenmiştir?", "Eğitim ve yardımlaşma merkezi olma", ["Alışveriş merkezi olma", "Spor salonu olma", "Hastane olma"], "Camiler tarih boyunca eğitim ve yardımlaşma merkezi olmuştur.", "Camiler yalnızca alışveriş merkezi olarak kullanılmıştır."),
+    ("Mihrabın yönü", "Camilerde mihrap hangi yönü gösterir?", "Kıble yönünü", ["Güneşin doğduğu yönü", "Kuzey yönünü", "Rüzgârın estiği yönü"], "Mihrap, kıble yönünü gösterir.", "Mihrap, güneşin doğduğu yönü gösterir."),
+    ("Hutbe yeri", "Cuma hutbesi camide hangi bölümde okunur?", "Minberde", ["Mihrapta", "Şadırvanda", "Kubbede"], "Hutbe camide minberde okunur.", "Hutbe camide şadırvanda okunur."),
+    ("Ezan yeri", "Ezan geleneksel olarak camide nereden okunur?", "Minareden", ["Kubbeden", "Şadırvandan", "Mihraptan"], "Ezan geleneksel olarak minareden okunur.", "Ezan geleneksel olarak şadırvandan okunur."),
+]
+
+
+_DFKW = {"Allah İnancı": ("allah", "ihlas", "evrendeki düzen"), "Namaz": ("namaz", "tahiyyat"), "Kur'an-ı Kerim": ("kur'an", "kur’an", "kevser"),
+         "Peygamber Kıssaları": ("peygamber", "kureyş", "kıssa"), "Mimarimizde Dinî Motifler": ("mimari", "cami", "mihrap")}
+
+
+def _dfact_gens(unit, F):
+    ids = list(range(len(F)))
+    rk = ("fact", unit)
+
+    def pick(k):
+        o = [i for i in _recent_order(rk, ids)][:k]
+        for i in o:
+            _recent_mark(rk, i)
+        return o
+
+    def single(subject):
+        i = pick(1)[0]
+        lab, q, c, wr, t, f = F[i]
+        return _fact_q(subject, unit, q, c, random.sample(wr, 3), t)
+
+    def dogru(subject):
+        o = pick(4)
+        if len(o) < 4:
+            return None
+        c = F[o[0]][4]
+        wr = [F[j][5] for j in o[1:]]
+        stem = random.choice(["{l} konusunda aşağıdaki bilgilerden hangisi doğrudur?", "Aşağıdakilerden hangisi {l} ile ilgili doğru bir bilgidir?", "{l} hakkında verilen bilgilerden hangisi doğrudur?"]).format(l=F[o[0]][0])
+        return _fact_q(subject, unit, stem, c, wr, f"“{c}” ifadesi doğrudur; diğer ifadeler yanlıştır.")
+
+    def onc(subject):
+        o = pick(3)
+        if len(o) < 3:
+            return None
+        k = random.choice([1, 2])
+        tv = set(random.sample(range(3), k))
+        items = [(F[o[i]][4] if i in tv else F[o[i]][5], i in tv) for i in range(3)]
+        rom = ["I", "II", "III"]
+        true_set = [rom[i] for i, (_s, v) in enumerate(items) if v]
+        corr = f"Yalnız {true_set[0]}" if len(true_set) == 1 else " ve ".join(true_set)
+        wr = [x for x in _ONC_OPT if x != corr]
+        random.shuffle(wr)
+        opts = sorted([corr] + wr[:3], key=_ONC_OPT.index)
+        body = "\n".join(f"{rom[i]}. {s}" for i, (s, _v) in enumerate(items))
+        q = f"{body}\nYukarıda {unit.lower().replace('İ', 'i')} ile ilgili verilen bilgilerden hangileri doğrudur?"
+        return _mf_raw(subject, unit, q, (opts, corr), "Doğru ifadeler: " + ", ".join(true_set) + ". Diğer ifadeler yanlıştır.")
+
+    return single, dogru, onc
+
+
+# ================================================================ 5. SINIF FEN / SOSYAL / TÜRKÇE / İNGİLİZCE — BİLGİ BANKALARI (ünite başına ~15 ayrı bilgi; her sınavda farklı bilgiler seçilir)
+# (etiket, soru, doğru, yanlışlar(>=3), doğru_ifade, yanlış_ifade)
+_FFACTS = {'Gökyüzündeki Komşularımız ve Biz': [('Güneş yıldız',
+                                       'Güneş aşağıdakilerden hangisidir?',
+                                       'Kendi ışığını yayan bir yıldız',
+                                       ['Dünya’nın uydusu', 'Işığını yansıtan bir gezegen', 'Soğuk bir gök cismi'],
+                                       'Güneş, kendi ışığını yayan bir yıldızdır.',
+                                       'Güneş, ışığını başka bir gök cisminden alan bir gezegendir.'),
+                                      ('Güneş katmanları',
+                                       'Güneş’in dış katmanlarından hangisi gözle görülen parlak yüzeyidir?',
+                                       'Fotosfer',
+                                       ['Çekirdek', 'Hidrosfer', 'Litosfer'],
+                                       'Güneş’in gözle görülen parlak yüzeyine fotosfer denir.',
+                                       'Güneş’in gözle görülen parlak yüzeyine çekirdek denir.'),
+                                      ('Güneş çekirdek',
+                                       'Güneş’te enerjinin üretildiği bölüm neresidir?',
+                                       'Çekirdek',
+                                       ['Fotosfer', 'Atmosfer', 'Kabuk'],
+                                       'Güneş’te enerji çekirdekte üretilir.',
+                                       'Güneş’te enerji yalnızca dış yüzeyinde üretilir ve çekirdeğinde üretilmez.'),
+                                      ('Güneş dönme',
+                                       'Güneş’in kendi ekseni etrafındaki hareketine ne ad verilir?',
+                                       'Dönme hareketi',
+                                       ['Dolanma hareketi', 'Öteleme hareketi', 'Yansıma hareketi'],
+                                       'Güneş’in kendi ekseni etrafında yaptığı harekete dönme hareketi denir.',
+                                       'Güneş’in kendi ekseni etrafında yaptığı harekete dolanma hareketi denir.'),
+                                      ('Güneş lekeleri',
+                                       'Güneş’in dönme hareketini anlamak için yüzeyinde ne gözlenir?',
+                                       'Güneş lekelerinin yer değiştirmesi',
+                                       ['Ay’ın evrelerinin değişmesi', 'Yıldızların renk değiştirmesi', 'Gölgenin kaybolması'],
+                                       'Güneş lekelerinin yer değiştirmesi, Güneş’in döndüğünü gösterir.',
+                                       'Güneş lekelerinin yer değiştirmesi, Güneş’in dönmediğini gösterir.'),
+                                      ('Ay uydu',
+                                       'Ay, Dünya için aşağıdakilerden hangisidir?',
+                                       'Doğal uydu',
+                                       ['Yıldız', 'Gezegen', 'Yapay uydu'],
+                                       'Ay, Dünya’nın doğal uydusudur.',
+                                       'Ay, Dünya’nın yapay uydusudur.'),
+                                      ('Ay ışık',
+                                       'Ay’ın ışığı ile ilgili hangisi doğrudur?',
+                                       'Güneş’ten gelen ışığı yansıtır',
+                                       ['Kendi ışığını yayar', 'Işığını Dünya’dan alır', 'Işık yaymaz ve yansıtmaz'],
+                                       'Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.',
+                                       'Ay, Güneş gibi kendi ışığını yayan bir gök cismidir.'),
+                                      ('Ay yüzey',
+                                       'Ay’ın yüzeyinde aşağıdakilerden hangisi bulunur?',
+                                       'Kraterler',
+                                       ['Okyanuslar', 'Yoğun orman', 'Kalın bulut tabakası'],
+                                       'Ay’ın yüzeyinde çarpma sonucu oluşmuş kraterler bulunur.',
+                                       'Ay’ın yüzeyinde geniş okyanuslar ve ormanlar bulunur.'),
+                                      ('Ay dolanma',
+                                       'Ay’ın Dünya çevresindeki hareketine ne ad verilir?',
+                                       'Dolanma hareketi',
+                                       ['Dönme hareketi', 'Sürtünme hareketi', 'Yansıma hareketi'],
+                                       'Ay’ın Dünya çevresinde yaptığı harekete dolanma hareketi denir.',
+                                       'Ay’ın Dünya çevresinde yaptığı harekete dönme hareketi denir.'),
+                                      ('Ay hep aynı yüz',
+                                       'Ay’ın Dünya’dan hep aynı yüzünün görülmesinin nedeni nedir?',
+                                       'Dönme ve dolanma sürelerinin eşit olması',
+                                       ['Ay’ın hiç dönmemesi', 'Ay’ın Dünya’dan büyük olması', 'Güneş’in Ay’ı aydınlatmaması'],
+                                       'Ay’ın dönme ve dolanma süreleri eşit olduğu için Dünya’dan hep aynı yüzü görülür.',
+                                       'Ay hiç dönmediği için Dünya’dan hep aynı yüzü görülür ve bu durum süreler eşit olduğu için olur.'),
+                                      ('Yeni ay',
+                                       'Ay’ın Dünya’dan hiç görülmediği evre hangisidir?',
+                                       'Yeni ay',
+                                       ['Dolunay', 'İlk dördün', 'Son dördün'],
+                                       'Yeni ay evresinde Ay, Dünya’dan görülmez.',
+                                       'Dolunay evresinde Ay, Dünya’dan hiç görülmez.'),
+                                      ('Dolunay',
+                                       'Ay’ın aydınlık yüzünün tamamının Dünya’dan göründüğü evre hangisidir?',
+                                       'Dolunay',
+                                       ['Yeni ay', 'Hilal', 'İlk dördün'],
+                                       'Dolunay evresinde Ay’ın aydınlık yüzü Dünya’dan tamamen görülür.',
+                                       'Yeni ay evresinde Ay’ın aydınlık yüzü Dünya’dan tamamen görülür.'),
+                                      ('Ay evre nedeni',
+                                       'Ay’ın evrelerinin oluşmasının nedeni aşağıdakilerden hangisidir?',
+                                       'Ay’ın Güneş tarafından aydınlanan yüzünün Dünya’dan farklı görünmesi',
+                                       ['Dünya’nın gölgesinin Ay’ı kaplaması', 'Ay’ın kendi ışığını değiştirmesi', 'Ay’ın şeklinin değişmesi'],
+                                       'Ay’ın evreleri, Güneş’ten aydınlanan yüzünün Dünya’dan farklı görünmesiyle oluşur.',
+                                       'Ay’ın evreleri, Dünya’nın gölgesinin Ay’ı kaplamasıyla oluşur.'),
+                                      ('Evre sırası',
+                                       'Yeni aydan sonra Ay’ın evrelerinin sıralanışı hangisidir?',
+                                       'Hilal, ilk dördün, dolunay',
+                                       ['Dolunay, hilal, ilk dördün', 'İlk dördün, yeni ay, hilal', 'Son dördün, hilal, dolunay'],
+                                       'Yeni aydan sonra sırasıyla hilal, ilk dördün ve dolunay evreleri gözlenir.',
+                                       'Yeni aydan sonra sırasıyla dolunay, ilk dördün ve hilal evreleri gözlenir.'),
+                                      ('Büyüklük karşılaştırma',
+                                       'Güneş, Dünya ve Ay’ın büyüklükleri karşılaştırıldığında hangisi doğrudur?',
+                                       'Güneş en büyük, Ay en küçüktür',
+                                       ['Dünya en büyük, Güneş en küçüktür', 'Ay en büyük, Dünya en küçüktür', 'Üçü de aynı büyüklüktedir'],
+                                       'Güneş, Dünya ve Ay içinde en büyük olan Güneş, en küçük olan Ay’dır.',
+                                       'Güneş, Dünya ve Ay içinde en büyük olan Dünya, en küçük olan Güneş’tir.')],
+ 'Kuvveti Tanıyalım': [('Kuvvet etkisi',
+                        'Kuvvet cisimlerin neyini değiştirebilir?',
+                        'Hızını, yönünü veya şeklini',
+                        ['Yalnızca rengini', 'Yalnızca kütlesini', 'Yalnızca türünü'],
+                        'Kuvvet, cisimlerin hızını, yönünü ve şeklini değiştirebilir.',
+                        'Kuvvet, cisimlerin yalnızca rengini değiştirebilir.'),
+                       ('Kuvvet birimi', 'Kuvvetin birimi aşağıdakilerden hangisidir?', 'Newton', ['Gram', 'Litre', 'Metre'], 'Kuvvetin birimi newton’dur.', 'Kuvvetin birimi gram’dır.'),
+                       ('Kuvvet ölçme', 'Kuvvet hangi araçla ölçülür?', 'Dinamometre', ['Termometre', 'Pusula', 'Cetvel'], 'Kuvvet dinamometre ile ölçülür.', 'Kuvvet termometre ile ölçülür.'),
+                       ('Dinamometre yay',
+                        'Dinamometrenin çalışma ilkesi hangi parçaya dayanır?',
+                        'Esnek bir yayın uzamasına',
+                        ['Bir ampulün parlamasına', 'Bir mıknatısın dönmesine', 'Bir suyun buharlaşmasına'],
+                        'Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.',
+                        'Dinamometre, bir ampulün parlamasından yararlanarak kuvveti ölçer.'),
+                       ('Kuvvet uzama',
+                        'Dinamometreye uygulanan kuvvet arttıkça yayın uzaması nasıl değişir?',
+                        'Artar',
+                        ['Azalır', 'Değişmez', 'Önce azalır sonra değişmez'],
+                        'Dinamometreye uygulanan kuvvet arttıkça yayın uzaması artar.',
+                        'Dinamometreye uygulanan kuvvet arttıkça yayın uzaması azalır.'),
+                       ('Yer çekimi',
+                        'Yer çekimi kuvvetinin yönü nasıldır?',
+                        'Cisimleri Dünya’nın merkezine doğru çeker',
+                        ['Cisimleri yukarı doğru iter', 'Cisimleri yana doğru iter', 'Yalnızca suyu çeker'],
+                        'Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.',
+                        'Yer çekimi kuvveti cisimleri Dünya’dan uzaklaştırır.'),
+                       ('Ağırlık tanım',
+                        'Ağırlık aşağıdakilerden hangisidir?',
+                        'Bir cisme etki eden yer çekimi kuvveti',
+                        ['Bir cismin kapladığı hacim', 'Bir cismin sıcaklığı', 'Bir cismin rengi'],
+                        'Ağırlık, bir cisme etki eden yer çekimi kuvvetidir.',
+                        'Ağırlık, bir cismin kapladığı hacimdir.'),
+                       ('Ağırlık birimi',
+                        'Ağırlığın birimi aşağıdakilerden hangisidir?',
+                        'Newton',
+                        ['Kilogram', 'Litre', 'Santimetre'],
+                        'Ağırlık bir kuvvet olduğu için birimi newton’dur.',
+                        'Ağırlığın birimi litre’dir.'),
+                       ('Ağırlık kütle farkı',
+                        'Ağırlık ve kütle ile ilgili hangisi doğrudur?',
+                        'Ağırlık bir kuvvettir, kütle ise madde miktarıdır',
+                        ['Ağırlık ve kütle aynı kavramdır', 'Kütle bir kuvvettir, ağırlık madde miktarıdır', 'Ağırlık yalnızca sıvılarda olur'],
+                        'Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.',
+                        'Kütle bir kuvvettir; ağırlık ise madde miktarının ölçüsüdür.'),
+                       ('Sürtünme tanım',
+                        'Sürtünme kuvveti ile ilgili hangisi doğrudur?',
+                        'Birbirine temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir',
+                        ['Cisimleri hızlandıran bir kuvvettir', 'Yalnızca havada oluşur', 'Cisimleri Dünya’dan uzaklaştırır'],
+                        'Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.',
+                        'Sürtünme kuvveti, temas eden yüzeylerin hareketini kolaylaştıran ve hızlandıran kuvvettir.'),
+                       ('Sürtünme yön',
+                        'Sürtünme kuvveti hareket yönüne göre nasıl etki eder?',
+                        'Harekete zıt yönde',
+                        ['Hareketle aynı yönde', 'Hareket yönüne dik yukarı', 'Hiçbir yöne'],
+                        'Sürtünme kuvveti harekete zıt yönde etki eder.',
+                        'Sürtünme kuvveti harekete aynı yönde etki eder.'),
+                       ('Sürtünme yüzey',
+                        'Aşağıdakilerden hangisinde sürtünme kuvveti en fazladır?',
+                        'Pürüzlü yüzeyde',
+                        ['Buz üzerinde', 'Yağlanmış zeminde', 'Cilalı pürüzsüz camda'],
+                        'Pürüzlü yüzeylerde sürtünme kuvveti, pürüzsüz yüzeylere göre daha fazladır.',
+                        'Pürüzsüz yüzeylerde sürtünme kuvveti, pürüzlü yüzeylere göre daha fazladır.'),
+                       ('Sürtünme yarar',
+                        'Aşağıdakilerden hangisi sürtünme kuvvetinin yararlı olduğu bir durumdur?',
+                        'Lastik tekerleklerin yolda kaymadan ilerlemesi',
+                        ['Bisiklet zincirinin aşınması', 'Ayakkabı tabanının zamanla yıpranması', 'Makine parçalarının ısınması'],
+                        'Sürtünme sayesinde lastik tekerlekler yolda kaymadan ilerler.',
+                        'Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.'),
+                       ('Sürtünme azaltma',
+                        'Makine parçalarındaki sürtünmeyi azaltmak için ne kullanılır?',
+                        'Yağlama',
+                        ['Kumlama', 'Pürüzlendirme', 'Yüzeyi zımparalama'],
+                        'Makine parçalarındaki sürtünme yağlayarak azaltılır.',
+                        'Makine parçalarındaki sürtünme kumlayarak azaltılır.'),
+                       ('Temas gerektiren kuvvet',
+                        'Aşağıdakilerden hangisi temas gerektirmeden etki eden bir kuvvettir?',
+                        'Yer çekimi kuvveti',
+                        ['Sürtünme kuvveti', 'İtme kuvveti', 'Çekme kuvveti'],
+                        'Yer çekimi kuvveti temas gerektirmeden etki eder.',
+                        'Sürtünme kuvveti temas gerektirmeden etki eder.')],
+ 'Canlıların Yapısına Yolculuk': [('Hücre yapı birimi',
+                                   'Canlıların yapı ve görev bakımından en küçük birimi hangisidir?',
+                                   'Hücre',
+                                   ['Doku', 'Organ', 'Sistem'],
+                                   'Hücre, canlıların yapı ve görev bakımından en küçük birimidir.',
+                                   'Doku, canlıların yapı ve görev bakımından en küçük birimidir.'),
+                                  ('Hücre zarı',
+                                   'Hücreye madde giriş çıkışını denetleyen yapı hangisidir?',
+                                   'Hücre zarı',
+                                   ['Çekirdek', 'Koful', 'Hücre duvarı'],
+                                   'Hücreye madde giriş çıkışını hücre zarı denetler.',
+                                   'Hücreye madde giriş çıkışını çekirdek denetler.'),
+                                  ('Çekirdek görevi',
+                                   'Hücrenin tüm yaşamsal faaliyetlerini yöneten kısım hangisidir?',
+                                   'Çekirdek',
+                                   ['Sitoplazma', 'Koful', 'Kloroplast'],
+                                   'Çekirdek, hücrenin yaşamsal faaliyetlerini yönetir.',
+                                   'Sitoplazma, hücrenin yaşamsal faaliyetlerini yönetir.'),
+                                  ('Sitoplazma',
+                                   'Hücrede organellerin içinde yer aldığı, jelimsi sıvı kısım hangisidir?',
+                                   'Sitoplazma',
+                                   ['Hücre duvarı', 'Çekirdek', 'Kloroplast'],
+                                   'Sitoplazma, organelleri çevreleyen jelimsi sıvı kısımdır.',
+                                   'Hücre duvarı, organelleri çevreleyen jelimsi sıvı kısımdır.'),
+                                  ('Hücre duvarı',
+                                   'Hücre duvarı hangi hücrede bulunur?',
+                                   'Bitki hücresinde',
+                                   ['Hayvan hücresinde', 'Hem hayvan hem bitki hücresinde farklı olarak', 'Hiçbir hücrede'],
+                                   'Hücre duvarı bitki hücrelerinde bulunur, hayvan hücrelerinde bulunmaz.',
+                                   'Hücre duvarı hayvan hücrelerinde bulunur, bitki hücrelerinde bulunmaz.'),
+                                  ('Kloroplast',
+                                   'Fotosentez yapan yeşil organel hangisidir?',
+                                   'Kloroplast',
+                                   ['Koful', 'Çekirdek', 'Hücre zarı'],
+                                   'Kloroplast, bitki hücresinde fotosentez yapılan yeşil organeldir.',
+                                   'Kloroplast, hayvan hücresinde bulunan yeşil organeldir.'),
+                                  ('Hayvan hücresi eksik',
+                                   'Hayvan hücresinde aşağıdakilerden hangisi bulunmaz?',
+                                   'Kloroplast',
+                                   ['Çekirdek', 'Sitoplazma', 'Hücre zarı'],
+                                   'Hayvan hücrelerinde kloroplast bulunmaz.',
+                                   'Hayvan hücrelerinde çekirdek bulunmaz.'),
+                                  ('Hücreden organizmaya',
+                                   'Aşağıdaki sıralamalardan hangisi yapısal olarak küçükten büyüğe doğrudur?',
+                                   'Hücre → doku → organ → sistem → organizma',
+                                   ['Organ → doku → hücre → sistem → organizma', 'Doku → hücre → sistem → organ → organizma', 'Organizma → sistem → hücre → doku → organ'],
+                                   'Yapısal düzey sırası hücre, doku, organ, sistem, organizma biçimindedir.',
+                                   'Yapısal düzey sırası hücre, organ, doku, sistem, organizma biçimindedir.'),
+                                  ('Doku tanım',
+                                   'Aynı görevi yapan hücrelerin bir araya gelmesiyle ne oluşur?',
+                                   'Doku',
+                                   ['Organ', 'Sistem', 'Organizma'],
+                                   'Aynı görevi yapan hücreler bir araya gelerek dokuyu oluşturur.',
+                                   'Aynı görevi yapan hücreler bir araya gelerek organı oluşturur.'),
+                                  ('Organ tanım',
+                                   'Farklı dokuların bir araya gelerek ortak görev yapmasıyla ne oluşur?',
+                                   'Organ',
+                                   ['Hücre', 'Doku', 'Organizma'],
+                                   'Farklı dokular bir araya gelerek organı oluşturur.',
+                                   'Farklı dokular bir araya gelerek hücreyi oluşturur.'),
+                                  ('İskelet görev',
+                                   'İskeletin görevlerinden biri aşağıdakilerden hangisidir?',
+                                   'Vücuda şekil vermek ve iç organları korumak',
+                                   ['Besinleri sindirmek', 'Kanı temizlemek', 'Havayı vücuda almak'],
+                                   'İskelet vücuda şekil verir ve iç organları korur.',
+                                   'İskelet besinleri sindirir ve kanı temizler.'),
+                                  ('Kafatası korur', 'Kafatası hangi organı korur?', 'Beyni', ['Kalbi', 'Akciğeri', 'Mideyi'], 'Kafatası beyni korur.', 'Kafatası kalbi korur.'),
+                                  ('Kaburga korur',
+                                   'Kaburgalar hangi organları korur?',
+                                   'Kalp ve akciğerleri',
+                                   ['Beyni', 'Mideyi ve bağırsakları', 'Böbrekleri yalnızca'],
+                                   'Kaburgalar kalp ve akciğerleri korur.',
+                                   'Kaburgalar beyni korur.'),
+                                  ('Kas çalışma',
+                                   'Kaslar kemikleri nasıl hareket ettirir?',
+                                   'Kasılıp gevşeyerek',
+                                   ['Sürekli sabit kalarak', 'Yalnızca uzayarak', 'Yalnızca kısalarak'],
+                                   'Kaslar kasılıp gevşeyerek kemikleri hareket ettirir.',
+                                   'Kaslar yalnızca sabit kalarak kemikleri hareket ettirir.'),
+                                  ('Eklem',
+                                   'İki kemiğin birleştiği ve hareketi sağlayan yer neresidir?',
+                                   'Eklem',
+                                   ['Kas', 'Kıkırdak dokusuz bölge', 'Deri'],
+                                   'Eklem, kemiklerin birleştiği ve hareketi sağlayan yerdir.',
+                                   'Eklem, kasların kemiklerden ayrıldığı yerdir.'),
+                                  ('Sistem sağlığı',
+                                   'Destek ve hareket sistemi sağlığı için aşağıdakilerden hangisi önerilir?',
+                                   'Düzenli egzersiz yapmak ve dengeli beslenmek',
+                                   ['Uzun süre aynı pozisyonda oturmak', 'Ağır çantayı tek omuzda taşımak', 'Hiç hareket etmemek'],
+                                   'Destek ve hareket sistemi sağlığı için düzenli egzersiz yapmak ve dengeli beslenmek gerekir.',
+                                   'Destek ve hareket sistemi sağlığı için hiç hareket etmemek gerekir.')],
+ 'Işığın Dünyası': [('Doğrusal yayılma',
+                     'Işık bir ortamda nasıl yayılır?',
+                     'Doğrular boyunca',
+                     ['Eğri çizgiler boyunca', 'Zikzaklar çizerek', 'Dairesel yollar boyunca'],
+                     'Işık, homojen bir ortamda doğrular boyunca yayılır.',
+                     'Işık, homojen bir ortamda eğri çizgiler boyunca yayılır.'),
+                    ('Işık kaynağı',
+                     'Aşağıdakilerden hangisi kendi ışığını yayan bir ışık kaynağıdır?',
+                     'Güneş',
+                     ['Ay', 'Ayna', 'Gezegenler'],
+                     'Güneş, kendi ışığını yayan bir ışık kaynağıdır.',
+                     'Ay, kendi ışığını yayan bir ışık kaynağıdır.'),
+                    ('Işık kaynağı olmayan',
+                     'Aşağıdakilerden hangisi ışık kaynağı değildir?',
+                     'Ayna',
+                     ['Mum alevi', 'Yanan ampul', 'Ateş böceği'],
+                     'Ayna ışığı yansıtır ancak ışık kaynağı değildir.',
+                     'Ayna, ışık kaynağıdır.'),
+                    ('Görme',
+                     'Bir cismi görebilmemizin koşulu aşağıdakilerden hangisidir?',
+                     'Cisimden gelen ışığın gözümüze ulaşması',
+                     ['Gözümüzden cisme ışık gitmesi', 'Cismin soğuk olması', 'Cismin hareketsiz olması'],
+                     'Bir cismi görebilmemiz için cisimden gelen ışığın gözümüze ulaşması gerekir.',
+                     'Bir cismi görebilmemiz için gözümüzden cisme ışık gitmesi gerekir.'),
+                    ('Saydam madde',
+                     'Işığın büyük bölümünü geçirdiği için arkasındaki cisimlerin net görüldüğü maddelere ne ad verilir?',
+                     'Saydam madde',
+                     ['Opak madde', 'Yarı saydam madde', 'Mat madde'],
+                     'Işığın büyük bölümünü geçiren maddelere saydam madde denir.',
+                     'Işığın büyük bölümünü geçiren maddelere opak madde denir.'),
+                    ('Saydam örnek', 'Aşağıdakilerden hangisi saydam bir maddedir?', 'Berrak su', ['Tahta', 'Karton', 'Buzlu cam'], 'Berrak su saydam bir maddedir.', 'Tahta saydam bir maddedir.'),
+                    ('Yarı saydam örnek',
+                     'Aşağıdakilerden hangisi yarı saydam bir maddedir?',
+                     'Yağlı kâğıt',
+                     ['Berrak cam', 'Demir levha', 'Tuğla'],
+                     'Yağlı kâğıt yarı saydam bir maddedir.',
+                     'Yağlı kâğıt opak bir maddedir.'),
+                    ('Yarı saydam tanım',
+                     'Işığın bir kısmını geçirip arkasındaki cismi net göstermeyen maddeler nasıl adlandırılır?',
+                     'Yarı saydam',
+                     ['Saydam', 'Opak', 'Işık kaynağı'],
+                     'Işığın bir kısmını geçiren ve cismi net göstermeyen maddelere yarı saydam madde denir.',
+                     'Işığın bir kısmını geçiren ve cismi net göstermeyen maddelere saydam madde denir.'),
+                    ('Opak madde',
+                     'Işığı hiç geçirmeyen maddelere ne ad verilir?',
+                     'Opak madde',
+                     ['Saydam madde', 'Yarı saydam madde', 'Parlak madde'],
+                     'Işığı hiç geçirmeyen maddelere opak madde denir.',
+                     'Işığı hiç geçirmeyen maddelere saydam madde denir.'),
+                    ('Opak örnek',
+                     'Aşağıdakilerden hangisi opak bir maddedir?',
+                     'Demir levha',
+                     ['Berrak su', 'Şeffaf cam', 'Yağlı kâğıt'],
+                     'Demir levha opak bir maddedir.',
+                     'Demir levha saydam bir maddedir.'),
+                    ('Gölge oluşumu',
+                     'Gölge nasıl oluşur?',
+                     'Işığın yolu opak bir cisimle engellenince',
+                     ['Işık saydam bir ortamdan geçince', 'Işık kaynağı sönünce yalnızca', 'Cisim ışığı tamamen soğurunca ve aydınlanınca'],
+                     'Işığın yolu opak bir cisim tarafından engellenince gölge oluşur.',
+                     'Işığın yolu saydam bir cisim tarafından engellenince en koyu gölge oluşur.'),
+                    ('Gölge doğrusal',
+                     'Gölgenin oluşması ışığın hangi özelliğinin kanıtıdır?',
+                     'Işığın doğrusal yayıldığının',
+                     ['Işığın eğrisel yayıldığının', 'Işığın sesten hızlı olduğunun', 'Işığın renkli olduğunun'],
+                     'Gölgenin oluşması ışığın doğrusal yayıldığını gösterir.',
+                     'Gölgenin oluşması ışığın eğrisel yayıldığını gösterir.'),
+                    ('Gölge boyut',
+                     'Işık kaynağı cisme yaklaştırılırsa gölgenin boyu nasıl değişir?',
+                     'Büyür',
+                     ['Küçülür', 'Değişmez', 'Kaybolur'],
+                     'Işık kaynağı cisme yaklaştırıldığında gölgenin boyu büyür.',
+                     'Işık kaynağı cisme yaklaştırıldığında gölgenin boyu küçülür.'),
+                    ('Gölge yön',
+                     'Gölge ışık kaynağına göre hangi tarafta oluşur?',
+                     'Cismin ışık kaynağının karşı tarafında',
+                     ['Cismin ışık kaynağı tarafında', 'Yalnızca cismin üstünde', 'Cismin içinde'],
+                     'Gölge, cismin ışık kaynağının karşı tarafında oluşur.',
+                     'Gölge, cismin ışık kaynağı ile aynı tarafında oluşur.')],
+ 'Maddenin Doğası': [('Tanecikli yapı',
+                      'Maddelerin yapısı ile ilgili hangisi doğrudur?',
+                      'Tanecik adı verilen çok küçük yapılardan oluşur',
+                      ['Sürekli ve boşluksuz bir bütündür', 'Yalnızca katılar taneciklidir', 'Taneciklerin hareketi yoktur'],
+                      'Maddeler, tanecik adı verilen çok küçük yapılardan oluşur.',
+                      'Maddeler, parçalara ayrılamayan sürekli bir bütündür ve tanecik içermez.'),
+                     ('Katı tanecik',
+                      'Katı maddelerde tanecikler nasıldır?',
+                      'Birbirine çok yakındır ve yerinde titreşir',
+                      ['Birbirinden çok uzaktır', 'Serbestçe her yöne hareket eder', 'Hiç hareket etmez'],
+                      'Katı maddelerde tanecikler birbirine çok yakındır ve yerinde titreşir.',
+                      'Katı maddelerde tanecikler birbirinden çok uzaktır ve serbestçe hareket eder.'),
+                     ('Sıvı tanecik',
+                      'Sıvı maddelerde tanecikler için hangisi doğrudur?',
+                      'Birbirinin üzerinden kayabilir',
+                      ['Birbirinden çok uzaktır', 'Sabit yerde titreşir', 'Hiç hareket etmez'],
+                      'Sıvılarda tanecikler birbirinin üzerinden kayabilir.',
+                      'Sıvılarda tanecikler yerinde sabit olup yalnızca titreşir.'),
+                     ('Gaz tanecik',
+                      'Gaz maddelerde tanecikler için hangisi doğrudur?',
+                      'Birbirinden uzaktır ve her yöne serbestçe hareket eder',
+                      ['Birbirine çok yakındır', 'Yalnızca titreşir', 'Hareketsizdir'],
+                      'Gazlarda tanecikler birbirinden uzaktır ve her yöne serbestçe hareket eder.',
+                      'Gazlarda tanecikler birbirine çok yakındır ve yerinde titreşir.'),
+                     ('Isı tanım',
+                      'Isı ile ilgili hangisi doğrudur?',
+                      'Sıcaklık farkından dolayı aktarılan enerjidir',
+                      ['Bir maddenin kütlesidir', 'Bir maddenin rengidir', 'Termometre ile doğrudan ölçülen niceliktir'],
+                      'Isı, sıcaklık farkından dolayı aktarılan bir enerji türüdür.',
+                      'Isı, bir maddenin kütlesinin ölçüsüdür.'),
+                     ('Sıcaklık tanım',
+                      'Sıcaklık hangi araçla ölçülür?',
+                      'Termometre',
+                      ['Dinamometre', 'Pusula', 'Eşit kollu terazi'],
+                      'Sıcaklık termometre ile ölçülür.',
+                      'Sıcaklık dinamometre ile ölçülür.'),
+                     ('Sıcaklık tanecik',
+                      'Sıcaklık, maddenin taneciklerinin hangi özelliğiyle ilgilidir?',
+                      'Ortalama hareket enerjisiyle',
+                      ['Taneciklerin rengiyle', 'Taneciklerin sayısıyla yalnızca', 'Taneciklerin şekliyle'],
+                      'Sıcaklık, madde taneciklerinin ortalama hareket enerjisinin göstergesidir.',
+                      'Sıcaklık, madde taneciklerinin renginin göstergesidir.'),
+                     ('Isı alışverişi yön',
+                      'Sıcaklıkları farklı iki madde temas ettirilirse ısı nasıl akar?',
+                      'Sıcak maddeden soğuk maddeye',
+                      ['Soğuk maddeden sıcak maddeye', 'Isı akışı olmaz', 'Her iki yöne eşit'],
+                      'Isı, sıcak maddeden soğuk maddeye doğru akar.',
+                      'Isı, soğuk maddeden sıcak maddeye doğru akar.'),
+                     ('Isı alan madde',
+                      'Isı alan bir maddenin tanecikleri için hangisi doğrudur?',
+                      'Daha hızlı hareket eder',
+                      ['Daha yavaş hareket eder', 'Hareketini durdurur', 'Küçülür'],
+                      'Isı alan bir maddenin tanecikleri daha hızlı hareket eder.',
+                      'Isı alan bir maddenin tanecikleri daha yavaş hareket eder.'),
+                     ('Erime',
+                      'Katı bir maddenin ısı alarak sıvı hâle geçmesine ne denir?',
+                      'Erime',
+                      ['Donma', 'Yoğuşma', 'Buharlaşma'],
+                      'Katı bir maddenin ısı alarak sıvı hâle geçmesine erime denir.',
+                      'Katı bir maddenin ısı alarak sıvı hâle geçmesine donma denir.'),
+                     ('Donma',
+                      'Sıvı bir maddenin ısı vererek katı hâle geçmesine ne denir?',
+                      'Donma',
+                      ['Erime', 'Buharlaşma', 'Süblimleşme yoğuşma'],
+                      'Sıvının ısı vererek katı hâle geçmesine donma denir.',
+                      'Sıvının ısı vererek katı hâle geçmesine erime denir.'),
+                     ('Buharlaşma',
+                      'Sıvının ısı alarak gaz hâline geçmesine ne denir?',
+                      'Buharlaşma',
+                      ['Yoğuşma', 'Donma', 'Erime'],
+                      'Sıvının ısı alarak gaz hâline geçmesine buharlaşma denir.',
+                      'Sıvının ısı alarak gaz hâline geçmesine yoğuşma denir.'),
+                     ('Yoğuşma',
+                      'Gazın ısı vererek sıvı hâle geçmesine ne denir?',
+                      'Yoğuşma',
+                      ['Buharlaşma', 'Erime', 'Donma'],
+                      'Gazın ısı vererek sıvı hâle geçmesine yoğuşma denir.',
+                      'Gazın ısı vererek sıvı hâle geçmesine buharlaşma denir.'),
+                     ('Isı iletimi',
+                      'Isı iletimi iyi olan maddelere ne ad verilir?',
+                      'Isı iletkeni',
+                      ['Isı yalıtkanı', 'Opak madde', 'Saydam madde'],
+                      'Isıyı kolay ileten maddelere ısı iletkeni denir.',
+                      'Isıyı kolay ileten maddelere ısı yalıtkanı denir.'),
+                     ('İletken örnek',
+                      'Aşağıdakilerden hangisi ısı iletkenidir?',
+                      'Bakır tencere',
+                      ['Strafor', 'Yün kazak', 'Tahta kaşık'],
+                      'Bakır gibi metaller ısıyı iyi ileten iletkenlerdir.',
+                      'Strafor, ısıyı en iyi ileten iletkenlerden biridir.'),
+                     ('Isı yalıtımı',
+                      'Isı yalıtımı ile ilgili hangisi doğrudur?',
+                      'Isı kaybını veya kazancını azaltmak için yapılır',
+                      ['Isı kaybını artırmak için yapılır', 'Yalnızca ışığı engellemek için yapılır', 'Isıyı iletkenlere aktarmak için yapılır'],
+                      'Isı yalıtımı, ısı kaybını veya kazancını azaltmak için yapılır.',
+                      'Isı yalıtımı, ısı kaybını artırmak için yapılır.')],
+ 'Yaşamımızdaki Elektrik': [('Devre elemanları',
+                             'Basit bir elektrik devresinde bulunması gereken elemanlar hangileridir?',
+                             'Pil, ampul, anahtar ve bağlantı kabloları',
+                             ['Yalnızca pil ve su', 'Mıknatıs ve cetvel', 'Yalnızca ampul'],
+                             'Basit bir devrede pil, ampul, anahtar ve kablolar bulunur.',
+                             'Basit bir devrede mıknatıs ve cetvel bulunması zorunludur.'),
+                            ('Pil görevi',
+                             'Elektrik devresinde pilin görevi nedir?',
+                             'Elektrik enerjisi sağlamak',
+                             ['Devreyi açıp kapamak', 'Işık yaymak', 'Akımı yalıtmak'],
+                             'Pil, devreye elektrik enerjisi sağlar.',
+                             'Pil, devreyi açıp kapatma görevi yapar.'),
+                            ('Anahtar görevi',
+                             'Elektrik devresinde anahtarın görevi nedir?',
+                             'Devreyi açıp kapatmak',
+                             ['Elektrik enerjisi üretmek', 'Işık yaymak', 'Akımı hızlandırmak'],
+                             'Anahtar, devreyi açıp kapatmak için kullanılır.',
+                             'Anahtar, devrede elektrik enerjisi üretir.'),
+                            ('Ampul görevi',
+                             'Devrede ampulün görevi nedir?',
+                             'Elektrik enerjisini ışığa dönüştürmek',
+                             ['Elektrik enerjisi üretmek', 'Devreyi kapatmak', 'Akımı saklamak'],
+                             'Ampul, elektrik enerjisini ışık enerjisine dönüştürür.',
+                             'Ampul, ışık enerjisini elektrik enerjisine dönüştürerek devreye verir.'),
+                            ('Kapalı devre',
+                             'Bir ampulün yanması için devre nasıl olmalıdır?',
+                             'Kapalı',
+                             ['Açık', 'Pilsiz', 'Anahtarı sürekli çıkarılmış'],
+                             'Ampulün yanması için devrenin kapalı olması gerekir.',
+                             'Ampulün yanması için devrenin açık olması gerekir.'),
+                            ('Açık devre',
+                             'Anahtar açıkken devre ile ilgili hangisi doğrudur?',
+                             'Devre açıktır ve akım geçmez',
+                             ['Devre kapalıdır ve akım geçer', 'Ampul daha parlak yanar', 'Pil çalışmaya başlar'],
+                             'Anahtar açıkken devre açıktır ve akım geçmez.',
+                             'Anahtar açıkken devre kapalıdır ve akım geçer.'),
+                            ('Devre sembol pil',
+                             'Devre şemasında semboller neden kullanılır?',
+                             'Devre elemanlarını kısa ve ortak biçimde göstermek için',
+                             ['Devreyi gizlemek için', 'Akımı artırmak için', 'Pilin ömrünü uzatmak için'],
+                             'Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.',
+                             'Devre şemasında semboller, akımı artırmak için kullanılır.'),
+                            ('Devre şeması',
+                             'Devre elemanlarının sembollerle çizilmiş gösterimine ne ad verilir?',
+                             'Devre şeması',
+                             ['Harita', 'Grafik tablosu', 'Akış çizelgesi'],
+                             'Devre elemanlarının sembollerle gösterildiği çizime devre şeması denir.',
+                             'Devre elemanlarının sembollerle gösterildiği çizime harita denir.'),
+                            ('İletken madde',
+                             'Aşağıdakilerden hangisi elektriği ileten bir maddedir?',
+                             'Bakır tel',
+                             ['Plastik kaşık', 'Kuru tahta', 'Cam bardak'],
+                             'Bakır tel elektriği ileten bir iletkendir.',
+                             'Plastik kaşık elektriği ileten bir iletkendir.'),
+                            ('Yalıtkan madde',
+                             'Aşağıdakilerden hangisi elektriği iletmeyen yalıtkan bir maddedir?',
+                             'Kauçuk',
+                             ['Alüminyum folyo', 'Demir çivi', 'Bakır tel'],
+                             'Kauçuk elektriği iletmeyen bir yalıtkandır.',
+                             'Kauçuk elektriği iyi ileten bir iletkendir.'),
+                            ('Pil sayısı',
+                             'Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı nasıl değişir?',
+                             'Artar',
+                             ['Azalır', 'Değişmez', 'Ampul söner'],
+                             'Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.',
+                             'Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı azalır.'),
+                            ('Ampul sayısı',
+                             'Aynı pille seri bağlı ampul sayısı artırılırsa her bir ampulün parlaklığı nasıl olur?',
+                             'Azalır',
+                             ['Artar', 'Değişmez', 'Ampuller daha çok ısınır'],
+                             'Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı azalır.',
+                             'Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.'),
+                            ('Parlaklık değişken',
+                             'Ampul parlaklığını etkileyen değişkenlerden biri hangisidir?',
+                             'Devredeki pil sayısı',
+                             ['Ampulün rengi yalnızca', 'Odanın büyüklüğü', 'Kabloların rengi'],
+                             'Ampulün parlaklığı devredeki pil sayısına bağlıdır.',
+                             'Ampulün parlaklığı kabloların renginin değişmesine bağlıdır.'),
+                            ('Elektrik güvenlik',
+                             'Elektrikle ilgili güvenlik için hangisi doğrudur?',
+                             'Islak elle prize dokunulmamalıdır',
+                             ['Prizlere metal cisim sokulabilir', 'Hasarlı kablolar kullanılabilir', 'Elektrikli aletler suya yakın kullanılabilir'],
+                             'Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.',
+                             'Elektrik kazalarından korunmak için ıslak elle prize dokunulabilir.')],
+ 'Sürdürülebilir Yaşam ve Geri Dönüşüm': [('Evsel atık',
+                                           'Aşağıdakilerden hangisi evsel atıktır?',
+                                           'Yemek artıkları',
+                                           ['Radyoaktif madde', 'Hastane atığı', 'Fabrika dumanı'],
+                                           'Yemek artıkları evsel atık sayılır.',
+                                           'Fabrika dumanı evsel atık sayılır.'),
+                                          ('Geri dönüşüm tanım',
+                                           'Geri dönüşüm nedir?',
+                                           'Kullanılmış maddelerin yeniden ürün yapılması',
+                                           ['Maddelerin yakılması', 'Maddelerin denize atılması', 'Maddelerin toprağa gömülmesi'],
+                                           'Geri dönüşüm, kullanılmış maddelerin yeniden değerlendirilmesidir.',
+                                           'Geri dönüşüm, kullanılmış maddelerin denize atılmasıdır.'),
+                                          ('Geri dönüşebilen',
+                                           'Aşağıdakilerden hangisi geri dönüştürülebilen bir maddedir?',
+                                           'Cam şişe',
+                                           ['Kullanılmış mendil', 'Yemek artığı', 'Meyve kabuğu'],
+                                           'Cam şişe geri dönüştürülebilir.',
+                                           'Kullanılmış mendil geri dönüştürülebilir.'),
+                                          ('Kâğıt geri dönüşüm',
+                                           'Kâğıt geri dönüştürülürse ne sağlanır?',
+                                           'Ağaçların kesilmesi azalır',
+                                           ['Daha çok ağaç kesilir', 'Orman yok olur', 'Hava kirlenir'],
+                                           'Kâğıt geri dönüştürülürse ağaçların kesilmesi azalır.',
+                                           'Kâğıt geri dönüştürülürse daha çok ağaç kesilir.'),
+                                          ('Plastik çevre',
+                                           'Plastiklerin doğada uzun süre çözünmemesi neye yol açar?',
+                                           'Çevre kirliliğine',
+                                           ['Toprağın verimli olmasına', 'Hava kalitesinin artmasına', 'Suyun temizlenmesine'],
+                                           'Plastikler doğada uzun yıllar çözünmez ve çevre kirliliğine yol açar.',
+                                           'Plastikler doğada hızla çözünür ve çevre kirliliği yaratmaz.'),
+                                          ('Cam geri dönüşüm',
+                                           'Cam atıkların geri dönüştürülmesinin yararı hangisidir?',
+                                           'Hammadde ve enerji tasarrufu sağlar',
+                                           ['Daha çok çöp oluşturur', 'Enerji tüketimini artırır', 'Çevreyi kirletir'],
+                                           'Cam atıklarının geri dönüşümü hammadde ve enerji tasarrufu sağlar.',
+                                           'Cam atıklarının geri dönüşümü çevreyi kirletir.'),
+                                          ('Kaynak tasarruf',
+                                           'Su kaynaklarını etkili kullanmak için ne yapılmalıdır?',
+                                           'Musluğu gereksiz yere açık bırakmamalıdır',
+                                           ['Bahçeyi sürekli sulamalıdır', 'Suyu boşa akıtmalıdır', 'Musluğu hep açık tutmalıdır'],
+                                           'Su kaynaklarını etkili kullanmak için musluk gereksiz yere açık bırakılmamalıdır.',
+                                           'Su kaynaklarını etkili kullanmak için musluk sürekli açık bırakılmalıdır.'),
+                                          ('Enerji tasarruf',
+                                           'Elektrik enerjisinden tasarruf etmek için hangisi yapılmalıdır?',
+                                           'Kullanılmayan ışıkları kapatmak',
+                                           ['Tüm lambaları sürekli açık tutmak', 'Cihazları boşuna çalıştırmak', 'Televizyonu odada kimse yokken açık bırakmak'],
+                                           'Elektrik tasarrufu için kullanılmayan ışıklar kapatılmalıdır.',
+                                           'Elektrik tasarrufu için kullanılmayan ışıklar açık bırakılmalıdır.'),
+                                          ('Sürdürülebilir kalkınma',
+                                           'Sürdürülebilir yaşam ile ilgili hangisi doğrudur?',
+                                           'Kaynakları gelecek nesilleri de düşünerek kullanmaktır',
+                                           ['Kaynakları hızla tüketmektir', 'Yalnızca bugünü düşünmektir', 'Doğaya zarar vermektir'],
+                                           'Sürdürülebilir yaşam, kaynakların gelecek nesiller de düşünülerek kullanılmasıdır.',
+                                           'Sürdürülebilir yaşam, kaynakların hızla tüketilmesidir.'),
+                                          ('Atık ayrıştırma',
+                                           'Atıkların kaynağında ayrı toplanmasının amacı nedir?',
+                                           'Geri dönüşümü kolaylaştırmak',
+                                           ['Atıkları karıştırmak', 'Daha çok çöp üretmek', 'Çevreyi kirletmek'],
+                                           'Atıkların ayrı toplanması geri dönüşümü kolaylaştırır.',
+                                           'Atıkların ayrı toplanması geri dönüşümü zorlaştırır.'),
+                                          ('Atık pil',
+                                           'Atık pillerle ilgili hangisi doğrudur?',
+                                           'Özel toplama kutularına atılmalıdır',
+                                           ['Normal çöpe atılmalıdır', 'Toprağa gömülmelidir', 'Denize atılmalıdır'],
+                                           'Atık piller özel toplama kutularına atılmalıdır.',
+                                           'Atık piller normal çöpe atılmalıdır.'),
+                                          ('Organik atık',
+                                           'Organik atıklar (yemek artıkları) hangi yolla değerlendirilebilir?',
+                                           'Kompost yapılarak',
+                                           ['Denize dökülerek', 'Yakılarak', 'Plastik ile karıştırılarak'],
+                                           'Organik atıklar kompost yapılarak değerlendirilebilir.',
+                                           'Organik atıklar denize dökülerek değerlendirilebilir.'),
+                                          ('Yenilenebilir kaynak',
+                                           'Aşağıdakilerden hangisi yenilenebilir enerji kaynağıdır?',
+                                           'Güneş enerjisi',
+                                           ['Kömür', 'Doğal gaz', 'Petrol'],
+                                           'Güneş enerjisi yenilenebilir bir enerji kaynağıdır.',
+                                           'Kömür yenilenebilir bir enerji kaynağıdır.'),
+                                          ('Atık yönetimi',
+                                           'Atık yönetiminde ilk sırada yapılması gereken nedir?',
+                                           'Atık oluşumunu azaltmak',
+                                           ['Atığı olduğu gibi çevreye bırakmak', 'Atığı denize dökmek', 'Atığı çoğaltmak'],
+                                           'Atık yönetiminde ilk adım atık oluşumunu azaltmaktır.',
+                                           'Atık yönetiminde ilk adım atık oluşumunu artırmaktır.')]}
+_FFACTS_KW = {'Gökyüzündeki Komşularımız ve Biz': ('gökyüzü', "güneş'in", "ay'ın", 'evre', 'dolanma', 'komşu'),
+ 'Kuvveti Tanıyalım': ('kuvvet', 'dinamometre', 'newton', 'sürtünme', 'yer çekimi'),
+ 'Canlıların Yapısına Yolculuk': ('canlıların yapısı', 'hücre', 'doku', 'iskelet', 'sistem sağlığı'),
+ 'Işığın Dünyası': ('ışığın', 'ışık', 'saydam', 'gölge', 'opak'),
+ 'Maddenin Doğası': ('maddenin', 'tanecik', 'ısı', 'sıcaklık', 'hâl değişimi', 'yalıtım', 'iletim'),
+ 'Yaşamımızdaki Elektrik': ('elektrik', 'devre', 'ampul'),
+ 'Sürdürülebilir Yaşam ve Geri Dönüşüm': ('sürdürülebilir', 'geri dönüş', 'atık', 'kaynakların')}
+_SFACTS = {'Birlikte Yaşamak': [('Grup',
+                       'Ortak bir amaç için bir araya gelen insan topluluğuna ne ad verilir?',
+                       'Grup',
+                       ['Sınır', 'Harita', 'Bütçe'],
+                       'Ortak bir amaç için bir araya gelen insan topluluğuna grup denir.',
+                       'Ortak bir amaç için bir araya gelen insan topluluğuna bütçe denir.'),
+                      ('Aile grubu',
+                       'Aşağıdakilerden hangisi insanın doğduğu ilk gruptur?',
+                       'Aile',
+                       ['Spor kulübü', 'Sınıf', 'Mahalle'],
+                       'Aile, insanın doğduğu ve ilk üyesi olduğu gruptur.',
+                       'Spor kulübü, insanın doğduğu ve ilk üyesi olduğu gruptur.'),
+                      ('Rol',
+                       'Bir kişinin grup içinde yerine getirmesi beklenen görev ve davranışlara ne denir?',
+                       'Rol',
+                       ['Gelir', 'İklim', 'Miras'],
+                       'Bir kişinin grup içinde yerine getirmesi beklenen görev ve davranışlara rol denir.',
+                       'Bir kişinin grup içinde yerine getirmesi beklenen görev ve davranışlara iklim denir.'),
+                      ('Çoklu rol',
+                       'Bir kişinin hem evde çocuk hem okulda öğrenci olması neyi gösterir?',
+                       'Aynı kişinin birden fazla rol üstlenebileceğini',
+                       ['Her kişinin yalnızca tek rolü olduğunu', 'Rollerin hiç değişmediğini', 'Grupların birbirine karışamayacağını'],
+                       'Bir kişi aynı anda birden fazla rol üstlenebilir.',
+                       'Bir kişi aynı anda yalnızca tek bir rol üstlenebilir.'),
+                      ('Kültürel özellik',
+                       'Farklı kültürlerin gelenek ve göreneklerine karşı nasıl davranmalıyız?',
+                       'Saygı göstermeliyiz',
+                       ['Alay etmeliyiz', 'Görmezden gelip dışlamalıyız', 'Kendi geleneklerimizi bırakmalıyız'],
+                       'Farklı kültürlerin gelenek ve göreneklerine saygı göstermeliyiz.',
+                       'Farklı kültürlerin gelenek ve göreneklerini küçümsemeliyiz.'),
+                      ('Kültür',
+                       'Bir toplumun yaşam biçimini oluşturan örf, adet, dil ve inançların bütününe ne denir?',
+                       'Kültür',
+                       ['Bütçe', 'Afet', 'Teknoloji'],
+                       'Bir toplumun yaşam biçimini oluşturan örf, adet, dil ve inançların bütününe kültür denir.',
+                       'Bir toplumun yaşam biçimini oluşturan örf, adet, dil ve inançların bütününe bütçe denir.'),
+                      ('Yardımlaşma',
+                       'Zor durumdaki komşusuna yardım eden birinin davranışı hangi değerle ilgilidir?',
+                       'Yardımlaşma ve dayanışma',
+                       ['Rekabet', 'Bencillik', 'Kayıtsızlık'],
+                       'Zor durumdaki komşuya yardım etmek yardımlaşma ve dayanışma değeriyle ilgilidir.',
+                       'Zor durumdaki komşuya yardım etmek bencillik değeriyle ilgilidir.'),
+                      ('Dayanışma örneği',
+                       'Aşağıdakilerden hangisi dayanışmaya örnektir?',
+                       'Afetzedeler için yardım kampanyası düzenlemek',
+                       ['Sırada başkasını itmek', 'Ortak alanı kirletmek', 'Arkadaşının ödevini saklamak'],
+                       'Afetzedeler için yardım kampanyası düzenlemek dayanışmaya örnektir.',
+                       'Ortak alanı kirletmek dayanışmaya örnektir.'),
+                      ('Grup kuralı',
+                       'Grupların düzenli çalışması için neye ihtiyaç vardır?',
+                       'Kurallara',
+                       ['Kargaşaya', 'Kuralsızlığa', 'Tek kişinin her şeye karar vermesine'],
+                       'Grupların düzenli çalışması için kurallara ihtiyaç vardır.',
+                       'Grupların düzenli çalışması için kuralsızlığa ihtiyaç vardır.'),
+                      ('Sınıf grubu',
+                       'Sınıf, öğrencilerin hangi amaçla bir araya geldiği bir gruptur?',
+                       'Eğitim almak',
+                       ['Alışveriş yapmak', 'Ürün satmak', 'Tatil planlamak'],
+                       'Sınıf, öğrencilerin eğitim almak amacıyla bir araya geldiği bir gruptur.',
+                       'Sınıf, öğrencilerin alışveriş yapmak amacıyla bir araya geldiği bir gruptur.'),
+                      ('Misafirperverlik',
+                       'Misafirini güler yüzle ağırlamak aşağıdaki değerlerden hangisine örnektir?',
+                       'Misafirperverlik',
+                       ['İsraf', 'Bencillik', 'Tutumsuzluk'],
+                       'Misafiri güler yüzle ağırlamak misafirperverliğe örnektir.',
+                       'Misafiri güler yüzle ağırlamak bencilliğe örnektir.'),
+                      ('Farklılık zenginlik',
+                       'Toplumdaki kültürel farklılıklar nasıl değerlendirilmelidir?',
+                       'Bir zenginlik olarak',
+                       ['Bir sorun olarak', 'Bir tehdit olarak', 'Gereksiz bir ayrıntı olarak'],
+                       'Toplumdaki kültürel farklılıklar bir zenginliktir.',
+                       'Toplumdaki kültürel farklılıklar bir tehdittir.'),
+                      ('Görev paylaşımı',
+                       'Bir grupta görevlerin üyeler arasında paylaşılması neyi sağlar?',
+                       'İşlerin daha kolay ve düzenli yapılmasını',
+                       ['İşlerin hiç bitmemesini', 'Grubun dağılmasını', 'Kuralların kalkmasını'],
+                       'Görev paylaşımı, işlerin daha kolay ve düzenli yapılmasını sağlar.',
+                       'Görev paylaşımı, grubun dağılmasını sağlar.'),
+                      ('Sivil toplum',
+                       'Gönüllü olarak ortak bir amaç için çalışan Kızılay gibi kuruluşlar hangi değere katkı sağlar?',
+                       'Yardımlaşma ve dayanışmaya',
+                       ['İsrafa', 'Ayrımcılığa', 'Bireysel çıkara'],
+                       'Kızılay gibi gönüllü kuruluşlar yardımlaşma ve dayanışmaya katkı sağlar.',
+                       'Kızılay gibi gönüllü kuruluşlar ayrımcılığa katkı sağlar.'),
+                      ('Hoşgörü',
+                       'Farklı düşünce ve davranışlara anlayışla yaklaşmaya ne denir?',
+                       'Hoşgörü',
+                       ['Önyargı', 'Bencillik', 'Tutumluluk'],
+                       'Farklı düşünce ve davranışlara anlayışla yaklaşmaya hoşgörü denir.',
+                       'Farklı düşünce ve davranışlara anlayışla yaklaşmaya önyargı denir.')],
+ 'Evimiz Dünya': [('Göreceli konum',
+                   'Bir yerin çevresindeki doğal ve beşerî ögelere göre yerini belirtmeye ne denir?',
+                   'Göreceli konum',
+                   ['Kesin konum', 'Ölçek', 'İklim'],
+                   'Bir yerin çevresindeki ögelere göre yerinin belirtilmesine göreceli konum denir.',
+                   'Bir yerin çevresindeki ögelere göre yerinin belirtilmesine ölçek denir.'),
+                  ('Doğal çevre', 'Aşağıdakilerden hangisi doğal çevre ögesidir?', 'Akarsu', ['Köprü', 'Baraj', 'Fabrika'], 'Akarsu doğal çevre ögesidir.', 'Köprü doğal çevre ögesidir.'),
+                  ('Beşerî çevre', 'Aşağıdakilerden hangisi beşerî (insan yapımı) çevre ögesidir?', 'Köprü', ['Dağ', 'Göl', 'Orman'], 'Köprü beşerî çevre ögesidir.', 'Orman beşerî çevre ögesidir.'),
+                  ('Doğal afet',
+                   'Aşağıdakilerden hangisi doğal afettir?',
+                   'Deprem',
+                   ['Trafik kazası', 'Fabrika yangını', 'Ekonomik kriz'],
+                   'Deprem bir doğal afettir.',
+                   'Trafik kazası bir doğal afettir.'),
+                  ('Afet hazırlık',
+                   'Deprem öncesinde alınabilecek en doğru önlem aşağıdakilerden hangisidir?',
+                   'Afet çantası hazırlamak ve acil durum planı yapmak',
+                   ['Eşyaları dolaplara yaslamadan bırakmak', 'Çıkış yollarını eşyayla kapatmak', 'Hiçbir hazırlık yapmamak'],
+                   'Deprem öncesinde afet çantası hazırlamak ve acil durum planı yapmak doğru bir önlemdir.',
+                   'Deprem öncesinde çıkış yollarını eşyayla kapatmak doğru bir önlemdir.'),
+                  ('Deprem anı',
+                   'Deprem sırasında kapalı bir yerdeyken yapılması gereken davranış aşağıdakilerden hangisidir?',
+                   'Çök-kapan-tutun hareketini yapmak',
+                   ['Asansöre binmek', 'Balkondan atlamak', 'Pencereden sarkmak'],
+                   'Deprem sırasında çök-kapan-tutun hareketi yapılmalıdır.',
+                   'Deprem sırasında asansöre binilmelidir.'),
+                  ('Sel',
+                   'Sel ve taşkın afetinin nedenlerinden biri aşağıdakilerden hangisidir?',
+                   'Yoğun ve ani yağış',
+                   ['Yer kabuğunun kayması', 'Volkanik patlama', 'Gece olması'],
+                   'Yoğun ve ani yağış sel ve taşkına neden olabilir.',
+                   'Gece olması sel ve taşkına neden olur.'),
+                  ('Çığ',
+                   'Aşağıdakilerden hangisi karlı dağlık bölgelerde görülen afettir?',
+                   'Çığ',
+                   ['Kuraklık', 'Tsunami', 'Orman yangını'],
+                   'Çığ, karlı dağlık bölgelerde görülen bir afettir.',
+                   'Çığ, çöllerde görülen bir afettir.'),
+                  ('Komşu Yunanistan',
+                   'Aşağıdaki devletlerden hangisi Türkiye’nin komşusudur?',
+                   'Yunanistan',
+                   ['İtalya', 'Mısır', 'Rusya'],
+                   'Yunanistan, Türkiye’nin komşu devletlerinden biridir.',
+                   'İtalya, Türkiye’nin komşu devletlerinden biridir.'),
+                  ('Komşu Bulgaristan',
+                   'Aşağıdaki devletlerden hangisi Türkiye ile kara sınırı olan bir komşudur?',
+                   'Bulgaristan',
+                   ['Romanya', 'Ukrayna', 'Kıbrıs'],
+                   'Bulgaristan, Türkiye ile kara sınırı olan bir komşudur.',
+                   'Romanya, Türkiye ile kara sınırı olan bir komşudur.'),
+                  ('Komşu Gürcistan',
+                   'Aşağıdaki devletlerden hangisi Türkiye’nin komşusudur?',
+                   'Gürcistan',
+                   ['Azerbaycan’dan başka hiçbiri', 'Kazakistan', 'Özbekistan'],
+                   'Gürcistan, Türkiye’nin komşu devletlerinden biridir.',
+                   'Kazakistan, Türkiye’nin komşu devletlerinden biridir.'),
+                  ('Komşu Irak',
+                   'Aşağıdaki devletlerden hangisi Türkiye’nin güney komşularından biridir?',
+                   'Suriye',
+                   ['Mısır', 'Lübnan', 'Ürdün'],
+                   'Suriye, Türkiye’nin güney komşularından biridir.',
+                   'Mısır, Türkiye’nin güney komşularından biridir.'),
+                  ('Karadeniz',
+                   'Türkiye’nin kuzeyinde hangi deniz yer alır?',
+                   'Karadeniz',
+                   ['Akdeniz', 'Ege Denizi', 'Hazar Denizi'],
+                   'Türkiye’nin kuzeyinde Karadeniz yer alır.',
+                   'Türkiye’nin kuzeyinde Akdeniz yer alır.'),
+                  ('Akdeniz',
+                   'Türkiye’nin güneyinde hangi deniz yer alır?',
+                   'Akdeniz',
+                   ['Karadeniz', 'Marmara Denizi', 'Kızıldeniz'],
+                   'Türkiye’nin güneyinde Akdeniz yer alır.',
+                   'Türkiye’nin güneyinde Karadeniz yer alır.'),
+                  ('Marmara',
+                   'Karadeniz ile Ege Denizi’ni birbirine bağlayan boğazlar arasında yer alan iç deniz hangisidir?',
+                   'Marmara Denizi',
+                   ['Hazar Denizi', 'Kızıldeniz', 'Ölü Deniz'],
+                   'Boğazlar arasında yer alan iç deniz Marmara Denizi’dir.',
+                   'Boğazlar arasında yer alan iç deniz Hazar Denizi’dir.')],
+ 'Ortak Mirasımız': [('Ortak miras',
+                      'Geçmişten günümüze ulaşan ve tüm insanlığa ait olan kültürel değerlere ne ad verilir?',
+                      'Ortak miras',
+                      ['Bütçe', 'Afet', 'Gelir'],
+                      'Geçmişten günümüze ulaşan ve insanlığa ait kültürel değerlere ortak miras denir.',
+                      'Geçmişten günümüze ulaşan kültürel değerlere bütçe denir.'),
+                     ('Göbeklitepe yeri', 'Göbeklitepe hangi ilimizdedir?', 'Şanlıurfa', ['Konya', 'Çanakkale', 'Van'], 'Göbeklitepe Şanlıurfa’dadır.', 'Göbeklitepe Konya’dadır.'),
+                     ('Göbeklitepe önemi',
+                      'Göbeklitepe’yi dünya tarihi için önemli yapan özellik aşağıdakilerden hangisidir?',
+                      'Bilinen en eski anıtsal tapınak merkezlerinden biri olması',
+                      ['Bilinen ilk borsa binası olması', 'Bilinen ilk üniversite olması', 'Bilinen ilk havalimanı olması'],
+                      'Göbeklitepe, bilinen en eski anıtsal tapınak merkezlerinden biridir.',
+                      'Göbeklitepe, bilinen ilk üniversitedir.'),
+                     ('Çatalhöyük yeri', 'Çatalhöyük hangi ilimizde yer alır?', 'Konya', ['Şanlıurfa', 'Edirne', 'Muğla'], 'Çatalhöyük Konya’da yer alır.', 'Çatalhöyük Edirne’de yer alır.'),
+                     ('Çatalhöyük yaşam',
+                      'Çatalhöyük’te yaşayan insanlar hangi yaşam biçimine sahipti?',
+                      'Yerleşik yaşam',
+                      ['Gezgin göçebe yaşam', 'Denizcilik', 'Sanayi toplumu yaşamı'],
+                      'Çatalhöyük’te yerleşik yaşam görülmüştür.',
+                      'Çatalhöyük’te sanayi toplumu yaşamı görülmüştür.'),
+                     ('Çatalhöyük evleri',
+                      'Çatalhöyük’te evlerin giriş yeri nasıldı?',
+                      'Evlere çatıdan girilirdi',
+                      ['Evler çok katlı bloklardı', 'Evlere yer altı tünelinden girilirdi', 'Evlerin kapıları demirdendi'],
+                      'Çatalhöyük’te evlere çatıdaki açıklıktan girilirdi.',
+                      'Çatalhöyük’te evlerin demir kapıları vardı.'),
+                     ('Mezopotamya',
+                      'Mezopotamya hangi iki akarsu arasında kalan bölgeye verilen addır?',
+                      'Dicle ve Fırat',
+                      ['Nil ve Ürdün', 'Kızılırmak ve Sakarya', 'Tuna ve Ren'],
+                      'Mezopotamya, Dicle ve Fırat nehirleri arasındaki bölgedir.',
+                      'Mezopotamya, Nil ve Ürdün nehirleri arasındaki bölgedir.'),
+                     ('Sümerler yazı',
+                      'Yazıyı bulan Mezopotamya uygarlığı hangisidir?',
+                      'Sümerler',
+                      ['Hititler', 'Lidyalılar', 'Frigler'],
+                      'Yazıyı Mezopotamya’da yaşayan Sümerler bulmuştur.',
+                      'Yazıyı Lidyalılar bulmuştur.'),
+                     ('Çivi yazısı',
+                      'Sümerlerin kil tabletlere yazdığı yazıya ne ad verilir?',
+                      'Çivi yazısı',
+                      ['Hiyeroglif', 'Alfabe yazısı', 'Kufi yazı'],
+                      'Sümerler kil tabletlere çivi yazısıyla yazmıştır.',
+                      'Sümerler kil tabletlere alfabe yazısıyla yazmıştır.'),
+                     ('Hititler',
+                      'Anadolu’da Hattuşa (Boğazkale) kentini başkent yapan uygarlık hangisidir?',
+                      'Hititler',
+                      ['Sümerler', 'Mısırlılar', 'Romalılar'],
+                      'Hititlerin başkenti Hattuşa’dır.',
+                      'Sümerlerin başkenti Hattuşa’dır.'),
+                     ('Kadeş',
+                      'Bilinen ilk yazılı uluslararası barış antlaşmalarından biri olan Kadeş Antlaşması hangi devletler arasında yapılmıştır?',
+                      'Hititler ve Mısırlılar',
+                      ['Frigler ve Lidyalılar', 'Sümerler ve Urartular', 'Romalılar ve Persler'],
+                      'Kadeş Antlaşması Hititler ile Mısırlılar arasında yapılmıştır.',
+                      'Kadeş Antlaşması Frigler ile Lidyalılar arasında yapılmıştır.'),
+                     ('Lidyalılar para',
+                      'Parayı ilk kullanan uygarlıklardan biri olan Anadolu uygarlığı hangisidir?',
+                      'Lidyalılar',
+                      ['Hititler', 'Sümerler', 'Urartular'],
+                      'Parayı ilk kullananlardan biri Lidyalılardır.',
+                      'Parayı ilk kullananlardan biri Urartulardır.'),
+                     ('Truva', 'Truva (Troya) Antik Kenti hangi ilimizde yer alır?', 'Çanakkale', ['Edirne', 'Van', 'Şanlıurfa'], 'Truva Antik Kenti Çanakkale’dedir.', 'Truva Antik Kenti Van’dadır.'),
+                     ('UNESCO',
+                      'Dünya genelinde kültürel ve doğal mirası koruyan uluslararası kuruluş hangisidir?',
+                      'UNESCO',
+                      ['NATO', 'TBMM', 'Kızılay'],
+                      'Dünya Mirası Listesi’ni UNESCO hazırlar.',
+                      'Dünya Mirası Listesi’ni NATO hazırlar.'),
+                     ('Mirası koruma',
+                      'Ortak mirasımızı korumak için aşağıdakilerden hangisini yapmak gerekir?',
+                      'Tarihî eserlere zarar vermemek',
+                      ['Tarihî duvarlara yazı yazmak', 'Eserleri izinsiz taşımak', 'Kazı alanlarına girip hatıra almak'],
+                      'Ortak mirası korumak için tarihî eserlere zarar vermemek gerekir.',
+                      'Ortak mirası korumak için tarihî duvarlara yazı yazmak gerekir.')],
+ 'Yaşayan Demokrasimiz': [('Demokrasi',
+                           'Halkın yönetime seçimler yoluyla katıldığı yönetim biçimine ne denir?',
+                           'Demokrasi',
+                           ['Monarşi', 'Bütçe', 'Teknoloji'],
+                           'Halkın yönetime seçimle katıldığı yönetim biçimine demokrasi denir.',
+                           'Halkın yönetime seçimle katıldığı yönetim biçimine monarşi denir.'),
+                          ('Cumhuriyet',
+                           'Devlet başkanının halk tarafından seçilmiş olduğu yönetim biçimine ne denir?',
+                           'Cumhuriyet',
+                           ['Saltanat', 'Hanedan', 'Kabile'],
+                           'Devlet başkanının halkça seçildiği yönetim biçimine cumhuriyet denir.',
+                           'Devlet başkanının halkça seçildiği yönetim biçimine saltanat denir.'),
+                          ('Cumhuriyet ilanı',
+                           'Türkiye Cumhuriyeti’nin ilan edildiği tarih hangisidir?',
+                           '29 Ekim 1923',
+                           ['23 Nisan 1920', '30 Ağustos 1922', '10 Kasım 1938'],
+                           'Cumhuriyet 29 Ekim 1923’te ilan edilmiştir.',
+                           'Cumhuriyet 23 Nisan 1920’de ilan edilmiştir.'),
+                          ('Egemenlik',
+                           'Anayasaya göre egemenlik kimindir?',
+                           'Kayıtsız şartsız milletindir',
+                           ['Padişahındır', 'Yalnızca valilerindir', 'Yalnızca ordunundur'],
+                           'Egemenlik kayıtsız şartsız milletindir.',
+                           'Egemenlik kayıtsız şartsız padişahındır.'),
+                          ('TBMM',
+                           'Yasaları yapan ve halkı temsil eden Türkiye’deki kurum hangisidir?',
+                           'TBMM',
+                           ['Belediye', 'Muhtarlık', 'Valilik'],
+                           'Yasaları Türkiye Büyük Millet Meclisi (TBMM) yapar.',
+                           'Yasaları belediye yapar.'),
+                          ('Seçme hakkı',
+                           'Oy kullanarak yönetime katılma hakkına ne denir?',
+                           'Seçme hakkı',
+                           ['Sağlık hakkı', 'Eğitim hakkı', 'Mülkiyet hakkı'],
+                           'Oy kullanarak yönetime katılma hakkına seçme hakkı denir.',
+                           'Oy kullanarak yönetime katılma hakkına sağlık hakkı denir.'),
+                          ('Seçilme hakkı',
+                           'Seçimlerde aday olabilme hakkına ne denir?',
+                           'Seçilme hakkı',
+                           ['Seçme hakkı', 'Eğitim hakkı', 'Dinlenme hakkı'],
+                           'Seçimlerde aday olabilme hakkına seçilme hakkı denir.',
+                           'Seçimlerde aday olabilme hakkına dinlenme hakkı denir.'),
+                          ('Hak sorumluluk',
+                           'Aşağıdakilerden hangisi bir vatandaşlık sorumluluğudur?',
+                           'Vergi vermek',
+                           ['Vergi kaçırmak', 'Kuralları çiğnemek', 'Oy kullanmamak için baskı yapmak'],
+                           'Vergi vermek bir vatandaşlık sorumluluğudur.',
+                           'Vergi kaçırmak bir vatandaşlık sorumluluğudur.'),
+                          ('Eğitim hakkı',
+                           'Her çocuğun okula gidebilmesi hangi hak kapsamındadır?',
+                           'Eğitim hakkı',
+                           ['Seçilme hakkı', 'Ticaret hakkı', 'Askerlik hakkı'],
+                           'Her çocuğun okula gidebilmesi eğitim hakkı kapsamındadır.',
+                           'Her çocuğun okula gidebilmesi seçilme hakkı kapsamındadır.'),
+                          ('Etkin vatandaş',
+                           'Etkin bir vatandaş aşağıdakilerden hangisini yapar?',
+                           'Haklarını bilir ve sorumluluklarını yerine getirir',
+                           ['Yalnızca haklarını ister', 'Çevresindeki sorunlara kayıtsız kalır', 'Kurallara uymaz'],
+                           'Etkin vatandaş haklarını bilir ve sorumluluklarını yerine getirir.',
+                           'Etkin vatandaş yalnızca haklarını ister, sorumluluk üstlenmez.'),
+                          ('Muhtarlık',
+                           'Mahallenin sorunlarını çözmek için ilk başvurulabilecek kurum hangisidir?',
+                           'Muhtarlık',
+                           ['TBMM', 'Anayasa Mahkemesi', 'Genelkurmay'],
+                           'Mahalle sorunları için ilk başvurulabilecek kurumlardan biri muhtarlıktır.',
+                           'Mahalle sorunları için ilk başvurulacak kurum Genelkurmay’dır.'),
+                          ('Belediye',
+                           'Çöp toplama ve park yapımı gibi hizmetleri hangi kurum yürütür?',
+                           'Belediye',
+                           ['Mahkeme', 'Emniyet', 'Okul'],
+                           'Çöp toplama ve park yapımı gibi hizmetleri belediye yürütür.',
+                           'Çöp toplama ve park yapımı gibi hizmetleri mahkeme yürütür.'),
+                          ('Mahkeme',
+                           'Hak ihlali durumunda haklarını aramak için başvurulan kurum hangisidir?',
+                           'Mahkeme',
+                           ['Belediye', 'Okul aile birliği', 'Hastane'],
+                           'Hak ihlallerinde haklar mahkemeye başvurularak aranabilir.',
+                           'Hak ihlallerinde haklar okul aile birliğine başvurularak aranır.'),
+                          ('Çoğunluk kararı',
+                           'Demokratik yönetimlerde karar alırken çoğunluğun görüşü esas alınırken neye de saygı gösterilir?',
+                           'Azınlığın haklarına',
+                           ['Yalnızca güçlünün isteğine', 'Tek kişinin kararına', 'Hiçbir görüşe'],
+                           'Demokraside çoğunluk kararı alınırken azınlığın haklarına saygı gösterilir.',
+                           'Demokraside çoğunluk kararı alınırken azınlığın hakları yok sayılır.'),
+                          ('Çocuk hakları',
+                           'Çocukların hak ve özgürlüklerini koruyan uluslararası belge hangisidir?',
+                           'Çocuk Hakları Sözleşmesi',
+                           ['Kadeş Antlaşması', 'Lozan Antlaşması', 'Hammurabi Kanunları'],
+                           'Çocukların haklarını Çocuk Hakları Sözleşmesi güvence altına alır.',
+                           'Çocukların haklarını Kadeş Antlaşması güvence altına alır.')],
+ 'Hayatımızdaki Ekonomi': [('İhtiyaç',
+                            'Yaşamımızı sürdürmek için mutlaka karşılamamız gereken şeylere ne denir?',
+                            'İhtiyaç',
+                            ['İstek', 'Lüks', 'Gelir'],
+                            'Yaşamı sürdürmek için karşılanması gereken şeylere ihtiyaç denir.',
+                            'Yaşamı sürdürmek için karşılanması gereken şeylere istek denir.'),
+                           ('İstek',
+                            'Karşılanmasa da yaşamımızı sürdürebileceğimiz arzularımıza ne denir?',
+                            'İstek',
+                            ['İhtiyaç', 'Zorunluluk', 'Vergi'],
+                            'Karşılanmasa da yaşamı sürdürebileceğimiz arzulara istek denir.',
+                            'Karşılanmasa da yaşamı sürdürebileceğimiz arzulara ihtiyaç denir.'),
+                           ('İhtiyaç örneği',
+                            'Aşağıdakilerden hangisi temel bir ihtiyaçtır?',
+                            'Beslenme',
+                            ['Oyun konsolu', 'Marka ayakkabı', 'Yeni model telefon'],
+                            'Beslenme temel bir ihtiyaçtır.',
+                            'Oyun konsolu temel bir ihtiyaçtır.'),
+                           ('İstek örneği', 'Aşağıdakilerden hangisi bir istektir?', 'Oyun konsolu', ['Su', 'Barınma', 'Temiz hava'], 'Oyun konsolu bir istektir.', 'Barınma bir istektir.'),
+                           ('Bütçe',
+                            'Bir ailenin belirli bir sürede elde etmeyi düşündüğü gelirler ile yapmayı düşündüğü giderlerin planına ne denir?',
+                            'Bütçe',
+                            ['Harita', 'Ölçek', 'Miras'],
+                            'Gelir ve giderlerin planına bütçe denir.',
+                            'Gelir ve giderlerin planına ölçek denir.'),
+                           ('Gelir',
+                            'Çalışarak veya üreterek elde edilen paraya ne denir?',
+                            'Gelir',
+                            ['Gider', 'Borç', 'Vergi'],
+                            'Çalışarak veya üreterek elde edilen paraya gelir denir.',
+                            'Çalışarak veya üreterek elde edilen paraya gider denir.'),
+                           ('Gider',
+                            'Ev kirası, fatura ve market alışverişi için harcanan paralar neyi oluşturur?',
+                            'Gider',
+                            ['Gelir', 'Tasarruf', 'Kâr'],
+                            'Ev kirası, fatura ve alışveriş harcamaları giderdir.',
+                            'Ev kirası, fatura ve alışveriş harcamaları gelirdir.'),
+                           ('Tasarruf',
+                            'Gelirin bir kısmını ileride kullanmak üzere ayırmaya ne denir?',
+                            'Tasarruf',
+                            ['İsraf', 'Borçlanma', 'Ödünç'],
+                            'Gelirin bir kısmını ileride kullanmak üzere ayırmaya tasarruf denir.',
+                            'Gelirin bir kısmını ileride kullanmak üzere ayırmaya israf denir.'),
+                           ('İsraf',
+                            'Kaynakları gereğinden fazla veya gereksiz yere kullanmaya ne denir?',
+                            'İsraf',
+                            ['Tasarruf', 'Üretim', 'Verimlilik'],
+                            'Kaynakları gereksiz yere kullanmaya israf denir.',
+                            'Kaynakları gereksiz yere kullanmaya tasarruf denir.'),
+                           ('Kaynaklar sınırlı',
+                            'Kaynakları verimli kullanmamız gerekmesinin temel nedeni nedir?',
+                            'Kaynakların sınırlı olması',
+                            ['Kaynakların sonsuz olması', 'Kaynakların hiç kullanılmaması', 'Kaynakların yalnızca zenginlere ait olması'],
+                            'Kaynaklar sınırlı olduğu için verimli kullanılmalıdır.',
+                            'Kaynaklar sonsuz olduğu için verimli kullanılmalıdır.'),
+                           ('Verimli kullanım',
+                            'Aşağıdakilerden hangisi kaynakları verimli kullanmaya örnektir?',
+                            'Kullanılmayan odanın ışığını kapatmak',
+                            ['Musluğu açık bırakmak', 'Yiyecekleri çöpe atmak', 'Defterin boş sayfalarını yırtmak'],
+                            'Kullanılmayan odanın ışığını kapatmak kaynakları verimli kullanmaya örnektir.',
+                            'Musluğu açık bırakmak kaynakları verimli kullanmaya örnektir.'),
+                           ('Üretim',
+                            'Ürün ve hizmetlerin ortaya çıkarılmasına ne denir?',
+                            'Üretim',
+                            ['Tüketim', 'İsraf', 'Borç'],
+                            'Ürün ve hizmetlerin ortaya çıkarılmasına üretim denir.',
+                            'Ürün ve hizmetlerin ortaya çıkarılmasına tüketim denir.'),
+                           ('Tüketim',
+                            'Üretilen ürün ve hizmetlerin kullanılmasına ne denir?',
+                            'Tüketim',
+                            ['Üretim', 'Gelir', 'Ticaret'],
+                            'Üretilen ürün ve hizmetlerin kullanılmasına tüketim denir.',
+                            'Üretilen ürün ve hizmetlerin kullanılmasına üretim denir.'),
+                           ('Tarım faaliyeti',
+                            'Buğday ekmek ve hayvancılık yapmak hangi ekonomik faaliyet grubundadır?',
+                            'Tarım',
+                            ['Sanayi', 'Turizm', 'Bankacılık'],
+                            'Buğday ekmek ve hayvancılık tarım faaliyetidir.',
+                            'Buğday ekmek ve hayvancılık bankacılık faaliyetidir.'),
+                           ('Hizmet sektörü',
+                            'Öğretmenlik, doktorluk ve sürücülük hangi ekonomik faaliyet grubuna girer?',
+                            'Hizmet',
+                            ['Tarım', 'Madencilik', 'Balıkçılık'],
+                            'Öğretmenlik, doktorluk ve sürücülük hizmet sektöründe yer alır.',
+                            'Öğretmenlik, doktorluk ve sürücülük madencilik sektöründe yer alır.')],
+ 'Teknoloji ve Sosyal Bilimler': [('Teknoloji',
+                                   'İnsan yaşamını kolaylaştırmak için geliştirilen araç, gereç ve yöntemlerin tümüne ne denir?',
+                                   'Teknoloji',
+                                   ['Miras', 'Bütçe', 'Rol'],
+                                   'Yaşamı kolaylaştıran araç, gereç ve yöntemlerin tümüne teknoloji denir.',
+                                   'Yaşamı kolaylaştıran araç, gereç ve yöntemlerin tümüne miras denir.'),
+                                  ('Teknoloji etkisi',
+                                   'Teknolojik gelişmelerin insan yaşamına olumlu etkisi aşağıdakilerden hangisidir?',
+                                   'İletişimin ve ulaşımın kolaylaşması',
+                                   ['Bütün işlerin zorlaşması', 'İnsanların birbirine uzak kalması', 'Bilgiye ulaşımın imkânsız olması'],
+                                   'Teknolojik gelişmeler iletişimi ve ulaşımı kolaylaştırır.',
+                                   'Teknolojik gelişmeler bilgiye ulaşımı imkânsız hâle getirir.'),
+                                  ('Matbaa',
+                                   'Bilgilerin daha hızlı ve çok sayıda çoğaltılmasını sağlayan icat hangisidir?',
+                                   'Matbaa',
+                                   ['Pusula', 'Takvim', 'Harita'],
+                                   'Matbaa, bilgilerin hızlı ve çok sayıda çoğaltılmasını sağlamıştır.',
+                                   'Pusula, bilgilerin hızlı ve çok sayıda çoğaltılmasını sağlamıştır.'),
+                                  ('Müteferrika',
+                                   'Türkiye’de ilk matbaayı kuran kişi kimdir?',
+                                   'İbrahim Müteferrika',
+                                   ['Evliya Çelebi', 'Mimar Sinan', 'Piri Reis'],
+                                   'Osmanlı’da ilk Türk matbaasını İbrahim Müteferrika kurmuştur.',
+                                   'Osmanlı’da ilk Türk matbaasını Mimar Sinan kurmuştur.'),
+                                  ('Bilinçli kullanım',
+                                   'Teknolojik ürünleri bilinçli kullanan biri aşağıdakilerden hangisini yapar?',
+                                   'Kullanım süresini sınırlar',
+                                   ['Gün boyu ekran başında kalır', 'Her bilgiye doğrudan inanır', 'Kişisel bilgilerini herkese verir'],
+                                   'Bilinçli kullanıcı teknolojik ürünlerin kullanım süresini sınırlar.',
+                                   'Bilinçli kullanıcı gün boyu ekran başında kalır.'),
+                                  ('Kişisel bilgi',
+                                   'İnternette aşağıdakilerden hangisini yabancılarla paylaşmamalıyız?',
+                                   'Ev adresimizi ve şifremizi',
+                                   ['Sevdiğimiz bir rengi', 'Okuduğumuz bir kitabın adını', 'Bir bilmece cevabını'],
+                                   'İnternette ev adresimizi ve şifremizi yabancılarla paylaşmamalıyız.',
+                                   'İnternette ev adresimizi ve şifremizi yabancılarla paylaşmalıyız.'),
+                                  ('Doğru bilgi',
+                                   'İnternette karşılaşılan bilgiler için hangisi doğru davranıştır?',
+                                   'Güvenilir kaynaklardan doğrulamak',
+                                   ['Her bilgiyi paylaşmak', 'Hiç araştırmamak', 'En çok beğeni alanı doğru saymak'],
+                                   'İnternetteki bilgiler güvenilir kaynaklardan doğrulanmalıdır.',
+                                   'İnternetteki her bilgi doğrulanmadan paylaşılmalıdır.'),
+                                  ('Uzaktan eğitim',
+                                   'Öğrencilerin evden internet aracılığıyla ders görmesi teknolojinin hangi katkısıdır?',
+                                   'Eğitime erişimi kolaylaştırması',
+                                   ['Eğitimi tamamen engellemesi', 'Okulları gereksiz kılıp kapatması', 'Öğrenmeyi yasaklaması'],
+                                   'Uzaktan eğitim, teknolojinin eğitime erişimi kolaylaştırmasıdır.',
+                                   'Uzaktan eğitim, teknolojinin eğitimi engellemesidir.'),
+                                  ('Sosyal bilimler',
+                                   'İnsanı ve toplumu inceleyen bilimlere ne ad verilir?',
+                                   'Sosyal bilimler',
+                                   ['Fen bilimleri', 'Spor bilimleri', 'Hava bilimleri'],
+                                   'İnsanı ve toplumu inceleyen bilimlere sosyal bilimler denir.',
+                                   'İnsanı ve toplumu inceleyen bilimlere hava bilimleri denir.'),
+                                  ('Tarih',
+                                   'Geçmişte yaşanan olayları belgelere dayanarak inceleyen bilim dalı hangisidir?',
+                                   'Tarih',
+                                   ['Coğrafya', 'Ekonomi', 'Biyoloji'],
+                                   'Geçmişte yaşanan olayları belgelere dayanarak inceleyen bilim dalı tarihtir.',
+                                   'Geçmişte yaşanan olayları belgelere dayanarak inceleyen bilim dalı biyolojidir.'),
+                                  ('Coğrafya',
+                                   'Yeryüzünün doğal ve beşerî özelliklerini inceleyen bilim dalı hangisidir?',
+                                   'Coğrafya',
+                                   ['Tarih', 'Arkeoloji', 'Matematik'],
+                                   'Yeryüzünün doğal ve beşerî özelliklerini coğrafya inceler.',
+                                   'Yeryüzünün doğal ve beşerî özelliklerini arkeoloji inceler.'),
+                                  ('Arkeoloji',
+                                   'Kazılar yaparak geçmiş uygarlıkların kalıntılarını inceleyen bilim dalı hangisidir?',
+                                   'Arkeoloji',
+                                   ['Coğrafya', 'Ekonomi', 'Sosyoloji'],
+                                   'Kazılarla geçmiş uygarlıkların kalıntılarını arkeoloji inceler.',
+                                   'Kazılarla geçmiş uygarlıkların kalıntılarını ekonomi inceler.'),
+                                  ('Sosyoloji',
+                                   'Toplumları ve toplumsal ilişkileri inceleyen bilim dalı hangisidir?',
+                                   'Sosyoloji',
+                                   ['Arkeoloji', 'Tarih', 'Coğrafya'],
+                                   'Toplumları ve toplumsal ilişkileri sosyoloji inceler.',
+                                   'Toplumları ve toplumsal ilişkileri arkeoloji inceler.'),
+                                  ('Ekonomi bilimi',
+                                   'Üretim, tüketim ve paylaşım ilişkilerini inceleyen sosyal bilim hangisidir?',
+                                   'Ekonomi',
+                                   ['Arkeoloji', 'Tarih', 'Coğrafya'],
+                                   'Üretim, tüketim ve paylaşım ilişkilerini ekonomi bilimi inceler.',
+                                   'Üretim, tüketim ve paylaşım ilişkilerini arkeoloji bilimi inceler.')]}
+_SFACTS_KW = {'Birlikte Yaşamak': ('birlikte yaşamak', 'grup', 'rol', 'dayanışma', 'yardımlaşma', 'kültürel özellik'),
+ 'Evimiz Dünya': ('evimiz dünya', 'göreceli konum', 'doğal ve beşerî', 'afet', 'komşu devlet'),
+ 'Ortak Mirasımız': ('ortak miras', 'göbeklitepe', 'çatalhöyük', 'mezopotamya', "anadolu'daki ilk"),
+ 'Yaşayan Demokrasimiz': ('demokras', 'cumhuriyet', 'etkin vatandaş', 'hak ve sorumluluk', 'başvuru yapılabilecek'),
+ 'Hayatımızdaki Ekonomi': ('hayatımızdaki ekonomi', 'ihtiyaç, istek', 'bütçe', 'kaynakların verimli', 'ekonomik faaliyet'),
+ 'Teknoloji ve Sosyal Bilimler': ('teknoloji', 'teknolojik', 'sosyal bilim')}
+_TFACTS = {'Oyun Dünyası': [('Anahtar kelime',
+                   'Bir metnin konusunu ve içeriğini en iyi anlatan, sıkça geçen sözcüklere ne ad verilir?',
+                   'Anahtar kelime',
+                   ['Zıt anlamlı sözcük', 'Yan anlamlı sözcük', 'Yansıma sözcük', 'Soru sözcüğü'],
+                   'Anahtar kelimeler, metnin içeriğini en iyi yansıtan sözcüklerdir.',
+                   'Anahtar kelimeler, metinde yer alan zıt anlamlı sözcüklerdir.'),
+                  ('Yüzey anlamı',
+                   'Bir metinde yazılanların açıkça söylenen, doğrudan anlaşılan anlamına ne denir?',
+                   'Metnin yüzey anlamı',
+                   ['Metnin ana fikri', 'Metnin başlığı', 'Metnin imlası', 'Metnin yazarı'],
+                   'Metnin yüzey anlamı, doğrudan söylenen anlamdır.',
+                   'Metnin yüzey anlamı, satır aralarındaki gizli anlamdır.'),
+                  ('Söz varlığı',
+                   'Bir dili konuşanların kullandığı bütün sözcüklerin toplamına ne ad verilir?',
+                   'Söz varlığı',
+                   ['Anahtar kelime', 'Ana fikir', 'Cümle vurgusu', 'Noktalama'],
+                   'Bir dilin bütün sözcüklerinin toplamına söz varlığı denir.',
+                   'Bir dilin bütün sözcüklerinin toplamına ana fikir denir.'),
+                  ('Geleneksel çocuk oyunu',
+                   'Aşağıdakilerden hangisi geleneksel bir çocuk oyunudur?',
+                   'Birdirbir',
+                   ['Bilgisayar oyunu', 'Satranç turnuvası', 'Sanal gerçeklik oyunu', 'Konsol oyunu'],
+                   'Birdirbir, geleneksel çocuk oyunlarımızdandır.',
+                   'Konsol oyunu, geleneksel çocuk oyunlarımızdandır.'),
+                  ('Çelik çomak',
+                   'Aşağıdakilerden hangisi geleneksel çocuk oyunlarımızdan biridir?',
+                   'Çelik çomak',
+                   ['Futbol ligi', 'Tenis kortu', 'Video oyunu', 'Basketbol maçı'],
+                   'Çelik çomak, geleneksel çocuk oyunlarımızdandır.',
+                   'Tenis kortu, geleneksel çocuk oyunlarımızdandır.'),
+                  ('Kurallı oyun',
+                   'Nasıl oynanacağı, neyin yapılıp neyin yapılamayacağı önceden belirlenmiş oyunlara ne ad verilir?',
+                   'Kurallı oyun',
+                   ['Serbest oyun', 'Hayal oyunu', 'Gölge oyunu', 'Kukla oyunu'],
+                   'Kurallı oyunlarda nasıl oynanacağı önceden belirlenmiştir.',
+                   'Kurallı oyunlarda hiçbir kural bulunmaz.'),
+                  ('Oyunda kurallara uymak',
+                   'Kurallı bir oyunda kurallara uymak neyi sağlar?',
+                   'Oyunun adil ve düzenli oynanmasını',
+                   ['Oyunun hemen bitmesini', 'Yalnızca bir kişinin kazanmasını', 'Oyuncuların kavga etmesini', 'Oyunun kurallarının unutulmasını'],
+                   'Kurallara uymak oyunun adil ve düzenli oynanmasını sağlar.',
+                   'Kurallara uymak oyunun adaletsiz oynanmasını sağlar.'),
+                  ('Oyunun adı ve anahtar kelime',
+                   'Anahtar kelimeler bir metni özetlerken ne işe yarar?',
+                   'Metnin konusunu hatırlatır',
+                   ['Metnin yazarını belirler', 'Metni daha uzun yapar', 'Metnin imlasını düzeltir', 'Metnin türünü değiştirir'],
+                   'Anahtar kelimeler metnin konusunu hatırlatmaya yardımcı olur.',
+                   'Anahtar kelimeler metnin yazarını belirlemeye yarar.'),
+                  ('Zıt anlam',
+                   '“Uzun” sözcüğünün zıt anlamlısı aşağıdakilerden hangisidir?',
+                   'Kısa',
+                   ['Geniş', 'Yüksek', 'Derin', 'Ağır'],
+                   '“Uzun” sözcüğünün zıt anlamlısı “kısa”dır.',
+                   '“Uzun” sözcüğünün zıt anlamlısı “geniş”tir.'),
+                  ('Eş anlam',
+                   '“Güzel” sözcüğünün eş anlamlısı aşağıdakilerden hangisidir?',
+                   'Hoş',
+                   ['Çirkin', 'Kötü', 'Yavaş', 'Sert'],
+                   '“Güzel” ile “hoş” eş anlamlı sözcüklerdir.',
+                   '“Güzel” ile “çirkin” eş anlamlı sözcüklerdir.'),
+                  ('Yüzey anlamı sorusu',
+                   'Metnin yüzey anlamını anlamak için ne yapılır?',
+                   'Metinde açıkça verilen bilgiler okunur',
+                   ['Yalnızca başlığa bakılır', 'Metin hiç okunmaz', 'Metindeki her sözcük değiştirilir', 'Yalnızca resimlere bakılır'],
+                   'Yüzey anlamı için metinde açıkça verilen bilgilere bakılır.',
+                   'Yüzey anlamı için metin okunmadan tahmin yürütülür.'),
+                  ('Söz varlığını zenginleştirme',
+                   'Söz varlığımızı zenginleştirmenin en iyi yollarından biri hangisidir?',
+                   'Çok kitap okumak',
+                   ['Hiç konuşmamak', 'Aynı sözcükleri tekrarlamak', 'Yazı yazmaktan kaçınmak', 'Sözlüğe bakmamak'],
+                   'Çok kitap okumak söz varlığımızı zenginleştirir.',
+                   'Hiç okumamak söz varlığımızı zenginleştirir.'),
+                  ('Sözlük',
+                   'Bilmediğimiz bir sözcüğün anlamını öğrenmek için hangisine başvururuz?',
+                   'Sözlüğe',
+                   ['Atlasa', 'Takvime', 'Haritaya', 'Cetvele'],
+                   'Bilmediğimiz sözcüğün anlamını sözlükten öğreniriz.',
+                   'Bilmediğimiz sözcüğün anlamını atlastan öğreniriz.'),
+                  ('Oyun metni konusu',
+                   'Bir metnin üzerinde anlatılan olay ya da durumun tamamına ne ad verilir?',
+                   'Konu',
+                   ['Başlık', 'Noktalama', 'Eş anlam', 'Vurgu'],
+                   'Metinde anlatılan olay ya da durumun tamamına konu denir.',
+                   'Metinde anlatılan olay ya da durumun tamamına noktalama denir.'),
+                  ('Açık anlam ve ilişki',
+                   '“Oyun” sözcüğü ile anlam bakımından en çok ilişkili sözcük hangisidir?',
+                   'Eğlence',
+                   ['Sınav', 'Ödev', 'Vergi', 'Hesap'],
+                   '“Oyun” sözcüğü “eğlence” ile anlam bakımından ilişkilidir.',
+                   '“Oyun” sözcüğü “vergi” ile anlam bakımından ilişkilidir.')],
+ "Atatürk'ü Tanımak": [('Doğum yeri',
+                        'Mustafa Kemal Atatürk hangi şehirde doğmuştur?',
+                        'Selanik',
+                        ['Ankara', 'İstanbul', 'İzmir', 'Samsun'],
+                        'Mustafa Kemal Atatürk Selanik’te doğmuştur.',
+                        'Mustafa Kemal Atatürk Ankara’da doğmuştur.'),
+                       ('Doğum yılı',
+                        'Mustafa Kemal Atatürk hangi yıl doğmuştur?',
+                        '1881',
+                        ['1871', '1891', '1919', '1923'],
+                        'Mustafa Kemal Atatürk 1881 yılında doğmuştur.',
+                        'Mustafa Kemal Atatürk 1923 yılında doğmuştur.'),
+                       ('Cumhuriyetin ilanı',
+                        'Cumhuriyet hangi tarihte ilan edilmiştir?',
+                        '29 Ekim 1923',
+                        ['23 Nisan 1920', '19 Mayıs 1919', '30 Ağustos 1922', '10 Kasım 1938'],
+                        'Cumhuriyet 29 Ekim 1923’te ilan edilmiştir.',
+                        'Cumhuriyet 23 Nisan 1920’de ilan edilmiştir.'),
+                       ('İlk cumhurbaşkanı',
+                        'Türkiye Cumhuriyeti’nin ilk cumhurbaşkanı kimdir?',
+                        'Mustafa Kemal Atatürk',
+                        ['İsmet İnönü', 'Celal Bayar', 'Fevzi Çakmak', 'Kâzım Karabekir'],
+                        'Türkiye Cumhuriyeti’nin ilk cumhurbaşkanı Mustafa Kemal Atatürk’tür.',
+                        'Türkiye Cumhuriyeti’nin ilk cumhurbaşkanı İsmet İnönü’dür.'),
+                       ('23 Nisan',
+                        'TBMM hangi tarihte açılmıştır?',
+                        '23 Nisan 1920',
+                        ['29 Ekim 1923', '19 Mayıs 1919', '30 Ağustos 1922', '12 Mart 1921'],
+                        'TBMM 23 Nisan 1920’de açılmıştır.',
+                        'TBMM 29 Ekim 1923’te açılmıştır.'),
+                       ('23 Nisan çocuklara armağan',
+                        'Atatürk hangi bayramı dünya çocuklarına armağan etmiştir?',
+                        '23 Nisan Ulusal Egemenlik ve Çocuk Bayramı',
+                        ['29 Ekim Cumhuriyet Bayramı', '19 Mayıs Gençlik ve Spor Bayramı', '30 Ağustos Zafer Bayramı', '10 Kasım Anma Günü'],
+                        'Atatürk, 23 Nisan’ı çocuklara armağan etmiştir.',
+                        'Atatürk, 29 Ekim’i çocuklara armağan etmiştir.'),
+                       ('İstiklal Marşı şairi',
+                        'İstiklal Marşı’nın şairi kimdir?',
+                        'Mehmet Akif Ersoy',
+                        ['Namık Kemal', 'Ziya Gökalp', 'Yahya Kemal Beyatlı', 'Nâzım Hikmet'],
+                        'İstiklal Marşı’nın şairi Mehmet Akif Ersoy’dur.',
+                        'İstiklal Marşı’nın şairi Namık Kemal’dir.'),
+                       ('İstiklal Marşı kabulü',
+                        'İstiklal Marşı hangi tarihte kabul edilmiştir?',
+                        '12 Mart 1921',
+                        ['23 Nisan 1920', '29 Ekim 1923', '19 Mayıs 1919', '10 Kasım 1938'],
+                        'İstiklal Marşı 12 Mart 1921’de kabul edilmiştir.',
+                        'İstiklal Marşı 29 Ekim 1923’te kabul edilmiştir.'),
+                       ('Millî Mücadele başlangıcı',
+                        'Millî Mücadele’nin başlangıcı sayılan 19 Mayıs 1919’da Mustafa Kemal hangi şehre çıkmıştır?',
+                        'Samsun',
+                        ['İzmir', 'Ankara', 'Trabzon', 'Sivas'],
+                        'Mustafa Kemal 19 Mayıs 1919’da Samsun’a çıkmıştır.',
+                        'Mustafa Kemal 19 Mayıs 1919’da İzmir’e çıkmıştır.'),
+                       ('Kurtuluş Savaşı komutanı',
+                        'Millî Mücadele’yi (Kurtuluş Savaşı) yöneten lider kimdir?',
+                        'Mustafa Kemal Atatürk',
+                        ['Enver Paşa', 'Talat Paşa', 'Cemal Paşa', 'Fevzi Çakmak'],
+                        'Millî Mücadele’yi Mustafa Kemal Atatürk yönetmiştir.',
+                        'Millî Mücadele’yi Enver Paşa yönetmiştir.'),
+                       ('Soyadı',
+                        'Mustafa Kemal’e Türkiye Büyük Millet Meclisi tarafından hangi soyadı verilmiştir?',
+                        'Atatürk',
+                        ['Kemalpaşa', 'Gazi', 'Ergenekon', 'Türkoğlu'],
+                        'Mustafa Kemal’e “Atatürk” soyadı verilmiştir.',
+                        'Mustafa Kemal’e “Gazi” soyadı verilmiştir.'),
+                       ('Atatürk’ün annesi ve babası',
+                        'Atatürk’ün annesinin adı aşağıdakilerden hangisidir?',
+                        'Zübeyde Hanım',
+                        ['Latife Hanım', 'Fikriye Hanım', 'Makbule Hanım', 'Afet Hanım'],
+                        'Atatürk’ün annesi Zübeyde Hanım’dır.',
+                        'Atatürk’ün annesi Latife Hanım’dır.'),
+                       ('Anma günü',
+                        'Atatürk hangi tarihte vefat etmiştir?',
+                        '10 Kasım 1938',
+                        ['29 Ekim 1923', '19 Mayıs 1919', '23 Nisan 1920', '30 Ağustos 1922'],
+                        'Atatürk 10 Kasım 1938’de vefat etmiştir.',
+                        'Atatürk 29 Ekim 1923’te vefat etmiştir.'),
+                       ('Ana fikir',
+                        'Bir metnin yazarın okuyucuya vermek istediği temel mesajına ne ad verilir?',
+                        'Ana fikir',
+                        ['Konu', 'Anahtar kelime', 'Başlık', 'Eş anlam'],
+                        'Metnin verdiği temel mesaja ana fikir denir.',
+                        'Metnin verdiği temel mesaja anahtar kelime denir.'),
+                       ('Cumhuriyet yönetimi',
+                        'Cumhuriyet, yönetimin hangi şekilde belirlenmesi demektir?',
+                        'Halkın seçtiği temsilcilerle yönetilme',
+                        ['Tek bir kişinin sonsuza dek yönetmesi', 'Yönetimin babadan oğula geçmesi', 'Yönetimin yabancı devletlere verilmesi', 'Yöneticilerin hiç değişmemesi'],
+                        'Cumhuriyette halk, yöneticilerini seçimle belirler.',
+                        'Cumhuriyette yönetim babadan oğula geçer.')],
+ 'Duygularımı Tanıyorum': [('Temel duygular',
+                            'Aşağıdakilerden hangisi temel duygulardan biridir?',
+                            'Mutluluk',
+                            ['Cetvel', 'Defter', 'Harita', 'Pusula'],
+                            'Mutluluk, temel duygulardan biridir.',
+                            'Pusula, temel duygulardan biridir.'),
+                           ('Üzüntü',
+                            'Sevilen birini kaybettiğimizde ya da hayal kırıklığına uğradığımızda hangi duyguyu yaşarız?',
+                            'Üzüntü',
+                            ['Sevinç', 'Heyecan', 'Merak', 'Gurur'],
+                            'Hayal kırıklığında çoğunlukla üzüntü yaşarız.',
+                            'Hayal kırıklığında çoğunlukla sevinç yaşarız.'),
+                           ('Korku',
+                            'Tehlikeli bir durumda hissedilen ve bizi korumaya çalışan duyguya ne ad verilir?',
+                            'Korku',
+                            ['Neşe', 'Kıskançlık', 'Utanç', 'Gurur'],
+                            'Tehlike karşısında hissedilen duygu korkudur.',
+                            'Tehlike karşısında hissedilen duygu neşedir.'),
+                           ('Öfke yönetimi',
+                            'Öfkelendiğimizde aşağıdakilerden hangisini yapmak sağlıklı bir duygu yönetimidir?',
+                            'Derin nefes alıp sakinleşmek',
+                            ['Bağırıp çağırmak', 'Eşyalara zarar vermek', 'Başkalarına vurmak', 'Hakaret etmek'],
+                            'Öfkelenince derin nefes alıp sakinleşmek duygu yönetimidir.',
+                            'Öfkelenince bağırıp çağırmak sağlıklı duygu yönetimidir.'),
+                           ('Duygu ve davranış',
+                            'Duygularımız davranışlarımızı nasıl etkiler?',
+                            'Ne yapacağımızı yönlendirir',
+                            ['Hiçbir etkisi yoktur', 'Yalnızca uykumuzu etkiler', 'Yalnızca boyumuzu etkiler', 'Yalnızca sesimizi etkiler'],
+                            'Duygularımız davranışlarımızı yönlendirir.',
+                            'Duygularımızın davranışlarımız üzerinde hiçbir etkisi yoktur.'),
+                           ('Sevinç',
+                            'Sınavdan yüksek not aldığında gülümseyen bir çocuk hangi duyguyu yaşar?',
+                            'Sevinç',
+                            ['Korku', 'Öfke', 'Üzüntü', 'Utanç'],
+                            'Başarı karşısında insan sevinç duyar.',
+                            'Başarı karşısında insan üzüntü duyar.'),
+                           ('Duyguyu paylaşma',
+                            'Duygularımızı yönetmek için aşağıdakilerden hangisi yararlıdır?',
+                            'Güvendiğimiz biriyle konuşmak',
+                            ['Duygularımızı hep saklamak', 'Kimseyle konuşmamak', 'Her şeye kızmak', 'Duygusuz olduğumuzu söylemek'],
+                            'Güvendiğimiz biriyle konuşmak duygularımızı yönetmeye yardımcı olur.',
+                            'Duygularımızı hep saklamak duygu yönetimine yardımcı olur.'),
+                           ('Heyecan',
+                            'Yeni bir yere gitmeden önce yaşanan merak ve istek karışımı duyguya ne denir?',
+                            'Heyecan',
+                            ['Pişmanlık', 'Yalnızlık', 'Öfke', 'Utanç'],
+                            'Yeni bir olay öncesinde yaşanan duygu heyecandır.',
+                            'Yeni bir olay öncesinde yaşanan duygu pişmanlıktır.'),
+                           ('Görsel ileti',
+                            'Bir fotoğrafta yüzü gülen bir çocuk görüyoruz. Bu görsel hangi duyguyu anlatır?',
+                            'Mutluluğu',
+                            ['Üzüntüyü', 'Korkuyu', 'Öfkeyi', 'Yalnızlığı'],
+                            'Gülen yüz mutluluğu anlatır.',
+                            'Gülen yüz üzüntüyü anlatır.'),
+                           ('Mimik',
+                            'Yüz ifadelerimizle duygularımızı belli etmemize ne ad verilir?',
+                            'Mimik',
+                            ['Kelime', 'Cümle', 'Paragraf', 'Başlık'],
+                            'Yüz ifadeleri, yani mimikler, duygularımızı belli eder.',
+                            'Mimikler, yalnızca ellerimizle yapılan hareketlerdir.'),
+                           ('Beden dili',
+                            'Duygularımızı jest ve mimiklerle anlatmaya ne ad verilir?',
+                            'Beden dili',
+                            ['Yazı dili', 'Ağız dili', 'Konuşma yanlışı', 'Ses bilgisi'],
+                            'Jest ve mimikler beden dilini oluşturur.',
+                            'Jest ve mimikler yazı dilini oluşturur.'),
+                           ('Kıskançlık',
+                            'Başkasının sahip olduğu şeye karşı duyulan rahatsızlık hissine ne denir?',
+                            'Kıskançlık',
+                            ['Merhamet', 'Sevinç', 'Şükran', 'Sabır'],
+                            'Başkasının sahip olduğu şeyi çekememek kıskançlıktır.',
+                            'Başkasının sahip olduğu şeyi çekememek şükrandır.'),
+                           ('Duyguyu doğru ifade',
+                            'Kızdığımız arkadaşımıza karşı en uygun davranış hangisidir?',
+                            'Duygumuzu sakin bir dille anlatmak',
+                            ['Ona vurmak', 'Eşyasını saklamak', 'Onunla alay etmek', 'Bağırarak hakaret etmek'],
+                            'Duygumuzu sakin bir dille anlatmak olumlu bir davranıştır.',
+                            'Duygumuzu hakaret ederek anlatmak olumlu bir davranıştır.'),
+                           ('Ses tonu',
+                            'Konuşurken sesin yükselmesi, alçalması ve yumuşaması neyi belirtir?',
+                            'Duygu durumunu',
+                            ['Boyun uzunluğunu', 'Yaşı', 'Okul numarasını', 'Adresi'],
+                            'Ses tonu duygu durumumuzu yansıtır.',
+                            'Ses tonu okul numaramızı belirtir.'),
+                           ('Merak',
+                            'Bilinmeyen bir şeyi öğrenme isteğine ne ad verilir?',
+                            'Merak',
+                            ['Korku', 'Üzüntü', 'Utanç', 'Pişmanlık'],
+                            'Bilinmeyeni öğrenme isteği meraktır.',
+                            'Bilinmeyeni öğrenme isteği pişmanlıktır.')],
+ 'Geleneklerimiz': [('Gelenek',
+                     'Toplumda kuşaktan kuşağa aktarılarak yaşatılan alışkanlıklara ne ad verilir?',
+                     'Gelenek ve görenek',
+                     ['Moda', 'Yasa', 'Ders programı', 'Reklam'],
+                     'Gelenek ve görenekler kuşaktan kuşağa aktarılır.',
+                     'Gelenek ve görenekler yalnızca bir yıl yaşar.'),
+                    ('Misafirperverlik',
+                     'Misafire güler yüz göstermek ve ikramda bulunmak hangi değerle ilgilidir?',
+                     'Misafirperverlik',
+                     ['Tutumluluk', 'Bencillik', 'Yalnızlık', 'Tembellik'],
+                     'Misafire ikramda bulunmak misafirperverlikle ilgilidir.',
+                     'Misafire ikramda bulunmak bencillikle ilgilidir.'),
+                    ('Bayram',
+                     'Ramazan Bayramı ve Kurban Bayramı hangi tür kutlamalardandır?',
+                     'Dinî bayramlardandır',
+                     ['Millî bayramlardandır', 'Spor etkinliğidir', 'Okul tatilidir', 'Sanat festivalidir'],
+                     'Ramazan ve Kurban Bayramları dinî bayramlardır.',
+                     'Ramazan ve Kurban Bayramları millî bayramlardır.'),
+                    ('Millî bayram',
+                     'Aşağıdakilerden hangisi millî bayramlarımızdandır?',
+                     '29 Ekim Cumhuriyet Bayramı',
+                     ['Kurban Bayramı', 'Ramazan Bayramı', 'Hıdrellez', 'Nevruz'],
+                     '29 Ekim, millî bayramlarımızdandır.',
+                     'Kurban Bayramı, millî bayramlarımızdandır.'),
+                    ('El sanatı',
+                     'Aşağıdakilerden hangisi geleneksel el sanatlarımızdandır?',
+                     'Halı dokumacılığı',
+                     ['Robot yapımı', 'Bilgisayar programlama', 'Yazılım geliştirme', 'Uçak üretimi'],
+                     'Halı dokumacılığı geleneksel el sanatlarımızdandır.',
+                     'Yazılım geliştirme geleneksel el sanatlarımızdandır.'),
+                    ('Ebru',
+                     'Suyun üzerine boyalarla desen yapılıp kâğıda aktarılan geleneksel sanata ne denir?',
+                     'Ebru',
+                     ['Çini', 'Kilim', 'Minyatür', 'Hat'],
+                     'Suyun üzerine desen yapılıp kâğıda aktarılan sanata ebru denir.',
+                     'Ebru, kumaşa iğneyle işlenen bir sanattır.'),
+                    ('Çini',
+                     'Pişmiş topraktan yapılıp süslenen ve sırlanan geleneksel el sanatına ne denir?',
+                     'Çini',
+                     ['Ebru', 'Hat', 'Oya', 'Kilim'],
+                     'Çini, sırlı seramik sanatıdır.',
+                     'Çini, suyun üzerine desen yapma sanatıdır.'),
+                    ('Halk oyunu', 'Aşağıdakilerden hangisi halk oyunlarımızdandır?', 'Zeybek', ['Vals', 'Bale', 'Tango', 'Polka'], 'Zeybek, halk oyunlarımızdandır.', 'Bale, halk oyunlarımızdandır.'),
+                    ('Halk oyunu Horon',
+                     'Karadeniz Bölgesi’yle özdeşleşen halk oyunumuz hangisidir?',
+                     'Horon',
+                     ['Zeybek', 'Halay', 'Bar', 'Kaşık oyunu'],
+                     'Horon, Karadeniz Bölgesi’yle özdeşleşmiş bir halk oyunudur.',
+                     'Horon, Ege Bölgesi’yle özdeşleşmiş bir halk oyunudur.'),
+                    ('Mutfak kültürü',
+                     'Aşağıdakilerden hangisi geleneksel Türk yemeklerindendir?',
+                     'Mantı',
+                     ['Sushi', 'Hamburger', 'Pizza', 'Tako'],
+                     'Mantı, geleneksel Türk yemeklerindendir.',
+                     'Sushi, geleneksel Türk yemeklerindendir.'),
+                    ('Deyim tanımı',
+                     'Gerçek anlamlarından ayrı, genellikle mecaz anlamda kullanılan kalıplaşmış söz öbeklerine ne denir?',
+                     'Deyim',
+                     ['Atasözü', 'Bilmece', 'Mani', 'Tekerleme'],
+                     'Deyim, kalıplaşmış ve çoğu zaman mecaz anlamlı söz öbeğidir.',
+                     'Deyim, yalnızca bir cümle uzunluğunda öğüt veren sözdür.'),
+                    ('Atasözü tanımı',
+                     'Uzun deneyimlerden doğan, öğüt veren kalıplaşmış cümlelere ne ad verilir?',
+                     'Atasözü',
+                     ['Deyim', 'Bilmece', 'Fıkra', 'Şarkı'],
+                     'Atasözleri, öğüt veren ve kalıplaşmış cümlelerdir.',
+                     'Atasözleri, öğüt vermeyen sıradan cümlelerdir.'),
+                    ('Deyim anlamı',
+                     '“Ağzı kulaklarına varmak” deyimi ne anlama gelir?',
+                     'Çok sevinmek',
+                     ['Çok üzülmek', 'Çok yemek yemek', 'Çok konuşmak', 'Çok korkmak'],
+                     '“Ağzı kulaklarına varmak” çok sevinmek demektir.',
+                     '“Ağzı kulaklarına varmak” çok üzülmek demektir.'),
+                    ('Atasözü anlamı',
+                     '“Damlaya damlaya göl olur.” atasözü hangi öğüdü verir?',
+                     'Küçük birikimler zamanla büyür',
+                     ['Gölde yüzmek tehlikelidir', 'Su israf edilmelidir', 'Yağmur her zaman yağar', 'Göller kurur'],
+                     'Bu atasözü, küçük birikimlerin zamanla büyüdüğünü anlatır.',
+                     'Bu atasözü, suyun israf edilmesi gerektiğini anlatır.'),
+                    ('Atasözü',
+                     '“Bir elin nesi var, iki elin sesi var.” atasözü neyi vurgular?',
+                     'Birlikte çalışmanın gücünü',
+                     ['Tek başına çalışmayı', 'Gürültü yapmayı', 'El becerisini', 'Yalnız yaşamayı'],
+                     'Bu atasözü, birlikte çalışmanın gücünü vurgular.',
+                     'Bu atasözü, tek başına çalışmanın daha iyi olduğunu vurgular.')],
+ 'İletişim ve Sosyal İlişkiler': [('İletişim',
+                                   'Duygu, düşünce ve bilgilerin sözlü ya da sözsüz yollarla başkalarına aktarılmasına ne denir?',
+                                   'İletişim',
+                                   ['Yarışma', 'Ezber', 'Savunma', 'Seçim'],
+                                   'İletişim, duygu ve düşüncelerin aktarılmasıdır.',
+                                   'İletişim, duygu ve düşüncelerin saklanmasıdır.'),
+                                  ('Empati',
+                                   'Kendimizi karşımızdakinin yerine koyarak onun duygularını anlamaya çalışmaya ne ad verilir?',
+                                   'Empati',
+                                   ['Kıskançlık', 'Bencillik', 'Tembellik', 'Öfke'],
+                                   'Empati, karşımızdakinin duygularını anlamaya çalışmaktır.',
+                                   'Empati, yalnızca kendi duygularımızı düşünmektir.'),
+                                  ('Olumlu dil',
+                                   'Aşağıdakilerden hangisi olumlu dil kullanımına örnektir?',
+                                   '“Lütfen sessiz olur musun?”',
+                                   ['“Sus artık!”', '“Hiçbir şey bilmiyorsun.”', '“Beni rahatsız etme.”', '“Hep yanlış yapıyorsun.”'],
+                                   '“Lütfen sessiz olur musun?” olumlu bir dil örneğidir.',
+                                   '“Sus artık!” olumlu bir dil örneğidir.'),
+                                  ('İletişim kazası',
+                                   'İletişimde söylenenin yanlış anlaşılması sonucu ortaya çıkan sorunlara ne denir?',
+                                   'İletişim kazası',
+                                   ['Doğal afet', 'Trafik kazası', 'Yazım hatası', 'Ses bilgisi'],
+                                   'Yanlış anlaşılmalar iletişim kazalarına yol açar.',
+                                   'İletişim kazaları, tüm mesajların doğru anlaşılması demektir.'),
+                                  ('Dinleme',
+                                   'İyi bir dinleyici aşağıdakilerden hangisini yapar?',
+                                   'Konuşanı sözünü kesmeden dinler',
+                                   ['Sürekli araya girer', 'Başka şeyle ilgilenir', 'Konuşana bakmaz', 'Alay eder'],
+                                   'İyi dinleyici konuşanı sözünü kesmeden dinler.',
+                                   'İyi dinleyici konuşanın sözünü sürekli keser.'),
+                                  ('Komşuluk',
+                                   'Komşularla iyi iletişim kurmak için aşağıdakilerden hangisi uygundur?',
+                                   'Selam vermek ve nazik olmak',
+                                   ['Gürültü yapmak', 'Selam vermemek', 'Kapıyı çarpmak', 'Onları görmezden gelmek'],
+                                   'Komşulara selam vermek ve nazik olmak iyi iletişimdir.',
+                                   'Komşuları görmezden gelmek iyi iletişimdir.'),
+                                  ('Aile iletişimi',
+                                   'Aile içinde sağlıklı iletişimi ne güçlendirir?',
+                                   'Birbirini dinlemek ve saygı göstermek',
+                                   ['Birbirine bağırmak', 'Hiç konuşmamak', 'Sürekli suçlamak', 'Birbirini yok saymak'],
+                                   'Birbirini dinlemek ve saygı göstermek aile iletişimini güçlendirir.',
+                                   'Hiç konuşmamak aile iletişimini güçlendirir.'),
+                                  ('Arkadaşlık',
+                                   'Arkadaşlarla iletişimde aşağıdakilerden hangisi gereklidir?',
+                                   'Saygı ve hoşgörü',
+                                   ['Alay etmek', 'Gizli konuşmak', 'Aşağılamak', 'Dışlamak'],
+                                   'Arkadaşlık ilişkilerinde saygı ve hoşgörü gereklidir.',
+                                   'Arkadaşlık ilişkilerinde alay etmek gereklidir.'),
+                                  ('Hikâye türü',
+                                   'Olay örgüsü içinde yer, zaman ve kişilerin bulunduğu, kurmaca anlatım türüne ne denir?',
+                                   'Hikâye',
+                                   ['Mektup', 'Dilekçe', 'Fıkra', 'Haber'],
+                                   'Hikâyede olaylar, kişiler, yer ve zaman bulunur.',
+                                   'Hikâyede yer, zaman ve kişi bulunmaz.'),
+                                  ('Mektup',
+                                   'Birine uzakta olan kişiye duygu ve düşüncelerimizi iletmek için yazdığımız metin türü hangisidir?',
+                                   'Mektup',
+                                   ['Haber', 'Roman', 'Dilekçe', 'Tutanak'],
+                                   'Mektup, uzaktaki biriyle iletişim kurmak için yazılan bir metindir.',
+                                   'Mektup, resmî bir kuruma başvuru metnidir.'),
+                                  ('Dilekçe',
+                                   'Bir isteğin resmî olarak bildirildiği yazı türüne ne ad verilir?',
+                                   'Dilekçe',
+                                   ['Mektup', 'Şiir', 'Masal', 'Fıkra'],
+                                   'Dilekçe, resmî bir isteğin bildirildiği yazıdır.',
+                                   'Dilekçe, bir şiir türüdür.'),
+                                  ('Şiir',
+                                   'Dize, kıta ve uyak gibi ögeler barındıran edebî metin türü hangisidir?',
+                                   'Şiir',
+                                   ['Haber metni', 'Dilekçe', 'Tutanak', 'Makale'],
+                                   'Şiirde dize ve kıta bulunur.',
+                                   'Şiirde kıta ve dize bulunmaz.'),
+                                  ('Haber metni',
+                                   'Güncel bir olayı kısa ve açık bir dille bildiren metin türü hangisidir?',
+                                   'Haber metni',
+                                   ['Masal', 'Destan', 'Şiir', 'Fabl'],
+                                   'Haber metni, güncel olayları bildirir.',
+                                   'Haber metni, hayal ürünü olayları anlatır.'),
+                                  ('Masal',
+                                   '“Evvel zaman içinde…” gibi sözlerle başlayan, hayal ürünü olayları anlatan metin türü hangisidir?',
+                                   'Masal',
+                                   ['Haber', 'Dilekçe', 'Biyografi', 'Gezi yazısı'],
+                                   'Masallar “evvel zaman içinde…” gibi sözlerle başlar.',
+                                   'Masallar gerçek olayları anlatır ve haber niteliğindedir.')],
+ 'Sağlıklı Yaşıyorum': [('Dengeli beslenme',
+                         'Dengeli beslenmek ne demektir?',
+                         'Vücudun ihtiyaç duyduğu besinleri yeterli ve çeşitli almak',
+                         ['Yalnızca tatlı yemek', 'Hiç öğün yememek', 'Sadece fast food yemek', 'Yalnızca et yemek'],
+                         'Dengeli beslenme, her besin grubundan yeterli ve çeşitli yemektir.',
+                         'Dengeli beslenme, yalnızca tatlı yemektir.'),
+                        ('Kahvaltı',
+                         'Günün en önemli öğünlerinden biri olduğu söylenen öğün hangisidir?',
+                         'Kahvaltı',
+                         ['Gece atıştırması', 'Yatmadan önceki yemek', 'Hiçbir öğün', 'Gece yarısı yemeği'],
+                         'Kahvaltı, günün en önemli öğünlerinden biridir.',
+                         'Kahvaltı yapmak sağlık için hiç önemli değildir.'),
+                        ('Su içmek',
+                         'Sağlıklı yaşam için gün boyunca yeterince hangi içecek içilmelidir?',
+                         'Su',
+                         ['Gazlı içecek', 'Enerji içeceği', 'Meyve aromalı şeker şurubu', 'Kolalı içecek'],
+                         'Sağlıklı yaşam için yeterli su içilmelidir.',
+                         'Sağlıklı yaşam için su yerine gazlı içecek tercih edilmelidir.'),
+                        ('Hijyen',
+                         'Yemekten önce ve tuvaletten sonra ne yapmalıyız?',
+                         'Ellerimizi sabunla yıkamalıyız',
+                         ['Ellerimizi hiç yıkamamalıyız', 'Yalnızca elimizi silmeliyiz', 'Su ile oynamalıyız', 'Ellerimizi ağzımıza götürmeliyiz'],
+                         'Elleri sabunla yıkamak hijyenin temelidir.',
+                         'Elleri yıkamak hijyen için gerekli değildir.'),
+                        ('Diş fırçalama',
+                         'Dişlerimizi günde en az kaç kez fırçalamamız önerilir?',
+                         'Günde iki kez',
+                         ['Haftada bir kez', 'Ayda bir kez', 'Hiç fırçalamamalıyız', 'Yılda bir kez'],
+                         'Dişler günde en az iki kez fırçalanmalıdır.',
+                         'Dişler yılda bir kez fırçalanmalıdır.'),
+                        ('Uyku',
+                         'Sağlıklı bir çocuğun uykusu hakkında aşağıdakilerden hangisi doğrudur?',
+                         'Düzenli ve yeterli uyumalıdır',
+                         ['Hiç uyumamalıdır', 'Gündüz uyuyup gece oyun oynamalıdır', 'Her gün farklı saatte yatmalıdır', 'Yalnızca hafta sonu uyumalıdır'],
+                         'Çocukların düzenli ve yeterli uyuması gerekir.',
+                         'Çocukların hiç uyumaması gerekir.'),
+                        ('Egzersiz',
+                         'Düzenli egzersiz yapmanın bir faydası aşağıdakilerden hangisidir?',
+                         'Vücudu güçlendirir',
+                         ['Bağışıklığı zayıflatır', 'Kasları eritir', 'Uykuyu bozar', 'Sağlığı bozar'],
+                         'Düzenli egzersiz vücudu güçlendirir.',
+                         'Düzenli egzersiz bağışıklığı zayıflatır.'),
+                        ('Spor', 'Aşağıdakilerden hangisi bir spor dalıdır?', 'Yüzme', ['Yemek yapma', 'Resim çizme', 'Uyuma', 'Kitap okuma'], 'Yüzme bir spor dalıdır.', 'Uyumak bir spor dalıdır.'),
+                        ('İlk yardım tanım',
+                         'Bir kaza veya hastalık anında doktor gelene kadar yapılan ilk müdahaleye ne denir?',
+                         'İlk yardım',
+                         ['Tedavi', 'Ameliyat', 'İlaç tedavisi', 'Rapor'],
+                         'İlk yardım, sağlık görevlisi gelene kadar yapılan müdahaledir.',
+                         'İlk yardım, hastanede yapılan ameliyatın adıdır.'),
+                        ('Acil numara',
+                         'Ambulans çağırmak için Türkiye’de aranacak acil çağrı numarası aşağıdakilerden hangisidir?',
+                         '112',
+                         ['110', '155', '156', '177'],
+                         'Ambulans çağırmak için 112 aranır.',
+                         'Ambulans çağırmak için 156 aranır.'),
+                        ('Küçük yara',
+                         'Küçük bir yara oluştuğunda ilk olarak ne yapılır?',
+                         'Temiz suyla yıkanır',
+                         ['Hiç dokunulmaz', 'Toprak sürülür', 'Kirli bezle kapatılır', 'Sıcak yağ dökülür'],
+                         'Küçük yara önce temiz suyla yıkanır.',
+                         'Küçük yara önce toprakla kapatılır.'),
+                        ('Bilgilendirici metin',
+                         'Okuyucuyu bir konuda bilgilendirmek amacıyla yazılan metinlere ne denir?',
+                         'Bilgilendirici metin',
+                         ['Hikâye edici metin', 'Masal', 'Şiir', 'Fabl'],
+                         'Bilgilendirici metinler okuyucuyu bilgilendirir.',
+                         'Bilgilendirici metinler yalnızca hayal ürünü olaylar anlatır.'),
+                        ('Bilgilendirici metin özelliği',
+                         'Bilgilendirici metinde aşağıdakilerden hangisi aranır?',
+                         'Doğru ve güvenilir bilgi',
+                         ['Hayali kahramanlar', 'Mecazlı anlatım', 'Gizemli olaylar', 'Uydurma bilgi'],
+                         'Bilgilendirici metinde doğru ve güvenilir bilgi bulunur.',
+                         'Bilgilendirici metinde uydurma bilgi bulunur.'),
+                        ('Sağlıklı atıştırmalık',
+                         'Aşağıdakilerden hangisi sağlıklı bir atıştırmalıktır?',
+                         'Taze meyve',
+                         ['Cips', 'Şekerleme', 'Gazlı içecek', 'Kızartma'],
+                         'Taze meyve sağlıklı bir atıştırmalıktır.',
+                         'Cips sağlıklı bir atıştırmalıktır.'),
+                        ('Ekran süresi',
+                         'Gözlerimizi korumak için ekran karşısında geçirilen süre nasıl olmalıdır?',
+                         'Sınırlı olmalıdır',
+                         ['Gün boyu sürmelidir', 'Geceleri sabaha kadar sürmelidir', 'Hiç ara verilmemelidir', 'Ne kadar uzun olursa o kadar iyidir'],
+                         'Ekran süresi sınırlı tutulmalıdır.',
+                         'Ekran karşısında gün boyu kalmak gözlerimiz için iyidir.')]}
+_TFACTS_KW = {'Oyun Dünyası': ('oyun dünyası', 'geleneksel çocuk', 'kurallı oyun', 'anahtar kelime', 'yüzey anlam', 'söz varlığı'),
+ "Atatürk'ü Tanımak": ('atatürk', 'millî mücadele', 'milli mücadele', 'istiklal marşı', '23 nisan', 'cumhuriyet', 'ana fikir'),
+ 'Duygularımı Tanıyorum': ('duygularımı', 'temel duygu', 'duygu yönetimi', 'duygu ve davranış', 'görselle iletilen'),
+ 'Geleneklerimiz': ('gelenek', 'görenek', 'kutlama', 'misafirperver', 'el sanat', 'halk oyun', 'mutfak kültürü', 'deyim', 'atasöz'),
+ 'İletişim ve Sosyal İlişkiler': ('iletişim', 'olumlu dil', 'empati', 'metin türleri', 'komşuluk'),
+ 'Sağlıklı Yaşıyorum': ('sağlıklı yaşıyorum', 'dengeli beslen', 'hijyen', 'uyku ve egzersiz', 'ilk yardım', 'spor', 'bilgilendirici metin')}
+_EFACTS = {'School Life': [('School places',
+                  'Where do students borrow books at school?',
+                  'In the library',
+                  ['In the canteen', 'In the gym', 'In the garden', 'In the laboratory'],
+                  'Students borrow books in the library.',
+                  'Students borrow books in the canteen.'),
+                 ('School places',
+                  'Where do students do experiments in science lessons?',
+                  'In the laboratory',
+                  ['In the library', 'In the canteen', 'In the playground', 'In the music room'],
+                  'Students do experiments in the laboratory.',
+                  'Students do experiments in the canteen.'),
+                 ('School rules',
+                  'Which sentence is a school rule?',
+                  'You mustn’t run in the corridor.',
+                  ['You can run in the corridor.', 'You should run in the corridor.', 'You may run in the corridor.', 'You like running in the corridor.'],
+                  'You mustn’t run in the corridor.',
+                  'You mustn’t to run in the corridor.'),
+                 ('Mustn’t', 'You ___ eat in the library.', 'mustn’t', ['must', 'can', 'are', 'do'], 'You mustn’t eat in the library.', 'You mustn’t eats in the library.'),
+                 ('Can’t',
+                  'Students ___ use mobile phones in the exam.',
+                  'can’t',
+                  ['can', 'do', 'are', 'is'],
+                  'Students can’t use mobile phones in the exam.',
+                  'Students can’t uses mobile phones in the exam.'),
+                 ('Imperatives',
+                  'Which sentence is an imperative?',
+                  'Open your book.',
+                  ['She opens her book.', 'He is opening his book.', 'I open my book.', 'They open their books.'],
+                  'Open your book.',
+                  'Opens your book.'),
+                 ('Imperatives', 'The teacher says, “___ quiet, please.”', 'Be', ['Is', 'Are', 'Am', 'Being'], 'Be quiet, please.', 'Is quiet, please.'),
+                 ('Clubs',
+                  'Which club is for people who like painting?',
+                  'Art club',
+                  ['Chess club', 'Drama club', 'Football club', 'Science club'],
+                  'Art club is for people who like painting.',
+                  'Chess club is for people who like painting.'),
+                 ('Clubs',
+                  'Which club is for people who like acting?',
+                  'Drama club',
+                  ['Art club', 'Chess club', 'Music club', 'Cooking club'],
+                  'Drama club is for people who like acting.',
+                  'Chess club is for people who like acting.'),
+                 ('Countries', 'Which one is a country?', 'Germany', ['Paris', 'Berlin', 'Europe', 'London'], 'Germany is a country.', 'Paris is a country.'),
+                 ('Countries', 'A person from Japan is ___.', 'Japanese', ['Japan', 'Chinese', 'Turkish', 'German'], 'A person from Japan is Japanese.', 'A person from Japan is Chinese.'),
+                 ('National days',
+                  'In Turkey, National Sovereignty and Children’s Day is on ___.',
+                  'April 23rd',
+                  ['October 29th', 'May 19th', 'August 30th', 'January 1st'],
+                  'National Sovereignty and Children’s Day is on April 23rd.',
+                  'National Sovereignty and Children’s Day is on October 29th.'),
+                 ('National days',
+                  'In Turkey, Republic Day is on ___.',
+                  'October 29th',
+                  ['April 23rd', 'May 19th', 'August 30th', 'March 8th'],
+                  'Republic Day is on October 29th.',
+                  'Republic Day is on April 23rd.'),
+                 ('Simple Present', 'My sister ___ to school by bus.', 'goes', ['go', 'going', 'is go', 'gone'], 'My sister goes to school by bus.', 'My sister go to school by bus.')],
+ 'Classroom Life': [('Classroom objects',
+                     'Which one do we use to write on paper?',
+                     'A pen',
+                     ['A ruler', 'An eraser', 'A bag', 'A desk'],
+                     'We use a pen to write on paper.',
+                     'We use an eraser to write on paper.'),
+                    ('Classroom objects',
+                     'Which one do we use to rub out pencil marks?',
+                     'An eraser',
+                     ['A pen', 'A ruler', 'A book', 'A bag'],
+                     'We use an eraser to rub out pencil marks.',
+                     'We use a ruler to rub out pencil marks.'),
+                    ('Classroom objects',
+                     'Which one do we use to draw straight lines?',
+                     'A ruler',
+                     ['An eraser', 'A glue stick', 'A scissors', 'A notebook'],
+                     'We use a ruler to draw straight lines.',
+                     'We use a glue stick to draw straight lines.'),
+                    ('School subjects', 'Which one is a school subject?', 'Maths', ['Monday', 'Pencil', 'Library', 'Teacher'], 'Maths is a school subject.', 'Monday is a school subject.'),
+                    ('School subjects',
+                     'In which lesson do we learn about plants and animals?',
+                     'Science',
+                     ['Music', 'P.E.', 'Art', 'Maths'],
+                     'We learn about plants and animals in Science.',
+                     'We learn about plants and animals in Music.'),
+                    ('Days of the week', 'Which day comes after Tuesday?', 'Wednesday', ['Monday', 'Thursday', 'Friday', 'Sunday'], 'Wednesday comes after Tuesday.', 'Monday comes after Tuesday.'),
+                    ('Days of the week',
+                     'Which days are in the weekend?',
+                     'Saturday and Sunday',
+                     ['Monday and Tuesday', 'Friday and Saturday', 'Sunday and Monday', 'Wednesday and Thursday'],
+                     'Saturday and Sunday are the weekend days.',
+                     'Friday and Saturday are the weekend days.'),
+                    ('Timetable', 'We have English ___ Monday.', 'on', ['in', 'at', 'to', 'of'], 'We have English on Monday.', 'We have English in Monday.'),
+                    ('Telling the time',
+                     'What time is it? 3:30',
+                     'It’s half past three.',
+                     ['It’s half past four.', 'It’s quarter past three.', 'It’s quarter to three.', 'It’s three o’clock.'],
+                     '3:30 is half past three.',
+                     '3:30 is half past four.'),
+                    ('Telling the time',
+                     'What time is it? 7:15',
+                     'It’s quarter past seven.',
+                     ['It’s quarter to seven.', 'It’s half past seven.', 'It’s seven o’clock.', 'It’s quarter past eight.'],
+                     '7:15 is quarter past seven.',
+                     '7:15 is quarter to seven.'),
+                    ('Telling the time',
+                     'What time is it? 9:45',
+                     'It’s quarter to ten.',
+                     ['It’s quarter past nine.', 'It’s half past nine.', 'It’s quarter to nine.', 'It’s ten o’clock.'],
+                     '9:45 is quarter to ten.',
+                     '9:45 is quarter past nine.'),
+                    ('There is/are', 'There ___ a book on the desk.', 'is', ['are', 'am', 'be', 'have'], 'There is a book on the desk.', 'There are a book on the desk.'),
+                    ('There is/are', 'There ___ twenty students in our class.', 'are', ['is', 'am', 'has', 'be'], 'There are twenty students in our class.', 'There is twenty students in our class.')],
+ 'Personal Life': [('Body parts', 'Which part of the body do we use to hear?', 'Ears', ['Eyes', 'Nose', 'Mouth', 'Hands'], 'We use our ears to hear.', 'We use our eyes to hear.'),
+                   ('Body parts', 'Which part of the body do we use to see?', 'Eyes', ['Ears', 'Nose', 'Feet', 'Mouth'], 'We use our eyes to see.', 'We use our nose to see.'),
+                   ('Appearance', 'She has long, curly hair. Which word describes her hair?', 'curly', ['tall', 'young', 'heavy', 'slim'], 'Curly describes hair.', 'Tall describes hair.'),
+                   ('Clothes', 'Which one do we wear on our feet?', 'Shoes', ['Hat', 'Scarf', 'Gloves', 'Jacket'], 'We wear shoes on our feet.', 'We wear gloves on our feet.'),
+                   ('Clothes', 'It is cold. I wear a ___.', 'coat', ['swimsuit', 'T-shirt', 'sandals', 'shorts'], 'It is cold, so I wear a coat.', 'It is cold, so I wear a swimsuit.'),
+                   ('Clothes', 'It is very hot. I wear ___.', 'shorts', ['a scarf', 'gloves', 'a coat', 'boots'], 'It is very hot, so I wear shorts.', 'It is very hot, so I wear gloves.'),
+                   ('Daily routines',
+                    'I ___ up at seven o’clock every day.',
+                    'get',
+                    ['gets', 'getting', 'am get', 'got to'],
+                    'I get up at seven o’clock every day.',
+                    'I gets up at seven o’clock every day.'),
+                   ('Daily routines',
+                    'He ___ his teeth after breakfast.',
+                    'brushes',
+                    ['brush', 'brushing', 'is brush', 'brushs'],
+                    'He brushes his teeth after breakfast.',
+                    'He brush his teeth after breakfast.'),
+                   ('Daily routines',
+                    'Which one is the first in a normal day?',
+                    'get up',
+                    ['go to bed', 'have dinner', 'do homework', 'watch TV'],
+                    'In the morning we get up first.',
+                    'In the morning we go to bed first.'),
+                   ('Adverbs of frequency',
+                    'I brush my teeth every day. I ___ brush my teeth.',
+                    'always',
+                    ['never', 'rarely', 'seldom', 'hardly ever'],
+                    'I always brush my teeth every day.',
+                    'I never brush my teeth every day.'),
+                   ('Adverbs of frequency', 'Which word means 0% of the time?', 'never', ['always', 'usually', 'often', 'sometimes'], 'Never means 0% of the time.', 'Always means 0% of the time.'),
+                   ('Adverbs of frequency',
+                    'She ___ goes to school late. She is always on time.',
+                    'never',
+                    ['always', 'usually', 'often', 'every'],
+                    'She never goes to school late.',
+                    'She always goes to school late.'),
+                   ('Question tags', 'You are a student, ___?', 'aren’t you', ['are you', 'don’t you', 'isn’t you', 'do you'], 'You are a student, aren’t you?', 'You are a student, don’t you?'),
+                   ('Question tags', 'She likes music, ___?', 'doesn’t she', ['isn’t she', 'don’t she', 'does she', 'doesn’t he'], 'She likes music, doesn’t she?', 'She likes music, isn’t she?')],
+ 'Family Life': [('Family members',
+                  'Your mother’s sister is your ___.',
+                  'aunt',
+                  ['uncle', 'cousin', 'grandmother', 'niece'],
+                  'Your mother’s sister is your aunt.',
+                  'Your mother’s sister is your uncle.'),
+                 ('Family members',
+                  'Your father’s father is your ___.',
+                  'grandfather',
+                  ['uncle', 'brother', 'cousin', 'nephew'],
+                  'Your father’s father is your grandfather.',
+                  'Your father’s father is your uncle.'),
+                 ('Chores', 'Which one is a chore?', 'wash the dishes', ['play chess', 'watch TV', 'read a comic', 'listen to music'], 'Washing the dishes is a chore.', 'Watching TV is a chore.'),
+                 ('Chores', 'I ___ the table before dinner.', 'set', ['play', 'sing', 'watch', 'ride'], 'I set the table before dinner.', 'I ride the table before dinner.'),
+                 ('Chores',
+                  'My brother ___ the rubbish out every evening.',
+                  'takes',
+                  ['take', 'taking', 'is take', 'taked'],
+                  'My brother takes the rubbish out every evening.',
+                  'My brother take the rubbish out every evening.'),
+                 ('Hobbies',
+                  'Which one is a hobby?',
+                  'collecting stamps',
+                  ['washing dishes', 'cleaning the floor', 'making the bed', 'taking out rubbish'],
+                  'Collecting stamps is a hobby.',
+                  'Cleaning the floor is a hobby.'),
+                 ('Hobbies', 'She likes ___ the guitar.', 'playing', ['play', 'plays', 'to plays', 'played'], 'She likes playing the guitar.', 'She likes play the guitar.'),
+                 ('Present Progressive', 'Look! The baby ___ now.', 'is sleeping', ['sleeps', 'sleep', 'are sleeping', 'sleeped'], 'Look! The baby is sleeping now.', 'Look! The baby sleeps now.'),
+                 ('Present Progressive',
+                  'My parents ___ TV at the moment.',
+                  'are watching',
+                  ['is watching', 'watches', 'watch', 'am watching'],
+                  'My parents are watching TV at the moment.',
+                  'My parents is watching TV at the moment.'),
+                 ('Present Progressive', 'I ___ my homework right now.', 'am doing', ['do', 'is doing', 'are doing', 'does'], 'I am doing my homework right now.', 'I is doing my homework right now.'),
+                 ('Present vs Simple',
+                  'My mother usually ___ at 7, but today she is cooking at 6.',
+                  'cooks',
+                  ['cook', 'is cooking', 'cooking', 'are cooking'],
+                  'My mother usually cooks at 7.',
+                  'My mother usually is cooking at 7.'),
+                 ('Present vs Simple',
+                  'Which sentence is about a habit?',
+                  'He plays football every Saturday.',
+                  ['He is playing football now.', 'He is playing football at the moment.', 'Look! He is playing football.', 'He is playing football today.'],
+                  'He plays football every Saturday.',
+                  'He is playing football every Saturday.'),
+                 ('Present vs Simple',
+                  'Which sentence is about now?',
+                  'They are cleaning the kitchen now.',
+                  ['They clean the kitchen every day.', 'They always clean the kitchen.', 'They clean the kitchen on Sundays.', 'They never clean the kitchen.'],
+                  'They are cleaning the kitchen now.',
+                  'They cleans the kitchen now.')],
+ 'Life in the Neighbourhood & City': [('Places for recreation',
+                                       'Where can you swim in the city?',
+                                       'At the swimming pool',
+                                       ['At the library', 'At the post office', 'At the bakery', 'At the bank'],
+                                       'You can swim at the swimming pool.',
+                                       'You can swim at the library.'),
+                                      ('Places for recreation',
+                                       'Where can you watch a film?',
+                                       'At the cinema',
+                                       ['At the bakery', 'At the hospital', 'At the bank', 'At the pharmacy'],
+                                       'You can watch a film at the cinema.',
+                                       'You can watch a film at the bakery.'),
+                                      ('Places for recreation',
+                                       'Where can you buy bread?',
+                                       'At the bakery',
+                                       ['At the cinema', 'At the library', 'At the park', 'At the museum'],
+                                       'You can buy bread at the bakery.',
+                                       'You can buy bread at the cinema.'),
+                                      ('Types of houses',
+                                       'Which house is in the countryside and has a garden?',
+                                       'A farmhouse',
+                                       ['A flat', 'A skyscraper', 'A block of flats', 'A hotel'],
+                                       'A farmhouse is in the countryside and has a garden.',
+                                       'A skyscraper is in the countryside and has a garden.'),
+                                      ('Types of houses',
+                                       'Many families live in the same tall building. It is a ___.',
+                                       'block of flats',
+                                       ['farmhouse', 'tent', 'cottage', 'villa'],
+                                       'A block of flats is a tall building where many families live.',
+                                       'A cottage is a tall building where many families live.'),
+                                      ('Comparatives',
+                                       'A bus is ___ than a bicycle.',
+                                       'faster',
+                                       ['fast', 'fastest', 'more fast', 'most fast'],
+                                       'A bus is faster than a bicycle.',
+                                       'A bus is fastest than a bicycle.'),
+                                      ('Comparatives',
+                                       'This street is ___ than that street.',
+                                       'wider',
+                                       ['wide', 'widest', 'more wide', 'wideer'],
+                                       'This street is wider than that street.',
+                                       'This street is more wide than that street.'),
+                                      ('Comparatives',
+                                       'A flat is usually ___ than a villa.',
+                                       'smaller',
+                                       ['small', 'smallest', 'more small', 'smallest than'],
+                                       'A flat is usually smaller than a villa.',
+                                       'A flat is usually smallest than a villa.'),
+                                      ('Comparatives',
+                                       'The museum is ___ than the school.',
+                                       'more interesting',
+                                       ['interestinger', 'most interesting', 'interesting', 'more interestinger'],
+                                       'The museum is more interesting than the school.',
+                                       'The museum is interestinger than the school.'),
+                                      ('Possessive ’s', 'This is ___ bag.', 'Ali’s', ['Alis', 'Ali', 'Alis’', 'Ali is'], 'This is Ali’s bag.', 'This is Alis bag.'),
+                                      ('Possessive ’s',
+                                       'Which sentence is correct?',
+                                       'That is my sister’s room.',
+                                       ['That is my sisters room.', 'That is my sister room.', 'That is my sisters’s room.', 'That is my sister is room.'],
+                                       'That is my sister’s room.',
+                                       'That is my sisters room.'),
+                                      ('There is/are',
+                                       'There ___ two parks in my neighbourhood.',
+                                       'are',
+                                       ['is', 'am', 'be', 'has'],
+                                       'There are two parks in my neighbourhood.',
+                                       'There is two parks in my neighbourhood.'),
+                                      ('There is/are',
+                                       'There ___ a hospital near my house.',
+                                       'is',
+                                       ['are', 'am', 'have', 'be'],
+                                       'There is a hospital near my house.',
+                                       'There are a hospital near my house.')],
+ 'Life in the World': [('Food types', 'Which one is a fruit?', 'Apple', ['Carrot', 'Bread', 'Cheese', 'Rice'], 'An apple is a fruit.', 'A carrot is a fruit.'),
+                       ('Food types', 'Which one is a vegetable?', 'Carrot', ['Banana', 'Orange', 'Cake', 'Milk'], 'A carrot is a vegetable.', 'A banana is a vegetable.'),
+                       ('Food types', 'Which one is a drink?', 'Orange juice', ['Spaghetti', 'Cheese', 'Bread', 'Pizza'], 'Orange juice is a drink.', 'Pizza is a drink.'),
+                       ('Ordering in a restaurant', 'The waiter asks, “___ I take your order?”', 'Can', ['Does', 'Are', 'Is', 'Has'], 'Can I take your order?', 'Are I take your order?'),
+                       ('Ordering in a restaurant',
+                        'You want a glass of water. You say, “I’d like a glass of ___, please.”',
+                        'water',
+                        ['fork', 'plate', 'table', 'menu'],
+                        'I’d like a glass of water, please.',
+                        'I’d like a glass of fork, please.'),
+                       ('Ordering in a restaurant',
+                        'Which one is a polite way to order food?',
+                        'I’d like a soup, please.',
+                        ['Give me soup.', 'Soup now!', 'I want soup quickly.', 'Bring soup.'],
+                        'I’d like a soup, please.',
+                        'I’d like soup now!'),
+                       ('Countable/uncountable', 'Which noun is uncountable?', 'water', ['apple', 'banana', 'egg', 'tomato'], 'Water is an uncountable noun.', 'Apple is an uncountable noun.'),
+                       ('Countable/uncountable', 'There ___ some milk in the fridge.', 'is', ['are', 'am', 'have', 'be'], 'There is some milk in the fridge.', 'There are some milk in the fridge.'),
+                       ('Countable/uncountable', 'How ___ eggs are there?', 'many', ['much', 'a lot', 'any', 'little'], 'How many eggs are there?', 'How much eggs are there?'),
+                       ('Countable/uncountable', 'How ___ sugar do you want?', 'much', ['many', 'few', 'a', 'any'], 'How much sugar do you want?', 'How many sugar do you want?'),
+                       ('Have got',
+                        'She ___ a sandwich in her bag.',
+                        'has got',
+                        ['have got', 'is got', 'got has', 'are got'],
+                        'She has got a sandwich in her bag.',
+                        'She have got a sandwich in her bag.'),
+                       ('Have got', 'They ___ any bread.', 'haven’t got', ['hasn’t got', 'don’t has', 'isn’t got', 'aren’t got'], 'They haven’t got any bread.', 'They hasn’t got any bread.'),
+                       ('Can for permission',
+                        '“___ I go to the toilet, please?” “Yes, you can.”',
+                        'Can',
+                        ['Do', 'Am', 'Are', 'Must'],
+                        'Can I go to the toilet, please?',
+                        'Am I go to the toilet, please?'),
+                       ('Food events',
+                        'Which sentence is about a restaurant?',
+                        'The waiter brings the menu.',
+                        ['The teacher opens the book.', 'The pilot flies the plane.', 'The doctor checks the patient.', 'The farmer milks the cow.'],
+                        'The waiter brings the menu in a restaurant.',
+                        'The pilot brings the menu in a restaurant.')],
+ 'Life in Nature': [('Types of animals', 'Which animal is a bird?', 'Eagle', ['Lion', 'Dolphin', 'Snake', 'Frog'], 'An eagle is a bird.', 'A lion is a bird.'),
+                    ('Types of animals',
+                     'Which animal lives in water and is a mammal?',
+                     'Dolphin',
+                     ['Eagle', 'Elephant', 'Parrot', 'Camel'],
+                     'A dolphin is a sea mammal.',
+                     'An eagle is a sea mammal.'),
+                    ('Wild animals', 'Which one is a wild animal?', 'Tiger', ['Cow', 'Sheep', 'Hen', 'Cat'], 'A tiger is a wild animal.', 'A cow is a wild animal.'),
+                    ('Wild animals', 'Which animal has a very long neck?', 'Giraffe', ['Zebra', 'Monkey', 'Rabbit', 'Bear'], 'A giraffe has a very long neck.', 'A rabbit has a very long neck.'),
+                    ('Habitats',
+                     'Where do polar bears live?',
+                     'In the Arctic',
+                     ['In the desert', 'In the jungle', 'In the forest', 'In the sea only'],
+                     'Polar bears live in the Arctic.',
+                     'Polar bears live in the desert.'),
+                    ('Habitats', 'Which animal lives in the desert?', 'Camel', ['Penguin', 'Polar bear', 'Whale', 'Parrot'], 'A camel lives in the desert.', 'A penguin lives in the desert.'),
+                    ('Habitats',
+                     'Where do monkeys usually live?',
+                     'In the jungle',
+                     ['In the desert', 'In the Arctic', 'In the ocean', 'In the sky'],
+                     'Monkeys usually live in the jungle.',
+                     'Monkeys usually live in the ocean.'),
+                    ('Can', 'Fish ___ swim.', 'can', ['can’t', 'must', 'mustn’t', 'do'], 'Fish can swim.', 'Fish can’t swim.'),
+                    ('Can', 'Penguins ___ fly, but they can swim.', 'can’t', ['can', 'must', 'do', 'are'], 'Penguins can’t fly, but they can swim.', 'Penguins can fly, but they can’t swim.'),
+                    ('Must', 'You ___ feed the wild animals. It is dangerous.', 'mustn’t', ['must', 'can', 'may', 'are'], 'You mustn’t feed the wild animals.', 'You must feed the wild animals.'),
+                    ('Must', 'We ___ protect nature.', 'must', ['mustn’t', 'can’t', 'doesn’t', 'isn’t'], 'We must protect nature.', 'We mustn’t protect nature.'),
+                    ('Superlatives',
+                     'The cheetah is ___ animal on land.',
+                     'the fastest',
+                     ['faster', 'fast', 'the most fast', 'more fast'],
+                     'The cheetah is the fastest animal on land.',
+                     'The cheetah is the most fast animal on land.'),
+                    ('Comparatives',
+                     'An elephant is ___ than a horse.',
+                     'bigger',
+                     ['big', 'biggest', 'more big', 'the bigger'],
+                     'An elephant is bigger than a horse.',
+                     'An elephant is biggest than a horse.'),
+                    ('Superlatives',
+                     'The blue whale is ___ animal in the world.',
+                     'the biggest',
+                     ['bigger', 'big', 'more big', 'biggest than'],
+                     'The blue whale is the biggest animal in the world.',
+                     'The blue whale is bigger animal in the world.')],
+ 'Life in the Universe & Future': [('Planet Earth', 'Which planet do we live on?', 'Earth', ['Mars', 'Venus', 'Jupiter', 'Saturn'], 'We live on planet Earth.', 'We live on planet Mars.'),
+                                   ('Planet Earth',
+                                    'Which one is the star in our solar system?',
+                                    'The Sun',
+                                    ['The Moon', 'Earth', 'Mars', 'Venus'],
+                                    'The Sun is the star in our solar system.',
+                                    'The Moon is the star in our solar system.'),
+                                   ('Planet Earth',
+                                    'Which planet is called the Red Planet?',
+                                    'Mars',
+                                    ['Venus', 'Earth', 'Neptune', 'Saturn'],
+                                    'Mars is called the Red Planet.',
+                                    'Venus is called the Red Planet.'),
+                                   ('Continents', 'Which one is a continent?', 'Africa', ['Turkey', 'Italy', 'Paris', 'Ankara'], 'Africa is a continent.', 'Turkey is a continent.'),
+                                   ('Continents',
+                                    'Which continent is the coldest?',
+                                    'Antarctica',
+                                    ['Africa', 'Asia', 'Australia', 'South America'],
+                                    'Antarctica is the coldest continent.',
+                                    'Africa is the coldest continent.'),
+                                   ('Climate',
+                                    'The weather is very cold and there is a lot of snow. It is ___.',
+                                    'snowy',
+                                    ['sunny', 'hot', 'windy only', 'dry'],
+                                    'When there is a lot of snow, it is snowy.',
+                                    'When there is a lot of snow, it is sunny.'),
+                                   ('Seasons', 'Which season comes after winter?', 'Spring', ['Summer', 'Autumn', 'Winter', 'Fall'], 'Spring comes after winter.', 'Summer comes after winter.'),
+                                   ('Seasons',
+                                    'Which month is in summer in Turkey?',
+                                    'July',
+                                    ['December', 'January', 'February', 'March'],
+                                    'July is in summer in Turkey.',
+                                    'December is in summer in Turkey.'),
+                                   ('Seasons',
+                                    'Leaves fall from the trees in ___.',
+                                    'autumn',
+                                    ['spring', 'summer', 'winter', 'July'],
+                                    'Leaves fall from the trees in autumn.',
+                                    'Leaves fall from the trees in spring.'),
+                                   ('School holidays',
+                                    'Students have a long holiday in ___.',
+                                    'summer',
+                                    ['autumn', 'March', 'Monday', 'April'],
+                                    'Students have a long holiday in summer.',
+                                    'Students have a long holiday in autumn.'),
+                                   ('School holidays',
+                                    'We ___ visit our grandparents this summer holiday.',
+                                    'are going to',
+                                    ['is going to', 'go to', 'going to', 'am going to'],
+                                    'We are going to visit our grandparents this summer holiday.',
+                                    'We is going to visit our grandparents this summer holiday.'),
+                                   ('Be going to',
+                                    'I ___ study for the exam tomorrow.',
+                                    'am going to',
+                                    ['is going to', 'are going to', 'going to', 'will going to'],
+                                    'I am going to study for the exam tomorrow.',
+                                    'I is going to study for the exam tomorrow.'),
+                                   ('Be going to', 'She ___ going to travel next week.', 'is', ['are', 'am', 'do', 'does'], 'She is going to travel next week.', 'She are going to travel next week.'),
+                                   ('Be going to', 'What ___ you going to do tomorrow?', 'are', ['is', 'am', 'do', 'does'], 'What are you going to do tomorrow?', 'What is you going to do tomorrow?')]}
+_EFACTS_KW = {'School Life': ('school life', 'clubs', 'national days', "mustn't", 'imperatives', 'countries'),
+ 'Classroom Life': ('classroom', 'school subjects', 'timetable', 'days of the week', 'telling the time', 'there is'),
+ 'Personal Life': ('personal life', 'body parts', 'clothes', 'daily routines', 'adverbs of frequency', 'question tags'),
+ 'Family Life': ('family life', 'chores', 'hobbies', 'present progressive'),
+ 'Life in the Neighbourhood & City': ('neighbourhood', 'city', 'recreation', 'possessive', 'types of houses'),
+ 'Life in the World': ('life in the world', 'food', 'restaurant', 'countable', 'have got', 'permission'),
+ 'Life in Nature': ('nature', 'animals', 'habitats', 'wild'),
+ 'Life in the Universe & Future': ('universe', 'planet', 'continents', 'seasons', 'school holidays', 'be going to')}
+
+
+_BANK_STEMS_TR = ["{u} ünitesiyle ilgili aşağıdaki bilgilerden hangisi doğrudur?", "{u} konusunda verilen bilgilerden hangisi doğrudur?", "Aşağıdakilerden hangisi {u} ünitesine ait doğru bir bilgidir?", "{u} ile ilgili aşağıdaki ifadelerden hangisi doğrudur?"]
+_BANK_STEMS_EN = ["Which sentence about “{l}” is correct?", "Which statement about “{l}” is true?", "Choose the correct sentence about “{l}”."]
+
+
+def _bank_gens(unit, F, en):
+    ids = list(range(len(F)))
+    rk = ("fact", unit)
+
+    def pick(k):
+        o = [i for i in _recent_order(rk, ids)][:k]
+        for i in o:
+            _recent_mark(rk, i)
+        return o
+
+    def single(subject):
+        i = pick(1)[0]
+        lab, q, c, wr, t, f = F[i]
+        return _fact_q(subject, unit, q, c, random.sample(wr, 3), t)
+
+    def dogru(subject):
+        o = pick(4)
+        if len(o) < 4:
+            return None
+        c = F[o[0]][4]
+        wr = [F[j][5] for j in o[1:]]
+        stem = random.choice(_BANK_STEMS_EN if en else _BANK_STEMS_TR).replace("{l}", F[o[0]][0]).replace("{u}", unit)
+        return _fact_q(subject, unit, stem, c, wr, (f"“{c}” is correct; the other sentences are wrong." if en else f"“{c}” ifadesi doğrudur; diğer ifadeler yanlıştır."))
+
+    def onc(subject):
+        o = pick(3)
+        if len(o) < 3:
+            return None
+        k = random.choice([1, 2])
+        tv = set(random.sample(range(3), k))
+        items = [(F[o[i]][4] if i in tv else F[o[i]][5], i in tv) for i in range(3)]
+        rom = ["I", "II", "III"]
+        true_set = [rom[i] for i, (_s, v) in enumerate(items) if v]
+        corr = f"Yalnız {true_set[0]}" if len(true_set) == 1 else " ve ".join(true_set)
+        wr = [x for x in _ONC_OPT if x != corr]
+        random.shuffle(wr)
+        opts = sorted([corr] + wr[:3], key=_ONC_OPT.index)
+        body = "\n".join(f"{rom[i]}. {s}" for i, (s, _v) in enumerate(items))
+        q = f"{body}\nYukarıda {unit.lower().replace('İ', 'i')} ile ilgili verilen bilgilerden hangileri doğrudur?"
+        return _mf_raw(subject, unit, q, (opts, corr), "Doğru ifadeler: " + ", ".join(true_set) + ". Diğer ifadeler yanlıştır.")
+
+    return (single, dogru) if en else (single, dogru, onc)
+
+_FACT_ITEM = {
+    # Fen
+    "Gökyüzündeki Komşularımız ve Biz": [0,0,0,0,0,1,1,1,1,1,2,2,2,2,3],
+    "Kuvveti Tanıyalım": [0,0,0,1,1,2,2,2,2,3,3,3,3,3,0],
+    "Canlıların Yapısına Yolculuk": [0,0,0,0,0,0,0,1,1,1,2,2,2,2,2,3],
+    "Işığın Dünyası": [0,0,0,0,1,1,1,1,1,1,2,2,2,2],
+    "Maddenin Doğası": [0,0,0,0,1,1,1,2,2,3,3,3,3,4,4,5],
+    "Yaşamımızdaki Elektrik": [0,0,0,0,1,1,0,1,1,1,2,2,2,1],
+    "Sürdürülebilir Yaşam ve Geri Dönüşüm": [0,1,1,1,1,1,2,2,2,3,3,0,2,3],
+    # Sosyal
+    "Birlikte Yaşamak": [0,0,0,0,1,1,2,2,0,0,1,1,0,2,1],
+    "Evimiz Dünya": [0,1,1,2,2,2,2,2,3,3,3,3,0,0,0],
+    "Ortak Mirasımız": [0,1,1,1,1,1,2,2,2,2,2,2,2,0,0],
+    "Yaşayan Demokrasimiz": [0,0,0,0,0,2,2,2,2,1,3,3,3,0,2],
+    "Hayatımızdaki Ekonomi": [1,1,1,1,1,1,1,0,0,0,0,2,2,2,2],
+    "Teknoloji ve Sosyal Bilimler": [0,0,0,0,1,1,1,0,-1,-1,-1,-1,-1,-1],
+    # Türkçe
+    "Oyun Dünyası": [2,3,4,0,0,1,1,2,4,4,3,4,4,2,3],
+    "Atatürk'ü Tanımak": [0,0,2,2,4,4,3,3,1,1,0,0,0,5,2],
+    "Duygularımı Tanıyorum": [0,0,0,2,1,0,2,0,3,3,3,0,1,3,0],
+    "Geleneklerimiz": [0,2,1,1,3,3,3,4,4,5,6,6,6,6,6],
+    "İletişim ve Sosyal İlişkiler": [0,2,1,3,0,0,0,0,4,4,4,4,4,4],
+    "Sağlıklı Yaşıyorum": [0,0,0,1,1,2,2,4,3,3,3,5,5,0,2],
+    # İngilizce
+    "School Life": [0,0,0,5,5,6,6,1,1,2,2,3,3,4],
+    "Classroom Life": [0,0,0,1,1,3,3,2,4,4,4,5,5],
+    "Personal Life": [0,0,0,1,1,1,2,2,2,3,3,3,4,4],
+    "Family Life": [0,0,2,2,2,1,1,3,3,3,4,4,4],
+    "Life in the Neighbourhood & City": [0,0,0,1,1,2,2,2,2,3,3,4,4],
+    "Life in the World": [0,0,0,1,1,1,3,3,3,3,4,4,5,2],
+    "Life in Nature": [0,0,1,1,2,2,2,3,3,3,3,4,4,4],
+    "Life in the Universe & Future": [0,0,0,1,1,1,2,2,2,3,3,4,4,4],
+    # Din
+    "Allah İnancı": [3,1,2,2,2,2,2,0,3,3,2,2,0,2,2,2,1,1,2,0],
+    "Namaz": [0,0,1,0,1,1,3,2,2,0,0,1,0,0,0,0,0,0,1,1,1,1],
+    "Kur'an-ı Kerim": [1,1,1,0,0,0,0,0,0,3,3,1,2,1,1,1,1,0,1,2],
+    "Peygamber Kıssaları": [0,0,0,1,1,1,1,1,1,1,0,0,0,2,2,1,0,0,0,1,1],
+    "Mimarimizde Dinî Motifler": [1,1,1,1,1,2,2,2,2,2,1,2,2,2,0,0,1,1,1],
+}
+
+
+def _bank_gens2(unit, F, en, imap, items, lab_stems=False):
+    """Bilgi bankasından KAZANIM BAŞINA ayrı kalıplar kurar: her kalıp yalnız kendi kazanımının bilgilerinden soru üretir."""
+    allids = list(range(len(F)))
+    out = []
+    for k in sorted(set(imap)):
+        ids = [i for i, m in enumerate(imap) if m == k]
+        if len(ids) < 3:  # çok az bilgisi olan kazanım: konu sırasına göre en yakın komşu bilgilerle desteklenir (tekrarı önlemek için)
+            for d in (1, 2, 3, 4):
+                for i0 in list(ids):
+                    for j in (i0 - d, i0 + d):
+                        if 0 <= j < len(imap) and j not in ids and imap[j] >= 0 and len(ids) < 3:
+                            ids.append(j)
+        rk = ("fact", unit, k)
+
+        def pick(_ids=ids, _rk=rk):
+            i = _recent_order(_rk, _ids)[0]
+            _recent_mark(_rk, i)
+            return i
+
+        def others(excl, m):
+            c = [j for j in allids if j not in excl]
+            return random.sample(c, min(m, len(c)))
+
+        def single(subject, pick=pick):
+            lab, q, c, wr, t, f = F[pick()]
+            return _fact_q(subject, unit, q, c, random.sample(wr, 3), t)
+
+        def dogru(subject, pick=pick, others=others):
+            i = pick()
+            o = [i] + others({i}, 3)
+            if len(o) < 4:
+                return None
+            c = F[i][4]
+            wr = [F[j][5] for j in o[1:]]
+            sl = (_BANK_STEMS_EN if en else (_BANK_STEMS_LAB if lab_stems else _BANK_STEMS_TR))
+            stem = random.choice(sl).replace("{l}", F[i][0]).replace("{u}", unit)
+            return _fact_q(subject, unit, stem, c, wr, (f"“{c}” is correct; the other sentences are wrong." if en else f"“{c}” ifadesi doğrudur; diğer ifadeler yanlıştır."))
+
+        def onc(subject, pick=pick, others=others):
+            i = pick()
+            o = [i] + others({i}, 2)
+            if len(o) < 3:
+                return None
+            random.shuffle(o)
+            kk = random.choice([1, 2])
+            tv = set(random.sample(range(3), kk))
+            its = [(F[o[a]][4] if a in tv else F[o[a]][5], a in tv) for a in range(3)]
+            rom = ["I", "II", "III"]
+            true_set = [rom[a] for a, (_s, v) in enumerate(its) if v]
+            corr = f"Yalnız {true_set[0]}" if len(true_set) == 1 else " ve ".join(true_set)
+            wr = [x for x in _ONC_OPT if x != corr]
+            random.shuffle(wr)
+            opts = sorted([corr] + wr[:3], key=_ONC_OPT.index)
+            body = "\n".join(f"{rom[a]}. {s}" for a, (s, _v) in enumerate(its))
+            q = f"{body}\nYukarıda {unit.lower().replace('İ', 'i')} ile ilgili verilen bilgilerden hangileri doğrudur?"
+            return _mf_raw(subject, unit, q, (opts, corr), "Doğru ifadeler: " + ", ".join(true_set) + ". Diğer ifadeler yanlıştır.")
+
+        for fn, nm in ((single, "tek"), (dogru, "dogru")) + (() if en else ((onc, "onc"),)):
+            fn.ITEM = items[k] if 0 <= k < len(items) else None
+            fn.__bk__ = (unit, k, nm)
+            out.append((fn, nm))
+    return out
+
+_BANK_STEMS_LAB = ["{l} konusunda aşağıdaki bilgilerden hangisi doğrudur?", "Aşağıdakilerden hangisi {l} ile ilgili doğru bir bilgidir?", "{l} hakkında verilen bilgilerden hangisi doğrudur?"]
+
+
+def _bank_register():
+    from . import curriculum as _cu
+    for _tag, _sub, _FA, _KWA, _REG, _EN in (("f", "Fen Bilimleri", _FFACTS, _FFACTS_KW, _FF_GENS, False), ("s", "Sosyal Bilgiler", _SFACTS, _SFACTS_KW, _SF_GENS, False),
+                                             ("t", "Türkçe", _TFACTS, _TFACTS_KW, _TF_GENS, False), ("e", "İngilizce", _EFACTS, _EFACTS_KW, _EF_GENS, True),
+                                             ("d", "Din Kültürü ve Ahlak Bilgisi", _DFACTS, _DFKW, _DF_GENS, False)):
+        cu = dict(_cu.units("5", _sub))
+        for _i, (_u, _F) in enumerate(_FA.items()):
+            _im = _FACT_ITEM.get(_u)
+            _its = list(cu.get(_u, []))
+            if not _im or len(_im) != len(_F) or not _its:
+                continue
+            for _fn, _nm in _bank_gens2(_u, _F, _EN, _im, _its, lab_stems=(_tag == "d")):
+                _u2, _k, _n2 = _fn.__bk__
+                _name = f"_bk{_tag}{_i}_{_k}_{_nm}" if _k >= 0 else f"_bk{_tag}{_i}_x_{_nm}"
+                _fn.__name__ = _name
+                _REG.append((_fn, _KWA[_u]))
+                _DIFF_OF[_name] = {"tek": 2, "dogru": 3, "onc": 4}[_nm]
+
+
+_bank_register()
+
+
 # ---------------------------------------------------------------- ÖNCEDEN ÜRETİLMİŞ + DOĞRULANMIŞ HAVUZ (repodaki pool/ klasörü; API kotası harcamaz)
 _POOL_CACHE = {}
 
@@ -12288,6 +14729,11 @@ def _hist_parts(q):
     if q.get("tpl"):
         from . import store as _st
         n = set(_st._num_tokens(q))
+        try:
+            at = str((q.get("options") or {}).get(q.get("answer"), "")).replace("İ", "i").replace("I", "ı").lower()
+            w |= {"@" + x[:5] for x in re.findall(r"[a-zçğıöşü]{4,}", at)}
+        except Exception:
+            pass
     return w, n
 
 
@@ -12315,15 +14761,189 @@ def _hist_maxsim(q, sets):
         return 0.0
 
 
+# ---------------------------------------------------------------- KAZANIM/ALT KONU DAĞILIMI (tek konuya yığılmayı önler)
+_TI_CACHE = {}
+
+
+def _topic_items(subject, grade_label, topics):
+    """Seçilen kapsamdaki alt konular/kazanımlar (müfredattaki ünite maddeleri, metinde aynen geçenler). 2'den azsa dağıtım yapılmaz."""
+    try:
+        from . import curriculum as _cu
+        g = next((c for c in str(grade_label) if c.isdigit()), "")
+        txt = str(topics or "")
+        out = []
+        for _u, items in _cu.units(g, subject):
+            out += [it for it in items if it and it in txt]
+        out = list(dict.fromkeys(out))
+        return out if len(out) >= 2 else []
+    except Exception:
+        return []
+
+
+def _pw(text):
+    t = str(text).replace("İ", "i").replace("I", "ı").lower()
+    return {x[:5] for x in re.findall(r"[a-zçğıöşü]{4,}", t)}
+
+
+def _item_weights(items):
+    key = tuple(items)
+    r = _TI_CACHE.get(key)
+    if r is None:
+        sets = [_pw(it) for it in items]
+        from collections import Counter as _C
+        df = _C(w for s in sets for w in s)
+        r = [{w: 1.0 / df[w] for w in s} for s in sets]
+        _TI_CACHE[key] = r
+    return r
+
+
+def _text_item(text, items, minscore=0.9):
+    """Metin hangi alt konuya/kazanıma en yakın? (-1: belirsiz)"""
+    if not items:
+        return -1
+    W = _pw(text)
+    sc = [sum(w for k, w in d.items() if k in W) for d in _item_weights(items)]
+    b = max(range(len(sc)), key=lambda i: sc[i])
+    return b if sc[b] >= minscore else -1
+
+
+def _q_item(q, items):
+    return _text_item(f"{q.get('topic', '')} {q.get('question', '')} {q.get('passage', '')} {q.get('explanation', '')}", items)
+
+
+_FI_CACHE = {}
+
+_MF_ITEMCODE = {  # Matematik kalıbı → kazanım kodu (birden çok temada geçenlerde, seçili ögeler arasında ilk bulunan kullanılır)
+    "_mf_read": ["MAT.5.1.1"], "_mf_say": ["MAT.5.1.1"], "_mf_place": ["MAT.5.1.1"], "_mf_cards": ["MAT.5.1.1"], "_mf_basdeg": ["MAT.5.1.1"], "_mf_say_kars": ["MAT.5.1.1"], "_mf_cozum": ["MAT.5.1.1"],
+    "_mf_addsub": ["MAT.5.1.2", "MAT.5.2.4"], "_mf_estimate": ["MAT.5.1.2", "MAT.5.2.4"], "_mf_remainder": ["MAT.5.1.2", "MAT.5.2.4"], "_mf_gcdlcm": ["MAT.5.1.2"],
+    "_mf_market": ["MAT.5.1.2", "MAT.5.2.4", "MAT.5.4.4", "MAT.5.5.1", "MAT.5.6.2"], "_mf_wings": ["MAT.5.1.2", "MAT.5.2.4", "MAT.5.4.4"],
+    "_mf_fr_whole": ["MAT.5.1.3"], "_mf_fr_of": ["MAT.5.1.3"], "_mf_kes_kars": ["MAT.5.1.3"], "_mf_fr_addsub": ["MAT.5.1.3"], "_mf_fracorder": ["MAT.5.1.4"], "_mf_fracmax": ["MAT.5.1.4"],
+    "_mf_eqlty": ["MAT.5.2.1"], "_mf_order": ["MAT.5.2.2"], "_mf_pattern": ["MAT.5.2.3"], "_mf_orun_kural": ["MAT.5.2.3"],
+    "_mf_lset_dogru": ["MAT.5.3.1"], "_mf_lset_isin": ["MAT.5.3.1"], "_mf_lset_parca": ["MAT.5.3.1"], "_mf_dogru_say": ["MAT.5.3.1"], "_mf_cizim_ad": ["MAT.5.3.1"], "_mf_isin_bas": ["MAT.5.3.1"], "_mf_cember_ad": ["MAT.5.3.1"],
+    "_mf_cember_cap": ["MAT.5.3.2"], "_mf_nest": ["MAT.5.3.2"],
+    "_mf_ang_tur": ["MAT.5.3.3"], "_mf_aci_topla": ["MAT.5.3.3"], "_mf_aci_cikar": ["MAT.5.3.3"], "_mf_aci_tur2": ["MAT.5.3.3"],
+    "_mf_dik_par": ["MAT.5.3.4"], "_mf_par_kesis": ["MAT.5.3.4"], "_mf_dik_olcu": ["MAT.5.3.4"],
+    "_mf_poly_el": ["MAT.5.3.5"], "_mf_ntri": ["MAT.5.3.5"], "_mf_poly_set": ["MAT.5.3.6"], "_mf_inter": ["MAT.5.3.7"],
+    "_mf_rect_cevre": ["MAT.5.4.1"], "_mf_rect_eksik": ["MAT.5.4.1"], "_mf_geo": ["MAT.5.4.2"], "_mf_kare": ["MAT.5.4.2"], "_mf_bahce": ["MAT.5.4.4"],
+    "_mf_bar_top": ["MAT.5.5.1"], "_mf_bar_enaz": ["MAT.5.5.1"], "_mf_bar_fark": ["MAT.5.5.2"], "_mf_bar_iki": ["MAT.5.5.2"],
+    "_mf_probdeg": ["MAT.5.6.1"], "_mf_prob_kart": ["MAT.5.6.1"], "_mf_prob_zar": ["MAT.5.6.2"], "_mf_probmost": ["MAT.5.6.2"], "_mf_prob_bilye": ["MAT.5.6.2"],
+}
+
+
+def _fam_item(name, fn, subject, items):
+    """Hazır kalıp hangi alt konuya/kazanıma ait? Birkaç örnek sorusunun metni alt konu metniyle eşleştirilir (önbellekli)."""
+    key = (name, tuple(items))
+    if key in _FI_CACHE:
+        return _FI_CACHE[key]
+    for _code in _MF_ITEMCODE.get(name, ()):
+        for _ix, _txt in enumerate(items):
+            if _txt.startswith(_code):
+                _FI_CACHE[key] = _ix
+                return _ix
+    _it = getattr(fn, "ITEM", None)
+    if _it is not None:
+        _FI_CACHE[key] = items.index(_it) if _it in items else -1
+        return _FI_CACHE[key]
+    from collections import Counter as _C
+    votes = _C()
+    for _ in range(4):
+        try:
+            r = fn(subject)
+        except Exception:
+            r = None
+        if r:
+            votes[_q_item(r, items)] += 1
+    v = votes.most_common(1)[0][0] if votes else -1
+    _FI_CACHE[key] = v
+    return v
+
+
+def _bal_order(rkey, byname, subject, grade_label, topics, n):
+    """Kalıpları alt konulara/kazanımlara göre dönüşümlü sıralar: ilk n soru mümkün olduğunca farklı kazanımlardan gelir."""
+    names = list(byname)
+    items = _topic_items(subject, grade_label, topics)
+    if len(items) < 2 or len(names) < 3:
+        return _recent_order(rkey, names)
+    grp = {}
+    for nm in names:
+        grp.setdefault(_fam_item(nm, byname[nm], subject, items), []).append(nm)
+    ik = ("item",) + tuple(rkey)
+    keys = _recent_order(ik, list(grp))
+    lists = {k: _recent_order(rkey, v) for k, v in grp.items()}
+    out = []
+    while any(lists.values()):
+        for k in keys:
+            if lists[k]:
+                out.append(lists[k].pop(0))
+    for k in keys[:max(1, n)]:
+        _recent_mark(ik, k)
+    return out
+
+
+def _scope_plan(subject, n, topics, grade_label):
+    """Yapay zekâ isteğinde her soruya farklı kazanım/alt konu atar."""
+    items = _topic_items(subject, grade_label, topics)
+    if len(items) < 2 or n < 2:
+        return ""
+    order = []
+    while len(order) < n:
+        order += random.sample(items, len(items))
+    lines = [f"  Soru {i + 1} → kazanım/alt konu: {order[i][:170]}" for i in range(n)]
+    return ("\nKAZANIM DAĞILIMI (her soru yalnızca yanındaki kazanımdan/alt konudan olsun; art arda aynı kazanımdan soru yazma; seçilen tüm kazanımlar dengeli temsil edilsin):\n" + "\n".join(lines) + "\n")
+
+
+def _item_scope(byname, subject, grade_label, topics):
+    """Seçilen kazanımlar belirliyse, başka kazanıma ait bilgi-bankası kalıpları dışarıda bırakılır."""
+    try:
+        from . import curriculum as _cu
+        g = next((c for c in str(grade_label) if c.isdigit()), "")
+        txt = str(topics or "")
+        sel = set()
+        for _u, its in _cu.units(g, subject):
+            sel |= {it for it in its if it and it in txt}
+        if not sel:
+            return byname
+        keep = {k: f for k, f in byname.items() if getattr(f, "ITEM", None) is None or f.ITEM in sel}
+        return keep or byname
+    except Exception:
+        return byname
+
+
+def _dl_filter(byname, dl, subject, grade_label, topics):
+    """Zorluğa yakın (±1) kalıpları tutar; ama hiçbir alt konu/kazanım ve çeşitlilik zorluk yüzünden boşalmaz:
+    her alt konuda en az 2, toplamda en az 6 kalıp (zorluğa en yakınlar) kalır."""
+    if not dl or not byname:
+        return byname
+    dist = lambda k: abs(_DIFF_OF.get(k, 3) - dl)
+    keep = {k for k in byname if dist(k) <= 1}
+    items = _topic_items(subject, grade_label, topics)
+    groups = {}
+    if len(items) >= 2:
+        for k, f in byname.items():
+            groups.setdefault(_fam_item(k, f, subject, items), []).append(k)
+    else:
+        groups = {0: list(byname)}
+    for _g, ks in groups.items():
+        have = [k for k in ks if k in keep]
+        if len(have) < 2:
+            for k in sorted([k for k in ks if k not in keep], key=lambda k: (dist(k), random.random()))[:2 - len(have)]:
+                keep.add(k)
+    if len(keep) < 6:
+        for k in sorted([k for k in byname if k not in keep], key=lambda k: (dist(k), random.random()))[:6 - len(keep)]:
+            keep.add(k)
+    return {k: v for k, v in byname.items() if k in keep}
+
+
 def _fam_of(q):
     return str(q.get("tpl") or q.get("_sty") or _style_key(q))
 
 
-def _greedy_fill(qs_, cands, n, hsets, seen_, allow_hist=False, allow_seen=False, need_ready=False):
+def _greedy_fill(qs_, cands, n, hsets, seen_, allow_hist=False, allow_seen=False, need_ready=False, items=None):
     """Eksik soruları, aynı kalıptan çok soru girmeyecek ve geçmişe en az benzeyecek biçimde tek tek seçerek tamamlar.
     Önce her kalıptan en çok 2 soru, olmazsa sınır kalkar; aday sırası: (aynı kalıp sayısı, geçmişe benzerlik)."""
     from collections import Counter
     cnt = Counter(_fam_of(q) for q in qs_)
+    icn = Counter(_q_item(q, items) for q in qs_) if items else Counter()
     have = [_qwords(q) for q in qs_]
     sigs = {(q.get("question"), tuple((q.get("options") or {}).values())) for q in qs_}
     pool = list(cands)
@@ -12348,7 +14968,8 @@ def _greedy_fill(qs_, cands, n, hsets, seen_, allow_hist=False, allow_seen=False
                 ms = _hist_maxsim(q, hsets)
                 if ms > 0.5 and not allow_hist:
                     continue
-                k = (cnt[f], s_in, round(ms, 1))
+                ik = icn[_q_item(q, items)] if items else 0
+                k = (ik, cnt[f], s_in, round(ms, 1))
                 if bk is None or k < bk:
                     best, bk = q, k
             if best is None:
@@ -12357,6 +14978,8 @@ def _greedy_fill(qs_, cands, n, hsets, seen_, allow_hist=False, allow_seen=False
             sigs.add((best.get("question"), tuple((best.get("options") or {}).values())))
             pool.remove(best)
             cnt[_fam_of(best)] += 1
+            if items:
+                icn[_q_item(best, items)] += 1
             have.append(_qwords(best))
     return qs_
 
@@ -12396,7 +15019,10 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     seen_lock = threading.Lock()
     prog_lock = threading.Lock()
     prog = {"done": 0, "total": max(1, sum(-(-p["n"] // CHUNK) for p in plan))}
-    state = [{"p": p, "qs": [], "reserve": [], "over": [], "fails": 0, "err": None, "bank_stems": [], "styles": set()} for p in plan]
+    state = [{"p": p, "qs": [], "reserve": [], "over": [], "fails": 0, "err": None, "bank_stems": [], "styles": set(),
+              "items": _topic_items(p.get("subject"), grade_label, p.get("topics", "")), "icnt": {}} for p in plan]
+    for _s in state:  # alt konu/kazanım başına üst sınır: soru sayısı / konu sayısı (+1)
+        _s["icap"] = max(2, -(-p_n // len(_s["items"])) + 1) if (_s["items"] and (p_n := _s["p"]["n"])) else 99
     T0 = time.time()
     E = ThreadPoolExecutor(max_workers=WORKERS)
 
@@ -12413,7 +15039,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 if not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
                     continue  # seçilen konu dışı: yedeğe bile alınmaz
                 if dl and q.get("tpl") and abs(_DIFF_OF.get(q["tpl"], 3) - dl) > 1:
-                    continue  # hazır kalıp seçilen zorluk kademesine uymuyor: yapay zekâ doğrulanmış soruyla tamamlanır
+                    res_.append(q)  # hazır kalıp seçilen zorluk kademesine uymuyor: yalnız yapay zekâ yetmezse son çare olarak kullanılır
+                    continue
                 if not like and _negative_stem(q):
                     if q.get("seed") or q.get("local"):
                         res_.append(q)  # hazır soru: yalnızca son çare
@@ -12423,6 +15050,10 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 if not relax and not like and sk and (sk in st_["styles"] or sk in hsty.get(p.get("subject"), ())):
                     res_.append(q)  # aynı tarz: aynı sınavda ya da son sınavlarda çıkmış; yalnızca son çare
                     continue
+                ix = _q_item(q, st_["items"]) if st_["items"] else -1
+                if not relax and not like and ix >= 0 and st_["icnt"].get(ix, 0) >= st_["icap"]:
+                    res_.append(q)  # aynı kazanım/alt konudan yeterince soru var: yalnızca son çare
+                    continue
                 if s in seen:
                     res_.append(q)
                 elif not like and _hist_similar(q, hist.get(p.get("subject"))):
@@ -12431,6 +15062,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     seen.add(s)
                     qs_.append(q)
                     st_["styles"].add(sk)
+                    if ix >= 0:
+                        st_["icnt"][ix] = st_["icnt"].get(ix, 0) + 1
                 else:
                     res_.append(q)
 
@@ -12599,7 +15232,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
         p, qs_ = st_["p"], st_["qs"]
         _hs = hist.get(p.get("subject")) if not like else None
         if len(qs_) < p["n"] and st_["reserve"]:  # son çare 1: elenenlerden; aynı kalıp en çok 2, geçmişe benzeyen ve önceki sınav sorusu yok
-            _greedy_fill(qs_, st_["reserve"], p["n"], _hs, seen)
+            _greedy_fill(qs_, st_["reserve"], p["n"], _hs, seen, items=st_.get("items"))
         if len(qs_) < p["n"] and not like:  # 2b. kademe = hazır kalıplardan (kodla hesaplanan, hatasız) önceki sınavlara bakmadan; yalnızca bu sınavdaki kopyalar hariç
             _fn = {"Matematik": math_questions, "Fen Bilimleri": fen_questions, "Sosyal Bilgiler": sosyal_questions, "Türkçe": turkce_questions, "Din Kültürü ve Ahlak Bilgisi": din_questions, "İngilizce": eng_questions}.get(p.get("subject"))
             if _fn:
@@ -12613,13 +15246,13 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                                     continue
                                 inx.add(_stem(q))
                                 _cand.append(q)
-                        _greedy_fill(qs_, _cand, p["n"], _hs, seen)
+                        _greedy_fill(qs_, _cand, p["n"], _hs, seen, items=st_.get("items"))
                         if len(qs_) >= p["n"]:
                             break
                     if len(qs_) < p["n"]:  # hâlâ eksikse: geçmişe benzeyen taze örnekler dahil
-                        _greedy_fill(qs_, _cand, p["n"], _hs, seen, allow_hist=True, allow_seen=True)
+                        _greedy_fill(qs_, _cand, p["n"], _hs, seen, allow_hist=True, allow_seen=True, items=st_.get("items"))
                     if len(qs_) < p["n"]:  # son: rezervdeki daha önce görülmüş hazır sorular
-                        _greedy_fill(qs_, st_["reserve"], p["n"], _hs, seen, allow_hist=True, allow_seen=True, need_ready=True)
+                        _greedy_fill(qs_, st_["reserve"], p["n"], _hs, seen, allow_hist=True, allow_seen=True, need_ready=True, items=st_.get("items"))
                 except Exception:
                     pass
         if len(qs_) < p["n"] and st_.get("unv") and p.get("subject") not in STRICT_MODE:  # 3. kademe (sıkı modda YOK: doğrulanmamış soru girmez) = doğrulayıcıya ulaşılamayan ama diğer tüm kontrolleri geçen sorular (ünite/olumsuz kök/tutarlılık)
