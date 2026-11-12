@@ -2895,6 +2895,211 @@
 "topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
 "d": 3,
 "ts": 1794376205
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme",
+"passage": "Bir yumurta paketleme makinesi, günlük topladığı yumurtaları 6'lı ve 10'lu kolilere yerleştirmektedir. Makine, günün sonunda toplam 240 yumurta paketlemiştir. Makine önce 15 adet 10'lu koli doldurmuş, kalan yumurtaları ise 6'lı kolilere paylaştırmıştır.",
+"question": "Buna göre makine toplam kaç adet 6'lı koli doldurmuştur?",
+"shape": null,
+"options": {
+"A": "15",
+"B": "20",
+"C": "25",
+"D": "30"
+},
+"answer": "A",
+"explanation": "Önce 10'lu kolilerdeki yumurta sayısını bulalım: 15 × 10 = 150 yumurta. Toplam yumurtadan çıkaralım: 240 - 150 = 90 yumurta kalır. 90 yumurta 6'lı kolilere bölündüğünde: 90 ÷ 6 = 15 koli eder.",
+"vfd2": true,
+"_sty": "s:|kaç adet koli doldur",
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 2,
+"ts": 1794469952
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme",
+"passage": "Kerem, okulun kütüphanesinden aldığı 120 sayfalık hikaye kitabını üç günde bitirmeyi planlamaktadır. Kerem, birinci gün kitabın 3/8'ini, ikinci gün ise 5/12'sini okumuştur. Üçüncü gün okuması gereken sayfa sayısını bulmak istemektedir.",
+"question": "Buna göre Kerem'in üçüncü gün okuması gereken sayfa sayısı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "20",
+"B": "25",
+"C": "30",
+"D": "35"
+},
+"answer": "B",
+"explanation": "Birinci gün okunan sayfa: 120 × 3 ÷ 8 = 45 sayfa. İkinci gün okunan sayfa: 120 × 5 ÷ 12 = 50 sayfa. İlk iki günde okunan toplam sayfa: 45 + 50 = 95 sayfa. Üçüncü gün okunması gereken sayfa: 120 - 95 = 25 sayfa.",
+"vfd2": true,
+"_sty": "s:|sayfa sayısı aşağıd hangis",
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 3,
+"ts": 1794470301
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.6.1. Olasılık spektrumu",
+"passage": "Bir pazar yerinde tezgâhlarda satılan meyve türleri ve miktarları aşağıdaki tabloda verilmiştir. Pazardaki tüm meyveler tazedir.",
+"question": "Buna göre bu pazardan rastgele seçilen bir meyvenin durumu ile ilgili olarak aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "table",
+"title": "Pazar Tezgâhı Meyve Dağılımı",
+"headers": [
+"Meyve Türü",
+"Miktar (kg)"
+],
+"rows": [
+[
+"Elma",
+"150"
+],
+[
+"Armut",
+"100"
+],
+[
+"Muz",
+"50"
+]
+]
+},
+"options": {
+"A": "Seçilen meyvenin elma olma olasılığı 1'dir.",
+"B": "Seçilen meyvenin çürük olma olasılığı 1'dir.",
+"C": "Seçilen meyvenin muz olma olasılığı kesin olaydır.",
+"D": "Seçilen meyvenin sebze olma olasılığı 0'dır."
+},
+"answer": "D",
+"explanation": "Pazarda sadece meyveler (Elma, Armut, Muz) satılmaktadır ve hepsi tazedir. Dolayısıyla tezgâhtan seçilen bir ürünün sebze olması imkânsızdır ve olasılığı 0'dır. Çürük olma veya kesin muz olma durumları tabloda garanti edilmemiştir.",
+"vfd2": true,
+"_sty": "s:table|olarak aşağıd hangis doğrud",
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794470366
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+"passage": "Bir belediye, ilçedeki çocuk parklarına yeni oyun grupları yerleştirmek amacıyla 5. sınıf öğrencilerinin en çok tercih ettiği oyun aletlerini belirlemek için bir araştırma yapmış ve verileri kategorize etmiştir.",
+"question": "Belediye yetkililerinin bu araştırmadaki kategorik verilere dayanarak en çok talep gören iki oyun grubunu parklara öncelikli olarak yerleştirme kararı alması hangi süreci doğrudan yansıtır?",
+"shape": null,
+"options": {
+"A": "Verileri eksiksiz toplayıp sınıflayarak doğru karara varma",
+"B": "Yalnızca rastgele bir tahminle bütçe belirleme",
+"C": "Verideki en düşük değerli kategoriyi yaygınlaştırma",
+"D": "İstatistiksel sonuçları dikkate almadan proje uygulama"
+},
+"answer": "A",
+"explanation": "Kategorik veriler toplanıp incelendiğinde en çok tercih edilen alanlar belirlenir ve veriye dayalı rasyonel kararlar alınabilir. Burada en çok talep gören iki grubun seçilmesi veriye dayalı karar verme sürecidir.",
+"vfd2": true,
+"_sty": "s:|hangi süreci doğrud yansıt",
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 1,
+"ts": 1794470528
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+"passage": "",
+"question": "Çevre uzunluğu 48 cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan dikdörtgenin alanı en çok kaç santimetrekaredir?",
+"shape": {
+"type": "rectangle",
+"width": 12,
+"height": 12,
+"width_label": "a",
+"height_label": "b",
+"show_names": false
+},
+"options": {
+"A": "108 cm²",
+"B": "135 cm²",
+"C": "144 cm²",
+"D": "230 cm²"
+},
+"answer": "C",
+"explanation": "Dikdörtgenin çevre uzunluğu 48 cm ise, kısa kenar ile uzun kenarın toplamı 48 ÷ 2 = 24 cm'dir. Alanın en çok olması için kenar uzunlukları birbirine en yakın seçilmelidir. Bu durumda kısa kenar 12 cm, uzun kenar 12 cm (kare özel bir dikdörtgendir) olur. Alan = 12 × 12 = 144 cm² bulunur.",
+"vfd2": true,
+"_sty": "s:rectangle|alanı çok kaç santim",
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794470698
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.4.4. Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemleri çözebilme",
+"passage": "",
+"question": "Kısa kenarı 6 cm ve alanı 72 cm² olan bir dikdörtgenin çevre uzunluğu kaç santimetredir?",
+"shape": {
+"type": "rectangle",
+"width": 12,
+"height": 6,
+"width_label": "12 cm",
+"height_label": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "24 cm",
+"B": "36 cm",
+"C": "48 cm",
+"D": "78 cm"
+},
+"answer": "B",
+"explanation": "Dikdörtgenin alanı, kısa kenar ile uzun kenarın çarpımıdır. Uzun kenar = 72 ÷ 6 = 12 cm'dir. Çevre uzunluğu = 2 × (12 + 6) = 2 × 18 = 36 cm bulunur.",
+"vfd2": true,
+"_sty": "s:rectangle|çevre uzunlu kaç santim",
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 1,
+"ts": 1794470698
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+"passage": "Bir çiftçi, deposunda 5 000 000 kilogram tahıl saklamaktadır. Bu tahılın basamak yapısını inceleyen çiftçi, milyonlar basamağındaki değerin ne anlama geldiğini araştırıyor.",
+"question": "Depodaki tahıl miktarının 1 000 000 kilogramlık gruplara ayrılması durumunda oluşacak grup sayısı ve toplam tahıl miktarı aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "6 grup, 5 000 000 kilogram",
+"B": "6 grup, 6 000 000 kilogram",
+"C": "5 grup, 5 000 000 kilogram",
+"D": "5 grup, 6 000 000 kilogram"
+},
+"answer": "C",
+"explanation": "5 000 000 kilogramlık tahıl, 1 000 000'luk gruplara bölündüğünde 5 tam grup elde edilir. Toplam miktar ise başlangıçta verilen 5 000 000 kilogramdır.",
+"vfd2": true,
+"_sty": "s:|kaç kilo tahıl vardır",
+"crit": 1,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794470755
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme",
+"passage": "Bir fabrikada üretilen özel nitelikteki kerestelerin her biri 250 kilogram ağırlığındadır. Toplam 2 000 kilogram kereste elde etmek isteyen bir atölyenin bu kerestelerden kaç tane üretmesi gerekir?",
+"question": "İstenilen toplam kereste miktarını elde etmek için kaç adet kereste üretilmelidir?",
+"shape": null,
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "D",
+"explanation": "Toplam kereste miktarı (2 000 kg), bir kerestenin ağırlığına (250 kg) bölünür: 2 000 ÷ 250 = 8 adet kereste üretilmesi gerekir.",
+"vfd2": true,
+"_sty": "s:|kaç ağaç kesilm gereki",
+"crit": 1,
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 2,
+"ts": 1794470755
 }
 ]
 }

@@ -5540,6 +5540,81 @@
 "topics": "Evsel atıklar, Geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi",
 "d": 2,
 "ts": 1794376555
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin büyüklüğü, dinamometre ve newton",
+"passage": "Bir spor salonunda, antrenörler dinamometre kullanarak atletlerin itme kuvvetini ölçtüler. Ölçümler şöyledir: 1. sporcu için 500 N, 2. sporcu için 700 N, 3. sporcu için 600 N.",
+"question": "Bu verilere göre, dinamometre ile ölçülen itme kuvveti hangi sporcu için en düşük değere sahiptir?",
+"shape": {
+"type": "dynamometer",
+"value": 500,
+"max_value": 1000,
+"unit": "N",
+"mass_label": "m",
+"show_names": false
+},
+"options": {
+"A": "Veri yetersiz",
+"B": "2. sporcu",
+"C": "1. sporcu",
+"D": "3. sporcu"
+},
+"answer": "C",
+"explanation": "Ölçülen itme kuvvetleri: 1. sporcu için 500 N, 2. sporcu için 700 N, 3. sporcu için 600 N. Bu nedenle, 1. sporcu için itme kuvveti en düşüktür.",
+"vfd2": true,
+"_sty": "s:dynamometer|için düşük değere sahipt",
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 3,
+"ts": 1794470117
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yer çekimi ve ağırlık",
+"passage": "Bir araştırma gemisinde, bilim insanları Ay'da ve Dünya'da farklı kütleli cisimlerin ağırlığını karşılaştırdılar. Ölçümler şöyledir: Ay'da 1 kg cisim için 1.63 N, Dünya'da 1 kg cisim için 9.8 N.",
+"question": "Bu verilere göre, Ay'da 2 kg cisim için ağırlık kaç Newton'dur?",
+"shape": null,
+"options": {
+"A": "3.26 N",
+"B": "1.63 N",
+"C": "19.6 N",
+"D": "9.8 N"
+},
+"answer": "A",
+"explanation": "Ay'da 1 kg cisim için ağırlık 1.63 N olarak ölçülmüştür. Ağırlık kütleyle doğrudan orantılıdır. Bu nedenle, Ay'da 2 kg cisim için ağırlık 2 * 1.63 N = 3.26 N'dir.",
+"vfd2": true,
+"_sty": "s:|ağırlı kaç newton dur",
+"unit": "Kuvveti Tanıyalım",
+"topics": "Kuvvetin büyüklüğü, dinamometre ve newton, Dinamometre modeli, Yer çekimi ve ağırlık, Sürtünme kuvveti",
+"d": 3,
+"ts": 1794470117
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması ve deney",
+"passage": "Kamp yapan bir grup öğrenci, çadırlarını aydınlatmak amacıyla basit bir elektrik devresi kurmuştur. Öğrenciler devreye anahtar eklediklerinde ışığı istedikleri zaman açıp kapatabildiklerini fark etmişlerdir.",
+"question": "Bu deneyde kurulan devre ve gözlemlenen durumlar dikkate alındığında I, II ve III numaralı ifadelerden hangileri doğrudur?\nI. Devrenin çalışması için anahtarın kapalı konumda olması gerekir.\nII. Bağlantı kablosu elektrik enerjisinin iletilmesini sağlar.\nIII. Anahtar açık olduğunda devre elemanlarına elektrik akımı ulaşır.",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_orbit",
+"title": "Elektrik Devresi Şeması",
+"show_names": false
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "1. Adım: Elektrik akımının geçebilmesi ve ampulün yanması için devrenin kapalı olması, yani anahtarın kapalı konumda bulunması şarttır (I. ifade doğru).\n2. Adım: Bağlantı kablosu, pil ile diğer devre elemanları arasında elektrik enerjisinin iletimini sağlar (II. ifade doğru).\n3. Adım: Anahtar açık olduğunda devre kesilir ve ampullere elektrik akımı ulaşmaz (III. ifade yanlıştır).\n4. Sonuç olarak I ve II numaralı ifadeler doğrudur.",
+"vfd2": true,
+"_sty": "s:science_space|eleman elektr akımı ulaşır",
+"unit": "Yaşamımızdaki Elektrik",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
+"d": 2,
+"ts": 1794470165
 }
 ]
 }
