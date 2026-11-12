@@ -3890,12 +3890,78 @@ def bad_stems():
     return out
 
 
+def _exact_key(qtext, correct):
+    import re as _r
+    return _r.sub(r"\s+", " ", str(qtext or "").lower()).strip() + "|" + _r.sub(r"\s+", " ", str(correct or "").lower()).strip()
+
+
+def _q_correct(q):
+    o = q.get("options")
+    a = str(q.get("answer", "")).strip().upper()[:1]
+    try:
+        if isinstance(o, dict):
+            return o.get(a, "")
+        if isinstance(o, list) and a in "ABCD" and a:
+            return o["ABCD".index(a)]
+    except Exception:
+        pass
+    return ""
+
+
+def bad_keys():
+    """Hatalı işaretlenen soruların (tam metin + doğru cevap) anahtarları: aynı soru hangi kaynaktan gelirse gelsin bir daha gelmez."""
+    return set(_load("bad_keys.json", []))
+
+
+def bad_facts():
+    """Hatalı işaretlenen bilgi-bankası girdileri ('ünite|etiket|doğru') — bilgi bankası kalıpları bunları bir daha kullanmaz."""
+    return set(_load("bad_facts.json", []))
+
+
+def unban_key(ek):
+    """Bildirilen soruyu serbest bırakır (yanlış bildirim ise)."""
+    k = [x for x in _load("bad_keys.json", []) if x != ek]
+    _save("bad_keys.json", k)
+    L = [x for x in _load("reports.json", []) if x.get("key") != ek]
+    _save("reports.json", L)
+
+
+def unban_fact(fk):
+    _save("bad_facts.json", [x for x in _load("bad_facts.json", []) if x != fk])
+
+
+def audit_save(res):
+    _save("audit.json", res)
+
+
+def audit_last():
+    return _load("audit.json", {})
+
+
+def _bank_fact_keys(q):
+    try:
+        from . import ai_engine as _ai
+        blob = str(q.get("question", "")) + "\n" + "\n".join(str(v) for v in (q.get("options").values() if isinstance(q.get("options"), dict) else (q.get("options") or [])))
+        out = set()
+        for nm in ("_FFACTS", "_SFACTS", "_TFACTS", "_EFACTS", "_DFACTS"):
+            for unit, F in getattr(_ai, nm, {}).items():
+                for f in F:
+                    if f[1] == str(q.get("question", "")).strip() or f[4] in blob or f[5] in blob:
+                        out.add(f"{unit}|{f[0]}|{f[2]}")
+        return out
+    except Exception:
+        return set()
+
+
 def report_log(q, reason=""):
     """Hata günlüğü: bildirilen soru + otomatik teşhis."""
     L = _load("reports.json", [])
     L.append({"ts": int(time.time()), "subject": q.get("subject", ""), "topic": str(q.get("topic", ""))[:60],
               "reason": reason or "yakalanmadı", "head": str(q.get("question", ""))[:140], "has_shape": bool(q.get("shape")),
-              "tpl": str(q.get("tpl") or ""), "src": ("kalıp" if q.get("tpl") else "havuz" if q.get("pool") else "banka/yapay zekâ")})
+              "tpl": str(q.get("tpl") or ""), "src": ("kalıp" if q.get("tpl") else "havuz" if q.get("pool") else "banka/yapay zekâ"),
+              "full": {"question": str(q.get("question", ""))[:700], "passage": str(q.get("passage") or "")[:500], "options": q.get("options"), "answer": q.get("answer"),
+                       "explanation": str(q.get("explanation") or "")[:400], "shape": (q.get("shape") or {}).get("type") if isinstance(q.get("shape"), dict) else None},
+              "key": _exact_key(q.get("question", ""), _q_correct(q))})
     _save("reports.json", L[-500:])
 
 
@@ -3977,7 +4043,28 @@ def report_bad(q, reason=""):
         pass
     import re as _re
     stem = _re.sub(r"\W+", " ", _re.sub(r"\d+", "0", str(q.get("question", "")).lower()))[:70].strip()
-    if q.get("tpl"):  # hazır kalıptan gelen hatalı soru: kalıp ben inceleyene kadar devre dışı kalır (aynı hata tekrar etmesin)
+    try:  # 1) tam metin + doğru cevap: kaynağı ne olursa olsun aynı soru bir daha gelmez
+        _k = _load("bad_keys.json", [])
+        _ek = _exact_key(q.get("question", ""), _q_correct(q))
+        if _ek not in _k:
+            _k.append(_ek)
+        _save("bad_keys.json", _k[-3000:])
+    except Exception:
+        pass
+    _bk_done = False
+    if str(q.get("tpl") or "").startswith("_bk"):  # 2) bilgi bankası sorusu: yalnız ilgili bilgi(ler) devre dışı, kalıbın tamamı değil
+        try:
+            _fk = _bank_fact_keys(q)
+            if _fk:
+                _bf = _load("bad_facts.json", [])
+                for x in sorted(_fk):
+                    if x not in _bf:
+                        _bf.append(x)
+                _save("bad_facts.json", _bf[-1500:])
+                _bk_done = True
+        except Exception:
+            pass
+    if q.get("tpl") and not _bk_done:  # hazır kalıptan gelen hatalı soru: kalıp ben inceleyene kadar devre dışı kalır (aynı hata tekrar etmesin)
         try:
             bt = _load("bad_tpls.json", {})
             e = bt.setdefault(str(q["tpl"]), {"n": 0, "why": []})
@@ -7146,6 +7233,28 @@ def _expl_consistent(expl, opts, ans):
 _BAD_C = {"t": 0, "v": frozenset()}
 
 
+_BADX = {"t": 0, "k": frozenset(), "f": frozenset()}
+
+
+def _bad_refresh():
+    if time.time() - _BADX["t"] > 5:
+        try:
+            from . import store
+            _BADX["k"] = frozenset(store.bad_keys())
+            _BADX["f"] = frozenset(store.bad_facts())
+        except Exception:
+            pass
+        _BADX["t"] = time.time()
+
+
+def _is_bad_exact(qtext, correct):
+    _bad_refresh()
+    if not _BADX["k"]:
+        return False
+    import re as _r
+    return (_r.sub(r"\s+", " ", str(qtext or "").lower()).strip() + "|" + _r.sub(r"\s+", " ", str(correct or "").lower()).strip()) in _BADX["k"]
+
+
 def _is_bad(stem):
     if time.time() - _BAD_C["t"] > 5:
         try:
@@ -7512,12 +7621,17 @@ def _norm_q(q, subject):
                 for v in (dct.values() if isinstance(dct, dict) else ()):
                     if corr and str(v) != "?" and re.sub(r"[\s°]|cm|birim", "", str(v)).lower() == corr:
                         return None
+    if subject in ("Matematik", "Fen Bilimleri") and re.search(r"kaç\s+(?:santimetre|metre|cm|km|lira|TL|kg|gram|litre|tane|derece|saat|dakika|gün|kişi|öğrenci)", qtext, re.I) \
+            and any(re.match(r"\s*[-−–]\s*\d", str(v)) for v in opts.values()):
+        return None  # uzunluk/alan/adet gibi niceliklerde negatif şık olmaz
     if subject in ("Matematik", "Fen Bilimleri") and not _expl_consistent(expl, opts, ans):
         return None  # çözüm ile işaretli cevap tutmuyor
     if not _circle_ok(shape, f"{qtext} {pas}"):
         return None  # metindeki yarıçap/çap şekille çelişiyor
     if _is_bad(re.sub(r"\W+", " ", qtext.lower())[:70].strip()):
         return None  # kullanıcı bu soruyu hatalı diye bildirmişti
+    if _is_bad_exact(qtext, opts[ans]):
+        return None  # aynı soru (aynı metin + aynı doğru cevap) hatalı diye bildirilmişti
     if _is_geo_q(q, shape, subject):  # geometri: şekil ZORUNLU, metin KISA, hikâye/tarih/gök cismi bağlamı YOK
         if not shape:
             return None
@@ -9408,6 +9522,38 @@ def _mf_bar5(subject, kind=None):
         o = _mf_opts(c, wr, str, sort=False)
         shape = {"type": "bar_chart", "labels": labs, "values": vals, "title": ttl}
         return _mf_raw(subject, "Sütun Grafiği", q, o, ex, shape=shape) if o else None
+    elif kind == "enok":
+        c = labs[imx]
+        wr = [x for x in labs if x != c]
+        q, ex = f"Şekildeki sütun grafiği “{ttl}” verisini göstermektedir. Bu verilere göre karar verilirken değeri en büyük olan sütun esas alınacaktır. Hangi sütun esas alınmalıdır?", f"En büyük değer {mx}; bu sütun {c}."
+        o = _mf_opts(c, wr, str, sort=False)
+        shape = {"type": "bar_chart", "labels": labs, "values": vals, "title": ttl}
+        return _mf_raw(subject, "Sütun Grafiği", q, o, ex, shape=shape) if o else None
+    elif kind == "yorum":
+        cand = []
+        for a_ in range(4):
+            for b_ in range(4):
+                if a_ == b_:
+                    continue
+                cand.append((f"{labs[a_]} sütunu, {labs[b_]} sütunundan daha yüksektir.", vals[a_] > vals[b_]))
+                cand.append((f"{labs[a_]} sütunu, {labs[b_]} sütununun iki katıdır.", vals[a_] == 2 * vals[b_]))
+                cand.append((f"{labs[a_]} sütunu ile {labs[b_]} sütununun değerleri eşittir.", vals[a_] == vals[b_]))
+        cand.append((f"En yüksek sütun {labs[imx]} sütunudur.", True))
+        cand.append((f"En düşük sütun {labs[imx]} sütunudur.", False))
+        good = [x for x in cand if x[1]]
+        bad = [x for x in cand if not x[1]]
+        good = [g_ for g_ in good if g_[0].endswith("daha yüksektir.") or g_[0].startswith("En yüksek")]
+        if not good or len(bad) < 3:
+            return None
+        cg = random.choice(good)
+        wb = random.sample(bad, 3)
+        ol = [cg[0]] + [w_[0] for w_ in wb]
+        if len(set(ol)) < 4:
+            return None
+        random.shuffle(ol)
+        q = f"Şekildeki sütun grafiği “{ttl}” verisini göstermektedir. Bu grafikle ilgili aşağıdaki yorumlardan hangisi doğrudur?"
+        shape = {"type": "bar_chart", "labels": labs, "values": vals, "title": ttl}
+        return _mf_raw(subject, "Sütun Grafiği", q, (ol, cg[0]), f"Grafikteki değerler: " + ", ".join(f"{a_} = {b_}" for a_, b_ in zip(labs, vals)) + f". “{cg[0]}” yorumu verilere uygundur.", shape=shape)
     else:
         i, j = random.sample(range(4), 2)
         c = vals[i] + vals[j]
@@ -9472,10 +9618,12 @@ _mf_bar_top = _mk_kind(_mf_bar5, "toplam", "_mf_bar_top")
 _mf_bar_fark = _mk_kind(_mf_bar5, "fark", "_mf_bar_fark")
 _mf_bar_enaz = _mk_kind(_mf_bar5, "enaz", "_mf_bar_enaz")
 _mf_bar_iki = _mk_kind(_mf_bar5, "iki", "_mf_bar_iki")
+_mf_bar_enok = _mk_kind(_mf_bar5, "enok", "_mf_bar_enok")
+_mf_bar_yorum = _mk_kind(_mf_bar5, "yorum", "_mf_bar_yorum")
 _PRB = ("olasılık",)
 _BARK = ("sütun grafi", "veri", "grafik", "tablo")
 _MF_GENS += [(_mf_prob_zar, _PRB, (5, 6)), (_mf_prob_kart, _PRB, (5, 6)), (_mf_prob_bilye, _PRB, (5, 6)), (_mf_probdeg, _PRB, (5, 6)), (_mf_probmost, _PRB, (5, 6)),
-             (_mf_bar_top, _BARK, (5,)), (_mf_bar_fark, _BARK, (5,)), (_mf_bar_enaz, _BARK, (5,)), (_mf_bar_iki, _BARK, (5,))]
+             (_mf_bar_top, _BARK, (5,)), (_mf_bar_fark, _BARK, (5,)), (_mf_bar_enaz, _BARK, (5,)), (_mf_bar_iki, _BARK, (5,)), (_mf_bar_enok, _BARK, (5,)), (_mf_bar_yorum, _BARK, (5,))]
 
 
 # ---------------------------------------------------------------- 5. SINIF: KESİR / ONDALIK / CEBİR (kodla hesaplanan)
@@ -10117,7 +10265,7 @@ _DIFF_OF = {  # hazır kalıbın zorluk kademesi (1-6); seçilen kademeden en ç
     "_mf_read": 2, "_mf_say": 2, "_mf_place": 2, "_mf_cards": 3, "_mf_addsub": 2, "_mf_estimate": 3, "_mf_remainder": 3, "_mf_order": 3, "_mf_power": 3,
     "_mf_pattern": 3, "_mf_fracorder": 2, "_mf_fracmax": 3, "_mf_decimal": 2, "_mf_percent_odd": 3, "_mf_percent_of": 2, "_mf_geo": 3, "_mf_market": 4,
     "_mf_wings": 4, "_mf_nest": 4, "_mf_ntri": 4, "_mf_inter": 4, "_mf_twotri": 4, "_mf_prob_zar": 2, "_mf_prob_kart": 3, "_mf_prob_bilye": 2, "_mf_probdeg": 3,
-    "_mf_probmost": 2, "_mf_bar_top": 2, "_mf_bar_fark": 2, "_mf_bar_enaz": 1, "_mf_bar_iki": 3, "_mf_fr_addsub": 2, "_mf_fr_whole": 2, "_mf_fr_of": 3,
+    "_mf_probmost": 2, "_mf_bar_top": 2, "_mf_bar_fark": 2, "_mf_bar_enaz": 1, "_mf_bar_iki": 3, "_mf_bar_enok": 2, "_mf_bar_yorum": 4, "_mf_fr_addsub": 2, "_mf_fr_whole": 2, "_mf_fr_of": 3,
     "_mf_dec_addsub": 2, "_mf_dec_conv": 2, "_mf_eqlty": 3, "_ff_ortam": 2, "_ff_devre": 2, "_ff_devre2": 2, "_ff_hucre": 2, "_ff_atik": 1, "_ff_food": 3, "_ff_boil": 4,
     "_ff_fric": 4, "_ff_shadow": 3, "_ff_weight": 3, "_ff_spring": 4, "_ff_shift": 3, "_ff_seq": 2, "_ff_quarter": 3, "_ff_props": 2,
     "_sf_komsu": 2, "_sf_miras": 2, "_sf_budget": 4, "_sf_rain": 4, "_tf_zit": 1, "_tf_deyim": 2, "_tf_atasozu": 3,
@@ -11466,9 +11614,33 @@ def _mf_para(subject):
     return _mf_raw(subject, "Dört işlem problemleri", f"Bir markette tanesi {p} TL olan {a} çikolata alan Elif kasiyere {pay} TL vermiştir. Elif’e kaç TL para üstü verilir?", o, f"{a} × {p} = {tot} TL öder; {pay} − {tot} = {c} TL para üstü alır.") if o else None
 
 
+def _mf_alan_cevre(subject):
+    """Alanı verilen dikdörtgenin çevresi / çevresi verilen dikdörtgenin alanı (şekilde tüm değerler gösterilir)."""
+    a, b = random.sample(range(3, 16), 2)
+    if random.random() < 0.5:
+        sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} cm", "height_label": "?", "center_label": f"Alan = {a * b} cm²"}
+        c = 2 * (a + b)
+        o = _mf_opts(c, [a + b, a * b, 2 * a + b, c + 2, c - 2], str)
+        return _mf_raw(subject, "Alan ve çevre ilişkisi", "Şekilde alanı verilen dikdörtgenin çevresi kaç santimetredir?", o, f"Alan = {a * b} ve bir kenar {a} cm olduğundan diğer kenar {a * b} ÷ {a} = {b} cm; çevre = 2 × ({a} + {b}) = {c} cm.", shape=sh) if o else None
+    sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} cm", "height_label": "?", "center_label": f"Çevre = {2 * (a + b)} cm"}
+    c = a * b
+    o = _mf_opts(c, [2 * (a + b), a + b, c + a, c - b, c + 2], str)
+    return _mf_raw(subject, "Alan ve çevre ilişkisi", "Şekilde çevresi verilen dikdörtgenin alanı kaç santimetrekaredir?", o, f"Yarım çevre {a + b}; diğer kenar {a + b} − {a} = {b} cm; alan = {a} × {b} = {c} cm².", shape=sh) if o else None
+
+
+def _mf_cevre_say(subject):
+    """Çevresi verilen, kenarları doğal sayı olan kaç farklı dikdörtgen vardır (karesi dahil, dönmüş hâli aynı sayılır)."""
+    P = random.choice([12, 16, 20, 24, 28, 32])
+    h = P // 2
+    c = h // 2
+    o = _mf_opts(c, [c + 1, c - 1, h, h - 1, c + 2], str)
+    return _mf_raw(subject, "Çevre uzunluğu", f"Çevresi {P} cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan kaç farklı dikdörtgen çizilebilir? (Kare de dikdörtgen kabul edilir; uzun ve kısa kenarı aynı olan dikdörtgenler aynı sayılır.)", o,
+                   f"Kenarların toplamı {h} cm olmalıdır: " + ", ".join(f"{k}+{h - k}" for k in range(1, c + 1)) + f". Toplam {c} farklı dikdörtgen vardır.") if o and c >= 2 else None
+
+
 _MF_GENS += [(_mf_basdeg, ("basamak", "milyon"), (5,)), (_mf_cozum, ("basamak", "çözümle", "milyon"), (5,)), (_mf_rect_cevre, ("çevre", "alan ölç", "dikdörtgen"), (5,)),
-             (_mf_bahce, ("çevre", "alan problem", "dikdörtgen"), (5,)), (_mf_zaman, ("zaman", "dört işlem", "zihinden"), (5,)), (_mf_para, ("dört işlem",), (5,))]
-_DIFF_OF.update({"_mf_basdeg": 2, "_mf_cozum": 3, "_mf_rect_cevre": 2, "_mf_bahce": 4, "_mf_zaman": 4, "_mf_para": 3})
+             (_mf_bahce, ("çevre", "alan problem", "dikdörtgen"), (5,)), (_mf_zaman, ("zaman", "dört işlem", "zihinden"), (5,)), (_mf_para, ("dört işlem",), (5,)), (_mf_alan_cevre, ("çevre", "alan ölç", "dikdörtgen"), (5,)), (_mf_cevre_say, ("çevre", "dikdörtgen"), (5,))]
+_DIFF_OF.update({"_mf_basdeg": 2, "_mf_cozum": 3, "_mf_rect_cevre": 2, "_mf_bahce": 4, "_mf_zaman": 4, "_mf_para": 3, "_mf_alan_cevre": 4, "_mf_cevre_say": 3})
 
 
 # ================================================================ 5. SINIF — EKSİK ÜNİTELERİ TAMAMLAYAN EK KALIPLAR (her ünitede en az ~6 kalıp)
@@ -14022,7 +14194,7 @@ _EFACTS = {'School Life': [('School places',
                                        ['interestinger', 'most interesting', 'interesting', 'more interestinger'],
                                        'The museum is more interesting than the school.',
                                        'The museum is interestinger than the school.'),
-                                      ('Possessive ’s', 'This is ___ bag.', 'Ali’s', ['Alis', 'Ali', 'Alis’', 'Ali is'], 'This is Ali’s bag.', 'This is Alis bag.'),
+                                      ('Possessive ’s', 'This is ___ bag.', 'Ali’s', ['Alis', 'Ali', 'Alis’s', 'Ali is'], 'This is Ali’s bag.', 'This is Alis bag.'),
                                       ('Possessive ’s',
                                        'Which sentence is correct?',
                                        'That is my sister’s room.',
@@ -14295,13 +14467,18 @@ def _bank_gens2(unit, F, en, imap, items, lab_stems=False):
                             ids.append(j)
         rk = ("fact", unit, k)
 
+        def okf(i):
+            _bad_refresh()
+            return f"{unit}|{F[i][0]}|{F[i][2]}" not in _BADX["f"]
+
         def pick(_ids=ids, _rk=rk):
-            i = _recent_order(_rk, _ids)[0]
+            _g = [i for i in _ids if okf(i)] or _ids
+            i = _recent_order(_rk, _g)[0]
             _recent_mark(_rk, i)
             return i
 
         def others(excl, m):
-            c = [j for j in allids if j not in excl]
+            c = [j for j in allids if j not in excl and okf(j)]
             return random.sample(c, min(m, len(c)))
 
         def single(subject, pick=pick):
@@ -14825,7 +15002,8 @@ _MF_ITEMCODE = {  # Matematik kalıbı → kazanım kodu (birden çok temada ge�
     "_mf_dik_par": ["MAT.5.3.4"], "_mf_par_kesis": ["MAT.5.3.4"], "_mf_dik_olcu": ["MAT.5.3.4"],
     "_mf_poly_el": ["MAT.5.3.5"], "_mf_ntri": ["MAT.5.3.5"], "_mf_poly_set": ["MAT.5.3.6"], "_mf_inter": ["MAT.5.3.7"],
     "_mf_rect_cevre": ["MAT.5.4.1"], "_mf_rect_eksik": ["MAT.5.4.1"], "_mf_geo": ["MAT.5.4.2"], "_mf_kare": ["MAT.5.4.2"], "_mf_bahce": ["MAT.5.4.4"],
-    "_mf_bar_top": ["MAT.5.5.1"], "_mf_bar_enaz": ["MAT.5.5.1"], "_mf_bar_fark": ["MAT.5.5.2"], "_mf_bar_iki": ["MAT.5.5.2"],
+    "_mf_bar_top": ["MAT.5.5.1"], "_mf_bar_enaz": ["MAT.5.5.1"], "_mf_bar_enok": ["MAT.5.5.1"], "_mf_bar_yorum": ["MAT.5.5.2"], "_mf_alan_cevre": ["MAT.5.4.3"], "_mf_cevre_say": ["MAT.5.4.1"], "_mf_bar_fark": ["MAT.5.5.2"], "_mf_bar_iki": ["MAT.5.5.2"],
+    "_mf_alan_cevre": ["MAT.5.4.3"], "_mf_cevre_say": ["MAT.5.4.3"], "_mf_bar_yorum": ["MAT.5.5.2"], "_mf_bar_enok": ["MAT.5.5.1"], "_mf_para": ["MAT.5.1.2"], "_mf_zaman": ["MAT.5.1.2"],
     "_mf_probdeg": ["MAT.5.6.1"], "_mf_prob_kart": ["MAT.5.6.1"], "_mf_prob_zar": ["MAT.5.6.2"], "_mf_probmost": ["MAT.5.6.2"], "_mf_prob_bilye": ["MAT.5.6.2"],
 }
 
@@ -15416,6 +15594,99 @@ def lessons(subject):
     if ex:
         out += "\n⚠ Şu tarzda sorular hatalı bulundu, benzerini yazma: " + " || ".join(ex)
     return out
+
+
+def bank_integrity():
+    """Bilgi bankası girdilerinin iç tutarlılığı (doğru şık yanlışlarda yok, >=3 farklı yanlış, doğru/yanlış ifade farklı, kopya yok)."""
+    out = []
+    for nm, sj in (("_FFACTS", "Fen"), ("_SFACTS", "Sosyal"), ("_TFACTS", "Türkçe"), ("_EFACTS", "İngilizce"), ("_DFACTS", "Din")):
+        for unit, F in globals().get(nm, {}).items():
+            seen = set()
+            for f in F:
+                try:
+                    lab, q, c, wr, tt, ff = f
+                except Exception:
+                    out.append((sj, unit, "?", "girdi biçimi bozuk"))
+                    continue
+                norm = lambda s: _alnum(str(s))
+                ws = [norm(w) for w in wr]
+                if len(wr) < 3:
+                    out.append((sj, unit, lab, "3'ten az yanlış şık"))
+                if len(set(ws)) < len(ws):
+                    out.append((sj, unit, lab, "yanlış şıklar birbirinin aynısı"))
+                if norm(c) in ws:
+                    out.append((sj, unit, lab, "doğru cevap yanlış şıklar arasında"))
+                if norm(tt) == norm(ff):
+                    out.append((sj, unit, lab, "doğru ve yanlış ifade aynı"))
+                if norm(c) and norm(c) in {norm(w) for w in wr}:
+                    out.append((sj, unit, lab, "doğru=yanlış"))
+                if (norm(q), norm(c)) in seen:
+                    out.append((sj, unit, lab, "tekrarlanan girdi"))
+                seen.add((norm(q), norm(c)))
+    return out
+
+
+def self_audit(n=10, subjects=None, grade="5"):
+    """Tüm hazır soru kalıplarından örnek üretip denetler: hata fırlatma, aşırı red, şık/çözüm tutarsızlığı, bilgi bankası bütünlüğü.
+    Bilgi bankası kusurlu girdileri otomatik devre dışı bırakır. -> {'ts','families','problems':[...],'auto':[...]}"""
+    import copy
+    t0 = time.time()
+    REG = {"Matematik": [(f, k) for f, k, g in _MF_GENS if int(grade) in g], "Fen Bilimleri": _FF_GENS, "Sosyal Bilgiler": _SF_GENS,
+           "Türkçe": _TF_GENS, "Din Kültürü ve Ahlak Bilgisi": _DF_GENS, "İngilizce": _EF_GENS}
+    prob, fam, auto = [], 0, []
+    for sj, reg in REG.items():
+        if subjects and sj not in subjects:
+            continue
+        for f, _kw in reg:
+            fam += 1
+            c = {"ok": 0, "none": 0, "rej": 0, "exc": 0}
+            ex = ""
+            for _ in range(n):
+                try:
+                    r = f(sj)
+                except Exception as e:
+                    c["exc"] += 1
+                    ex = ex or repr(e)[:120]
+                    continue
+                if not r:
+                    c["none"] += 1
+                    continue
+                try:
+                    qn = _norm_q(copy.deepcopy(r), sj)
+                except Exception as e:
+                    c["exc"] += 1
+                    ex = ex or repr(e)[:120]
+                    continue
+                if not qn:
+                    c["rej"] += 1
+                    ex = ex or str(r.get("question", ""))[:100]
+                    continue
+                c["ok"] += 1
+                o = qn["options"]
+                if len({_alnum(re.sub(r"(?<![\w)])[-−–]\s*(?=\d)", "eksi ", str(v))) for v in o.values()}) < 4 or qn["answer"] not in o:
+                    prob.append({"ders": sj, "kalıp": f.__name__, "sorun": "şıklar/cevap tutarsız", "örnek": qn["question"][:100]})
+            if c["exc"]:
+                prob.append({"ders": sj, "kalıp": f.__name__, "sorun": "hata fırlatıyor", "örnek": ex})
+                auto.append(f.__name__)
+            elif c["ok"] < max(1, int((n - c["none"]) * 0.4)) and (n - c["none"]) > 0:
+                prob.append({"ders": sj, "kalıp": f.__name__, "sorun": f"çok soru elendi ({c['ok']}/{n} geçti)", "örnek": ex})
+    for sj, unit, lab, why in bank_integrity():
+        prob.append({"ders": sj, "kalıp": "bilgi bankası", "sorun": why, "örnek": f"{unit} / {lab}"})
+    try:
+        from . import store
+        if auto:
+            bt = store._load("bad_tpls.json", {})
+            for nm in auto:
+                e = bt.setdefault(nm, {"n": 0, "why": []})
+                e["why"] = (e["why"] + ["otomatik denetim: hata fırlattı"])[-5:]
+                e["ex"] = "otomatik denetim"
+            store._save("bad_tpls.json", bt)
+        res = {"ts": int(time.time()), "families": fam, "problems": prob[:200], "auto": auto, "secs": round(time.time() - t0, 1), "n": n}
+        store.audit_save(res)
+        return res
+    except Exception:
+        return {"ts": int(time.time()), "families": fam, "problems": prob[:200], "auto": auto, "secs": round(time.time() - t0, 1), "n": n}
+
 
 
 def audit_pools_async():
@@ -18749,6 +19020,44 @@ with st.sidebar:
             _rp = _gstore.reports(None, 500)
             _auto = sum(1 for x in _rp if x.get("reason") != "yakalanmadı")
             st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🚩 Hata günlüğü</b><br>Bildirilen: <b>{len(_rp)}</b> • otomatik kurala takılan: <b>{_auto}</b></div>", unsafe_allow_html=True)
+            try:  # bildirilen soruların tam listesi + engeli kaldırma
+                _rl = [x for x in _gstore.reports(None, 500) if x.get("full")]
+                if _rl:
+                    with st.expander(f"🚩 Bildirilen sorular ({len(_rl)})", expanded=False):
+                        for _i, _x in enumerate(reversed(_rl[-15:])):
+                            _f = _x["full"]
+                            _o = _f.get("options") or {}
+                            _ol = " | ".join(f"{k}) {v}" for k, v in (_o.items() if isinstance(_o, dict) else zip("ABCD", _o)))
+                            st.markdown(f"**{_x.get('subject', '?')}** • {_x.get('src', '?')} • `{_x.get('tpl') or '-'}`\n\n{_f.get('question', '')[:300]}\n\n{_ol[:300]} → **{_f.get('answer')}**\n\n_Neden:_ {str(_x.get('reason', ''))[:120]}")
+                            if _x.get("key") and st.button("Yanlış bildirimdi, serbest bırak", key=f"unban_{_i}"):
+                                _gstore.unban_key(_x["key"])
+                                st.rerun()
+                            st.divider()
+                _bfl = sorted(_gstore.bad_facts())
+                if _bfl:
+                    with st.expander(f"⛔ Devre dışı bilgi bankası girdileri ({len(_bfl)})", expanded=False):
+                        for _j, _fk in enumerate(_bfl[:30]):
+                            st.caption(_fk.replace("|", " • "))
+                            if st.button("Serbest bırak", key=f"unfact_{_j}"):
+                                _gstore.unban_fact(_fk)
+                                st.rerun()
+            except Exception:
+                pass
+            try:  # otomatik denetim
+                _au = _gstore.audit_last()
+                with st.expander("🧪 Otomatik denetim" + (f" ({len(_au.get('problems', []))} sorun)" if _au else ""), expanded=False):
+                    if st.button("Şimdi denetle (≈30 sn)", key="run_audit"):
+                        from core import ai_engine as _aai
+                        with st.spinner("Tüm kalıplar deneniyor…"):
+                            _au = _aai.self_audit(n=8)
+                    if _au:
+                        st.caption(f"{_au.get('families', 0)} kalıp • her kalıptan {_au.get('n', 0)} örnek • {_au.get('secs', 0)} sn • otomatik kapatılan: {len(_au.get('auto', []))}")
+                        if _au.get("problems"):
+                            st.markdown("\n".join(f"- **{p['ders']}** `{p['kalıp']}`: {p['sorun']} — {str(p['örnek'])[:80]}" for p in _au["problems"][:25]))
+                        else:
+                            st.success("Sorun bulunmadı.")
+            except Exception:
+                pass
             try:  # hatalı soru raporu: ders / kaynak / kalıp bazında + devre dışı kalıplar (tek tıkla geri aç)
                 _all = _gstore.reports(None, 500)
                 if _all:
