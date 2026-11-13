@@ -3224,6 +3224,88 @@
 "topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
 "d": 3,
 "ts": 1794551139
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.6.2. Az veya çok olasılıklı durumlar",
+"passage": "Bir robotik atölyesinde 15 adet kodlama kartı, 8 adet mekanik parça ve 2 adet pil bulunmaktadır. Öğrenciler kutudan rastgele bir malzeme alacaktır.",
+"question": "Bu duruma göre, malzemelerin seçilme olasılıkları ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Kodlama kartı seçme olasılığı, en çok olasılıklı durumdur.",
+"B": "Mekanik parça seçme olasılığı, kodlama kartı seçme olasılığına eşittir.",
+"C": "Pil seçme olasılığı, kesin olaydır.",
+"D": "Pil seçme olasılığı, mekanik parça seçme olasılığından daha fazladır."
+},
+"answer": "A",
+"explanation": "Kodlama kartı (15) > mekanik parça (8) > pil (2). Sayısı fazla olanın seçilme olasılığı daha çoktur. Bu nedenle kodlama kartı seçme olasılığı en fazladır.",
+"vfd2": true,
+"_sty": "s:|ilgili aşağıd hangis doğrud",
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794555399
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.6.2. Az veya çok olasılıklı durumlar",
+"passage": "Bir çiftlikte 12 adet koyun, 18 adet inek ve 20 adet tavuk bulunmaktadır. Çiftliğe giren bir ziyaretçinin karşılaştığı ilk hayvanın türü belirlenecektir.",
+"question": "Ziyaretçinin ilk olarak karşılaşacağı hayvan türleri ile ilgili aşağıdaki yargılardan hangileri doğrudur?\nI. İnekle karşılaşma olasılığı, koyunla karşılaşma olasılığından daha fazladır.\nII. Tavukla karşılaşma olasılığı, inekle karşılaşma olasılığından daha fazladır.\nIII. Koyunla karşılaşma olasılığı, tüm türler arasında en azdır.",
+"shape": null,
+"options": {
+"A": "I ve II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "D",
+"explanation": "Hayvan sayıları: Koyun (12), İnek (18), Tavuk (20). Sayısı fazla olanın olasılığı daha fazladır. I: 18 > 12 (Doğru). II: 20 > 18 (Doğru). III: 12 en azdır (Doğru).",
+"vfd2": true,
+"_sty": "s:|tüm türler arasın azdır",
+"crit": 1,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1794555399
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.3.7. İki çemberin kesişimiyle oluşan üçgenlerin kenar özelliklerine ilişkin çıkarım yapabilme",
+"passage": "",
+"question": "A ve B merkezli eş çemberler C noktasında kesişmektedir. |AC| = 5 cm, |BC| = 5 cm ve |AB| = 6 cm olduğuna göre ABC üçgeni için hangisi söylenebilir?",
+"shape": {
+"type": "geo",
+"sub_type": "nested_circles",
+"mode": "intersect",
+"r1": 5,
+"r2": 5,
+"d": 6,
+"names": [
+"A",
+"B",
+"C"
+],
+"sides": {
+"AC": "5 cm",
+"BC": "5 cm",
+"AB": "6 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "Eşkenar üçgendir.",
+"B": "İkizkenar üçgendir.",
+"C": "Çeşitkenar üçgendir.",
+"D": "Dik üçgendir."
+},
+"answer": "B",
+"explanation": "Üçgenin iki kenar uzunluğu 5 cm, üçüncü kenar uzunluğu 6 cm'dir. İki kenarı eşit olduğu için bu üçgen ikizkenar üçgendir.",
+"vfd2": true,
+"_sty": "s:geo|üçgeni için hangis söylen",
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 3,
+"ts": 1794555485
 }
 ]
 }

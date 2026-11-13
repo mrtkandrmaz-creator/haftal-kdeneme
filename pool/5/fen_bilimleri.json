@@ -5742,6 +5742,232 @@
 "topics": "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton), Dinamometre modeli, Kütle, yer çekimi ve ağırlık, Sürtünme kuvveti ve etkileri",
 "d": 2,
 "ts": 1794550933
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "İnsan faaliyetlerinin çevreye etkisi",
+"passage": "Bir araştırma grubunun bölgedeki sanayi faaliyetlerinin etkisini incelediği rapor özetinde; fabrikaların bacalarından çıkan dumanların asit yağmurlarına yol açtığı, kontrolsüz atılan kimyasal atıkların nehirlerdeki oksijen seviyesini düşürdüğü ve tarımsal alanlarda bilinçsiz ilaç kullanımının toprak yapısını bozduğu belirtilmiştir.",
+"question": "Rapordaki gözlemler dikkate alındığında, insan faaliyetleri ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Doğadaki tüm canlılar sanayileşmeden olumlu yönde etkilenir.",
+"B": "Fabrika dumanları ve kimyasal atıklar çevre kirliliğine neden olan temel unsurlardandır.",
+"C": "Tarımda kullanılan ilaçlar toprak verimini artırmak için yeterli ve zararsız çözümlerdir.",
+"D": "Su kaynaklarındaki oksijen seviyesinin düşmesi canlı yaşamını destekleyen bir durumdur."
+},
+"answer": "B",
+"explanation": "Raporda belirtilen asit yağmurları, kimyasal atıkların etkileri ve toprak yapısının bozulması incelendiğinde, bu faaliyetlerin çevre kirliliğine neden olduğu açıkça görülmektedir. A şıkkı yanlıştır (olumsuz etkiler vardır), C şıkkı yanlıştır (bilinçsiz ilaç kullanımı zararlıdır), D şıkkı yanlıştır (oksijenin düşmesi canlılar için zararlıdır). Doğru cevap B seçeneğidir.",
+"vfd2": true,
+"_sty": "s:|ilgili aşağıd hangis doğrud",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 4,
+"ts": 1794555017
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Geri dönüşüm ve geri dönüştürülebilen maddeler",
+"passage": "Bir okulun geri dönüşüm kutularında bir ay boyunca toplanan atık miktarları (kg) grafikte verilmiştir.",
+"question": "Grafikteki verilere göre, hangi atık türünün geri dönüşüme kazandırılması en yüksek miktardadır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Kağıt",
+"Plastik",
+"Cam",
+"Metal"
+],
+"values": [
+45,
+30,
+20,
+15
+],
+"title": "Aylık Atık Miktarları (kg)",
+"show_names": false
+},
+"options": {
+"A": "Plastik",
+"B": "Kağıt",
+"C": "Metal",
+"D": "Cam"
+},
+"answer": "B",
+"explanation": "Grafikte verilen değerler incelendiğinde kağıt 45 kg, plastik 30 kg, cam 20 kg ve metal 15 kg'dır. En yüksek miktar 45 kg ile kağıda aittir.",
+"vfd2": true,
+"_sty": "s:bar_chart|dönüşü kazand yüksek miktar",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 4,
+"ts": 1794555017
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı ve sıcaklık",
+"passage": "Kodlama kulübündeki öğrenciler, bir deney ortamındaki sıcaklık değişimini zamana bağlı olarak takip etmektedir. Elde edilen veriler bir çubuk grafikte gösterilmiştir.",
+"question": "Grafikteki verilere göre hangi zaman aralığında maddenin aldığı ısı miktarı en fazladır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"0-5 dk",
+"5-10 dk",
+"10-15 dk",
+"15-20 dk"
+],
+"values": [
+10,
+25,
+15,
+30
+],
+"title": "Zamana Bağlı Sıcaklık Değişimi (°C)",
+"show_names": false
+},
+"options": {
+"A": "5-10 dk",
+"B": "15-20 dk",
+"C": "10-15 dk",
+"D": "0-5 dk"
+},
+"answer": "B",
+"explanation": "Sıcaklık artışının en fazla olduğu aralık, ısı alımının en yoğun olduğu aralıktır. Grafikteki en yüksek değer 30 ile 15-20 dk aralığında gerçekleşmiştir.",
+"vfd2": true,
+"_sty": "s:bar_chart|aldığı ısı miktar fazlad",
+"unit": "Madde ve Değişim",
+"topics": "Maddenin tanecikli yapısı ve hâlleri, Isı ve sıcaklık, Isı alışverişi, Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama), Isı iletimi, Isı yalıtımı",
+"d": 2,
+"ts": 1794555143
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin etkileri ve büyüklüğü",
+"passage": "5/A sınıfı öğrencisi Elif, okul kütüphanesinde hazırladığı fen panosu için dinamometrelerin yapısı ve çalışma prensibini incelemektedir. Elif, panoya asacağı şemada yayın esneklik özelliğinden yararlanılarak kuvvetin büyüklüğünün ölçüldüğünü belirtmiştir. Hazırladığı dinamometre şemasında içindeki yayın esnek yapısını ve üzerine etki eden kuvvetin birimini göstermek istemiştir.",
+"question": "Elif'in kütüphane panosu için hazırladığı ve üzerinde yayın uzama miktarının uygulanan kuvvetle doğru orantılı olduğunu gösteren şemada, kuvvetin birimi aşağıdakilerden hangisi olarak belirtilmelidir?",
+"shape": {
+"type": "fen",
+"sub_type": "direnc",
+"ortam": "hava",
+"isimler": [
+"K",
+"L"
+],
+"alanlar": [
+"genis",
+"dar"
+],
+"sekil": "levha",
+"show_names": false
+},
+"options": {
+"A": "Santimetre (cm)",
+"B": "Joule (J)",
+"C": "Newton (N)",
+"D": "Kilogram (kg)"
+},
+"answer": "C",
+"explanation": "Dinamometreler kuvvet ölçmek için kullanılır ve kuvvetin birimi İngiliz fizikçi Isaac Newton'a atfen Newton (N) olarak adlandırılır. Kilogram kütle birimi, santimetre uzunluk birimi, Joule ise enerji birimidir. Doğru birim Newton'dur.",
+"vfd2": true,
+"_sty": "s:fen|aşağıd hangis olarak belirt",
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton), Dinamometre modeli, Kütle, yer çekimi ve ağırlık, Sürtünme kuvveti ve etkileri",
+"d": 2,
+"ts": 1794555253
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dinamometre modeli",
+"passage": "Kamp yapan bir grup izci, doğada ağır malzemeleri taşımak ve ölçmek için kendi dinamometre modellerini tasarlamıştır. İzciler, ellerindeki yayların maksimum ölçebileceği kuvvet sınırını ve yayların kalınlıklarının ölçüm hassasiyetine etkisini incelemektedir.",
+"question": "Hassas ölçüm yapmak isteyen izcilerin incelediği dinamometre modelleriyle ilgili;\nI. Dinamometre içinde kullanılan yayın esnek maddeden yapılması gerekir.\nII. Çok büyük kuvvetleri ölçmek için ince ve esnekliği çok fazla olan yaylar tercih edilmelidir.\nIII. Dinamometredeki yayın uzama miktarı, uygulanan kuvvetin büyüklüğü hakkında bilgi verir.\nyargılarından hangileri doğrudur?",
+"shape": {
+"type": "forces",
+"left": [
+10
+],
+"right": [
+25
+],
+"unit": "N",
+"object_label": "Çanta",
+"show_names": false
+},
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "I. öncül doğrudur, dinamometre yayı esnek olmalıdır. II. öncül yanlıştır, büyük kuvvetleri ölçmek için kalın ve daha az esneyen (sağlam) yaylar kullanılır. III. öncül doğrudur, yay uzaması kuvvetin büyüklüğünü gösterir. I ve III doğrudur.",
+"vfd2": true,
+"_sty": "s:forces|verir yargıl hangil doğrud",
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton), Dinamometre modeli, Kütle, yer çekimi ve ağırlık, Sürtünme kuvveti ve etkileri",
+"d": 2,
+"ts": 1794555253
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı ve dönme hareketi",
+"passage": "Bir resim sergisinde Güneş, Dünya ve Ay'ın özellikleri ile ilgili bilgilendirici tablolar yer almaktadır. Bu tablolarda yer alan özellikler şunlardır: I. Küresel bir şekle sahiptir, II. Kendi ekseni etrafında döner, III. Isı ve ışık kaynağıdır, IV. Gazlardan oluşur.",
+"question": "Buna göre yukarıda verilen özelliklerden hangileri Güneş için ortaktır?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_phases",
+"phases": [
+0,
+2,
+4,
+6
+],
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"title": "Güneş Özellikleri Analiz Tablosu",
+"show_names": false
+},
+"options": {
+"A": "I ve II",
+"B": "I, II ve IV",
+"C": "II ve III",
+"D": "I, II, III ve IV"
+},
+"answer": "D",
+"explanation": "Güneş; küresel bir şekle sahiptir, kendi ekseni etrafında döner, ısı ve ışık kaynağıdır ve yapısı gazlardan oluşur. Verilen dört özellik de Güneş için doğrudur.",
+"vfd2": true,
+"_sty": "s:science_space|hangil güneş için ortakt",
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 4,
+"ts": 1794555534
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"passage": "Pazar yerinde bir fen bilgisi öğretmeni, meyveleri kullanarak bir Güneş tutulması modeli oluşturmuştur. Modelde büyük bir karpuz Güneş'i, portakal Dünya'yı, üzüm ise Ay'ı temsil etmektedir.",
+"question": "Güneş tutulması olayının gerçekleşebilmesi için gök cisimlerinin sıralanışı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "solar_eclipse",
+"title": "Güneş Tutulması Modeli",
+"show_names": false
+},
+"options": {
+"A": "Dünya - Ay - Güneş",
+"B": "Ay - Güneş - Dünya",
+"C": "Güneş - Dünya - Ay",
+"D": "Güneş - Ay - Dünya"
+},
+"answer": "D",
+"explanation": "Güneş tutulması, Ay'ın Dünya ile Güneş arasına girmesiyle gerçekleşir. Bu durumda Güneş, Ay ve Dünya dizilimi oluşur.",
+"vfd2": true,
+"_sty": "s:science_space|cisiml sırala aşağıd hangis",
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 4,
+"ts": 1794555534
 }
 ]
 }
