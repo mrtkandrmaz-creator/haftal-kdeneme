@@ -3100,6 +3100,130 @@
 "topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
 "d": 2,
 "ts": 1794470755
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme",
+"passage": "Bir çiftlikte bir kovada 48 tavşan var. Her tavşanın 4 bacağını ve 2 gözünü saydıklarında toplam kaç bacak ve göz elde ederiz?",
+"question": "Kovadaki tavşanların toplam bacak ve göz sayısının farkı kaçtır?",
+"shape": null,
+"options": {
+"A": "96",
+"B": "144",
+"C": "192",
+"D": "240"
+},
+"answer": "A",
+"explanation": "Bacak: 48×4=192. Göz: 48×2=96. Fark = 192‑96=96. Doğru şık A.",
+"vfd2": true,
+"_sty": "s:|göz sayısı farkı kaçtır",
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 4,
+"ts": 1794550971
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+"passage": "Bir çiftçi, bir bahçede üç farklı sıra ekim yapıyor. Sıralardaki tohum sayıları x, x+5 ve x+10'dur. Toplam tohum sayısı 105'tir.",
+"question": "x değeri kaçtır?",
+"shape": null,
+"options": {
+"A": "30",
+"B": "31",
+"C": "32",
+"D": "33"
+},
+"answer": "A",
+"explanation": "Eşitlik: x + (x+5) + (x+10) = 105 → 3x + 15 = 105 → 3x = 90 → x = 30. Doğru şık A.",
+"vfd2": true,
+"_sty": "s:|değeri kaçtır",
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 4,
+"ts": 1794550971
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme",
+"passage": "Bir kitap fuarında imzalatılacak kitapların hedef sayfalarına gelen ilerleme durumları 0 ile 1 arasındaki sayı doğrusunda harflerle gösterilmiştir.",
+"question": "Buna göre sayı doğrusunda gösterilen hangi harfe karşılık gelen kesir diğerlerinden daha büyüktür?",
+"shape": {
+"type": "number_line",
+"min": 0,
+"max": 1,
+"step": 0.25,
+"marks": [
+{
+"label": "K",
+"value": 0.2
+},
+{
+"label": "L",
+"value": 0.5
+},
+{
+"label": "M",
+"value": 0.75
+},
+{
+"label": "N",
+"value": 0.35
+}
+],
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "M",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Sayı doğrusunda 0'a olan uzaklığı en fazla olan ya da sağda yer alan değer en büyüktür. Verilen değerler karşılaştırıldığında K = 2/10, L = 1/2 (5/10), M = 3/4 (75/100), N = 35/100 şeklindedir. En büyük değer M (0.75) harfidir.",
+"vfd2": true,
+"_sty": "s:number_line|kesir diğerl daha büyükt",
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794551044
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+"passage": "Bir ilçede düzenlenen bisiklet turu etkinliğine katılan sporcuların tercih ettikleri bisiklet türlerine göre dağılımı yandaki daire grafiğinde gösterilmiştir. Etkinliğe toplam 360 sporcu katılmıştır.",
+"question": "Bu verilere göre, dağ bisikleti tercih eden sporcu sayısı, yol bisikleti tercih eden sporcu sayısından kaç fazladır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Dağ Bisikleti",
+"Yol Bisikleti",
+"Şehir Bisikleti",
+"Katlanır Bisiklet"
+],
+"values": [
+150,
+90,
+72,
+48
+],
+"title": "Bisiklet Türleri Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "30",
+"B": "60",
+"C": "90",
+"D": "120"
+},
+"answer": "B",
+"explanation": "Daire grafiğindeki değerler doğrudan sporcu sayılarını vermektedir (toplamları 150 + 90 + 72 + 48 = 360). Dağ bisikleti tercih eden sporcu sayısı 150, yol bisikleti tercih eden sporcu sayısı ise 90'dır. İkisi arasındaki fark 150 - 90 = 60 olarak bulunur.",
+"vfd2": true,
+"_sty": "s:pie_chart|sporcu sayısı kaç fazlad",
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 3,
+"ts": 1794551139
 }
 ]
 }

@@ -5615,6 +5615,133 @@
 "topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler",
 "d": 2,
 "ts": 1794470165
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Atık yönetimi",
+"passage": "Bir orman işletmesinde yürütülen faaliyetler sonucunda ortaya çıkan atık türlerinin miktar dağılımı aşağıdaki daire grafiğinde verilmiştir. Orman yönetimi bu atıkların çevreye zarar vermeden bertaraf edilmesi için çeşitli uygulamalar planlamaktadır.\nPlanlanan uygulamalar şu şekildedir:\nI. Organik atıkların toprak zemin üzerinde kompost gübreye dönüştürülerek orman toprağına kazandırılması\nII. Kağıt ve ahşap atıkların açık alanda yakılarak tamamen ortadan kaldırılması\nIII. Plastik ve ambalaj atıklarının lisanslı geri dönüşüm tesislerine gönderilmesi",
+"question": "Buna göre verilen planlanan uygulamalardan hangileri çevreye duyarlı ve sürdürülebilir atık yönetimi ilkelerine uygundur?",
+"shape": {
+"type": "pie_chart",
+"title": "Orman İşletmesi Atık Dağılımı",
+"labels": [
+"Organik Atık",
+"Kağıt-Ahşap Atık",
+"Plastik Ambalaj"
+],
+"values": [
+50,
+30,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Atık yönetiminde organik atıkların kompost yapılarak toprağa kazandırılması (I) ve plastik-ambalaj atıklarının geri dönüştürülmesi (III) çevre dostu uygulamalardır. Ancak atıkların açık alanda yakılması (II) hava kirliliğine ve yangın riskine yol açtığı için atık yönetimi ilkelerine aykırıdır. Bu nedenle I ve III doğrultusundaki uygulamalar uygundur.",
+"vfd2": true,
+"_sty": "s:pie_chart|atık yöneti ilkele uygund",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 3,
+"ts": 1794550754
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Geri dönüşüm ve geri dönüştürülebilen maddeler",
+"passage": "Toplu taşıma aktarma merkezinde bekleyen Efe, elindeki atık maddeleri çevreye zarar vermeden doğaya kazandırmak amacıyla geri dönüşüm kutularına atmak istemektedir. Efe'nin elinde şu maddeler bulunmaktadır:\n- K: Kullanılmış cam içecek şişesi\n- L: Kullanılmış karton otobüs bileti\n- M: Boş plastik su şişesi\n- N: Elma kabuğu ve çekirdeği",
+"question": "Buna göre Efe'nin elindeki maddelerden hangileri ambalaj ve hammaddelerin yeniden üretime dahil edildiği geri dönüştürülebilir maddeler sınıfında yer alır?",
+"shape": null,
+"options": {
+"A": "L ve N",
+"B": "K, L, M ve N",
+"C": "K, L ve M",
+"D": "K ve M"
+},
+"answer": "C",
+"explanation": "Cam şişe (K), karton bilet (L) ve plastik şişe (M) teknolojik işlemlerle tekrar ham maddeye dönüştürülebilen geri dönüştürülebilir atıklardır. Elma kabuğu (N) ise organik atıktır; geri dönüştürülebilir ambalaj/sanayi maddesi kapsamında değil, biyolojik olarak ayrışan kompost atık kapsamındadır. Dolayısıyla K, L ve M maddeleri geri dönüştürülebilir.",
+"vfd2": true,
+"_sty": "s:|maddel sınıfı yer alır",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 3,
+"ts": 1794550754
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması ve deney",
+"passage": "Uzay araştırma merkezinde görevli bir mühendis ekibi, Mars yüzeyindeki keşif araçlarının güç sistemlerini simüle etmek için laboratuvarda özdeş piller ve ampuller kullanarak çeşitli devre şemaları tasarlamıştır.",
+"question": "Tasarım verilerine göre hazırlanan devre şemalarında elektrik akımının sorunsuz geçebilmesi ve ampullerin ışık verebilmesi için aşağıdakilerden hangisi mutlaka sağlanmalıdır?",
+"shape": null,
+"options": {
+"A": "Devre elemanlarını birbirine bağlayan yolların açık olması",
+"B": "Devrenin kapalı bir yörünge oluşturması ve enerji kaynağı bulunması",
+"C": "Pillerin tükenmiş ve kabloların kopuk olması",
+"D": "Anahtarın her zaman açık tutulması"
+},
+"answer": "B",
+"explanation": "Elektrik akımının oluşması ve devre elemanlarının çalışması için devrenin kapalı olması, bir enerji kaynağının (pil) bulunması ve iletken kablolarla bağlantının sağlanması şarttır.",
+"vfd2": true,
+"_sty": "s:|aşağıd hangis mutlak sağlan",
+"unit": "Elektrik Devre Elemanları",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler, Elektrik tasarrufu ve güvenliği",
+"d": 3,
+"ts": 1794550840
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kütle, yer çekimi ve ağırlık",
+"passage": "Bir robotik atölyesinde hazırlanan deneyde, Dünya yüzeyindeki bir robotik kolun kütlesi ve bu kola etki eden yer çekimi kuvveti (ağırlık) ölçülüyor. Aynı robotik kol uzaydaki farklı gök cisimlerine götürülerek ölçümler tekrarlanıyor.",
+"question": "Bu deney verilerine göre robotik kolun kütlesi ve ağırlığı ile ilgili I, II ve III numaralı ifadelerden hangileri doğrudur?\nI. Robotik kolun kütlesi yer çekimi ivmesinin farklı olduğu gök cisimlerinde değişmez.\nII. Robotik kolun ağırlığı bulunduğu gök cismindeki yer çekimi kuvvetine bağlı olarak değişir.\nIII. Robotik kolun Ay'daki ağırlığı, Dünya'daki ağırlığından daha büyüktür.",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Kütle madde miktarıdır ve her yerde aynıdır (I doğru). Ağırlık yer çekimi kuvvetidir ve yer çekimi değiştikçe ağırlık da değişir (II doğru). Ay'daki ağırlık Dünya'dakinin yaklaşık altıda biridir, yani daha küçüktür (III yanlış).",
+"vfd2": true,
+"_sty": "s:|daki ağırlı daha büyükt",
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton), Dinamometre modeli, Kütle, yer çekimi ve ağırlık, Sürtünme kuvveti ve etkileri",
+"d": 2,
+"ts": 1794550933
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti ve etkileri",
+"passage": "Bir kitap fuarında ağır kutuların taşınması için eğik düzlemler ve farklı zeminler kuruluyor. Görevliler, kutuları taşırken sürtünme kuvvetinin hayatı kolaylaştıran ve zorlaştıran yönlerini gözlemliyor.",
+"question": "Buna göre eğik düzlemde hareket eden kutularla ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "fen",
+"sub_type": "egik_duzlem",
+"uzunluk": "5 m",
+"yukseklik": "3 m",
+"yuk": "100 N",
+"kuvvet": "F",
+"show_names": false
+},
+"options": {
+"A": "Pürüzlü yüzeylerde sürtünme kuvveti azaldığı için cisimler daha hızlı hareket eder.",
+"B": "Sürtünme kuvveti her zaman cisimlerin hareketini hızlandırıcı etki yapar.",
+"C": "Eğik düzlemde yüzeyin pürüzlü olması cisimlerin hareketini zorlaştırarak sürtünme kuvvetini artırır.",
+"D": "Sürtünme kuvveti yalnızca katı ortamda değil, sadece boşlukta var olur."
+},
+"answer": "C",
+"explanation": "Yüzeyler pürüzlü oldukça temas eden yüzeyler arasındaki sürtünme kuvveti artar ve bu durum hareketi zorlaştırır.",
+"vfd2": true,
+"_sty": "s:fen|ilgili aşağıd hangis doğrud",
+"unit": "Kuvvetin Ölçülmesi ve Sürtünme",
+"topics": "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton), Dinamometre modeli, Kütle, yer çekimi ve ağırlık, Sürtünme kuvveti ve etkileri",
+"d": 2,
+"ts": 1794550933
 }
 ]
 }
