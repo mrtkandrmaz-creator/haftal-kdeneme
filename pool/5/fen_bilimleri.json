@@ -6206,6 +6206,142 @@
 "topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
 "d": 3,
 "ts": 1794636927
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Atık yönetimi",
+"passage": "Bir okulda düzenlenen 'Yeşil Kampüs' projesi kapsamında haftalık toplanan atık türleri aşağıdaki grafikte gösterilmiştir. Okul yönetimi, geri dönüşümü en kolay olan atıkların miktarını artırmak için çalışma başlatacaktır.",
+"question": "Grafik verilerine göre okulun öncelikli olarak hangi atık türünün dönüşümüne ağırlık vermesi beklenir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Kağıt",
+"Plastik",
+"Metal",
+"Cam"
+],
+"values": [
+40,
+25,
+15,
+20
+],
+"title": "Haftalık Atık Miktarı (kg)",
+"show_names": false
+},
+"options": {
+"A": "Metal",
+"B": "Cam",
+"C": "Plastik",
+"D": "Kağıt"
+},
+"answer": "D",
+"explanation": "Grafikte kağıt atık miktarı 40 kg ile en yüksek değerdir. Okul yönetimi, miktarı fazla olan ve dönüşümü ekonomiye en çok katkı sağlayan atık türü olarak kağıdı önceliklendirmelidir.",
+"vfd2": true,
+"_sty": "s:bar_chart|dönüşü ağırlı vermes beklen",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 1,
+"ts": 1794640365
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Geri dönüşüm ve geri dönüştürülebilen maddeler",
+"passage": "5/A sınıfı öğrencileri çevre bilinci projesi kapsamında okullarındaki atık malzemeleri incelemişlerdir. Hazırladıkları tabloda bazı atık türlerinin geri dönüştürülüp dönüştürülemediğini ve bu maddelerin hangi alanlarda tekrar değerlendirilebileceğini kayda almışlardır.",
+"question": "Buna göre tablodaki verilere dayanarak aşağıdaki yargılardan hangisine ulaşılabilir?",
+"shape": {
+"type": "table",
+"title": "Atık Türleri ve Geri Dönüşüm Durumu",
+"headers": [
+"Atık Maddesi",
+"Geri Dönüştürülebilir mi?",
+"Yeniden Değerlendirme Alanı"
+],
+"rows": [
+[
+"Kullanılmış Gazete Kâğıdı",
+"Evet",
+"Kâğıt ürünleri üretimi"
+],
+[
+"Renkli Cam Şişe",
+"Evet",
+"Yeni cam ambalaj yapımı"
+],
+[
+"Yağlı Pide Kutusu",
+"Hayır",
+"Organik atık / Kompost"
+],
+[
+"Metal Konserve Kutusu",
+"Evet",
+"Metal levha ve kutu yapımı"
+]
+]
+},
+"options": {
+"A": "Geri dönüştürülebilen maddeler farklı sanayi kollarında yeniden hammadde olarak kullanılabilir.",
+"B": "Gıda artığı bulaşmış tüm kâğıt atıklar doğrudan cam fabrikalarında eritilebilir.",
+"C": "Metal atıkların geri dönüşümü yalnızca plastik üretimini desteklemek amacıyla yapılır.",
+"D": "Geri dönüştürülemeyen maddelerin doğada kalma süresi diğer maddelere göre daha kısadır."
+},
+"answer": "A",
+"explanation": "Tabloda verilen gazete, cam ve metal atıkların geri dönüştürülebildiği ve yeni ambalaj veya kâğıt üretiminde kullanıldığı görülmektedir. Bu durum, bu maddelerin farklı sanayi kollarında hammadde olarak değerlendirilebileceğini gösterir.",
+"vfd2": true,
+"_sty": "s:table|aşağıd yargıl hangis ulaşıl",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 1,
+"ts": 1794640365
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı yalıtımı",
+"passage": "Bir pazar yerinde serin tutulması gereken taze sebzelerin taşınması için esnaf, farklı kalınlıkta ve yapıda yalıtım malzemeleriyle kaplı sandıklar tasarlamaktadır. Esnaf Ali, sandıkların iç sıcaklığını sabit tutmak amacıyla yalıtım malzemesinin kalitesini ve katman sayısını artırmıştır.",
+"question": "Buna göre esnaf Ali'nin yalıtım malzemesini kalın tutarak ısı alışverişini engelleme uygulamasıyla ilgili aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Sebzelerin tamamen donarak besin değerini kaybetmesine neden olur.",
+"B": "Isı iletimini artırarak içerideki soğuk havanın hızla dışarı çıkmasını sağlar.",
+"C": "Dışarıdaki sıcak havanın sandık içine girmesini yavaşlatarak sebzelerin bozulmasını geciktirir.",
+"D": "Sandık içindeki sebzelerin kendi kendine ısı üreterek sıcaklığını artırmasını sağlar."
+},
+"answer": "C",
+"explanation": "Isı yalıtımı, sıcak veya soğuk havanın ortamlar arası geçişini yavaşlatmayı amaçlar. Pazar arabasında yalıtımın kalın tutulması, dışarıdaki sıcak havanın sandığa girişini engelleyerek içerideki serinliğin korunmasını ve sebzelerin taze kalmasını sağlar.",
+"vfd2": true,
+"_sty": "s:|ilgili aşağıd hangis söylen",
+"unit": "Madde ve Değişim",
+"topics": "Maddenin tanecikli yapısı ve hâlleri, Isı ve sıcaklık, Isı alışverişi, Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama), Isı iletimi, Isı yalıtımı",
+"d": 3,
+"ts": 1794640670
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"passage": "Antik bir höyükte yapılan arkeolojik kazıda, dönemin insanları tarafından yapıldığı tahmin edilen küre şeklinde üç farklı taş obje bulunmuştur. Uzmanlar bu objelerin Güneş, Dünya ve Ay'ın büyüklük oranlarını temsil ettiğini belirlemiştir.",
+"question": "Güneş, Dünya ve Ay'ın gerçek boyutları göz önüne alındığında, bu gök cisimlerinin büyüklük sıralaması için aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "science_space",
+"sub_type": "moon_single",
+"phase": 4,
+"label": "Örnek Cisim",
+"show_names": false
+},
+"options": {
+"A": "Güneş > Ay > Dünya",
+"B": "Ay > Dünya > Güneş",
+"C": "Dünya > Güneş > Ay",
+"D": "Güneş > Dünya > Ay"
+},
+"answer": "D",
+"explanation": "1. Güneş, Dünya ve Ay arasında en büyük gök cismi Güneş'tir.\n2. Dünya, Ay'dan büyük; Güneş'ten küçüktür.\n3. Ay ise üçü arasında en küçük olan gök cismidir.\n4. Büyüklük sıralaması Güneş > Dünya > Ay şeklindedir.",
+"vfd2": true,
+"_sty": "s:science_space|için aşağıd hangis doğrud",
+"unit": "Güneş, Dünya ve Ay",
+"topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
+"d": 3,
+"ts": 1794640933
 }
 ]
 }

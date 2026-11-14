@@ -3487,6 +3487,186 @@
 "topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
 "d": 1,
 "ts": 1794636987
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.3.6. Çokgenlerin kenar ve açı özelliklerine yönelik deneyimlerini yansıtabilme",
+"passage": "",
+"question": "Şekilde verilen ABCDE düzgün beşgenine göre, I. Kenar sayısı 5'tir., II. Tüm iç açıları eşittir., III. Bir iç açısının ölçüsü 108°'dir. ifadelerinden hangileri doğrudur?",
+"shape": {
+"type": "geo",
+"sub_type": "polygon",
+"sides": 5,
+"labels": [
+"A",
+"B",
+"C",
+"D",
+"E"
+],
+"equal_ticks": true,
+"diagonals": false,
+"irregular": false,
+"show_names": false
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "D",
+"explanation": "Düzgün beşgen beş kenarlı ve beş iç açısı olan kapalı bir çokgendir. Tüm kenar uzunlukları ve iç açıları birbirine eşittir. Düzgün beşgende bir iç açının ölçüsü 540° ÷ 5 = 108°'dir. Dolayısıyla I, II ve III numaralı ifadelerin hepsi doğrudur.",
+"vfd2": true,
+"_sty": "s:geo|dir ifadel hangil doğrud",
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 3,
+"ts": 1794640425
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.3.7. İki çemberin kesişimiyle oluşan üçgenlerin kenar özelliklerine ilişkin çıkarım yapabilme (eşkenar, ikizkenar, çeşitkenar)",
+"passage": "",
+"question": "A ve B merkezli eş çemberlerin C noktasında kesişmesiyle oluşan ABC üçgeninde |AC| = 5 cm, |BC| = 5 cm ve |AB| = 4 cm olduğuna göre bu üçgenin kenar özelliklerine göre sınıflandırılması hangi seçenekte doğru verilmiştir?",
+"shape": {
+"type": "geo",
+"sub_type": "nested_circles",
+"mode": "intersect",
+"r1": 5,
+"r2": 5,
+"d": 4,
+"names": [
+"A",
+"B",
+"C"
+],
+"sides": {
+"AC": "5 cm",
+"BC": "5 cm",
+"AB": "4 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "İkizkenar üçgen",
+"B": "Eşkenar üçgen",
+"C": "Geniş açılı üçgen",
+"D": "Çeşitkenar üçgen"
+},
+"answer": "A",
+"explanation": "ABC üçgeninin kenar uzunlukları |AC| = 5 cm, |BC| = 5 cm ve |AB| = 4 cm'dir. Üçgenin iki kenar uzunluğu birbirine eşit olduğu için bu üçgen ikizkenar üçgendir.",
+"vfd2": true,
+"_sty": "s:geo|hangi seçene doğru verilm",
+"unit": "3. Tema: Geometrik Şekiller",
+"topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
+"d": 3,
+"ts": 1794640425
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+"passage": "Ormancılık kulübü öğrencileri okul bahçesine dikilen fidan türlerinin haftalık sulama miktarlarını incelemektedir. Silindirik su depolarındaki kategorik veriler okunarak su tüketim planı yapılacaktır.",
+"question": "Depolardaki su miktarlarına göre en çok su tüketen ağaç türü ile en az su tüketen ağaç türü arasındaki fark kaç litredir?",
+"shape": {
+"type": "table",
+"title": "Fidan Türlerine Göre Haftalık Su Tüketimi",
+"headers": [
+"Ağaç Türü",
+"Su Miktarı (Litre)"
+],
+"rows": [
+[
+"Çam",
+"45"
+],
+[
+"Meşe",
+"70"
+],
+[
+"Çınar",
+"95"
+],
+[
+"Kavak",
+"30"
+]
+]
+},
+"options": {
+"A": "50",
+"B": "65",
+"C": "70",
+"D": "85"
+},
+"answer": "B",
+"explanation": "En çok su tüketen Çınar (95 L), en az su tüketen Kavak (30 L) ağacıdır. Aradaki fark 95 - 30 = 65 litredir.",
+"vfd2": true,
+"_sty": "s:table|arasın fark kaç litred",
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 1,
+"ts": 1794640454
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.6.1. Olayların olasılık spektrumu",
+"passage": "Bir orman koruma projesi kapsamında 10 adet farklı fidanın bulunduğu bir serada fidanlar kategorize edilmiştir. 6 adet çam, 4 adet meşe fidanı bulunmaktadır.",
+"question": "Bu seradan rastgele seçilen bir fidanla ilgili aşağıdaki yargılardan hangileri doğrudur?\nI. Çam fidanı seçilmesi 'kesin' olaydır.\nII. Meşe fidanı seçilmesi 'az olasılıklı' (çam seçimine göre) bir durumdur.\nIII. Kavak fidanı seçilmesi 'imkânsız' olaydır.",
+"shape": {
+"type": "table",
+"title": "Fidan Türleri",
+"headers": [
+"Tür",
+"Adet"
+],
+"rows": [
+[
+"Çam",
+"6"
+],
+[
+"Meşe",
+"4"
+]
+]
+},
+"options": {
+"A": "I ve II",
+"B": "II ve III",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "I yanlış; çam seçilmesi 6/10 olasılıktır, kesin değildir. II doğru; 4/10 < 6/10 olduğu için meşe seçimi az olasılıklıdır. III doğru; ortamda kavak olmadığı için seçilmesi imkânsız olaydır (0).",
+"vfd2": true,
+"_sty": "s:table|seçilm imk nsız olaydı",
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 4,
+"ts": 1794640844
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+"passage": "Pazar yerinde tezgah açan bir esnaf, günlük kazancını ve ürün miktarını kaydetmek için büyük doğal sayılar kullanmaktadır. Esnafın yazdığı bazı sayılar şunlardır: Yüz kırk beş bin yirmi üç, İki yüz bin dört yüz elli, Sekiz yüz bin yedi.",
+"question": "Bu bilgilere göre esnafın defterine kaydettiği sayılardan en büyük olanın binler bölüğünde yer alan sayı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "145",
+"B": "200",
+"C": "450",
+"D": "800"
+},
+"answer": "D",
+"explanation": "Metinde geçen sayılar sırasıyla 145023, 200450 ve 800007'dir. Bu sayılar arasında en büyük olanı 800007'dir. 800007 sayısının binler bölüğünde 800 yer alır, ancak binler bölüğündeki sayı değeri 800'dür. Sayının binler bölüğünü oluşturan üç basamaklı sayı 800'dür.",
+"vfd2": true,
+"_sty": "s:|alan sayı aşağıd hangis",
+"unit": "1. Tema: Sayılar ve Nicelikler (1)",
+"topics": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme, MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerin",
+"d": 1,
+"ts": 1794641086
 }
 ]
 }

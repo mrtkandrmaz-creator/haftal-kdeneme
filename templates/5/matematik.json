@@ -3729,6 +3729,95 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.6.1",
+   "text": "Ali markette {a} kg elma alıyor, kilogram fiyatı {p} TL. Toplam kaç TL ödeyecek? Buna göre ... kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0094",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.1",
+   "text": "Bir okulda öğrencilerin sevdiği spor dalları anketi yapılmıştır. Anket sonuçlarına göre futbolu seven öğrenci sayısı {a} kişidir. Basketbolu sevenlerin sayısı futbolu sevenlerin sayısının {k} katıdır. Yüzmeyi sevenlerin sayısı ise basketbolu sevenlerin sayısından {c} kişi azdır. Buna göre anketine katılan toplam öğrenci sayısı kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 10,
+     "hi": 30,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      3,
+      4
+     ]
+    },
+    "c": {
+     "lo": 5,
+     "hi": 15,
+     "step": 5
+    }
+   },
+   "derived": {
+    "basket": "a*k",
+    "yuzme": "a*k-c",
+    "toplam": "a + a*k + a*k - c"
+   },
+   "constraints": [
+    "a*k > c"
+   ],
+   "answer": "a + a*k + a*k - c",
+   "wrong": [
+    "a + a*k - c",
+    "a*k + a*k - c",
+    "a + a*k + c"
+   ],
+   "unit": "kişi",
+   "explanation": "Futbol: {a}, Basketbol: {a} x {k} = {basket}, Yüzme: {basket} - {c} = {yuzme}. Toplam: {a} + {basket} + {yuzme} = {ans}",
+   "positive": true,
+   "id": "m5-0095",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
   }
  ]
 }
