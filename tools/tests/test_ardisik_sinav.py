@@ -15,7 +15,8 @@ for sj in SUBJ:
     tops = "; ".join(u + ": " + "; ".join(t) for u, t in C[sj][:3])
     prev = []
     for r in range(3):
-        qs, err = ai.generate_mc([{"subject": sj, "n": 10, "topics": tops}], "5. Sınıf", D[2], "t", avoid={}, use_bank=False, deposit=False, verify=False, count=False)
+        qs, err = ai.generate_mc([{"subject": sj, "n": 10, "topics": tops}], "5. Sınıf", D[2], "t", avoid={k: list(v) for k, v in store.recent_stems().items()}, use_bank=False, deposit=False, verify=False, count=False)
+        store.add_stems(qs); store.add_styles(qs)
         st = [re.sub(r"\d+", "#", q["question"])[:70] for q in qs]
         rep = sum(1 for s in st if s in prev)
         tp = collections.Counter(q.get("tpl") for q in qs)
