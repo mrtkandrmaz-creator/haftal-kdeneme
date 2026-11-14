@@ -10101,6 +10101,162 @@ _FF_GENS += [(_ff_food, ("besin", "ekosistem", "zincir", "çevre", "biyoçeşit"
              (_ff_fric, ("sürtünme", "kuvvet")), (_ff_shadow, ("gölge", "ışık"))]
 
 
+# ---------------------------------------------------------------- 5. SINIF FEN: YENİ NESİL (beceri temelli) KALIPLAR
+# Deney senaryosu + tablo + çıkarım/değişken/yorum. Metinde geçen her değer tabloda yazılıdır; cevap tablodan kodla hesaplanır.
+def _yn_opts(correct, wrongs, ex_unused=None):
+    o = _mf_opts(correct, wrongs, str, sort=False)
+    if not o:
+        return None
+    ol, cor = o
+    random.shuffle(ol)
+    return ol, cor
+
+
+def _ff_yn_yay(subject):
+    k = random.choice([2, 3, 4, 5])
+    ms = [50, 100, 150, 200]
+    rows = [[str(m), str(k * m // 50)] for m in ms]
+    shape = {"type": "table", "title": "Yaya asılan kütle ve yayın uzaması", "headers": ["Asılan kütle (g)", "Yayın uzaması (cm)"], "rows": rows}
+    lead = "Ece, aynı yaya farklı kütleler asarak yayın uzamasını ölçüyor. Yay, bu kütlelerde esnekliğini yitirmemiştir. Ölçüm sonuçları tabloda verilmiştir."
+    if random.random() < 0.5:
+        q = "Tablodaki verilere göre aşağıdaki çıkarımlardan hangisi yapılabilir?"
+        c = "Yaya asılan kütle arttıkça yayın uzaması artar."
+        o = _yn_opts(c, ["Yaya asılan kütle arttıkça yayın uzaması azalır.", "Yayın uzaması asılan kütleden bağımsızdır.", "Yaya asılan kütle iki katına çıkınca yayın uzaması yarıya iner."])
+        ex = f"Kütle 50 g’dan 200 g’a çıktıkça uzama {rows[0][1]} cm’den {rows[-1][1]} cm’ye çıkmıştır; kütle arttıkça uzama artar."
+        return _mf_raw(subject, "Kuvvetin ölçülmesi", q, o, ex, shape=shape, passage=lead) if o else None
+    m = random.choice([250, 300])
+    v = k * m // 50
+    q = f"Tablodaki değişim aynı şekilde sürdüğüne göre yaya {m} g’lık bir kütle asılırsa yayın uzaması kaç cm olur?"
+    o = _mf_opts(v, [v + k, v - k, v + 2 * k, k * 4], lambda x: f"{x} cm")
+    ex = f"Her 50 g için uzama {k} cm artmaktadır. {m} g için {m // 50} × {k} = {v} cm olur."
+    return _mf_raw(subject, "Kuvvetin ölçülmesi", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+def _ff_yn_stop(subject):
+    surf = random.sample([("cam", 5), ("sırlı fayans", 6), ("ahşap parke", 9), ("halı", 17), ("kum", 24), ("çim", 20), ("zımpara", 30)], 4)
+    ds = [(n, v + random.randint(0, 2)) for n, v in surf]
+    if len({v for _, v in ds}) < 4:
+        return None
+    shape = {"type": "table", "title": "Arabanın durana kadar aldığı yol", "headers": ["Yüzey", "Durma yolu (cm)"], "rows": [[n, str(v)] for n, v in ds]}
+    lead = ("Eylül, aynı oyuncak arabayı aynı rampadan her denemede aynı yükseklikten bırakıyor ve araba rampadan indikten sonra durana kadar aldığı yolu ölçüyor. "
+            "Denemeler farklı yüzeylerde yapılmıştır.")
+    big = random.random() < 0.5
+    pick = min(ds, key=lambda x: x[1]) if big else max(ds, key=lambda x: x[1])
+    q = f"Tablodaki verilere göre arabaya etki eden sürtünme kuvveti hangi yüzeyde diğer üç yüzeydekinden daha {'büyüktür' if big else 'küçüktür'}?"
+    o = _yn_opts(pick[0], [n for n, _ in ds if n != pick[0]])
+    ex = (f"Araba aynı hızla geldiğinden daha kısa yolda duran yüzeyde sürtünme daha büyüktür. En kısa yol {min(v for _, v in ds)} cm, en uzun yol {max(v for _, v in ds)} cm’dir; "
+          f"en {'büyük' if big else 'küçük'} sürtünme {pick[0]} yüzeyindedir.")
+    return _mf_raw(subject, "Sürtünme kuvveti", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+def _ff_yn_kaynama(subject):
+    s, r = random.choice([(20, 20), (40, 15), (30, 14), (25, 15), (35, 13)])
+    steps = (100 - s) // r
+    if s + steps * r != 100:
+        return None
+    temps = [s + i * r for i in range(steps + 1)] + [100, 100]
+    times = [2 * i for i in range(len(temps))]
+    shape = {"type": "table", "title": "Suyun sıcaklığı ve zaman", "headers": ["Zaman (dk)", "Sıcaklık (°C)"], "rows": [[str(t), str(v)] for t, v in zip(times, temps)]}
+    lead = "Bir öğrenci, deniz seviyesinde ocakta ısıtılan saf suyun sıcaklığını iki dakikada bir ölçüyor ve sonuçları tabloya yazıyor."
+    first = times[temps.index(100)]
+    if random.random() < 0.5:
+        q = "Tablodaki verilere göre su kaçıncı dakikada kaynamaya başlamıştır?"
+        o = _mf_opts(first, [first + 2, first - 2, first + 4, times[-1]], lambda x: f"{x}. dakika")
+        ex = f"Sıcaklık ilk kez {first}. dakikada 100 °C’a ulaşmış ve sonrasında 100 °C’ta sabit kalmıştır; kaynama {first}. dakikada başlamıştır."
+        return _mf_raw(subject, "Hâl değişimleri", q, o, ex, shape=shape, passage=lead) if o else None
+    q = f"Tablodaki verilere göre suyun {times[-1]}. dakikadaki sıcaklığı kaç °C’tur ve bu durumun nedeni nedir?"
+    c = "100 °C; su kaynamaktadır ve kaynarken sıcaklığı değişmez."
+    o = _yn_opts(c, ["100 °C; su ısı almadığı için sıcaklığı değişmez.", "100 °C; su donmaya başlamıştır.", f"{temps[-3]} °C; su ısınmaya devam etmektedir."])
+    ex = "Su 100 °C’ta kaynar; kaynama sürerken alınan ısı hâl değişimine harcanır ve sıcaklık sabit kalır."
+    return _mf_raw(subject, "Hâl değişimleri", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+def _ff_yn_golge(subject):
+    a = random.choice([10, 20])
+    ds = [20, 30, 40, 50]
+    sh = [a * 60 // d for d in ds]
+    if len(set(sh)) < 4 or any(a * 60 % d for d in ds):
+        return None
+    shape = {"type": "table", "title": "Işık kaynağının uzaklığı ve gölge boyu", "headers": ["Işık kaynağı–cisim uzaklığı (cm)", "Gölge boyu (cm)"], "rows": [[str(d), str(s)] for d, s in zip(ds, sh)]}
+    lead = f"Bir öğrenci, boyu {a} cm olan bir kalemi perdeye yakın tutup küçük bir ışık kaynağını kalemden farklı uzaklıklara götürerek perdedeki gölgenin boyunu ölçüyor."
+    q = "Tablodaki verilere göre aşağıdaki çıkarımlardan hangisi yapılabilir?"
+    c = "Işık kaynağı cisimden uzaklaştıkça gölgenin boyu küçülür."
+    o = _yn_opts(c, ["Işık kaynağı cisimden uzaklaştıkça gölgenin boyu büyür.", "Gölgenin boyu ışık kaynağının uzaklığına bağlı değildir.", "Işık kaynağı uzaklaştıkça gölge kaybolur ve boyu sıfır olur."])
+    ex = f"Uzaklık 20 cm’den 50 cm’e çıkarken gölge boyu {sh[0]} cm’den {sh[-1]} cm’ye küçülmüştür."
+    return _mf_raw(subject, "Gölge", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+def _ff_yn_ampul(subject):
+    n = random.choice([1, 2, 3])
+    shape = {"type": "table", "title": "Deney sonuçları", "headers": ["Devreye bağlanan pil (adet)", "Ampulün verdiği ışık"], "rows": [["1", "Az"], ["2", "Orta"], ["3", "Çok"]]}
+    lead = ("Nehir, seri bağlı bir devrede özdeş pillerle özdeş bir ampulü yakıyor. Her denemede devreye farklı sayıda pil bağlayıp ampulün ne kadar ışık verdiğine bakıyor ve "
+            "sonuçları tabloya yazıyor. Bağlantı kabloları ve ampul her denemede aynıdır.")
+    kind = random.choice(["bag", "gozlem", "sabit"])
+    if kind == "bag":
+        q = "Bu deneyde değiştirilen değişken aşağıdakilerden hangisidir?"
+        c = "Pil sayısı"
+        ws = ["Ampulün parlaklığı", "Ampulün özdeş olması", "Bağlantı kablolarının cinsi"]
+        ex = "Her denemede devreye bağlanan pil sayısı değiştirilmiştir."
+    elif kind == "gozlem":
+        q = "Bu deneyde gözlenen (sonuç olarak incelenen) değişken aşağıdakilerden hangisidir?"
+        c = "Ampulün parlaklığı"
+        ws = ["Pil sayısı", "Ampulün özdeş olması", "Bağlantı kablolarının cinsi"]
+        ex = "Pil sayısı değiştirilince değişen ve gözlenen şey ampulün parlaklığıdır."
+    else:
+        q = "Bu deneyin güvenilir olması için aşağıdakilerden hangisi her denemede aynı tutulmalıdır?"
+        c = "Ampulün özdeş olması"
+        ws = ["Pil sayısı", "Ampulün parlaklığı", "Ampulün yanıp yanmaması"]
+        ex = "Yalnızca pil sayısı değiştirilir; ampul ve kablolar gibi diğer koşullar sabit tutulur."
+    o = _yn_opts(c, ws)
+    return _mf_raw(subject, "Elektrik devresi", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+def _ff_yn_yalitim(subject):
+    tier = [("strafor", 66), ("yün kumaş", 62), ("gazete kâğıdı", 54), ("alüminyum folyo", 44), ("ince plastik torba", 40)]
+    pick = random.sample(tier, 4)
+    vals = [(n, v + random.randint(-1, 1)) for n, v in pick]
+    if len({v for _, v in vals}) < 4:
+        return None
+    shape = {"type": "table", "title": "20 dakika sonra suyun sıcaklığı", "headers": ["Kabın sarıldığı malzeme", "Sıcaklık (°C)"], "rows": [[n, str(v)] for n, v in vals]}
+    lead = ("Dört özdeş kaba 80 °C’ta eşit miktarda su konuyor ve her kap farklı bir malzemeyle sarılıyor. Kaplar aynı odada 20 dakika bekletildikten sonra "
+            "suların sıcaklığı ölçülüyor.")
+    best = random.random() < 0.5
+    pk = max(vals, key=lambda x: x[1]) if best else min(vals, key=lambda x: x[1])
+    q = f"Tablodaki verilere göre {'en iyi ısı yalıtkanı' if best else 'ısıyı en kolay ileten malzeme'} hangisidir?"
+    o = _yn_opts(pk[0], [n for n, _ in vals if n != pk[0]])
+    ex = (f"Suyun sıcaklığı en {'az' if best else 'çok'} düşen kapta ısı kaybı en {'az' if best else 'fazla'}dır. "
+          f"{pk[0]} ile sarılı kapta {pk[1]} °C ölçülmüştür; bu malzeme {'en iyi yalıtkandır' if best else 'ısıyı en kolay iletendir'}.")
+    return _mf_raw(subject, "Isı yalıtımı", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+def _ff_yn_atik(subject):
+    items = {"Kâğıt": True, "Plastik": True, "Cam": True, "Metal": True, "Yemek artığı": False}
+    names = random.sample(list(items), 4)
+    if all(items[n] for n in names):
+        names[random.randrange(4)] = "Yemek artığı"
+    vals = {n: random.randint(2, 14) for n in names}
+    rec = sum(v for n, v in vals.items() if items[n])
+    tot = sum(vals.values())
+    if rec == tot:
+        return None
+    shape = {"type": "table", "title": "Bir evin haftalık atıkları", "headers": ["Atık türü", "Miktar (kg)"], "rows": [[n, str(vals[n])] for n in names]}
+    lead = "Bir ailenin bir haftada biriktirdiği atıklar türlerine göre tartılmış ve tabloya yazılmıştır. Aile, geri dönüştürülebilen atıkları ayrı toplayıp geri dönüşüm kutusuna atmaktadır."
+    q = "Bu ailenin bir haftada geri dönüşüm kutusuna atabileceği atıkların toplamı kaç kg’dır?"
+    o = _mf_opts(rec, [tot, rec + 2, rec - 2 if rec > 3 else rec + 4, tot - 1], lambda x: f"{x} kg")
+    ex = "Geri dönüştürülebilen atıklar: " + ", ".join(f"{n} ({vals[n]} kg)" for n in names if items[n]) + f". Toplam {rec} kg’dır."
+    return _mf_raw(subject, "Geri dönüşüm", q, o, ex, shape=shape, passage=lead) if o else None
+
+
+for _f, _it in ((_ff_yn_yay, "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton)"), (_ff_yn_stop, "Sürtünme kuvveti ve etkileri"),
+                (_ff_yn_kaynama, "Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama)"), (_ff_yn_golge, "Gölge oluşumu ve tam gölge"),
+                (_ff_yn_ampul, "Ampul parlaklığını etkileyen değişkenler"), (_ff_yn_yalitim, "Isı yalıtımı"),
+                (_ff_yn_atik, "Geri dönüşüm ve geri dönüştürülebilen maddeler")):
+    _f.ITEM = _it
+_FF_GENS += [(_ff_yn_yay, ("kuvvet", "dinamometre", "newton")), (_ff_yn_stop, ("sürtünme", "kuvvet")), (_ff_yn_kaynama, ("hâl değişim", "ısı", "kaynama")),
+             (_ff_yn_golge, ("gölge", "ışık")), (_ff_yn_ampul, ("ampul", "devre", "parlaklık")), (_ff_yn_yalitim, ("yalıtım", "ısı")),
+             (_ff_yn_atik, ("geri dönüş", "atık"))]
+
+
 # ---------------------------------------------------------------- SOSYAL BİLGİLER: kodla hesaplanan veri soruları (5. sınıf)
 def _sf_budget(subject):
     inc = random.choice([(120, 30), (150, 50), (200, 40), (180, 20)])
@@ -10542,6 +10698,7 @@ _mf_tumler_oran = _mk_kind(lambda sj, kind=None: _mf_tb_oran(sj, 90), None, "_mf
 _mf_butunler_oran = _mk_kind(lambda sj, kind=None: _mf_tb_oran(sj, 180), None, "_mf_butunler_oran")
 _MF_GENS += [(_mf_tumler_oran, ("tümler",), (5,)), (_mf_butunler_oran, ("bütünler",), (5,))]
 _DIFF_OF.update({"_mf_tumler_oran": 4, "_mf_butunler_oran": 4})
+_DIFF_OF.update({"_ff_yn_yay": 4, "_ff_yn_stop": 4, "_ff_yn_kaynama": 4, "_ff_yn_golge": 4, "_ff_yn_ampul": 5, "_ff_yn_yalitim": 4, "_ff_yn_atik": 3})
 
 
 # ---- tümler / bütünler / komşu / ters açı: çok sayıda ayrı kalıp (her biri farklı soru kökü; anında üretilir)
