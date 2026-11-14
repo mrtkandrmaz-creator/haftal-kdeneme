@@ -9275,7 +9275,7 @@ _UM = {}
 
 
 def _unit_tokens(text):
-    t = str(text or "").replace("İ", "i").replace("I", "ı").lower()
+    t = str(text or "").replace("İ", "i").replace("I", "ı").lower().replace("’", "").replace("'", "")  # Kur'an / Kur’an aynı sözcük
     return {w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)} - _UNIT_GENERIC
 
 
@@ -16960,7 +16960,7 @@ def _pool_path(subject, grade_label):
 
 
 def _pool_tok(t):
-    t = str(t or "").replace("İ", "i").replace("I", "ı").lower()
+    t = str(t or "").replace("İ", "i").replace("I", "ı").lower().replace("’", "").replace("'", "")  # Kur'an / Kur’an aynı sözcük
     return {w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)}
 
 
