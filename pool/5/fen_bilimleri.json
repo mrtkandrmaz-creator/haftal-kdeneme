@@ -6127,6 +6127,85 @@
 "topics": "Maddenin tanecikli yapısı ve hâlleri, Isı ve sıcaklık, Isı alışverişi, Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama), Isı iletimi, Isı yalıtımı",
 "d": 3,
 "ts": 1794634584
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması ve deney",
+"passage": "Bilim insanı rolü üstlenen bir öğrenci, basit bir elektrik devresinde anahtarın açık ve kapalı olma durumlarının devre elemanlarına etkisini araştırmaktadır. Öğrenci hazırladığı deney düzeneğinde, anahtar açık konumdayken ampulün ışık vermediğini, anahtar kapatıldığında ise ampulün anında ışık saçmaya başladığını gözlemlemiştir.",
+"question": "Bu gözlem sonucuna dayanarak, elektrik akımının geçişi ile devre durumu arasında kurulan doğru ilişki aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ampulün ışık vermesi için elektrik akımının kesintisiz bir yoldan geçmesi gerekir.",
+"B": "Elektrik akımının oluşması için pilin tek başına bağlanması yeterlidir.",
+"C": "Anahtarın konumu sadece pilin tükenme süresini doğrudan etkiler.",
+"D": "Anahtar açıkken devre direnci sıfıra düşer ve akım iletilir."
+},
+"answer": "A",
+"explanation": "Elektrik akımının bir devrede oluşabilmesi ve ampulün yanabilmesi için devrenin kapalı olması, yani iletken yolda kesinti bulunmaması şarttır. Bu durum C seçeneğinde doğru ifade edilmiştir.",
+"vfd2": true,
+"_sty": "s:|doğru ilişki aşağıd hangis",
+"unit": "Elektrik Devre Elemanları",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler, Elektrik tasarrufu ve güvenliği",
+"d": 2,
+"ts": 1794636810
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi",
+"passage": "Doğa yürüyüşü yapan bir grup öğrenci, ormanlık alanda farklı mantar türleri gözlemlemiştir. Öğrencilerden Melis, 'Bu mantarların çoğu şapkalı mantardır, hepsini toplayıp akşam yemeğinde tüketebiliriz.' demiştir. Öğretmeni ise bu durumun çok tehlikeli olabileceği konusunda öğrencileri uyarmıştır.",
+"question": "Öğretmenin öğrencileri uyarmasının temel nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Şapkalı mantarların sadece kültür ortamında yetişebilmesi.",
+"B": "Doğada yetişen tüm mantarların aslında birer bitki olması.",
+"C": "Tüm şapkalı mantarların mikroskobik canlılar tarafından üretilmesi.",
+"D": "Doğadaki mantarların zehirli olup olmadığının dış görünüşüne bakarak ayırt edilmesinin çok zor olması."
+},
+"answer": "D",
+"explanation": "Doğada yetişen şapkalı mantarların çoğu zehirli olabilir ve dış görünüşleri zehirli olmayanlarla çok benzerdir. Uzman olmayanların bunları ayırt etmesi imkansızdır, bu nedenle tüketilmesi hayati tehlike oluşturur.",
+"vfd2": true,
+"_sty": "s:|temel nedeni aşağıd hangis",
+"unit": "Canlılar Dünyası",
+"topics": "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma, Mikroskobik canlılara (bakteri, amip, öglena, param",
+"d": 3,
+"ts": 1794636855
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Evsel atıklar ve atık azaltma",
+"passage": "Bir ailenin bir aylık evsel atık miktarının türlerine göre dağılımı yandaki daire grafiğinde verilmiştir. Aile, atıklarını azaltmak için 'atık üretimini kaynağında sınırlama' stratejisini uygulamaya karar vermiştir.",
+"question": "Buna göre aile, evsel atıklarını azaltmak için öncelikle hangi tür atığa yönelik bir çözüm geliştirmelidir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Organik",
+"Plastik",
+"Kâğıt",
+"Diğer"
+],
+"values": [
+50,
+20,
+15,
+15
+],
+"title": "Aylık Evsel Atık Dağılımı (%)",
+"show_names": false
+},
+"options": {
+"A": "Organik",
+"B": "Kâğıt",
+"C": "Diğer",
+"D": "Plastik"
+},
+"answer": "A",
+"explanation": "Grafiğe göre toplam atığın %50'si organik atıklardan oluşmaktadır. Atık miktarını en etkin şekilde azaltmak için payı en büyük olan %50'lik kısımdan (organik atıklar) başlamak gerekir.",
+"vfd2": true,
+"_sty": "s:pie_chart|yöneli bir çözüm gelişt",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 3,
+"ts": 1794636927
 }
 ]
 }
