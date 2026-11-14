@@ -11222,6 +11222,74 @@ _TF_GENS += [(_tf_duygu, ("duygu",)), (_tf_esanlam, ("söz varlığı", "anlam",
 _DIFF_OF.update({"_tf_duygu": 2, "_tf_esanlam": 1, "_tf_atatarih": 2, "_tf_saglik": 1})
 
 
+# ---------------------------------------------------------------- 5. SINIF TÜRKÇE: YENİ NESİL PARAGRAF KALIPLARI
+# (paragraf, konu, ana fikir, yanlış ana fikirler, doğru çıkarım, yanlış çıkarımlar)
+_TR_PAR = [
+    ("Ayşe her akşam yatmadan önce yarım saat kitap okur. Başta bu alışkanlık ona zor geldi. Birkaç hafta sonra kitap okumadan uyuyamaz oldu. Artık okuduğu kitaplardan edindiği bilgileri arkadaşlarına da anlatıyor.",
+     "kitap okuma alışkanlığı", "Düzenli kitap okumak insana hem alışkanlık hem de bilgi kazandırır.",
+     ["Kitaplar yalnızca akşam saatlerinde okunmalıdır.", "Arkadaşlara bilgi anlatmak zor bir iştir.", "Uyumadan önce yapılan her şey alışkanlık hâline gelir."],
+     "Ayşe’nin kitap okuma alışkanlığı zamanla kolaylaşmıştır.", ["Ayşe kitap okumayı hiç sevmemiştir.", "Ayşe kitapları yalnızca arkadaşlarına anlatmak için okumaktadır.", "Ayşe’nin arkadaşları da her akşam yarım saat kitap okumaktadır."]),
+    ("Arılar çiçeklerden topladıkları özsuyu bal yapmak için kullanır. Bu sırada çiçeklerin üzerinde gezinirken polenleri bir çiçekten diğerine taşırlar. Böylece çiçekler tohum oluşturabilir. Arılar olmasaydı birçok bitki yeni bitkiler yetiştiremezdi.",
+     "arıların doğaya katkısı", "Arılar hem bal üretir hem de bitkilerin çoğalmasına yardımcı olur.",
+     ["Arılar yalnızca bal yapan canlılardır.", "Çiçekler arılar olmadan da aynı şekilde tohum oluşturur.", "Bal, bitkilerin yetişmesi için gereklidir."],
+     "Arılar polenleri taşıyarak bitkilerin tohum oluşturmasını sağlar.", ["Arılar tohumları toprağa gömerek bitkileri büyütür.", "Arılar yalnızca bal yapmak için çiçeklere konar.", "Çiçeklerin özsuyu olmadığı için arılar polen toplar."]),
+    ("Kemal, köyündeki okulun bahçesine her bahar bir fidan dikiyor. Fidanları sulamayı hiç aksatmıyor. Yıllar geçtikçe bahçe küçük bir ormana dönüştü. Şimdi öğrenciler teneffüste ağaçların gölgesinde oynuyor.",
+     "bir öğrencinin okul bahçesini ağaçlandırması", "Küçük ama düzenli çabalar zamanla büyük ve faydalı sonuçlar doğurur.",
+     ["Okul bahçelerinde yalnızca ağaçlar bulunmalıdır.", "Fidanlar yalnızca bahar mevsiminde dikilir.", "Teneffüs en güzel ağaç gölgesinde geçer."],
+     "Kemal’in diktiği fidanlar zamanla büyüyüp bahçeyi gölgelik hâline getirmiştir.", ["Kemal’in okulunda hiç bahçe yoktur.", "Fidanları öğretmenler dikmiştir.", "Öğrenciler teneffüste yalnızca sınıfta kalmaktadır."]),
+    ("Su, canlılar için vazgeçilmezdir. Ancak dünyadaki suyun çok az bir bölümü içilebilir durumdadır. Bu yüzden musluğu açık bırakmak, suyu gereksiz yere akıtmak büyük bir israftır. Suyu tasarruflu kullanan herkes gelecek nesillere de içilebilir su bırakmış olur.",
+     "suyun tasarruflu kullanılması", "Suyu israf etmeden kullanmak hem bugünümüz hem de geleceğimiz için önemlidir.",
+     ["Dünyada içilebilir su hiç yoktur.", "Musluklar her zaman kapalı tutulmalıdır.", "Yalnızca gelecek nesiller suyu korumalıdır."],
+     "İçilebilir su, dünyadaki toplam suyun az bir bölümüdür.", ["Dünyadaki suyun tamamı içilebilir durumdadır.", "Su yalnızca insanlar için vazgeçilmezdir.", "Suyu tasarruflu kullanmak gelecek nesillere zarar verir."]),
+    ("Mehmet, maçtan önce ısınma hareketleri yapmayı hep ihmal ediyordu. Bir gün maçın ilk dakikalarında ayağı burkuldu ve iki hafta sahalardan uzak kaldı. Doktoru, ısınmanın kasları hazırladığını ve sakatlıkları azalttığını söyledi. O günden sonra Mehmet her antrenmanda ısınmayı eksiksiz yapıyor.",
+     "spor öncesi ısınma", "Spor yapmadan önce ısınmak, sakatlanma riskini azaltır.",
+     ["Maçlara hiç çıkılmamalıdır.", "Doktorlar her sporcunun ayağını muayene etmelidir.", "Sakatlıklar yalnızca maçın ilk dakikalarında olur."],
+     "Mehmet ısınmayı ihmal ettiği için sakatlanmıştır.", ["Mehmet’in ayağı ısınma hareketleri yüzünden burkulmuştur.", "Mehmet iki hafta boyunca maçlara çıkmıştır.", "Mehmet doktorun sözünü dinlememeye devam etmektedir."]),
+    ("Leyla’nın sınıfında bir geri dönüşüm kutusu var. Kâğıtlar, plastik şişeler ve metal kutular ayrı ayrı toplanıyor. Her ay dolan kutular geri dönüşüm tesisine gönderiliyor. Sınıf, bu sayede hem çöp miktarını azaltıyor hem de doğaya katkıda bulunuyor.",
+     "sınıfta geri dönüşüm", "Atıkları ayırarak geri dönüşüme vermek, çöpü azaltır ve doğayı korur.",
+     ["Sınıflarda yalnızca kâğıt toplanmalıdır.", "Geri dönüşüm kutuları her hafta boşaltılmalıdır.", "Çöp kutuları sınıflardan kaldırılmalıdır."],
+     "Leyla’nın sınıfı atıklarını türlerine göre ayırmaktadır.", ["Leyla’nın sınıfı atıkların hepsini aynı kutuda toplamaktadır.", "Kutular her gün geri dönüşüm tesisine gönderilmektedir.", "Sınıf, geri dönüşüm yüzünden çöp miktarını artırmıştır."]),
+    ("Selin, bisikletiyle okula gitmeye başladığında trafikte yaşadığı zorlukları anlattı. Kaskını takmadığı bir gün yola çıkan Selin, düşünce başını yere çarptı. O gün bugündür bisiklete binerken kaskını hiç çıkarmıyor ve arkadaşlarına da aynı şeyi öneriyor.",
+     "bisiklet güvenliği", "Bisiklete binerken kask takmak, olası kazalarda kendimizi korur.",
+     ["Bisikletle okula gitmek tehlikelidir.", "Arkadaşlarımıza her konuda öğüt vermeliyiz.", "Trafikte yalnızca bisikletliler zorluk yaşar."],
+     "Selin kaskını takmadığı gün düşüp başını yere çarpmıştır.", ["Selin kaskını her zaman takarak düşmüştür.", "Selin arkadaşlarına kask takmamayı önermektedir.", "Selin bisikletle hiç okula gitmemiştir."]),
+    ("Güneş enerjisi, güneşten gelen ışık ve ısıdan elde edilir. Bu enerji tükenmez ve çevreyi kirletmez. Bu nedenle birçok ev ve okulun çatısına güneş panelleri yerleştirilmektedir. Bu paneller sayesinde elektrik faturaları da düşmektedir.",
+     "güneş enerjisi", "Güneş enerjisi, çevreye zarar vermeyen ve tasarruf sağlayan bir enerji kaynağıdır.",
+     ["Güneş panelleri yalnızca okulların çatısına yerleştirilir.", "Elektrik faturaları güneş paneli olmadan da düşer.", "Güneş ışığı yalnızca ısı enerjisi verir."],
+     "Güneş panelleri kullanan yerlerde elektrik faturaları düşmektedir.", ["Güneş enerjisi kullanıldıkça tükenir.", "Güneş enerjisi çevreyi kirletir.", "Güneş panelleri yalnızca evlerin çatısına yerleştirilir."]),
+]
+
+
+def _tr_par_pick():
+    return random.choice(_TR_PAR)
+
+
+def _tf_par_ana(subject):
+    p, konu, ana, wr, _c, _w = _tr_par_pick()
+    kok = random.choice(["Bu paragrafın ana fikri aşağıdakilerden hangisidir?", "Bu parçada asıl anlatılmak istenen düşünce aşağıdakilerden hangisidir?",
+                         "Parçadan çıkarılabilecek ana düşünce aşağıdakilerden hangisidir?"])
+    return _fact_q(subject, "Ana fikir", kok, ana, wr, f"Paragrafın tamamı “{konu}” üzerinedir; bu konudan çıkan ders: {ana}", passage=p)
+
+
+def _tf_par_cikarim(subject):
+    p, _k, _a, _w, c, ws = _tr_par_pick()
+    kok = random.choice(["Bu parçadan aşağıdakilerden hangisi çıkarılabilir?", "Parçaya göre aşağıdaki yargılardan hangisi doğrudur?"])
+    return _fact_q(subject, "Çıkarım", kok, c, ws, f"Doğru yargı doğrudan parçada anlatılanlara dayanır: {c}", passage=p)
+
+
+def _tf_par_konu(subject):
+    p, konu, _a, _w, _c, _ws = _tr_par_pick()
+    others = [x[1] for x in _TR_PAR if x[1] != konu]
+    random.shuffle(others)
+    return _fact_q(subject, "Konu", "Bu parçanın konusu aşağıdakilerden hangisidir?", konu, others[:3], f"Parçanın tamamı {konu} hakkındadır.", passage=p)
+
+
+for _f in (_tf_par_ana, _tf_par_cikarim, _tf_par_konu):
+    pass
+_TF_GENS += [(_tf_par_ana, ("ana fikir", "okuma", "paragraf")), (_tf_par_cikarim, ("okuma", "paragraf", "sebep", "neden")), (_tf_par_konu, ("ana fikir", "konu", "okuma", "bilgilendirici"))]
+_DIFF_OF.update({"_tf_par_ana": 4, "_tf_par_cikarim": 4, "_tf_par_konu": 2})
+
+
 # ================================================================ 5. SINIF DİN KÜLTÜRÜ VE AHLAK BİLGİSİ — kodla kurulan, doğru-cevaplı kalıplar
 _DIN = "Din Kültürü ve Ahlak Bilgisi"
 _DF_GENS = []
