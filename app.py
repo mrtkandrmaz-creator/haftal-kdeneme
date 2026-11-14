@@ -8439,26 +8439,6 @@ def _mf_cards(subject):
     o = _mf_opts(n, wr, _fmt)
     if not o:
         return None
-    kind = random.choice(["max", "min", "second"])
-    srt = sorted(opts_n, reverse=True)
-    if kind == "min":
-        n = srt[-1]
-        wr = [x for x in opts_n if x != n]
-        random.shuffle(wr)
-        o = _mf_opts(n, wr, _fmt)
-        if not o:
-            return None
-        q = f"Üç karta {cs[0]}, {cs[1]} ve {cs[2]} sayıları yazılmıştır. Her kart bir bölüğü temsil ettiğine göre bu üç kartı yan yana koyarak yazılabilecek en küçük doğal sayı aşağıdakilerden hangisidir?"
-        return _mf_raw(subject, "Doğal sayılar", q, o, f"En büyük bölüğe en küçük kart konur: {_fmt(n)}.")
-    if kind == "second" and len(srt) >= 2:
-        n = srt[1]
-        wr = [x for x in opts_n if x != n]
-        random.shuffle(wr)
-        o = _mf_opts(n, wr, _fmt)
-        if not o:
-            return None
-        q = f"Üç karta {cs[0]}, {cs[1]} ve {cs[2]} sayıları yazılmıştır. Her kart bir bölüğü temsil ettiğine göre bu üç kartı yan yana koyarak yazılabilecek sayılar büyükten küçüğe sıralandığında ikinci sayı aşağıdakilerden hangisidir?"
-        return _mf_raw(subject, "Doğal sayılar", q, o, f"Altı farklı sayı yazılabilir; büyükten küçüğe ikinci sayı {_fmt(n)} sayısıdır.")
     q = f"Üç karta {cs[0]}, {cs[1]} ve {cs[2]} sayıları yazılmıştır. Her kart bir bölüğü temsil ettiğine göre bu üç kartı yan yana koyarak yazılabilecek en büyük doğal sayı aşağıdakilerden hangisidir?"
     return _mf_raw(subject, "Doğal sayılar", q, o, f"En büyük bölüğe en büyük kart konur: {_fmt(n)}.")
 
@@ -8482,27 +8462,17 @@ def _mf_addsub(subject):
 
 
 def _mf_estimate(subject):
-    add = random.random() < 0.4
-    if add:
-        a, b = random.randint(20000, 59999), random.randint(2000, 39999)
-        est = round(a, -3) + round(b, -3)
-        ex_ = f"Sayılar en yakın binliğe yuvarlanır: {_fmt(round(a, -3))} + {_fmt(round(b, -3))} = {_fmt(est)}."
-        true_ = a + b
-        sym, ad = "+", "toplama"
-    else:
-        a, b = random.randint(50000, 99999), random.randint(2000, 19999)
-        est = round(a, -3) - round(b, -3)
-        ex_ = f"Sayılar en yakın binliğe yuvarlanır: {_fmt(round(a, -3))} − {_fmt(round(b, -3))} = {_fmt(est)}."
-        true_ = a - b
-        sym, ad = "–", "çıkarma"
-    if abs(est - true_) > 1500 or est <= 0:
+    a, b = random.randint(50000, 99999), random.randint(2000, 19999)
+    est = round(a, -3) - round(b, -3)
+    if abs(est - (a - b)) > 1500 or est <= 0:
         return None
     wr = [est + 3000, est - 3000, est + 6000, est - 6000, est + 4000]
     random.shuffle(wr)
     o = _mf_opts(est, wr, _fmt)
     if not o:
         return None
-    return _mf_raw(subject, "Tahmin", f"{_fmt(a)} {sym} {_fmt(b)} {ad} işleminin tahmini sonucu aşağıdakilerden hangisi olabilir?", o, ex_)
+    return _mf_raw(subject, "Tahmin", f"{_fmt(a)} – {_fmt(b)} çıkarma işleminin tahmini sonucu aşağıdakilerden hangisi olabilir?", o,
+                   f"Sayılar en yakın binliğe yuvarlanır: {_fmt(round(a, -3))} − {_fmt(round(b, -3))} = {_fmt(est)}.")
 
 
 def _mf_remainder(subject):
@@ -8584,7 +8554,7 @@ def _mf_pattern(subject):
     wr = [val + dd, val - dd, a * k, val + 1, seq[-1] + dd * (k - 3) + 1]
     random.shuffle(wr)
     o = _mf_opts(val, wr, str)
-    q = f"Bir örüntünün ilk üç adımında kullanılan çubuk sayıları sırasıyla {seq[0]}, {seq[1]} ve {seq[2]} olarak belirlenmiştir. Örüntü aynı kuralla devam ettiğine göre {k}. adımda kaç çubuk kullanılır?"
+    q = f"Bir örüntünün ilk üç adımında kullanılan çubuk sayıları sırasıyla {seq[0]}, {seq[1]} ve {seq[2]}’dir. Örüntü aynı kuralla devam ettiğine göre {k}. adımda kaç çubuk kullanılır?"
     return _mf_raw(subject, "Örüntüler", q, o, f"Her adımda {dd} artar: {a} + ({k}−1)×{dd} = {val}.") if o else None
 
 
@@ -10907,14 +10877,9 @@ def _mf_yuzde_hes(subject):
     c = n * p // 100
     if n * p % 100:
         return None
-    q = random.choice([f"Bir okuldaki {n} öğrencinin %{p}’i satranç kulübüne üyedir. Satranç kulübüne üye öğrenci sayısı kaçtır?",
-                       f"Bir kütüphanedeki {n} kitabın %{p}’i çocuk kitabıdır. Kütüphanedeki çocuk kitabı sayısı kaçtır?",
-                       f"Bir marketteki {n} ürünün %{p}’i indirimdedir. İndirimdeki ürün sayısı kaçtır?",
-                       f"Bir bahçedeki {n} ağacın %{p}’i meyve ağacıdır. Bahçedeki meyve ağacı sayısı kaçtır?",
-                       f"Bir sinema salonundaki {n} koltuğun %{p}’i doludur. Dolu koltuk sayısı kaçtır?",
-                       f"Bir otobüs firmasının {n} yolcusunun %{p}’i öğrencidir. Öğrenci yolcu sayısı kaçtır?"])
+    who, what = random.choice([("Bir okuldaki", "öğrencinin"), ("Bir kütüphanedeki", "kitabın")])
     o = _mf_opts(c, [n - c, c + 10, c * 2, p, n // 10 + 5, c - 5], str)
-    return _mf_raw(subject, "Yüzde", q, o, f"{n} × {p}/100 = {c}.") if o else None
+    return _mf_raw(subject, "Yüzde", f"{who} {n} {what} %{p}’i bir etkinliğe katılmıştır. Etkinliğe katılan sayısı kaçtır?", o, f"{n} × {p}/100 = {c}.") if o else None
 
 
 def _mf_ond_sira(subject):
@@ -11768,35 +11733,13 @@ def _mf_alan_cevre(subject):
 
 
 def _mf_cevre_say(subject):
-    """Kenarları doğal sayı olan dikdörtgenlerin sayısı / en büyük-en küçük alanı (çevre ya da alan verilir; kare dahil, dönmüş hâli aynı sayılır)."""
-    kind = random.choice(["cevre", "alan", "enbuyuk", "enkucuk"])
-    note = "(Kare de dikdörtgen kabul edilir; uzun ve kısa kenarı aynı olan dikdörtgenler aynı sayılır.)"
-    if kind == "cevre":
-        P = random.choice([12, 16, 20, 24, 28, 32])
-        h = P // 2
-        c = h // 2
-        o = _mf_opts(c, [c + 1, c - 1, h, h - 1, c + 2], str)
-        return _mf_raw(subject, "Çevre uzunluğu", f"Çevresi {P} cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan kaç farklı dikdörtgen çizilebilir? {note}", o,
-                       f"Kenarların toplamı {h} cm olmalıdır: " + ", ".join(f"{k}+{h - k}" for k in range(1, c + 1)) + f". Toplam {c} farklı dikdörtgen vardır.") if o and c >= 2 else None
-    if kind == "alan":
-        A = random.choice([12, 16, 18, 20, 24, 30, 36, 48])
-        prs = [(k, A // k) for k in range(1, int(A ** 0.5) + 1) if A % k == 0]
-        c = len(prs)
-        nd = sum(1 for k in range(1, A + 1) if A % k == 0)
-        o = _mf_opts(c, [c + 1, c - 1, nd, nd + 1, c + 2], str)
-        return _mf_raw(subject, "Alan ölçme", f"Alanı {A} cm² olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan kaç farklı dikdörtgen çizilebilir? {note}", o,
-                       "Kenarların çarpımı " + f"{A} olmalıdır: " + ", ".join(f"{x}×{y}" for x, y in prs) + f". Toplam {c} farklı dikdörtgen vardır.") if o and c >= 2 else None
+    """Çevresi verilen, kenarları doğal sayı olan kaç farklı dikdörtgen vardır (karesi dahil, dönmüş hâli aynı sayılır)."""
     P = random.choice([12, 16, 20, 24, 28, 32])
     h = P // 2
-    if kind == "enbuyuk":
-        v = (h // 2) * (h - h // 2)
-        o = _mf_opts(v, [(h // 2 + 1) * (h - h // 2 - 1) if h - h // 2 - 1 > 0 else v + 4, h - 1, P * 2, v + 4, v - 4, h * h // 2], lambda x: f"{x} cm²")
-        return _mf_raw(subject, "Alan ölçme", f"Çevresi {P} cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan dikdörtgenlerin alanı en çok kaç santimetrekare olabilir?", o,
-                       f"Kenarlar birbirine en yakın olduğunda alan en büyük olur: {h // 2} × {h - h // 2} = {v} cm².") if o else None
-    v = 1 * (h - 1)
-    o = _mf_opts(v, [v + 1, v - 1, h, h * 2, (h // 2) * (h - h // 2)], lambda x: f"{x} cm²")
-    return _mf_raw(subject, "Alan ölçme", f"Çevresi {P} cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan dikdörtgenlerin alanı en az kaç santimetrekare olabilir?", o,
-                   f"Kenarlar birbirinden en uzak olduğunda alan en küçük olur: 1 × {h - 1} = {v} cm².") if o else None
+    c = h // 2
+    o = _mf_opts(c, [c + 1, c - 1, h, h - 1, c + 2], str)
+    return _mf_raw(subject, "Çevre uzunluğu", f"Çevresi {P} cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan kaç farklı dikdörtgen çizilebilir? (Kare de dikdörtgen kabul edilir; uzun ve kısa kenarı aynı olan dikdörtgenler aynı sayılır.)", o,
+                   f"Kenarların toplamı {h} cm olmalıdır: " + ", ".join(f"{k}+{h - k}" for k in range(1, c + 1)) + f". Toplam {c} farklı dikdörtgen vardır.") if o and c >= 2 else None
 
 
 _MF_GENS += [(_mf_basdeg, ("basamak", "milyon"), (5,)), (_mf_cozum, ("basamak", "çözümle", "milyon"), (5,)), (_mf_rect_cevre, ("çevre", "alan ölç", "dikdörtgen"), (5,)),
@@ -11865,32 +11808,15 @@ _tfpool("Güneş, Dünya ve Ay", ["Ay’ın evreleri yaklaşık bir ayda tekrarl
         ["Ay’ın evreleri her gün tekrarlanır.", "Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.", "Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez."], ["Evrelerin tekrarı", "Ay’ın evreleri", "Ay’ın hareketleri"], "_ff_ay2", _FF_GENS, ("ay", "evre", "gökyüzü"), 3)
 # ---- Matematik (Temel geometrik / Açı ölçme)
 def _mf_dogru_say(subject):
-    for _t in range(30):
-        ks = [random.choice(["segment", "ray", "line"]) for _ in range(4)]
-        want = random.choice(["segment", "ray", "line"])
-        n = ks.count(want)
-        if 0 < n < 4:
-            break
-    else:
+    ks = [random.choice(["segment", "ray", "line"]) for _ in range(4)]
+    want = random.choice(["segment", "ray", "line"])
+    n = ks.count(want)
+    if n == 0 or n == 4:
         return None
     nm = {"segment": "doğru parçası", "ray": "ışın", "line": "doğru"}[want]
-    desc = {"segment": random.choice(["iki ucu da sınırlı olan", "başlangıç ve bitiş noktası bulunan"]),
-            "ray": random.choice(["yalnızca bir ucu sınırlı olan", "bir başlangıç noktası olup diğer yönde sonsuza uzanan"]),
-            "line": random.choice(["iki yönde de sonsuza uzanan", "hiçbir ucu sınırlı olmayan"])}[want]
-    ek = {"segment": "doğru parçasıdır", "ray": "ışındır", "line": "doğrudur"}[want]
-    neg = random.random() < 0.25
-    k = 4 - n if neg else n
-    o = _mf_opts(k, [x for x in (1, 2, 3, 4) if x != k], str)
+    o = _mf_opts(n, [x for x in (1, 2, 3, 4) if x != n], str)
     sh = {"type": "geo", "sub_type": "lines_set", "kinds": ks}
-    pre = "Şekilde I., II., III. ve IV. ile numaralandırılmış çizimlerden"
-    if neg:
-        q = random.choice([f"{pre} kaç tanesi {nm} değildir?", f"{pre} kaç tanesine {nm} denilemez?"])
-        ex = f"Çizimlerin {n} tanesi {nm} olduğundan {4 - n} tanesi {nm} değildir."
-    else:
-        q = random.choice([f"{pre} kaç tanesi {nm} olarak adlandırılır?", f"{pre} kaç tanesi {desc} bir çizimdir?",
-                           f"Şekildeki numaralandırılmış çizimler arasında {desc} kaç çizim vardır?", f"{pre} kaç tanesi {ek}?"])
-        ex = f"{desc[0].upper() + desc[1:]} çizimler {nm} olarak adlandırılır; şekilde bunlardan {n} tane vardır."
-    return _mf_raw(subject, "Doğru, ışın, doğru parçası", q, o, ex, shape=sh) if o else None
+    return _mf_raw(subject, "Doğru, ışın, doğru parçası", f"Şekilde I., II., III. ve IV. ile numaralandırılmış çizimlerin kaç tanesi {nm} olarak adlandırılır?" if want != "line" else "Şekilde I., II., III. ve IV. ile numaralandırılmış çizimlerin kaç tanesi doğrudur?", o, f"Çizimlerin {n} tanesi {nm}dır.".replace("doğrudır", "doğrudur").replace("ışındır", "ışındır"), shape=sh) if o else None
 
 
 def _mf_aci_cikar(subject):
@@ -12087,133 +12013,17 @@ _STEM_ALTS = {
 }
 
 
-_STEM_ALTS.update({
-    "Aşağıdaki sayılardan hangisi en küçüktür?": ["Verilen sayılar arasında en küçük olanı hangisidir?", "Aşağıdaki sayıları karşılaştırdığımızda en küçük olan hangisidir?"],
-    "Aşağıdaki sayılardan hangisi en büyüktür?": ["Verilen sayılar arasında en büyük olanı hangisidir?", "Aşağıdaki sayıları karşılaştırdığımızda en büyük olan hangisidir?"],
-    "Aşağıdakilerden hangisi %50 ile aynı değeri gösterir?": ["%50 ile aynı değere sahip olan aşağıdakilerden hangisidir?", "Aşağıdakilerden hangisi %50’ye eşittir?"],
-    "Şekildeki ışının başlangıç noktası aşağıdakilerden hangisidir?": ["Şekilde gösterilen ışının başlangıç noktası hangisidir?", "Şekildeki ışın hangi noktadan başlar?"],
-    "Şekildeki d₁ ve d₂ doğruları birbirine göre nasıl bir konumdadır?": ["Şekilde verilen d₁ ve d₂ doğruları birbirine göre hangi konumdadır?"],
-    "Şekildeki d₁ ve d₂ doğrularının birbirine göre durumu aşağıdakilerden hangisidir?": ["Şekilde verilen d₁ ve d₂ doğrularının birbirine göre konumu hangisidir?"],
-    "Şekildeki d₁ ve d₂ doğruları birbirine paraleldir. Bu iki doğru kaç noktada kesişir?": ["Şekilde d₁ ve d₂ doğruları paralel çizilmiştir. Bu doğruların kaç ortak noktası vardır?"],
-    "Şekildeki d₁ ve d₂ doğruları birbirine diktir. Doğruların kesiştiği noktada oluşan bir açının ölçüsü kaç derecedir?": ["Şekilde d₁ ve d₂ doğruları birbirini dik kesmektedir. Kesişme noktasında oluşan bir açının ölçüsü kaç derecedir?"],
-    "Şekildeki d₁ ve d₂ doğruları birbirine diktir. Kesişme noktasında oluşan dört açının ölçüleri toplamı kaç derecedir?": ["Şekilde d₁ ve d₂ doğruları birbirini dik kesmektedir. Oluşan dört açının ölçüleri toplamı kaç derecedir?"],
-    "Şekildeki çokgenin kenar sayısı ile köşe sayısının toplamı kaçtır?": ["Şekilde verilen çokgenin kenarlarının sayısı ile köşelerinin sayısının toplamı kaçtır?"],
-    "Şekilde köşeleri harflerle gösterilen çokgenin adı aşağıdakilerden hangisidir?": ["Şekildeki köşeleri harflerle gösterilmiş çokgenin adı hangisidir?"],
-    "Şekilde kenar uzunlukları verilen dikdörtgen biçimindeki bahçenin etrafı bir sıra tel ile çevrilecektir. Bunun için kaç santimetre tel gerekir?": ["Kenar uzunlukları şekilde verilen dikdörtgen biçimli bahçenin çevresi bir sıra telle çevrilecektir. Kaç santimetre tel gerekir?"],
-    "Şekildeki dikdörtgenin alanı ve bir kenarının uzunluğu verilmiştir. Bu dikdörtgenin diğer kenarının uzunluğu kaç santimetredir?": ["Şekilde alanı ve bir kenarı verilen dikdörtgenin diğer kenarı kaç santimetredir?"],
-    "Şekilde alanı verilen dikdörtgenin çevresi kaç santimetredir?": ["Alanı şekilde verilen dikdörtgenin çevre uzunluğu kaç santimetredir?"],
-    "Şekilde çevresi verilen dikdörtgenin alanı kaç santimetrekaredir?": ["Çevresi şekilde verilen dikdörtgenin alanı kaç santimetrekaredir?"],
-    "Aşağıdaki atıklardan hangisi geri dönüşüm kutusuna atılmalıdır?": ["Geri dönüşüm kutusuna atılması gereken atık aşağıdakilerden hangisidir?"],
-    "Aşağıdakilerden hangisi geri dönüşüm için ayrı toplanması gereken bir atıktır?": ["Geri dönüştürülmek üzere ayrı biriktirilmesi gereken atık hangisidir?"],
-    "Ay'ın dolunay evresinden çeyrek tur (yaklaşık 1 hafta) sonra gerçekleşen evre aşağıdakilerden hangisidir?": ["Dolunay evresinden yaklaşık 1 hafta (çeyrek tur) sonra Ay hangi evrededir?"],
-    "Ay'ın yeni ay evresinden çeyrek tur (yaklaşık 1 hafta) sonra gerçekleşen evre aşağıdakilerden hangisidir?": ["Yeni ay evresinden yaklaşık 1 hafta (çeyrek tur) sonra Ay hangi evrededir?"],
-})
-_STEM_RX = [
-    (r"^Şekilde OC ışını AOB açısını iki açıya ayırmıştır\. m\(AOC\) = (\d+)° ve m\(COB\) = (\d+)° olduğuna göre m\(AOB\) kaç derecedir\?$",
-     [r"Şekilde OC ışını AOB açısını iki parçaya ayırmaktadır. m(AOC) = \1°, m(COB) = \2° ise m(AOB) kaç derecedir?", r"AOB açısı, şekildeki OC ışınıyla iki açıya ayrılmıştır. m(AOC) = \1° ve m(COB) = \2° olduğuna göre AOB açısının ölçüsü kaç derecedir?"]),
-    (r"^Şekilde OC ışını ölçüsü (\d+)° olan AOB açısını iki açıya ayırmıştır\. m\(AOC\) = (\d+)° olduğuna göre m\(COB\) kaç derecedir\?$",
-     [r"Ölçüsü \1° olan AOB açısı, şekildeki OC ışınıyla iki açıya ayrılmıştır. m(AOC) = \2° ise m(COB) kaç derecedir?"]),
-    (r"^Şekilde OC ışını AOB açısının açıortayıdır\. m\(AOC\) = (\d+)° olduğuna göre m\(AOB\) kaç derecedir\?$",
-     [r"Şekilde OC, AOB açısının açıortayıdır. m(AOC) = \1° ise m(AOB) kaç derecedir?", r"AOB açısının açıortayı olan OC ışını şekilde verilmiştir. m(AOC) = \1° olduğuna göre AOB açısı kaç derecedir?"]),
-    (r"^Şekildeki dik açı olan AOB açısı OC ışınıyla iki açıya ayrılmıştır\. m\(AOC\) = (\d+)° ve m\(COB\) = x olduğuna göre x kaç derecedir\?$",
-     [r"Şekilde dik açı olan AOB açısı OC ışınıyla iki açıya bölünmüştür. m(AOC) = \1° ise m(COB) = x kaç derecedir?"]),
-    (r"^Şekildeki AOB doğru açısı OC ışınıyla iki açıya ayrılmıştır\. m\(AOC\) = (\d+)° ve m\(COB\) = x olduğuna göre x kaç derecedir\?$",
-     [r"Şekilde AOB doğru açısı OC ışınıyla iki açıya bölünmüştür. m(AOC) = \1° ise m(COB) = x kaç derecedir?"]),
-    (r"^(\d+) ve (\d+) sayılarının en küçük ortak katı \(EKOK\) kaçtır\?$", [r"\1 ve \2 sayılarının EKOK’u kaçtır?", r"\1 ile \2 sayılarının en küçük ortak katı kaçtır?"]),
-    (r"^(\d+) ve (\d+) sayılarının en büyük ortak böleni \(EBOB\) kaçtır\?$", [r"\1 ve \2 sayılarının EBOB’u kaçtır?", r"\1 ile \2 sayılarının en büyük ortak böleni kaçtır?"]),
-    (r"^Bir sayının (\d+) katının (\d+) fazlası (\d+) ise bu sayı kaçtır\?$", [r"Bir sayının \1 katına \2 eklendiğinde \3 elde ediliyor. Bu sayı kaçtır?"]),
-    (r"^Eşit kollu bir terazinin sol kefesinde bir paket ile (\d+) g’lık bir kütle, sağ kefesinde (\d+) g’lık bir kütle vardır\. Terazi dengede olduğuna göre paket kaç g’dır\?$",
-     [r"Eşit kollu terazinin sol kefesinde bir paket ve \1 g’lık bir kütle, sağ kefesinde \2 g’lık bir kütle bulunmaktadır. Terazi dengede ise paket kaç g’dır?"]),
-    (r"^Bir örüntünün ilk üç adımında kullanılan çubuk sayıları sırasıyla (\d+), (\d+) ve (\d+) olarak belirlenmiştir\. Örüntü aynı kuralla devam ettiğine göre (\d+)\. adımda kaç çubuk kullanılır\?$",
-     [r"Bir örüntünün ilk üç adımı sırasıyla \1, \2 ve \3 çubukla oluşturulmuştur. Örüntü aynı kuralla sürerse \4. adımda kaç çubuk gerekir?"]),
-    (r"^Özdeş K, L ve M şişelerinin sırasıyla (\S+), (\S+) ve (\S+)’i doludur\. Buna göre şişelerdeki sıvı miktarlarının (büyükten küçüğe|küçükten büyüğe) sıralanışı aşağıdakilerden hangisidir\?$",
-     [r"K, L ve M özdeş şişelerinin sırasıyla \1, \2 ve \3’i doludur. Bu şişelerdeki sıvı miktarlarının \4 sıralanışı hangisidir?"]),
-    (r"^Bir yaya (\d+) N'luk bir cisim asıldığında yay (\d+) cm uzamaktadır\.\nAynı yaya (\d+) N'luk bir cisim asılırsa yay kaç cm uzar\? \(Yay esnekliğini yitirmemektedir\.\)$",
-     [r"Bir yaya \1 N'luk bir cisim asıldığında yay \2 cm uzuyor.\nAynı yaya \3 N'luk bir cisim asılırsa yaydaki uzama kaç cm olur? (Yay esnekliğini yitirmez.)"]),
-    (r"^Bir okulda (\d+) öğrenci vardır\. Öğrencilerin %(\d+)’i spor kulübüne kayıtlıdır\.\nBuna göre spor kulübüne kayıtlı kaç öğrenci vardır\?$",
-     [r"Okulda toplam \1 öğrenci bulunmaktadır. Öğrencilerin %\2’i spor kulübüne kayıtlıdır.\nSpor kulübüne kayıtlı öğrenci sayısı kaçtır?", r"Bir okulda \1 öğrenci vardır. Bu öğrencilerin %\2’i spor kulübüne üyedir.\nBuna göre spor kulübüne üye kaç öğrenci vardır?"]),
-]
-_STEM_ALTS["Tabloya göre sürtünme kuvvetinin en büyük olduğu yüzey ile en küçük olduğu yüzeydeki sürtünme kuvvetleri arasındaki fark kaç N'dur?"] += [
-    "Tablodaki ölçümlere göre en büyük ve en küçük sürtünme kuvvetleri arasındaki fark kaç N'dur?",
-    "Tabloya göre sürtünme kuvvetinin en fazla ve en az olduğu iki yüzeyin sürtünme kuvvetleri farkı kaç N'dur?"]
-_STEM_RX.insert(0, (r"^Bir kutunun kütlesi Dünya ve Ay'da ayrı ayrı ölçülüyor\. Dünya 1 kg'lık kütleye 10 N'luk çekim kuvveti uygular; Ay'da bu kuvvet Dünya'dakinin 1/6'sı kadardır\.\nKütlesi (\d+) kg olan kutunun ağırlığı Dünya'da ve Ay'da ayrı ayrı dinamometreyle ölçüldüğünde okunan değerler aşağıdakilerden hangisinde doğru verilmiştir\?$",
-    [r"Dünya'da 1 kg'lık kütleye 10 N'luk çekim kuvveti etki eder; Ay'da bu kuvvet Dünya'dakinin 1/6'sı kadardır.\nKütlesi \1 kg olan bir cismin ağırlığı Dünya'da ve Ay'da dinamometreyle ayrı ayrı ölçülmüştür. Okunan değerler hangi seçenekte doğru verilmiştir?",
-     r"Bir astronot, kütlesi \1 kg olan bir çantayı hem Dünya'da hem Ay'da dinamometreyle tartıyor. Dünya 1 kg'lık kütleye 10 N'luk çekim kuvveti uygular; Ay'daki çekim kuvveti Dünya'dakinin 1/6'sı kadardır.\nÇantanın ağırlığı için okunan değerler hangi seçenekte doğru verilmiştir?"]))
-_STEM_RX.insert(0, (r"^Sağlıklı bir bal arısının (\d+) adet ayağı, (\d+) adet gözü ve (\d+) adet kanadı vardır\.\nBir kovandaki sağlıklı bal arılarının tamamının toplam kanat sayısı ([\d ]+) olduğuna göre, bu kovandaki sağlıklı bal arılarının ayak ve göz sayılarının toplamı kaçtır\?$",
-    [r"Sağlıklı her bal arısının \1 ayağı, \2 gözü ve \3 kanadı bulunur.\nBir kovandaki tüm sağlıklı arıların toplam kanat sayısı \4 ise bu arıların toplam ayak ve göz sayısı kaçtır?",
-     r"Sağlıklı bir bal arısının \1 adet ayağı, \2 adet gözü ve \3 adet kanadı vardır.\nBir kovanda toplam \4 kanat sayılmıştır. Bu kovandaki sağlıklı arıların ayak ve göz sayılarının toplamı kaçtır?"]))
-_STEM_ALTS.update({
-    "Deprem anında aşağıdakilerden hangisi yapılmalıdır?": ["Deprem sırasında doğru davranış aşağıdakilerden hangisidir?"],
-    "Bir deprem sırasında güvende kalmak için aşağıdakilerden hangisi yapılmalıdır?": ["Deprem anında can güvenliği için hangi davranış doğrudur?"],
-    "Aşağıdakilerden hangisi beşerî (insan yapımı) çevre ögesidir?": ["Aşağıdakilerden hangisi insan yapımı (beşerî) çevreye örnektir?", "Seçeneklerden hangisi beşerî çevrenin bir ögesidir?"],
-    "Aşağıdakilerden hangisi doğal çevre ögesidir?": ["Aşağıdakilerden hangisi doğal çevreye örnektir?", "Seçeneklerden hangisi doğal çevrenin bir ögesidir?"],
-    "Aşağıdakilerden hangisi yardımlaşma ve dayanışmaya örnektir?": ["Aşağıdaki davranışlardan hangisi yardımlaşma ve dayanışmaya örnek olur?"],
-    "Aşağıdakilerden hangisi farklı kültürel özelliklere saygı örneğidir?": ["Aşağıdaki davranışlardan hangisi farklı kültürel özelliklere saygı göstermektir?"],
-    "Aşağıdakilerden hangisi bir haktır?": ["Aşağıdakilerden hangisi bir hak olarak kabul edilir?"],
-    "Aşağıdakilerden hangisi bir sorumluluktur?": ["Aşağıdakilerden hangisi bir sorumluluk olarak kabul edilir?"],
-    "Aşağıdakilerden hangisi bir istek olarak değerlendirilir?": ["Aşağıdakilerden hangisi ihtiyaç değil, istek sayılır?"],
-    "Aşağıdakilerden hangisi insanın temel bir ihtiyacıdır?": ["Aşağıdakilerden hangisi insanın yaşamını sürdürmesi için gereken temel bir ihtiyaçtır?"],
-    "Aşağıdaki ülkelerden hangisi Türkiye ile kara sınırına sahip bir komşu devlettir?": ["Aşağıdaki ülkelerden hangisinin Türkiye ile kara sınırı vardır?"],
-    "Türkiye’nin kara sınırı bulunan komşu devletlerinden biri aşağıdakilerden hangisidir?": ["Seçeneklerden hangisi Türkiye’nin kara sınırı olan komşularından biridir?"],
-    "Aşağıdakilerden hangisi teknolojik ürünleri bilinçli kullanmaya örnektir?": ["Aşağıdaki davranışlardan hangisi teknolojik ürünleri bilinçli kullanmaya örnektir?"],
-    "Aşağıdakilerden hangisi bir iletişim teknolojisi ürünüdür?": ["Aşağıdakilerden hangisi iletişimde kullanılan bir teknoloji ürünüdür?"],
-    "Aşağıdakilerden hangisi bir iletişim aracıdır?": ["Aşağıdakilerden hangisi iletişim kurmak için kullanılan bir araçtır?"],
-    "Aşağıdakilerden hangisi bir ulaşım aracıdır?": ["Aşağıdakilerden hangisi insanları ya da yükü taşıyan bir ulaşım aracıdır?"],
-    "Selimiye Camii hangi mimarın eseridir?": ["Selimiye Camii’ni yapan mimar aşağıdakilerden hangisidir?"],
-    "Selimiye Camii hangi ilimizdedir?": ["Selimiye Camii aşağıdaki illerimizden hangisinde bulunur?"],
-})
-_STEM_RX += [
-    (r"^Bir ailenin aylık geliri (\d+) TL, aylık gideri (\d+) TL’dir\. Bu ailenin bir ayda tasarruf edebileceği para kaç TL’dir\?$",
-     [r"Bir ailenin bir aydaki geliri \1 TL, gideri \2 TL’dir. Aile bir ayda kaç TL tasarruf edebilir?", r"Aylık geliri \1 TL, aylık gideri \2 TL olan bir ailenin biriktirebileceği para kaç TL’dir?"]),
-]
-_STEM_RX += [
-    (r"^Çevresi (\d+) cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan kaç farklı dikdörtgen çizilebilir\? \(Kare de dikdörtgen kabul edilir; uzun ve kısa kenarı aynı olan dikdörtgenler aynı sayılır\.\)$",
-     [r"Kenar uzunlukları santimetre cinsinden doğal sayı olan ve çevresi \1 cm olan kaç farklı dikdörtgen çizilebilir? (Kare de dikdörtgen sayılır; uzun ve kısa kenarı aynı olan dikdörtgenler aynı kabul edilir.)"]),
-    (r"^Üç karta (\d+), (\d+) ve (\d+) sayıları yazılmıştır\. Her kart bir bölüğü temsil ettiğine göre bu üç kartı yan yana koyarak yazılabilecek en büyük doğal sayı aşağıdakilerden hangisidir\?$",
-     [r"Üç kartın üzerinde sırasıyla \1, \2 ve \3 yazmaktadır. Her kart bir bölüğü gösterdiğine göre kartlar yan yana dizilerek elde edilebilecek en büyük doğal sayı hangisidir?"]),
-    (r"^([\d ]+) (–|\+) ([\d ]+) (çıkarma|toplama) işleminin tahmini sonucu aşağıdakilerden hangisi olabilir\?$",
-     [r"\1 \2 \3 \4 işleminde sonuca en yakın tahmin aşağıdakilerden hangisidir?"]),
-    (r"^Bir kutunun kütlesi Dünya ve Ay'da ayrı ayrı ölçülüyor\.", ["Bir kutunun kütlesi Dünya ve Ay'da ayrı ayrı ele alınıyor."]),
-]
-_GEN_SUBS = [  # anlamı değiştirmeyen, yalnızca açılış/bağlaç çeşitlemesi (Matematik ve Fen)
-    (r"^Şekilde ", ["Şekilde ", "Yandaki şekilde ", "Verilen şekilde "]),
-    (r"^Şekildeki ", ["Şekildeki ", "Verilen şekildeki "]),
-    (r"^Tablodaki verilere göre ", ["Tablodaki verilere göre ", "Verilen tabloya göre ", "Tabloya bakıldığında "]),
-    (r" olduğuna göre", [" olduğuna göre", " olduğu bilindiğine göre"]),
-    (r"\bBuna göre", ["Buna göre", "Bu bilgilere göre", "Verilenlere göre"]),
-    (r"kaç santimetredir\?", ["kaç santimetredir?", "kaç cm’dir?"]),
-]
-
-
 def _stem_vary(fn):
-    if getattr(fn, "_sv", False):
-        return fn
-
     def g(subject, *a, **k):
         r = fn(subject, *a, **k)
         if isinstance(r, dict):
-            q0 = str(r.get("question", ""))
-            q = q0
-            alts = _STEM_ALTS.get(q)
+            alts = _STEM_ALTS.get(str(r.get("question", "")))
             if alts:
-                q = random.choice([q] + alts)
-            else:
-                for rx, tp in _STEM_RX:
-                    if re.search(rx, q):
-                        q = random.choice([q] + [re.sub(rx, t, q) for t in tp])
-                        break
-            if subject in ("Matematik", "Fen Bilimleri") and q == q0:
-                for rx, ch in _GEN_SUBS:
-                    if random.random() < 0.6 and re.search(rx, q):
-                        q = re.sub(rx, random.choice(ch), q, count=1)
-            if q != q0:
                 r = dict(r)
-                r["question"] = q
+                r["question"] = random.choice([r["question"]] + alts)
         return r
-    g.__dict__.update(getattr(fn, "__dict__", {}))
     g.__name__ = fn.__name__
     g.__wrapped__ = fn
-    g._sv = True
     if hasattr(fn, "TF"):
         g.TF = fn.TF
     return g
@@ -16708,10 +16518,6 @@ _merge_extra()
 
 _bank_register()
 
-_MF_GENS[:] = [(_stem_vary(f), k_, g_) for f, k_, g_ in _MF_GENS]  # sonradan eklenen kalıplar da soru kökü çeşitlemesi alsın
-for _r in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
-    _r[:] = [(_stem_vary(f), k_) for f, k_ in _r]
-
 
 # ---------------------------------------------------------------- ÖNCEDEN ÜRETİLMİŞ + DOĞRULANMIŞ HAVUZ (repodaki pool/ klasörü; API kotası harcamaz)
 _POOL_CACHE = {}
@@ -17219,7 +17025,7 @@ def _mf_dik_problem(subject):
         t = c * k
         sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} m", "height_label": f"{b} m", "center_label": ""}
         o = _mf_opts(t, [(a * b) * k, (a + b) * k, c + k], lambda v: f"{v} TL")
-        return _mf_raw(subject, "Dikdörtgenin Çevresi", random.choice([f"Şekildeki dikdörtgen biçimindeki bahçenin çevresine tek sıra tel çit çekilecektir. Telin metresi {k} TL olduğuna göre toplam maliyet kaç TL’dir?", f"Şekildeki dikdörtgen şeklindeki tarlanın etrafı baştan sona bir sıra çitle çevrilecektir. Çitin metresi {k} TL ise ödenecek tutar kaç TL’dir?", f"Şekildeki dikdörtgen biçimli parkın çevresine bir sıra korkuluk yapılacaktır. Korkuluğun metresi {k} TL olduğuna göre toplam ücret kaç TL’dir?"]), o, f"Çevre = 2 × ({a} + {b}) = {c} m; maliyet = {c} × {k} = {t} TL.", shape=sh) if o else None
+        return _mf_raw(subject, "Dikdörtgenin Çevresi", f"Şekildeki dikdörtgen biçimindeki bahçenin çevresine tek sıra tel çit çekilecektir. Telin metresi {k} TL olduğuna göre toplam maliyet kaç TL’dir?", o, f"Çevre = 2 × ({a} + {b}) = {c} m; maliyet = {c} × {k} = {t} TL.", shape=sh) if o else None
     if kind == "alanc":
         a, b = random.randint(2, 12), random.randint(3, 13)
         if a == b:
@@ -17229,7 +17035,7 @@ def _mf_dik_problem(subject):
         c = 2 * (a + b)
         sh = {"type": "rectangle", "width": lg, "height": sm, "width_label": "?", "height_label": f"{sm} cm", "center_label": f"Alan = {al} cm²"}
         o = _mf_opts(c, [al, a + b, c + 2, c - 2], lambda v: f"{v} cm")
-        return _mf_raw(subject, "Dikdörtgenin Alanı ve Çevresi", random.choice(["Şekilde alanı ve kısa kenarı verilen dikdörtgenin çevresi kaç santimetredir?", "Şekilde alanı ve bir kenarı verilen dikdörtgenin çevre uzunluğu kaç santimetredir?"]), o, f"Uzun kenar = {al} : {sm} = {lg} cm; çevre = 2 × ({sm} + {lg}) = {c} cm.", shape=sh) if o else None
+        return _mf_raw(subject, "Dikdörtgenin Alanı ve Çevresi", "Şekilde alanı ve kısa kenarı verilen dikdörtgenin çevresi kaç santimetredir?", o, f"Uzun kenar = {al} : {sm} = {lg} cm; çevre = 2 × ({sm} + {lg}) = {c} cm.", shape=sh) if o else None
     a, b, k = random.randint(3, 9), random.randint(4, 10), random.randint(2, 5)
     if a == b:
         b += 1
@@ -17237,7 +17043,7 @@ def _mf_dik_problem(subject):
     t = al * k
     sh = {"type": "rectangle", "width": a, "height": b, "width_label": f"{a} m", "height_label": f"{b} m", "center_label": ""}
     o = _mf_opts(t, [(a + b) * k, 2 * (a + b) * k, al, al + k], lambda v: f"{v} TL")
-    return _mf_raw(subject, "Dikdörtgenin Alanı", random.choice([f"Şekildeki dikdörtgen biçimli odanın zemini, metrekaresi {k} TL olan halıyla tamamen kaplanacaktır. Ödenecek tutar kaç TL’dir?", f"Şekildeki dikdörtgen biçimli salonun zemini metrekaresi {k} TL olan parkeyle döşenecektir. Toplam maliyet kaç TL’dir?", f"Şekildeki dikdörtgen biçimli duvarın tamamı, metrekaresi {k} TL olan boyayla boyanacaktır. Boya ücreti kaç TL’dir?"]), o, f"Alan = {a} × {b} = {al} m²; tutar = {al} × {k} = {t} TL.", shape=sh) if o else None
+    return _mf_raw(subject, "Dikdörtgenin Alanı", f"Şekildeki dikdörtgen biçimli odanın zemini, metrekaresi {k} TL olan halıyla tamamen kaplanacaktır. Ödenecek tutar kaç TL’dir?", o, f"Alan = {a} × {b} = {al} m²; tutar = {al} × {k} = {t} TL.", shape=sh) if o else None
 
 
 def _mf_frac_kars(subject):
