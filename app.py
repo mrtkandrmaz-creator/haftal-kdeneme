@@ -2244,7 +2244,7 @@ def _triangle_geo(ax, d, pts=None):
     ai = 2  # ikizkenarda varsayılan tepe C
     ri = "ABC".index(str(d.get("right_at", "A")).upper()[:1]) if str(d.get("right_at", "A")).upper()[:1] in ("A", "B", "C") else 0
     if pts is None and kind in ("right", "dik"):
-        P = _right_tri_pts(ri, {"".join(sorted(str(k).upper())): v for k, v in ((d.get("sides") if isinstance(d.get("sides"), dict) else None) or {}).items()})
+        P = _right_tri_pts(ri, {"".join(sorted(str(k).upper())): v for k, v in (d.get("sides") or {}).items()})
     elif pts is None and kind in ("isosceles", "ikizkenar") and apex in ("A", "B", "C"):
         ai = "ABC".index(apex)
         P = _tri_apex_pts(ai)
@@ -2275,7 +2275,7 @@ def _triangle_geo(ax, d, pts=None):
         ax.plot(*zip(P[2], foot), color=GREEN, lw=1.6, ls="--", zorder=3)
         _right_mark(ax, foot, [-1, 0] if P[2][0] > 0 else [1, 0], [0, 1], s=.28)
     skey = lambda k: "".join(sorted(str(k).upper()))
-    sides = {skey(k): v for k, v in ((d.get("sides") if isinstance(d.get("sides"), dict) else None) or {}).items()}
+    sides = {skey(k): v for k, v in (d.get("sides") or {}).items()}
     for key, (i, j) in (("AB", (0, 1)), ("BC", (1, 2)), ("AC", (0, 2))):
         if key in sides:
             m = (P[i] + P[j]) / 2; e_ = P[j] - P[i]
@@ -2354,7 +2354,7 @@ def _quad_geo(ax, d, pts=None, labels=None):
             _right_mark(ax, P[i], P[(i + 1) % 4] - P[i], P[(i - 1) % 4] - P[i], s=.26)
     if d.get("diagonals"):
         ax.plot(*zip(P[0], P[2]), color=SLATE, lw=1.3, ls="--", zorder=2); ax.plot(*zip(P[1], P[3]), color=SLATE, lw=1.3, ls="--", zorder=2)
-    qs_ = {"".join(sorted(str(k).upper())): v for k, v in ((d.get("sides") if isinstance(d.get("sides"), dict) else None) or {}).items()}
+    qs_ = {"".join(sorted(str(k).upper())): v for k, v in (d.get("sides") or {}).items()}
     for key, (i, j) in E.items():  # metinde verilen uzunluklar şekilde de görünsün
         if key in qs_:
             m = (P[i] + P[j]) / 2; out = m - c; out = out / np.linalg.norm(out)
@@ -2431,7 +2431,7 @@ def _nested_circles(ax, d):
     if mode == "intersect":
         r1, r2, dd = float(d.get("r1", 4)), float(d.get("r2", 4)), float(d.get("d", 4))
         names = (list(map(str, d.get("names") or [])) + ["A", "B", "C"])[:3]
-        sd = d.get("sides") if isinstance(d.get("sides"), dict) else {}
+        sd = d.get("sides") or {}
         x = (dd * dd + r1 * r1 - r2 * r2) / (2 * dd)
         y = max(0.0, r1 * r1 - x * x) ** .5
         lo, hi = min(-r1, dd - r2), max(r1, dd + r2)
@@ -7461,7 +7461,7 @@ def _geo_consistent(shape, text, opts, ans):
             if abs(float(xv) - cv) > 1e-6:
                 return False
     # ---- uzunluklar
-    S = {"".join(sorted(str(k).upper())): _num_len(v) for k, v in ((shape.get("sides") if isinstance(shape.get("sides"), dict) else None) or {}).items()}
+    S = {"".join(sorted(str(k).upper())): _num_len(v) for k, v in (shape.get("sides") or {}).items()}
     S = {k: v for k, v in S.items() if v is not None}
     names_s = ["AB", "BC", "AC"] if n == 3 else ["AB", "BC", "CD", "AD"]
     par = {x: x for x in names_s}
@@ -9275,7 +9275,7 @@ _UM = {}
 
 
 def _unit_tokens(text):
-    t = str(text or "").replace("İ", "i").replace("I", "ı").lower().replace("’", "").replace("'", "")  # Kur'an / Kur’an aynı sözcük
+    t = str(text or "").replace("İ", "i").replace("I", "ı").lower()
     return {w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)} - _UNIT_GENERIC
 
 
@@ -9333,9 +9333,6 @@ def _unit_guard(q, topics, subject, grade_label):
         if not m or not sel:
             return True
         us, toks, idf = m
-        _qt = str(q.get("topic") or "").strip().lower()
-        if _qt and any(_qt == str(n).split(" (")[0].strip().lower() for n in sel):
-            return True  # banka sorusu kendi ünite adını taşıyor: şıklardaki çeldirici ifadeler başka üniteyi çağrıştırsa da ünite doğru
         T = _unit_tokens(f"{q.get('topic', '')} {q.get('kazanim', '')} {q.get('question', '')} {q.get('passage', '')}")
         if not T:
             return True
@@ -10104,162 +10101,6 @@ _FF_GENS += [(_ff_food, ("besin", "ekosistem", "zincir", "çevre", "biyoçeşit"
              (_ff_fric, ("sürtünme", "kuvvet")), (_ff_shadow, ("gölge", "ışık"))]
 
 
-# ---------------------------------------------------------------- 5. SINIF FEN: YENİ NESİL (beceri temelli) KALIPLAR
-# Deney senaryosu + tablo + çıkarım/değişken/yorum. Metinde geçen her değer tabloda yazılıdır; cevap tablodan kodla hesaplanır.
-def _yn_opts(correct, wrongs, ex_unused=None):
-    o = _mf_opts(correct, wrongs, str, sort=False)
-    if not o:
-        return None
-    ol, cor = o
-    random.shuffle(ol)
-    return ol, cor
-
-
-def _ff_yn_yay(subject):
-    k = random.choice([2, 3, 4, 5])
-    ms = [50, 100, 150, 200]
-    rows = [[str(m), str(k * m // 50)] for m in ms]
-    shape = {"type": "table", "title": "Yaya asılan kütle ve yayın uzaması", "headers": ["Asılan kütle (g)", "Yayın uzaması (cm)"], "rows": rows}
-    lead = "Ece, aynı yaya farklı kütleler asarak yayın uzamasını ölçüyor. Yay, bu kütlelerde esnekliğini yitirmemiştir. Ölçüm sonuçları tabloda verilmiştir."
-    if random.random() < 0.5:
-        q = "Tablodaki verilere göre aşağıdaki çıkarımlardan hangisi yapılabilir?"
-        c = "Yaya asılan kütle arttıkça yayın uzaması artar."
-        o = _yn_opts(c, ["Yaya asılan kütle arttıkça yayın uzaması azalır.", "Yayın uzaması asılan kütleden bağımsızdır.", "Yaya asılan kütle iki katına çıkınca yayın uzaması yarıya iner."])
-        ex = f"Kütle 50 g’dan 200 g’a çıktıkça uzama {rows[0][1]} cm’den {rows[-1][1]} cm’ye çıkmıştır; kütle arttıkça uzama artar."
-        return _mf_raw(subject, "Kuvvetin ölçülmesi", q, o, ex, shape=shape, passage=lead) if o else None
-    m = random.choice([250, 300])
-    v = k * m // 50
-    q = f"Tablodaki değişim aynı şekilde sürdüğüne göre yaya {m} g’lık bir kütle asılırsa yayın uzaması kaç cm olur?"
-    o = _mf_opts(v, [v + k, v - k, v + 2 * k, k * 4], lambda x: f"{x} cm")
-    ex = f"Her 50 g için uzama {k} cm artmaktadır. {m} g için {m // 50} × {k} = {v} cm olur."
-    return _mf_raw(subject, "Kuvvetin ölçülmesi", q, o, ex, shape=shape, passage=lead) if o else None
-
-
-def _ff_yn_stop(subject):
-    surf = random.sample([("cam", 5), ("sırlı fayans", 6), ("ahşap parke", 9), ("halı", 17), ("kum", 24), ("çim", 20), ("zımpara", 30)], 4)
-    ds = [(n, v + random.randint(0, 2)) for n, v in surf]
-    if len({v for _, v in ds}) < 4:
-        return None
-    shape = {"type": "table", "title": "Arabanın durana kadar aldığı yol", "headers": ["Yüzey", "Durma yolu (cm)"], "rows": [[n, str(v)] for n, v in ds]}
-    lead = ("Eylül, aynı oyuncak arabayı aynı rampadan her denemede aynı yükseklikten bırakıyor ve araba rampadan indikten sonra durana kadar aldığı yolu ölçüyor. "
-            "Denemeler farklı yüzeylerde yapılmıştır.")
-    big = random.random() < 0.5
-    pick = min(ds, key=lambda x: x[1]) if big else max(ds, key=lambda x: x[1])
-    q = f"Tablodaki verilere göre arabaya etki eden sürtünme kuvveti hangi yüzeyde diğer üç yüzeydekinden daha {'büyüktür' if big else 'küçüktür'}?"
-    o = _yn_opts(pick[0], [n for n, _ in ds if n != pick[0]])
-    ex = (f"Araba aynı hızla geldiğinden daha kısa yolda duran yüzeyde sürtünme daha büyüktür. En kısa yol {min(v for _, v in ds)} cm, en uzun yol {max(v for _, v in ds)} cm’dir; "
-          f"en {'büyük' if big else 'küçük'} sürtünme {pick[0]} yüzeyindedir.")
-    return _mf_raw(subject, "Sürtünme kuvveti", q, o, ex, shape=shape, passage=lead) if o else None
-
-
-def _ff_yn_kaynama(subject):
-    s, r = random.choice([(20, 20), (40, 15), (30, 14), (25, 15), (35, 13)])
-    steps = (100 - s) // r
-    if s + steps * r != 100:
-        return None
-    temps = [s + i * r for i in range(steps + 1)] + [100, 100]
-    times = [2 * i for i in range(len(temps))]
-    shape = {"type": "table", "title": "Suyun sıcaklığı ve zaman", "headers": ["Zaman (dk)", "Sıcaklık (°C)"], "rows": [[str(t), str(v)] for t, v in zip(times, temps)]}
-    lead = "Bir öğrenci, deniz seviyesinde ocakta ısıtılan saf suyun sıcaklığını iki dakikada bir ölçüyor ve sonuçları tabloya yazıyor."
-    first = times[temps.index(100)]
-    if random.random() < 0.5:
-        q = "Tablodaki verilere göre su kaçıncı dakikada kaynamaya başlamıştır?"
-        o = _mf_opts(first, [first + 2, first - 2, first + 4, times[-1]], lambda x: f"{x}. dakika")
-        ex = f"Sıcaklık ilk kez {first}. dakikada 100 °C’a ulaşmış ve sonrasında 100 °C’ta sabit kalmıştır; kaynama {first}. dakikada başlamıştır."
-        return _mf_raw(subject, "Hâl değişimleri", q, o, ex, shape=shape, passage=lead) if o else None
-    q = f"Tablodaki verilere göre suyun {times[-1]}. dakikadaki sıcaklığı kaç °C’tur ve bu durumun nedeni nedir?"
-    c = "100 °C; su kaynamaktadır ve kaynarken sıcaklığı değişmez."
-    o = _yn_opts(c, ["100 °C; su ısı almadığı için sıcaklığı değişmez.", "100 °C; su donmaya başlamıştır.", f"{temps[-3]} °C; su ısınmaya devam etmektedir."])
-    ex = "Su 100 °C’ta kaynar; kaynama sürerken alınan ısı hâl değişimine harcanır ve sıcaklık sabit kalır."
-    return _mf_raw(subject, "Hâl değişimleri", q, o, ex, shape=shape, passage=lead) if o else None
-
-
-def _ff_yn_golge(subject):
-    a = random.choice([10, 20])
-    ds = [20, 30, 40, 50]
-    sh = [a * 60 // d for d in ds]
-    if len(set(sh)) < 4 or any(a * 60 % d for d in ds):
-        return None
-    shape = {"type": "table", "title": "Işık kaynağının uzaklığı ve gölge boyu", "headers": ["Işık kaynağı–cisim uzaklığı (cm)", "Gölge boyu (cm)"], "rows": [[str(d), str(s)] for d, s in zip(ds, sh)]}
-    lead = f"Bir öğrenci, boyu {a} cm olan bir kalemi perdeye yakın tutup küçük bir ışık kaynağını kalemden farklı uzaklıklara götürerek perdedeki gölgenin boyunu ölçüyor."
-    q = "Tablodaki verilere göre aşağıdaki çıkarımlardan hangisi yapılabilir?"
-    c = "Işık kaynağı cisimden uzaklaştıkça gölgenin boyu küçülür."
-    o = _yn_opts(c, ["Işık kaynağı cisimden uzaklaştıkça gölgenin boyu büyür.", "Gölgenin boyu ışık kaynağının uzaklığına bağlı değildir.", "Işık kaynağı uzaklaştıkça gölge kaybolur ve boyu sıfır olur."])
-    ex = f"Uzaklık 20 cm’den 50 cm’e çıkarken gölge boyu {sh[0]} cm’den {sh[-1]} cm’ye küçülmüştür."
-    return _mf_raw(subject, "Gölge", q, o, ex, shape=shape, passage=lead) if o else None
-
-
-def _ff_yn_ampul(subject):
-    n = random.choice([1, 2, 3])
-    shape = {"type": "table", "title": "Deney sonuçları", "headers": ["Devreye bağlanan pil (adet)", "Ampulün verdiği ışık"], "rows": [["1", "Az"], ["2", "Orta"], ["3", "Çok"]]}
-    lead = ("Nehir, seri bağlı bir devrede özdeş pillerle özdeş bir ampulü yakıyor. Her denemede devreye farklı sayıda pil bağlayıp ampulün ne kadar ışık verdiğine bakıyor ve "
-            "sonuçları tabloya yazıyor. Bağlantı kabloları ve ampul her denemede aynıdır.")
-    kind = random.choice(["bag", "gozlem", "sabit"])
-    if kind == "bag":
-        q = "Bu deneyde değiştirilen değişken aşağıdakilerden hangisidir?"
-        c = "Pil sayısı"
-        ws = ["Ampulün parlaklığı", "Ampulün özdeş olması", "Bağlantı kablolarının cinsi"]
-        ex = "Her denemede devreye bağlanan pil sayısı değiştirilmiştir."
-    elif kind == "gozlem":
-        q = "Bu deneyde gözlenen (sonuç olarak incelenen) değişken aşağıdakilerden hangisidir?"
-        c = "Ampulün parlaklığı"
-        ws = ["Pil sayısı", "Ampulün özdeş olması", "Bağlantı kablolarının cinsi"]
-        ex = "Pil sayısı değiştirilince değişen ve gözlenen şey ampulün parlaklığıdır."
-    else:
-        q = "Bu deneyin güvenilir olması için aşağıdakilerden hangisi her denemede aynı tutulmalıdır?"
-        c = "Ampulün özdeş olması"
-        ws = ["Pil sayısı", "Ampulün parlaklığı", "Ampulün yanıp yanmaması"]
-        ex = "Yalnızca pil sayısı değiştirilir; ampul ve kablolar gibi diğer koşullar sabit tutulur."
-    o = _yn_opts(c, ws)
-    return _mf_raw(subject, "Elektrik devresi", q, o, ex, shape=shape, passage=lead) if o else None
-
-
-def _ff_yn_yalitim(subject):
-    tier = [("strafor", 66), ("yün kumaş", 62), ("gazete kâğıdı", 54), ("alüminyum folyo", 44), ("ince plastik torba", 40)]
-    pick = random.sample(tier, 4)
-    vals = [(n, v + random.randint(-1, 1)) for n, v in pick]
-    if len({v for _, v in vals}) < 4:
-        return None
-    shape = {"type": "table", "title": "20 dakika sonra suyun sıcaklığı", "headers": ["Kabın sarıldığı malzeme", "Sıcaklık (°C)"], "rows": [[n, str(v)] for n, v in vals]}
-    lead = ("Dört özdeş kaba 80 °C’ta eşit miktarda su konuyor ve her kap farklı bir malzemeyle sarılıyor. Kaplar aynı odada 20 dakika bekletildikten sonra "
-            "suların sıcaklığı ölçülüyor.")
-    best = random.random() < 0.5
-    pk = max(vals, key=lambda x: x[1]) if best else min(vals, key=lambda x: x[1])
-    q = f"Tablodaki verilere göre {'en iyi ısı yalıtkanı' if best else 'ısıyı en kolay ileten malzeme'} hangisidir?"
-    o = _yn_opts(pk[0], [n for n, _ in vals if n != pk[0]])
-    ex = (f"Suyun sıcaklığı en {'az' if best else 'çok'} düşen kapta ısı kaybı en {'az' if best else 'fazla'}dır. "
-          f"{pk[0]} ile sarılı kapta {pk[1]} °C ölçülmüştür; bu malzeme {'en iyi yalıtkandır' if best else 'ısıyı en kolay iletendir'}.")
-    return _mf_raw(subject, "Isı yalıtımı", q, o, ex, shape=shape, passage=lead) if o else None
-
-
-def _ff_yn_atik(subject):
-    items = {"Kâğıt": True, "Plastik": True, "Cam": True, "Metal": True, "Yemek artığı": False}
-    names = random.sample(list(items), 4)
-    if all(items[n] for n in names):
-        names[random.randrange(4)] = "Yemek artığı"
-    vals = {n: random.randint(2, 14) for n in names}
-    rec = sum(v for n, v in vals.items() if items[n])
-    tot = sum(vals.values())
-    if rec == tot:
-        return None
-    shape = {"type": "table", "title": "Bir evin haftalık atıkları", "headers": ["Atık türü", "Miktar (kg)"], "rows": [[n, str(vals[n])] for n in names]}
-    lead = "Bir ailenin bir haftada biriktirdiği atıklar türlerine göre tartılmış ve tabloya yazılmıştır. Aile, geri dönüştürülebilen atıkları ayrı toplayıp geri dönüşüm kutusuna atmaktadır."
-    q = "Bu ailenin bir haftada geri dönüşüm kutusuna atabileceği atıkların toplamı kaç kg’dır?"
-    o = _mf_opts(rec, [tot, rec + 2, rec - 2 if rec > 3 else rec + 4, tot - 1], lambda x: f"{x} kg")
-    ex = "Geri dönüştürülebilen atıklar: " + ", ".join(f"{n} ({vals[n]} kg)" for n in names if items[n]) + f". Toplam {rec} kg’dır."
-    return _mf_raw(subject, "Geri dönüşüm", q, o, ex, shape=shape, passage=lead) if o else None
-
-
-for _f, _it in ((_ff_yn_yay, "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton)"), (_ff_yn_stop, "Sürtünme kuvveti ve etkileri"),
-                (_ff_yn_kaynama, "Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama)"), (_ff_yn_golge, "Gölge oluşumu ve tam gölge"),
-                (_ff_yn_ampul, "Ampul parlaklığını etkileyen değişkenler"), (_ff_yn_yalitim, "Isı yalıtımı"),
-                (_ff_yn_atik, "Geri dönüşüm ve geri dönüştürülebilen maddeler")):
-    _f.ITEM = _it
-_FF_GENS += [(_ff_yn_yay, ("kuvvet", "dinamometre", "newton")), (_ff_yn_stop, ("sürtünme", "kuvvet")), (_ff_yn_kaynama, ("hâl değişim", "ısı", "kaynama")),
-             (_ff_yn_golge, ("gölge", "ışık")), (_ff_yn_ampul, ("ampul", "devre", "parlaklık")), (_ff_yn_yalitim, ("yalıtım", "ısı")),
-             (_ff_yn_atik, ("geri dönüş", "atık"))]
-
-
 # ---------------------------------------------------------------- SOSYAL BİLGİLER: kodla hesaplanan veri soruları (5. sınıf)
 def _sf_budget(subject):
     inc = random.choice([(120, 30), (150, 50), (200, 40), (180, 20)])
@@ -10701,7 +10542,6 @@ _mf_tumler_oran = _mk_kind(lambda sj, kind=None: _mf_tb_oran(sj, 90), None, "_mf
 _mf_butunler_oran = _mk_kind(lambda sj, kind=None: _mf_tb_oran(sj, 180), None, "_mf_butunler_oran")
 _MF_GENS += [(_mf_tumler_oran, ("tümler",), (5,)), (_mf_butunler_oran, ("bütünler",), (5,))]
 _DIFF_OF.update({"_mf_tumler_oran": 4, "_mf_butunler_oran": 4})
-_DIFF_OF.update({"_ff_yn_yay": 4, "_ff_yn_stop": 4, "_ff_yn_kaynama": 4, "_ff_yn_golge": 4, "_ff_yn_ampul": 5, "_ff_yn_yalitim": 4, "_ff_yn_atik": 3})
 
 
 # ---- tümler / bütünler / komşu / ters açı: çok sayıda ayrı kalıp (her biri farklı soru kökü; anında üretilir)
@@ -11223,74 +11063,6 @@ _tf_saglik.__name__ = "_tf_saglik"
 
 _TF_GENS += [(_tf_duygu, ("duygu",)), (_tf_esanlam, ("söz varlığı", "anlam", "sözcük")), (_tf_atatarih, ("atatürk", "cumhuriyet", "millî mücadele", "23 nisan")), (_tf_saglik, ("sağlık", "beslen", "hijyen"))]
 _DIFF_OF.update({"_tf_duygu": 2, "_tf_esanlam": 1, "_tf_atatarih": 2, "_tf_saglik": 1})
-
-
-# ---------------------------------------------------------------- 5. SINIF TÜRKÇE: YENİ NESİL PARAGRAF KALIPLARI
-# (paragraf, konu, ana fikir, yanlış ana fikirler, doğru çıkarım, yanlış çıkarımlar)
-_TR_PAR = [
-    ("Ayşe her akşam yatmadan önce yarım saat kitap okur. Başta bu alışkanlık ona zor geldi. Birkaç hafta sonra kitap okumadan uyuyamaz oldu. Artık okuduğu kitaplardan edindiği bilgileri arkadaşlarına da anlatıyor.",
-     "kitap okuma alışkanlığı", "Düzenli kitap okumak insana hem alışkanlık hem de bilgi kazandırır.",
-     ["Kitaplar yalnızca akşam saatlerinde okunmalıdır.", "Arkadaşlara bilgi anlatmak zor bir iştir.", "Uyumadan önce yapılan her şey alışkanlık hâline gelir."],
-     "Ayşe’nin kitap okuma alışkanlığı zamanla kolaylaşmıştır.", ["Ayşe kitap okumayı hiç sevmemiştir.", "Ayşe kitapları yalnızca arkadaşlarına anlatmak için okumaktadır.", "Ayşe’nin arkadaşları da her akşam yarım saat kitap okumaktadır."]),
-    ("Arılar çiçeklerden topladıkları özsuyu bal yapmak için kullanır. Bu sırada çiçeklerin üzerinde gezinirken polenleri bir çiçekten diğerine taşırlar. Böylece çiçekler tohum oluşturabilir. Arılar olmasaydı birçok bitki yeni bitkiler yetiştiremezdi.",
-     "arıların doğaya katkısı", "Arılar hem bal üretir hem de bitkilerin çoğalmasına yardımcı olur.",
-     ["Arılar yalnızca bal yapan canlılardır.", "Çiçekler arılar olmadan da aynı şekilde tohum oluşturur.", "Bal, bitkilerin yetişmesi için gereklidir."],
-     "Arılar polenleri taşıyarak bitkilerin tohum oluşturmasını sağlar.", ["Arılar tohumları toprağa gömerek bitkileri büyütür.", "Arılar yalnızca bal yapmak için çiçeklere konar.", "Çiçeklerin özsuyu olmadığı için arılar polen toplar."]),
-    ("Kemal, köyündeki okulun bahçesine her bahar bir fidan dikiyor. Fidanları sulamayı hiç aksatmıyor. Yıllar geçtikçe bahçe küçük bir ormana dönüştü. Şimdi öğrenciler teneffüste ağaçların gölgesinde oynuyor.",
-     "bir öğrencinin okul bahçesini ağaçlandırması", "Küçük ama düzenli çabalar zamanla büyük ve faydalı sonuçlar doğurur.",
-     ["Okul bahçelerinde yalnızca ağaçlar bulunmalıdır.", "Fidanlar yalnızca bahar mevsiminde dikilir.", "Teneffüs en güzel ağaç gölgesinde geçer."],
-     "Kemal’in diktiği fidanlar zamanla büyüyüp bahçeyi gölgelik hâline getirmiştir.", ["Kemal’in okulunda hiç bahçe yoktur.", "Fidanları öğretmenler dikmiştir.", "Öğrenciler teneffüste yalnızca sınıfta kalmaktadır."]),
-    ("Su, canlılar için vazgeçilmezdir. Ancak dünyadaki suyun çok az bir bölümü içilebilir durumdadır. Bu yüzden musluğu açık bırakmak, suyu gereksiz yere akıtmak büyük bir israftır. Suyu tasarruflu kullanan herkes gelecek nesillere de içilebilir su bırakmış olur.",
-     "suyun tasarruflu kullanılması", "Suyu israf etmeden kullanmak hem bugünümüz hem de geleceğimiz için önemlidir.",
-     ["Dünyada içilebilir su hiç yoktur.", "Musluklar her zaman kapalı tutulmalıdır.", "Yalnızca gelecek nesiller suyu korumalıdır."],
-     "İçilebilir su, dünyadaki toplam suyun az bir bölümüdür.", ["Dünyadaki suyun tamamı içilebilir durumdadır.", "Su yalnızca insanlar için vazgeçilmezdir.", "Suyu tasarruflu kullanmak gelecek nesillere zarar verir."]),
-    ("Mehmet, maçtan önce ısınma hareketleri yapmayı hep ihmal ediyordu. Bir gün maçın ilk dakikalarında ayağı burkuldu ve iki hafta sahalardan uzak kaldı. Doktoru, ısınmanın kasları hazırladığını ve sakatlıkları azalttığını söyledi. O günden sonra Mehmet her antrenmanda ısınmayı eksiksiz yapıyor.",
-     "spor öncesi ısınma", "Spor yapmadan önce ısınmak, sakatlanma riskini azaltır.",
-     ["Maçlara hiç çıkılmamalıdır.", "Doktorlar her sporcunun ayağını muayene etmelidir.", "Sakatlıklar yalnızca maçın ilk dakikalarında olur."],
-     "Mehmet ısınmayı ihmal ettiği için sakatlanmıştır.", ["Mehmet’in ayağı ısınma hareketleri yüzünden burkulmuştur.", "Mehmet iki hafta boyunca maçlara çıkmıştır.", "Mehmet doktorun sözünü dinlememeye devam etmektedir."]),
-    ("Leyla’nın sınıfında bir geri dönüşüm kutusu var. Kâğıtlar, plastik şişeler ve metal kutular ayrı ayrı toplanıyor. Her ay dolan kutular geri dönüşüm tesisine gönderiliyor. Sınıf, bu sayede hem çöp miktarını azaltıyor hem de doğaya katkıda bulunuyor.",
-     "sınıfta geri dönüşüm", "Atıkları ayırarak geri dönüşüme vermek, çöpü azaltır ve doğayı korur.",
-     ["Sınıflarda yalnızca kâğıt toplanmalıdır.", "Geri dönüşüm kutuları her hafta boşaltılmalıdır.", "Çöp kutuları sınıflardan kaldırılmalıdır."],
-     "Leyla’nın sınıfı atıklarını türlerine göre ayırmaktadır.", ["Leyla’nın sınıfı atıkların hepsini aynı kutuda toplamaktadır.", "Kutular her gün geri dönüşüm tesisine gönderilmektedir.", "Sınıf, geri dönüşüm yüzünden çöp miktarını artırmıştır."]),
-    ("Selin, bisikletiyle okula gitmeye başladığında trafikte yaşadığı zorlukları anlattı. Kaskını takmadığı bir gün yola çıkan Selin, düşünce başını yere çarptı. O gün bugündür bisiklete binerken kaskını hiç çıkarmıyor ve arkadaşlarına da aynı şeyi öneriyor.",
-     "bisiklet güvenliği", "Bisiklete binerken kask takmak, olası kazalarda kendimizi korur.",
-     ["Bisikletle okula gitmek tehlikelidir.", "Arkadaşlarımıza her konuda öğüt vermeliyiz.", "Trafikte yalnızca bisikletliler zorluk yaşar."],
-     "Selin kaskını takmadığı gün düşüp başını yere çarpmıştır.", ["Selin kaskını her zaman takarak düşmüştür.", "Selin arkadaşlarına kask takmamayı önermektedir.", "Selin bisikletle hiç okula gitmemiştir."]),
-    ("Güneş enerjisi, güneşten gelen ışık ve ısıdan elde edilir. Bu enerji tükenmez ve çevreyi kirletmez. Bu nedenle birçok ev ve okulun çatısına güneş panelleri yerleştirilmektedir. Bu paneller sayesinde elektrik faturaları da düşmektedir.",
-     "güneş enerjisi", "Güneş enerjisi, çevreye zarar vermeyen ve tasarruf sağlayan bir enerji kaynağıdır.",
-     ["Güneş panelleri yalnızca okulların çatısına yerleştirilir.", "Elektrik faturaları güneş paneli olmadan da düşer.", "Güneş ışığı yalnızca ısı enerjisi verir."],
-     "Güneş panelleri kullanan yerlerde elektrik faturaları düşmektedir.", ["Güneş enerjisi kullanıldıkça tükenir.", "Güneş enerjisi çevreyi kirletir.", "Güneş panelleri yalnızca evlerin çatısına yerleştirilir."]),
-]
-
-
-def _tr_par_pick():
-    return random.choice(_TR_PAR)
-
-
-def _tf_par_ana(subject):
-    p, konu, ana, wr, _c, _w = _tr_par_pick()
-    kok = random.choice(["Bu paragrafın ana fikri aşağıdakilerden hangisidir?", "Bu parçada asıl anlatılmak istenen düşünce aşağıdakilerden hangisidir?",
-                         "Parçadan çıkarılabilecek ana düşünce aşağıdakilerden hangisidir?"])
-    return _fact_q(subject, "Ana fikir", kok, ana, wr, f"Paragrafın tamamı “{konu}” üzerinedir; bu konudan çıkan ders: {ana}", passage=p)
-
-
-def _tf_par_cikarim(subject):
-    p, _k, _a, _w, c, ws = _tr_par_pick()
-    kok = random.choice(["Bu parçadan aşağıdakilerden hangisi çıkarılabilir?", "Parçaya göre aşağıdaki yargılardan hangisi doğrudur?"])
-    return _fact_q(subject, "Çıkarım", kok, c, ws, f"Doğru yargı doğrudan parçada anlatılanlara dayanır: {c}", passage=p)
-
-
-def _tf_par_konu(subject):
-    p, konu, _a, _w, _c, _ws = _tr_par_pick()
-    others = [x[1] for x in _TR_PAR if x[1] != konu]
-    random.shuffle(others)
-    return _fact_q(subject, "Konu", "Bu parçanın konusu aşağıdakilerden hangisidir?", konu, others[:3], f"Parçanın tamamı {konu} hakkındadır.", passage=p)
-
-
-for _f in (_tf_par_ana, _tf_par_cikarim, _tf_par_konu):
-    pass
-_TF_GENS += [(_tf_par_ana, ("ana fikir", "okuma", "paragraf")), (_tf_par_cikarim, ("okuma", "paragraf", "sebep", "neden")), (_tf_par_konu, ("ana fikir", "konu", "okuma", "bilgilendirici"))]
-_DIFF_OF.update({"_tf_par_ana": 4, "_tf_par_cikarim": 4, "_tf_par_konu": 2})
 
 
 # ================================================================ 5. SINIF DİN KÜLTÜRÜ VE AHLAK BİLGİSİ — kodla kurulan, doğru-cevaplı kalıplar
@@ -16963,7 +16735,7 @@ def _pool_path(subject, grade_label):
 
 
 def _pool_tok(t):
-    t = str(t or "").replace("İ", "i").replace("I", "ı").lower().replace("’", "").replace("'", "")  # Kur'an / Kur’an aynı sözcük
+    t = str(t or "").replace("İ", "i").replace("I", "ı").lower()
     return {w[:5] for w in re.findall(r"[a-zçğıöşü]{4,}", t)}
 
 
