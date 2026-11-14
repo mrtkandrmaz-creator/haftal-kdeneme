@@ -2244,7 +2244,7 @@ def _triangle_geo(ax, d, pts=None):
     ai = 2  # ikizkenarda varsayılan tepe C
     ri = "ABC".index(str(d.get("right_at", "A")).upper()[:1]) if str(d.get("right_at", "A")).upper()[:1] in ("A", "B", "C") else 0
     if pts is None and kind in ("right", "dik"):
-        P = _right_tri_pts(ri, {"".join(sorted(str(k).upper())): v for k, v in (d.get("sides") or {}).items()})
+        P = _right_tri_pts(ri, {"".join(sorted(str(k).upper())): v for k, v in ((d.get("sides") if isinstance(d.get("sides"), dict) else None) or {}).items()})
     elif pts is None and kind in ("isosceles", "ikizkenar") and apex in ("A", "B", "C"):
         ai = "ABC".index(apex)
         P = _tri_apex_pts(ai)
@@ -2275,7 +2275,7 @@ def _triangle_geo(ax, d, pts=None):
         ax.plot(*zip(P[2], foot), color=GREEN, lw=1.6, ls="--", zorder=3)
         _right_mark(ax, foot, [-1, 0] if P[2][0] > 0 else [1, 0], [0, 1], s=.28)
     skey = lambda k: "".join(sorted(str(k).upper()))
-    sides = {skey(k): v for k, v in (d.get("sides") or {}).items()}
+    sides = {skey(k): v for k, v in ((d.get("sides") if isinstance(d.get("sides"), dict) else None) or {}).items()}
     for key, (i, j) in (("AB", (0, 1)), ("BC", (1, 2)), ("AC", (0, 2))):
         if key in sides:
             m = (P[i] + P[j]) / 2; e_ = P[j] - P[i]
@@ -2354,7 +2354,7 @@ def _quad_geo(ax, d, pts=None, labels=None):
             _right_mark(ax, P[i], P[(i + 1) % 4] - P[i], P[(i - 1) % 4] - P[i], s=.26)
     if d.get("diagonals"):
         ax.plot(*zip(P[0], P[2]), color=SLATE, lw=1.3, ls="--", zorder=2); ax.plot(*zip(P[1], P[3]), color=SLATE, lw=1.3, ls="--", zorder=2)
-    qs_ = {"".join(sorted(str(k).upper())): v for k, v in (d.get("sides") or {}).items()}
+    qs_ = {"".join(sorted(str(k).upper())): v for k, v in ((d.get("sides") if isinstance(d.get("sides"), dict) else None) or {}).items()}
     for key, (i, j) in E.items():  # metinde verilen uzunluklar şekilde de görünsün
         if key in qs_:
             m = (P[i] + P[j]) / 2; out = m - c; out = out / np.linalg.norm(out)
@@ -2431,7 +2431,7 @@ def _nested_circles(ax, d):
     if mode == "intersect":
         r1, r2, dd = float(d.get("r1", 4)), float(d.get("r2", 4)), float(d.get("d", 4))
         names = (list(map(str, d.get("names") or [])) + ["A", "B", "C"])[:3]
-        sd = d.get("sides") or {}
+        sd = d.get("sides") if isinstance(d.get("sides"), dict) else {}
         x = (dd * dd + r1 * r1 - r2 * r2) / (2 * dd)
         y = max(0.0, r1 * r1 - x * x) ** .5
         lo, hi = min(-r1, dd - r2), max(r1, dd + r2)
@@ -7461,7 +7461,7 @@ def _geo_consistent(shape, text, opts, ans):
             if abs(float(xv) - cv) > 1e-6:
                 return False
     # ---- uzunluklar
-    S = {"".join(sorted(str(k).upper())): _num_len(v) for k, v in (shape.get("sides") or {}).items()}
+    S = {"".join(sorted(str(k).upper())): _num_len(v) for k, v in ((shape.get("sides") if isinstance(shape.get("sides"), dict) else None) or {}).items()}
     S = {k: v for k, v in S.items() if v is not None}
     names_s = ["AB", "BC", "AC"] if n == 3 else ["AB", "BC", "CD", "AD"]
     par = {x: x for x in names_s}
