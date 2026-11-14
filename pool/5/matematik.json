@@ -3306,6 +3306,146 @@
 "topics": "MAT.5.3.1. Temel geometrik inşalar için matematiksel araç ve teknolojiyi kullanabilme (nokta, doğru, doğru parçası, ışın, açı, çember, dik doğru), MAT.5.3.2. Te",
 "d": 3,
 "ts": 1794555485
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliği",
+"passage": "Bir robotik atölyesinde, bir robotun hareket komutları şu şekilde tanımlanmıştır: (48 ÷ 6 + 2) × 3 - 5. Bu işlem sonucunda elde edilen sayı, robotun ileri doğru gideceği santimetre miktarını belirlemektedir.",
+"question": "Bu robotun ileri gideceği toplam mesafe kaç santimetredir?",
+"shape": null,
+"options": {
+"A": "25",
+"B": "28",
+"C": "30",
+"D": "35"
+},
+"answer": "A",
+"explanation": "İşlem önceliği: Parantez içi önce yapılır. (48 ÷ 6 + 2) -> (8 + 2) = 10. İşlem: 10 × 3 - 5. Çarpma önceliklidir: 30 - 5 = 25.",
+"vfd2": true,
+"_sty": "s:|toplam mesafe kaç santim",
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 4,
+"ts": 1794634495
+},
+{
+"subject": "Matematik",
+"topic": "Algoritmaları yorumlama",
+"passage": "Bir kodlama kulübünde öğrenciler sayı girişli bir algoritma yazmıştır: 'Bir sayı gir, sayıyı 2 ile çarp, çıkan sonuçtan 10 çıkar ve sonucu 2'ye böl'. Ayşe 20 sayısını girdiğinde makinenin verdiği sonucu hesaplıyor.",
+"question": "Ayşe'nin girdiği 20 sayısı için algoritmanın ürettiği sonuç kaçtır?",
+"shape": null,
+"options": {
+"A": "5",
+"B": "10",
+"C": "15",
+"D": "20"
+},
+"answer": "C",
+"explanation": "Adım 1: 20 × 2 = 40. Adım 2: 40 - 10 = 30. Adım 3: 30 ÷ 2 = 15.",
+"vfd2": true,
+"_sty": "s:|algori üretti sonuç kaçtır",
+"unit": "2. Tema: İşlemlerle Cebirsel Düşünme",
+"topics": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme, MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem öncel",
+"d": 4,
+"ts": 1794634495
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+"passage": "Bir pastanede üretilen 100 adet kurabiye paketinin türleri ve sayıları aşağıdaki tabloda verilmiştir.",
+"question": "Bademli ve kakaolu kurabiye paketlerinin toplam sayısının, tüm paketlerin sayısına oranı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Kurabiye Üretimi",
+"headers": [
+"Tür",
+"Adet"
+],
+"rows": [
+[
+"Bademli",
+"25"
+],
+[
+"Kakaolu",
+"35"
+],
+[
+"Sade",
+"40"
+]
+]
+},
+"options": {
+"A": "2/5",
+"B": "3/10",
+"C": "1/2",
+"D": "3/5"
+},
+"answer": "D",
+"explanation": "Bademli (25) + Kakaolu (35) = 60 paket. Toplam paket sayısı 100. Oran 60/100'dür. Sadeleştirdiğimizde (20 ile) 3/5 sonucuna ulaşılır.",
+"vfd2": true,
+"_sty": "s:table|sayısı oranı aşağıd hangis",
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1794634539
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.4.2. Birim karelerden yola çıkarak dikdörtgenin alanını değerlendirebilme",
+"passage": "",
+"question": "Kenar uzunlukları 6 cm ve 8 cm olan bir dikdörtgen, her biri 2 cm kenar uzunluğuna sahip eş kare şeklindeki parçalara ayrılacaktır. Bu işlem sonucunda kaç adet kare elde edilir?",
+"shape": {
+"type": "rectangle",
+"width": 8,
+"height": 6,
+"width_label": "8 cm",
+"height_label": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "12",
+"C": "24",
+"D": "48"
+},
+"answer": "B",
+"explanation": "1. Büyük dikdörtgenin alanı = 8 × 6 = 48 cm²'dir.\n2. Kesilecek her bir küçük karenin alanı = 2 × 2 = 4 cm²'dir.\n3. Elde edilecek kare sayısı büyük alanın küçük alana bölünmesiyle bulunur: 48 ÷ 4 = 12 adet.",
+"vfd2": true,
+"_sty": "s:rectangle|adet kare elde edilir",
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 3,
+"ts": 1794634883
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
+"passage": "",
+"question": "Çevre uzunluğu 40 cm olan bir dikdörtgenin uzun kenarı, kısa kenarının 3 katıdır. Bu dikdörtgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "rectangle",
+"width": 15,
+"height": 5,
+"width_label": "3 kat",
+"height_label": "1 kat",
+"show_names": false
+},
+"options": {
+"A": "75",
+"B": "100",
+"C": "225",
+"D": "300"
+},
+"answer": "A",
+"explanation": "Çevresi 40 cm olan dikdörtgenin (Kısa Kenar + Uzun Kenar) toplamı 40 ÷ 2 = 20 cm'dir. Uzun kenar kısa kenarın 3 katı ise kısa kenar 1 kat, uzun kenar 3 kattır (Toplam 4 kat). 1 kat = 20 ÷ 4 = 5 cm (Kısa Kenar). Uzun kenar = 5 × 3 = 15 cm'dir. Alan = 15 × 5 = 75 cm² bulunur.",
+"vfd2": true,
+"_sty": "s:rectangle|dikdör alanı kaç santim",
+"unit": "4. Tema: Geometrik Nicelikler",
+"topics": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme, MAT.5.4.2. Birim karelerden yola ç",
+"d": 3,
+"ts": 1794634883
 }
 ]
 }

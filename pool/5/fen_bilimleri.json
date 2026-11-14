@@ -5968,6 +5968,165 @@
 "topics": "Güneş'in yapısı ve dönme hareketi, Ay'ın özellikleri, dönme ve dolanma hareketleri, Ay'ın evreleri, Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri",
 "d": 4,
 "ts": 1794555534
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi",
+"passage": "Doğa yürüyüşüne çıkan bir grup öğrenci ormanda farklı renk ve şekillerde mantarlarla karşılaşmıştır. Öğretmenleri öğrencilere doğada bulunan yabani mantarların tüketilmemesi gerektiği konusunda uyarılarda bulunmuş ve bazı mantarların zehirli olabileceğini belirtmiştir.",
+"question": "Bu bilgilere dayanarak şapkalı mantarlar ve zehirli mantarlarla ilgili aşağıdaki yargılardan hangileri doğrudur?\nI. Kültür mantarları kontrollü ortamlarda üretildiği için güvenle tüketilebilir.\nII. Mantarların zehirli olup olmadığı sadece dış görünüşüne bakılarak kesin olarak anlaşılabilir.\nIII. Doğada kendiliğinden yetişen şapkalı mantarların bir kısmı insan sağlığı için tehlikelidir.",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kültür Mantarı",
+"Yenilebilir Doğal Mantar",
+"Zehirli Doğal Mantar"
+],
+"values": [
+45,
+15,
+40
+],
+"title": "Mantar Türlerinin Oransal Dağılımı",
+"show_names": false
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Kültür mantarları tesislerde kontrollü olarak yetiştirilir ve yenilebilir (I doğru). Mantarların zehirli olup olmadığını renk veya şekline bakarak anlamak tehlikelidir, bu yüzden uzmanlar doğadaki mantarların yenilmemesini söyler (II yanlış). Doğada kendiliğinden yetişen mantarların zehirli türleri ölümcül olabilir (III doğru).",
+"vfd2": true,
+"_sty": "s:pie_chart|insan sağlığ için tehlik",
+"unit": "Canlılar Dünyası",
+"topics": "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma, Mikroskobik canlılara (bakteri, amip, öglena, param",
+"d": 4,
+"ts": 1794634429
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Mikroskobik canlılara örnekler verme",
+"passage": "Biyoloji laboratuvarında su örneklerini inceleyen Defne, mikroskop altında hareket eden bazı tek hücreli canlılar gözlemlemiştir. Canlıları incelediğinde; X canlısının kamçısı sayesinde aktif hareket ettiğini, Y canlısının ise sitoplazma uzantıları olan geçici ayaklar oluşturarak beslendiğini ve yer değiştirdiğini fark etmiştir.",
+"question": "Buna göre Defne'nin incelediği X ve Y canlıları aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "X: Öglena - Y: Amip",
+"B": "X: Paramesyum - Y: Bakteri",
+"C": "X: Bakteri - Y: Paramesyum",
+"D": "X: Amip - Y: Öglena"
+},
+"answer": "A",
+"explanation": "Kamçısı olan mikroskobik canlı Öglena, geçici ayaklar (yalancı ayak) oluşturan mikroskobik canlı ise Amip'tir.",
+"vfd2": true,
+"_sty": "s:|canlıl sırası aşağıd hangis",
+"crit": 1,
+"unit": "Canlılar Dünyası",
+"topics": "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma, Mikroskobik canlılara (bakteri, amip, öglena, param",
+"d": 4,
+"ts": 1794634429
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması ve deney",
+"passage": "Bir hava durumu gözlem istasyonunda kullanılan sensörler, özel bir elektrik devresi ile çalışmaktadır. İstasyon, verilerin sürekliliği için devredeki bir pilin bitmesi durumunda diğer pillerin sisteme destek vermesini sağlayan bir düzenek kurmuştur. Ancak bir deney sırasında, devre şemasında anahtarın yanlışlıkla açık unutulduğu ve sensörün sinyal göndermediği gözlemlenmiştir.",
+"question": "Bu duruma göre elektrik devresinin çalışması için aşağıdakilerden hangisi gerçekleşmelidir?",
+"shape": {
+"type": "science_space",
+"sub_type": "lunar_eclipse",
+"title": "Devre Kesinti Analizi",
+"show_names": false
+},
+"options": {
+"A": "Anahtarın kapatılarak devreye akım girişi sağlanmalıdır.",
+"B": "Devredeki pillerin kutupları yer değiştirilmelidir.",
+"C": "Sensörün bağlı olduğu ampul sayısı arttırılmalıdır.",
+"D": "Bağlantı kabloları daha kısa iletkenlerle değiştirilmelidir."
+},
+"answer": "A",
+"explanation": "Bir elektrik devresinin çalışması için devre kapalı olmalıdır. Anahtarın açık olması, devreden akım geçişine izin vermez. Bu nedenle anahtar kapatılarak devre tamamlanmalı ve akım akışı sağlanmalıdır.",
+"vfd2": true,
+"_sty": "s:science_space|için aşağıd hangis gerçek",
+"unit": "Elektrik Devre Elemanları",
+"topics": "Devre elemanları ve sembolleri, Devre şeması ve deney, Ampul parlaklığını etkileyen değişkenler, Elektrik tasarrufu ve güvenliği",
+"d": 4,
+"ts": 1794634441
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Evsel atıklar ve atık azaltma",
+"passage": "5/A sınıfı öğrencileri okul kantininde oluşan atıkları incelemiş ve haftalık 15 kg kâğıt, 10 kg plastik, 5 kg metal ve 20 kg gıda atığı toplandığını belirlemiştir. Öğretmenleri, atık azaltmanın ilk kuralının gereksiz tüketimi önlemek olduğunu ifade etmiştir.",
+"question": "Buna göre okulda atık azaltma stratejisi geliştiren bir öğrencinin yapacağı hangi uygulama hedefe en uygundur?",
+"shape": null,
+"options": {
+"A": "Kullanılmış plastik şişeleri boyayarak saksı yapmak",
+"B": "Kantin alışverişlerinde kendi matarasını ve beslenme çantasını kullanmak",
+"C": "Kâğıt atıklarını biriktirip geri dönüşüm kutusuna atmak",
+"D": "Metal kutuları ezerek hacimlerini küçültmek"
+},
+"answer": "B",
+"explanation": "Atık azaltma, kaynağında atık oluşumunu engellemeyi hedefler. Geri dönüşüm (A, C, D seçenekleri) atık oluştuktan sonra yapılan bir işlemdir. B seçeneğinde kendi matarası ve beslenme çantasını kullanmak ise ambalajlı ürün tüketimini ve dolayısıyla plastik atık oluşumunu kaynağında azaltır.",
+"vfd2": true,
+"_sty": "s:|hangi uygula hedefe uygund",
+"unit": "İnsan ve Çevre",
+"topics": "Evsel atıklar ve atık azaltma, Geri dönüşüm ve geri dönüştürülebilen maddeler, Kaynakların etkili kullanımı, Atık yönetimi, İnsan faaliyetlerinin çevreye etkisi",
+"d": 1,
+"ts": 1794634471
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı ve Sıcaklık",
+"passage": "Pazar yerinde iki farklı tezgahtaki meyve sularının sıcaklıkları ölçülmüştür. A tezgahındaki meyve suyu 45°C, B tezgahındaki meyve suyu ise 15°C'dir. İki meyve suyu birbirine karıştırıldığında oluşan yeni karışımın sıcaklığı ile ilgili ölçümler yapılmıştır.",
+"question": "Bu bilgilere göre meyve suları karıştırıldığında aşağıdakilerden hangisi kesinlikle gerçekleşir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"A",
+"B"
+],
+"values": [
+45,
+15
+],
+"title": "Meyve Suyu Sıcaklıkları (°C)",
+"show_names": false
+},
+"options": {
+"A": "Karışımın sıcaklığı 60°C olur.",
+"B": "Karışımın sıcaklığı 15°C ile 45°C arasında bir değer alır.",
+"C": "Karışımın sıcaklığı 15°C'den düşük olur.",
+"D": "Karışımın sıcaklığı 45°C'den yüksek olur."
+},
+"answer": "B",
+"explanation": "Isı alışverişi sıcak maddeden soğuk maddeye doğru gerçekleşir. Karışım sonucunda sıcaklık, iki sıcaklığın arasında (denge sıcaklığı) bir değerde sabitlenir.",
+"vfd2": true,
+"_sty": "s:line_chart|aşağıd hangis kesinl gerçek",
+"unit": "Madde ve Değişim",
+"topics": "Maddenin tanecikli yapısı ve hâlleri, Isı ve sıcaklık, Isı alışverişi, Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama), Isı iletimi, Isı yalıtımı",
+"d": 3,
+"ts": 1794634584
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Isı Alışverişi",
+"passage": "Evde su tasarrufu yapmak isteyen bir öğrenci, sıcak su ile soğuk suyu karıştırarak ılık su elde etmek istiyor. Öğrenci 80°C sıcaklığındaki 1 litre suya, 10°C sıcaklığındaki 5 litre soğuk suyu ekliyor.",
+"question": "Yapılan işlemle ilgili aşağıdaki çıkarımlardan hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "I. Isı alışverişi gerçekleşmez. II. Denge sıcaklığı 45°C'den büyüktür.",
+"B": "I. Isı akışı 80°C olan sudan 10°C olana doğrudur. II. Denge sıcaklığı 10°C ile 80°C arasında oluşur.",
+"C": "I. Isı akışı 10°C olan sudan 80°C olana doğrudur. II. Son durumda sıcaklık 80°C olur.",
+"D": "I. Denge sıcaklığı 10°C'ye daha yakındır. II. Isı akışı her iki yönde de gerçekleşir."
+},
+"answer": "B",
+"explanation": "Isı akışı sıcak maddeden soğuğa doğrudur. Miktarı fazla olanın sıcaklığı denge sıcaklığını domine eder; bu yüzden denge sıcaklığı 10°C ile 80°C arasında, 10°C'ye daha yakın olur.",
+"vfd2": true,
+"_sty": "s:|hangis bilims olarak doğrud",
+"crit": 1,
+"unit": "Madde ve Değişim",
+"topics": "Maddenin tanecikli yapısı ve hâlleri, Isı ve sıcaklık, Isı alışverişi, Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama), Isı iletimi, Isı yalıtımı",
+"d": 3,
+"ts": 1794634584
 }
 ]
 }
