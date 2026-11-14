@@ -1,0 +1,23 @@
+name: Testler
+
+on:
+  push:
+    branches: [main, master]
+    paths: ["app.py", "tools/**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install groq google-genai matplotlib numpy pandas altair reportlab requests pypdf
+      - name: Regresyon testleri
+        run: python tools/run_checks.py
+      - name: Şekil-metin denetimi
+        run: python tools/check_figures.py
