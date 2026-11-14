@@ -1,5 +1,5 @@
 """Şekilli soruların görsel denetimi.
-
+import os
 Her şekilli soru kalıbından örnek üretir, şekli gerçekten çizer (uygulamanın kendi çizicisiyle),
 şekil üzerindeki yazıları toplar ve sorunun metninde geçen sayıların şekilde de yazılı olduğunu kontrol eder.
 Sonuç: rapor (stdout) + inceleme sayfası (HTML, şekiller gömülü).
@@ -12,7 +12,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.environ.setdefault("DENEMEMATIK_DATA", tempfile.mkdtemp())
 import build_pool as bp  # noqa: E402
 
-APP = sys.argv[1] if len(sys.argv) > 1 else "/home/claude/app.py"
+
+# Bu dosya tools/ içinde olduğu için bir üst klasöre (ana dizine) çıkar
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+APP = os.path.join(ROOT_DIR, "app.py")
+
 OUT = sys.argv[2] if len(sys.argv) > 2 else "/home/claude/figure_check.html"
 PER = int(sys.argv[3]) if len(sys.argv) > 3 else 12
 ai, cur, store = bp.load_pkg(APP)
