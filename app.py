@@ -4953,6 +4953,7 @@ VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70
 VERIFY_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
 VERIFY_DEADLINE = 25  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
 GEN_BUDGET = 30      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
+AI5_WAIT = 14         # sn; 5. sınıfta yapay zekâ en çok bu kadar beklenir, sonra hazır kalıplar tamamlar
 MAX_ROUNDS = 2        # istenen sayıya ulaşmak için en çok tur
 OYSS_CHUNK = 5        # yazılı sınavda tek istekteki soru sayısı
 
@@ -19365,8 +19366,9 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 need = n - len(st_["qs"])
                 if need <= 0 or (no_keys and not demo_mode()):
                     break
-                if str(grade_label)[:1] == "5" and not like and not focus.strip() and not demo_mode() and os.environ.get("DENEMEMATIK_AI5") != "1" and subj in ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "İngilizce"):
-                    break  # 5. sınıf: kodla hesaplanan hatasız kalıplar yeterli; yapay zekâ beklemesi yok (eksik kalırsa aşağıdaki kademeler doldurur)
+                _fast5 = str(grade_label)[:1] == "5" and not like and not focus.strip() and not demo_mode()
+                if _fast5 and rnd > 0:
+                    break  # 5. sınıf: tek hızlı yapay zekâ turu; eksik kalanı hatasız hazır kalıplar doldurur
                 if rnd > 0 and (time.time() - T0 > GEN_BUDGET or st_["fails"] >= 3):
                     break
                 sizes, left = [], need
@@ -19377,8 +19379,13 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 extra_av = [_stem(q) for q in st_["qs"]] + st_["bank_stems"]
                 futs = [E.submit(work_chunk, st_, c + EXTRA_FIRST + min(rnd, 3) + (2 if subj in FAIL_CLOSED_SUBJECTS else 0), rnd == 0 and k == 0, extra_av, rnd >= 3) for k, c in enumerate(sizes)]
                 before = len(st_["qs"])
+                _t_wait = time.time()
                 for f in futs:
-                    qs, err = f.result()
+                    try:
+                        qs, err = f.result(timeout=max(0.5, AI5_WAIT - (time.time() - _t_wait))) if _fast5 else f.result()
+                    except Exception:  # süre doldu: gecikeni bekleme, hazır kalıplar tamamlasın
+                        st_["err"] = st_.get("err") or "yapay zekâ gecikti"
+                        continue
                     if err:
                         st_["err"] = err
                     take(st_, qs, relax=rnd >= 2)
