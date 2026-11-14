@@ -9333,6 +9333,9 @@ def _unit_guard(q, topics, subject, grade_label):
         if not m or not sel:
             return True
         us, toks, idf = m
+        _qt = str(q.get("topic") or "").strip().lower()
+        if _qt and any(_qt == str(n).split(" (")[0].strip().lower() for n in sel):
+            return True  # banka sorusu kendi ünite adını taşıyor: şıklardaki çeldirici ifadeler başka üniteyi çağrıştırsa da ünite doğru
         T = _unit_tokens(f"{q.get('topic', '')} {q.get('kazanim', '')} {q.get('question', '')} {q.get('passage', '')}")
         if not T:
             return True
