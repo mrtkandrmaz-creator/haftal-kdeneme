@@ -2626,12 +2626,144 @@ def _fen(ax, d):
     fenfig.draw(ax, d)
 
 
+# ---- Türkçe "görsel okuma": afiş / davetiye / duyuru / tablo belgeleri (hepsi kodla çizilir; metindeki her değer belgede yazılıdır)
+_DOC_THEMES = {
+    "turuncu": ("#fff6df", "#e8873d", "#c4631a"), "mavi": ("#eef7ff", "#4a90d9", "#2f6fb0"), "yesil": ("#f2fbf2", "#3f9b4a", "#2d6e36"),
+    "mor": ("#f6f0ff", "#8a5cd0", "#6b3fb0"), "kirmizi": ("#fff1f1", "#d9534f", "#b03a37"), "turkuaz": ("#edfafa", "#1fa6a6", "#117a7a"),
+    "sari": ("#fffbe6", "#e0b020", "#a67c00"), "pembe": ("#fff0f6", "#d6609a", "#b03f78"),
+}
+_DOC_INK = "#26344a"
+
+
+def _doc_deco(ax, kind, x0, x1, yc):
+    from matplotlib.patches import Circle, Polygon, Rectangle
+    pts = [x0 + .9, x0 + 1.7, x1 - 1.7, x1 - .9]
+    if kind == "balloons":
+        for x, c in zip(pts, ("#ff6b6b", "#f6c744", "#4ecdc4", "#ff6b6b")):
+            ax.add_patch(Circle((x, yc + .15), .3, color=c, zorder=5))
+            ax.plot([x, x + .06], [yc - .15, yc - .6], color="#ddd", lw=1, zorder=5)
+    elif kind == "stars":
+        for x in pts:
+            a = np.linspace(0, 2 * np.pi, 11)[:-1] + np.pi / 2
+            r = np.where(np.arange(10) % 2 == 0, .34, .15)
+            ax.add_patch(Polygon(np.c_[x + r * np.cos(a), yc + r * np.sin(a)], color="#ffe27a", zorder=5))
+    elif kind == "books":
+        for x, c in zip(pts, ("#ffffff", "#ffe27a", "#ffffff", "#ffe27a")):
+            ax.add_patch(Rectangle((x - .18, yc - .3), .36, .6, color=c, ec="#00000033", zorder=5))
+            ax.plot([x - .08, x - .08], [yc - .3, yc + .3], color="#00000040", lw=1, zorder=6)
+    elif kind == "notes":
+        for x in pts:
+            ax.text(x, yc, "♪", ha="center", va="center", fontsize=20, color="#ffffff", zorder=5)
+    elif kind == "ball":
+        for x in pts:
+            ax.add_patch(Circle((x, yc), .3, color="white", ec="#333", zorder=5))
+            ax.add_patch(Polygon([[x, yc + .13], [x + .13, yc + .04], [x + .08, yc - .11], [x - .08, yc - .11], [x - .13, yc + .04]], color="#333", zorder=6))
+    elif kind == "leaves":
+        from matplotlib.patches import Ellipse
+        for x in pts:
+            ax.add_patch(Ellipse((x, yc), .6, .32, angle=35, color="#bff0b0", zorder=5))
+
+
+def _doc(ax, d):
+    """Genel belge çizici: başlık bandı + bloklar (rows, grid, list, times, text, bullets)."""
+    from matplotlib.patches import FancyBboxPatch, Rectangle
+    bg, edge, acc = _DOC_THEMES.get(str(d.get("theme", "turuncu")), _DOC_THEMES["turuncu"])
+    blocks = d.get("blocks") or []
+    W = 10.0
+    sub = str(d.get("sub") or "")
+    title = str(d.get("title", ""))
+    tsz = float(d.get("tsize", 17))
+    if len(title) > 20 and "\n" not in title:  # uzun başlık iki satıra bölünür (süslerle çakışmasın)
+        sp = [i for i, ch in enumerate(title) if ch == " "]
+        if sp:
+            k = min(sp, key=lambda i: abs(i - len(title) / 2))
+            title = title[:k] + "\n" + title[k + 1:]
+    nl = title.count("\n") + 1
+    tsz = min(tsz, 15.0 if nl > 1 else tsz, 330.0 / max(len(x) for x in title.split("\n")))
+    head = 1.7 + (.45 if sub else 0) + (.55 if nl > 1 else 0)
+    H = head + .5
+    for b in blocks:
+        k = b[0]
+        if k == "rows":
+            H += len(b[1]) * .92
+        elif k == "grid":
+            H += (len(b[2]) + 1) * .8 + .2
+        elif k == "list":
+            H += len(b[1]) * .75 + .1
+        elif k == "times":
+            H += len(b[1]) * .88
+        elif k == "bullets":
+            H += len(b[1]) * .72
+        elif k == "text":
+            H += .5 * (str(b[1]).count("\n") + 1) + .35
+        H += .15
+    H += .35
+    ax.figure.set_size_inches(6.6, max(3.2, 6.6 * H / W))
+    ax.set_xlim(0, W)
+    ax.set_ylim(0, H)
+    ax.add_patch(FancyBboxPatch((.15, .15), W - .3, H - .3, boxstyle="round,pad=0.03,rounding_size=.35", fc=bg, ec=edge, lw=3.5, zorder=1))
+    ax.add_patch(Rectangle((.35, H - head - .1), W - .7, head - .15, color=edge, zorder=2))
+    ty = H - .1 - (head - .15) / 2 + (.2 if sub else 0)
+    ax.text(W / 2, ty, title, ha="center", va="center", fontsize=tsz, fontweight="bold", color="white", zorder=6, linespacing=1.25)
+    if sub:
+        ax.text(W / 2, ty - (.62 + (.3 if nl > 1 else 0)), sub, ha="center", va="center", fontsize=10.5, color="white", zorder=6)
+    _doc_deco(ax, d.get("deco", ""), .35, W - .35, H - .1 - (head - .15) / 2)
+    y = H - head - .35
+    for b in blocks:
+        k = b[0]
+        if k == "rows":
+            for a, v in b[1]:
+                ax.add_patch(FancyBboxPatch((1.0, y - .78), W - 2.0, .72, boxstyle="round,pad=0.02,rounding_size=.2", fc="white", ec=edge, lw=1.4, zorder=3))
+                ax.text(1.3, y - .42, str(a), fontsize=10.5, fontweight="bold", va="center", color=acc, zorder=4)
+                ax.text(4.0, y - .42, str(v), fontsize=10.5, va="center", color=_DOC_INK, zorder=4)
+                y -= .92
+        elif k == "grid":
+            hs, rows = b[1], b[2]
+            n = len(hs)
+            x0, x1 = .8, W - .8
+            cw = (x1 - x0) / n
+            ax.add_patch(Rectangle((x0, y - .72), x1 - x0, .72, color=edge, zorder=3))
+            for i, h in enumerate(hs):
+                ax.text(x0 + cw * (i + .5), y - .36, str(h), ha="center", va="center", fontsize=9.6, fontweight="bold", color="white", zorder=4)
+            y -= .72
+            for r, row in enumerate(rows):
+                ax.add_patch(Rectangle((x0, y - .8), x1 - x0, .8, fc="white" if r % 2 else "#00000010", ec="#00000022", zorder=3))
+                for i, c in enumerate(row):
+                    ax.text(x0 + cw * (i + .5), y - .4, str(c), ha="center", va="center", fontsize=9.6, color=_DOC_INK, zorder=4)
+                y -= .8
+            y -= .2
+        elif k == "list":
+            for a, v in b[1]:
+                ax.text(1.4, y - .4, str(a), fontsize=11, va="center", color=_DOC_INK, zorder=4)
+                ax.text(W - 1.4, y - .4, str(v), fontsize=11, va="center", ha="right", color=acc, fontweight="bold", zorder=4)
+                ax.plot([4.6, W - 2.6], [y - .46, y - .46], color="#00000040", lw=1, ls=":", zorder=3)
+                y -= .75
+            y -= .1
+        elif k == "times":
+            for a, v in b[1]:
+                ax.add_patch(FancyBboxPatch((1.0, y - .76), 1.7, .66, boxstyle="round,pad=0.02,rounding_size=.2", fc=edge, ec=edge, zorder=3))
+                ax.text(1.85, y - .43, str(a), fontsize=10.5, fontweight="bold", ha="center", va="center", color="white", zorder=4)
+                ax.text(3.0, y - .43, str(v), fontsize=10.5, va="center", color=_DOC_INK, zorder=4)
+                y -= .88
+        elif k == "bullets":
+            for v in b[1]:
+                ax.add_patch(plt.Circle((1.25, y - .38), .09, color=edge, zorder=4))
+                ax.text(1.55, y - .38, str(v), fontsize=10.5, va="center", color=_DOC_INK, zorder=4)
+                y -= .72
+        elif k == "text":
+            for ln in str(b[1]).split("\n"):
+                ax.text(W / 2, y - .25, ln, ha="center", va="center", fontsize=10, style="italic", color=_DOC_INK, zorder=4)
+                y -= .5
+            y -= .35
+        y -= .15
+
+
 _DISPATCH = {
     "fen": _fen, "triangle": _triangle, "circle": _circle, "rectangle": _rectangle,
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -2659,6 +2791,11 @@ def normalize_shape(shape):
         sh["rows"] = [[str(c) for c in r] if isinstance(r, (list, tuple)) else [str(r)] for r in rows if r is not None]
         sh["title"] = str(sh.get("title") or "")
         return sh if sh["rows"] else None
+    if t == "doc":
+        bl = sh.get("blocks")
+        if not isinstance(bl, (list, tuple)) or not bl or not str(sh.get("title") or "").strip():
+            return None
+        return sh
     if t not in _DISPATCH:
         return None
     if t == "fen":
@@ -5860,6 +5997,7 @@ ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini
     "Fen Bilimleri": (_SCI | _CH) - {"cylinder"},
     "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
+    "Türkçe": {"table", "doc"},
 }
 VISUAL_HINT = {
     "Matematik": "Şekil/grafik/tablo: geometri (üçgen, çember, dikdörtgen), sayı doğrusu, sütun/çizgi/daire grafiği, veri tablosu.",
@@ -7696,7 +7834,7 @@ def leaks_answer(q):
         pr = _chart_pairs(q["shape"]) or []
         is_label = any(_alnum(l) == ans for l, _v in pr)  # grafikteki kategori adı cevap olabilir (hangi grup/ay?); okunacak olan değerdir
         hay = " | ".join(_alnum(x) for x in _strings(q["shape"]))
-        if ans in hay and not is_label:
+        if ans in hay and not is_label and q["shape"].get("type") != "doc":
             return True
     if q.get("subject") in ("Türkçe", "İngilizce", "Almanca") and str(q.get("passage") or "").strip():
         txt = _alnum(str(q.get("question", "")))  # okuma/dinleme sorusunda cevabın metinde geçmesi doğaldır; yalnızca soru kökündeki sızıntı sayılır
@@ -11263,6 +11401,558 @@ _TR_PAR = [
 ]
 
 
+_TR_PAR += [
+    ("Deniz, sınıf başkanı seçildiği günden beri arkadaşlarının sorunlarını dinliyor. Teneffüslerde herkesin fikrini soruyor, aldığı kararları sınıfa açıkça anlatıyor. Arkadaşları ona güveniyor, çünkü Deniz hiçbir zaman kimseyi gözetmiyor.",
+     "sınıf başkanının adil davranması", "Adil davranan ve herkesi dinleyen bir lider, çevresindekilerin güvenini kazanır.",
+     ["Sınıf başkanı olmak çok kolay bir iştir.", "Teneffüslerde yalnızca fikir sorulmalıdır.", "Arkadaşlarımıza her zaman güvenmeliyiz."],
+     "Deniz, aldığı kararları sınıfa açıkça anlatmaktadır.", ["Deniz, kararları yalnızca öğretmenle paylaşmaktadır.", "Deniz, arkadaşlarının fikrini sormamaktadır.", "Deniz bazı arkadaşlarını diğerlerinden çok kayırmaktadır."]),
+    ("Kırlangıçlar, soğuk havalar başlamadan önce sıcak ülkelere göç eder. Binlerce kilometre yol kat ederek yiyecek bulabilecekleri yerlere giderler. Bahar gelince yine aynı yuvalarına dönerler. Bu yolculuk, onların yaşamını sürdürebilmesi için gereklidir.",
+     "kırlangıçların göçü", "Kırlangıçlar, yaşamlarını sürdürmek için mevsime göre sıcak yerlere göç eder.",
+     ["Kırlangıçlar yuvalarını hiç değiştirmez.", "Bütün kuşlar baharda göç eder.", "Soğuk havalarda yiyecek her yerde bulunur."],
+     "Kırlangıçlar, yiyecek bulabilmek için sıcak ülkelere gider.", ["Kırlangıçlar kışın hiç yiyecek aramaz.", "Kırlangıçlar göç ettikleri yerde kalıcı olarak yaşar.", "Kırlangıçlar göç için baharı beklemektedir."]),
+    ("Can, yeni taşındığı mahallede kimseyi tanımıyordu. İlk gün bahçede tek başına oturdu. Ertesi gün yanındaki çocuğa gülümseyerek merhaba dedi. Kısa sürede mahalledeki çocuklarla arkadaş oldu ve her akşam birlikte top oynamaya başladılar.",
+     "yeni bir çevrede arkadaş edinme", "İlk adımı atmak, yeni arkadaşlıkların başlamasını kolaylaştırır.",
+     ["Mahalleler yalnızca top oynamak için vardır.", "Yeni taşınanlar bahçede tek başına oturmalıdır.", "Her gülümseyen kişi arkadaş olur."],
+     "Can, mahallede arkadaş edinmeden önce kimseyi tanımıyordu.", ["Can, taşındığı gün mahalledeki herkesle arkadaş olmuştur.", "Can, çocuklarla top oynamayı hiç sevmemiştir.", "Can, bahçeye ertesi gün çıkmamıştır."]),
+    ("Trafik ışıkları, yayaların ve sürücülerin güvenliği için kullanılır. Kırmızı ışıkta araçlar durur, yayalar karşıdan karşıya geçer. Işıklara uyulmadığında kazalar meydana gelir. Bu nedenle kurallara uymak, hepimizin sorumluluğudur.",
+     "trafik ışıkları", "Trafik kurallarına uymak, kazaları önler ve herkesin güvenliğini sağlar.",
+     ["Yayalar her zaman araçlardan önce geçmelidir.", "Trafik ışıkları yalnızca gece çalışır.", "Kazalar yalnızca sürücülerin hatasından olur."],
+     "Kırmızı ışıkta araçlar durur ve yayalar karşıya geçebilir.", ["Kırmızı ışıkta yayalar durur, araçlar geçer.", "Işıklara uymayanlar kaza yapmaz.", "Trafik ışıkları yalnızca yayalar için konulmuştur."]),
+    ("Ahmet, harçlığından her hafta biraz para ayırıp kumbarasına atıyor. Altı ayın sonunda kumbarayı açtığında çok sevindi. Biriktirdiği parayla bir futbol topu aldı ve bir kısmını da ihtiyaç sahibi bir arkadaşına verdi.",
+     "para biriktirme", "Düzenli biriktirilen para, hem kendimize hem de başkalarına fayda sağlar.",
+     ["Harçlıklar yalnızca futbol topu almak için verilir.", "Kumbaralar altı ayda bir açılmalıdır.", "Arkadaşlara her zaman para verilmelidir."],
+     "Ahmet, biriktirdiği paranın bir kısmını arkadaşına vermiştir.", ["Ahmet, biriktirdiği paranın hepsini topa harcamıştır.", "Ahmet, kumbarasına her gün para atmaktadır.", "Ahmet, kumbarayı bir ay sonra açmıştır."]),
+    ("Kütüphaneler, sessizliğin korunduğu yerlerdir. Burada herkes kitap okur ya da ders çalışır. Yüksek sesle konuşmak diğer insanların dikkatini dağıtır. Bu nedenle kütüphaneye giren herkes, başkalarına saygı göstererek sessiz olmalıdır.",
+     "kütüphane kuralları", "Ortak kullanım alanlarında başkalarının hakkına saygı göstermek gerekir.",
+     ["Kütüphanelerde yalnızca ders çalışılır.", "Kitap okumak sessiz bir ortamda zordur.", "Yüksek sesle konuşmak yasaktır ve cezası vardır."],
+     "Kütüphanede yüksek sesle konuşmak diğer kişilerin dikkatini dağıtır.", ["Kütüphanede herkes yüksek sesle okumalıdır.", "Kütüphaneler yalnızca ders çalışanlar içindir.", "Kütüphanede sessizlik gerekli değildir."]),
+    ("Pamuk, ılıman iklimlerde yetişen bir bitkidir. Olgunlaşan pamuk topları toplanır ve işlenerek ipliğe dönüştürülür. İplikten dokunan kumaşlar, tişört ve çarşaf gibi birçok ürünün yapımında kullanılır. Pamuk, ülke ekonomisine de önemli katkı sağlar.",
+     "pamuğun kullanım alanları", "Pamuk, işlenerek birçok ürüne dönüşen ve ekonomiye katkı sağlayan değerli bir bitkidir.",
+     ["Pamuk yalnızca soğuk iklimlerde yetişir.", "Tişörtler yalnızca pamuktan yapılabilir.", "Ekonomiye yalnızca kumaş sektörü katkı sağlar."],
+     "Pamuk topları toplandıktan sonra işlenerek ipliğe dönüştürülür.", ["Pamuk topları doğrudan kumaş olarak satılır.", "Pamuk soğuk iklimlerde yetişen bir bitkidir.", "Pamuktan yalnızca çarşaf üretilir."]),
+    ("Elif, doğum günü partisine arkadaşlarını davet etti. Pastayı annesiyle birlikte yaptı, balonları kendisi şişirdi. Arkadaşlarına teşekkür ederek her birine küçük bir hatıra verdi. Elif, onlarla bir arada olmanın en güzel hediye olduğunu söyledi.",
+     "doğum günü kutlaması", "Sevdiklerimizle bir arada olmak, değerli hediyelerden daha anlamlıdır.",
+     ["Doğum günü partilerinde yalnızca pasta yapılır.", "Balonları herkesin şişirmesi gerekir.", "Hatıra vermek her zaman zorunludur."],
+     "Elif, pastayı annesiyle birlikte yapmıştır.", ["Elif, pastayı arkadaşlarıyla yapmıştır.", "Elif, partiye hiç arkadaş çağırmamıştır.", "Elif, hediyelerin en önemli şey olduğunu söylemiştir."]),
+    ("Bitkiler, güneş ışığı, su ve havadaki karbondioksit yardımıyla besin üretir. Bu sırada havaya oksijen verirler. Oksijen, canlıların solunum yapabilmesi için gereklidir. Bu yüzden ağaçların ve bitkilerin korunması, yaşamın devamı için çok önemlidir.",
+     "bitkilerin canlılar için önemi", "Bitkiler, ürettikleri oksijenle yaşamın devamını sağladığı için korunmalıdır.",
+     ["Bitkiler yalnızca su ile beslenir.", "Canlıların oksijene ihtiyacı yoktur.", "Ağaçlar yalnızca gölge sağlamak için vardır."],
+     "Bitkiler besin üretirken havaya oksijen verir.", ["Bitkiler besin üretirken havadaki oksijeni tüketir.", "Bitkiler besin üretmek için güneş ışığına ihtiyaç duymaz.", "Oksijen yalnızca bitkilerin solunumu için gereklidir."]),
+    ("Murat, ödevlerini hep son güne bırakıyordu. Bir gün hastalandı ve ödevini zamanında teslim edemedi. Öğretmeni nedenini sorduğunda Murat, daha önceden başlasaydı sorun yaşamayacağını fark etti. O günden sonra ödevlerine verildiği gün başlıyor.",
+     "ödevleri zamanında yapma", "İşleri son ana bırakmamak, beklenmedik durumlarda sorun yaşamamızı engeller.",
+     ["Hasta olan öğrenciler ödev yapmamalıdır.", "Ödevler yalnızca öğretmene teslim edilmek için yapılır.", "Öğretmenler her zaman neden sormalıdır."],
+     "Murat, ödevini hastalandığı için zamanında teslim edememiştir.", ["Murat, ödevini hiç yapmamıştır.", "Murat, ödevlerini hâlâ son güne bırakmaktadır.", "Murat’ın öğretmeni ona neden sormamıştır."]),
+    ("Kütahya’da üretilen çiniler, dünyaca tanınır. Ustalar, çamuru şekillendirdikten sonra üzerine el işçiliğiyle desenler işler. Desenler, fırında pişirilince canlı renkler kazanır. Bu sanat, nesilden nesile aktarılarak günümüze kadar gelmiştir.",
+     "çini sanatı", "Çini sanatı, ustaların emeğiyle nesilden nesile aktarılan kültürel bir mirastır.",
+     ["Çiniler yalnızca Kütahya’da üretilebilir.", "Çini yapımı için fırın gerekmez.", "Desenler makinelerle işlenir."],
+     "Çini desenleri, fırında pişirilince canlı renkler kazanır.", ["Çini desenleri pişirilmeden önce canlı renkler alır.", "Çiniler makinelerle şekillendirilir.", "Çini sanatı artık hiç yapılmamaktadır."]),
+    ("Zeynep, okul kantininde bir arkadaşının cüzdanını buldu. Cüzdanı hemen öğretmenine teslim etti. Öğretmeni, cüzdanın sahibini bulup ona verdi. Cüzdanın sahibi Zeynep’e teşekkür etti. Zeynep ise sadece yapması gerekeni yaptığını söyledi.",
+     "dürüstlük", "Dürüst davranmak, başkalarının hakkına saygı göstermenin bir gereğidir.",
+     ["Kantinde cüzdan unutulmamalıdır.", "Teşekkür edilmesi için iyilik yapılmalıdır.", "Öğretmenler her kayıp eşyayı sahibine ulaştırmalıdır."],
+     "Zeynep, bulduğu cüzdanı öğretmenine teslim etmiştir.", ["Zeynep, cüzdanı sahibine kendisi vermiştir.", "Zeynep, cüzdanı kendine saklamıştır.", "Zeynep, teşekkür edilmesini beklemektedir."]),
+    ("Yağmur ormanları, dünyadaki canlı türlerinin büyük bölümüne ev sahipliği yapar. Ancak bu ormanlar hızla kesiliyor. Ağaçlar yok olunca orada yaşayan birçok canlı da yaşam alanını kaybediyor. Ormanları korumak, bu canlıları da korumak demektir.",
+     "yağmur ormanlarının korunması", "Ormanları korumak, orada yaşayan canlıların yaşam alanlarını da korumaktır.",
+     ["Yağmur ormanlarında hiç canlı yaşamaz.", "Ormanlar yalnızca odun elde etmek için vardır.", "Canlılar yaşam alanlarını kaybetmekten etkilenmez."],
+     "Yağmur ormanları kesildikçe oradaki canlılar yaşam alanlarını kaybetmektedir.", ["Yağmur ormanları her geçen gün büyümektedir.", "Orman kesimi canlı sayısını artırmaktadır.", "Yalnızca bitkiler yağmur ormanlarında yaşar."]),
+    ("Okulumuzda her yıl kermes düzenlenir. Öğrenciler evde yaptıkları kek ve kurabiyeleri satar. Elde edilen gelir, ihtiyacı olan öğrencilerin kırtasiye masraflarına harcanır. Bu etkinlik hem paylaşmayı öğretir hem de dayanışmayı güçlendirir.",
+     "okul kermesi", "Yardımlaşma ve dayanışma, toplumda iyiliğin artmasını sağlar.",
+     ["Kermesler yalnızca kek satmak için düzenlenir.", "Kırtasiye masrafları yalnızca kermes gelirleriyle karşılanır.", "Öğrenciler ürünleri okulda hazırlar."],
+     "Kermes gelirleri ihtiyacı olan öğrencilerin kırtasiye masraflarına harcanır.", ["Kermes gelirleri okulun bahçesine harcanır.", "Kermes yalnızca öğretmenler tarafından düzenlenir.", "Kermes her ay düzenlenmektedir."]),
+    ("Dede, torunu Ali’ye eski bir pusula gösterdi. Pusulanın ibresi her zaman kuzeyi gösterir, dedi. Ali, pusulayı elinde çevirdikçe ibrenin hep aynı yöne döndüğünü gördü. Kamp yaparken yönünü bulmak için artık o pusulayı kullanıyor.",
+     "pusulanın kullanımı", "Pusula, yön bulmamıza yardımcı olan faydalı bir araçtır.",
+     ["Dedeler torunlarına her zaman eşya verir.", "Kamp yapmak için pusula şarttır.", "Pusulanın ibresi sürekli döner."],
+     "Pusulanın ibresi, elde çevrilse bile aynı yönü göstermektedir.", ["Pusulanın ibresi her yöne rastgele döner.", "Ali pusulayı hiç kullanmamıştır.", "Pusula yalnızca dedenin elinde çalışır."]),
+    ("Ece, her sabah okula yürüyerek gidiyor. Yolda birçok şey fark ediyor: açan çiçekleri, uçuşan kuşları, yaprak döken ağaçları. Yürümenin hem sağlığına iyi geldiğini hem de çevresini daha yakından tanımasını sağladığını söylüyor.",
+     "yürüyüşün faydaları", "Yürümek, hem sağlığımıza hem de çevreyi tanımamıza katkı sağlar.",
+     ["Okula yalnızca yürüyerek gidilmelidir.", "Yolda yalnızca kuşlar fark edilir.", "Ağaçlar yalnızca sonbaharda dikkat çeker."],
+     "Ece, yürürken çevresindeki çiçekleri, kuşları ve ağaçları fark etmektedir.", ["Ece, okula araçla gitmektedir.", "Ece, yürümenin sağlığa zarar verdiğini düşünmektedir.", "Ece, yolda hiçbir şeyi fark etmemektedir."]),
+    ("Dünya’nın dönüşü sayesinde gece ve gündüz oluşur. Dünya kendi ekseni etrafında yaklaşık yirmi dört saatte bir tur atar. Güneş’e dönük olan yüz aydınlık, diğer yüz karanlık olur. Bu yüzden aynı anda dünyanın her yerinde gündüz yaşanmaz.",
+     "gece ve gündüzün oluşması", "Dünya’nın kendi çevresinde dönmesi, gece ve gündüzü oluşturur.",
+     ["Güneş, Dünya’nın etrafında döndüğü için gece olur.", "Dünya’nın her yerinde aynı anda gündüz yaşanır.", "Gece ve gündüz yalnızca mevsimlere bağlıdır."],
+     "Dünya’nın Güneş’e dönük yüzünde gündüz yaşanır.", ["Dünya’nın Güneş’e dönük yüzünde gece yaşanır.", "Dünya kendi ekseni etrafında bir yılda bir tur atar.", "Aynı anda her yerde gündüz olur."]),
+    ("Bayram sabahı Fatma, ailesiyle birlikte büyükannesini ziyaret etti. Büyükanne, torunlarına el öpmeyi öğretmişti. Çocuklar sırayla büyüklerinin elini öptü, onlar da çocuklara bayram harçlığı verdi. Akşam herkes birlikte yemek yedi ve bayram sohbeti yaptı.",
+     "bayram gelenekleri", "Bayramlar, aile büyüklerini ziyaret edip bir arada olmanın güzel fırsatlarıdır.",
+     ["Bayramlarda yalnızca harçlık verilir.", "Bayram sabahları yemek yenmez.", "Büyükanneler her zaman torunlarına yemek yapar."],
+     "Fatma ve ailesi bayram sabahı büyükannesini ziyaret etmiştir.", ["Fatma ve ailesi bayramda evden hiç çıkmamıştır.", "Fatma, bayramda harçlık vermiştir.", "Aile bayram yemeğini sabah yemiştir."]),
+    ("Yunuslar, zeki ve sosyal hayvanlardır. Gruplar hâlinde yaşar, birbirleriyle sesler çıkararak iletişim kurarlar. Bir yunus yaralandığında diğerleri onu yüzeye iterek nefes almasına yardım eder. Bu davranış, yunusların birbirine bağlı olduğunu gösterir.",
+     "yunusların sosyal yaşamı", "Yunuslar, grup hâlinde yaşar ve birbirlerine yardım eder.",
+     ["Yunuslar yalnız yaşamayı sever.", "Yunuslar yalnızca yüzeyde yaşar.", "Hayvanlar birbirleriyle iletişim kuramaz."],
+     "Yunuslar, birbirleriyle ses çıkararak iletişim kurar.", ["Yunuslar birbirleriyle hiç iletişim kurmaz.", "Yaralı yunuslar grup tarafından yalnız bırakılır.", "Yunuslar karada yaşayan hayvanlardır."]),
+    ("Sinan, bilgisayar oyunlarına her gün saatlerce zaman ayırıyordu. Gözleri yorulmaya, derslerine odaklanamamaya başladı. Annesiyle konuşarak oyun süresini günde bir saate indirdi. Şimdi hem oyun oynuyor hem de derslerinde daha başarılı.",
+     "oyun süresinin dengelenmesi", "Her şeyi ölçülü yapmak, hem eğlenmemizi hem de başarılı olmamızı sağlar.",
+     ["Bilgisayar oyunları hiç oynanmamalıdır.", "Anneler çocukların nasıl vakit geçireceğine karar vermelidir.", "Gözlerin yorulması oyun oynamanın tek sonucudur."],
+     "Sinan, oyun süresini kısalttıktan sonra derslerinde daha başarılı olmuştur.", ["Sinan, oyun oynamayı tamamen bırakmıştır.", "Sinan, oyun süresini artırmıştır.", "Sinan’ın gözleri oyun yüzünden hiç yorulmamıştır."]),
+    ("Anadolu’daki Göbeklitepe, bilinen en eski tapınak alanlarından biridir. Dev taş sütunlar üzerinde çeşitli hayvan figürleri bulunur. Bu yapı, insanların tarım yapmaya başlamadan önce de büyük yapılar inşa edebildiğini göstermektedir. Bu nedenle tarihin bilinen yönlerini değiştirmiştir.",
+     "Göbeklitepe", "Göbeklitepe, insanlık tarihine dair bilinenleri değiştiren önemli bir tarihî alandır.",
+     ["Göbeklitepe yalnızca hayvanlar için yapılmıştır.", "İnsanlar tarımdan sonra büyük yapılar yapmaya başlamıştır.", "Taş sütunlar günümüzde inşa edilmiştir."],
+     "Göbeklitepe’deki taş sütunların üzerinde hayvan figürleri bulunmaktadır.", ["Göbeklitepe’deki sütunlarda hayvan figürü bulunmaz.", "Göbeklitepe tarım yapıldıktan sonra inşa edilmiştir.", "Göbeklitepe, Anadolu dışında bulunur."]),
+    ("Sağlıklı yaşamak için dengeli beslenmek gerekir. Sebze, meyve, süt ürünleri ve et grubu gıdaları dengeli tüketmek vücudun ihtiyaç duyduğu vitamin ve mineralleri sağlar. Yalnızca şekerli yiyeceklerle beslenmek ise hastalıklara davetiye çıkarır.",
+     "dengeli beslenme", "Vücudumuzun ihtiyaçlarını karşılamak için çeşitli besinleri dengeli tüketmeliyiz.",
+     ["Şekerli yiyecekler vücudumuz için en önemli besinlerdir.", "Yalnızca sebze yemek yeterlidir.", "Vitamin ve mineraller vücudumuza zarar verir."],
+     "Dengeli beslenme, vücudun ihtiyaç duyduğu vitamin ve mineralleri sağlar.", ["Yalnızca şekerli yiyeceklerle beslenmek sağlıklıdır.", "Sebze ve meyve tüketmek vitamin eksikliğine yol açar.", "Süt ürünleri sağlıklı beslenmede yer almamalıdır."]),
+    ("Mimar Sinan, Osmanlı döneminde yaşamış büyük bir mimardır. Yaptığı camiler, köprüler ve külliyeler yüzyıllardır ayakta durmaktadır. Yapılarında sağlamlık kadar güzelliğe de önem vermiştir. Bu nedenle bugün hâlâ dünyanın dört bir yanından gelenler eserlerini hayranlıkla izliyor.",
+     "Mimar Sinan", "Mimar Sinan, sağlam ve güzel eserleriyle kalıcı bir iz bırakmış usta bir mimardır.",
+     ["Mimar Sinan yalnızca cami yapmıştır.", "Mimar Sinan’ın eserleri günümüze ulaşmamıştır.", "Mimarlıkta yalnızca sağlamlık önemlidir."],
+     "Mimar Sinan’ın yaptığı eserler yüzyıllardır ayaktadır.", ["Mimar Sinan’ın yaptığı yapılar kısa sürede yıkılmıştır.", "Mimar Sinan günümüzde yaşamaktadır.", "Mimar Sinan güzelliği önemsememiştir."]),
+]
+
+
+# ---------------------------------------------------------------- 5. SINIF TÜRKÇE: GÖRSEL OKUMA (afiş, davetiye, duyuru, tablo) KALIPLARI
+# Belgedeki her değer rastgele üretilir, çizilir ve sorunun cevabı aynı veriden kodla hesaplanır.
+import datetime as _dtm
+
+_GUN = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+_AY = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
+
+
+def _dk_date(wd=None, months=(3, 4, 5, 10, 11, 12)):
+    for _ in range(40):
+        d = _dtm.date(2026, random.choice(months), random.randint(1, 28))
+        if wd is None or d.weekday() in wd:
+            return d
+    return _dtm.date(2026, 5, 14)
+
+
+def _dk_dstr(d, wd=True):
+    return f"{d.day} {_AY[d.month - 1]}" + (f" {_GUN[d.weekday()]}" if wd else "")
+
+
+def _dk_tm(m):
+    return f"{(m // 60) % 24:02d}.{m % 60:02d}"
+
+
+def _dk_pick(subject, q, correct, wrongs, ex, shape):
+    ws = []
+    for w in wrongs:
+        w = str(w)
+        if w != str(correct) and w not in ws:
+            ws.append(w)
+    if len(ws) < 3:
+        return None
+    ws = random.sample(ws, 3)
+    allv = [str(correct)] + ws
+    random.shuffle(allv)
+    return _mf_raw(subject, "Görsel okuma", q, (allv, str(correct)), ex, shape=shape)
+
+
+def _dk_intro():
+    return random.choice(["Yukarıdaki belgeye göre", "Görselde verilen bilgilere göre", "Verilen görsele göre"])
+
+
+def _dk_money(v):
+    return f"{v} ₺"
+
+
+def _dk_nums(subject, q, v, ex, shape, step=None):
+    st = step or random.choice([1, 2, 5])
+    cands = [v + st, v - st, v + 2 * st, v - 2 * st, v + 10, v * 2, v + 5]
+    wr = [c for c in cands if c > 0 and c != v]
+    o = _mf_opts(v, wr, lambda x: f"{x} ₺", sort=True) if False else None
+    return None
+
+
+def _dk_num(subject, q, v, unit, ex, shape, deltas=(1, 2, 3, 5, 10)):
+    wr = []
+    for dlt in deltas:
+        for c in (v + dlt, v - dlt):
+            if c > 0 and c != v and c not in wr:
+                wr.append(c)
+    random.shuffle(wr)
+    o = _mf_opts(v, wr[:5], lambda x: f"{x}{unit}", sort=True)
+    return _mf_raw(subject, "Görsel okuma", q, o, ex, shape=shape) if o else None
+
+
+# ---- 1) Kermes afişi (fiyat listesi)
+_KERMES = [("kek", "Kek", 10), ("kurabiye", "Kurabiye", 5), ("limonata", "Limonata", 8), ("börek", "Börek", 12), ("poğaça", "Poğaça", 6),
+           ("simit", "Simit", 4), ("meyve suyu", "Meyve suyu", 7), ("pasta dilimi", "Pasta dilimi", 15)]
+
+
+def _tf_dk_kermes(subject):
+    d = _dk_date({4})
+    its = random.sample(_KERMES, 4)
+    s1, s2 = random.choice(["10.00", "09.30", "11.00"]), random.choice(["15.00", "16.00", "14.30"])
+    yer = random.choice(["Okul bahçesi", "Spor salonu", "Konferans salonu", "Okul girişi"])
+    sh = {"type": "doc", "theme": random.choice(["turuncu", "pembe", "sari"]), "deco": random.choice(["balloons", "stars"]), "title": "OKUL KERMESİ", "sub": _dk_dstr(d),
+          "blocks": [["list", [[n, _dk_money(p)] for _k, n, p in its]], ["rows", [["Saat", f"{s1} – {s2}"], ["Yer", yer]]], ["text", "Gelir, ihtiyacı olan öğrencilere\nkırtasiye yardımı için kullanılacaktır."]]}
+    kind = random.choice(["topla", "ustu", "enpahali", "gun", "yer"])
+    if kind == "topla":
+        a, b = random.sample(its, 2)
+        n2 = random.choice([2, 3])
+        v = a[2] + n2 * b[2]
+        q = f"{_dk_intro()}, bir {a[0]} ile {n2} {b[0]} almak için toplam kaç ₺ ödenir?"
+        return _dk_num(subject, q, v, " ₺", f"{a[1]} {a[2]} ₺, {b[1]} {b[2]} ₺’dir. {a[2]} + {n2} × {b[2]} = {v} ₺.", sh, (1, 2, 5, 10))
+    if kind == "ustu":
+        a = random.choice(its)
+        pay = random.choice([20, 50])
+        if a[2] >= pay:
+            return None
+        v = pay - a[2]
+        q = f"{_dk_intro()}, bir {a[0]} alıp {pay} ₺ veren öğrenciye kaç ₺ para üstü verilir?"
+        return _dk_num(subject, q, v, " ₺", f"{a[1]} {a[2]} ₺’dir. {pay} − {a[2]} = {v} ₺.", sh, (1, 2, 5, 10))
+    if kind == "enpahali":
+        mx = max(its, key=lambda x: x[2])
+        if sum(1 for x in its if x[2] == mx[2]) > 1:
+            return None
+        return _dk_pick(subject, f"{_dk_intro()}, kermesteki en pahalı ürün hangisidir?", mx[1], [x[1] for x in its if x is not mx], f"En yüksek fiyat {mx[2]} ₺ ile {mx[1].lower()} ürününe aittir.", sh)
+    if kind == "gun":
+        ws = [_GUN[(d.weekday() + k) % 7] for k in (-1, 1, 2, -2, 3)]
+        return _dk_pick(subject, f"{_dk_intro()}, kermes haftanın hangi günü yapılacaktır?", _GUN[d.weekday()], ws, f"Afişte {_dk_dstr(d)} yazar; kermes {_GUN[d.weekday()]} günü yapılır.", sh)
+    ws = [y for y in ["Okul bahçesi", "Spor salonu", "Konferans salonu", "Okul girişi", "Kütüphane"] if y != yer]
+    return _dk_pick(subject, f"{_dk_intro()}, kermes nerede yapılacaktır?", yer, ws, f"Afişte yer olarak {yer} yazar.", sh)
+
+
+# ---- 2) Gösteri / tiyatro afişi (bilet fiyatı + süre)
+def _tf_dk_gosteri(subject):
+    d = _dk_date({5, 6})
+    bas = random.choice([14 * 60, 15 * 60, 16 * 60, 14 * 60 + 30, 15 * 60 + 30])
+    sure = random.choice([60, 75, 90, 45, 105])
+    ogr, yet = random.choice([(10, 20), (15, 30), (20, 40), (12, 25), (5, 15)])
+    ad = random.choice(["Kayıp Fidan", "Küçük Kâşif", "Sihirli Orman", "Masal Sandığı", "Renkli Dünya"])
+    salon = random.choice(["Büyük salon", "Mavi salon", "Kültür merkezi", "Çocuk sahnesi"])
+    sh = {"type": "doc", "theme": random.choice(["mor", "mavi", "kirmizi"]), "deco": random.choice(["stars", "notes"]), "title": f"“{ad}” ÇOCUK TİYATROSU", "tsize": 14.5, "sub": _dk_dstr(d),
+          "blocks": [["rows", [["Başlama saati", _dk_tm(bas)], ["Süre", f"{sure} dakika"], ["Yer", salon]]], ["list", [["Öğrenci bileti", _dk_money(ogr)], ["Yetişkin bileti", _dk_money(yet)]]]]}
+    kind = random.choice(["bilet", "bitis", "fark"])
+    if kind == "bilet":
+        a, b = random.choice([(2, 1), (3, 1), (2, 2), (3, 2), (1, 1)])
+        v = a * ogr + b * yet
+        q = f"{_dk_intro()}, {a} öğrenci ve {b} yetişkin için tiyatro bileti almak toplam kaç ₺ tutar?"
+        return _dk_num(subject, q, v, " ₺", f"{a} × {ogr} + {b} × {yet} = {v} ₺.", sh, (5, 10, 15, 20))
+    if kind == "fark":
+        v = yet - ogr
+        q = f"{_dk_intro()}, yetişkin bileti öğrenci biletinden kaç ₺ pahalıdır?"
+        return _dk_num(subject, q, v, " ₺", f"{yet} − {ogr} = {v} ₺.", sh, (2, 5, 10))
+    bit = bas + sure
+    q = f"{_dk_intro()}, gösteri saat kaçta sona erecektir?"
+    return _dk_pick(subject, q, _dk_tm(bit), [_dk_tm(bit + k) for k in (15, -15, 30, -30, 60)], f"{_dk_tm(bas)} + {sure} dakika = {_dk_tm(bit)}.", sh)
+
+
+# ---- 3) Doğum günü davetiyesi
+def _tf_dk_davet(subject):
+    d = _dk_date({5, 6})
+    kim = random.choice(["Elif", "Defne", "Kerem", "Arda", "Zeynep", "Mert"])
+    kime = random.choice(["Ayşe", "Can", "Deniz", "Efe", "Selin", "Burak"])
+    yas = random.randint(9, 12)
+    saat = random.choice([14 * 60, 15 * 60, 16 * 60, 15 * 60 + 30])
+    adres = random.choice(["Lale Sokak No: 6", "Gül Caddesi No: 12", "Papatya Sokak No: 3", "Menekşe Caddesi No: 20"])
+    son = d - _dtm.timedelta(days=random.choice([2, 3]))
+    sh = {"type": "doc", "theme": random.choice(["mavi", "pembe", "turkuaz"]), "deco": "balloons", "title": "DOĞUM GÜNÜ DAVETİYESİ", "tsize": 15, "sub": f"Sevgili {kime},",
+          "blocks": [["text", f"{kim}’in {yas}. yaş günü partisine\nseni de bekliyoruz."], ["rows", [["Gün", _dk_dstr(d)], ["Saat", _dk_tm(saat)], ["Adres", adres]]],
+                     ["text", f"Gelip gelemeyeceğini {_dk_dstr(son, False)} tarihine kadar bildir."]]}
+    kind = random.choice(["saat", "son", "adres", "dogru"])
+    if kind == "saat":
+        return _dk_pick(subject, f"{_dk_intro()}, parti saat kaçta başlayacaktır?", _dk_tm(saat), [_dk_tm(saat + k) for k in (30, -30, 60, -60, 90)], f"Davetiyede saat {_dk_tm(saat)} yazar.", sh)
+    if kind == "son":
+        wr = [_dk_dstr(son + _dtm.timedelta(days=k), False) for k in (-1, 1, 2, -2, 3)]
+        return _dk_pick(subject, f"{_dk_intro()}, davetli en geç hangi tarihe kadar katılıp katılmayacağını bildirmelidir?", _dk_dstr(son, False), wr, f"Davetiyede bildirme tarihi {_dk_dstr(son, False)} olarak yazar.", sh)
+    if kind == "adres":
+        al = ["Lale Sokak No: 6", "Gül Caddesi No: 12", "Papatya Sokak No: 3", "Menekşe Caddesi No: 20", "Karanfil Sokak No: 9"]
+        return _dk_pick(subject, f"{_dk_intro()}, parti hangi adreste yapılacaktır?", adres, [a for a in al if a != adres], f"Davetiyede adres {adres} olarak yazar.", sh)
+    dog = f"Parti {_GUN[d.weekday()]} günü yapılacaktır."
+    wr = [f"Parti {_GUN[(d.weekday() + k) % 7]} günü yapılacaktır." for k in (1, 2, 3)] + [f"Doğum günü kutlanan kişi {kime}’dir." if False else f"Parti saat {_dk_tm(saat + 60)}’de başlayacaktır."]
+    return _dk_pick(subject, f"{_dk_intro()}, aşağıdakilerden hangisi söylenebilir?", dog, wr, f"Davetiyede {_dk_dstr(d)} yazar; bu gün {_GUN[d.weekday()]} günüdür.", sh)
+
+
+# ---- 4) Çalışma saatleri tablosu (kütüphane / müze)
+def _tf_dk_saatler(subject):
+    yer = random.choice(["Okul Kütüphanesi", "Şehir Müzesi", "Bilim Merkezi", "Halk Kütüphanesi"])
+    acil = random.choice([8 * 60 + 30, 9 * 60, 10 * 60])
+    rows, hours, kap = [], {}, random.choice([5, 6])
+    for i in range(7):
+        if i == kap:
+            rows.append([_GUN[i], "Kapalı", "Kapalı"])
+            continue
+        end = acil + random.choice([4, 5, 6, 7, 8]) * 60
+        if end in hours.values() and i < 5:
+            end += 60
+        hours[i] = end
+        rows.append([_GUN[i], _dk_tm(acil), _dk_tm(end)])
+    rows = [r for r in rows if r[1] != "Kapalı" or True]
+    sh = {"type": "doc", "theme": random.choice(["yesil", "mavi", "turkuaz"]), "deco": random.choice(["books", "leaves"]), "title": f"{yer.upper()} ÇALIŞMA SAATLERİ", "tsize": 13.5,
+          "blocks": [["grid", ["Gün", "Açılış", "Kapanış"], rows]]}
+    ds = {i: (hours[i] - acil) for i in hours}
+    kind = random.choice(["kisa", "uzun", "kapali", "toplam"])
+    if kind in ("kisa", "uzun"):
+        tgt = min(ds, key=lambda i: ds[i]) if kind == "kisa" else max(ds, key=lambda i: ds[i])
+        if sum(1 for v in ds.values() if v == ds[tgt]) > 1:
+            return None
+        return _dk_pick(subject, f"{_dk_intro()}, {yer.lower()} hangi gün en {'kısa' if kind == 'kisa' else 'uzun'} süre açıktır?", _GUN[tgt], [_GUN[i] for i in ds if i != tgt],
+                        f"Açık kalma süreleri karşılaştırılır; en {'kısa' if kind == 'kisa' else 'uzun'} süre {_GUN[tgt]} günüdür ({ds[tgt] // 60} saat {ds[tgt] % 60} dk).", sh)
+    if kind == "kapali":
+        return _dk_pick(subject, f"{_dk_intro()}, aşağıdaki günlerden hangisinde kapalıdır?", _GUN[kap], [_GUN[i] for i in ds if i != kap], f"Tabloda {_GUN[kap]} günü “Kapalı” yazar.", sh)
+    a, b = random.sample([i for i in ds if ds[i] % 60 == 0], 2) if len([i for i in ds if ds[i] % 60 == 0]) >= 2 else (None, None)
+    if a is None:
+        return None
+    v = (ds[a] + ds[b]) // 60
+    q = f"{_dk_intro()}, {_GUN[a]} ve {_GUN[b]} günlerinde toplam kaç saat açıktır?"
+    return _dk_num(subject, q, v, " saat", f"{_GUN[a]} {ds[a] // 60} saat, {_GUN[b]} {ds[b] // 60} saat açıktır. Toplam {v} saat.", sh, (1, 2, 3))
+
+
+# ---- 5) Kitap fuarı (indirimli fiyat)
+_KITAPLAR = ["Masal Ormanı", "Yıldız Avcısı", "Denizin Sırrı", "Küçük Dedektif", "Bilim Günlüğü", "Gizemli Ada", "Mavi Balina", "Yolculuk Defteri"]
+
+
+def _tf_dk_kitap(subject):
+    ks = random.sample(_KITAPLAR, 4)
+    pr = random.sample([20, 25, 30, 35, 40, 45, 50], 4)
+    ind = random.choice([5, 10])
+    sh = {"type": "doc", "theme": random.choice(["kirmizi", "mor", "sari"]), "deco": "books", "title": "KİTAP FUARI", "sub": f"Her kitapta {ind} ₺ indirim!",
+          "blocks": [["list", [[k, _dk_money(p)] for k, p in zip(ks, pr)]], ["text", "Fiyatlar indirim yapılmadan önceki fiyatlardır."]]}
+    kind = random.choice(["ucuz2", "tekfiyat", "enpahali"])
+    if kind == "ucuz2":
+        sp = sorted(pr)
+        v = sp[0] + sp[1] - 2 * ind
+        q = f"{_dk_intro()}, fuardaki en ucuz iki kitabı alan bir öğrenci indirim sonrası toplam kaç ₺ öder?"
+        return _dk_num(subject, q, v, " ₺", f"En ucuz iki kitap {sp[0]} ₺ ve {sp[1]} ₺’dir. ({sp[0]} − {ind}) + ({sp[1]} − {ind}) = {v} ₺.", sh, (5, 10, 15))
+    if kind == "tekfiyat":
+        i = random.randrange(4)
+        v = pr[i] - ind
+        q = f"{_dk_intro()}, “{ks[i]}” adlı kitabın indirimli fiyatı kaç ₺’dir?"
+        return _dk_num(subject, q, v, " ₺", f"{pr[i]} − {ind} = {v} ₺.", sh, (5, 10, 15))
+    mx = max(range(4), key=lambda i: pr[i])
+    return _dk_pick(subject, f"{_dk_intro()}, indirim yapılmadan önceki fiyatı en yüksek olan kitap hangisidir?", ks[mx], [ks[i] for i in range(4) if i != mx], f"En yüksek fiyat {pr[mx]} ₺ ile “{ks[mx]}” kitabınındır.", sh)
+
+
+# ---- 6) Turnuva puan tablosu
+_TAKIM = ["Kartallar", "Yıldızlar", "Şimşekler", "Aslanlar", "Kaplanlar", "Doğanlar", "Atmacalar", "Yunuslar"]
+
+
+def _tf_dk_turnuva(subject):
+    for _ in range(30):
+        ts = random.sample(_TAKIM, 4)
+        rows, pts = [], []
+        for t in ts:
+            g, b, m = random.randint(0, 3), random.randint(0, 2), 0
+            m = 3 - g - b if 3 - g - b >= 0 else 0
+            if g + b + m != 3:
+                continue
+            rows.append([t, 3, g, b, m, 3 * g + b])
+            pts.append(3 * g + b)
+        if len(rows) == 4 and len(set(pts)) == 4:
+            break
+    else:
+        return None
+    sh = {"type": "doc", "theme": random.choice(["yesil", "mavi", "turuncu"]), "deco": "ball", "title": "OKULLAR ARASI TURNUVA PUAN DURUMU", "tsize": 12.5,
+          "blocks": [["grid", ["Takım", "O", "G", "B", "M", "Puan"], rows], ["text", "O: Oynadığı maç  G: Galibiyet  B: Beraberlik  M: Mağlubiyet\nGalibiyet 3, beraberlik 1 puandır."]]}
+    srt = sorted(rows, key=lambda r: -r[5])
+    kind = random.choice(["lider", "fark", "yenilmez", "ikinci"])
+    if kind == "lider":
+        return _dk_pick(subject, f"{_dk_intro()}, en çok puanı toplayan takım hangisidir?", srt[0][0], [r[0] for r in srt[1:]], f"En yüksek puan {srt[0][5]} ile {srt[0][0]} takımınındır.", sh)
+    if kind == "ikinci":
+        return _dk_pick(subject, f"{_dk_intro()}, puan sıralamasında ikinci sırada hangi takım yer alır?", srt[1][0], [srt[0][0], srt[2][0], srt[3][0]], f"Puanlar {srt[0][5]}, {srt[1][5]}, {srt[2][5]}, {srt[3][5]} şeklinde sıralanır; ikinci takım {srt[1][0]}.", sh)
+    if kind == "fark":
+        v = srt[0][5] - srt[-1][5]
+        return _dk_num(subject, f"{_dk_intro()}, birinci takımın puanı son sıradaki takımın puanından kaç fazladır?", v, "", f"{srt[0][5]} − {srt[-1][5]} = {v}.", sh, (1, 2, 3))
+    ny = [r for r in rows if r[4] == 0]
+    if len(ny) != 1:
+        return None
+    return _dk_pick(subject, f"{_dk_intro()}, turnuvada hiç mağlup olmayan takım hangisidir?", ny[0][0], [r[0] for r in rows if r is not ny[0]], f"Mağlubiyet sayısı 0 olan tek takım {ny[0][0]}’dır.", sh)
+
+
+# ---- 7) Gezi duyurusu
+_GEZI_YER = ["Bilim Merkezi", "Hayvanat Bahçesi", "Tarihî Kale", "Botanik Parkı", "Doğa Parkı"]
+_GETIR = ["şapka", "su matarası", "yedek kıyafet", "güneş kremi", "kalem ve defter", "atıştırmalık", "yağmurluk", "fotoğraf makinesi", "telefon", "oyuncak"]
+
+
+def _tf_dk_gezi(subject):
+    yer = random.choice(_GEZI_YER)
+    d = _dk_date({1, 2, 3})
+    kal = random.choice([8 * 60 + 30, 9 * 60, 8 * 60])
+    don = kal + random.choice([6, 7, 8]) * 60
+    ucret = random.choice([30, 40, 50, 60])
+    lst = random.sample(_GETIR[:7], 4)
+    sh = {"type": "doc", "theme": random.choice(["turkuaz", "yesil", "sari"]), "deco": "leaves", "title": f"{yer.upper()} GEZİSİ", "tsize": 15, "sub": _dk_dstr(d),
+          "blocks": [["rows", [["Kalkış", f"{_dk_tm(kal)} (okul önü)"], ["Dönüş", _dk_tm(don)], ["Ücret", _dk_money(ucret)]]], ["text", "Gezide yanınızda bulunması gerekenler:"], ["bullets", [x.capitalize() for x in lst]]]}
+    kind = random.choice(["degil", "sure", "iki", "kalkis"])
+    if kind == "degil":
+        oth = [x for x in _GETIR if x not in lst]
+        c = random.choice(oth)
+        return _dk_pick(subject, f"{_dk_intro()}, aşağıdakilerden hangisinin gezide yanında bulunması istenmemiştir?", c.capitalize(), [x.capitalize() for x in lst], f"Listede yer almayan eşya “{c}” eşyasıdır.", sh)
+    if kind == "sure":
+        v = (don - kal) // 60
+        return _dk_num(subject, f"{_dk_intro()}, gezi toplam kaç saat sürecektir?", v, " saat", f"{_dk_tm(don)} − {_dk_tm(kal)} = {v} saat.", sh, (1, 2))
+    if kind == "iki":
+        n = random.choice([2, 3])
+        v = n * ucret
+        return _dk_num(subject, f"{_dk_intro()}, {n} kardeşin geziye katılması için toplam kaç ₺ ödenmesi gerekir?", v, " ₺", f"{n} × {ucret} = {v} ₺.", sh, (10, 20, 30))
+    return _dk_pick(subject, f"{_dk_intro()}, otobüs okul önünden saat kaçta kalkacaktır?", _dk_tm(kal), [_dk_tm(kal + k) for k in (30, -30, 60, -60, 90)], f"Duyuruda kalkış saati {_dk_tm(kal)} olarak yazar.", sh)
+
+
+# ---- 8) Haftalık ders programı
+_DERS = ["Türkçe", "Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "İngilizce", "Müzik", "Beden Eğitimi", "Görsel Sanatlar"]
+
+
+def _tf_dk_program(subject):
+    rows = []
+    for i in range(5):
+        ds = random.sample(_DERS, 3)
+        rows.append([_GUN[i]] + ds)
+    sh = {"type": "doc", "theme": random.choice(["mavi", "mor", "yesil"]), "deco": "books", "title": "5/A SINIFI HAFTALIK DERS PROGRAMI", "tsize": 12.5,
+          "blocks": [["grid", ["Gün", "1. Ders", "2. Ders", "3. Ders"], rows]]}
+    kind = random.choice(["hucre", "say", "hucre2"])
+    if kind == "say":
+        ders = random.choice(["Türkçe", "Matematik", "Fen Bilimleri", "İngilizce"])
+        v = sum(r[1:].count(ders) for r in rows)
+        if v == 0:
+            return None
+        return _dk_num(subject, f"{_dk_intro()}, {ders} dersi haftada kaç kez işlenmektedir?", v, " kez", f"Tabloda {ders} dersi {v} yerde yazar.", sh, (1, 2))
+    r = random.choice(rows)
+    k = random.choice([1, 2, 3])
+    c = r[k]
+    wr = [x for x in _DERS if x != c]
+    if kind == "hucre2":
+        gunler = [x[0] for x in rows if x[k] == c]
+        if len(gunler) != 1:
+            return None
+        return _dk_pick(subject, f"{_dk_intro()}, {k}. ders saatinde {c} dersi hangi gün vardır?", gunler[0], [x[0] for x in rows if x[0] != gunler[0]], f"{k}. ders sütununda {c} yalnızca {gunler[0]} satırında yazar.", sh)
+    return _dk_pick(subject, f"{_dk_intro()}, {r[0]} günü {k}. ders hangisidir?", c, wr, f"{r[0]} satırı ile {k}. Ders sütununun kesiştiği yerde {c} yazar.", sh)
+
+
+# ---- 9) Yemekhane menüsü
+_CORBA = ["Mercimek", "Ezogelin", "Domates", "Tarhana", "Yayla", "Şehriye"]
+_ANA = ["Tavuk sote", "Kuru fasulye", "Köfte", "Makarna", "Pilav", "Balık", "Nohutlu pilav", "Patates yemeği"]
+_TATLI = ["Sütlaç", "Meyve", "Ayran", "Puding", "Yoğurt", "Kek"]
+
+
+def _tf_dk_menu(subject):
+    cs = random.sample(_CORBA, 5)
+    an = random.sample(_ANA, 5)
+    ta = random.sample(_TATLI, 5)
+    rows = [[_GUN[i], cs[i], an[i], ta[i]] for i in range(5)]
+    sh = {"type": "doc", "theme": random.choice(["sari", "turuncu", "kirmizi"]), "deco": "stars", "title": "OKUL YEMEKHANESİ HAFTALIK MENÜ", "tsize": 13,
+          "blocks": [["grid", ["Gün", "Çorba", "Ana yemek", "Tatlı/İçecek"], rows]]}
+    i = random.randrange(5)
+    kind = random.choice(["corba", "ana", "gun", "tatli"])
+    if kind == "corba":
+        return _dk_pick(subject, f"{_dk_intro()}, {_GUN[i]} günü çorba olarak ne verilecektir?", cs[i], [c for c in _CORBA if c != cs[i]], f"{_GUN[i]} satırında çorba sütununda {cs[i]} yazar.", sh)
+    if kind == "ana":
+        return _dk_pick(subject, f"{_dk_intro()}, {_GUN[i]} günü ana yemek hangisidir?", an[i], [a for a in _ANA if a != an[i]], f"{_GUN[i]} satırında ana yemek sütununda {an[i]} yazar.", sh)
+    if kind == "tatli":
+        return _dk_pick(subject, f"{_dk_intro()}, {_GUN[i]} günü tatlı ya da içecek olarak ne verilecektir?", ta[i], [t for t in _TATLI if t != ta[i]], f"{_GUN[i]} satırında son sütunda {ta[i]} yazar.", sh)
+    return _dk_pick(subject, f"{_dk_intro()}, ana yemeğin {an[i].lower()} olduğu gün haftanın hangi günüdür?", _GUN[i], [_GUN[k] for k in range(5) if k != i], f"{an[i]} yalnızca {_GUN[i]} satırında ana yemek olarak yazar.", sh)
+
+
+# ---- 10) Yarışma duyurusu
+def _tf_dk_yarisma(subject):
+    tur = random.choice(["Resim", "Şiir", "Kompozisyon", "Fotoğraf"])
+    son = _dk_date({0, 1, 2, 3, 4})
+    odul = sorted(random.sample([100, 150, 200, 250, 300, 400, 500], 3), reverse=True)
+    sart = ["Çalışma, öğrencinin kendisine ait olmalıdır.", "Her öğrenci yalnızca bir eser gönderebilir.", "Eserin arkasına ad ve sınıf yazılmalıdır.", "Eserler okul müdürlüğüne teslim edilmelidir."]
+    yok = ["Eserler internet üzerinden gönderilmelidir.", "Her öğrenci en az üç eser göndermelidir.", "Eserler yalnızca öğretmenlere teslim edilebilir."]
+    sh = {"type": "doc", "theme": random.choice(["mor", "pembe", "turkuaz"]), "deco": "stars", "title": f"{tur.upper()} YARIŞMASI", "sub": f"Son teslim: {_dk_dstr(son)}",
+          "blocks": [["bullets", sart], ["list", [["1. olana", _dk_money(odul[0])], ["2. olana", _dk_money(odul[1])], ["3. olana", _dk_money(odul[2])]]]]}
+    kind = random.choice(["sart", "toplam", "gun", "fark"])
+    if kind == "sart":
+        c = random.choice(yok)
+        return _dk_pick(subject, f"{_dk_intro()}, aşağıdakilerden hangisi yarışma şartlarından biri değildir?", c, sart[:3] if False else random.sample(sart, 3), f"“{c}” ifadesi duyuruda yer almaz.", sh)
+    if kind == "toplam":
+        v = sum(odul)
+        return _dk_num(subject, f"{_dk_intro()}, ilk üç dereceye verilecek ödüllerin toplamı kaç ₺’dir?", v, " ₺", f"{odul[0]} + {odul[1]} + {odul[2]} = {v} ₺.", sh, (50, 100, 150))
+    if kind == "fark":
+        v = odul[0] - odul[2]
+        return _dk_num(subject, f"{_dk_intro()}, birinci ile üçüncü olanın ödülü arasındaki fark kaç ₺’dir?", v, " ₺", f"{odul[0]} − {odul[2]} = {v} ₺.", sh, (50, 100))
+    ws = [_GUN[(son.weekday() + k) % 7] for k in (1, 2, 3, -1, -2)]
+    return _dk_pick(subject, f"{_dk_intro()}, eserler hangi gün son kez teslim edilebilir?", _GUN[son.weekday()], ws, f"Son teslim tarihi {_dk_dstr(son)} olarak yazar.", sh)
+
+
+# ---- 11) Müze / hayvanat bahçesi giriş tarifesi
+def _tf_dk_tarife(subject):
+    yer = random.choice(["ŞEHİR MÜZESİ", "HAYVANAT BAHÇESİ", "BİLİM MERKEZİ", "AKVARYUM"])
+    cocuk, yet = random.choice([(10, 20), (15, 30), (20, 40), (25, 50)])
+    ogrt = cocuk
+    rows = [["0–6 yaş", "Ücretsiz"], ["7–17 yaş", _dk_money(cocuk)], ["18 yaş ve üzeri", _dk_money(yet)]]
+    sh = {"type": "doc", "theme": random.choice(["yesil", "turkuaz", "mavi"]), "deco": "leaves", "title": f"{yer} GİRİŞ ÜCRETLERİ", "tsize": 14, "blocks": [["grid", ["Yaş grubu", "Giriş ücreti"], rows]]}
+    kind = random.choice(["aile", "bedava", "fark"])
+    if kind == "aile":
+        y, c, k = random.choice([(2, 2, 1), (2, 3, 0), (1, 2, 1), (2, 1, 1), (2, 2, 2)])
+        v = y * yet + c * cocuk
+        q = f"{_dk_intro()}, {y} yetişkin, {c} tane 7–17 yaş arası çocuk ve {k} tane 4 yaşında çocuktan oluşan bir aile için toplam giriş ücreti kaç ₺’dir?"
+        return _dk_num(subject, q, v, " ₺", f"{y} × {yet} + {c} × {cocuk} = {v} ₺; 4 yaşındaki çocuklar ücretsizdir.", sh, (10, 20, 30))
+    if kind == "bedava":
+        return _dk_pick(subject, f"{_dk_intro()}, aşağıdaki yaşlardan hangisinde olan bir çocuk girişte ücret ödemez?", random.choice(["3 yaş", "5 yaş", "6 yaş"]), ["7 yaş", "10 yaş", "17 yaş", "18 yaş"], "0–6 yaş grubunun ücreti “Ücretsiz” olarak yazılmıştır.", sh)
+    v = yet - cocuk
+    return _dk_num(subject, f"{_dk_intro()}, yetişkin ücreti 7–17 yaş ücretinden kaç ₺ fazladır?", v, " ₺", f"{yet} − {cocuk} = {v} ₺.", sh, (5, 10, 15))
+
+
+# ---- 12) Tarif kartı (oran: kişi sayısı değişince malzeme)
+_MALZ = [("yumurta", "adet"), ("süt", "bardak"), ("un", "bardak"), ("şeker", "kaşık"), ("tereyağı", "gram"), ("yoğurt", "bardak"), ("kakao", "kaşık"), ("peynir", "gram")]
+
+
+def _tf_dk_tarif(subject):
+    ad = random.choice(["PEYNİRLİ BÖREK", "SADE KEK", "KAKAOLU KURABİYE", "YOĞURTLU KEK", "ÇİLEKLİ PASTA"])
+    ms = random.sample(_MALZ, 4)
+    am = []
+    for n, u in ms:
+        am.append(random.choice([100, 150, 200, 250]) if u == "gram" else random.choice([1, 2, 3, 4]))
+    sh = {"type": "doc", "theme": random.choice(["turuncu", "pembe", "sari"]), "deco": "stars", "title": f"{ad} (4 KİŞİLİK)", "tsize": 14,
+          "blocks": [["list", [[n.capitalize(), f"{a} {u}"] for (n, u), a in zip(ms, am)]]]}
+    i = random.randrange(4)
+    n, u = ms[i]
+    k = random.choice([2, 3])
+    v = am[i] * k
+    q = f"{_dk_intro()}, bu tarif {4 * k} kişilik yapılacaksa kaç {u} {n} gerekir?"
+    return _dk_num(subject, q, v, "", f"4 kişilik tarifte {am[i]} {u} {n} vardır. {4 * k} kişi için {k} katı gerekir: {am[i]} × {k} = {v}.", sh, (1, 2, 50, 100) if u == "gram" else (1, 2, 3, 4))
+
+
+# ---- 13) Etkinlik akışı (zaman çizelgesi)
+_ETK = ["Toplanma", "Açılış konuşması", "Resim atölyesi", "Fidan dikimi", "Müzik dinletisi", "Öğle yemeği", "Oyun saati", "Ödül töreni", "Kapanış", "Çevre temizliği"]
+
+
+def _tf_dk_akis(subject):
+    ad = random.choice(["ÇEVRE GÜNÜ ETKİNLİĞİ", "OKUL ŞENLİĞİ", "SPOR GÜNÜ", "BİLİM ŞENLİĞİ"])
+    n = 4
+    ev = random.sample(_ETK, n)
+    t = random.choice([9 * 60, 9 * 60 + 30, 10 * 60])
+    ts = []
+    for _ in range(n):
+        ts.append(t)
+        t += random.choice([30, 60, 90])
+    sh = {"type": "doc", "theme": random.choice(["yesil", "mavi", "mor"]), "deco": random.choice(["leaves", "stars"]), "title": ad, "sub": "Etkinlik Programı", "blocks": [["times", [[_dk_tm(a), b] for a, b in zip(ts, ev)]]]}
+    kind = random.choice(["saat", "once", "aralik"])
+    i = random.randrange(n)
+    if kind == "saat":
+        return _dk_pick(subject, f"{_dk_intro()}, “{ev[i]}” etkinliği saat kaçta başlar?", _dk_tm(ts[i]), [_dk_tm(x) for x in ts if x != ts[i]] + [_dk_tm(ts[i] + 15)], f"Programda “{ev[i]}” {_dk_tm(ts[i])} satırındadır.", sh)
+    if kind == "once":
+        j = random.randrange(1, n)
+        return _dk_pick(subject, f"{_dk_intro()}, “{ev[j]}” etkinliğinden hemen önce hangi etkinlik yapılır?", ev[j - 1], [e for e in ev if e != ev[j - 1]] + [x for x in _ETK if x not in ev][:1], f"Programda “{ev[j]}” etkinliğinin üstündeki satır “{ev[j - 1]}” etkinliğidir.", sh)
+    v = (ts[-1] - ts[0]) // 60
+    if (ts[-1] - ts[0]) % 60:
+        return None
+    return _dk_num(subject, f"{_dk_intro()}, ilk etkinlik ile son etkinliğin başlama saatleri arasında kaç saat vardır?", v, " saat", f"{_dk_tm(ts[-1])} − {_dk_tm(ts[0])} = {v} saat.", sh, (1, 2))
+
+
+# ---- 14) Sinema / tiyatro bileti
+def _tf_dk_bilet(subject):
+    film = random.choice(["Uçan Balon", "Sahildeki Sır", "Küçük Kaşif", "Orman Dostları", "Yıldızlar Yolu"])
+    salon = random.randint(1, 6)
+    sira = random.choice("ABCDEFG")
+    kolt = random.randint(1, 20)
+    bas = random.choice([14 * 60, 15 * 60 + 30, 16 * 60, 17 * 60 + 30])
+    sure = random.choice([85, 90, 100, 110, 95])
+    d = _dk_date(None)
+    sh = {"type": "doc", "theme": random.choice(["kirmizi", "mor", "mavi"]), "deco": "stars", "title": "SİNEMA BİLETİ", "sub": f"“{film}”",
+          "blocks": [["rows", [["Tarih", _dk_dstr(d, False)], ["Seans", _dk_tm(bas)], ["Salon", str(salon)], ["Sıra / Koltuk", f"{sira} / {kolt}"], ["Film süresi", f"{sure} dakika"]]]]}
+    kind = random.choice(["bitis", "salon", "sira"])
+    if kind == "bitis":
+        bit = bas + sure
+        return _dk_pick(subject, f"{_dk_intro()}, film saat kaçta sona erer?", _dk_tm(bit), [_dk_tm(bit + k) for k in (10, -10, 20, -20, 30)], f"{_dk_tm(bas)} + {sure} dakika = {_dk_tm(bit)}.", sh)
+    if kind == "salon":
+        return _dk_pick(subject, f"{_dk_intro()}, bilet sahibi hangi salonda film izleyecektir?", f"{salon}. salon", [f"{x}. salon" for x in range(1, 8) if x != salon], f"Bilette salon numarası {salon} olarak yazar.", sh)
+    return _dk_pick(subject, f"{_dk_intro()}, bilet sahibinin koltuğu hangi sıradadır?", f"{sira} sırası", [f"{x} sırası" for x in "ABCDEFG" if x != sira], f"Bilette sıra {sira} olarak yazar.", sh)
+
+
+_DK_FAM = [(_tf_dk_kermes, "Kutlamalar", ("kutlama", "görselle iletilen", "bilgilendirici"), 2), (_tf_dk_gosteri, "Görselle iletilen anlam", ("görselle iletilen", "duygu", "bilgilendirici"), 3),
+           (_tf_dk_davet, "Kutlamalar", ("kutlama", "görselle iletilen", "iletişim"), 2), (_tf_dk_saatler, "Bilgilendirici metin", ("bilgilendirici", "görselle iletilen"), 3),
+           (_tf_dk_kitap, "Görselle iletilen anlam", ("görselle iletilen", "bilgilendirici"), 3), (_tf_dk_turnuva, "Spor", ("spor", "bilgilendirici", "görselle iletilen"), 3),
+           (_tf_dk_gezi, "Bilgilendirici metin", ("bilgilendirici", "görselle iletilen", "iletişim"), 3), (_tf_dk_program, "Bilgilendirici metin", ("bilgilendirici", "görselle iletilen"), 2),
+           (_tf_dk_menu, "Dengeli beslenme", ("beslenme", "bilgilendirici", "görselle iletilen"), 2), (_tf_dk_yarisma, "Görselle iletilen anlam", ("görselle iletilen", "bilgilendirici"), 3),
+           (_tf_dk_tarife, "Bilgilendirici metin", ("bilgilendirici", "görselle iletilen"), 3), (_tf_dk_tarif, "Mutfak kültürü", ("mutfak", "bilgilendirici", "görselle iletilen"), 4),
+           (_tf_dk_akis, "Bilgilendirici metin", ("bilgilendirici", "görselle iletilen"), 3), (_tf_dk_bilet, "Görselle iletilen anlam", ("görselle iletilen", "bilgilendirici"), 3)]
+for _f, _it, _kw, _df in _DK_FAM:
+    _f.ITEM = _it
+    _TF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _df
+
+
 def _tr_par_pick():
     return random.choice(_TR_PAR)
 
@@ -11289,7 +11979,10 @@ def _tf_par_konu(subject):
 
 for _f in (_tf_par_ana, _tf_par_cikarim, _tf_par_konu):
     pass
-_TF_GENS += [(_tf_par_ana, ("ana fikir", "okuma", "paragraf")), (_tf_par_cikarim, ("okuma", "paragraf", "sebep", "neden")), (_tf_par_konu, ("ana fikir", "konu", "okuma", "bilgilendirici"))]
+_tf_par_ana.ITEM = "Metnin ana fikri"
+_tf_par_konu.ITEM = "Metnin ana fikri"
+_tf_par_cikarim.ITEM = "Metnin yüzey anlamı"
+_TF_GENS += [(_tf_par_ana, ("ana fikir", "okuma", "paragraf")), (_tf_par_cikarim, ("okuma", "paragraf", "sebep", "neden", "yüzey anlam")), (_tf_par_konu, ("ana fikir", "konu", "okuma", "bilgilendirici"))]
 _DIFF_OF.update({"_tf_par_ana": 4, "_tf_par_cikarim": 4, "_tf_par_konu": 2})
 
 
