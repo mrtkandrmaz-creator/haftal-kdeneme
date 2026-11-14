@@ -4933,7 +4933,7 @@ GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-
                "llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
 GEMINI_MODELS = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"]
 POOL_MAX_WAIT = 45      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
-HEDGE_AFTER = 9        # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
+HEDGE_AFTER = 5        # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
 POOL_DEADLINE = 90      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
@@ -4941,7 +4941,7 @@ SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın
 CHUNK = 5          # istek sayısı azalır (kota + bekleme); parça başına ~7 soru istenir (5 + EXTRA_FIRST)
 WORKERS = 16
 EXTRA_FIRST = 2    # ilk turda fazladan istenen soru (elenenler için yedek; tamamlama turlarını çoğunlukla gereksiz kılar)
-CALL_TIMEOUT = 25  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
+CALL_TIMEOUT = 18  # sn; takılan çağrı bütün üretimi bekletmesin, havuz sıradaki modele geçsin
 GROQ_REASONING = "low"  # gpt-oss modellerinde düşünme süresini kısaltır
 # İKİNCİ MODEL KONTROLÜ: üretilen soru, ayrı (hızlı) bir modele cevabı gösterilmeden çözdürülür; tutmayanlar elenir.
 STRICT_MODE = ("Matematik", "Fen Bilimleri") if os.environ.get("DENEMEMATIK_SIKI", "1") != "0" else ()  # SIKI MOD: bu derslerde canlı yapay zekâ sorusu ancak İKİ bağımsız çözücü cevabı onaylarsa girer; hazır kalıp/şablon/havuz önceliklidir
@@ -8383,11 +8383,12 @@ _RECENT = {}  # (ders, sınıf) -> son kullanılan kalıp/tohum kimlikleri (sın
 
 def _recent_order(key, ids):
     """Kimlikleri karıştırır; yakın zamanda kullanılanları sona atar."""
-    rec = set(_RECENT.get(key, ()))
+    L = list(_RECENT.get(key, ()))
+    rec = set(L)
     fresh = [i for i in ids if i not in rec]
     old = [i for i in ids if i in rec]
     random.shuffle(fresh)
-    random.shuffle(old)
+    old.sort(key=lambda i: L.index(i))  # en uzun süredir kullanılmayan önce (sınavlar arası dönüşümlü kullanım)
     return fresh + old
 
 
@@ -12000,6 +12001,665 @@ for _f, _it, _kw, _df in _DK_FAM:
     _DIFF_OF[_f.__name__] = _df
 
 
+# ---------------------------------------------------------------- 5. SINIF MATEMATİK: İNCE ÜNİTELERE YENİ KALIPLAR (ardışık sınavlarda yapı çeşitliliği)
+_SY_ONES = ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"]
+_SY_TENS = ["", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"]
+
+
+def _say_300(n):
+    h, r = divmod(n, 100)
+    t, o = divmod(r, 10)
+    w = []
+    if h:
+        w.append(("" if h == 1 else _SY_ONES[h] + " ") + "yüz")
+    if t:
+        w.append(_SY_TENS[t])
+    if o:
+        w.append(_SY_ONES[o])
+    return " ".join(w)
+
+
+def _say_words(n):
+    """1..999 999 999 arası sayının Türkçe okunuşu."""
+    m, r = divmod(n, 1000000)
+    b, y = divmod(r, 1000)
+    w = []
+    if m:
+        w.append(_say_300(m) + " milyon")
+    if b:
+        w.append(("" if b == 1 else _say_300(b) + " ") + "bin")
+    if y:
+        w.append(_say_300(y))
+    return " ".join(w)
+
+
+def _fmt_say(n):
+    return f"{n:,}".replace(",", " ")
+
+
+# Şekilsiz (yalnızca metinde verilen değerli/kavramsal) soruların konu etiketi, "şekil zorunlu" geometri kuralını tetiklemesin diye nötr tutulur.
+_MFN_TOPIC = {"Açı türleri": "Ölçme ve sınıflandırma", "Açı ölçme ve çizme": "Ölçme ve sınıflandırma", "Açıortay": "Ölçme ve sınıflandırma",
+              "Çokgenlerin elemanları": "Temel kavramlar", "Çember ve daire elemanları": "Temel kavramlar", "Çokgen çizimi": "Temel kavramlar",
+              "Geometrik çizimler": "Temel kavramlar", "Doğru, ışın, doğru parçası": "Temel kavramlar", "Paralel ve dik doğrular": "Temel kavramlar"}
+
+
+def _mfn(topic, q, correct, wrongs, ex, fmt=str, sort=False, item=None):
+    o = _mf_opts(correct, wrongs, fmt, sort=sort)
+    return _mf_raw("Matematik", _MFN_TOPIC.get(topic, topic), q, o, ex) if o else None
+
+
+def _wrongs_num(v, deltas, lo=0):
+    out = []
+    for d in deltas:
+        for c in (v + d, v - d):
+            if c > lo and c != v and c not in out:
+                out.append(c)
+    random.shuffle(out)
+    return out
+
+
+# ---- Basamak değerleri / milyonlu sayılar
+def _mf_say_oku(subject):
+    n = random.choice([random.randint(1_000_000, 9_999_999), random.randint(100_000, 999_999), random.randint(10_000_000, 99_999_999)])
+    n = int(str(n)[0] + "".join(random.choice("0123456789") if random.random() > .3 else "0" for _ in str(n)[1:]))
+    if n % 10 == 0 and random.random() < .5:
+        n += random.randint(1, 9)
+    w = _say_words(n)
+    wr = []
+    for k in (1000, 10, 100, 1_000_000):
+        m = n + k if random.random() < .5 else n - k
+        if m > 0 and m != n:
+            wr.append(_say_words(m))
+    s = str(n)
+    if len(s) > 3:
+        t = list(s)
+        t[1], t[-1] = t[-1], t[1]
+        if "".join(t) != s and t[0] != "0":
+            wr.append(_say_words(int("".join(t))))
+    wr = [x for x in dict.fromkeys(wr) if x != w]
+    if random.random() < .5:
+        return _mfn("Sayı okuma-yazma", f"{_fmt_say(n)} sayısının okunuşu aşağıdakilerden hangisidir?", w, wr, f"Bölükler soldan sağa okunur: {w}.")
+    c = _fmt_say(n)
+    wr2 = [_fmt_say(x) for x in (n + 1000, n - 1000, n + 10, n * 10 if n < 10**8 else n // 10, int(s[::-1]) if s[::-1][0] != "0" else n + 100)]
+    wr2 = [x for x in dict.fromkeys(wr2) if x != c]
+    return _mfn("Sayı okuma-yazma", f"“{w}” sayısı aşağıdakilerden hangisidir?", c, wr2, f"{w} sayısı rakamlarla {c} olarak yazılır.")
+
+
+def _mf_say_rakam(subject):
+    ds = random.sample("123456789", 4)
+    z = random.random() < .6
+    if z:
+        ds[random.randrange(1, 4)] = "0"
+    sm = sorted(ds)
+    if sm[0] == "0":
+        sm[0], sm[1] = sm[1], sm[0]
+    small = int("".join(sm))
+    big = int("".join(sorted(ds, reverse=True)))
+    kind = random.choice(["kucuk", "buyuk"])
+    c = small if kind == "kucuk" else big
+    pool = {small, big}
+    tr = sm[:]
+    tr[-1], tr[-2] = tr[-2], tr[-1]
+    pool.add(int("".join(tr)))
+    pool.add(int("".join(sorted(ds)).lstrip("0") or "0"))
+    wr = [x for x in pool if x != c and x > 999] + [c + 90, c - 90, c + 900]
+    dd = ", ".join(ds)
+    return _mfn("Basamak değeri", f"{dd} rakamlarının her biri bir kez kullanılarak yazılabilen en {'küçük' if kind == 'kucuk' else 'büyük'} dört basamaklı doğal sayı kaçtır?", c, wr, f"Rakamlar {'küçükten büyüğe (0 en başa konulmaz)' if kind == 'kucuk' else 'büyükten küçüğe'} dizilir: {c}.", fmt=_fmt_say, sort=True)
+
+
+def _mf_say_komsu(subject):
+    base = random.choice([random.randint(100_000, 9_000_000)])
+    base = (base // 1000) * 1000 + random.choice([0, 0, 500, 999])
+    k = random.choice([("1 000 fazlası", 1000), ("10 000 fazlası", 10000), ("100 000 eksiği", -100000), ("1 000 eksiği", -1000), ("1 milyon fazlası", 1000000)])
+    v = base + k[1]
+    if v <= 0:
+        return None
+    wr = [base + k[1] * 10 if abs(k[1]) < 1000000 else base + k[1] // 10, base - k[1], base + (k[1] // 10 or 1), base + 2 * k[1]]
+    return _mfn("Milyonlu sayılar", f"{_fmt_say(base)} sayısının {k[0]} kaçtır?", v, wr, f"{_fmt_say(base)} {'+' if k[1] > 0 else '−'} {_fmt_say(abs(k[1]))} = {_fmt_say(v)}.", fmt=_fmt_say, sort=True)
+
+
+def _mf_say_yuvar(subject):
+    n = random.randint(1_000_000, 9_999_999)
+    k = random.choice([(1000, "bine"), (10000, "on bine"), (100000, "yüz bine")])
+    v = ((n + k[0] // 2) // k[0]) * k[0]
+    wr = [v + k[0], v - k[0], (n // k[0]) * k[0] if (n // k[0]) * k[0] != v else v + 2 * k[0], v + 10 * k[0]]
+    return _mfn("Milyonlu sayılar", f"Bir ilin nüfusu {_fmt_say(n)} kişidir. Bu sayı en yakın {k[1]} yuvarlanırsa kaç olur?", v, wr, f"Yuvarlanacak basamağın sağındaki rakama bakılır; 5 ve daha büyükse bir üst değere, küçükse aşağıya yuvarlanır: {_fmt_say(v)}.", fmt=_fmt_say, sort=True)
+
+
+def _mf_say_basdeg2(subject):
+    d = random.choice("123456789")
+    pos = random.choice([("onlar", 10), ("yüzler", 100), ("binler", 1000), ("on binler", 10000), ("yüz binler", 100000), ("milyonlar", 1000000)])
+    pl = len(str(pos[1])) - 1
+    ln = max(7, pl + 2)
+    digs = [random.choice([x for x in "0123456789" if x != d]) for _ in range(ln)]
+    digs[0] = random.choice([x for x in "123456789" if x != d])
+    digs[-1 - pl] = d
+    n = int("".join(digs))
+    v = int(d) * pos[1]
+    wr = [int(d) * pos[1] * 10, int(d) * (pos[1] // 10 or 1), int(d), int(d) * pos[1] * 100]
+    return _mfn("Basamak değeri", f"{_fmt_say(n)} sayısında {d} rakamının basamak değeri kaçtır?", v, wr, f"{d} rakamı {pos[0]} basamağındadır; basamak değeri {d} × {_fmt_say(pos[1])} = {_fmt_say(v)}.", fmt=_fmt_say, sort=True)
+
+
+def _mf_say_karsi(subject):
+    n = random.randint(1_000_000, 9_000_000)
+    s = str(n)
+    big = random.random() < .5
+    cands = {n}
+    for _ in range(12):
+        t = list(s)
+        i, j = random.sample(range(1, 7), 2)
+        t[i], t[j] = t[j], t[i]
+        cands.add(int("".join(t)))
+    c = sorted(cands)
+    if len(c) < 4:
+        return None
+    pick = random.sample(c, 4)
+    ans = max(pick) if big else min(pick)
+    return _mfn("Milyonlu sayılar", f"Aşağıdaki sayılardan hangisi en {'büyüktür' if big else 'küçüktür'}?", ans, [x for x in pick if x != ans], f"Basamak sayıları aynıdır; soldan başlayarak rakamlar karşılaştırılır. En {'büyük' if big else 'küçük'} sayı {_fmt_say(ans)} olur.", fmt=_fmt_say, sort=True)
+
+
+# ---- Kesirler
+def _mf_kes_tur(subject):
+    d = random.choice([3, 4, 5, 6, 7, 8, 9])
+    basit = f"{random.randint(1, d - 1)}/{d}"
+    bilesik = f"{random.randint(d, 2 * d + 2)}/{d}"
+    tam = f"{random.randint(1, 4)} {random.randint(1, d - 1)}/{d}"
+    kind = random.choice(["basit", "bilesik", "tam"])
+    if kind == "basit":
+        c = basit
+        wr = [f"{random.randint(d, d + 5)}/{d - 1 if d > 2 else d}", bilesik, tam, f"{random.randint(2, 4)} {random.randint(1, d - 1)}/{d}"]
+        q = "Aşağıdakilerden hangisi basit kesirdir?"
+        ex = "Payı paydasından küçük olan kesir basit kesirdir."
+    elif kind == "bilesik":
+        c = bilesik
+        wr = [basit, f"{random.randint(1, d - 1)}/{d + 1}", tam, f"{random.randint(1, d - 2 if d > 2 else 1)}/{d}"]
+        q = "Aşağıdakilerden hangisi bileşik kesirdir?"
+        ex = "Payı paydasına eşit ya da paydasından büyük olan kesir bileşik kesirdir."
+    else:
+        c = tam
+        wr = [basit, bilesik, f"{random.randint(1, d - 1)}/{d + 2}", f"{d + 1}/{d}"]
+        q = "Aşağıdakilerden hangisi tam sayılı kesirdir?"
+        ex = "Bir tam sayı ile bir basit kesirden oluşan kesir tam sayılı kesirdir."
+    return _mfn("Kesir türleri", q, c, [w for w in wr if w != c], ex)
+
+
+def _mf_kes_esit(subject):
+    d = random.choice([2, 3, 4, 5, 6, 7])
+    n = random.randint(1, d - 1)
+    if d > 2 and n > 1 and random.random() < .0:
+        return None
+    k = random.choice([2, 3, 4, 5])
+    kind = random.choice(["esit", "eksik"])
+    if kind == "esit":
+        c = f"{n * k}/{d * k}"
+        wr = [f"{n + k}/{d + k}", f"{n * k}/{d}", f"{n}/{d * k}", f"{n * k + 1}/{d * k}"]
+        return _mfn("Kesir türleri", f"{n}/{d} kesrine eşit olan kesir aşağıdakilerden hangisidir?", c, wr, f"Pay ve payda aynı sayıyla ({k}) çarpılır: {n}×{k}/{d}×{k} = {n * k}/{d * k}.")
+    return _mfn("Kesir türleri", f"{n}/{d} = □/{d * k} eşitliğinde □ yerine hangi sayı gelmelidir?", n * k, _wrongs_num(n * k, [1, 2, k]), f"Payda {d} sayısından {d * k} sayısına {k} ile çarpılmıştır; pay da {k} ile çarpılır: {n}×{k} = {n * k}.", sort=True)
+
+
+def _mf_kes_sadele(subject):
+    d0 = random.choice([2, 3, 4, 5, 7])
+    n0 = random.randint(1, d0 - 1)
+    from math import gcd
+    if gcd(n0, d0) != 1:
+        return None
+    k = random.choice([2, 3, 4, 5, 6])
+    n, d = n0 * k, d0 * k
+    c = f"{n0}/{d0}"
+    wr = [f"{n // 2 if n % 2 == 0 and n // 2 != n0 else n0 + 1}/{d // 2 if d % 2 == 0 and d // 2 != d0 else d0 + 1}", f"{n0}/{d0 + 1}", f"{n0 + 1}/{d0}", f"{n - 1}/{d}"]
+    return _mfn("Kesir türleri", f"{n}/{d} kesrinin en sade (sadeleşmiş) hâli aşağıdakilerden hangisidir?", c, wr, f"Pay ve payda ortak çarpan olan {k} ile bölünür: {n}÷{k}/{d}÷{k} = {c}.")
+
+
+def _mf_kes_sayidog(subject):
+    d = random.choice([4, 5, 6, 8, 10])
+    n = random.randint(1, d - 1)
+    c = f"{n}/{d}"
+    wr = [f"{n}/{d + 1}", f"{n + 1}/{d}", f"{d - n}/{d}" if d - n != n else f"{n - 1 if n > 1 else n + 2}/{d}", f"{n}/{d - 1}"]
+    return _mfn("Kesirler", f"Sayı doğrusunda 0 ile 1 arası {d} eş parçaya bölünmüştür. 0’dan başlayarak sayılan {n}. çizgi hangi kesri gösterir?", c, wr, f"Her parça 1/{d} kesrini gösterir; {n}. çizgi {n}/{d} kesridir.")
+
+
+def _mf_kes_yari(subject):
+    kind = random.choice(["buyuk", "kucuk"])
+    d = random.choice([8, 10, 12])
+    h = d // 2
+    lows = list(range(1, h))
+    highs = list(range(h + 1, d))
+    if kind == "buyuk":
+        c = random.choice(highs)
+        oth = random.sample(lows, 3)
+        return _mfn("Kesir sıralama", "Aşağıdaki kesirlerden hangisi 1/2’den büyüktür?", f"{c}/{d}", [f"{x}/{d}" for x in oth], f"Payda {d} iken 1/2 kesrine eşit olan kesir {h}/{d} olur; payı {h} sayısından büyük olan kesir daha büyüktür: {c}/{d}.")
+    c = random.choice(lows)
+    oth = random.sample(highs, 3)
+    return _mfn("Kesir sıralama", "Aşağıdaki kesirlerden hangisi 1/2’den küçüktür?", f"{c}/{d}", [f"{x}/{d}" for x in oth], f"Payda {d} iken 1/2 kesrine eşit olan kesir {h}/{d} olur; payı {h} sayısından küçük olan kesir daha küçüktür: {c}/{d}.")
+
+
+def _mf_kes_tamtopla(subject):
+    d = random.choice([4, 5, 6, 8, 10])
+    a, b = random.randint(1, 4), random.randint(1, 4)
+    x, y = random.randint(1, d - 1), random.randint(1, d - 1)
+    kind = random.choice(["topla", "cikar"])
+    if kind == "topla":
+        tot = (a * d + x) + (b * d + y)
+        w, r = divmod(tot, d)
+        c = f"{w} {r}/{d}" if r else f"{w}"
+        wr = [f"{w + 1} {r}/{d}" if r else f"{w + 1}", f"{a + b} {x + y}/{d}", f"{w} {(r + 1) % d}/{d}", f"{w - 1 if w > 1 else w + 2} {r}/{d}" if r else f"{w + 2}"]
+        wr = [z for z in dict.fromkeys(wr) if z != c]
+        return _mfn("Kesirlerle toplama-çıkarma", f"{a} {x}/{d} + {b} {y}/{d} işleminin sonucu aşağıdakilerden hangisidir?", c, wr, f"Bileşik kesre çevrilir: {(a * d + x)}/{d} + {(b * d + y)}/{d} = {tot}/{d} = {c}.")
+    A, B = a * d + x, b * d + y
+    if A <= B:
+        A, B = B, A
+        a, x, b, y = b, y, a, x
+    dif = A - B
+    w, r = divmod(dif, d)
+    c = f"{w} {r}/{d}" if (w and r) else (f"{w}" if w else f"{r}/{d}")
+    wr = [f"{w} {(r + 1) % d}/{d}", f"{w + 1} {r}/{d}" if r else f"{w + 1}", f"{abs(a - b)} {abs(x - y)}/{d}", f"{w} {abs(r - 1)}/{d}"]
+    wr = [z for z in dict.fromkeys(wr) if z != c and not z.endswith("0/" + str(d))]
+    return _mfn("Kesirlerle toplama-çıkarma", f"{a} {x}/{d} − {b} {y}/{d} işleminin sonucu aşağıdakilerden hangisidir?", c, wr, f"Bileşik kesre çevrilir: {A}/{d} − {B}/{d} = {dif}/{d} = {c}.")
+
+
+def _mf_kes_okuma(subject):
+    d = random.choice([5, 6, 8, 10, 12])
+    a = random.randint(1, d - 3)
+    b = random.randint(1, d - 1 - a)
+    kisi = random.choice(["Ela", "Kaan", "Deniz", "Mert", "Zeynep"])
+    nesne = random.choice([("kitap", "okudu"), ("pizza", "yedi"), ("duvar", "boyadı"), ("çikolata", "yedi")])
+    kalan = d - a - b
+    c = f"{kalan}/{d}"
+    wr = [f"{a + b}/{d}", f"{kalan + 1}/{d}", f"{d - a}/{d}", f"{abs(a - b) or 1}/{d}", f"{kalan + 2}/{d}"]
+    wr = [z for z in dict.fromkeys(wr) if z != c]
+    return _mfn("Kesirlerle toplama-çıkarma", f"{kisi}, bir {nesne[0]}ün önce {a}/{d} kadarını, sonra {b}/{d} kadarını {nesne[1]}. {nesne[0].capitalize()}ün kalan kısmı bütünün kaçıdır?".replace("kitapün", "kitabın").replace("pizzaün", "pizzanın").replace("duvarün", "duvarın").replace("çikolataün", "çikolatanın").replace("Kitapün", "Kitabın").replace("Pizzaün", "Pizzanın").replace("Duvarün", "Duvarın").replace("Çikolataün", "Çikolatanın"), c, wr, f"Kullanılan kısım {a}/{d} + {b}/{d} = {a + b}/{d}; kalan 1 − {a + b}/{d} = {c}.")
+
+
+def _mf_kes_tersi(subject):
+    d = random.choice([3, 4, 5, 6, 8])
+    k = random.randint(2, 9)
+    tum = k * d
+    return _mfn("Kesirler", f"Bir sayının 1/{d}’i {k} ise bu sayının tamamı kaçtır?", tum, _wrongs_num(tum, [d, k, 2 * k]) + [k + d], f"Sayının {d} eş parçasından biri {k} ise tamamı {d} × {k} = {tum} olur.", sort=True)
+
+
+# ---- Ondalık gösterim ve yüzdeler
+def _mf_ond_yaz(subject):
+    tam = random.randint(1, 99)
+    kind = random.choice(["onda", "yuzde", "binde"])
+    if kind == "onda":
+        k = random.randint(1, 9)
+        c, q = f"{tam},{k}", f"{tam} tam onda {k}"
+    elif kind == "yuzde":
+        k = random.randint(1, 99)
+        c, q = f"{tam},{k:02d}", f"{tam} tam yüzde {k}"
+    else:
+        k = random.randint(1, 999)
+        c, q = f"{tam},{k:03d}", f"{tam} tam binde {k}"
+    dec = c.split(",")[1]
+    wr = [f"{tam},{int(dec)}" if f"{tam},{int(dec)}" != c else f"{tam},{dec}0", f"{tam}{dec}", f"{tam},0{dec}" if not dec.startswith("0") else f"{tam},{dec[1:]}", f"{dec},{tam}"]
+    wr = [z for z in dict.fromkeys(wr) if z != c]
+    return _mfn("Ondalık gösterim", f"“{q}” ifadesinin ondalık gösterimi aşağıdakilerden hangisidir?", c, wr, f"{q} ifadesinde ondalık kısım {len(dec)} basamaklıdır: {c}.")
+
+
+def _mf_ond_basdeg(subject):
+    a, b, c3 = random.sample("123456789", 3)
+    s = f"{random.randint(1, 99)},{a}{b}{c3}"
+    nm = [("onda birler", 1), ("yüzde birler", 2), ("binde birler", 3)]
+    pick = random.choice(nm)
+    d = (a, b, c3)[pick[1] - 1]
+    val = f"0,{'0' * (pick[1] - 1)}{d}"
+    wr = [f"0,{'0' * ((pick[1]) % 3)}{d}", f"{d}", f"0,{d}{'0' * pick[1]}", f"{d}0"]
+    wr = [z for z in dict.fromkeys(wr) if z != val]
+    return _mfn("Ondalık gösterim", f"{s} sayısında {pick[0]} basamağındaki {d} rakamının değeri kaçtır?", val, wr, f"{pick[0].capitalize()} basamağındaki {d}, {val} değerindedir.")
+
+
+def _mf_ond_kesir(subject):
+    kind = random.choice(["d2k", "k2d"])
+    if kind == "d2k":
+        pay = random.choice([3, 7, 9, 13, 21, 37, 49, 63, 81])
+        den = 10 if pay < 10 else 100
+        c = f"{pay}/{den}"
+        dec = f"{pay / den:.{1 if den == 10 else 2}f}".replace(".", ",")
+        wr = [f"{pay}/{den * 10}", f"{pay}/{den // 10 if den > 10 else 1}" if den > 10 else f"{pay}/100", f"{pay * 10}/{den}", f"{pay + den}/{den}"]
+        wr = [z for z in dict.fromkeys(wr) if z != c and not z.endswith("/1")]
+        return _mfn("Ondalık gösterim", f"{dec} ondalık sayısı aşağıdaki kesirlerden hangisine eşittir?", c, wr, f"{dec} sayısı {den if den == 10 else 100} paydalı olarak {c} şeklinde yazılır.")
+    pay = random.choice([3, 7, 9, 11, 23, 47, 51, 69])
+    den = 10 if pay < 10 else 100
+    c = f"{pay / den:.{1 if den == 10 else 2}f}".replace(".", ",")
+    wr = [f"{pay / (den * 10):.{2 if den == 10 else 3}f}".replace(".", ","), f"{pay * 10 / den:.1f}".replace(".", ",") if den == 10 else f"{pay / 10:.1f}".replace(".", ","), f"{pay + den}", f"{den},{pay}"]
+    wr = [z for z in dict.fromkeys(wr) if z != c]
+    return _mfn("Ondalık gösterim", f"{pay}/{den} kesrinin ondalık gösterimi aşağıdakilerden hangisidir?", c, wr, f"Payda {den} olduğundan {pay}/{den} = {c} olur.")
+
+
+def _mf_ond_carp(subject):
+    k = random.choice([10, 100, 1000])
+    kind = random.choice(["carp", "bol"])
+    if kind == "carp":
+        x = round(random.uniform(1, 99), random.choice([1, 2]))
+        v = round(x * k, 3)
+        fmt = lambda t: (f"{t:.3f}".rstrip("0").rstrip(".")).replace(".", ",")
+        c = fmt(v)
+        wr = [fmt(round(x * k * 10, 3)), fmt(round(x * k / 10, 3)), fmt(round(x * (k // 10 or 1), 3)), fmt(round(x + k, 3))]
+        wr = [z for z in dict.fromkeys(wr) if z != c]
+        return _mfn("Ondalık gösterim", f"{fmt(x)} × {k} işleminin sonucu kaçtır?", c, wr, f"{k} ile çarpmada virgül {len(str(k)) - 1} basamak sağa kayar: {c}.")
+    x = random.randint(11, 9999)
+    v = x / k
+    fmt = lambda t: (f"{t:.4f}".rstrip("0").rstrip(".")).replace(".", ",")
+    c = fmt(v)
+    wr = [fmt(x / (k * 10)), fmt(x / (k // 10 or 1)), fmt(x * k / 100), fmt(x / k * 10)]
+    wr = [z for z in dict.fromkeys(wr) if z != c]
+    return _mfn("Ondalık gösterim", f"{x} ÷ {k} işleminin sonucu kaçtır?", c, wr, f"{k} ile bölmede virgül {len(str(k)) - 1} basamak sola kayar: {c}.")
+
+
+def _mf_ond_birim(subject):
+    kind = random.choice(["kg", "m", "tl"])
+    if kind == "kg":
+        v = random.choice([1.5, 2.25, 3.4, 0.75, 4.2, 2.5, 0.5, 6.8])
+        g = int(round(v * 1000))
+        return _mfn("Ondalık gösterim", f"{str(v).replace('.', ',')} kg kaç gramdır?", g, [g // 10, g * 10, g + 100, g - 50], f"1 kg = 1000 g olduğundan {str(v).replace('.', ',')} × 1000 = {g} g.", sort=True)
+    if kind == "m":
+        cm = random.choice([125, 350, 275, 80, 640, 905, 45])
+        c = f"{cm / 100:.2f}".rstrip("0").rstrip(".").replace(".", ",")
+        wr = [f"{cm / 10:.1f}".rstrip("0").rstrip(".").replace(".", ","), f"{cm / 1000:.3f}".rstrip("0").rstrip(".").replace(".", ","), f"{cm}", f"{cm * 10}"]
+        wr = [z for z in dict.fromkeys(wr) if z != c]
+        return _mfn("Ondalık gösterim", f"{cm} cm kaç metredir?", c, wr, f"1 m = 100 cm olduğundan {cm} ÷ 100 = {c} m.")
+    a = random.choice([12.5, 7.75, 3.25, 9.5, 14.75])
+    b = random.choice([6.5, 4.25, 8.75, 2.5, 3.75])
+    pay = 50
+    v = round(pay - a - b, 2)
+    if v <= 0:
+        return None
+    fmt = lambda t: f"{t:.2f}".replace(".", ",")
+    return _mfn("Ondalık gösterim", f"Ayşe, {fmt(a)} TL’lik bir defter ile {fmt(b)} TL’lik bir kalem aldı ve kasiyere {pay} TL verdi. Para üstü kaç TL’dir?", fmt(v), [fmt(v + 1), fmt(v - 1), fmt(a + b), fmt(v + 0.25)], f"Ödenen {fmt(a)} + {fmt(b)} = {fmt(a + b)} TL; para üstü {pay} − {fmt(a + b)} = {fmt(v)} TL.")
+
+
+def _mf_ond_aralik(subject):
+    d = random.randint(1, 8)
+    lo, hi = d / 10, (d + 1) / 10
+    mid = round((lo + hi) / 2, 2)
+    fmt = lambda t: f"{t:.2f}".replace(".", ",").rstrip("0").rstrip(",") if False else f"{t}".replace(".", ",")
+    c = fmt(mid)
+    wr = [fmt(round(lo - 0.05, 2)), fmt(round(hi + 0.05, 2)), fmt(round(lo, 2)), fmt(round(hi + 0.1, 2))]
+    wr = [z for z in dict.fromkeys(wr) if z != c]
+    return _mfn("Ondalık gösterim", f"Aşağıdaki sayılardan hangisi {fmt(lo)} ile {fmt(hi)} arasındadır?", c, wr, f"{fmt(lo)} < {c} < {fmt(hi)} olduğundan doğru cevap {c}’tir.")
+
+
+def _mf_yuz_oran(subject):
+    t = random.choice([10, 20, 25, 40, 50])
+    k = random.choice([k for k in range(1, t) if (100 * k) % t == 0])
+    p = 100 * k // t
+    kisi = random.choice(["Elif", "Burak", "Selin", "Arda"])
+    q = random.choice([f"{kisi}, {t} soruluk bir denemede {k} soruyu doğru yaptı. Doğru cevap oranı yüzde kaçtır?", f"Bir sınıfta {t} öğrenci vardır. Bunlardan {k} tanesi gözlüklüdür. Gözlüklü öğrencilerin oranı yüzde kaçtır?"])
+    return _mfn("Yüzde kavramı", q, f"%{p}", [f"%{x}" for x in _wrongs_num(p, [5, 10, 15, 25], 0) if x <= 100][:5], f"{k}/{t} = {p}/100 olduğundan oran %{p}’tir.")
+
+
+def _mf_yuz_kesir(subject):
+    pairs = [(50, "1/2"), (25, "1/4"), (75, "3/4"), (10, "1/10"), (20, "1/5"), (40, "2/5"), (60, "3/5"), (30, "3/10"), (80, "4/5"), (5, "1/20")]
+    p, f = random.choice(pairs)
+    if random.random() < .5:
+        wr = [g for q, g in pairs if g != f]
+        random.shuffle(wr)
+        return _mfn("Yüzde kavramı", f"%{p} değerine eşit olan kesir aşağıdakilerden hangisidir?", f, wr[:5], f"%{p} = {p}/100 olup sadeleştirilince {f} bulunur.")
+    wr = [f"%{q}" for q, g in pairs if g != f]
+    random.shuffle(wr)
+    return _mfn("Yüzde kavramı", f"{f} kesri aşağıdaki yüzdelerden hangisine eşittir?", f"%{p}", wr[:5], f"{f} = {p}/100 olduğundan {f} kesri %{p}’e eşittir.")
+
+
+def _mf_yuz_indirim(subject):
+    fiyat = random.choice([40, 60, 80, 120, 200, 250, 400])
+    p = random.choice([10, 20, 25, 50])
+    if (fiyat * p) % 100:
+        return None
+    ind = fiyat * p // 100
+    kind = random.choice(["yeni", "ind"])
+    nesne = random.choice(["bir çanta", "bir kazak", "bir kitap seti", "bir oyuncak"])
+    if kind == "ind":
+        return _mfn("Yüzde kavramı", f"Etiket fiyatı {fiyat} TL olan {nesne} için %{p} indirim yapılıyor. İndirim tutarı kaç TL’dir?", ind, _wrongs_num(ind, [5, 10, fiyat // 10]), f"{fiyat} TL’nin %{p}’i {fiyat} × {p} ÷ 100 = {ind} TL’dir.", sort=True)
+    return _mfn("Yüzde kavramı", f"Etiket fiyatı {fiyat} TL olan {nesne} için %{p} indirim yapılıyor. İndirimli fiyat kaç TL’dir?", fiyat - ind, _wrongs_num(fiyat - ind, [5, 10, ind]) + [ind], f"İndirim {ind} TL’dir; {fiyat} − {ind} = {fiyat - ind} TL.", sort=True)
+
+
+# ---- Açı ölçme
+def _mf_aci_siniflama(subject):
+    kinds = [("dar açı", lambda: random.randint(10, 89)), ("dik açı", lambda: 90), ("geniş açı", lambda: random.randint(91, 179)), ("doğru açı", lambda: 180)]
+    nm, f = random.choice(kinds)
+    v = f()
+    wr = [k for k, _ in kinds if k != nm]
+    return _mfn("Açı türleri", f"Ölçüsü {v}° olan açı hangi türdendir?", nm, wr + ["tam açı"], f"{'0°’den büyük ve 90°’den küçük açı dardır' if nm == 'dar açı' else '90° dik açıdır' if nm == 'dik açı' else '90°’den büyük, 180°’den küçük açı geniş açıdır' if nm == 'geniş açı' else '180° doğru açıdır'}.")
+
+
+def _mf_aci_hangi(subject):
+    kinds = {"dar": (10, 89), "geniş": (91, 179)}
+    nm = random.choice(list(kinds))
+    lo, hi = kinds[nm]
+    c = random.randint(lo, hi)
+    other = {"dar": [random.randint(91, 179), 90, 180, random.randint(100, 170)], "geniş": [random.randint(10, 89), 90, 180, random.randint(10, 80)]}[nm]
+    return _mfn("Açı türleri", f"Aşağıdaki ölçülerden hangisi bir {nm} açıya aittir?", f"{c}°", [f"{x}°" for x in other], f"{'Dar açı 90°’den küçüktür' if nm == 'dar' else 'Geniş açı 90° ile 180° arasındadır'}; bu nedenle {c}° {nm} açıdır.")
+
+
+def _mf_aci_saat(subject):
+    h = random.choice([1, 2, 3, 4, 5, 6, 8, 9, 10])
+    a = 30 * h if h <= 6 else 360 - 30 * h
+    tur = "dar açı" if a < 90 else "dik açı" if a == 90 else "geniş açı" if a < 180 else "doğru açı"
+    if random.random() < .5:
+        return _mfn("Açı ölçme ve çizme", f"Saat tam {h}.00’u gösterirken akrep ile yelkovan arasındaki küçük açı kaç derecedir?", f"{a}°", [f"{x}°" for x in _wrongs_num(a, [30, 60, 90], 0) if x <= 180], f"Saat kadranında iki rakam arası 30°’dir; {h}.00’da akrep ile yelkovan arasında {a // 30} aralık vardır: {a}°.")
+    return _mfn("Açı türleri", f"Saat tam {h}.00’u gösterirken akrep ile yelkovan arasındaki küçük açı hangi türdendir?", tur, [t for t in ["dar açı", "dik açı", "geniş açı", "doğru açı"] if t != tur], f"Aradaki açı {a}° olduğundan {tur} oluşur.")
+
+
+def _mf_aci_olcer(subject):
+    a, b = random.sample(range(5, 175, 5), 2)
+    lo, hi = min(a, b), max(a, b)
+    d = hi - lo
+    return _mfn("Açı ölçme ve çizme", f"Bir açıyı ölçen Ceren, açıölçerde bir kenarın 0°’den başlayarak {lo}° çizgisinden, diğer kenarın {hi}° çizgisinden geçtiğini görüyor. Bu açının ölçüsü kaç derecedir?", f"{d}°", [f"{x}°" for x in (lo, hi, d + 10, abs(180 - d) if abs(180 - d) != d else d + 20, hi + lo if hi + lo <= 180 else d + 5)], f"Kenarlar arasındaki açı iki okuma arasındaki farktır: {hi} − {lo} = {d}°.")
+
+
+def _mf_aci_say(subject):
+    ls = [random.randint(10, 175) for _ in range(6)]
+    kind = random.choice([("dar", lambda x: x < 90), ("geniş", lambda x: 90 < x < 180)])
+    ls = [x if x != 90 else 95 for x in ls]
+    c = sum(1 for x in ls if kind[1](x))
+    return _mfn("Açı türleri", f"Ölçüleri {', '.join(str(x) + '°' for x in ls)} olan altı açıdan kaç tanesi {kind[0]} açıdır?", c, [x for x in range(0, 7) if x != c], f"{'90°’den küçük' if kind[0] == 'dar' else '90°’den büyük, 180°’den küçük'} ölçüler sayılır: {c} tane.", sort=True)
+
+
+def _mf_aci_ortay2(subject):
+    a = random.choice(range(20, 180, 10))
+    if random.random() < .5:
+        return _mfn("Açıortay", f"Ölçüsü {a}° olan bir açının açıortayı bu açıyı iki eş açıya ayırıyor. Oluşan açılardan her birinin ölçüsü kaç derecedir?", f"{a // 2}°", [f"{x}°" for x in (a, a * 2, a // 2 + 10, a // 2 - 5 if a // 2 > 5 else a // 2 + 20) if x != a // 2], f"Açıortay açıyı iki eş parçaya böler: {a} ÷ 2 = {a // 2}°.")
+    h = random.choice(range(10, 90, 5))
+    return _mfn("Açıortay", f"Bir açının açıortayı çizildiğinde oluşan iki açıdan her biri {h}° ölçüsündedir. Çizilen açının ölçüsü kaç derecedir?", f"{2 * h}°", [f"{x}°" for x in (h, 3 * h, 2 * h + 10, 180 - h) if x != 2 * h], f"Açıortay açıyı iki eş açıya ayırır; açının ölçüsü {h} × 2 = {2 * h}°’dir.")
+
+
+def _mf_aci_yarim(subject):
+    nm, v = random.choice([("bir dik açının yarısı", 45), ("bir dik açının üç katı", 270), ("bir doğru açının yarısı", 90), ("bir doğru açının dörtte biri", 45), ("bir dik açının iki katı", 180)])
+    if v > 180:
+        return None
+    return _mfn("Açı ölçme ve çizme", f"Ölçüsü {nm} kadar olan açı kaç derecedir?", f"{v}°", [f"{x}°" for x in (45, 90, 180, 30, 60) if x != v][:5], f"Dik açı 90°, doğru açı 180°’dir; buna göre sonuç {v}°’dir.")
+
+
+def _mf_aci_toplam2(subject):
+    a, b = random.randint(15, 80), random.randint(15, 80)
+    s = a + b
+    tur = "dar açı" if s < 90 else "dik açı" if s == 90 else "geniş açı" if s < 180 else "doğru açı"
+    return _mfn("Açı türleri", f"Ölçüleri {a}° ve {b}° olan iki açı yan yana getirilerek tek bir açı oluşturuluyor. Oluşan açı hangi türdendir?", tur, [t for t in ["dar açı", "dik açı", "geniş açı", "doğru açı"] if t != tur], f"{a} + {b} = {s}° olduğundan oluşan açı {tur}dır.".replace("açıdır dır", "açıdır"))
+
+
+# ---- Çokgenler ve çember
+_CG = {3: "üçgen", 4: "dörtgen", 5: "beşgen", 6: "altıgen", 7: "yedigen", 8: "sekizgen", 9: "dokuzgen", 10: "ongen"}
+
+
+def _mf_cg_kose(subject):
+    n = random.choice(list(_CG))
+    if random.random() < .5:
+        return _mfn("Çokgenlerin elemanları", f"Köşe sayısı {n} olan çokgenin adı aşağıdakilerden hangisidir?", _CG[n], [v for k, v in _CG.items() if k != n][:5], f"Bir çokgenin köşe sayısı kenar sayısına eşittir; {n} kenarlı çokgen {_CG[n]}dir.".replace("gendir", "gendir"))
+    return _mfn("Çokgenlerin elemanları", f"{_CG[n].capitalize()} kaç kenara sahiptir?", n, _wrongs_num(n, [1, 2, 3]), f"{_CG[n].capitalize()} {n} kenarlı bir çokgendir.", sort=True)
+
+
+def _mf_cg_cevre(subject):
+    n = random.choice([3, 4, 5, 6, 7, 8])
+    a = random.randint(3, 15)
+    v = n * a
+    return _mfn("Çokgenlerin elemanları", f"Kenar sayısı {n} olan ve tüm kenarlarının uzunluğu {a} cm olan çokgenin çevresi kaç cm’dir?", v, _wrongs_num(v, [a, 2 * a, 3]), f"Çevre, kenar uzunlukları toplamıdır: {n} × {a} = {v} cm.", sort=True)
+
+
+def _mf_cem_cap(subject):
+    r = random.randint(2, 30)
+    if random.random() < .5:
+        return _mfn("Çember ve daire elemanları", f"Yarıçapı {r} cm olan çemberin çapı kaç cm’dir?", 2 * r, _wrongs_num(2 * r, [r, 2, 4]) + [r // 2 if r % 2 == 0 else r + 3], f"Çap, yarıçapın iki katıdır: {r} × 2 = {2 * r} cm.", sort=True)
+    return _mfn("Çember ve daire elemanları", f"Çapı {2 * r} cm olan çemberin yarıçapı kaç cm’dir?", r, _wrongs_num(r, [1, 2, r]), f"Yarıçap, çapın yarısıdır: {2 * r} ÷ 2 = {r} cm.", sort=True)
+
+
+_CEM_BIL = [("Bir çemberde çizilebilecek çap sayısı", "Sonsuz sayıda", ["1", "2", "4"], "Merkezden geçen sonsuz sayıda doğru parçası çizilebilir; hepsi çaptır."),
+            ("Bir çemberin bütün yarıçaplarının uzunluğu", "birbirine eşittir", ["farklı farklıdır", "çapa eşittir", "çapın iki katıdır"], "Çemberin üzerindeki her noktanın merkeze uzaklığı eşittir."),
+            ("Bir çemberdeki en uzun kiriş", "çaptır", ["yarıçaptır", "yaydır", "teğettir"], "Merkezden geçen kiriş çaptır ve en uzun kirişdir."),
+            ("Çapın uzunluğu yarıçapın uzunluğunun", "2 katıdır", ["yarısıdır", "3 katıdır", "4 katıdır"], "Çap = 2 × yarıçap."),
+            ("Bir çemberin merkezi", "çember üzerindeki tüm noktalara eşit uzaklıktadır", ["çemberin üzerindedir", "çapın bir ucudur", "kirişin ortasında kesinlikle bulunmaz"], "Merkez, çember üzerindeki bütün noktalara eşit uzaklıktadır.")]
+
+
+def _mf_cem_bilgi(subject):
+    s, c, wr, ex = random.choice(_CEM_BIL)
+    return _mfn("Çember ve daire elemanları", f"{s} için aşağıdakilerden hangisi doğrudur?" if False else f"“{s} ...” ifadesi aşağıdakilerden hangisiyle doğru tamamlanır?", c, wr, ex)
+
+
+_CGOZ = {"kare": ["Dört kenarının uzunluğu eşittir.", "Dört açısı da diktir.", "Karşılıklı kenarları paraleldir."],
+       "dikdörtgen": ["Karşılıklı kenarlarının uzunlukları eşittir.", "Dört açısı da diktir.", "Karşılıklı kenarları paraleldir."]}
+_CGOZ_YOK = {"kare": ["Yalnızca iki kenarı eşittir.", "Hiçbir açısı dik değildir.", "Üç köşesi vardır."], "dikdörtgen": ["Dört kenarı her zaman eşittir.", "Hiçbir açısı dik değildir.", "Üç kenarı vardır."]}
+
+
+def _mf_cg_ozellik(subject):
+    k = random.choice(list(_CGOZ))
+    c = random.choice(_CGOZ[k])
+    return _mfn("Çokgenlerin elemanları", f"{k.capitalize()} bir çokgendir. Aşağıdakilerden hangisi {k} için doğrudur?", c, _CGOZ_YOK[k] + ["Bütün kenarları paralel ve köşesi dörttür." if False else "Yalnızca bir köşesi vardır."], f"Doğru ifade: “{c}” {k.capitalize()} için geçerli bir özelliktir; diğer seçenekler {k} için doğru değildir.")
+
+
+def _mf_cem_pergel(subject):
+    r = random.randint(2, 12)
+    return _mfn("Çember ve daire elemanları", f"Pergelin iki ucu arasındaki açıklık {r} cm olarak ayarlanıp bir çember çiziliyor. Çizilen çemberin çapı kaç cm’dir?", 2 * r, _wrongs_num(2 * r, [r, 2, 3]), f"Pergel açıklığı çemberin yarıçapıdır; çap = 2 × {r} = {2 * r} cm.", sort=True)
+
+
+# ---- Temel geometrik çizimler: doğru, ışın, paralel/dik
+_ALET = [("dik doğru çizmek için", "gönye"), ("bir çember çizmek için", "pergel"), ("bir açının ölçüsünü bulmak için", "açıölçer"), ("bir doğru parçasının uzunluğunu ölçmek için", "cetvel")]
+
+
+def _mf_dg_alet(subject):
+    s, c = random.choice(_ALET)
+    return _mfn("Geometrik çizimler", f"{s.capitalize()} en uygun araç hangisidir?", c, [a for _, a in _ALET if a != c] + ["hesap makinesi"], f"{s.capitalize()} {c} kullanılır.")
+
+
+def _mf_dg_say(subject):
+    n = random.choice([3, 4, 5, 6])
+    v = n * (n - 1) // 2
+    ad = ", ".join("ABCDEF"[:n])
+    return _mfn("Doğru, ışın, doğru parçası", f"Doğrusal olmayan {ad} noktalarından ikişer nokta birleştirilerek kaç farklı doğru parçası çizilebilir? (Hiçbir üç nokta aynı doğru üzerinde değildir.)", v, _wrongs_num(v, [1, 2, n]), f"Her nokta diğer {n - 1} noktayla birleşir; çiftler iki kez sayıldığı için {n} × {n - 1} ÷ 2 = {v}.", sort=True)
+
+
+_DG_BIL = [("İki farklı noktadan geçen doğru sayısı", "bir tanedir", ["iki tanedir", "sonsuzdur", "hiç yoktur"]),
+           ("Bir doğru parçasının", "iki ucu vardır", ["bir ucu vardır", "hiç ucu yoktur", "üç ucu vardır"]),
+           ("Bir ışının", "bir başlangıç noktası vardır ve bir yönde sonsuza uzanır", ["iki başlangıç noktası vardır", "iki yönde sonsuza uzanır", "iki ucu da sınırlıdır"]),
+           ("Bir doğrunun", "her iki yönde de sonsuza uzandığı kabul edilir", ["bir ucu vardır", "uzunluğu ölçülebilir", "yalnızca bir yönde sonsuza uzanır"]),
+           ("Birbirini kesmeyen ve aralarındaki uzaklık hep aynı kalan doğrulara", "paralel doğrular denir", ["dik doğrular denir", "kesişen doğrular denir", "ışın denir"]),
+           ("Kesiştiklerinde aralarında dik açı oluşturan doğrulara", "dik doğrular denir", ["paralel doğrular denir", "ışın denir", "açıortay denir"])]
+
+
+def _mf_dg_bilgi(subject):
+    s, c, wr = random.choice(_DG_BIL)
+    return _mfn("Doğru, ışın, doğru parçası", f"“{s} ...” ifadesi aşağıdakilerden hangisiyle doğru tamamlanır?", c, wr, f"{s} {c}.")
+
+
+def _mf_dg_paralel(subject):
+    k = random.choice([("Bir doğrunun dışındaki bir noktadan geçen ve bu doğruya paralel olan kaç tane doğru çizilebilir?", "1", "Verilen noktadan geçen ve doğruya paralel yalnızca bir doğru çizilebilir."),
+                       ("Bir doğru üzerindeki bir noktadan geçen ve bu doğruya dik olan kaç tane doğru çizilebilir?", "1", "O noktadan geçen ve doğruya dik yalnızca bir doğru çizilebilir.")])
+    return _mfn("Paralel ve dik doğrular", k[0], k[1], ["2", "3", "sonsuz sayıda"], k[2])
+
+
+# ---- Dikdörtgenin çevre ve alanı
+def _mf_ca_karesay(subject):
+    a, b = random.choice([(6, 4), (8, 3), (5, 6), (9, 2), (7, 4), (10, 3), (12, 2)])
+    n = a * b
+    return _mfn("Alan ölçme", f"Kenarı 1 cm olan {n} tane kare, boşluk kalmayacak biçimde dikdörtgen oluşturacak şekilde dizilecektir. Uzun kenarı {a} cm ise kısa kenarı kaç cm olur?" if False else f"Kenarı 1 cm olan {n} tane kare birim boşluk kalmadan dikdörtgen şeklinde diziliyor. Uzun kenar {a} cm ise kısa kenar kaç cm’dir?", b, _wrongs_num(b, [1, 2, 3]), f"Alan {n} cm²’dir; {n} ÷ {a} = {b} cm.", sort=True)
+
+
+def _mf_ca_halı(subject):
+    a, b = random.choice([(6, 4), (5, 3), (7, 4), (8, 5), (6, 5)])
+    f = random.choice([40, 50, 60, 75, 80])
+    v = a * b * f
+    return _mfn("Alan problemleri", f"Zemini {a} m × {b} m olan dikdörtgen biçimli bir odaya, metrekaresi {f} TL olan halı döşenecektir. Halı için toplam kaç TL ödenir?", v, _wrongs_num(v, [f, 2 * f, 10 * f]) + [2 * (a + b) * f], f"Alan {a} × {b} = {a * b} m²; ücret {a * b} × {f} = {v} TL.", sort=True)
+
+
+def _mf_ca_tel(subject):
+    a, b = random.choice([(12, 8), (15, 10), (20, 10), (18, 12), (25, 15)])
+    k = random.choice([2, 3, 4])
+    v = 2 * (a + b) * k
+    return _mfn("Çevre uzunluğu", f"Kenar uzunlukları {a} m ve {b} m olan dikdörtgen biçimli bahçenin çevresine {k} sıra tel çekilecektir. Kaç metre tel gerekir?", v, _wrongs_num(v, [10, 2 * (a + b), a * b]) , f"Bir sıra tel çevre uzunluğu kadardır: 2 × ({a} + {b}) = {2 * (a + b)} m; {k} sıra için {2 * (a + b)} × {k} = {v} m.", sort=True)
+
+
+def _mf_ca_kare_cevre(subject):
+    a = random.randint(3, 15)
+    c = 4 * a
+    if random.random() < .5:
+        return _mfn("Alan problemleri", f"Çevresi {c} cm olan karenin alanı kaç cm²’dir?", a * a, _wrongs_num(a * a, [a, 2 * a, 4]) + [c], f"Kenar {c} ÷ 4 = {a} cm; alan {a} × {a} = {a * a} cm².", sort=True)
+    return _mfn("Çevre uzunluğu", f"Bir kenarı {a} cm olan karenin çevresi kaç cm’dir?", c, _wrongs_num(c, [a, 2 * a, 4]) + [a * a], f"Çevre 4 × {a} = {c} cm.", sort=True)
+
+
+def _mf_ca_kiyas(subject):
+    p = random.sample([(8, 5), (6, 7), (9, 4), (10, 3), (7, 5), (6, 6), (12, 2), (11, 4)], 2)
+    A = [x * y for x, y in p]
+    if A[0] == A[1]:
+        return None
+    big = random.random() < .5
+    pick = max(range(2), key=lambda i: A[i]) if big else min(range(2), key=lambda i: A[i])
+    q = f"Kenar uzunlukları {p[0][0]} cm ve {p[0][1]} cm olan birinci dikdörtgen ile {p[1][0]} cm ve {p[1][1]} cm olan ikinci dikdörtgenin alanları karşılaştırılıyor. Aşağıdakilerden hangisi doğrudur?"
+    sg = ["Birinci dikdörtgenin alanı daha büyüktür.", "İkinci dikdörtgenin alanı daha büyüktür.", "İki dikdörtgenin alanları eşittir."]
+    c = sg[0] if A[0] > A[1] else sg[1]
+    return _mfn("Alan ölçme", q, c, [x for x in sg if x != c] + ["Alanlar karşılaştırılamaz."], f"Alanlar: {p[0][0]} × {p[0][1]} = {A[0]} cm² ve {p[1][0]} × {p[1][1]} = {A[1]} cm².")
+
+
+def _mf_ca_kenar(subject):
+    a = random.randint(3, 9)
+    b = a + random.randint(1, 6)
+    A = a * b
+    return _mfn("Alan problemleri", f"Alanı {A} cm² olan dikdörtgenin kısa kenarı {a} cm’dir. Bu dikdörtgenin çevresi kaç cm’dir?", 2 * (a + b), _wrongs_num(2 * (a + b), [2, 4, 6]) + [A], f"Uzun kenar {A} ÷ {a} = {b} cm; çevre 2 × ({a} + {b}) = {2 * (a + b)} cm.", sort=True)
+
+
+def _mf_ca_tur(subject):
+    a, b = random.choice([(40, 20), (50, 30), (60, 40), (80, 20), (100, 50)])
+    t = random.choice([2, 3, 4, 5])
+    v = 2 * (a + b) * t
+    return _mfn("Çevre uzunluğu", f"Kenar uzunlukları {a} m ve {b} m olan dikdörtgen biçimli bir parkın çevresinde {t} tur yürüyen Kaan toplam kaç metre yol yürümüş olur?", v, _wrongs_num(v, [a, 2 * (a + b), 100]) , f"Bir tur 2 × ({a} + {b}) = {2 * (a + b)} m; {t} tur {2 * (a + b)} × {t} = {v} m.", sort=True)
+
+
+def _mf_ca_esitcevre(subject):
+    a = random.randint(6, 12)
+    c = 4 * a
+    r1 = a + random.randint(2, 4)
+    r2 = c // 2 - r1
+    if r2 <= 0 or r1 * r2 >= a * a or r1 == r2:
+        return None
+    d = a * a - r1 * r2
+    return _mfn("Alan problemleri", f"Çevresi {c} cm olan bir kare ile kenar uzunlukları {r1} cm ve {r2} cm olan bir dikdörtgenin çevreleri eşittir. Karenin alanı dikdörtgenin alanından kaç cm² fazladır?", d, _wrongs_num(d, [1, 2, 4]), f"Kare: {a} × {a} = {a * a} cm²; dikdörtgen: {r1} × {r2} = {r1 * r2} cm². Fark {d} cm².", sort=True)
+
+
+_NEW_MAT = [
+    # (fn, kw, item, diff)
+    (_mf_say_oku, ("milyon", "basamak", "sayı okuma"), "Sayı okuma-yazma", 2), (_mf_say_rakam, ("basamak", "milyon"), "Basamak değeri", 3),
+    (_mf_say_komsu, ("milyon", "basamak"), "Milyonlu sayılar", 2), (_mf_say_yuvar, ("milyon", "basamak"), "Milyonlu sayılar", 3),
+    (_mf_say_basdeg2, ("basamak", "milyon"), "Basamak değeri", 3), (_mf_say_karsi, ("milyon", "basamak"), "Milyonlu sayılar", 2),
+    (_mf_kes_tur, ("kesir",), "Kesir türleri", 1), (_mf_kes_esit, ("kesir",), "Kesir türleri", 2), (_mf_kes_sadele, ("kesir",), "Kesir türleri", 3),
+    (_mf_kes_sayidog, ("kesir",), "Kesir sıralama", 2), (_mf_kes_yari, ("kesir",), "Kesir sıralama", 2),
+    (_mf_kes_tamtopla, ("kesir",), "Kesirlerle toplama-çıkarma", 3), (_mf_kes_okuma, ("kesir",), "Kesirlerle toplama-çıkarma", 2), (_mf_kes_tersi, ("kesir",), "Kesirlerle toplama-çıkarma", 4),
+    (_mf_ond_yaz, ("ondalık",), "Ondalık gösterim", 2), (_mf_ond_basdeg, ("ondalık",), "Ondalık gösterim", 3), (_mf_ond_kesir, ("ondalık",), "Ondalık gösterim", 2),
+    (_mf_ond_carp, ("ondalık",), "Ondalık gösterim", 3), (_mf_ond_birim, ("ondalık",), "Ondalık gösterim", 3), (_mf_ond_aralik, ("ondalık",), "Ondalık gösterim", 3),
+    (_mf_yuz_oran, ("yüzde",), "Yüzde kavramı", 3), (_mf_yuz_kesir, ("yüzde",), "Yüzde kavramı", 2), (_mf_yuz_indirim, ("yüzde",), "Yüzde kavramı", 3),
+    (_mf_aci_siniflama, ("açı ölç", "açı tür"), "Açı türleri", 1), (_mf_aci_hangi, ("açı ölç", "açı tür"), "Açı türleri", 1), (_mf_aci_saat, ("açı ölç", "açı tür"), "Açı ölçme ve çizme", 3),
+    (_mf_aci_olcer, ("açı ölç",), "Açı ölçme ve çizme", 3), (_mf_aci_say, ("açı ölç", "açı tür"), "Açı türleri", 2), (_mf_aci_ortay2, ("açıortay",), "Açıortay", 3),
+    (_mf_aci_yarim, ("açı ölç", "açı tür"), "Açı ölçme ve çizme", 2), (_mf_aci_toplam2, ("açı ölç", "açı tür"), "Açı türleri", 3),
+    (_mf_cg_kose, ("çokgen",), "Çokgenlerin elemanları", 1), (_mf_cg_cevre, ("çokgen",), "Çokgenlerin elemanları", 2), (_mf_cem_cap, ("çember",), "Çember ve daire elemanları", 2),
+    (_mf_cem_bilgi, ("çember",), "Çember ve daire elemanları", 2), (_mf_cg_ozellik, ("çokgen",), "Çokgenlerin elemanları", 2), (_mf_cem_pergel, ("çember",), "Çokgen çizimi", 3),
+    (_mf_dg_alet, ("geometrik çizim", "dik doğru", "paralel"), "Geometrik çizimler", 1), (_mf_dg_say, ("doğru parçası", "ışın"), "Doğru, ışın, doğru parçası", 4),
+    (_mf_dg_bilgi, ("doğru parçası", "ışın", "paralel"), "Doğru, ışın, doğru parçası", 1), (_mf_dg_paralel, ("paralel", "dik doğru"), "Paralel ve dik doğrular", 2),
+    (_mf_ca_karesay, ("alan ölç", "alan", "çevre"), "Alan ölçme", 2), (_mf_ca_halı, ("alan problem", "alan", "çevre"), "Alan problemleri", 3), (_mf_ca_tel, ("çevre", "alan"), "Çevre uzunluğu", 3),
+    (_mf_ca_kare_cevre, ("çevre", "alan"), "Alan problemleri", 3), (_mf_ca_kiyas, ("alan ölç", "alan"), "Alan ölçme", 2), (_mf_ca_kenar, ("alan", "çevre"), "Alan problemleri", 3),
+    (_mf_ca_tur, ("çevre", "alan"), "Çevre uzunluğu", 2), (_mf_ca_esitcevre, ("çevre", "alan"), "Alan problemleri", 4),
+]
+for _f, _kw, _it, _df in _NEW_MAT:
+    _f.ITEM = _it
+    _MF_GENS.append((_f, _kw, (5,)))
+    _DIFF_OF[_f.__name__] = _df
+
+
 def _tr_par_pick():
     return random.choice(_TR_PAR)
 
@@ -13152,6 +13812,87 @@ _GEN_SUBS = [  # anlamı değiştirmeyen, yalnızca açılış/bağlaç çeşitl
     (r"kaç santimetredir\?", ["kaç santimetredir?", "kaç cm’dir?"]),
 ]
 
+
+
+# ---- Matematik 5: aynı kökün sadece rakamla değişmesini önleyen ek anlatım/bağlam seçenekleri
+_STEM_ALTS.update({
+    "Aşağıdaki ölçülerden hangisi bir geniş açıya aittir?": ["Verilen ölçülerden hangisi geniş açı belirtir?", "Seçeneklerde verilen ölçülerden hangisi bir geniş açının ölçüsü olabilir?", "Aşağıdakilerden hangisi geniş açı olarak adlandırılan bir açının ölçüsüdür?"],
+    "Aşağıdaki ölçülerden hangisi bir dar açıya aittir?": ["Verilen ölçülerden hangisi dar açı belirtir?", "Seçeneklerde verilen ölçülerden hangisi bir dar açının ölçüsü olabilir?", "Aşağıdakilerden hangisi dar açı olarak adlandırılan bir açının ölçüsüdür?"],
+    "Paydaları eşit olan kesirlerden hangisi en büyüktür?": ["Payda değerleri aynı olan kesirler arasından en büyük olanı hangisidir?", "Aşağıdaki kesirlerin paydaları eşittir. Hangisinin değeri en büyüktür?", "Paydaları aynı olan bu kesirlerden büyüklüğü en fazla olan hangisidir?"],
+    "Paydaları eşit olan kesirlerden hangisi en küçüktür?": ["Payda değerleri aynı olan kesirler arasından en küçük olanı hangisidir?", "Aşağıdaki kesirlerin paydaları eşittir. Hangisinin değeri en küçüktür?", "Paydaları aynı olan bu kesirlerden büyüklüğü en az olan hangisidir?"],
+    "Aşağıdaki kesirleri karşılaştırdığımızda değeri en büyük olan hangisidir?": ["Verilen kesirler büyüklüklerine göre karşılaştırıldığında hangisi en büyüktür?", "Aşağıdaki kesirlerden hangisinin değeri diğerlerinden büyüktür?", "Kesirler sayı doğrusunda gösterilseydi en sağda yer alan kesir hangisi olurdu?"],
+    "Aşağıdaki kesirleri karşılaştırdığımızda değeri en küçük olan hangisidir?": ["Verilen kesirler büyüklüklerine göre karşılaştırıldığında hangisi en küçüktür?", "Aşağıdaki kesirlerden hangisinin değeri diğerlerinden küçüktür?", "Kesirler sayı doğrusunda gösterilseydi en solda yer alan kesir hangisi olurdu?"],
+})
+_STEM_RX += [
+    (r"^Ölçüleri (\d+)° ve (\d+)° olan iki açı yan yana getirilerek tek bir açı oluşturuluyor\. Oluşan açı hangi türdendir\?$",
+     [r"Ölçüleri \1° ve \2° olan iki açı ortak bir kenar boyunca birleştiriliyor. Elde edilen açı hangi türdendir?",
+      r"Ali, ölçüleri \1° ve \2° olan iki açıyı köşelerini çakıştırarak yan yana koyuyor. Oluşan yeni açı hangi türdendir?",
+      r"Bir çizimde \1°’lik ve \2°’lik iki açı ardışık olarak çizilmiştir. Bu iki açının birleşimi hangi türde bir açıdır?",
+      r"\1° ile \2° ölçüsündeki açılar bitişik olacak biçimde çizilirse oluşan toplam açı hangi türdendir?"]),
+    (r"^Bir açının açıortayı çizildiğinde oluşan iki açıdan her biri (\d+)° ölçüsündedir\. Çizilen açının ölçüsü kaç derecedir\?$",
+     [r"Açıortay çizilen bir açının oluşan iki parçasından her birinin ölçüsü \1°’dir. Bu açının ölçüsü kaç derecedir?",
+      r"Bir açı, açıortayla iki eş açıya ayrılmıştır. Eş açılardan her biri \1° olduğuna göre ilk açının ölçüsü kaç derecedir?",
+      r"Açıortayı çizilen bir açıda oluşan eş açılardan biri \1°’dir. Açının tamamı kaç derecedir?"]),
+    (r"^Ölçüsü (\d+)° olan bir açının açıortayı bu açıyı iki eş açıya ayırıyor\. Oluşan açılardan her birinin ölçüsü kaç derecedir\?$",
+     [r"\1° ölçüsündeki bir açının açıortayı çizilirse oluşan açılardan her biri kaç derece olur?",
+      r"Ölçüsü \1° olan açı, açıortayıyla ikiye bölünüyor. Ortaya çıkan eş açılardan biri kaç derecedir?",
+      r"Bir açıortay, ölçüsü \1° olan açıyı iki eş parçaya ayırır. Her bir parçanın ölçüsü kaç derecedir?"]),
+    (r"^Saat tam (\d+\.\d+)’u gösterirken akrep ile yelkovan arasındaki küçük açı kaç derecedir\?$",
+     [r"Bir duvar saati tam \1’u gösteriyor. Akrep ile yelkovan arasındaki küçük açının ölçüsü kaç derecedir?",
+      r"Saat \1 olduğunda akrep ile yelkovanın oluşturduğu küçük açı kaç derecedir?",
+      r"Mert saatine baktığında tam \1 olduğunu görüyor. Akrep ve yelkovan arasındaki küçük açı kaç derecedir?"]),
+    (r"^Saat tam (\d+\.\d+)’u gösterirken akrep ile yelkovan arasındaki küçük açı hangi türdendir\?$",
+     [r"Bir duvar saati tam \1’u gösteriyor. Akrep ile yelkovan arasındaki küçük açı hangi türdendir?",
+      r"Saat \1 olduğunda akrep ile yelkovanın oluşturduğu küçük açı hangi türdendir?",
+      r"Elif saatine baktığında tam \1 olduğunu görüyor. Akrep ve yelkovan arasındaki küçük açı hangi türdendir?"]),
+    (r"^Ölçüleri ([\d°, ]+) olan altı açıdan kaç tanesi (dar|geniş) açıdır\?$",
+     [r"Bir öğretmen tahtaya ölçüleri \1 olan altı açı çizmiştir. Bunlardan kaç tanesi \2 açıdır?",
+      r"Altı açının ölçüleri sırasıyla \1 olarak verilmiştir. Bu açıların kaç tanesi \2 açıdır?",
+      r"\1 ölçülerindeki açılar arasında kaç tane \2 açı vardır?"]),
+    (r"^Ölçüsü (\d+)° olan açı hangi türdendir\?$",
+     [r"\1° ölçüsündeki bir açı hangi türde açıdır?",
+      r"Ayşe, açıölçerle bir açıyı ölçüyor ve \1° buluyor. Bu açı hangi türdendir?",
+      r"Ölçüsü \1° olan bir açının adı aşağıdakilerden hangisidir?",
+      r"Aşağıdakilerden hangisi ölçüsü \1° olan açının türünü doğru olarak verir?"]),
+    (r"^Bir sayının (\d+/\d+)’i (\d+) ise bu sayının tamamı kaçtır\?$",
+     [r"Bir sayının \1’i \2 olduğuna göre bu sayının tamamı kaçtır?",
+      r"Bir torbadaki bilyelerin \1’i \2 tanedir. Torbada kaç bilye vardır?",
+      r"Bir kitabın \1’i \2 sayfadır. Kitap kaç sayfadır?",
+      r"Bir sınıfın \1’i \2 kişidir. Sınıfta kaç kişi vardır?"]),
+    (r"^(\d+/\d+) kesrinin en sade \(sadeleşmiş\) hâli aşağıdakilerden hangisidir\?$",
+     [r"\1 kesrini sadeleştirdiğimizde aşağıdakilerden hangisi elde edilir?",
+      r"Aşağıdakilerden hangisi \1 kesrinin en sade biçimidir?",
+      r"\1 kesri, pay ve paydası ortak çarpanlarına bölünerek en sade hâline getirilirse hangi kesir bulunur?"]),
+    (r"^(\d+/\d+) = □/(\d+) eşitliğinde □ yerine hangi sayı gelmelidir\?$",
+     [r"\1 kesrine denk olan □/\2 kesrinde □ yerine hangi sayı yazılmalıdır?",
+      r"\1 ile □/\2 kesirleri eşit olduğuna göre □ kaçtır?",
+      r"Genişletme yapılarak \1 kesri paydası \2 olan kesre dönüştürülürse payı kaç olur?"]),
+    (r"^(\d+/\d+) kesrine eşit olan kesir aşağıdakilerden hangisidir\?$",
+     [r"Aşağıdaki kesirlerden hangisi \1 kesrine denktir?",
+      r"\1 kesrinin genişletilmesi veya sadeleştirilmesiyle elde edilen kesir aşağıdakilerden hangisidir?",
+      r"Hangi kesir \1 kesriyle aynı değeri gösterir?"]),
+    (r"^Sayı doğrusunda (\d+) ile (\d+) arası (\d+) eş parçaya bölünmüştür\. (\d+)’dan başlayarak sayılan (\d+)\. çizgi hangi kesri gösterir\?$",
+     [r"Sayı doğrusunda \1 ile \2 arası \3 eş parçaya bölünmüştür. \4 noktasından başlayarak \5. çizgi hangi kesre karşılık gelir?",
+      r"\1 ile \2 arasındaki uzunluk sayı doğrusunda \3 eş parçaya bölünmüştür. \4’dan sayılan \5. çizgi hangi kesri gösterir?",
+      r"Bir sayı doğrusunda \1 ile \2 arası \3 eşit aralığa ayrılmıştır. \4’dan itibaren \5. işaret hangi kesirdir?"]),
+    (r"^Aşağıdaki kesirlerden hangisi (\d+/\d+)’den (büyük|küçük)tür\?$",
+     [r"Verilen kesirlerden hangisi \1’den \2tür?",
+      r"Aşağıdaki kesirlerden hangisinin değeri \1’den \2tür?",
+      r"Seçeneklerdeki kesirlerden hangisi \1 kesrinden \2 bir değer belirtir?"]),
+    (r"^(\d+ \d+/\d+) ([+−]) (\d+ \d+/\d+) işleminin sonucu aşağıdakilerden hangisidir\?$",
+     [r"\1 \2 \3 işleminin sonucu kaçtır?",
+      r"Tam sayılı kesirlerle yapılan \1 \2 \3 işleminin sonucu aşağıdakilerden hangisine eşittir?"]),
+    (r"^(\d+/\d+) bileşik kesri hangi tam sayılı kesre eşittir\?$",
+     [r"\1 bileşik kesri aşağıdaki tam sayılı kesirlerden hangisine eşittir?",
+      r"Aşağıdaki tam sayılı kesirlerden hangisi \1 bileşik kesrine denktir?",
+      r"\1 bileşik kesrini tam sayılı kesir olarak yazarsak hangisi elde edilir?"]),
+    (r"^(\d+ \d+/\d+) tam sayılı kesri hangi bileşik kesre eşittir\?$",
+     [r"\1 tam sayılı kesri aşağıdaki bileşik kesirlerden hangisine eşittir?",
+      r"Aşağıdaki bileşik kesirlerden hangisi \1 tam sayılı kesrine denktir?",
+      r"\1 tam sayılı kesrini bileşik kesir olarak yazarsak hangisi elde edilir?"]),
+]
+# (yanlış kurulmuş şablon kalmasın)
+_STEM_RX[:] = [(rx, [t for t in tp if not t.endswith("_X")]) for rx, tp in _STEM_RX]
 
 def _stem_vary(fn):
     if getattr(fn, "_sv", False):
