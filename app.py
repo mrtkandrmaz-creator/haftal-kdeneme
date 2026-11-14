@@ -4932,9 +4932,9 @@ GEMINI_MODEL = "gemini-3.6-flash"
 GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct", "qwen/qwen3-32b",
                "llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
 GEMINI_MODELS = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"]
-POOL_MAX_WAIT = 45      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
+POOL_MAX_WAIT = 8      # hepsi soğumadaysa en çok bu kadar sn bekleyip yeniden dene
 HEDGE_AFTER = 5        # sn; bir model bu sürede yanıt vermezse BEKLEMEDEN sıradaki model de başlatılır (ilk gelen kazanır)
-POOL_DEADLINE = 90      # tek istek için toplam üst süre (sn)
+POOL_DEADLINE = 30      # tek istek için toplam üst süre (sn)
 SYSTEM = ("Sen MEB Türkiye Yüzyılı Maarif Modeli soru hazırlama uzmanısın. Bağlam temelli, görsel ve veri yoğun, "
           "yorum ve mantık yürütmeye dayalı yeni nesil sorular yazarsın. Paragraf, metin, tablo ve şema sorularında "
           "asla kesinti yapmaz, eksiksiz üretirsin. Yalnızca geçerli JSON döndürürsün.")
@@ -4952,8 +4952,8 @@ GEN_REASONING = {"Matematik": "low", "Fen Bilimleri": "low"}  # hesap gerektiren
 VERIFY_GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.3-70b-versatile"]
 VERIFY_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
 VERIFY_DEADLINE = 25  # sn; doğrulayıcı yanıt vermezse sorular doğrulanmadan korunur
-GEN_BUDGET = 120      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
-MAX_ROUNDS = 5        # istenen sayıya ulaşmak için en çok tur
+GEN_BUDGET = 30      # sn; bu süreden sonra yeni tamamlama turu başlatılmaz
+MAX_ROUNDS = 2        # istenen sayıya ulaşmak için en çok tur
 OYSS_CHUNK = 5        # yazılı sınavda tek istekteki soru sayısı
 
 
@@ -19365,6 +19365,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                 need = n - len(st_["qs"])
                 if need <= 0 or (no_keys and not demo_mode()):
                     break
+                if str(grade_label)[:1] == "5" and not like and not focus.strip() and not demo_mode() and os.environ.get("DENEMEMATIK_AI5") != "1" and subj in ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "İngilizce"):
+                    break  # 5. sınıf: kodla hesaplanan hatasız kalıplar yeterli; yapay zekâ beklemesi yok (eksik kalırsa aşağıdaki kademeler doldurur)
                 if rnd > 0 and (time.time() - T0 > GEN_BUDGET or st_["fails"] >= 3):
                     break
                 sizes, left = [], need
