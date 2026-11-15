@@ -13084,7 +13084,7 @@ def _yn_pick(t_true, t_false):
     return (t_true if b else t_false, b)
 
 
-def _yn_rom(topic, passage, q, stmts, ex, shape=None):
+def _yn_rom(topic, passage, q, stmts, ex, shape=None, subject="Matematik"):
     idx = [i for i, (_t, b) in enumerate(stmts) if b]
     if not idx:
         return None
@@ -13095,7 +13095,7 @@ def _yn_rom(topic, passage, q, stmts, ex, shape=None):
     random.shuffle(wr)
     ps = passage + "\n" + "\n".join(f"{_YN_R[i]}. {t}" for i, (t, _b) in enumerate(stmts))
     o = _mf_opts(cor, wr[:3], str, sort=False)
-    return _mf_raw("Matematik", _MFN_TOPIC.get(topic, topic), q, o, ex, shape=shape, passage=ps) if o else None
+    return _mf_raw(subject, _MFN_TOPIC.get(topic, topic) if subject == "Matematik" else topic, q, o, ex, shape=shape, passage=ps) if o else None
 
 
 def _yn_f(x):
@@ -13505,6 +13505,279 @@ for _f, _kw, _it, _df in _NEW_YN2:
     _f.ITEM = _it
     _MF_GENS.append((_f, _kw, (5,)))
     _DIFF_OF[_f.__name__] = _df
+
+
+
+# ---- Fen 5: YENİ NESİL (deney tablosu, dinamometre şekli, öncüllü yargı ve bağlamlı senaryo) soruları
+_FY_EXP = [
+    # (anahtar, konu, ITEM, kw, giriş, başlık, x başlığı, y başlığı, x etiketleri, değer kipi, birim, değişen, gözlenen, sabit[], tahmin)
+    ("yay", "Kuvvetin ölçülmesi", "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton)", ("kuvvet", "dinamometre", "ölçül"),
+     "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.", "Yayın uzaması", "Asılan cisim sayısı", "Yayın boyundaki uzama (cm)",
+     [1, 2, 3, 4], "lin", "cm", "Asılan cisim sayısı", "Yayın boyundaki uzama miktarı", ["Deneyde kullanılan yay", "Asılan cisimlerin özdeş olması"], True),
+    ("kutle", "Kütle ve ağırlık", "Kütle, yer çekimi ve ağırlık", ("kuvvet", "ağırlık", "dinamometre", "kütle"),
+     "Selin, Dünya'da kütleleri bilinen cisimlerin ağırlığını aynı dinamometreyle ölçüyor ve sonuçları kaydediyor.", "Kütle ve ağırlık", "Cismin kütlesi (kg)", "Ölçülen ağırlık (N)",
+     [1, 2, 3, 4], "lin10", "N", "Cismin kütlesi", "Cismin ağırlığı", ["Ölçümün yapıldığı yer", "Kullanılan dinamometre"], True),
+    ("yuzey", "Sürtünme kuvveti", "Sürtünme kuvveti ve etkileri", ("sürtünme", "kuvvet"),
+     "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.", "Arabanın aldığı yol", "Zemin", "Arabanın yaptığı yol (cm)",
+     ["cam", "ahşap", "halı", "kum", "zımpara"], "cat", "cm", "Zeminin cinsi", "Arabanın durana kadar aldığı yol", ["Arabanın bırakıldığı yükseklik", "Kullanılan oyuncak araba"], False),
+    ("iletim", "Isı iletimi", "Isı iletimi", ("ısı", "iletim", "madde", "sıcaklık"),
+     "Ayşe, aynı boyutlardaki farklı maddelerden yapılmış çubukların uçlarına tereyağı yapıştırıp diğer uçlarını aynı alevle ısıtıyor ve tereyağının erime süresini ölçüyor.", "Tereyağının erime süresi", "Çubuğun maddesi", "Erime süresi (sn)",
+     ["bakır", "alüminyum", "demir", "cam", "tahta"], "cat", "sn", "Çubuğun yapıldığı madde", "Tereyağının erime süresi", ["Çubukların boyutu", "Isıtma alevi"], False),
+    ("buz", "Hâl değişimleri", "Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama)", ("erime", "ısı", "sıcaklık", "madde", "değişim"),
+     "Can, aynı büyüklükteki buz parçalarını farklı sıcaklıktaki odalara bırakıp tamamen erimeleri için geçen süreyi ölçüyor.", "Buzun erime süresi", "Oda sıcaklığı (°C)", "Erime süresi (dk)",
+     [10, 20, 30, 40], "dec", "dk", "Ortamın sıcaklığı", "Buzun tamamen erime süresi", ["Buz parçalarının büyüklüğü", "Buzların konulduğu kap"], False),
+    ("isit", "Isı ve sıcaklık", "Isı ve sıcaklık", ("ısı", "sıcaklık", "madde"),
+     "Deniz, bir kaptaki suyu sabit alevle ısıtıyor ve her 2 dakikada bir termometreyle sıcaklığı okuyor.", "Suyun ısınması", "Isıtma süresi (dk)", "Termometre okuması (°C)",
+     [2, 4, 6, 8], "lin_off", "°C", "Suyun ısıtılma zamanı", "Suyun ulaştığı sıcaklık", ["Isıtılan suyun miktarı", "Kullanılan ısı kaynağı"], True),
+    ("ampul", "Elektrik devresi", "Ampul parlaklığını etkileyen değişkenler", ("elektrik", "devre", "ampul", "pil"),
+     "Elif, özdeş pillerle kurduğu seri devreye özdeş ampulleri art arda bağlıyor ve ampullerin parlaklığını bir ışık ölçerle ölçüyor.", "Ampul parlaklığı", "Seri bağlı ampul sayısı", "Parlaklık (birim)",
+     [1, 2, 3, 4], "dec", "birim", "Seri bağlanan ampul sayısı", "Ampullerin parlaklığı", ["Devredeki pillerin özdeş olması", "Bağlantı kabloları"], False),
+    ("golge", "Gölge", "Gölge oluşumu ve tam gölge", ("gölge", "ışık"),
+     "Zeynep, ışık kaynağından aynı uzaklığa farklı boylardaki çubukları dikip perdeye düşen gölgelerin boyunu ölçüyor.", "Gölge boyu", "Çubuğun boyu (cm)", "Gölge boyu (cm)",
+     [5, 10, 15, 20], "lin", "cm", "Çubuğun boyu", "Gölgenin boyu", ["Işık kaynağı ile çubuk arasındaki uzaklık", "Kullanılan ışık kaynağı"], True),
+    ("gecirme", "Saydam, yarı saydam ve opak maddeler", "Saydam, yarı saydam ve opak maddeler", ("saydam", "opak", "ışık"),
+     "Berk, ışık kaynağı ile perde arasına farklı malzemeler yerleştirip perdeye ulaşan ışığın miktarını ölçüyor.", "Perdeye ulaşan ışık", "Malzeme", "Perdeye ulaşan ışık (birim)",
+     ["cam", "yağlı kâğıt", "karton", "pleksiglas", "alüminyum folyo"], "cat", "birim", "Işığın önüne konulan malzemenin cinsi", "Perdeye ulaşan ışık miktarı", ["Kullanılan ışık kaynağı", "Kaynağın perdeye uzaklığı"], False),
+    ("kuf", "Mikroskobik canlılar ve mantarlar", "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma", ("mantar", "canlı", "mikroskobik", "canlılar dünyası"),
+     "Defne, aynı ekmeklerden alınan dilimleri farklı ortamlarda bekletip bir hafta sonra küf oluşan alanı ölçüyor.", "Küf oluşumu", "Bekletilen ortam", "Küf alanı (cm²)",
+     ["nemli ve ılık", "nemli ve soğuk", "kuru ve ılık", "kuru ve soğuk"], "cat", "cm²", "Ekmeğin bekletildiği ortam", "Ekmekte oluşan küf alanı", ["Ekmeğin cinsi", "Bekletme süresi"], False),
+]
+
+
+def _fy_vals(mode, n, xs):
+    if mode == "lin":
+        k = random.choice([2, 3, 4])
+        return [k * (i + 1) * (xs[0] if isinstance(xs[0], int) and xs[0] > 1 and False else 1) for i in range(n)], k
+    if mode == "lin10":
+        return [10 * x for x in xs], 10
+    if mode == "lin_off":
+        k, o = random.choice([(5, 20), (6, 22), (4, 24)]), None
+        base = random.choice([20, 22, 25])
+        step = random.choice([8, 10, 12])
+        return [base + step * (i + 1) for i in range(n)], step
+    if mode == "dec":
+        v = sorted(random.sample(range(4, 40), n), reverse=True)
+        return v, None
+    v = random.sample(range(5, 60), n)
+    return v, None
+
+
+def _fy_exp_family(spec):
+    key, topic, item, kw, lead, title, hx, hy, xs, mode, unit, change, obs, sabit, pred = spec
+
+    def _f(subject):
+        vals, step = _fy_vals(mode, len(xs), xs)
+        if mode == "lin":
+            k = vals[0]
+            if key == "yay":
+                vals = [k * x for x in xs]
+            else:
+                vals = [k * x for x in xs]
+            step = k
+        if len(set(vals)) < len(vals):
+            return None
+        rows = [[str(x), str(v)] for x, v in zip(xs, vals)]
+        shape = {"type": "table", "title": title, "headers": [hx, hy], "rows": rows}
+        kinds = ["degisen", "gozlenen", "sabit", "roman", "fark"] + (["tahmin"] if pred and mode in ("lin", "lin10", "lin_off") else [])
+        kind = random.choice(kinds)
+        pool_w = ["Deneyin yapıldığı günün saati", "Deneyi yapan kişinin adı", "Odadaki ışığın rengi", "Deney defterinin boyutu"]
+        if kind == "degisen":
+            o = _yn_opts(change, [obs, random.choice(sabit), random.choice(pool_w)])
+            return _mf_raw(subject, topic, "Bu deneyde değiştirilen (bağımsız) değişken aşağıdakilerden hangisidir?", o, f"Deneyde her seferinde değiştirilen şey: {change.lower()}.", shape=shape, passage=lead) if o else None
+        if kind == "gozlenen":
+            o = _yn_opts(obs, [change, random.choice(sabit), random.choice(pool_w)])
+            return _mf_raw(subject, topic, "Bu deneyde ölçülen (gözlenen) değişken aşağıdakilerden hangisidir?", o, f"Değiştirilen değişkenin etkisiyle ölçülen şey: {obs.lower()}.", shape=shape, passage=lead) if o else None
+        if kind == "sabit":
+            c = random.choice(sabit)
+            o = _yn_opts(c, [change, obs, random.choice(pool_w)])
+            return _mf_raw(subject, topic, "Deneyin güvenilir olması için aşağıdakilerden hangisi her denemede aynı tutulmalıdır?", o, "Yalnızca bir değişken değiştirilir; diğer koşullar sabit tutulur.", shape=shape, passage=lead) if o else None
+        if kind == "fark":
+            i, j = random.sample(range(len(xs)), 2)
+            d = abs(vals[i] - vals[j])
+            xi, xj = (xs[i], xs[j])
+            lab = (lambda x: f"{x} " if False else f"“{x}”")
+            q = f"Tabloya göre {lab(xi)} değerine karşılık gelen ölçüm ile {lab(xj)} değerine karşılık gelen ölçüm arasındaki fark kaç {unit}'dir?" if mode in ("lin", "lin10", "lin_off", "dec") else \
+                f"Tabloya göre {xi} ile {xj} için ölçülen değerler arasındaki fark kaç {unit}'dir?"
+            o = _mf_opts(d, [d + 1, abs(d - 2) or d + 3, d + 5, vals[i] + vals[j]], lambda v: f"{v} {unit}")
+            return _mf_raw(subject, topic, q, o, f"{max(vals[i], vals[j])} − {min(vals[i], vals[j])} = {d} {unit}.", shape=shape, passage=lead) if o else None
+        if kind == "tahmin":
+            nx = xs[-1] + (xs[1] - xs[0])
+            if mode == "lin_off":
+                ny = vals[-1] + step
+            else:
+                ny = vals[-1] + (vals[1] - vals[0])
+            q = f"Deneyin koşulları aynı kalırsa {hx.split('(')[0].strip().lower()} {nx} olduğunda {hy.split('(')[0].strip().lower()} kaç {unit} olur?" if False else f"Deney aynı koşullarda sürdürülürse {nx} değeri için ölçülecek sonuç kaç {unit} olur?"
+            o = _mf_opts(ny, [ny + vals[0], ny - 1, ny + 2, vals[-1]], lambda v: f"{v} {unit}")
+            return _mf_raw(subject, topic, q, o, f"Her adımda değişim {ny - vals[-1]} {unit}; sıradaki değer {vals[-1]} + {ny - vals[-1]} = {ny} {unit}.", shape=shape, passage=lead) if o else None
+        # roman
+        i, j = random.sample(range(len(xs)), 2)
+        s1 = (f"{xs[i]} için ölçülen sonuç, {xs[j]} için ölçülenden büyüktür.", vals[i] > vals[j])
+        imx = vals.index(max(vals))
+        oth = random.choice([k for k in range(len(xs)) if k != imx])
+        s2 = _yn_pick(f"En büyük ölçüm {xs[imx]} için elde edilmiştir.", f"En büyük ölçüm {xs[oth]} için elde edilmiştir.")
+        s2 = (s2[0], str(xs[imx]) in s2[0] and str(xs[oth]) not in s2[0] if str(xs[imx]) not in str(xs[oth]) else s2[1])
+        if mode in ("lin", "lin10", "lin_off"):
+            s3 = _yn_pick("Değiştirilen değişken arttıkça ölçülen değer artmaktadır.", "Değiştirilen değişken arttıkça ölçülen değer azalmaktadır.")
+            s3 = (s3[0], "artmaktadır" in s3[0].split("arttıkça")[1])
+        elif mode == "dec":
+            s3 = _yn_pick("Değiştirilen değişken arttıkça ölçülen değer azalmaktadır.", "Değiştirilen değişken arttıkça ölçülen değer artmaktadır.")
+            s3 = (s3[0], "azalmaktadır" in s3[0].split("arttıkça")[1])
+        else:
+            s3 = _yn_pick("Bu deneyde yalnızca bir değişken değiştirilmiştir.", "Bu deneyde birden fazla değişken aynı anda değiştirilmiştir.")
+            s3 = (s3[0], "yalnızca bir" in s3[0])
+        if mode == "cat" and key in ("yuzey", "iletim", "gecirme", "kuf"):
+            pass
+        return _yn_rom(topic, lead, "Tabloya göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Her yargı tablodaki değerlerle ayrı ayrı denetlenir.", shape=shape, subject=subject)
+
+    _f.__name__ = "_ff_yn2_" + key
+    _f.ITEM = item
+    return _f, kw
+
+
+# ---- Dinamometre şekilli sorular
+def _ff_yn2_dina_kutle(subject):
+    m = random.choice([2, 3, 4, 5, 6, 7, 8])
+    W = m * 10
+    mx = 100 if W > 50 else 50
+    sh = {"type": "dynamometer", "value": W, "max_value": mx, "unit": "N", "step": 10}
+    lead = "Dünya'da 1 kg kütleli bir cisme 10 N'luk çekim kuvveti etki eder. Ahmet, bir cismi dinamometreye asıyor; dinamometrenin gösterdiği değer şekilde verilmiştir."
+    o = _mf_opts(m, [m + 1, m - 1 if m > 1 else m + 3, m * 10, m * 2], lambda v: f"{v} kg")
+    return _mf_raw(subject, "Kütle ve ağırlık", "Şekildeki dinamometreye göre asılan cismin kütlesi kaç kg'dır?", o, f"Ağırlık {W} N; 1 kg için 10 N olduğundan kütle {W} ÷ 10 = {m} kg.", shape=sh, passage=lead) if o else None
+
+
+def _ff_yn2_dina_ay(subject):
+    W = random.choice([60, 120, 180, 240])
+    sh = {"type": "dynamometer", "value": W, "max_value": 300 if W > 100 else 100, "unit": "N", "step": 20 if W > 100 else 10}
+    lead = "Bir uzay aracındaki cismin Dünya'daki ağırlığı dinamometreyle ölçülmüş ve şekildeki değer okunmuştur. Ay'daki yer çekimi kuvveti Dünya'dakinin yaklaşık 1/6'sı kadardır."
+    a = W // 6
+    o = _mf_opts(a, [a * 6, a + 10, a * 2, W - a], lambda v: f"{v} N")
+    return _mf_raw(subject, "Kuvvet ve ağırlık", "Bu cisim Ay'a götürülüp dinamometreyle ölçülürse dinamometre kaç N gösterir?", o, f"Ay'da ağırlık Dünya'dakinin 1/6'sıdır: {W} ÷ 6 = {a} N.", shape=sh, passage=lead) if o else None
+
+
+def _ff_yn2_dina_yay(subject):
+    k = random.choice([2, 4, 5])
+    W = random.choice([10, 20, 30, 40, 50])
+    sh = {"type": "dynamometer", "value": W, "max_value": 60, "unit": "N", "step": 10}
+    lead = f"Şekildeki dinamometre, asılan cisim nedeniyle yayında uzama gösteriyor. Bu dinamometrenin yayı her 10 N'luk kuvvet için {k} cm uzamaktadır."
+    d = W // 10 * k
+    o = _mf_opts(d, [d + k, d - k if d > k else d + 2 * k, W, d * 2], lambda v: f"{v} cm")
+    return _mf_raw(subject, "Dinamometre modeli", "Şekilde gösterilen kuvvet uygulandığında dinamometrenin yayı kaç cm uzar?", o, f"{W} ÷ 10 = {W // 10} birim kuvvet; her biri {k} cm: {W // 10} × {k} = {d} cm.", shape=sh, passage=lead) if o else None
+
+
+def _ff_yn2_dina_surtunme(subject):
+    f = random.choice([2, 3, 4, 5, 6, 8])
+    sh = {"type": "dynamometer", "value": f, "max_value": 10, "unit": "N", "step": 1}
+    lead = "Bir kutu, yatay bir zeminde dinamometreyle sabit hızla çekiliyor. Dinamometrenin gösterdiği değer şekilde verilmiştir. Sabit hızla çekilen cisme etki eden sürtünme kuvveti, çekme kuvvetine eşittir."
+    o = _mf_opts(f, [f + 2, f * 2, f + 5 if f + 5 != f else 1, max(1, f - 2)], lambda v: f"{v} N")
+    return _mf_raw(subject, "Sürtünme kuvveti", "Bu kutuya zeminin uyguladığı sürtünme kuvveti kaç N'dur?", o, f"Sabit hızla çekilirken sürtünme kuvveti, dinamometrenin gösterdiği çekme kuvvetine eşittir: {f} N.", shape=sh, passage=lead) if o else None
+
+
+# ---- Veri tablosu (deneysiz) soruları: geri dönüşüm ve elektrik tasarrufu
+def _ff_yn2_geri(subject):
+    mal = random.sample(["Kâğıt", "Cam", "Plastik", "Metal", "Pil"], 4)
+    v = random.sample(range(12, 90), 4)
+    sh = {"type": "table", "title": "Haftalık Toplanan Atık (kg)", "headers": ["Atık türü", "Miktar (kg)"], "rows": [[m, str(x)] for m, x in zip(mal, v)]}
+    lead = "Bir okulda geri dönüşüm kutularına bir haftada atılan atıklar türlerine göre tartılmış ve tabloya yazılmıştır."
+    kind = random.choice(["fark", "roman", "toplam"])
+    if kind == "toplam":
+        t = sum(v)
+        o = _mf_opts(t, [t + 5, t - 5, t + 10, t - 10], lambda x: f"{x} kg")
+        return _mf_raw(subject, "Geri dönüşüm", "Okulda bir haftada toplam kaç kg atık toplanmıştır?", o, f"Miktarlar toplanır: {' + '.join(map(str, v))} = {t} kg.", shape=sh, passage=lead) if o else None
+    if kind == "fark":
+        d = max(v) - min(v)
+        o = _mf_opts(d, [d + 3, abs(d - 4) or 5, d + 8, max(v)], lambda x: f"{x} kg")
+        return _mf_raw(subject, "Geri dönüşüm", "Tabloya göre en çok toplanan atık ile en az toplanan atık arasında kaç kg fark vardır?", o, f"{max(v)} − {min(v)} = {d} kg.", shape=sh, passage=lead) if o else None
+    mxi = v.index(max(v))
+    oth = random.choice([i for i in range(4) if i != mxi])
+    s1 = _yn_pick(f"En çok {mal[mxi].lower()} atığı toplanmıştır.", f"En çok {mal[oth].lower()} atığı toplanmıştır.")
+    s1 = (s1[0], mal[mxi].lower() in s1[0])
+    i, j = random.sample(range(4), 2)
+    s2 = (f"{mal[i]} atığı, {mal[j].lower()} atığından fazla toplanmıştır.", v[i] > v[j])
+    s3 = _yn_pick("Toplanan atıkların hepsi geri dönüştürülebilir maddelerdir.", "Toplanan atıkların hiçbiri geri dönüştürülemez.")
+    s3 = (s3[0], "hepsi" in s3[0])
+    return _yn_rom("Geri dönüşüm", lead, "Tabloya göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Yargılar tablodaki değerlerle ve geri dönüşüm bilgisiyle denetlenir.", shape=sh, subject=subject)
+
+
+def _ff_yn2_tasarruf(subject):
+    ad = random.sample([("Ampul", 20), ("Televizyon", 90), ("Ütü", 200), ("Bilgisayar", 120), ("Süpürge", 150)], 3)
+    sh = {"type": "table", "title": "Cihazların Saatlik Elektrik Tüketimi", "headers": ["Cihaz", "Tüketim (watt-saat)"], "rows": [[a, str(w)] for a, w in ad]}
+    lead = "Bir ailenin evinde kullanılan bazı elektrikli cihazların bir saatte tükettiği elektrik enerjisi tabloda verilmiştir."
+    n = random.choice([2, 3, 4])
+    c = random.choice(ad)
+    o = _mf_opts(c[1] * n, [c[1] * n + c[1], c[1] * (n + 1) + 10, c[1] + n, c[1] * n - 10], lambda x: f"{x} watt-saat")
+    return _mf_raw(subject, "Elektrik tasarrufu", f"{c[0]} cihazı {n} saat boyunca çalıştırılırsa toplam kaç watt-saat elektrik enerjisi tüketir?", o, f"{c[1]} × {n} = {c[1] * n} watt-saat.", shape=sh, passage=lead) if o else None
+
+
+# ---- Bağlamlı senaryo soruları (ünite başına bir kalıp; kazanım temelli)
+_FY_SEN = {
+    "gunes": ("Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri", ("ay", "evre", "güneş", "dünya"), "Güneş, Dünya ve Ay", [
+        ("Elif, bir fenerle (Güneş) ve iki küreyle (Dünya ve Ay) model yapıyor. Fener sabit, Ay'ı temsil eden küre ise Dünya'yı temsil eden kürenin çevresinde döndürülüyor.", "Elif'in Ay'ı temsil eden küreyi diğer kürenin çevresinde döndürmesi hangi hareketi gösterir?", "Ay'ın Dünya etrafındaki dolanma hareketini", ["Ay'ın kendi ekseni etrafındaki dönme hareketini", "Dünya'nın Güneş etrafındaki dolanma hareketini", "Güneş'in kendi etrafında dönmesini"], "Ay'ın Dünya çevresindeki turuna dolanma denir."),
+        ("Bir gözlemci Ay'ın Dünya'dan hep aynı yüzünü gördüğünü fark ediyor.", "Bu durumun nedeni aşağıdakilerden hangisidir?", "Ay'ın kendi etrafındaki dönme süresi ile Dünya çevresindeki dolanma süresinin yaklaşık eşit olması", ["Ay'ın kendi etrafında hiç dönmemesi", "Dünya'nın Ay çevresinde dolanması", "Güneş ışığının Ay'ı yalnızca bir yüzünden aydınlatması"], "Ay, kendi ekseni etrafında bir tur dönerken Dünya çevresinde de yaklaşık bir tur atar; bu yüzden hep aynı yüzü görünür."),
+        ("Can, gün boyunca gökyüzünü izliyor ve gündüzün geceye dönüştüğünü görüyor.", "Gece ile gündüzün oluşmasının nedeni aşağıdakilerden hangisidir?", "Dünya'nın kendi ekseni etrafında dönmesi", ["Dünya'nın Güneş etrafında dolanması", "Ay'ın Dünya etrafında dolanması", "Güneş'in Dünya etrafında dönmesi"], "Dünya kendi etrafında döndükçe yüzeyin Güneş'e dönük kısmı gündüz, dönük olmayan kısmı gece yaşar."),
+        ("Bir öğretmen öğrencilerden gökcisimlerini büyüklüklerine göre sıralamalarını istiyor.", "Güneş, Dünya ve Ay'ın büyükten küçüğe doğru sıralaması aşağıdakilerden hangisidir?", "Güneş > Dünya > Ay", ["Dünya > Güneş > Ay", "Ay > Dünya > Güneş", "Güneş > Ay > Dünya"], "Güneş en büyük, Ay en küçüktür.")]),
+    "canli": ("Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme", ("mikroskobik", "canlı", "mantar", "canlılar dünyası"), "Canlılar dünyası", [
+        ("Bir öğrenci göl suyundan aldığı damlayı mikroskopta inceliyor. Yeşil renkli, kamçısıyla hareket eden ve fotosentez yapabilen tek hücreli bir canlı görüyor.", "Öğrencinin gördüğü canlı aşağıdakilerden hangisidir?", "Öglena", ["Paramesyum", "Amip", "Bakteri"], "Yeşil renkli, kamçılı ve fotosentez yapabilen mikroskobik canlı öglenadır."),
+        ("Mikroskopla incelenen bir örnekte, yalancı ayak denilen uzantılarla yer değiştiren ve şekli sürekli değişen tek hücreli bir canlı gözleniyor.", "Gözlenen canlı aşağıdakilerden hangisidir?", "Amip", ["Paramesyum", "Öglena", "Bakteri"], "Yalancı ayaklarla hareket eden canlı amiptir."),
+        ("Orman gezisinde Nehir, toprakta şapkalı bir mantar görüyor. Mantarın yenilebilir olup olmadığını bilmiyor.", "Nehir'in bu durumda yapması gereken aşağıdakilerden hangisidir?", "Mantarı toplamadan bir yetişkine ve uzmana danışması", ["Mantarın tadına bakarak denemesi", "Renkli mantarları yenilebilir sayması", "Mantarı çiğ yemesi"], "Zehirli mantarlar ölümcül olabilir; yenilebilirliğini yalnızca uzmanlar belirler."),
+        ("Bir öğrenci nemli bir ekmeğin üzerinde yeşilimsi tüycük benzeri bir oluşum fark ediyor.", "Bu oluşumu meydana getiren canlı hangi canlı grubundandır?", "Mantarlar", ["Bitkiler", "Hayvanlar", "Taşlar"], "Ekmek küfü bir mantar türüdür.")]),
+    "kuvvet": ("Sürtünme kuvveti ve etkileri", ("sürtünme", "kuvvet"), "Sürtünme kuvveti", [
+        ("Karlı yollarda giden araçların tekerleklerine zincir takılıyor.", "Zincir takmanın amacı aşağıdakilerden hangisidir?", "Tekerlekle yol arasındaki sürtünme kuvvetini artırmak", ["Sürtünme kuvvetini azaltmak", "Aracın kütlesini azaltmak", "Aracın ağırlığını sıfırlamak"], "Zincir yüzeyi pürüzlü yapar ve sürtünmeyi artırır."),
+        ("Kayakçıların kayaklarının alt yüzeyi pürüzsüz ve kaygan yapılır.", "Bunun amacı aşağıdakilerden hangisidir?", "Kayak ile kar arasındaki sürtünme kuvvetini azaltmak", ["Sürtünme kuvvetini artırmak", "Kayakçının kütlesini artırmak", "Kayakçıyı yavaşlatmak"], "Pürüzsüz yüzey sürtünmeyi azaltır, kayma kolaylaşır."),
+        ("Bir sporcu spor ayakkabısını alırken tabanı girintili çıkıntılı olanı tercih ediyor.", "Bu tercihin nedeni aşağıdakilerden hangisi olabilir?", "Zeminle ayakkabı arasındaki sürtünmeyi artırarak kaymayı önlemek", ["Zeminle sürtünmeyi azaltmak", "Ayakkabının ağırlığını azaltmak", "Ayakkabının kütlesini artırmak"], "Girintili taban sürtünmeyi artırır."),
+        ("Bir cisme dışarıdan kuvvet uygulanınca cismin durumu değişiyor.", "Aşağıdakilerden hangisi kuvvetin cisimler üzerindeki etkilerinden biri değildir?", "Cismin kütlesini değiştirmek", ["Duran cismi harekete geçirmek", "Hareketli cismin yönünü değiştirmek", "Cismin şeklini değiştirmek"], "Kuvvet hareket durumunu ve şekli değiştirir; kütleyi değiştirmez.")]),
+    "madde": ("Isı alışverişi", ("ısı", "sıcaklık", "madde", "erime", "kaynama", "değişim"), "Madde ve değişim", [
+        ("Soğuk su dolu bir bardağın dış yüzeyinde su damlacıkları oluşmuştur.", "Bu damlacıkların oluşmasının nedeni aşağıdakilerden hangisidir?", "Havadaki su buharının soğuk yüzeyde yoğuşması", ["Bardaktaki suyun dışarı sızması", "Havadaki suyun donması", "Bardaktaki suyun buharlaşması"], "Havadaki su buharı soğuk yüzeye çarpınca yoğuşur."),
+        ("Yağmurdan sonra çamaşırlar güneşli ve sıcak havada daha çabuk kuruyor.", "Bu durumun nedeni aşağıdakilerden hangisidir?", "Sıcaklık arttıkça buharlaşma hızının artması", ["Sıcaklık arttıkça yoğuşmanın artması", "Sıcaklık arttıkça donmanın hızlanması", "Isının sudan çamaşıra akması"], "Sıcaklık arttıkça buharlaşma hızlanır."),
+        ("Sıcak çay dolu bir bardağa soğuk süt ekleniyor ve bir süre karıştırılıyor.", "Isı alışverişi için aşağıdakilerden hangisi doğrudur?", "Isı çaydan süte doğru akar", ["Isı sütten çaya doğru akar", "Isı alışverişi gerçekleşmez", "İkisi de ısı kazanır"], "Isı sıcak olandan soğuk olana akar."),
+        ("Metal bir kaşık ile tahta bir kaşık aynı sıcak çorbaya batırılıyor. Metal kaşığın sapı kısa sürede ısınırken tahta kaşığın sapı geç ısınıyor.", "Bu gözlem aşağıdakilerden hangisini gösterir?", "Metallerin ısıyı tahtadan daha iyi ilettiğini", ["Tahtanın ısıyı metalden daha iyi ilettiğini", "Metalin ısıyı hiç iletmediğini", "Çorbanın metale ısı vermediğini"], "Metaller ısının iyi iletkenidir."),
+        ("Buzdolabından çıkarılan buz kalıbı masaya bırakılıyor ve bir süre sonra suya dönüşüyor.", "Bu olay aşağıdakilerden hangisidir?", "Erime", ["Donma", "Buharlaşma", "Yoğuşma"], "Katı hâlin sıvı hâle geçmesi erimedir.")]),
+    "isik": ("Işık kaynakları ve ışığın doğrusal yayılması", ("ışık", "gölge", "saydam", "opak"), "Işık", [
+        ("Karanlık bir odada el feneri duvara tutulduğunda ışığın düz bir hat boyunca ilerlediği görülüyor.", "Bu durum ışığın hangi özelliğini gösterir?", "Işığın doğrusal yayılmasını", ["Işığın kırılmasını", "Işığın kendiliğinden sönmesini", "Işığın dairesel yayılmasını"], "Işık homojen ortamda doğrular boyunca yayılır."),
+        ("Bir öğretmen öğrencilerden ışık kaynağı olan bir cismi seçmelerini istiyor.", "Aşağıdakilerden hangisi ışık kaynağıdır?", "Yanan mum", ["Ay", "Ayna", "Parlak bir taş"], "Ay, ayna ve parlak taş ışığı yansıtır; yanan mum ise kendisi ışık yayar."),
+        ("Berk, ışık kaynağı ile perde arasına aynı cismi koyup kaynağa yaklaştırıyor.", "Cismi ışık kaynağına yaklaştırdıkça perdedeki gölge nasıl değişir?", "Büyür", ["Küçülür", "Değişmez", "Tamamen kaybolur"], "Cisim kaynağa yaklaştıkça gölge büyür."),
+        ("Bir cam bardak (saydam), buzlu cam (yarı saydam) ve karton parça (opak) sırasıyla gözün önüne tutularak arkadaki cisimlere bakılıyor.", "Işığı en iyi geçirerek arkadaki cismi en net gösteren malzeme hangisidir?", "Cam bardak", ["Buzlu cam", "Karton parçası", "Üçü de aynı netlikte gösterir"], "Saydam maddeler ışığın büyük kısmını geçirir; cisim net görünür.")]),
+    "cevre": ("Geri dönüşüm ve geri dönüştürülebilen maddeler", ("atık", "geri dönüşüm", "çevre", "kaynak"), "İnsan ve çevre", [
+        ("Bir ailenin evinde atık pil birikmiştir.", "Atık pillerin nereye atılması en doğrudur?", "Atık pil toplama kutularına", ["Evsel çöpe", "Lavaboya", "Toprağa gömülerek"], "Piller zararlı maddeler içerir; ayrı toplanmalıdır."),
+        ("Bir okul, kâğıt atıklarını ayrı toplayarak geri dönüşüme gönderiyor.", "Kâğıt geri dönüşümünün çevreye en önemli katkısı aşağıdakilerden hangisidir?", "Ağaç kesimini ve doğal kaynak kullanımını azaltması", ["Atık miktarını artırması", "Hava kirliliğini artırması", "Su kaynaklarını azaltması"], "Geri dönüşümle yeni kâğıt için daha az ağaç kesilir."),
+        ("Selin ailesiyle alışverişe giderken evden bez torba götürüyor.", "Bu davranış aşağıdakilerden hangisine örnektir?", "Atık miktarını azaltmaya", ["Atık miktarını artırmaya", "Hava kirliliğine neden olmaya", "Enerji israfına"], "Bez torba, tek kullanımlık poşet atığını azaltır."),
+        ("Bir mahallede cam şişeler ayrı kutulara atılıp toplanıyor.", "Camın geri dönüştürülmesinin sonucu aşağıdakilerden hangisidir?", "Yeni cam üretiminde doğal kaynak kullanımının azalması", ["Çöp miktarının artması", "Doğal kaynakların tükenmesinin hızlanması", "Camların toprakta birikmesi"], "Cam, defalarca geri dönüştürülebilir.")]),
+    "elektrik": ("Devre elemanları ve sembolleri", ("elektrik", "devre", "ampul", "pil"), "Elektrik devresi", [
+        ("Pil, ampul ve kablolardan oluşan bir devrede anahtar açıkken ampul yanmıyor. Pil ve ampul sağlamdır.", "Ampulün yanmamasının nedeni aşağıdakilerden hangisidir?", "Devrenin açık olması nedeniyle akımın geçmemesi", ["Pilin bitmiş olması", "Ampulün özdeş olması", "Kabloların uzun olması"], "Anahtar açıkken devre tamamlanmaz, akım geçmez."),
+        ("Bir devrede anahtarın görevi merak ediliyor.", "Bir elektrik devresinde anahtarın görevi aşağıdakilerden hangisidir?", "Devreyi açıp kapatarak akımı kontrol etmek", ["Devreye enerji sağlamak", "Işık yaymak", "Akımın şiddetini artırmak"], "Anahtar devreyi açar veya kapatır."),
+        ("Ailesiyle elektrik tasarrufu konuşan Ece öneriler sıralıyor.", "Aşağıdakilerden hangisi elektrik tasarrufu sağlar?", "Kullanılmayan odanın ışığını kapatmak", ["Gün boyu tüm lambaları açık tutmak", "Kullanılmayan cihazları prizde açık bırakmak", "Her odada birden fazla ampul yakmak"], "Gereksiz yanan lambaları kapatmak tasarruf sağlar."),
+        ("Bir öğrenci elektrikli aletlerle ilgili güvenlik kurallarını yazıyor.", "Aşağıdakilerden hangisi elektrik güvenliği açısından doğrudur?", "Elektrikli aletleri ıslak elle tutmamak", ["Prize metal cisim sokmak", "Çıplak kablolara dokunmak", "Aynı prize çok sayıda cihaz takmak"], "Su elektriği ilettiğinden ıslak elle dokunmak tehlikelidir.")]),
+}
+
+
+def _fy_sen_family(key):
+    item, kw, topic, bank = _FY_SEN[key]
+
+    def _f(subject):
+        lead, q, c, ws, ex = random.choice(bank)
+        o = _yn_opts(c, ws)
+        return _mf_raw(subject, topic, q, o, ex, passage=lead) if o else None
+
+    _f.__name__ = "_ff_yn2_sen_" + key
+    _f.ITEM = item
+    return _f, kw
+
+
+_FY_NEW = []
+for _spec in _FY_EXP:
+    _FY_NEW.append((*_fy_exp_family(_spec), 3))
+for _k in _FY_SEN:
+    _FY_NEW.append((*_fy_sen_family(_k), 2))
+for _fn, _item, _kw, _d in [(_ff_yn2_dina_kutle, "Kütle, yer çekimi ve ağırlık", ("kuvvet", "ağırlık", "dinamometre", "kütle"), 3),
+                            (_ff_yn2_dina_ay, "Kütle, yer çekimi ve ağırlık", ("kuvvet", "ağırlık", "dinamometre", "kütle"), 4),
+                            (_ff_yn2_dina_yay, "Dinamometre modeli", ("kuvvet", "dinamometre", "ölçül"), 3),
+                            (_ff_yn2_dina_surtunme, "Sürtünme kuvveti ve etkileri", ("sürtünme", "kuvvet"), 3),
+                            (_ff_yn2_geri, "Geri dönüşüm ve geri dönüştürülebilen maddeler", ("atık", "geri dönüşüm", "çevre", "kaynak"), 3),
+                            (_ff_yn2_tasarruf, "Elektrik tasarrufu ve güvenliği", ("elektrik", "devre", "ampul", "pil"), 3)]:
+    _fn.ITEM = _item
+    _FY_NEW.append((_fn, _kw, _d))
+for _f, _kw, _d in _FY_NEW:
+    _FF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
 
 
 
@@ -19850,7 +20123,7 @@ def _fam_item(name, fn, subject, items):
     return v
 
 
-_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
+_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_", "_ff_yn2_"), "Türkçe": ("_tf_par_", "_tf_dk_")}
 _YN_SHARE = 0.3  # sınavdaki yeni nesil (senaryo/tablo/belge/paragraf) soru payı
 
 
@@ -19863,7 +20136,7 @@ def _bal_order(rkey, byname, subject, grade_label, topics, n):
     yn = [x for x in out if x.startswith(pre)]
     if not yn:
         return out
-    q = min(len(yn), max(1, round({"Matematik": 0.4}.get(subject, _YN_SHARE) * n)))
+    q = min(len(yn), max(1, round({"Matematik": 0.4, "Fen Bilimleri": 0.4}.get(subject, _YN_SHARE) * n)))
     pick = yn[:q]
     rest = [x for x in out if x not in pick]
     step = max(1, n // q)
