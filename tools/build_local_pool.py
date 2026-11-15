@@ -14,6 +14,24 @@ import build_pool as bp
 ROOT = bp.ROOT
 
 
+_UNIT_KZ = {"Temel Geometrik Çizimler": ["MAT.5.3.1", "MAT.5.3.2"], "Açı Ölçme": ["MAT.5.3.3", "MAT.5.3.4"], "Açı İlişkileri": ["MAT.5.3.4"],
+            "Çokgenler ve Çember": ["MAT.5.3.5", "MAT.5.3.6", "MAT.5.3.7"], "Basamak Değerlerini": ["MAT.5.1.1"], "Doğal Sayılarla Dört İşlem": ["MAT.5.1.2"],
+            "Dikdörtgenin Çevre": ["MAT.5.4.1", "MAT.5.4.2", "MAT.5.4.3", "MAT.5.4.4"], "Kesirler": ["MAT.5.1.3", "MAT.5.1.4"], "Ondalık Gösterim": ["MAT.5.1.3"],
+            "Veri Toplama": ["MAT.5.5.1", "MAT.5.5.2"]}
+_UNIT_KZ_EXTRA = {"Veri Toplama": ["MAT.5.2.3"]}  # örüntü kalıpları (yalnız kendi kalıp kodu 5.2.3 ise bu kazanıma bağlanır)
+
+
+def _kz_of(ai, unit, fam):
+    """Soru, doğrulandığı ünitenin kazanımlarına bağlanır; kalıbın kendi kazanım kodu varsa onunla kesişimi (daha dar) alınır."""
+    uk, ex = [], []
+    for k, v in _UNIT_KZ.items():
+        if unit.startswith(k):
+            uk, ex = list(v), list(_UNIT_KZ_EXTRA.get(k, []))
+    fk = list((getattr(ai, "_MF_ITEMCODE", {}) or {}).get(fam) or [])
+    both = [c for c in fk if c in uk or c in ex]
+    return both or fk or uk
+
+
 def _mask(q):
     t = re.sub(r"\d+([.,]\d+)?", "0", str(q.get("question") or ""))
     sh = q.get("shape") or {}
@@ -109,7 +127,8 @@ def main():
                         json.dumps(clean, ensure_ascii=False)
                     except Exception:
                         continue
-                    new.append({**clean, "unit": unit, "topics": ", ".join(topics)[:160], "d": d, "ts": int(time.time()), "src": "local", "fam": fn})
+                    kz = _kz_of(ai, unit, fn) if sj == "Matematik" else []
+                    new.append({**clean, **({"kz": kz} if kz else {}), "unit": unit, "topics": ", ".join(topics)[:160], "d": d, "ts": int(time.time()), "src": "local", "fam": fn})
                 print(f"{label} | {sj} | {unit[:42]} | {len(pick)} soru ({len(per)} aile)")
             bp.write_pool(path, keep + new)
             tot += len(new)
