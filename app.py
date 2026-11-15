@@ -14160,6 +14160,171 @@ for _f, _kw, _d in _SY_NEW:
 
 
 
+# ---- Din Kültürü 5: YENİ NESİL (öncüllü yargı, tablo okuma, bağlamlı senaryo)
+_DY_DIN = "Din Kültürü ve Ahlak Bilgisi"
+_DY_ROM = {
+    "allah": ("Allah inancı", "Allah'ın güzel isimleri", ("allah", "evren", "ihlas", "güzel isim"),
+              "Bir öğrenci, Allah inancıyla ilgili öğrendiklerini not etmiştir.",
+              [("Allah birdir; eşi ve benzeri yoktur.", True), ("İhlas suresi, Allah'ın birliğini anlatır.", True), ("Evrendeki düzen, Allah'ın varlığının delillerindendir.", True),
+               ("Allah'ın güzel isimlerine Esmaü'l-Hüsna denir.", True), ("er-Rezzâk, Allah'ın “rızık veren” anlamındaki güzel ismidir.", True), ("el-Gaffâr, Allah'ın “çok bağışlayan” anlamındaki güzel ismidir.", True),
+               ("Allah'ın ortakları vardır.", False), ("İhlas suresi namaz vakitlerini anlatır.", False), ("Evrendeki düzen tesadüfen oluşmuş bir karışıklıktır.", False),
+               ("er-Rezzâk, “öldüren” anlamına gelir.", False), ("el-Gaffâr, “yaratan” anlamına gelir.", False)]),
+    "namaz": ("Namaz", "Namazın kılınışı", ("namaz", "tahiyyat", "abdest"),
+              "Bir öğrenci, namazla ilgili öğrendiği bilgileri not etmiştir.",
+              [("Günde beş vakit namaz kılınır.", True), ("Namaza başlamadan önce abdest alınır.", True), ("Namaz, kıbleye yönelerek kılınır.", True),
+               ("Ezan, namaz vaktinin girdiğini bildirir.", True), ("Tahiyyat, namazın oturuşlarında okunan duadır.", True), ("Namaz düzenli ve disiplinli yaşamaya katkı sağlar.", True),
+               ("Günde yedi vakit namaz kılınır.", False), ("Namaz için abdest almak gerekmez.", False), ("Namazda yönelinecek yer önemli değildir.", False), ("Ezan, yemek vaktini bildirmek için okunur.", False)]),
+    "kuran": ("Kur'an-ı Kerim", "Kur'an-ı Kerim'in iç düzeni", ("kur'an", "kuran", "kevser", "sure"),
+              "Bir öğrenci, Kur'an-ı Kerim ile ilgili öğrendiklerini not etmiştir.",
+              [("Kur'an-ı Kerim 114 suredir.", True), ("Kur'an-ı Kerim'in cümlelerine ayet denir.", True), ("Kur'an-ı Kerim 30 cüzden oluşur.", True),
+               ("Kur'an-ı Kerim, Hz. Muhammed'e vahiy yoluyla indirilmiştir.", True), ("Fatiha, Kur'an-ı Kerim'in ilk suresidir.", True), ("Kevser suresi üç ayetten oluşur.", True),
+               ("Kur'an-ı Kerim 99 suredir.", False), ("Kur'an-ı Kerim'in bölümlerine ayet denir.", False), ("Kur'an-ı Kerim Hz. İsa'ya indirilmiştir.", False), ("Kevser suresi on ayetten oluşur.", False)]),
+    "kissa": ("Peygamber kıssaları", "Peygamber kıssalarındaki öğütler", ("peygamber", "kıssa", "kureyş"),
+              "Bir öğrenci, peygamber kıssalarından öğrendiklerini not etmiştir.",
+              [("Hz. Nuh, Allah'ın emriyle gemi yapmıştır.", True), ("Hz. Eyüp, hastalığı karşısındaki sabrıyla bilinir.", True), ("Hz. Muhammed, son peygamberdir.", True),
+               ("Peygamberler, Allah'ın emirlerini insanlara ileten kişilerdir.", True), ("Hz. Musa, Firavun'a Allah'ın emirlerini anlatmıştır.", True), ("Hz. Yusuf, kardeşleri tarafından kuyuya atılmıştır.", True),
+               ("Hz. Musa, tufan için gemi yapmıştır.", False), ("Hz. İbrahim, Firavun'la mücadele etmiştir.", False), ("Hz. Yusuf, ateşe atılmıştır.", False), ("Peygamberler yalan söylemeye izinlidir.", False)]),
+    "cami": ("Mimarimizde dinî motifler", "Camilerin bölümleri (mihrap, minber, kubbe, minare)", ("cami", "mimari", "mihrap", "minber", "dinî motif"),
+             "Bir öğrenci, camilerin bölümleri ve ünlü camilerle ilgili aşağıdaki notları yazmıştır.",
+             [("Mihrap, kıbleyi gösteren bölümdür.", True), ("Minber, hutbenin okunduğu yüksekçe yerdir.", True), ("Minare, ezanın okunduğu yüksek yapıdır.", True),
+              ("Kubbe, caminin üstünü örten yarım küre biçimli bölümdür.", True), ("Selimiye Camii, Edirne'de bulunur ve Mimar Sinan'ın eseridir.", True), ("Süleymaniye Camii, İstanbul'dadır.", True),
+              ("Minber, kıbleyi gösteren bölümdür.", False), ("Mihrap, ezan okunan yerdir.", False), ("Kubbe, ezan okunan yüksek kuledir.", False), ("Selimiye Camii, Bursa'da bulunur.", False)]),
+}
+
+
+def _dy_rom_family(key):
+    topic, item, kw, lead, bank = _DY_ROM[key]
+
+    def _f(subject):
+        tr = [b for b in bank if b[1]]
+        fl = [b for b in bank if not b[1]]
+        nt = random.choice([1, 2])
+        st = random.sample(tr, nt) + random.sample(fl, 3 - nt)
+        random.shuffle(st)
+        return _yn_rom(topic, lead, "Buna göre aşağıdaki yargılardan hangileri doğrudur?", st, "Her yargı konuyla ilgili bilgilerle ayrı ayrı denetlenir.", subject=subject)
+
+    _f.__name__ = "_df_yn_r_" + key
+    _f.ITEM = item
+    return _f, kw
+
+
+_DY_SEN = {
+    "allah": ("Allah'ın güzel isimleri", ("allah", "evren", "ihlas", "güzel isim"), "Allah inancı", [
+        ("Elif, bir tohumun toprağa atılınca filizlenip ağaç olduğunu ve mevsimlerin düzenli değiştiğini izliyor.", "Elif'in gözlemlediği bu düzen aşağıdakilerden hangisinin delillerindendir?", "Allah'ın varlığının ve kudretinin", ["Rastlantının", "İnsan gücünün", "Düzensizliğin"], "Evrendeki düzen, bir yaratıcının varlığını gösterir."),
+        ("Ali, yaptığı hatadan pişman olup Allah'tan af diliyor ve O'nun çok bağışlayan olduğuna inanıyor.", "Ali'nin inandığı Allah'ın güzel ismi aşağıdakilerden hangisidir?", "el-Gaffâr", ["er-Rezzâk", "el-Hâlık", "el-Basîr"], "el-Gaffâr, çok bağışlayan demektir."),
+        ("Defne, yemekten önce rızkın Allah'tan geldiğini düşünerek şükrediyor.", "Defne'nin düşündüğü Allah'ın güzel ismi aşağıdakilerden hangisidir?", "er-Rezzâk", ["el-Gaffâr", "el-Alîm", "el-Hâlık"], "er-Rezzâk, rızık veren demektir."),
+        ("Mert, kimse görmese de Allah'ın her şeyi gördüğünü düşünerek doğru davranıyor.", "Mert'in düşündüğü Allah'ın güzel ismi aşağıdakilerden hangisidir?", "el-Basîr", ["er-Rahîm", "el-Hâlık", "el-Gaffâr"], "el-Basîr, her şeyi gören demektir."),
+        ("Bir öğretmen, Allah'ın bir ve eşsiz olduğunu anlatan kısa bir sureyi öğrencilerine ezberletiyor.", "Öğretmenin ezberlettiği sure aşağıdakilerden hangisidir?", "İhlas suresi", ["Kevser suresi", "Kureyş suresi", "Fatiha suresi"], "İhlas suresi Allah'ın birliğini anlatır.")]),
+    "namaz": ("Namazın kılınışı", ("namaz", "tahiyyat", "abdest"), "Namaz", [
+        ("Zeynep, güneş batınca ezanı duyuyor ve akşam namazına hazırlanıyor.", "Zeynep'in kılacağı akşam namazının farzı kaç rekâttır?", "3 rekât", ["2 rekât", "4 rekât", "5 rekât"], "Akşam namazının farzı üç rekâttır."),
+        ("Mert, sabah ezanıyla uyanıp sabah namazına kalkıyor.", "Sabah namazının farzı kaç rekâttır?", "2 rekât", ["3 rekât", "4 rekât", "5 rekât"], "Sabah namazının farzı iki rekâttır."),
+        ("Ali, namaza hazırlanırken önce lavaboya gidip yüzünü, ellerini ve ayaklarını belirli şekilde yıkıyor.", "Ali'nin yaptığı bu hazırlığın adı aşağıdakilerden hangisidir?", "Abdest", ["Oruç", "Zekât", "Hac"], "Namazdan önce abdest alınır."),
+        ("Bir çocuk, evinde namaz kılacağı yönü bulmak için pusulaya bakıyor.", "Namazda hangi yöne dönülür?", "Kıble (Kâbe) yönüne", ["Kuzeye", "Doğuya", "Yükseltiye"], "Namaz kıbleye yönelerek kılınır."),
+        ("Düzenli namaz kılan Ece, günün her vaktini planlı geçiriyor ve zamanını iyi kullanıyor.", "Bu durum namazın insana hangi katkısını gösterir?", "Düzenli ve disiplinli yaşamaya yardım etmesini", ["Tembelliğe alıştırmasını", "Savurganlığı artırmasını", "İnsanları birbirinden uzaklaştırmasını"], "Namaz vakitleri, düzenli yaşamayı öğretir.")]),
+    "kuran": ("Kur'an-ı Kerim'in iç düzeni", ("kur'an", "kuran", "kevser", "sure"), "Kur'an-ı Kerim", [
+        ("Mert, Kur'an-ı Kerim'in bölümlerinin sure, cümlelerinin ise başka bir adla anıldığını öğreniyor.", "Kur'an-ı Kerim'in cümlelerine ne ad verilir?", "Ayet", ["Sure", "Cüz", "Rekât"], "Kur'an'ın cümlelerine ayet denir."),
+        ("Bir öğrenci, Kur'an-ı Kerim'in otuz eşit bölüme ayrıldığını öğreniyor.", "Bu bölümlerin her birine ne ad verilir?", "Cüz", ["Sure", "Ayet", "Rekât"], "Kur'an-ı Kerim 30 cüzden oluşur."),
+        ("Ece, Hz. Muhammed'e ilk gelen ayetlerin hangi surede olduğunu araştırıyor.", "İlk inen ayetler aşağıdaki surelerden hangisinde yer alır?", "Alak suresi", ["Kevser suresi", "İhlas suresi", "Fatiha suresi"], "İlk inen ayetler Alak suresindedir."),
+        ("Ali, Kur'an-ı Kerim'i okumadan önce ellerini yıkıyor ve onu temiz bir yere koyuyor.", "Ali'nin davranışı aşağıdakilerden hangisini gösterir?", "Kur'an-ı Kerim'e saygıyı", ["Kur'an'ı önemsememeyi", "Kuralları ihmal etmeyi", "Alay etmeyi"], "Kur'an'a saygı göstermek gerekir.")]),
+    "kissa": ("Peygamber kıssalarındaki öğütler", ("peygamber", "kıssa", "kureyş"), "Peygamber kıssaları", [
+        ("Bir peygamber, Allah'ın emriyle büyük bir gemi yapmış ve inananlarla birlikte tufandan kurtulmuştur.", "Bu kıssa hangi peygambere aittir?", "Hz. Nuh", ["Hz. Musa", "Hz. Yunus", "Hz. Süleyman"], "Gemi yapan peygamber Hz. Nuh'tur."),
+        ("Bir peygamber ağır hastalığına rağmen şikâyet etmemiş, Allah'a olan güveniyle sabretmiştir.", "Bu kıssada öne çıkan davranış aşağıdakilerden hangisidir?", "Sabır", ["Cimrilik", "Acelecilik", "Bencillik"], "Hz. Eyüp sabrıyla bilinir."),
+        ("Bir peygamber, kardeşleri tarafından kuyuya atılmasına rağmen dürüstlüğünü ve güzel ahlakını korumuştur.", "Bu kıssa hangi peygambere aittir?", "Hz. Yusuf", ["Hz. Nuh", "Hz. İbrahim", "Hz. Eyüp"], "Kuyuya atılan peygamber Hz. Yusuf'tur."),
+        ("Bir peygamber, zalim bir hükümdara Allah'ın emirlerini cesaretle anlatmıştır.", "Bu peygamber ve hükümdar aşağıdakilerden hangisidir?", "Hz. Musa ve Firavun", ["Hz. Nuh ve Firavun", "Hz. Yusuf ve Nemrut", "Hz. İsa ve Firavun"], "Firavun'a karşı mücadele eden peygamber Hz. Musa'dır."),
+        ("Bir çocuk, peygamberlerin insanlara neden gönderildiğini soruyor.", "Peygamberlerin gönderilmesinin amacı aşağıdakilerden hangisidir?", "İnsanlara doğru yolu göstermek", ["İnsanları birbirine düşürmek", "İnsanlardan mal toplamak", "İnsanlara yeni oyunlar öğretmek"], "Peygamberler doğruyu ve güzel ahlakı öğretir.")]),
+    "cami": ("Camilerin bölümleri (mihrap, minber, kubbe, minare)", ("cami", "mimari", "mihrap", "minber", "dinî motif"), "Mimarimizde dinî motifler", [
+        ("Bir öğrenci camiyi gezerken imamın hutbe okuduğu yüksekçe yeri soruyor.", "Bu bölüm aşağıdakilerden hangisidir?", "Minber", ["Mihrap", "Minare", "Kubbe"], "Hutbe minberde okunur."),
+        ("Bir öğrenci camide kıbleyi gösteren, duvarda oyuk biçimindeki bölümü görüyor.", "Bu bölümün adı aşağıdakilerden hangisidir?", "Mihrap", ["Minber", "Şadırvan", "Minare"], "Mihrap, kıbleyi gösterir."),
+        ("Ezan, camiden uzaktaki insanların da duyabilmesi için yüksek bir yapıdan okunuyor.", "Bu yüksek yapı aşağıdakilerden hangisidir?", "Minare", ["Mihrap", "Minber", "Şadırvan"], "Ezan minareden okunur."),
+        ("Mimar Sinan, Edirne'de “ustalık eserim” dediği bir cami yapmıştır.", "Bu cami aşağıdakilerden hangisidir?", "Selimiye Camii", ["Sultanahmet Camii", "Süleymaniye Camii", "Kocatepe Camii"], "Mimar Sinan'ın ustalık eseri Selimiye Camii'dir."),
+        ("Müslümanların namazda yöneldiği Kâbe, bir şehirdeki Mescid-i Haram'ın içindedir.", "Mescid-i Haram hangi şehirdedir?", "Mekke", ["Medine", "Kudüs", "İstanbul"], "Kâbe ve Mescid-i Haram Mekke'dedir.")]),
+}
+
+
+def _dy_sen_family(key):
+    item, kw, topic, bank = _DY_SEN[key]
+
+    def _f(subject):
+        lead, q, c, ws, ex = random.choice(bank)
+        o = _yn_opts(c, ws)
+        return _mf_raw(subject, topic, q, o, ex, passage=lead) if o else None
+
+    _f.__name__ = "_df_yn_sen_" + key
+    _f.ITEM = item
+    return _f, kw
+
+
+# --- Tablo okuma: farz rekât sayıları ve sure ayet sayıları
+_DY_VAKIT = [("Sabah", 2), ("Öğle", 4), ("İkindi", 4), ("Akşam", 3), ("Yatsı", 4)]
+
+
+def _df_yn_rekat_tablo(subject):
+    sh = {"type": "table", "title": "Beş Vakit Namazın Farz Rekât Sayıları", "headers": ["Vakit", "Farz rekât sayısı"], "rows": [[n, str(v)] for n, v in _DY_VAKIT]}
+    lead = "Bir öğrenci, beş vakit namazın farz rekât sayılarını tabloya yazmıştır."
+    topic = "Namaz"
+    kind = random.choice(["toplam", "iki", "say", "roman"])
+    if kind == "toplam":
+        t = sum(v for _n, v in _DY_VAKIT)
+        o = _mf_opts(t, [t - 1, t + 1, t - 2, t + 3], lambda x: f"{x} rekât")
+        return _mf_raw(subject, topic, "Tabloya göre bir günde kılınan beş vakit namazın farz rekâtlarının toplamı kaçtır?", o, f"2 + 4 + 4 + 3 + 4 = {t} rekât.", shape=sh, passage=lead) if o else None
+    if kind == "iki":
+        (a, x), (b, y) = random.sample(_DY_VAKIT, 2)
+        o = _mf_opts(x + y, [x + y + 1, x + y - 1, x + y + 2, abs(x - y) or 5], lambda v: f"{v} rekât")
+        return _mf_raw(subject, topic, f"Tabloya göre {a.lower()} ve {b.lower()} namazlarının farz rekâtları toplam kaçtır?", o, f"{x} + {y} = {x + y} rekât.", shape=sh, passage=lead) if o else None
+    if kind == "say":
+        k = random.choice([2, 3, 4])
+        n = sum(1 for _a, v in _DY_VAKIT if v == k)
+        o = _mf_opts(n, [n + 1, n + 2, max(0, n - 1) if n > 1 else n + 3, 5], lambda v: f"{v} vakit")
+        return _mf_raw(subject, topic, f"Tabloya göre farzı {k} rekât olan kaç vakit namaz vardır?", o, f"Tablodaki vakitlerden farzı {k} rekât olanlar sayılır: {n} vakit.", shape=sh, passage=lead) if o else None
+    (a, x), (b, y) = random.sample(_DY_VAKIT, 2)
+    s1 = (f"{a} namazının farzı, {b.lower()} namazının farzından fazladır.", x > y)
+    s2 = _yn_pick("Akşam namazının farzı tek sayıdadır.", "Akşam namazının farzı çift sayıdadır.")
+    s2 = (s2[0], "tek sayı" in s2[0])
+    s3 = _yn_pick("Sabah namazının farzı, tablodaki en az rekâtlı farzdır.", "Sabah namazının farzı, tablodaki en çok rekâtlı farzdır.")
+    s3 = (s3[0], "en az" in s3[0])
+    return _yn_rom(topic, lead, "Tabloya göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Yargılar tablodaki rekât sayılarıyla denetlenir.", shape=sh, subject=subject)
+
+
+_DY_SURE = [("Fâtiha", 7), ("İhlâs", 4), ("Felak", 5), ("Nâs", 6), ("Kevser", 3), ("Kureyş", 4), ("Asr", 3), ("Fîl", 5), ("Mâûn", 7)]
+
+
+def _df_yn_sure_tablo(subject):
+    sec = random.sample(_DY_SURE, 4)
+    sh = {"type": "table", "title": "Bazı Surelerin Ayet Sayıları", "headers": ["Sure", "Ayet sayısı"], "rows": [[n, str(v)] for n, v in sec]}
+    lead = "Bir öğrenci, ezberlediği bazı surelerin ayet sayılarını tabloya yazmıştır."
+    topic = "Kur'an-ı Kerim"
+    kind = random.choice(["toplam", "fark", "roman"])
+    if kind == "toplam":
+        t = sum(v for _n, v in sec)
+        o = _mf_opts(t, [t - 1, t + 1, t + 2, t - 2], lambda x: f"{x} ayet")
+        return _mf_raw(subject, topic, "Tabloda verilen dört surenin ayet sayıları toplamı kaçtır?", o, f"{' + '.join(str(v) for _n, v in sec)} = {t} ayet.", shape=sh, passage=lead) if o else None
+    if kind == "fark":
+        d = max(v for _n, v in sec) - min(v for _n, v in sec)
+        if d == 0:
+            return None
+        o = _mf_opts(d, [d + 1, d + 2, d + 3, abs(d - 1) or 4], lambda x: f"{x} ayet")
+        return _mf_raw(subject, topic, "Tabloya göre en çok ayeti olan sure ile en az ayeti olan sure arasındaki ayet sayısı farkı kaçtır?", o, f"{max(v for _n, v in sec)} − {min(v for _n, v in sec)} = {d} ayet.", shape=sh, passage=lead) if o else None
+    (a, x), (b, y) = random.sample(sec, 2)
+    s1 = (f"{a} suresinin ayet sayısı, {b} suresinin ayet sayısından fazladır.", x > y)
+    (c, z), (d, w) = random.sample(sec, 2)
+    s2 = (f"{c} suresi ile {d} suresinin ayet sayıları toplamı {z + w}'dir.", True) if random.random() < .5 else (f"{c} suresi ile {d} suresinin ayet sayıları toplamı {z + w + 1}'dir.", False)
+    s3 = _yn_pick("Kur'an-ı Kerim'in cümlelerine ayet denir.", "Kur'an-ı Kerim'in cümlelerine cüz denir.")
+    s3 = (s3[0], "ayet denir" in s3[0])
+    return _yn_rom(topic, lead, "Tabloya göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Yargılar tablodaki ayet sayıları ve temel bilgilerle denetlenir.", shape=sh, subject=subject)
+
+
+_DY_NEW = []
+for _k in _DY_ROM:
+    _DY_NEW.append((*_dy_rom_family(_k), 3))
+for _k in _DY_SEN:
+    _DY_NEW.append((*_dy_sen_family(_k), 2))
+_df_yn_rekat_tablo.ITEM = "Namazın kılınışı"
+_df_yn_sure_tablo.ITEM = "Kur'an-ı Kerim'in iç düzeni"
+_DY_NEW.append((_df_yn_rekat_tablo, ("namaz", "tahiyyat", "abdest"), 3))
+_DY_NEW.append((_df_yn_sure_tablo, ("kur'an", "kuran", "kevser", "sure"), 3))
+
+
+
 def _tr_par_pick():
     return random.choice(_TR_PAR)
 
@@ -14196,6 +14361,9 @@ _DIFF_OF.update({"_tf_par_ana": 4, "_tf_par_cikarim": 4, "_tf_par_konu": 2})
 # ================================================================ 5. SINIF DİN KÜLTÜRÜ VE AHLAK BİLGİSİ — kodla kurulan, doğru-cevaplı kalıplar
 _DIN = "Din Kültürü ve Ahlak Bilgisi"
 _DF_GENS = []
+for _f, _kw, _d in _DY_NEW:
+    _DF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
 
 
 def _df_eslestir(topic, L, stem, ex, extra=()):
@@ -20502,7 +20670,7 @@ def _fam_item(name, fn, subject, items):
     return v
 
 
-_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_", "_ff_yn2_"), "Sosyal Bilgiler": ("_sf_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
+_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_", "_ff_yn2_"), "Sosyal Bilgiler": ("_sf_yn_",), "Din Kültürü ve Ahlak Bilgisi": ("_df_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
 _YN_SHARE = 0.3  # sınavdaki yeni nesil (senaryo/tablo/belge/paragraf) soru payı
 
 
@@ -20515,7 +20683,7 @@ def _bal_order(rkey, byname, subject, grade_label, topics, n):
     yn = [x for x in out if x.startswith(pre)]
     if not yn:
         return out
-    q = min(len(yn), max(1, round({"Matematik": 0.4, "Fen Bilimleri": 0.4, "Sosyal Bilgiler": 0.4}.get(subject, _YN_SHARE) * n)))
+    q = min(len(yn), max(1, round({"Matematik": 0.4, "Fen Bilimleri": 0.4, "Sosyal Bilgiler": 0.4, "Din Kültürü ve Ahlak Bilgisi": 0.4}.get(subject, _YN_SHARE) * n)))
     pick = yn[:q]
     rest = [x for x in out if x not in pick]
     step = max(1, n // q)
