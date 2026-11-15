@@ -19,7 +19,7 @@ for sj in SUBJ:
         store.add_stems(qs); store.add_styles(qs)
         st = [re.sub(r"\d+", "#", q["question"])[:70] for q in qs]
         rep = sum(1 for s in st if s in prev)
-        tp = collections.Counter(q.get("tpl") for q in qs)
+        tp = collections.Counter(q.get("tpl") for q in qs if q.get("tpl")) or collections.Counter([0])  # kalıp adı olmayan (sabit/banka) sorular tek kalıp sayılmaz
         print(sj, r, len(qs), "tekrar", rep, "aynı kalıp max", max(tp.values()))
         if len(qs) != 10:
             fails.append((sj, r, "adet", len(qs)))
