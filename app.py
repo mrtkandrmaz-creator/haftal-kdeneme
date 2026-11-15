@@ -1409,7 +1409,8 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, Polygon, Rectangle, Wedge, Ellipse, FancyArrowPatch
+from matplotlib.patches import Circle, Polygon, Rectangle, Wedge, Ellipse, FancyArrowPatch, FancyBboxPatch
+import matplotlib.transforms
 
 plt.rcParams["font.sans-serif"] = ["DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
@@ -2966,12 +2967,246 @@ def _doc(ax, d):
         y -= .15
 
 
+# ---------------------------------------------------------------- CANLILAR DÜNYASI ŞEMALARI (5. sınıf Fen): mikroskop, mikroskobik canlılar, şapkalı mantar, sınıflandırma ağacı, canlı kartları
+def _bio_bubble(ax, x, y, t, col=None, r=.42, fs=12):
+    ax.add_patch(Circle((x, y), r, fc="white", ec=col or ORANGE, lw=2, zorder=9))
+    ax.text(x, y, str(t), ha="center", va="center", fontsize=fs, fontweight="bold", color=col or ORANGE, zorder=10)
+
+
+def _bio_leader(ax, p, q, t, col=None):
+    ax.plot([p[0], q[0]], [p[1], q[1]], color=col or ORANGE, lw=1.4, zorder=8)
+    ax.add_patch(Circle(p, .09, fc=col or ORANGE, ec="none", zorder=8))
+    _bio_bubble(ax, q[0], q[1], t, col)
+
+
+def _bio_microscope(ax, d):
+    S = "#475569"
+    ax.add_patch(FancyBboxPatch((1.9, 0), 6.2, .8, boxstyle="round,pad=0.0,rounding_size=.3", fc="#64748b", ec=INK, lw=1.6, zorder=2))
+    ax.plot([6.9, 6.9, 6.1, 4.8], [.8, 8.3, 10.3, 10.8], color="#94a3b8", lw=15, solid_capstyle="round", solid_joinstyle="round", zorder=1)
+    ax.plot([6.9, 6.9, 6.1, 4.8], [.8, 8.3, 10.3, 10.8], color=INK, lw=1.2, zorder=1.2, alpha=.0)
+    ax.plot([3.9, 3.8], [10.6, 6.6], color=S, lw=22, solid_capstyle="butt", zorder=3)
+    ax.plot([3.8, 3.8], [11.5, 10.6], color="#334155", lw=13, solid_capstyle="butt", zorder=3)
+    ax.plot([3.8, 3.8], [6.6, 5.3], color="#334155", lw=9, solid_capstyle="butt", zorder=3)
+    ax.add_patch(Rectangle((1.9, 3.1), 4.3, .4, fc="#cbd5e1", ec=INK, lw=1.6, zorder=3))
+    ax.add_patch(Rectangle((2.8, 3.5), 2.0, .14, fc="#bfdbfe", ec=INK, lw=1, zorder=3))
+    ax.plot([3.8, 3.8], [3.1, 1.8], color=S, lw=5, zorder=2)
+    ax.add_patch(Circle((3.8, 1.5), .55, fc="#fde68a", ec=INK, lw=1.6, zorder=3))
+    ax.add_patch(Circle((6.9, 4.4), .5, fc="#e2e8f0", ec=INK, lw=1.6, zorder=4))
+    ax.add_patch(Circle((6.9, 4.4), .2, fc=S, ec="none", zorder=5))
+    A = {"ocular": ((3.8, 11.2), (1.2, 11.4)), "tube": ((3.85, 8.6), (1.2, 8.6)), "objective": ((3.8, 5.9), (1.2, 6.0)), "stage": ((2.3, 3.3), (.6, 3.3)),
+         "light": ((3.4, 1.4), (1.2, 1.4)), "arm": ((6.9, 7.2), (9.2, 7.4)), "knob": ((6.9, 4.4), (9.2, 4.4)), "base": ((7.4, .4), (9.2, .5))}
+    for k, t in (d.get("labels") or {}).items():
+        if k in A:
+            _bio_leader(ax, A[k][0], A[k][1], t)
+    ax.set_xlim(-.3, 10.0)
+    ax.set_ylim(-.5, 12.2)
+
+
+def _bio_mushroom(ax, d, ox=0.0, oy=0.0, sc=1.0, poison=False, labels=None):
+    t = np.linspace(0, np.pi, 60)
+    cap = np.column_stack([ox + 3.2 * sc * np.cos(t), oy + 3.4 * sc + 2.0 * sc * np.sin(t)])
+    ax.add_patch(Polygon(np.vstack([cap, [[ox - 3.2 * sc, oy + 3.4 * sc]]]), closed=True, fc="#dc2626" if poison else "#d6a77a", ec=INK, lw=1.8, zorder=3))
+    if poison:
+        for (px, py, r) in ((-1.4, 4.6, .32), (.2, 5.0, .4), (1.5, 4.5, .3), (-.3, 3.95, .22), (2.2, 3.95, .2), (-2.3, 3.95, .2)):
+            ax.add_patch(Circle((ox + px * sc, oy + py * sc), r * sc, fc="white", ec="none", zorder=4))
+    for gx in np.linspace(-2.9, 2.9, 13):
+        ax.plot([ox + gx * sc, ox + gx * .35 * sc], [oy + 3.4 * sc, oy + 3.1 * sc], color="#94a3b8", lw=1.1, zorder=3)
+    ax.add_patch(Polygon([[ox - .75 * sc, oy], [ox + .75 * sc, oy], [ox + .5 * sc, oy + 3.1 * sc], [ox - .5 * sc, oy + 3.1 * sc]], closed=True, fc="#f1f5f9", ec=INK, lw=1.8, zorder=2))
+    ax.add_patch(Ellipse((ox, oy + 2.35 * sc), 1.9 * sc, .35 * sc, fc="#e2e8f0", ec=INK, lw=1.4, zorder=4))
+    ax.add_patch(Polygon([[ox - 1.1 * sc, oy], [ox + 1.1 * sc, oy], [ox + .75 * sc, oy + .5 * sc], [ox - .75 * sc, oy + .5 * sc]], closed=True, fc="#fef3c7", ec=INK, lw=1.2, zorder=2))
+    if labels:
+        A = {"cap": ((ox + 1.8 * sc, oy + 5.0 * sc), (ox + 4.7 * sc, oy + 5.6 * sc)), "gill": ((ox + 1.6 * sc, oy + 3.25 * sc), (ox + 4.7 * sc, oy + 3.8 * sc)),
+             "ring": ((ox + .9 * sc, oy + 2.35 * sc), (ox + 4.7 * sc, oy + 2.2 * sc)), "stem": ((ox + .45 * sc, oy + 1.2 * sc), (ox + 4.7 * sc, oy + .8 * sc))}
+        for k, tt in labels.items():
+            if k in A:
+                _bio_leader(ax, A[k][0], A[k][1], tt)
+
+
+def _bio_amip(ax, cx, cy, s=1.0, nuc=True):
+    th = np.linspace(0, 2 * np.pi, 120)
+    r = 1.0 + .22 * np.sin(3 * th + .6) + .12 * np.sin(5 * th) + .35 * np.exp(-((th - .6) ** 2) / .05) + .3 * np.exp(-((th - 3.9) ** 2) / .06) + .28 * np.exp(-((th - 5.4) ** 2) / .05)
+    P = np.column_stack([cx + 1.25 * s * r * np.cos(th), cy + 1.0 * s * r * np.sin(th)])
+    ax.add_patch(Polygon(P, closed=True, fc="#bae6fd", ec="#0369a1", lw=1.8, joinstyle="round", zorder=3))
+    if nuc:
+        ax.add_patch(Circle((cx - .1 * s, cy + .05 * s), .38 * s, fc="#7dd3fc", ec="#0369a1", lw=1.3, zorder=4))
+        ax.add_patch(Circle((cx - .1 * s, cy + .05 * s), .12 * s, fc="#0369a1", ec="none", zorder=5))
+        ax.add_patch(Circle((cx + .65 * s, cy - .35 * s), .17 * s, fc="white", ec="#0369a1", lw=1, zorder=4))
+
+
+def _bio_parames(ax, cx, cy, s=1.0, ang=18):
+    c, sn = np.cos(np.radians(ang)), np.sin(np.radians(ang))
+    R = lambda x, y: (cx + s * (x * c - y * sn), cy + s * (x * sn + y * c))
+    th = np.linspace(0, 2 * np.pi, 100)
+    for a in np.linspace(0, 2 * np.pi, 56, endpoint=False):
+        x0, y0 = 1.65 * np.cos(a), .72 * np.sin(a)
+        x1, y1 = 1.82 * np.cos(a), .86 * np.sin(a)
+        p, q = R(x0, y0), R(x1, y1)
+        ax.plot([p[0], q[0]], [p[1], q[1]], color="#0f766e", lw=.9, zorder=2)
+    pts = [R(1.65 * np.cos(a) * (1 + .08 * np.cos(a)), .72 * np.sin(a)) for a in th]
+    ax.add_patch(Polygon(pts, closed=True, fc="#99f6e4", ec="#0f766e", lw=1.8, zorder=3))
+    g = [R(-1.0, .0), R(-.3, -.25), R(-.2, -.4)]
+    ax.plot([R(-1.2, .05)[0], R(-.1, -.15)[0]], [R(-1.2, .05)[1], R(-.1, -.15)[1]], color="#0f766e", lw=1.6, zorder=4)
+    ax.add_patch(Circle(R(.45, .05), .28 * s, fc="#5eead4", ec="#0f766e", lw=1.3, zorder=4))
+    ax.add_patch(Circle(R(.45, .05), .1 * s, fc="#0f766e", ec="none", zorder=5))
+    ax.add_patch(Circle(R(-.95, .3), .14 * s, fc="white", ec="#0f766e", lw=1, zorder=4))
+    ax.add_patch(Circle(R(1.05, -.25), .14 * s, fc="white", ec="#0f766e", lw=1, zorder=4))
+
+
+def _bio_euglena(ax, cx, cy, s=1.0, ang=-12):
+    c, sn = np.cos(np.radians(ang)), np.sin(np.radians(ang))
+    R = lambda x, y: (cx + s * (x * c - y * sn), cy + s * (x * sn + y * c))
+    xs = np.linspace(-1.7, 1.5, 60)
+    w = .62 * np.sin(np.pi * (xs + 1.7) / 3.2) ** .7 * (1 - .18 * (xs + 1.7) / 3.2)
+    P = [R(x, y) for x, y in zip(xs, w)] + [R(x, -y) for x, y in zip(xs[::-1], w[::-1])]
+    ax.add_patch(Polygon(P, closed=True, fc="#bbf7d0", ec="#15803d", lw=1.8, zorder=3))
+    ft = np.linspace(0, 1, 40)
+    fl = [R(1.5 + 1.2 * t_, .12 * np.sin(9 * t_) + .25 * t_) for t_ in ft]
+    ax.plot([p[0] for p in fl], [p[1] for p in fl], color="#15803d", lw=1.6, zorder=3)
+    for (x, y) in ((-.7, .2), (-.3, -.25), (.1, .25), (-.9, -.15), (.5, -.1), (-.1, 0.0)):
+        ax.add_patch(Circle(R(x, y), .11 * s, fc="#16a34a", ec="none", zorder=4))
+    ax.add_patch(Circle(R(1.05, .18), .1 * s, fc="#dc2626", ec="none", zorder=5))
+    ax.add_patch(Circle(R(.45, .02), .2 * s, fc="#86efac", ec="#15803d", lw=1.1, zorder=4))
+
+
+def _bio_bacteria(ax, cx, cy, s=1.0):
+    def rod(x, y, ang, L=1.5, Wd=.55, fl=True):
+        c, sn = np.cos(np.radians(ang)), np.sin(np.radians(ang))
+        ax.add_patch(FancyBboxPatch((-L / 2, -Wd / 2), L, Wd, boxstyle=f"round,pad=0,rounding_size={Wd / 2}", fc="#fde68a", ec="#b45309", lw=1.6, zorder=3,
+                                    transform=matplotlib.transforms.Affine2D().scale(s).rotate_deg(ang).translate(cx + x * s, cy + y * s) + ax.transData))
+        if fl:
+            tt = np.linspace(0, 1, 20)
+            px = L / 2 + .9 * tt
+            py = .14 * np.sin(10 * tt)
+            X = cx + s * (x + px * c - py * sn)
+            Y = cy + s * (y + px * sn + py * c)
+            ax.plot(X, Y, color="#b45309", lw=1.1, zorder=2)
+    rod(-.5, .3, 15)
+    rod(.7, -.55, -20, fl=False)
+    ax.add_patch(Circle((cx + 1.1 * s, cy + .75 * s), .32 * s, fc="#fde68a", ec="#b45309", lw=1.6, zorder=3))
+    ax.add_patch(Circle((cx - .9 * s, cy - .65 * s), .3 * s, fc="#fde68a", ec="#b45309", lw=1.6, zorder=3))
+
+
+_BIO_MIKRO = {"amip": _bio_amip, "paramesyum": _bio_parames, "öglena": _bio_euglena, "bakteri": _bio_bacteria}
+
+
+def _bio_microbe(ax, d):
+    kinds = d.get("kinds") or ["amip"]
+    labs = d.get("labels") or [""] * len(kinds)
+    n = len(kinds)
+    _code = {"m1": "amip", "m2": "paramesyum", "m3": "öglena", "m4": "bakteri"}
+    for i, (k, lb) in enumerate(zip(kinds, labs)):
+        cx = 2.6 * (i + .5) * 1.25
+        _BIO_MIKRO[_code.get(k, k)](ax, cx, 0, 1.0)
+        if lb:
+            _bio_bubble(ax, cx, -2.0, lb)
+    ax.add_patch(Circle((n * 1.62, 0), n * 1.9 + .6, fc="none", ec="none"))
+    if d.get("caption"):
+        ax.text(n * 1.62, -3.0, str(d["caption"]), ha="center", va="center", fontsize=9.5, fontweight="bold", color=GREEN)
+    ax.set_xlim(-.4, n * 3.25 + .1)
+    ax.set_ylim(-3.4 if d.get("caption") else -2.6, 2.2)
+
+
+def _bio_tree(ax, d):
+    from matplotlib.patches import FancyBboxPatch as _FB
+    root = str(d.get("root", ""))
+    kids = [str(x) for x in d.get("kids", [])]
+    leaves = d.get("leaves") or [[] for _ in kids]
+    n = len(kids)
+    W = 3.7
+    xs = [(i - (n - 1) / 2.0) * W for i in range(n)]
+    box = lambda x, y, t, fc, w=3.4, h=.8, fs=10: (ax.add_patch(_FB((x - w / 2, y - h / 2), w, h, boxstyle="round,pad=0,rounding_size=.2", fc=fc, ec=INK, lw=1.6, zorder=3)),
+                                                      ax.text(x, y, t, ha="center", va="center", fontsize=fs, fontweight="bold", color=INK, zorder=4))
+    box(0, 0, root, "#fde68a", w=3.4)
+    for x, k, lv in zip(xs, kids, leaves):
+        ax.plot([0, 0, x, x], [-.4, -.75, -.75, -1.3], color=INK, lw=1.6, zorder=1)
+        box(x, -1.7, k, "#bae6fd")
+        for j, l in enumerate(lv):
+            ax.plot([x, x], [-2.1 - .85 * j, -2.4 - .85 * j] if j == 0 else [-2.1 - .85 * (j - 1) - .4, -2.4 - .85 * j], color=INK, lw=1.2, zorder=1)
+            box(x, -2.8 - .85 * j, str(l), "#dcfce7", h=.65, fs=9.5)
+    depth = max([len(x) for x in leaves] + [0])
+    ax.set_xlim(xs[0] - 1.8, xs[-1] + 1.8)
+    ax.set_ylim(-3.2 - .85 * depth, .8)
+
+
+def _bio_icon(ax, kind, cx, cy, s=1.0):
+    if kind in _BIO_MIKRO:
+        _BIO_MIKRO[kind](ax, cx, cy, .62 * s)
+    elif kind == "gül":
+        ax.plot([cx, cx], [cy - 1.1 * s, cy + .2 * s], color="#15803d", lw=3, zorder=2)
+        ax.add_patch(Ellipse((cx + .4 * s, cy - .6 * s), .7 * s, .3 * s, angle=30, fc="#4ade80", ec="#15803d", lw=1, zorder=2))
+        for a in range(0, 360, 60):
+            ax.add_patch(Circle((cx + .42 * s * np.cos(np.radians(a)), cy + .6 * s + .42 * s * np.sin(np.radians(a))), .3 * s, fc="#f472b6", ec="#9d174d", lw=1, zorder=3))
+        ax.add_patch(Circle((cx, cy + .6 * s), .25 * s, fc="#fde047", ec="#9d174d", lw=1, zorder=4))
+    elif kind == "çam":
+        ax.add_patch(Rectangle((cx - .12 * s, cy - 1.2 * s), .24 * s, .6 * s, fc="#92400e", ec="none", zorder=2))
+        for i in range(3):
+            w_ = (1.0 - .22 * i) * s
+            ax.add_patch(Polygon([[cx - w_, cy - .7 * s + .55 * i * s], [cx + w_, cy - .7 * s + .55 * i * s], [cx, cy + .2 * s + .55 * i * s]], closed=True, fc="#16a34a", ec="#14532d", lw=1.1, zorder=3 + i))
+    elif kind == "balık":
+        ax.add_patch(Ellipse((cx, cy), 1.9 * s, 1.0 * s, fc="#fb923c", ec="#9a3412", lw=1.5, zorder=3))
+        ax.add_patch(Polygon([[cx + .85 * s, cy], [cx + 1.5 * s, cy + .55 * s], [cx + 1.5 * s, cy - .55 * s]], closed=True, fc="#fdba74", ec="#9a3412", lw=1.3, zorder=2))
+        ax.add_patch(Circle((cx - .55 * s, cy + .12 * s), .09 * s, fc=INK, ec="none", zorder=4))
+    elif kind == "kelebek":
+        for sx in (-1, 1):
+            ax.add_patch(Ellipse((cx + sx * .55 * s, cy + .35 * s), .95 * s, .8 * s, angle=sx * -20, fc="#a78bfa", ec="#5b21b6", lw=1.3, zorder=3))
+            ax.add_patch(Ellipse((cx + sx * .45 * s, cy - .4 * s), .7 * s, .6 * s, angle=sx * 20, fc="#c4b5fd", ec="#5b21b6", lw=1.3, zorder=3))
+            ax.plot([cx, cx + sx * .5 * s], [cy + .8 * s, cy + 1.2 * s], color=INK, lw=1.1, zorder=3)
+        ax.add_patch(Ellipse((cx, cy), .22 * s, 1.5 * s, fc=INK, ec="none", zorder=4))
+    elif kind == "kuş":
+        ax.add_patch(Ellipse((cx, cy - .1 * s), 1.5 * s, .95 * s, fc="#60a5fa", ec="#1e3a8a", lw=1.4, zorder=3))
+        ax.add_patch(Circle((cx - .75 * s, cy + .35 * s), .38 * s, fc="#60a5fa", ec="#1e3a8a", lw=1.4, zorder=3))
+        ax.add_patch(Polygon([[cx - 1.1 * s, cy + .35 * s], [cx - 1.5 * s, cy + .25 * s], [cx - 1.1 * s, cy + .15 * s]], closed=True, fc="#fbbf24", ec="#92400e", lw=1, zorder=4))
+        ax.add_patch(Circle((cx - .82 * s, cy + .42 * s), .05 * s, fc=INK, ec="none", zorder=5))
+        ax.plot([cx - .1 * s, cx - .1 * s], [cy - .55 * s, cy - 1.0 * s], color="#92400e", lw=2, zorder=2)
+        ax.plot([cx + .2 * s, cx + .2 * s], [cy - .55 * s, cy - 1.0 * s], color="#92400e", lw=2, zorder=2)
+        ax.add_patch(Polygon([[cx + .7 * s, cy - .1 * s], [cx + 1.3 * s, cy + .2 * s], [cx + 1.25 * s, cy - .3 * s]], closed=True, fc="#3b82f6", ec="#1e3a8a", lw=1.2, zorder=2))
+    elif kind == "mantar":
+        _bio_mushroom(ax, {}, cx, cy - 1.0 * s, .32 * s)
+    elif kind == "zehirli mantar":
+        _bio_mushroom(ax, {}, cx, cy - 1.0 * s, .32 * s, poison=True)
+
+
+def _bio_cards(ax, d):
+    items = d.get("items") or []
+    n = len(items)
+    per = min(n, int(d.get("per_row", 4)) or 4)
+    rows = (n + per - 1) // per
+    for i, it in enumerate(items):
+        r, c = divmod(i, per)
+        cx, cy = c * 3.3 + 1.5, -r * 3.7
+        ax.add_patch(FancyBboxPatch((cx - 1.55, cy - 1.45), 3.1, 2.9, boxstyle="round,pad=0,rounding_size=.25", fc="#f8fafc", ec="#cbd5e1", lw=1.4, zorder=1))
+        _bio_icon(ax, it.get("kind"), cx, cy + .1, 1.0)
+        if it.get("label"):
+            _bio_bubble(ax, cx - 1.2, cy + 1.1, it["label"], fs=11, r=.36)
+    ax.set_xlim(-.4, per * 3.3 + .2)
+    ax.set_ylim(-(rows - 1) * 3.7 - 1.9, 1.8)
+    if d.get("caption"):
+        ax.text(per * 1.65, -(rows - 1) * 3.7 - 2.3, str(d["caption"]), ha="center", va="center", fontsize=9.5, fontweight="bold", color=GREEN)
+        ax.set_ylim(-(rows - 1) * 3.7 - 2.8, 1.8)
+
+
+def _bio(ax, d):
+    st = d.get("sub_type")
+    if st == "microscope":
+        _bio_microscope(ax, d)
+    elif st == "mushroom":
+        _bio_mushroom(ax, d, 0, 0, 1.0, bool(d.get("poison")), d.get("labels"))
+        ax.set_xlim(-4, 6.2)
+        ax.set_ylim(-.5, 6.2)
+    elif st == "microbe":
+        _bio_microbe(ax, d)
+    elif st == "tree":
+        _bio_tree(ax, d)
+    elif st == "cards":
+        _bio_cards(ax, d)
+
+
 _DISPATCH = {
     "fen": _fen, "triangle": _triangle, "circle": _circle, "rectangle": _rectangle,
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -6259,7 +6494,7 @@ _SCI = {"fen", "science_space", "space_orbit", "eclipse", "moon_phases", "dynamo
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
     "Matematik": _GEO | _CH,
-    "Fen Bilimleri": (_SCI | _CH) - {"cylinder"},
+    "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio"},
     "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
     "Türkçe": {"table", "doc"},
@@ -21270,6 +21505,309 @@ _merge_extra()
 _bank_register()
 
 _MF_GENS[:] = [(_stem_vary(f), k_, g_) for f, k_, g_ in _MF_GENS]  # sonradan eklenen kalıplar da soru kökü çeşitlemesi alsın
+# ---- 5. SINIF FEN "CANLILAR DÜNYASI": ŞEKİLLİ (görsel) SORU AİLELERİ — mikroskop, mikroskobik canlılar, şapkalı mantar, sınıflandırma şeması, canlı kartları
+_CD_T = "Canlılar dünyası"
+_CD_L = list("KLMNPRST")
+_CD_GRUP = {"bitki": ["gül", "çam"], "hayvan": ["balık", "kelebek", "kuş"], "mantar": ["mantar"], "mikro": ["amip", "paramesyum", "öglena", "bakteri"]}
+_CD_AD = {"gül": "Gül", "çam": "Çam ağacı", "balık": "Balık", "kelebek": "Kelebek", "kuş": "Kuş", "mantar": "Şapkalı mantar", "amip": "Amip", "paramesyum": "Paramesyum", "öglena": "Öglena", "bakteri": "Bakteri"}
+_CD_GAD = {"bitki": "Bitkiler", "hayvan": "Hayvanlar", "mantar": "Mantarlar", "mikro": "Mikroskobik canlılar"}
+_CD_MPART = {"ocular": ("Göz merceği", "Gözün yaklaştırıldığı, görüntünün incelendiği kısım"), "objective": ("Objektif", "İncelenecek örneğe en yakın olan, görüntüyü büyüten mercek"),
+             "stage": ("Tabla", "İncelenecek örneğin (lamın) üzerine konulduğu kısım"), "light": ("Işık kaynağı", "Örneğin altından ışık göndererek aydınlatan kısım"),
+             "knob": ("Ayar vidası", "Görüntünün netleştirilmesini sağlayan kısım"), "arm": ("Kol", "Mikroskobu taşırken tutulan kısım"), "base": ("Ayak", "Mikroskobu sabit ve dengede tutan kısım")}
+_CD_GRP_OF = {k: g for g, v in _CD_GRUP.items() for k in v}
+
+
+def _cd_g(kind):
+    return _CD_GRP_OF[kind]
+
+
+def _cd_mik(subject, kind="ad"):
+    parts = random.sample(list(_CD_MPART), random.choice([4, 5]))
+    lab = dict(zip(parts, random.sample(_CD_L, len(parts))))
+    sh = {"type": "bio", "sub_type": "microscope", "labels": lab}
+    return parts, lab, sh
+
+
+def _ff_cd_mik_ad(subject):
+    parts, lab, sh = _cd_mik(subject)
+    p = random.choice(parts)
+    o = _yn_opts(_CD_MPART[p][0], [_CD_MPART[x][0] for x in _CD_MPART if x != p])
+    q = f"Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. {lab[p]} ile gösterilen kısmın adı aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, _CD_T, q, o, f"{lab[p]} harfi {_CD_MPART[p][0].lower()} kısmını gösterir; bu kısım: {_CD_MPART[p][1].lower()}.", shape=sh) if o else None
+
+
+def _ff_cd_mik_harf(subject):
+    parts, lab, sh = _cd_mik(subject)
+    p = random.choice(parts)
+    o = _yn_opts(lab[p], [lab[x] for x in parts if x != p])
+    q = f"Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. {_CD_MPART[p][1]} hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, _CD_T, q, o, f"{_CD_MPART[p][1]} {_CD_MPART[p][0].lower()}dır ve şekilde {lab[p]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_cd_mik_gorev(subject):
+    parts, lab, sh = _cd_mik(subject)
+    p = random.choice(parts)
+    o = _yn_opts(_CD_MPART[p][1], [_CD_MPART[x][1] for x in _CD_MPART if x != p])
+    q = f"Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. {lab[p]} ile gösterilen kısmın görevi aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, _CD_T, q, o, f"{lab[p]} ile gösterilen kısım {_CD_MPART[p][0].lower()}dır: {_CD_MPART[p][1].lower()}.", shape=sh) if o else None
+
+
+def _ff_cd_mk_ad(subject):
+    k = random.choice(_MIKRO)
+    lb = random.choice(_CD_L)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ["m%d" % (_MIKRO.index(k) + 1)], "labels": [lb], "caption": "Mikroskopla görülen canlı"}
+    o = _yn_opts(_CD_AD[k], [_CD_AD[x] for x in _MIKRO if x != k])
+    return _mf_raw(subject, _CD_T, f"Bir öğrenci mikroskopla incelediği canlıyı şekildeki gibi çizmiştir. {lb} ile gösterilen canlı aşağıdakilerden hangisidir?", o, f"Şekildeki canlının özellikleri {_CD_AD[k].lower()} ile uyuşur.", shape=sh) if o else None
+
+
+_CD_IPUCU = {"amip": "Vücudunun şekli sürekli değişir; yalancı ayaklarıyla hareket eder.", "paramesyum": "Vücudu kirpikle kaplıdır; kirpikleriyle hareket eder.",
+             "öglena": "Yeşil renklidir; kamçısıyla hareket eder.", "bakteri": "Çok küçüktür; çubuk ya da yuvarlak biçimli olabilir, bazıları kamçılıdır."}
+
+
+def _ff_cd_mk_ipucu(subject):
+    k = random.choice(_MIKRO)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ["m%d" % (_MIKRO.index(k) + 1)], "labels": ["K"], "caption": "Mikroskopla görülen canlı"}
+    o = _yn_opts(_CD_AD[k], [_CD_AD[x] for x in _MIKRO if x != k])
+    return _mf_raw(subject, _CD_T, "Mikroskopla incelenen ve şekilde gösterilen K canlısı için şu bilgiler verilmiştir:\n" + _CD_IPUCU[k] + "\nBuna göre K canlısı aşağıdakilerden hangisidir?", o, f"Verilen özellikler ve şekil {_CD_AD[k].lower()} canlısına aittir.", shape=sh) if o else None
+
+
+_CD_HAR = {"amip": ("Yalancı ayaklarıyla hareket eden", "amip"), "paramesyum": ("Kirpikleriyle hareket eden", "paramesyum"), "öglena": ("Kamçısıyla hareket eden ve yeşil renkli olan", "öglena")}
+
+
+def _ff_cd_mk_harf_oz(subject):
+    ks = list(_MIKRO)
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ks, "labels": lb, "caption": "Mikroskopla görülen canlılar"}
+    k = random.choice(["amip", "paramesyum", "öglena"])
+    i = ks.index(k)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    if not o:
+        return None
+    return _mf_raw(subject, _CD_T, f"Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. {_CD_HAR[k][0]} canlı hangi harfle gösterilmiştir?", o, f"{_CD_HAR[k][0]} canlı {_CD_HAR[k][1]}dır ve {lb[i]} ile gösterilmiştir.", shape=sh)
+
+
+def _ff_cd_mk_harf_ad(subject):
+    ks = list(_MIKRO)
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ks, "labels": lb, "caption": "Mikroskopla görülen canlılar"}
+    i = random.randrange(4)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _CD_T, f"Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. {_CD_AD[ks[i]]} hangi harfle gösterilen canlıdır?", o, f"{_CD_AD[ks[i]]} şekilde {lb[i]} harfiyle gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_cd_mk_yesil(subject):
+    ks = list(_MIKRO)
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ks, "labels": lb, "caption": "Mikroskopla görülen canlılar"}
+    i = ks.index("öglena")
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _CD_T, "Şekilde mikroskopla incelenen dört canlı gösterilmiştir. Bu canlılardan yalnızca biri yeşil renklidir ve kamçısı vardır.\nBuna göre yeşil renkli canlı hangi harfle gösterilmiştir?", o, f"Yeşil renkli ve kamçılı canlı öglenadır; {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_cd_mk_ortak(subject):
+    ks = random.sample(_MIKRO, random.choice([3, 4]))
+    lb = random.sample(_CD_L, len(ks))
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ks, "labels": lb, "caption": "Mikroskopla görülen canlılar"}
+    cor = "Hepsi mikroskop yardımıyla görülebilen canlılardır."
+    w = ["Hepsi kamçısıyla hareket eder.", "Hepsi yeşil renklidir ve fotosentez yapar.", "Hepsi gözle rahatça görülebilir.", "Hepsi kirpikleriyle hareket eder."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _CD_T, "Şekilde mikroskopla incelenen canlılar harflerle gösterilmiştir.\nBuna göre bu canlıların ortak özelliği aşağıdakilerden hangisidir?", o, "Şekildeki canlıların hepsi mikroskobik canlıdır; mikroskop olmadan görülemez.", shape=sh) if o else None
+
+
+_CD_MN = {"cap": "Şapka", "gill": "Lamel", "ring": "Halka", "stem": "Sap"}
+
+
+def _ff_cd_mn_ad(subject):
+    parts = list(_CD_MN)
+    lab = dict(zip(parts, random.sample(_CD_L, 4)))
+    p = random.choice(parts)
+    sh = {"type": "bio", "sub_type": "mushroom", "labels": lab, "poison": random.random() < .4}
+    o = _yn_opts(_CD_MN[p], [_CD_MN[x] for x in parts if x != p])
+    return _mf_raw(subject, _CD_T, f"Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. {lab[p]} ile gösterilen kısmın adı aşağıdakilerden hangisidir?", o, f"{lab[p]} harfi mantarın {_CD_MN[p].lower()} kısmını gösterir.", shape=sh) if o else None
+
+
+def _ff_cd_mn_harf(subject):
+    parts = list(_CD_MN)
+    lab = dict(zip(parts, random.sample(_CD_L, 4)))
+    p = random.choice(parts)
+    sh = {"type": "bio", "sub_type": "mushroom", "labels": lab, "poison": random.random() < .4}
+    o = _yn_opts(lab[p], [lab[x] for x in parts if x != p])
+    return _mf_raw(subject, _CD_T, f"Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. Mantarın {_CD_MN[p].lower()} kısmı hangi harfle gösterilmiştir?", o, f"{_CD_MN[p]} şekilde {lab[p]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_cd_mn_grup(subject):
+    sh = {"type": "bio", "sub_type": "mushroom", "poison": random.random() < .5}
+    o = _yn_opts("Mantarlar", ["Bitkiler", "Hayvanlar", "Mikroskobik canlılar"])
+    return _mf_raw(subject, _CD_T, "Bir öğrenci ormanda şekildeki canlıyı görmüştür. Bu canlı sınıflandırmada hangi grupta yer alır?", o, "Şapkalı mantarlar, mantar grubundadır.", shape=sh) if o else None
+
+
+def _ff_cd_mn_zehir(subject):
+    sh = {"type": "bio", "sub_type": "mushroom", "poison": random.random() < .5}
+    cor = "Zehirli olup olmadığını bilemeyeceği için mantarı yememelidir."
+    w = ["Rengi parlaksa zehirli, soluksa zehirsiz olduğunu düşünüp yemelidir.", "Biraz tadına bakıp acı değilse yemelidir.", "Pişirirse her mantar zehirsiz olacağı için yemelidir."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _CD_T, "Bir öğrenci doğada şekildeki gibi bir şapkalı mantar bulmuştur. Mantarın yenilebilir olup olmadığını bilmemektedir.\nBu öğrencinin aşağıdakilerden hangisini yapması en doğrudur?", o, "Bazı mantarlar zehirlidir ve zehirli olanları görünüşle ayırt etmek güvenli değildir; bilinmeyen mantarlar yenmemelidir.", shape=sh) if o else None
+
+
+def _cd_tree_pick():
+    g3 = random.sample(["bitki", "hayvan", "mantar", "mikro"], 3)
+    leaves = {}
+    for g in g3:
+        pool = [_CD_AD[x] for x in _CD_GRUP[g]]
+        leaves[g] = random.sample(pool, min(2 if g != "mantar" else 1, len(pool)))
+    return g3, leaves
+
+
+def _ff_cd_agac_bos(subject):
+    g3, lv = _cd_tree_pick()
+    i = random.randrange(3)
+    kids = [(_CD_GAD[g] if j != i else "K") for j, g in enumerate(g3)]
+    sh = {"type": "bio", "sub_type": "tree", "root": "Canlılar", "kids": kids, "leaves": [lv[g] for g in g3]}
+    o = _yn_opts(_CD_GAD[g3[i]], [_CD_GAD[g] for g in _CD_GAD if g != g3[i]])
+    return _mf_raw(subject, _CD_T, "Şekilde canlıların sınıflandırılması gösterilmiştir. K ile gösterilen grubun adı aşağıdakilerden hangisidir?", o, f"K grubunda {', '.join(x.lower() for x in lv[g3[i]])} bulunur; bu canlılar {_CD_GAD[g3[i]].lower()} grubundadır.", shape=sh) if o else None
+
+
+def _ff_cd_agac_eksik(subject):
+    g3, lv = _cd_tree_pick()
+    cand = [g for g in g3 if g != "mantar" and len(lv[g]) == 2]
+    if not cand:
+        return None
+    g = random.choice(cand)
+    cor = lv[g][1]
+    leaves = [(list(lv[x]) if x != g else [lv[g][0], "?"]) for x in g3]
+    sh = {"type": "bio", "sub_type": "tree", "root": "Canlılar", "kids": [_CD_GAD[x] for x in g3], "leaves": leaves}
+    allx = [_CD_AD[x] for gg in _CD_GRUP for x in _CD_GRUP[gg] if gg != g]
+    o = _yn_opts(cor, random.sample([x for x in allx if x != cor], 3))
+    return _mf_raw(subject, _CD_T, f"Şekilde canlıların sınıflandırılması gösterilmiştir. ? işareti ile gösterilen yere {_CD_GAD[g].lower()} grubuna ait bir canlı yazılacaktır.\nBuna göre ? yerine aşağıdakilerden hangisi yazılmalıdır?", o, f"{cor}, {_CD_GAD[g].lower()} grubundadır.", shape=sh) if o else None
+
+
+def _ff_cd_agac_yanlis(subject):
+    g3 = random.sample(["bitki", "hayvan", "mikro"], 3)
+    lv = {g: random.sample([_CD_AD[x] for x in _CD_GRUP[g]], 2) for g in g3}
+    a, b = random.sample(g3, 2)
+    stray = lv[b][1]
+    lv[a] = [lv[a][0], stray]
+    lab = random.sample(_CD_L, 6)
+    L = {}
+    k = 0
+    for g in g3:
+        for t in range(2):
+            L[(g, t)] = lab[k]
+            k += 1
+    sh = {"type": "bio", "sub_type": "tree", "root": "Canlılar", "kids": [_CD_GAD[g] for g in g3], "leaves": [[f"{L[(g, t)]}: {lv[g][t]}" for t in range(2)] for g in g3]}
+    cor = L[(a, 1)]
+    o = _yn_opts(cor, random.sample([v for key, v in L.items() if v != cor], 3))
+    if not o:
+        return None
+    return _mf_raw(subject, _CD_T, "Şekilde bir öğrenci canlıları gruplara ayırmıştır; ancak bir canlıyı yanlış gruba yerleştirmiştir.\nBuna göre yanlış gruba yerleştirilen canlı hangi harfle gösterilmiştir?", o, f"{lv[a][1]}, {_CD_GAD[b].lower()} grubundadır; ancak {_CD_GAD[a].lower()} grubuna yazılmıştır. Bu canlı {cor} ile gösterilmiştir.", shape=sh)
+
+
+def _cd_cards(n, need=None):
+    ks = []
+    for g, c in need.items():
+        ks += random.sample(_CD_GRUP[g], c)
+    while len(ks) < n:
+        g = random.choice(["bitki", "hayvan"])
+        c = [x for x in _CD_GRUP[g] if x not in ks]
+        if not c:
+            continue
+        ks.append(random.choice(c))
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, len(ks))
+    return ks, lb, {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 4, **({"caption": "Mikroskobik canlılar mikroskopla görüldükleri biçimde çizilmiştir."} if any(k in _MIKRO for k in ks) else {})}
+
+
+def _ff_cd_kart_tek(subject):
+    g = random.choice(["mantar", "mikro"])
+    ks, lb, sh = _cd_cards(6, {"mantar": 1, "mikro": 1, "bitki": 1, "hayvan": 1})
+    i = [j for j, k in enumerate(ks) if _cd_g(k) == g][0]
+    o = _yn_opts(lb[i], [lb[j] for j in range(len(ks)) if j != i][:3] if False else random.sample([lb[j] for j in range(len(ks)) if j != i], 3))
+    gad = {"mantar": "mantar grubunda yer alır", "mikro": "mikroskobik canlı grubunda yer alır"}[g]
+    return _mf_raw(subject, _CD_T, f"Şekilde bazı canlılar harflerle gösterilmiştir. Bu canlılardan hangisi {gad.replace(' yer alır', ' yer alan canlıdır') if False else gad}?", o, f"{_CD_AD[ks[i]]} {gad}; şekilde {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_cd_kart_say(subject):
+    g = random.choice(["bitki", "hayvan"])
+    nb = random.choice([1, 2])
+    nh = random.choice([1, 2, 3])
+    ks, lb, sh = _cd_cards(0, {"bitki": nb, "hayvan": nh, "mantar": random.choice([0, 1]) if False else 1, "mikro": random.choice([1, 2])})
+    cnt = sum(1 for k in ks if _cd_g(k) == g)
+    nm = {"bitki": "bitki", "hayvan": "hayvan"}[g]
+    o = _yn_opts(str(cnt), [str(x) for x in range(0, 6) if x != cnt][:5] and random.sample([str(x) for x in range(0, 7) if x != cnt], 3))
+    return _mf_raw(subject, _CD_T, f"Şekilde harflerle gösterilen canlılardan kaç tanesi {nm} grubundadır?", o, f"Şekilde {cnt} {nm} vardır.", shape=sh) if o else None
+
+
+def _ff_cd_kart_cesit(subject):
+    ng = random.choice([2, 3, 4])
+    groups = random.sample(["bitki", "hayvan", "mantar", "mikro"], ng)
+    need = {g: 1 for g in groups}
+    ks, lb, sh = _cd_cards(0, need)
+    cnt = len({_cd_g(k) for k in ks})
+    o = _yn_opts(str(cnt), random.sample([str(x) for x in (1, 2, 3, 4, 5) if x != cnt], 3))
+    return _mf_raw(subject, _CD_T, "Şekilde harflerle gösterilen canlılar bitki, hayvan, mantar ve mikroskobik canlı gruplarına ayrılacaktır.\nBuna göre bu canlılar kaç farklı gruba aittir?", o, f"Şekildeki canlılar {cnt} farklı gruba aittir.", shape=sh) if o else None
+
+
+def _ff_cd_kart_mikroskop(subject):
+    ks, lb, sh = _cd_cards(6, {"mikro": 1, "bitki": 1, "hayvan": 1, "mantar": 1})
+    i = [j for j, k in enumerate(ks) if _cd_g(k) == "mikro"][0]
+    o = _yn_opts(lb[i], random.sample([lb[j] for j in range(len(ks)) if j != i], 3))
+    return _mf_raw(subject, _CD_T, "Şekilde harflerle gösterilen canlılardan hangisi, mikroskop kullanılmadan incelenemez?", o, f"Mikroskobik canlılar çıplak gözle görülemez; {lb[i]} ile gösterilen {_CD_AD[ks[i]].lower()} mikroskobik canlıdır.", shape=sh) if o else None
+
+
+def _ff_cd_kart_cift(subject):
+    g = random.choice(["bitki", "hayvan"])
+    nneed = {"bitki": 2, "hayvan": 2, "mantar": 1, "mikro": 1}
+    ks, lb, sh = _cd_cards(0, nneed)
+    ids = [j for j, k in enumerate(ks) if _cd_g(k) == g]
+    if len(ids) != 2:
+        return None
+    pr = lambda a, b: " ve ".join(sorted([lb[a], lb[b]]))
+    cor = pr(*ids)
+    w = set()
+    for _ in range(40):
+        a, b = random.sample(range(len(ks)), 2)
+        t = pr(a, b)
+        if {a, b} != set(ids) and t != cor:
+            w.add(t)
+        if len(w) >= 3:
+            break
+    o = _yn_opts(cor, list(w)[:3]) if len(w) >= 3 else None
+    return _mf_raw(subject, _CD_T, f"Şekilde harflerle gösterilen canlılardan hangi ikisi {g} grubundadır?", o, f"{g.capitalize()} grubundaki canlılar şekilde {cor} harfleriyle gösterilmiştir.", shape=sh) if o else None
+
+
+_CD_FAMS = [
+    (_ff_cd_mik_ad, ("mikroskop", "mikroskobik", "canlılar dünyası", "canlıları"), 3, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"),
+    (_ff_cd_mik_harf, ("mikroskop", "mikroskobik", "canlılar dünyası", "canlıları"), 3, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"),
+    (_ff_cd_mik_gorev, ("mikroskop", "mikroskobik", "canlılar dünyası", "canlıları"), 4, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"),
+    (_ff_cd_mk_ad, ("mikroskobik", "canlılar dünyası", "canlıları"), 3, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mk_ipucu, ("mikroskobik", "canlılar dünyası", "canlıları"), 3, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mk_harf_oz, ("mikroskobik", "canlılar dünyası", "canlıları"), 4, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mk_harf_ad, ("mikroskobik", "canlılar dünyası", "canlıları"), 4, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mk_yesil, ("mikroskobik", "canlılar dünyası", "canlıları"), 4, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mk_ortak, ("mikroskobik", "canlılar dünyası", "canlıları"), 4, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mn_ad, ("mantar", "canlılar dünyası", "canlıları"), 3, "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi"),
+    (_ff_cd_mn_harf, ("mantar", "canlılar dünyası", "canlıları"), 3, "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi"),
+    (_ff_cd_mn_grup, ("mantar", "canlılar dünyası", "canlıları"), 3, "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi"),
+    (_ff_cd_mn_zehir, ("mantar", "canlılar dünyası", "canlıları"), 4, "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi"),
+    (_ff_cd_agac_bos, ("canlılar dünyası", "canlıları", "sınıflandır", "bitki", "hayvan"), 3, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_agac_eksik, ("canlılar dünyası", "canlıları", "sınıflandır", "bitki", "hayvan"), 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_agac_yanlis, ("canlılar dünyası", "canlıları", "sınıflandır", "bitki", "hayvan"), 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_tek, ("canlılar dünyası", "canlıları", "sınıflandır", "bitki", "hayvan", "mantar"), 3, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_say, ("canlılar dünyası", "canlıları", "sınıflandır", "bitki", "hayvan", "gruplama"), 3, "Bitki ve hayvanlara örnekler vererek gruplama"),
+    (_ff_cd_kart_cesit, ("canlılar dünyası", "canlıları", "sınıflandır", "bitki", "hayvan"), 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_mikroskop, ("canlılar dünyası", "mikroskobik", "mikroskop"), 4, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"),
+    (_ff_cd_kart_cift, ("canlılar dünyası", "canlıları", "bitki", "hayvan", "gruplama"), 4, "Bitki ve hayvanlara örnekler vererek gruplama"),
+]
+for _f, _kw, _d, _it in _CD_FAMS:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
+_CD_VIS = {f.__name__ for f, _k, _d, _i in _CD_FAMS}
+
+
 for _r in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
     _r[:] = [(_stem_vary(f), k_) for f, k_ in _r]
 
