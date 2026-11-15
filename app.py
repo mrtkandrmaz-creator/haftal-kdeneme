@@ -5996,7 +5996,7 @@ _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
     "Matematik": _GEO | _CH,
     "Fen Bilimleri": (_SCI | _CH) - {"cylinder"},
-    "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line"},
+    "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
     "Türkçe": {"table", "doc"},
 }
@@ -13513,10 +13513,10 @@ _FY_EXP = [
     # (anahtar, konu, ITEM, kw, giriş, başlık, x başlığı, y başlığı, x etiketleri, değer kipi, birim, değişen, gözlenen, sabit[], tahmin)
     ("yay", "Kuvvetin ölçülmesi", "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton)", ("kuvvet", "dinamometre", "ölçül"),
      "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.", "Yayın uzaması", "Asılan cisim sayısı", "Yayın boyundaki uzama (cm)",
-     [1, 2, 3, 4], "lin", "cm", "Asılan cisim sayısı", "Yayın boyundaki uzama miktarı", ["Deneyde kullanılan yay", "Asılan cisimlerin özdeş olması"], True),
+     [1, 2, 3, 4], "lin", "cm", "Yaya asılan cisimlerin adedi", "Yayın boyundaki uzama miktarı", ["Deneyde kullanılan yay", "Asılan cisimlerin özdeş olması"], True),
     ("kutle", "Kütle ve ağırlık", "Kütle, yer çekimi ve ağırlık", ("kuvvet", "ağırlık", "dinamometre", "kütle"),
      "Selin, Dünya'da kütleleri bilinen cisimlerin ağırlığını aynı dinamometreyle ölçüyor ve sonuçları kaydediyor.", "Kütle ve ağırlık", "Cismin kütlesi (kg)", "Ölçülen ağırlık (N)",
-     [1, 2, 3, 4], "lin10", "N", "Cismin kütlesi", "Cismin ağırlığı", ["Ölçümün yapıldığı yer", "Kullanılan dinamometre"], True),
+     [1, 2, 3, 4], "lin10", "N", "Dinamometreye asılan cismin kütlesi", "Dinamometredeki cismin ağırlığı", ["Ölçümün yapıldığı yer", "Kullanılan dinamometre"], True),
     ("yuzey", "Sürtünme kuvveti", "Sürtünme kuvveti ve etkileri", ("sürtünme", "kuvvet"),
      "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.", "Arabanın aldığı yol", "Zemin", "Arabanın yaptığı yol (cm)",
      ["cam", "ahşap", "halı", "kum", "zımpara"], "cat", "cm", "Zeminin cinsi", "Arabanın durana kadar aldığı yol", ["Arabanın bırakıldığı yükseklik", "Kullanılan oyuncak araba"], False),
@@ -13531,7 +13531,7 @@ _FY_EXP = [
      [2, 4, 6, 8], "lin_off", "°C", "Suyun ısıtılma zamanı", "Suyun ulaştığı sıcaklık", ["Isıtılan suyun miktarı", "Kullanılan ısı kaynağı"], True),
     ("ampul", "Elektrik devresi", "Ampul parlaklığını etkileyen değişkenler", ("elektrik", "devre", "ampul", "pil"),
      "Elif, özdeş pillerle kurduğu seri devreye özdeş ampulleri art arda bağlıyor ve ampullerin parlaklığını bir ışık ölçerle ölçüyor.", "Ampul parlaklığı", "Seri bağlı ampul sayısı", "Parlaklık (birim)",
-     [1, 2, 3, 4], "dec", "birim", "Seri bağlanan ampul sayısı", "Ampullerin parlaklığı", ["Devredeki pillerin özdeş olması", "Bağlantı kabloları"], False),
+     [1, 2, 3, 4], "dec", "birim", "Devreye art arda eklenen ampullerin adedi", "Ampullerin parlaklığı", ["Devredeki pillerin özdeş olması", "Bağlantı kabloları"], False),
     ("golge", "Gölge", "Gölge oluşumu ve tam gölge", ("gölge", "ışık"),
      "Zeynep, ışık kaynağından aynı uzaklığa farklı boylardaki çubukları dikip perdeye düşen gölgelerin boyunu ölçüyor.", "Gölge boyu", "Çubuğun boyu (cm)", "Gölge boyu (cm)",
      [5, 10, 15, 20], "lin", "cm", "Çubuğun boyu", "Gölgenin boyu", ["Işık kaynağı ile çubuk arasındaki uzaklık", "Kullanılan ışık kaynağı"], True),
@@ -13576,7 +13576,12 @@ def _fy_exp_family(spec):
             step = k
         if len(set(vals)) < len(vals):
             return None
-        rows = [[str(x), str(v)] for x, v in zip(xs, vals)]
+        _m = re.search(r"\(([^)]*)\)", hx)
+        _w = hx.split()
+        _un = _m.group(1) if _m else (_w[-2] if len(_w) > 2 and _w[-1] == "sayısı" else "")
+        _lbl = (lambda x: f"{x} {_un}".strip()) if all(isinstance(x, int) for x in xs) else (lambda x: str(x))
+        xl = [_lbl(x) for x in xs]
+        rows = [[a, str(v)] for a, v in zip(xl, vals)]
         shape = {"type": "table", "title": title, "headers": [hx, hy], "rows": rows}
         kinds = ["degisen", "gozlenen", "sabit", "roman", "fark"] + (["tahmin"] if pred and mode in ("lin", "lin10", "lin_off") else [])
         kind = random.choice(kinds)
@@ -13594,7 +13599,7 @@ def _fy_exp_family(spec):
         if kind == "fark":
             i, j = random.sample(range(len(xs)), 2)
             d = abs(vals[i] - vals[j])
-            xi, xj = (xs[i], xs[j])
+            xi, xj = (xl[i], xl[j])
             lab = (lambda x: f"{x} " if False else f"“{x}”")
             q = f"Tabloya göre {lab(xi)} değerine karşılık gelen ölçüm ile {lab(xj)} değerine karşılık gelen ölçüm arasındaki fark kaç {unit}'dir?" if mode in ("lin", "lin10", "lin_off", "dec") else \
                 f"Tabloya göre {xi} ile {xj} için ölçülen değerler arasındaki fark kaç {unit}'dir?"
@@ -13606,16 +13611,16 @@ def _fy_exp_family(spec):
                 ny = vals[-1] + step
             else:
                 ny = vals[-1] + (vals[1] - vals[0])
-            q = f"Deneyin koşulları aynı kalırsa {hx.split('(')[0].strip().lower()} {nx} olduğunda {hy.split('(')[0].strip().lower()} kaç {unit} olur?" if False else f"Deney aynı koşullarda sürdürülürse {nx} değeri için ölçülecek sonuç kaç {unit} olur?"
+            q = f"Deneyin koşulları aynı kalırsa {hx.split('(')[0].strip().lower()} {nx} olduğunda {hy.split('(')[0].strip().lower()} kaç {unit} olur?" if False else f"Deney aynı koşullarda sürdürülürse {_lbl(nx)} için ölçülecek sonuç kaç {unit} olur?"
             o = _mf_opts(ny, [ny + vals[0], ny - 1, ny + 2, vals[-1]], lambda v: f"{v} {unit}")
             return _mf_raw(subject, topic, q, o, f"Her adımda değişim {ny - vals[-1]} {unit}; sıradaki değer {vals[-1]} + {ny - vals[-1]} = {ny} {unit}.", shape=shape, passage=lead) if o else None
         # roman
         i, j = random.sample(range(len(xs)), 2)
-        s1 = (f"{xs[i]} için ölçülen sonuç, {xs[j]} için ölçülenden büyüktür.", vals[i] > vals[j])
+        s1 = (f"{xl[i]} için ölçülen sonuç, {xl[j]} için ölçülenden büyüktür.", vals[i] > vals[j])
         imx = vals.index(max(vals))
         oth = random.choice([k for k in range(len(xs)) if k != imx])
-        s2 = _yn_pick(f"En büyük ölçüm {xs[imx]} için elde edilmiştir.", f"En büyük ölçüm {xs[oth]} için elde edilmiştir.")
-        s2 = (s2[0], str(xs[imx]) in s2[0] and str(xs[oth]) not in s2[0] if str(xs[imx]) not in str(xs[oth]) else s2[1])
+        s2 = _yn_pick(f"En büyük ölçüm {xl[imx]} için elde edilmiştir.", f"En büyük ölçüm {xl[oth]} için elde edilmiştir.")
+        s2 = (s2[0], s2[0] == f"En büyük ölçüm {xl[imx]} için elde edilmiştir.")
         if mode in ("lin", "lin10", "lin_off"):
             s3 = _yn_pick("Değiştirilen değişken arttıkça ölçülen değer artmaktadır.", "Değiştirilen değişken arttıkça ölçülen değer azalmaktadır.")
             s3 = (s3[0], "artmaktadır" in s3[0].split("arttıkça")[1])
@@ -13777,6 +13782,380 @@ for _fn, _item, _kw, _d in [(_ff_yn2_dina_kutle, "Kütle, yer çekimi ve ağırl
     _FY_NEW.append((_fn, _kw, _d))
 for _f, _kw, _d in _FY_NEW:
     _FF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
+
+# ---- Sosyal Bilgiler 5: YENİ NESİL (belge/tablo/grafik okuma, öncüllü yargı, bağlamlı senaryo)
+_SY_ROM = {
+    "gunes": None,
+    "ilk": ("Ortak mirasımız ve ilk yerleşimler", "Anadolu'daki ilk yerleşimler (Göbeklitepe, Çatalhöyük)", ("miras", "göbeklitepe", "çatalhöyük", "anadolu", "mezopotamya", "medeniyet"),
+            "Bir öğrenci, ilk yerleşimler ve eski medeniyetler hakkında not tutmuştur.",
+            [("Göbeklitepe Şanlıurfa ilimizde yer alır.", True), ("Çatalhöyük Konya ilimizde yer alır.", True), ("Çatalhöyük'te evlere damdaki açıklıktan girilirdi.", True),
+             ("Göbeklitepe'de büyük T biçimli dikilitaşlar bulunur.", True), ("Mezopotamya, Dicle ve Fırat nehirleri arasında yer alır.", True), ("Sümerler yazıyı kullanan ilk toplumlardandır.", True),
+             ("Göbeklitepe Konya ilimizde yer alır.", False), ("Çatalhöyük'te evlerin girişi kapılardan sağlanırdı.", False), ("Mezopotamya Nil Nehri çevresinde gelişmiştir.", False),
+             ("Hititler Mısır'da kurulmuş bir medeniyettir.", False), ("Çatalhöyük Şanlıurfa ilimizde yer alır.", False)]),
+    "komsu": ("Komşu devletler", "Komşu devletler", ("komşu", "evimiz", "dünya", "çevre"),
+              "Bir öğrenci harita üzerinde Türkiye'nin komşularını inceleyerek not tutmuştur.",
+              [("Gürcistan, Türkiye'nin kuzeydoğusunda yer alan bir komşudur.", True), ("Bulgaristan ve Yunanistan, Türkiye'nin kuzeybatısında yer alır.", True), ("Suriye ve Irak, Türkiye'nin güneyinde yer alır.", True),
+               ("Türkiye'nin sekiz ülkeyle kara sınırı vardır.", True), ("İran, Türkiye'nin batısında yer alan bir komşudur.", False), ("Yunanistan, Türkiye'nin doğusundadır.", False),
+               ("Irak, Türkiye'nin kuzeyindedir.", False), ("Türkiye'nin hiçbir ülkeyle kara sınırı yoktur.", False)]),
+    "demo": ("Demokrasi ve cumhuriyet", "Demokrasi ve cumhuriyet", ("demokrasi", "cumhuriyet", "vatandaş"),
+             "Bir öğretmen, demokrasi ve cumhuriyetle ilgili aşağıdaki cümleleri tahtaya yazmıştır.",
+             [("Cumhuriyet 29 Ekim 1923'te ilan edilmiştir.", True), ("Demokraside kararlar çoğunluğun oyuyla alınırken azınlığın haklarına da saygı gösterilir.", True), ("Demokraside seçimler özgür ve gizli oyla yapılır.", True),
+              ("Demokraside bütün vatandaşlar kanun önünde eşittir.", True), ("Cumhuriyet 23 Nisan 1920'de ilan edilmiştir.", False), ("Demokraside kararları yalnızca tek kişi verir.", False),
+              ("Demokraside bazı vatandaşların hakları diğerlerinden fazladır.", False), ("Cumhuriyet, yönetimin kalıtsal olarak aktarıldığı bir rejimdir.", False)]),
+    "kultur": ("Kültürel özelliklere saygı", "Kültürel özelliklere saygı", ("kültürel", "birlikte", "grup", "dayanışma"),
+               "Bir sınıf, farklı yörelerin kültürel özelliklerini tanıtan bir etkinlik düzenlemiş ve sonunda aşağıdaki sonuçları yazmıştır.",
+               [("Yöresel yemekler ve halk oyunları kültürel özelliklere örnektir.", True), ("Farklı kültürlere saygı duymak, birlikte yaşamayı kolaylaştırır.", True), ("Bayramlar ve düğünler toplumların kültürel özelliklerindendir.", True),
+                ("Farklı dil konuşan insanlara saygı göstermek gerekir.", True), ("Her toplumun kültürü birbirinin aynısıdır.", False), ("Kendi kültürümüzü başkalarına zorla kabul ettirmeliyiz.", False),
+                ("Farklı gelenekleri olan kişilerle arkadaşlık edilmemelidir.", False)]),
+    "grup": ("Gruplar ve roller", "Gruplar ve roller", ("grup", "rol", "birlikte", "dayanışma"),
+             "Bir öğrenci, günlük hayattaki gruplar ve roller hakkında aşağıdaki cümleleri yazmıştır.",
+             [("Bir kişi aynı anda farklı gruplarda farklı roller üstlenebilir.", True), ("Sınıf, öğrencilerin birlikte bulunduğu bir gruptur.", True), ("Roller, kişinin grupta yerine getirdiği görevlerdir.", True),
+              ("Aile, bir gruptur ve üyelerinin farklı rolleri vardır.", True), ("Bir kişi yalnızca tek bir grupta yer alabilir.", False), ("Gruplarda herkesin rolü aynı olmak zorundadır.", False),
+              ("Rollerini yerine getirmeyen üyeler grubun düzenini etkilemez.", False)]),
+    "dayan": ("Yardımlaşma ve dayanışma", "Yardımlaşma ve dayanışma", ("dayanışma", "yardımlaşma", "birlikte"),
+              "Bir mahallede yapılan yardım kampanyası sonrasında öğrenciler aşağıdaki çıkarımları yazmıştır.",
+              [("Komşuya yardım etmek yardımlaşmaya örnektir.", True), ("Afetlerde yardımlaşmak toplumsal dayanışmayı güçlendirir.", True), ("Kızılay, ihtiyaç sahiplerine yardım ulaştıran bir kuruluştur.", True),
+               ("Dayanışma, insanlar arasındaki bağı güçlendirir.", True), ("Yardımlaşma yalnızca zengin kişilerin görevidir.", False), ("Yardımlaşma insanlar arasındaki bağı zayıflatır.", False),
+               ("Zor durumdaki kişilere yardım etmek gereksizdir.", False)]),
+    "afet": ("Afetler ve farkındalık", "Afetler ve farkındalık", ("afet", "deprem", "farkındalık", "evimiz"),
+             "Okulda yapılan afet farkındalık eğitiminden sonra öğrenciler aşağıdaki notları almıştır.",
+             [("Deprem anında çök-kapan-tutun hareketi yapılır.", True), ("Afet çantası, afet olmadan önce hazırlanmalıdır.", True), ("Deprem sırasında asansör kullanılmamalıdır.", True),
+              ("Toplanma alanları afet sonrasında güvenli kabul edilen yerlerdir.", True), ("Deprem sırasında balkona koşmak güvenlidir.", False), ("Deprem anında asansörle inmek en güvenli yoldur.", False),
+              ("Afet çantasını afet olduktan sonra hazırlamak yeterlidir.", False)]),
+    "etkin": ("Etkin vatandaş", "Etkin vatandaş", ("etkin", "vatandaş", "hak", "sorumluluk"),
+              "Bir öğrenci etkin vatandaşlık hakkında aşağıdaki cümleleri yazmıştır.",
+              [("Etkin vatandaş, çevresindeki sorunlara duyarlıdır.", True), ("Okul meclisi seçimlerine katılmak etkin vatandaşlık davranışıdır.", True), ("Etkin vatandaş hak ve sorumluluklarını bilir.", True),
+               ("Etkin vatandaş sorunlara çözüm önerileri üretir.", True), ("Etkin vatandaş, sorunlar karşısında hiçbir şey yapmaz.", False), ("Etkin vatandaş kurallara yalnızca işine geldiğinde uyar.", False),
+               ("Etkin vatandaş başkalarının haklarını önemsemez.", False)]),
+    "kaynak": ("Kaynakların verimli kullanımı", "Kaynakların verimli kullanımı", ("kaynak", "tasarruf", "ekonomi", "bütçe"),
+               "Bir aile, ev ekonomisiyle ilgili aşağıdaki kararları yazmıştır.",
+               [("Kullanılmayan odanın ışığını kapatmak elektrik tasarrufu sağlar.", True), ("Diş fırçalarken musluğu kapatmak su kaynağının verimli kullanılmasıdır.", True),
+                ("Eski eşyaları yeniden kullanmak kaynakları verimli kullanmaya katkı sağlar.", True), ("Kaynakların bir kısmı sınırlıdır; bu yüzden tasarruflu kullanılmalıdır.", True),
+                ("Musluğu açık bırakmak su kaynaklarını korur.", False), ("Kaynaklar sınırsızdır; ne kadar kullanılırsa kullanılsın tükenmez.", False),
+                ("Gereksiz yanan ışıklar elektrik tasarrufu sağlar.", False)]),
+    "tekn": ("Teknolojik ürünlerin bilinçli kullanımı", "Teknolojik ürünlerin bilinçli kullanımı", ("teknoloji", "teknolojik"),
+             "Bir öğrenci teknolojik ürünlerin kullanımıyla ilgili aşağıdaki cümleleri yazmıştır.",
+             [("Teknolojik gelişmeler iletişimi kolaylaştırmıştır.", True), ("Aşırı ekran süresi sağlığı olumsuz etkileyebilir.", True), ("Tanımadığımız kişilerle kişisel bilgilerimizi paylaşmamalıyız.", True),
+              ("Teknolojik ürünler ihtiyaca göre ve bilinçli kullanılmalıdır.", True), ("Teknolojik ürünler hiçbir koşulda zararlı olamaz.", False), ("İnternette tanımadığımız kişilerle bilgi paylaşmak güvenlidir.", False),
+              ("Teknolojik ürünlerin sınırsız kullanımı sağlığa zarar vermez.", False)]),
+}
+_SY_ROM = {k: v for k, v in _SY_ROM.items() if v}
+
+
+def _sy_rom_family(key):
+    topic, item, kw, lead, bank = _SY_ROM[key]
+
+    def _f(subject):
+        tr = [b for b in bank if b[1]]
+        fl = [b for b in bank if not b[1]]
+        nt = random.choice([1, 2])
+        st = random.sample(tr, nt) + random.sample(fl, 3 - nt)
+        random.shuffle(st)
+        return _yn_rom(topic, lead, "Buna göre aşağıdaki yargılardan hangileri doğrudur?", st, "Her yargı konuyla ilgili bilgilerle ayrı ayrı denetlenir.", subject=subject)
+
+    _f.__name__ = "_sf_yn_r_" + key
+    _f.ITEM = item
+    return _f, kw
+
+
+# --- Doğal / beşerî çevre öncülleri (hesaplanan doğruluk)
+_SY_DOGAL = ["Dağ", "Göl", "Orman", "Nehir", "Deniz", "Ova", "Yağmur"]
+_SY_BESERI = ["Köprü", "Baraj", "Okul binası", "Yol", "Tarla", "Park", "Fabrika"]
+
+
+def _sf_yn_r_cevre(subject):
+    pool = random.sample(_SY_DOGAL, 2) + random.sample(_SY_BESERI, 2)
+    random.shuffle(pool)
+    st = []
+    for it in pool[:3]:
+        dog = it in _SY_DOGAL
+        tur = random.choice(["doğal", "beşerî"])
+        st.append((f"{it}, {tur} çevre ögesidir.", (tur == "doğal") == dog))
+    return _yn_rom("Doğal ve beşerî çevre", "Bir öğrenci, yaşadığı çevredeki ögeleri doğal ve beşerî çevre olarak sınıflandırmıştır.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", st, "Doğada kendiliğinden oluşanlar doğal, insanın yaptığı ögeler beşerî çevredir.", subject=subject)
+
+
+_SY_HAK = ["Eğitim görmek", "Sağlık hizmetinden yararlanmak", "Oyun oynamak ve dinlenmek", "Düşüncelerini ifade etmek"]
+_SY_SOR = ["Okul kurallarına uymak", "Çevreyi temiz tutmak", "Ödevlerini zamanında yapmak", "Başkalarının haklarına saygı göstermek"]
+
+
+def _sf_yn_r_hak(subject):
+    pool = random.sample(_SY_HAK, 2) + random.sample(_SY_SOR, 2)
+    random.shuffle(pool)
+    st = []
+    for it in pool[:3]:
+        hak = it in _SY_HAK
+        tur = random.choice(["hak", "sorumluluk"])
+        st.append((f"“{it}” bir {tur}tur." if tur == "hak" else f"“{it}” bir sorumluluktur.", (tur == "hak") == hak))
+    return _yn_rom("Hak ve sorumluluklar", "Bir öğretmen, öğrencilerden aşağıdaki davranışları hak ve sorumluluk olarak sınıflandırmalarını istemiştir.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", st, "Haklar bize tanınanlar, sorumluluklar yerine getirmemiz gerekenlerdir.", subject=subject)
+
+
+_SY_IHT = ["Ekmek", "Temiz su", "Okul çantası", "Mevsime uygun mont"]
+_SY_IST = ["Oyun konsolu", "Çikolata", "Marka ayakkabı", "Yeni bir oyuncak"]
+
+
+def _sf_yn_r_ihtiyac(subject):
+    pool = random.sample(_SY_IHT, 2) + random.sample(_SY_IST, 2)
+    random.shuffle(pool)
+    st = []
+    for it in pool[:3]:
+        iht = it in _SY_IHT
+        tur = random.choice(["ihtiyaçtır", "istektir"])
+        st.append((f"{it} bir {tur}.", (tur == "ihtiyaçtır") == iht))
+    return _yn_rom("İhtiyaç, istek ve bütçe", "Bir aile bütçe yaparken harcamalarını ihtiyaç ve istek olarak ayırmıştır.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", st, "Yaşamak için zorunlu olanlar ihtiyaç, olmasa da yaşanabilecek olanlar istektir.", subject=subject)
+
+
+# --- Hesaplamalı belge/tablo/grafik soruları
+def _sf_yn_butce(subject):
+    iht = random.sample([("Mutfak alışverişi", 1800), ("Elektrik ve su faturası", 600), ("Okul gideri", 500), ("Ulaşım", 400), ("Sağlık gideri", 300)], 3)
+    ist = random.sample([("Sinema ve eğlence", 300), ("Dışarıda yemek", 400), ("Yeni oyuncak", 250), ("Marka giyim", 500)], 2)
+    gider = sum(v for _n, v in iht + ist)
+    gelir = (gider // 500 + 1) * 500 + random.choice([0, 500])
+    rows = [["Aylık gelir", "Gelir", str(gelir)]] + [[n, "İhtiyaç", str(v)] for n, v in iht] + [[n, "İstek", str(v)] for n, v in ist]
+    random.shuffle(rows[1:])
+    sh = {"type": "table", "title": "Bir Ailenin Aylık Bütçesi (TL)", "headers": ["Kalem", "Tür", "Tutar (TL)"], "rows": rows}
+    lead = "Bir ailenin bir aydaki geliri ve harcamaları tabloda verilmiştir."
+    ti, ts = sum(v for _n, v in iht), sum(v for _n, v in ist)
+    kind = random.choice(["tasarruf", "ihtiyac", "istek", "roman"])
+    topic = "İhtiyaç, istek ve bütçe"
+    if kind == "tasarruf":
+        v = gelir - gider
+        o = _mf_opts(v, [v + 100, v - 100 if v > 100 else v + 200, v + 500, gider], lambda x: f"{x} TL")
+        return _mf_raw(subject, topic, "Aile, tüm harcamalarını yaptıktan sonra ayın sonunda kaç TL tasarruf etmiş olur?", o, f"Toplam gider {gider} TL; {gelir} − {gider} = {v} TL.", shape=sh, passage=lead) if o else None
+    if kind == "ihtiyac":
+        o = _mf_opts(ti, [ti + 100, ti - 100, ti + ts, gider], lambda x: f"{x} TL")
+        return _mf_raw(subject, topic, "Ailenin ihtiyaç niteliğindeki harcamalarının toplamı kaç TL’dir?", o, f"İhtiyaçlar toplanır: {ti} TL.", shape=sh, passage=lead) if o else None
+    if kind == "istek":
+        o = _mf_opts(ts, [ts + 100, ts - 50, ts + ti, ts + 200], lambda x: f"{x} TL")
+        return _mf_raw(subject, topic, "Ailenin istek niteliğindeki harcamalarının toplamı kaç TL’dir?", o, f"İstekler toplanır: {ts} TL.", shape=sh, passage=lead) if o else None
+    mx = max(iht + ist, key=lambda x: x[1])
+    s1 = _yn_pick("İhtiyaç harcamalarının toplamı, istek harcamalarının toplamından fazladır.", "İstek harcamalarının toplamı, ihtiyaç harcamalarının toplamından fazladır.")
+    s1 = (s1[0], s1[0].startswith("İhtiyaç") == (ti > ts))
+    s2 = _yn_pick("Aile gelirinin tamamını harcamıştır.", "Aile gelirinin bir kısmını harcamayıp artırmıştır.")
+    s2 = (s2[0], s2[0].startswith("Aile gelirinin tamamını") == (gider == gelir))
+    s3 = _yn_pick(f"En yüksek harcama “{mx[0]}” kalemindedir.", f"En yüksek harcama “{random.choice([n for n, _v in iht + ist if n != mx[0]])}” kalemindedir.")
+    s3 = (s3[0], mx[0] in s3[0])
+    return _yn_rom(topic, lead, "Tabloya göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Yargılar tablodaki tutarlarla denetlenir.", shape=sh, subject=subject)
+
+
+def _sf_yn_fis(subject):
+    urun = random.sample([("Ekmek", 10), ("Süt", 30), ("Yumurta", 60), ("Defter", 25), ("Çikolata", 20), ("Kalem", 15), ("Meyve suyu", 35)], 3)
+    adet = [random.randint(1, 4) for _ in urun]
+    tot = sum(a * p for a, (_n, p) in zip(adet, urun))
+    ode = (tot // 50 + 1) * 50
+    sh = {"type": "doc", "theme": random.choice(["sari", "turkuaz", "yesil"]), "deco": "stars", "title": "MARKET ALIŞVERİŞ FİŞİ", "tsize": 14,
+          "blocks": [["grid", ["Ürün", "Adet", "Birim fiyat"], [[n, str(a), f"{p} ₺"] for a, (n, p) in zip(adet, urun)]], ["rows", [["Ödenen tutar", f"{ode} ₺"]]]]}
+    kind = random.choice(["toplam", "para", "ihtiyac"])
+    topic = "İhtiyaç, istek ve bütçe"
+    if kind == "toplam":
+        o = _mf_opts(tot, [tot + 5, tot - 5, tot + 10, sum(p for _n, p in urun)], lambda x: f"{x} ₺")
+        return _mf_raw(subject, topic, "Fişe göre yapılan alışverişin toplam tutarı kaç ₺’dir?", o, f"Her ürünün adet × birim fiyatı toplanır: {tot} ₺.", shape=sh) if o else None
+    if kind == "para":
+        v = ode - tot
+        o = _mf_opts(v, [v + 5, v + 10, abs(v - 5) or 15, tot], lambda x: f"{x} ₺")
+        return _mf_raw(subject, topic, "Fişe göre kasiyer kaç ₺ para üstü vermelidir?", o, f"Para üstü = {ode} − {tot} = {v} ₺.", shape=sh) if o else None
+    ist = [n for n, _p in urun if n in ("Çikolata", "Meyve suyu")]
+    ihtn = [n for n, _p in urun if n in ("Ekmek", "Süt", "Yumurta", "Defter", "Kalem")]
+    if not ist or not ihtn:
+        return None
+    c = random.choice(ist)
+    o = _yn_opts(c, ihtn + ["Fişte hiç istek ürünü yoktur"])
+    if not o:
+        return None
+    return _mf_raw(subject, topic, "Fişteki ürünlerden hangisi ihtiyaçtan çok istek niteliğindedir?", o, f"{c}, yaşamak için zorunlu olmayan, istek niteliğinde bir üründür.", shape=sh)
+
+
+def _sf_yn_il_eko(subject):
+    fa = random.sample(["Tarım", "Hayvancılık", "Turizm", "Sanayi", "Ticaret", "Balıkçılık"], 5)
+    v = random.sample(range(10, 90, 5), 5)
+    sh = {"type": "bar_chart", "title": "Bir İlde Ekonomik Faaliyetlerde Çalışan Kişi Sayısı (bin kişi)", "labels": fa, "values": v}
+    lead = "Bir ilde ekonomik faaliyetlere göre çalışan kişi sayıları grafikte verilmiştir."
+    topic = "Yaşadığı ildeki ekonomik faaliyetler"
+    kind = random.choice(["toplam2", "fark", "top2"])
+    if kind == "toplam2":
+        i, j = random.sample(range(5), 2)
+        t = v[i] + v[j]
+        o = _mf_opts(t, [t + 5, t - 5, t + 10, v[i]], lambda x: f"{x} bin kişi")
+        return _mf_raw(subject, topic, f"Grafiğe göre {fa[i].lower()} ile {fa[j].lower()} alanlarında çalışan toplam kişi sayısı kaç bindir?", o, f"{v[i]} + {v[j]} = {t} bin.", shape=sh, passage=lead) if o else None
+    if kind == "fark":
+        d = max(v) - min(v)
+        o = _mf_opts(d, [d + 5, d - 5 if d > 5 else d + 10, d + 10, max(v)], lambda x: f"{x} bin kişi")
+        return _mf_raw(subject, topic, "Grafiğe göre en çok çalışanı olan faaliyet ile en az çalışanı olan faaliyet arasındaki çalışan sayısı farkı kaç bindir?", o, f"{max(v)} − {min(v)} = {d} bin.", shape=sh, passage=lead) if o else None
+    t2 = sum(sorted(v)[-2:])
+    o = _mf_opts(t2, [t2 + 5, t2 - 5, t2 + 10, max(v)], lambda x: f"{x} bin kişi")
+    return _mf_raw(subject, topic, "Grafiğe göre en çok çalışanı olan iki faaliyette çalışanların toplam sayısı kaç bin kişidir?", o, f"En yüksek iki değer toplanır: {sorted(v)[-1]} + {sorted(v)[-2]} = {t2} bin.", shape=sh, passage=lead) if o else None
+
+
+_SY_YER = ["Park", "Hastane", "Market", "Kütüphane", "Postane", "Belediye binası", "Camii", "Stadyum"]
+_SY_YON = {"kuzey": (0, 1), "güney": (0, -1), "doğu": (1, 0), "batı": (-1, 0)}
+
+
+def _sy_yon(dx, dy):
+    if dx == 0:
+        return "kuzey" if dy > 0 else "güney"
+    if dy == 0:
+        return "doğu" if dx > 0 else "batı"
+    return ("kuzey" if dy > 0 else "güney") + ("doğu" if dx > 0 else "batı")
+
+
+def _sf_yn_konum(subject):
+    yer = random.sample(_SY_YER, 4)
+    yon = random.sample(list(_SY_YON), 4)
+    sh = {"type": "doc", "theme": random.choice(["mavi", "turkuaz", "yesil"]), "deco": random.choice(["leaves", "stars"]), "title": "OKULUN ÇEVRESİ", "sub": "Her yerin okula göre konumu",
+          "blocks": [["rows", [[y, "Okulun " + {"kuzey": "kuzeyinde", "güney": "güneyinde", "doğu": "doğusunda", "batı": "batısında"}[d]] for y, d in zip(yer, yon)]]]}
+    i, j = random.sample(range(4), 2)
+    a, b = _SY_YON[yon[i]], _SY_YON[yon[j]]
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    cor = _sy_yon(dx, dy)
+    cs = {"kuzey": "kuzeyinde", "güney": "güneyinde", "doğu": "doğusunda", "batı": "batısında", "kuzeydoğu": "kuzeydoğusunda", "kuzeybatı": "kuzeybatısında", "güneydoğu": "güneydoğusunda", "güneybatı": "güneybatısında"}
+    # dx veya dy ikisi de sıfır olamaz (farklı yönler seçildi)
+    opts = [k.capitalize() for k in cs]
+    c = cor.capitalize()
+    ws = [x for x in opts if x != c]
+    o = _yn_opts(c, random.sample(ws, 3))
+    q = f"Yukarıdaki belgeye göre {yer[i]} merkez alındığında {yer[j]} hangi yönde bulunur?"
+    return _mf_raw(subject, "Göreceli konum", q, o, f"Okul merkez alınırsa {yer[i]} okulun {yon[i]} tarafında, {yer[j]} okulun {yon[j]} tarafındadır; buna göre {yer[i]} merkez alındığında {yer[j]} {cor} yönünde bulunur.", shape=sh) if o else None
+
+
+def _sf_yn_ekran(subject):
+    gunler = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"]
+    lim = random.choice([60, 90, 120])
+    v = [random.choice([20, 30, 45, 60, 75, 90, 105, 120, 135, 150]) for _ in gunler]
+    sh = {"type": "table", "title": "Günlük Ekran Süresi", "headers": ["Gün", "Süre (dk)"], "rows": [[g, str(x)] for g, x in zip(gunler, v)] + [["Aile kuralı: günlük en fazla", str(lim)]]}
+    lead = "Bir aile, çocukların teknolojik ürünleri bilinçli kullanması için günlük ekran süresini sınırlamıştır. Bir öğrencinin hafta içi ekran süreleri tabloda verilmiştir."
+    topic = "Teknolojik ürünlerin bilinçli kullanımı"
+    kind = random.choice(["asan", "toplam", "fark"])
+    if kind == "asan":
+        k = sum(1 for x in v if x > lim)
+        o = _mf_opts(k, [k + 1, max(0, k - 1), k + 2, 5 if k != 5 else 4], lambda x: f"{x} gün")
+        return _mf_raw(subject, topic, "Öğrenci, hafta içi kaç gün aile kuralını aşmıştır?", o, f"Kuraldan fazla olan günler sayılır: {k} gün.", shape=sh, passage=lead) if o else None
+    if kind == "toplam":
+        t = sum(v)
+        o = _mf_opts(t, [t + 15, t - 15, t + 30, t - 30], lambda x: f"{x} dakika")
+        return _mf_raw(subject, topic, "Öğrenci, hafta içinde toplam kaç dakika ekran karşısında kalmıştır?", o, f"{' + '.join(map(str, v))} = {t} dk.", shape=sh, passage=lead) if o else None
+    d = max(v) - min(v)
+    o = _mf_opts(d, [d + 15, abs(d - 15) or 30, d + 30, max(v)], lambda x: f"{x} dakika")
+    return _mf_raw(subject, topic, "Tabloya göre en uzun ekran süresi ile en kısa ekran süresi arasındaki fark kaç dakikadır?", o, f"{max(v)} − {min(v)} = {d} dk.", shape=sh, passage=lead) if o else None
+
+
+def _sf_yn_oy(subject):
+    ad = random.sample(["Ayşe", "Mert", "Zeynep", "Can", "Elif", "Berk"], 3)
+    v = sorted(random.sample(range(5, 16), 3), reverse=True)
+    mevcut = sum(v) + random.randint(0, 3)
+    sh = {"type": "doc", "theme": random.choice(["mavi", "mor", "turkuaz"]), "deco": "stars", "title": "SINIF BAŞKANLIĞI SEÇİM SONUCU", "tsize": 13,
+          "blocks": [["grid", ["Aday", "Aldığı oy"], [[a, str(x)] for a, x in zip(ad, v)]], ["rows", [["Sınıf mevcudu", f"{mevcut} kişi"]]]]}
+    topic = "Demokrasi ve cumhuriyet"
+    kind = random.choice(["kazanan", "toplam", "fark", "kullanmayan"])
+    if kind == "kazanan":
+        o = _yn_opts(ad[0], ad[1:] + [random.choice([x for x in ["Ayşe", "Mert", "Zeynep", "Can", "Elif", "Berk"] if x not in ad])])
+        return _mf_raw(subject, topic, "Seçimde en çok oyu alan aday sınıf başkanı seçildiğine göre sınıf başkanı kimdir?", o, f"En yüksek oyu ({v[0]}) {ad[0]} almıştır.", shape=sh) if o else None
+    if kind == "toplam":
+        t = sum(v)
+        o = _mf_opts(t, [t + 1, t - 1, t + 2, mevcut if mevcut != t else t + 3], lambda x: f"{x} oy")
+        return _mf_raw(subject, topic, "Seçimde kullanılan toplam oy sayısı kaçtır?", o, f"{' + '.join(map(str, v))} = {t} oy.", shape=sh) if o else None
+    if kind == "fark":
+        d = v[0] - v[1]
+        o = _mf_opts(d, [d + 1, d + 2, d + 3, abs(d - 1) or 4], lambda x: f"{x} oy")
+        return _mf_raw(subject, topic, "Birinci olan aday ile ikinci olan aday arasındaki oy farkı kaçtır?", o, f"{v[0]} − {v[1]} = {d} oy.", shape=sh) if o else None
+    k = mevcut - sum(v)
+    if k <= 0:
+        return None
+    o = _mf_opts(k, [k + 1, k + 2, max(0, k - 1) if k > 1 else k + 3, sum(v)], lambda x: f"{x} kişi")
+    return _mf_raw(subject, topic, "Sınıf mevcudu ve oy sayılarına göre kaç öğrenci oy kullanmamıştır?", o, f"{mevcut} − {sum(v)} = {k} kişi.", shape=sh) if o else None
+
+
+def _sf_yn_su(subject):
+    ay = ["Ocak", "Şubat", "Mart", "Nisan"]
+    v = [random.randint(14, 30) for _ in ay]
+    sh = {"type": "table", "title": "Bir Evin Aylık Su Tüketimi (m³)", "headers": ["Ay", "Tüketim (m³)"], "rows": [[a, str(x)] for a, x in zip(ay, v)]}
+    lead = "Bir aile, su kaynaklarını verimli kullanmak için dört ay boyunca su tüketimini kaydetmiştir."
+    topic = "Kaynakların verimli kullanımı"
+    kind = random.choice(["fark", "toplam", "roman"])
+    if kind == "fark":
+        d = max(v) - min(v)
+        if d == 0:
+            return None
+        o = _mf_opts(d, [d + 1, d + 2, d + 3, abs(d - 2) or 4], lambda x: f"{x} m³")
+        return _mf_raw(subject, topic, "Tabloya göre su tüketiminin en fazla olduğu ay ile en az olduğu ay arasındaki fark kaç m³’tür?", o, f"{max(v)} − {min(v)} = {d} m³.", shape=sh, passage=lead) if o else None
+    if kind == "toplam":
+        t = sum(v)
+        o = _mf_opts(t, [t + 2, t - 2, t + 4, t - 4], lambda x: f"{x} m³")
+        return _mf_raw(subject, topic, "Aile dört ayda toplam kaç m³ su tüketmiştir?", o, f"{' + '.join(map(str, v))} = {t} m³.", shape=sh, passage=lead) if o else None
+    i, j = random.sample(range(4), 2)
+    s1 = (f"{ay[i]} ayında tüketilen su, {ay[j]} ayında tüketilenden fazladır.", v[i] > v[j])
+    mn = v.index(min(v))
+    oth = random.choice([k for k in range(4) if k != mn])
+    s2 = _yn_pick(f"En az su {ay[mn]} ayında tüketilmiştir.", f"En az su {ay[oth]} ayında tüketilmiştir.")
+    s2 = (s2[0], ay[mn] in s2[0])
+    k, m = random.sample(range(4), 2)
+    s3 = (f"{ay[k]} ayında tüketilen su, {ay[m]} ayında tüketilenden azdır.", v[k] < v[m])
+    return _yn_rom(topic, lead, "Tabloya göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Yargılar tablodaki değerlerle denetlenir.", shape=sh, subject=subject)
+
+
+# --- Senaryo soruları
+_SY_SEN = {
+    "grup": ("Gruplar ve roller", ("grup", "rol", "birlikte", "dayanışma", "kültürel"), "Gruplar ve roller", [
+        ("Ece, okulda hem sınıf başkanı hem de futbol takımı kaptanıdır.", "Ece’nin farklı gruplarda farklı görevler üstlenmesi aşağıdakilerden hangisini gösterir?", "Bir kişinin birden fazla grupta farklı roller alabileceğini", ["Bir kişinin yalnızca tek grupta yer alabileceğini", "Rollerin hiç değişmediğini", "Grupların aynı görevleri istediğini"], "Bir kişi farklı gruplarda farklı rollere sahip olabilir."),
+        ("Bir sınıf kitap okuma etkinliği için görev dağılımı yapıyor: biri kitapları dağıtıyor, biri okunan sayfaları not ediyor, biri zamanı tutuyor.", "Bu görev paylaşımıyla aşağıdakilerden hangisi sağlanır?", "Grup içinde rollerin paylaşılarak işin düzenli yürütülmesi", ["Tüm işlerin tek kişiye yüklenmesi", "Grubun dağılması", "Kuralların ortadan kalkması"], "Roller paylaşılınca grup işleri düzenli yürür."),
+        ("Mert’in sınıfına başka bir şehirden gelen arkadaşı, kendi yöresine ait bir halk oyunu gösterisi yapıyor.", "Birlikte yaşama kültürü açısından Mert’in en doğru tutumu hangisidir?", "Farklı kültüre saygı göstererek izlemek ve öğrenmek", ["Gösteriyle dalga geçmek", "Kendi kültürünün daha üstün olduğunu söylemek", "Gösteriyi görmezden gelmek"], "Farklı kültürlere saygı, birlikte yaşamanın temelidir."),
+        ("Bir mahallede çıkan selde zarar gören ailelere komşular battaniye ve yiyecek getiriyor.", "Bu davranış aşağıdakilerden hangisine örnektir?", "Yardımlaşma ve dayanışmaya", ["Rekabete", "Bencilliğe", "Gereksiz harcamaya"], "Zor durumdakilere birlikte yardım etmek dayanışmadır.")]),
+    "evimiz": ("Evimiz Dünya", ("göreceli", "afet", "komşu", "evimiz", "doğal", "beşerî", "çevre"), "Evimiz Dünya", [
+        ("Bir öğrenci evinin konumunu tarif ederken “Okulun doğusunda, parkın batısındayım” diyor.", "Bu tarif aşağıdakilerden hangisini belirtir?", "Göreceli (bağıl) konumu", ["Enlem ve boylamla bulunan mutlak konumu", "Yükseltiyi", "İklimi"], "Bir yerin başka yerlere göre nerede olduğunu belirtmek göreceli konumdur."),
+        ("Bir öğrenci köyünün çevresindeki dağları, ormanı ve insanların yaptığı köprüyü fotoğraflıyor.", "Fotoğraftaki hangisi beşerî çevre ögesidir?", "Köprü", ["Dağ", "Orman", "Güneş ışığı"], "İnsanların yaptığı ögeler beşerî çevredir."),
+        ("Okulda deprem tatbikatı yapılırken öğretmen öğrencilerden masanın altına girip başlarını korumalarını istiyor.", "Bu davranışın amacı aşağıdakilerden hangisidir?", "Düşebilecek eşyalardan korunmak", ["Hızla asansöre ulaşmak", "Pencereden dışarıyı izlemek", "Sınıftan koşarak çıkmak"], "Çök-kapan-tutun hareketi baş ve vücudu korur."),
+        ("Elif, haritada Türkiye’nin kuzeydoğusunda kara sınırı bulunan komşu ülkeyi arıyor.", "Elif’in aradığı ülke aşağıdakilerden hangisidir?", "Gürcistan", ["Yunanistan", "Irak", "Suriye"], "Gürcistan, Türkiye’nin kuzeydoğusunda yer alır."),
+        ("Bir aile, afetlerde ihtiyaç duyacağı su, el feneri ve ilk yardım malzemelerini bir çantada topluyor.", "Bu çantanın amacı aşağıdakilerden hangisidir?", "Afet anında temel ihtiyaçları karşılamak", ["Tatile gitmek", "Okul malzemelerini taşımak", "Alışveriş yapmak"], "Afet çantası afet anında işe yarayan temel malzemeleri içerir.")]),
+    "miras": ("Ortak miras ögeleri", ("miras", "göbeklitepe", "çatalhöyük", "mezopotamya", "anadolu", "medeniyet"), "Ortak miras", [
+        ("Bir öğrenci, dünyanın bilinen en eski tapınak alanlarından biri olan Göbeklitepe’yi geziyor.", "Göbeklitepe hangi ilimizde bulunmaktadır?", "Şanlıurfa", ["Konya", "Ankara", "Çorum"], "Göbeklitepe Şanlıurfa’dadır."),
+        ("Bir öğrenci, evlerin girişinin damdaki açıklıktan merdivenle yapıldığı bir yerleşim yerini araştırıyor.", "Bu yerleşim yeri hangisidir?", "Çatalhöyük", ["Göbeklitepe", "Hattuşa", "Truva"], "Damdan girilen evler Çatalhöyük’ün özelliğidir."),
+        ("Sümerler, kil tabletlere kamış kalemle yazı yazıyordu.", "Bu bilgi Sümerlerle ilgili hangi gelişmeyi gösterir?", "Yazının kullanılmasını", ["Telefonun icadını", "Matbaanın kullanılmasını", "Uçağın yapılmasını"], "Sümerler yazıyı kullanan ilk toplumlardandır."),
+        ("Hititler Anadolu’da kurulan bir medeniyettir ve başkentleri Hattuşa’dır.", "Hattuşa günümüzde hangi ilimizin sınırları içindedir?", "Çorum", ["Konya", "Şanlıurfa", "Muğla"], "Hattuşa (Boğazköy) Çorum’dadır.")]),
+    "demo": ("Demokrasi ve cumhuriyet", ("demokrasi", "cumhuriyet", "vatandaş", "hak", "başvuru", "kurum"), "Yaşayan demokrasi", [
+        ("Sınıf başkanını seçmek için öğrenciler gizli oyla oy kullanıyor ve en çok oy alan aday başkan oluyor.", "Bu seçim yöntemi hangi yönetim anlayışının özelliğidir?", "Demokrasi", ["Tek kişi yönetimi", "Kuralsızlık", "Zorbalık"], "Seçimle işbaşına gelme demokrasinin özelliğidir."),
+        ("Bir öğrenci mahallesindeki bozuk kaldırımın onarılması için başvuru yapmak istiyor.", "Bu başvuruyu hangi kuruma yapmalıdır?", "Belediye", ["Hastane", "Okul müdürlüğü", "Orman işletmesi"], "Mahalle sorunları için belediyeye başvurulur."),
+        ("Türkiye Cumhuriyeti’nin ilanıyla yönetim şekli değişmiş ve halk egemenliği benimsenmiştir.", "Cumhuriyet hangi tarihte ilan edilmiştir?", "29 Ekim 1923", ["23 Nisan 1920", "30 Ağustos 1922", "19 Mayıs 1919"], "Cumhuriyet 29 Ekim 1923’te ilan edilmiştir."),
+        ("Okul meclisi seçiminde Defne, adayları araştırıp oyunu bilinçli olarak kullanıyor.", "Defne’nin davranışı hangi vatandaşlık niteliğini gösterir?", "Etkin vatandaşlık", ["Kayıtsızlık", "Kuralsızlık", "Bencillik"], "Seçimlere bilinçle katılmak etkin vatandaşlıktır.")]),
+    "eko": ("İhtiyaç, istek ve bütçe", ("ekonomi", "bütçe", "tasarruf", "ihtiyaç", "kaynak"), "Hayatımızdaki ekonomi", [
+        ("Zeynep’in ailesi ayın başında alışveriş listesi yapıp yalnızca listedekileri alıyor.", "Bu davranış aşağıdakilerden hangisine katkı sağlar?", "Bütçenin dengeli kullanılmasına", ["Gereksiz harcamaya", "Borçlanmaya", "Kaynakların israfına"], "Planlı alışveriş bütçeyi korur."),
+        ("Can, harçlığıyla önce kırtasiye ihtiyacını karşılıyor; kalan parayla oyuncak almayı planlıyor.", "Can’ın harcamaları için aşağıdakilerden hangisi doğrudur?", "Kırtasiye ihtiyaç, oyuncak istektir", ["Kırtasiye istek, oyuncak ihtiyaçtır", "İkisi de istektir", "İkisi de ihtiyaçtır"], "Okul malzemesi ihtiyaç, oyuncak istektir."),
+        ("Bir ilde zeytin ağaçları yetiştiriliyor ve zeytinyağı fabrikalarında üretim yapılıyor.", "Bu ilde yapılan ekonomik faaliyetler hangi alanları kapsar?", "Tarım ve sanayi", ["Yalnız turizm", "Yalnız balıkçılık", "Yalnız madencilik"], "Zeytin yetiştirmek tarım, yağ üretimi sanayidir.")]),
+    "tekn": ("Teknolojik ürünlerin bilinçli kullanımı", ("teknoloji", "teknolojik"), "Teknoloji ve sosyal bilimler", [
+        ("Mert, bilgisayarda ödev yaparken yabancı birinden gelen bağlantıya tıklamak yerine anne babasına danışıyor.", "Mert’in davranışı aşağıdakilerden hangisine örnektir?", "Teknolojik ürünleri bilinçli kullanmaya", ["İnternette kişisel bilgi paylaşmaya", "Teknolojiden tamamen uzak durmaya", "Güvenlik kurallarını ihmal etmeye"], "Şüpheli bağlantılardan kaçınmak bilinçli kullanımdır."),
+        ("Telefon icat edilmeden önce uzaktaki insanlarla mektupla haberleşiliyordu; bugün anında görüntülü konuşulabiliyor.", "Bu değişim teknolojinin toplum hayatındaki hangi etkisini gösterir?", "İletişimi hızlandırıp kolaylaştırmasını", ["İletişimi imkânsız hâle getirmesini", "İnsanların hiç haberleşmemesini", "Haberleşmeyi yavaşlatmasını"], "Teknoloji iletişimi hızlandırmıştır."),
+        ("Bir aile, çocuklarının ekran karşısında geçirdiği süreyi sınırlıyor ve birlikte açık hava etkinlikleri planlıyor.", "Bu karar aşağıdakilerden hangisini amaçlar?", "Teknolojik ürünlerin dengeli ve bilinçli kullanılmasını", ["Teknolojiyi tamamen yasaklamayı", "Ekran süresini artırmayı", "Etkinliklerden uzaklaşmayı"], "Sınırlı ve dengeli kullanım bilinçli kullanımdır.")]),
+}
+
+
+def _sy_sen_family(key):
+    item, kw, topic, bank = _SY_SEN[key]
+
+    def _f(subject):
+        lead, q, c, ws, ex = random.choice(bank)
+        o = _yn_opts(c, ws)
+        return _mf_raw(subject, topic, q, o, ex, passage=lead) if o else None
+
+    _f.__name__ = "_sf_yn_sen_" + key
+    _f.ITEM = item
+    return _f, kw
+
+
+_SY_NEW = []
+for _k in _SY_ROM:
+    _SY_NEW.append((*_sy_rom_family(_k), 3))
+for _k in _SY_SEN:
+    _SY_NEW.append((*_sy_sen_family(_k), 2))
+for _fn, _item, _kw, _d in [
+    (_sf_yn_r_cevre, "Doğal ve beşerî çevre", ("doğal", "beşerî", "çevre", "evimiz"), 3), (_sf_yn_r_hak, "Hak ve sorumluluklar", ("hak", "sorumluluk", "vatandaş", "demokrasi"), 3),
+    (_sf_yn_r_ihtiyac, "İhtiyaç, istek ve bütçe", ("ihtiyaç", "istek", "bütçe", "ekonomi"), 3), (_sf_yn_butce, "İhtiyaç, istek ve bütçe", ("ekonomi", "bütçe", "tasarruf", "ihtiyaç"), 4),
+    (_sf_yn_fis, "İhtiyaç, istek ve bütçe", ("ihtiyaç", "istek", "bütçe", "ekonomi"), 3), (_sf_yn_il_eko, "Yaşadığı ildeki ekonomik faaliyetler", ("ekonomi", "ekonomik", "faaliyet"), 3),
+    (_sf_yn_konum, "Göreceli konum", ("göreceli", "evimiz", "harita"), 4), (_sf_yn_ekran, "Teknolojik ürünlerin bilinçli kullanımı", ("teknoloji", "teknolojik"), 3),
+    (_sf_yn_oy, "Demokrasi ve cumhuriyet", ("demokrasi", "cumhuriyet", "vatandaş"), 3), (_sf_yn_su, "Kaynakların verimli kullanımı", ("kaynak", "tasarruf", "ekonomi", "bütçe"), 3)]:
+    _fn.ITEM = _item
+    _SY_NEW.append((_fn, _kw, _d))
+for _f, _kw, _d in _SY_NEW:
+    _SF_GENS.append((_f, _kw))
     _DIFF_OF[_f.__name__] = _d
 
 
@@ -20123,7 +20502,7 @@ def _fam_item(name, fn, subject, items):
     return v
 
 
-_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_", "_ff_yn2_"), "Türkçe": ("_tf_par_", "_tf_dk_")}
+_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_", "_ff_yn2_"), "Sosyal Bilgiler": ("_sf_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
 _YN_SHARE = 0.3  # sınavdaki yeni nesil (senaryo/tablo/belge/paragraf) soru payı
 
 
@@ -20136,7 +20515,7 @@ def _bal_order(rkey, byname, subject, grade_label, topics, n):
     yn = [x for x in out if x.startswith(pre)]
     if not yn:
         return out
-    q = min(len(yn), max(1, round({"Matematik": 0.4, "Fen Bilimleri": 0.4}.get(subject, _YN_SHARE) * n)))
+    q = min(len(yn), max(1, round({"Matematik": 0.4, "Fen Bilimleri": 0.4, "Sosyal Bilgiler": 0.4}.get(subject, _YN_SHARE) * n)))
     pick = yn[:q]
     rest = [x for x in out if x not in pick]
     step = max(1, n // q)
