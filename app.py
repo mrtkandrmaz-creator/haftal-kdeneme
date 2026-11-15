@@ -5999,6 +5999,7 @@ ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini
     "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
     "Türkçe": {"table", "doc"},
+    "İngilizce": {"table", "doc"},
 }
 VISUAL_HINT = {
     "Matematik": "Şekil/grafik/tablo: geometri (üçgen, çember, dikdörtgen), sayı doğrusu, sütun/çizgi/daire grafiği, veri tablosu.",
@@ -14325,6 +14326,441 @@ _DY_NEW.append((_df_yn_sure_tablo, ("kur'an", "kuran", "kevser", "sure"), 3))
 
 
 
+# ---- İngilizce 5: YENİ NESİL (belge/ilan/menü/program okuma, e-posta, diyalog, öncüllü yargı)
+_EN_NAMES = ["Ali", "Ece", "Mert", "Zeynep", "Can", "Elif", "Deniz", "Selin", "Berk", "Defne", "Tom", "Anna", "Emma", "Jack"]
+_EN_FEM = {"Ece", "Zeynep", "Elif", "Selin", "Defne", "Anna", "Emma"}
+
+
+def _en_pro(n):
+    return "She" if n in _EN_FEM else "He"
+
+
+def _en_pos(n):
+    return "her" if n in _EN_FEM else "his"
+
+
+def _en_pick(topic, q, c, wrongs, ex, shape=None, passage=""):
+    ws = []
+    for w in wrongs:
+        w = str(w)
+        if w != str(c) and w not in ws:
+            ws.append(w)
+    if len(ws) < 3:
+        return None
+    ws = random.sample(ws, 3)
+    allv = [str(c)] + ws
+    random.shuffle(allv)
+    return _mf_raw(_ENG, topic, q, (allv, str(c)), ex, shape=shape, passage=passage)
+
+
+def _en_doc(title, blocks, theme=None, deco=None, sub=None, tsize=None):
+    d = {"type": "doc", "theme": theme or random.choice(["turuncu", "mavi", "yesil", "mor", "turkuaz", "sari", "pembe"]), "deco": deco or random.choice(["stars", "books", "leaves", "balloons"]), "title": title, "blocks": blocks}
+    if sub:
+        d["sub"] = sub
+    if tsize:
+        d["tsize"] = tsize
+    return d
+
+
+def _en_tm(h, m=0):
+    return f"{h}.{m:02d}"
+
+
+# --- 1) Restaurant menu
+_EN_MENU = [("Soup", 25), ("Salad", 30), ("Pizza", 60), ("Hamburger", 55), ("Spaghetti", 50), ("Chicken", 70), ("Ice cream", 25), ("Cake", 35), ("Orange juice", 20), ("Tea", 10), ("Lemonade", 20)]
+
+
+def _en_yn_menu(subject):
+    its = random.sample(_EN_MENU, 5)
+    sh = _en_doc("CITY CAFE MENU", [["list", [[n, f"{p} TL"] for n, p in its]]], sub="Welcome!")
+    topic = "Ordering in a restaurant"
+    kind = random.choice(["total", "change", "cheap", "exp"])
+    a, b = random.sample(its, 2)
+    if kind == "total":
+        t = a[1] + b[1]
+        return _en_pick(topic, f"Ali wants to order {a[0].lower()} and {b[0].lower()}. How much does he pay?", f"{t} TL", [f"{t + 5} TL", f"{t - 5} TL", f"{t + 10} TL", f"{abs(a[1] - b[1])} TL"], f"{a[1]} + {b[1]} = {t} TL.", shape=sh)
+    if kind == "change":
+        t = a[1] + b[1]
+        pay = (t // 50 + 1) * 50
+        sh["blocks"].append(["rows", [["Customer pays", f"{pay} TL"]]])
+        return _en_pick(topic, f"A customer orders {a[0].lower()} and {b[0].lower()} and pays {pay} TL. How much is the change?", f"{pay - t} TL", [f"{pay - t + 5} TL", f"{pay - t + 10} TL", f"{max(5, pay - t - 5)} TL", f"{t} TL"], f"Total {t} TL; change = {pay} − {t} = {pay - t} TL.", shape=sh)
+    if kind == "cheap":
+        c = min(its, key=lambda x: x[1])
+        if sum(1 for x in its if x[1] == c[1]) > 1:
+            return None
+        return _en_pick(topic, "Which food or drink is the cheapest on the menu?", c[0], [x[0] for x in its if x[0] != c[0]], f"{c[0]} is {c[1]} TL, the lowest price.", shape=sh)
+    c = max(its, key=lambda x: x[1])
+    if sum(1 for x in its if x[1] == c[1]) > 1:
+        return None
+    return _en_pick(topic, "Which one is the most expensive?", c[0], [x[0] for x in its if x[0] != c[0]], f"{c[0]} is {c[1]} TL, the highest price.", shape=sh)
+
+
+# --- 2) Party invitation
+def _en_yn_invite(subject):
+    n = random.choice(_EN_NAMES)
+    day = random.choice(["Saturday", "Sunday", "Friday"])
+    h = random.choice([2, 3, 4, 5])
+    place = random.choice(["at my house", "in the school garden", "at the community centre", "in Central Park"])
+    food = random.sample(["pizza", "cake", "sandwiches", "fruit salad", "juice", "popcorn"], 3)
+    sh = _en_doc(f"{n.upper()}'S BIRTHDAY PARTY", [["rows", [["Day", day], ["Time", f"{h}.00 p.m."], ["Place", place.replace("at ", "").replace("in ", "").title()]]], ["bullets", [f"Food: {food[0]}, {food[1]} and {food[2]}", "Please come on time!"]]], deco="balloons")
+    topic = "Food events"
+    kind = random.choice(["day", "time", "food", "tf"])
+    if kind == "day":
+        return _en_pick(topic, f"When is {n}'s birthday party?", f"On {day}", [f"On {d}" for d in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] if d != day], f"Belgeye göre parti {day} günü.", shape=sh)
+    if kind == "time":
+        return _en_pick(topic, f"What time does {n}'s party start?", f"At {h}.00 p.m.", [f"At {x}.00 p.m." for x in (1, 2, 3, 4, 5, 6) if x != h], f"Belgeye göre saat {h}.00.", shape=sh)
+    if kind == "food":
+        c = random.choice(food)
+        wr = [x for x in ["pizza", "cake", "sandwiches", "fruit salad", "juice", "popcorn", "soup", "hamburgers", "pasta"] if x not in food]
+        return _en_pick(topic, "Which food will there be at the party?", c, wr, f"Belgede {c} yazıyor.", shape=sh)
+    c = random.choice(food)
+    s = (f"There will be {c} at the party.", f"{n} is going to have the party on {day}.")
+    return _en_pick(topic, "Which sentence is TRUE according to the invitation?", s[0], [f"{n} is going to have the party on {random.choice([d for d in ['Monday', 'Tuesday', 'Wednesday', 'Thursday'] if d != day])}.", f"The party starts at {h + 3}.00 p.m.", "The party is going to be at the cinema."], f"Belgede {c} yazıyor.", shape=sh)
+
+
+# --- 3) Timetable
+_EN_LESS = ["Maths", "English", "Science", "Music", "Art", "P.E.", "Turkish", "Social Studies", "Computer"]
+
+
+def _en_yn_timetable(subject):
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    rows = []
+    for d in days:
+        a, b = random.sample(_EN_LESS, 2)
+        rows.append([d, a, b])
+    sh = _en_doc("CLASS 5A TIMETABLE", [["grid", ["Day", "1st lesson", "2nd lesson"], rows]], deco="books")
+    topic = "Timetable"
+    kind = random.choice(["which", "day", "tf"])
+    r = random.choice(rows)
+    if kind == "which":
+        i = random.choice([1, 2])
+        return _en_pick(topic, f"What is the {'first' if i == 1 else 'second'} lesson on {r[0]}?", r[i], [x for x in _EN_LESS if x != r[i]], f"Tabloya göre {r[0]} günü {'1.' if i == 1 else '2.'} ders {r[i]}.", shape=sh)
+    if kind == "day":
+        les = r[1]
+        ds = [x[0] for x in rows if les in x[1:]]
+        if len(ds) != 1:
+            return None
+        return _en_pick(topic, f"On which day do the students have {les} as the first lesson?" if True else "", r[0], [d for d in days if d != r[0]], f"{les} dersi {r[0]} günü ilk derstir.", shape=sh) if sum(1 for x in rows if x[1] == les) == 1 else None
+    both = [x for x in rows if x[1] != x[2]]
+    x = random.choice(both)
+    s = f"On {x[0]}, they have {x[1]} and then {x[2]}."
+    w1 = f"On {x[0]}, they have {x[2]} and then {x[1]}."
+    y = random.choice([z for z in rows if z[0] != x[0]])
+    return _en_pick(topic, "Which sentence is TRUE according to the timetable?", s, [w1, f"On {x[0]}, they have {random.choice([l for l in _EN_LESS if l not in x[1:]])} and then {x[2]}.", f"On {y[0]}, they have {random.choice([l for l in _EN_LESS if l not in y[1:]])} and then {y[2]}."], f"{x[0]}: önce {x[1]}, sonra {x[2]}.", shape=sh)
+
+
+# --- 4) School rules notice
+_EN_RULES = [("run in the corridors", "mustn't"), ("eat in the classroom", "mustn't"), ("use mobile phones in class", "mustn't"), ("shout in the library", "mustn't"), ("be late for lessons", "mustn't"),
+             ("wear the school uniform", "must"), ("listen to the teacher", "must"), ("keep the classroom clean", "must"), ("raise your hand to speak", "must")]
+
+
+def _en_yn_notice(subject):
+    rs = random.sample(_EN_RULES, 4)
+    lines = [f"You {m} {a}." if m == "must" else f"You mustn't {a}." for a, m in rs]
+    sh = _en_doc("SCHOOL RULES", [["bullets", lines]], theme="kirmizi", deco="stars")
+    topic = "Mustn't/can't"
+    a, m = random.choice(rs)
+    ok = f"You {m} {a}." if m == "must" else f"You mustn't {a}."
+    notin = [x for x in _EN_RULES if x not in rs]
+    wr = [f"You must {a}." if m == "mustn't" else f"You mustn't {a}."] + [f"You {mm} {aa}." if mm == "must" else f"You mustn't {aa}." for aa, mm in notin[:3]]
+    return _en_pick(topic, "Which sentence is TRUE according to the notice?", ok, wr, f"Belgede şu kural var: {ok}", shape=sh)
+
+
+# --- 5) Animal fact cards
+_EN_ANI = [("lion", "grassland", "meat"), ("elephant", "forest", "plants"), ("camel", "desert", "plants"), ("penguin", "ice", "fish"), ("giraffe", "grassland", "leaves"),
+           ("monkey", "forest", "fruit"), ("polar bear", "ice", "fish"), ("frog", "pond", "insects"), ("zebra", "grassland", "grass")]
+
+
+def _en_yn_zoo(subject):
+    an = random.sample(_EN_ANI, 4)
+    sh = _en_doc("ANIMAL FACT CARD", [["grid", ["Animal", "Lives in", "Eats"], [[a.title(), h, e] for a, h, e in an]]], theme="yesil", deco="leaves", tsize=15)
+    topic = "Wild animals"
+    a, h, e = random.choice(an)
+    kind = random.choice(["eat", "live", "who"])
+    if kind == "eat":
+        return _en_pick(topic, f"What does the {a} eat?", e.capitalize(), [x.capitalize() for x in ["meat", "plants", "fish", "leaves", "fruit", "insects", "grass"] if x != e], f"Kartta {a} için '{e}' yazıyor.", shape=sh)
+    if kind == "live":
+        return _en_pick(topic, f"Where does the {a} live?", f"In the {h}" if h != "ice" else "In the ice", [f"In the {x}" for x in ["grassland", "forest", "desert", "pond", "mountains", "sea"] if x != h], f"Kartta {a} için '{h}' yazıyor.", shape=sh)
+    hs = [x for x in an if x[1] == h]
+    if len(hs) != 1:
+        return None
+    return _en_pick(topic, f"Which animal lives in the {h}?", a.title(), [x[0].title() for x in an if x[0] != a] + ["Tiger"], f"Kartta {h} yaşam alanı olan hayvan {a}.", shape=sh) if False else _en_pick(topic, f"Which animal lives in the {h}?", a.title(), [x[0].title() for x in an if x[0] != a], f"Kartta {h} yaşam alanı olan tek hayvan {a}.", shape=sh)
+
+
+# --- 6) Weather report
+def _en_yn_weather(subject):
+    cs = random.sample(["Istanbul", "Ankara", "Izmir", "Antalya", "Trabzon", "Erzurum", "Konya"], 4)
+    ws = random.sample(["sunny", "rainy", "cloudy", "snowy", "windy"], 4)
+    ts = random.sample(range(-3, 36, 3), 4)
+    sh = _en_doc("WEATHER REPORT", [["grid", ["City", "Weather", "Temperature"], [[c, w, f"{t}°C"] for c, w, t in zip(cs, ws, ts)]]], theme="mavi", deco="stars", tsize=15)
+    topic = "Continents and climate"
+    kind = random.choice(["hot", "cold", "weather", "take"])
+    i = random.randrange(4)
+    if kind == "hot":
+        c = cs[ts.index(max(ts))]
+        return _en_pick(topic, "Which city is the hottest?", c, [x for x in cs if x != c], f"En yüksek sıcaklık {max(ts)}°C.", shape=sh)
+    if kind == "cold":
+        c = cs[ts.index(min(ts))]
+        return _en_pick(topic, "Which city is the coldest?", c, [x for x in cs if x != c], f"En düşük sıcaklık {min(ts)}°C.", shape=sh)
+    if kind == "weather":
+        return _en_pick(topic, f"What is the weather like in {cs[i]}?", ws[i].capitalize(), [x.capitalize() for x in ["sunny", "rainy", "cloudy", "snowy", "windy"] if x != ws[i]], f"Tabloda {cs[i]} için '{ws[i]}' yazıyor.", shape=sh)
+    items = {"rainy": "an umbrella", "sunny": "sunglasses", "snowy": "a warm coat", "windy": "a jacket", "cloudy": "a light jacket"}
+    if ws[i] not in ("rainy", "sunny", "snowy"):
+        return None
+    c = items[ws[i]]
+    return _en_pick(topic, f"Ali is going to {cs[i]} tomorrow. What should he take with him?", c.capitalize(), [v.capitalize() for k, v in items.items() if v != c and k not in ("windy", "cloudy")] + ["A swimsuit", "A beach towel"], f"{cs[i]} için hava {ws[i]}; en uygun eşya {c}.", shape=sh)
+
+
+# --- 7) Daily routine
+_EN_ACT = ["get up", "have breakfast", "go to school", "have lunch", "do homework", "have dinner", "go to bed", "watch TV", "play football"]
+
+
+def _en_yn_routine(subject):
+    n = random.choice(_EN_NAMES)
+    acts = random.sample(["get up", "have breakfast", "go to school", "have lunch", "do homework", "have dinner", "go to bed"], 5)
+    order = ["get up", "have breakfast", "go to school", "have lunch", "do homework", "have dinner", "go to bed"]
+    acts.sort(key=order.index)
+    base = [7 * 60, 7 * 60 + 30, 8 * 60, 12 * 60 + 30, 16 * 60, 19 * 60, 21 * 60 + 30]
+    ts = [base[order.index(a)] + random.choice([-30, 0, 30]) for a in acts]
+    fm = lambda m: f"{(m // 60)}.{m % 60:02d}"
+    sh = _en_doc(f"{n.upper()}'S DAILY ROUTINE", [["times", [[fm(t), a.capitalize()] for t, a in zip(ts, acts)]]], deco="stars")
+    topic = "Daily routines"
+    kind = random.choice(["what", "when", "tf"])
+    i = random.randrange(5)
+    if kind == "what":
+        return _en_pick(topic, f"What does {n} do at {fm(ts[i])}?", f"{_en_pro(n)} {_s3(acts[i].split()[0])} {' '.join(acts[i].split()[1:])}.".replace("  ", " "), [f"{_en_pro(n)} {_s3(a.split()[0])} {' '.join(a.split()[1:])}.".replace("  ", " ") for a in order if a != acts[i]], f"Çizelgede {fm(ts[i])} saatinde '{acts[i]}' yazıyor.", shape=sh)
+    if kind == "when":
+        wr = [fm(x) for x in (6 * 60 + 30, 7 * 60, 8 * 60 + 30, 12 * 60, 13 * 60, 15 * 60 + 30, 17 * 60, 18 * 60 + 30, 20 * 60, 22 * 60) if x != ts[i]]
+        return _en_pick(topic, f"What time does {n} {acts[i]}?", fm(ts[i]), wr, f"Çizelgede '{acts[i]}' saati {fm(ts[i])}.", shape=sh)
+    i, j = sorted(random.sample(range(5), 2))
+    s = f"{n} {acts[i]}s before {_en_pro(n).lower()} {acts[j]}s." if False else f"{_en_pro(n)} {_s3(acts[i].split()[0])} {' '.join(acts[i].split()[1:])} before {_en_pro(n).lower()} {_s3(acts[j].split()[0])} {' '.join(acts[j].split()[1:])}."
+    f_ = f"{_en_pro(n)} {_s3(acts[j].split()[0])} {' '.join(acts[j].split()[1:])} before {_en_pro(n).lower()} {_s3(acts[i].split()[0])} {' '.join(acts[i].split()[1:])}."
+    k = random.choice([a for a in order if a not in acts])
+    z = f"{_en_pro(n)} {_s3(k.split()[0])} {' '.join(k.split()[1:])} at {fm(random.choice(ts))}."
+    return _en_pick(topic, f"Which sentence is TRUE about {n}'s day?", s, [f_, z, f"{_en_pro(n)} {_s3(acts[i].split()[0])} {' '.join(acts[i].split()[1:])} at {fm(ts[i] + 90)}."], f"Sıralama: {acts[i]} → {acts[j]}.", shape=sh)
+
+
+# --- 8) Roman (I-II-III) on the routine / timetable / zoo
+def _en_rom(topic, lead, stmts, ex, shape):
+    idx = [i for i, (_t, b) in enumerate(stmts) if b]
+    if not idx:
+        return None
+    lab = lambda c: ("Only " + _YN_R[c[0]]) if len(c) == 1 else (" and ".join(_YN_R[i] for i in c) if len(c) == 2 else "I, II and III")
+    cor = lab(tuple(idx))
+    allc = [(0,), (1,), (2,), (0, 1), (0, 2), (1, 2), (0, 1, 2)]
+    wr = [lab(c) for c in allc if lab(c) != cor]
+    random.shuffle(wr)
+    ps = (lead + "\n" if lead else "") + "\n".join(f"{_YN_R[i]}. {t}" for i, (t, _b) in enumerate(stmts))
+    o = _mf_opts(cor, wr[:3], str, sort=False)
+    return _mf_raw(_ENG, topic, "Which of the statements above are TRUE according to the document?", o, ex, shape=shape, passage=ps) if o else None
+
+
+def _en_yn_r_zoo(subject):
+    an = random.sample(_EN_ANI, 4)
+    sh = _en_doc("ANIMAL FACT CARD", [["grid", ["Animal", "Lives in", "Eats"], [[a.title(), h, e] for a, h, e in an]]], theme="yesil", deco="leaves", tsize=15)
+    st = []
+    for a, h, e in random.sample(an, 3):
+        k = random.choice(["eat", "live"])
+        if k == "eat":
+            fake = random.choice([x for x in ["meat", "plants", "fish", "leaves", "fruit", "insects", "grass"] if x != e])
+            c = random.random() < .5
+            st.append((f"The {a} eats {e if c else fake}.", c))
+        else:
+            fake = random.choice([x for x in ["grassland", "forest", "desert", "pond", "ice"] if x != h])
+            c = random.random() < .5
+            st.append((f"The {a} lives in the {h if c else fake}.", c))
+    return _en_rom("Wild animals", "", st, "Her cümle kartla ayrı ayrı karşılaştırılır.", sh)
+
+
+def _en_yn_r_routine(subject):
+    n = random.choice(_EN_NAMES)
+    order = ["get up", "have breakfast", "go to school", "have lunch", "do homework", "have dinner", "go to bed"]
+    base = [7 * 60, 7 * 60 + 30, 8 * 60, 12 * 60 + 30, 16 * 60, 19 * 60, 21 * 60 + 30]
+    ts = [b + random.choice([-30, 0, 30]) for b in base]
+    fm = lambda m: f"{(m // 60)}.{m % 60:02d}"
+    sh = _en_doc(f"{n.upper()}'S DAILY ROUTINE", [["times", [[fm(t), a.capitalize()] for t, a in zip(ts, order)]]], deco="stars")
+    pro = _en_pro(n)
+    st = []
+    for i in random.sample(range(7), 3):
+        c = random.random() < .5
+        t = ts[i] if c else ts[i] + random.choice([60, 90, -60])
+        st.append((f"{pro} {_s3(order[i].split()[0])} {' '.join(order[i].split()[1:])} at {fm(t)}.".replace("  ", " "), c))
+    return _en_rom("Daily routines", "", st, "Her cümle çizelgedeki saatlerle denetlenir.", sh)
+
+
+# --- 9) Shopping (clothes)
+_EN_CL = [("T-shirt", 120), ("Jeans", 250), ("Jacket", 400), ("Shoes", 350), ("Hat", 80), ("Socks", 40), ("Skirt", 200), ("Scarf", 90)]
+
+
+def _en_yn_shop(subject):
+    its = random.sample(_EN_CL, 4)
+    sh = _en_doc("CLOTHES SHOP PRICES", [["list", [[n, f"{p} TL"] for n, p in its]]], theme="pembe", deco="stars")
+    topic = "Clothes"
+    kind = random.choice(["total", "cheap", "diff"])
+    a, b = random.sample(its, 2)
+    if kind == "total":
+        t = a[1] + b[1]
+        return _en_pick(topic, f"Zeynep buys a {a[0].lower()} and a {b[0].lower()}. How much does she pay?", f"{t} TL", [f"{t + 10} TL", f"{t - 10} TL", f"{t + 50} TL", f"{abs(a[1] - b[1])} TL"], f"{a[1]} + {b[1]} = {t} TL.", shape=sh)
+    if kind == "diff":
+        d = abs(a[1] - b[1])
+        return _en_pick(topic, f"How much more expensive is the {a[0].lower() if a[1] > b[1] else b[0].lower()} than the {b[0].lower() if a[1] > b[1] else a[0].lower()}?", f"{d} TL", [f"{d + 10} TL", f"{d + 20} TL", f"{max(10, d - 10)} TL", f"{a[1] + b[1]} TL"], f"{max(a[1], b[1])} − {min(a[1], b[1])} = {d} TL.", shape=sh)
+    c = min(its, key=lambda x: x[1])
+    if sum(1 for x in its if x[1] == c[1]) > 1:
+        return None
+    return _en_pick(topic, "Which clothes item is the cheapest?", c[0], [x[0] for x in its if x[0] != c[0]], f"En düşük fiyat {c[1]} TL ({c[0]}).", shape=sh)
+
+
+# --- 10) Comparatives / superlatives (people's heights)
+def _en_yn_compare(subject):
+    ns = random.sample(_EN_NAMES, 3)
+    hs = random.sample(range(130, 170, 3), 3)
+    sh = _en_doc("HEIGHTS (cm)", [["grid", ["Name", "Height"], [[n, f"{h} cm"] for n, h in zip(ns, hs)]]], theme="turkuaz", deco="stars")
+    topic = "Comparatives and superlatives"
+    kind = random.choice(["tall", "short", "than"])
+    if kind == "tall":
+        c = ns[hs.index(max(hs))]
+        return _en_pick(topic, "Who is the tallest?", c, [n for n in ns if n != c] + [x for x in _EN_NAMES if x not in ns][:2], f"En uzun boy {max(hs)} cm.", shape=sh)
+    if kind == "short":
+        c = ns[hs.index(min(hs))]
+        return _en_pick(topic, "Who is the shortest?", c, [n for n in ns if n != c] + [x for x in _EN_NAMES if x not in ns][:2], f"En kısa boy {min(hs)} cm.", shape=sh)
+    i, j = random.sample(range(3), 2)
+    a, b = (i, j) if hs[i] > hs[j] else (j, i)
+    s = f"{ns[a]} is taller than {ns[b]}."
+    return _en_pick(topic, "Which sentence is TRUE?", s, [f"{ns[b]} is taller than {ns[a]}.", f"{ns[b]} is as tall as {ns[a]}.", f"{ns[b]} is the tallest."], f"{ns[a]} {hs[a]} cm, {ns[b]} {hs[b]} cm.", shape=sh)
+
+
+# --- 11) Weekend plans (be going to)
+def _en_yn_going(subject):
+    ns = random.sample(_EN_NAMES, 3)
+    plans = random.sample(["visit my grandmother", "go to the cinema", "play basketball", "have a picnic", "read a book", "go swimming", "clean my room", "meet my friends"], 3)
+    days = random.sample(["Saturday morning", "Saturday afternoon", "Sunday morning", "Sunday afternoon"], 3)
+    sh = _en_doc("WEEKEND PLANS", [["grid", ["Name", "When", "Plan"], [[n, d, p] for n, d, p in zip(ns, days, plans)]]], theme="sari", deco="stars")
+    topic = "Be going to"
+    i = random.randrange(3)
+    third = lambda p: p.replace("my", "her" if ns[i] in _EN_FEM else "his")
+    kind = random.choice(["what", "when"])
+    if kind == "what":
+        c = f"{_en_pro(ns[i])} is going to {third(plans[i])}."
+        wr = [f"{_en_pro(ns[i])} is going to {third(p)}." for p in ["visit my grandmother", "go to the cinema", "play basketball", "have a picnic", "read a book", "go swimming", "clean my room", "meet my friends"] if p != plans[i]]
+        return _en_pick(topic, f"What is {ns[i]} going to do on {days[i]}?", c, wr, f"Tabloya göre {ns[i]}: {plans[i]}.", shape=sh)
+    return _en_pick(topic, f"When is {ns[i]} going to {third(plans[i])}?", days[i], [d for d in ["Saturday morning", "Saturday afternoon", "Sunday morning", "Sunday afternoon", "Friday evening"] if d != days[i]], f"Tabloya göre {ns[i]} {days[i]} günü yapacak.", shape=sh)
+
+
+# --- 12) Neighbourhood places (prepositions / there is-are)
+def _en_yn_house(subject):
+    pl = random.sample(["bank", "library", "park", "hospital", "supermarket", "cinema", "post office", "school"], 4)
+    rel = random.sample(["next to", "opposite", "near", "behind"], 3)
+    rows = [[f"The {pl[1]}", f"{rel[0]} the {pl[0]}"], [f"The {pl[2]}", f"{rel[1]} the {pl[1]}"], [f"The {pl[3]}", f"{rel[2]} the {pl[2]}"]]
+    sh = _en_doc("MY NEIGHBOURHOOD", [["rows", rows]], theme="mavi", deco="leaves")
+    topic = "Places for recreation"
+    kind = random.choice(["where", "tf"])
+    k = random.randrange(3)
+    if kind == "where":
+        c = rel[k]
+        return _en_pick(topic, f"Where is {rows[k][0].lower()}?", f"It is {c} the {pl[k]}.", [f"It is {r} the {pl[k]}." for r in ["next to", "opposite", "near", "behind", "in front of"] if r != c], f"Belgede: {rows[k][0]} {rows[k][1]}.", shape=sh)
+    s = f"The {pl[k + 1]} is {rel[k]} the {pl[k]}."
+    return _en_pick(topic, "Which sentence is TRUE?", s, [f"The {pl[k]} is {rel[k]} the {pl[3 if k < 2 else 0]}.", f"The {pl[k + 1]} is {random.choice([r for r in ['next to', 'opposite', 'near', 'behind'] if r != rel[k]])} the {pl[k]}.", f"There is no {pl[k + 1]} in the neighbourhood."], f"Belgede: The {pl[k + 1]} is {rel[k]} the {pl[k]}.", shape=sh)
+
+
+# --- 13) Chores chart
+def _en_yn_chores(subject):
+    ns = random.sample(_EN_NAMES, 3)
+    ch = random.sample(["wash the dishes", "take out the rubbish", "water the plants", "clean the windows", "set the table", "tidy up the living room"], 3)
+    sh = _en_doc("FAMILY CHORES", [["grid", ["Name", "Chore"], [[n, c] for n, c in zip(ns, ch)]]], theme="turuncu", deco="stars")
+    topic = "Chores"
+    i = random.randrange(3)
+    pro = _en_pro(ns[i])
+    kind = random.choice(["who", "what"])
+    if kind == "who":
+        return _en_pick(topic, f"Who {ch[i].replace('wash', 'washes').replace('take', 'takes').replace('water', 'waters').replace('clean', 'cleans').replace('set', 'sets').replace('tidy', 'tidies')}?", ns[i], [n for n in _EN_NAMES if n != ns[i]][:6], f"Tabloya göre {ns[i]} bu işi yapar.", shape=sh) if False else _en_pick(topic, f"Who is responsible for this chore: “{ch[i]}”?", ns[i], [n for n in ns if n != ns[i]] + [x for x in _EN_NAMES if x not in ns][:2], f"Tabloya göre {ns[i]}.", shape=sh)
+    return _en_pick(topic, f"What chore does {ns[i]} do?", ch[i].capitalize(), [c.capitalize() for c in ["wash the dishes", "take out the rubbish", "water the plants", "clean the windows", "set the table", "tidy up the living room"] if c != ch[i]], f"Tabloya göre {ns[i]}: {ch[i]}.", shape=sh)
+
+
+# --- 14) Present Progressive: family photo
+def _en_yn_photo(subject):
+    ms = random.sample([("Mum", "cooking dinner"), ("Dad", "reading a newspaper"), ("Grandma", "knitting a scarf"), ("Brother", "playing computer games"), ("Sister", "doing her homework"), ("Grandpa", "watering the plants")], 4)
+    sh = _en_doc("FAMILY PHOTO NOTES", [["rows", [[m, a] for m, a in ms]]], theme="mor", deco="stars", sub="What is everybody doing?")
+    topic = "Present Progressive"
+    m, a = random.choice(ms)
+    verb = "is" 
+    return _en_pick(topic, f"What is {m.lower() if m in ('Mum','Dad') and False else m} doing in the photo?", a.capitalize() if False else f"{m} is {a}.", [f"{m} is {x}." for x in ["cooking dinner", "reading a newspaper", "knitting a scarf", "playing computer games", "doing her homework", "watering the plants", "sleeping", "singing"] if x != a], f"Notlara göre: {m} is {a}.", shape=sh)
+
+
+# --- 15) E-mail reading
+def _en_yn_email(subject):
+    n = random.choice(["Tom", "Anna", "Emma", "Jack"])
+    pro, pos = _en_pro(n), _en_pos(n)
+    age = random.choice([10, 11, 12])
+    city = random.choice(["London", "Manchester", "Edinburgh", "Dublin", "Sydney"])
+    hobby = random.sample(["playing football", "drawing pictures", "reading comics", "riding a bike", "playing the guitar", "swimming"], 2)
+    pet = random.choice(["a cat", "a dog", "a rabbit", "a parrot"])
+    fam = random.choice([("mum, dad and a little sister", 4), ("mum, dad and two brothers", 5), ("mum and a big brother", 3)])
+    mail = (f"Hi,\nMy name is {n}. I'm {age} years old and I live in {city} with my {fam[0]}. In my free time I like {hobby[0]} and {hobby[1]}. "
+            f"I also have {pet}. What about you?\nBye for now,\n{n}")
+    topic = "Hobbies and activities"
+    kind = random.choice(["age", "live", "pet", "tf", "hobby"])
+    if kind == "age":
+        return _en_pick(topic, f"How old is {n}?", f"{age} years old", [f"{x} years old" for x in (9, 10, 11, 12, 13) if x != age], f"E-postada {n} {age} yaşında.", passage=mail)
+    if kind == "live":
+        return _en_pick(topic, f"Where does {n} live?", f"In {city}", [f"In {x}" for x in ["London", "Manchester", "Edinburgh", "Dublin", "Sydney", "Ankara"] if x != city], f"E-postada {city} yazıyor.", passage=mail)
+    if kind == "pet":
+        return _en_pick(topic, f"What pet does {n} have?", pet.replace("a ", "A ").capitalize() if False else pet.capitalize(), [x.capitalize() for x in ["a cat", "a dog", "a rabbit", "a parrot", "a fish"] if x != pet], f"E-postada {pet} yazıyor.", passage=mail)
+    if kind == "hobby":
+        h = random.choice(hobby)
+        return _en_pick(topic, f"Which activity does {n} like?", h.capitalize(), [x.capitalize() for x in ["playing football", "drawing pictures", "reading comics", "riding a bike", "playing the guitar", "swimming", "cooking", "dancing"] if x not in hobby], f"E-postada {h} yazıyor.", passage=mail)
+    s = f"{n} lives with {pos} {fam[0]}."
+    return _en_pick(topic, "Which sentence is TRUE according to the e-mail?", s, [f"{n} lives alone.", f"{n} is {age + 3} years old.", f"{n} doesn't have any hobbies."], f"E-postada ailesiyle yaşadığı yazıyor.", passage=mail)
+
+
+# --- 16) Dialogue completion
+_EN_DIA = [
+    ("Ordering in a restaurant", "Waiter: Good evening. What would you like to eat?\nCustomer: ________", "I'd like a hamburger, please.", ["I'm fine, thanks.", "It's two o'clock.", "She is a doctor."], "Garsonun yemek siparişi sorusuna sipariş cümlesi yanıt olur."),
+    ("Ordering in a restaurant", "Waiter: Would you like something to drink?\nCustomer: ________", "Yes, a glass of orange juice, please.", ["No, I don't like football.", "It is on the table.", "Yes, he is my brother."], "İçecek sorusuna içecek isteyen cümle yanıt olur."),
+    ("Can for permission", "Student: Excuse me, teacher. ________\nTeacher: Yes, of course.", "Can I open the window?", ["Do you like pizza?", "Where is your bag?", "What time is it?"], "Teacher 'Yes, of course.' dediğine göre izin istenmiştir."),
+    ("Telling the time", "Ali: What time is it?\nEce: ________", "It's half past four.", ["It's my birthday.", "I'm ten years old.", "It's a pencil."], "Saat sorusuna saat bildiren cümle yanıt olur."),
+    ("Daily routines", "Mert: What time do you get up on Sundays?\nZeynep: ________", "I get up at nine o'clock.", ["I like Sundays.", "He gets up at seven.", "I'm in the garden."], "Saat sorusuna 'I get up at ...' yanıtı verilir."),
+    ("Hobbies and activities", "Can: What do you do in your free time?\nSelin: ________", "I play the piano and read books.", ["I'm from Izmir.", "It's three o'clock.", "She is my sister."], "Boş zaman sorusuna hobi bildirilir."),
+    ("Have got", "Ece: Have you got a pet?\nAli: ________", "Yes, I have. I've got a cat.", ["Yes, it is. It's a table.", "No, I don't. I like it.", "Yes, she has."], "Have you got sorusuna Yes, I have. yanıtı verilir."),
+    ("Countable/uncountable nouns", "Mum: How much milk is there in the fridge?\nDad: ________", "There is a little milk.", ["There are three milk.", "There are a few milks.", "There is many milk."], "Milk sayılamayan isimdir: How much / a little."),
+    ("Present Progressive", "Dad: Where is Ali? What is he doing?\nMum: ________", "He is playing in the garden.", ["He plays in the garden every day.", "He played in the garden.", "He will play in the garden."], "Şu anda olan eylem için Present Progressive kullanılır."),
+    ("Comparatives", "Ece: Which is bigger, an elephant or a horse?\nAli: ________", "An elephant is bigger than a horse.", ["A horse is the biggest animal.", "An elephant is as small as a horse.", "A horse is more big than an elephant."], "Karşılaştırma: bigger than."),
+]
+
+
+def _en_yn_dia(subject):
+    it, d, c, ws, ex = random.choice(_EN_DIA)
+    return _en_pick(it, "Choose the best answer to complete the dialogue.", c, ws, ex, passage=d)
+
+
+# --- 17) Sentence building from a doc (ordering) 
+def _en_yn_order(subject):
+    ns = random.sample(_EN_NAMES, 2)
+    n = ns[0]
+    pro = _en_pro(n)
+    base = random.choice([("have breakfast", "at seven o'clock"), ("go to school", "at eight o'clock"), ("do homework", "in the afternoon"), ("play football", "on Saturdays")])
+    seq = ["always", "usually", "sometimes", "never"]
+    adv = random.choice(seq)
+    v, w = base
+    c = f"{n} {adv} {_s3(v.split()[0])} {' '.join(v.split()[1:])} {w}."
+    wr = [f"{n} {_s3(v.split()[0])} {adv} {' '.join(v.split()[1:])} {w}.", f"{n} {adv} {v.split()[0]} {' '.join(v.split()[1:])} {w}.", f"{n} {_s3(v.split()[0])} {' '.join(v.split()[1:])} {adv} {w}."]
+    return _en_pick("Adverbs of frequency", "Choose the correct sentence.", c, wr, "Sıklık zarfı özneden sonra, fiilden önce gelir; üçüncü tekil kişide fiile -s takısı gelir.")
+
+
+_EN_NEW = [
+    (_en_yn_menu, "Ordering in a restaurant", ("ordering in a restaurant", "food", "life in the world"), 2), (_en_yn_invite, "Food events", ("food events", "life in the world", "food"), 2),
+    (_en_yn_timetable, "Timetable", ("timetable", "classroom", "school subjects"), 2), (_en_yn_notice, "Mustn't/can't", ("mustn't", "school life", "imperatives", "can/must"), 2),
+    (_en_yn_zoo, "Wild animals", ("wild animals", "types of animals", "habitats", "life in nature"), 2), (_en_yn_weather, "Continents and climate", ("climate", "seasons", "universe", "continents"), 3),
+    (_en_yn_routine, "Daily routines", ("daily routines", "personal life", "adverbs"), 3), (_en_yn_r_zoo, "Wild animals", ("wild animals", "types of animals", "habitats", "life in nature"), 3),
+    (_en_yn_r_routine, "Daily routines", ("daily routines", "personal life", "adverbs"), 4), (_en_yn_shop, "Clothes", ("clothes", "personal life"), 2),
+    (_en_yn_compare, "Comparatives and superlatives", ("comparatives", "superlatives", "life in nature", "neighbourhood"), 3), (_en_yn_going, "Be going to", ("be going to", "universe", "future"), 3),
+    (_en_yn_house, "Places for recreation", ("places", "recreation", "neighbourhood", "there is"), 3), (_en_yn_chores, "Chores", ("chores", "family life", "family members"), 2),
+    (_en_yn_photo, "Present Progressive", ("present progressive", "family life"), 2), (_en_yn_email, "Hobbies and activities", ("hobbies", "family life", "family members"), 3),
+    (_en_yn_dia, "Can for permission", ("can for permission", "dialogue", "life in the world", "school life", "personal life", "family life"), 3), (_en_yn_order, "Adverbs of frequency", ("adverbs of frequency", "personal life"), 3),
+]
+for _f, _it, _kw, _d in _EN_NEW:
+    _f.ITEM = _it
+
+
 def _tr_par_pick():
     return random.choice(_TR_PAR)
 
@@ -14517,6 +14953,9 @@ def din_questions(grade_label, n, topics="", seen=(), dl=0):
 # ================================================================ 5. SINIF İNGİLİZCE — dilbilgisi kuralıyla kodla kurulan kalıplar
 _ENG = "İngilizce"
 _EF_GENS = []
+for _f, _it, _kw, _d in _EN_NEW:
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
 _NAMES = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
 _FEM = {"Ayşe", "Elif", "Zeynep"}
 
@@ -20670,7 +21109,7 @@ def _fam_item(name, fn, subject, items):
     return v
 
 
-_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_", "_ff_yn2_"), "Sosyal Bilgiler": ("_sf_yn_",), "Din Kültürü ve Ahlak Bilgisi": ("_df_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
+_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_", "_ff_yn2_"), "Sosyal Bilgiler": ("_sf_yn_",), "Din Kültürü ve Ahlak Bilgisi": ("_df_yn_",), "İngilizce": ("_en_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
 _YN_SHARE = 0.3  # sınavdaki yeni nesil (senaryo/tablo/belge/paragraf) soru payı
 
 
@@ -20683,7 +21122,7 @@ def _bal_order(rkey, byname, subject, grade_label, topics, n):
     yn = [x for x in out if x.startswith(pre)]
     if not yn:
         return out
-    q = min(len(yn), max(1, round({"Matematik": 0.4, "Fen Bilimleri": 0.4, "Sosyal Bilgiler": 0.4, "Din Kültürü ve Ahlak Bilgisi": 0.4}.get(subject, _YN_SHARE) * n)))
+    q = min(len(yn), max(1, round({"Matematik": 0.4, "Fen Bilimleri": 0.4, "Sosyal Bilgiler": 0.4, "Din Kültürü ve Ahlak Bilgisi": 0.4, "İngilizce": 0.4}.get(subject, _YN_SHARE) * n)))
     pick = yn[:q]
     rest = [x for x in out if x not in pick]
     step = max(1, n // q)
