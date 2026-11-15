@@ -12086,9 +12086,9 @@ def _fmt_say(n):
 
 
 # Şekilsiz (yalnızca metinde verilen değerli/kavramsal) soruların konu etiketi, "şekil zorunlu" geometri kuralını tetiklemesin diye nötr tutulur.
-_MFN_TOPIC = {"Açı türleri": "Ölçme ve sınıflandırma", "Açı ölçme ve çizme": "Ölçme ve sınıflandırma", "Açıortay": "Ölçme ve sınıflandırma",
-              "Çokgenlerin elemanları": "Temel kavramlar", "Çember ve daire elemanları": "Temel kavramlar", "Çokgen çizimi": "Temel kavramlar",
-              "Geometrik çizimler": "Temel kavramlar", "Açı ilişkileri": "Tümler ve bütünler kavramı", "Doğru, ışın, doğru parçası": "Temel kavramlar", "Paralel ve dik doğrular": "Temel kavramlar"}
+_MFN_TOPIC = {"Açı türleri": "Ölçü ve tür bilgisi", "Açı ölçme ve çizme": "Ölçü ve tür bilgisi", "Açıortay": "Ölçü ve tür bilgisi",
+              "Çokgenlerin elemanları": "Şekillerin elemanları", "Çember ve daire elemanları": "Daire elemanları", "Çokgen çizimi": "Şekil çizimi",
+              "Geometrik çizimler": "Çizim araçları", "Açı ilişkileri": "Toplamı 90° ve 180° olan ikililer", "Doğru, ışın, doğru parçası": "Nokta ve doğru bilgisi", "Paralel ve dik doğrular": "Doğruların konumu"}
 
 
 def _mfn(topic, q, correct, wrongs, ex, fmt=str, sort=False, item=None):
@@ -13513,7 +13513,7 @@ def _mf_yn_dg_roman(subject):
     t = random.sample(_DG_YARGI, 3)
     if all(not b for _x, b in t):
         return None
-    return _yn_rom("Geometrik çizimler", "Bir öğretmen geometri dersinde çizim araçları ile temel kavramlar hakkında bazı bilgiler yazmıştır.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", t, "Her yargı temel geometri bilgileriyle ayrı ayrı denetlenir.")
+    return _yn_rom("Geometrik çizimler", "Bir öğretmen geometri dersinde çizim araçları hakkında bazı bilgiler yazmıştır.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", t, "Her yargı temel geometri bilgileriyle ayrı ayrı denetlenir.")
 
 
 def _mf_yn_tum_rampa(subject):
