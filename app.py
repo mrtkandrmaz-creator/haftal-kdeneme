@@ -13070,6 +13070,444 @@ for _f, _kw, _it, _df in _NEW_MAT3:
 
 
 
+# ---- Matematik 5: YENİ NESİL (bağlam temelli, tabloyla/öncüllü, çok adımlı) sorular
+_YN_AD = ["Ali", "Ayşe", "Mert", "Zeynep", "Can", "Elif", "Deniz", "Ece", "Berk", "Selin", "Kerem", "Defne"]
+_YN_R = ["I", "II", "III"]
+
+
+def _yn_tbl(title, headers, rows):
+    return {"type": "table", "title": title, "headers": headers, "rows": [[str(c) for c in r] for r in rows]}
+
+
+def _yn_pick(t_true, t_false):
+    b = random.random() < .5
+    return (t_true if b else t_false, b)
+
+
+def _yn_rom(topic, passage, q, stmts, ex, shape=None):
+    idx = [i for i, (_t, b) in enumerate(stmts) if b]
+    if not idx:
+        return None
+    lab = lambda c: ("Yalnız " + _YN_R[c[0]]) if len(c) == 1 else (" ve ".join(_YN_R[i] for i in c) if len(c) == 2 else "I, II ve III")
+    cor = lab(tuple(idx))
+    allc = [(0,), (1,), (2,), (0, 1), (0, 2), (1, 2), (0, 1, 2)]
+    wr = [lab(c) for c in allc if lab(c) != cor]
+    random.shuffle(wr)
+    ps = passage + "\n" + "\n".join(f"{_YN_R[i]}. {t}" for i, (t, _b) in enumerate(stmts))
+    o = _mf_opts(cor, wr[:3], str, sort=False)
+    return _mf_raw("Matematik", _MFN_TOPIC.get(topic, topic), q, o, ex, shape=shape, passage=ps) if o else None
+
+
+def _yn_f(x):
+    return str(x).replace(".", ",")
+
+
+# --- Kesirler
+def _mf_yn_kes_roman(subject):
+    d = random.choice([8, 10, 12])
+    a, b, c = random.sample(range(1, d // 2), 3) if d // 2 > 3 else (1, 2, 3)
+    ad = random.sample(_YN_AD, 3)
+    rows = [[ad[0], f"{a}/{d}"], [ad[1], f"{b}/{d}"], [ad[2], f"{c}/{d}"]]
+    mx = ad[[a, b, c].index(max(a, b, c))]
+    other = random.choice([x for x in ad if x != mx])
+    s1 = _yn_pick(f"En çok kısmı {mx} yemiştir.", f"En çok kısmı {other} yemiştir.")
+    tot = a + b + c
+    s2 = _yn_pick(f"Üçünün yediği kısım bir pizzanın tamamından azdır.", f"Üçünün yediği kısım bir pizzanın tamamına eşit ya da fazladır.") if tot < d else _yn_pick("Üçünün yediği kısım bir pizzanın tamamına eşit ya da fazladır.", "Üçünün yediği kısım bir pizzanın tamamından azdır.")
+    if tot < d:
+        s2 = (s2[0], s2[0].startswith("Üçünün yediği kısım bir pizzanın tamamından"))
+    else:
+        s2 = (s2[0], s2[0].startswith("Üçünün yediği kısım bir pizzanın tamamına"))
+    x, y = random.sample(range(3), 2)
+    z = 3 - x - y
+    lhs = [a, b, c][x] + [a, b, c][y]
+    rhs = [a, b, c][z]
+    s3 = (f"{ad[x]} ile {ad[y]}’nin yediği kısım birlikte {ad[z]}’nin yediği kısımdan fazladır.", lhs > rhs)
+    return _yn_rom("Kesir türleri", f"Aynı büyüklükteki üç pizza her biri {d} eş dilime bölünmüştür. Tabloda üç arkadaşın birer pizzadan yediği kısımlar gösterilmiştir.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3],
+                   f"Paydalar eşit olduğundan paylar karşılaştırılır; payların toplamı {tot}, pizza ise {d} dilimdir.", shape=_yn_tbl("Yenilen kısımlar", ["Kişi", "Yediği kısım"], rows))
+
+
+def _mf_yn_kes_yol(subject):
+    d = random.choice([6, 8, 10])
+    a, b = random.randint(1, d // 2 - 1), random.randint(1, d // 3)
+    kalan = d - a - b
+    if kalan <= 0:
+        return None
+    km = random.choice([30, 40, 50, 60]) * 1
+    tum = d * km
+    return _mfn("Kesirlerle toplama-çıkarma", f"Bir otobüs şehirler arası yolun sabah {a}/{d}’ünü, öğleden sonra {b}/{d}’ünü almıştır. Geriye {kalan * km} km yol kaldığına göre bu iki şehir arası kaç km’dir?", tum,
+                _wrongs_num(tum, [km, 2 * km, 3 * km]) + [kalan * km], f"Alınan yol {a + b}/{d}; kalan {kalan}/{d} = {kalan * km} km. Her 1/{d} = {km} km; tamamı {d} × {km} = {tum} km.", sort=True)
+
+
+def _mf_yn_kes_harclik(subject):
+    d = random.choice([4, 5, 8, 10])
+    a, b = random.randint(1, d // 2), random.randint(1, d // 3 + 1)
+    if a + b >= d:
+        return None
+    m = d * random.choice([20, 30, 40, 50])
+    kal = m // d * (d - a - b)
+    n1, n2 = random.sample(["kitap", "oyuncak", "tatlı", "defter", "dondurma"], 2)
+    return _mfn("Kesirlerle toplama-çıkarma", f"Elif’in {m} TL harçlığı vardır. Harçlığının {a}/{d}’ü ile {n1}, {b}/{d}’ü ile {n2} alıyor. Elif’in geriye kaç TL’si kalır?", kal,
+                _wrongs_num(kal, [m // d, 2 * (m // d), 10]) + [m // d * (a + b)], f"Harcanan {a + b}/{d}; kalan {d - a - b}/{d}. 1/{d} = {m // d} TL; kalan {m // d} × {d - a - b} = {kal} TL.", sort=True)
+
+
+def _mf_yn_kes_tarif(subject):
+    mal = random.choice([("un", "kg"), ("şeker", "kg"), ("süt", "litre"), ("yağ", "litre")])
+    k = random.choice([("1/2", .5), ("1/4", .25)])
+    kisi = random.choice([4, 6])
+    n = random.choice([2, 3, 4, 6])
+    sh = _yn_tbl("Bir pasta tarifi", ["Malzeme", "Miktar"], [[mal[0].capitalize(), f"{k[0]} {mal[1]}"], ["Yumurta", "2 adet"]])
+    v = k[1] * n
+    r = _mfn("Kesir türleri", f"Tabloda {kisi} kişilik bir pastanın tarifi verilmiştir. {kisi * n} kişilik pasta için kaç {mal[1]} {mal[0]} gerekir?", _yn_f(v),
+             [_yn_f(v + k[1]), _yn_f(v * 2), _yn_f(k[1] + n), _yn_f(v + .5)], f"{kisi * n} kişilik, {kisi} kişilik tarifin {n} katıdır: {k[0]} × {n} = {_yn_f(v)} {mal[1]}.")
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_kes_depo(subject):
+    d = random.choice([4, 5, 8, 10])
+    a = random.randint(1, d - 2)
+    b = random.randint(1, d - a - 1)
+    L = d * random.choice([20, 30, 40, 50])
+    bos = L // d * b
+    return _mfn("Kesirlerle toplama-çıkarma", f"Kapasitesi {L} litre olan bir deponun {a}/{d}’ü doludur. Depoya, kapasitenin {b}/{d}’ü kadar su daha ekleniyor. Depoda kaç litre su olur?", L // d * (a + b),
+                _wrongs_num(L // d * (a + b), [L // d, 2 * (L // d), 10]) + [bos], f"Dolu kısım {a}/{d} + {b}/{d} = {a + b}/{d}; 1/{d} = {L // d} L; toplam {L // d * (a + b)} L.", sort=True)
+
+
+# --- Doğal sayılar / milyonlu sayılar
+def _mf_yn_bilet(subject):
+    y, c = random.choice([(40, 25), (50, 30), (60, 35), (80, 50), (30, 20)])
+    ny, nc = random.randint(2, 5), random.randint(2, 6)
+    t = y * ny + c * nc
+    sh = _yn_tbl("Müze Bilet Ücretleri", ["Bilet türü", "Ücret (TL)"], [["Yetişkin", y], ["Çocuk", c]])
+    r = _mfn("Doğal sayılarla işlemler", f"Tabloda bir müzenin bilet ücretleri verilmiştir. Bir aile {ny} yetişkin ve {nc} çocuk bileti alıp kasaya {((t // 100) + 1) * 100} TL veriyor. Kasiyer kaç TL para üstü vermelidir?", ((t // 100) + 1) * 100 - t,
+             _wrongs_num(((t // 100) + 1) * 100 - t, [5, 10, 20]) + [t], f"Ücret {y} × {ny} + {c} × {nc} = {t} TL; para üstü {((t // 100) + 1) * 100} − {t} = {((t // 100) + 1) * 100 - t} TL.", sort=True)
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_koli(subject):
+    adet, koli = random.choice([(12, 5), (24, 7), (18, 4), (20, 6), (30, 8)])
+    n = random.randint(40, 200)
+    import math
+    k = math.ceil(n / koli)
+    return _mfn("Doğal sayılarla işlemler", f"Bir kırtasiyeci {n} kalemi, her birine en çok {koli} kalem sığan kutulara yerleştirecektir. Bütün kalemleri koymak için en az kaç kutu gerekir?", k, _wrongs_num(k, [1, 2]) + [n // koli if n % koli else k + 3], f"{n} ÷ {koli} işleminde kalan olduğundan bölüm bir artırılır: {k} kutu.", sort=True)
+
+
+def _mf_yn_kitap(subject):
+    g = random.choice([12, 15, 18, 20, 25])
+    gun = random.randint(8, 20)
+    sf = g * gun
+    ek = random.choice([5, 6, 7])
+    return _mfn("Doğal sayılarla işlemler", f"{sf} sayfalık bir kitabı Ayşe günde {g} sayfa okuyarak bitiriyor. Aynı kitabı günde {g + ek} sayfa okuyan Mert aynı günde başlayıp kaç gün sonra bitirir?" if False else f"{sf} sayfalık bir kitabı Ayşe her gün {g} sayfa okuyarak bitiriyor. Ayşe kitabı kaç günde bitirir?", gun, _wrongs_num(gun, [1, 2, 3]), f"{sf} ÷ {g} = {gun} gün.", sort=True)
+
+
+def _mf_yn_nufus(subject):
+    ad = random.sample(["Ankara", "İzmir", "Bursa", "Konya", "Adana", "Antalya"], 3)
+    v = random.sample(range(1200000, 5600000, 37000), 3)
+    t = sum(v)
+    sh = _yn_tbl("Bazı İllerin Nüfusu (kişi)", ["İl", "Nüfus"], [[a, _fmt_say(x)] for a, x in zip(ad, v)])
+    r = _mfn("Milyonlu sayılar", "Tabloda üç ilin nüfusları verilmiştir. Bu üç ilin toplam nüfusu kaç kişidir?", _fmt_say(t), [_fmt_say(t + 10000), _fmt_say(t - 10000), _fmt_say(t + 100000), _fmt_say(t - 1000)], f"{' + '.join(_fmt_say(x) for x in v)} = {_fmt_say(t)}.")
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_nufus_fark(subject):
+    ad = random.sample(["Ankara", "İzmir", "Bursa", "Konya", "Adana", "Antalya"], 3)
+    v = sorted(random.sample(range(1200000, 5600000, 37000), 3), reverse=True)
+    f = v[0] - v[2]
+    sh = _yn_tbl("Bazı İllerin Nüfusu (kişi)", ["İl", "Nüfus"], [[a, _fmt_say(x)] for a, x in zip(ad, v)])
+    r = _mfn("Milyonlu sayılar", f"Tabloya göre nüfusu en çok olan il ile nüfusu en az olan ilin nüfusları arasındaki fark kaçtır?", _fmt_say(f), [_fmt_say(f + 10000), _fmt_say(f - 10000), _fmt_say(f + 100000), _fmt_say(v[0] + v[2])], f"{_fmt_say(v[0])} − {_fmt_say(v[2])} = {_fmt_say(f)}.")
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_say_roman(subject):
+    n = random.randint(1000000, 9999999)
+    s = str(n)
+    ev = int(s[-1]) % 2 == 0
+    st1 = _yn_pick(f"{_fmt_say(n)} sayısı yedi basamaklıdır.", f"{_fmt_say(n)} sayısı altı basamaklıdır.")
+    st2 = _yn_pick(f"Birler basamağındaki rakam {s[-1]}’dir.", f"Birler basamağındaki rakam {(int(s[-1]) + 1) % 10}’dir.")
+    st3 = _yn_pick(f"Bu sayının yüz binler basamağındaki rakam {s[1]}’dir.", f"Bu sayının yüz binler basamağındaki rakam {(int(s[1]) + 2) % 10}’dir.")
+    st1 = (st1[0], "yedi" in st1[0])
+    st2 = (st2[0], st2[0].endswith(f"{s[-1]}’dir."))
+    st3 = (st3[0], st3[0].endswith(f"{s[1]}’dir."))
+    return _yn_rom("Milyonlu sayılar", f"Bir şehirdeki toplam ziyaretçi sayısı {_fmt_say(n)} olarak açıklanmıştır.", "Bu sayıyla ilgili aşağıdaki yargılardan hangileri doğrudur?", [st1, st2, st3], "Sayının basamakları tek tek incelenir.")
+
+
+def _mf_yn_say_kilit(subject):
+    a, b, c = random.sample(range(1, 10), 3)
+    n = a * 100000 + b * 1000 + c * 10
+    return _mfn("Basamak değeri", f"Dijital bir kilidin şifresi altı basamaklı bir sayıdır. Şifrede yüz binler basamağında {a}, binler basamağında {b}, onlar basamağında {c} vardır; diğer basamaklar 0’dır. Bu şifre aşağıdakilerden hangisidir?", _fmt_say(n),
+                [_fmt_say(a * 10000 + b * 1000 + c * 10), _fmt_say(a * 100000 + b * 100 + c * 10), _fmt_say(a * 100000 + b * 1000 + c * 100), _fmt_say(a * 100000 + b * 10000 + c * 10)], f"{a} yüz binlik, {b} binlik, {c} onluk: {_fmt_say(n)}.")
+
+
+# --- Ondalık / yüzde
+def _mf_yn_market(subject):
+    ur = random.sample([("Süt", 24.5), ("Ekmek", 8.0), ("Peynir", 62.5), ("Zeytin", 45.5), ("Yoğurt", 32.5)], 3)
+    n = random.randint(2, 4)
+    t = round(ur[0][1] * n + ur[1][1], 1)
+    sh = _yn_tbl("Market Fiyat Listesi", ["Ürün", "Fiyat (TL)"], [[a, _yn_f(f"{p:.1f}")] for a, p in ur])
+    r = _mfn("Ondalık gösterim", f"Tabloda bir marketteki bazı ürünlerin fiyatları verilmiştir. Ece, {n} adet {ur[0][0].lower()} ve 1 adet {ur[1][0].lower()} alırsa kaç TL öder?", _yn_f(f"{t:.1f}"),
+             [_yn_f(f"{t + 1:.1f}"), _yn_f(f"{t - 1:.1f}"), _yn_f(f"{t + .5:.1f}"), _yn_f(f"{ur[0][1] + ur[1][1]:.1f}")], f"{n} × {_yn_f(ur[0][1])} + {_yn_f(ur[1][1])} = {_yn_f(f'{t:.1f}')} TL.")
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_yaris(subject):
+    ad = random.sample(_YN_AD, 3)
+    v = sorted(random.sample(range(105, 160), 3))
+    v = [x / 10 for x in v]
+    random.shuffle(v)
+    f = round(max(v) - min(v), 1)
+    sh = _yn_tbl("60 m Koşu Süreleri (saniye)", ["Öğrenci", "Süre (sn)"], [[a, _yn_f(x)] for a, x in zip(ad, v)])
+    r = _mfn("Ondalık gösterim", "Tabloda üç öğrencinin 60 m koşu süreleri verilmiştir. En hızlı öğrenci ile en yavaş öğrenci arasındaki süre farkı kaç saniyedir?", _yn_f(f),
+             [_yn_f(round(f + .1, 1)), _yn_f(round(f + 1, 1)), _yn_f(round(abs(f - .5), 1) or 0.4), _yn_f(round(max(v) + min(v), 1))], f"{_yn_f(max(v))} − {_yn_f(min(v))} = {_yn_f(f)} sn.")
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_yaris_en(subject):
+    ad = random.sample(_YN_AD, 4)
+    v = [x / 10 for x in random.sample(range(105, 160), 4)]
+    en = ad[v.index(min(v))]
+    sh = _yn_tbl("60 m Koşu Süreleri (saniye)", ["Öğrenci", "Süre (sn)"], [[a, _yn_f(x)] for a, x in zip(ad, v)])
+    r = _mfn("Ondalık gösterim", "Tabloya göre koşuyu ilk bitiren öğrenci kimdir?", en, [a for a in ad if a != en], f"Süresi en az olan en hızlıdır: {en}.")
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_yakit(subject):
+    km = random.choice([100, 150, 200, 250])
+    lt = random.choice([8, 10, 12, 6])
+    fy = random.choice([30.5, 32.5, 40.0, 25.5])
+    top = round(lt * fy, 1)
+    return _mfn("Ondalık gösterim", f"Bir araç {km} km yolda {lt} litre yakıt tüketmektedir. Litresi {_yn_f(f'{fy:.1f}')} TL olan yakıtla bu yolculuk için kaç TL ödenir?", _yn_f(f"{top:.1f}"),
+                [_yn_f(f"{top + 10:.1f}"), _yn_f(f"{top - 10:.1f}"), _yn_f(f"{top + fy:.1f}"), _yn_f(f"{km * fy:.1f}")], f"{lt} × {_yn_f(f'{fy:.1f}')} = {_yn_f(f'{top:.1f}')} TL.")
+
+
+def _mf_yn_indirim_kars(subject):
+    a, pa = random.choice([(400, 25), (500, 20), (800, 50), (1000, 10)])
+    b = random.choice([300, 350, 450, 600, 700])
+    fa = a - a * pa // 100
+    ad = random.sample(["A", "B", "C", "D"], 2)
+    sh = _yn_tbl("Mağaza Fiyatları", ["Mağaza", "Etiket fiyatı (TL)", "İndirim"], [[ad[0], a, f"%{pa}"], [ad[1], b, "Yok"]])
+    if fa == b:
+        return None
+    ucuz = ad[0] if fa < b else ad[1]
+    r = _mfn("Yüzde kavramı", "Tabloda aynı ürünün iki mağazadaki fiyat bilgileri verilmiştir. Hangi mağazada ürün daha ucuza alınır?", ucuz, [x for x in ad if x != ucuz] + ["İkisinde de aynı fiyat", "Karşılaştırılamaz"], f"{ad[0]} mağazasında satış fiyatı {a} − {a * pa // 100} = {fa} TL; {ad[1]} mağazasında {b} TL.")
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_yuzde_roman(subject):
+    n = random.choice([20, 40, 50, 100])
+    p = random.choice([10, 20, 25, 50])
+    k = n * p // 100
+    s1 = _yn_pick(f"Anketi cevaplayanların {k} kişisi “evet” demiştir.", f"Anketi cevaplayanların {k + 2} kişisi “evet” demiştir.")
+    s1 = (s1[0], f"{k} kişisi" in s1[0] and f"{k + 2}" not in s1[0])
+    s2 = _yn_pick(f"“Hayır” diyenlerin sayısı {n - k} kişidir.", f"“Hayır” diyenlerin sayısı {n - k - 3} kişidir.")
+    s2 = (s2[0], f"{n - k} kişidir" in s2[0])
+    s3 = _yn_pick("“Evet” diyenler katılımcıların yarısından azdır.", "“Evet” diyenler katılımcıların yarısından fazladır.") if p != 50 else _yn_pick("“Evet” diyenler katılımcıların tam yarısıdır.", "“Evet” diyenler katılımcıların yarısından azdır.")
+    s3 = (s3[0], ("yarısından azdır" in s3[0] and p < 50) or ("yarısından fazladır" in s3[0] and p > 50) or ("tam yarısıdır" in s3[0] and p == 50))
+    return _yn_rom("Yüzde kavramı", f"Bir okulda {n} öğrenciye uygulanan ankette öğrencilerin %{p}’i “evet”, kalanı “hayır” cevabını vermiştir.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], f"%{p} de {n}’in {p}/100’üdür: {k}.")
+
+
+# --- Veri
+def _mf_yn_veri_en(subject):
+    kat = random.choice([("Meyve", ["Elma", "Muz", "Çilek", "Kiraz", "Portakal"]), ("Spor", ["Futbol", "Voleybol", "Basketbol", "Yüzme", "Tenis"]), ("Ders", ["Matematik", "Fen", "Türkçe", "Sosyal", "Resim"])])
+    c = random.sample(kat[1], 4)
+    v = random.sample(range(8, 45), 4)
+    en, az = c[v.index(max(v))], c[v.index(min(v))]
+    sh = _yn_tbl(f"Sınıfın Sevdiği {kat[0]} Anketi", [kat[0], "Öğrenci sayısı"], list(zip(c, v)))
+    r = _mfn("Veri toplama ve değerlendirme", f"Tabloda bir sınıftaki öğrencilerin sevdiği {kat[0].lower()} türleri verilmiştir. En çok sevilen ile en az sevilen arasındaki öğrenci sayısı farkı kaçtır?", max(v) - min(v),
+             _wrongs_num(max(v) - min(v), [2, 3, 5]) + [max(v)], f"{max(v)} − {min(v)} = {max(v) - min(v)}.", sort=True)
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_veri_roman(subject):
+    c = random.sample(["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"], 4)
+    v = random.sample(range(10, 60), 4)
+    sh = _yn_tbl("Bir Kütüphanenin Günlük Ziyaretçi Sayısı", ["Gün", "Ziyaretçi"], list(zip(c, v)))
+    mx = c[v.index(max(v))]
+    o = random.choice([x for x in c if x != mx])
+    s1 = _yn_pick(f"En çok ziyaretçi {mx} günü gelmiştir.", f"En çok ziyaretçi {o} günü gelmiştir.")
+    s1 = (s1[0], mx in s1[0])
+    tot = sum(v)
+    s2 = _yn_pick(f"Dört günde toplam {tot} kişi gelmiştir.", f"Dört günde toplam {tot + 10} kişi gelmiştir.")
+    s2 = (s2[0], f"{tot} kişi" in s2[0])
+    x, y = random.sample(range(4), 2)
+    s3 = (f"{c[x]} günü gelenlerin sayısı {c[y]} günü gelenlerin sayısından fazladır.", v[x] > v[y])
+    return _yn_rom("Veri toplama ve değerlendirme", "Tabloda bir kütüphaneye dört günde gelen ziyaretçi sayıları verilmiştir.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Her yargı tablodaki sayılarla ayrı ayrı denetlenir.", shape=sh)
+
+
+def _mf_yn_veri_ort(subject):
+    c = ["Pazartesi", "Salı", "Çarşamba", "Perşembe"]
+    m = random.randint(12, 30)
+    d = [random.randint(1, 6) for _ in range(3)]
+    v = [m - d[0], m + d[0] - d[1], m + d[1] - d[2], m + d[2]]
+    if sum(v) != 4 * m:
+        return None
+    sh = _yn_tbl("Bir Öğrencinin Günlük Soru Çözme Sayısı", ["Gün", "Çözülen soru"], list(zip(c, v)))
+    r = _mfn("Veri toplama ve değerlendirme", "Tabloda bir öğrencinin dört gün boyunca çözdüğü soru sayıları verilmiştir. Öğrencinin günlük ortalama çözdüğü soru sayısı kaçtır?", m, _wrongs_num(m, [1, 2, 3]) + [sum(v)], f"Toplam {sum(v)}; {sum(v)} ÷ 4 = {m}.", sort=True)
+    return dict(r, shape=sh) if r else None
+
+
+def _mf_yn_veri_hedef(subject):
+    c = ["Ocak", "Şubat", "Mart"]
+    v = random.sample(range(20, 70), 3)
+    hed = (sum(v) // 10 + 3) * 10 + random.choice([0, 10])
+    return _mfn("Veri toplama ve değerlendirme", f"Bir çiftlik Ocak ayında {v[0]}, Şubat ayında {v[1]}, Mart ayında {v[2]} kg bal toplamıştır. Üç ayda en az {hed} kg bal toplamayı hedefleyen çiftlik hedefine ulaşmak için kaç kg daha bal toplamalıdır?", hed - sum(v),
+                _wrongs_num(hed - sum(v), [2, 5, 10]) + [hed], f"Toplanan {sum(v)} kg; {hed} − {sum(v)} = {hed - sum(v)} kg.", sort=True)
+
+
+# --- Çevre / alan
+def _mf_yn_bahce(subject):
+    a, b = random.choice([(12, 8), (15, 10), (20, 12), (18, 6), (16, 9)])
+    f = random.choice([20, 25, 30])
+    return _mfn("Çevre uzunluğu", f"Kenar uzunlukları {a} m ve {b} m olan dikdörtgen biçimli bir bahçenin çevresi tel örgüyle çevrilecektir. Tel örgünün metresi {f} TL ise toplam maliyet kaç TL’dir?", 2 * (a + b) * f,
+                _wrongs_num(2 * (a + b) * f, [f, 2 * f, 10 * f]) + [a * b * f], f"Çevre 2 × ({a} + {b}) = {2 * (a + b)} m; maliyet {2 * (a + b)} × {f} = {2 * (a + b) * f} TL.", sort=True)
+
+
+def _mf_yn_oda_fayans(subject):
+    a, b = random.choice([(4, 3), (5, 4), (6, 4), (5, 5), (8, 5)])
+    k = random.choice([10, 20, 25, 50])
+    ad = a * b * 10000 // (k * k)
+    return _mfn("Alan problemleri", f"Zemini {a} m × {b} m olan bir oda kenarı {k} cm olan kare fayanslarla döşenecektir. Bu iş için kaç fayans gerekir?", ad,
+                _wrongs_num(ad, [10, 20, 50]) + [a * b], f"Alan {a * b} m² = {a * b * 10000} cm²; bir fayans {k * k} cm²; {a * b * 10000} ÷ {k * k} = {ad}.", sort=True)
+
+
+def _mf_yn_fidan(subject):
+    a, b = random.choice([(10, 6), (12, 5), (8, 7), (15, 4)])
+    k = random.choice([2, 3, 4])
+    return _mfn("Alan problemleri", f"Kenarları {a} m ve {b} m olan dikdörtgen şeklindeki bir arazinin her metrekaresine {k} fidan dikilecektir. Toplam kaç fidan gerekir?", a * b * k,
+                _wrongs_num(a * b * k, [k, a, 10]) + [2 * (a + b) * k], f"Alan {a * b} m²; {a * b} × {k} = {a * b * k} fidan.", sort=True)
+
+
+def _mf_yn_cevre_roman(subject):
+    a, b = random.randint(6, 20), random.randint(3, 12)
+    if a == b:
+        return None
+    c, A = 2 * (a + b), a * b
+    s1 = _yn_pick(f"Çevresi {c} cm’dir.", f"Çevresi {c + 4} cm’dir.")
+    s1 = (s1[0], f"{c} cm" in s1[0] and str(c + 4) not in s1[0])
+    s2 = _yn_pick(f"Alanı {A} cm²’dir.", f"Alanı {A + b} cm²’dir.")
+    s2 = (s2[0], f"{A} cm²" in s2[0])
+    s3 = _yn_pick("Bu dikdörtgenin karşılıklı kenarlarının uzunlukları eşittir.", "Bu dikdörtgenin dört kenarı da birbirine eşittir.")
+    s3 = (s3[0], "karşılıklı" in s3[0])
+    return _yn_rom("Alan problemleri", f"Kenar uzunlukları {a} cm ve {b} cm olan bir dikdörtgen çiziliyor.", "Bu dikdörtgenle ilgili aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Çevre = 2 × (a + b), alan = a × b.")
+
+
+# --- Açı / çokgen / çember (şekilsiz, bağlamlı)
+def _mf_yn_pizza(subject):
+    n = random.choice([4, 5, 6, 8, 9, 10, 12])
+    return _mfn("Açı türleri", f"Dairesel bir pizza merkezden eşit açılı {n} dilime kesiliyor. Her dilimin merkezdeki açısı kaç derecedir?", 360 // n, [x for x in (30, 36, 40, 45, 60, 72, 90, 120) if x != 360 // n][:4], f"Tam tur 360°’dir; 360 ÷ {n} = {360 // n}°.", sort=True) if 360 % n == 0 else None
+
+
+def _mf_yn_kapi(subject):
+    a = random.choice([20, 30, 35, 40, 55, 60])
+    b = random.choice([x for x in (15, 20, 25, 30, 45) if a + x < 90])
+    return _mfn("Açı türleri", f"Bir kapı önce {a}° açılıyor, sonra {b}° daha açılıyor. Kapının son durumdaki açıklık açısı hangi türdendir ve kaç derecedir?", f"Dar açı, {a + b}°",
+                [f"Dik açı, {a + b}°", f"Geniş açı, {a + b}°", f"Dar açı, {a + b + 10}°"], f"{a} + {b} = {a + b}° ve 90°’den küçüktür: dar açı.")
+
+
+def _mf_yn_aci_roman(subject):
+    a = random.choice([25, 35, 40, 50, 65, 75])
+    b = random.choice([100, 110, 120, 130, 145])
+    s1 = _yn_pick(f"{a}° ölçüsündeki açı dar açıdır.", f"{a}° ölçüsündeki açı geniş açıdır.")
+    s1 = (s1[0], "dar" in s1[0])
+    s2 = _yn_pick(f"{b}° ölçüsündeki açı geniş açıdır.", f"{b}° ölçüsündeki açı dik açıdır.")
+    s2 = (s2[0], "geniş" in s2[0])
+    t = a + b
+    s3 = _yn_pick(f"Bu iki açının toplamı {t}°’dir.", f"Bu iki açının toplamı {t + 10}°’dir.")
+    s3 = (s3[0], f"{t}°" in s3[0] and f"{t + 10}" not in s3[0])
+    return _yn_rom("Açı türleri", f"Bir öğretmen tahtaya ölçüleri {a}° ve {b}° olan iki açı çizmiştir.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Açı türleri 90° ile karşılaştırılarak belirlenir.")
+
+
+def _mf_yn_cember_yol(subject):
+    r = random.choice([5, 8, 10, 12, 15, 20])
+    return _mfn("Çember ve daire elemanları", f"Yarıçapı {r} m olan çember biçimli bir havuzun kenarı boyunca bir kişi yürüyecektir. Havuzun bir kenarından merkezden geçerek karşı kenarına kadar doğrusal yürüyen kişi kaç metre yürür?", 2 * r,
+                _wrongs_num(2 * r, [r, 2, 5]) + [r * r], f"Merkezden geçen en uzun doğru parçası çaptır: 2 × {r} = {2 * r} m.", sort=True)
+
+
+def _mf_yn_cokgen_roman(subject):
+    n = random.choice([5, 6, 8])
+    ad = {5: "beşgen", 6: "altıgen", 8: "sekizgen"}[n]
+    a = random.randint(3, 12)
+    s1 = _yn_pick(f"Bir {ad} çokgenin {n} köşesi vardır.", f"Bir {ad} çokgenin {n + 1} köşesi vardır.")
+    s1 = (s1[0], f"{n} köşesi" in s1[0])
+    s2 = _yn_pick(f"Kenarları eşit olan bu çokgenin çevresi {n * a} cm’dir.", f"Kenarları eşit olan bu çokgenin çevresi {n * a + a} cm’dir.")
+    s2 = (s2[0], f"{n * a} cm" in s2[0] and str(n * a + a) not in s2[0])
+    s3 = _yn_pick(f"Bu çokgenin kenar sayısı köşe sayısına eşittir.", f"Bu çokgenin kenar sayısı köşe sayısından fazladır.")
+    s3 = (s3[0], "eşittir" in s3[0])
+    return _yn_rom("Çokgenlerin elemanları", f"Bir kenarı {a} cm olan düzgün {ad} çokgen çiziliyor.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], f"Düzgün {ad} çokgenin {n} eşit kenarı ve {n} köşesi vardır.")
+
+
+_NEW_YN = [
+    (_mf_yn_kes_roman, ("kesir",), "Kesir türleri", 4), (_mf_yn_kes_yol, ("kesir",), "Kesirlerle toplama-çıkarma", 4), (_mf_yn_kes_harclik, ("kesir",), "Kesirlerle toplama-çıkarma", 3),
+    (_mf_yn_kes_tarif, ("kesir",), "Kesir türleri", 3), (_mf_yn_kes_depo, ("kesir",), "Kesirlerle toplama-çıkarma", 3),
+    (_mf_yn_bilet, ("doğal sayı", "dört işlem", "işlem"), "Doğal sayılarla işlemler", 3), (_mf_yn_koli, ("doğal sayı", "dört işlem", "işlem"), "Doğal sayılarla işlemler", 3),
+    (_mf_yn_kitap, ("doğal sayı", "dört işlem", "işlem"), "Doğal sayılarla işlemler", 2), (_mf_yn_nufus, ("milyon", "basamak"), "Milyonlu sayılar", 2),
+    (_mf_yn_nufus_fark, ("milyon", "basamak"), "Milyonlu sayılar", 3), (_mf_yn_say_roman, ("milyon", "basamak"), "Milyonlu sayılar", 4), (_mf_yn_say_kilit, ("milyon", "basamak"), "Basamak değeri", 3),
+    (_mf_yn_market, ("ondalık",), "Ondalık gösterim", 3), (_mf_yn_yaris, ("ondalık",), "Ondalık gösterim", 3), (_mf_yn_yaris_en, ("ondalık",), "Ondalık gösterim", 2),
+    (_mf_yn_yakit, ("ondalık",), "Ondalık gösterim", 3), (_mf_yn_indirim_kars, ("yüzde",), "Yüzde kavramı", 4), (_mf_yn_yuzde_roman, ("yüzde",), "Yüzde kavramı", 4),
+    (_mf_yn_veri_en, ("veri",), "Veri toplama ve değerlendirme", 2), (_mf_yn_veri_roman, ("veri",), "Veri toplama ve değerlendirme", 4), (_mf_yn_veri_ort, ("veri",), "Veri toplama ve değerlendirme", 3),
+    (_mf_yn_veri_hedef, ("veri",), "Veri toplama ve değerlendirme", 3),
+    (_mf_yn_bahce, ("çevre", "alan"), "Çevre uzunluğu", 3), (_mf_yn_oda_fayans, ("alan", "çevre"), "Alan problemleri", 4), (_mf_yn_fidan, ("alan", "çevre"), "Alan problemleri", 3),
+    (_mf_yn_cevre_roman, ("alan", "çevre"), "Alan problemleri", 4),
+    (_mf_yn_pizza, ("açı ölç", "açı tür"), "Açı türleri", 2), (_mf_yn_kapi, ("açı ölç", "açı tür"), "Açı türleri", 3), (_mf_yn_aci_roman, ("açı ölç", "açı tür"), "Açı türleri", 4),
+    (_mf_yn_cember_yol, ("çember",), "Çember ve daire elemanları", 2), (_mf_yn_cokgen_roman, ("çokgen",), "Çokgenlerin elemanları", 4),
+]
+for _f, _kw, _it, _df in _NEW_YN:
+    _f.ITEM = _it
+    _MF_GENS.append((_f, _kw, (5,)))
+    _DIFF_OF[_f.__name__] = _df
+
+
+
+_DG_YARGI = [("Gönye ile dik açı çizilebilir.", True), ("Açıölçer ile açıların ölçüsü bulunur.", True), ("Pergel ile çember çizilebilir.", True), ("Cetvel ile açı ölçülür.", False),
+             ("Bir ışının başlangıç noktası vardır, bitiş noktası yoktur.", True), ("Bir doğru parçasının iki ucu da belirlidir.", True), ("Bir doğrunun iki ucu da belirlidir.", False),
+             ("Paralel doğrular birbirini kesmez.", True), ("Dik kesişen doğrular arasındaki açı 45°’dir.", False), ("Pergelle açı ölçülür.", False), ("Bir doğru üzerinde sonsuz sayıda nokta vardır.", True),
+             ("Dik doğrular arasındaki açı 90°’dir.", True)]
+
+
+def _mf_yn_dg_roman(subject):
+    t = random.sample(_DG_YARGI, 3)
+    if all(not b for _x, b in t):
+        return None
+    return _yn_rom("Geometrik çizimler", "Bir öğretmen geometri dersinde çizim araçları ile temel kavramlar hakkında bazı bilgiler yazmıştır.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", t, "Her yargı temel geometri bilgileriyle ayrı ayrı denetlenir.")
+
+
+def _mf_yn_tum_rampa(subject):
+    a = random.choice([20, 25, 30, 35, 40, 55, 60, 65])
+    return _mfn("Açı ilişkileri", f"Duvar yere diktir. Bir merdiven yere dayandığında yerle {a}° açı yapmaktadır. Merdivenin duvarla yaptığı açı kaç derecedir?", 90 - a, _wrongs_num(90 - a, [5, 10, 15]) + [180 - a], f"Duvar ile yer arasındaki açı 90°’dir; yer ile merdiven {a}° ise duvar ile merdiven tümler: 90 − {a} = {90 - a}°.", sort=True)
+
+
+def _mf_yn_but_tahta(subject):
+    a = random.choice([40, 55, 65, 70, 85, 110, 125])
+    return _mfn("Açı ilişkileri", f"Bir düz çizgi (doğru açı) üzerinde yan yana iki açı bulunmaktadır. Açılardan biri {a}° ise diğeri kaç derecedir?", 180 - a, _wrongs_num(180 - a, [5, 10, 20]) + [90 - a if a < 90 else a - 90], f"Doğru açı 180°’dir; 180 − {a} = {180 - a}°.", sort=True)
+
+
+def _mf_yn_tum_kat(subject):
+    k, a = random.choice([(2, 30), (4, 18), (5, 15), (9, 9)])
+    return _mfn("Açı ilişkileri", f"Birbirinin tümleyeni olan iki açıdan biri diğerinin {k} katıdır. Büyük olan açı kaç derecedir?", k * a, _wrongs_num(k * a, [5, 10, 15]) + [a], f"Küçük açı a ise a + {k}a = 90°; a = {a}°, büyük açı {k * a}°.", sort=True)
+
+
+def _mf_yn_aci_cift_roman(subject):
+    a = random.choice([25, 35, 40, 55, 60])
+    b = random.choice([x for x in (50, 55, 65, 35, 30) if x != 90 - a])
+    s1 = _yn_pick(f"{a}° ile {90 - a}° ölçüsündeki açılar tümler açılardır.", f"{a}° ile {90 - a + 10}° ölçüsündeki açılar tümler açılardır.")
+    s1 = (s1[0], f"{90 - a}°" in s1[0] and f"{90 - a + 10}°" not in s1[0])
+    s2 = _yn_pick(f"{b}° ile {180 - b}° ölçüsündeki açılar bütünler açılardır.", f"{b}° ile {180 - b - 15}° ölçüsündeki açılar bütünler açılardır.")
+    s2 = (s2[0], f"{180 - b}°" in s2[0])
+    s3 = _yn_pick("Tümler iki açıdan her biri dar açıdır.", "Tümler iki açıdan biri geniş açı olabilir.")
+    s3 = (s3[0], "her biri" in s3[0])
+    return _yn_rom("Açı ilişkileri", "Bir öğrenci tümler ve bütünler açılarla ilgili aşağıdaki yargıları yazmıştır.", "Buna göre aşağıdaki yargılardan hangileri doğrudur?", [s1, s2, s3], "Tümler açıların toplamı 90°, bütünler açıların toplamı 180°’dir.")
+
+
+_NEW_YN2 = [
+    (_mf_yn_dg_roman, ("geometrik çizim", "doğru parçası", "ışın", "paralel", "dik doğru"), "Geometrik çizimler", 3),
+    (_mf_yn_tum_rampa, ("tümler", "bütünler", "açı ilişki"), "Açı ilişkileri", 3), (_mf_yn_but_tahta, ("tümler", "bütünler", "açı ilişki"), "Açı ilişkileri", 2),
+    (_mf_yn_tum_kat, ("tümler", "bütünler", "açı ilişki"), "Açı ilişkileri", 4), (_mf_yn_aci_cift_roman, ("tümler", "bütünler", "açı ilişki"), "Açı ilişkileri", 4),
+]
+for _f, _kw, _it, _df in _NEW_YN2:
+    _f.ITEM = _it
+    _MF_GENS.append((_f, _kw, (5,)))
+    _DIFF_OF[_f.__name__] = _df
+
+
+
 def _tr_par_pick():
     return random.choice(_TR_PAR)
 
@@ -19412,7 +19850,7 @@ def _fam_item(name, fn, subject, items):
     return v
 
 
-_YN_PREFIX = {"Fen Bilimleri": ("_ff_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
+_YN_PREFIX = {"Matematik": ("_mf_yn_",), "Fen Bilimleri": ("_ff_yn_",), "Türkçe": ("_tf_par_", "_tf_dk_")}
 _YN_SHARE = 0.3  # sınavdaki yeni nesil (senaryo/tablo/belge/paragraf) soru payı
 
 
@@ -19425,7 +19863,7 @@ def _bal_order(rkey, byname, subject, grade_label, topics, n):
     yn = [x for x in out if x.startswith(pre)]
     if not yn:
         return out
-    q = min(len(yn), max(1, round(_YN_SHARE * n)))
+    q = min(len(yn), max(1, round({"Matematik": 0.4}.get(subject, _YN_SHARE) * n)))
     pick = yn[:q]
     rest = [x for x in out if x not in pick]
     step = max(1, n // q)
