@@ -3681,7 +3681,7 @@ os.makedirs(DATA, exist_ok=True)
 
 
 PERSONAL = {"history.json", "wrong.json", "bad.json", "stems.json", "settings.json", "gen_stats.json", "liked.json",
-            "lpool.json", "reports.json", "likebudget.json", "budgets.json"}  # kişiye özel dosyalar; bank.json ve müfredat ortaktır
+            "lpool.json", "reports.json", "likebudget.json", "budgets.json", "videos.json"}  # kişiye özel dosyalar; bank.json ve müfredat ortaktır
 import threading as _pth
 _TL = _pth.local()
 _ACTIVE = {"pid": ""}  # son giriş yapan profil (arka plan iş parçacıkları için yedek)
@@ -3794,6 +3794,42 @@ def _save(name, obj):
 # ---- geçmiş
 def history():
     return _load("history.json", [])
+
+
+# ---- kayıtlı YouTube videoları (profil verisi; GitHub yedeğiyle otomatik saklanır)
+def videos():
+    return _load("videos.json", [])
+
+
+def save_video(rec):
+    V = videos()
+    if any(v.get("id") == rec.get("id") for v in V):
+        return False
+    rec = dict(rec)
+    rec["saved"] = time.strftime("%Y-%m-%d %H:%M")
+    V.append(rec)
+    _save("videos.json", V[-500:])
+    try:
+        gh_sync_async(0)
+    except Exception:
+        pass
+    return True
+
+
+def delete_video(vid):
+    _save("videos.json", [v for v in videos() if v.get("id") != vid])
+    try:
+        gh_sync_async(0)
+    except Exception:
+        pass
+
+
+def update_video_note(vid, note):
+    V = videos()
+    for v in V:
+        if v.get("id") == vid:
+            v["not"] = str(note)[:300]
+    _save("videos.json", V)
 
 
 def _today():
@@ -22940,6 +22976,9 @@ def pick_grade(g):
 
 
 def pick_mode(m):
+    if m == "youtube":  # sınav değil: video sayfasına git
+        st.session_state.page = "videos"
+        return
     st.session_state.mode = m
     st.session_state.page = "setup"
     st.session_state.wz = {"step": 1}
@@ -22964,6 +23003,7 @@ def modes():
         ("topic", "violet", "🎯 Konu Tarama", "Ünite ve kazanım seç • 10-30 soru"),
         ("bank", "pink", "🧠 Yeni Nesil Soru Bankası", "Beceri temelli • görsel ve veri yoğun karma sorular"),
         ("leaf", "green", "📄 Yaprak Test", "Tek kazanım • 6-12 soru • PDF'e hazır"),
+        ("youtube", "red", "▶️ YouTube Video", "Konuna uygun ders videoları • burada izle • sonra izlemek için kaydet"),
     ]
     theme.cells(items, 3, lambda x: theme.card(f"m_{x[0]}", x[1], x[2], x[3], pick_mode, (x[0],)))
 
@@ -25082,7 +25122,267 @@ def plan():
             st.rerun()
 '''
 
-ORDER = ['core/curriculum', 'core/oyss', 'core/fenfig', 'core/visuals', 'core/pdf_export', 'core/store', 'core/meb_live', 'core/ai_engine', 'core/coach', 'ui/theme', 'ui/state', 'ui/setup', 'ui/wizard', 'ui/exam', 'ui/reports', 'ui/extras', 'ui/study']
+MODULES['ui/videos'] = r'''# -*- coding: utf-8 -*-
+"""YouTube video bul / izle / sonra izlemek için kaydet (kayıtlar profil verisidir; GitHub yedeğiyle otomatik saklanır)."""
+import re
+import json
+import urllib.parse
+import urllib.request
+import streamlit as st
+from core import curriculum as cur, store
+from .state import nav
+
+_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+
+
+def _walk(o):
+    if isinstance(o, dict):
+        if "videoRenderer" in o and isinstance(o["videoRenderer"], dict):
+            yield o["videoRenderer"]
+        for v in o.values():
+            yield from _walk(v)
+    elif isinstance(o, list):
+        for v in o:
+            yield from _walk(v)
+
+
+def _txt(x):
+    if not isinstance(x, dict):
+        return ""
+    if x.get("simpleText"):
+        return str(x["simpleText"])
+    return "".join(str(r.get("text", "")) for r in (x.get("runs") or []) if isinstance(r, dict))
+
+
+def parse_results(html, n):
+    """YouTube arama sayfasındaki ytInitialData'dan video listesi çıkarır."""
+    m = re.search(r"var ytInitialData\s*=\s*(\{.*?\});\s*</script>", html, re.S) or re.search(r"ytInitialData\"\]\s*=\s*(\{.*?\});", html, re.S)
+    if not m:
+        return []
+    try:
+        data = json.loads(m.group(1))
+    except Exception:
+        return []
+    out, seen = [], set()
+    for r in _walk(data):
+        vid = str(r.get("videoId") or "")
+        dur = _txt(r.get("lengthText"))
+        if not vid or vid in seen or not dur:  # canlı yayın/kısa listeleri (süresiz) atlanır
+            continue
+        seen.add(vid)
+        out.append({"id": vid, "title": _txt(r.get("title")), "channel": _txt(r.get("ownerText")) or _txt(r.get("longBylineText")),
+                    "duration": dur, "views": _txt(r.get("viewCountText")), "published": _txt(r.get("publishedTimeText"))})
+        if len(out) >= n:
+            break
+    return out
+
+
+def _scrape(query, n):
+    url = "https://www.youtube.com/results?" + urllib.parse.urlencode({"search_query": query, "hl": "tr", "gl": "TR", "sp": "EgIQAQ=="})
+    req = urllib.request.Request(url, headers={"User-Agent": _UA, "Accept-Language": "tr-TR,tr;q=0.9", "Cookie": "CONSENT=YES+cb; SOCS=CAI"})
+    with urllib.request.urlopen(req, timeout=12) as resp:
+        html = resp.read().decode("utf-8", "ignore")
+    return parse_results(html, n)
+
+
+def _lib(query, n):
+    from youtube_search import YoutubeSearch  # isteğe bağlı yedek: kuruluysa kullanılır
+    res = YoutubeSearch(query, max_results=n).to_dict()
+    return [{"id": r["id"], "title": r["title"], "channel": r.get("channel", ""), "duration": r.get("duration", ""),
+             "views": r.get("views", ""), "published": r.get("publish_time", "")} for r in res if r.get("id")]
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def search_youtube(query, n=8):
+    """(sonuçlar, hata) döndürür. Önce kendi arama kodu, olmazsa youtube-search kütüphanesi (kuruluysa)."""
+    err = ""
+    try:
+        r = _scrape(query, n)
+        if r:
+            return r, ""
+        err = "YouTube sonuç döndürmedi"
+    except Exception as e:
+        err = f"{type(e).__name__}"
+    try:
+        r = _lib(query, n)
+        if r:
+            return r, ""
+    except Exception:
+        pass
+    return [], err
+
+
+def _clean(t):
+    t = re.sub(r"^\s*(MAT|FEN|SB|T|DKAB|İNG)[A-Z]*\.\d+(\.\d+)*[.\-\d]*\s*[.:]?\s*", "", str(t or ""))
+    t = re.sub(r"^\s*\d+\.\s*(Tema|Ünite)\s*:\s*", "", t)
+    t = re.sub(r"\(MAT\.[\d.\-]+\)", "", t)
+    t = re.sub(r"\s+", " ", t).strip(" .:;-")
+    return t[:80]
+
+
+def _vurl(vid):
+    return f"https://www.youtube.com/watch?v={vid}"
+
+
+def _is_saved(vid):
+    return any(v.get("id") == vid for v in store.videos())
+
+
+def _save(v, meta, note):
+    rec = {"id": v["id"], "title": v["title"], "channel": v.get("channel", ""), "duration": v.get("duration", ""), "url": _vurl(v["id"]),
+           "grade": meta.get("grade", ""), "ders": meta.get("ders", ""), "unite": meta.get("unite", ""), "konu": meta.get("konu", ""), "not": note or ""}
+    if store.save_video(rec):
+        st.toast("✅ Kaydedildi — GitHub yedeğine otomatik eklenecek", icon="⭐")
+    else:
+        st.toast("Bu video zaten kayıtlı", icon="ℹ️")
+
+
+def _set_play(vid):
+    st.session_state["vd_play"] = vid
+
+
+def _run_search(q, meta, n):
+    st.session_state["vd_q"] = q
+    st.session_state["vd_meta"] = meta
+    with st.spinner(f"“{q}” aranıyor..."):
+        res, err = search_youtube(q, n)
+    st.session_state["vd_res"] = res
+    st.session_state["vd_err"] = err
+    st.session_state["vd_play"] = res[0]["id"] if res else ""
+
+
+def _player(vid, title=""):
+    if not vid:
+        return
+    with st.container(border=True):
+        st.video(_vurl(vid))
+        if title:
+            st.markdown(f"**{title}**")
+
+
+def _card(v, meta, key, saved_tab=False):
+    with st.container(border=True):
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            try:
+                st.image(f"https://i.ytimg.com/vi/{v['id']}/mqdefault.jpg", use_container_width=True)
+            except Exception:
+                pass
+        with c2:
+            st.markdown(f"**{v.get('title', '')}**")
+            st.caption(f"📺 {v.get('channel', '')} • ⏱️ {v.get('duration', '')}" + (f" • 👁️ {v['views']}" if v.get("views") else ""))
+            if saved_tab and (v.get("ders") or v.get("konu")):
+                st.caption(f"📚 {v.get('ders', '')} › {v.get('konu', '')}")
+        b = st.columns(3)
+        b[0].button("▶️ Burada izle", key=f"{key}_play", on_click=_set_play, args=(v["id"],), use_container_width=True)
+        if saved_tab:
+            if b[1].button("🗑️ Kaldır", key=f"{key}_del", use_container_width=True):
+                store.delete_video(v["id"])
+                st.rerun()
+            note = st.text_input("📝 Not", value=v.get("not", ""), key=f"{key}_note", placeholder="Örn: sınavdan önce izle")
+            if note != v.get("not", ""):
+                store.update_video_note(v["id"], note)
+        else:
+            if _is_saved(v["id"]):
+                b[1].button("✅ Kayıtlı", key=f"{key}_sv", disabled=True, use_container_width=True)
+            else:
+                b[1].button("⭐ Sonra izle (kaydet)", key=f"{key}_sv", on_click=_save, args=(v, meta, st.session_state.get("vd_note", "")), use_container_width=True)
+            if b[2].button("🔄 Benzerlerini bul", key=f"{key}_sim", use_container_width=True):
+                _run_search(f"{meta.get('grade_label', '')} {_clean(v['title'])[:60]}".strip(), meta, st.session_state.get("vd_n", 8))
+                st.rerun()
+
+
+def _find_tab(g, gl):
+    subs = cur.subjects_for(g)
+    c1, c2, c3 = st.columns(3)
+    ders = c1.selectbox("Ders", subs, key="vd_ders", format_func=lambda s: f"{cur.SUBJECT_ICONS.get(s, '')} {s}")
+    us = cur.units(g, ders)
+    unames = [u for u, _t in us] or ["(Tüm dersi ara)"]
+    unite = c2.selectbox("Ünite / Tema", unames, key="vd_unite", format_func=_clean)
+    topics = next((t for u, t in us if u == unite), [])
+    opts = ["(Üniteyi bütün olarak ara)"] + list(topics)
+    konu = c3.selectbox("Konu / Kazanım", opts, key=f"vd_konu_{ders}_{unite}", format_func=lambda x: _clean(x) if x in topics else x)
+    f1, f2, f3 = st.columns([2, 1, 1])
+    extra = f1.text_input("Aramaya eklenecek kelime", value="konu anlatımı", key="vd_extra", help="Örn: soru çözümü, animasyon, özet, ders")
+    n = f2.slider("Video sayısı", 4, 12, 8, key="vd_n")
+    f3.markdown("<div style='height:1.9rem'></div>", unsafe_allow_html=True)
+    go = f3.button("🔍 YouTube'da ara", type="primary", use_container_width=True, key="vd_go")
+    st.text_input("📝 Kaydederken eklenecek not (isteğe bağlı)", key="vd_note", placeholder="Örn: Pazartesi tekrar edilecek")
+    konu_t = "" if konu.startswith("(Üniteyi") else _clean(konu)
+    meta = {"grade": g, "grade_label": gl, "ders": ders, "unite": _clean(unite), "konu": konu_t or _clean(unite)}
+    if go:
+        q = " ".join(x for x in [gl, ders, _clean(unite) if not konu_t else "", konu_t, extra] if x).strip()
+        _run_search(q, meta, n)
+    # benzer konular: aynı ünitedeki diğer konular tek tıkla aranır
+    sib = [t for t in topics if _clean(t) and _clean(t) != konu_t][:6]
+    if sib:
+        st.markdown("<div class='pick-lbl'>🧭 Benzer / komşu konular</div>", unsafe_allow_html=True)
+        cols = st.columns(min(3, len(sib)))
+        for i, t in enumerate(sib):
+            if cols[i % len(cols)].button(f"🔎 {_clean(t)[:42]}", key=f"vd_sib_{i}", use_container_width=True):
+                m2 = dict(meta, konu=_clean(t))
+                _run_search(" ".join(x for x in [gl, ders, _clean(t), extra] if x), m2, n)
+                st.rerun()
+    res = st.session_state.get("vd_res")
+    if res is None:
+        st.info("Ders, ünite ve konuyu seçip **YouTube'da ara**ya bas. Bulunan videoları burada izleyebilir, istediklerini **GitHub yedeğine kaydedip** sonra izleyebilirsin.")
+        return
+    st.caption(f"Arama: **{st.session_state.get('vd_q', '')}**")
+    if not res:
+        st.warning("Sonuç alınamadı" + (f" ({st.session_state.get('vd_err')})" if st.session_state.get("vd_err") else "") + ". Aramayı değiştirip tekrar dene (internet/YouTube erişimi gerekir).")
+        return
+    play = st.session_state.get("vd_play") or res[0]["id"]
+    cur_v = next((v for v in res if v["id"] == play), None) or next((v for v in store.videos() if v["id"] == play), None)
+    _player(play, (cur_v or {}).get("title", ""))
+    m = st.session_state.get("vd_meta") or meta
+    for i, v in enumerate(res):
+        _card(v, m, f"vd_r{i}_{v['id']}")
+
+
+def _saved_tab():
+    V = list(reversed(store.videos()))
+    on = store.gh_status().get("on")
+    if on:
+        c1, c2 = st.columns([3, 1])
+        c1.caption("☁️ Kayıtların GitHub yedeğine otomatik alınır (yaklaşık 2 dk içinde). " + (store.gh_status().get("msg") or ""))
+        if c2.button("☁️ Şimdi yedekle", key="vd_push", use_container_width=True):
+            store.gh_sync_async(0)
+            st.toast("Yedekleme başlatıldı", icon="☁️")
+    else:
+        st.caption("☁️ GitHub yedeği kapalı: kayıtlar bu cihazda/oturumda tutulur. Açmak için secrets içine [github_sync] ekle.")
+    if not V:
+        st.info("Henüz kayıtlı video yok. “Video Bul” sekmesinden ⭐ ile kaydedebilirsin.")
+        return
+    c1, c2 = st.columns(2)
+    dl = ["Tümü"] + sorted({v.get("ders", "") for v in V if v.get("ders")})
+    d = c1.selectbox("Derse göre", dl, key="vd_fd")
+    kl = ["Tümü"] + sorted({v.get("konu", "") for v in V if v.get("konu") and (d == "Tümü" or v.get("ders") == d)})
+    k = c2.selectbox("Konuya göre", kl, key="vd_fk")
+    F = [v for v in V if (d == "Tümü" or v.get("ders") == d) and (k == "Tümü" or v.get("konu") == k)]
+    st.write(f"**{len(F)}** video")
+    play = st.session_state.get("vd_play")
+    cur_v = next((v for v in F if v["id"] == play), None)
+    if cur_v:
+        _player(cur_v["id"], cur_v.get("title", ""))
+    for v in F:
+        _card(v, {}, f"vd_s_{v['id']}", saved_tab=True)
+
+
+def videos():
+    g = st.session_state.grade or "5"
+    gl = cur.GRADE_LABELS.get(g, str(g))
+    st.button("⬅ Sınav türleri", key="back_videos", on_click=nav, args=("modes",))
+    st.markdown(f"<div class='hero'><h1>▶️ YouTube Video • {gl}</h1><p>Seçtiğin konuda (ve benzer konularda) ders videosu bul, burada izle, sonra izlemek için kaydet.</p></div>", unsafe_allow_html=True)
+    nsaved = len(store.videos())
+    t1, t2 = st.tabs(["🔎 Video Bul", f"💾 Kaydettiklerim ({nsaved})"])
+    with t1:
+        _find_tab(g, gl)
+    with t2:
+        _saved_tab()
+'''
+
+
+ORDER = ['core/curriculum', 'core/oyss', 'core/fenfig', 'core/visuals', 'core/pdf_export', 'core/store', 'core/meb_live', 'core/ai_engine', 'core/coach', 'ui/theme', 'ui/state', 'ui/setup', 'ui/wizard', 'ui/exam', 'ui/reports', 'ui/extras', 'ui/study', 'ui/videos']
 
 
 def _load_modules():
@@ -25117,7 +25417,7 @@ try:  # veri klasörü boşsa (Streamlit Cloud yeniden başlatması) GitHub yede
 except Exception:
     pass
 from core import ai_engine, curriculum as cur, meb_live
-from ui import theme, state, setup, wizard, exam, reports, extras, study
+from ui import theme, state, setup, wizard, exam, reports, extras, study, videos
 
 theme.inject()
 
@@ -25420,7 +25720,7 @@ if PAGE in ("exam", "ready", "sess_break"):  # soru çözerken dikkat dağıtan 
 ROUTES = {
     "home": setup.home, "modes": setup.modes, "setup": wizard.run, "ready": setup.ready, "pre": setup.pre,
     "exam": exam.exam, "sess_break": exam.sess_break, "selfscore": exam.selfscore, "result": exam.result,
-    "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges,
+    "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges, "videos": videos.videos,
 }
 try:
     ROUTES.get(PAGE, setup.home)()
