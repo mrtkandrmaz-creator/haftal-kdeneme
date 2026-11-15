@@ -4050,6 +4050,18 @@ def bad_keys():
     return set(_load("bad_keys.json", []))
 
 
+def form_key(q):
+    """Sayıları maskeli soru kalıbı anahtarı (soru başı + şekil türü/başlığı): kodla üretilen sorunun hatalı kalıbı sayı değişse de bir daha gelmez."""
+    import re as _r
+    m = lambda t: _r.sub(r"\W+", " ", _r.sub(r"\d+", "0", str(t or "").lower())).strip()
+    sh = q.get("shape") if isinstance(q.get("shape"), dict) else {}
+    return m(q.get("question"))[:70] + "|" + str(sh.get("type") or "") + "|" + m(sh.get("title"))[:40]
+
+
+def bad_forms():
+    return set(_load("bad_forms.json", []))
+
+
 def bad_facts():
     """Hatalı işaretlenen bilgi-bankası girdileri ('ünite|etiket|doğru') — bilgi bankası kalıpları bunları bir daha kullanmaz."""
     return set(_load("bad_facts.json", []))
@@ -4191,6 +4203,14 @@ def report_bad(q, reason=""):
         if _ek not in _k:
             _k.append(_ek)
         _save("bad_keys.json", _k[-3000:])
+    except Exception:
+        pass
+    try:  # 1b) soru KALIBI (sayılar maskeli): kodla üretilen soruda sayılar değişse de aynı hatalı kalıp bir daha gelmez
+        _fm = _load("bad_forms.json", [])
+        _fk0 = form_key(q)
+        if _fk0 not in _fm:
+            _fm.append(_fk0)
+        _save("bad_forms.json", _fm[-3000:])
     except Exception:
         pass
     _bk_done = False
@@ -7404,12 +7424,25 @@ def _bad_refresh():
         try:
             from . import store
             _BADX["k"] = frozenset(store.bad_keys())
+            _BADX["m"] = frozenset(store.bad_forms())
             _ok, _bad = _bank_checks()
             _allow = set(store._load("bank_allow.json", []))
             _BADX["f"] = frozenset(set(store.bad_facts()) | (_bad - _allow))
         except Exception:
             pass
         _BADX["t"] = time.time()
+
+
+def _is_bad_form(out):
+    _bad_refresh()
+    m = _BADX.get("m")
+    if not m:
+        return False
+    try:
+        from . import store
+        return store.form_key(out) in m
+    except Exception:
+        return False
 
 
 def _is_bad_exact(qtext, correct):
@@ -7808,7 +7841,7 @@ def _norm_q(q, subject):
             return None
     out = {"subject": subject, "topic": str(q.get("topic") or ""), "passage": fmt_roman_list(pas) if pas else pas,
            "question": fmt_roman_list(qtext), "shape": shape, "options": opts, "answer": ans, "explanation": expl}
-    return None if leaks_answer(out) else out
+    return None if (leaks_answer(out) or _is_bad_form(out)) else out
 
 
 def _alnum(t):
@@ -10054,6 +10087,7 @@ def math_questions(grade_label, n, topics="", seen=(), dl=0):
     rkey = ("gen", "Matematik", g_key)
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
     byname = _dl_filter(byname, dl, "Matematik", grade_label, topics)
+    _geo_nm = {f.__name__ for f, kw in pool if any(re.search(r"açı|çokgen|çember|geometri|çizim|çevre|alan|dörtgen|üçgen|ışın|inşa", k) for k in kw)}
     for _pass in range(2):  # her kalıptan sınav başına en çok 1 soru (2. tur yalnızca eksik kalırsa)
         for nm in _bal_order(rkey, byname, "Matematik", grade_label, topics, n):
             if len(out) >= n:
@@ -10066,6 +10100,8 @@ def math_questions(grade_label, n, topics="", seen=(), dl=0):
                     x = _norm_q(raw, "Matematik") if raw else None
                 except Exception:
                     x = None
+                if x and _pass == 0 and nm in _geo_nm and not x.get("shape"):
+                    x = None  # geometri: önce şekilli (görsel) sorular; şekilsizler yalnızca 2. turda (eksik kalırsa)
                 if x and not _on_topic(x, topics, "Matematik", grade_label):
                     x = None  # seçilen ünite dışı kalıp: atla
                 if x and _stem(x) not in stems:
@@ -10712,6 +10748,16 @@ def _bad_tpl_set():
         return store.bad_tpls()
     except Exception:
         return set()
+
+
+def _bump_diff(difficulty):
+    """Seçilen zorluk kademesinin bir üstünü döndürür (en üst kademede sabit kalır)."""
+    try:
+        from . import curriculum as _cu
+        L = list(_cu.DIFFICULTIES)
+        return L[min(L.index(difficulty) + 1, len(L) - 1)]
+    except Exception:
+        return difficulty
 
 
 def _diff_level(difficulty):
@@ -21242,7 +21288,10 @@ def _greedy_fill(qs_, cands, n, hsets, seen_, allow_hist=False, allow_seen=False
                 if ms > 0.5 and not allow_hist:
                     continue
                 ik = icn[_q_item(q, items)] if items else 0
-                k = (ik, cnt[f], s_in, round(ms, 1))
+                gp = 0
+                if q.get("subject") == "Matematik" and not q.get("shape") and (_GEO_STRICT.search(f"{q.get('topic', '')} {str(q.get('question', ''))[:90]}") or (items and re.search(r"geometri|açı|çokgen|çember|çevre|alan|inşa|çizim|doğru|ışın", str(_q_item(q, items)), re.I))):
+                    gp = 1  # geometri: görselli (şekilli) sorular önce seçilsin
+                k = (ik, gp, cnt[f], s_in, round(ms, 1))
                 if bk is None or k < bk:
                     best, bk = q, k
             if best is None:
@@ -21271,11 +21320,13 @@ def _hist_similar(q, sets, thr=0.5):
     return False
 
 
-def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False, count=True, like=""):
+def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus="", on_progress=None, use_bank=True, deposit=True, keys=None, verify=False, count=True, like="", _nb=False):
     """plan: [{subject, n, topics}] -> (questions, errors).
     Her ders BAĞIMSIZ ilerler (başka dersi beklemez): bankadan al -> paralel üret -> eksik kaldıkça yeniden tamamla
     (turlar ilerledikçe daha çok yedek ister, çeşitlilik kuralını gevşetir, en son görselsiz moda geçer).
     Amaç: istenen sayının TAM karşılanması."""
+    if not _nb and not like:
+        difficulty = _bump_diff(difficulty)  # tüm derslerde seçilen kademenin bir üstü üretilir (basit sorular gelmesin)
     avoid = {k: list(v) for k, v in (avoid or {}).items()}
     gk, mk = (keys if keys else load_keys()) if not demo_mode() else ([], [])
     no_keys = not demo_mode() and not gk and not mk and not extra_keys()
@@ -21587,6 +21638,7 @@ _FILL_LOCK = threading.Lock()
 def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
     """Sınav üretildikten sonra arka planda, bu kapsamın bankasını bir sonraki sınav için tamamlar (en fazla bir sınav boyu).
     Ana iş parçacığında çağrılır; anahtarlar ve kaçınılacak soru listesi burada alınır, işi daemon iş parçacığı yapar."""
+    difficulty = _bump_diff(difficulty)  # generate_mc ile aynı (bir üst) kademe: banka anahtarları uyuşsun
     if demo_mode() or not plan:
         return False
     try:
@@ -21613,7 +21665,7 @@ def bank_topup_async(plan, grade_label, difficulty, scope_label, used_qs=()):
     def run():
         try:
             sub = [p for _, p in todo]
-            qs, _e = generate_mc(sub, grade_label, difficulty, scope_label, avoid=avoid, use_bank=False, deposit=False, keys=(gk, mk), verify=True, count=False)
+            qs, _e = generate_mc(sub, grade_label, difficulty, scope_label, avoid=avoid, use_bank=False, deposit=False, keys=(gk, mk), verify=True, count=False, _nb=True)
             for key, p in todo:
                 mine = [q for q in qs if q.get("subject") == p["subject"]]
                 store.bank_put(key, _bank_meta(p, grade_label, difficulty), mine)
@@ -22034,10 +22086,11 @@ def _diff_counts(store):
 
 def fill_bank(plan, grade_label, difficulty, scope_label, avoid=None, on_progress=None):
     """Soruları KULLANMADAN üretip bankaya koyar (sonraki sınav anında açılsın). -> (eklenen, hatalar)"""
+    difficulty = _bump_diff(difficulty)
     if demo_mode():
         return 0, []
     from . import store
-    qs, errs = generate_mc(plan, grade_label, difficulty, scope_label, avoid=avoid, on_progress=on_progress, use_bank=False, deposit=False, verify=True, count=False)
+    qs, errs = generate_mc(plan, grade_label, difficulty, scope_label, avoid=avoid, on_progress=on_progress, use_bank=False, deposit=False, verify=True, count=False, _nb=True)
     added = 0
     for p in plan:
         mine = [q for q in qs if q.get("subject") == p["subject"]]
