@@ -1,0 +1,42 @@
+name: Yerel soru havuzunu yenile
+
+on:
+  schedule:
+    - cron: "30 0 * * *"   # her gün 03:30 (TR) — API anahtarı gerekmez
+  push:
+    branches: [main, master]
+    paths: ["app.py", "tools/build_local_pool.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pool
+  cancel-in-progress: false
+
+jobs:
+  local-pool:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install matplotlib numpy pandas altair reportlab requests pypdf
+      - name: Hatalı bildirimleri al (userdata dalı, varsa)
+        run: |
+          mkdir -p _ud
+          git fetch origin userdata:refs/remotes/origin/userdata || true
+          git archive origin/userdata data 2>/dev/null | tar -x -C _ud || true
+      - name: Yerel havuzu yenile
+        run: python tools/build_local_pool.py --grades 5 --max-per-unit 80 --bad-dir _ud/data
+      - name: Değişiklikleri kaydet
+        run: |
+          git config user.name "denemematik-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add pool
+          git diff --cached --quiet || (git commit -m "Yerel soru havuzu yenilendi" && git pull --rebase && git push)
