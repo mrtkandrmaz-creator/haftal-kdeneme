@@ -16033,6 +16033,29 @@
 "ts": 1794718280,
 "src": "local",
 "fam": "_en_going"
+},
+{
+"subject": "İngilizce",
+"topic": "Habitats",
+"passage": "Ali: Look at the documentary, Mia! The polar bear is hunting on the ice.\nMia: It is amazing, but it is so cold there. I prefer the hot rainforests where monkeys live.",
+"question": "Based on the dialogue, which of the following statements summarizes the habitat preferences mentioned?",
+"shape": null,
+"options": {
+"A": "Monkeys and polar bears share the same environmental characteristics.",
+"B": "Polar bears inhabit areas that provide a warm, humid climate for hunting.",
+"C": "Mia finds the polar bear's habitat more comfortable than the rainforest.",
+"D": "The polar bear's natural environment is characterized by freezing temperatures."
+},
+"answer": "D",
+"explanation": "The text explicitly links the polar bear to 'ice' and 'cold' environments. Option C accurately reflects the habitat condition, while A, B, and D contradict the information provided in the dialogue.",
+"_sty": "s:|true accord the conver",
+"listen": true,
+"crit": 1,
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 3,
+"ts": 1794727211
 }
 ]
 }

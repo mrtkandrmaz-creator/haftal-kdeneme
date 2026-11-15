@@ -20374,6 +20374,28 @@
 "ts": 1794718265,
 "src": "local",
 "fam": "_mf_veri_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.6.2",
+"passage": "",
+"question": "Bir kütüphanede 120 kitap vardır. Bunların %75’i roman, geri kalanları ise bilim kitabıdır. Bir kitap rastgele seçildiğinde, seçilen kitabın bilim kitabı olma olasılığı nedir?",
+"shape": null,
+"options": {
+"A": "0.25",
+"B": "0.5",
+"C": "0.75",
+"D": "1"
+},
+"answer": "A",
+"explanation": "Bilim kitabı sayısı 120×0.25=30, olasılık 30/120=0.25. Doğru şık A'dır.",
+"vfd2": true,
+"_sty": "s:|olasıl çok olarak tanıml",
+"crit": 1,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 2,
+"ts": 1794727105
 }
 ]
 }
