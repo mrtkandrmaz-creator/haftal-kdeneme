@@ -20833,6 +20833,24 @@ def tpl_questions(grade_label, n, topics="", seen=()):
     return out
 
 
+def _pool_unit_ok(q, sel_u, grade_label, subject, topics=""):
+    """Havuz sorusu seçilen ünite/tema (ve varsa seçilen kazanım kodları) içinde mi? Matematikte soru 'kz' kazanım kodlarıyla tema adına bağlanır."""
+    kz = [str(x) for x in (q.get("kz") or [])]
+    ok = q.get("unit") in sel_u
+    if subject == "Matematik" and kz:
+        try:
+            from . import curriculum as _cu
+            g = next((c for c in str(grade_label) if c.isdigit()), "")
+            th = {n for n, ks in _cu.units(g, "Matematik") if any(str(k).startswith(c + ".") for k in ks for c in kz)}
+            ok = ok or bool(th & set(sel_u))
+        except Exception:
+            pass
+        want = set(re.findall(r"MAT\.\d\.\d\.\d", str(topics or "")))
+        if ok and want and not (want & set(kz)):
+            return False  # kazanımlar tek tek seçilmiş: soru bu kazanımlardan birine ait olmalı
+    return ok
+
+
 def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty=""):
     """Gece/haftalık çalışan betiğin ürettiği, kural + çapraz model doğrulamasından geçmiş soruları döndürür.
     En az kullanılanlar önce gelir; görülmüş (geçmiş) sorular ve konu dışı sorular atlanır."""
@@ -20862,8 +20880,8 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
         if not s or s in seen or _is_bad(s):
             continue
         if sel_u is not None:
-            if q.get("unit") not in sel_u:
-                continue  # havuz sorusu başka ünitenin: KESİN atla
+            if not _pool_unit_ok(q, sel_u, grade_label, subject, topics):
+                continue  # havuz sorusu başka ünitenin/kazanımın: KESİN atla
             ov = 1
         else:
             ov = len(want & _pool_tok(f"{q.get('unit', '')} {q.get('topic', '')} {q.get('topics', '')}")) if want else 0
@@ -21452,7 +21470,14 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     pass
             if not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_FACTORY") != "1" and subj in ("Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "Matematik", "Fen Bilimleri"):  # 00b) onaylı çekirdek + kodla hesaplanan sorular (API'siz)
                 try:  # çekirdek/hesaplanan soruların toplam payı en çok ~%25 (çoğunluk yapay zekâ); kaynaklar sırayla, dönüşümlü
-                    fb = max(1 if n >= 4 else 0, int(n * (0.6 if subj in STRICT_MODE else (0.5 if str(grade_label)[:1] == "5" else 0.25))))  # Matematikte kodla hesaplanan soru payı yüksek (hatasız); AI soruları yalnızca doğrulanırsa girer
+                    fb = max(1 if n >= 4 else 0, int(n * (0.6 if subj in STRICT_MODE else (0.5 if str(grade_label)[:1] == "5" else 0.25))))
+                    if subj == "Matematik" and str(grade_label)[:1] == "5":
+                        try:  # yalnızca geometri temaları seçiliyse: şekilli ve kodla doğrulanmış sorular ağırlıkta (yapay zekâ şekilsiz/ilgisiz soru getirmesin)
+                            _su = _selected_units(grade_label, subj, p.get("topics", "")) or set()
+                            if _su and all(re.search(r"Geometrik", str(x)) for x in _su):
+                                fb = max(fb, int(n * 0.85 + 0.5))
+                        except Exception:
+                            pass  # Matematikte kodla hesaplanan soru payı yüksek (hatasız); AI soruları yalnızca doğrulanırsa girer
                     srcs = [lambda k: seed_questions(subj, grade_label, p.get("topics", ""), limit=k, seen=seen),
                             lambda k: local_questions(subj, grade_label, k, p.get("topics", ""), seen=seen)]
                     if subj == "Matematik":
@@ -21605,6 +21630,21 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
         if len(qs_) < p["n"]:
             errors.append(f"{p['subject']}: {len(qs_)}/{p['n']} soru hazırlanabildi (yoğunluk nedeniyle); tekrar denersen tamamlanır" if _quota_like(st_.get("err")) else
                           f"{p['subject']}: {len(qs_)}/{p['n']} soru üretilebildi" + (f" ({st_['err'][:90]})" if st_.get("err") and not qs_ else ""))
+        try:  # son güvenlik kapısı: hangi kaynaktan gelmiş olursa olsun seçilen konu/ünite dışındaki soru sınava girmez; eksik kalırsa yerel sorularla tamamlanır
+            _ok = [q for q in qs_ if _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label)]
+            if len(_ok) < len(qs_) or len(_ok) < p["n"]:
+                _hv = {_stem(q) for q in _ok} | set(seen)
+                if len(_ok) < p["n"] and p.get("subject") in ("Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi", "Türkçe", "İngilizce"):
+                    _fn = {"Matematik": math_questions, "Fen Bilimleri": fen_questions, "Sosyal Bilgiler": sosyal_questions, "Din Kültürü ve Ahlak Bilgisi": din_questions, "Türkçe": turkce_questions, "İngilizce": eng_questions}[p["subject"]]
+                    for q in _fn(grade_label, (p["n"] - len(_ok)) * 2, p.get("topics", ""), seen=_hv, dl=dl) or []:
+                        if len(_ok) >= p["n"]:
+                            break
+                        if _stem(q) not in _hv and _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
+                            _ok.append(q)
+                            _hv.add(_stem(q))
+                qs_ = _ok
+        except Exception:
+            pass
         questions += qs_[:p["n"]]
     if dep_ok:  # artan sağlam soruları bankaya ekle
         try:
