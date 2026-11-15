@@ -2599,9 +2599,217 @@ def _nested_triangles(ax, d):
     ax.set_ylim(-2.6, 3.1)
 
 
+# ---- yeni çizimler: açıölçer, saat, birim kare ızgarası, serbest çokgen, ışın demeti, nokta dizileri, üç doğru
+def _geo_protractor(ax, d):
+    deg = _f(d.get("degree", 50), 50)
+    deg2 = d.get("degree2")
+    left = str(d.get("base", "right")).lower() == "left"
+    R = 3.0
+    ax.add_patch(Wedge((0, 0), R, 0, 180, fc="#eaf6ff", ec=INK, lw=1.8, zorder=1))
+    ax.add_patch(Wedge((0, 0), .5, 0, 180, fc="white", ec=INK, lw=1.0, zorder=2))
+    ax.plot([-R - .4, R + .4], [0, 0], color=INK, lw=1.8, zorder=3)
+    for t in range(0, 181, 5):
+        a = np.radians(t)
+        c, s_ = np.cos(a), np.sin(a)
+        ln = .3 if t % 10 == 0 else .15
+        ax.plot([R * c, (R - ln) * c], [R * s_, (R - ln) * s_], color=INK, lw=1.3 if t % 10 == 0 else .9, zorder=3)
+        if t % 10 == 0:
+            dy = .13 if t in (0, 180) else 0
+            ax.text((R - .62) * c, (R - .62) * s_ + dy, str(t), fontsize=6.6, ha="center", va="center", color=INK, zorder=4)
+            ax.text((R - 1.02) * c, (R - 1.02) * s_ + dy, str(180 - t), fontsize=6, ha="center", va="center", color=SLATE, zorder=4)
+    o = np.array([0., 0])
+    sgn = -1 if left else 1
+    base_end = np.array([sgn * (R + .55), 0.])
+    _arrow(ax, o, base_end, color=INK, lw=2.2)
+    ax.text(*(base_end + [sgn * .3, 0]), "A", fontsize=11, fontweight="bold", ha="center", va="center")
+    for k, (dg, nm, col) in enumerate(((deg, "B", BLUE), (_f(deg2, 0) if deg2 is not None else None, "C", GREEN))):
+        if dg is None:
+            continue
+        ang = 180 - dg if left else dg
+        u = np.array([np.cos(np.radians(ang)), np.sin(np.radians(ang))])
+        _arrow(ax, o, u * (R + .5), color=col, lw=2.4)
+        ax.text(*(u * (R + .85)), nm, fontsize=11, fontweight="bold", ha="center", va="center", color=col)
+    _dot(ax, o, "O", off=(0, -.42))
+    ax.set_xlim(-R - 1.3, R + 1.3)
+    ax.set_ylim(-.9, R + 1.2)
+
+
+def _geo_clock(ax, d):
+    h, m = int(_f(d.get("hour", 3), 3)), int(_f(d.get("minute", 0), 0))
+    R = 3.0
+    ax.add_patch(Circle((0, 0), R, fc="white", ec=INK, lw=3, zorder=1))
+    for t in range(60):
+        a = np.radians(90 - 6 * t)
+        ln = .3 if t % 5 == 0 else .12
+        ax.plot([R * np.cos(a), (R - ln) * np.cos(a)], [R * np.sin(a), (R - ln) * np.sin(a)], color=INK, lw=1.6 if t % 5 == 0 else .8, zorder=2)
+    for k in range(1, 13):
+        a = np.radians(90 - 30 * k)
+        ax.text((R - .65) * np.cos(a), (R - .65) * np.sin(a), str(k), fontsize=12, fontweight="bold", ha="center", va="center", color=INK, zorder=3)
+    ah = np.radians(90 - 30 * (h % 12) - .5 * m)
+    am = np.radians(90 - 6 * m)
+    ax.plot([0, 1.6 * np.cos(ah)], [0, 1.6 * np.sin(ah)], color=INK, lw=6, solid_capstyle="round", zorder=4)
+    ax.plot([0, 2.45 * np.cos(am)], [0, 2.45 * np.sin(am)], color=BLUE, lw=3.4, solid_capstyle="round", zorder=5)
+    ax.plot(0, 0, "o", color=ORANGE, ms=7, zorder=6)
+    ax.set_xlim(-R - .4, R + .4)
+    ax.set_ylim(-R - .4, R + .4)
+
+
+def _geo_grid(ax, d):
+    """Birim kare ızgarası: sets = [kareler listesi, (ikinci şekil)]; her kare [x, y]. names ile A/B yazılır; legend altta."""
+    sets = d.get("sets") or [d.get("cells") or []]
+    names = [str(x) for x in (d.get("names") or [])]
+    cols = ["#7dd3fc", "#fcd34d"]
+    x0, ymax = 0.0, 1.0
+    for si, cells in enumerate(sets[:2]):
+        cs = {(int(c[0]), int(c[1])) for c in cells}
+        if not cs:
+            continue
+        mx, my = max(c[0] for c in cs) + 1, max(c[1] for c in cs) + 1
+        for gx in range(mx + 1):
+            ax.plot([x0 + gx, x0 + gx], [0, my], color="#64748b", lw=.7, zorder=3)
+        for gy in range(my + 1):
+            ax.plot([x0, x0 + mx], [gy, gy], color="#64748b", lw=.7, zorder=3)
+        for (cx, cy) in cs:
+            ax.add_patch(Rectangle((x0 + cx, cy), 1, 1, fc=cols[si % 2], ec="none", zorder=2))
+        for (cx, cy) in cs:
+            for (dx, dy, p, q) in ((0, -1, (0, 0), (1, 0)), (0, 1, (0, 1), (1, 1)), (-1, 0, (0, 0), (0, 1)), (1, 0, (1, 0), (1, 1))):
+                if (cx + dx, cy + dy) not in cs:
+                    ax.plot([x0 + cx + p[0], x0 + cx + q[0]], [cy + p[1], cy + q[1]], color=INK, lw=2.4, solid_capstyle="round", zorder=4)
+        if si < len(names) and names[si]:
+            ax.text(x0 + mx / 2, -.7, names[si], fontsize=12, fontweight="bold", color=BLUE, ha="center", va="center")
+        x0 += mx + 1.6
+        ymax = max(ymax, my)
+    if d.get("legend"):
+        ax.text(0, -1.5 if names else -.8, str(d["legend"]), fontsize=9.5, fontweight="bold", color=GREEN, ha="left", va="center")
+    ax.set_xlim(-.7, max(x0 - 1.0, 3))
+    ax.set_ylim(-2.0, ymax + .7)
+
+
+def _geo_polyfree(ax, d):
+    """Koordinatlı çokgen (ölçekli): pts, vlabels, side_labels (kenar i→i+1), ticks (eşit kenar grupları), rights, angles{i: yazı}, holes, segments(kesik çizgi), texts, center_label."""
+    from matplotlib.path import Path as _Pth
+    P0 = np.array(d["pts"], float)
+    n = len(P0)
+    lo = P0.min(axis=0)
+    k = 5.0 / max(np.ptp(P0[:, 0]), np.ptp(P0[:, 1]), 1e-9)
+    T = lambda p: (np.array(p, float) - lo) * k
+    Q = np.array([T(p) for p in P0])
+    ax.add_patch(Polygon(Q, closed=True, fc="#e0f2fe", ec=INK, lw=2.2, joinstyle="round", zorder=2))
+    for h in d.get("holes") or []:
+        ax.add_patch(Polygon(np.array([T(p) for p in h]), closed=True, fc="white", ec=INK, lw=1.8, joinstyle="round", zorder=3))
+    for sg in d.get("segments") or []:
+        a, b = T(sg[:2]), T(sg[2:4])
+        ax.plot([a[0], b[0]], [a[1], b[1]], color=SLATE, lw=1.4, ls="--", zorder=3)
+    c = Q.mean(axis=0)
+    path = _Pth(Q)
+    vl = [str(x) for x in (d.get("vlabels") or [])]
+    for i, p in enumerate(Q):
+        ax.plot(*p, "o", color=INK, ms=3.8, zorder=5)
+        if i < len(vl) and vl[i]:
+            dd = p - c
+            dd = dd / (np.linalg.norm(dd) or 1)
+            ax.text(*(p + dd * .42), vl[i], fontsize=11, fontweight="bold", ha="center", va="center", zorder=6)
+    for i, t in enumerate(d.get("side_labels") or []):
+        if t in (None, ""):
+            continue
+        a, b = Q[i], Q[(i + 1) % n]
+        mid = (a + b) / 2
+        e = b - a
+        nv = np.array([-e[1], e[0]]) / (np.linalg.norm(e) or 1)
+        if path.contains_point(mid + nv * .08):
+            nv = -nv
+        pos = mid + nv * .38
+        ha = "right" if nv[0] < -.4 else "left" if nv[0] > .4 else "center"
+        va = "top" if nv[1] < -.4 else "bottom" if nv[1] > .4 else "center"
+        ax.text(*(mid + nv * .14), str(t), fontsize=9.5, fontweight="bold", color=BLUE, ha=ha, va=va, zorder=6)
+    for gi, grp in enumerate(d.get("ticks") or []):
+        for i in grp:
+            _tick(ax, Q[i], Q[(i + 1) % n], n=gi + 1)
+    for i in d.get("rights") or []:
+        _right_mark(ax, Q[i], Q[(i + 1) % n] - Q[i], Q[(i - 1) % n] - Q[i], s=.34)
+    for i, t in (d.get("angles") or {}).items():
+        _vertex_arc(ax, Q, int(i), t, color="#7c3aed" if str(t).strip() in ("?", "x") else ORANGE, r=.6, lab=.55)
+    for tx in d.get("texts") or []:
+        p = T(tx[:2])
+        ax.text(p[0], p[1], str(tx[2]), fontsize=9.5, fontweight="bold", color=BLUE, ha="center", va="center", zorder=7,
+                bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=.9))
+    if d.get("center_label"):
+        ax.text(c[0], c[1], str(d["center_label"]), fontsize=10.5, fontweight="bold", color=INK, ha="center", va="center", zorder=7,
+                bbox=dict(boxstyle="round,pad=0.2", fc="white", ec=ORANGE, lw=1.2, alpha=.95))
+    ax.set_xlim(Q[:, 0].min() - 1.6, Q[:, 0].max() + 1.6)
+    ax.set_ylim(Q[:, 1].min() - 1.2, Q[:, 1].max() + 1.2)
+
+
+def _geo_rays(ax, d):
+    """O noktasından çıkan ışınlar: angs = ışınların yönleri (derece), labels = O ve uç harfleri."""
+    angs = [_f(a) for a in (d.get("angs") or [0, 50, 100])]
+    L = [str(x) for x in (d.get("labels") or [])] + list("OABCDEFG")
+    o = np.array([0., 0])
+    for i, a in enumerate(angs):
+        u = np.array([np.cos(np.radians(a)), np.sin(np.radians(a))])
+        _arrow(ax, o, u * 3.3, color=[BLUE, GREEN, ORANGE, "#8b5cf6", "#ec4899"][i % 5], lw=2.2)
+        ax.text(*(u * 3.7), L[i + 1], fontsize=11, fontweight="bold", ha="center", va="center")
+    _dot(ax, o, L[0], off=(-.1, -.45))
+    tips = np.array([[3.7 * np.cos(np.radians(a)), 3.7 * np.sin(np.radians(a))] for a in angs] + [[0, 0]])
+    ax.set_xlim(min(-1.2, tips[:, 0].min() - .8), max(1.2, tips[:, 0].max() + .8))
+    ax.set_ylim(-1.2, max(1.5, tips[:, 1].max() + .8))
+
+
+def _geo_ptsline(ax, d):
+    n = max(2, min(7, int(_f(d.get("n", 4), 4))))
+    L = [str(x) for x in (d.get("labels") or [])] + list("ABCDEFG")
+    xs = np.linspace(-4, 4, n)
+    ax.plot([xs[0], xs[-1]], [0, 0], color=INK, lw=2.4, zorder=2)
+    for i, x in enumerate(xs):
+        _dot(ax, (x, 0), L[i], off=(0, .5))
+    ax.set_xlim(-5, 5)
+    ax.set_ylim(-1.6, 1.6)
+
+
+def _geo_ptsscatter(ax, d):
+    n = max(3, min(7, int(_f(d.get("n", 4), 4))))
+    L = [str(x) for x in (d.get("labels") or [])] + list("ABCDEFG")
+    rng = np.random.RandomState(int(_f(d.get("seed", 3), 3)))
+    th = np.radians(np.linspace(0, 360, n, endpoint=False) + 90 + rng.uniform(-8, 8, n))
+    r = 2.2 + rng.uniform(-.25, .25, n)
+    P = np.c_[r * np.cos(th), r * np.sin(th)]
+    if d.get("all"):
+        for i in range(n):
+            for j in range(i + 1, n):
+                ax.plot([P[i][0], P[j][0]], [P[i][1], P[j][1]], color="#94a3b8", lw=1.3, zorder=1)
+    for i, p in enumerate(P):
+        _dot(ax, p, L[i], off=tuple(p / np.linalg.norm(p) * .5))
+    ax.set_xlim(-3.4, 3.4)
+    ax.set_ylim(-3.4, 3.4)
+
+
+def _geo_lines3(ax, d):
+    """O'da kesişen üç doğru: dirs = doğruların yönleri (0-180, artan); arcs = {kesit_no: yazı}. Kesit k: yön[k] ile yön[k+1] arası (6 kesit)."""
+    dirs = sorted(_f(a) for a in (d.get("dirs") or [20, 70, 125]))[:3]
+    o = np.array([0., 0])
+    cols = [BLUE, GREEN, ORANGE]
+    for i, a in enumerate(dirs):
+        u = np.array([np.cos(np.radians(a)), np.sin(np.radians(a))])
+        _arrow(ax, -3.2 * u, 3.2 * u, both=True, color=cols[i], lw=2.2)
+    allv = dirs + [a + 180 for a in dirs]
+    for k, t in (d.get("arcs") or {}).items():
+        k = int(k)
+        a0, a1 = allv[k % 6], allv[(k + 1) % 6] if (k % 6) < 5 else allv[0] + 360
+        if a1 < a0:
+            a1 += 360
+        _arc_mark(ax, o, a0, a1, r=.8 + .22 * (k % 2), color="#7c3aed" if str(t).strip() in ("?", "x") else ORANGE, label=str(t))
+    _dot(ax, o, "O", off=(.05, -.45))
+    ax.set_xlim(-3.9, 3.9)
+    ax.set_ylim(-3.6, 3.6)
+
+
 def _geo(ax, d):
     sub = str(d.get("sub_type", "polygon")).lower()
     ax.set_aspect("equal")
+    _NEWGEO = {"protractor": _geo_protractor, "clock": _geo_clock, "grid": _geo_grid, "polyfree": _geo_polyfree, "rays": _geo_rays,
+               "ptsline": _geo_ptsline, "ptsscatter": _geo_ptsscatter, "lines3": _geo_lines3}
+    if sub in _NEWGEO:
+        return _NEWGEO[sub](ax, d)
     if sub in ("nested_triangles", "iç_içe_üçgen"):
         return _nested_triangles(ax, d)
     if sub == "two_triangles":
@@ -14851,6 +15059,453 @@ for _f, _it, _kw, _d in _EN_NEW:
     _f.ITEM = _it
 
 
+# ---- 5. SINIF GEOMETRİ: ŞEKİLLİ (görsel) SORU AİLELERİ — açıölçer, saat, ızgara, ölçekli çokgen, ışın demeti, nokta dizisi, üç doğru
+def _gvq(subject, topic, q, cor, wrongs, ex, sh, fmt=str, sort=False):
+    o = _mf_opts(cor, wrongs, fmt, sort=sort)
+    return _mf_raw(subject, topic, q, o, ex, shape=sh) if o else None
+
+
+_GV_DEG = lambda v: f"{v}°"
+_GV_TUR = ["Dar açı", "Dik açı", "Geniş açı", "Doğru açı"]
+
+
+def _gv_tur(a):
+    return "Dar açı" if a < 90 else "Dik açı" if a == 90 else "Geniş açı" if a < 180 else "Doğru açı"
+
+
+# --- açıölçer (5.3.3)
+def _mf_gv_aol_oku(subject):
+    a = random.choice([20, 30, 40, 50, 60, 70, 110, 120, 130, 140, 150, 160])
+    sh = {"type": "geo", "sub_type": "protractor", "degree": a, "base": "right"}
+    return _gvq(subject, "Açı ölçme", "Şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. Açıölçerle ölçülen AOB açısı kaç derecedir?", a,
+                [180 - a, a + 10, a - 10, a + 20], f"OA ışını sağdaki 0°'den başladığı için dış ölçekten okunur: m(AOB) = {a}°.", sh, _GV_DEG, sort=True)
+
+
+def _mf_gv_aol_sol(subject):
+    a = random.choice([20, 30, 40, 50, 60, 70, 110, 120, 130, 140, 150, 160])
+    sh = {"type": "geo", "sub_type": "protractor", "degree": a, "base": "left"}
+    return _gvq(subject, "Açı ölçme", "Şekilde OA ışını açıölçerin sol taraftaki 0° çizgisi üzerindedir. Açıölçerle ölçülen AOB açısı kaç derecedir?", a,
+                [180 - a, a + 10, a - 10, a + 20], f"OA ışını soldaki 0°'den başladığı için iç ölçekten okunur: m(AOB) = {a}°.", sh, _GV_DEG, sort=True)
+
+
+def _mf_gv_aol_tur(subject):
+    a = random.choice([20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160])
+    left = random.random() < .5
+    sh = {"type": "geo", "sub_type": "protractor", "degree": a, "base": "left" if left else "right"}
+    t = _gv_tur(a)
+    return _gvq(subject, "Açı türleri", f"Şekilde OA ışını açıölçerin {'sol taraftaki ' if left else ''}0° çizgisi üzerindedir. AOB açısı hangi açı türündendir?", t,
+                [x for x in _GV_TUR if x != t], f"Açıölçerden m(AOB) = {a}° okunur; bu açı {t.lower()}dır.", sh)
+
+
+def _mf_gv_aol_iki(subject):
+    a = random.choice([20, 30, 40, 50, 60, 70])
+    b = a + random.choice([30, 40, 50, 60, 70])
+    if b > 170:
+        return None
+    sh = {"type": "geo", "sub_type": "protractor", "degree": a, "degree2": b, "base": "right"}
+    c = b - a
+    return _gvq(subject, "Açı ölçme", "Şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. m(BOC) kaç derecedir?", c,
+                [a, b, a + b if a + b <= 180 else 180 - c, 180 - c], f"m(AOB) = {a}° ve m(AOC) = {b}° okunur. m(BOC) = {b}° − {a}° = {c}°.", sh, _GV_DEG, sort=True)
+
+
+def _mf_gv_aol_tum(subject):
+    if random.random() < .5:
+        a = random.choice([20, 30, 40, 50, 60, 70, 80])
+        sh = {"type": "geo", "sub_type": "protractor", "degree": a, "base": "right"}
+        return _gvq(subject, "Toplamı 90° ve 180° olan ikililer", "Şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısının tümleyeni (tümler açısı) kaç derecedir?", 90 - a,
+                    [a, 180 - a, 90 + a, 100 - a], f"m(AOB) = {a}° okunur. Tümleyeni 90° − {a}° = {90 - a}°.", sh, _GV_DEG, sort=True)
+    a = random.choice([40, 50, 60, 70, 110, 120, 130, 140])
+    sh = {"type": "geo", "sub_type": "protractor", "degree": a, "base": "right"}
+    return _gvq(subject, "Toplamı 90° ve 180° olan ikililer", "Şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısının bütünleyeni (bütünler açısı) kaç derecedir?", 180 - a,
+                [a, 90 - a if a < 90 else a - 90, 90 + a if a < 90 else a + 20, 190 - a], f"m(AOB) = {a}° okunur. Bütünleyeni 180° − {a}° = {180 - a}°.", sh, _GV_DEG, sort=True)
+
+
+# --- saat (5.3.3)
+def _mf_gv_saat_aci(subject):
+    h = random.choice([1, 2, 3, 4, 5, 7, 8, 9, 10, 11])
+    a = min(30 * h, 360 - 30 * h)
+    sh = {"type": "geo", "sub_type": "clock", "hour": h, "minute": 0}
+    return _gvq(subject, "Açı ölçme", "Şekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?", a,
+                [360 - a, a + 30, a - 30 if a > 30 else a + 60, a + 60], f"Saat tam {h}.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = {a}°.", sh, _GV_DEG, sort=True)
+
+
+def _mf_gv_saat_30(subject):
+    h = random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+    a = abs(165 - 30 * h)
+    if a == 0:
+        return None
+    sh = {"type": "geo", "sub_type": "clock", "hour": h, "minute": 30}
+    return _gvq(subject, "Açı ölçme", "Şekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?", a,
+                [abs(180 - 30 * h) if abs(180 - 30 * h) != a else a + 30, a + 30, a + 60 if a + 60 <= 180 else a - 30, 180 - a], f"Yelkovan 6'da (180°), akrep {h}. ile {h + 1}. rakamın tam ortasındadır ({30 * h + 15}°). Fark = {a}°.", sh, _GV_DEG, sort=True)
+
+
+def _mf_gv_saat_tur(subject):
+    h = random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+    a = min(30 * h, 360 - 30 * h)
+    t = _gv_tur(a)
+    sh = {"type": "geo", "sub_type": "clock", "hour": h, "minute": 0}
+    return _gvq(subject, "Açı türleri", "Şekildeki saatte akrep ile yelkovanın oluşturduğu küçük açı hangi açı türündendir?", t,
+                [x for x in _GV_TUR if x != t], f"Saat {h}.00 olduğunda iki ibre arası {a}°'dir; bu {t.lower()}dır.", sh)
+
+
+# --- birim kare ızgarası (5.4.1-5.4.3)
+def _gv_rect_cells(w, h, ox=0, oy=0):
+    return [[ox + x, oy + y] for x in range(w) for y in range(h)]
+
+
+def _mf_gv_izg_alan(subject):
+    w, h = random.randint(3, 7), random.randint(2, 5)
+    if w == h:
+        return None
+    sh = {"type": "geo", "sub_type": "grid", "cells": _gv_rect_cells(w, h), "legend": "Her karenin alanı 1 cm² dir."}
+    a = w * h
+    return _gvq(subject, "Dikdörtgenin alanı", "Şekildeki boyalı dikdörtgenin alanı kaç cm²'dir?", a, [2 * (w + h), a + w, a - h, a + h], f"Dikdörtgen {w} sütun ve {h} satır karedir: {w} × {h} = {a} cm².", sh, lambda v: f"{v} cm²", sort=True)
+
+
+def _mf_gv_izg_cevre(subject):
+    w, h = random.randint(3, 8), random.randint(2, 6)
+    if w == h:
+        return None
+    sh = {"type": "geo", "sub_type": "grid", "cells": _gv_rect_cells(w, h), "legend": "Her karenin bir kenarı 1 cm dir."}
+    p = 2 * (w + h)
+    return _gvq(subject, "Dikdörtgenin çevre uzunluğu", "Şekildeki boyalı dikdörtgenin çevre uzunluğu kaç cm'dir?", p, [w * h, w + h, p + 2, p - 2], f"Kenarlar {w} cm ve {h} cm: 2 × ({w} + {h}) = {p} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _mf_gv_izg_kars(subject):
+    k = random.choice([12, 16, 18, 20, 24, 36])
+    pairs = [(a, k // a) for a in range(2, k) if k % a == 0 and a <= k // a and k // a <= 9]
+    if len(pairs) < 2:
+        return None
+    (a1, b1), (a2, b2) = random.sample(pairs, 2)
+    if random.random() < .5:
+        a1, b1, a2, b2 = a2, b2, a1, b1
+    sh = {"type": "geo", "sub_type": "grid", "sets": [_gv_rect_cells(b1, a1), _gv_rect_cells(b2, a2)], "names": ["A", "B"], "legend": "Her karenin bir kenarı 1 cm dir."}
+    p1, p2 = 2 * (a1 + b1), 2 * (a2 + b2)
+    big = "A" if p1 > p2 else "B"
+    ops = [f"Alanları eşit, çevresi daha uzun olan {big} şeklidir", "Alanları eşit, çevreleri de eşittir", f"{'B' if big == 'A' else 'A'} şeklinin hem alanı hem çevresi daha büyüktür", f"{big} şeklinin alanı daha büyüktür, çevreleri eşittir"]
+    return _mf_raw(subject, "Dikdörtgenin alanı ve çevresi", "Şekildeki A ve B dikdörtgenleri için aşağıdakilerden hangisi doğrudur?", (ops, ops[0]),
+                   f"İkisinin de alanı {k} cm²'dir. Çevreler: A = {p1} cm, B = {p2} cm; {big} şeklinin çevresi daha uzundur.", shape=sh)
+
+
+def _mf_gv_izg_eksik(subject):
+    w, h = random.randint(3, 7), random.randint(3, 5)
+    cells = {(x, y) for x in range(w) for y in range(h)}
+    cand = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]
+    m = random.randint(1, 3)
+    miss = set(random.sample(cand, min(m, 4))) if random.random() < .5 else set()
+    if not miss:
+        miss = {(random.randint(1, w - 2), random.randint(1, h - 2))}
+        extra = (random.randint(1, w - 2), random.randint(1, h - 2))
+        miss.add(extra)
+    cells -= miss
+    if not cells:
+        return None
+    mx, my = max(c[0] for c in cells) + 1, max(c[1] for c in cells) + 1
+    if (mx, my) != (w, h):
+        return None
+    k = len(miss)
+    sh = {"type": "geo", "sub_type": "grid", "cells": [list(c) for c in sorted(cells)], "legend": "Her karenin alanı 1 cm² dir."}
+    return _gvq(subject, "Dikdörtgenin alanı", "Şekildeki boyalı bölgenin en az kaç birim kare eklenirse bir dikdörtgen oluşur?", k, [k + 1, k + 2, max(1, k - 1) if k > 1 else k + 3, len(cells)], f"Şekil {w} × {h} = {w * h} karelik bir dikdörtgenin içindedir. {w * h} − {len(cells)} = {k} kare eksiktir.", sh, str, sort=True)
+
+
+# --- ölçekli çokgenler (5.3.5-5.3.7, 5.4)
+def _mf_gv_L_cevre(subject):
+    W, H = random.randint(5, 10), random.randint(5, 9)
+    cw, ch = random.randint(2, W - 2), random.randint(2, H - 2)
+    pts = [[0, 0], [W, 0], [W, H - ch], [W - cw, H - ch], [W - cw, H], [0, H]]
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "side_labels": [f"{W} cm", "", f"{cw} cm", f"{ch} cm", "", f"{H} cm"]}
+    p = 2 * (W + H)
+    return _gvq(subject, "Dikdörtgenin çevre uzunluğu", "Şekildeki L biçimli bölgenin çevre uzunluğu kaç cm'dir? (Köşeler dik açıdır.)", p, [W + H + cw + ch, p - 2 * cw, p + 2 * ch, W + H], f"Dış kenarlar bir dikdörtgenin çevresine eşittir: 2 × ({W} + {H}) = {p} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _mf_gv_L_alan(subject):
+    W, H = random.randint(5, 10), random.randint(5, 9)
+    cw, ch = random.randint(2, W - 2), random.randint(2, H - 2)
+    pts = [[0, 0], [W, 0], [W, H - ch], [W - cw, H - ch], [W - cw, H], [0, H]]
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "side_labels": [f"{W} cm", "", f"{cw} cm", f"{ch} cm", "", f"{H} cm"]}
+    a = W * H - cw * ch
+    return _gvq(subject, "Dikdörtgenin alanı", "Şekildeki L biçimli bölgenin alanı kaç cm²'dir? (Köşeler dik açıdır.)", a, [W * H, cw * ch, W * H + cw * ch, a - cw], f"Büyük dikdörtgenin alanı {W} × {H} = {W * H}; kesilen parça {cw} × {ch} = {cw * ch}. Fark = {a} cm².", sh, lambda v: f"{v} cm²", sort=True)
+
+
+def _mf_gv_U(subject):
+    W, H = random.randint(6, 10), random.randint(5, 8)
+    nw, nd = random.randint(2, W - 4), random.randint(2, H - 2)
+    a0 = (W - nw) // 2
+    pts = [[0, 0], [W, 0], [W, H], [a0 + nw, H], [a0 + nw, H - nd], [a0, H - nd], [a0, H], [0, H]]
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "side_labels": [f"{W} cm", f"{H} cm", "", f"{nd} cm", f"{nw} cm", "", "", ""]}
+    if random.random() < .5:
+        a = W * H - nw * nd
+        return _gvq(subject, "Dikdörtgenin alanı", "Şekildeki bölgenin alanı kaç cm²'dir? (Köşeler dik açıdır.)", a, [W * H, nw * nd, W * H + nw * nd, a + nd], f"{W} × {H} = {W * H}; çıkarılan parça {nw} × {nd} = {nw * nd}. Alan = {a} cm².", sh, lambda v: f"{v} cm²", sort=True)
+    p = 2 * (W + H) + 2 * nd
+    return _gvq(subject, "Dikdörtgenin çevre uzunluğu", "Şekildeki bölgenin çevre uzunluğu kaç cm'dir? (Köşeler dik açıdır.)", p, [2 * (W + H), p - nd, p + nd, W + H + nw + nd], f"Dış çerçeve 2 × ({W} + {H}) = {2 * (W + H)} cm; girinti iki yan kenar ekler (2 × {nd}). Çevre = {p} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _mf_gv_cerceve(subject):
+    t = random.choice([1, 2])
+    W, H = random.randint(8, 14), random.randint(6, 10)
+    if W - 2 * t < 2 or H - 2 * t < 2:
+        return None
+    pts = [[0, 0], [W, 0], [W, H], [0, H]]
+    hole = [[t, t], [W - t, t], [W - t, H - t], [t, H - t]]
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "holes": [hole], "side_labels": [f"{W} m", "", "", f"{H} m"], "texts": [[t / 2, H * 0.8, f"{t} m"]]}
+    a = W * H - (W - 2 * t) * (H - 2 * t)
+    return _gvq(subject, "Dikdörtgenin alanı", "Dikdörtgen biçimli bir bahçenin çevresine, şekilde gösterildiği gibi her yanı aynı genişlikte bir yol yapılmıştır. Yolun alanı kaç m²'dir?", a,
+                [W * H, (W - 2 * t) * (H - 2 * t), a + 2 * t, a - 2 * t], f"Bütün alan {W} × {H} = {W * H}; bahçe {W - 2 * t} × {H - 2 * t} = {(W - 2 * t) * (H - 2 * t)}. Yol = {a} m².", sh, lambda v: f"{v} m²", sort=True)
+
+
+def _mf_gv_kare_dizi(subject):
+    n, a = random.randint(2, 5), random.randint(2, 9)
+    W, H = n * a, a
+    segs = [[a * i, 0, a * i, a] for i in range(1, n)]
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": [[0, 0], [W, 0], [W, H], [0, H]], "segments": segs, "side_labels": ["", "", "", f"{a} cm"]}
+    if random.random() < .5:
+        p = 2 * (n * a + a)
+        return _gvq(subject, "Dikdörtgenin çevre uzunluğu", "Şekilde kenar uzunluğu verilen eş kareler yan yana getirilmiştir. Oluşan dikdörtgenin çevre uzunluğu kaç cm'dir?", p,
+                    [4 * a * n, p + 2 * a, n * a + a, 4 * a], f"Dikdörtgenin uzun kenarı {n} × {a} = {n * a} cm, kısa kenarı {a} cm: 2 × ({n * a} + {a}) = {p} cm.", sh, lambda v: f"{v} cm", sort=True)
+    ar = n * a * a
+    return _gvq(subject, "Dikdörtgenin alanı", "Şekilde kenar uzunluğu verilen eş kareler yan yana getirilmiştir. Oluşan dikdörtgenin alanı kaç cm²'dir?", ar,
+                [a * a, ar + a, 4 * a * n, 2 * (n * a + a)], f"Bir karenin alanı {a} × {a} = {a * a} cm²; {n} kare: {n} × {a * a} = {ar} cm².", sh, lambda v: f"{v} cm²", sort=True)
+
+
+def _gv_reg(n):
+    th = np.radians(90 + 360 * np.arange(n) / n) if False else None
+    import math as _m
+    return [[_m.cos(_m.radians(90 + 360 * i / n + (180 / n if n % 2 == 0 else 0))), _m.sin(_m.radians(90 + 360 * i / n + (180 / n if n % 2 == 0 else 0)))] for i in range(n)]
+
+
+def _mf_gv_duzgun_cevre(subject):
+    n = random.choice([5, 6, 8])
+    a = random.randint(3, 9)
+    sl = [""] * n
+    sl[random.randrange(n)] = f"{a} cm"
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": _gv_reg(n), "side_labels": sl, "ticks": [list(range(n))], "vlabels": list("ABCDEFGH")[:n]}
+    p = n * a
+    return _gvq(subject, "Çokgenlerin kenar özellikleri", "Şekildeki düzgün çokgenin çevre uzunluğu kaç cm'dir?", p, [(n - 1) * a, (n + 1) * a, 2 * a, n + a], f"Tüm kenarları eşit olan çokgenin {n} kenarı vardır: {n} × {a} = {p} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _mf_gv_duzgun_kenar(subject):
+    n = random.choice([5, 6, 8])
+    a = random.randint(3, 9)
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": _gv_reg(n), "ticks": [list(range(n))], "vlabels": list("ABCDEFGH")[:n], "center_label": f"Çevre = {n * a} cm"}
+    return _gvq(subject, "Çokgenlerin kenar özellikleri", "Şekilde çevre uzunluğu yazılı düzgün çokgenin bir kenarı kaç cm'dir?", a, [a + 1, a - 1, n * a - n, a + 2], f"Çokgenin {n} eş kenarı vardır: {n * a} ÷ {n} = {a} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _gv_tri_pts(a, b, c):
+    """Kenarları BC=a, CA=b, AB=c olan üçgenin (ölçekli) köşeleri; geçersizse None."""
+    if a + b <= c or a + c <= b or b + c <= a:
+        return None
+    x = (b * b + c * c - a * a) / (2.0 * c)
+    y2 = b * b - x * x
+    if y2 <= 0.01:
+        return None
+    return [[0, 0], [c, 0], [x, y2 ** .5]]
+
+
+def _gv_pyth(a, b, c):
+    s = sorted([a, b, c])
+    return s[0] ** 2 + s[1] ** 2 == s[2] ** 2
+
+
+def _mf_gv_ucgen_cevre(subject):
+    for _ in range(30):
+        a, b, c = random.randint(3, 12), random.randint(3, 12), random.randint(3, 12)
+        if len({a, b, c}) == 3 and _gv_tri_pts(a, b, c) and not _gv_pyth(a, b, c):
+            break
+    else:
+        return None
+    pts = _gv_tri_pts(a, b, c)
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "vlabels": ["A", "B", "C"], "side_labels": [f"{c} cm", f"{a} cm", f"{b} cm"]}
+    p = a + b + c
+    return _gvq(subject, "Üçgenin kenar özellikleri", "Şekildeki ABC üçgeninin çevre uzunluğu kaç cm'dir?", p, [p - min(a, b, c), p + 2, p - 3, max(a, b, c) * 3], f"Çevre = {c} + {a} + {b} = {p} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _mf_gv_ucgen_tur(subject):
+    kind = random.choice(["eşkenar", "ikizkenar", "çeşitkenar"])
+    if kind == "eşkenar":
+        a = random.randint(4, 10)
+        s3 = (a, a, a)
+    elif kind == "ikizkenar":
+        a = random.randint(4, 10)
+        b = random.choice([x for x in range(3, 12) if x != a and x < 2 * a])
+        s3 = (b, a, a)
+    else:
+        for _ in range(30):
+            s3 = tuple(random.randint(3, 12) for _ in range(3))
+            if len(set(s3)) == 3 and _gv_tri_pts(*s3) and not _gv_pyth(*s3):
+                break
+        else:
+            return None
+    a_, b_, c_ = s3
+    pts = _gv_tri_pts(a_, b_, c_)
+    if not pts:
+        return None
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "vlabels": ["A", "B", "C"], "side_labels": [f"{c_} cm", f"{a_} cm", f"{b_} cm"]}
+    names = {"eşkenar": "Eşkenar üçgen", "ikizkenar": "İkizkenar üçgen", "çeşitkenar": "Çeşitkenar üçgen"}
+    t = names[kind]
+    return _gvq(subject, "Üçgenin kenar özellikleri", "Şekildeki üçgen, kenar uzunluklarına göre hangi türdendir?", t, [v for v in list(names.values()) + ["Dik üçgen"] if v != t],
+                f"Kenarlar {a_} cm, {b_} cm ve {c_} cm olduğundan üçgen {t.lower()}dir.", sh)
+
+
+def _mf_gv_ucgen_eksik(subject):
+    for _ in range(30):
+        a, b, c = random.randint(4, 12), random.randint(4, 12), random.randint(4, 12)
+        if _gv_tri_pts(a, b, c) and len({a, b, c}) >= 2 and not _gv_pyth(a, b, c):
+            break
+    else:
+        return None
+    pts = _gv_tri_pts(a, b, c)
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "vlabels": ["A", "B", "C"], "side_labels": [f"{c} cm", f"{a} cm", "?"], "center_label": f"Çevre = {a + b + c} cm"}
+    return _gvq(subject, "Üçgenin kenar özellikleri", "Şekildeki ABC üçgeninin çevre uzunluğu yazılmıştır. Uzunluğu bilinmeyen kenar kaç cm'dir?", b, [a + b + c - a, b + 2, b - 2 if b > 3 else b + 3, a + c], f"{a + b + c} − ({c} + {a}) = {b} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _mf_gv_ikizkenar_cevre(subject):
+    a = random.randint(4, 10)
+    b = random.choice([x for x in range(3, 12) if x != a and x < 2 * a])
+    pts = _gv_tri_pts(b, a, a)
+    if not pts:
+        return None
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "vlabels": ["A", "B", "C"], "side_labels": [f"{a} cm", "", ""], "ticks": [[1, 2]]}
+    sh["side_labels"] = [f"{a} cm", "", ""]
+    sh["pts"] = [[0, 0], [a, 0], [a / 2.0, (a * a - (a / 2.0) ** 2) ** .5]] if False else pts
+    # AB = c = a (taban değil): üçgen AB=a, AC=a eşit; BC = b taban
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": _gv_tri_pts(b, a, a), "vlabels": ["A", "B", "C"], "side_labels": [f"{a} cm", f"{b} cm", ""], "ticks": [[0, 2]]}
+    p = 2 * a + b
+    return _gvq(subject, "Üçgenin kenar özellikleri", "Şekildeki ABC ikizkenar üçgeninde eşit kenarlar işaretlenmiştir. Üçgenin çevre uzunluğu kaç cm'dir?", p, [a + b, 3 * a, p + a, 2 * b + a], f"İşaretli iki kenar eşittir ({a} cm): {a} + {a} + {b} = {p} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+def _mf_gv_kosegen(subject):
+    n = random.choice([5, 6, 7, 8])
+    pts = _gv_reg(n)
+    segs = [pts[0] + pts[j] for j in range(2, n - 1)]
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "vlabels": list("ABCDEFGH")[:n], "segments": segs}
+    return _gvq(subject, "Çokgenlerin elemanları", "Şekilde A köşesinden çizilen kesik çizgiler köşegenleri göstermektedir. Bu çokgenin A köşesinden çizilebilecek köşegen sayısı kaçtır?", n - 3,
+                [n - 2, n - 1, n, n - 4 if n > 5 else n + 1], f"Bir köşeden, kendisi ve komşu iki köşe dışındaki köşelere köşegen çizilir: {n} − 3 = {n - 3}.", sh, str, sort=True)
+
+
+def _mf_gv_cokgen_kose(subject):
+    n = random.choice([3, 4, 5, 6, 7, 8])
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": _gv_reg(n), "vlabels": list("ABCDEFGH")[:n]}
+    if random.random() < .5:
+        return _gvq(subject, "Çokgenlerin elemanları", "Şekildeki çokgenin köşe sayısı ile kenar sayısının toplamı kaçtır?", 2 * n, [n, 2 * n + 2, 2 * n - 2, n + 1], f"Bir çokgenin köşe ve kenar sayısı eşittir: {n} + {n} = {2 * n}.", sh, str, sort=True)
+    return _gvq(subject, "Çokgenlerin elemanları", "Şekildeki çokgenin açı sayısı ile köşe sayısının toplamı kaçtır?", 2 * n, [n, 2 * n + 1, 2 * n - 1, 3 * n], f"Açı, köşe ve kenar sayıları eşittir: {n} + {n} = {2 * n}.", sh, str, sort=True)
+
+
+def _mf_gv_dik_say(subject):
+    kinds = {
+        "dik üçgen": ([[0, 0], [4, 0], [0, 3]], [0], 1),
+        "dikdörtgen": ([[0, 0], [5, 0], [5, 3], [0, 3]], [0, 1, 2, 3], 4),
+        "dik yamuk": ([[0, 0], [5, 0], [3, 3], [0, 3]], [0, 3], 2),
+        "ev": ([[0, 0], [4, 0], [4, 3], [2, 4.8], [0, 3]], [0, 1], 2),
+    }
+    k = random.choice(list(kinds))
+    pts, rts, cnt = kinds[k]
+    sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "rights": rts, "vlabels": list("ABCDE")[:len(pts)]}
+    return _gvq(subject, "Çokgenlerin açı özellikleri", "Şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?", cnt, [x for x in (1, 2, 3, 4, 5) if x != cnt], f"Şekilde {cnt} köşede dik açı işareti vardır.", sh, str, sort=True)
+
+
+# --- ışın demeti / nokta dizileri (5.3.1, 5.3.3)
+def _mf_gv_aci_sayisi(subject):
+    m = random.choice([3, 4, 5])
+    base = random.choice([0, 10, 20])
+    step = random.choice([30, 35, 40]) if m < 5 else random.choice([30, 35])
+    angs = [base + step * i for i in range(m)]
+    sh = {"type": "geo", "sub_type": "rays", "angs": angs, "labels": ["O"] + list("ABCDE")[:m]}
+    c = m * (m - 1) // 2
+    return _gvq(subject, "Açı ölçme", "Şekilde köşesi O olan ışınlar gösterilmiştir. Bu ışınlardan ikisi seçilerek oluşturulabilecek kaç farklı açı vardır?", c, [m, c + 1, c - 1, 2 * m], f"{m} ışından ikisi seçilir: " + ("3" if m == 3 else "6" if m == 4 else "10") + " farklı açı oluşur.", sh, str, sort=True)
+
+
+def _mf_gv_dp_say(subject):
+    n = random.choice([3, 4, 5, 6])
+    sh = {"type": "geo", "sub_type": "ptsline", "n": n}
+    c = n * (n - 1) // 2
+    return _gvq(subject, "Doğru parçası", "Şekildeki doğru parçası üzerinde işaretli noktalar bulunmaktadır. Uç noktaları bu noktalardan ikisi olan kaç farklı doğru parçası vardır?", c, [n, c + 1, c - 1, 2 * n], f"{n} noktadan ikisi seçilir: {c} doğru parçası.", sh, str, sort=True)
+
+
+def _mf_gv_dp_nokta(subject):
+    n = random.choice([4, 5, 6])
+    sh = {"type": "geo", "sub_type": "ptsscatter", "n": n, "seed": random.randint(1, 50)}
+    c = n * (n - 1) // 2
+    return _gvq(subject, "Doğru parçası", "Şekildeki noktalardan hiçbir üçü aynı doğru üzerinde değildir. Bu noktalardan ikisi birleştirilerek kaç farklı doğru parçası çizilebilir?", c, [n, c + 1, c - 1, 2 * n], f"{n} noktadan ikisi seçilir: {c} farklı doğru parçası.", sh, str, sort=True)
+
+
+# --- iki/üç doğrunun oluşturduğu açılar (5.3.4)
+def _gv_l3(dirs):
+    a1, a2, a3 = dirs
+    return [a2 - a1, a3 - a2, 180 - (a3 - a1)]
+
+
+def _mf_gv_uc_dogru(subject):
+    for _ in range(30):
+        a1 = random.choice([10, 20, 30])
+        s = [random.choice([30, 35, 40, 45, 50, 55, 60]) for _ in range(2)]
+        s3 = 180 - s[0] - s[1]
+        if s3 >= 25 and s3 not in s:
+            break
+    else:
+        return None
+    dirs = [a1, a1 + s[0], a1 + s[0] + s[1]]
+    ask = random.choice([2, 1, 0])
+    vals = [s[0], s[1], s3]
+    arcs = {str(i): (f"{vals[i]}°" if i != ask else "x") for i in range(3)}
+    sh = {"type": "geo", "sub_type": "lines3", "dirs": dirs, "arcs": arcs}
+    x = vals[ask]
+    given = [vals[i] for i in range(3) if i != ask]
+    return _gvq(subject, "Açı ilişkileri", "Şekilde üç doğru O noktasında kesişmektedir. x ile gösterilen açının ölçüsü kaç derecedir?", x, [x + 10, x - 10, 180 - x, 90 - given[0] if given[0] < 90 else x + 20],
+                f"Yan yana üç açının toplamı doğru açıdır: 180° − {given[0]}° − {given[1]}° = {x}°.", sh, _GV_DEG, sort=True)
+
+
+# --- açı türünü şekilden bulma / çember elemanları (5.3.1-5.3.4)
+def _mf_gv_aci_tur_bak(subject):
+    a = random.choice([25, 35, 45, 55, 65, 115, 125, 135, 145, 155])
+    sh = {"type": "geo", "sub_type": "angle", "degree": a, "rotation": random.choice([0, 10, 20]), "labels": ["O", "A", "B"]}
+    t = _gv_tur(a)
+    return _gvq(subject, "Açı türleri", "Şekildeki AOB açısı hangi açı türündendir?", t, [x for x in _GV_TUR if x != t], f"Açı dik açıdan {'küçük' if a < 90 else 'büyük'} (ve doğru açıdan küçük) olduğundan {t.lower()}dır.", sh)
+
+
+def _mf_gv_dik_say2(subject):
+    tilt = random.choice([0, 10, 20, 30, 40])
+    sh = {"type": "geo", "sub_type": "perpendicular", "tilt": tilt}
+    return _gvq(subject, "Açı türleri", "Şekildeki d₁ ve d₂ doğruları O noktasında kesişmektedir. Kesişme noktasında oluşan açılardan kaçı dik açıdır?", 4, [1, 2, 3], "Dik kesişen iki doğru dört dik açı oluşturur.", sh, str, sort=True)
+
+
+def _mf_gv_cember_el(subject):
+    L = random.sample(list("ABCDEFGHK"), 5)
+    sh = {"type": "geo", "sub_type": "circle_parts", "parts": ["radius", "diameter", "chord"], "center": "O", "labels": L}
+    pick = random.choice(["yarıçap", "çap", "kiriş"])
+    seg = {"yarıçap": f"[O{L[0]}]", "çap": f"[{L[1]}{L[2]}]", "kiriş": f"[{L[3]}{L[4]}]"}[pick]
+    t = pick.capitalize()
+    return _gvq(subject, "Çember ve daire elemanları", f"Şekilde O merkezli çember üzerindeki {seg} doğru parçası çemberin hangi elemanıdır?", t, [x for x in ["Yarıçap", "Çap", "Kiriş", "Teğet"] if x != t],
+                f"{seg} " + {"yarıçap": "merkezi çember üzerindeki bir noktaya birleştirir: yarıçaptır.", "çap": "merkezden geçen kirişdir: çaptır.", "kiriş": "çember üzerindeki iki noktayı birleştirir ve merkezden geçmez: kiriştir."}[pick], sh)
+
+
+def _mf_gv_cember_dizi(subject):
+    n = random.randint(2, 5)
+    r = random.choice([2, 3, 4, 5, 6])
+    sh = {"type": "geo", "sub_type": "nested_circles", "mode": "chain", "n": n, "labels": [f"{r} cm", "?"]}
+    L = 2 * r * n
+    return _gvq(subject, "Çember ve daire elemanları", "Şekilde yarıçapı verilen eş çemberler yan yana, birbirine değecek biçimde dizilmiştir. Çemberlerin dizildiği toplam uzunluk kaç cm'dir?", L, [r * n, L + r, L - r, 2 * r + n], f"Bir çemberin çapı 2 × {r} = {2 * r} cm; {n} çember: {n} × {2 * r} = {L} cm.", sh, lambda v: f"{v} cm", sort=True)
+
+
+_GV_FAMS = [
+    (_mf_gv_aol_oku, ("açı ölç", "açıölçer"), 4, ["MAT.5.3.3"]), (_mf_gv_aol_sol, ("açı ölç", "açıölçer"), 4, ["MAT.5.3.3"]), (_mf_gv_aol_tur, ("açı ölç", "açı tür"), 3, ["MAT.5.3.3"]),
+    (_mf_gv_aol_iki, ("açı ölç", "açıölçer"), 5, ["MAT.5.3.3"]), (_mf_gv_aol_tum, ("açı ölç", "açı ilişki", "tümler", "bütünler"), 5, ["MAT.5.3.4"]),
+    (_mf_gv_saat_aci, ("açı ölç", "saat"), 4, ["MAT.5.3.3"]), (_mf_gv_saat_30, ("açı ölç", "saat"), 5, ["MAT.5.3.3"]), (_mf_gv_saat_tur, ("açı tür", "açı ölç"), 3, ["MAT.5.3.3"]),
+    (_mf_gv_izg_alan, ("alan", "birim kare"), 3, ["MAT.5.4.2"]), (_mf_gv_izg_cevre, ("çevre",), 4, ["MAT.5.4.1"]), (_mf_gv_izg_kars, ("alan", "çevre"), 5, ["MAT.5.4.3"]),
+    (_mf_gv_izg_eksik, ("alan", "birim kare"), 5, ["MAT.5.4.2"]), (_mf_gv_L_cevre, ("çevre",), 5, ["MAT.5.4.4"]), (_mf_gv_L_alan, ("alan",), 5, ["MAT.5.4.4"]),
+    (_mf_gv_U, ("alan", "çevre"), 5, ["MAT.5.4.4"]), (_mf_gv_cerceve, ("alan",), 5, ["MAT.5.4.4"]), (_mf_gv_kare_dizi, ("alan", "çevre"), 4, ["MAT.5.4.3"]),
+    (_mf_gv_duzgun_cevre, ("çokgen", "kenar"), 3, ["MAT.5.3.6"]), (_mf_gv_duzgun_kenar, ("çokgen", "kenar"), 4, ["MAT.5.3.6"]),
+    (_mf_gv_ucgen_cevre, ("üçgen", "kenar", "çokgen"), 3, ["MAT.5.3.7"]), (_mf_gv_ucgen_tur, ("üçgen", "kenar"), 3, ["MAT.5.3.7"]), (_mf_gv_ucgen_eksik, ("üçgen", "kenar"), 4, ["MAT.5.3.7"]),
+    (_mf_gv_ikizkenar_cevre, ("üçgen", "kenar"), 3, ["MAT.5.3.7"]), (_mf_gv_kosegen, ("çokgen", "köşegen"), 4, ["MAT.5.3.5"]), (_mf_gv_cokgen_kose, ("çokgen",), 3, ["MAT.5.3.5"]),
+    (_mf_gv_dik_say, ("çokgen", "açı"), 3, ["MAT.5.3.6"]), (_mf_gv_aci_sayisi, ("açı ölç", "ışın"), 5, ["MAT.5.3.3"]), (_mf_gv_dp_say, ("doğru parça", "doğru", "ışın"), 5, ["MAT.5.3.1"]),
+    (_mf_gv_dp_nokta, ("doğru parça", "doğru", "nokta"), 5, ["MAT.5.3.1"]), (_mf_gv_uc_dogru, ("açı ilişki", "açı ölç"), 5, ["MAT.5.3.4"]), (_mf_gv_aci_tur_bak, ("açı tür", "açı ölç"), 3, ["MAT.5.3.3"]),
+    (_mf_gv_cember_el, ("çember",), 3, ["MAT.5.3.2"]),
+]
+_GV_VIS = {f.__name__ for f, _k, _d, _c in _GV_FAMS}
+for _f, _kw, _d, _cd in _GV_FAMS:
+    _MF_GENS.append((_f, _kw, (5,)))
+    _DIFF_OF[_f.__name__] = _d
+
+
 def _tr_par_pick():
     return random.choice(_TR_PAR)
 
@@ -21098,6 +21753,8 @@ _MF_ITEMCODE = {  # Matematik kalıbı → kazanım kodu (birden çok temada ge�
     "_mf_tab_top": ["MAT.5.5.1"], "_mf_tab_tum": ["MAT.5.5.1"], "_mf_tab_fark": ["MAT.5.5.1"], "_mf_tab_karar": ["MAT.5.5.1"], "_mf_tab_yorum": ["MAT.5.5.2"], "_mf_cetele_say": ["MAT.5.5.1"], "_mf_cetele_top": ["MAT.5.5.1"],
     "_mf_probdeg": ["MAT.5.6.1"], "_mf_prob_kart": ["MAT.5.6.1"], "_mf_prob_zar": ["MAT.5.6.2"], "_mf_probmost": ["MAT.5.6.2"], "_mf_prob_bilye": ["MAT.5.6.2"],
 }
+for _f, _kw, _d, _cd in _GV_FAMS:
+    _MF_ITEMCODE[_f.__name__] = _cd
 
 
 # ---------------------------------------------------------------- 5. SINIF MATEMATİK: tek kalıplı kazanımlara yeni kalıplar (metinde verilen her değer soruda yazılıdır; cevap kodla hesaplanır)
@@ -21296,7 +21953,7 @@ def _dl_filter(byname, dl, subject, grade_label, topics):
     if not dl or not byname:
         return byname
     dist = lambda k: abs(_DIFF_OF.get(k, 3) - dl)
-    keep = {k for k in byname if dist(k) <= 1}
+    keep = {k for k in byname if dist(k) <= 1 or (k in _GV_VIS and dist(k) <= 2)}  # şekilli geometri aileleri bir kademe fazla toleranslı
     items = _topic_items(subject, grade_label, topics)
     groups = {}
     if len(items) >= 2:
