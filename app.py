@@ -11913,7 +11913,7 @@ def _tf_dk_gezi(subject):
 _DERS = ["Türkçe", "Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "İngilizce", "Müzik", "Beden Eğitimi", "Görsel Sanatlar"]
 
 
-def _tf_dk_program(subject):
+def _tf_dk_program0(subject):
     rows = []
     for i in range(5):
         ds = random.sample(_DERS, 3)
@@ -11937,6 +11937,14 @@ def _tf_dk_program(subject):
             return None
         return _dk_pick(subject, f"{_dk_intro()}, {k}. ders saatinde {c} dersi hangi gün vardır?", gunler[0], [x[0] for x in rows if x[0] != gunler[0]], f"{k}. ders sütununda {c} yalnızca {gunler[0]} satırında yazar.", sh)
     return _dk_pick(subject, f"{_dk_intro()}, {r[0]} günü {k}. ders hangisidir?", c, wr, f"{r[0]} satırı ile {k}. Ders sütununun kesiştiği yerde {c} yazar.", sh)
+
+
+def _tf_dk_program(subject):
+    for _ in range(8):  # eşsiz yanıt çıkmayan denemeler tekrar edilir
+        r = _tf_dk_program0(subject)
+        if r:
+            return r
+    return None
 
 
 # ---- 9) Yemekhane menüsü
@@ -25179,10 +25187,7 @@ def parse_results(html, n):
 
 def _scrape(query, n):
     url = "https://www.youtube.com/results?" + urllib.parse.urlencode({"search_query": query, "hl": "tr", "gl": "TR", "sp": "EgIQAQ=="})
-    req = urllib.request.Request(url, headers={"User-Agent": _UA, "Accept-Language": "tr-TR,tr;q=0.9", "Cookie": "CONSENT=YES+cb; SOCS=CAI"})
-    with urllib.request.urlopen(req, timeout=12) as resp:
-        html = resp.read().decode("utf-8", "ignore")
-    return parse_results(html, n)
+    return parse_results(_get(url), n)
 
 
 def _lib(query, n):
@@ -25192,24 +25197,72 @@ def _lib(query, n):
              "views": r.get("views", ""), "published": r.get("publish_time", "")} for r in res if r.get("id")]
 
 
+CH_ID = "UCa2grMxn8HQQHD_PD-_FnLg"  # youtube.com/@ortaokulAİ (OrtaokulAİ) — konu varsa mutlaka eklenir
+CH_NAME = "OrtaokulAİ"
+CH_TAKE = 4  # her aramada en fazla bu kadar kanal videosu en üste konur
+
+
+def _get(url, timeout=12):
+    req = urllib.request.Request(url, headers={"User-Agent": _UA, "Accept-Language": "tr-TR,tr;q=0.9", "Cookie": "CONSENT=YES+cb; SOCS=CAI"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode("utf-8", "ignore")
+
+
+def _tok(t):
+    return [w[:5] for w in re.findall(r"[a-zçğıöşüâîû0-9]{4,}", str(t or "").lower().replace("İ", "i").replace("I", "ı"))]
+
+
+def _channel_videos(cq, n):
+    """OrtaokulAİ kanalında konuya göre arama; olmazsa genel aramada kanal filtresi; olmazsa kanal RSS akışında başlık eşleşmesi."""
+    out = []
+    try:  # 1) kanalın kendi arama sayfası
+        out = parse_results(_get(f"https://www.youtube.com/channel/{CH_ID}/search?" + urllib.parse.urlencode({"query": cq, "hl": "tr", "gl": "TR"})), n)
+    except Exception:
+        out = []
+    if not out:
+        try:  # 2) genel arama + kanal adı filtresi
+            r = parse_results(_get("https://www.youtube.com/results?" + urllib.parse.urlencode({"search_query": f"{CH_NAME} {cq}", "hl": "tr", "gl": "TR", "sp": "EgIQAQ=="})), 20)
+            out = [v for v in r if "ortaokula" in v.get("channel", "").lower().replace("İ", "i").replace("ı", "i").replace(" ", "")][:n]
+        except Exception:
+            out = []
+    if not out:
+        try:  # 3) kanal RSS akışı: başlıkta konu kelimeleri geçenler
+            xml = _get(f"https://www.youtube.com/feeds/videos.xml?channel_id={CH_ID}")
+            want = set(_tok(cq))
+            for m in re.finditer(r"<entry>.*?<yt:videoId>([^<]+)</yt:videoId>.*?<title>([^<]+)</title>", xml, re.S):
+                title = (m.group(2).replace("&amp;", "&").replace("&#39;", "'").replace("&quot;", '"'))
+                if want & set(_tok(title)):
+                    out.append({"id": m.group(1), "title": title, "channel": CH_NAME, "duration": "", "views": "", "published": ""})
+                if len(out) >= n:
+                    break
+        except Exception:
+            out = []
+    for v in out:
+        v["pinned"] = True
+        v["channel"] = v.get("channel") or CH_NAME
+    return out
+
+
 @st.cache_data(ttl=3600, show_spinner=False)
-def search_youtube(query, n=8):
-    """(sonuçlar, hata) döndürür. Önce kendi arama kodu, olmazsa youtube-search kütüphanesi (kuruluysa)."""
+def search_youtube(query, n=8, cq=""):
+    """(sonuçlar, hata): önce OrtaokulAİ kanalındaki konu videoları, sonra genel arama. Önce kendi arama kodu, olmazsa youtube-search (kuruluysa)."""
     err = ""
+    ch = _channel_videos(cq or query, CH_TAKE)[:max(1, min(CH_TAKE, n))]
+    gen = []
     try:
-        r = _scrape(query, n)
-        if r:
-            return r, ""
-        err = "YouTube sonuç döndürmedi"
+        gen = _scrape(query, n + len(ch))
+        if not gen:
+            err = "YouTube sonuç döndürmedi"
     except Exception as e:
         err = f"{type(e).__name__}"
-    try:
-        r = _lib(query, n)
-        if r:
-            return r, ""
-    except Exception:
-        pass
-    return [], err
+    if not gen:
+        try:
+            gen = _lib(query, n + len(ch))
+        except Exception:
+            pass
+    ids = {v["id"] for v in ch}
+    res = ch + [v for v in gen if v["id"] not in ids]
+    return res[:max(n, len(ch))], ("" if res else err)
 
 
 def _clean(t):
@@ -25245,7 +25298,8 @@ def _run_search(q, meta, n):
     st.session_state["vd_q"] = q
     st.session_state["vd_meta"] = meta
     with st.spinner(f"“{q}” aranıyor..."):
-        res, err = search_youtube(q, n)
+        cq = " ".join(x for x in [meta.get("ders", ""), meta.get("konu", "")] if x) or q
+        res, err = search_youtube(q, n, cq)
     st.session_state["vd_res"] = res
     st.session_state["vd_err"] = err
     st.session_state["vd_play"] = res[0]["id"] if res else ""
@@ -25269,6 +25323,8 @@ def _card(v, meta, key, saved_tab=False):
             except Exception:
                 pass
         with c2:
+            if v.get("pinned") or "ortaokulai" in str(v.get("channel", "")).lower().replace("İ", "i").replace("ı", "i"):
+                st.markdown("🎓 **OrtaokulAİ kanalı**")
             st.markdown(f"**{v.get('title', '')}**")
             st.caption(f"📺 {v.get('channel', '')} • ⏱️ {v.get('duration', '')}" + (f" • 👁️ {v['views']}" if v.get("views") else ""))
             if saved_tab and (v.get("ders") or v.get("konu")):
