@@ -3160,6 +3160,28 @@ def _bio_icon(ax, kind, cx, cy, s=1.0):
         ax.plot([cx - .1 * s, cx - .1 * s], [cy - .55 * s, cy - 1.0 * s], color="#92400e", lw=2, zorder=2)
         ax.plot([cx + .2 * s, cx + .2 * s], [cy - .55 * s, cy - 1.0 * s], color="#92400e", lw=2, zorder=2)
         ax.add_patch(Polygon([[cx + .7 * s, cy - .1 * s], [cx + 1.3 * s, cy + .2 * s], [cx + 1.25 * s, cy - .3 * s]], closed=True, fc="#3b82f6", ec="#1e3a8a", lw=1.2, zorder=2))
+    elif kind == "lale":
+        ax.plot([cx, cx], [cy - 1.1 * s, cy + .1 * s], color="#15803d", lw=3, zorder=2)
+        ax.add_patch(Ellipse((cx - .35 * s, cy - .7 * s), .8 * s, .3 * s, angle=35, fc="#4ade80", ec="#15803d", lw=1, zorder=2))
+        ax.add_patch(Polygon([[cx - .55 * s, cy + .05 * s], [cx - .55 * s, cy + .85 * s], [cx - .2 * s, cy + .55 * s], [cx, cy + .95 * s], [cx + .2 * s, cy + .55 * s], [cx + .55 * s, cy + .85 * s], [cx + .55 * s, cy + .05 * s]], closed=True, fc="#ef4444", ec="#7f1d1d", lw=1.2, zorder=3))
+    elif kind == "papatya":
+        ax.plot([cx, cx], [cy - 1.1 * s, cy + .2 * s], color="#15803d", lw=3, zorder=2)
+        for a in range(0, 360, 36):
+            ax.add_patch(Ellipse((cx + .5 * s * np.cos(np.radians(a)), cy + .6 * s + .5 * s * np.sin(np.radians(a))), .5 * s, .2 * s, angle=a, fc="white", ec="#94a3b8", lw=.9, zorder=3))
+        ax.add_patch(Circle((cx, cy + .6 * s), .24 * s, fc="#facc15", ec="#a16207", lw=1, zorder=4))
+    elif kind == "ağaç":
+        ax.add_patch(Rectangle((cx - .15 * s, cy - 1.2 * s), .3 * s, .9 * s, fc="#92400e", ec="none", zorder=2))
+        for (dx, dy, r) in ((0, .45, .62), (-.5, .05, .5), (.5, .05, .5)):
+            ax.add_patch(Circle((cx + dx * s, cy + dy * s), r * s, fc="#22c55e", ec="#166534", lw=1.1, zorder=3))
+    elif kind == "kedi":
+        ax.add_patch(Polygon([[cx - .8 * s, cy + .25 * s], [cx - .65 * s, cy + 1.0 * s], [cx - .2 * s, cy + .6 * s]], closed=True, fc="#a8a29e", ec="#44403c", lw=1.3, zorder=3))
+        ax.add_patch(Polygon([[cx + .8 * s, cy + .25 * s], [cx + .65 * s, cy + 1.0 * s], [cx + .2 * s, cy + .6 * s]], closed=True, fc="#a8a29e", ec="#44403c", lw=1.3, zorder=3))
+        ax.add_patch(Circle((cx, cy - .1 * s), .85 * s, fc="#a8a29e", ec="#44403c", lw=1.4, zorder=4))
+        for sx in (-1, 1):
+            ax.add_patch(Circle((cx + sx * .33 * s, cy), .11 * s, fc="#111827", ec="none", zorder=5))
+            ax.plot([cx + sx * .2 * s, cx + sx * .95 * s], [cy - .3 * s, cy - .22 * s], color="#44403c", lw=1, zorder=5)
+            ax.plot([cx + sx * .2 * s, cx + sx * .95 * s], [cy - .38 * s, cy - .5 * s], color="#44403c", lw=1, zorder=5)
+        ax.add_patch(Polygon([[cx - .1 * s, cy - .25 * s], [cx + .1 * s, cy - .25 * s], [cx, cy - .38 * s]], closed=True, fc="#f472b6", ec="none", zorder=5))
     elif kind == "mantar":
         _bio_mushroom(ax, {}, cx, cy - 1.0 * s, .32 * s)
     elif kind == "zehirli mantar":
@@ -21717,7 +21739,7 @@ def _cd_cards(n, need=None):
         ks.append(random.choice(c))
     random.shuffle(ks)
     lb = random.sample(_CD_L, len(ks))
-    return ks, lb, {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 4, **({"caption": "Mikroskobik canlılar mikroskopla görüldükleri biçimde çizilmiştir."} if any(k in _MIKRO for k in ks) else {})}
+    return ks, lb, {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 4, **({"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir."} if any(k in _MIKRO for k in ks) else {})}
 
 
 def _ff_cd_kart_tek(subject):
@@ -21806,6 +21828,206 @@ for _f, _kw, _d, _it in _CD_FAMS:
     _FF_GENS.append((_f, _kw))
     _DIFF_OF[_f.__name__] = _d
 _CD_VIS = {f.__name__ for f, _k, _d, _i in _CD_FAMS}
+
+
+# ---- Canlılar Dünyası: ek aileler (2. dalga)
+_CD_GRUP["bitki"] = ["gül", "çam", "lale", "papatya", "ağaç"]
+_CD_GRUP["hayvan"] = ["balık", "kelebek", "kuş", "kedi"]
+_CD_GRUP["mantar"] = ["mantar", "zehirli mantar"]
+_CD_AD.update({"lale": "Lale", "papatya": "Papatya", "ağaç": "Meşe ağacı", "kedi": "Kedi", "zehirli mantar": "Zehirli şapkalı mantar"})
+_CD_GRP_OF.update({k: g for g, v in _CD_GRUP.items() for k in v})
+_CD_GAD1 = {"bitki": "Bitki", "hayvan": "Hayvan", "mantar": "Mantar", "mikro": "Mikroskobik canlı"}
+_CD_SONUC = {"light": ("Işık kaynağı", "Örnek aydınlatılamaz ve görüntü net görülemez."), "knob": ("Ayar vidası", "Görüntü netleştirilemez."),
+             "stage": ("Tabla", "İncelenecek örnek yerleştirilemez."), "ocular": ("Göz merceği", "Görüntü gözle incelenemez."), "objective": ("Objektif", "Örnek büyütülerek görülemez.")}
+_CD_HAREKET = {"amip": "Yalancı ayak", "paramesyum": "Kirpik", "öglena": "Kamçı"}
+_CD_MKC = {"amip": "vücut şeklini sürekli değiştiren", "paramesyum": "vücudu kirpiklerle kaplı olan", "öglena": "yeşil renkli ve kamçılı olan", "bakteri": "çubuk ya da yuvarlak biçimli, çok küçük olan"}
+
+
+def _ff_cd_mik_sonuc(subject):
+    parts, lab, sh = _cd_mik(subject)
+    cand = [p for p in parts if p in _CD_SONUC]
+    if not cand:
+        return None
+    p = random.choice(cand)
+    o = _yn_opts(_CD_SONUC[p][1], [v[1] for k, v in _CD_SONUC.items() if k != p])
+    return _mf_raw(subject, _CD_T, f"Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. {lab[p]} ile gösterilen kısım mikroskopta bulunmasaydı aşağıdakilerden hangisi yaşanırdı?", o, f"{lab[p]} ile gösterilen kısım {_CD_SONUC[p][0].lower()}dır. Bu kısım olmazsa: {_CD_SONUC[p][1][0].lower() + _CD_SONUC[p][1][1:]}", shape=sh) if o else None
+
+
+def _ff_cd_mik_esles(subject):
+    parts, lab, sh = _cd_mik(subject)
+    ps = random.sample(parts, 2)
+    nm = lambda p: _CD_MPART[p][0]
+    cor = f"{lab[ps[0]]}: {nm(ps[0])}, {lab[ps[1]]}: {nm(ps[1])}"
+    others = [x for x in parts if x not in ps]
+    w = {f"{lab[ps[0]]}: {nm(ps[1])}, {lab[ps[1]]}: {nm(ps[0])}"}
+    for x in others:
+        w.add(f"{lab[ps[0]]}: {nm(x)}, {lab[ps[1]]}: {nm(ps[1])}")
+        w.add(f"{lab[ps[0]]}: {nm(ps[0])}, {lab[ps[1]]}: {nm(x)}")
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3]) if len(w) >= 3 else None
+    return _mf_raw(subject, _CD_T, f"Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. Bu kısımlardan {lab[ps[0]]} ve {lab[ps[1]]} ile gösterilenlerin adları aşağıdakilerden hangisinde doğru verilmiştir?", o, f"Doğru eşleştirme: {cor}.", shape=sh) if o else None
+
+
+def _ff_cd_mk_hareket(subject):
+    k = random.choice(["amip", "paramesyum", "öglena"])
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ["m%d" % (_MIKRO.index(k) + 1)], "labels": ["K"], "caption": "Mikroskopla görülen canlı"}
+    o = _yn_opts(_CD_HAREKET[k], [v for kk, v in _CD_HAREKET.items() if kk != k] + ["Yüzgeç"])
+    return _mf_raw(subject, _CD_T, "Mikroskopla incelenen ve şekilde gösterilen K canlısı, hareketini şekilde görülen yapıyla sağlamaktadır.\nBuna göre K canlısı hareketini hangi yapıyla sağlar?", o, f"Şekildeki canlı {_CD_AD[k].lower()}dır ve {_CD_HAREKET[k].lower()} ile hareket eder.", shape=sh) if o else None
+
+
+def _ff_cd_mk_gozle(subject):
+    k = random.choice(_MIKRO)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ["m%d" % (_MIKRO.index(k) + 1)], "labels": ["K"], "caption": "Mikroskopla görülen canlı"}
+    cor = "Hayır, mikroskop kullanmak gerekir."
+    o = _yn_opts(cor, ["Evet, çıplak gözle rahatça görülür.", "Evet, büyüteçle bile görülemez ama çıplak gözle görülür.", "Hayır, hiçbir araçla görülemez."])
+    return _mf_raw(subject, _CD_T, "Şekilde mikroskopla görülen bir canlı gösterilmiştir.\nBuna göre bu canlı çıplak gözle görülebilir mi?", o, "Mikroskobik canlılar çok küçüktür; çıplak gözle değil, mikroskopla görülür.", shape=sh) if o else None
+
+
+def _ff_cd_mk_ozellik2(subject):
+    ks = list(_MIKRO)
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ks, "labels": lb, "caption": "Mikroskopla görülen canlılar"}
+    k = random.choice(_MIKRO)
+    i = ks.index(k)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _CD_T, f"Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. {_CD_MKC[k][0].upper() + _CD_MKC[k][1:]} canlı hangi harfle gösterilmiştir?", o, f"Bu özellikler {_CD_AD[k].lower()} canlısına aittir; şekilde {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_cd_mk_karsilastir(subject):
+    ks = random.sample(["amip", "paramesyum", "öglena"], 3)
+    lb = random.sample(_CD_L, 3)
+    sh = {"type": "bio", "sub_type": "microbe", "kinds": ks, "labels": lb, "caption": "Mikroskopla görülen canlılar"}
+    mv = {"amip": "yalancı ayak", "paramesyum": "kirpik", "öglena": "kamçı"}
+    i, j = random.sample(range(3), 2)
+    cor = f"{lb[i]} canlısı {mv[ks[i]]}, {lb[j]} canlısı {mv[ks[j]]} ile hareket eder."
+    k3 = [x for x in range(3) if x not in (i, j)][0]
+    w = [f"{lb[i]} canlısı {mv[ks[j]]}, {lb[j]} canlısı {mv[ks[i]]} ile hareket eder.", f"{lb[i]} canlısı {mv[ks[k3]]}, {lb[j]} canlısı {mv[ks[j]]} ile hareket eder.",
+         f"{lb[i]} canlısı {mv[ks[i]]}, {lb[j]} canlısı {mv[ks[k3]]} ile hareket eder."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _CD_T, "Şekilde mikroskopla incelenen üç canlı harflerle gösterilmiştir.\nBuna göre bu canlıların hareket yapıları ile ilgili aşağıdakilerden hangisi doğrudur?", o, cor, shape=sh) if o else None
+
+
+def _ff_cd_mn_zehir2(subject):
+    sh = {"type": "bio", "sub_type": "mushroom", "poison": random.random() < .5}
+    sc = random.choice([
+        ("Bir öğrenci, şekildeki gibi bir mantarı arkadaşıyla birlikte ormanda bulmuştur. Arkadaşı, \"Rengi çok güzel, kesin yenilebilir.\" demiştir.\nBuna göre öğrencinin yapması gereken aşağıdakilerden hangisidir?", "Rengine bakarak karar vermeden mantarı yememelidir.", ["Arkadaşına güvenip mantarı pişirerek yemelidir.", "Mantarın bir parçasını yiyip denemelidir.", "Mantarı evde herkese tattırmalıdır."]),
+        ("Bir çocuk bahçede şekildeki gibi bir mantar görmüş ve yemek istemiştir. Yenilebilen mantarları yetiştirenler bile bu işi uzmanlardan öğrenir.\nBuna göre çocuğun aşağıdakilerden hangisini yapması gerekir?", "Mantarı yemeden önce bir yetişkine ve uzmana danışmalıdır.", ["Hemen yiyip tadına bakmalıdır.", "Mantarı çiğ olarak yemelidir.", "Mantarı küçük kardeşine tattırmalıdır."]),
+        ("Şekildeki gibi şapkalı mantarlar doğada kendiliğinden yetişir. Bu mantarların bir kısmı yenilebilir, bir kısmı ise zehirlidir.\nBuna göre doğada bulunan bir mantarla ilgili aşağıdakilerden hangisi doğrudur?", "Zehirli olup olmadığı bilinmiyorsa yenmemelidir.", ["Hepsi yenilebilir olduğu için toplanıp yenebilir.", "Şapkası renkliyse zehirsiz olduğu kesindir.", "Yağda kızartılan mantar zehirli olsa da zararsız olur."]),
+    ])
+    o = _yn_opts(sc[1], sc[2])
+    return _mf_raw(subject, _CD_T, sc[0], o, "Bazı mantarlar zehirlidir ve zehirli mantarlar renk ya da görünüşle güvenle ayırt edilemez; bilinmeyen mantarlar yenmemelidir.", shape=sh) if o else None
+
+
+def _ff_cd_agac_iki(subject):
+    g3 = random.sample(["bitki", "hayvan", "mantar", "mikro"], 3)
+    lv = {g: random.sample([_CD_AD[x] for x in _CD_GRUP[g]], 1 if g == "mantar" else 2) for g in g3}
+    i, j = random.sample(range(3), 2)
+    kids = [(_CD_GAD[g] if t not in (i, j) else ("K" if t == i else "L")) for t, g in enumerate(g3)]
+    sh = {"type": "bio", "sub_type": "tree", "root": "Canlılar", "kids": kids, "leaves": [lv[g] for g in g3]}
+    cor = f"K: {_CD_GAD[g3[i]]}, L: {_CD_GAD[g3[j]]}"
+    allg = [_CD_GAD[g] for g in _CD_GAD]
+    rest = [g for g in allg if g not in (_CD_GAD[g3[i]], _CD_GAD[g3[j]])]
+    w = {f"K: {_CD_GAD[g3[j]]}, L: {_CD_GAD[g3[i]]}"}
+    for r_ in rest:
+        w.add(f"K: {r_}, L: {_CD_GAD[g3[j]]}")
+        w.add(f"K: {_CD_GAD[g3[i]]}, L: {r_}")
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, _CD_T, "Şekilde canlıların sınıflandırılması gösterilmiştir. K ve L ile gösterilen grupların adları aşağıdakilerden hangisinde doğru verilmiştir?", o, f"K grubundaki canlılar {_CD_GAD[g3[i]].lower()}, L grubundakiler {_CD_GAD[g3[j]].lower()} grubundadır.", shape=sh) if o else None
+
+
+def _ff_cd_kart_farkli(subject):
+    ga = random.choice(["hayvan", "mikro"])
+    gb = random.choice([g for g in ("bitki", "hayvan", "mantar", "mikro") if g != ga])
+    a = random.sample(_CD_GRUP[ga], 3)
+    b = random.choice(_CD_GRUP[gb])
+    ks = a + [b]
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 4}
+    if any(k in _MIKRO for k in ks):
+        sh["caption"] = "Mikroskopla görülen canlılar büyütülerek çizilmiştir."
+    i = ks.index(b)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _CD_T, "Şekilde harflerle gösterilen canlılardan üçü aynı gruptadır.\nBuna göre diğerlerinden farklı gruba ait olan canlı hangi harfle gösterilmiştir?", o, f"Diğer üç canlı {_CD_GAD[ga].lower()} grubunda; {lb[i]} ile gösterilen canlı ise {_CD_GAD[gb].lower()} grubundadır.", shape=sh) if o else None
+
+
+def _ff_cd_kart_hepsi(subject):
+    g = random.choice(["bitki", "hayvan", "mikro"])
+    ks = random.sample(_CD_GRUP[g], 3)
+    lb = random.sample(_CD_L, len(ks))
+    sh = {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 4}
+    if any(k in _MIKRO for k in ks):
+        sh["caption"] = "Mikroskopla görülen canlılar büyütülerek çizilmiştir."
+    o = _yn_opts(_CD_GAD[g], [v for kk, v in _CD_GAD.items() if kk != g])
+    return _mf_raw(subject, _CD_T, "Şekilde harflerle gösterilen canlılar aynı gruptadır.\nBuna göre bu canlıların ait olduğu grup aşağıdakilerden hangisidir?", o, f"Şekildeki canlıların hepsi {_CD_GAD[g].lower()} grubundadır.", shape=sh) if o else None
+
+
+def _ff_cd_kart_esles(subject):
+    gs = random.sample(["bitki", "hayvan", "mantar", "mikro"], 3)
+    ks = [random.choice(_CD_GRUP[g]) for g in gs]
+    lb = random.sample(_CD_L, 3)
+    sh = {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 3}
+    if any(k in _MIKRO for k in ks):
+        sh["caption"] = "Mikroskopla görülen canlılar büyütülerek çizilmiştir."
+    mk = lambda perm: ", ".join(f"{lb[t]}: {_CD_GAD1[gs[perm[t]]]}" for t in range(3))
+    cor = mk([0, 1, 2])
+    w = [mk([1, 0, 2]), mk([0, 2, 1]), mk([2, 1, 0]), mk([1, 2, 0]), mk([2, 0, 1])]
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, _CD_T, "Şekilde bazı canlılar harflerle gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?", o, f"Doğru eşleştirme: {cor}.", shape=sh) if o else None
+
+
+def _ff_cd_kart_gozle(subject):
+    ks, lb, sh = _cd_cards(0, {"mikro": random.choice([1, 2]), "bitki": 1, "hayvan": 1})
+    nm = sum(1 for k in ks if k in _MIKRO)
+    cor = str(nm)
+    o = _yn_opts(cor, random.sample([str(x) for x in range(0, 6) if x != nm], 3))
+    return _mf_raw(subject, _CD_T, "Şekilde harflerle gösterilen canlılardan kaç tanesini görebilmek için mikroskop kullanmak gerekir?", o, f"Mikroskobik canlılar mikroskop gerektirir; şekilde {nm} tane vardır.", shape=sh) if o else None
+
+
+def _ff_cd_kart_grup_harf(subject):
+    g = random.choice(["bitki", "hayvan"])
+    n = {"bitki": 2, "hayvan": 2}[g]
+    need = {"bitki": 1, "hayvan": 1, "mantar": 1, "mikro": 1}
+    need[g] = 2
+    ks, lb, sh = _cd_cards(0, need)
+    ids = [j for j, k in enumerate(ks) if _cd_g(k) == g]
+    if len(ids) != 2:
+        return None
+    nm = {"bitki": "bitkiler", "hayvan": "hayvanlar"}[g]
+    pr = lambda a, b: f"{lb[a]} ve {lb[b]}"
+    cor = pr(*ids)
+    w = set()
+    for _ in range(60):
+        a, b = random.sample(range(len(ks)), 2)
+        if {a, b} != set(ids):
+            w.add(pr(a, b))
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, _CD_T, f"Şekildeki canlılardan hangileri {nm} grubunda yer alır?", o, f"{nm.capitalize()} grubundaki canlılar {cor} harfleriyle gösterilmiştir.", shape=sh) if o else None
+
+
+_CD_FAMS2 = [
+    (_ff_cd_mik_sonuc, 4, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"), (_ff_cd_mik_esles, 4, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"),
+    (_ff_cd_mk_hareket, 3, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"), (_ff_cd_mk_gozle, 3, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mk_ozellik2, 4, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"), (_ff_cd_mk_karsilastir, 5, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"),
+    (_ff_cd_mn_zehir2, 4, "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi"), (_ff_cd_agac_iki, 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_farkli, 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_hepsi, 3, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_esles, 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_gozle, 3, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"), (_ff_cd_kart_grup_harf, 3, "Bitki ve hayvanlara örnekler vererek gruplama"),
+]
+_CD_KW2 = ("canlılar dünyası", "canlıları", "mikroskobik", "mantar", "sınıflandır", "bitki", "hayvan", "gruplama", "mikroskop")
+for _f, _d, _it in _CD_FAMS2:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _CD_KW2))
+    _DIFF_OF[_f.__name__] = _d
+_CD_VIS |= {f.__name__ for f, _d, _i in _CD_FAMS2}
 
 
 for _r in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
