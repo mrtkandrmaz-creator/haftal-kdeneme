@@ -27,6 +27,7 @@ def main():
     ap.add_argument("--max-per-unit", type=int, default=80)
     ap.add_argument("--tries", type=int, default=160, help="aile başına üretim denemesi")
     ap.add_argument("--per-form", type=int, default=3, help="aynı kalıptan (sayılar maskeli) en çok kaç soru")
+    ap.add_argument("--bad-dir", default="", help="userdata dalındaki data/ klasörü: hatalı bildirilen soru/kalıplar havuza girmez ve eski kayıtlardan silinir")
     ap.add_argument("--per-family", type=int, default=14, help="bir ünitede aile başına en çok soru")
     args = ap.parse_args()
     random.seed()
@@ -35,6 +36,22 @@ def main():
     os.environ["DENEMEMATIK_SRC_DIR"] = os.path.join(ROOT, "sources")
     ai, cur, _st = bp.load_pkg(os.path.join(ROOT, "app.py"))
     D = cur.DIFFICULTIES
+    import shutil
+    bd = args.bad_dir
+    dirs = [bd] if bd else []
+    if bd and os.path.isdir(os.path.join(bd, "profiles")):
+        dirs += [os.path.join(bd, "profiles", p) for p in os.listdir(os.path.join(bd, "profiles"))]
+    for fn in ("bad.json", "bad_keys.json", "bad_forms.json", "quarantine.json", "bad_facts.json"):  # tüm profillerin hatalı bildirimleri birleştirilir
+        acc = []
+        for d_ in dirs:
+            try:
+                with open(os.path.join(d_, fn), encoding="utf-8") as f:
+                    acc += [x for x in json.load(f) if isinstance(x, str)]
+            except Exception:
+                pass
+        if acc:
+            with open(os.path.join(_st.DATA, fn), "w", encoding="utf-8") as f:
+                json.dump(sorted(set(acc)), f, ensure_ascii=False)
     want = [s.strip() for s in args.subjects.split(",") if s.strip()]
     tot = 0
     for g in [x.strip() for x in args.grades.split(",") if x.strip()]:
@@ -47,6 +64,10 @@ def main():
                 continue
             path, have = bp.read_pool(ai, label, sj)
             keep = [q for q in have if q.get("src") != "local"]
+            _n0 = len(keep)
+            keep = [q for q in keep if not ai._is_bad(ai._stem(q)) and not ai._is_bad_form(q) and not ai._is_bad_exact(q.get("question"), (q.get("options") or {}).get(str(q.get("answer", "")).upper()[:1]))]
+            if len(keep) != _n0:
+                print(f"   hatalı bildirimlerden silinen (yapay zekâ kayıtları): {_n0 - len(keep)}")
             stems = {ai._stem(q) for q in keep}
             new = []
             for unit, topics in C[sj]:
