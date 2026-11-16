@@ -16222,6 +16222,28 @@
 "ts": 1794812516,
 "src": "local",
 "fam": "_en_yn_weather"
+},
+{
+"subject": "İngilizce",
+"topic": "Wild animals",
+"passage": "A wildlife rehabilitation center has published the following report on the dietary habits and characteristics of three rescued species to educate local students:\n\n1. Lion: Primarily consumes prey; thrives in social groups known as prides.\n2. Zebra: Exclusively grazes on vegetation; characterized by distinct high-contrast patterns.\n3. Eagle: Utilizes exceptional visual acuity to locate and catch small animals; inhabits elevated rocky terrains.\n\nConsidering the biological data provided in the report, students are expected to evaluate the dietary roles of these species within an ecosystem.",
+"question": "Which of the following inferences regarding the dietary classifications of these species is scientifically accurate?",
+"shape": null,
+"options": {
+"A": "The Eagle is a herbivore because it lives in high nests, while the Lion is a herbivore because it lives in a pride.",
+"B": "The Zebra is a carnivore because it is a wild animal, whereas the Eagle is a herbivore due to its hunting behavior.",
+"C": "The Zebra functions as a primary consumer (herbivore), while the Lion and Eagle act as secondary or tertiary consumers (carnivores).",
+"D": "The Lion and the Zebra are both classified as primary consumers due to their life in groups or herds."
+},
+"answer": "C",
+"explanation": "Scientific classification identifies Zebras as herbivores (plant-eaters) and Lions/Eagles as carnivores (meat-eaters). Option A correctly identifies these roles, whereas other options contradict the provided text and biological facts.",
+"_sty": "s:|center which classi correc",
+"crit": 1,
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 2,
+"ts": 1794814000
 }
 ]
 }
