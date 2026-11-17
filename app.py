@@ -4414,9 +4414,87 @@ def _kes_esdeger(ax, d):
     ax.set_ylim(-.2, 3.1)
 
 
+def _kes_card(ax, c, ox, oy, cw, ch):
+    ax.add_patch(Rectangle((ox, oy), cw, ch, fc="#f8fafc", ec="#cbd5e1", lw=1.4, zorder=1))
+    kd = c.get("kind", "text")
+    if kd == "text":
+        ax.text(ox + cw / 2, oy + ch / 2, c.get("text", ""), ha="center", va="center", fontsize=26, fontweight="bold", color=INK, zorder=3)
+    elif kd == "grid":
+        s = 2.4
+        x0, y0 = ox + (cw - s) / 2, oy + (ch - s) / 2
+        k = int(c.get("k", 0))
+        for i in range(100):
+            r, cc = divmod(i, 10)
+            ax.add_patch(Rectangle((x0 + cc * s / 10, y0 + (9 - r) * s / 10), s / 10, s / 10, fc=_KS_FILL if i < k else "#ffffff", ec="#64748b", lw=.7, zorder=3))
+        ax.add_patch(Rectangle((x0, y0), s, s, fc="none", ec=INK, lw=2.0, zorder=4))
+    else:
+        w, h = cw - .8, .55
+        x0, y0 = ox + .4, oy + (ch - h) / 2
+        k = int(c.get("k", 0))
+        for i in range(10):
+            ax.add_patch(Rectangle((x0 + i * w / 10, y0), w / 10, h, fc=_KS_FILL if i < k else "#ffffff", ec=INK, lw=1.4, zorder=3))
+        ax.add_patch(Rectangle((x0, y0), w, h, fc="none", ec=INK, lw=2.0, zorder=4))
+
+
+def _kes_kart(ax, d):
+    cs = d.get("cards", [])
+    per = int(d.get("per_row", 2)) or 2
+    sep = d.get("sep")
+    rows = (len(cs) + per - 1) // per
+    cw, ch, gx, gy = 4.2, 3.2, .8, .6
+    for i, c in enumerate(cs):
+        r, cc = divmod(i, per)
+        ox, oy = cc * (cw + gx), -r * (ch + gy)
+        _kes_card(ax, c, ox, oy, cw, ch)
+        if c.get("label"):
+            _bio_bubble(ax, ox + .1, oy + ch + .05, c["label"], fs=12, r=.34)
+        if sep and per == len(cs) and i < len(cs) - 1:
+            ax.text(ox + cw + gx / 2, oy + ch / 2, sep, ha="center", va="center", fontsize=28, fontweight="bold", color=INK)
+    ax.set_xlim(-.5, per * (cw + gx) - gx + .5)
+    ax.set_ylim(-(rows - 1) * (ch + gy) - .2, ch + .7)
+
+
+def _kes_dec(v, s):
+    i, f = divmod(int(v), int(s))
+    return f"{i},{f}" if s == 10 else f"{i},{f:02d}"
+
+
+def _kes_aralik(ax, d):
+    lo, hi, s = int(d["lo"]), int(d["hi"]), int(d.get("scale", 10))
+    x0, L, y0 = 1.0, 9.0, 1.0
+    ax.plot([x0 - .4, x0 + L + .4], [y0, y0], color=INK, lw=2.2, zorder=2)
+    for i in range(11):
+        x = x0 + L * i / 10
+        big = i in (0, 10)
+        ax.plot([x, x], [y0 - (.3 if big else .17), y0 + (.3 if big else .17)], color=INK, lw=2.2 if big else 1.4, zorder=3)
+    ax.text(x0, y0 - .7, _kes_dec(lo, s).replace(",0", ",0") if lo else "0", ha="center", va="top", fontsize=13, fontweight="bold", color=INK)
+    ax.text(x0 + L, y0 - .7, _kes_dec(hi, s), ha="center", va="top", fontsize=13, fontweight="bold", color=INK)
+    if lo == 0:
+        ax.texts[-2].set_text("0")
+    for p in d.get("points", []):
+        x = x0 + L * int(p["p"]) / 10
+        ax.plot([x, x], [y0, y0 + .75], color=ORANGE, lw=1.6, zorder=3)
+        ax.add_patch(Circle((x, y0), .11, fc=ORANGE, ec="white", lw=1.2, zorder=5))
+        _bio_bubble(ax, x, y0 + 1.1, p["label"], fs=12, r=.34)
+    ax.set_xlim(-.2, x0 + L + 1.0)
+    ax.set_ylim(-.5, 2.8)
+
+
+def _kes_serit(ax, d):
+    n, k = int(d.get("d", 10)), int(d.get("k", 3))
+    W, H = 8.0, 1.2
+    for i in range(n):
+        ax.add_patch(Rectangle((i * W / n, 1.0), W / n, H, fc=_KS_FILL if i < k else "#ffffff", ec=INK, lw=1.5, zorder=3))
+    ax.add_patch(Rectangle((0, 1.0), W, H, fc="none", ec=INK, lw=2.0, zorder=4))
+    ax.text(0, .55, "%0", ha="center", va="center", fontsize=13, fontweight="bold", color=INK)
+    ax.text(W, .55, "%100", ha="center", va="center", fontsize=13, fontweight="bold", color=INK)
+    ax.set_xlim(-.7, W + .9)
+    ax.set_ylim(0, 2.6)
+
+
 def _kes(ax, d):
     st = d.get("sub_type")
-    {"bolge": _kes_bolge, "sayi": _kes_sayi, "grup": _kes_grup, "esdeger": _kes_esdeger}.get(st, lambda a, b: None)(ax, d)
+    {"bolge": _kes_bolge, "sayi": _kes_sayi, "grup": _kes_grup, "esdeger": _kes_esdeger, "kart": _kes_kart, "aralik": _kes_aralik, "serit": _kes_serit}.get(st, lambda a, b: None)(ax, d)
 
 
 def _mad(ax, d):
@@ -26385,6 +26463,382 @@ for _f, _d, _cd in _KS_FAMS:
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = [_cd]
 _KS_VIS = {f.__name__ for f, _d, _c in _KS_FAMS}
+
+
+# ---- 5. SINIF MATEMATİK "ONDALIK GÖSTERİM VE YÜZDELER": ŞEKİLLİ SORU AİLELERİ — 100'lük ızgara, onluk şerit, ondalık sayı doğrusu, yüzde şeridi, temsil kartları
+def _od(h):
+    """Yüzde (yüzlükte) değerinden ondalık yazım: 35 -> 0,35 ; 30 -> 0,3 ; 150 -> 1,5."""
+    i, f = divmod(int(h), 100)
+    if f == 0:
+        return str(i)
+    return f"{i},{f:02d}".rstrip("0")
+
+
+def _od_pc(h):
+    return f"%{int(h)}"
+
+
+def _od_fr(h):
+    h = int(h)
+    simple = {10: "1/10", 20: "2/10", 30: "3/10", 40: "4/10", 50: "5/10", 60: "6/10", 70: "7/10", 80: "8/10", 90: "9/10"}
+    return simple.get(h, f"{h}/100") if random.random() < .5 else f"{h}/100"
+
+
+def _od_rep(h, kind):
+    return {"d": _od(h), "y": _od_pc(h), "k": f"{int(h)}/100"}[kind]
+
+
+def _od_grid(k, lb=None):
+    c = {"kind": "grid", "k": int(k)}
+    if lb:
+        c["label"] = lb
+    return c
+
+
+def _od_kart(cards, per=2, sep=None):
+    sh = {"type": "kes", "sub_type": "kart", "per_row": per, "cards": cards}
+    if sep:
+        sh["sep"] = sep
+    return sh
+
+
+def _od_wr(h, kind):
+    """h/100 değerinin gösterimi için akla yatkın yanlış şıklar (farklı değerli)."""
+    cand = []
+    if kind == "d":
+        cand = [_od(100 - h), _od(h * 10) if h * 10 <= 100 else _od(h + 10), f"{h // 10},{h % 10}" if h >= 10 else None, _od(h + 5), _od(h + 10), f"0,0{h}" if h < 10 else _od(max(h - 5, 1))]
+        cand = [c for c in cand if c]
+    elif kind == "y":
+        cand = [_od_pc(100 - h), _od_pc(h + 10), _od_pc(max(h - 5, 1)), _od_pc(h + 5), _od_pc(h * 10 if h * 10 <= 100 else h + 15), _od_pc(h // 10 if h >= 10 else h + 1)]
+    else:
+        cand = [f"{100 - h}/100", f"{h}/10" if h < 10 else f"{h + 10}/100", f"{h}/1000", f"{max(h - 5, 1)}/100", f"{h + 5}/100", f"100/{h}"]
+    right = {"d": _od(h), "y": _od_pc(h), "k": f"{h}/100"}[kind]
+    out = []
+    for c in cand:
+        if c != right and c not in out:
+            out.append(c)
+    return out
+
+
+def _mf_od_yuzde(subject):
+    k = random.choice([x for x in range(5, 96, 5)] + [random.randint(1, 99)])
+    sh = _od_kart([_od_grid(k)], 1)
+    o = _mf_opts(_od_pc(k), _od_wr(k, "y"), str, sort=False)
+    return _mf_raw(subject, "Yüzdeler", "Şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım yüzde kaçtır?", o, f"100 kareden {k} tanesi taralıdır: %{k}.", shape=sh) if o else None
+
+
+def _mf_od_ondalik(subject):
+    k = random.choice([x for x in range(5, 96, 5)] + [random.randint(1, 99)])
+    sh = _od_kart([_od_grid(k)], 1)
+    o = _mf_opts(_od(k), _od_wr(k, "d"), str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", "Şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım hangi ondalık gösterimle ifade edilir?", o, f"100 kareden {k} tanesi taralıdır: {k}/100 = {_od(k)}.", shape=sh) if o else None
+
+
+def _mf_od_kesir(subject):
+    k = random.choice([x for x in range(5, 96, 5)] + [random.randint(1, 99)])
+    sh = _od_kart([_od_grid(k)], 1)
+    o = _mf_opts(f"{k}/100", _od_wr(k, "k"), str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", "Şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım hangi kesirle ifade edilir?", o, f"100 kareden {k} tanesi taralıdır: {k}/100.", shape=sh) if o else None
+
+
+def _mf_od_yanlis(subject):
+    k = random.choice([x for x in range(5, 96, 5)] + [random.randint(11, 99)])
+    sh = _od_kart([_od_grid(k)], 1)
+    wrong = random.choice([f"{k}/10", f"%{100 - k}", _od(100 - k), f"0,0{k}" if k < 10 else f"{k},0"])
+    right = [f"%{k}", f"{k}/100", _od(k)]
+    wrong = wrong if wrong not in right else f"%{k + 10}"
+    o = _mf_opts(wrong, right + [f"{k}/100"] if False else right, str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", "Şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım için aşağıdakilerden hangisi yanlıştır?", o, f"Taralı kısım %{k}, {k}/100 ve {_od(k)} ile gösterilir; {wrong} bu değere eşit değildir.", shape=sh) if o else None
+
+
+def _mf_od_hangi(subject):
+    t = random.choice([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 65, 70, 75, 80, 85, 90])
+    ks = [t] + random.sample([x for x in range(5, 96, 5) if x != t], 3)
+    lb = random.sample(_KS_L, 4)
+    cards = [_od_grid(ks[i], lb[i]) for i in range(4)]
+    kind = random.choice(["d", "y", "k"])
+    rep = _od_rep(t, kind)
+    o = (sorted(lb), lb[0])
+    r = _od_kart(cards, 2)
+    random.shuffle(cards)
+    return _mf_raw(subject, "Yüzdeler", f"Şekilde 100 eş kareye bölünmüş dört bütünün taralı kısımları harflerle gösterilmiştir.\nBuna göre taralı kısmı {rep} ifadesine eşit olan şekil hangi harfle gösterilmiştir?", o, f"{rep} = {t} kare taralıdır; bu şekil {lb[0]} ile gösterilmiştir.", shape=_od_kart(cards, 2))
+
+
+def _mf_od_sira(subject):
+    ks = random.sample(range(5, 96, 5), 3)
+    lb = random.sample(_KS_L, 3)
+    import itertools
+    order = sorted(range(3), key=lambda j: ks[j])
+    cor = " < ".join(lb[j] for j in order)
+    allp = [" < ".join(lb[j] for j in p) for p in itertools.permutations(range(3))]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _mf_opts(cor, w[:3], str, sort=False)
+    return _mf_raw(subject, "Yüzdeler", "Şekilde 100 eş kareye bölünmüş üç bütünün taralı kısımları harflerle gösterilmiştir.\nBuna göre taralı kısımlar küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?", o, f"Taralı kare sayıları {', '.join(f'{lb[j]}: {ks[j]}' for j in range(3))}; küçükten büyüğe {cor}.", shape=_od_kart([_od_grid(ks[i], lb[i]) for i in range(3)], 3)) if o else None
+
+
+def _mf_od_onluk(subject):
+    k = random.randint(1, 9)
+    sh = _od_kart([{"kind": "serit", "k": k}], 1)
+    kind = random.choice(["d", "y", "k"])
+    if kind == "d":
+        cor, wr, ask = _od(k * 10), [_od(k), f"0,0{k}", _od((10 - k) * 10), f"{k},0" if False else _od(k * 10 + 10)], "hangi ondalık gösterimle"
+    elif kind == "y":
+        cor, wr, ask = f"%{k * 10}", [f"%{k}", f"%{(10 - k) * 10}", f"%{k * 10 + 10}", f"%{k * 100}"], "yüzde kaçtır, yani"
+    else:
+        cor, wr, ask = f"{k}/10", [f"1/{k}", f"{10 - k}/10", f"{k}/100", f"{k + 1}/10"], "hangi kesirle"
+    wr = [w for w in wr if w != cor]
+    o = _mf_opts(cor, wr, str, sort=False)
+    q = {"d": "Buna göre taralı kısım hangi ondalık gösterimle ifade edilir?", "y": "Buna göre taralı kısım yüzde kaçtır?", "k": "Buna göre taralı kısım hangi kesirle ifade edilir?"}[kind]
+    return _mf_raw(subject, "Ondalık gösterim", "Şekilde 10 eş parçaya bölünmüş bir bütünün taralı kısmı gösterilmiştir.\n" + q, o, f"10 parçadan {k} tanesi taralıdır: {k}/10 = {_od(k * 10)} = %{k * 10}.", shape=sh) if o else None
+
+
+def _mf_od_esit_say(subject):
+    t = random.choice([10, 20, 30, 40, 50, 60, 70, 80, 90])
+    c = random.choice([1, 2, 3])
+    cards = []
+    for i in range(c):
+        cards.append({"kind": "grid", "k": t} if random.random() < .5 else {"kind": "serit", "k": t // 10})
+    others = [x for x in range(10, 100, 10) if x != t]
+    while len(cards) < 4:
+        x = random.choice(others)
+        cards.append({"kind": "grid", "k": x} if random.random() < .5 else {"kind": "serit", "k": x // 10})
+    random.shuffle(cards)
+    lb = random.sample(_KS_L, 4)
+    for i, cd in enumerate(cards):
+        cd["label"] = lb[i]
+    o = _mf_opts(c, [x for x in range(0, 5) if x != c], str, sort=False)
+    rep = random.choice([_od(t), _od_pc(t)])
+    return _mf_raw(subject, "Yüzdeler", f"Şekilde eş parçalara bölünmüş dört bütünün taralı kısımları gösterilmiştir.\nBuna göre kaç şekilde taralı kısım {rep} değerine eşittir?", o, f"Taralı kısmı {t}/100 = {_od(t)} = %{t} olan şekil sayısı {c}'dür.", shape=_od_kart(cards, 2)) if o else None
+
+
+def _od_sd(p, lb, mx=1):
+    return {"type": "kes", "sub_type": "sayi", "max": mx, "d": 10, "points": [{"p": q, "label": lb[i]} for i, q in enumerate(p)]}
+
+
+def _mf_od_sd_oku(subject):
+    mx = random.choice([1, 2])
+    p = random.randint(1, 10 * mx - 1)
+    if p % 10 == 0:
+        p += 1
+    lb = random.choice(_KS_L)
+    sh = _od_sd([p], [lb], mx)
+    c = _od(p * 10)
+    wr = [_od(p), f"{p // 10},{p % 10 + 1}" if p % 10 < 9 else _od(p * 10 + 10), f"0,0{p}" if p < 10 else _od(p * 10 + 100), _od(p * 10 + 10), _od(p * 10 - 10 if p > 1 else p * 10 + 20), f"{p % 10},{p // 10}" if p >= 10 else f"{p},0"]
+    wr = [w for w in wr if w != c]
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", f"Şekildeki sayı doğrusunda her tam bölüm 10 eş aralığa bölünmüştür.\nBuna göre {lb} noktası hangi ondalık sayıyı gösterir?", o, f"{lb} noktası 0'dan itibaren {p}. çizgidedir; her aralık 0,1 olduğundan değeri {c} olur.", shape=sh) if o else None
+
+
+def _mf_od_sd_bul(subject):
+    mx = random.choice([1, 2])
+    ps = random.sample([x for x in range(1, 10 * mx) if x % 10], 4)
+    lb = random.sample(_KS_L, 4)
+    sh = _od_sd(ps, lb, mx)
+    o = (sorted(lb), lb[0])
+    return _mf_raw(subject, "Ondalık gösterim", f"Şekildeki sayı doğrusunda her tam bölüm 10 eş aralığa bölünmüştür. Dört nokta harflerle gösterilmiştir.\nBuna göre {_od(ps[0] * 10)} sayısını gösteren nokta hangi harfle gösterilmiştir?", o, f"{_od(ps[0] * 10)} sayısı 0'dan itibaren {ps[0]}. çizgidedir; bu nokta {lb[0]} ile gösterilmiştir.", shape=sh)
+
+
+def _mf_od_sd_en(subject):
+    mx = random.choice([1, 2])
+    ps = random.sample([x for x in range(1, 10 * mx) if x % 10], 3)
+    lb = random.sample(_KS_L, 3)
+    ask = random.choice(["en büyük", "en küçük"])
+    i = ps.index(max(ps) if ask == "en büyük" else min(ps))
+    sh = _od_sd(ps, lb, mx)
+    o = _mf_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Üçü de eşittir."], str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", f"Şekildeki sayı doğrusunda her tam bölüm 10 eş aralığa bölünmüştür. Üç nokta harflerle gösterilmiştir.\nBuna göre {ask} ondalık sayıyı gösteren nokta hangi harfle gösterilmiştir?", o, f"Sayı doğrusunda sağdaki sayı daha büyüktür; {ask} değer {lb[i]} noktasındadır.", shape=sh) if o else None
+
+
+def _mf_od_sd_aralik(subject):
+    lo = random.randint(0, 8)
+    p = random.randint(1, 9)
+    lb = random.choice(_KS_L)
+    sh = {"type": "kes", "sub_type": "aralik", "lo": lo, "hi": lo + 1, "scale": 10, "points": [{"p": p, "label": lb}]}
+    c = f"0,{lo}{p}" if lo else f"0,0{p}"
+    wr = [f"0,{p}{lo}" if lo else f"0,{p}0".rstrip("0"), f"0,{lo}" if lo else "0,1", f"0,{lo}{min(p + 1, 9)}" if p < 9 else f"0,{lo}{p - 1}", f"0,{lo + 1}{p}" if lo < 8 else f"0,{lo}{p - 1 if p > 1 else 2}", f"{lo},{p}"]
+    wr = [w for w in wr if w != c]
+    o = _mf_opts(c, wr, str, sort=False)
+    ends = f"{_od(lo * 10)} ile {_od((lo + 1) * 10)}"
+    return _mf_raw(subject, "Ondalık gösterim", f"Şekildeki sayı doğrusunda {ends} arası 10 eş aralığa bölünmüştür.\nBuna göre {lb} noktası hangi ondalık sayıyı gösterir?", o, f"{ends} arası 10 eş parçadır; her parça 0,01 olur. {lb} noktası {p}. çizgidedir: {c}.", shape=sh) if o else None
+
+
+def _mf_od_serit(subject):
+    n = random.choice([4, 5, 10, 20])
+    k = random.randint(1, n - 1)
+    v = k * 100 // n
+    if v * n != k * 100:
+        return None
+    sh = {"type": "kes", "sub_type": "serit", "d": n, "k": k}
+    o = _mf_opts(_od_pc(v), [_od_pc(100 - v), _od_pc(k), _od_pc(v + 10), _od_pc(max(v - 5, 5))], str, sort=False)
+    return _mf_raw(subject, "Yüzdeler", f"Şekildeki şerit {n} eş parçaya bölünmüş ve uçları %0 ve %100 olarak işaretlenmiştir.\nBuna göre taralı kısım yüzde kaçtır?", o, f"Şeridin tamamı %100 ve {n} parçadır; her parça %{100 // n}. {k} parça: %{v}.", shape=sh) if o else None
+
+
+def _mf_od_grup_yuzde(subject):
+    n = random.choice([10, 20, 25, 50][:3])
+    k = random.randint(1, n - 1)
+    v = k * 100 // n
+    if v * n != k * 100:
+        return None
+    sh = {"type": "kes", "sub_type": "grup", "n": n, "k": k, "per_row": 5 if n != 10 else 5}
+    o = _mf_opts(_od_pc(v), [_od_pc(100 - v), _od_pc(k), _od_pc(min(v + 10, 95)), _od_pc(max(v - 10, 5)), _od_pc(v + 5)], str, sort=False)
+    return _mf_raw(subject, "Yüzdeler", f"Şekilde {n} toptan oluşan bir kümede kırmızı toplar gösterilmiştir.\nBuna göre kırmızı toplar kümenin yüzde kaçıdır?", o, f"{k}/{n} = {v}/100 = %{v}.", shape=sh) if o else None
+
+
+def _mf_od_grup_kac(subject):
+    d, p = random.choice([(2, 50), (4, 25), (5, 20), (10, 10)])
+    m = random.choice([2, 3, 4])
+    n = d * m
+    k = random.randint(1, d - 1)
+    pp = p * k
+    sh = {"type": "kes", "sub_type": "grup", "n": n, "d": d, "k": k}
+    c = k * m
+    wr = [n - c, k, m, c + m, c + 1, 2 * c if 2 * c < n else c + 2]
+    wr = [w for w in wr if w != c and w > 0]
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Yüzdeler", f"Şekilde {n} top {d} eş gruba ayrılmıştır. Renkli gruplar bütünün %{pp} kadarını göstermektedir.\nBuna göre {n} topun %{pp} kadarı kaç toptur?", o, f"{n} ÷ {d} = {m} top her grupta; {k} grup: {k} × {m} = {c} top.", shape=sh) if o else None
+
+
+def _mf_od_grid_topla(subject):
+    a = random.choice(range(10, 60, 5))
+    b = random.choice(range(10, 100 - a, 5))
+    sh = _od_kart([_od_grid(a), _od_grid(b)], 2, "+")
+    s = a + b
+    o = _mf_opts(_od_pc(s), [_od_pc(abs(a - b) or a + 5), _od_pc(s + 5), _od_pc(s - 5), _od_pc(a * b // 10 if a * b // 10 not in (s,) else s + 10)], str, sort=False)
+    return _mf_raw(subject, "Yüzdeler", "Şekilde 100 eş kareye bölünmüş iki bütünün taralı kısımları gösterilmiştir.\nBuna göre bu iki taralı kısmın toplamı yüzde kaçtır?", o, f"%{a} + %{b} = %{s}.", shape=sh) if o else None
+
+
+def _mf_od_grid_cikar(subject):
+    a = random.choice(range(40, 95, 5))
+    b = random.choice(range(10, a, 5))
+    sh = _od_kart([_od_grid(a), _od_grid(b)], 2, "−")
+    s = a - b
+    o = _mf_opts(_od_pc(s), [_od_pc(a + b if a + b <= 100 else s + 10), _od_pc(s + 5), _od_pc(max(s - 5, 5)), _od_pc(b)], str, sort=False)
+    return _mf_raw(subject, "Yüzdeler", "Şekilde 100 eş kareye bölünmüş iki bütünün taralı kısımları gösterilmiştir.\nBuna göre birinci şekildeki taralı kısımdan ikinci şekildeki taralı kısım çıkarılırsa kalan kısım yüzde kaç olur?", o, f"%{a} − %{b} = %{s}.", shape=sh) if o else None
+
+
+def _od_text_cards(vals, lb):
+    return [{"kind": "text", "text": vals[i], "label": lb[i]} for i in range(len(vals))]
+
+
+def _od_mix(h):
+    """h/100 değeri için karışık gösterimler (aynı değer)."""
+    f = {50: ["1/2", "5/10", "50/100", "0,5", "%50"], 25: ["1/4", "25/100", "0,25", "%25"], 75: ["3/4", "75/100", "0,75", "%75"], 10: ["1/10", "10/100", "0,1", "%10"], 20: ["1/5", "2/10", "0,2", "%20"], 40: ["2/5", "4/10", "0,4", "%40"], 60: ["3/5", "6/10", "0,6", "%60"], 80: ["4/5", "8/10", "0,8", "%80"]}
+    return f[h]
+
+
+def _mf_od_esles_farkli(subject):
+    h = random.choice([50, 25, 75, 10, 20, 40, 60, 80])
+    same = random.sample(_od_mix(h), 3)
+    other = random.choice([x for x in (50, 25, 75, 10, 20, 40, 60, 80) if x != h])
+    odd = random.choice(_od_mix(other))
+    texts = same + [odd]
+    idx = list(range(4))
+    random.shuffle(idx)
+    lb = random.sample(_KS_L, 4)
+    vals = [texts[i] for i in idx]
+    cor = lb[idx.index(3)]
+    o = (sorted(lb), cor)
+    return _mf_raw(subject, "Ondalık gösterim", "Şekilde aynı bütünün dört farklı gösterimi harfli kartlarla verilmiştir.\nBuna göre hangi kart diğerlerinden farklı bir değeri gösterir?", o, f"Üç kart {h}/100 değerine eşittir; {odd} farklı değerdedir ve {cor} kartındadır.", shape=_od_kart(_od_text_cards(vals, lb), 2))
+
+
+def _od_val(t):
+    if t.startswith("%"):
+        return _KFr(int(t[1:]), 100)
+    if "/" in t:
+        a, b = t.split("/")
+        return _KFr(int(a), int(b))
+    i, _, f = t.partition(",")
+    return _KFr(int(i)) + (_KFr(int(f), 10 ** len(f)) if f else 0)
+
+
+def _mf_od_kart_en(subject):
+    for _ in range(60):
+        hs = random.sample([10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90], 4)
+        txt = [random.choice(_od_mix(h)) if h in (10, 20, 25, 40, 50, 60, 75, 80) else random.choice([_od(h), _od_pc(h), f"{h // 10}/10"]) for h in hs]
+        vs = [_od_val(t) for t in txt]
+        if len(set(vs)) == 4:
+            break
+    else:
+        return None
+    lb = random.sample(_KS_L, 4)
+    ask = random.choice(["en büyük", "en küçük"])
+    i = vs.index(max(vs) if ask == "en büyük" else min(vs))
+    o = (sorted(lb), lb[i])
+    return _mf_raw(subject, "Ondalık gösterim", f"Şekilde farklı gösterimlerle yazılmış dört değer harfli kartlarla verilmiştir.\nBuna göre {ask} değeri gösteren kart hangi harfle gösterilmiştir?", o, f"Kartlardaki değerler: {', '.join(f'{lb[j]}: {txt[j]}' for j in range(4))}; {ask} değer {txt[i]} ({lb[i]}).", shape=_od_kart(_od_text_cards(txt, lb), 2))
+
+
+def _mf_od_kart_sira(subject):
+    for _ in range(60):
+        hs = random.sample([10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90], 3)
+        txt = [random.choice(_od_mix(h)) if h in (10, 20, 25, 40, 50, 60, 75, 80) else random.choice([_od(h), _od_pc(h), f"{h // 10}/10"]) for h in hs]
+        vs = [_od_val(t) for t in txt]
+        if len(set(vs)) == 3:
+            break
+    else:
+        return None
+    import itertools
+    lb = random.sample(_KS_L, 3)
+    order = sorted(range(3), key=lambda j: vs[j])
+    cor = " < ".join(lb[j] for j in order)
+    allp = [" < ".join(lb[j] for j in p) for p in itertools.permutations(range(3))]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _mf_opts(cor, w[:3], str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", "Şekilde farklı gösterimlerle yazılmış üç değer harfli kartlarla verilmiştir.\nBuna göre kartlardaki değerler küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?", o, f"Değerler: {', '.join(f'{lb[j]}: {txt[j]}' for j in range(3))}; küçükten büyüğe {cor}.", shape=_od_kart(_od_text_cards(txt, lb), 3)) if o else None
+
+
+def _mf_od_kart_say(subject):
+    c = random.choice([1, 2, 3])
+    h = random.choice([50, 25, 75, 10, 20, 40])
+    t = _od_mix(h)[0]
+    eq = random.sample(_od_mix(h)[1:], c)
+    others = [x for x in (50, 25, 75, 10, 20, 40, 60, 80) if x != h]
+    texts = eq + [random.choice(_od_mix(x)) for x in random.sample(others, 4 - c)]
+    random.shuffle(texts)
+    lb = random.sample(_KS_L, 4)
+    cnt = sum(1 for x in texts if _od_val(x) == _KFr(h, 100))
+    o = _mf_opts(cnt, [x for x in range(0, 5) if x != cnt], str, sort=False)
+    return _mf_raw(subject, "Ondalık gösterim", f"Şekilde farklı gösterimlerle yazılmış dört değer harfli kartlarla verilmiştir.\nBuna göre kaç kart {t} değerine eşittir?", o, f"{t} değerine eşit olan kart sayısı {cnt}'dir.", shape=_od_kart(_od_text_cards(texts, lb), 2)) if o else None
+
+
+_OD_FAMS = [
+    (_mf_od_yuzde, 2, "MAT.5.1.3"), (_mf_od_ondalik, 2, "MAT.5.1.3"), (_mf_od_kesir, 2, "MAT.5.1.3"), (_mf_od_yanlis, 3, "MAT.5.1.3"), (_mf_od_hangi, 3, "MAT.5.1.3"),
+    (_mf_od_sira, 3, "MAT.5.1.4"), (_mf_od_onluk, 2, "MAT.5.1.3"), (_mf_od_esit_say, 4, "MAT.5.1.3"),
+    (_mf_od_sd_oku, 3, "MAT.5.1.3"), (_mf_od_sd_bul, 3, "MAT.5.1.3"), (_mf_od_sd_en, 3, "MAT.5.1.4"), (_mf_od_sd_aralik, 5, "MAT.5.1.3"),
+    (_mf_od_serit, 3, "MAT.5.1.3"), (_mf_od_grup_yuzde, 3, "MAT.5.1.3"), (_mf_od_grup_kac, 4, "MAT.5.1.3"),
+    (_mf_od_grid_topla, 3, "MAT.5.1.3"), (_mf_od_grid_cikar, 3, "MAT.5.1.3"),
+    (_mf_od_esles_farkli, 4, "MAT.5.1.4"), (_mf_od_kart_en, 4, "MAT.5.1.4"), (_mf_od_kart_sira, 4, "MAT.5.1.4"), (_mf_od_kart_say, 4, "MAT.5.1.4"),
+]
+_OD_PRE = {"Şekilde": ["Şekilde", "Aşağıdaki şekilde", "Görselde", "Yandaki şekilde", "Verilen şekilde"], "Şekildeki": ["Şekildeki", "Aşağıdaki", "Verilen", "Görseldeki", "Yandaki"]}
+
+
+def _od_vary(fn):
+    def g(subject, *a, **k):
+        r = fn(subject, *a, **k)
+        if isinstance(r, dict):
+            q = str(r.get("question", ""))
+            for key, alts in _OD_PRE.items():
+                if q.startswith(key + " "):
+                    q = random.choice(alts) + q[len(key):]
+                    break
+            for old, alts in _KS_SUF:
+                if old in q:
+                    q = q.replace(old, random.choice(alts), 1)
+                    break
+            r = dict(r)
+            r["question"] = q
+        return r
+    g.__dict__.update(getattr(fn, "__dict__", {}))
+    g.__name__ = fn.__name__
+    g.__wrapped__ = fn
+    return g
+
+
+for _f, _d, _cd in _OD_FAMS:
+    _MF_GENS.append((_od_vary(_f), ("ondalık", "yüzde"), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
 
 
 _MF_ITEMCODE.update({"_mf_eqlty2": ["MAT.5.2.1"], "_mf_order2": ["MAT.5.2.2"], "_mf_dik_problem": ["MAT.5.4.4"], "_mf_frac_kars": ["MAT.5.1.4"]})
