@@ -4264,6 +4264,161 @@ def _uzy(ax, d):
     {"yorunge": _uz_yorunge, "gece": _uz_gece, "buyukluk": _uz_buyukluk, "gunes": _uz_gunes}.get(st, lambda a, b: None)(ax, d)
 
 
+# ---------------------------------------------------------------- KESİRLER (5. sınıf Matematik): bölünmüş şekiller, sayı doğrusu, grup modeli, denk kesir şeritleri
+_KS_FILL = "#f59e0b"
+_KS_GRID = {4: (2, 2), 6: (2, 3), 8: (2, 4), 9: (3, 3), 10: (2, 5), 12: (3, 4)}
+
+
+def _ks_cuts(n, uneq, seed):
+    if not uneq:
+        return [i / n for i in range(n + 1)]
+    rng = np.random.RandomState(seed)
+    w = rng.uniform(.4, 1.8, n)
+    c = np.concatenate([[0], np.cumsum(w) / w.sum()])
+    return list(c)
+
+
+def _ks_draw(ax, form, n, k, x, y, size, uneq=False, seed=1, full=False):
+    """(x,y) sol-alt; shaded: ilk k parça. Döndürür: (genişlik, yükseklik)."""
+    fc_on, fc_off = _KS_FILL, "#ffffff"
+    if form == "daire":
+        r = size / 2
+        cx, cy = x + r, y + r
+        if uneq:
+            cuts = _ks_cuts(n, True, seed)
+            ang = [c * 360 for c in cuts]
+        else:
+            ang = [i * 360.0 / n for i in range(n + 1)]
+        for i in range(n):
+            t1, t2 = 90 - ang[i + 1], 90 - ang[i]
+            ax.add_patch(Wedge((cx, cy), r, t1, t2, fc=fc_on if (i < k or full) else fc_off, ec=INK, lw=1.6, zorder=3))
+        ax.add_patch(Circle((cx, cy), r, fc="none", ec=INK, lw=2.0, zorder=4))
+        return size, size
+    if form == "izgara":
+        rr, cc = _KS_GRID.get(n, (1, n))
+        w, h = size * 1.1, size * 1.1 * rr / cc if cc > rr else size
+        cw, ch = w / cc, h / rr
+        idx = 0
+        for i in range(rr):
+            for j in range(cc):
+                ax.add_patch(Rectangle((x + j * cw, y + (rr - 1 - i) * ch), cw, ch, fc=fc_on if (idx < k or full) else fc_off, ec=INK, lw=1.5, zorder=3))
+                idx += 1
+        ax.add_patch(Rectangle((x, y), w, h, fc="none", ec=INK, lw=2.0, zorder=4))
+        return w, h
+    # dik / cubuk
+    w, h = (size * 1.4, size * .9) if form == "dik" else (size * 2.2, size * .4)
+    cuts = _ks_cuts(n, uneq, seed)
+    for i in range(n):
+        ax.add_patch(Rectangle((x + cuts[i] * w, y), (cuts[i + 1] - cuts[i]) * w, h, fc=fc_on if (i < k or full) else fc_off, ec=INK, lw=1.5, zorder=3))
+    ax.add_patch(Rectangle((x, y), w, h, fc="none", ec=INK, lw=2.0, zorder=4))
+    return w, h
+
+
+def _kes_bolge(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", 2)) or 2
+    sep = d.get("sep")
+    rows = (len(ps) + per - 1) // per
+    cw, ch = 5.3, 3.9
+    if all(p.get("form") == "cubuk" for p in ps) and ps:
+        cw, ch = 8.2, 2.5
+    maxw = 1
+    for p in ps:
+        maxw = max(maxw, 1 + int(p.get("w", 0)))
+    if maxw > 1:
+        cw = max(cw, maxw * 3.2 + 1.4)
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        ox, oy = c * cw, -r * ch
+        form = p.get("form", "daire")
+        size = 2.0 if p.get("w") else 2.7
+        if form == "cubuk":
+            size = 3.0
+        n, k = int(p.get("n", 4)), int(p.get("k", 1))
+        wh = int(p.get("w", 0))
+        x = ox + .9
+        for t in range(wh):
+            wd, ht = _ks_draw(ax, form, n, n, x, oy + .3, size, full=True)
+            x += wd + .3
+        wd, ht = _ks_draw(ax, form, n, k, x, oy + .3, size, bool(p.get("uneq")), int(p.get("seed", 1)))
+        if p.get("label"):
+            _bio_bubble(ax, ox + .35, oy + .3 + ht + .1 if form != "cubuk" else oy + .3 + ht + .45, p["label"], fs=12, r=.34)
+        if sep and per == len(ps) and i < len(ps) - 1:
+            ax.text(ox + cw - .7, oy + .3 + ht / 2, sep, ha="center", va="center", fontsize=26, fontweight="bold", color=INK)
+    ax.set_xlim(-.3, per * cw - .4)
+    ax.set_ylim(-(rows - 1) * ch - .2, 4.0 if all(p.get("form") != "cubuk" for p in ps) else 2.5)
+
+
+def _kes_sayi(ax, d):
+    mx, dd = int(d.get("max", 1)), int(d.get("d", 4))
+    U = 4.6 if mx == 1 else 3.8
+    x0, y0 = .8, 1.0
+    L = U * mx
+    ax.annotate("", xy=(x0 + L + .6, y0), xytext=(x0 - .3, y0), arrowprops=dict(arrowstyle="-|>", color=INK, lw=2.2))
+    for i in range(mx * dd + 1):
+        x = x0 + L * i / (mx * dd)
+        big = i % dd == 0
+        ax.plot([x, x], [y0 - (.28 if big else .16), y0 + (.28 if big else .16)], color=INK, lw=2.0 if big else 1.4, zorder=3)
+        if big:
+            ax.text(x, y0 - .6, str(i // dd), ha="center", va="top", fontsize=13, fontweight="bold", color=INK)
+    for m in d.get("marks", []):
+        x = x0 + L * int(m["p"]) / (mx * dd)
+        ax.text(x, y0 - .6, m["text"], ha="center", va="top", fontsize=12, fontweight="bold", color="#1d4ed8")
+    for p in d.get("points", []):
+        x = x0 + L * int(p["p"]) / (mx * dd)
+        ax.plot([x, x], [y0, y0 + .72], color=ORANGE, lw=1.6, zorder=3)
+        ax.add_patch(Circle((x, y0), .11, fc=ORANGE, ec="white", lw=1.2, zorder=5))
+        _bio_bubble(ax, x, y0 + 1.08, p["label"], fs=12, r=.34)
+    ax.set_xlim(-.3, x0 + L + 1.0)
+    ax.set_ylim(-.5, 2.8)
+
+
+def _kes_grup(ax, d):
+    n, k = int(d.get("n", 12)), int(d.get("k", 3))
+    g = int(d.get("d", 0))
+    col, off = "#ef4444", "#cbd5e1"
+    if g:
+        m = n // g
+        pr = min(g, 4)
+        rows = (g + pr - 1) // pr
+        gw, gh = 2.4, 1.5 if m <= 3 else 2.2
+        for i in range(g):
+            r, c = divmod(i, pr)
+            gx, gy = c * (gw + .4), -r * (gh + .4)
+            on = i < k
+            ax.add_patch(FancyBboxPatch((gx, gy), gw, gh, boxstyle="round,pad=0,rounding_size=.12", fc="#fef3c7" if on else "#ffffff", ec=INK, lw=2.0 if on else 1.5, zorder=2))
+            cols = 3 if m > 3 else m
+            rws = (m + cols - 1) // cols
+            for j in range(m):
+                rr, cc = divmod(j, cols)
+                ax.add_patch(Circle((gx + gw / (2 * cols) + cc * gw / cols, gy + gh - gh / (2 * rws) - rr * gh / rws), .3, fc=col if on else off, ec=INK, lw=1.2, zorder=3))
+        ax.set_xlim(-.3, pr * (gw + .4))
+        ax.set_ylim(-(rows - 1) * (gh + .4) - .3, gh + .3)
+        return
+    pr = int(d.get("per_row", 6))
+    rows = (n + pr - 1) // pr
+    for i in range(n):
+        r, c = divmod(i, pr)
+        ax.add_patch(Circle((.6 + c * 1.0, -r * 1.0), .4, fc=col if i < k else off, ec=INK, lw=1.4, zorder=3))
+    ax.set_xlim(-.2, pr * 1.0 + .3)
+    ax.set_ylim(-(rows - 1) - .7, .8)
+
+
+def _kes_esdeger(ax, d):
+    W = 8.0
+    for t, (n, k, y) in enumerate([(int(d["n1"]), int(d["k1"]), 1.9), (int(d["n2"]), int(d["k2"]), .3)]):
+        for i in range(n):
+            ax.add_patch(Rectangle((i * W / n, y), W / n, 1.0, fc=_KS_FILL if i < k else "#ffffff", ec=INK, lw=1.5, zorder=3))
+        ax.add_patch(Rectangle((0, y), W, 1.0, fc="none", ec=INK, lw=2.0, zorder=4))
+    ax.set_xlim(-.4, W + .4)
+    ax.set_ylim(-.2, 3.1)
+
+
+def _kes(ax, d):
+    st = d.get("sub_type")
+    {"bolge": _kes_bolge, "sayi": _kes_sayi, "grup": _kes_grup, "esdeger": _kes_esdeger}.get(st, lambda a, b: None)(ax, d)
+
+
 def _mad(ax, d):
     st = d.get("sub_type")
     {"tanecik": _md_tanecik, "gecis": _md_gecis, "termo": _md_termo, "graf": _md_graf, "hal": _md_hal, "iletim": _md_iletim, "yalitim": _md_yalitim, "yon": _md_yon}.get(st, lambda a, b: None)(ax, d)
@@ -4274,7 +4429,7 @@ _DISPATCH = {
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -7561,7 +7716,7 @@ _GEO = {"triangle", "circle", "rectangle", "cylinder", "number_line", "geo"}
 _SCI = {"fen", "science_space", "space_orbit", "eclipse", "moon_phases", "dynamometer", "thermometer", "forces", "science_chart", "cylinder"}
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
-    "Matematik": _GEO | _CH,
+    "Matematik": _GEO | _CH | {"kes"},
     "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio", "light", "kuv", "mad", "elk", "cev", "uzy"},
     "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
@@ -25865,6 +26020,373 @@ _MF_GENS += [(_mf_eqlty2, ("cebir", "eşitlik", "denklem", "örüntü"), (5,)), 
              (_mf_dik_problem, ("çevre", "alan"), (5,)),
              (_mf_frac_kars, ("kesir",), (5,))]
 _DIFF_OF.update({"_mf_eqlty2": 2, "_mf_order2": 3, "_mf_dik_problem": 3, "_mf_frac_kars": 3})
+# ---- 5. SINIF MATEMATİK "KESİRLER": ŞEKİLLİ SORU AİLELERİ — bölünmüş şekiller, sayı doğrusu, grup modeli, denk kesir şeritleri
+from fractions import Fraction as _KFr
+
+_KS_N = [4, 6, 8, 9, 10, 12]
+_KS_FORMS = ["daire", "izgara", "dik", "cubuk"]
+_KS_L = list("KLMNPRST")
+
+
+def _ks_fs(k, n):
+    return f"{k}/{n}"
+
+
+def _ks_wr(k, n):
+    """k/n için hatalı ama akla yatkın şık adayları (değeri k/n'ye eşit olanlar hariç)."""
+    c = _KFr(k, n)
+    cand = [(n - k, n), (k, n - k) if n - k > 0 else None, (n, k), (k + 1, n), (k, n + 1), (k - 1 if k > 1 else k + 2, n), (k, n + 2), (n - k + 1, n)]
+    out = []
+    for t in cand:
+        if t is None or t[1] <= 0 or t[0] <= 0:
+            continue
+        if _KFr(t[0], t[1]) == c or _ks_fs(*t) in out:
+            continue
+        out.append(_ks_fs(*t))
+    return out
+
+
+def _ks_sh(panels, per=2, sep=None):
+    sh = {"type": "kes", "sub_type": "bolge", "per_row": per, "panels": panels}
+    if sep:
+        sh["sep"] = sep
+    return sh
+
+
+def _ks_form_ok(n, form):
+    return form != "izgara" or n in _KS_N
+
+
+def _ks_pick_form(n):
+    f = random.choice(_KS_FORMS)
+    return f if _ks_form_ok(n, f) else "daire"
+
+
+def _mf_ks_oku(subject):
+    n = random.choice(_KS_N + [3, 5])
+    k = random.randint(1, n - 1)
+    f = _ks_pick_form(n)
+    sh = _ks_sh([{"form": f, "n": n, "k": k}], 1)
+    o = _mf_opts(_ks_fs(k, n), _ks_wr(k, n), str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde eş parçalara bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım bütünün kaçıdır?", o, f"Bütün {n} eş parçaya bölünmüş ve {k} parçası taralıdır; kesir {k}/{n}.", shape=sh) if o else None
+
+
+def _mf_ks_bos(subject):
+    n = random.choice(_KS_N + [3, 5])
+    k = random.randint(1, n - 1)
+    f = _ks_pick_form(n)
+    sh = _ks_sh([{"form": f, "n": n, "k": k}], 1)
+    o = _mf_opts(_ks_fs(n - k, n), _ks_wr(n - k, n), str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde eş parçalara bölünmüş bir bütünün bir kısmı taranmıştır.\nBuna göre taranmayan kısım bütünün kaçıdır?", o, f"Bütün {n} parçadır, {k} parça taralıdır; taranmayan {n - k} parça: {n - k}/{n}.", shape=sh) if o else None
+
+
+def _mf_ks_hangi(subject):
+    n = random.choice([6, 8, 9, 10, 12])
+    a = random.randint(1, n - 1)
+    ks = [a]
+    for x in random.sample([i for i in range(1, n) if i != a], 3):
+        ks.append(x)
+    forms = [_ks_pick_form(n) for _ in range(4)]
+    idx = list(range(4))
+    random.shuffle(idx)
+    lb = random.sample(_KS_L, 4)
+    panels = [{"form": forms[i], "n": n, "k": ks[i], "label": lb[i]} for i in range(4)]
+    o = _mf_opts(lb[0], lb[1:], str, sort=False)
+    random.shuffle(panels)
+    # harfleri sıraya koy: etiketler panellerle birlikte kalır
+    cor = lb[0]
+    ol = sorted(lb)
+    o = (ol, cor)
+    sh = _ks_sh(panels, 2)
+    return _mf_raw(subject, "Kesirler", f"Şekilde eş parçalara bölünmüş dört bütün harflerle gösterilmiştir.\nBuna göre taralı kısmı {_ks_fs(a, n)} kesrini gösteren şekil hangi harfle gösterilmiştir?", o, f"{n} eş parçadan {a} tanesi taralı olan şekil {cor} ile gösterilmiştir.", shape=sh)
+
+
+def _mf_ks_esitdegil(subject):
+    lb = random.sample(_KS_L, 4)
+    ns = [random.choice([3, 4, 5, 6]) for _ in range(4)]
+    panels = [{"form": random.choice(["daire", "dik"]), "n": ns[i], "k": random.randint(1, ns[i] - 1), "label": lb[i], "seed": random.randint(1, 99)} for i in range(4)]
+    bad = random.randrange(4)
+    panels[bad]["uneq"] = True
+    o = (sorted(lb), lb[bad])
+    return _mf_raw(subject, "Kesirler", "Şekilde dört bütün parçalara ayrılmış ve bir kısmı taranmıştır.\nBuna göre hangi şekildeki taralı kısım bir kesir olarak ifade edilemez?", o, f"Kesir için bütün eş parçalara bölünmelidir; {lb[bad]} şeklinde parçalar eşit değildir.", shape=_ks_sh(panels, 2))
+
+
+def _ks_vals(n3=3):
+    for _ in range(80):
+        ds = [random.choice([3, 4, 5, 6, 8, 10, 12]) for _ in range(n3)]
+        ks = [random.randint(1, d - 1) for d in ds]
+        vs = [_KFr(k, d) for k, d in zip(ks, ds)]
+        if len(set(vs)) == n3 and all(abs(vs[i] - vs[j]) >= _KFr(1, 12) for i in range(n3) for j in range(i + 1, n3)):
+            return ds, ks, vs
+    return None, None, None
+
+
+def _ks_cub(ds, ks, lb):
+    return _ks_sh([{"form": "cubuk", "n": ds[i], "k": ks[i], "label": lb[i]} for i in range(len(ds))], 1)
+
+
+def _mf_ks_en(subject):
+    ds, ks, vs = _ks_vals(4)
+    if not ds:
+        return None
+    lb = random.sample(_KS_L, 4)
+    ask = random.choice(["en büyük", "en küçük"])
+    i = vs.index(max(vs) if ask == "en büyük" else min(vs))
+    o = (sorted(lb), lb[i])
+    return _mf_raw(subject, "Kesirler", f"Şekilde aynı uzunlukta dört şeridin taralı kısımları harflerle gösterilmiştir.\nBuna göre taralı kısmı {ask} olan şerit hangi harfle gösterilmiştir?", o, f"Şeritlerin taralı kısımları {', '.join(f'{lb[j]}: {_ks_fs(ks[j], ds[j])}' for j in range(4))}; {ask} olan {lb[i]}'dir.", shape=_ks_cub(ds, ks, lb))
+
+
+def _mf_ks_sirala(subject):
+    ds, ks, vs = _ks_vals(3)
+    if not ds:
+        return None
+    import itertools
+    lb = random.sample(_KS_L, 3)
+    order = sorted(range(3), key=lambda j: vs[j])
+    cor = " < ".join(lb[j] for j in order)
+    allp = [" < ".join(lb[j] for j in p) for p in itertools.permutations(range(3))]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _mf_opts(cor, w[:3], str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde aynı uzunlukta üç şeridin taralı kısımları harflerle gösterilmiştir.\nBuna göre şeritlerin taralı kısımları küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?", o, f"Taralı kısımlar {', '.join(f'{lb[j]}: {_ks_fs(ks[j], ds[j])}' for j in range(3))}; küçükten büyüğe {cor}.", shape=_ks_cub(ds, ks, lb)) if o else None
+
+
+def _mf_ks_yarim(subject):
+    c = random.choice([1, 2, 3])
+    pans = []
+    ns = [2, 4, 6, 8, 10, 12]
+    eq = [(n, n // 2) for n in ns]
+    for (n, k) in random.sample(eq, c):
+        pans.append((n, k))
+    while len(pans) < 4:
+        n = random.choice(ns)
+        k = random.randint(1, n - 1)
+        if 2 * k != n:
+            pans.append((n, k))
+    random.shuffle(pans)
+    forms = [("daire" if n != 9 else "daire") if random.random() < .5 else ("izgara" if n in _KS_N else "dik") for n, k in pans]
+    lb = random.sample(_KS_L, 4)
+    sh = _ks_sh([{"form": forms[i], "n": pans[i][0], "k": pans[i][1], "label": lb[i]} for i in range(4)], 2)
+    o = _mf_opts(c, [x for x in range(0, 5) if x != c], str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde eş parçalara bölünmüş dört bütünün taralı kısımları gösterilmiştir.\nBuna göre kaç şekilde taralı kısım bütünün yarısına eşittir?", o, f"Taralı parça sayısı toplam parçanın yarısı olan şekiller {c} tanedir.", shape=sh) if o else None
+
+
+def _mf_ks_birim(subject):
+    n = random.choice([3, 4, 5, 6, 8, 10, 12])
+    f = _ks_pick_form(n)
+    sh = _ks_sh([{"form": f, "n": n, "k": 1}], 1)
+    o = _mf_opts(f"1/{n}", [f"{n}/1", f"1/{n - 1}" if n > 2 else None, f"1/{n + 1}", f"{n - 1}/{n}"], str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde eş parçalara bölünmüş bir bütünün bir parçası taranmıştır.\nBuna göre taralı parça (bir parça) bütünün kaçıdır?", o, f"Bütün {n} eş parçadır; bir parça 1/{n} olur.", shape=sh) if o else None
+
+
+def _ks_tam():
+    w = random.choice([1, 2, 3])
+    n = random.choice([3, 4, 5, 6, 8])
+    k = random.randint(1, n - 1)
+    f = random.choice(["daire", "dik"])
+    return w, n, k, _ks_sh([{"form": f, "n": n, "k": k, "w": w}], 1)
+
+
+def _mf_ks_tamsayili(subject):
+    w, n, k, sh = _ks_tam()
+    cor = f"{w} {k}/{n}"
+    wr = [f"{w + 1} {k}/{n}", f"{w} {n - k}/{n}", f"{k} {w}/{n}", f"{w} {k}/{n + 1}", f"{w} {k + 1}/{n}" if k + 1 < n else f"{w} {k - 1}/{n}"]
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde eş parçalara bölünmüş özdeş bütünlerin taralı kısımları gösterilmiştir.\nBuna göre taralı bölümlerin tamamı hangi tam sayılı kesirle ifade edilir?", o, f"{w} tam bütün ve {n} parçadan {k} tanesi taralıdır: {cor}.", shape=sh) if o else None
+
+
+def _mf_ks_bilesik(subject):
+    w, n, k, sh = _ks_tam()
+    num = w * n + k
+    cor = f"{num}/{n}"
+    wr = [f"{w + k}/{n}", f"{num + 1}/{n}", f"{num - 1}/{n}", f"{num}/{n + 1}", f"{w * n}/{n}"]
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde eş parçalara bölünmüş özdeş bütünlerin taralı kısımları gösterilmiştir.\nBuna göre taralı bölümlerin tamamı hangi bileşik kesirle ifade edilir?", o, f"Her bütün {n} parçadır; taralı parçalar {w} × {n} + {k} = {num}: {num}/{n}.", shape=sh) if o else None
+
+
+def _mf_ks_topla(subject):
+    n = random.choice([5, 6, 8, 9, 10, 12])
+    a = random.randint(1, n - 2)
+    b = random.randint(1, n - 1 - a)
+    f = random.choice(["daire", "dik"])
+    sh = _ks_sh([{"form": f, "n": n, "k": a}, {"form": f, "n": n, "k": b}], 2, "+")
+    cor = _ks_fs(a + b, n)
+    wr = [_ks_fs(a + b, 2 * n), _ks_fs(a * b, n), _ks_fs(a + b + 1, n), _ks_fs(abs(a - b) or a + 2, n), _ks_fs(a + b, n + 1)]
+    wr = [w for w in wr if w != cor]
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde aynı bütünün eş parçalara bölünmüş iki kopyasının taralı kısımları verilmiştir.\nBuna göre bu iki taralı kısmın toplamı bütünün kaçıdır?", o, f"{a}/{n} + {b}/{n} = {a + b}/{n}.", shape=sh) if o else None
+
+
+def _mf_ks_cikar(subject):
+    n = random.choice([5, 6, 8, 9, 10, 12])
+    a = random.randint(3, n - 1)
+    b = random.randint(1, a - 1)
+    f = random.choice(["daire", "dik"])
+    sh = _ks_sh([{"form": f, "n": n, "k": a}, {"form": f, "n": n, "k": b}], 2, "−")
+    cor = _ks_fs(a - b, n)
+    wr = [_ks_fs(a + b, n), _ks_fs(a - b, 2 * n), _ks_fs(a - b + 1, n), _ks_fs(b, n), _ks_fs(a - b, n - 1)]
+    wr = [w for w in wr if w != cor and not w.endswith("/0")]
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde aynı bütünün eş parçalara bölünmüş iki kopyasının taralı kısımları verilmiştir.\nBuna göre birinci şekildeki taralı kısımdan ikinci şekildeki taralı kısım çıkarılırsa kalan kısım bütünün kaçı olur?", o, f"{a}/{n} − {b}/{n} = {a - b}/{n}.", shape=sh) if o else None
+
+
+def _ks_nl(mx, d, pts):
+    return {"type": "kes", "sub_type": "sayi", "max": mx, "d": d, "points": pts}
+
+
+def _mf_ks_sd_oku(subject):
+    d = random.choice([4, 5, 6, 8, 10])
+    p = random.randint(1, d - 1)
+    lb = random.choice(_KS_L)
+    sh = _ks_nl(1, d, [{"p": p, "label": lb}])
+    o = _mf_opts(_ks_fs(p, d), _ks_wr(p, d), str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekildeki sayı doğrusunda 0 ile 1 arası eş aralıklara bölünmüştür.\nBuna göre {lb} noktası hangi kesri gösterir?", o, f"0 ile 1 arası {d} eş aralıktır; {lb} noktası {p}. çizgidedir: {p}/{d}.", shape=sh) if o else None
+
+
+def _mf_ks_sd_bul(subject):
+    d = random.choice([4, 5, 6, 8, 10])
+    ps = random.sample(range(1, d), 4 if d > 5 else 3)
+    lb = random.sample(_KS_L, len(ps))
+    a = ps[0]
+    sh = _ks_nl(1, d, [{"p": ps[i], "label": lb[i]} for i in range(len(ps))])
+    if len(ps) == 3:
+        o = (sorted(lb + ["Hiçbiri"]), lb[0])
+    else:
+        o = (sorted(lb), lb[0])
+    return _mf_raw(subject, "Kesirler", f"Şekildeki sayı doğrusunda 0 ile 1 arası {d} eş aralığa bölünmüştür.\nBuna göre {_ks_fs(a, d)} kesrini gösteren nokta hangi harfle gösterilmiştir?", o, f"{_ks_fs(a, d)} kesri {a}. çizgidedir; bu nokta {lb[0]} ile gösterilmiştir.", shape=sh)
+
+
+def _mf_ks_sd_en(subject):
+    mx = random.choice([1, 2])
+    d = random.choice([4, 5, 6])
+    ps = random.sample(range(1, mx * d), 3)
+    lb = random.sample(_KS_L, 3)
+    ask = random.choice(["en büyük", "en küçük"])
+    i = ps.index(max(ps) if ask == "en büyük" else min(ps))
+    sh = _ks_nl(mx, d, [{"p": ps[j], "label": lb[j]} for j in range(3)])
+    o = _mf_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Üçü de eşittir."], str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekildeki sayı doğrusunda her tam bölüm {d} eş aralığa bölünmüştür. Üç nokta harflerle gösterilmiştir.\nBuna göre {ask} kesri gösteren nokta hangi harfle gösterilmiştir?", o, f"Sayı doğrusunda sağa gidildikçe sayı büyür; {ask} kesir {lb[i]} noktasındadır.", shape=sh) if o else None
+
+
+def _mf_ks_sd_tam(subject):
+    d = random.choice([3, 4, 5, 6])
+    p = random.choice([x for x in range(d + 1, 2 * d) if x % d])
+    lb = random.choice(_KS_L)
+    sh = _ks_nl(2, d, [{"p": p, "label": lb}])
+    w, r = divmod(p, d)
+    cor = f"{w} {r}/{d}"
+    wr = [f"{w + 1} {r}/{d}", f"{w} {d - r}/{d}", f"{r} {w}/{d}", f"{w} {r}/{d + 1}", f"{w} {r + 1}/{d}" if r + 1 < d else f"{w} {r - 1}/{d}"]
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekildeki sayı doğrusunda her tam bölüm {d} eş aralığa bölünmüştür.\nBuna göre {lb} noktası hangi tam sayılı kesri gösterir?", o, f"{lb} noktası 1'den {r} aralık sonradır: {cor}.", shape=sh) if o else None
+
+
+def _mf_ks_sd_fark(subject):
+    d = random.choice([5, 6, 8, 10])
+    a = random.randint(1, d - 3)
+    b = random.randint(a + 1, d - 1)
+    lb = random.sample(_KS_L, 2)
+    sh = _ks_nl(1, d, [{"p": a, "label": lb[0]}, {"p": b, "label": lb[1]}])
+    cor = _ks_fs(b - a, d)
+    wr = [_ks_fs(b + a, d), _ks_fs(b, d), _ks_fs(a, d), _ks_fs(b - a + 1, d), _ks_fs(b - a, d + 1), _ks_fs(b - a + 2, d)]
+    wr = [w for w in wr if w != cor]
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekildeki sayı doğrusunda 0 ile 1 arası {d} eş aralığa bölünmüştür.\nBuna göre {lb[0]} ile {lb[1]} noktaları arasındaki uzaklık kaç birimdir?", o, f"{b}/{d} − {a}/{d} = {b - a}/{d}.", shape=sh) if o else None
+
+
+def _mf_ks_grp_kesir(subject):
+    n = random.choice([8, 10, 12, 9, 6])
+    k = random.randint(1, n - 1)
+    sh = {"type": "kes", "sub_type": "grup", "n": n, "k": k, "per_row": 6 if n != 9 else 5}
+    o = _mf_opts(_ks_fs(k, n), _ks_wr(k, n), str, sort=False)
+    return _mf_raw(subject, "Kesirler", "Şekilde bir kümedeki toplar gösterilmiştir. Kırmızı toplar bütünün bir kısmını oluşturmaktadır.\nBuna göre kırmızı toplar kümenin kaçıdır?", o, f"Toplam {n} top, {k} tanesi kırmızıdır: {k}/{n}.", shape=sh) if o else None
+
+
+def _mf_ks_grp_kac(subject):
+    d = random.choice([3, 4, 5, 6])
+    m = random.choice([2, 3, 4])
+    n = d * m
+    k = random.randint(1, d - 1)
+    sh = {"type": "kes", "sub_type": "grup", "n": n, "d": d, "k": k}
+    c = k * m
+    wr = [n - c, k, m, c + m, d * k, c + 1, c - 1, 2 * c]
+    wr = [w for w in wr if w != c and w > 0]
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekilde {n} top {d} eş gruba ayrılmıştır. Renkli gruplar bütünün {_ks_fs(k, d)} kadarını göstermektedir.\nBuna göre {n} topun {_ks_fs(k, d)} kadarı kaç toptur?", o, f"{n} ÷ {d} = {m} top her grupta; {k} grup: {k} × {m} = {c} top.", shape=sh) if o else None
+
+
+def _mf_ks_grp_oran(subject):
+    d = random.choice([4, 5, 6, 8])
+    m = random.choice([2, 3])
+    n = d * m
+    k = random.randint(1, d - 1)
+    sh = {"type": "kes", "sub_type": "grup", "n": n, "d": d, "k": k}
+    o = _mf_opts(_ks_fs(k, d), _ks_wr(k, d), str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekilde {n} top {d} eş gruba ayrılmış ve bazı gruplar renklendirilmiştir.\nBuna göre renkli gruplar bütünün kaçıdır?", o, f"{d} eş grubun {k} tanesi renklidir: {k}/{d}.", shape=sh) if o else None
+
+
+def _mf_ks_esd_denk(subject):
+    n1, m = random.choice([(2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 2), (3, 3), (3, 4), (4, 2), (4, 3), (5, 2), (6, 2)])
+    k1 = random.randint(1, n1 - 1)
+    n2, k2 = n1 * m, k1 * m
+    sh = {"type": "kes", "sub_type": "esdeger", "n1": n1, "k1": k1, "n2": n2, "k2": k2}
+    o = _mf_opts(k2, [k1, n2 - k2, k2 + 1, k1 + n1][:4] + [k2 - 1 if k2 > 1 else k2 + 2], str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekilde aynı uzunlukta iki şeridin taralı kısımları birbirine eşittir. Üstteki şerit {n1} eş parçaya, alttaki şerit {n2} eş parçaya bölünmüştür.\n{k1}/{n1} = □/{n2} eşitliğinde □ yerine hangi sayı yazılmalıdır?", o, f"Her parça {m} parçaya bölününce pay da {m} katına çıkar: {k1} × {m} = {k2}.", shape=sh) if o else None
+
+
+def _mf_ks_esd_hangi(subject):
+    n1, m = random.choice([(2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 2), (3, 3), (3, 4), (4, 2), (4, 3), (5, 2), (6, 2)])
+    k1 = random.randint(1, n1 - 1)
+    n2, k2 = n1 * m, k1 * m
+    sh = {"type": "kes", "sub_type": "esdeger", "n1": n1, "k1": k1, "n2": n2, "k2": k2}
+    cor = _ks_fs(k2, n2)
+    wr = [_ks_fs(k1, n2), _ks_fs(k2, n1), _ks_fs(n2 - k2, n2), _ks_fs(k2 + 1, n2)]
+    wr = [w for w in wr if w != cor and _KFr(*map(int, w.split("/"))) != _KFr(k1, n1)]
+    o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Kesirler", f"Şekilde aynı uzunlukta iki şerit gösterilmiştir. Üstteki şeridin taralı kısmı {_ks_fs(k1, n1)}'dir ve alttaki şeridin taralı kısmına eşittir.\nBuna göre alttaki şeridin taralı kısmı hangi kesirle gösterilir?", o, f"Taralı kısımlar eşit olduğu için alttaki kesir {_ks_fs(k1, n1)}'e denktir: {cor}.", shape=sh) if o else None
+
+
+_KS_FAMS = [
+    (_mf_ks_oku, 2, "MAT.5.1.3"), (_mf_ks_bos, 2, "MAT.5.1.3"), (_mf_ks_hangi, 3, "MAT.5.1.3"), (_mf_ks_esitdegil, 3, "MAT.5.1.3"), (_mf_ks_birim, 1, "MAT.5.1.3"),
+    (_mf_ks_tamsayili, 3, "MAT.5.1.3"), (_mf_ks_bilesik, 3, "MAT.5.1.3"), (_mf_ks_topla, 3, "MAT.5.1.3"), (_mf_ks_cikar, 3, "MAT.5.1.3"),
+    (_mf_ks_en, 3, "MAT.5.1.4"), (_mf_ks_sirala, 4, "MAT.5.1.4"), (_mf_ks_yarim, 4, "MAT.5.1.4"),
+    (_mf_ks_sd_oku, 3, "MAT.5.1.3"), (_mf_ks_sd_bul, 3, "MAT.5.1.3"), (_mf_ks_sd_en, 4, "MAT.5.1.4"), (_mf_ks_sd_tam, 4, "MAT.5.1.3"), (_mf_ks_sd_fark, 4, "MAT.5.1.3"),
+    (_mf_ks_grp_kesir, 2, "MAT.5.1.3"), (_mf_ks_grp_kac, 4, "MAT.5.1.3"), (_mf_ks_grp_oran, 3, "MAT.5.1.3"),
+    (_mf_ks_esd_denk, 4, "MAT.5.1.4"), (_mf_ks_esd_hangi, 4, "MAT.5.1.4"),
+]
+_KS_PRE = {"Şekilde": ["Şekilde", "Aşağıdaki şekilde", "Görselde", "Yandaki şekilde", "Verilen şekilde"],
+           "Şekildeki": ["Şekildeki", "Aşağıdaki", "Verilen", "Görseldeki", "Yandaki"]}
+_KS_SUF = [("gösterilmiştir.", ["gösterilmiştir.", "verilmiştir.", "görülmektedir."]), ("gösterilmiştir.\nBuna göre", ["gösterilmiştir.\nBuna göre", "verilmiştir.\nBuna göre", "gösterilmiştir.\nŞekle göre"])]
+
+
+def _ks_vary(fn):
+    def g(subject, *a, **k):
+        r = fn(subject, *a, **k)
+        if isinstance(r, dict):
+            q = str(r.get("question", ""))
+            for key, alts in _KS_PRE.items():
+                if q.startswith(key + " "):
+                    q = random.choice(alts) + q[len(key):]
+                    break
+            for old, alts in _KS_SUF:
+                if old in q:
+                    q = q.replace(old, random.choice(alts), 1)
+                    break
+            r = dict(r)
+            r["question"] = q
+        return r
+    g.__dict__.update(getattr(fn, "__dict__", {}))
+    g.__name__ = fn.__name__
+    g.__wrapped__ = fn
+    return g
+
+
+for _f, _d, _cd in _KS_FAMS:
+    _MF_GENS.append((_ks_vary(_f), ("kesir",), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
+_KS_VIS = {f.__name__ for f, _d, _c in _KS_FAMS}
+
+
 _MF_ITEMCODE.update({"_mf_eqlty2": ["MAT.5.2.1"], "_mf_order2": ["MAT.5.2.2"], "_mf_dik_problem": ["MAT.5.4.4"], "_mf_frac_kars": ["MAT.5.1.4"]})
 
 
