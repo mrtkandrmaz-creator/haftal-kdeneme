@@ -3116,13 +3116,13 @@ def _bio_tree(ax, d):
     xs = [(i - (n - 1) / 2.0) * W for i in range(n)]
     box = lambda x, y, t, fc, w=3.4, h=.8, fs=10: (ax.add_patch(_FB((x - w / 2, y - h / 2), w, h, boxstyle="round,pad=0,rounding_size=.2", fc=fc, ec=INK, lw=1.6, zorder=3)),
                                                       ax.text(x, y, t, ha="center", va="center", fontsize=fs, fontweight="bold", color=INK, zorder=4))
-    box(0, 0, root, "#fde68a", w=3.4)
+    box(0, 0, root, "#fde68a", w=max(3.4, .2 * len(root) + .8))
     for x, k, lv in zip(xs, kids, leaves):
         ax.plot([0, 0, x, x], [-.4, -.75, -.75, -1.3], color=INK, lw=1.6, zorder=1)
-        box(x, -1.7, k, "#bae6fd")
+        box(x, -1.7, k, "#bae6fd", fs=(10 if len(k) <= 16 else 8.5))
         for j, l in enumerate(lv):
             ax.plot([x, x], [-2.1 - .85 * j, -2.4 - .85 * j] if j == 0 else [-2.1 - .85 * (j - 1) - .4, -2.4 - .85 * j], color=INK, lw=1.2, zorder=1)
-            box(x, -2.8 - .85 * j, str(l), "#dcfce7", h=.65, fs=9.5)
+            box(x, -2.8 - .85 * j, str(l), "#dcfce7", h=.65, fs=(9.5 if len(str(l)) <= 14 else 8))
     depth = max([len(x) for x in leaves] + [0])
     ax.set_xlim(xs[0] - 1.8, xs[-1] + 1.8)
     ax.set_ylim(-3.2 - .85 * depth, .8)
@@ -3207,8 +3207,69 @@ def _bio_cards(ax, d):
         ax.set_ylim(-(rows - 1) * 3.7 - 2.8, 1.8)
 
 
+def _bio_slide(ax, d):
+    ax.add_patch(Rectangle((0, 0), 9, 2.6, fc="#e0f2fe", ec="#0369a1", lw=2, alpha=.9, zorder=2))
+    ax.add_patch(Circle((4.5, 1.3), .62, fc="#bae6fd", ec="#0284c7", lw=1.3, zorder=3))
+    for (x, y) in ((4.3, 1.4), (4.7, 1.15), (4.55, 1.5)):
+        ax.add_patch(Circle((x, y), .07, fc="#0369a1", ec="none", zorder=4))
+    ax.add_patch(Rectangle((3.4, .5), 2.2, 1.6, fc="#ffffff", ec="#64748b", lw=1.5, alpha=.55, zorder=5))
+    A = {"lam": ((.9, 2.0), (.3, 4.0)), "lamel": ((5.4, 1.9), (7.6, 4.0)), "drop": ((4.5, .75), (4.5, -1.6))}
+    for k, t in (d.get("labels") or {}).items():
+        if k in A:
+            _bio_leader(ax, A[k][0], A[k][1], t)
+    ax.set_xlim(-1, 10)
+    ax.set_ylim(-2.4, 4.8)
+
+
+def _bio_field(ax, d):
+    ax.add_patch(Circle((0, 0), 5.0, fc="#f1f5f9", ec="#334155", lw=3.5, zorder=1))
+    ax.add_patch(Circle((0, 0), 5.0, fc="none", ec="#94a3b8", lw=1, zorder=1, ls="--"))
+    _code = {"m1": "amip", "m2": "paramesyum", "m3": "öglena", "m4": "bakteri"}
+    for k, x, y, sc, ang in d.get("items", []):
+        k = _code.get(k, k)
+        f = _BIO_MIKRO[k]
+        if k == "paramesyum":
+            f(ax, x, y, sc, ang)
+        elif k == "öglena":
+            f(ax, x, y, sc, ang)
+        else:
+            f(ax, x, y, sc)
+    ax.text(0, -5.6, "Mikroskoptaki görüntü", ha="center", va="center", fontsize=10, fontweight="bold", color=GREEN)
+    ax.set_xlim(-5.4, 5.4)
+    ax.set_ylim(-6.1, 5.4)
+
+
+def _bio_groups(ax, d):
+    from matplotlib.patches import FancyBboxPatch as _FB
+    boxes = d.get("boxes", [])
+    n = len(boxes)
+    per = int(d.get("per_row", n)) or n
+    rows = (n + per - 1) // per
+    BW, BH = 5.0, 3.9
+    for i, bx in enumerate(boxes):
+        r, c = divmod(i, per)
+        x0, y0 = c * (BW + .5), -r * (BH + .6)
+        ax.add_patch(_FB((x0, y0 - BH), BW, BH, boxstyle="round,pad=0,rounding_size=.3", fc="#f8fafc", ec="#64748b", lw=2, zorder=1))
+        ax.add_patch(_FB((x0, y0 - .8), BW, .8, boxstyle="round,pad=0,rounding_size=.3", fc="#fde68a", ec="#64748b", lw=2, zorder=2))
+        ax.text(x0 + BW / 2, y0 - .4, str(bx.get("title", "")), ha="center", va="center", fontsize=12, fontweight="bold", color=INK, zorder=3)
+        its = bx.get("items", [])
+        m = len(its)
+        for j, it in enumerate(its):
+            cx = x0 + BW * (j + .5) / max(m, 1)
+            cy = y0 - 2.35
+            _bio_icon(ax, it.get("kind"), cx, cy, .62 if m > 2 else .75)
+            if it.get("label"):
+                _bio_bubble(ax, cx - .5, cy - 1.15 if False else cy + .95, it["label"], fs=9, r=.3)
+    ax.set_xlim(-.3, max(per, 2) * (BW + .5))
+    ax.set_ylim(-rows * (BH + .6) + .3, .3)
+
+
 def _bio(ax, d):
     st = d.get("sub_type")
+    if st == "field":
+        return _bio_field(ax, d)
+    if st == "groups":
+        return _bio_groups(ax, d)
     if st == "microscope":
         _bio_microscope(ax, d)
     elif st == "mushroom":
@@ -3221,6 +3282,780 @@ def _bio(ax, d):
         _bio_tree(ax, d)
     elif st == "cards":
         _bio_cards(ax, d)
+    elif st == "slide":
+        _bio_slide(ax, d)
+
+
+# ---------------------------------------------------------------- IŞIĞIN YAYILMASI ŞEMALARI (5. sınıf Fen): ışık kaynakları, delikli kartlar, gölge düzeneği, tam gölge bölgesi, saydam/yarı saydam/opak madde
+def _lt_icon(ax, kind, cx, cy, s=1.0):
+    Y = "#facc15"
+    if kind == "güneş":
+        for a in range(0, 360, 30):
+            ax.plot([cx + .62 * s * np.cos(np.radians(a)), cx + .98 * s * np.cos(np.radians(a))], [cy + .62 * s * np.sin(np.radians(a)), cy + .98 * s * np.sin(np.radians(a))], color="#f59e0b", lw=2.2, zorder=3)
+        ax.add_patch(Circle((cx, cy), .5 * s, fc=Y, ec="#d97706", lw=1.6, zorder=4))
+    elif kind == "ampul":
+        for a in range(20, 170, 25):
+            ax.plot([cx + .62 * s * np.cos(np.radians(a)), cx + .92 * s * np.cos(np.radians(a))], [cy + .2 * s + .62 * s * np.sin(np.radians(a)), cy + .2 * s + .92 * s * np.sin(np.radians(a))], color="#f59e0b", lw=1.6, zorder=3)
+        ax.add_patch(Circle((cx, cy + .2 * s), .5 * s, fc="#fef08a", ec="#a16207", lw=1.6, zorder=4))
+        ax.add_patch(Rectangle((cx - .22 * s, cy - .62 * s), .44 * s, .32 * s, fc="#94a3b8", ec="#334155", lw=1.3, zorder=4))
+    elif kind == "mum":
+        ax.add_patch(Rectangle((cx - .22 * s, cy - .9 * s), .44 * s, 1.15 * s, fc="#fef3c7", ec="#a16207", lw=1.5, zorder=3))
+        ax.add_patch(Ellipse((cx, cy + .55 * s), .3 * s, .55 * s, fc="#fb923c", ec="#c2410c", lw=1.2, zorder=4))
+        ax.add_patch(Ellipse((cx, cy + .5 * s), .14 * s, .3 * s, fc=Y, ec="none", zorder=5))
+    elif kind == "el feneri":
+        ax.add_patch(Polygon([[cx + .1 * s, cy + .15 * s], [cx + 1.0 * s, cy + .6 * s], [cx + 1.0 * s, cy - .6 * s], [cx + .1 * s, cy - .15 * s]], closed=True, fc="#fef9c3", ec="none", alpha=.9, zorder=2))
+        ax.add_patch(Rectangle((cx - .85 * s, cy - .18 * s), .9 * s, .36 * s, fc="#475569", ec=INK, lw=1.3, zorder=4))
+        ax.add_patch(Polygon([[cx + .05 * s, cy - .18 * s], [cx + .05 * s, cy + .18 * s], [cx + .3 * s, cy + .3 * s], [cx + .3 * s, cy - .3 * s]], closed=True, fc="#94a3b8", ec=INK, lw=1.3, zorder=4))
+    elif kind == "yıldız":
+        P = []
+        for i in range(10):
+            r = .62 * s if i % 2 == 0 else .26 * s
+            a = np.radians(90 + 36 * i)
+            P.append([cx + r * np.cos(a), cy + r * np.sin(a)])
+        ax.add_patch(Polygon(P, closed=True, fc=Y, ec="#d97706", lw=1.5, zorder=4))
+    elif kind == "ateş":
+        ax.plot([cx - .7 * s, cx + .7 * s], [cy - .7 * s, cy - .45 * s], color="#92400e", lw=4, zorder=3)
+        ax.plot([cx - .7 * s, cx + .7 * s], [cy - .45 * s, cy - .7 * s], color="#78350f", lw=4, zorder=3)
+        ax.add_patch(Polygon([[cx - .5 * s, cy - .5 * s], [cx - .3 * s, cy + .2 * s], [cx - .1 * s, cy - .1 * s], [cx, cy + .75 * s], [cx + .2 * s, cy - .1 * s], [cx + .35 * s, cy + .25 * s], [cx + .5 * s, cy - .5 * s]], closed=True, fc="#fb923c", ec="#c2410c", lw=1.3, zorder=4))
+        ax.add_patch(Polygon([[cx - .22 * s, cy - .5 * s], [cx, cy + .15 * s], [cx + .22 * s, cy - .5 * s]], closed=True, fc=Y, ec="none", zorder=5))
+    elif kind == "ateş böceği":
+        for sx in (-1, 1):
+            ax.add_patch(Ellipse((cx + sx * .25 * s, cy + .35 * s), .5 * s, .22 * s, angle=sx * -30, fc="#e2e8f0", ec="#64748b", lw=1, zorder=3))
+        ax.add_patch(Ellipse((cx, cy), .45 * s, 1.1 * s, fc="#44403c", ec=INK, lw=1.3, zorder=4))
+        ax.add_patch(Ellipse((cx, cy - .35 * s), .36 * s, .5 * s, fc="#fde047", ec="#ca8a04", lw=1, zorder=5))
+        ax.add_patch(Circle((cx, cy - .35 * s), .62 * s, fc="#fde047", ec="none", alpha=.25, zorder=2))
+    elif kind == "şimşek":
+        ax.add_patch(Ellipse((cx, cy + .55 * s), 1.4 * s, .6 * s, fc="#64748b", ec="#334155", lw=1.3, zorder=3))
+        ax.add_patch(Polygon([[cx + .1 * s, cy + .3 * s], [cx - .35 * s, cy - .2 * s], [cx - .05 * s, cy - .2 * s], [cx - .3 * s, cy - .8 * s], [cx + .35 * s, cy - .05 * s], [cx + .05 * s, cy - .05 * s], [cx + .3 * s, cy + .3 * s]], closed=True, fc=Y, ec="#d97706", lw=1.2, zorder=4))
+    elif kind == "televizyon":
+        ax.add_patch(Rectangle((cx - .8 * s, cy - .5 * s), 1.6 * s, 1.1 * s, fc="#1e293b", ec=INK, lw=1.4, zorder=3))
+        ax.add_patch(Rectangle((cx - .68 * s, cy - .4 * s), 1.36 * s, .9 * s, fc="#bae6fd", ec="none", zorder=4))
+        ax.plot([cx - .3 * s, cx + .3 * s], [cy - .6 * s, cy - .6 * s], color=INK, lw=2, zorder=3)
+    elif kind == "ay":
+        ax.add_patch(Circle((cx, cy), .62 * s, fc="#e2e8f0", ec="#64748b", lw=1.5, zorder=4))
+        for (dx, dy, r) in ((-.2, .2, .13), (.2, -.1, .17), (-.1, -.3, .09)):
+            ax.add_patch(Circle((cx + dx * s, cy + dy * s), r * s, fc="#cbd5e1", ec="none", zorder=5))
+    elif kind == "ayna":
+        ax.add_patch(Ellipse((cx, cy + .15 * s), 1.0 * s, 1.3 * s, fc="#bae6fd", ec="#92400e", lw=3, zorder=4))
+        ax.plot([cx - .2 * s, cx + .15 * s], [cy + .5 * s, cy + .1 * s], color="white", lw=2, zorder=5)
+        ax.plot([cx, cx], [cy - .5 * s, cy - .95 * s], color="#92400e", lw=4, zorder=3)
+    elif kind == "kitap":
+        ax.add_patch(Rectangle((cx - .55 * s, cy - .7 * s), 1.1 * s, 1.4 * s, fc="#3b82f6", ec=INK, lw=1.4, zorder=3))
+        ax.add_patch(Rectangle((cx - .55 * s, cy - .7 * s), .18 * s, 1.4 * s, fc="#1d4ed8", ec=INK, lw=1.2, zorder=4))
+        ax.add_patch(Rectangle((cx - .1 * s, cy + .1 * s), .5 * s, .35 * s, fc="white", ec="none", zorder=4))
+    elif kind == "top":
+        ax.add_patch(Circle((cx, cy), .6 * s, fc="#ef4444", ec="#7f1d1d", lw=1.5, zorder=3))
+        ax.add_patch(Wedge((cx, cy), .6 * s, 40, 140, fc="white", ec="none", zorder=4))
+        ax.add_patch(Wedge((cx, cy), .6 * s, 220, 320, fc="white", ec="none", zorder=4))
+
+
+_LT_DOGAL = ["güneş", "yıldız", "ateş böceği", "şimşek"]
+_LT_YAPAY = ["ampul", "mum", "el feneri", "televizyon"]
+_LT_DEGIL = ["ay", "ayna", "kitap", "top"]
+
+
+def _lt_cards(ax, d):
+    items = d.get("items", [])
+    n = len(items)
+    per = min(n, int(d.get("per_row", 4)) or 4)
+    rows = (n + per - 1) // per
+    for i, it in enumerate(items):
+        r, c = divmod(i, per)
+        cx, cy = c * 3.3 + 1.5, -r * 3.7
+        ax.add_patch(FancyBboxPatch((cx - 1.55, cy - 1.45), 3.1, 2.9, boxstyle="round,pad=0,rounding_size=.25", fc="#f8fafc", ec="#cbd5e1", lw=1.4, zorder=1))
+        _lt_icon(ax, it.get("kind"), cx, cy + .05, 1.15)
+        if it.get("label"):
+            _bio_bubble(ax, cx - 1.2, cy + 1.1, it["label"], fs=11, r=.36)
+    ax.set_xlim(-.4, per * 3.3 + .2)
+    ax.set_ylim(-(rows - 1) * 3.7 - 1.7, 1.8)
+
+
+def _lt_lamp(ax, x, y, s=1.0):
+    ax.add_patch(Circle((x, y), .55 * s, fc="#fef08a", ec="#a16207", lw=1.8, zorder=6))
+    for a in range(0, 360, 45):
+        ax.plot([x + .7 * s * np.cos(np.radians(a)), x + 1.0 * s * np.cos(np.radians(a))], [y + .7 * s * np.sin(np.radians(a)), y + 1.0 * s * np.sin(np.radians(a))], color="#f59e0b", lw=1.5, zorder=6)
+
+
+def _lt_eye(ax, x, y):
+    t = np.linspace(-1, 1, 30)
+    ax.fill(np.concatenate([x + .7 * t, x + .7 * t[::-1]]), np.concatenate([y + .38 * (1 - t ** 2), y - .38 * (1 - t ** 2)]), fc="white", ec=INK, lw=1.6, zorder=6)
+    ax.add_patch(Circle((x, y), .2, fc="#1d4ed8", ec=INK, lw=1, zorder=7))
+    ax.add_patch(Circle((x, y), .08, fc=INK, ec="none", zorder=8))
+
+
+def _lt_kartlar(ax, d):
+    cards = d.get("cards", [])
+    n = len(cards)
+    xs = [4.2 + 2.6 * i for i in range(n)]
+    ex = xs[-1] + 2.2
+    sy = 4.0
+    _lt_lamp(ax, 1.2, sy, 1.0)
+    _lt_eye(ax, ex, sy)
+    stop = None
+    for x, c in zip(xs, cards):
+        h = float(c.get("hole", sy))
+        ax.add_patch(Rectangle((x - .2, 0.6), .4, max(h - .3 - .6, 0), fc="#a16207", ec=INK, lw=1.4, zorder=4))
+        ax.add_patch(Rectangle((x - .2, h + .3), .4, max(7.4 - h - .3, 0), fc="#a16207", ec=INK, lw=1.4, zorder=4))
+        _bio_bubble(ax, x, 8.2, c.get("label", ""), fs=11, r=.38)
+        if stop is None and abs(h - sy) > .15:
+            stop = x - .2
+    end = stop if stop is not None else ex - .75
+    ax.add_patch(Rectangle((1.9, sy - .09), end - 1.9, .18, fc="#fde047", ec="none", alpha=.9, zorder=5))
+    ax.plot([1.9, end], [sy, sy], color="#f59e0b", lw=1.5, zorder=5)
+    ax.set_xlim(-.4, ex + 1.0)
+    ax.set_ylim(-.3, 9.0)
+
+
+def _lt_ext(p):
+    S = float(p.get("scale", .2))
+    k = p["ls"] / float(p["lo"])
+    objs = p.get("objs") or [{"y": 0.0, "h": p.get("h", 8)}]
+    return max(abs(S * o.get("y", 0.0)) * k + S * o["h"] / 2.0 * k for o in objs)
+
+
+def _lt_shadow_panel(ax, p, oy, E):
+    S = float(p.get("scale", .2))
+    lx = 1.0
+    ox = lx + S * p["lo"]
+    sx = lx + S * p["ls"]
+    objs = p.get("objs") or [{"y": 0.0, "h": p.get("h", 8)}]
+    k = p["ls"] / float(p["lo"])
+    ax.add_patch(Rectangle((sx - .08, oy - E - .5), .16, 2 * E + 1.0, fc="#cbd5e1", ec=INK, lw=1.3, zorder=3))
+    for o in objs:
+        hy = S * o["h"] / 2.0
+        yc = oy + S * o.get("y", 0.0)
+        ys0 = oy + (yc - oy) * k - hy * k
+        ys1 = oy + (yc - oy) * k + hy * k
+        for y_ in (ys1, ys0):
+            ax.plot([lx, sx], [oy, y_], color="#f59e0b", lw=1.1, ls="--", zorder=2)
+        ax.add_patch(Rectangle((ox - .09, yc - hy), .18, 2 * hy, fc="#7c3aed", ec=INK, lw=1.3, zorder=5))
+        ax.add_patch(Rectangle((sx - .1, ys0), .2, ys1 - ys0, fc="#1e293b", ec="none", zorder=4))
+    _lt_lamp(ax, lx, oy, .8)
+    if p.get("label"):
+        _bio_bubble(ax, 0.2, oy + E + .1, p["label"], fs=12, r=.75)
+    if p.get("show_d", True):
+        yb = oy - E - .5
+        ax.annotate("", xy=(ox, yb - .45), xytext=(lx, yb - .45), arrowprops=dict(arrowstyle="<->", color=BLUE, lw=1.3))
+        ax.text((lx + ox) / 2, yb - .6, f"{p['lo']} cm", ha="center", va="top", fontsize=9, color=BLUE, fontweight="bold")
+        ax.annotate("", xy=(sx, yb - 1.9), xytext=(lx, yb - 1.9), arrowprops=dict(arrowstyle="<->", color=GREEN, lw=1.3))
+        ax.text((lx + sx) / 2, yb - 2.05, f"{p['ls']} cm", ha="center", va="top", fontsize=9, color=GREEN, fontweight="bold")
+
+
+def _lt_golge(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", 1)) or 1
+    E = max(max(_lt_ext(p) for p in ps), 2.0)
+    gap_y = 2 * E + 5.4
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        _lt_shadow_panel(ax, p, -r * gap_y, E)
+    S = float(ps[0].get("scale", .2))
+    W = max(1.0 + S * q["ls"] for q in ps) + 1.2
+    rows = (len(ps) + per - 1) // per
+    ax.set_xlim(-.6, W)
+    ax.set_ylim(-(rows - 1) * gap_y - E - 4.0, E + .9)
+
+
+def _lt_bolge(ax, d):
+    lab = d.get("labels") or {}
+    ly = 3.0
+    ax.add_patch(Rectangle((10.0 - .1, 0.0), .2, 6.0, fc="#cbd5e1", ec=INK, lw=1.3, zorder=3))
+    ax.add_patch(Rectangle((10.0 - .1, 2.0), .2, 2.0, fc="#1e293b", ec="none", zorder=4))
+    ax.add_patch(Rectangle((10.0 - .1, 0.0), .2, 2.0, fc="#fde047", ec="none", zorder=4))
+    ax.add_patch(Rectangle((10.0 - .1, 4.0), .2, 2.0, fc="#fde047", ec="none", zorder=4))
+    ax.add_patch(Rectangle((5.0 - .15, 2.0), .3, 2.0, fc="#7c3aed", ec=INK, lw=1.4, zorder=5))
+    for (yy, ty) in ((4.0, 6.0), (2.0, 0.0)):
+        ax.plot([1.3, 10.0], [ly, ty], color="#f59e0b", lw=1.1, ls="--", zorder=2)
+    for ty in (4.0, 2.0):
+        ax.plot([1.3, 5.0], [ly, ty], color="#f59e0b", lw=1.3, zorder=2)
+    ax.plot([1.3, 10.0], [ly, 6.0 if False else 6.0], color="#f59e0b", lw=1.0, zorder=1, alpha=.0)
+    _lt_lamp(ax, 1.0, ly, .8)
+    A = {"lamp": (1.0, 4.35), "obj": (5.0, 4.9), "shadow": (10.9, 3.0), "lit": (10.9, 5.0)}
+    for k, t in lab.items():
+        if k in A:
+            _bio_bubble(ax, A[k][0], A[k][1], t, fs=11, r=.4)
+    ax.set_xlim(-.5, 12.0)
+    ax.set_ylim(-.5, 6.8)
+
+
+def _lt_madde(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", 2)) or 2
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        ox, oy = c * 9.2, -r * 5.2
+        ax.add_patch(Rectangle((ox + 7.4, oy - 1.9), .25, 3.8, fc="#cbd5e1", ec=INK, lw=1.3, zorder=3))
+        _lt_lamp(ax, ox + .8, oy, .7)
+        t = p.get("type")
+        mx = ox + 4.0
+        if t == "saydam":
+            ax.add_patch(Rectangle((mx - .15, oy - 1.5), .3, 3.0, fc="#bae6fd", ec="#0369a1", lw=1.6, alpha=.45, zorder=5))
+            for yy in (-.9, 0, .9):
+                ax.plot([ox + 1.5, ox + 7.4], [oy + yy * .3, oy + yy], color="#f59e0b", lw=1.4, zorder=4)
+            ax.add_patch(Rectangle((ox + 7.4, oy - 1.0), .25, 2.0, fc="#fde047", ec="none", zorder=4))
+        elif t == "yari":
+            ax.add_patch(Rectangle((mx - .15, oy - 1.5), .3, 3.0, fc="#e2e8f0", ec="#64748b", lw=1.6, hatch="////", zorder=5))
+            for yy in (-.9, 0, .9):
+                ax.plot([ox + 1.5, mx], [oy + yy * .3, oy + yy * .35], color="#f59e0b", lw=1.4, zorder=4)
+                ax.plot([mx, ox + 7.4], [oy + yy * .35, oy + yy * 1.15], color="#f59e0b", lw=.9, ls=":", zorder=4)
+            ax.add_patch(Rectangle((ox + 7.4, oy - 1.4), .25, 2.8, fc="#fef9c3", ec="none", zorder=4))
+        else:
+            ax.add_patch(Rectangle((mx - .15, oy - 1.5), .3, 3.0, fc="#92400e", ec=INK, lw=1.6, zorder=5))
+            for yy in (-.9, 0, .9):
+                ax.plot([ox + 1.5, mx - .15], [oy + yy * .3, oy + yy * .35], color="#f59e0b", lw=1.4, zorder=4)
+            ax.add_patch(Rectangle((ox + 7.4, oy - 1.5), .25, 3.0, fc="#1e293b", ec="none", zorder=4))
+        if p.get("label"):
+            _bio_bubble(ax, ox + .4, oy + 1.7, p["label"], fs=12, r=.5)
+    rows = (len(ps) + per - 1) // per
+    ax.set_xlim(-.4, per * 9.2 - .5)
+    ax.set_ylim(-(rows - 1) * 5.2 - 2.4, 2.4)
+
+
+def _light(ax, d):
+    st = d.get("sub_type")
+    if st == "kaynak":
+        _lt_cards(ax, d)
+    elif st == "kartlar":
+        _lt_kartlar(ax, d)
+    elif st == "golge":
+        _lt_golge(ax, d)
+    elif st == "bolge":
+        _lt_bolge(ax, d)
+    elif st == "madde":
+        _lt_madde(ax, d)
+
+
+# ---------------------------------------------------------------- KUVVET VE SÜRTÜNME ŞEMALARI (5. sınıf Fen): kuvvetin etkileri, yüzeyde çekme, dinamometre+kütle, yay uzaması
+def _kv_arrow(ax, x0, y0, x1, y1, col=ORANGE, lw=2.6):
+    ax.add_patch(FancyArrowPatch((x0, y0), (x1, y1), arrowstyle="-|>", mutation_scale=16, color=col, lw=lw, zorder=7))
+
+
+def _kv_zig(ax, x0, x1, y, n=8, a=.28):
+    xs = np.linspace(x0, x1, 2 * n + 1)
+    ys = [y + (a if i % 2 else -a) * (1 if 0 < i < 2 * n else 0) for i in range(2 * n + 1)]
+    ax.plot(xs, ys, color="#475569", lw=2, zorder=4)
+
+
+def _kv_icon(ax, kind, cx, cy, s=1.0):
+    if kind in ("yay_sik", "yay_uz"):
+        ax.add_patch(Rectangle((cx - 1.3 * s, cy - .5 * s), .18 * s, 1.0 * s, fc="#64748b", ec=INK, lw=1.2, zorder=3))
+        L = .55 * s if kind == "yay_sik" else 1.3 * s
+        _kv_zig(ax, cx - 1.12 * s, cx - 1.12 * s + L, cy, 7, .2 * s)
+        ax.add_patch(Rectangle((cx - 1.12 * s + L, cy - .4 * s), .6 * s, .8 * s, fc="#60a5fa", ec=INK, lw=1.4, zorder=4))
+        if kind == "yay_sik":
+            _kv_arrow(ax, cx + 1.25 * s, cy, cx - 1.12 * s + L + .62 * s, cy)
+        else:
+            _kv_arrow(ax, cx - 1.12 * s + L + .62 * s, cy, cx + 1.3 * s, cy)
+    elif kind == "hamur":
+        ax.add_patch(Rectangle((cx - 1.0 * s, cy - .75 * s), 2.0 * s, .12 * s, fc="#94a3b8", ec=INK, lw=1, zorder=3))
+        ax.add_patch(Ellipse((cx, cy - .45 * s), 1.7 * s, .35 * s, fc="#fbbf24", ec="#b45309", lw=1.4, zorder=4))
+        ax.add_patch(Rectangle((cx - .6 * s, cy - .22 * s), 1.2 * s, .12 * s, fc="#64748b", ec=INK, lw=1, zorder=4))
+        _kv_arrow(ax, cx, cy + .95 * s, cx, cy - .08 * s)
+    elif kind == "top_vur":
+        ax.add_patch(Circle((cx + .1 * s, cy), .4 * s, fc="white", ec=INK, lw=1.6, zorder=4))
+        ax.add_patch(Polygon([[cx - 1.35 * s, cy - .3 * s], [cx - .5 * s, cy - .3 * s], [cx - .5 * s, cy + .2 * s], [cx - 1.0 * s, cy + .35 * s], [cx - 1.35 * s, cy + .2 * s]], closed=True, fc="#7c3aed", ec=INK, lw=1.3, zorder=4))
+        _kv_arrow(ax, cx + .6 * s, cy, cx + 1.4 * s, cy)
+    elif kind == "kutu_it":
+        ax.add_patch(Rectangle((cx - .3 * s, cy - .45 * s), .9 * s, .9 * s, fc="#d6a77a", ec=INK, lw=1.4, zorder=4))
+        _kv_arrow(ax, cx - 1.4 * s, cy, cx - .35 * s, cy)
+        ax.plot([cx - 1.45 * s, cx + 1.5 * s], [cy - .5 * s, cy - .5 * s], color="#64748b", lw=2, zorder=3)
+    elif kind == "fren":
+        ax.add_patch(Rectangle((cx - .9 * s, cy - .25 * s), 1.4 * s, .5 * s, fc="#ef4444", ec=INK, lw=1.4, zorder=4))
+        ax.add_patch(Polygon([[cx - .5 * s, cy + .25 * s], [cx - .3 * s, cy + .6 * s], [cx + .2 * s, cy + .6 * s], [cx + .35 * s, cy + .25 * s]], closed=True, fc="#fca5a5", ec=INK, lw=1.3, zorder=4))
+        for dx in (-.5, .25):
+            ax.add_patch(Circle((cx + dx * s, cy - .3 * s), .2 * s, fc="#1e293b", ec="none", zorder=5))
+        ax.plot([cx - 1.3 * s, cx + 1.3 * s], [cy - .52 * s, cy - .52 * s], color="#64748b", lw=2, zorder=3)
+        _kv_arrow(ax, cx + .45 * s, cy - .05 * s, cx - .6 * s, cy - .05 * s, col="#16a34a")
+        for yy in (.2, -.05):
+            ax.plot([cx - 1.4 * s, cx - 1.0 * s], [cy + yy * s, cy + yy * s], color="#94a3b8", lw=1.2, zorder=3)
+    elif kind == "yon":
+        ax.add_patch(Rectangle((cx + .95 * s, cy - .7 * s), .18 * s, 1.5 * s, fc="#64748b", ec=INK, lw=1.2, zorder=3))
+        _kv_arrow(ax, cx - 1.3 * s, cy + .55 * s, cx + .85 * s, cy - .5 * s, col=BLUE, lw=2.2)
+        _kv_arrow(ax, cx + .85 * s, cy - .5 * s, cx - .6 * s, cy + .6 * s, col=GREEN, lw=2.2)
+        ax.add_patch(Circle((cx - 1.3 * s, cy + .55 * s), .25 * s, fc="white", ec=INK, lw=1.4, zorder=4))
+
+
+def _kv_etki(ax, d):
+    items = d.get("items", [])
+    n = len(items)
+    per = min(n, int(d.get("per_row", 3)) or 3)
+    rows = (n + per - 1) // per
+    for i, it in enumerate(items):
+        r, c = divmod(i, per)
+        cx, cy = c * 4.1 + 2.0, -r * 3.4
+        ax.add_patch(FancyBboxPatch((cx - 1.95, cy - 1.4), 3.9, 2.8, boxstyle="round,pad=0,rounding_size=.25", fc="#f8fafc", ec="#cbd5e1", lw=1.4, zorder=1))
+        _kv_icon(ax, it.get("kind"), cx, cy, 1.0)
+        if it.get("label"):
+            _bio_bubble(ax, cx - 1.6, cy + 1.05, it["label"], fs=11, r=.36)
+    ax.set_xlim(-.4, per * 4.1 + .1)
+    ax.set_ylim(-(rows - 1) * 3.4 - 1.7, 1.8)
+
+
+_KV_YUZ = {"buz": ("#bae6fd", "Buz"), "parke": ("#a16207", "Parke"), "halı": ("#dc2626", "Halı"), "zımpara": ("#78716c", "Zımpara"), "kum": ("#fde047", "Kum")}
+
+
+def _kv_surface(ax, kind, x0, x1, y0=0.0, h=.7):
+    col = _KV_YUZ[kind][0]
+    ax.add_patch(Rectangle((x0, y0), x1 - x0, h, fc=col, ec=INK, lw=1.4, zorder=2))
+    rng = np.random.RandomState(7)
+    if kind == "parke":
+        for xx in np.arange(x0 + .6, x1, .8):
+            ax.plot([xx, xx], [y0, y0 + h], color="#713f12", lw=1, zorder=3)
+    elif kind == "halı":
+        for xx in np.arange(x0 + .1, x1, .22):
+            ax.plot([xx, xx], [y0 + h, y0 + h + .2], color="#b91c1c", lw=1.2, zorder=3)
+    elif kind == "zımpara":
+        for _ in range(60):
+            ax.add_patch(Circle((rng.uniform(x0, x1), y0 + rng.uniform(.05, h - .05)), .04, fc="#1c1917", ec="none", zorder=3))
+    elif kind == "kum":
+        for _ in range(70):
+            ax.add_patch(Circle((rng.uniform(x0, x1), y0 + rng.uniform(.05, h - .05)), .04, fc="#a16207", ec="none", zorder=3))
+    elif kind == "buz":
+        ax.plot([x0 + .4, x0 + 1.2], [y0 + .45, y0 + .45], color="white", lw=2, zorder=3)
+
+
+def _kv_yuzey(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", 1)) or 1
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        ox, oy = c * 9.6, -r * 3.9
+        _kv_surface(ax, p["surface"], ox + .2, ox + 9.0, oy)
+        ax.add_patch(Rectangle((ox + 5.4, oy + .7), 1.6, 1.3, fc="#d6a77a", ec=INK, lw=1.5, zorder=4))
+        ax.add_patch(Rectangle((ox + 2.3, oy + 1.05), 2.5, .6, fc="#f1f5f9", ec=INK, lw=1.6, zorder=4))
+        ax.plot([ox + 4.8, ox + 5.4], [oy + 1.35, oy + 1.35], color=INK, lw=2, zorder=4)
+        ax.plot([ox + 2.3 + 2.5 * .0, ox + 2.0], [oy + 1.35, oy + 1.35], color=INK, lw=2, zorder=4)
+        mx = float(p.get("max", 10))
+        v = float(p["value"])
+        xp = ox + 2.3 + 2.5 * v / mx
+        ax.plot([xp, xp], [oy + 1.05, oy + 1.65], color="#dc2626", lw=2.2, zorder=5)
+        for t in range(0, int(mx) + 1, 2 if mx > 8 else 1):
+            tx = ox + 2.3 + 2.5 * t / mx
+            ax.plot([tx, tx], [oy + 1.05, oy + 1.17], color=INK, lw=.8, zorder=5)
+        _kv_arrow(ax, ox + 2.0, oy + 1.35, ox + .6, oy + 1.35, col=BLUE)
+        ax.text(ox + 3.55, oy + 2.15, f"{p['value']:g} N" if p.get("show", True) else "? N", ha="center", va="center", fontsize=13, fontweight="bold", color="#1d4ed8", zorder=6)
+        if p.get("label"):
+            _bio_bubble(ax, ox + .55, oy + 2.7, p["label"], fs=12, r=.5)
+    rows = (len(ps) + per - 1) // per
+    ax.set_xlim(-.2, per * 9.6)
+    ax.set_ylim(-(rows - 1) * 3.9 - .3, 3.3)
+
+
+def _kv_dinp(ax, ox, p):
+    mx = float(p.get("max", 50))
+    ax.plot([ox + .5, ox + .5], [6.6, 7.4], color=INK, lw=2, zorder=3)
+    ax.add_patch(Rectangle((ox, 1.7), 1.0, 4.9, fc="#f1f5f9", ec=INK, lw=1.8, zorder=3))
+    top, bot = 6.3, 2.0
+    for t in range(0, int(mx) + 1, int(p.get("step", 10))):
+        yy = top - (top - bot) * t / mx
+        ax.plot([ox, ox + .3], [yy, yy], color=INK, lw=1, zorder=4)
+        ax.text(ox + .45, yy, str(t), ha="left", va="center", fontsize=7.5, color=INK, zorder=4)
+    v = p.get("value")
+    if v is not None:
+        yy = top - (top - bot) * float(v) / mx
+        ax.add_patch(Rectangle((ox - .05, yy - .04), .45, .08, fc="#dc2626", ec="none", zorder=5))
+        ax.add_patch(Polygon([[ox + 1.0, yy], [ox + 1.22, yy + .12], [ox + 1.22, yy - .12]], closed=True, fc="#dc2626", ec="none", zorder=5))
+    ax.plot([ox + .5, ox + .5], [1.7, .9], color=INK, lw=2, zorder=3)
+    ax.add_patch(Rectangle((ox - .2, -.4), 1.4, 1.3, fc="#d6a77a", ec=INK, lw=1.6, zorder=4))
+    if p.get("mass") is not None:
+        ax.text(ox + .5, .25, p["mass"], ha="center", va="center", fontsize=10, fontweight="bold", color=INK, zorder=6)
+    if p.get("label"):
+        _bio_bubble(ax, ox - .1, 7.7, p["label"], fs=12, r=.45)
+    if v is not None and p.get("show", True):
+        ax.text(ox + 1.25, top - (top - bot) * float(v) / mx, f"{float(v):g} N", ha="left", va="center", fontsize=10, fontweight="bold", color="#1d4ed8", zorder=6)
+    elif p.get("show") is False:
+        ax.text(ox + 1.25, 4.2, "? N", ha="left", va="center", fontsize=11, fontweight="bold", color="#1d4ed8", zorder=6)
+
+
+def _kv_dina(ax, d):
+    ps = d.get("panels", [])
+    for i, p in enumerate(ps):
+        _kv_dinp(ax, i * 3.4 + .5, p)
+    ax.set_xlim(-.4, len(ps) * 3.4 + .6)
+    ax.set_ylim(-.8, 8.3)
+
+
+def _kv_yay(ax, d):
+    ps = d.get("panels", [])
+    u = float(d.get("unit", .35))
+    for i, p in enumerate(ps):
+        ox = i * 4.2 + 1.2
+        L = float(p["len"]) * u
+        ax.plot([ox - .8, ox + .8], [8.2, 8.2], color=INK, lw=4, zorder=3)
+        _kv_zig(ax, ox, ox, 8.2, 1) if False else None
+        ys = np.linspace(8.2, 8.2 - L, 25)
+        xs = [ox + (.28 if j % 2 else -.28) * (1 if 0 < j < 24 else 0) for j in range(25)]
+        ax.plot(xs, ys, color="#475569", lw=2, zorder=3)
+        yb = 8.2 - L
+        n = int(p.get("n", 0))
+        if p.get("hidden"):
+            ax.add_patch(Rectangle((ox - .75, yb - 1.0), 1.5, .95, fc="#fde68a", ec=INK, lw=1.4, zorder=4))
+            ax.text(ox, yb - .52, "? tane\n100 g", ha="center", va="center", fontsize=8, fontweight="bold", color=INK, zorder=5)
+        for j in range(n):
+            ax.add_patch(Rectangle((ox - .6, yb - .75 * (j + 1)), 1.2, .7, fc="#f59e0b", ec=INK, lw=1.2, zorder=4))
+            ax.text(ox, yb - .75 * (j + 1) + .35, "100 g", ha="center", va="center", fontsize=9, fontweight="bold", color=INK, zorder=5)
+        ax.annotate("", xy=(ox + 1.0, 8.2), xytext=(ox + 1.0, yb), arrowprops=dict(arrowstyle="<->", color=GREEN, lw=1.4))
+        txt = f"{p['len']:g} cm" if p.get("show", True) else "? cm"
+        ax.text(ox + 1.15, 8.2 - L / 2, txt, ha="left", va="center", fontsize=10, fontweight="bold", color=GREEN, zorder=6)
+        if p.get("label"):
+            _bio_bubble(ax, ox - 1.0, 9.1, p["label"], fs=12, r=.42)
+    ax.set_xlim(-.3, len(ps) * 4.2 + .4)
+    ax.set_ylim(-1.0 if False else 8.2 - max(float(p["len"]) * u + .75 * max(int(p.get("n", 0)), 1) for p in ps) - .6, 9.8)
+
+
+def _kuv(ax, d):
+    st = d.get("sub_type")
+    if st == "etki":
+        _kv_etki(ax, d)
+    elif st == "yuzey":
+        _kv_yuzey(ax, d)
+    elif st == "dina":
+        _kv_dina(ax, d)
+    elif st == "yay":
+        _kv_yay(ax, d)
+
+
+# ---------------------------------------------------------------- MADDE VE DEĞİŞİM ŞEMALARI (5. sınıf Fen): tanecik modeli, termometre, hâl değişimi grafiği/şeması, ısı iletimi, ısı yalıtımı
+def _md_particles(ax, x0, y0, w, h, state, seed=3):
+    rng = np.random.RandomState(seed)
+    ax.add_patch(Rectangle((x0, y0), w, h, fc="#f8fafc", ec=INK, lw=1.8, zorder=2))
+    r = .26
+    pts = []
+    if state == "kati":
+        cols = int((w - .3) // (2 * r + .02))
+        rows = max(int((h * .55) // (2 * r + .02)), 2)
+        for i in range(cols):
+            for j in range(rows):
+                pts.append((x0 + .18 + r + i * (2 * r + .02), y0 + .15 + r + j * (2 * r + .02)))
+    elif state == "sivi":
+        cols = int((w - .3) // (2 * r + .02))
+        rows = max(int((h * .55) // (2 * r + .02)), 2)
+        for i in range(cols):
+            for j in range(rows):
+                pts.append((x0 + .18 + r + i * (2 * r + .02) + rng.uniform(-.08, .08), y0 + .15 + r + j * (2 * r + .02) + rng.uniform(-.06, .06)))
+    else:
+        n = int(w * h / 1.9)
+        tries = 0
+        while len(pts) < n and tries < 400:
+            tries += 1
+            p = (x0 + .3 + rng.uniform(0, w - .6), y0 + .3 + rng.uniform(0, h - .6))
+            if all((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2 > (2.3 * r) ** 2 for q in pts):
+                pts.append(p)
+    col = {"kati": "#93c5fd", "sivi": "#60a5fa", "gaz": "#bfdbfe"}[state]
+    for (px, py) in pts:
+        ax.add_patch(Circle((px, py), r, fc=col, ec="#1d4ed8", lw=1.1, zorder=3))
+    if state == "sivi":
+        ax.plot([x0, x0 + w], [y0 + h * .62 + .1, y0 + h * .62 + .1], color="#1d4ed8", lw=1.2, ls="--", zorder=1, alpha=.0)
+    return pts
+
+
+def _md_tanecik(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", len(ps))) or len(ps)
+    rows = (len(ps) + per - 1) // per
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        x0, y0 = c * 4.6, -r * 4.6
+        _md_particles(ax, x0, y0, 3.9, 3.0, p["state"], seed=int(p.get("seed", i + 3)))
+        if p.get("label"):
+            _bio_bubble(ax, x0 + .35, y0 + 3.55, p["label"], fs=12, r=.38)
+    ax.set_xlim(-.3, per * 4.6 - .4)
+    ax.set_ylim(-(rows - 1) * 4.6 - .3, 4.1)
+
+
+def _md_gecis(ax, d):
+    a, b = d.get("from", "kati"), d.get("to", "sivi")
+    _md_particles(ax, 0, 0, 3.9, 3.0, a, 3)
+    _md_particles(ax, 6.4, 0, 3.9, 3.0, b, 5)
+    ax.add_patch(FancyArrowPatch((4.1, 1.5), (6.2, 1.5), arrowstyle="-|>", mutation_scale=22, color=ORANGE, lw=3, zorder=5))
+    _bio_bubble(ax, 5.15, 2.15, d.get("label", "?"), fs=12, r=.4)
+    if d.get("note"):
+        ax.text(5.15, .8, d["note"], ha="center", va="center", fontsize=9.5, fontweight="bold", color=INK)
+    ax.set_xlim(-.3, 10.6)
+    ax.set_ylim(-.4, 3.6)
+
+
+def _md_termo(ax, d):
+    ps = d.get("panels", [])
+    lo, hi = float(d.get("min", -10)), float(d.get("max", 110))
+    for i, p in enumerate(ps):
+        ox = i * 3.2 + 1.0
+        ax.add_patch(Rectangle((ox - .18, 1.1), .36, 6.4, fc="white", ec=INK, lw=1.6, zorder=3))
+        ax.add_patch(Circle((ox, .8), .5, fc="#dc2626", ec=INK, lw=1.6, zorder=4))
+        v = float(p["value"])
+        top = 1.1 + 6.4 * (v - lo) / (hi - lo)
+        ax.add_patch(Rectangle((ox - .09, .9), .18, top - .9, fc="#dc2626", ec="none", zorder=5))
+        for t in range(int(lo), int(hi) + 1, int(d.get("step", 10))):
+            yy = 1.1 + 6.4 * (t - lo) / (hi - lo)
+            ax.plot([ox + .18, ox + .38], [yy, yy], color=INK, lw=1, zorder=4)
+            ax.text(ox + .45, yy, str(t), ha="left", va="center", fontsize=7.5, color=INK, zorder=4)
+        if p.get("show", True):
+            ax.text(ox - .3, top, f"{v:g} °C", ha="right", va="center", fontsize=10, fontweight="bold", color="#b91c1c", zorder=6)
+        else:
+            ax.text(ox - .3, top, "? °C", ha="right", va="center", fontsize=10, fontweight="bold", color="#b91c1c", zorder=6)
+        if p.get("label"):
+            _bio_bubble(ax, ox, 8.3, p["label"], fs=12, r=.42)
+    ax.set_xlim(-.6, len(ps) * 3.2 + .6)
+    ax.set_ylim(-.1, 9.0)
+
+
+def _md_graf(ax, d):
+    pts = d["pts"]
+    xmax = float(d.get("xmax", max(p[0] for p in pts)))
+    ymax = float(d.get("ymax", max(p[1] for p in pts)))
+    ymin = float(d.get("ymin", 0))
+    xs = float(d.get("xstep", 2))
+    ys = float(d.get("ystep", 20))
+    X0, Y0, W, H = 1.2, 1.0, 9.0, 5.6
+    fx = lambda t: X0 + W * t / xmax
+    fy = lambda T: Y0 + H * (T - ymin) / (ymax - ymin)
+    t = 0.0
+    while t <= xmax + 1e-9:
+        ax.plot([fx(t), fx(t)], [Y0, Y0 + H], color="#e2e8f0", lw=.8, zorder=1)
+        ax.text(fx(t), Y0 - .3, f"{t:g}", ha="center", va="top", fontsize=8.5, color=INK)
+        t += xs
+    T = ymin
+    while T <= ymax + 1e-9:
+        ax.plot([X0, X0 + W], [fy(T), fy(T)], color="#e2e8f0", lw=.8, zorder=1)
+        ax.text(X0 - .15, fy(T), f"{T:g}", ha="right", va="center", fontsize=8.5, color=INK)
+        T += ys
+    ax.plot([X0, X0], [Y0, Y0 + H], color=INK, lw=1.8, zorder=3)
+    ax.plot([X0, X0 + W], [Y0, Y0], color=INK, lw=1.8, zorder=3)
+    ax.text(X0 + W / 2, Y0 - 1.0, "Zaman (dakika)", ha="center", va="center", fontsize=10, fontweight="bold", color=INK)
+    ax.text(X0 - 1.0, Y0 + H / 2, "Sıcaklık (°C)", ha="center", va="center", rotation=90, fontsize=10, fontweight="bold", color=INK)
+    ax.plot([fx(p[0]) for p in pts], [fy(p[1]) for p in pts], color="#dc2626", lw=2.6, zorder=4, marker="o", ms=4)
+    for k, lb in (d.get("labels") or {}).items():
+        k = int(k)
+        mx = (fx(pts[k][0]) + fx(pts[k + 1][0])) / 2
+        my = (fy(pts[k][1]) + fy(pts[k + 1][1])) / 2
+        _bio_bubble(ax, mx, my + .65, lb, fs=11, r=.36)
+    ax.set_xlim(-.4, X0 + W + .5)
+    ax.set_ylim(-.4, Y0 + H + .6)
+
+
+_MD_ST = {"kati": ("Katı", "#93c5fd"), "sivi": ("Sıvı", "#60a5fa"), "gaz": ("Gaz", "#bfdbfe")}
+
+
+def _md_hal(ax, d):
+    xs = {"kati": 0.0, "sivi": 5.2, "gaz": 10.4}
+    for k, x in xs.items():
+        _md_particles(ax, x, 0, 3.2, 2.6, k, seed={"kati": 3, "sivi": 5, "gaz": 7}[k])
+        ax.text(x + 1.6, -.45, _MD_ST[k][0], ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    arr = d.get("arrows", {})
+    spec = {"kati>sivi": (3.4, 1.9, 5.0, 1.9), "sivi>gaz": (8.6, 1.9, 10.2, 1.9), "sivi>kati": (5.0, .7, 3.4, .7), "gaz>sivi": (10.2, .7, 8.6, .7)}
+    for k, (a, b, c, e) in spec.items():
+        ax.add_patch(FancyArrowPatch((a, b), (c, e), arrowstyle="-|>", mutation_scale=18, color="#475569", lw=2.4, zorder=5))
+        if k in arr:
+            _bio_bubble(ax, (a + c) / 2, b + (.55 if b > 1 else -.55), arr[k], fs=11, r=.34)
+    ax.set_xlim(-.3, 13.9)
+    ax.set_ylim(-.9, 3.4)
+
+
+def _md_iletim(ax, d):
+    ps = d.get("panels", [])
+    n = int(d.get("pins", 4))
+    COL = {"bakır": "#c2410c", "demir": "#64748b", "alüminyum": "#cbd5e1", "tahta": "#a16207"}
+    for i, p in enumerate(ps):
+        oy = -i * 3.6
+        ax.add_patch(Rectangle((1.6, oy - .22), 8.0, .44, fc=COL[p["kind"]], ec=INK, lw=1.4, zorder=3))
+        ax.add_patch(Ellipse((.9, oy + .1), .55, .9, fc="#fb923c", ec="#c2410c", lw=1.2, zorder=4))
+        ax.add_patch(Ellipse((.9, oy + .0), .25, .5, fc="#fde047", ec="none", zorder=5))
+        ax.add_patch(Rectangle((.7, oy - .9), .4, .6, fc="#fef3c7", ec="#a16207", lw=1.1, zorder=3))
+        nf = int(p["fallen"])
+        for j in range(n):
+            px = 2.6 + j * 1.8
+            if j < nf:
+                ax.add_patch(Circle((px + .2 * (j % 2), oy - 1.3 - .1 * (j % 3)), .13, fc="#475569", ec=INK, lw=.8, zorder=4))
+            else:
+                ax.plot([px, px], [oy - .22, oy - .75], color="#475569", lw=1.6, zorder=3)
+                ax.add_patch(Circle((px, oy - .8), .13, fc="#475569", ec=INK, lw=.8, zorder=4))
+        if p.get("label"):
+            _bio_bubble(ax, .2, oy + .9, p["label"], fs=12, r=.42)
+    ax.set_xlim(-.4, 10.2)
+    ax.set_ylim(-(len(ps) - 1) * 3.6 - 1.9, 1.7)
+
+
+_MD_WR = {"yün": "#fde68a", "folyo": "#e5e7eb", "strafor": "#ffffff", "kâğıt": "#d6a77a", "çıplak": None}
+
+
+def _md_yalitim(ax, d):
+    ps = d.get("panels", [])
+    for i, p in enumerate(ps):
+        ox = i * 3.8 + 1.6
+        col = _MD_WR[p["kind"]]
+        ax.add_patch(Rectangle((ox - .9, .4), 1.8, 2.4, fc="#bfdbfe", ec=INK, lw=1.6, zorder=3))
+        if col:
+            ax.add_patch(Rectangle((ox - 1.15, .2), 2.3, 2.8, fc=col, ec=INK, lw=1.4, zorder=2))
+            if p["kind"] == "yün":
+                for yy in np.arange(.35, 2.95, .3):
+                    ax.plot([ox - 1.1, ox + 1.1], [yy, yy], color="#ca8a04", lw=1, ls=(0, (2, 1.5)), zorder=2.5)
+            elif p["kind"] == "folyo":
+                ax.plot([ox - .9, ox - .9], [.3, 2.9], color="white", lw=2, zorder=2.5)
+            elif p["kind"] == "strafor":
+                for yy in np.arange(.4, 3.0, .35):
+                    for xx in np.arange(ox - 1.0, ox + 1.1, .45):
+                        ax.add_patch(Circle((xx, yy), .05, fc="#94a3b8", ec="none", zorder=2.5))
+        ax.plot([ox + .35, ox + .35], [.6, 3.6], color="#dc2626", lw=3, zorder=5)
+        ax.add_patch(Circle((ox + .35, .6), .13, fc="#dc2626", ec="none", zorder=5))
+        ax.text(ox, -.35, f"{p['temp']:g} °C", ha="center", va="center", fontsize=11, fontweight="bold", color="#b91c1c", zorder=6)
+        if p.get("label"):
+            _bio_bubble(ax, ox - .7, 3.9, p["label"], fs=12, r=.42)
+    ax.set_xlim(-.4, len(ps) * 3.8 + .4)
+    ax.set_ylim(-.9, 4.6)
+
+
+def _md_yon(ax, d):
+    a, b = d["a"], d["b"]
+    for (x0, t, lb, col) in ((0.4, a["t"], a.get("label"), "#fca5a5" if a["t"] > b["t"] else "#bfdbfe"), (3.6, b["t"], b.get("label"), "#fca5a5" if b["t"] > a["t"] else "#bfdbfe")):
+        ax.add_patch(Rectangle((x0, 0), 3.0, 2.6, fc=col, ec=INK, lw=1.8, zorder=3))
+        ax.text(x0 + 1.5, 1.3, f"{t:g} °C", ha="center", va="center", fontsize=14, fontweight="bold", color=INK, zorder=4)
+        if lb:
+            _bio_bubble(ax, x0 + .45, 3.15, lb, fs=12, r=.42)
+    ax.set_xlim(0, 7.0)
+    ax.set_ylim(-.4, 3.8)
+
+
+# ---------------------------------------------------------------- ELEKTRİK DEVRE ELEMANLARI ŞEMALARI (5. sınıf Fen): semboller, devre şeması, ampul parlaklığı
+_EL_W, _EL_H = 5.0, 3.4
+
+
+def _el_wire(ax, xs, ys):
+    ax.plot(xs, ys, color=INK, lw=2.3, solid_capstyle="round", zorder=2)
+
+
+def _el_pil_sym(ax, x, y, hw=.3):
+    """Yatay çizgili pil sembolü (üstte uzun +, altta kısa −); (x,y) merkez. Alt/üst uç y'leri döndürür."""
+    ax.plot([x - hw, x + hw], [y + .13, y + .13], color=INK, lw=2.6, zorder=3)
+    ax.plot([x - hw * .55, x + hw * .55], [y - .13, y - .13], color=INK, lw=5.2, zorder=3)
+    return y - .13, y + .13
+
+
+def _el_pil_yatay(ax, x, y):
+    ax.plot([x + .13, x + .13], [y - .3, y + .3], color=INK, lw=2.6, zorder=3)
+    ax.plot([x - .13, x - .13], [y - .17, y + .17], color=INK, lw=5.2, zorder=3)
+    ax.text(x + .33, y + .42, "+", fontsize=10, fontweight="bold", color="#dc2626", ha="center", va="center")
+    ax.text(x - .33, y + .42, "−", fontsize=11, fontweight="bold", color="#2563eb", ha="center", va="center")
+
+
+def _el_ampul_sym(ax, cx, cy, r=.32, lit=0.0, on=False):
+    if on:
+        ax.add_patch(Circle((cx, cy), r * 1.4, fc="#fde047", ec="none", alpha=min(.9, .12 + .32 * lit), zorder=1))
+        n = int(max(2, min(12, round(lit * 4 + 1))))
+        for k in range(n):
+            a = 2 * np.pi * k / n + .3
+            ax.plot([cx + r * 1.5 * np.cos(a), cx + r * 1.85 * np.cos(a)], [cy + r * 1.5 * np.sin(a), cy + r * 1.85 * np.sin(a)], color="#f59e0b", lw=1.8, zorder=1)
+    ax.add_patch(Circle((cx, cy), r, fc="#fef08a" if on else "#f1f5f9", ec=INK, lw=2.0, zorder=3))
+    d = r * .7
+    ax.plot([cx - d, cx + d], [cy - d, cy + d], color=INK, lw=1.5, zorder=4)
+    ax.plot([cx - d, cx + d], [cy + d, cy - d], color=INK, lw=1.5, zorder=4)
+
+
+def _el_anahtar(ax, xa, xb, y, acik):
+    ax.add_patch(Circle((xa, y), .06, fc=INK, zorder=4))
+    ax.add_patch(Circle((xb, y), .06, fc=INK, zorder=4))
+    if acik:
+        ax.plot([xa, xb - .1], [y, y + .42], color=INK, lw=2.3, solid_capstyle="round", zorder=3)
+    else:
+        ax.plot([xa, xb], [y, y], color=INK, lw=2.3, solid_capstyle="round", zorder=3)
+
+
+def _el_devre(ax, ox, oy, npil=1, namp=1, acik=False, labels=None, w=_EL_W, h=_EL_H):
+    """Dikdörtgen devre şeması: solda npil pil (seri), sağda namp ampul (seri), üstte anahtar. labels: {'p':..,'a':..,'s':..}"""
+    xl, xr, yb, yt = ox, ox + w, oy, oy + h
+    ym, xm = oy + h / 2, ox + w / 2
+    lb = labels or {}
+    # alt kenar
+    _el_wire(ax, [xl, xr], [yb, yb])
+    # üst kenar + anahtar
+    _el_wire(ax, [xl, xm - .55], [yt, yt])
+    _el_wire(ax, [xm + .55, xr], [yt, yt])
+    _el_anahtar(ax, xm - .55, xm + .55, yt, acik)
+    # sol kenar: piller
+    sp = .62
+    prev = yb
+    for k in range(npil):
+        yk = ym + (k - (npil - 1) / 2) * sp
+        lo, hi = _el_pil_sym(ax, xl, yk)
+        _el_wire(ax, [xl, xl], [prev, lo])
+        prev = hi
+    _el_wire(ax, [xl, xl], [prev, yt])
+    # sağ kenar: ampuller
+    sa = 1.0 if namp <= 3 else .85
+    prev = yb
+    closed = (not acik) and npil > 0
+    ratio = (npil / namp) if namp else 0
+    for j in range(namp):
+        yj = ym + (j - (namp - 1) / 2) * sa
+        _el_wire(ax, [xr, xr], [prev, yj - .32])
+        _el_ampul_sym(ax, xr, yj, lit=ratio, on=closed)
+        prev = yj + .32
+    _el_wire(ax, [xr, xr], [prev, yt])
+    # etiketler
+    if lb.get("p"):
+        _bio_bubble(ax, xl - .75, ym, lb["p"], fs=12, r=.36)
+    if lb.get("s"):
+        _bio_bubble(ax, xm, yt + .85, lb["s"], fs=12, r=.36)
+    if lb.get("a"):
+        _bio_bubble(ax, xr + .95, ym, lb["a"], fs=12, r=.36)
+
+
+def _el_sembol(ax, kind, cx, cy):
+    """Tek devre sembolü (yatay): e1 pil, e2 ampul, e3 kapalı anahtar, e4 açık anahtar, e5 kablo."""
+    if kind == "e1":
+        _el_wire(ax, [cx - 1, cx - .13], [cy, cy]); _el_wire(ax, [cx + .13, cx + 1], [cy, cy]); _el_pil_yatay(ax, cx, cy)
+    elif kind == "e2":
+        _el_wire(ax, [cx - 1, cx - .32], [cy, cy]); _el_wire(ax, [cx + .32, cx + 1], [cy, cy]); _el_ampul_sym(ax, cx, cy, on=False)
+    elif kind == "e3":
+        _el_wire(ax, [cx - 1, cx - .5], [cy, cy]); _el_wire(ax, [cx + .5, cx + 1], [cy, cy]); _el_anahtar(ax, cx - .5, cx + .5, cy, False)
+    elif kind == "e4":
+        _el_wire(ax, [cx - 1, cx - .5], [cy, cy]); _el_wire(ax, [cx + .5, cx + 1], [cy, cy]); _el_anahtar(ax, cx - .5, cx + .5, cy, True)
+    else:
+        _el_wire(ax, [cx - 1, cx + 1], [cy, cy])
+
+
+def _elk_sembol(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", len(ps))) or len(ps)
+    rows = (len(ps) + per - 1) // per
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        cx, cy = c * 3.4 + 1.2, -r * 2.8 + 1.0
+        ax.add_patch(Rectangle((cx - 1.4, cy - 1.0), 2.8, 2.0, fc="#f8fafc", ec="#cbd5e1", lw=1.2, zorder=0))
+        _el_sembol(ax, p["kind"], cx, cy)
+        if p.get("label"):
+            _bio_bubble(ax, cx - 1.05, cy + 1.25, p["label"], fs=12, r=.34)
+    ax.set_xlim(-.5, per * 3.4 - .2)
+    ax.set_ylim(-(rows - 1) * 2.8 - 1.3, 2.5)
+
+
+def _elk_sema(ax, d):
+    _el_devre(ax, 1.0, 0.6, int(d.get("npil", 1)), int(d.get("namp", 1)), bool(d.get("acik", False)), d.get("labels"))
+    ax.set_xlim(-.4, 7.4)
+    ax.set_ylim(-.3, 5.1)
+
+
+def _elk_kart(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", 2)) or 2
+    rows = (len(ps) + per - 1) // per
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        ox, oy = 1.0 + c * 8.0, -r * 5.9 + .6
+        _el_devre(ax, ox, oy, int(p.get("npil", 1)), int(p.get("namp", 1)), bool(p.get("acik", False)))
+        if p.get("label"):
+            _bio_bubble(ax, ox - .45, oy + _EL_H + .85, p["label"], fs=13, r=.4)
+    ax.set_xlim(-.4, per * 8.0 + .2)
+    ax.set_ylim(-(rows - 1) * 5.9 - .3, _EL_H + 1.8)
+
+
+def _elk(ax, d):
+    st = d.get("sub_type")
+    {"sembol": _elk_sembol, "sema": _elk_sema, "kart": _elk_kart}.get(st, lambda a, b: None)(ax, d)
+
+
+def _mad(ax, d):
+    st = d.get("sub_type")
+    {"tanecik": _md_tanecik, "gecis": _md_gecis, "termo": _md_termo, "graf": _md_graf, "hal": _md_hal, "iletim": _md_iletim, "yalitim": _md_yalitim, "yon": _md_yon}.get(st, lambda a, b: None)(ax, d)
 
 
 _DISPATCH = {
@@ -3228,7 +4063,7 @@ _DISPATCH = {
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -6516,7 +7351,7 @@ _SCI = {"fen", "science_space", "space_orbit", "eclipse", "moon_phases", "dynamo
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
     "Matematik": _GEO | _CH,
-    "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio"},
+    "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio", "light", "kuv", "mad", "elk"},
     "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
     "Türkçe": {"table", "doc"},
@@ -6912,7 +7747,7 @@ def coherent_shape(shape, text, subject=None):
     if not shape:
         return None, False
     k = _kind(shape)
-    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" else ()):
+    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" and k not in ("bio", "light", "kuv", "mad", "elk") else ()):  # canlılar şemaları ay/dünya anahtarlarıyla karışmasın
         if rx.search(text):
             if k not in allowed:
                 return None, True
@@ -21834,7 +22669,7 @@ _CD_VIS = {f.__name__ for f, _k, _d, _i in _CD_FAMS}
 _CD_GRUP["bitki"] = ["gül", "çam", "lale", "papatya", "ağaç"]
 _CD_GRUP["hayvan"] = ["balık", "kelebek", "kuş", "kedi"]
 _CD_GRUP["mantar"] = ["mantar", "zehirli mantar"]
-_CD_AD.update({"lale": "Lale", "papatya": "Papatya", "ağaç": "Meşe ağacı", "kedi": "Kedi", "zehirli mantar": "Zehirli şapkalı mantar"})
+_CD_AD.update({"lale": "Lale", "papatya": "Papatya", "ağaç": "Meşe ağacı", "kedi": "Kedi", "zehirli mantar": "Zehirli mantar"})
 _CD_GRP_OF.update({k: g for g, v in _CD_GRUP.items() for k in v})
 _CD_GAD1 = {"bitki": "Bitki", "hayvan": "Hayvan", "mantar": "Mantar", "mikro": "Mikroskobik canlı"}
 _CD_SONUC = {"light": ("Işık kaynağı", "Örnek aydınlatılamaz ve görüntü net görülemez."), "knob": ("Ayar vidası", "Görüntü netleştirilemez."),
@@ -22028,6 +22863,1690 @@ for _f, _d, _it in _CD_FAMS2:
     _FF_GENS.append((_f, _CD_KW2))
     _DIFF_OF[_f.__name__] = _d
 _CD_VIS |= {f.__name__ for f, _d, _i in _CD_FAMS2}
+
+
+# ---- Canlılar Dünyası: 3. dalga (lam-lamel şeması, tablolar, grafikler, ölçüt şemaları, ek kart/mikroskop soruları)
+_CD_SL = {"lam": ("Lam", "İncelenecek örneğin üzerine konulduğu ince cam"), "lamel": ("Lamel", "Örneğin üzerini örten daha ince ve küçük cam"), "drop": ("Damla", "İncelenecek canlıların bulunduğu su damlası")}
+
+
+def _cd_slide():
+    lab = dict(zip(_CD_SL, random.sample(_CD_L, 3)))
+    return lab, {"type": "bio", "sub_type": "slide", "labels": lab}
+
+
+def _ff_cd_sl_ad(subject):
+    lab, sh = _cd_slide()
+    p = random.choice(list(_CD_SL))
+    o = _yn_opts(_CD_SL[p][0], [v[0] for k, v in _CD_SL.items() if k != p] + ["Objektif"])
+    return _mf_raw(subject, _CD_T, f"Şekilde mikroskopta incelenmek üzere hazırlanan bir örnek gösterilmiştir. {lab[p]} ile gösterilen kısmın adı aşağıdakilerden hangisidir?", o, f"{lab[p]} harfi {_CD_SL[p][0].lower()} kısmını gösterir: {_CD_SL[p][1].lower()}.", shape=sh) if o else None
+
+
+def _ff_cd_sl_gorev(subject):
+    lab, sh = _cd_slide()
+    p = random.choice(list(_CD_SL))
+    o = _yn_opts(_CD_SL[p][1], [v[1] for k, v in _CD_SL.items() if k != p] + ["Görüntüyü netleştirmek için çevrilen kısım"])
+    return _mf_raw(subject, _CD_T, f"Şekilde mikroskopta incelenmek üzere hazırlanan bir örnek gösterilmiştir. {lab[p]} ile gösterilen kısmın görevi aşağıdakilerden hangisidir?", o, f"{lab[p]} ile gösterilen kısım {_CD_SL[p][0].lower()}dir: {_CD_SL[p][1].lower()}.", shape=sh) if o else None
+
+
+def _ff_cd_sl_ustte(subject):
+    lab, sh = _cd_slide()
+    cor = "Lamel örneğin üzerini örter; lam ise örneğin altında durur."
+    o = _yn_opts(cor, ["Lam örneğin üzerini örter; lamel ise örneğin altında durur.", "Lam ve lamel örneğin altında yan yana durur.", "Lamel örneğin altına konur ve ışığı büyütür."])
+    return _mf_raw(subject, _CD_T, "Şekilde mikroskopta incelenmek üzere hazırlanan bir örnek gösterilmiştir.\nBu örnekte lam ve lamelin konumu ile ilgili aşağıdakilerden hangisi doğrudur?", o, "Su damlası lam üzerine konur, üzeri lamelle örtülür.", shape=sh)
+
+
+def _cd_tab(rows, head):
+    return {"type": "table", "title": "Gözlem tablosu", "headers": head, "rows": rows}
+
+
+_CD_OZ = {"amip": "Yalancı ayak", "paramesyum": "Kirpik", "öglena": "Kamçı"}
+
+
+def _ff_cd_tab_ad(subject):
+    ks = random.sample(["amip", "paramesyum", "öglena"], 3)
+    lb = random.sample(_CD_L, 3)
+    rows = [[lb[i], _CD_OZ[ks[i]], "Hayır"] for i in range(3)]
+    k = random.randrange(3)
+    o = _yn_opts(_CD_AD[ks[k]], [_CD_AD[x] for x in _MIKRO if x != ks[k]])
+    sh = _cd_tab(rows, ["Canlı", "Hareket yapısı", "Çıplak gözle görülür mü?"])
+    return _mf_raw(subject, _CD_T, f"Bir öğrenci mikroskopla incelediği üç canlıyı harflerle adlandırıp tabloya kaydetmiştir.\nTabloya göre {lb[k]} canlısı aşağıdakilerden hangisidir?", o, f"Hareketini {_CD_OZ[ks[k]].lower()} ile sağlayan canlı {_CD_AD[ks[k]].lower()}dır.", shape=sh) if o else None
+
+
+def _ff_cd_tab_olcut(subject):
+    g = random.choice(["hayvan", "mikro"])
+    ks = [random.choice(["amip", "bakteri"])] + random.sample(["gül", "çam", "kuş", "kedi", "mantar"], 3)
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 4)
+    feat = lambda k: ("Hayır" if k in _MIKRO else "Evet", "Evet" if (k in _MIKRO or _cd_g(k) == "hayvan") else "Hayır")
+    rows = [[lb[i], *feat(ks[i])] for i in range(4)]
+    tgt = [i for i, k in enumerate(ks) if feat(k) == ("Hayır", "Evet")]
+    if len(tgt) != 1:
+        return None
+    sh = _cd_tab(rows, ["Canlı", "Çıplak gözle görülür mü?", "Yer değiştirebilir mi?"])
+    o = _yn_opts(lb[tgt[0]], [lb[j] for j in range(4) if j != tgt[0]])
+    return _mf_raw(subject, _CD_T, "Bir öğrenci dört canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nBuna göre mikroskopla incelenmesi gereken ve yer değiştirebilen canlı hangi harfle gösterilmiştir?", o, f"Çıplak gözle görülemeyen ve yer değiştirebilen canlı {lb[tgt[0]]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _cd_bar(subject, kind):
+    labs = ["Bitki", "Hayvan", "Mantar", "Mikroskobik canlı"]
+    vals = random.sample(range(2, 15), 4)
+    sh = {"type": "bar_chart", "title": "Bahçede sayılan canlılar", "labels": labs, "values": vals}
+    return labs, vals, sh
+
+
+def _ff_cd_gr_en(subject):
+    labs, vals, sh = _cd_bar(subject, 0)
+    i = vals.index(max(vals))
+    o = _yn_opts(labs[i], [x for j, x in enumerate(labs) if j != i])
+    return _mf_raw(subject, _CD_T, "Bir öğrenci okul bahçesinde saydığı canlıları gruplara ayırıp sayılarını grafikte göstermiştir.\nBuna göre en çok bulunan canlı grubu hangisidir?", o, f"Grafikte en yüksek sütun {labs[i].lower()} grubuna aittir ({vals[i]}).", shape=sh) if o else None
+
+
+def _ff_cd_gr_top(subject):
+    labs, vals, sh = _cd_bar(subject, 1)
+    t = sum(vals)
+    o = _yn_opts(str(t), [str(t + 1), str(t - 1), str(t + 2), str(t - 2), str(t + 3)][:3])
+    return _mf_raw(subject, _CD_T, "Bir öğrenci okul bahçesinde saydığı canlıları gruplara ayırıp sayılarını grafikte göstermiştir.\nBuna göre öğrencinin saydığı canlıların toplam sayısı kaçtır?", o, f"{' + '.join(map(str, vals))} = {t}.", shape=sh) if o else None
+
+
+def _ff_cd_gr_fark(subject):
+    labs, vals, sh = _cd_bar(subject, 2)
+    i, j = random.sample(range(4), 2)
+    d = abs(vals[i] - vals[j])
+    if d == 0:
+        return None
+    big, sm = (i, j) if vals[i] > vals[j] else (j, i)
+    o = _yn_opts(str(d), random.sample([str(x) for x in range(1, 16) if x != d], 3))
+    return _mf_raw(subject, _CD_T, f"Bir öğrenci okul bahçesinde saydığı canlıları gruplara ayırıp sayılarını grafikte göstermiştir.\nBuna göre {labs[big].lower()} sayısı, {labs[sm].lower()} sayısından kaç fazladır?", o, f"{vals[big]} − {vals[sm]} = {d}.", shape=sh) if o else None
+
+
+def _ff_cd_gr_say(subject):
+    labs, vals, sh = _cd_bar(subject, 3)
+    i = random.randrange(3)
+    o = _yn_opts(str(vals[i]), random.sample([str(x) for x in range(1, 17) if x != vals[i]], 3))
+    return _mf_raw(subject, _CD_T, f"Bir öğrenci okul bahçesinde saydığı canlıları gruplara ayırıp sayılarını grafikte göstermiştir.\nBuna göre {labs[i].lower()} grubunda kaç canlı sayılmıştır?", o, f"Grafikte {labs[i].lower()} sütununun değeri {vals[i]}'dir.", shape=sh) if o else None
+
+
+def _ff_cd_agac_olcut(subject):
+    mik = random.sample(["amip", "paramesyum", "öglena", "bakteri"], 1)[0]
+    mac = random.choice(["gül", "çam", "lale", "papatya", "ağaç", "balık", "kelebek", "kuş", "kedi", "mantar"])
+    if random.random() < .5:
+        # ? mikroskobik tarafta
+        left = ["K", _CD_AD[mik]] if False else [_CD_AD[mik], "K"]
+        right = [_CD_AD[mac]]
+        cor_pool = [x for x in _MIKRO if x != mik]
+        cor = _CD_AD[random.choice(cor_pool)]
+        wr = random.sample([_CD_AD[x] for g in ("bitki", "hayvan") for x in _CD_GRUP[g] if _CD_AD[x] != _CD_AD[mac]], 3)
+        kids, leaves = ["Hayır", "Evet"], [left, right]
+    else:
+        left = [_CD_AD[mik]]
+        mgrp = [x for x in _CD_GRUP["bitki"] + _CD_GRUP["hayvan"] + _CD_GRUP["mantar"] if x != mac]
+        cor = _CD_AD[random.choice(mgrp)]
+        right = [_CD_AD[mac], "K"]
+        wr = [_CD_AD[x] for x in _MIKRO if x != mik]
+        kids, leaves = ["Hayır", "Evet"], [left, right]
+    sh = {"type": "bio", "sub_type": "tree", "root": "Çıplak gözle görülebilir mi?", "kids": kids, "leaves": leaves}
+    o = _yn_opts(cor, wr)
+    return _mf_raw(subject, _CD_T, "Şekilde canlılar \"Çıplak gözle görülebilir mi?\" ölçütüne göre iki gruba ayrılmıştır.\nBuna göre K ile gösterilen yere aşağıdakilerden hangisi yazılmalıdır?", o, f"{cor} bu ölçüte göre K'nin bulunduğu gruba uyar.", shape=sh) if o else None
+
+
+def _ff_cd_kart_ikili(subject):
+    g1, g2 = random.sample(["bitki", "hayvan", "mantar", "mikro"], 2)
+    ks = [random.choice(_CD_GRUP[g1]), random.choice(_CD_GRUP[g2])]
+    sh = {"type": "bio", "sub_type": "cards", "items": [{"kind": ks[0], "label": "K"}, {"kind": ks[1], "label": "L"}], "per_row": 2}
+    if any(k in _MIKRO for k in ks):
+        sh["caption"] = "Mikroskopla görülen canlılar büyütülerek çizilmiştir."
+    cor = f"K: {_CD_GAD1[g1]}, L: {_CD_GAD1[g2]}"
+    w = [f"K: {_CD_GAD1[g2]}, L: {_CD_GAD1[g1]}"]
+    for g in _CD_GAD1:
+        if g not in (g1, g2):
+            w += [f"K: {_CD_GAD1[g]}, L: {_CD_GAD1[g2]}", f"K: {_CD_GAD1[g1]}, L: {_CD_GAD1[g]}"]
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, _CD_T, "Şekilde iki canlı gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?", o, f"Doğru eşleştirme: {cor}.", shape=sh) if o else None
+
+
+def _ff_cd_kart_yer(subject):
+    ks, lb, sh = _cd_cards(0, {"bitki": random.choice([1, 2]), "hayvan": random.choice([1, 2, 3]), "mantar": 1})
+    n = sum(1 for k in ks if _cd_g(k) == "hayvan")
+    o = _yn_opts(str(n), random.sample([str(x) for x in range(0, 6) if x != n], 3))
+    return _mf_raw(subject, _CD_T, "Hayvanlar bulundukları yerden başka bir yere kendileri gidebilirken bitkiler ve mantarlar bulundukları yerde yetişir.\nBuna göre şekildeki canlılardan kaç tanesi kendi başına yer değiştirebilir?", o, f"Şekilde {n} hayvan vardır; yalnızca hayvanlar yer değiştirebilir.", shape=sh) if o else None
+
+
+def _ff_cd_kart_olcut(subject):
+    a = random.sample(_CD_GRUP["bitki"], 2)
+    b = random.sample(_CD_GRUP["hayvan"], 2)
+    ks = a + b
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 4}
+    cor = "Kendi başına yer değiştirebilme"
+    o = _yn_opts(cor, ["Çıplak gözle görülebilme", "Mikroskop gerektirme", "Gözle görülemeyecek kadar küçük olma"])
+    return _mf_raw(subject, _CD_T, f"Şekildeki {lb[0]} ve {lb[1]} bir grupta, {lb[2]} ve {lb[3]} ise başka bir grupta toplanmıştır.\nBu iki grubu ayırmak için aşağıdaki ölçütlerden hangisi kullanılmıştır?", o, "Bir grupta bitkiler (yer değiştirmez), diğerinde hayvanlar (yer değiştirir) vardır.", shape=sh) if o else None
+
+
+def _ff_cd_mik_tasi(subject):
+    parts = ["arm", "base"] + random.sample(["ocular", "objective", "stage", "light", "knob"], random.choice([2, 3]))
+    lab = dict(zip(parts, random.sample(_CD_L, len(parts))))
+    sh = {"type": "bio", "sub_type": "microscope", "labels": lab}
+    cor = " ve ".join(sorted([lab["arm"], lab["base"]]))
+    others = [p for p in parts if p not in ("arm", "base")]
+    w = set()
+    for _ in range(60):
+        a, b = random.sample(parts, 2)
+        if {a, b} != {"arm", "base"}:
+            w.add(" ve ".join(sorted([lab[a], lab[b]])))
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3]) if len(w) >= 3 else None
+    return _mf_raw(subject, _CD_T, "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir.\nMikroskop bir yerden başka bir yere taşınırken, düşürmemek için hangi kısımlar tutulmalıdır?", o, "Mikroskop, kol ve ayağından tutularak taşınır; mercekler ve tabla tutulmaz.", shape=sh) if o else None
+
+
+_CD_FAMS3 = [
+    (_ff_cd_sl_ad, 3, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"), (_ff_cd_sl_gorev, 4, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"),
+    (_ff_cd_sl_ustte, 4, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"), (_ff_cd_mik_tasi, 4, "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"),
+    (_ff_cd_tab_ad, 4, "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"), (_ff_cd_tab_olcut, 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_gr_en, 3, "Bitki ve hayvanlara örnekler vererek gruplama"), (_ff_cd_gr_top, 3, "Bitki ve hayvanlara örnekler vererek gruplama"), (_ff_cd_gr_fark, 4, "Bitki ve hayvanlara örnekler vererek gruplama"),
+    (_ff_cd_gr_say, 3, "Bitki ve hayvanlara örnekler vererek gruplama"), (_ff_cd_agac_olcut, 5, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+    (_ff_cd_kart_ikili, 3, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"), (_ff_cd_kart_yer, 3, "Bitki ve hayvanlara örnekler vererek gruplama"),
+    (_ff_cd_kart_olcut, 4, "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"),
+]
+for _f, _d, _it in _CD_FAMS3:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _CD_KW2))
+    _DIFF_OF[_f.__name__] = _d
+_CD_VIS |= {f.__name__ for f, _d, _i in _CD_FAMS3}
+
+
+# ---- Canlılar Dünyası: 3. dalga (mikroskop görüntü alanı, grup kutuları, özellik tabloları, ışık yolu, mantar işlevleri)
+_CD_SLOT = [(-2.7, 2.3), (.2, 2.9), (2.8, 1.9), (-3.0, -.8), (.1, -.1), (3.0, -1.0), (-1.7, -3.0), (1.8, -3.1)]
+_CD_IT_MIK = "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"
+_CD_IT_MK = "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"
+_CD_IT_MN = "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi"
+_CD_IT_SN = "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"
+_CD_IT_GR = "Bitki ve hayvanlara örnekler vererek gruplama"
+_CD_SCALE = {"amip": .55, "paramesyum": .5, "öglena": .5, "bakteri": .55}
+
+
+def _cd_field(counts):
+    """counts: {tür: adet}; görüntü alanı şekli üretir."""
+    n = sum(counts.values())
+    if n > len(_CD_SLOT):
+        return None
+    slots = random.sample(_CD_SLOT, n)
+    seq = [k for k, c in counts.items() for _ in range(c)]
+    random.shuffle(seq)
+    its = []
+    for k, (x, y) in zip(seq, slots):
+        its.append(["m%d" % (_MIKRO.index(k) + 1), x, y, _CD_SCALE[k], random.choice([-20, -10, 0, 10, 20, 30])])
+    return {"type": "bio", "sub_type": "field", "items": its}
+
+
+def _ff_cd_alan_say(subject):
+    ks = random.sample(_MIKRO, random.choice([2, 3]))
+    counts = {k: random.randint(1, 3) for k in ks}
+    sh = _cd_field(counts)
+    if not sh:
+        return None
+    t = random.choice(ks)
+    c = counts[t]
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(1, 7) if x != c], 3))
+    return _mf_raw(subject, _CD_T, f"Şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir.\nBuna göre bu görüntüde kaç tane {_CD_AD[t].lower()} vardır?", o, f"Görüntüde {c} tane {_CD_AD[t].lower()} görülür.", shape=sh) if o else None
+
+
+def _ff_cd_alan_cesit(subject):
+    ks = random.sample(_MIKRO, random.choice([2, 3, 4]))
+    counts = {k: random.randint(1, 2) for k in ks}
+    sh = _cd_field(counts)
+    if not sh:
+        return None
+    c = len(ks)
+    o = _yn_opts(str(c), random.sample([str(x) for x in (1, 2, 3, 4, 5) if x != c], 3))
+    return _mf_raw(subject, _CD_T, "Şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir.\nBuna göre bu görüntüde kaç farklı tür mikroskobik canlı vardır?", o, f"Görüntüde {c} farklı tür vardır.", shape=sh) if o else None
+
+
+def _ff_cd_alan_yok(subject):
+    miss = random.choice(_MIKRO)
+    ks = [k for k in _MIKRO if k != miss]
+    counts = {k: random.randint(1, 2) for k in ks}
+    sh = _cd_field(counts)
+    if not sh:
+        return None
+    o = _yn_opts(_CD_AD[miss], [_CD_AD[k] for k in ks])
+    return _mf_raw(subject, _CD_T, "Şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir. Amip, paramesyum, öglena ve bakteriden biri bu görüntüde yoktur.\nBuna göre görüntüde bulunmayan canlı hangisidir?", o, f"Görüntüde {', '.join(_CD_AD[k].lower() for k in ks)} vardır; {_CD_AD[miss].lower()} yoktur.", shape=sh) if o else None
+
+
+def _ff_cd_alan_cok(subject):
+    ks = random.sample(_MIKRO, 3)
+    cs = random.sample([1, 2, 3], 3)
+    counts = dict(zip(ks, cs))
+    sh = _cd_field(counts)
+    if not sh:
+        return None
+    top = max(counts, key=counts.get)
+    o = _yn_opts(_CD_AD[top], [_CD_AD[k] for k in _MIKRO if k != top])
+    return _mf_raw(subject, _CD_T, "Şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir.\nBuna göre görüntüde en fazla sayıda bulunan canlı hangisidir?", o, f"En çok {_CD_AD[top].lower()} vardır ({counts[top]} tane).", shape=sh) if o else None
+
+
+def _ff_cd_alan_toplam(subject):
+    ks = random.sample(_MIKRO, random.choice([2, 3]))
+    counts = {k: random.randint(1, 3) for k in ks}
+    sh = _cd_field(counts)
+    if not sh:
+        return None
+    n = sum(counts.values())
+    o = _yn_opts(str(n), random.sample([str(x) for x in range(2, 10) if x != n], 3))
+    return _mf_raw(subject, _CD_T, "Şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir.\nBuna göre görüntüdeki mikroskobik canlıların toplam sayısı kaçtır?", o, f"Görüntüde toplam {n} mikroskobik canlı vardır.", shape=sh) if o else None
+
+
+def _cd_boxes(gs, n_items=None, letters=False):
+    boxes, kinds_all = [], []
+    for t, g in enumerate(gs):
+        m = n_items or (2 if g == "mantar" else random.choice([2, 3]))
+        ks = random.sample(_CD_GRUP[g], min(m, len(_CD_GRUP[g])))
+        boxes.append({"title": "KLMNPRST"[t], "items": [{"kind": k} for k in ks], "g": g})
+    return boxes
+
+
+def _ff_cd_grup_baslik(subject):
+    gs = random.sample(["bitki", "hayvan", "mantar", "mikro"], random.choice([2, 3]))
+    boxes = _cd_boxes(gs)
+    i = random.randrange(len(gs))
+    sh = {"type": "bio", "sub_type": "groups", "boxes": [{"title": b["title"], "items": b["items"]} for b in boxes], "per_row": 3}
+    o = _yn_opts(_CD_GAD[gs[i]], [v for k, v in _CD_GAD.items() if k != gs[i]])
+    return _mf_raw(subject, _CD_T, f"Şekilde bir öğrenci canlıları kutulara ayırmıştır. {boxes[i]['title']} kutusundaki canlılar aynı gruptadır.\nBuna göre {boxes[i]['title']} kutusuna aşağıdaki başlıklardan hangisi yazılmalıdır?", o, f"{boxes[i]['title']} kutusundaki canlıların hepsi {_CD_GAD[gs[i]].lower()} grubundadır.", shape=sh) if o else None
+
+
+def _ff_cd_grup_yanlis(subject):
+    gs = random.sample(["bitki", "hayvan", "mikro"], 2)
+    a, b = gs
+    ka = random.sample(_CD_GRUP[a], 2)
+    kb = random.sample(_CD_GRUP[b], 2)
+    stray = random.choice(_CD_GRUP[b])
+    while stray in kb:
+        stray = random.choice(_CD_GRUP[b])
+    lab = random.sample(list("12345678"), 6)
+    ia = [{"kind": k, "label": lab[i]} for i, k in enumerate(ka)] + [{"kind": stray, "label": lab[2]}]
+    ib = [{"kind": k, "label": lab[3 + i]} for i, k in enumerate(kb)]
+    random.shuffle(ia)
+    sh = {"type": "bio", "sub_type": "groups", "boxes": [{"title": _CD_GAD[a], "items": ia}, {"title": _CD_GAD[b], "items": ib}], "per_row": 2}
+    cor = lab[2]
+    pool = [x["label"] for x in ia + ib if x["label"] != cor]
+    o = _yn_opts(cor, random.sample(pool, 3))
+    return _mf_raw(subject, _CD_T, "Şekilde canlılar iki kutuya yerleştirilmiş ve numaralandırılmıştır. Kutulardan birine yanlış gruptan bir canlı konulmuştur.\nBuna göre yanlış yerleştirilen canlı hangi numarayla gösterilmiştir?", o, f"{cor} numaralı canlı {_CD_GAD[b].lower()} grubundadır; ancak {_CD_GAD[a].lower()} kutusuna konmuştur.", shape=sh) if o else None
+
+
+_CD_ORTAK = {"bitki": ("Besinlerini kendileri üretebilirler.", ["Besinlerini dışarıdan hazır alırlar.", "Mikroskop olmadan görülemezler.", "Hepsi yer değiştirerek hareket eder."]),
+             "hayvan": ("Besinlerini dışarıdan hazır olarak alırlar.", ["Besinlerini güneş ışığıyla kendileri üretirler.", "Mikroskop olmadan görülemezler.", "Hepsi kökleriyle toprağa tutunur."]),
+             "mikro": ("Çıplak gözle görülemez, mikroskopla görülürler.", ["Hepsi kökleriyle toprağa tutunur.", "Hepsi çıplak gözle rahatça görülür.", "Hepsi şapkalı mantar gibi toprakta yetişir."])}
+
+
+def _ff_cd_grup_ortak(subject):
+    g = random.choice(list(_CD_ORTAK))
+    boxes = [{"title": "K", "items": [{"kind": k} for k in random.sample(_CD_GRUP[g], 3 if len(_CD_GRUP[g]) >= 3 else 2)]}]
+    sh = {"type": "bio", "sub_type": "groups", "boxes": boxes, "per_row": 1}
+    o = _yn_opts(_CD_ORTAK[g][0], _CD_ORTAK[g][1])
+    return _mf_raw(subject, _CD_T, "Şekilde K kutusunda aynı gruba ait canlılar bulunmaktadır.\nBuna göre bu canlıların ortak özelliği aşağıdakilerden hangisidir?", o, f"K kutusundaki canlılar {_CD_GAD[g].lower()} grubundadır: {_CD_ORTAK[g][0][0].lower() + _CD_ORTAK[g][0][1:]}", shape=sh) if o else None
+
+
+def _ff_cd_grup_hangi(subject):
+    gs = ["bitki", "hayvan", "mantar", "mikro"]
+    random.shuffle(gs)
+    boxes = _cd_boxes(gs, 2)
+    g = random.choice([x for x in gs if x != "mantar"])
+    i = gs.index(g)
+    shown = {x["kind"] for x in boxes[i]["items"]}
+    cand = [k for k in _CD_GRUP[g] if k not in shown]
+    if not cand:
+        return None
+    new = random.choice(cand)
+    sh = {"type": "bio", "sub_type": "groups", "boxes": [{"title": b["title"], "items": b["items"]} for b in boxes], "per_row": 2}
+    o = _yn_opts(boxes[i]["title"], [b["title"] for j, b in enumerate(boxes) if j != i])
+    return _mf_raw(subject, _CD_T, f"Şekilde canlılar gruplarına göre kutulara yerleştirilmiştir.\nBuna göre yeni bulunan {_CD_AD[new].lower()} hangi kutuya konmalıdır?", o, f"{_CD_AD[new]}, {_CD_GAD[g].lower()} grubundadır; bu gruptaki canlılar {boxes[i]['title']} kutusundadır.", shape=sh) if o else None
+
+
+def _ff_cd_agac_yeni(subject):
+    gs = random.sample(["bitki", "hayvan", "mantar", "mikro"], 4)
+    lab = random.sample(_CD_L, 4)
+    lv = {g: random.sample([_CD_AD[x] for x in _CD_GRUP[g]], 1 if g == "mantar" else 2) for g in gs}
+    i = random.randrange(4)
+    g = gs[i]
+    used = set(lv[g])
+    cand = [_CD_AD[x] for x in _CD_GRUP[g] if _CD_AD[x] not in used]
+    if not cand:
+        return None
+    new = random.choice(cand)
+    sh = {"type": "bio", "sub_type": "tree", "root": "Canlılar", "kids": lab, "leaves": [lv[x] for x in gs]}
+    o = _yn_opts(lab[i], [lab[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _CD_T, f"Şekilde canlıların sınıflandırılması gösterilmiştir.\nBuna göre {new.lower()} hangi harfle gösterilen grubun altına yazılmalıdır?", o, f"{new}, {_CD_GAD[g].lower()} grubundadır; bu grubun şemadaki harfi {lab[i]}'dir.", shape=sh) if o else None
+
+
+def _ff_cd_agac_say(subject):
+    gs = random.sample(["bitki", "hayvan", "mantar", "mikro"], 4)
+    tg = random.choice([g for g in gs if g != "mantar"])
+    ns = {g: (3 if g == tg else random.choice([1, 2])) for g in gs}
+    lab = random.sample(_CD_L, 4)
+    lv = {g: random.sample([_CD_AD[x] for x in _CD_GRUP[g]], min(ns[g], len(_CD_GRUP[g]))) for g in gs}
+    sh = {"type": "bio", "sub_type": "tree", "root": "Canlılar", "kids": lab, "leaves": [lv[g] for g in gs]}
+    i = max(range(4), key=lambda j: len(lv[gs[j]]))
+    o = _yn_opts(lab[i], [lab[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _CD_T, "Şekilde canlıların sınıflandırılması gösterilmiştir.\nBuna göre en çok canlının bulunduğu grup hangi harfle gösterilmiştir?", o, f"{lab[i]} grubunda {len(lv[gs[i]])} canlı vardır; diğer gruplarda daha azdır.", shape=sh) if o else None
+
+
+def _ff_cd_mik_isik(subject):
+    need = ["light", "stage", "objective", "ocular"]
+    lab = dict(zip(need, random.sample(_CD_L, 4)))
+    extra = random.sample([p for p in _CD_MPART if p not in need], random.choice([0, 1, 2]))
+    for p in extra:
+        lab[p] = random.choice([x for x in _CD_L if x not in lab.values()])
+    sh = {"type": "bio", "sub_type": "microscope", "labels": lab}
+    seq = [lab[p] for p in need]
+    cor = " → ".join(seq)
+    w = set()
+    for _ in range(40):
+        pm = random.sample(seq, 4)
+        t = " → ".join(pm)
+        if t != cor:
+            w.add(t)
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, _CD_T, "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. Mikroskopla bakılırken ışık; ışık kaynağından çıkar, incelenecek örneğin bulunduğu tablaya, oradan objektife ve göz merceğine ulaşır.\nBuna göre ışığın izlediği yol hangi seçenekte doğru verilmiştir?", o, f"Işık kaynağı → tabla → objektif → göz merceği sırası şekilde {cor} ile gösterilir.", shape=sh) if o else None
+
+
+_CD_MNG = {"cap": ("Şapka", "Mantarın üst kısmını oluşturan bölüm"), "gill": ("Lamel", "Şapkanın altında bulunan ince, yaprak biçimli yapılar"),
+           "ring": ("Halka", "Sapın çevresinde bulunan halka biçimli yapı"), "stem": ("Sap", "Şapkayı taşıyan ve mantarı yere bağlayan bölüm")}
+
+
+def _ff_cd_mn_gorev(subject):
+    parts = list(_CD_MNG)
+    lab = dict(zip(parts, random.sample(_CD_L, 4)))
+    p = random.choice(parts)
+    sh = {"type": "bio", "sub_type": "mushroom", "labels": lab, "poison": random.random() < .4}
+    o = _yn_opts(lab[p], [lab[x] for x in parts if x != p])
+    return _mf_raw(subject, _CD_T, f"Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. {_CD_MNG[p][1]} hangi harfle gösterilmiştir?", o, f"{_CD_MNG[p][1]} mantarın {_CD_MNG[p][0].lower()} kısmıdır; şekilde {lab[p]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_cd_mn_gorev2(subject):
+    parts = list(_CD_MNG)
+    lab = dict(zip(parts, random.sample(_CD_L, 4)))
+    p = random.choice(parts)
+    sh = {"type": "bio", "sub_type": "mushroom", "labels": lab, "poison": random.random() < .4}
+    o = _yn_opts(_CD_MNG[p][1], [_CD_MNG[x][1] for x in parts if x != p])
+    return _mf_raw(subject, _CD_T, f"Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. {lab[p]} ile gösterilen kısım için aşağıdakilerden hangisi söylenebilir?", o, f"{lab[p]} ile gösterilen kısım {_CD_MNG[p][0].lower()}dır: {_CD_MNG[p][1].lower()}.", shape=sh) if o else None
+
+
+def _ff_cd_mn_iki(subject):
+    ks = ["mantar", "zehirli mantar"]
+    random.shuffle(ks)
+    sh = {"type": "bio", "sub_type": "cards", "items": [{"kind": ks[0], "label": "K"}, {"kind": ks[1], "label": "L"}], "per_row": 2}
+    cor = "Hayır, mantarların zehirli olup olmadığı yalnızca görünüşlerine bakılarak kesin söylenemez."
+    o = _yn_opts(cor, ["Evet, her zaman renkli şapkalı olan mantar zehirlidir.", "Evet, her zaman soluk renkli şapkalı olan mantar zehirlidir.", "Evet, şapkasında beyaz benek olmayan mantar zehirlidir."])
+    return _mf_raw(subject, _CD_T, "Şekilde iki şapkalı mantar gösterilmiştir. Bir öğrenci bu mantarların görünüşlerine bakarak hangisinin zehirli olduğunu bulmak istemektedir.\nBuna göre aşağıdakilerden hangisi doğrudur?", o, "Zehirli mantarlar görünüşle güvenle ayırt edilemez; bilinmeyen mantarlar yenmemelidir.", shape=sh) if o else None
+
+
+def _ff_cd_kart_cogunluk(subject):
+    gs = random.sample(["bitki", "hayvan", "mikro", "mantar"], 3)
+    cs = [1, 2, 3]
+    random.shuffle(cs)
+    if cs[gs.index("mantar")] == 3 if "mantar" in gs else False:
+        k_ = gs.index("mantar")
+        o_ = (k_ + 1) % 3
+        cs[k_], cs[o_] = cs[o_], cs[k_]
+    need = dict(zip(gs, cs))
+    ks, lb, sh = _cd_cards(0, need)
+    top = max(need, key=need.get)
+    o = _yn_opts(_CD_GAD[top], [v for k, v in _CD_GAD.items() if k != top])
+    return _mf_raw(subject, _CD_T, "Şekilde harflerle gösterilen canlılar bitki, hayvan, mantar ve mikroskobik canlı gruplarına ayrılacaktır.\nBuna göre hangi gruptan en çok canlı vardır?", o, f"{_CD_GAD[top]} grubundan {need[top]} canlı vardır; diğer gruplarda daha azdır.", shape=sh) if o else None
+
+
+def _ff_cd_kart_ayni(subject):
+    g = random.choice(["bitki", "hayvan"])
+    ks = random.sample(_CD_GRUP[g], 3)
+    cand = [_CD_AD[x] for x in _CD_GRUP[g] if x not in ks]
+    if not cand:
+        return None
+    cor = random.choice(cand)
+    w = [_CD_AD[x] for x in _CD_GRUP["hayvan" if g == "bitki" else "bitki"]] + [_CD_AD[x] for x in _MIKRO]
+    lb = random.sample(_CD_L, 3)
+    sh = {"type": "bio", "sub_type": "cards", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 3}
+    o = _yn_opts(cor, random.sample(w, 3))
+    return _mf_raw(subject, _CD_T, "Şekilde harflerle gösterilen canlılar aynı gruptadır.\nBuna göre aşağıdaki canlılardan hangisi bu canlılarla aynı grupta yer alır?", o, f"Şekildeki canlılar {_CD_GAD[g].lower()} grubundadır; {cor.lower()} de aynı gruptadır.", shape=sh) if o else None
+
+
+_CD_OZT = {"bitki": ("Evet", "Hayır"), "hayvan": ("Hayır", "Evet"), "mantar": ("Hayır", "Hayır"), "öglena": ("Evet", "Evet")}
+_CD_OZN = {"bitki": "bitki", "hayvan": "hayvan", "mantar": "mantar", "öglena": "öglena"}
+
+
+def _ff_cd_tablo_ozellik(subject):
+    ks = ["bitki", "hayvan", "mantar", "öglena"]
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "table", "title": "Canlıların özellikleri", "headers": ["Canlı", "Besinini kendisi üretir mi?", "Yer değiştirerek hareket eder mi?"], "rows": [[lb[i], _CD_OZT[k][0], _CD_OZT[k][1]] for i, k in enumerate(ks)]}
+    k = random.choice(ks)
+    a, b = _CD_OZT[k]
+    desc = f"Besinini kendisi {'üretebilen' if a == 'Evet' else 'üretemeyen'} ve yer değiştirerek {'hareket edebilen' if b == 'Evet' else 'hareket edemeyen'}"
+    i = ks.index(k)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _CD_T, "Bir öğrenci dört canlının özelliklerini harflerle adlandırarak tabloya yazmıştır.\n" + f"Buna göre {desc} canlı hangi harfle gösterilmiştir?", o, f"Tabloda bu özellikleri taşıyan tek canlı {lb[i]} harfiyle gösterilendir.", shape=sh) if o else None
+
+
+def _ff_cd_tablo_grup(subject):
+    ks = ["bitki", "hayvan", "mantar"]
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 3)
+    sh = {"type": "table", "title": "Canlıların özellikleri", "headers": ["Canlı", "Besinini kendisi üretir mi?", "Yer değiştirerek hareket eder mi?"], "rows": [[lb[i], _CD_OZT[k][0], _CD_OZT[k][1]] for i, k in enumerate(ks)]}
+    i = random.randrange(3)
+    o = _yn_opts(_CD_GAD1[ks[i]], [v for kk, v in _CD_GAD1.items() if kk != ks[i]])
+    return _mf_raw(subject, _CD_T, f"Bir öğrenci bitki, hayvan ve mantar gruplarından birer canlıyı harflerle adlandırarak özelliklerini tabloya yazmıştır.\nBuna göre {lb[i]} ile gösterilen canlı hangi gruptadır?", o, f"Tablodaki özellikler {_CD_GAD1[ks[i]].lower()} grubuna uyar.", shape=sh) if o else None
+
+
+_CD_TMK = {"amip": ("Yalancı ayak", "Renksiz"), "paramesyum": ("Kirpik", "Renksiz"), "öglena": ("Kamçı", "Yeşil")}
+
+
+def _ff_cd_tablo_mikro(subject):
+    ks = ["amip", "paramesyum", "öglena"]
+    random.shuffle(ks)
+    lb = random.sample(_CD_L, 3)
+    sh = {"type": "table", "title": "Mikroskobik canlılar", "headers": ["Canlı", "Hareket yapısı", "Rengi"], "rows": [[lb[i], _CD_TMK[k][0], _CD_TMK[k][1]] for i, k in enumerate(ks)]}
+    i = random.randrange(3)
+    o = _yn_opts(_CD_AD[ks[i]], [_CD_AD[k] for k in _MIKRO if k != ks[i]])
+    return _mf_raw(subject, _CD_T, f"Bir öğrenci amip, paramesyum ve öglenayı mikroskopla incelemiş, harflerle adlandırdığı canlıların özelliklerini tabloya yazmıştır.\nBuna göre {lb[i]} ile gösterilen canlı hangisidir?", o, f"Tablodaki {_CD_TMK[ks[i]][0].lower()} ve {_CD_TMK[ks[i]][1].lower()} özellikleri {_CD_AD[ks[i]].lower()} canlısına aittir.", shape=sh) if o else None
+
+
+_CD_FAMS4 = [
+    (_ff_cd_alan_say, 3, _CD_IT_MK), (_ff_cd_alan_cesit, 3, _CD_IT_MK), (_ff_cd_alan_yok, 4, _CD_IT_MK), (_ff_cd_alan_cok, 4, _CD_IT_MK), (_ff_cd_alan_toplam, 3, _CD_IT_MK),
+    (_ff_cd_grup_baslik, 3, _CD_IT_SN), (_ff_cd_grup_yanlis, 4, _CD_IT_SN), (_ff_cd_grup_ortak, 4, _CD_IT_SN), (_ff_cd_grup_hangi, 4, _CD_IT_SN),
+    (_ff_cd_agac_yeni, 4, _CD_IT_SN), (_ff_cd_agac_say, 4, _CD_IT_SN), (_ff_cd_mik_isik, 5, _CD_IT_MIK),
+    (_ff_cd_mn_gorev, 3, _CD_IT_MN), (_ff_cd_mn_gorev2, 4, _CD_IT_MN), (_ff_cd_mn_iki, 4, _CD_IT_MN),
+    (_ff_cd_kart_cogunluk, 4, _CD_IT_SN), (_ff_cd_kart_ayni, 3, _CD_IT_GR),
+    (_ff_cd_tablo_ozellik, 4, _CD_IT_SN), (_ff_cd_tablo_grup, 3, _CD_IT_SN), (_ff_cd_tablo_mikro, 4, _CD_IT_MK),
+]
+for _f, _d, _it in _CD_FAMS4:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _CD_KW2))
+    _DIFF_OF[_f.__name__] = _d
+_CD_VIS |= {f.__name__ for f, _d, _i in _CD_FAMS4}
+
+
+# ---- 5. SINIF FEN "IŞIĞIN YAYILMASI": ŞEKİLLİ SORU AİLELERİ — ışık kaynakları, delikli kartlar, gölge düzenekleri, tam gölge, saydam/yarı saydam/opak
+_LT_T = "Işığın Yayılması"
+_LT_DOGAL = ["güneş", "yıldız", "ateş böceği", "şimşek"]
+_LT_YAPAY = ["ampul", "mum", "el feneri", "televizyon"]
+_LT_DEGIL = ["ay", "ayna", "kitap", "top"]
+_LT_IT1 = "Işık kaynakları ve ışığın doğrusal yayılması"
+_LT_IT2 = "Saydam, yarı saydam ve opak maddeler"
+_LT_IT3 = "Gölge oluşumu ve tam gölge"
+_LT_KW = ("ışık", "ışığ", "saydam", "gölge")
+_LT_ADI = {"güneş": "Güneş", "yıldız": "Yıldız", "ateş böceği": "Ateş böceği", "şimşek": "Şimşek", "ampul": "Ampul", "mum": "Mum", "el feneri": "El feneri", "televizyon": "Televizyon"}
+
+
+def _lt_items(kinds):
+    lb = random.sample(_CD_L, len(kinds))
+    return [{"kind": k, "label": l} for k, l in zip(kinds, lb)], lb
+
+
+def _lt_cardsh(items, per=4):
+    return {"type": "light", "sub_type": "kaynak", "items": items, "per_row": per}
+
+
+def _ff_lt_k_say(subject):
+    ns = random.randint(1, 4)
+    n = random.choice([5, 6])
+    src = random.sample(_LT_DOGAL + _LT_YAPAY, ns)
+    non = random.sample(_LT_DEGIL, min(n - ns, 4))
+    ks = src + non
+    if len(ks) < 5:
+        return None
+    random.shuffle(ks)
+    items, lb = _lt_items(ks)
+    c = ns
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(0, 6) if x != c], 3))
+    return _mf_raw(subject, _LT_T, "Şekilde harflerle gösterilen cisimlerden kaç tanesi ışık kaynağıdır?", o, f"Kendi ışığını yayan {c} cisim vardır; diğerleri ışık kaynağı değildir.", shape=_lt_cardsh(items)) if o else None
+
+
+def _ff_lt_k_tek(subject):
+    s = random.choice(_LT_DOGAL + _LT_YAPAY)
+    ks = [s] + random.sample(_LT_DEGIL, 3)
+    random.shuffle(ks)
+    items, lb = _lt_items(ks)
+    i = ks.index(s)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _LT_T, "Şekilde harflerle gösterilen cisimlerden hangisi ışık kaynağıdır?", o, f"{_LT_ADI[s]} kendi ışığını yaydığı için ışık kaynağıdır; {lb[i]} ile gösterilmiştir.", shape=_lt_cardsh(items)) if o else None
+
+
+def _ff_lt_k_degil(subject):
+    d = random.choice(_LT_DEGIL)
+    ks = [d] + random.sample(_LT_DOGAL + _LT_YAPAY, 3)
+    random.shuffle(ks)
+    items, lb = _lt_items(ks)
+    i = ks.index(d)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    ad = {"ay": "Ay", "ayna": "Ayna", "kitap": "Kitap", "top": "Top"}[d]
+    return _mf_raw(subject, _LT_T, "Şekilde harflerle gösterilen cisimlerden hangisi ışık kaynağı değildir?", o, f"{ad} kendi ışığını yaymaz, kendisine gelen ışığı yansıtır; ışık kaynağı değildir ve {lb[i]} ile gösterilmiştir.", shape=_lt_cardsh(items)) if o else None
+
+
+def _ff_lt_k_yapay(subject):
+    y = random.choice(_LT_YAPAY)
+    ks = [y] + random.sample(_LT_DOGAL, 3)
+    random.shuffle(ks)
+    items, lb = _lt_items(ks)
+    i = ks.index(y)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _LT_T, "Şekilde harflerle gösterilen ışık kaynaklarından üçü doğal, biri yapaydır.\nBuna göre yapay ışık kaynağı hangi harfle gösterilmiştir?", o, f"{_LT_ADI[y]} insan yapımı olduğu için yapay ışık kaynağıdır; {lb[i]} ile gösterilmiştir.", shape=_lt_cardsh(items)) if o else None
+
+
+def _ff_lt_k_dogal(subject):
+    g = random.choice(_LT_DOGAL)
+    ks = [g] + random.sample(_LT_YAPAY, 3)
+    random.shuffle(ks)
+    items, lb = _lt_items(ks)
+    i = ks.index(g)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _LT_T, "Şekilde harflerle gösterilen ışık kaynaklarından üçü yapay, biri doğaldır.\nBuna göre doğal ışık kaynağı hangi harfle gösterilmiştir?", o, f"{_LT_ADI[g]} doğada kendiliğinden bulunduğu için doğal ışık kaynağıdır; {lb[i]} ile gösterilmiştir.", shape=_lt_cardsh(items)) if o else None
+
+
+def _ff_lt_k_cift(subject):
+    g = random.sample(_LT_DOGAL, 2)
+    y = random.sample(_LT_YAPAY, 2)
+    ks = g + y
+    random.shuffle(ks)
+    items, lb = _lt_items(ks)
+    ids = [j for j, k in enumerate(ks) if k in g]
+    pr = lambda a, b: " ve ".join(sorted([lb[a], lb[b]]))
+    cor = pr(*ids)
+    w = set()
+    for _ in range(40):
+        a, b = random.sample(range(4), 2)
+        if {a, b} != set(ids):
+            w.add(pr(a, b))
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3]) if len(w) >= 3 else None
+    return _mf_raw(subject, _LT_T, "Şekilde harflerle gösterilen dört cisim ışık kaynağıdır.\nBuna göre bunlardan hangi ikisi doğal ışık kaynağıdır?", o, f"Doğal ışık kaynakları doğada kendiliğinden bulunanlardır: {cor}.", shape=_lt_cardsh(items)) if o else None
+
+
+def _lt_kartlar(n=4, mis=None):
+    lb = random.sample(_CD_L, n)
+    base = 4.0
+    cards = [{"label": lb[i], "hole": base} for i in range(n)]
+    for i in (mis or []):
+        cards[i]["hole"] = base + random.choice([-1.6, -1.2, 1.2, 1.6])
+    return cards, lb
+
+
+def _lt_kshape(cards):
+    return {"type": "light", "sub_type": "kartlar", "cards": cards}
+
+
+def _ff_lt_kart_yer(subject):
+    cards, lb = _lt_kartlar(4, [random.randrange(4)])
+    i = [j for j, c in enumerate(cards) if c["hole"] != 4.0][0]
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _LT_T, "Şekildeki düzenekte lambanın ışığı, ortalarında delik bulunan kartlardan geçmeye çalışmaktadır. Işığın tüm kartlardan geçip göze ulaşabilmesi için bir kartın yeri değiştirilecektir.\nBuna göre hangi harfle gösterilen kartın yeri değiştirilmelidir?", o, f"Işık doğrusal yayılır; {lb[i]} kartının deliği diğerleriyle aynı doğrultuda olmadığı için ışığı durdurur.", shape=_lt_kshape(cards)) if o else None
+
+
+def _ff_lt_kart_dur(subject):
+    n = 4
+    k = random.sample(range(n), random.choice([1, 2]))
+    cards, lb = _lt_kartlar(n, k)
+    first = min(k)
+    o = _yn_opts(lb[first], [lb[j] for j in range(n) if j != first])
+    return _mf_raw(subject, _LT_T, "Şekildeki düzenekte lambadan çıkan ışık, kartlardaki deliklerden geçmeye çalışmaktadır.\nBuna göre ışık ilk olarak hangi harfle gösterilen karta çarpıp durmaktadır?", o, f"Işık doğrusal ilerler ve deliği kaymış ilk kartta ({lb[first]}) engellenir.", shape=_lt_kshape(cards)) if o else None
+
+
+def _ff_lt_kart_say(subject):
+    n = 4
+    f = random.randrange(0, n)
+    cards, lb = _lt_kartlar(n, [f])
+    o = _yn_opts(str(f), random.sample([str(x) for x in range(0, 5) if x != f], 3))
+    return _mf_raw(subject, _LT_T, "Şekildeki düzenekte lambadan çıkan ışık, kartlardaki deliklerden geçmeye çalışmaktadır.\nBuna göre ışık ışını kaç kartın deliğinden geçebilmiştir?", o, f"Işık doğrusal ilerler; deliği kaymış karttan önceki {f} kartın deliğinden geçer.", shape=_lt_kshape(cards)) if o else None
+
+
+def _ff_lt_kart_goz(subject):
+    ok = random.random() < .5
+    n = random.choice([3, 4])
+    cards, lb = _lt_kartlar(n, [] if ok else [random.randrange(n)])
+    if ok:
+        cor = "Evet, çünkü ışık doğrusal yayılır ve tüm delikler aynı doğrultudadır."
+        w = ["Hayır, çünkü ışık kıvrılarak ilerlediği için göze ulaşamaz.", "Hayır, çünkü kartlar ışığı hiçbir şekilde geçirmez.", "Evet, çünkü ışık kartların etrafından dolanarak ilerler."]
+    else:
+        cor = "Hayır, çünkü ışık doğrusal yayılır ve tüm delikler aynı doğrultuda değildir."
+        w = ["Evet, çünkü ışık delikten geçerken kıvrılarak yön değiştirir.", "Evet, çünkü ışık kartların etrafından dolanarak göze ulaşır.", "Hayır, çünkü ışık yalnızca karanlıkta yayılır."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _LT_T, "Şekildeki düzenekte lamba ile gözlemci arasına ortalarında delik bulunan kartlar yerleştirilmiştir.\nBuna göre gözlemci lambayı görebilir mi?", o, "Işık doğrusal yollarla yayıldığından, göze ulaşması için tüm deliklerin aynı doğrultuda olması gerekir.", shape=_lt_kshape(cards)) if o else None
+
+
+def _ff_lt_golge_bolge(subject):
+    keys = ["lamp", "obj", "shadow", "lit"]
+    lb = dict(zip(keys, random.sample(_CD_L, 4)))
+    ask = random.choice(keys)
+    nm = {"lamp": "Işık kaynağı", "obj": "Işığı geçirmeyen (opak) cisim", "shadow": "Tam gölgenin oluştuğu bölge", "lit": "Perdede aydınlık kalan bölge"}[ask]
+    sh = {"type": "light", "sub_type": "bolge", "labels": lb}
+    o = _yn_opts(lb[ask], [lb[k] for k in keys if k != ask])
+    return _mf_raw(subject, "Gölge", f"Şekilde ışık kaynağı, ışığı geçirmeyen bir cisim ve perde gösterilmiştir. Bazı yerler harflerle adlandırılmıştır.\n{nm} hangi harfle gösterilmiştir?", o, f"{nm} şekilde {lb[ask]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _lt_pan(lo, ls, h=6, label=None):
+    return {"lo": lo, "ls": ls, "h": h, "label": label}
+
+
+def _ff_lt_golge_buyuk(subject):
+    los = random.sample([10, 15, 20, 25, 30, 40], 3)
+    lb = random.sample(_CD_L, 3)
+    sh = {"type": "light", "sub_type": "golge", "panels": [_lt_pan(los[i], 50, 6, lb[i]) for i in range(3)], "per_row": 1}
+    i = los.index(min(los))
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hepsinde gölge boyları eşittir."])
+    return _mf_raw(subject, "Gölge", "Şekilde aynı boydaki üç cisim, ışık kaynağından farklı uzaklıklara konulmuş; perde her düzenekte kaynaktan 50 cm uzaktadır.\nBuna göre hangi düzenekte perdedeki gölgenin boyu en büyüktür?", o, f"Cisim ışık kaynağına ne kadar yakınsa gölge o kadar büyür; en yakın cisim {lb[i]} düzeneğindedir.", shape=sh) if o else None
+
+
+def _ff_lt_golge_uzak(subject):
+    lss = random.sample([30, 40, 50, 60, 70], 3)
+    lb = random.sample(_CD_L, 3)
+    sh = {"type": "light", "sub_type": "golge", "panels": [_lt_pan(20, lss[i], 4, lb[i]) for i in range(3)], "per_row": 1, "scale": .15}
+    i = lss.index(max(lss))
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hepsinde gölge boyları eşittir."])
+    return _mf_raw(subject, "Gölge", "Şekilde aynı boydaki üç cisim, ışık kaynağından 20 cm uzağa konulmuş; perde ise her düzenekte kaynaktan farklı uzaklıktadır.\nBuna göre hangi düzenekte perdedeki gölgenin boyu en büyüktür?", o, f"Perde ışık kaynağından uzaklaştıkça gölge büyür; en uzak perde {lb[i]} düzeneğindedir.", shape=sh) if o else None
+
+
+def _ff_lt_golge_degis(subject):
+    lo = random.choice([15, 20, 25])
+    ls = random.choice([45, 50, 60])
+    sh = {"type": "light", "sub_type": "golge", "panels": [_lt_pan(lo, ls, 6)], "per_row": 1}
+    sc = random.choice([
+        ("Cisim ışık kaynağına doğru yaklaştırılırsa", "Gölgenin boyu büyür."), ("Cisim perdeye doğru yaklaştırılırsa", "Gölgenin boyu küçülür."),
+        ("Perde ışık kaynağından uzaklaştırılırsa", "Gölgenin boyu büyür."), ("Işık kaynağı cisimden uzaklaştırılırsa", "Gölgenin boyu küçülür.")])
+    allw = ["Gölgenin boyu büyür.", "Gölgenin boyu küçülür.", "Gölgenin boyu değişmez.", "Gölge tamamen kaybolur."]
+    o = _yn_opts(sc[1], [x for x in allw if x != sc[1]])
+    return _mf_raw(subject, "Gölge", f"Şekildeki düzenekte ışık kaynağı, ışığı geçirmeyen bir cisim ve perde gösterilmiştir.\n{sc[0]} perdedeki gölge için aşağıdakilerden hangisi doğru olur?", o, f"{sc[0]}, {sc[1][0].lower() + sc[1][1:]}", shape=sh) if o else None
+
+
+def _ff_lt_golge_say(subject):
+    n = random.choice([2, 3])
+    lo = random.choice([20, 25])
+    ls = lo * 2 + random.choice([0, 5])
+    ys = [-12, 0, 12] if n == 3 else [-6, 6]
+    objs = [{"y": y, "h": 3} for y in ys]
+    sh = {"type": "light", "sub_type": "golge", "panels": [{"lo": lo, "ls": ls, "objs": objs, "label": None}], "per_row": 1, "scale": .17}
+    o = _yn_opts(str(n), random.sample([str(x) for x in (1, 2, 3, 4, 5) if x != n], 3))
+    return _mf_raw(subject, "Gölge", "Şekildeki düzenekte bir ışık kaynağı ile ışığı geçirmeyen cisimler ve perde gösterilmiştir.\nBuna göre perdede kaç tane gölge oluşur?", o, f"Her opak cisim ışığı kendi doğrultusunda engeller; {n} cisim için {n} gölge oluşur.", shape=sh) if o else None
+
+
+_LT_TIP = {"saydam": "Işığın büyük bölümünü geçirir", "yari": "Işığın bir kısmını geçirir", "opak": "Işığı hiç geçirmez"}
+_LT_MAD = {"saydam": ["temiz pencere camı", "berrak su", "şeffaf cam bardak", "şeffaf naylon poşet"], "yari": ["buzlu cam", "yağlı kâğıt", "aydınger kâğıdı"], "opak": ["tahta kapı", "demir levha", "kalın karton", "tuğla", "alüminyum folyo"]}
+
+
+def _lt_mshape(types, lb, per=2):
+    return {"type": "light", "sub_type": "madde", "panels": [{"type": t, "label": l} for t, l in zip(types, lb)], "per_row": per}
+
+
+def _ff_lt_madde_harf(subject):
+    ty = ["saydam", "yari", "opak", "opak"]
+    random.shuffle(ty)
+    lb = random.sample(_CD_L, 4)
+    t = random.choice(["saydam", "yari"])
+    i = ty.index(t)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    q = {"saydam": "Perdeye en çok ışık ulaşan düzenekte kullanılan madde saydamdır. Buna göre saydam madde hangi harfle gösterilen düzenektedir?", "yari": "Perdeye ışığın yalnızca bir kısmı ulaşan düzenekte kullanılan madde yarı saydamdır. Buna göre yarı saydam madde hangi harfle gösterilen düzenektedir?"}[t]
+    return _mf_raw(subject, _LT_T, "Şekilde ışık kaynağı, ışık yoluna konan bir madde ve perde bulunan dört düzenek gösterilmiştir.\n" + q, o, f"{'Saydam' if t == 'saydam' else 'Yarı saydam'} madde {lb[i]} düzeneğindedir.", shape=_lt_mshape(ty, lb)) if o else None
+
+
+def _ff_lt_madde_opak(subject):
+    ty = ["saydam", "yari", "opak", "opak"]
+    random.shuffle(ty)
+    lb = random.sample(_CD_L, 4)
+    ids = [j for j, t in enumerate(ty) if t == "opak"]
+    pr = lambda a, b: " ve ".join(sorted([lb[a], lb[b]]))
+    cor = pr(*ids)
+    w = set()
+    for _ in range(40):
+        a, b = random.sample(range(4), 2)
+        if {a, b} != set(ids):
+            w.add(pr(a, b))
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3]) if len(w) >= 3 else None
+    return _mf_raw(subject, _LT_T, "Şekilde ışık kaynağı, ışık yoluna konan bir madde ve perde bulunan dört düzenek gösterilmiştir.\nBuna göre perdede ışık almayan (net gölge oluşan) bölgeye sahip, yani ışığı hiç geçirmeyen opak maddeler hangi düzeneklerdedir?", o, f"Opak maddeler ışığı geçirmez; perdede koyu gölge oluşan düzenekler {cor} olandır.", shape=_lt_mshape(ty, lb)) if o else None
+
+
+def _ff_lt_madde_ad(subject):
+    ty = ["saydam", "yari", "opak"]
+    random.shuffle(ty)
+    lb = random.sample(_CD_L, 3)
+    nm = [random.choice(_LT_MAD[t]) for t in ty]
+    ask = random.choice(["en çok", "en az"])
+    want = "saydam" if ask == "en çok" else "opak"
+    i = ty.index(want)
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hepsinde perdeye ulaşan ışık miktarı eşittir."])
+    return _mf_raw(subject, _LT_T, f"Şekildeki {lb[0]}, {lb[1]} ve {lb[2]} düzeneklerinde ışık yoluna sırasıyla {nm[0]}, {nm[1]} ve {nm[2]} konulmuştur.\nBuna göre hangi düzeneğin perdesine ulaşan ışık miktarı {ask} olur?", o, f"{nm[i].capitalize()} {'saydam' if want == 'saydam' else 'opak'} olduğundan {lb[i]} düzeneğinde perdeye ulaşan ışık miktarı {ask} olur.", shape=_lt_mshape(ty, lb, 1)) if o else None
+
+
+def _ff_lt_madde_olabilir(subject):
+    ty = ["saydam", "yari", "opak"]
+    random.shuffle(ty)
+    lb = random.sample(_CD_L, 3)
+    t = random.choice(ty)
+    i = ty.index(t)
+    cor = random.choice(_LT_MAD[t])
+    w = [random.choice(_LT_MAD[x]) for x in ty if x != t]
+    w += [random.choice([m for m in _LT_MAD[x] if m not in w]) for x in ty if x != t][:1]
+    w = list(dict.fromkeys(w))
+    if len(w) < 3:
+        return None
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, _LT_T, f"Şekilde üç düzenekte ışık yoluna farklı maddeler konulmuştur. {lb[i]} düzeneğindeki madde için şu bilgi verilmiştir: {_LT_TIP[t]}.\nBuna göre {lb[i]} düzeneğinde aşağıdakilerden hangisi kullanılmış olabilir?", o, f"{_LT_TIP[t]}; bu özellik {'saydam' if t == 'saydam' else 'yarı saydam' if t == 'yari' else 'opak'} maddelere aittir: {cor}.", shape=_lt_mshape(ty, lb, 1)) if o else None
+
+
+def _ff_lt_madde_sira(subject):
+    ty = ["saydam", "yari", "opak"]
+    random.shuffle(ty)
+    lb = random.sample(_CD_L, 3)
+    order = sorted(range(3), key=lambda j: ["saydam", "yari", "opak"].index(ty[j]))
+    cor = " > ".join(lb[j] for j in order)
+    import itertools
+    allp = [" > ".join(lb[j] for j in p) for p in itertools.permutations(range(3))]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, _LT_T, "Şekilde ışık kaynağı, ışık yoluna konan bir madde ve perde bulunan üç düzenek gösterilmiştir.\nBuna göre perdelere ulaşan ışık miktarı en çoktan en aza doğru hangi seçenekte doğru sıralanmıştır?", o, f"Saydam madde en çok, yarı saydam madde daha az, opak madde hiç ışık geçirmez: {cor}.", shape=_lt_mshape(ty, lb, 1)) if o else None
+
+
+_LT_FAMS = [
+    (_ff_lt_k_say, 3, _LT_IT1), (_ff_lt_k_tek, 3, _LT_IT1), (_ff_lt_k_degil, 3, _LT_IT1), (_ff_lt_k_yapay, 4, _LT_IT1), (_ff_lt_k_dogal, 4, _LT_IT1), (_ff_lt_k_cift, 4, _LT_IT1),
+    (_ff_lt_kart_yer, 3, _LT_IT1), (_ff_lt_kart_dur, 4, _LT_IT1), (_ff_lt_kart_say, 4, _LT_IT1), (_ff_lt_kart_goz, 3, _LT_IT1),
+    (_ff_lt_golge_bolge, 3, _LT_IT3), (_ff_lt_golge_buyuk, 4, _LT_IT3), (_ff_lt_golge_uzak, 4, _LT_IT3), (_ff_lt_golge_degis, 4, _LT_IT3), (_ff_lt_golge_say, 4, _LT_IT3),
+    (_ff_lt_madde_harf, 3, _LT_IT2), (_ff_lt_madde_opak, 4, _LT_IT2), (_ff_lt_madde_ad, 3, _LT_IT2), (_ff_lt_madde_olabilir, 4, _LT_IT2), (_ff_lt_madde_sira, 4, _LT_IT2),
+]
+for _f, _d, _it in _LT_FAMS:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _LT_KW))
+    _DIFF_OF[_f.__name__] = _d
+_LT_VIS = {f.__name__ for f, _d, _i in _LT_FAMS}
+
+
+# ---- 5. SINIF FEN "KUVVETİN ÖLÇÜLMESİ VE SÜRTÜNME": ŞEKİLLİ SORU AİLELERİ — kuvvetin etkileri, yüzeyde çekme, dinamometre+kütle, yay uzaması
+_KV_T = "Kuvvet ve sürtünme"
+_KV_KW = ("kuvvet", "sürtünme", "dinamometre", "ağırlık", "kütle", "yay", "newton")
+_KV_IA = "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton)"
+_KV_IB = "Dinamometre modeli"
+_KV_IC = "Kütle, yer çekimi ve ağırlık"
+_KV_ID = "Sürtünme kuvveti ve etkileri"
+_KV_ETKI = {"yay_sik": "sekil", "yay_uz": "sekil", "hamur": "sekil", "top_vur": "baslat", "kutu_it": "baslat", "fren": "dur", "yon": "yon"}
+_KV_ETKI_AD = {"sekil": "cismin şeklini değiştirmiştir", "baslat": "durgun cismi hareket ettirmiştir", "dur": "hareketli cismi yavaşlatıp durdurmuştur", "yon": "hareketli cismin yönünü değiştirmiştir"}
+
+
+def _kv_cards(ks):
+    lb = random.sample(_CD_L, len(ks))
+    return lb, {"type": "kuv", "sub_type": "etki", "items": [{"kind": k, "label": l} for k, l in zip(ks, lb)], "per_row": 3}
+
+
+def _kv_pick(eff, n_other=3):
+    one = random.choice([k for k, v in _KV_ETKI.items() if v == eff])
+    pool = []
+    for e in ("sekil", "baslat", "dur", "yon"):
+        if e != eff:
+            pool.append(random.choice([k for k, v in _KV_ETKI.items() if v == e]))
+    return one, random.sample(pool, n_other)
+
+
+def _ff_kv_etki_tek(subject):
+    eff = random.choice(["sekil", "baslat", "dur", "yon"])
+    one, oth = _kv_pick(eff)
+    ks = [one] + oth
+    random.shuffle(ks)
+    lb, sh = _kv_cards(ks)
+    i = ks.index(one)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _KV_T, f"Şekilde dört farklı durumda cisimlere kuvvet uygulanmaktadır.\nBuna göre hangi harfle gösterilen durumda uygulanan kuvvet {_KV_ETKI_AD[eff]}?", o, f"{lb[i]} ile gösterilen durumda kuvvet {_KV_ETKI_AD[eff]}.", shape=sh) if o else None
+
+
+def _ff_kv_etki_say(subject):
+    n = random.choice([5, 6])
+    ks = random.sample(list(_KV_ETKI), n)
+    eff = random.choice(["sekil", "baslat"])
+    c = sum(1 for k in ks if _KV_ETKI[k] == eff)
+    if c == 0:
+        return None
+    lb, sh = _kv_cards(ks)
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(0, 5) if x != c], 3))
+    return _mf_raw(subject, _KV_T, f"Şekilde cisimlere kuvvet uygulanan {n} durum gösterilmiştir.\nBuna göre kaç tanesinde uygulanan kuvvet {_KV_ETKI_AD[eff]}?", o, f"Şekilde {c} durumda kuvvet {_KV_ETKI_AD[eff]}.", shape=sh) if o else None
+
+
+def _ff_kv_etki_cift(subject):
+    eff = random.choice(["sekil", "baslat"])
+    two = random.sample([k for k, v in _KV_ETKI.items() if v == eff], 2)
+    oth = [e for e in ("sekil", "baslat", "dur", "yon") if e != eff]
+    pick = random.sample(oth, 2)
+    ks = two + [random.choice([k for k, v in _KV_ETKI.items() if v == e]) for e in pick]
+    random.shuffle(ks)
+    effs = [_KV_ETKI[k] for k in ks]
+    lb, sh = _kv_cards(ks)
+    ids = [j for j, e in enumerate(effs) if e == eff]
+    pr = lambda a, b: " ve ".join(sorted([lb[a], lb[b]]))
+    cor = pr(*ids)
+    w = set()
+    for _ in range(40):
+        a, b = random.sample(range(4), 2)
+        if {a, b} != set(ids):
+            w.add(pr(a, b))
+    w = list(w)
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3]) if len(w) >= 3 else None
+    return _mf_raw(subject, _KV_T, f"Şekilde cisimlere kuvvet uygulanan dört durum gösterilmiştir.\nBuna göre hangi iki durumda uygulanan kuvvet {_KV_ETKI_AD[eff]}?", o, f"Bu etkiyi gösteren durumlar {cor} ile gösterilenlerdir.", shape=sh) if o else None
+
+
+_KV_SIRA = ["buz", "parke", "halı", "zımpara"]
+_KV_READ = {"buz": [1, 2], "parke": [3, 4], "halı": [5, 6], "zımpara": [7, 8]}
+
+
+def _kv_yz(n=3):
+    sf = random.sample(_KV_SIRA, n)
+    lb = random.sample(_CD_L, n)
+    vals = [random.choice(_KV_READ[x]) for x in sf]
+    return sf, lb, vals, {"type": "kuv", "sub_type": "yuzey", "panels": [{"surface": sf[i], "value": vals[i], "label": lb[i], "max": 10} for i in range(n)], "per_row": 1}
+
+
+_KV_YAD = {"buz": "buz", "parke": "parke zemin", "halı": "halı", "zımpara": "zımpara"}
+
+
+def _ff_kv_yuzey_en(subject):
+    sf, lb, vals, sh = _kv_yz(3)
+    en = random.choice(["en fazla", "en az"])
+    i = vals.index(max(vals) if en == "en fazla" else min(vals))
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hepsinde sürtünme kuvveti eşittir."])
+    return _mf_raw(subject, _KV_T, f"Şekilde aynı kutu, farklı yüzeylerde dinamometreyle sabit hızla çekilmektedir. Dinamometrenin gösterdiği değerler şekilde verilmiştir.\nBuna göre hangi yüzeyde sürtünme kuvveti {en} olur?", o, f"Sabit hızla çekilirken dinamometre değeri sürtünme kuvvetine eşittir; {en} değer {lb[i]} yüzeyindedir.", shape=sh) if o else None
+
+
+def _ff_kv_yuzey_isim(subject):
+    sf, lb, vals, sh = _kv_yz(3)
+    ask = random.choice(["en pürüzlü", "en pürüzsüz"])
+    i = vals.index(max(vals) if ask == "en pürüzlü" else min(vals))
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hepsi aynı derecede pürüzlüdür."])
+    names = ", ".join(f"{lb[j]} düzeneğinde {_KV_YAD[sf[j]]}" for j in range(3))
+    return _mf_raw(subject, _KV_T, f"Şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilirken dinamometrenin gösterdiği değerler verilmiştir. Yüzeyler: {names}.\nBuna göre hangi düzenekteki yüzey {ask}tür?", o, f"Sürtünme kuvveti yüzey pürüzlendikçe artar; {ask} yüzey {lb[i]} düzeneğindedir.", shape=sh) if o else None
+
+
+def _ff_kv_yuzey_oku(subject):
+    sf, lb, vals, sh = _kv_yz(3)
+    i = random.randrange(3)
+    c = vals[i]
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(1, 11) if x != c], 3))
+    return _mf_raw(subject, _KV_T, f"Şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilmektedir. Sabit hızla çekilirken dinamometrenin gösterdiği değer sürtünme kuvvetine eşittir.\nBuna göre {lb[i]} düzeneğindeki sürtünme kuvveti kaç N'dur?", o, f"{lb[i]} düzeneğinde dinamometre {c} N gösterir; sürtünme kuvveti {c} N'dur.", shape=sh) if o else None
+
+
+def _ff_kv_yuzey_fark(subject):
+    sf, lb, vals, sh = _kv_yz(3)
+    i, j = random.sample(range(3), 2)
+    if vals[i] == vals[j]:
+        return None
+    big, sm = (i, j) if vals[i] > vals[j] else (j, i)
+    d = vals[big] - vals[sm]
+    o = _yn_opts(str(d), random.sample([str(x) for x in range(1, 10) if x != d], 3))
+    return _mf_raw(subject, _KV_T, f"Şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilirken dinamometrenin gösterdiği değerler verilmiştir.\nBuna göre {lb[big]} düzeneğindeki sürtünme kuvveti, {lb[sm]} düzeneğindekinden kaç N fazladır?", o, f"{vals[big]} − {vals[sm]} = {d} N.", shape=sh) if o else None
+
+
+def _ff_kv_yuzey_yorum(subject):
+    sf, lb, vals, sh = _kv_yz(3)
+    mx = vals.index(max(vals))
+    mn = vals.index(min(vals))
+    cor = f"{lb[mx]} düzeneğindeki yüzey, {lb[mn]} düzeneğindeki yüzeyden daha pürüzlüdür."
+    w = [f"{lb[mn]} düzeneğindeki yüzey, {lb[mx]} düzeneğindeki yüzeyden daha pürüzlüdür.", "Üç yüzeyde de sürtünme kuvveti aynıdır.", f"{lb[mn]} düzeneğinde kutuyu çekmek için daha büyük kuvvet gerekir."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _KV_T, "Şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilirken dinamometrenin gösterdiği değerler verilmiştir.\nBuna göre aşağıdakilerden hangisi doğrudur?", o, "Sürtünme kuvveti ne kadar büyükse yüzey o kadar pürüzlüdür.", shape=sh) if o else None
+
+
+def _kv_dp(n, wrong=None, unk=None):
+    ms = random.sample([1, 2, 3, 4, 5], n)
+    lb = random.sample(_CD_L, n)
+    rd = [m * 10 for m in ms]
+    if wrong is not None:
+        rd[wrong] += random.choice([-20, -10, 10, 20])
+        if rd[wrong] <= 0:
+            rd[wrong] = ms[wrong] * 10 + 20
+    ps = []
+    for i in range(n):
+        ps.append({"value": None if unk == i else rd[i], "mass": f"{ms[i]} kg", "label": lb[i], "max": 50, "step": 10, "show": unk != i})
+    return ms, lb, rd, {"type": "kuv", "sub_type": "dina", "panels": ps}
+
+
+def _ff_kv_dina_hatali(subject):
+    n = 4
+    w = random.randrange(n)
+    ms, lb, rd, sh = _kv_dp(n, wrong=w)
+    if max(rd) > 50:
+        for p in sh["panels"]:
+            p["max"] = 100
+            p["step"] = 10
+    o = _yn_opts(lb[w], [lb[j] for j in range(n) if j != w])
+    return _mf_raw(subject, _KV_T, "Dünya'da 1 kg kütleli bir cisme 10 N'luk çekim kuvveti etki eder. Şekilde dört dinamometreye kütleleri yazılı cisimler asılmıştır; dinamometrelerden biri yanlış değer göstermektedir.\nBuna göre hangi harfle gösterilen dinamometre yanlış değer göstermektedir?", o, f"Kütle × 10 = ağırlık olmalıdır; {lb[w]} dinamometresinde {ms[w]} kg için {ms[w] * 10} N okunması gerekirken {rd[w]} N okunmuştur.", shape=sh) if o else None
+
+
+def _ff_kv_dina_en(subject):
+    n = 4
+    ms, lb, rd, sh = _kv_dp(n)
+    ask = random.choice(["ağır", "hafif"])
+    i = ms.index(max(ms) if ask == "ağır" else min(ms))
+    o = _yn_opts(lb[i], [lb[j] for j in range(n) if j != i])
+    return _mf_raw(subject, _KV_T, f"Şekilde dört dinamometreye kütleleri yazılı cisimler asılmış ve dinamometrelerin gösterdiği değerler okunmuştur.\nBuna göre ağırlığı en {'büyük' if ask == 'ağır' else 'küçük'} olan cisim hangi harfle gösterilen dinamometreye asılmıştır?", o, f"Ağırlık kütle ile doğru orantılıdır; en {'büyük' if ask == 'ağır' else 'küçük'} kütle {lb[i]} ile gösterilendedir.", shape=sh) if o else None
+
+
+def _ff_kv_dina_bilinmeyen(subject):
+    n = 3
+    u = random.randrange(n)
+    ms, lb, rd, sh = _kv_dp(n, unk=u)
+    c = rd[u]
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(10, 100, 10) if x != c], 3))
+    return _mf_raw(subject, _KV_T, f"Dünya'da 1 kg kütleli bir cisme 10 N'luk çekim kuvveti etki eder. Şekilde dinamometrelere kütleleri yazılı cisimler asılmıştır; {lb[u]} dinamometresinin gösterdiği değer ? ile belirtilmiştir.\nBuna göre ? yerine kaç N yazılmalıdır?", o, f"{ms[u]} kg × 10 = {c} N.", shape=sh) if o else None
+
+
+def _ff_kv_dina_kutle(subject):
+    n = 3
+    u = random.randrange(n)
+    ms, lb, rd, sh = _kv_dp(n)
+    sh["panels"][u]["mass"] = "? kg"
+    c = ms[u]
+    o = _yn_opts(f"{c} kg", [f"{x} kg" for x in random.sample([x for x in range(1, 10) if x != c], 3)])
+    return _mf_raw(subject, _KV_T, f"Dünya'da 1 kg kütleli bir cisme 10 N'luk çekim kuvveti etki eder. Şekilde üç dinamometreye cisimler asılmış; {lb[u]} dinamometresindeki cismin kütlesi ? ile belirtilmiştir.\nBuna göre bu cismin kütlesi kaç kg'dır?", o, f"{rd[u]} N ÷ 10 = {c} kg.", shape=sh) if o else None
+
+
+def _kv_yp(base, step, ns, unk):
+    lb = random.sample(_CD_L, len(ns))
+    ps = []
+    for i, n in enumerate(ns):
+        ps.append({"n": n, "len": base + step * n, "label": lb[i], "show": i != unk})
+    return lb, {"type": "kuv", "sub_type": "yay", "panels": ps, "unit": .32}
+
+
+def _ff_kv_yay_boy(subject):
+    base = random.choice([8, 10, 12])
+    step = random.choice([2, 3, 4])
+    ns = [0, 1, 2, random.choice([3, 4, 5])]
+    lb, sh = _kv_yp(base, step, ns, 3)
+    c = base + step * ns[3]
+    o = _yn_opts(f"{c} cm", [f"{x} cm" for x in random.sample([x for x in range(8, 40) if x != c], 3)])
+    return _mf_raw(subject, _KV_T, f"Şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılmış ve yayın boyu ölçülmüştür. {lb[3]} düzeneğinde yayın boyu ? ile gösterilmiştir.\nBuna göre ? yerine kaç cm yazılmalıdır?", o, f"Her 100 g'lık cisim yayı {step} cm uzatır: {base} + {ns[3]} × {step} = {c} cm.", shape=sh) if o else None
+
+
+def _ff_kv_yay_uzama(subject):
+    base = random.choice([8, 10, 12])
+    step = random.choice([2, 3, 4])
+    ns = [0, 1, 2, random.choice([3, 4, 5])]
+    lb, sh = _kv_yp(base, step, ns, 3)
+    c = step * ns[3]
+    sh["panels"][3]["show"] = True
+    o = _yn_opts(f"{c} cm", [f"{x} cm" for x in random.sample([x for x in range(1, 25) if x != c], 3)])
+    return _mf_raw(subject, _KV_T, f"Şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılmış ve yayın boyu ölçülmüştür.\nBuna göre {lb[3]} düzeneğinde yay, cisimler asılmadan önceki boyuna göre kaç cm uzamıştır?", o, f"Uzama = {base + step * ns[3]} − {base} = {c} cm.", shape=sh) if o else None
+
+
+def _ff_kv_yay_say(subject):
+    base = random.choice([8, 10, 12])
+    step = random.choice([2, 3, 4])
+    n = random.choice([2, 3, 4])
+    ns = [0, 1, 2, 3]
+    lb, sh = _kv_yp(base, step, ns, 99)
+    tgt = base + step * n + 0
+    # sorulan: verilen uzunluk kaç cisimle olur
+    L = base + step * n
+    sh["panels"][3]["len"] = L
+    sh["panels"][3]["n"] = 0
+    sh["panels"][3]["hidden"] = True
+    sh["panels"][3]["show"] = True
+    sh["panels"][3]["label"] = lb[3]
+    o = _yn_opts(str(n), random.sample([str(x) for x in range(1, 9) if x != n], 3))
+    return _mf_raw(subject, _KV_T, f"Şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılarak ilk üç düzenekteki yay boyları ölçülmüştür. {lb[3]} düzeneğinde yayın boyu {L} cm olmuştur.\nBuna göre {lb[3]} düzeneğinde yaya kaç tane 100 g'lık cisim asılmıştır?", o, f"Her cisim yayı {step} cm uzatır: ({L} − {base}) ÷ {step} = {n}.", shape=sh) if o else None
+
+
+_KV_FAMS = [
+    (_ff_kv_etki_tek, 3, _KV_IA), (_ff_kv_etki_say, 3, _KV_IA), (_ff_kv_etki_cift, 4, _KV_IA),
+    (_ff_kv_yuzey_en, 3, _KV_ID), (_ff_kv_yuzey_isim, 3, _KV_ID), (_ff_kv_yuzey_oku, 3, _KV_ID), (_ff_kv_yuzey_fark, 4, _KV_ID), (_ff_kv_yuzey_yorum, 4, _KV_ID),
+    (_ff_kv_dina_hatali, 4, _KV_IC), (_ff_kv_dina_en, 3, _KV_IC), (_ff_kv_dina_bilinmeyen, 3, _KV_IC), (_ff_kv_dina_kutle, 4, _KV_IC),
+    (_ff_kv_yay_boy, 4, _KV_IB), (_ff_kv_yay_uzama, 4, _KV_IB), (_ff_kv_yay_say, 5, _KV_IB),
+]
+for _f, _d, _it in _KV_FAMS:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _KV_KW))
+    _DIFF_OF[_f.__name__] = _d
+_KV_VIS = {f.__name__ for f, _d, _i in _KV_FAMS}
+
+
+# ---- 5. SINIF FEN "MADDE VE DEĞİŞİM": ŞEKİLLİ SORU AİLELERİ — tanecik modeli, hâl değişimi, termometre, sıcaklık-zaman grafiği, ısı iletimi ve yalıtımı
+_MD_KW = ("ısı", "sıcaklık", "hâl", "madde", "tanecik", "erime", "kaynama", "yalıtım", "iletim", "donma", "buharlaş", "yoğuş")
+_MD_I1 = "Maddenin tanecikli yapısı ve hâlleri"
+_MD_I2 = "Isı ve sıcaklık"
+_MD_I3 = "Isı alışverişi"
+_MD_I4 = "Hâl değişimleri (erime, donma, buharlaşma, yoğuşma, kaynama)"
+_MD_I5 = "Isı iletimi"
+_MD_I6 = "Isı yalıtımı"
+_MD_HAD = {"kati": "katı", "sivi": "sıvı", "gaz": "gaz"}
+_MD_GEC = {("kati", "sivi"): "Erime", ("sivi", "kati"): "Donma", ("sivi", "gaz"): "Buharlaşma", ("gaz", "sivi"): "Yoğuşma"}
+_MD_ISI = {("kati", "sivi"): "alır", ("sivi", "kati"): "verir", ("sivi", "gaz"): "alır", ("gaz", "sivi"): "verir"}
+
+
+def _ff_md_tanecik_hal(subject):
+    st = ["kati", "sivi", "gaz", "gaz"]
+    random.shuffle(st)
+    lb = random.sample(_CD_L, 4)
+    ask = random.choice(["kati", "sivi"])
+    i = st.index(ask)
+    sh = {"type": "mad", "sub_type": "tanecik", "panels": [{"state": st[j], "label": lb[j], "seed": 3 + j} for j in range(4)], "per_row": 2}
+    t = {"kati": "taneciklerinin düzenli dizilmiş ve birbirine çok yakın olduğu, yerlerinden ayrılamadığı", "sivi": "tanecikleri birbirine yakın olan ve birbirleri üzerinden kayarak yer değiştirebilen"}[ask]
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, "Maddenin tanecikli yapısı", f"Şekilde aynı maddenin dört farklı kaptaki tanecik modelleri gösterilmiştir.\nBuna göre {t} hâl hangi harfle gösterilmiştir?", o, f"{_MD_HAD[ask].capitalize()} hâlde {t.split(' ')[0]} tanecik düzeni şekilde {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_md_tanecik_gaz(subject):
+    st = ["kati", "sivi", "gaz"]
+    random.shuffle(st)
+    lb = random.sample(_CD_L, 3)
+    i = st.index("gaz")
+    sh = {"type": "mad", "sub_type": "tanecik", "panels": [{"state": st[j], "label": lb[j], "seed": 3 + j} for j in range(3)], "per_row": 3}
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hiçbiri gaz hâlini göstermez."])
+    return _mf_raw(subject, "Maddenin tanecikli yapısı", "Şekilde bir maddenin katı, sıvı ve gaz hâllerine ait tanecik modelleri harflerle gösterilmiştir.\nBuna göre taneciklerin birbirinden uzak olduğu ve bulundukları kabı tamamen doldurduğu hâl hangi harfle gösterilmiştir?", o, f"Gaz hâlinde tanecikler birbirinden uzaktır ve kabı doldurur; {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_md_tanecik_say(subject):
+    st = [random.choice(["kati", "sivi", "gaz"]) for _ in range(4)]
+    ask = random.choice(sorted(set(st)))
+    c = st.count(ask)
+    lb = random.sample(_CD_L, 4)
+    sh = {"type": "mad", "sub_type": "tanecik", "panels": [{"state": st[j], "label": lb[j], "seed": 3 + j} for j in range(4)], "per_row": 2}
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(0, 5) if x != c], 3))
+    return _mf_raw(subject, "Maddenin tanecikli yapısı", f"Şekilde farklı maddelerin tanecik modelleri gösterilmiştir.\nBuna göre kaç tanesi {_MD_HAD[ask]} hâldeki maddeyi göstermektedir?", o, f"{c} model {_MD_HAD[ask]} hâldedir.", shape=sh) if o else None
+
+
+def _ff_md_gecis_ad(subject):
+    a, b = random.choice(list(_MD_GEC))
+    sh = {"type": "mad", "sub_type": "gecis", "from": a, "to": b, "label": "?"}
+    cor = _MD_GEC[(a, b)]
+    o = _yn_opts(cor, [v for v in _MD_GEC.values() if v != cor])
+    return _mf_raw(subject, "Hâl değişimleri", "Şekilde bir maddenin tanecik modeli, hâl değişimi sırasında gösterilmiştir. Oklu bölgedeki değişim ? ile belirtilmiştir.\nBuna göre ? ile gösterilen hâl değişimi aşağıdakilerden hangisidir?", o, f"Madde {_MD_HAD[a]} hâlden {_MD_HAD[b]} hâle geçtiği için bu hâl değişimi {cor.lower()}dır.", shape=sh) if o else None
+
+
+def _ff_md_gecis_isi(subject):
+    a, b = random.choice(list(_MD_GEC))
+    sh = {"type": "mad", "sub_type": "gecis", "from": a, "to": b, "label": "K"}
+    cor = f"Madde ortamdan ısı {_MD_ISI[(a, b)]}."
+    other = "verir" if _MD_ISI[(a, b)] == "alır" else "alır"
+    w = [f"Madde ortamdan ısı {other}.", "Madde ısı alışverişi yapmaz.", "Madde yalnızca sıcaklığı değiştiği için ısı alır."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Hâl değişimleri", "Şekilde bir maddenin tanecik modeli, K ile gösterilen hâl değişimi sırasında verilmiştir.\nBuna göre bu hâl değişimi sırasında aşağıdakilerden hangisi gerçekleşir?", o, f"{_MD_HAD[a].capitalize()} hâlden {_MD_HAD[b]} hâle geçerken madde ısı {_MD_ISI[(a, b)]}.", shape=sh) if o else None
+
+
+def _ff_md_hal_ad(subject):
+    keys = ["kati>sivi", "sivi>kati", "sivi>gaz", "gaz>sivi"]
+    lb = dict(zip(keys, random.sample(_CD_L, 4)))
+    k = random.choice(keys)
+    a, b = k.split(">")
+    cor = _MD_GEC[(a, b)]
+    sh = {"type": "mad", "sub_type": "hal", "arrows": lb}
+    o = _yn_opts(cor, [v for v in _MD_GEC.values() if v != cor])
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde bir maddenin katı, sıvı ve gaz hâlleri arasındaki dönüşümler oklarla ve harflerle gösterilmiştir.\n{lb[k]} ile gösterilen hâl değişiminin adı aşağıdakilerden hangisidir?", o, f"{_MD_HAD[a].capitalize()} hâlden {_MD_HAD[b]} hâle geçiş {cor.lower()}dır.", shape=sh) if o else None
+
+
+def _ff_md_hal_harf(subject):
+    keys = ["kati>sivi", "sivi>kati", "sivi>gaz", "gaz>sivi"]
+    lb = dict(zip(keys, random.sample(_CD_L, 4)))
+    k = random.choice(keys)
+    a, b = k.split(">")
+    nm = _MD_GEC[(a, b)]
+    sh = {"type": "mad", "sub_type": "hal", "arrows": lb}
+    o = _yn_opts(lb[k], [lb[x] for x in keys if x != k])
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde bir maddenin katı, sıvı ve gaz hâlleri arasındaki dönüşümler oklarla ve harflerle gösterilmiştir.\n{nm} hangi harfle gösterilen hâl değişimidir?", o, f"{nm}, {_MD_HAD[a]} hâlden {_MD_HAD[b]} hâle geçiştir ve {lb[k]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_md_hal_isi(subject):
+    keys = ["kati>sivi", "sivi>kati", "sivi>gaz", "gaz>sivi"]
+    lb = dict(zip(keys, random.sample(_CD_L, 4)))
+    ask = random.choice(["alır", "verir"])
+    ks = [k for k in keys if _MD_ISI[tuple(k.split(">"))] == ask]
+    cor = " ve ".join(sorted(lb[k] for k in ks))
+    allp = [" ve ".join(sorted([lb[a], lb[b]])) for i, a in enumerate(keys) for b in keys[i + 1:]]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    sh = {"type": "mad", "sub_type": "hal", "arrows": lb}
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde bir maddenin katı, sıvı ve gaz hâlleri arasındaki dönüşümler oklarla ve harflerle gösterilmiştir.\nBuna göre hangi hâl değişimlerinde madde ortamdan ısı {ask}?", o, f"Madde {cor} ile gösterilen hâl değişimlerinde ısı {ask}.", shape=sh) if o else None
+
+
+def _ff_md_hal_ters(subject):
+    pairs = [("kati>sivi", "sivi>kati"), ("sivi>gaz", "gaz>sivi")]
+    keys = ["kati>sivi", "sivi>kati", "sivi>gaz", "gaz>sivi"]
+    lb = dict(zip(keys, random.sample(_CD_L, 4)))
+    a, b = random.choice(pairs)
+    if random.random() < .5:
+        a, b = b, a
+    sh = {"type": "mad", "sub_type": "hal", "arrows": lb}
+    o = _yn_opts(lb[b], [lb[x] for x in keys if x != b])
+    x, y = a.split(">")
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde bir maddenin katı, sıvı ve gaz hâlleri arasındaki dönüşümler oklarla ve harflerle gösterilmiştir.\n{lb[a]} ile gösterilen hâl değişiminin tersi olan hâl değişimi hangi harfle gösterilmiştir?", o, f"{_MD_GEC[(x, y)]} olayının tersi {_MD_GEC[(y, x)].lower()}dır; {lb[b]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _md_th(n, unk=None, lo=-10, hi=110):
+    vs = random.sample(range(0, 101, 5), n)
+    lb = random.sample(_CD_L, n)
+    ps = [{"value": vs[i], "label": lb[i], "show": unk != i} for i in range(n)]
+    return vs, lb, {"type": "mad", "sub_type": "termo", "panels": ps, "min": lo, "max": hi, "step": 10}
+
+
+def _ff_md_termo_oku(subject):
+    n = 3
+    u = random.randrange(n)
+    vs, lb, sh = _md_th(n, u)
+    c = vs[u]
+    o = _yn_opts(f"{c} °C", [f"{x} °C" for x in random.sample([x for x in range(0, 105, 5) if x != c], 3)])
+    return _mf_raw(subject, "Isı ve sıcaklık", f"Şekilde üç termometrenin sıvı seviyeleri gösterilmiştir. {lb[u]} termometresinin gösterdiği değer ? ile belirtilmiştir.\nBuna göre ? yerine kaç °C yazılmalıdır?", o, f"Termometrenin sıvı seviyesi {c} çizgisindedir.", shape=sh) if o else None
+
+
+def _ff_md_termo_en(subject):
+    n = 4
+    vs, lb, sh = _md_th(n)
+    ask = random.choice(["en sıcak", "en soğuk"])
+    i = vs.index(max(vs) if ask == "en sıcak" else min(vs))
+    o = _yn_opts(lb[i], [lb[j] for j in range(n) if j != i])
+    return _mf_raw(subject, "Isı ve sıcaklık", f"Şekilde dört termometre, dört farklı kaptaki suyun sıcaklığını göstermektedir.\nBuna göre hangi kaptaki su {ask}tır?", o, f"Termometre değeri ne kadar büyükse su o kadar sıcaktır; {ask} su {lb[i]} ile gösterilendir.", shape=sh) if o else None
+
+
+def _ff_md_termo_fark(subject):
+    n = 3
+    vs, lb, sh = _md_th(n)
+    i, j = random.sample(range(n), 2)
+    big, sm = (i, j) if vs[i] > vs[j] else (j, i)
+    d = vs[big] - vs[sm]
+    o = _yn_opts(f"{d} °C", [f"{x} °C" for x in random.sample([x for x in range(5, 100, 5) if x != d], 3)])
+    return _mf_raw(subject, "Isı ve sıcaklık", f"Şekilde üç termometrenin gösterdiği sıcaklıklar verilmiştir.\nBuna göre {lb[big]} termometresinin gösterdiği sıcaklık, {lb[sm]} termometresinin gösterdiğinden kaç °C fazladır?", o, f"{vs[big]} − {vs[sm]} = {d} °C.", shape=sh) if o else None
+
+
+def _ff_md_termo_sira(subject):
+    n = 3
+    vs, lb, sh = _md_th(n)
+    import itertools
+    order = sorted(range(n), key=lambda j: -vs[j])
+    cor = " > ".join(lb[j] for j in order)
+    allp = [" > ".join(lb[j] for j in p) for p in itertools.permutations(range(n))]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, "Isı ve sıcaklık", "Şekilde üç kaptaki suyun sıcaklığı termometrelerde gösterilmiştir.\nBuna göre suların sıcaklıkları büyükten küçüğe doğru hangi seçenekte doğru sıralanmıştır?", o, f"Sıcaklıklar büyükten küçüğe: {cor}.", shape=sh) if o else None
+
+
+def _md_gr(kind, pts_extra=None):
+    """Isıtılan maddenin sıcaklık-zaman grafiği; kind: 'buz' (erime), 'su' (kaynama)."""
+    if kind == "buz":
+        t0 = random.choice([-20, -10])
+        a = random.choice([2, 4])
+        b = a + random.choice([4, 6])
+        e = b + random.choice([6, 8])
+        top = random.choice([40, 60])
+        pts = [[0, t0], [a, 0], [b, 0], [e, top]]
+        lab = {"0": "K", "1": "L", "2": "M"}
+        return pts, {"xmax": e, "ymax": top + 20, "ymin": min(t0, 0) - 10 if t0 < -10 else -20, "xstep": 2, "ystep": 20}, "L", (a, b), 0
+    t0 = random.choice([20, 40])
+    a = random.choice([6, 8, 10])
+    b = a + random.choice([4, 6])
+    e = b + random.choice([2, 4])
+    pts = [[0, t0], [a, 100], [b, 100], [e, 110]]
+    return pts, {"xmax": e, "ymax": 120, "ymin": 0, "xstep": 2, "ystep": 20}, "L", (a, b), 100
+
+
+def _gr_shape(pts, ax, kind):
+    lb = random.sample(_CD_L, len(pts) - 1)
+    return lb, {"type": "mad", "sub_type": "graf", "pts": pts, "labels": {str(i): lb[i] for i in range(len(pts) - 1)}, **ax}
+
+
+def _ff_md_graf_plato(subject):
+    kind = random.choice(["buz", "su"])
+    pts, ax, _, (a, b), T = _md_gr(kind)
+    lb, sh = _gr_shape(pts, ax, kind)
+    i = 1
+    o = _yn_opts(lb[i], [lb[j] for j in range(len(pts) - 1) if j != i] + ["Hiçbirinde hâl değişimi gerçekleşmez."])
+    ev = "erimektedir" if kind == "buz" else "kaynamaktadır"
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde ısıtılan bir {'buz parçasının' if kind == 'buz' else 'suyun'} sıcaklık-zaman grafiği verilmiştir. Grafikteki bölgeler harflerle gösterilmiştir.\nBuna göre madde hangi harfle gösterilen bölgede {ev} (hâl değişimi gerçekleşmektedir)?", o, f"Hâl değişimi sırasında sıcaklık sabit kalır; sıcaklığın {T} °C'de sabit kaldığı bölge {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_md_graf_sabit(subject):
+    kind = random.choice(["buz", "su"])
+    pts, ax, _, (a, b), T = _md_gr(kind)
+    lb, sh = _gr_shape(pts, ax, kind)
+    c = b - a
+    o = _yn_opts(f"{c} dakika", [f"{x} dakika" for x in random.sample([x for x in range(1, 16) if x != c], 3)])
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde ısıtılan bir {'buz parçasının' if kind == 'buz' else 'suyun'} sıcaklık-zaman grafiği verilmiştir.\nBuna göre maddenin sıcaklığı kaç dakika boyunca sabit kalmıştır?", o, f"Sıcaklık {a}. dakikadan {b}. dakikaya kadar sabit kalır: {b} − {a} = {c} dakika.", shape=sh) if o else None
+
+
+def _ff_md_graf_nokta(subject):
+    kind = random.choice(["buz", "su"])
+    pts, ax, _, (a, b), T = _md_gr(kind)
+    lb, sh = _gr_shape(pts, ax, kind)
+    nm = "erime" if kind == "buz" else "kaynama"
+    o = _yn_opts(f"{T} °C", [f"{x} °C" for x in random.sample([x for x in (0, 20, 40, 60, 80, 100, 110, -10) if x != T], 3)])
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde ısıtılan bir {'buz parçasının' if kind == 'buz' else 'suyun'} sıcaklık-zaman grafiği verilmiştir.\nBuna göre bu maddenin {nm} noktası kaç °C'dir?", o, f"Hâl değişimi sırasında sıcaklık sabit kalır; bu sıcaklık {nm} noktasıdır: {T} °C.", shape=sh) if o else None
+
+
+def _ff_md_graf_hal(subject):
+    kind = random.choice(["buz", "su"])
+    pts, ax, _, (a, b), T = _md_gr(kind)
+    lb, sh = _gr_shape(pts, ax, kind)
+    if kind == "buz":
+        st = {0: "Katı", 1: "Katı ve sıvı birlikte", 2: "Sıvı"}
+        ask = random.choice([0, 1, 2])
+    else:
+        st = {0: "Sıvı", 1: "Sıvı ve gaz birlikte", 2: "Gaz"}
+        ask = random.choice([0, 1, 2])
+    cor = st[ask]
+    allst = ["Katı", "Sıvı", "Gaz", "Katı ve sıvı birlikte", "Sıvı ve gaz birlikte"]
+    o = _yn_opts(cor, [x for x in allst if x != cor and (x in st.values() or True)][:3] if True else None)
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde ısıtılan bir {'buz parçasının' if kind == 'buz' else 'suyun'} sıcaklık-zaman grafiği verilmiştir. Bölgeler harflerle gösterilmiştir.\nBuna göre {lb[ask]} ile gösterilen bölgede madde hangi hâl ya da hâllerdedir?", o, f"{lb[ask]} bölgesinde madde {cor.lower()} hâldedir.", shape=sh) if o else None
+
+
+def _ff_md_graf_oku(subject):
+    kind = random.choice(["buz", "su"])
+    pts, ax, _, (a, b), T = _md_gr(kind)
+    lb, sh = _gr_shape(pts, ax, kind)
+    t = random.choice([x for x in range(int(pts[0][0]), int(pts[-1][0]) + 1) if x in (a, b, pts[-1][0], 0)])
+    val = {pts[0][0]: pts[0][1], a: pts[1][1], b: pts[2][1], pts[-1][0]: pts[-1][1]}[t]
+    o = _yn_opts(f"{val} °C", [f"{x} °C" for x in random.sample([x for x in range(-20, 125, 10) if x != val], 3)])
+    return _mf_raw(subject, "Hâl değişimleri", f"Şekilde ısıtılan bir {'buz parçasının' if kind == 'buz' else 'suyun'} sıcaklık-zaman grafiği verilmiştir.\nBuna göre {t}. dakikada maddenin sıcaklığı kaç °C'dir?", o, f"Grafikte {t}. dakikada sıcaklık {val} °C'dir.", shape=sh) if o else None
+
+
+_MD_IL = ["bakır", "alüminyum", "demir", "tahta"]
+_MD_FALL = {"bakır": 4, "alüminyum": 3, "demir": 2, "tahta": 0}
+_MD_ILAD = {"bakır": "bakır", "alüminyum": "alüminyum", "demir": "demir", "tahta": "tahta"}
+
+
+def _md_il(n=3):
+    ks = random.sample(_MD_IL, n)
+    lb = random.sample(_CD_L, n)
+    return ks, lb, {"type": "mad", "sub_type": "iletim", "pins": 4, "panels": [{"kind": ks[i], "fallen": _MD_FALL[ks[i]], "label": lb[i]} for i in range(n)]}
+
+
+def _ff_md_iletim_en(subject):
+    ks, lb, sh = _md_il(3)
+    ask = random.choice(["en iyi", "en kötü"])
+    i = max(range(3), key=lambda j: _MD_FALL[ks[j]]) if ask == "en iyi" else min(range(3), key=lambda j: _MD_FALL[ks[j]])
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hepsi ısıyı aynı iletir."])
+    return _mf_raw(subject, "Isı iletimi", "Şekilde aynı uzunlukta ve kalınlıkta üç çubuğun ucu aynı alevle ısıtılmıştır. Çubukların altına mumla birer tane raptiye yapıştırılmıştır. Aynı süre sonunda raptiyelerin durumu şekildeki gibidir.\n" + f"Buna göre ısıyı {ask} ileten çubuk hangi harfle gösterilmiştir?", o, f"Isıyı iyi ileten çubukta mum çabuk erir ve daha çok raptiye düşer; {ask} ileten çubuk {lb[i]} ile gösterilendir.", shape=sh) if o else None
+
+
+def _ff_md_iletim_isim(subject):
+    ks, lb, sh = _md_il(3)
+    i = max(range(3), key=lambda j: _MD_FALL[ks[j]])
+    names = ", ".join(f"{lb[j]} çubuğu {_MD_ILAD[ks[j]]}" for j in range(3))
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hiçbirinde raptiye düşmez."])
+    return _mf_raw(subject, "Isı iletimi", f"Şekilde aynı boyda üç çubuğun ucu aynı alevle ısıtılmıştır. Çubuklar: {names}. Çubukların altına mumla birer tane raptiye yapıştırılmış ve aynı süre sonunda raptiyelerin durumu gözlenmiştir.\nBuna göre en fazla raptiyenin düştüğü çubuk hangisidir?", o, f"Isıyı en iyi ileten çubukta en çok raptiye düşer: {lb[i]} ({_MD_ILAD[ks[i]]}).", shape=sh) if o else None
+
+
+def _ff_md_iletim_say(subject):
+    ks, lb, sh = _md_il(3)
+    i = random.randrange(3)
+    c = _MD_FALL[ks[i]]
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(0, 5) if x != c], 3))
+    return _mf_raw(subject, "Isı iletimi", f"Şekilde aynı boyda üç çubuğun ucu aynı alevle ısıtılmış; çubukların altına mumla dörder raptiye yapıştırılmıştır. Aynı süre sonunda durum şekildeki gibidir.\nBuna göre {lb[i]} çubuğundan kaç raptiye düşmüştür?", o, f"Şekilde {lb[i]} çubuğunun altından {c} raptiye düşmüştür.", shape=sh) if o else None
+
+
+def _ff_md_iletim_yorum(subject):
+    ks, lb, sh = _md_il(3)
+    order = sorted(range(3), key=lambda j: -_MD_FALL[ks[j]])
+    names = ", ".join(f"{lb[j]} çubuğu {_MD_ILAD[ks[j]]}" for j in range(3))
+    best, worst = order[0], order[-1]
+    cor = f"{_MD_ILAD[ks[best]].capitalize()}, {_MD_ILAD[ks[worst]]}den daha iyi bir ısı iletkenidir."
+    w = [f"{_MD_ILAD[ks[worst]].capitalize()}, {_MD_ILAD[ks[best]]}den daha iyi bir ısı iletkenidir.", "Üç madde de ısıyı eşit iletir.", f"{_MD_ILAD[ks[worst]].capitalize()} çubuğundaki mum en çabuk erimiştir."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Isı iletimi", f"Şekilde aynı boyda üç çubuğun ucu aynı alevle ısıtılmış; çubukların altına mumla raptiye yapıştırılmıştır. Çubuklar: {names}.\nBuna göre aşağıdakilerden hangisi doğrudur?", o, f"{_MD_ILAD[ks[best]].capitalize()} çubuğunda daha çok raptiye düştüğü için daha iyi iletkendir.", shape=sh) if o else None
+
+
+_MD_YT = {"çıplak": 38, "folyo": 45, "kâğıt": 50, "yün": 60, "strafor": 64}
+_MD_YAD = {"çıplak": "kaplanmamış", "folyo": "alüminyum folyo", "kâğıt": "kâğıt", "yün": "yün kumaş", "strafor": "strafor"}
+
+
+def _md_yl(n=3):
+    ks = random.sample(list(_MD_YT), n)
+    lb = random.sample(_CD_L, n)
+    return ks, lb, {"type": "mad", "sub_type": "yalitim", "panels": [{"kind": ks[i], "temp": _MD_YT[ks[i]], "label": lb[i]} for i in range(n)]}
+
+
+def _ff_md_yal_en(subject):
+    ks, lb, sh = _md_yl(4)
+    ask = random.choice(["en iyi", "en kötü"])
+    i = max(range(4), key=lambda j: _MD_YT[ks[j]]) if ask == "en iyi" else min(range(4), key=lambda j: _MD_YT[ks[j]])
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, "Isı yalıtımı", f"Dört özdeş kaba 80 °C'de eşit miktarda su konulmuş, kaplar farklı malzemelerle sarılmıştır (biri sarılmamıştır). 30 dakika sonra sıcaklıklar şekildeki gibi okunmuştur.\nBuna göre ısı yalıtımı {ask} olan malzeme hangi harfle gösterilen kaptadır?", o, f"Su sıcaklığı en {'çok' if ask == 'en iyi' else 'az'} korunan kap ısıyı {'en iyi' if ask == 'en iyi' else 'en kötü'} yalıtır: {lb[i]}.", shape=sh) if o else None
+
+
+def _ff_md_yal_isim(subject):
+    ks, lb, sh = _md_yl(3)
+    i = max(range(3), key=lambda j: _MD_YT[ks[j]])
+    names = ", ".join(f"{lb[j]} kabı {_MD_YAD[ks[j]]}" for j in range(3))
+    o = _yn_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Hepsinde su aynı sıcaklıkta kalır."])
+    return _mf_raw(subject, "Isı yalıtımı", f"Üç özdeş kaba 80 °C'de eşit miktarda su konulmuş ve kaplar farklı malzemelerle sarılmıştır. Kaplar: {names}. 30 dakika sonra sıcaklıklar şekildeki gibi okunmuştur.\nBuna göre suyun en az soğuduğu kap hangisidir?", o, f"Suyun sıcaklığı en yüksek kalan kap en az soğumuştur; bu kap {lb[i]} ile gösterilendir.", shape=sh) if o else None
+
+
+def _ff_md_yal_fark(subject):
+    ks, lb, sh = _md_yl(3)
+    i, j = random.sample(range(3), 2)
+    big, sm = (i, j) if _MD_YT[ks[i]] > _MD_YT[ks[j]] else (j, i)
+    d = _MD_YT[ks[big]] - _MD_YT[ks[sm]]
+    o = _yn_opts(f"{d} °C", [f"{x} °C" for x in random.sample([x for x in range(2, 40) if x != d], 3)])
+    return _mf_raw(subject, "Isı yalıtımı", f"Üç özdeş kaba 80 °C'de eşit miktarda su konulmuş ve kaplar farklı malzemelerle sarılmıştır. 30 dakika sonra sıcaklıklar şekildeki gibi okunmuştur.\nBuna göre {lb[big]} kabındaki su, {lb[sm]} kabındakinden kaç °C daha sıcaktır?", o, f"{_MD_YT[ks[big]]} − {_MD_YT[ks[sm]]} = {d} °C.", shape=sh) if o else None
+
+
+def _ff_md_yal_soguma(subject):
+    ks, lb, sh = _md_yl(3)
+    i = random.randrange(3)
+    c = 80 - _MD_YT[ks[i]]
+    o = _yn_opts(f"{c} °C", [f"{x} °C" for x in random.sample([x for x in range(2, 50) if x != c], 3)])
+    return _mf_raw(subject, "Isı yalıtımı", f"Üç özdeş kaba 80 °C'de eşit miktarda su konulmuş ve kaplar farklı malzemelerle sarılmıştır. 30 dakika sonra sıcaklıklar şekildeki gibi okunmuştur.\nBuna göre {lb[i]} kabındaki suyun sıcaklığı 30 dakikada kaç °C düşmüştür?", o, f"80 − {_MD_YT[ks[i]]} = {c} °C.", shape=sh) if o else None
+
+
+def _ff_md_isi_yon(subject):
+    ta, tb = random.sample(range(10, 100, 5), 2)
+    lb = random.sample(_CD_L, 2)
+    sh = {"type": "mad", "sub_type": "yon", "a": {"t": ta, "label": lb[0]}, "b": {"t": tb, "label": lb[1]}}
+    hot, cold = (lb[0], lb[1]) if ta > tb else (lb[1], lb[0])
+    cor = f"Isı {hot} cisminden {cold} cismine akar."
+    w = [f"Isı {cold} cisminden {hot} cismine akar.", "Isı alışverişi olmaz, çünkü cisimlerin sıcaklıkları farklıdır.", "İki cisim de birbirinden ısı alır."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Isı alışverişi", f"Şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nBuna göre ısı alışverişi ile ilgili aşağıdakilerden hangisi doğrudur?", o, "Isı, sıcaklığı yüksek olan cisimden sıcaklığı düşük olan cisme doğru akar.", shape=sh) if o else None
+
+
+def _ff_md_isi_artar(subject):
+    ta, tb = random.sample(range(10, 100, 5), 2)
+    lb = random.sample(_CD_L, 2)
+    sh = {"type": "mad", "sub_type": "yon", "a": {"t": ta, "label": lb[0]}, "b": {"t": tb, "label": lb[1]}}
+    hot, cold = (lb[0], lb[1]) if ta > tb else (lb[1], lb[0])
+    cor = f"{cold} cisminin sıcaklığı artar, {hot} cisminin sıcaklığı azalır."
+    w = [f"{hot} cisminin sıcaklığı artar, {cold} cisminin sıcaklığı azalır.", "İki cismin sıcaklığı da artar.", "İki cismin sıcaklığı da azalır."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Isı alışverişi", "Şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilerek bir süre bekletilmiştir.\nBuna göre bu sürede cisimlerin sıcaklıklarıyla ilgili aşağıdakilerden hangisi gerçekleşir?", o, "Sıcak cisim ısı verir ve soğur, soğuk cisim ısı alır ve ısınır.", shape=sh) if o else None
+
+
+_MD_FAMS = [
+    (_ff_md_tanecik_hal, 3, _MD_I1), (_ff_md_tanecik_gaz, 3, _MD_I1), (_ff_md_tanecik_say, 3, _MD_I1),
+    (_ff_md_gecis_ad, 3, _MD_I4), (_ff_md_gecis_isi, 4, _MD_I4), (_ff_md_hal_ad, 3, _MD_I4), (_ff_md_hal_harf, 3, _MD_I4), (_ff_md_hal_isi, 4, _MD_I4), (_ff_md_hal_ters, 4, _MD_I4),
+    (_ff_md_termo_oku, 3, _MD_I2), (_ff_md_termo_en, 2, _MD_I2), (_ff_md_termo_fark, 3, _MD_I2), (_ff_md_termo_sira, 3, _MD_I2),
+    (_ff_md_graf_plato, 4, _MD_I4), (_ff_md_graf_sabit, 4, _MD_I4), (_ff_md_graf_nokta, 4, _MD_I4), (_ff_md_graf_hal, 5, _MD_I4), (_ff_md_graf_oku, 3, _MD_I4),
+    (_ff_md_iletim_en, 3, _MD_I5), (_ff_md_iletim_isim, 3, _MD_I5), (_ff_md_iletim_say, 3, _MD_I5), (_ff_md_iletim_yorum, 4, _MD_I5),
+    (_ff_md_yal_en, 3, _MD_I6), (_ff_md_yal_isim, 3, _MD_I6), (_ff_md_yal_fark, 4, _MD_I6), (_ff_md_yal_soguma, 3, _MD_I6),
+    (_ff_md_isi_yon, 3, _MD_I3), (_ff_md_isi_artar, 3, _MD_I3),
+]
+for _f, _d, _it in _MD_FAMS:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _MD_KW))
+    _DIFF_OF[_f.__name__] = _d
+_MD_VIS = {f.__name__ for f, _d, _i in _MD_FAMS}
+
+
+# ---- 5. SINIF FEN "ELEKTRİK DEVRE ELEMANLARI": ŞEKİLLİ SORU AİLELERİ — semboller, devre şeması, ampul parlaklığı
+_EL_KW = ("elektrik", "devre", "ampul", "pil", "anahtar", "parlaklık")
+_EL_I1 = "Devre elemanları ve sembolleri"
+_EL_I2 = "Devre şeması ve deney"
+_EL_I3 = "Ampul parlaklığını etkileyen değişkenler"
+_EL_AD = {"e1": "Pil", "e2": "Ampul", "e3": "Kapalı anahtar", "e4": "Açık anahtar", "e5": "Kablo"}
+
+
+def _el_sem(kinds, per=None):
+    lb = random.sample(_CD_L, len(kinds))
+    return lb, {"type": "elk", "sub_type": "sembol", "panels": [{"kind": k, "label": lb[i]} for i, k in enumerate(kinds)], "per_row": per or len(kinds)}
+
+
+def _ff_el_sembol_ad(subject):
+    kinds = random.sample(["e1", "e2", "e3", "e4"], 4)
+    lb, sh = _el_sem(kinds)
+    k = random.choice(kinds)
+    i = kinds.index(k)
+    ad = {"e1": "pil", "e2": "ampul", "e3": "kapalı anahtar", "e4": "açık anahtar"}[k]
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, "Devre elemanları", f"Şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nBuna göre {ad} sembolü hangi harfle gösterilmiştir?", o, f"{ad.capitalize()} sembolü {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_el_sembol_gorev(subject):
+    kinds = random.sample(["e1", "e2", "e3", "e4"], 4)
+    lb, sh = _el_sem(kinds)
+    g = {"e1": "devreye elektrik enerjisi sağlayan", "e2": "elektrik enerjisini ışık enerjisine dönüştüren", "e3": "devrenin tamamlanmasını sağlayıp akımın geçmesine izin veren", "e4": "devreyi kesen ve akımın geçmesini engelleyen"}
+    k = random.choice(kinds)
+    i = kinds.index(k)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, "Devre elemanları", f"Şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nBuna göre {g[k]} devre elemanının sembolü hangi harfle gösterilmiştir?", o, f"Bu görevi yapan devre elemanının sembolü {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_el_sembol_isim(subject):
+    k = random.choice(["e1", "e2", "e3", "e4", "e5"])
+    lb, sh = _el_sem([k])
+    cor = _EL_AD[k]
+    o = _yn_opts(cor, [v for kk, v in _EL_AD.items() if kk != k][:3] if len(_EL_AD) > 3 else None)
+    return _mf_raw(subject, "Devre elemanları", f"Şekilde bir devre elemanının sembolü {lb[0]} harfiyle gösterilmiştir.\nBuna göre {lb[0]} ile gösterilen sembol aşağıdakilerden hangisini temsil eder?", o, f"{lb[0]} sembolü {cor.lower()} sembolüdür.", shape=sh) if o else None
+
+
+def _ff_el_sembol_say(subject):
+    kinds = [random.choice(["e1", "e2", "e3", "e4", "e5"]) for _ in range(6)]
+    ask = random.choice(sorted(set(kinds)))
+    c = kinds.count(ask)
+    lb, sh = _el_sem(kinds, 3)
+    nm = {"e1": "pil", "e2": "ampul", "e3": "kapalı anahtar", "e4": "açık anahtar", "e5": "kablo"}[ask]
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(0, 7) if x != c], 3))
+    return _mf_raw(subject, "Devre elemanları", f"Şekilde bazı devre elemanlarının sembolleri gösterilmiştir.\nBuna göre şekilde kaç tane {nm} sembolü vardır?", o, f"Şekilde {c} tane {nm} sembolü vardır.", shape=sh) if o else None
+
+
+def _ff_el_sembol_acikkapali(subject):
+    kinds = random.sample(["e3", "e4"], 2)
+    kinds = kinds + random.sample(["e1", "e2"], 2)
+    random.shuffle(kinds)
+    lb, sh = _el_sem(kinds)
+    k = random.choice(["e3", "e4"])
+    i = kinds.index(k)
+    t = {"e3": "akımın geçmesine izin veren (kapalı) anahtar", "e4": "akımın geçmesini engelleyen (açık) anahtar"}[k]
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, "Devre elemanları", f"Şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nBuna göre {t} sembolü hangi harfle gösterilmiştir?", o, f"{t.capitalize()} sembolü {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_el_sema_harf(subject):
+    lb = random.sample(_CD_L, 3)
+    npil = random.choice([1, 2, 3])
+    sh = {"type": "elk", "sub_type": "sema", "npil": npil, "namp": 1, "acik": random.choice([True, False]), "labels": {"p": lb[0], "s": lb[1], "a": lb[2]}}
+    k = random.choice(["p", "s", "a"])
+    g = {"p": "devreye elektrik enerjisi sağlayan", "s": "devreyi açıp kapatmaya yarayan", "a": "elektrik enerjisini ışık enerjisine dönüştüren"}[k]
+    c = lb["psa".index(k)]
+    o = _yn_opts(c, [x for x in lb if x != c] + ["Hiçbiri"])
+    return _mf_raw(subject, "Devre şeması", f"Şekilde bir elektrik devresinin şeması verilmiştir. Devre elemanları harflerle gösterilmiştir.\nBuna göre {g} devre elemanı hangi harfle gösterilmiştir?", o, f"Bu görevi yapan eleman şekilde {c} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_el_sema_say_pil(subject):
+    npil, namp = random.choice([1, 2, 3]), random.choice([1, 2, 3])
+    sh = {"type": "elk", "sub_type": "sema", "npil": npil, "namp": namp, "acik": random.choice([True, False])}
+    ask = random.choice(["pil", "ampul"])
+    c = npil if ask == "pil" else namp
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(0, 5) if x != c], 3))
+    return _mf_raw(subject, "Devre şeması", f"Şekilde basit bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede kaç tane {ask} kullanılmıştır?", o, f"Şemada {c} tane {ask} sembolü vardır.", shape=sh) if o else None
+
+
+def _ff_el_sema_toplam(subject):
+    npil, namp = random.choice([1, 2, 3]), random.choice([1, 2, 3])
+    sh = {"type": "elk", "sub_type": "sema", "npil": npil, "namp": namp, "acik": random.choice([True, False])}
+    c = npil + namp + 1
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(2, 9) if x != c], 3))
+    return _mf_raw(subject, "Devre şeması", "Şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede pil, ampul ve anahtar sembolleri toplam kaç tanedir?", o, f"{npil} pil + {namp} ampul + 1 anahtar = {c}.", shape=sh) if o else None
+
+
+def _ff_el_sema_yanar(subject):
+    npil, namp = random.choice([1, 2, 3]), random.choice([1, 2])
+    acik = random.choice([True, False])
+    sh = {"type": "elk", "sub_type": "sema", "npil": npil, "namp": namp, "acik": acik}
+    cor = "Anahtar açık olduğu için devreden akım geçmez, ampul yanmaz." if acik else "Anahtar kapalı olduğu için devre tamamlanmıştır, ampul yanar."
+    w = ["Anahtar açık olduğu için ampul yanar." if not acik else "Anahtar kapalı olduğu için ampul yanmaz.",
+         "Ampul sayısı fazla olduğu için ampul yanmaz." if not acik else "Pil sayısı fazla olduğu için ampul yanar.",
+         "Anahtarın durumu ampulün yanmasını etkilemez."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Devre şeması", "Şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre ampul ile ilgili aşağıdakilerden hangisi doğrudur?", o, cor, shape=sh) if o else None
+
+
+def _ff_el_sema_neden(subject):
+    mode = random.choice(["pil", "anahtar"])
+    npil, namp = (0, random.choice([1, 2])) if mode == "pil" else (random.choice([1, 2, 3]), random.choice([1, 2]))
+    sh = {"type": "elk", "sub_type": "sema", "npil": npil, "namp": namp, "acik": mode == "anahtar"}
+    cor = "Devrede pil olmadığı için." if mode == "pil" else "Anahtar açık olduğu için devre tamamlanmamıştır."
+    w = ["Devredeki ampul sayısı az olduğu için.", "Kablonun rengi uygun olmadığı için.", "Devrede çok fazla pil olduğu için." if mode == "anahtar" else "Anahtar kapalı olduğu için."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Devre şeması", "Şekildeki elektrik devresinde ampul ışık vermemektedir.\nBuna göre bunun nedeni aşağıdakilerden hangisi olabilir?", o, cor, shape=sh) if o else None
+
+
+def _ff_el_sema_cozum(subject):
+    mode = random.choice(["pil", "anahtar"])
+    npil, namp = (0, random.choice([1, 2])) if mode == "pil" else (random.choice([1, 2]), random.choice([1, 2]))
+    sh = {"type": "elk", "sub_type": "sema", "npil": npil, "namp": namp, "acik": mode == "anahtar"}
+    cor = "Devreye pil eklenmelidir." if mode == "pil" else "Anahtar kapatılmalıdır."
+    w = ["Devreden ampul çıkarılmalıdır.", "Devreye bir ampul daha eklenmelidir.", "Anahtar açık bırakılmalıdır." if mode == "anahtar" else "Anahtar açılmalıdır."]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Devre şeması", "Şekildeki elektrik devresinde ampul ışık vermemektedir.\nBuna göre ampulün ışık vermesi için aşağıdakilerden hangisi yapılmalıdır?", o, cor, shape=sh) if o else None
+
+
+def _ff_el_sema_degis(subject):
+    npil, namp = random.choice([(1, 1), (2, 1), (2, 2), (3, 1), (1, 2), (3, 2)])
+    ops = [("bir pil daha eklenirse", npil + 1, namp), ("bir ampul daha eklenirse", npil, namp + 1)]
+    if npil >= 2:
+        ops.append(("bir pil çıkarılırsa", npil - 1, namp))
+    if namp >= 2:
+        ops.append(("bir ampul çıkarılırsa", npil, namp - 1))
+    t, p2, a2 = random.choice(ops)
+    r1, r2 = npil / namp, p2 / a2
+    cor = "Artar." if r2 > r1 else "Azalır."
+    sh = {"type": "elk", "sub_type": "sema", "npil": npil, "namp": namp, "acik": False}
+    o = _yn_opts(cor, ["Değişmez.", "Ampul söner.", "Azalır." if cor == "Artar." else "Artar."])
+    return _mf_raw(subject, "Ampul parlaklığı", f"Şekildeki devrede anahtar kapalıdır ve ampul ışık vermektedir.\nBuna göre bu devreye {t} ampulün parlaklığı nasıl değişir?", o, f"Ampul parlaklığı pil sayısı arttıkça artar, ampul sayısı arttıkça azalır; bu değişiklikte parlaklık {cor.lower()[:-1]}.", shape=sh) if o else None
+
+
+def _el_kart(ps):
+    lb = random.sample(_CD_L, len(ps))
+    return lb, {"type": "elk", "sub_type": "kart", "per_row": 2, "panels": [{"npil": p, "namp": a, "acik": ac, "label": lb[i]} for i, (p, a, ac) in enumerate(ps)]}
+
+
+def _el_rat(p, a, ac=False):
+    return 0 if ac or p == 0 else p / a
+
+
+def _el_dist(n, closed=True):
+    for _ in range(60):
+        ps = [(random.choice([1, 2, 3]), random.choice([1, 2, 3]), False) for _ in range(n)]
+        rs = [_el_rat(*x) for x in ps]
+        if len(set(rs)) == n:
+            return ps, rs
+    return None, None
+
+
+def _ff_el_kart_en(subject):
+    ps, rs = _el_dist(4)
+    if not ps:
+        return None
+    lb, sh = _el_kart(ps)
+    ask = random.choice(["en parlak", "en sönük"])
+    i = rs.index(max(rs) if ask == "en parlak" else min(rs))
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, "Ampul parlaklığı", f"Şekilde özdeş pil ve ampullerle kurulmuş dört devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nBuna göre hangi devredeki ampuller {ask} yanar?", o, f"Parlaklık, pil sayısı ne kadar çok ve ampul sayısı ne kadar azsa o kadar büyüktür; {ask} yanan devre {lb[i]} ile gösterilendir.", shape=sh) if o else None
+
+
+def _ff_el_kart_sira(subject):
+    ps, rs = _el_dist(3)
+    if not ps:
+        return None
+    import itertools
+    lb, sh = _el_kart(ps)
+    order = sorted(range(3), key=lambda j: -rs[j])
+    cor = " > ".join(lb[j] for j in order)
+    allp = [" > ".join(lb[j] for j in q) for q in itertools.permutations(range(3))]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, "Ampul parlaklığı", "Şekilde özdeş pil ve ampullerle kurulmuş üç devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nBuna göre devrelerdeki ampullerin parlaklıkları büyükten küçüğe doğru hangi seçenekte doğru sıralanmıştır?", o, f"Parlaklık sıralaması: {cor}.", shape=sh) if o else None
+
+
+def _ff_el_kart_esit(subject):
+    for _ in range(80):
+        a = random.choice([1, 2, 3])
+        eq = [(a, a, False), (a + 0, a, False)]
+        ps = [(1, 1, False), (2, 2, False)] if random.random() < .5 else [(1, 2, False), (2, 4 if False else 2, False)]
+        ps = [(1, 1, False), (2, 2, False), (random.choice([2, 3]), 1, False), (1, random.choice([2, 3]), False)]
+        rs = [_el_rat(*x) for x in ps]
+        if sorted(rs).count(1.0) == 2:
+            random.shuffle(ps)
+            rs = [_el_rat(*x) for x in ps]
+            if [r for r in rs if r == 1.0].__len__() == 2 and len({r for r in rs if r != 1.0}) == 2:
+                break
+    else:
+        return None
+    lb, sh = _el_kart(ps)
+    idx = [i for i, r in enumerate(rs) if r == 1.0]
+    cor = " ve ".join(sorted(lb[i] for i in idx))
+    allp = [" ve ".join(sorted([lb[i], lb[j]])) for i in range(4) for j in range(i + 1, 4)]
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, "Ampul parlaklığı", "Şekilde özdeş pil ve ampullerle kurulmuş dört devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nBuna göre hangi iki devredeki ampullerin parlaklığı birbirine eşittir?", o, f"Pil sayısı ile ampul sayısı oranı aynı olan {cor} devrelerinde parlaklık eşittir.", shape=sh) if o else None
+
+
+def _ff_el_kart_degisken(subject):
+    var = random.choice(["pil", "ampul"])
+    for _ in range(100):
+        ps = [(random.choice([1, 2, 3]), random.choice([1, 2, 3]), False) for _ in range(4)]
+        if len(set(ps)) < 4:
+            continue
+        good = [(i, j) for i in range(4) for j in range(i + 1, 4) if (ps[i][1] == ps[j][1] and ps[i][0] != ps[j][0] if var == "pil" else ps[i][0] == ps[j][0] and ps[i][1] != ps[j][1])]
+        if len(good) == 1:
+            break
+    else:
+        return None
+    lb, sh = _el_kart(ps)
+    g = good[0]
+    cor = f"{lb[g[0]]} ve {lb[g[1]]}"
+    allp = [f"{lb[i]} ve {lb[j]}" for i in range(4) for j in range(i + 1, 4)]
+    cor = f"{lb[g[0]]} ve {lb[g[1]]}"
+    w = [x for x in allp if x != cor]
+    random.shuffle(w)
+    o = _yn_opts(cor, w[:3])
+    return _mf_raw(subject, "Ampul parlaklığı", f"Şekilde özdeş pil ve ampullerle kurulmuş dört devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nBir öğrenci, yalnızca {var} sayısının ampul parlaklığına etkisini incelemek istemektedir.\nBuna göre hangi iki devreyi karşılaştırmalıdır?", o, f"Yalnızca {var} sayısı farklı, diğer değişkenler aynı olan devreler {cor} devreleridir.", shape=sh) if o else None
+
+
+def _ff_el_kart_neden(subject):
+    var = random.choice(["pil", "ampul"])
+    a = random.choice([1, 2])
+    if var == "pil":
+        ps = [(a, 1, False), (a + random.choice([1, 2]), 1, False)]
+    else:
+        ps = [(2, 1, False), (2, random.choice([2, 3]), False)]
+    random.shuffle(ps)
+    lb, sh = _el_kart(ps)
+    cor = "Pil sayısı" if var == "pil" else "Ampul sayısı"
+    o = _yn_opts(cor, ["Ampul sayısı" if var == "pil" else "Pil sayısı", "Kablo uzunluğu", "Anahtarın şekli"])
+    return _mf_raw(subject, "Ampul parlaklığı", f"Şekilde iki devrenin şeması verilmiştir. {lb[0]} ve {lb[1]} devrelerindeki ampullerin parlaklıkları birbirinden farklıdır.\nBuna göre bu farkın nedeni aşağıdakilerden hangisidir?", o, f"İki devre arasındaki tek fark {cor.lower()}dır.", shape=sh) if o else None
+
+
+def _ff_el_kart_yanan(subject):
+    ps = [(random.choice([1, 2, 3]), random.choice([1, 2]), True), (0, random.choice([1, 2]), False), (random.choice([1, 2, 3]), random.choice([1, 2]), True), (random.choice([1, 2, 3]), random.choice([1, 2]), False)]
+    random.shuffle(ps)
+    lb, sh = _el_kart(ps)
+    idx = [i for i, x in enumerate(ps) if _el_rat(*x) > 0]
+    c = len(idx)
+    o = _yn_opts(str(c), random.sample([str(x) for x in range(0, 5) if x != c], 3))
+    return _mf_raw(subject, "Devre şeması", "Şekilde dört elektrik devresinin şeması verilmiştir.\nBuna göre kaç devredeki ampul ışık verir?", o, f"Anahtarı kapalı ve pili olan devrelerde ampul yanar; bunların sayısı {c}'dür.", shape=sh) if o else None
+
+
+def _ff_el_kart_hangi(subject):
+    ps = [(0, 1, False), (random.choice([1, 2]), 1, True), (random.choice([1, 2, 3]), random.choice([1, 2]), False), (random.choice([1, 2]), 2, True)]
+    random.shuffle(ps)
+    lb, sh = _el_kart(ps)
+    idx = [i for i, x in enumerate(ps) if _el_rat(*x) > 0]
+    if len(idx) != 1:
+        return None
+    i = idx[0]
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, "Devre şeması", "Şekilde dört elektrik devresinin şeması verilmiştir.\nBuna göre hangi devredeki ampul ışık verir?", o, f"Pili olan ve anahtarı kapalı olan tek devre {lb[i]} ile gösterilendir.", shape=sh) if o else None
+
+
+_EL_FAMS = [
+    (_ff_el_sembol_ad, 2, _EL_I1), (_ff_el_sembol_gorev, 3, _EL_I1), (_ff_el_sembol_isim, 2, _EL_I1), (_ff_el_sembol_say, 3, _EL_I1), (_ff_el_sembol_acikkapali, 3, _EL_I1),
+    (_ff_el_sema_harf, 3, _EL_I2), (_ff_el_sema_say_pil, 2, _EL_I2), (_ff_el_sema_toplam, 3, _EL_I2), (_ff_el_sema_yanar, 3, _EL_I2), (_ff_el_sema_neden, 4, _EL_I2), (_ff_el_sema_cozum, 4, _EL_I2),
+    (_ff_el_sema_degis, 4, _EL_I3),
+    (_ff_el_kart_en, 4, _EL_I3), (_ff_el_kart_sira, 5, _EL_I3), (_ff_el_kart_esit, 5, _EL_I3), (_ff_el_kart_degisken, 5, _EL_I3), (_ff_el_kart_neden, 4, _EL_I3),
+    (_ff_el_kart_yanan, 3, _EL_I2), (_ff_el_kart_hangi, 3, _EL_I2),
+]
+for _f, _d, _it in _EL_FAMS:
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _EL_KW))
+    _DIFF_OF[_f.__name__] = _d
 
 
 for _r in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
