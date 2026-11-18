@@ -16812,6 +16812,28 @@
 "ts": 1795028983,
 "src": "local",
 "fam": "_en_yn_weather"
+},
+{
+"subject": "İngilizce",
+"topic": "Comparatives",
+"passage": "Ali: Look at the animals in the forest, Mia. The deer is fast.\nMia: Yes, but the cheetah is faster than the deer. Also, the elephant is larger than the cheetah.",
+"question": "In the conversation, which one is TRUE?",
+"shape": null,
+"options": {
+"A": "The cheetah is slower than the deer.",
+"B": "The deer is faster than the cheetah.",
+"C": "The elephant is smaller than the cheetah.",
+"D": "The cheetah is faster than the deer."
+},
+"answer": "D",
+"explanation": "According to the dialogue, Mia states 'the cheetah is faster than the deer'. Therefore, the cheetah is faster than the deer is the correct statement.",
+"_sty": "s:|conver which one true",
+"listen": true,
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 3,
+"ts": 1795029191
 }
 ]
 }

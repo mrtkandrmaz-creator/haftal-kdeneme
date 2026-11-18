@@ -4221,6 +4221,220 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.4.3",
+   "text": "{a} cm kenarı olan bir dikdörtgenin çevresi {p} cm olarak verilmiştir. Dikdörtgenin alanını bulunuz. Buna göre alan kaç cm²'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    }
+   },
+   "derived": {
+    "t": "a*(p/2 - a)"
+   },
+   "constraints": [
+    "p % 2 == 0",
+    "a < p/2",
+    "a*(p/2 - a) < 400"
+   ],
+   "answer": "a*(p/2 - a)",
+   "wrong": [
+    "p",
+    "a+p",
+    "a*p"
+   ],
+   "unit": "cm²",
+   "explanation": "Alan = {a} × ({p}/2 − {a}) = {ans} cm²",
+   "positive": true,
+   "id": "m5-0106",
+   "unit_name": "4. Tema: Geometrik Nicelikler",
+   "topics": [
+    "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+    "MAT.5.4.2. Birim karelerden yola çıkarak dikdörtgenin alanını değerlendirebilme",
+    "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
+    "MAT.5.4.4. Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemleri çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+   "text": "Ali bir markette  {a} kg elma alıyor. Elmanın kilogram fiyatı {p} TL. Toplam harcama miktarını bul. Buna göre toplam harcama kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0107",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Elif marketten {a} adet elma alıyor. Her elmanın fiyatı {p} TL. Buna göre Elif'in elmalardan toplamda ne kadar TL ödeyeceğini hesapla?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0108",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "Kategorik veri ile çalışabilme",
+   "text": "Ali marketten {p} TL'ye satılan {a} adet çikolata satın aldı. Bu çikolataların toplam fiyatı kaç TL'dir? Buna göre toplam fiyatı bul.",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0109",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+   "text": "Ali marketten {a} adet elma alıyor. Her elmanın fiyatı {p} TL. Buna göre Ali’nin elma alımının toplam maliyeti kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0110",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

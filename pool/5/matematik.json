@@ -27690,6 +27690,48 @@
 "ts": 1795028940,
 "src": "local",
 "fam": "_mf_veri_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.4 - Kesir karşılaştırma",
+"passage": "Bir su deposu, günlük tüketim miktarının \\(\\frac{2}{5}\\) i, \\(\\frac{3}{8}\\) i ve geri kalan kısmı olmak üzere üç ayrı gün boyunca kullanılmaktadır. Depodaki su miktarı 200 litre.",
+"question": "Bu üç günden hangisinde su tüketimi en azdır?",
+"shape": null,
+"options": {
+"A": "İlk gün",
+"B": "İkinci gün",
+"C": "Üçüncü gün",
+"D": "İlk ve ikinci gün eşit"
+},
+"answer": "C",
+"explanation": "1) İlk gün: 200×2/5=80 L. 2) İkinci gün: 200×3/8=75 L. 3) Üçüncü gün = 200−(80+75)=45 L. En az tüketim 45 L olduğundan üçüncü gün en azdır.",
+"vfd2": true,
+"_sty": "s:|günden hangis tüketi azdır",
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1795029096
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.3 - Kesir temsil",
+"passage": "Bir spor salonunda 24 saatlik bir program hazırlanmıştır. Antrenman süresi toplamının \\(\\frac{5}{12}\\) si yoga, \\(\\frac{1}{4}\\) i koşu ve kalan kısmı ağırlık çalışmasıdır.",
+"question": "Ağırlık çalışması kaç saat sürer?",
+"shape": null,
+"options": {
+"A": "7 saat",
+"B": "10 saat",
+"C": "9 saat",
+"D": "8 saat"
+},
+"answer": "D",
+"explanation": "1) Yoga: 24×5/12=10 saat. 2) Koşu: 24×1/4=6 saat. 3) Kalan = 24−(10+6)=8 saat.",
+"vfd2": true,
+"_sty": "s:|çalışm kaç saat sürer",
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 2,
+"ts": 1795029096
 }
 ]
 }
