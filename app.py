@@ -1516,6 +1516,9 @@ def _bar(ax, d):
     ax.set_ylim(0, mx * 1.3 if mx else 1)
     if d.get("ylabel"):
         ax.set_ylabel(str(d["ylabel"]), fontsize=9, color=INK)
+    if all(float(v) == int(v) for v in vals):
+        from matplotlib.ticker import MaxNLocator
+        ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
 
 def _line(ax, d):
@@ -1530,6 +1533,9 @@ def _line(ax, d):
     _title(ax, d, "Değişim Grafiği")
     _clean_axes(ax)
     ax.grid(axis="y", alpha=.25)
+    if all(float(v) == int(v) for v in vals):
+        from matplotlib.ticker import MaxNLocator
+        ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     mx = max(vals) if vals else 10
     for x, y in zip(xs, vals):
         ax.text(x, y + mx * .04, f"{y:g}", ha="center", fontsize=9, fontweight="bold", color=INK)
@@ -4492,9 +4498,570 @@ def _kes_serit(ax, d):
     ax.set_ylim(0, 2.6)
 
 
+_BD_PL = ["Birler", "Onlar", "Yüzler", "Binler", "On\nbinler", "Yüz\nbinler", "Milyonlar", "On\nmilyonlar", "Yüz\nmilyonlar"]
+_BD_BL = ["Birler", "Binler", "Milyonlar"]
+
+
+def _bd_sp(v):
+    return f"{int(v):,}".replace(",", " ")
+
+
+def _kes_basamak(ax, d):
+    ds = [int(x["n"]) for x in d["d"]]
+    n = len(ds)
+    marks = {int(k): v for k, v in (d.get("marks") or {}).items()}
+    cw = 1.6
+    # bölük başlıkları (sağdan gruplanır)
+    for g in range((n + 2) // 3):
+        hi_i = n - 3 * g
+        lo_i = max(0, n - 3 * g - 3)
+        x0, x1 = lo_i * cw, hi_i * cw
+        ax.add_patch(Rectangle((x0, 3.0), x1 - x0, .8, fc="#fde68a", ec=INK, lw=1.6, zorder=2))
+        ax.text((x0 + x1) / 2, 3.4, _BD_BL[(n - 1 - (hi_i - 1)) // 3] + (" bölüğü" if x1 - x0 >= cw * 3 - .1 else ""), ha="center", va="center", fontsize=10.5 if x1 - x0 >= cw * 3 - .1 else 7.5, fontweight="bold", color=INK, zorder=3)
+    for i in range(n):
+        pos = n - 1 - i
+        ax.add_patch(Rectangle((i * cw, 2.2), cw, .8, fc="#e0f2fe", ec=INK, lw=1.4, zorder=2))
+        ax.text(i * cw + cw / 2, 2.6, ["Birler", "Onlar", "Yüzler"][pos % 3], ha="center", va="center", fontsize=8.5, color=INK, zorder=3)
+        ax.add_patch(Rectangle((i * cw, .6), cw, 1.6, fc="#ffffff", ec=INK, lw=1.6, zorder=2))
+        ax.text(i * cw + cw / 2, 1.4, "?" if (d.get("hide") and i in d["hide"]) else str(ds[i]), ha="center", va="center", fontsize=30, fontweight="bold", color=INK, zorder=3)
+        if i in marks:
+            ax.plot([i * cw + cw / 2] * 2, [.6, .15], color=ORANGE, lw=1.6, zorder=3)
+            _bio_bubble(ax, i * cw + cw / 2, -.3, marks[i], fs=12, r=.36)
+    ax.set_xlim(-.3, n * cw + .3)
+    ax.set_ylim(-.9, 4.1)
+
+
+def _kes_abakus(ax, d):
+    ps = d.get("panels", [])
+    per = int(d.get("per_row", 1)) or 1
+    mxn = max(len(p["d"]) for p in ps)
+    pw, ph = mxn * 1.5 + 1.2, 6.0
+    rows = (len(ps) + per - 1) // per
+    for i, p in enumerate(ps):
+        r, c = divmod(i, per)
+        ox, oy = c * (pw + .8), -r * (ph + .8)
+        ds = [int(x["n"]) for x in p["d"]]
+        n = len(ds)
+        ox2 = ox + (mxn - n) * .75
+        ax.add_patch(Rectangle((ox + .1, oy), pw - .2, ph - .6, fc="#fefce8", ec=INK, lw=2.0, zorder=1))
+        ax.plot([ox + .1, ox + pw - .1], [oy + 1.0, oy + 1.0], color="#92400e", lw=4, zorder=2)
+        marks = {int(k): v for k, v in (p.get("marks") or {}).items()}
+        for j, dg in enumerate(ds):
+            x = ox2 + .9 + j * 1.5
+            pos = n - 1 - j
+            ax.plot([x, x], [oy + 1.0, oy + ph - .9], color="#78350f", lw=3, zorder=2)
+            col = "#ef4444" if pos >= 3 else "#2563eb"
+            for b in range(dg):
+                ax.add_patch(Circle((x, oy + 1.4 + b * .46), .22, fc=col, ec=INK, lw=1.2, zorder=4))
+            ax.text(x, oy + .5, _BD_PL[pos], ha="center", va="center", fontsize=7.5, color=INK, zorder=3, linespacing=.9)
+            if j in marks:
+                _bio_bubble(ax, x, oy + ph - .2, marks[j], fs=11, r=.3)
+        if p.get("label"):
+            _bio_bubble(ax, ox + .45, oy + ph + .1, p["label"], fs=12, r=.34)
+    ax.set_xlim(-.3, per * (pw + .8))
+    ax.set_ylim(-(rows - 1) * (ph + .8) - .3, ph + .7)
+
+
+def _kes_kartrk(ax, d):
+    ds = [int(x["n"]) for x in d["d"]]
+    for i, dg in enumerate(ds):
+        ax.add_patch(FancyBboxPatch((i * 1.9, 0), 1.5, 2.0, boxstyle="round,pad=0,rounding_size=.15", fc="#fef3c7", ec=INK, lw=2.0, zorder=2))
+        ax.text(i * 1.9 + .75, 1.0, str(dg), ha="center", va="center", fontsize=34, fontweight="bold", color=INK, zorder=3)
+    ax.set_xlim(-.3, len(ds) * 1.9 - .1)
+    ax.set_ylim(-.3, 2.3)
+
+
+def _kes_yuvarla(ax, d):
+    st_ = int(d["s"])
+    lo, hi = int(d["b"]) * st_, int(d["b"]) * st_ + st_
+    v = lo + int(d["r"]) * st_ // 10
+    x0, L, y0 = 1.4, 9.0, 1.2
+    ax.plot([x0 - .5, x0 + L + .5], [y0, y0], color=INK, lw=2.2, zorder=2)
+    for i in range(11):
+        x = x0 + L * i / 10
+        big = i in (0, 10)
+        ax.plot([x, x], [y0 - (.3 if big else .15), y0 + (.3 if big else .15)], color=INK, lw=2.2 if big else 1.2, zorder=3)
+    ax.text(x0, y0 - .7, _bd_sp(lo), ha="center", va="top", fontsize=12, fontweight="bold", color=INK)
+    ax.text(x0 + L, y0 - .7, _bd_sp(hi), ha="center", va="top", fontsize=12, fontweight="bold", color=INK)
+    x = x0 + L * (v - lo) / (hi - lo)
+    ax.plot([x, x], [y0, y0 + .8], color=ORANGE, lw=1.6, zorder=3)
+    ax.add_patch(Circle((x, y0), .11, fc=ORANGE, ec="white", lw=1.2, zorder=5))
+    _bio_bubble(ax, x, y0 + 1.15, d.get("label", "K"), fs=12, r=.34)
+    ax.text(x, y0 + 1.85, f"{d.get('label', 'K')} = {_bd_sp(v)}", ha="center", va="center", fontsize=12, fontweight="bold", color="#1d4ed8")
+    ax.set_xlim(-.2, x0 + L + 1.2)
+    ax.set_ylim(-.3, 3.1)
+
+
+def _kes_pikto(ax, d):
+    rows = d.get("rows", [])
+    u = int(d.get("unit", 5))
+    thing = d.get("thing", "kişi")
+    maxn = max(r["n"] for r in rows)
+    ax.text(0, len(rows) * 1.3 + .6, "●", ha="left", va="center", fontsize=16, color=_KS_FILL)
+    ax.text(.7, len(rows) * 1.3 + .6, f"= {u} {thing}", ha="left", va="center", fontsize=12, fontweight="bold", color=INK)
+    for i, r in enumerate(rows):
+        y = (len(rows) - 1 - i) * 1.3 + .4
+        ax.text(-.2, y, r["name"], ha="right", va="center", fontsize=11, fontweight="bold", color=INK)
+        n = float(r["n"])
+        full = int(n)
+        for j in range(full):
+            ax.add_patch(Circle((.4 + j * .95, y), .38, fc=_KS_FILL, ec=INK, lw=1.4, zorder=3))
+        if n - full >= .5:
+            ax.add_patch(Wedge((.4 + full * .95, y), .38, 90, 270, fc=_KS_FILL, ec=INK, lw=1.4, zorder=3))
+            ax.add_patch(Wedge((.4 + full * .95, y), .38, -90, 90, fc="white", ec=INK, lw=1.4, zorder=3))
+    ax.set_xlim(-4.2, maxn * .95 + 1.0)
+    ax.set_ylim(-.5, len(rows) * 1.3 + 1.2)
+
+
+def _kes_bar(ax, d):
+    rows = d.get("rows", [])
+    mx = max(sum(float(s["w"]) for s in r["segs"]) + float(r.get("dash", 0)) for r in rows)
+    sc = 8.0 / mx
+    for i, r in enumerate(rows):
+        y = (len(rows) - 1 - i) * 1.6
+        ax.text(-.2, y + .45, r.get("name", ""), ha="right", va="center", fontsize=11, fontweight="bold", color=INK)
+        x = 0.0
+        for s in r["segs"]:
+            w = float(s["w"]) * sc
+            ax.add_patch(Rectangle((x, y), w, .9, fc=_KS_FILL if not s.get("q") else "white", ec=INK, lw=1.6, zorder=2))
+            ax.text(x + w / 2, y + .45, s["l"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK, zorder=3)
+            x += w
+        if r.get("dash"):
+            w = float(r["dash"]) * sc
+            ax.add_patch(Rectangle((x, y), w, .9, fc="white", ec=INK, lw=1.6, ls="--", zorder=2))
+            ax.text(x + w / 2, y + .45, "?", ha="center", va="center", fontsize=14, fontweight="bold", color=INK, zorder=3)
+            x += w
+        if r.get("brace"):
+            ax.plot([0, 0, x, x], [y + 1.05, y + 1.25, y + 1.25, y + 1.05], color=INK, lw=1.6)
+            ax.text(x / 2, y + 1.5, r["brace"], ha="center", va="center", fontsize=13, fontweight="bold", color=INK)
+    ax.set_xlim(-3.4, 9.0)
+    ax.set_ylim(-.3, len(rows) * 1.6 + .5)
+
+
+def _kes_makine(ax, d):
+    st = d.get("steps", [])
+    x = 0.0
+    for i, s in enumerate(st):
+        isop = s.get("op", False)
+        w = 1.7 if not isop else 1.5
+        ax.add_patch(FancyBboxPatch((x, 0), w, 1.1, boxstyle="round,pad=0,rounding_size=.15", fc="#f1f5f9" if isop else "white", ec=INK if not s.get("q") else ORANGE, lw=1.8 if not isop else 1.4, ls="-", zorder=2))
+        ax.text(x + w / 2, .55, s["l"], ha="center", va="center", fontsize=14, fontweight="bold", color=INK, zorder=3)
+        x += w
+        if i < len(st) - 1:
+            ax.add_patch(FancyArrowPatch((x + .05, .55), (x + .65, .55), arrowstyle="-|>", mutation_scale=14, color=INK, lw=1.6))
+            x += .75
+    ax.set_xlim(-.3, x + .3)
+    ax.set_ylim(-.6, 1.8)
+
+
+def _kes_esitg(ax, d):
+    g, k = int(d["g"]), int(d["k"])
+    per = min(g, 3)
+    rws = (g + per - 1) // per
+    for i in range(g):
+        cx, cy = (i % per) * 2.6, -(i // per) * 1.9
+        ax.add_patch(FancyBboxPatch((cx, cy), 2.3, 1.6, boxstyle="round,pad=0,rounding_size=.12", fc="#f8fafc", ec=INK, lw=1.6, zorder=1))
+        cols = min(k, 4)
+        for j in range(k):
+            ax.add_patch(Circle((cx + .4 + (j % cols) * .5, cy + 1.2 - (j // cols) * .45), .17, fc=_KS_FILL, ec=INK, lw=1, zorder=3))
+    ax.text((per * 2.6 - .3) / 2, -rws * 1.9 + .2, d.get("cap", ""), ha="center", va="center", fontsize=10, color=INK)
+    ax.set_xlim(-.3, per * 2.6)
+    ax.set_ylim(-rws * 1.9 - .2, 1.9)
+
+
 def _kes(ax, d):
     st = d.get("sub_type")
-    {"bolge": _kes_bolge, "sayi": _kes_sayi, "grup": _kes_grup, "esdeger": _kes_esdeger, "kart": _kes_kart, "aralik": _kes_aralik, "serit": _kes_serit}.get(st, lambda a, b: None)(ax, d)
+    {"bolge": _kes_bolge, "sayi": _kes_sayi, "grup": _kes_grup, "esdeger": _kes_esdeger, "kart": _kes_kart, "aralik": _kes_aralik, "serit": _kes_serit, "basamak": _kes_basamak, "abakus": _kes_abakus, "kartrk": _kes_kartrk, "yuvarla": _kes_yuvarla, "pikto": _kes_pikto, "bar": _kes_bar, "makine": _kes_makine, "esitg": _kes_esitg}.get(st, lambda a, b: None)(ax, d)
+
+
+# ---------------------------------------------------------------- SOSYAL BİLGİLER (5. sınıf): kroki/pusula, komşu devletler şeması, zaman şeridi
+_SOS_FILL = "#fde68a"
+
+
+def _sos_pusula(ax, x, y, s=.5):
+    for dx, dy, t in ((0, 1, "K"), (0, -1, "G"), (1, 0, "D"), (-1, 0, "B")):
+        ax.add_patch(FancyArrowPatch((x, y), (x + dx * s, y + dy * s), arrowstyle="-|>", mutation_scale=11, color=INK, lw=1.4, zorder=4))
+        ax.text(x + dx * (s + .28), y + dy * (s + .28), t, ha="center", va="center", fontsize=10, fontweight="bold", color=INK)
+
+
+def _sos_kroki(ax, d):
+    cols, rows = int(d.get("cols", 3)), int(d.get("rows", 3))
+    w, h = 2.1, 1.35
+    for r in range(rows):
+        for c in range(cols):
+            ax.add_patch(FancyBboxPatch((c * w + .06, (rows - 1 - r) * h + .06), w - .12, h - .12, boxstyle="round,pad=0,rounding_size=.1", fc="#f1f5f9", ec="#cbd5e1", lw=1, zorder=1))
+    for p in d.get("yerler", []):
+        x, y = p["c"] * w, (rows - 1 - p["r"]) * h
+        ax.add_patch(FancyBboxPatch((x + .06, y + .06), w - .12, h - .12, boxstyle="round,pad=0,rounding_size=.1", fc=_SOS_FILL, ec=INK, lw=1.6, zorder=2))
+        ax.text(x + w / 2, y + h * .64, p["h"], ha="center", va="center", fontsize=17, fontweight="bold", color=INK, zorder=3)
+        ax.text(x + w / 2, y + h * .27, p["ad"], ha="center", va="center", fontsize=9.5, color=INK, zorder=3)
+    if d.get("pusula", True):
+        _sos_pusula(ax, cols * w + 1.0, rows * h - .9)
+    ax.set_xlim(-.1, cols * w + 1.9)
+    ax.set_ylim(-.1, rows * h + .1)
+
+
+def _sos_komsu(ax, d):
+    pos = {"kb": (.6, 3.1), "b": (.3, 1.7), "kd": (6.2, 3.1), "d": (6.6, 1.9), "g": (2.5, -.1), "gd": (5.4, -.1)}
+    ax.add_patch(FancyBboxPatch((1.5, .95), 3.8, 1.9, boxstyle="round,pad=0,rounding_size=.3", fc=_SOS_FILL, ec=INK, lw=2, zorder=2))
+    ax.text(3.4, 1.9, "TÜRKİYE", ha="center", va="center", fontsize=14, fontweight="bold", color=INK, zorder=3)
+    for k, hf in d.get("harfler", {}).items():
+        x, y = pos[k]
+        ax.add_patch(Circle((x + .4, y + .4), .48, fc="white", ec=BLUE, lw=2, zorder=3))
+        ax.text(x + .4, y + .4, hf, ha="center", va="center", fontsize=16, fontweight="bold", color=INK, zorder=4)
+    _sos_pusula(ax, 8.3, 3.0, .45)
+    ax.set_xlim(-.4, 9.2)
+    ax.set_ylim(-.9, 4.1)
+
+
+def _sos_zaman(ax, d):
+    ev = d.get("olaylar", [])
+    tk = bool(d.get("takvim"))
+    mx = max(e["yil"] for e in ev) * 1.12
+    if tk:
+        y0, y1 = min(e["yil"] for e in ev), max(e["yil"] for e in ev)
+    ax.add_patch(FancyArrowPatch((0, 0), (10.6, 0), arrowstyle="-|>", mutation_scale=16, color=INK, lw=2.2, zorder=2))
+    _rk = {e["h"]: i for i, e in enumerate(sorted(ev, key=lambda z: z["yil"]))}
+    fx = (lambda e: .8 + 9 * _rk[e["h"]] / max(len(ev) - 1, 1)) if tk else (lambda e: 10 * (1 - e["yil"] / mx))
+    xs = sorted(fx(e) for e in ev)
+    for e in ev:
+        x = fx(e)
+        lo = 0 if (xs.index(x) % 2 == 0 or min(abs(x - z) for z in xs if z != x) > 1.5) else -1.35
+        ax.add_patch(Circle((x, 0), .2, fc=_SOS_FILL, ec=INK, lw=1.6, zorder=3))
+        ax.text(x, .95, e["h"], ha="center", va="center", fontsize=17, fontweight="bold", color=INK)
+        ax.plot([x, x], [.3, .65], color=INK, lw=1.2)
+        ax.text(x, -.75 + lo, (str(e["yil"]) if tk else f"{e['yil']:,}".replace(",", " ")), ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+        if not tk:
+            ax.text(x, -1.3 + lo, "yıl önce", ha="center", va="center", fontsize=9, color=INK)
+    if not tk:
+        ax.text(10.4, .55, "Günümüz", ha="right", va="center", fontsize=9, color=INK)
+    ax.set_xlim(-.8, 11.2)
+    ax.set_ylim(-3.2, 1.5)
+
+
+def _sos(ax, d):
+    st = d.get("sub_type")
+    {"kroki": _sos_kroki, "komsu": _sos_komsu, "zaman": _sos_zaman}.get(st, lambda a, b: None)(ax, d)
+
+
+# ---------------------------------------------------------------- TÜRKÇE / İNGİLİZCE / DİN KÜLTÜRÜ görselleri
+def _dil_saat(ax, d):
+    h, m = int(d["h"]), int(d["m"])
+    ax.add_patch(Circle((0, 0), 1.0, fc="white", ec=INK, lw=3, zorder=1))
+    for i in range(12):
+        a = np.pi / 2 - i * np.pi / 6
+        ax.plot([.88 * np.cos(a), .97 * np.cos(a)], [.88 * np.sin(a), .97 * np.sin(a)], color=INK, lw=2, zorder=2)
+        n = 12 if i == 0 else i
+        ax.text(.74 * np.cos(a), .74 * np.sin(a), str(n), ha="center", va="center", fontsize=13, fontweight="bold", color=INK, zorder=2)
+    am = np.pi / 2 - (m / 60) * 2 * np.pi
+    ah = np.pi / 2 - ((h % 12) / 12 + m / 720) * 2 * np.pi
+    ax.plot([0, .5 * np.cos(ah)], [0, .5 * np.sin(ah)], color=INK, lw=6, solid_capstyle="round", zorder=3)
+    ax.plot([0, .78 * np.cos(am)], [0, .78 * np.sin(am)], color=BLUE, lw=3.5, solid_capstyle="round", zorder=4)
+    ax.add_patch(Circle((0, 0), .045, fc=INK, zorder=5))
+    ax.set_xlim(-1.15, 1.15)
+    ax.set_ylim(-1.15, 1.15)
+
+
+def _dil_konum(ax, d):
+    p = d.get("p", "p1")
+    col = {"ball": "#ef4444", "apple": "#16a34a", "orange": "#f97316"}.get(d.get("obj", "ball"), "#ef4444")
+    ax.add_patch(Rectangle((-4.2, 0), 8.4, .0, fc="none"))
+    ax.plot([-4.4, 4.4], [0, 0], color="#94a3b8", lw=2)
+    ax.add_patch(Rectangle((-3.6, 1.5), 2.6, .22, fc="#a16207", ec=INK, lw=1.4, zorder=2))
+    for x in (-3.5, -1.2):
+        ax.add_patch(Rectangle((x, 0), .14, 1.5, fc="#a16207", ec=INK, lw=1.2, zorder=2))
+    ax.text(-2.3, -.55, "table", ha="center", va="center", fontsize=10, color=INK)
+    ax.add_patch(Polygon([[1.2, 0], [3.2, 0], [3.2, 1.3], [1.2, 1.3]], closed=True, fc="#fef3c7", ec=INK, lw=1.8, zorder=2))
+    ax.plot([1.0, 3.4], [1.3, 1.3], color=INK, lw=2.2, zorder=3)
+    ax.text(2.2, -.55, "box", ha="center", va="center", fontsize=10, color=INK)
+    pos = {"p1": (-2.3, 1.72 + .3), "p2": (-2.3, .3), "p3": (2.2, .55), "p4": (3.95, .3), "p5": (2.2, 1.3 + .3)}[p]
+    ax.add_patch(Circle(pos, .3, fc=col, ec=INK, lw=1.6, zorder=4))
+    ax.set_xlim(-4.6, 4.6)
+    ax.set_ylim(-1, 3.2)
+
+
+def _dil_say(ax, d):
+    rows = d.get("rows", [])
+    for i, r in enumerate(rows):
+        y = (len(rows) - 1 - i) * 1.2
+        for j in range(int(r["n"])):
+            x = .5 + j * .75
+            k = r["k"]
+            if k == "apple":
+                ax.add_patch(Circle((x, y + .4), .27, fc="#ef4444", ec=INK, lw=1.4, zorder=2))
+            elif k == "book":
+                ax.add_patch(Rectangle((x - .2, y + .1), .4, .6, fc="#3b82f6", ec=INK, lw=1.4, zorder=2))
+            elif k == "pencil":
+                ax.add_patch(Rectangle((x - .07, y + .05), .14, .7, fc="#facc15", ec=INK, lw=1.4, zorder=2))
+            elif k == "balloon":
+                ax.add_patch(Ellipse((x, y + .45), .45, .6, fc="#a855f7", ec=INK, lw=1.4, zorder=2))
+            else:
+                ax.add_patch(Polygon([[x - .3, y + .1], [x + .3, y + .1], [x, y + .7]], closed=True, fc="#22c55e", ec=INK, lw=1.4, zorder=2))
+        ax.text(-.2, y + .4, r["k"], ha="right", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.set_xlim(-1.8, 6)
+    ax.set_ylim(-.2, len(rows) * 1.2)
+
+
+def _dil_yuz(ax, d):
+    for i, f in enumerate(d.get("yuzler", [])):
+        cx = i * 2.4
+        ax.add_patch(Circle((cx, 0), .95, fc="#fde68a", ec=INK, lw=2, zorder=1))
+        k = f["e"]
+        for sx in (-1, 1):
+            ax.add_patch(Circle((cx + sx * .33, .25), .09, fc=INK, zorder=3))
+        t = np.linspace(0, np.pi, 30)
+        if k == "e1":
+            ax.plot(cx + .5 * np.cos(np.pi + t), -.2 + .35 * np.sin(np.pi + t), color=INK, lw=2.4, zorder=3)
+        elif k == "e2":
+            ax.plot(cx + .4 * np.cos(t), -.55 + .25 * np.sin(t), color=INK, lw=2.4, zorder=3)
+            ax.add_patch(Ellipse((cx + .42, -.02), .1, .2, fc="#38bdf8", ec="none", zorder=3))
+        elif k == "e3":
+            ax.plot(cx + .4 * np.cos(t), -.5 + .22 * np.sin(t), color=INK, lw=2.4, zorder=3)
+            ax.plot([cx - .55, cx - .15], [.62, .46], color=INK, lw=2.6, zorder=3)
+            ax.plot([cx + .55, cx + .15], [.62, .46], color=INK, lw=2.6, zorder=3)
+        else:
+            ax.add_patch(Ellipse((cx, -.45), .3, .42, fc="white", ec=INK, lw=2.2, zorder=3))
+            for sx in (-1, 1):
+                ax.plot([cx + sx * .55, cx + sx * .15], [.62, .66], color=INK, lw=2.2, zorder=3)
+        ax.text(cx, -1.45, f["h"], ha="center", va="center", fontsize=16, fontweight="bold", color=INK)
+    n = len(d.get("yuzler", []))
+    ax.set_xlim(-1.2, (n - 1) * 2.4 + 1.2)
+    ax.set_ylim(-1.9, 1.2)
+
+
+def _dil_poz(ax, d):
+    def fig(ox, kind, hf):
+        L = lambda xs, ys, w=3: ax.plot([ox + x for x in xs], ys, color=INK, lw=w, solid_capstyle="round", zorder=3)
+        if kind == "p1":  # kıyam
+            ax.add_patch(Circle((ox, 3.4), .28, fc="white", ec=INK, lw=2.4, zorder=3)); L([0, 0], [3.12, 1.7]); L([0, 0], [1.7, 0]); L([0, .5, 0], [2.7, 2.35, 2.0], 2.4)
+        elif kind == "p2":  # rükû
+            ax.add_patch(Circle((ox + 1.95, 1.75), .28, fc="white", ec=INK, lw=2.4, zorder=3)); L([0, 1.65], [1.7, 1.75]); L([0, 0], [1.7, 0]); L([1.3, .1], [1.74, .95], 2.4)
+        elif kind == "p3":  # secde
+            ax.add_patch(Circle((ox + 1.65, .3), .26, fc="white", ec=INK, lw=2.4, zorder=3)); L([-1, 0], [0, 0]); L([0, .2], [0, 1.1]); L([.2, 1.4], [1.1, .5]); L([1.1, 1.6], [.65, 0.02], 2.4)
+        else:  # oturuş
+            ax.add_patch(Circle((ox - .5, 2.5), .28, fc="white", ec=INK, lw=2.4, zorder=3)); L([-.8, .5], [0, 0]); L([.5, -.5], [0, .75]); L([-.5, -.5], [.75, 2.15]); L([-.5, .3], [1.75, .95], 2.4)
+        ax.plot([ox - 1.3, ox + 2.1], [-.02, -.02], color="#94a3b8", lw=2)
+        ax.text(ox + .4, -.85, hf, ha="center", va="center", fontsize=17, fontweight="bold", color=INK)
+    for i, f in enumerate(d.get("pozlar", [])):
+        fig(i * 3.6, f["k"], f["h"])
+    n = len(d.get("pozlar", []))
+    ax.set_xlim(-1.6, (n - 1) * 3.6 + 2.6)
+    ax.set_ylim(-1.4, 4.0)
+
+
+def _dil_cami(ax, d):
+    ax.add_patch(Rectangle((0, 0), 8, 3.6, fc="#f1f5f9", ec=INK, lw=2, zorder=1))
+    ax.add_patch(Wedge((4, 3.6), 2.3, 0, 180, fc="#bfdbfe", ec=INK, lw=2, zorder=1))
+    ax.add_patch(Polygon([[3.35, 0], [3.35, 1.7], [4.65, 1.7], [4.65, 0]], closed=True, fc="#78716c", ec=INK, lw=1.6, zorder=2))
+    ax.add_patch(Wedge((4, 1.7), .65, 0, 180, fc="#78716c", ec=INK, lw=1.6, zorder=2))
+    for i in range(5):
+        ax.add_patch(Rectangle((5.6 + i * .28, 0), .28, .35 + i * .45, fc="#d6a86a", ec=INK, lw=1.2, zorder=2))
+    ax.add_patch(Polygon([[6.9, 2.6], [7.5, 2.6], [7.2, 3.3]], closed=True, fc="#a16207", ec=INK, lw=1.2, zorder=2))
+    ax.add_patch(Rectangle((-1.8, 0), .7, 5.2, fc="#e2e8f0", ec=INK, lw=1.8, zorder=1))
+    ax.add_patch(Polygon([[-1.9, 5.2], [-.9, 5.2], [-1.4, 6.3]], closed=True, fc="#94a3b8", ec=INK, lw=1.8, zorder=1))
+    pos = {"c1": (4, 5.2), "c2": (4, .95), "c3": (6.7, 1.2), "c4": (-1.45, 3.0)}
+    for k, h in d.get("harf", {}).items():
+        x, y = pos[k]
+        ax.add_patch(Circle((x, y), .38, fc="white", ec=BLUE, lw=2, zorder=5))
+        ax.text(x, y, h, ha="center", va="center", fontsize=14, fontweight="bold", color=INK, zorder=6)
+    ax.set_xlim(-2.4, 8.4)
+    ax.set_ylim(-.3, 6.6)
+
+
+def _dil_gok(ax, d):
+    ax.add_patch(Rectangle((-5.4, 0), 10.8, 4.4, fc="#e0f2fe", ec="none", zorder=0))
+    ax.add_patch(Rectangle((4.4, 0), 1.0, 4.4, fc="#1e293b", ec="none", zorder=0))
+    ax.add_patch(Rectangle((-5.4, -.9), 10.8, .9, fc="#86efac", ec=INK, lw=1.4, zorder=1))
+    t = np.linspace(0, np.pi, 60)
+    ax.plot(4.6 * np.cos(t) - .8, 3.7 * np.sin(t), color="#64748b", lw=1.4, ls="--", zorder=1)
+    pos = {"v1": 158, "v2": 90, "v3": 48, "v4": 16}
+    for k, h in d.get("harf", {}).items():
+        if k == "v5":
+            ax.add_patch(Wedge((4.9, 3.2), .38, 40, 320, fc="#fef9c3", ec="none", zorder=3))
+            ax.add_patch(Circle((5.05, 3.3), .32, fc="#1e293b", ec="none", zorder=4))
+            ax.text(4.9, 2.2, h, ha="center", va="center", fontsize=17, fontweight="bold", color="white", zorder=6)
+            continue
+        a = np.radians(pos[k])
+        x, y = 4.6 * np.cos(a) - .8, 3.7 * np.sin(a)
+        ax.add_patch(Circle((x, y), .45, fc="#fbbf24", ec=INK, lw=1.8, zorder=3))
+        ax.text(x, y - 1.0 if y > 1.5 else y + .95, h, ha="center", va="center", fontsize=17, fontweight="bold", color=INK, zorder=6)
+    ax.text(-5.2, -.45, "Doğu", ha="left", va="center", fontsize=9, color=INK, zorder=6)
+    ax.text(4.2, -.45, "Batı", ha="right", va="center", fontsize=9, color=INK, zorder=6)
+    ax.set_xlim(-5.6, 5.6)
+    ax.set_ylim(-1.0, 4.6)
+
+
+def _dil_kavram(ax, d):
+    import textwrap
+    for i, s in enumerate(d.get("sozler", [])):
+        x = i * 2.6
+        ax.add_patch(FancyBboxPatch((x, 0), 2.3, 1.9, boxstyle="round,pad=0,rounding_size=.15", fc="#fde68a", ec=INK, lw=1.8, zorder=2))
+        ax.text(x + 1.15, 1.5, s["h"], ha="center", va="center", fontsize=17, fontweight="bold", color=INK, zorder=3)
+        ax.text(x + 1.15, .62, textwrap.fill(str(s["w"]), 13), ha="center", va="center", fontsize=10 if len(str(s["w"])) > 11 else 11.5, color=INK, zorder=3, linespacing=1.15)
+    n = len(d.get("sozler", []))
+    ax.set_xlim(-.2, n * 2.6)
+    ax.set_ylim(-.2, 2.1)
+
+
+def _dil_balon(ax, d):
+    import textwrap
+    its = d.get("konus", [])
+    for i, b in enumerate(its):
+        y = (len(its) - 1 - i) * 1.5
+        ax.add_patch(Circle((.45, y + .55), .4, fc="white", ec=BLUE, lw=2, zorder=3))
+        ax.text(.45, y + .55, b["h"], ha="center", va="center", fontsize=15, fontweight="bold", color=INK, zorder=4)
+        ax.add_patch(FancyBboxPatch((1.1, y + .05), 8.4, 1.0, boxstyle="round,pad=0,rounding_size=.25", fc="#f1f5f9", ec=INK, lw=1.6, zorder=2))
+        ax.add_patch(Polygon([[1.12, y + .45], [.88, y + .55], [1.12, y + .7]], closed=True, fc="#f1f5f9", ec=INK, lw=1.2, zorder=2))
+        ax.text(1.35, y + .55, textwrap.fill("“" + b["t"] + "”", 52), ha="left", va="center", fontsize=10.5, color=INK, zorder=3, linespacing=1.2)
+    ax.set_xlim(-.2, 9.8)
+    ax.set_ylim(-.1, len(its) * 1.5)
+
+
+def _dil(ax, d):
+    st = d.get("sub_type")
+    {"saat": _dil_saat, "konum": _dil_konum, "say": _dil_say, "yuz": _dil_yuz, "poz": _dil_poz, "cami": _dil_cami, "gok": _dil_gok, "kavram": _dil_kavram, "balon": _dil_balon}.get(st, lambda a, b: None)(ax, d)
+
+
+# ---------------------------------------------------------------- 6. SINIF MATEMATİK görselleri
+def _m6_tsayi(ax, d):
+    lo, hi = int(d.get("lo", -8)), int(d.get("hi", 8))
+    ax.add_patch(FancyArrowPatch((lo - .7, 0), (hi + .7, 0), arrowstyle="<|-|>", mutation_scale=14, color=INK, lw=2, zorder=1))
+    for v in range(lo, hi + 1):
+        ax.plot([v, v], [-.12, .12], color=INK, lw=1.4, zorder=1)
+        ax.text(v, -.45, ("−" + str(-v)) if v < 0 else str(v), ha="center", va="center", fontsize=9.5, fontweight="bold" if v == 0 else None, color=INK)
+    for p in d.get("pts", []):
+        ax.add_patch(Circle((p["v"], 0), .2, fc=_KS_FILL, ec=INK, lw=1.6, zorder=4))
+        ax.text(p["v"], .72, p["h"], ha="center", va="center", fontsize=15, fontweight="bold", color=INK)
+        ax.plot([p["v"], p["v"]], [.25, .5], color=INK, lw=1)
+    h = d.get("hop")
+    if h:
+        ax.add_patch(FancyArrowPatch((h["from"], .15), (h["to"], .15), arrowstyle="-|>", mutation_scale=16, color=BLUE, lw=2.4, connectionstyle="arc3,rad=" + ("-.55" if h["to"] > h["from"] else ".55"), zorder=3))
+        mid = (h["from"] + h["to"]) / 2
+        ax.text(mid, 1.55 if h["to"] > h["from"] else -1.4, h["lab"], ha="center", va="center", fontsize=13, fontweight="bold", color=BLUE)
+        ax.add_patch(Circle((h["from"], 0), .16, fc="white", ec=BLUE, lw=2, zorder=4))
+    ax.set_xlim(lo - 1.2, hi + 1.2)
+    ax.set_ylim(-2.0, 2.2)
+
+
+def _m6_termo(ax, d):
+    lo, hi = int(d.get("lo", -10)), int(d.get("hi", 20))
+    its = d.get("items", [])
+    sc = 4.0 / (hi - lo)
+    for i, t in enumerate(its):
+        x = i * 3.2
+        ax.add_patch(FancyBboxPatch((x - .18, 0), .36, 4.0, boxstyle="round,pad=0,rounding_size=.18", fc="white", ec=INK, lw=2, zorder=2))
+        ax.add_patch(Circle((x, -.2), .34, fc="#ef4444", ec=INK, lw=2, zorder=3))
+        top = (t["v"] - lo) * sc
+        ax.add_patch(Rectangle((x - .1, -.1), .2, top + .1, fc="#ef4444", ec="none", zorder=4))
+        ax.text(x, -.95, t["h"], ha="center", va="center", fontsize=16, fontweight="bold", color=INK)
+        for v in range(lo, hi + 1, 5):
+            y = (v - lo) * sc
+            ax.plot([x + .18, x + .35], [y, y], color=INK, lw=1.3, zorder=2)
+            ax.text(x + .45, y, ("−" + str(-v)) if v < 0 else str(v), ha="left", va="center", fontsize=8.5, color=INK)
+        ax.text(x + .45, (0 - lo) * sc + .22, "", fontsize=1)
+    ax.plot([-.6, (len(its) - 1) * 3.2 + 1.3], [(0 - lo) * sc] * 2, color="#94a3b8", lw=1, ls="--", zorder=1)
+    ax.text(-.6, (0 - lo) * sc + .12, "0 °C", ha="left", va="bottom", fontsize=8, color="#64748b")
+    ax.set_xlim(-1.0, (len(its) - 1) * 3.2 + 1.8)
+    ax.set_ylim(-1.5, 4.4)
+
+
+def _m6_terazi(ax, d):
+    L, R = d["L"], d["R"]
+
+    def pan(cx, side):
+        items = [("x", None)] * int(side.get("x", 0)) + ([("c", side["c"])] if side.get("c") else [])
+        w = 1.0 * len(items) + .3 * (len(items) - 1)
+        x0 = cx - w / 2
+        for k, (t, v) in enumerate(items):
+            xx = x0 + k * 1.3
+            if t == "x":
+                ax.add_patch(Rectangle((xx, 0), 1.0, 1.0, fc="#fdba74", ec=INK, lw=1.8, zorder=3))
+                ax.text(xx + .5, .5, "x", ha="center", va="center", fontsize=16, fontweight="bold", color=INK, zorder=4)
+            else:
+                ax.add_patch(Polygon([[xx + .1, 0], [xx + .9, 0], [xx + .75, .8], [xx + .25, .8]], closed=True, fc="#94a3b8", ec=INK, lw=1.8, zorder=3))
+                ax.text(xx + .5, .38, str(v), ha="center", va="center", fontsize=13, fontweight="bold", color="white", zorder=4)
+        ax.add_patch(Polygon([[cx - 1.9, 0], [cx + 1.9, 0], [cx + 1.5, -.35], [cx - 1.5, -.35]], closed=True, fc="#cbd5e1", ec=INK, lw=1.8, zorder=2))
+        ax.plot([cx - 1.9, cx, cx + 1.9], [0, 2.6, 0], color=INK, lw=1.3, zorder=1)
+    pan(-2.8, L)
+    pan(2.8, R)
+    ax.plot([-2.8, 2.8], [2.6, 2.6], color=INK, lw=4, solid_capstyle="round", zorder=2)
+    ax.add_patch(Polygon([[-.5, -.9], [.5, -.9], [0, 2.6]], closed=True, fc="#cbd5e1", ec=INK, lw=1.8, zorder=1))
+    ax.set_xlim(-5.2, 5.2)
+    ax.set_ylim(-1.2, 3.2)
+
+
+def _m6_agac(ax, d):
+    root = d["root"]
+    leaves = []
+
+    def cnt(n):
+        if not n.get("ch"):
+            return 1
+        return sum(cnt(c) for c in n["ch"])
+    tot = cnt(root)
+
+    def dep(n):
+        return 1 + max([dep(c) for c in n.get("ch", [])] or [0])
+    D = dep(root)
+
+    def draw(n, x0, x1, lvl):
+        x = (x0 + x1) / 2
+        y = -lvl * 1.5
+        pos = {}
+        if n.get("ch"):
+            w = (x1 - x0)
+            tc = sum(cnt(c) for c in n["ch"])
+            cur = x0
+            for c in n["ch"]:
+                cw = w * cnt(c) / tc
+                cx = draw(c, cur, cur + cw, lvl + 1)
+                ax.plot([x, cx], [y - .35, y - 1.5 + .35], color=INK, lw=1.6, zorder=1)
+                cur += cw
+        q = n["v"] == "?"
+        leaf = not n.get("ch")
+        ax.add_patch(Circle((x, y), .42, fc="white" if q else (_KS_FILL if leaf else "#f1f5f9"), ec=ORANGE if q else INK, lw=2.2 if q else 1.6, zorder=3))
+        ax.text(x, y, n["v"], ha="center", va="center", fontsize=13, fontweight="bold", color=INK, zorder=4)
+        return x
+    draw(root, 0, tot * 1.9, 0)
+    ax.set_xlim(-.6, tot * 1.9 + .6)
+    ax.set_ylim(-(D - 1) * 1.5 - .8, .8)
+
+
+def _m6_venn(ax, d):
+    ax.add_patch(Circle((-1.25, 0), 2.1, fc="#bfdbfe", ec=INK, lw=1.8, alpha=.55, zorder=1))
+    ax.add_patch(Circle((1.25, 0), 2.1, fc="#fde68a", ec=INK, lw=1.8, alpha=.55, zorder=1))
+    ax.text(-2.0, 2.45, d["ta"], ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.text(2.0, 2.45, d["tb"], ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    import textwrap
+
+    def put(vs, x, w):
+        t = textwrap.fill(", ".join(str(v) for v in vs), w) if vs else ""
+        ax.text(x, 0, t, ha="center", va="center", fontsize=11, fontweight="bold", color=INK, zorder=3, linespacing=1.5)
+    put(d["a"], -2.35, 9)
+    put(d["ab"], 0, 5)
+    put(d["b"], 2.35, 9)
+    ax.set_xlim(-3.8, 3.8)
+    ax.set_ylim(-2.4, 2.9)
+
+
+def _m6_ritim(ax, d):
+    mx = int(d["max"])
+    rows = d["rows"]
+    for i, r in enumerate(rows):
+        y = (len(rows) - 1 - i) * 1.5
+        ax.text(-.4, y, r["name"], ha="right", va="center", fontsize=13, fontweight="bold", color=INK)
+        ax.plot([0, mx + 1], [y, y], color="#94a3b8", lw=1.4, zorder=1)
+        k = int(r["step"])
+        for v in range(k, mx + 1, k):
+            ax.add_patch(Circle((v, y), .36, fc=_KS_FILL, ec=INK, lw=1.4, zorder=3))
+            ax.text(v, y - .85, str(v), ha="center", va="center", fontsize=9.5, fontweight="bold", color=INK)
+    ax.set_xlim(-2.2, mx + 2)
+    ax.set_ylim(-1.4, (len(rows) - 1) * 1.5 + .8)
+
+
+def _m6(ax, d):
+    st = d.get("sub_type")
+    {"tsayi": _m6_tsayi, "termo": _m6_termo, "terazi": _m6_terazi, "agac": _m6_agac, "venn": _m6_venn, "ritim": _m6_ritim}.get(st, lambda a, b: None)(ax, d)
 
 
 def _mad(ax, d):
@@ -4507,7 +5074,7 @@ _DISPATCH = {
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes, "sos": _sos, "dil": _dil, "m6": _m6,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -7794,12 +8361,13 @@ _GEO = {"triangle", "circle", "rectangle", "cylinder", "number_line", "geo"}
 _SCI = {"fen", "science_space", "space_orbit", "eclipse", "moon_phases", "dynamometer", "thermometer", "forces", "science_chart", "cylinder"}
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
-    "Matematik": _GEO | _CH | {"kes"},
+    "Matematik": _GEO | _CH | {"kes", "m6"},
     "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio", "light", "kuv", "mad", "elk", "cev", "uzy"},
-    "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc"},
+    "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc", "sos", "dil"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
-    "Türkçe": {"table", "doc"},
-    "İngilizce": {"table", "doc"},
+    "Türkçe": {"table", "doc", "dil", "sos", "bar_chart"},
+    "İngilizce": {"table", "doc", "dil", "sos", "bar_chart"},
+    "Din Kültürü ve Ahlak Bilgisi": {"table", "doc", "dil", "bar_chart"},
 }
 VISUAL_HINT = {
     "Matematik": "Şekil/grafik/tablo: geometri (üçgen, çember, dikdörtgen), sayı doğrusu, sütun/çizgi/daire grafiği, veri tablosu.",
@@ -8191,7 +8759,7 @@ def coherent_shape(shape, text, subject=None):
     if not shape:
         return None, False
     k = _kind(shape)
-    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" and k not in ("bio", "light", "kuv", "mad", "elk", "cev", "uzy") else ()):  # canlılar şemaları ay/dünya anahtarlarıyla karışmasın
+    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" and k not in ("bio", "light", "kuv", "mad", "elk", "cev", "uzy", "sos", "dil") else ()):  # canlılar şemaları ay/dünya anahtarlarıyla karışmasın
         if rx.search(text):
             if k not in allowed:
                 return None, True
@@ -25525,6 +26093,935 @@ for _f, _d, _it in _UZ_FAMS:
     _DIFF_OF[_f.__name__] = _d
 
 
+_VY_PRE = ["Şekle göre", "Aşağıdaki görsele göre", "Verilen şekilden yararlanarak", "Görselde verilen bilgilere göre", "Yandaki görseli inceleyen bir öğrenci", "Şekilde verilenleri dikkate alarak",
+           "Aşağıdaki görselde verilen bilgiler doğrultusunda", "Ders sırasında incelenen şekle bakarak", "Öğretmenin tahtaya çizdiği şekle göre", "Çalışma kâğıdındaki şekle bakarak",
+           "Kitaptaki şekli inceleyen bir öğrenci", "Aşağıda verilen görsel ışığında", "Sınav kâğıdındaki görsele göre", "Yukarıdaki şekil dikkate alındığında", "Şekli dikkatle inceleyerek",
+           "Etkinlik föyündeki görsele göre", "Verilen görselden çıkarım yaparak", "Şekilde gösterilen duruma göre", "Aşağıdaki çizime göre", "Soru kitapçığındaki şekle göre",
+           "Verilen çizimi inceleyen bir öğrenci", "Görselde yer alan bilgilerden hareketle", "Şekil üzerindeki bilgilere göre", "Öğrencilere gösterilen şekle göre"]
+_VY_SUF = ["şu soruyu yanıtlayınız.", "aşağıdaki soruyu cevaplayınız.", "soruyu çözünüz.", "soruya cevap veriniz.", "aşağıdaki soruyu çözünüz.", "sorulanı bulunuz."]
+
+
+def _vy_wrap(fn):
+    import functools
+
+    @functools.wraps(fn)
+    def w(subject):
+        r = fn(subject)
+        if not r or not r.get("shape"):
+            return r
+        r = dict(r)
+        r["question"] = random.choice(_VY_PRE) + " " + random.choice(_VY_SUF) + "\n" + str(r["question"])
+        return r
+    return w
+
+
+# ---- 5. SINIF SOSYAL BİLGİLER: şekilli (kroki/pusula, komşu şeması, zaman şeridi, grafikler) aileler
+_SS_YER = ["Okul", "Park", "Hastane", "Market", "Kütüphane", "Fırın", "Cami", "Belediye", "Postane", "Eczane", "Spor Salonu", "Banka"]
+_SS_L = list("LMNPRST")
+_SS_DIR = {(0, -1): "kuzey", (0, 1): "güney", (1, 0): "doğu", (-1, 0): "batı", (1, -1): "kuzeydoğu", (-1, -1): "kuzeybatı", (1, 1): "güneydoğu", (-1, 1): "güneybatı"}
+_SS_I = {"bir": "Göreceli konum", "kom": "Komşu devletler", "mir": "Anadolu'daki ilk yerleşimler (Göbeklitepe, Çatalhöyük)", "ek1": "İhtiyaç, istek ve bütçe",
+         "ek2": "Yaşadığı ildeki ekonomik faaliyetler", "ek3": "Kaynakların verimli kullanımı", "dem": "Demokrasi ve cumhuriyet", "grp": "Gruplar ve roller",
+         "tek": "Teknolojik gelişmelerin toplum hayatına etkisi", "afe": "Afetler ve farkındalık", "yar": "Yardımlaşma ve dayanışma", "hak": "Hak ve sorumluluklar"}
+_SS_KW = {"bir": ("konum", "harita", "yön", "evimiz", "dünya", "kroki"), "kom": ("komşu", "evimiz", "dünya", "harita"),
+          "mir": ("miras", "göbeklitepe", "çatalhöyük", "anadolu", "medeniyet", "yerleşim"), "ek": ("bütçe", "ekonomi", "tasarruf", "ihtiyaç", "ekonomik", "kaynak"),
+          "dem": ("demokrasi", "cumhuriyet", "vatandaş", "seçim", "oy"), "grp": ("grup", "rol", "birlikte", "kulüp"), "tek": ("teknoloji", "teknolojik"),
+          "afe": ("afet", "deprem", "farkındalık", "yardımlaşma", "dayanışma")}
+
+
+def _ss_kroki(n=None):
+    n = n or random.choice([5, 6, 7])
+    cells = random.sample([(c, r) for c in range(3) for r in range(3)], n)
+    ad = random.sample(_SS_YER, n)
+    hf = random.sample(_SS_L, n)
+    return [{"h": hf[i], "ad": ad[i], "c": cells[i][0], "r": cells[i][1]} for i in range(n)]
+
+
+def _ss_sh(ys):
+    return {"type": "sos", "sub_type": "kroki", "cols": 3, "rows": 3, "yerler": ys}
+
+
+def _ss_art(ad, dur):
+    """'Okul'un' / 'Parkın' gibi tamlayan eki: yalnızca güvenli biçim — addan sonra 'yerinin' kullanılır."""
+    return f"{ad} yerinin"
+
+
+def _sf_ss_yon(subject):
+    ys = _ss_kroki()
+    for _t in range(30):
+        a = random.choice(ys)
+        dx, dy = random.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
+        b = next((y for y in ys if (y["c"], y["r"]) == (a["c"] + dx, a["r"] + dy)), None)
+        if b:
+            break
+    else:
+        return None
+    dn = _SS_DIR[(dx, -dy)]
+    o = (sorted(y["h"] for y in random.sample([y for y in ys if y is not a and y is not b], 3) + [b]), b["h"])
+    q = random.choice([f"Şekildeki krokide {a['ad']} yerinin hemen {dn}sında bulunan yer hangi harfle gösterilmiştir?" if dn in ("kuzey", "güney") else f"Şekildeki krokide {a['ad']} yerinin hemen {dn}sında bulunan yer hangi harfle gösterilmiştir?"])
+    q = f"Bir mahallenin krokisi şekilde verilmiştir. {a['ad']} yerinin hemen {dn} yönünde bulunan yer hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Göreceli konum", q, o, f"{a['ad']} yerinden {dn} yönüne bakıldığında hemen yanındaki yer {b['ad']} yani {b['h']} harfiyle gösterilen yerdir.", shape=_ss_sh(ys))
+
+
+def _sf_ss_yon2(subject):
+    ys = _ss_kroki()
+    for _t in range(40):
+        a, b = random.sample(ys, 2)
+        dx, dy = b["c"] - a["c"], b["r"] - a["r"]
+        sx = (dx > 0) - (dx < 0)
+        sy = (dy > 0) - (dy < 0)
+        if (sx, sy) != (0, 0) and (sx == 0 or sy == 0 or abs(dx) == abs(dy)):
+            break
+    else:
+        return None
+    c = _SS_DIR[(sx, sy)]
+    alts = [v for v in _SS_DIR.values() if v != c]
+    allv = [c] + random.sample(alts, 3)
+    random.shuffle(allv)
+    q = f"Şekilde bir mahallenin krokisi ve yön okları verilmiştir. {a['ad']} yerinden {b['ad']} yerine doğru gidilirse hangi yöne gidilmiş olur?"
+    return _fact_q(subject, "Göreceli konum", q, c.capitalize(), [x.capitalize() for x in alts], f"Krokide {a['ad']} ile {b['ad']} karşılaştırıldığında {b['ad']}, {a['ad']} yerinin {c} yönündedir.", passage="") if False else _mf_raw(subject, "Göreceli konum", q, ([x.capitalize() for x in sorted(allv)], c.capitalize()), f"Krokide {b['ad']}, {a['ad']} yerinin {c} yönünde bulunur.", shape=_ss_sh(ys))
+
+
+def _sf_ss_uc(subject):
+    for _t in range(40):
+        ys = _ss_kroki(6)
+        mode = random.choice(["kuzey", "güney", "doğu", "batı"])
+        _kk = {"kuzey": lambda y: y["r"], "güney": lambda y: -y["r"], "doğu": lambda y: -y["c"], "batı": lambda y: y["c"]}[mode]
+        _b = min(_kk(y) for y in ys)
+        if sum(1 for y in ys if _kk(y) == _b) == 1:
+            break
+    key = {"kuzey": lambda y: y["r"], "güney": lambda y: -y["r"], "doğu": lambda y: -y["c"], "batı": lambda y: y["c"]}[mode]
+    best = min(key(y) for y in ys)
+    top = [y for y in ys if key(y) == best]
+    if len(top) != 1:
+        return None
+    o = (sorted(y["h"] for y in random.sample([y for y in ys if y is not top[0]], 3) + top), top[0]["h"])
+    q = random.choice([f"Şekildeki krokiye göre en {mode}da yer alan yapı hangi harfle gösterilmiştir?", f"Bir mahallenin krokisi şekilde verilmiştir. Bu krokide en {mode}da bulunan yer hangi harfle gösterilmiştir?"])
+    q = q.replace("güneyda", "güneyde").replace("kuzeyda", "kuzeyde").replace("doğuda", "doğuda").replace("batıda", "batıda").replace("en kuzeyda", "en kuzeyde")
+    return _mf_raw(subject, "Göreceli konum", q, o, f"Krokide en {mode} yönünde {top[0]['ad']} yer aldığı için doğru cevap {top[0]['h']} harfidir.", shape=_ss_sh(ys))
+
+
+def _sf_ss_say(subject):
+    ys = _ss_kroki(7)
+    a = random.choice(ys)
+    dx, dy = random.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
+    cnt, x, y = 0, a["c"] + dx, a["r"] + dy
+    while 0 <= x < 3 and 0 <= y < 3:
+        cnt += any((z["c"], z["r"]) == (x, y) for z in ys)
+        x, y = x + dx, y + dy
+    dn = _SS_DIR[(dx, -dy)]
+    o = _mf_opts(cnt, [v for v in range(0, 4) if v != cnt], str, sort=False)
+    q = f"Şekildeki krokide {a['ad']} yerinin {dn} yönünde (aynı hat üzerinde) toplam kaç yapı bulunmaktadır?"
+    return _mf_raw(subject, "Göreceli konum", q, o, f"{a['ad']} yerinden {dn} yönüne doğru aynı hat üzerinde {cnt} yapı vardır.", shape=_ss_sh(ys)) if o else None
+
+
+_SS_KOM = {"Bulgaristan": "kb", "Yunanistan": "b", "Gürcistan": "kd", "İran": "d", "Suriye": "g", "Irak": "gd"}
+
+
+def _sf_ss_komsu(subject):
+    ks = random.sample(list(_SS_KOM), 5)
+    hf = random.sample(_SS_L, 5)
+    mp = dict(zip(ks, hf))
+    k = random.choice(ks)
+    o = (sorted(hf), None)
+    allh = sorted(random.sample([h for kk, h in mp.items() if kk != k], 3) + [mp[k]])
+    sh = {"type": "sos", "sub_type": "komsu", "harfler": {_SS_KOM[kk]: h for kk, h in mp.items()}}
+    q = f"Şekilde Türkiye'nin kara sınırı bulunan beş komşu devleti harflerle gösterilmiştir. {k} hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Komşu devletler", q, (allh, mp[k]), f"{k}, Türkiye'nin {_SS_YN[_SS_KOM[k]]} yönündeki komşusudur; şekilde bu yönde {mp[k]} harfi vardır.", shape=sh)
+
+
+_SS_YN = {"kb": "kuzeybatı", "b": "batı", "kd": "kuzeydoğu", "d": "doğu", "g": "güney", "gd": "güneydoğu"}
+
+_SS_MIR = [("Göbeklitepe", 12000), ("Çatalhöyük", 9000), ("Truva", 5000), ("Hattuşa (Hitit başkenti)", 3600)]
+
+
+def _ss_zaman():
+    k = 4
+    ev = random.sample(_SS_MIR, k)
+    hf = random.sample(_SS_L, k)
+    return ev, hf, {"type": "sos", "sub_type": "zaman", "olaylar": [{"h": hf[i], "yil": ev[i][1]} for i in range(k)]}
+
+
+def _ss_mp(ev, hf):
+    return ", ".join(f"{hf[i]} = {ev[i][0]}" for i in range(len(ev)))
+
+
+def _sf_ss_eski(subject):
+    ev, hf, sh = _ss_zaman()
+    mode = random.choice(["en eski", "en yeni"])
+    i = max(range(len(ev)), key=lambda j: ev[j][1]) if mode == "en eski" else min(range(len(ev)), key=lambda j: ev[j][1])
+    q = f"Zaman şeridinde bazı yerleşimlerin yaklaşık yaşları gösterilmiştir ({_ss_mp(ev, hf)}). Bu yerleşimlerden {mode} olanı hangi harfle gösterilmiştir?"
+    allh = sorted(hf)
+    if len(allh) > 4:
+        return None
+    if len(allh) == 3:
+        allh = sorted(allh + [random.choice([x for x in _SS_L if x not in allh])])
+    return _mf_raw(subject, "Ortak Mirasımız", q, (allh, hf[i]), f"Yıl önce değeri {'en büyük' if mode == 'en eski' else 'en küçük'} olan {ev[i][0]} yani {hf[i]} {mode} olandır.", shape=sh)
+
+
+def _sf_ss_fark(subject):
+    ev, hf, sh = _ss_zaman()
+    i, j = random.sample(range(len(ev)), 2)
+    if ev[i][1] < ev[j][1]:
+        i, j = j, i
+    d = ev[i][1] - ev[j][1]
+    o = _mf_opts(d, [x for x in (d + 1000, max(d - 1000, 500), d + 2000, ev[i][1], d + 500) if x != d and x > 0], lambda v: f"{_fmt_say(v)} yıl", sort=False)
+    q = f"Zaman şeridinde bazı yerleşimlerin yaklaşık yaşları gösterilmiştir ({_ss_mp(ev, hf)}). Buna göre {ev[i][0]} ile {ev[j][0]} arasında yaklaşık kaç yıl vardır?"
+    return _mf_raw(subject, "Ortak Mirasımız", q, o, f"{ev[i][1]} − {ev[j][1]} = {d} yıl.", shape=sh) if o else None
+
+
+def _ss_bar(labs, vals, ttl, yl):
+    return {"type": "bar_chart", "labels": labs, "values": vals, "title": ttl, "ylabel": yl}
+
+
+def _sf_ss_butce_pie(subject):
+    g = random.choice([4000, 5000, 8000, 10000])
+    pc = random.choice([[40, 30, 20, 10], [50, 25, 15, 10], [40, 25, 20, 15], [35, 30, 20, 15]])
+    labs = ["Mutfak", "Kira", "Fatura", "Eğitim"]
+    i, j = random.sample(range(4), 2)
+    d = g * (pc[i] - pc[j]) // 100
+    if d <= 0:
+        i, j = j, i
+        d = -d
+    o = _mf_opts(d, [x for x in (g * pc[i] // 100, g * pc[j] // 100, d + g // 20, max(d - g // 20, g // 100), d + g // 10) if x != d and x > 0], lambda v: f"{_fmt_say(v)} TL", sort=False)
+    sh = {"type": "pie_chart", "labels": labs, "values": pc, "title": f"Aylık gelir {_fmt_say(g)} TL — giderlerin dağılımı (%)"}
+    q = f"Bir ailenin aylık geliri {_fmt_say(g)} TL'dir ve bu gelir daire grafiğinde gösterildiği gibi harcanmıştır. Buna göre {labs[i].lower()} giderine ayrılan tutar, {labs[j].lower()} giderine ayrılan tutardan kaç TL fazladır?"
+    return _mf_raw(subject, "İhtiyaç, istek ve bütçe", q, o, f"({pc[i]} − {pc[j]})% × {g} = {d} TL.", shape=sh) if o else None
+
+
+def _sf_ss_ihtiyac_bar(subject):
+    ih = random.sample([("Ekmek", 20), ("Süt", 30), ("Ders kitabı", 40), ("Ilık su", 10)], 2)
+    ist = random.sample([("Oyuncak", 50), ("Sinema", 30), ("Çikolata", 20), ("Oyun kartı", 40)], 2)
+    ih = [(n, random.choice([10, 20, 30, 40])) for n, _ in ih]
+    ist = [(n, random.choice([20, 30, 50, 60])) for n, _ in ist]
+    items = ih + ist
+    random.shuffle(items)
+    ask = random.choice(["ihtiyaç", "istek"])
+    pool = ih if ask == "ihtiyaç" else ist
+    t = sum(v for _n, v in pool)
+    o = _mf_opts(t, [x for x in (sum(v for _n, v in items), sum(v for _n, v in (ist if ask == "ihtiyaç" else ih)), t + 10, max(t - 10, 10), t + 20) if x != t and x > 0], lambda v: f"{v} TL", sort=False)
+    sh = _ss_bar([n for n, _v in items], [v for _n, v in items], "Bir öğrencinin haftalık harcamaları (TL)", "Harcama (TL)")
+    q = f"Bir öğrencinin bir haftada yaptığı harcamalar sütun grafiğinde gösterilmiştir. Buna göre öğrencinin {ask} niteliğindeki harcamalarının toplamı kaç TL'dir?"
+    return _mf_raw(subject, "İhtiyaç, istek ve bütçe", q, o, f"{ask.capitalize()} olan harcamalar: " + ", ".join(f"{n} ({v})" for n, v in pool) + f" → {t} TL.", shape=sh) if o else None
+
+
+def _sf_ss_il_bar(subject):
+    labs = ["Tarım", "Sanayi", "Ticaret", "Turizm"]
+    vals = random.sample(range(10, 70, 5), 4)
+    i, j = random.sample(range(4), 2)
+    t = vals[i] + vals[j]
+    o = _mf_opts(t, [x for x in (sum(vals), abs(vals[i] - vals[j]), t + 5, max(t - 5, 5), t + 10) if x != t and x > 0], lambda v: f"{v} bin kişi", sort=False)
+    sh = _ss_bar(labs, vals, "Bir ilde sektörlere göre çalışan sayısı (bin kişi)", "Çalışan (bin kişi)")
+    q = f"Bir ilde yürütülen ekonomik faaliyetlerde çalışanların sayısı sütun grafiğinde gösterilmiştir. Buna göre {labs[i].lower()} ve {labs[j].lower()} alanlarında çalışanların toplamı kaç bin kişidir?"
+    return _mf_raw(subject, "Yaşadığı ildeki ekonomik faaliyetler", q, o, f"{vals[i]} + {vals[j]} = {t} bin kişi.", shape=sh) if o else None
+
+
+def _sf_ss_tasarruf_line(subject):
+    labs = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran"][:random.choice([5, 6])]
+    v, c = [], random.choice([20, 30, 40])
+    for _ in labs:
+        v.append(c)
+        c += random.choice([20, 30, 40])
+    k = random.randrange(1, len(labs))
+    hedef = v[k]
+    ans = next(lb for lb, x in zip(labs, v) if x >= hedef)
+    o = _mf_opts(ans, [lb for lb in labs if lb != ans][:3] if len(labs) > 3 else [], str, sort=False)
+    sh = {"type": "line_chart", "labels": labs, "values": v, "title": f"Elif'in birikimi (TL) — Hedef: {hedef} TL", "ylabel": "Birikim (TL)"}
+    q = f"Elif'in aylara göre biriktirdiği toplam para çizgi grafiğinde gösterilmiştir. Elif {hedef} TL'lik oyuncağı alabilmek için tasarruf yapmaktadır. Buna göre Elif parasını ilk kez hangi ayda yeterli duruma getirmiştir?"
+    return _mf_raw(subject, "İhtiyaç, istek ve bütçe", q, o, f"Birikim {hedef} TL'ye ilk olarak {ans} ayında ulaşır ({dict(zip(labs, v))[ans]} TL).", shape=sh) if o else None
+
+
+_SS_ADAY = ["Ali", "Ayşe", "Mert", "Zeynep", "Can", "Elif"]
+
+
+def _sf_ss_oy_bar(subject):
+    ad = random.sample(_SS_ADAY, 4)
+    v = random.sample(range(3, 13), 4)
+    ask = random.choice(["top", "fark"])
+    if ask == "top":
+        t = sum(v)
+        o = _mf_opts(t, [x for x in (t + 2, t - 2, t + 4, max(v) , t + 1) if x != t and x > 0], lambda x: f"{x} öğrenci", sort=False)
+        q = f"Sınıf başkanlığı seçiminde adayların aldığı oy sayısı sütun grafiğinde gösterilmiştir. Her öğrenci yalnız bir oy kullandığına göre seçimde toplam kaç öğrenci oy kullanmıştır?"
+        ex = " + ".join(map(str, v)) + f" = {t}."
+    else:
+        s = sorted(v, reverse=True)
+        t = s[0] - s[1]
+        o = _mf_opts(t, [x for x in (t + 1, t + 2, t + 3, s[0], s[0] - s[3]) if x != t and x > 0], lambda x: f"{x} oy", sort=False)
+        q = "Sınıf başkanlığı seçiminde adayların aldığı oy sayısı sütun grafiğinde gösterilmiştir. Buna göre seçimi kazanan aday, ikinci olan adaydan kaç oy fazla almıştır?"
+        ex = f"{s[0]} − {s[1]} = {t} oy."
+    sh = _ss_bar(ad, v, "Sınıf başkanlığı seçimi (oy sayısı)", "Oy sayısı")
+    return _mf_raw(subject, "Demokrasi ve cumhuriyet", q, o, ex, shape=sh) if o else None
+
+
+def _sf_ss_oy_pie(subject):
+    ad = random.sample(_SS_ADAY, 4)
+    pc = random.choice([[40, 30, 20, 10], [50, 25, 15, 10], [40, 25, 20, 15], [35, 30, 20, 15]])
+    tot = random.choice([20, 40, 60])
+    i = random.randrange(4)
+    c = tot * pc[i] // 100
+    if tot * pc[i] % 100:
+        return None
+    o = _mf_opts(c, [x for x in (tot * pc[(i + 1) % 4] // 100, tot * pc[(i + 2) % 4] // 100, c + 2, max(c - 2, 1), c + 4) if x != c and x > 0], lambda x: f"{x} oy", sort=False)
+    sh = {"type": "pie_chart", "labels": ad, "values": pc, "title": f"Okul meclisi seçimi — {tot} oy kullanıldı (%)"}
+    q = f"Okul meclisi seçiminde {tot} öğrenci oy kullanmış ve adayların aldığı oyların yüzdesi daire grafiğinde gösterilmiştir. Buna göre {ad[i]} kaç oy almıştır?"
+    return _mf_raw(subject, "Demokrasi ve cumhuriyet", q, o, f"{tot} × %{pc[i]} = {c} oy.", shape=sh) if o else None
+
+
+def _sf_ss_kulup_bar(subject):
+    labs = random.sample(["Satranç", "Resim", "Tiyatro", "Spor", "Müzik", "Okuma"], 4)
+    v = random.sample(range(2, 10), 4)
+    sinif = sum(v) + random.choice([2, 3, 4, 5])
+    t = sinif - sum(v)
+    o = _mf_opts(t, [x for x in (t + 1, t + 2, max(t - 1, 1), sum(v), t + 3) if x != t and x > 0], lambda x: f"{x} öğrenci", sort=False)
+    sh = _ss_bar(labs, v, f"Sınıf mevcudu: {sinif} — kulüp üyeleri (öğrenci sayısı)", "Öğrenci sayısı")
+    q = f"{sinif} öğrencili bir sınıfta öğrencilerin üye olduğu kulüpler sütun grafiğinde gösterilmiştir. Her öğrenci en fazla bir kulübe üyedir. Buna göre hiçbir kulübe üye olmayan kaç öğrenci vardır?"
+    return _mf_raw(subject, "Gruplar ve roller", q, o, f"Üyeler toplamı {sum(v)}; {sinif} − {sum(v)} = {t}.", shape=sh) if o else None
+
+
+def _sf_ss_yardim_line(subject):
+    labs = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"][:random.choice([4, 5])]
+    v = [random.choice(range(10, 60, 5)) for _ in labs]
+    t = sum(v)
+    o = _mf_opts(t, [x for x in (t + 10, max(t - 10, 5), t + 5, t - 5, t + 20) if x != t and x > 0], lambda x: f"{x} koli", sort=False)
+    sh = {"type": "line_chart", "labels": labs, "values": v, "title": "Yardım kampanyasında toplanan koli sayısı", "ylabel": "Koli sayısı"}
+    q = f"Okulumuzda depremzedeler için düzenlenen yardım kampanyasında günlere göre toplanan koli sayısı çizgi grafiğinde gösterilmiştir. Buna göre kampanyada toplam kaç koli toplanmıştır?"
+    return _mf_raw(subject, "Yardımlaşma ve dayanışma", q, o, " + ".join(map(str, v)) + f" = {t} koli.", shape=sh) if o else None
+
+
+def _sf_ss_tekn_bar(subject):
+    labs = random.sample(["Telefon", "Tablet", "Bilgisayar", "Televizyon", "Oyun konsolu"], 4)
+    v = random.sample(range(10, 80, 10), 4)
+    ask = random.choice(["top", "fark"])
+    if ask == "top":
+        t = sum(v)
+        o = _mf_opts(t, [x for x in (t + 10, t - 10, t + 20, max(v), t + 30) if x != t and x > 0], lambda x: f"{x} dakika", sort=False)
+        q = "Bir öğrencinin bir günde kullandığı teknolojik araçların süresi sütun grafiğinde gösterilmiştir. Buna göre öğrencinin bu araçları toplam kaç dakika kullandığı söylenebilir?"
+        ex = " + ".join(map(str, v)) + f" = {t} dakika."
+    else:
+        s = sorted(v, reverse=True)
+        t = s[0] - s[-1]
+        o = _mf_opts(t, [x for x in (t + 10, t + 20, max(t - 10, 10), s[0], t + 30) if x != t and x > 0], lambda x: f"{x} dakika", sort=False)
+        q = "Bir öğrencinin bir günde kullandığı teknolojik araçların süresi sütun grafiğinde gösterilmiştir. Buna göre en çok kullanılan araç ile en az kullanılan araç arasındaki süre farkı kaç dakikadır?"
+        ex = f"{s[0]} − {s[-1]} = {t} dakika."
+    sh = _ss_bar(labs, v, "Günlük teknolojik araç kullanımı (dakika)", "Süre (dakika)")
+    return _mf_raw(subject, "Teknolojik ürünlerin bilinçli kullanımı", q, o, ex, shape=sh) if o else None
+
+
+def _sf_ss_tekn_line(subject):
+    yil = ["2019", "2020", "2021", "2022", "2023"]
+    v = sorted(random.sample(range(5, 20), 5))
+    a, b = random.sample(range(5), 2)
+    a, b = min(a, b), max(a, b)
+    d = v[b] - v[a]
+    o = _mf_opts(d, [x for x in (d + 1, d + 2, max(d - 1, 1), v[b], d + 3) if x != d and x > 0], lambda x: f"{x} öğrenci", sort=False)
+    sh = {"type": "line_chart", "labels": yil, "values": v, "title": "Akıllı tahta kullanan sınıf sayısına göre yıllar", "ylabel": "Sınıf sayısı"} if False else {"type": "line_chart", "labels": yil, "values": v, "title": "Bir okulda bilgisayar laboratuvarını kullanan öğrenci sayısı", "ylabel": "Öğrenci sayısı"}
+    q = f"Bir okulda teknolojik gelişmelerin eğitime yansıması sonucu bilgisayar laboratuvarını kullanan öğrenci sayısı yıllara göre çizgi grafiğinde gösterilmiştir. Buna göre {yil[a]} yılından {yil[b]} yılına kullanan öğrenci sayısı kaç artmıştır?"
+    return _mf_raw(subject, "Teknolojik gelişmelerin toplum hayatına etkisi", q, o, f"{v[b]} − {v[a]} = {d}.", shape=sh) if o else None
+
+
+_SS_FAMS = [
+    (_sf_ss_yon, 2, "bir"), (_sf_ss_yon2, 3, "bir"), (_sf_ss_uc, 2, "bir"), (_sf_ss_say, 3, "bir"), (_sf_ss_komsu, 3, "kom"),
+    (_sf_ss_eski, 2, "mir"), (_sf_ss_fark, 4, "mir"),
+    (_sf_ss_butce_pie, 3, "ek1"), (_sf_ss_ihtiyac_bar, 3, "ek1"), (_sf_ss_il_bar, 2, "ek2"), (_sf_ss_tasarruf_line, 4, "ek1"),
+    (_sf_ss_oy_bar, 3, "dem"), (_sf_ss_oy_pie, 3, "dem"), (_sf_ss_kulup_bar, 3, "grp"), (_sf_ss_yardim_line, 2, "yar"),
+    (_sf_ss_tekn_bar, 3, "tek"), (_sf_ss_tekn_line, 3, "tek"),
+]
+_SS_KWM = {"bir": _SS_KW["bir"], "kom": _SS_KW["kom"], "mir": _SS_KW["mir"], "ek1": _SS_KW["ek"], "ek2": _SS_KW["ek"], "dem": _SS_KW["dem"], "grp": _SS_KW["grp"], "yar": _SS_KW["afe"], "tek": _SS_KW["tek"]}
+for _f, _d, _it in _SS_FAMS:
+    _f.ITEM = _SS_I[_it]
+    _SF_GENS.append((_vy_wrap(_f), _SS_KWM[_it]))
+    _DIFF_OF[_f.__name__] = _d
+
+
+
+# ---- Din Kültürü / İngilizce / Türkçe: şekilli aileler
+_VY_EN = ["Look at the picture.", "Look at the picture and answer the question.", "Study the picture below.", "Look at the picture carefully.", "Check the picture.", "Read the question and look at the picture."]
+
+
+def _vy_wrap_en(fn):
+    import functools
+
+    @functools.wraps(fn)
+    def w(subject):
+        r = fn(subject)
+        if not r or not r.get("shape"):
+            return r
+        r = dict(r)
+        r["question"] = random.choice(_VY_EN) + " " + str(r["question"])
+        return r
+    return w
+
+
+_DL = list("KLMNPRST")
+
+
+def _lt(n):
+    return random.sample(_DL, n)
+
+
+def _dl_sh(**kw):
+    return {"type": "dil", **kw}
+
+
+# ---- İNGİLİZCE
+_EN_NUM = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
+
+
+def _en_time_txt(h, m):
+    h1 = h if h <= 12 else h - 12
+    nx = _EN_NUM[(h % 12) + 1]
+    me = _EN_NUM[h1 if h1 else 12]
+    return {0: f"It's {me} o'clock.", 15: f"It's quarter past {me}.", 30: f"It's half past {me}.", 45: f"It's quarter to {nx}."}[m]
+
+
+def _fen_en_saat(subject):
+    h, m = random.randint(1, 12), random.choice([0, 15, 30, 45])
+    c = _en_time_txt(h, m)
+    ws = []
+    for hh, mm in [(h, random.choice([x for x in (0, 15, 30, 45) if x != m])), ((h % 12) + 1, m), (((h + 1) % 12) + 1, m), (h, random.choice([x for x in (0, 15, 30, 45) if x != m]))]:
+        t = _en_time_txt(hh, mm)
+        if t != c and t not in ws:
+            ws.append(t)
+    if len(ws) < 3:
+        return None
+    allv = [c] + ws[:3]
+    random.shuffle(allv)
+    return _mf_raw(subject, "Telling the time", "What time is it?", (allv, c), f"The short hand shows {h}; the long hand shows {m} minutes → {c}", shape=_dl_sh(sub_type="saat", h=h, m=m))
+
+
+_EN_PREP = {"p1": "on the table", "p2": "under the table", "p3": "in the box", "p4": "next to the box", "p5": "on the box"}
+
+
+def _fen_en_konum(subject):
+    p = random.choice(list(_EN_PREP))
+    obj = random.choice(["ball", "apple", "orange"])
+    ws = [f"It is {v}." for k, v in _EN_PREP.items() if k != p]
+    random.shuffle(ws)
+    c = f"It is {_EN_PREP[p]}."
+    allv = [c] + ws[:3]
+    random.shuffle(allv)
+    return _mf_raw(subject, "Prepositions of place", f"Where is the {obj}?", (allv, c), f"In the picture the {obj} is {_EN_PREP[p]}.", shape=_dl_sh(sub_type="konum", p=p, obj=obj))
+
+
+_EN_KIND = {"apple": ("apple", "apples"), "book": ("book", "books"), "pencil": ("pencil", "pencils"), "balloon": ("balloon", "balloons"), "tree": ("tree", "trees")}
+
+
+def _en_cnt(k, n):
+    return f"There is one {_EN_KIND[k][0]}." if n == 1 else f"There are {_EN_NUM[n]} {_EN_KIND[k][1]}."
+
+
+def _fen_en_say(subject):
+    ks = random.sample(list(_EN_KIND), 3)
+    ns = [random.randint(1, 6) for _ in ks]
+    rows = [{"k": k, "n": n} for k, n in zip(ks, ns)]
+    i = random.randrange(3)
+    c = _en_cnt(ks[i], ns[i])
+    ws = []
+    for j in range(3):
+        for dn in (1, -1, 2):
+            v = ns[j] + dn
+            if 1 <= v <= 7 and v != ns[j]:
+                t = _en_cnt(ks[j], v)
+                if t != c and t not in ws:
+                    ws.append(t)
+                break
+    ws.append(_en_cnt(ks[i], ns[i] % 6 + 1))
+    ws = [w for w in dict.fromkeys(ws) if w != c]
+    if len(ws) < 3:
+        return None
+    allv = [c] + random.sample(ws, 3)
+    random.shuffle(allv)
+    return _mf_raw(subject, "There is/are", "Which sentence is correct according to the picture?", (allv, c), f"The picture shows {ns[i]} {ks[i]}(s): {c}", shape=_dl_sh(sub_type="say", rows=rows))
+
+
+_EN_FOOD = ["pizza", "burger", "pasta", "salad", "soup", "rice"]
+
+
+def _fen_en_bar(subject):
+    labs = random.sample(_EN_FOOD, 4)
+    v = random.sample(range(2, 16), 4)
+    i, j = random.sample(range(4), 2)
+    t = v[i] + v[j]
+    o = _mf_opts(t, [x for x in (sum(v), abs(v[i] - v[j]), t + 1, t - 1, t + 2, t + 3) if x != t and x > 0], str, sort=False)
+    sh = {"type": "bar_chart", "labels": [x.capitalize() for x in labs], "values": v, "title": "Favourite food in class 5-A", "ylabel": "Number of students"}
+    return _mf_raw(subject, "Food types", f"How many students like {labs[i]} and {labs[j]} in total?", o, f"{v[i]} + {v[j]} = {t}", shape=sh) if o else None
+
+
+def _fen_en_bar2(subject):
+    labs = random.sample(["football", "tennis", "swimming", "basketball", "volleyball", "chess"], 4)
+    v = random.sample(range(2, 16), 4)
+    i, j = random.sample(range(4), 2)
+    if v[i] < v[j]:
+        i, j = j, i
+    d = v[i] - v[j]
+    o = _mf_opts(d, [x for x in (d + 1, d + 2, max(d - 1, 1), v[i], v[i] + v[j], d + 3) if x != d and x > 0], str, sort=False)
+    sh = {"type": "bar_chart", "labels": [x.capitalize() for x in labs], "values": v, "title": "Favourite hobbies in our class", "ylabel": "Number of students"}
+    return _mf_raw(subject, "Hobbies and activities", f"How many more students like {labs[i]} than {labs[j]}?", o, f"{v[i]} − {v[j]} = {d}", shape=sh) if o else None
+
+
+_EN_PLACE = ["School", "Park", "Hospital", "Market", "Library", "Bakery", "Cinema", "Post Office", "Pharmacy", "Bank"]
+
+
+def _fen_en_map(subject):
+    n = random.choice([5, 6])
+    cells = random.sample([(c, r) for c in range(3) for r in range(3)], n)
+    ad = random.sample(_EN_PLACE, n)
+    hf = random.sample(_DL, n)
+    ys = [{"h": hf[i], "ad": ad[i], "c": cells[i][0], "r": cells[i][1]} for i in range(n)]
+    for _t in range(30):
+        a = random.choice(ys)
+        dx = random.choice([1, -1])
+        b = next((y for y in ys if (y["c"], y["r"]) == (a["c"] + dx, a["r"])), None)
+        if b:
+            break
+    else:
+        return None
+    side = "right" if dx == 1 else "left"
+    o = (sorted([b["h"]] + [y["h"] for y in random.sample([y for y in ys if y is not a and y is not b], 3)]), b["h"])
+    sh = {"type": "sos", "sub_type": "kroki", "cols": 3, "rows": 3, "yerler": ys, "pusula": False}
+    return _mf_raw(subject, "Places in the neighbourhood", f"Which letter shows the place on the {side} of the {a['ad']}?", o, f"On the map, the {b['ad']} ({b['h']}) is on the {side} of the {a['ad']}.", shape=sh)
+
+
+_EN_FAMS = [(_fen_en_saat, 2, "Telling the time", ("telling the time", "classroom life", "time")), (_fen_en_konum, 2, "There is/are", ("there is/are", "prepositions", "classroom", "life in the neighbourhood")),
+            (_fen_en_say, 2, "There is/are", ("there is/are", "classroom", "neighbourhood")), (_fen_en_bar, 3, "Food types", ("food", "life in the world", "countable")),
+            (_fen_en_bar2, 3, "Hobbies and activities", ("hobbies", "family life", "activities")), (_fen_en_map, 3, "Places for recreation", ("neighbourhood", "places", "there is/are"))]
+for _f, _d, _it, _kw in _EN_FAMS:
+    _f.ITEM = _it
+    _EF_GENS.append((_vy_wrap_en(_f), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
+# ---- TÜRKÇE
+_TR_KAT = {"meyve": ["elma", "armut", "kiraz", "üzüm", "muz"], "hayvan": ["kedi", "koyun", "inek", "kuş", "tavşan"], "meslek": ["doktor", "öğretmen", "aşçı", "pilot", "terzi"],
+           "renk": ["kırmızı", "mavi", "yeşil", "sarı", "mor"], "spor": ["futbol", "yüzme", "voleybol", "basketbol", "atletizm"], "taşıt": ["otobüs", "tren", "uçak", "gemi", "bisiklet"]}
+
+
+def _ftr_kavram(subject):
+    a, b = random.sample(list(_TR_KAT), 2)
+    ws = random.sample(_TR_KAT[a], 3) + [random.choice(_TR_KAT[b])]
+    hf = _lt(4)
+    order = list(range(4))
+    random.shuffle(order)
+    soz = [{"h": hf[k], "w": ws[order[k]]} for k in range(4)]
+    odd = next(k for k in range(4) if order[k] == 3)
+    q = "Şekilde harflerle gösterilen sözcüklerden hangisi anlam alanı bakımından diğerlerinden farklıdır?"
+    return _mf_raw(subject, "Söz varlığı", q, (sorted(hf), hf[odd]), f"Üç sözcük de {a} grubundadır; {soz[odd]['w']} ise {b} grubuna aittir. Bu sözcük {hf[odd]} harfiyle gösterilmiştir.", shape=_dl_sh(sub_type="kavram", sozler=soz))
+
+
+_TR_DUY = [("e1", "sevinç", "Sınavdan yüksek not aldığını öğrenen Elif"), ("e2", "üzüntü", "En sevdiği oyuncağı kırılan Can"), ("e3", "kızgınlık", "Arkadaşı sözünü tutmayınca Mert"), ("e4", "şaşkınlık", "Kapıyı açınca sürpriz doğum günü partisiyle karşılaşan Ayşe")]
+
+
+def _ftr_yuz(subject):
+    ds = random.sample(_TR_DUY, 4)
+    hf = _lt(4)
+    k = random.randrange(4)
+    sh = _dl_sh(sub_type="yuz", yuzler=[{"e": ds[i][0], "h": hf[i]} for i in range(4)])
+    q = f"{ds[k][2]} bu durumda hangi duyguyu yaşar? Şekildeki yüz ifadelerinden bu duyguyu en iyi yansıtanı hangi harfle gösterilmiştir?"
+    q = f"{ds[k][2]} için şekildeki yüz ifadelerinden hangisi duygusunu en iyi yansıtır?"
+    return _mf_raw(subject, "Duygular", q, (sorted(hf), hf[k]), f"{ds[k][2]} {ds[k][1]} duygusunu yaşar; bu duyguyu gösteren yüz {hf[k]} ile gösterilendir.", shape=sh)
+
+
+def _ftr_yuz2(subject):
+    ds = random.sample(_TR_DUY, 4)
+    hf = _lt(4)
+    k = random.randrange(4)
+    sh = _dl_sh(sub_type="yuz", yuzler=[{"e": ds[i][0], "h": hf[i]} for i in range(4)])
+    allv = [d[1].capitalize() for d in _TR_DUY]
+    c = ds[k][1].capitalize()
+    q = f"Şekilde {hf[k]} harfiyle gösterilen yüz ifadesi aşağıdaki duygulardan hangisini yansıtmaktadır?"
+    return _mf_raw(subject, "Duygular", q, (allv, c), f"{hf[k]} ile gösterilen yüz {c.lower()} duygusunu yansıtır.", shape=sh)
+
+
+_TR_OLAY = [("Atatürk'ün doğumu", 1881), ("Samsun'a çıkış", 1919), ("TBMM'nin açılışı", 1920), ("Büyük Zafer", 1922), ("Cumhuriyet'in ilanı", 1923)]
+
+
+def _ftr_zaman(subject):
+    ev = random.sample(_TR_OLAY, 4)
+    hf = _lt(4)
+    mp = ", ".join(f"{hf[i]} = {ev[i][0]}" for i in range(4))
+    sh = {"type": "sos", "sub_type": "zaman", "takvim": True, "olaylar": [{"h": hf[i], "yil": ev[i][1]} for i in range(4)]}
+    mode = random.choice(["ilk", "son"])
+    i = min(range(4), key=lambda j: ev[j][1]) if mode == "ilk" else max(range(4), key=lambda j: ev[j][1])
+    q = f"Zaman şeridinde Atatürk ve Millî Mücadele ile ilgili bazı olayların yılları verilmiştir ({mp}). Bu olaylardan {'ilk' if mode == 'ilk' else 'en son'} gerçekleşen hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Atatürk'ü Tanımak", q, (sorted(hf), hf[i]), f"{ev[i][0]} {ev[i][1]} yılında gerçekleşmiştir; bu yıl şeritte {'en küçük' if mode == 'ilk' else 'en büyük'} yıldır.", shape=sh)
+
+
+def _ftr_zaman2(subject):
+    ev = random.sample(_TR_OLAY, 3)
+    hf = _lt(3)
+    mp = ", ".join(f"{hf[i]} = {ev[i][0]}" for i in range(3))
+    sh = {"type": "sos", "sub_type": "zaman", "takvim": True, "olaylar": [{"h": hf[i], "yil": ev[i][1]} for i in range(3)]}
+    i, j = random.sample(range(3), 2)
+    if ev[i][1] < ev[j][1]:
+        i, j = j, i
+    d = ev[i][1] - ev[j][1]
+    o = _mf_opts(d, [x for x in (d + 1, d + 2, max(d - 1, 1), d + 3, d + 5, d - 2) if x != d and x > 0], lambda x: f"{x} yıl", sort=False)
+    q = f"Zaman şeridinde bazı olayların yılları verilmiştir ({mp}). Buna göre {hf[i]} ile {hf[j]} harfleriyle gösterilen olaylar arasında kaç yıl vardır?"
+    return _mf_raw(subject, "Atatürk'ü Tanımak", q, o, f"{ev[i][1]} − {ev[j][1]} = {d} yıl.", shape=sh) if o else None
+
+
+_TR_OYUN = ["Saklambaç", "Misket", "İp atlama", "Uzun eşek", "Birdirbir", "Çelik çomak", "Dokuz taş"]
+
+
+def _ftr_grafik(subject):
+    labs = random.sample(_TR_OYUN, 4)
+    v = random.sample(range(3, 16), 4)
+    top = max(range(4), key=lambda i: v[i])
+    low = min(range(4), key=lambda i: v[i])
+    a, b = random.sample(range(4), 2)
+    if v[a] < v[b]:
+        a, b = b, a
+    tr = [f"En çok tercih edilen oyun {labs[top]} olmuştur.", f"{labs[low]} oyununu seçenlerin sayısı en azdır.", f"{labs[a]} oyununu seçen öğrenci sayısı {labs[b]} oyununu seçenlerden fazladır.", f"{labs[a]} oyununu {v[a]} öğrenci seçmiştir."]
+    fl = [f"{labs[top]} oyunu en az tercih edilen oyundur.", f"{labs[low]} oyununu seçenlerin sayısı en çoktur.", f"{labs[b]} oyununu seçen öğrenci sayısı {labs[a]} oyununu seçenlerden fazladır.", f"{labs[a]} oyununu {v[a] + 2} öğrenci seçmiştir."]
+    c = random.choice(fl)
+    w = random.sample([t for t in tr if str(v[a] + 2) not in t], 3)
+    if len(w) < 3:
+        return None
+    allv = [c] + w
+    random.shuffle(allv)
+    sh = {"type": "bar_chart", "labels": labs, "values": v, "title": "Sınıfın en sevdiği geleneksel oyunlar", "ylabel": "Öğrenci sayısı"}
+    return _mf_raw(subject, "Geleneksel çocuk oyunları", "Grafiğe göre aşağıdaki yargılardan hangisi söylenemez?", (allv, c), "Bu ifade grafikteki verilerle çelişmektedir; diğer ifadeler grafikle uyumludur.", shape=sh)
+
+
+_TR_FAMS = [(_ftr_kavram, 2, "Söz varlığı", ("söz varlığı", "anlam", "sözcük", "anahtar kelime")), (_ftr_yuz, 2, "Görselle iletilen anlam", ("duygu", "görsel")),
+            (_ftr_yuz2, 2, "Temel duygular", ("duygu", "görsel")), (_ftr_zaman, 2, "Millî Mücadele", ("atatürk", "cumhuriyet", "millî mücadele", "23 nisan")),
+            (_ftr_zaman2, 3, "Millî Mücadele", ("atatürk", "cumhuriyet", "millî mücadele")), (_ftr_grafik, 3, "Geleneksel çocuk oyunları", ("oyun", "geleneksel", "anahtar"))]
+for _f, _d, _it, _kw in _TR_FAMS:
+    _f.ITEM = _it
+    _TF_GENS.append((_vy_wrap(_f), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
+# ---- DİN KÜLTÜRÜ
+_DN_VAKIT = [("v1", "Sabah"), ("v2", "Öğle"), ("v3", "İkindi"), ("v4", "Akşam"), ("v5", "Yatsı")]
+
+
+def _fdn_vakit(subject):
+    hf = _lt(5)
+    mp = {k: hf[i] for i, (k, _n) in enumerate(_DN_VAKIT)}
+    i = random.randrange(5)
+    k, nm = _DN_VAKIT[i]
+    q = f"Şekilde güneşin gün içindeki konumuna göre beş vakit namaz harflerle gösterilmiştir. {hf[i]} harfiyle gösterilen vakit hangisidir?"
+    _al = [nm] + random.sample([n for _k, n in _DN_VAKIT if n != nm], 3)
+    random.shuffle(_al)
+    o = (_al, nm)
+    return _mf_raw(subject, "Namaz ibadeti", q, o, f"Güneşin konumuna göre {hf[i]} ile gösterilen vakit {nm} vaktidir.", shape=_dl_sh(sub_type="gok", harf=mp))
+
+
+_DN_FARZ = [("Sabah", 2), ("Öğle", 4), ("İkindi", 4), ("Akşam", 3), ("Yatsı", 4)]
+
+
+def _fdn_rekat(subject):
+    sh = {"type": "bar_chart", "labels": [n for n, _v in _DN_FARZ], "values": [v for _n, v in _DN_FARZ], "title": "Beş vakit namazın farz rekât sayıları", "ylabel": "Farz rekât sayısı"}
+    mode = random.choice(["top", "fark"])
+    if mode == "top":
+        o = _mf_opts(17, [16, 18, 15, 19, 14, 20], str, sort=False)
+        q = "Grafiğe göre bir günde kılınan beş vakit namazın farz rekâtlarının toplamı kaçtır?"
+        ex = "2 + 4 + 4 + 3 + 4 = 17."
+    else:
+        a, b = random.choice([(1, 0), (2, 0), (3, 0), (4, 0), (1, 3), (2, 3), (4, 3)])
+        d = _DN_FARZ[a][1] - _DN_FARZ[b][1]
+        o = _mf_opts(d, [x for x in (d + 1, d + 2, d + 3, 5, 6) if x != d and x > 0], str, sort=False)
+        q = f"Grafiğe göre {_DN_FARZ[a][0]} namazının farz rekât sayısı, {_DN_FARZ[b][0]} namazınınkinden kaç fazladır?"
+        ex = f"{_DN_FARZ[a][1]} − {_DN_FARZ[b][1]} = {d}."
+    return _mf_raw(subject, "Namaz ibadeti", q, o, ex, shape=sh) if o else None
+
+
+_DN_POZ = [("p1", "kıyam (ayakta durma)"), ("p2", "rükû (eğilme)"), ("p3", "secde"), ("p4", "oturuş (kade)")]
+
+
+def _fdn_poz(subject):
+    hf = _lt(4)
+    pz = random.sample(_DN_POZ, 4)
+    k = random.randrange(4)
+    sh = _dl_sh(sub_type="poz", pozlar=[{"k": pz[i][0], "h": hf[i]} for i in range(4)])
+    q = f"Şekilde namazdaki dört duruş harflerle gösterilmiştir. {pz[k][1].split(' ')[0].capitalize()} hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Namazın kılınışı", q, (sorted(hf), hf[k]), f"Şekilde {pz[k][1]} duruşu {hf[k]} harfiyle gösterilmiştir.", shape=sh)
+
+
+def _fdn_poz2(subject):
+    hf = _lt(4)
+    pz = random.sample(_DN_POZ, 4)
+    k = random.randrange(4)
+    sh = _dl_sh(sub_type="poz", pozlar=[{"k": pz[i][0], "h": hf[i]} for i in range(4)])
+    allv = [n.split(" ")[0].capitalize() for _k, n in _DN_POZ]
+    c = pz[k][1].split(" ")[0].capitalize()
+    q = f"Şekilde namazdaki dört duruş harflerle gösterilmiştir. {hf[k]} harfiyle gösterilen duruş aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Namazın kılınışı", q, (allv, c), f"{hf[k]} ile gösterilen duruş {pz[k][1]} duruşudur.", shape=sh)
+
+
+_DN_CAMI = [("c1", "Kubbe", "Caminin üstünü örten yarım küre biçimindeki bölümdür."), ("c2", "Mihrap", "Kıble yönünü gösteren, duvardaki oyuk bölümdür."), ("c3", "Minber", "Cuma hutbesinin okunduğu, merdivenli bölümdür."), ("c4", "Minare", "Ezanın okunduğu, caminin yanındaki yüksek kuledir.")]
+
+
+def _fdn_cami(subject):
+    hf = _lt(4)
+    mp = {k: hf[i] for i, (k, _n, _t) in enumerate(_DN_CAMI)}
+    i = random.randrange(4)
+    k, nm, tn = _DN_CAMI[i]
+    q = f"Şekilde bir caminin bölümleri harflerle gösterilmiştir. {tn[:-1]} olan bölüm hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Camilerin bölümleri", q, (sorted(hf), hf[i]), f"{nm}: {tn} Şekilde {hf[i]} harfiyle gösterilmiştir.", shape=_dl_sh(sub_type="cami", harf=mp))
+
+
+def _fdn_cami2(subject):
+    hf = _lt(4)
+    mp = {k: hf[i] for i, (k, _n, _t) in enumerate(_DN_CAMI)}
+    i = random.randrange(4)
+    k, nm, tn = _DN_CAMI[i]
+    q = f"Şekilde bir caminin bölümleri harflerle gösterilmiştir. {hf[i]} harfiyle gösterilen bölümün adı aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Camilerin bölümleri", q, ([n for _k, n, _t in _DN_CAMI], nm), f"{hf[i]} ile gösterilen bölüm {nm.lower()}tir: {tn}", shape=_dl_sh(sub_type="cami", harf=mp))
+
+
+_DN_SURE = [("Fâtiha", 7), ("İhlâs", 4), ("Kevser", 3), ("Kureyş", 4)]
+
+
+def _fdn_sure(subject):
+    sh = {"type": "bar_chart", "labels": [n for n, _v in _DN_SURE], "values": [v for _n, v in _DN_SURE], "title": "Bazı surelerin ayet sayıları", "ylabel": "Ayet sayısı"}
+    a, b = random.sample(range(4), 2)
+    t = _DN_SURE[a][1] + _DN_SURE[b][1]
+    o = _mf_opts(t, [x for x in (t + 1, t - 1, t + 2, t + 3, 14, 12) if x != t and x > 0], str, sort=False)
+    q = f"Grafiğe göre {_DN_SURE[a][0]} ve {_DN_SURE[b][0]} surelerinin ayet sayıları toplamı kaçtır?"
+    return _mf_raw(subject, "Kur'an-ı Kerim'in iç düzeni", q, o, f"{_DN_SURE[a][1]} + {_DN_SURE[b][1]} = {t}.", shape=sh) if o else None
+
+
+_DN_FAMS = [(_fdn_vakit, 2, "Namaz ibadeti", ("namaz", "vakit")), (_fdn_rekat, 2, "Namaz ibadeti", ("namaz",)), (_fdn_poz, 2, "Namazın kılınışı", ("namaz",)), (_fdn_poz2, 2, "Namazın kılınışı", ("namaz",)),
+            (_fdn_cami, 2, "Camilerin bölümleri (mihrap, minber, kubbe, minare)", ("cami", "mimari", "mihrap", "minber")), (_fdn_cami2, 2, "Camilerin bölümleri (mihrap, minber, kubbe, minare)", ("cami", "mimari", "mihrap", "minber")),
+            (_fdn_sure, 3, "Kur'an-ı Kerim'in iç düzeni", ("kur'an", "sure", "ayet", "kevser", "kureyş", "ihlas"))]
+for _f, _d, _it, _kw in _DN_FAMS:
+    _f.ITEM = _it
+    _DF_GENS.append((_vy_wrap(_f), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
+
+def _vy_tag(fn, tag):
+    import functools
+
+    @functools.wraps(fn)
+    def w(subject):
+        r = fn(subject)
+        if not r or not r.get("shape"):
+            return r
+        r = dict(r)
+        r["question"] = f"Konu: {tag}\n" + random.choice(_VY_PRE) + " " + random.choice(_VY_SUF) + "\n" + str(r["question"])
+        return r
+    return w
+
+
+# ---- EKSİK ALANLAR: İletişim (konuşma balonları), oyunlar, bayramlar, el sanatları, Allah'ın isimleri, kıssalar, camiler, Sosyal kavram kartları
+def _gp_cards(subject, topic, ws, correct_idx, q, ex):
+    hf = _lt(len(ws))
+    sh = _dl_sh(sub_type="kavram", sozler=[{"h": hf[i], "w": ws[i]} for i in range(len(ws))])
+    return _mf_raw(subject, topic, q, (sorted(hf), hf[correct_idx]), ex.replace("{H}", hf[correct_idx]), shape=sh)
+
+
+def _gp_odd(subject, topic, A, B, a_name, b_name, ask_b=True):
+    """3 öge A grubundan, 1 öge B grubundan: B'ye (ya da A'ya) ait olanı bul."""
+    if ask_b:
+        ws = random.sample(A, 3) + [random.choice(B)]
+        gname, oname = b_name, a_name
+    else:
+        ws = random.sample(B, 3) + [random.choice(A)]
+        gname, oname = a_name, b_name
+    order = list(range(4))
+    random.shuffle(order)
+    w2 = [ws[k] for k in order]
+    ci = order.index(3)
+    q = f"Şekilde harflerle gösterilen ögelerden hangisi {gname} grubuna girer?"
+    return _gp_cards(subject, topic, w2, ci, q, f"Diğer üç öge {oname} grubundadır; {w2[ci]} ise {gname} grubuna girer. Doğru cevap {{H}} harfidir.")
+
+
+_GP_MIRAS_S = ["Efes Antik Kenti", "Topkapı Sarayı", "Ayasofya", "Sümela Manastırı", "Göbeklitepe", "Selimiye Camii"]
+_GP_MIRAS_N = ["Ebru sanatı", "Karagöz gösterisi", "Nevruz kutlaması", "Mevlevi sema töreni", "Türk kahvesi geleneği", "Kırkpınar güreşi"]
+_GP_DOGAL = ["Dağ", "Nehir", "Orman", "Göl", "Deniz", "Ova"]
+_GP_BESERI = ["Köprü", "Baraj", "Okul", "Yol", "Fabrika", "Liman"]
+_GP_HAK = ["Eğitim görme", "Sağlık hizmeti alma", "Oyun oynama", "Güvenli ortamda yaşama"]
+_GP_SOR = ["Okul kurallarına uyma", "Çevreyi temiz tutma", "Ödevlerini yapma", "Ortak eşyaları koruma"]
+_GP_IHT = ["Temiz su", "Ekmek", "Barınma", "Sağlık hizmeti"]
+_GP_IST = ["Oyun konsolu", "Tatil gezisi", "Yeni telefon", "Markalı ayakkabı"]
+
+
+def _fsg_miras(subject):
+    return _gp_odd(subject, "Ortak miras ögeleri", _GP_MIRAS_S, _GP_MIRAS_N, "somut kültürel miras (dokunulabilen yapı ve alan)", "somut olmayan kültürel miras (gelenek, sanat, tören)", ask_b=random.random() < .5)
+
+
+def _fsg_cevre(subject):
+    return _gp_odd(subject, "Doğal ve beşerî çevre", _GP_DOGAL, _GP_BESERI, "doğal çevre", "beşerî çevre", ask_b=random.random() < .5)
+
+
+def _fsg_hak(subject):
+    return _gp_odd(subject, "Hak ve sorumluluklar", _GP_HAK, _GP_SOR, "hak", "sorumluluk", ask_b=random.random() < .5)
+
+
+def _fsg_ihtiyac(subject):
+    return _gp_odd(subject, "İhtiyaç ve İstek", _GP_IHT, _GP_IST, "ihtiyaç", "istek", ask_b=random.random() < .5)
+
+
+_GP_SOS = [(_fsg_miras, 2, "Ortak miras ögeleri", ("miras", "ortak", "göbeklitepe", "medeniyet")), (_fsg_cevre, 2, "Doğal ve beşerî çevre", ("çevre", "evimiz", "dünya", "doğal")),
+           (_fsg_hak, 2, "Hak ve sorumluluklar", ("hak", "sorumluluk", "demokrasi", "vatandaş")), (_fsg_ihtiyac, 1, "İhtiyaç, istek ve bütçe", ("ihtiyaç", "istek", "bütçe", "ekonomi"))]
+for _f, _d, _it, _kw in _GP_SOS:
+    _f.ITEM = _it
+    _SF_GENS.append((_vy_tag(_f, _it), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
+# ---- Türkçe: iletişim (konuşma balonları)
+_GP_NAZIK = [("Kalemini ödünç alabilir miyim, lütfen?", "Kalemini hemen ver bana!"), ("Bu soruyu çözmeme yardım eder misin?", "Şu soruyu sen çöz de ben bakayım!"), ("Seni üzdüysem özür dilerim.", "Sen de hep suçlusun zaten!"),
+             ("Yardımın için çok teşekkür ederim.", "Bana yardım etmen gerekiyordu zaten."), ("Sıramı bekleyebilirim, önce sen geç.", "Çekil önümden, ben geçeceğim!"), ("Pencereyi açabilir miyim?", "Pencereyi aç hemen!")]
+
+
+def _gp_balon(subject, topic, nazik_one, q, ex_ok):
+    k = random.sample(range(6), 4)
+    if nazik_one:
+        ts = [_GP_NAZIK[k[0]][0]] + [_GP_NAZIK[j][1] for j in k[1:]]
+    else:
+        ts = [_GP_NAZIK[k[0]][1]] + [_GP_NAZIK[j][0] for j in k[1:]]
+    order = list(range(4))
+    random.shuffle(order)
+    t2 = [ts[o] for o in order]
+    ci = order.index(0)
+    hf = _lt(4)
+    sh = _dl_sh(sub_type="balon", konus=[{"h": hf[i], "t": t2[i]} for i in range(4)])
+    return _mf_raw(subject, topic, q, (sorted(hf), hf[ci]), ex_ok.replace("{H}", hf[ci]), shape=sh)
+
+
+def _ftg_nazik(subject):
+    return _gp_balon(subject, "Olumlu dil", True, "Şekilde farklı kişilerin konuşmaları verilmiştir. Hangi harfle gösterilen konuşmada olumlu (nazik) bir dil kullanılmıştır?", "Yalnızca {H} harfiyle gösterilen konuşma nazik ve saygılı bir dille söylenmiştir.")
+
+
+def _ftg_nazik2(subject):
+    return _gp_balon(subject, "Olumlu dil", False, "Şekilde farklı kişilerin konuşmaları verilmiştir. Hangi harfle gösterilen konuşmada olumlu dil kullanılmamıştır?", "Diğer konuşmalar nazik ifadeler içerir; {H} harfiyle gösterilen konuşma emir kipi ve kırıcı bir dille söylenmiştir.")
+
+
+_GP_EMP = [("Ödevini evde unuttuğu için üzülen Elif'e", "Üzüldüğünü anlıyorum, öğretmenimize birlikte anlatalım.", ["Bu senin sorunun, beni ilgilendirmez.", "Hep unutuyorsun zaten!", "Boşver, ben de unuttuğumda hiç üzülmem."]),
+            ("Maçı kaybettiği için morali bozulan Mert'e", "Çok çalıştığını biliyorum, bir dahaki maçta daha iyi olacak.", ["Kaybettin, başka ne bekliyordun?", "Sen zaten hiç iyi oynamıyorsun.", "Bu kadar üzülmeni anlamıyorum, saçma."]),
+            ("Yeni okuluna alışamayan Zeynep'e", "Yeni bir yere alışmanın zor olduğunu biliyorum, seninle oturabilirim.", ["Alışırsın, başka çaren yok.", "Herkes alışıyor, abartma.", "Beni ilgilendirmez, kendi başının çaresine bak."])]
+
+
+def _ftg_empati(subject):
+    d, em, no = random.choice(_GP_EMP)
+    ts = [em] + no
+    order = list(range(4))
+    random.shuffle(order)
+    t2 = [ts[o] for o in order]
+    ci = order.index(0)
+    hf = _lt(4)
+    sh = _dl_sh(sub_type="balon", konus=[{"h": hf[i], "t": t2[i]} for i in range(4)])
+    return _mf_raw(subject, "Empati", f"{d} söylenen konuşmalardan hangisi empati kurularak söylenmiştir?", (sorted(hf), hf[ci]), f"{hf[ci]} harfiyle gösterilen konuşma karşıdakinin duygusunu anladığını gösterir.", shape=sh)
+
+
+# ---- Türkçe: oyunlar, bayramlar, el sanatları, halk oyunları
+_GP_OYUN = [("Saklambaç", "Biri sayarken diğerleri saklanır."), ("İp atlama", "İpin altından geçirilerek zıplanır."), ("Misket", "Küçük cam toplarla oynanır."), ("Çelik çomak", "Uzun bir sopayla küçük bir çelik vurularak oynanır."),
+            ("Uzun eşek", "Oyuncular sırayla eğilir, diğerleri onların sırtından atlar."), ("Dokuz taş", "Tahta üzerinde taşlarla sıra yapılarak oynanır.")]
+
+
+def _ftg_oyun(subject):
+    ks = random.sample(range(6), 4)
+    c = random.randrange(4)
+    ws = [_GP_OYUN[k][0] for k in ks]
+    q = f"Şekilde dört geleneksel çocuk oyununun adı harflerle gösterilmiştir. “{_GP_OYUN[ks[c]][1]}” açıklaması hangi oyuna aittir?"
+    return _gp_cards(subject, "Geleneksel çocuk oyunları", ws, c, q, f"Bu açıklama {ws[c]} oyununa aittir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_GP_BAY = [("23 Nisan", "Ulusal Egemenlik ve Çocuk Bayramı"), ("19 Mayıs", "Atatürk'ü Anma, Gençlik ve Spor Bayramı"), ("30 Ağustos", "Zafer Bayramı"), ("29 Ekim", "Cumhuriyet Bayramı")]
+
+
+def _ftg_bayram(subject):
+    ks = list(range(4))
+    random.shuffle(ks)
+    ws = [_GP_BAY[k][0] for k in ks]
+    c = random.randrange(4)
+    q = f"Şekilde bazı millî bayramların tarihleri harflerle gösterilmiştir. {_GP_BAY[ks[c]][1]} hangi harfle gösterilen tarihte kutlanır?"
+    return _gp_cards(subject, "Millî bayramlar", ws, c, q, "Bu bayram şekilde {H} harfiyle gösterilen tarihte kutlanır.")
+
+
+def _ftg_bayram2(subject):
+    ks = list(range(4))
+    random.shuffle(ks)
+    ws = [_GP_BAY[k][0] for k in ks]
+    c = random.randrange(4)
+    hf = _lt(4)
+    sh = _dl_sh(sub_type="kavram", sozler=[{"h": hf[i], "w": ws[i]} for i in range(4)])
+    allv = [b[1] for b in _GP_BAY]
+    return _mf_raw(subject, "Millî bayramlar", f"Şekilde {hf[c]} harfiyle gösterilen tarihte hangi bayram kutlanır?", (allv, _GP_BAY[ks[c]][1]), f"{ws[c]} tarihinde {_GP_BAY[ks[c]][1]} kutlanır.", shape=sh)
+
+
+_GP_EL = [("Ebru", "Suyun yüzeyinde boyalarla desen oluşturup kâğıda aktarma sanatıdır."), ("Çini", "Pişmiş topraktan yapılan renkli süslemedir."), ("Nakış", "İğne ve iplikle kumaş üzerine işlenen süslemedir."),
+          ("Kilim", "Yün ipliklerle dokunan, desenli yer serisidir."), ("Hat", "Yazıyı güzel yazma sanatıdır.")]
+
+
+def _ftg_el(subject):
+    ks = random.sample(range(5), 4)
+    c = random.randrange(4)
+    ws = [_GP_EL[k][0] for k in ks]
+    q = f"Şekilde dört geleneksel el sanatının adı harflerle gösterilmiştir. “{_GP_EL[ks[c]][1]}” açıklaması hangi el sanatına aittir?"
+    return _gp_cards(subject, "El sanatları", ws, c, q, f"Bu açıklama {ws[c]} sanatına aittir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_GP_HO = [("Zeybek", "Ege Bölgesi"), ("Horon", "Karadeniz Bölgesi"), ("Kaşık oyunu", "İç Anadolu Bölgesi (Konya)"), ("Halay", "Doğu ve Güneydoğu Anadolu")]
+
+
+def _ftg_halk(subject):
+    c = random.randrange(4)
+    ks = list(range(4))
+    random.shuffle(ks)
+    ws = [_GP_HO[k][0] for k in ks]
+    q = f"Şekilde dört halk oyununun adı harflerle gösterilmiştir. Bunlardan {_GP_HO[ks[c]][1]} ile özdeşleşmiş olanı hangi harfle gösterilmiştir?"
+    return _gp_cards(subject, "Halk oyunları", ws, c, q, f"{ws[c]}, {_GP_HO[ks[c]][1]} ile özdeşleşmiştir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_GP_TR = [(_ftg_nazik, 2, "Olumlu dil", ("iletişim", "olumlu dil", "komşuluk", "sosyal")), (_ftg_nazik2, 2, "Olumlu dil", ("iletişim", "olumlu dil", "sosyal")), (_ftg_empati, 3, "Empati", ("iletişim", "empati", "sosyal")),
+          (_ftg_oyun, 2, "Geleneksel çocuk oyunları", ("geleneksel çocuk oyunları", "kurallı oyunlar")), (_ftg_bayram, 2, "23 Nisan", ("atatürk", "23 nisan", "cumhuriyet", "bayram")), (_ftg_bayram2, 3, "23 Nisan", ("atatürk", "23 nisan", "cumhuriyet", "bayram")),
+          (_ftg_el, 2, "El sanatları", ("el sanatları",)), (_ftg_halk, 3, "Halk oyunları", ("halk oyunları",))]
+for _f, _d, _it, _kw in _GP_TR:
+    _f.ITEM = _it
+    _TF_GENS.append((_vy_tag(_f, _it), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
+# ---- Din Kültürü: Allah'ın isimleri, kıssalar, camiler
+_GP_ISIM = [("Hâlık", "her şeyi yaratan"), ("Rezzâk", "bütün canlılara rızık veren"), ("Rahîm", "çok merhametli olan"), ("Semî", "her şeyi işiten"), ("Basîr", "her şeyi gören"), ("Alîm", "her şeyi bilen"), ("Gaffâr", "günahları bağışlayan")]
+
+
+def _fgd_isim(subject):
+    ks = random.sample(range(7), 4)
+    c = random.randrange(4)
+    ws = [_GP_ISIM[k][0] for k in ks]
+    q = f"Şekilde Allah'ın dört güzel ismi harflerle gösterilmiştir. “{_GP_ISIM[ks[c]][1].capitalize()}” anlamına gelen isim hangi harfle gösterilmiştir?"
+    return _gp_cards(subject, "Allah'ın güzel isimleri", ws, c, q, f"{ws[c]} ismi “{_GP_ISIM[ks[c]][1]}” anlamına gelir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_GP_KISSA = [("Hz. Nuh", "Allah'ın emriyle gemi yapmıştır."), ("Hz. İbrahim", "Oğlu İsmail ile Kâbe'yi inşa etmiştir."), ("Hz. Musa", "Firavun'a Allah'ın mesajını ileten peygamberdir."), ("Hz. Yusuf", "Kardeşleri tarafından kuyuya atılmış, sonra Mısır'da yönetici olmuştur."),
+             ("Hz. Eyüp", "Ağır hastalığına rağmen sabretmiştir."), ("Hz. Süleyman", "Hayvanların dilini anlama mucizesi verilmiştir."), ("Hz. Yunus", "Balığın karnında Allah'a dua etmiştir.")]
+
+
+def _fgd_kissa(subject):
+    ks = random.sample(range(7), 4)
+    c = random.randrange(4)
+    ws = [_GP_KISSA[k][0] for k in ks]
+    q = f"Şekilde dört peygamberin adı harflerle gösterilmiştir. “{_GP_KISSA[ks[c]][1]}” bilgisi hangi peygambere aittir?"
+    return _gp_cards(subject, "Peygamber kıssaları", ws, c, q, f"Bu bilgi {ws[c]} ile ilgilidir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_GP_CAMI = [("Selimiye Camii", "Edirne"), ("Sultanahmet Camii", "İstanbul"), ("Kocatepe Camii", "Ankara"), ("Ulu Cami", "Bursa")]
+
+
+def _fgd_cami(subject):
+    ks = list(range(4))
+    random.shuffle(ks)
+    ws = [_GP_CAMI[k][0] for k in ks]
+    c = random.randrange(4)
+    q = f"Şekilde dört camimizin adı harflerle gösterilmiştir. Bunlardan {_GP_CAMI[ks[c]][1]} ilimizde bulunan cami hangi harfle gösterilmiştir?"
+    return _gp_cards(subject, "Cami örnekleri", ws, c, q, f"{ws[c]}, {_GP_CAMI[ks[c]][1]} ilimizdedir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_GP_DN = [(_fgd_isim, 2, "Allah'ın güzel isimleri", ("allah", "güzel isim", "sıfat")), (_fgd_kissa, 2, "Peygamber kıssalarındaki öğütler", ("peygamber", "kıssa", "kıssalar")),
+          (_fgd_cami, 2, "Cami örnekleri", ("cami", "mimari", "mimarimizde"))]
+for _f, _d, _it, _kw in _GP_DN:
+    _f.ITEM = _it
+    _DF_GENS.append((_vy_tag(_f, _it), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
+
 for _r in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
     _r[:] = [(_stem_vary(f), k_) for f, k_ in _r]
 
@@ -26839,6 +28336,1032 @@ for _f, _d, _cd in _OD_FAMS:
     _MF_GENS.append((_od_vary(_f), ("ondalık", "yüzde"), (5,)))
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- 5. SINIF MATEMATİK "BASAMAK DEĞERLERİNİ ÇÖZÜMLEME": ŞEKİLLİ SORU AİLELERİ — basamak tablosu, abaküs, rakam kartları, yuvarlama sayı doğrusu
+_BD_PLN = ["Birler", "Onlar", "Yüzler", "Binler", "On binler", "Yüz binler", "Milyonlar", "On milyonlar", "Yüz milyonlar"]
+
+
+def _fmt_say_raw(t):
+    out = []
+    while t:
+        out.append(t[-3:])
+        t = t[:-3]
+    return " ".join(reversed(out))
+
+
+def _bd_n(nd):
+    ds = [random.randint(1, 9)] + [random.choice([0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for _ in range(nd - 1)]
+    return ds
+
+
+def _bd_val(ds):
+    return int("".join(str(x) for x in ds))
+
+
+def _bd_D(ds):
+    return [{"n": int(x)} for x in ds]
+
+
+def _bd_tab(ds, marks=None, hide=None):
+    sh = {"type": "kes", "sub_type": "basamak", "d": _bd_D(ds)}
+    if marks:
+        sh["marks"] = {str(k): v for k, v in marks.items()}
+    if hide:
+        sh["hide"] = hide
+    return sh
+
+
+def _bd_pad(wr, correct, n=3, extra=()):
+    out = []
+    for w in list(wr) + list(extra):
+        w = str(w)
+        if w != correct and w not in out:
+            out.append(w)
+    return out
+
+
+def _mf_bd_deger(subject):
+    nd = random.choice([6, 7, 8])
+    ds = _bd_n(nd)
+    idx = random.choice([i for i in range(nd) if ds[i]])
+    pos = nd - 1 - idx
+    lb = random.choice(_KS_L)
+    d = ds[idx]
+    c = d * 10 ** pos
+    wr = [d, d * 10 ** (pos + 1), d * 10 ** max(pos - 1, 0) if pos else d * 10, d * 10 ** (pos + 2), c + 10 ** pos if d < 9 else c - 10 ** pos]
+    wr = _bd_pad([_fmt_say(x) for x in wr], _fmt_say(c))
+    o = _mf_opts(_fmt_say(c), wr, str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre {lb} ile gösterilen basamaktaki rakamın basamak değeri kaçtır?", o, f"{lb} basamağında {d} rakamı vardır ve bu basamak {_BD_PLN[pos].lower()} basamağıdır: {d} × {_fmt_say(10 ** pos)} = {_fmt_say(c)}.", shape=_bd_tab(ds, {idx: lb})) if o else None
+
+
+def _mf_bd_rakam(subject):
+    nd = random.choice([6, 7, 8])
+    ds = _bd_n(nd)
+    idx = random.randrange(nd)
+    lb = random.choice(_KS_L)
+    c = ds[idx]
+    pool = [x for x in dict.fromkeys(ds) if x != c] + [x for x in range(10) if x != c and x not in ds]
+    o = _mf_opts(c, pool[:4], str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\n{lb} ile gösterilen basamaktaki rakam kaçtır?", o, f"{lb} ile işaretli basamakta {c} rakamı yazılıdır.", shape=_bd_tab(ds, {idx: lb})) if o else None
+
+
+def _mf_bd_adi(subject):
+    nd = random.choice([6, 7, 8])
+    for _ in range(30):
+        ds = _bd_n(nd)
+        u = [i for i in range(nd) if ds[i] and ds.count(ds[i]) == 1]
+        if u:
+            break
+    else:
+        return None
+    idx = random.choice(u)
+    pos = nd - 1 - idx
+    c = _BD_PLN[pos]
+    wr = [_BD_PLN[x] for x in range(nd) if x != pos]
+    random.shuffle(wr)
+    o = _mf_opts(c, wr[:4], str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre {ds[idx]} rakamı hangi basamaktadır?", o, f"{ds[idx]} rakamı tabloda {c.lower()} basamağında yer alır.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf_bd_toplam(subject):
+    nd = random.choice([6, 7, 8])
+    for _ in range(30):
+        ds = _bd_n(nd)
+        nz = [i for i in range(nd) if ds[i]]
+        if len(nz) >= 3:
+            break
+    else:
+        return None
+    i, j = random.sample(nz, 2)
+    lb = random.sample(_KS_L, 2)
+    vi, vj = ds[i] * 10 ** (nd - 1 - i), ds[j] * 10 ** (nd - 1 - j)
+    c = vi + vj
+    wr = [ds[i] + ds[j], vi * 10 + vj, vi + vj * 10, vi + ds[j], c + 10 ** (nd - 1 - i)]
+    wr = _bd_pad([_fmt_say(x) for x in wr], _fmt_say(c))
+    o = _mf_opts(_fmt_say(c), wr, str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre {lb[0]} ve {lb[1]} ile gösterilen basamaklardaki rakamların basamak değerleri toplamı kaçtır?", o, f"{_fmt_say(vi)} + {_fmt_say(vj)} = {_fmt_say(c)}.", shape=_bd_tab(ds, {i: lb[0], j: lb[1]})) if o else None
+
+
+def _bd_coz(ds):
+    nd = len(ds)
+    return [(ds[i], 10 ** (nd - 1 - i)) for i in range(nd) if ds[i]]
+
+
+def _bd_coz_s(terms):
+    return " + ".join(f"{a} × {_fmt_say(p)}" for a, p in terms)
+
+
+def _mf_bd_cozum(subject):
+    nd = random.choice([6, 7])
+    ds = _bd_n(nd)
+    t = _bd_coz(ds)
+    if len(t) < 3:
+        return None
+    c = _bd_coz_s(t)
+    wr = []
+    t2 = list(t)
+    k = random.randrange(len(t2))
+    t2[k] = (t2[k][0], t2[k][1] * 10)
+    wr.append(_bd_coz_s(t2))
+    t3 = list(t)
+    k = random.randrange(len(t3))
+    t3[k] = (t3[k][0], max(t3[k][1] // 10, 1))
+    wr.append(_bd_coz_s(t3))
+    t4 = list(t)
+    i, j = random.sample(range(len(t4)), 2)
+    t4[i], t4[j] = (t4[j][0], t4[i][1]), (t4[i][0], t4[j][1])
+    wr.append(_bd_coz_s(t4))
+    t5 = list(t)
+    t5[0] = (t5[0][0], t5[0][1] // 10)
+    wr.append(_bd_coz_s(t5))
+    wr = _bd_pad(wr, c)
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", "Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının çözümlenmiş hâli aşağıdakilerden hangisidir?", o, f"Her rakam kendi basamak değeriyle çarpılır: {c}.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf_bd_fazla(subject):
+    nd = random.choice([6, 7])
+    ds = _bd_n(nd)
+    n = _bd_val(ds)
+    k = random.choice([1000, 10000, 100000])
+    sg = random.choice([1, -1])
+    m = n + sg * k
+    if m <= 0 or len(str(m)) != nd:
+        return _mf_bd_fazla(subject)
+    ad = {1000: "1 000", 10000: "10 000", 100000: "100 000"}[k]
+    wr = [n + sg * k * 10 if len(str(n + sg * k * 10)) == nd or True else n, n + sg * k // 10, n - sg * k, n + sg * k * 100, n + sg * 10 * (k // 100)]
+    wr = _bd_pad([_fmt_say(x) for x in wr if x > 0], _fmt_say(m))
+    o = _mf_opts(_fmt_say(m), wr, str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının {ad} {'fazlası' if sg > 0 else 'eksiği'} kaçtır?", o, f"{ad} {'eklenirse' if sg > 0 else 'çıkarılırsa'} ilgili basamaktaki rakam {'1 artar' if sg > 0 else '1 azalır'}: {_fmt_say(m)}.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf_bd_basamak_say(subject):
+    nd = random.choice([5, 6, 7, 8, 9])
+    ds = _bd_n(nd)
+    o = _mf_opts(nd, [x for x in (nd - 1, nd + 1, nd - 2, nd + 2, nd + 3) if x > 0], str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", "Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayı kaç basamaklıdır?", o, f"Tabloda {nd} rakam vardır; sayı {nd} basamaklıdır.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf_bd_oku(subject):
+    nd = random.choice([6, 7, 8])
+    ds = _bd_n(nd)
+    n = _bd_val(ds)
+    w = _say_words(n)
+    wr = []
+    for k in (10 ** (nd - 4), 10 ** (nd - 5), 10 ** max(nd - 6, 1), 1000, 100):
+        m = n + k if random.random() < .5 else n - k
+        if m > 0 and m != n and len(str(m)) == nd:
+            wr.append(_say_words(m))
+    wr = _bd_pad(wr, w)
+    o = _mf_opts(w, wr, str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", "Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?", o, f"Bölükler soldan sağa okunur: {w}.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf_bd_boluk(subject):
+    nd = random.choice([7, 8, 9])
+    ds = _bd_n(nd)
+    n = _bd_val(ds)
+    s = str(n)
+    b = int(s[-6:-3]) if s[-6:-3] != "" else 0
+    mil = int(s[:-6])
+    bir = int(s[-3:])
+    c = str(b)
+    wr = [str(mil), str(bir), s[-6:-3][::-1].lstrip("0") or "0", str(int(s[-5:-2]))]
+    wr = _bd_pad(wr, c)
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", "Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının binler bölüğündeki rakamların oluşturduğu sayı kaçtır?", o, f"Binler bölüğü, tablodaki ortadaki üç basamaktır: {c}.", shape=_bd_tab(ds)) if o else None
+
+
+def _bd_abk(ds, marks=None, label=None):
+    p = {"d": _bd_D(ds)}
+    if marks:
+        p["marks"] = {str(k): v for k, v in marks.items()}
+    if label:
+        p["label"] = label
+    return p
+
+
+def _mf_abk_oku(subject):
+    nd = random.choice([4, 5, 6])
+    ds = _bd_n(nd)
+    n = _bd_val(ds)
+    sh = {"type": "kes", "sub_type": "abakus", "per_row": 1, "panels": [_bd_abk(ds)]}
+    alt = ds[::-1]
+    wr = [n + 1000, n - 1000 if n > 1000 else n + 2000, n + 10 ** (nd - 1), _bd_val(alt) if alt[0] else n + 100, n * 10 if nd < 6 else n + 100, n + 100]
+    wr = _bd_pad([_fmt_say(x) for x in wr], _fmt_say(n))
+    o = _mf_opts(_fmt_say(n), wr, str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", "Şekildeki abaküste her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre abaküste gösterilen sayı kaçtır?", o, f"Soldan sağa boncuk sayıları {', '.join(str(x) for x in ds)}; sayı {_fmt_say(n)}.", shape=sh) if o else None
+
+
+def _mf_abk_deger(subject):
+    nd = random.choice([4, 5, 6])
+    ds = _bd_n(nd)
+    idx = random.choice([i for i in range(nd) if ds[i]])
+    pos = nd - 1 - idx
+    lb = random.choice(_KS_L)
+    d = ds[idx]
+    c = d * 10 ** pos
+    sh = {"type": "kes", "sub_type": "abakus", "per_row": 1, "panels": [_bd_abk(ds, {idx: lb})]}
+    wr = [d, d * 10 ** (pos + 1), d * 10 ** max(pos - 1, 0) if pos else d * 10, d * 10 ** (pos + 2), (d + 1 if d < 9 else d - 1) * 10 ** pos, d * 10 ** (pos + 3)]
+    wr = _bd_pad([_fmt_say(x) for x in wr], _fmt_say(c))
+    o = _mf_opts(_fmt_say(c), wr, str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekildeki abaküste her çubuk bir basamağı göstermektedir.\nBuna göre {lb} ile gösterilen çubuktaki boncukların temsil ettiği değer kaçtır?", o, f"{lb} çubuğunda {d} boncuk vardır ve çubuk {_BD_PLN[pos].lower()} basamağıdır: {_fmt_say(c)}.", shape=sh) if o else None
+
+
+def _bd_variants(ds):
+    out = []
+    i, j = random.sample(range(len(ds)), 2)
+    a = list(ds)
+    a[i], a[j] = a[j], a[i]
+    out.append(a)
+    for _ in range(6):
+        b = list(ds)
+        k = random.randrange(len(b))
+        b[k] = (b[k] + random.randint(1, 8)) % 10
+        out.append(b)
+    return [v for v in out if v[0] != 0 and v != list(ds)]
+
+
+def _mf_abk_hangi(subject):
+    for _ in range(30):
+        ds = _bd_n(4)
+        vs = _bd_variants(ds)
+        uniq = []
+        for v in vs:
+            if v not in uniq and v != ds:
+                uniq.append(v)
+        if len(uniq) >= 3:
+            break
+    else:
+        return None
+    pans = [ds] + uniq[:3]
+    lb = random.sample(_KS_L, 4)
+    idx = list(range(4))
+    random.shuffle(idx)
+    panels = [_bd_abk(pans[i], label=lb[i]) for i in idx]
+    o = (sorted(lb), lb[0])
+    sh = {"type": "kes", "sub_type": "abakus", "per_row": 2, "panels": panels}
+    n = _bd_val(ds)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde dört abaküs harflerle gösterilmiştir. Her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre {_fmt_say(n)} sayısını gösteren abaküs hangi harfle gösterilmiştir?", o, f"Soldan sağa {', '.join(str(x) for x in ds)} boncuk bulunan abaküs {lb[0]} ile gösterilmiştir.", shape=sh)
+
+
+def _mf_abk_buyuk(subject):
+    for _ in range(40):
+        nd = random.choice([4, 5])
+        ns = [_bd_n(nd) for _ in range(3)]
+        vs = [_bd_val(x) for x in ns]
+        if len(set(vs)) == 3:
+            break
+    else:
+        return None
+    lb = random.sample(_KS_L, 3)
+    ask = random.choice(["en büyük", "en küçük"])
+    i = vs.index(max(vs) if ask == "en büyük" else min(vs))
+    o = _mf_opts(lb[i], [lb[j] for j in range(3) if j != i] + ["Üçü de eşittir."], str, sort=False)
+    sh = {"type": "kes", "sub_type": "abakus", "per_row": 2, "panels": [_bd_abk(ns[j], label=lb[j]) for j in range(3)]}
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde üç abaküs harflerle gösterilmiştir. Her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre {ask} sayıyı gösteren abaküs hangi harfle gösterilmiştir?", o, f"Gösterilen sayılar {', '.join(f'{lb[j]}: {_fmt_say(vs[j])}' for j in range(3))}; {ask} olan {lb[i]}.", shape=sh) if o else None
+
+
+def _kr_sh(ds):
+    return {"type": "kes", "sub_type": "kartrk", "d": _bd_D(ds)}
+
+
+def _mf_kr_en_buyuk(subject):
+    nd = random.choice([4, 5, 6])
+    ds = random.sample(range(10), nd)
+    ds = [x for x in ds]
+    if len(set(ds)) != nd:
+        return None
+    big = int("".join(map(str, sorted(ds, reverse=True))))
+    asc = int("".join(map(str, sorted(ds))))
+    sw = sorted(ds, reverse=True)
+    sw[0], sw[1] = sw[1], sw[0]
+    sw2 = sorted(ds, reverse=True)
+    sw2[-1], sw2[-2] = sw2[-2], sw2[-1]
+    wr = [_fmt_say(int("".join(map(str, sw)))), _fmt_say(int("".join(map(str, sw2)))), _fmt_say(asc) if asc >= 10 ** (nd - 1) else _fmt_say(int("".join(map(str, sorted(ds, reverse=True)[::-1]))) ), _fmt_say(int("".join(map(str, ds))))]
+    c = _fmt_say(big)
+    wr = _bd_pad(wr, c)
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Sayı oluşturma", f"Şekilde {nd} rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en büyük doğal sayı kaçtır?", o, f"Rakamlar büyükten küçüğe dizilir: {c}.", shape=_kr_sh(ds)) if o else None
+
+
+def _mf_kr_en_kucuk(subject):
+    nd = random.choice([4, 5, 6])
+    ds = [0] + random.sample(range(1, 10), nd - 1)
+    random.shuffle(ds)
+    s = sorted(ds)
+    nz = [x for x in s if x]
+    small = [nz[0]] + [x for x in s if x != nz[0] or False][:0]
+    rest = sorted(ds)
+    rest.remove(nz[0])
+    c_ds = [nz[0]] + rest
+    c = _fmt_say(int("".join(map(str, c_ds))))
+    wrong_zero = "0" + "".join(map(str, sorted(ds)[1:]))
+    wrong_zero = " ".join(wrong_zero[max(i - 3, 0):i] for i in range(len(wrong_zero) % 3 or 3, len(wrong_zero) + 1, 3)) if False else _fmt_say_raw(wrong_zero)
+    wr = [_fmt_say(int("".join(map(str, sorted(ds, reverse=True))))), wrong_zero[:1] + " " + wrong_zero[1:] if False else wrong_zero, _fmt_say(int("".join(map(str, [nz[0]] + sorted(ds, reverse=True)[:0] + sorted(rest, reverse=True))))), _fmt_say(int("".join(map(str, [nz[1] if len(nz) > 1 else nz[0]] + [x for x in sorted(ds) if x != (nz[1] if len(nz) > 1 else nz[0])]))))]
+    wr = _bd_pad(wr, c)
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Sayı oluşturma", f"Şekilde {nd} rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük {nd} basamaklı doğal sayı kaçtır?", o, f"Sayının ilk basamağı 0 olamaz; en küçük sıfır olmayan rakam başa, kalanlar küçükten büyüğe dizilir: {c}.", shape=_kr_sh(ds)) if o else None
+
+
+def _mf_kr_cift(subject):
+    import itertools
+    for _ in range(40):
+        nd = random.choice([4, 5])
+        ds = random.sample(range(1, 10), nd)
+        if any(x % 2 == 0 for x in ds) and min(ds) % 2 == 1:
+            break
+    else:
+        return None
+    perms = [int("".join(map(str, p))) for p in itertools.permutations(ds)]
+    ev = max(p for p in perms if p % 2 == 0)
+    big = max(perms)
+    if big % 2 == 0:
+        return None
+    c = _fmt_say(ev)
+    wr = [_fmt_say(big), _fmt_say(min(p for p in perms if p % 2 == 0)), _fmt_say(sorted([p for p in perms if p % 2 == 0])[-2]) if len([p for p in perms if p % 2 == 0]) > 1 else _fmt_say(big - 2)]
+    wr = _bd_pad(wr, c)
+    o = _mf_opts(c, wr, str, sort=False)
+    return _mf_raw(subject, "Sayı oluşturma", f"Şekilde {nd} rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek çift olan en büyük doğal sayı kaçtır?", o, f"Birler basamağına en küçük çift rakam konur, kalanlar büyükten küçüğe dizilir: {c}.", shape=_kr_sh(ds)) if o else None
+
+
+_YV_N = {1000: "bine", 10000: "on bine", 100000: "yüz bine", 1000000: "milyona"}
+
+
+def _mf_yv_yakin(subject):
+    step = random.choice([1000, 10000, 100000])
+    base = random.randint(1, 9) * step * 10 ** random.choice([1, 2, 1])
+    base = (base // step) * step
+    lo, hi = base, base + step
+    r = random.choice([1, 2, 3, 4, 6, 7, 8, 9])
+    v = lo + r * step // 10
+    lb = random.choice(_KS_L)
+    sh = {"type": "kes", "sub_type": "yuvarla", "b": lo // step, "s": step, "r": r, "label": lb}
+    c = hi if r > 5 else lo
+    wr = [lo if c == hi else hi, v, (v // (step * 10)) * (step * 10), (v // (step * 10) + 1) * (step * 10) if (v // (step * 10) + 1) * (step * 10) != c else c + step * 10]
+    wr = _bd_pad([_fmt_say(x) for x in wr], _fmt_say(c))
+    o = _mf_opts(_fmt_say(c), wr, str, sort=False)
+    return _mf_raw(subject, "Yuvarlama", f"Şekildeki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre {lb} sayısı en yakın {_YV_N[step]} yuvarlanırsa kaç olur?", o, f"{lb} sayısı {_fmt_say(lo)} ile {_fmt_say(hi)} arasındadır ve {'sağdaki' if c == hi else 'soldaki'} sayıya daha yakındır: {_fmt_say(c)}.", shape=sh) if o else None
+
+
+def _mf_yv_hangisine(subject):
+    step = random.choice([1000, 10000, 100000])
+    base = random.randint(1, 9) * step * 10 ** random.choice([1, 2])
+    base = (base // step) * step
+    lo, hi = base, base + step
+    r = random.choice([1, 2, 3, 4, 6, 7, 8, 9])
+    v = lo + r * step // 10
+    lb = random.choice(_KS_L)
+    sh = {"type": "kes", "sub_type": "yuvarla", "b": lo // step, "s": step, "r": r, "label": lb}
+    c = _fmt_say(hi if r > 5 else lo)
+    other = _fmt_say(lo if r > 5 else hi)
+    o = _mf_opts(c, [other, "İkisine de eşit uzaklıktadır.", f"{_fmt_say(hi + step)}", f"{_fmt_say(lo - step)}"], str, sort=False)
+    return _mf_raw(subject, "Yuvarlama", f"Şekildeki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre {lb} sayısı bu iki sayıdan hangisine daha yakındır?", o, f"{lb} noktası {c} sayısına daha yakın konumdadır.", shape=sh) if o else None
+
+
+_BD_FAMS = [
+    (_mf_bd_deger, 2, "MAT.5.1.1"), (_mf_bd_rakam, 1, "MAT.5.1.1"), (_mf_bd_adi, 2, "MAT.5.1.1"), (_mf_bd_toplam, 3, "MAT.5.1.1"), (_mf_bd_cozum, 3, "MAT.5.1.1"),
+    (_mf_bd_fazla, 3, "MAT.5.1.1"), (_mf_bd_basamak_say, 1, "MAT.5.1.1"), (_mf_bd_oku, 2, "MAT.5.1.1"), (_mf_bd_boluk, 3, "MAT.5.1.1"),
+    (_mf_abk_oku, 2, "MAT.5.1.1"), (_mf_abk_deger, 3, "MAT.5.1.1"), (_mf_abk_hangi, 3, "MAT.5.1.1"), (_mf_abk_buyuk, 3, "MAT.5.1.1"),
+    (_mf_kr_en_buyuk, 2, "MAT.5.1.1"), (_mf_kr_en_kucuk, 3, "MAT.5.1.1"), (_mf_kr_cift, 4, "MAT.5.1.1"),
+    (_mf_yv_yakin, 3, "MAT.5.1.1"), (_mf_yv_hangisine, 2, "MAT.5.1.1"),
+]
+for _f, _d, _cd in _BD_FAMS:
+    _MF_GENS.append((_od_vary(_f), ("basamak", "milyon"), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+
+_VY_PRE = ["Şekle göre", "Aşağıdaki görsele göre", "Verilen şekilden yararlanarak", "Görselde verilen bilgilere göre", "Yandaki görseli inceleyen bir öğrenci", "Şekilde verilenleri dikkate alarak", "Aşağıdaki görselde verilen bilgiler doğrultusunda", "Ders sırasında incelenen şekle bakarak", "Öğretmenin tahtaya çizdiği şekle göre", "Çalışma kâğıdındaki şekle bakarak"]
+
+
+def _vy_wrap(fn):
+    import functools
+
+    @functools.wraps(fn)
+    def w(subject):
+        r = fn(subject)
+        if not r or not r.get("shape"):
+            return r
+        r = dict(r)
+        r["question"] = random.choice(_VY_PRE) + " " + random.choice(_VY_SUF) + "\n" + str(r["question"])
+        return r
+    return w
+
+# ---- 5. SINIF MATEMATİK "VERİ TOPLAMA VE DEĞERLENDİRME": ek şekilli aileler — çizgi grafiği, daire grafiği, şekil (simge) grafiği
+_VT_AY = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran"]
+_VT_GUN = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"]
+_VT_ITEM = ["Kitap", "Defter", "Kalem", "Silgi", "Çanta"]
+
+
+def _vt_o(*a):
+    return random.choice(a)
+
+
+def _vt_line(vals, labs, ttl, yl):
+    return {"type": "line_chart", "labels": labs, "values": vals, "title": ttl, "ylabel": yl}
+
+
+def _vt_pik(rows, unit, thing):
+    return {"type": "kes", "sub_type": "pikto", "rows": rows, "unit": unit, "thing": thing}
+
+
+def _mf_vt_cizgi_oku(subject):
+    labs = random.sample(_VT_AY, 4) if False else _VT_AY[:random.choice([4, 5, 6])]
+    vals = [random.choice(range(10, 100, 5)) for _ in labs]
+    i = random.randrange(len(labs))
+    o = _mf_opts(vals[i], [x for x in dict.fromkeys(vals + [vals[i] + 5, vals[i] - 5, vals[i] + 10]) if x != vals[i] and x > 0], str, sort=False)
+    sh = _vt_line(vals, labs, "Bir kitapçının aylık kitap satışı", "Satılan kitap (adet)")
+    return _mf_raw(subject, "Veri okuma", _vt_o("Çizgi grafiğinde bir kitapçının aylara göre sattığı kitap sayısı gösterilmiştir.", "Aşağıdaki çizgi grafiğinde bir kitapçının her ay sattığı kitap sayısı verilmiştir.", "Çizgi grafiği, bir kitapçının ay ay sattığı kitap sayısını göstermektedir.") + f"\nBuna göre {labs[i]} ayında kaç kitap satılmıştır?", o, f"Grafikte {labs[i]} ayının değeri {vals[i]}'tir.", shape=sh) if o else None
+
+
+def _mf_vt_cizgi_en(subject):
+    labs = _VT_AY[:random.choice([4, 5, 6])]
+    vals = random.sample(range(10, 100, 5), len(labs))
+    ask = random.choice(["en çok", "en az"])
+    i = vals.index(max(vals) if ask == "en çok" else min(vals))
+    o = _mf_opts(labs[i], [l for j, l in enumerate(labs) if j != i][:3], str, sort=False)
+    sh = _vt_line(vals, labs, "Bir kitapçının aylık kitap satışı", "Satılan kitap (adet)")
+    return _mf_raw(subject, "Veri okuma", _vt_o("Çizgi grafiğinde bir kitapçının aylara göre sattığı kitap sayısı gösterilmiştir.", "Aşağıdaki çizgi grafiğinde bir kitapçının her ay sattığı kitap sayısı verilmiştir.", "Çizgi grafiği, bir kitapçının ay ay sattığı kitap sayısını göstermektedir.") + f"\nBuna göre hangi ayda {ask} kitap satılmıştır?", o, f"Grafikte {ask} değer {labs[i]} ayındadır ({vals[i]}).", shape=sh) if o else None
+
+
+def _mf_vt_cizgi_fark(subject):
+    labs = _VT_AY[:random.choice([4, 5, 6])]
+    vals = [random.choice(range(10, 100, 5)) for _ in labs]
+    i = random.randrange(len(labs) - 1)
+    d = abs(vals[i + 1] - vals[i])
+    if d == 0:
+        return None
+    o = _mf_opts(d, [x for x in (d + 5, d + 10, max(d - 5, 5), vals[i], vals[i + 1], d + 15) if x != d], str, sort=False)
+    sh = _vt_line(vals, labs, "Bir kitapçının aylık kitap satışı", "Satılan kitap (adet)")
+    return _mf_raw(subject, "Veri yorumlama", _vt_o("Çizgi grafiğinde bir kitapçının aylara göre sattığı kitap sayısı gösterilmiştir.", "Aşağıdaki çizgi grafiğinde bir kitapçının her ay sattığı kitap sayısı verilmiştir.") + f"\nBuna göre {labs[i]} ile {labs[i + 1]} ayları arasındaki satış farkı kaç kitaptır?", o, f"{max(vals[i], vals[i + 1])} − {min(vals[i], vals[i + 1])} = {d}.", shape=sh) if o else None
+
+
+def _mf_vt_cizgi_top(subject):
+    labs = _VT_AY[:random.choice([3, 4])]
+    vals = [random.choice(range(10, 60, 5)) for _ in labs]
+    t = sum(vals)
+    o = _mf_opts(t, [x for x in (t + 5, t - 5, t + 10, t - 10, t + 15) if x != t and x > 0], str, sort=False)
+    sh = _vt_line(vals, labs, "Bir kitapçının aylık kitap satışı", "Satılan kitap (adet)")
+    return _mf_raw(subject, "Veri yorumlama", _vt_o("Çizgi grafiğinde bir kitapçının aylara göre sattığı kitap sayısı gösterilmiştir.", "Aşağıdaki çizgi grafiğinde bir kitapçının her ay sattığı kitap sayısı verilmiştir.") + "\nBuna göre bu aylarda toplam kaç kitap satılmıştır?", o, f"{' + '.join(map(str, vals))} = {t}.", shape=sh) if o else None
+
+
+def _vt_pie(labs, vals, ttl):
+    return {"type": "pie_chart", "labels": labs, "values": vals, "title": ttl}
+
+
+_VT_MEYVE = ["Elma", "Muz", "Çilek", "Kiraz"]
+
+
+def _mf_vt_pie_kac(subject):
+    v = random.choice([[40, 30, 20, 10], [50, 25, 15, 10], [40, 25, 20, 15], [35, 30, 20, 15], [45, 25, 20, 10], [30, 30, 25, 15]])
+    random.shuffle(v)
+    tot = random.choice([100, 200, 400])
+    i = random.randrange(4)
+    c = tot * v[i] // 100
+    alt = sorted({tot * p // 100 for p in (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)} - {c})
+    o = _mf_opts(c, random.sample(alt, 4), str, sort=False)
+    sh = _vt_pie(_VT_MEYVE, v, "Öğrencilerin en sevdiği meyve (%)")
+    return _mf_raw(subject, "Veri yorumlama", f"Daire grafiğinde bir okuldaki {tot} öğrencinin en sevdiği meyveler yüzde olarak verilmiştir.\nBuna göre en çok {_VT_MEYVE[i].lower()} sevenlerin sayısı kaçtır?".replace("en çok ", ""), o, f"{tot} × %{v[i]} = {c}.", shape=sh) if o else None
+
+
+def _mf_vt_pie_en(subject):
+    v = random.sample([10, 15, 20, 25, 30, 35, 40], 4)
+    s = sum(v)
+    v = [round(x * 100 / s) for x in v]
+    v[0] += 100 - sum(v)
+    if len(set(v)) < 4:
+        return None
+    ask = random.choice(["en çok", "en az"])
+    i = v.index(max(v) if ask == "en çok" else min(v))
+    o = _mf_opts(_VT_MEYVE[i], [x for j, x in enumerate(_VT_MEYVE) if j != i], str, sort=False)
+    sh = _vt_pie(_VT_MEYVE, v, "Öğrencilerin en sevdiği meyve (%)")
+    return _mf_raw(subject, "Veri okuma", f"Daire grafiğinde bir okuldaki öğrencilerin en sevdiği meyveler yüzde olarak verilmiştir.\nBuna göre hangi meyve {ask} sevilmektedir?", o, f"Grafikte en {'büyük' if ask == 'en çok' else 'küçük'} dilim {_VT_MEYVE[i]} meyvesine aittir.", shape=sh) if o else None
+
+
+def _vt_rows(n=4, half=False):
+    names = random.sample(_VT_ITEM, n)
+    ns = random.sample(range(2, 9), n)
+    if half:
+        k = random.randrange(n)
+        ns[k] = ns[k] + .5
+    return names, ns
+
+
+def _mf_vt_pikto_top(subject):
+    u = random.choice([2, 5, 10])
+    names, ns = _vt_rows(4)
+    t = sum(ns) * u
+    o = _mf_opts(t, [x for x in (t + u, t - u, t + 2 * u, t - 2 * u, sum(ns)) if x != t and x > 0], str, sort=False)
+    sh = _vt_pik([{"name": names[i], "n": ns[i]} for i in range(4)], u, "kitap" if False else "adet")
+    return _mf_raw(subject, "Veri yorumlama", _vt_o("Şekil grafiğinde bir kırtasiyede satılan ürünlerin sayısı gösterilmiştir.", "Aşağıdaki şekil grafiğinde bir kırtasiyenin bir günde sattığı ürünler gösterilmiştir.") + f"\nBuna göre bu kırtasiyede toplam kaç ürün satılmıştır?", o, f"Toplam simge sayısı {sum(ns)} ve her simge {u} adet: {sum(ns)} × {u} = {t}.", shape=sh) if o else None
+
+
+def _mf_vt_pikto_fark(subject):
+    u = random.choice([2, 5, 10])
+    names, ns = _vt_rows(4)
+    i, j = random.sample(range(4), 2)
+    big, sm = (i, j) if ns[i] > ns[j] else (j, i)
+    d = (ns[big] - ns[sm]) * u
+    o = _mf_opts(d, [x for x in (d + u, max(d - u, u), d + 2 * u, ns[big] - ns[sm], d + 3 * u) if x != d and x > 0], str, sort=False)
+    sh = _vt_pik([{"name": names[k], "n": ns[k]} for k in range(4)], u, "adet")
+    return _mf_raw(subject, "Veri yorumlama", _vt_o("Şekil grafiğinde bir kırtasiyede satılan ürünlerin sayısı gösterilmiştir.", "Aşağıdaki şekil grafiğinde bir kırtasiyenin bir günde sattığı ürünler gösterilmiştir.") + f"\nBuna göre {names[big].lower()} satışı, {names[sm].lower()} satışından kaç adet fazladır?", o, f"({ns[big]} − {ns[sm]}) × {u} = {d}.", shape=sh) if o else None
+
+
+def _mf_vt_pikto_kac(subject):
+    u = random.choice([2, 5, 10])
+    names, ns = _vt_rows(4)
+    i = random.randrange(4)
+    c = ns[i] * u
+    o = _mf_opts(c, [x for x in (ns[i], c + u, max(c - u, u), c + 2 * u, c - 2 * u) if x != c and x > 0], str, sort=False)
+    sh = _vt_pik([{"name": names[k], "n": ns[k]} for k in range(4)], u, "adet")
+    return _mf_raw(subject, "Veri okuma", _vt_o("Şekil grafiğinde bir kırtasiyede satılan ürünlerin sayısı gösterilmiştir.", "Aşağıdaki şekil grafiğinde bir kırtasiyenin bir günde sattığı ürünler gösterilmiştir.") + f"\nBuna göre kaç adet {names[i].lower()} satılmıştır?", o, f"{ns[i]} simge × {u} = {c}.", shape=sh) if o else None
+
+
+def _mf_vt_pikto_yarim(subject):
+    u = random.choice([2, 4, 10])
+    names, ns = _vt_rows(4, half=True)
+    k = next(x for x in range(4) if ns[x] != int(ns[x]))
+    c = int(ns[k] * u)
+    o = _mf_opts(c, [x for x in (int(ns[k]) * u, (int(ns[k]) + 1) * u, c + u, max(c - u, 1), int(ns[k]) + 1) if x != c and x > 0], str, sort=False)
+    sh = _vt_pik([{"name": names[x], "n": ns[x]} for x in range(4)], u, "adet")
+    return _mf_raw(subject, "Veri okuma", f"Şekil grafiğinde bir kırtasiyede satılan ürünlerin sayısı gösterilmiştir. Yarım simge, simge değerinin yarısını göstermektedir.\nBuna göre kaç adet {names[k].lower()} satılmıştır?", o, f"{int(ns[k])} tam simge ve bir yarım simge: {int(ns[k])} × {u} + {u // 2} = {c}.", shape=sh) if o else None
+
+
+_VT_FAMS = [
+    (_mf_vt_cizgi_oku, 2, "MAT.5.5.1"), (_mf_vt_cizgi_en, 2, "MAT.5.5.1"), (_mf_vt_cizgi_fark, 3, "MAT.5.5.1"), (_mf_vt_cizgi_top, 2, "MAT.5.5.1"),
+    (_mf_vt_pie_kac, 3, "MAT.5.5.1"), (_mf_vt_pie_en, 2, "MAT.5.5.1"),
+    (_mf_vt_pikto_top, 2, "MAT.5.5.1"), (_mf_vt_pikto_fark, 3, "MAT.5.5.1"), (_mf_vt_pikto_kac, 2, "MAT.5.5.1"), (_mf_vt_pikto_yarim, 3, "MAT.5.5.1"),
+]
+for _f, _d, _cd in _VT_FAMS:
+    _MF_GENS.append((_vy_wrap(_f), ("veri", "grafik"), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- 5. SINIF MATEMATİK "DOĞAL SAYILARLA DÖRT İŞLEM": çubuk (bar) model, işlem makinesi, eşit gruplar
+_DD_ISIM = [("Ali", "Veli"), ("Ayşe", "Elif"), ("Mert", "Can"), ("Zeynep", "Deniz"), ("Selin", "Burak")]
+_DD_NESNE = [("kitap", "kitap"), ("kalem", "kalem"), ("bilye", "bilye"), ("sticker", "sticker"), ("kart", "kart")]
+
+
+def _dd_gen(n):
+    if n[-1] in "aeıioöuüAEIİOÖUÜ":
+        return n + "'nin" if n[-1] in "eiEİ" else n + "'nın" if n[-1] in "aıAI" else n + ("'nun" if n[-1] in "ouOU" else "'nün")
+    v = [c for c in n if c in "aeıioöuü"][-1]
+    return n + "'" + {"a": "ın", "ı": "ın", "e": "in", "i": "in", "o": "un", "u": "un", "ö": "ün", "ü": "ün"}[v]
+
+
+def _dd_o(v, extra, suf="", n=4):
+    w = [x for x in dict.fromkeys(extra) if x != v and x > 0]
+    return _mf_opts(v, w, (lambda x: f"{x}{suf}"), sort=False)
+
+
+def _dd_bar(rows):
+    return {"type": "kes", "sub_type": "bar", "rows": rows}
+
+
+def _mf_dd_topla(subject):
+    a, b = random.randrange(120, 600, 5), random.randrange(110, 500, 5)
+    n1, n2 = random.choice([("roman", "hikâye"), ("fen kitabı", "tarih kitabı"), ("kırmızı balon", "mavi balon"), ("erkek öğrenci", "kız öğrenci")])
+    t = a + b
+    o = _dd_o(t, [t + 10, t - 10, t + 100, abs(a - b), t - 100])
+    sh = _dd_bar([{"name": "", "segs": [{"l": str(a), "w": a}, {"l": str(b), "w": b}], "brace": "?"}])
+    q = f"Çubuk modelinde bir yerdeki {n1} sayısı {a}, {n2} sayısı {b} olarak gösterilmiştir. Buna göre toplam kaç tanedir?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{a} + {b} = {t}.", shape=sh) if o else None
+
+
+def _mf_dd_fark(subject):
+    p, r = random.choice(_DD_ISIM)
+    a, b = random.randrange(250, 900, 5), random.randrange(120, 240, 5)
+    big = a + b
+    sh = _dd_bar([{"name": p, "segs": [{"l": str(big), "w": big}]}, {"name": r, "segs": [{"l": str(a), "w": a}], "dash": b}])
+    o = _dd_o(b, [b + 10, b + 20, big + a, max(b - 10, 5), b + 100])
+    q = f"Çubuk modelinde {_dd_gen(p)} {big}, {_dd_gen(r)} {a} cevizi olduğu gösterilmiştir. Buna göre {_dd_gen(p)} cevizi {_dd_gen(r)}kinden kaç fazladır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{big} − {a} = {b}.", shape=sh) if o else None
+
+
+def _mf_dd_esit(subject):
+    n, k = random.randint(4, 7), random.randrange(12, 60, 3)
+    t = n * k
+    o = _dd_o(t, [t + k, t - k, t + 10, n + k, t - 10])
+    sh = _dd_bar([{"name": "", "segs": [{"l": str(k), "w": k} for _ in range(n)], "brace": "?"}])
+    q = f"Çubuk modelinde bir kitabı her gün {k} sayfa okuyarak {n} günde bitiren bir öğrencinin okuduğu sayfalar gösterilmiştir. Kitap kaç sayfadır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{n} × {k} = {t}.", shape=sh) if o else None
+
+
+def _mf_dd_bol(subject):
+    n, k = random.randint(4, 8), random.randrange(12, 90, 3)
+    t = n * k
+    o = _dd_o(k, [k + 3, k - 3, k + 6, n, t - n, k + 12])
+    sh = _dd_bar([{"name": "", "segs": [{"l": "?", "w": 10, "q": True} for _ in range(n)], "brace": str(t)}])
+    q = f"Çubuk modelinde {t} cevizin {n} kutuya eşit olarak paylaştırıldığı gösterilmiştir. Her kutuda kaç ceviz vardır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{t} ÷ {n} = {k}.", shape=sh) if o else None
+
+
+def _mf_dd_kalan(subject):
+    t = random.randrange(300, 900, 10)
+    a, b = random.randrange(40, 200, 5), random.randrange(40, 200, 5)
+    if a + b >= t - 20:
+        return None
+    k = t - a - b
+    o = _dd_o(k, [k + 10, k - 10, t - a, t - b, k + 20, t + a + b])
+    sh = _dd_bar([{"name": "", "segs": [{"l": str(a), "w": a}, {"l": str(b), "w": b}, {"l": "?", "w": k, "q": True}], "brace": str(t)}])
+    q = f"Çubuk modelinde {t} liralık harçlığın {a} lirası kırtasiyede, {b} lirası kantinde harcandığı gösterilmiştir. Geriye kaç lira kalmıştır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{t} − {a} − {b} = {k}.", shape=sh) if o else None
+
+
+def _dd_mk(steps):
+    return {"type": "kes", "sub_type": "makine", "steps": steps}
+
+
+def _mf_dd_makine(subject):
+    x, a, b = random.randint(12, 60), random.randint(3, 9), random.randrange(10, 90, 5)
+    sgn = random.choice(["+", "−"])
+    y = x * a + b if sgn == "+" else x * a - b
+    if y <= 0:
+        return None
+    o = _dd_o(y, [y + b, y - b if y > b else y + 2 * b, x * a, x + a + b, y + 10, y - 10])
+    sh = _dd_mk([{"l": str(x)}, {"l": f"× {a}", "op": True}, {"l": f"{sgn} {b}", "op": True}, {"l": "?", "q": True}])
+    q = f"Bir işlem makinesine {x} sayısı girince önce {a} ile çarpılıyor, sonra {b} {'ekleniyor' if sgn == '+' else 'çıkarılıyor'} (şekil). Makineden çıkan sayı kaçtır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{x} × {a} = {x * a}; {x * a} {sgn} {b} = {y}.", shape=sh) if o else None
+
+
+def _mf_dd_makine_ters(subject):
+    x, a, b = random.randint(12, 60), random.randint(3, 9), random.randrange(10, 90, 5)
+    y = x * a + b
+    o = _dd_o(x, [x + 1, x + 2, x - 1, (y - b) // a + 5, y // a, x + b // 5, x - 2])
+    sh = _dd_mk([{"l": "?", "q": True}, {"l": f"× {a}", "op": True}, {"l": f"+ {b}", "op": True}, {"l": str(y)}])
+    q = f"Bir işlem makinesine girilen sayı önce {a} ile çarpılıp sonra {b} eklenince {y} sonucu elde ediliyor (şekil). Makineye girilen sayı kaçtır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"Ters işlem: {y} − {b} = {y - b}; {y - b} ÷ {a} = {x}.", shape=sh) if o else None
+
+
+def _mf_dd_gruplar(subject):
+    g, k = random.randint(3, 6), random.randint(3, 8)
+    sh = {"type": "kes", "sub_type": "esitg", "g": g, "k": k, "cap": f"{g} kutu, her kutuda {k} adet"}
+    nesne = random.choice(["elma", "bilye", "şeker", "kalem"])
+    t = g * k
+    o = _dd_o(t, [t + k, t - k, g + k, t + 2, t - 2, t + g])
+    q = f"Şekilde her birinde {k} {nesne} bulunan {g} kutu gösterilmiştir. Kutulardaki toplam {nesne} sayısı kaçtır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{g} × {k} = {t}.", shape=sh) if o else None
+
+
+def _mf_dd_gruplar_kalan(subject):
+    g, k = random.randint(3, 6), random.randint(4, 8)
+    t = g * k
+    m = random.randint(3, t - 4)
+    sh = {"type": "kes", "sub_type": "esitg", "g": g, "k": k, "cap": f"{g} kutu, her kutuda {k} adet — satılan: {m}"}
+    nesne = random.choice(["elma", "bilye", "şeker", "kalem"])
+    c = t - m
+    o = _dd_o(c, [c + k, c - 1, c + 2, t + m, m, c - 2, c + 3])
+    q = f"Şekilde her birinde {k} {nesne} bulunan {g} kutu gösterilmiştir. Bu {nesne}lerden {m} tanesi satıldığına göre geriye kaç {nesne} kalmıştır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"{g} × {k} = {t}; {t} − {m} = {c}.", shape=sh) if o else None
+
+
+_DD_FAMS = [(_mf_dd_topla, 1), (_mf_dd_fark, 2), (_mf_dd_esit, 2), (_mf_dd_bol, 3), (_mf_dd_kalan, 3), (_mf_dd_makine, 2), (_mf_dd_makine_ters, 4), (_mf_dd_gruplar, 1), (_mf_dd_gruplar_kalan, 3)]
+for _f, _d in _DD_FAMS:
+    _MF_GENS.append((_vy_wrap(_f), ("dört işlem", "problem", "zihinden", "tahmin", "işlem"), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = ["MAT.5.1.2"]
+
+
+# ---- 6. SINIF MATEMATİK (1. aşama): Tam Sayılar, Veri Analizi, Doğal Sayılar (çarpan/EBOB/EKOK), Cebirsel İfadeler (terazi)
+def _mn(v):
+    return str(v).replace("-", "−")
+
+
+def _m6o(c, extra, fmt=_mn):
+    w = [x for x in dict.fromkeys(extra) if x != c]
+    return _mf_opts(c, w, fmt, sort=False)
+
+
+def _ts_sh(pts=None, hop=None, lo=-8, hi=8):
+    return {"type": "m6", "sub_type": "tsayi", "lo": lo, "hi": hi, "pts": pts or [], "hop": hop}
+
+
+def _mf6_ts_oku(subject):
+    vs = random.sample(range(-7, 8), 3)
+    hf = _lt(3)
+    k = random.randrange(3)
+    o = _m6o(vs[k], [-vs[k], vs[k] + 1, vs[k] - 1, vs[k] + 2, vs[k] - 2, -vs[k] + 1])
+    sh = _ts_sh([{"h": hf[i], "v": vs[i]} for i in range(3)])
+    q = f"Sayı doğrusunda üç nokta harflerle gösterilmiştir. {hf[k]} noktası hangi tam sayıyı gösterir?"
+    return _mf_raw(subject, "Tam sayılar", q, o, f"{hf[k]} noktası sayı doğrusunda {_mn(vs[k])} değerindedir.", shape=sh) if o else None
+
+
+def _mf6_ts_hop(subject):
+    a = random.randint(-6, 5)
+    k = random.choice([x for x in range(-7, 8) if x not in (0,)])
+    b = a + k
+    if not -8 <= b <= 8 or abs(k) < 2:
+        return None
+    lab = ("+" if k > 0 else "−") + str(abs(k))
+    sh = _ts_sh([{"h": "K", "v": a}], {"from": a, "to": b, "lab": lab})
+    o = _m6o(b, [a - k, -b, b + 1, b - 1, a + abs(k) + 1, a - abs(k) - 1])
+    q = f"Sayı doğrusunda K noktası {_mn(a)} sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse ({lab}) hangi tam sayıya ulaşılır?"
+    return _mf_raw(subject, "Tam sayılarla toplama-çıkarma", q, o, f"{_mn(a)} {'+' if k > 0 else '−'} {abs(k)} = {_mn(b)}.", shape=sh) if o else None
+
+
+def _mf6_ts_uzak(subject):
+    a, b = random.sample(range(-7, 8), 2)
+    d = abs(a - b)
+    if d < 2:
+        return None
+    sh = _ts_sh([{"h": "K", "v": a}, {"h": "L", "v": b}])
+    o = _m6o(d, [abs(a) + abs(b) + 1, abs(a + b) if abs(a + b) != d else d + 2, d + 1, d - 1, d + 2])
+    q = "Sayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?"
+    return _mf_raw(subject, "Mutlak değer", q, o, f"|{_mn(a)} − ({_mn(b)})| = {d} birimdir.", shape=sh) if o else None
+
+
+def _mf6_ts_mutlak(subject):
+    a = random.choice([x for x in range(-8, 9) if x != 0])
+    others = random.sample([x for x in range(-8, 9) if abs(x) != abs(a)], 2)
+    sh = _ts_sh([{"h": "K", "v": a}] + [{"h": h, "v": v} for h, v in zip("LM", others)])
+    o = _m6o(abs(a), [-abs(a), 0, abs(a) + 1, abs(a) - 1, abs(a) + 2])
+    q = "Sayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?"
+    return _mf_raw(subject, "Mutlak değer", q, o, f"K noktası {_mn(a)} sayısını gösterir; mutlak değeri {abs(a)} olur.", shape=sh) if o else None
+
+
+def _mf6_ts_sirala(subject):
+    vs = random.sample(range(-8, 9), 4)
+    hf = _lt(4)
+    mode = random.choice(["küçük", "büyük", "sıfıra en yakın", "sıfıra en uzak"])
+    key = {"küçük": lambda v: v, "büyük": lambda v: -v, "sıfıra en yakın": lambda v: abs(v), "sıfıra en uzak": lambda v: -abs(v)}[mode]
+    ks = sorted(vs, key=key)
+    if len(vs) > 1 and key(ks[0]) == key(ks[1]):
+        return None
+    i = vs.index(ks[0])
+    sh = _ts_sh([{"h": hf[j], "v": vs[j]} for j in range(4)])
+    txt = {"küçük": "en küçük tam sayıyı", "büyük": "en büyük tam sayıyı", "sıfıra en yakın": "sıfıra en yakın olan tam sayıyı", "sıfıra en uzak": "sıfıra en uzak olan tam sayıyı"}[mode]
+    q = f"Sayı doğrusunda dört nokta harflerle gösterilmiştir. {txt[0].upper() + txt[1:]} gösteren nokta hangisidir?"
+    return _mf_raw(subject, "Tam sayılar", q, (sorted(hf), hf[i]), f"Noktaların değerleri: " + ", ".join(f"{hf[j]} = {_mn(vs[j])}" for j in range(4)) + f". {txt[0].upper() + txt[1:]} {hf[i]} gösterir.", shape=sh)
+
+
+def _mf6_ts_termo(subject):
+    a, b = random.sample(range(-10, 21, 5), 2)
+    hi = max(a, b)
+    lo = min(a, b)
+    sh = {"type": "m6", "sub_type": "termo", "lo": -10, "hi": 20, "items": [{"h": "K", "v": a}, {"h": "L", "v": b}]}
+    mode = random.choice(["fark", "yüksek"])
+    if mode == "fark":
+        d = hi - lo
+        o = _m6o(d, [d + 5, d - 5, abs(a) + abs(b) + 5, abs(a + b) + 5, d + 10], lambda v: f"{_mn(v)} °C")
+        q = "Şekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?"
+        ex = f"{_mn(a)} °C ile {_mn(b)} °C arasındaki fark {d} °C'dir."
+        return _mf_raw(subject, "Tam sayılar", q, o, ex, shape=sh) if o else None
+    hfc = "K" if a > b else "L"
+    return _mf_raw(subject, "Tam sayılar", "Şekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?", (["K şehri", "L şehri", "İkisi de aynı", "Belirlenemez"], "L şehri" if a > b else "K şehri"), f"Sıcaklıklar K = {_mn(a)} °C, L = {_mn(b)} °C; daha düşük olan daha soğuktur.", shape=sh) if a != b else None
+
+
+# ---- Veri analizi
+_VA_GUN = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"]
+
+
+def _va_vals(n, lo=4, hi=20):
+    for _ in range(80):
+        v = [random.randint(lo, hi) for _ in range(n)]
+        if sum(v) % n == 0 and len(set(v)) > 2:
+            return v
+    return None
+
+
+def _mf6_va_ort(subject):
+    n = random.choice([4, 5])
+    v = _va_vals(n)
+    if not v:
+        return None
+    m = sum(v) // n
+    labs = _VA_GUN[:n]
+    sh = {"type": "bar_chart", "labels": labs, "values": v, "title": "Bir öğrencinin günlük okuduğu sayfa sayısı", "ylabel": "Sayfa sayısı"}
+    o = _m6o(m, [m + 1, m - 1, m + 2, max(v), sum(v), m - 2], str)
+    q = f"Sütun grafiğinde bir öğrencinin {n} gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?"
+    return _mf_raw(subject, "Aritmetik ortalama", q, o, f"({' + '.join(map(str, v))}) ÷ {n} = {sum(v)} ÷ {n} = {m}.", shape=sh) if o else None
+
+
+def _mf6_va_eksik(subject):
+    v = _va_vals(5, 6, 20)
+    if not v:
+        return None
+    m = sum(v) // 5
+    x = v[-1]
+    sh = {"type": "bar_chart", "labels": _VA_GUN[:4], "values": v[:4], "title": f"Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: {m})", "ylabel": "Soru sayısı"}
+    o = _m6o(x, [x + 1, x - 1, x + 2, m, x + 3, x - 2], str)
+    q = f"Sütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması {m} soru olduğuna göre 5. gün kaç soru çözmüştür?"
+    return _mf_raw(subject, "Aritmetik ortalama", q, o, f"Toplam {m} × 5 = {m * 5}; ilk 4 gün {sum(v[:4])}; 5. gün {m * 5} − {sum(v[:4])} = {x}.", shape=sh) if o and x > 0 else None
+
+
+def _mf6_va_cizgi_ort(subject):
+    n = random.choice([4, 5, 6])
+    v = _va_vals(n, 10, 40)
+    if not v:
+        return None
+    labs = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran"][:n]
+    m = sum(v) // n
+    sh = {"type": "line_chart", "labels": labs, "values": v, "title": "Bir ilin aylık yağış miktarı (mm)", "ylabel": "Yağış (mm)"}
+    o = _m6o(m, [m + 1, m - 1, m + 2, max(v), m + 3, m - 2], str)
+    q = f"Çizgi grafiğinde bir ilin {n} aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?"
+    return _mf_raw(subject, "Aritmetik ortalama", q, o, f"{sum(v)} ÷ {n} = {m} mm.", shape=sh) if o else None
+
+
+def _mf6_va_cizgi_art(subject):
+    labs = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran"]
+    v = [random.randint(10, 60) for _ in labs]
+    d = [abs(v[i + 1] - v[i]) for i in range(5)]
+    if d.count(max(d)) != 1:
+        return None
+    i = d.index(max(d))
+    ans = f"{labs[i]} – {labs[i + 1]}"
+    allv = [ans] + random.sample([f"{labs[j]} – {labs[j + 1]}" for j in range(5) if j != i], 3)
+    random.shuffle(allv)
+    sh = {"type": "line_chart", "labels": labs, "values": v, "title": "Bir mağazanın aylık satış adedi", "ylabel": "Satış (adet)"}
+    q = "Çizgi grafiğinde bir mağazanın aylara göre satış adedi gösterilmiştir. Hangi iki ay arasında satış sayısındaki değişim (artış ya da azalış) en fazladır?"
+    return _mf_raw(subject, "Çizgi grafiği", q, (allv, ans), f"Ardışık aylar arasındaki farklar: {', '.join(map(str, d))}. En büyük fark {ans} arasındadır ({max(d)}).", shape=sh)
+
+
+def _mf6_va_pie_aci(subject):
+    pc = random.choice([[40, 30, 20, 10], [50, 25, 15, 10], [35, 30, 25, 10], [45, 25, 20, 10], [30, 30, 25, 15], [40, 25, 20, 15]])
+    random.shuffle(pc)
+    labs = random.choice([["Futbol", "Voleybol", "Yüzme", "Tenis"], ["Matematik", "Fen", "Türkçe", "Sosyal"], ["Kırmızı", "Mavi", "Yeşil", "Sarı"]])
+    i = random.randrange(4)
+    a = int(pc[i] * 3.6)
+    sh = {"type": "pie_chart", "labels": labs, "values": pc, "title": "Sınıftaki öğrencilerin tercihleri (%)"}
+    o = _m6o(a, [pc[i], a + 18, a - 18, 360 - a, a + 36, 90], lambda v: f"{v}°")
+    q = f"Daire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. {labs[i]} dilimine karşılık gelen merkez açı kaç derecedir?"
+    return _mf_raw(subject, "Daire grafiği", q, o, f"360° × %{pc[i]} = {a}°.", shape=sh) if o else None
+
+
+def _mf6_va_pie_say(subject):
+    pc = random.choice([[40, 30, 20, 10], [50, 25, 15, 10], [35, 30, 25, 10], [45, 25, 20, 10], [30, 30, 25, 15]])
+    random.shuffle(pc)
+    labs = ["A kulübü", "B kulübü", "C kulübü", "D kulübü"]
+    tot = random.choice([40, 60, 80, 100, 120, 200])
+    i, j = random.sample(range(4), 2)
+    d = abs(tot * pc[i] // 100 - tot * pc[j] // 100)
+    if (tot * pc[i]) % 100 or (tot * pc[j]) % 100 or d == 0:
+        return None
+    big, sm = (i, j) if pc[i] > pc[j] else (j, i)
+    sh = {"type": "pie_chart", "labels": labs, "values": pc, "title": f"{tot} öğrencinin kulüp tercihleri (%)"}
+    o = _m6o(d, [d + 2, d + 4, max(d - 2, 1), tot * pc[big] // 100, d + 5, d + 10], lambda v: f"{v} öğrenci")
+    q = f"Daire grafiğinde {tot} öğrencinin kulüp tercihleri yüzde olarak gösterilmiştir. {labs[big]}'ni seçen öğrenci sayısı, {labs[sm]}'ni seçenlerden kaç fazladır?"
+    return _mf_raw(subject, "Daire grafiği", q, o, f"{labs[big]}: {tot} × %{pc[big]} = {tot * pc[big] // 100}; {labs[sm]}: {tot * pc[sm] // 100}; fark = {d}.", shape=sh) if o else None
+
+
+# ---- Doğal sayılar: çarpan ağacı, Venn (EBOB), ritim (EKOK)
+def _agac_build(primes):
+    if len(primes) == 1:
+        return {"v": str(primes[0])}
+    k = random.randint(1, len(primes) - 1)
+    a, b = primes[:k], primes[k:]
+    pr = 1
+    for x in primes:
+        pr *= x
+    return {"v": str(pr), "ch": [_agac_build(a), _agac_build(b)]}
+
+
+def _agac_nodes(n, out=None):
+    out = [] if out is None else out
+    out.append(n)
+    for c in n.get("ch", []):
+        _agac_nodes(c, out)
+    return out
+
+
+def _mf6_dn_agac_eksik(subject):
+    for _ in range(30):
+        pr = sorted(random.choices([2, 2, 3, 3, 5, 7], k=random.choice([3, 4])))
+        t = _agac_build(pr)
+        cand = [n for n in _agac_nodes(t) if n is not t and n.get("ch")]
+        if cand and int(t["v"]) <= 400:
+            break
+    else:
+        return None
+    h = random.choice(cand)
+    ans = h["v"]
+    h["v"] = "?"
+    sh = {"type": "m6", "sub_type": "agac", "root": t}
+    o = _m6o(int(ans), [int(ans) + 2, int(ans) - 2, int(ans) * 2, int(ans) + 4, int(t["v"]) // 2, int(ans) + 6], str)
+    q = f"Şekildeki çarpan ağacında {t['v']} sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?"
+    return _mf_raw(subject, "Asal sayılar", q, o, f"Her sayı, altındaki iki sayının çarpımına eşittir. ? = {ans}.", shape=sh) if o else None
+
+
+def _mf6_dn_agac_n(subject):
+    for _ in range(30):
+        pr = sorted(random.choices([2, 2, 3, 3, 5, 7], k=random.choice([3, 4])))
+        t = _agac_build(pr)
+        pv = 1
+        for x in pr:
+            pv *= x
+        if pv <= 400:
+            break
+    ans = t["v"]
+    t["v"] = "?"
+    sh = {"type": "m6", "sub_type": "agac", "root": t}
+    o = _m6o(pv, [pv + 2, pv - 2, pv * 2, pv + 6, pv - 6, pv + 10], str)
+    q = "Şekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?"
+    return _mf_raw(subject, "Asal sayılar", q, o, f"Asal çarpanların çarpımı: {' × '.join(map(str, pr))} = {pv}.", shape=sh) if o else None
+
+
+def _dv(n):
+    return [d for d in range(1, n + 1) if n % d == 0]
+
+
+_EB_PAIRS = [(12, 18), (16, 24), (18, 30), (20, 30), (24, 36), (12, 20), (18, 27), (15, 25), (16, 20), (24, 30), (28, 42), (30, 45), (36, 48), (14, 21), (20, 28)]
+
+
+def _venn_sh(a, b):
+    da, db = _dv(a), _dv(b)
+    com = [x for x in da if x in db]
+    return {"type": "m6", "sub_type": "venn", "ta": f"{a}'nın çarpanları" if False else f"{a} sayısının çarpanları", "tb": f"{b} sayısının çarpanları", "a": [x for x in da if x not in com], "ab": com, "b": [x for x in db if x not in com]}, com
+
+
+def _mf6_dn_ebob(subject):
+    a, b = random.choice(_EB_PAIRS)
+    sh, com = _venn_sh(a, b)
+    e = max(com)
+    o = _m6o(e, [min(com) if min(com) != e else e + 2, e * 2, e + 2, e - 1, a, e + 4, len(com)], str)
+    q = f"Venn şemasında {a} ve {b} sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?"
+    return _mf_raw(subject, "EBOB-EKOK giriş", q, o, f"Ortak çarpanlar: {', '.join(map(str, com))}. En büyüğü {e} olduğundan EBOB({a}, {b}) = {e}.", shape=sh) if o else None
+
+
+def _mf6_dn_ortak(subject):
+    a, b = random.choice(_EB_PAIRS)
+    sh, com = _venn_sh(a, b)
+    n = len(com)
+    o = _m6o(n, [n + 1, n + 2, max(n - 1, 1), len(sh["a"]), len(sh["b"]), max(com), n + 3], str)
+    q = f"Venn şemasında {a} ve {b} sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?"
+    return _mf_raw(subject, "Çarpanlar ve katlar", q, o, f"Ortada gösterilen ortak çarpanlar: {', '.join(map(str, com))} → {n} tane.", shape=sh) if o else None
+
+
+_EK_PAIRS = [(4, 6), (6, 8), (3, 4), (4, 10), (6, 9), (5, 6), (8, 12), (10, 15), (3, 5), (4, 5), (6, 10), (9, 12)]
+
+
+def _mf6_dn_ekok(subject):
+    a, b = random.choice(_EK_PAIRS)
+    l = a * b // __import__("math").gcd(a, b)
+    sh = {"type": "m6", "sub_type": "ritim", "max": l, "rows": [{"name": "A", "step": a}, {"name": "B", "step": b}]}
+    nes = random.choice([("iki otobüs", "dakikada bir"), ("iki fener", "saniyede bir"), ("iki arkadaş", "günde bir")])
+    unit = nes[1].split()[0] if False else nes[1].replace(" bir", "")
+    o = _m6o(l, [l + a, l - a if l - a > 0 else l + b, l + b, a * b if a * b != l else l + 2 * a, l * 2, a + b], str)
+    q = f"Şekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her {a}, B her {b} birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?"
+    return _mf_raw(subject, "EBOB-EKOK giriş", q, o, f"{a} ve {b}'nin ortak katlarından en küçüğü EKOK({a}, {b}) = {l} olur.", shape=sh) if o else None
+
+
+# ---- Cebirsel ifadeler: terazi
+def _tz(L, R):
+    return {"type": "m6", "sub_type": "terazi", "L": L, "R": R}
+
+
+def _mf6_ce_t1(subject):
+    x = random.randint(2, 12)
+    c = random.randint(2, 9)
+    r = x + c
+    o = _m6o(x, [r, r + c, x + 1, x - 1, c, x + 2, x - 2], str)
+    q = f"Şekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?"
+    return _mf_raw(subject, "Eşitlik", q, o, f"x + {c} = {r} → x = {r} − {c} = {x}.", shape=_tz({"x": 1, "c": c}, {"c": r})) if o and x > 0 else None
+
+
+def _mf6_ce_t2(subject):
+    a = random.randint(2, 5)
+    x = random.randint(2, 9)
+    r = a * x
+    o = _m6o(x, [r, r - a, x + 1, x - 1, a, x + 2, r // 2 if r // 2 != x else x + 3], str)
+    q = "Şekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?"
+    return _mf_raw(subject, "Eşitlik", q, o, f"{a}x = {r} → x = {r} ÷ {a} = {x}.", shape=_tz({"x": a}, {"c": r})) if o and x > 0 else None
+
+
+def _mf6_ce_t3(subject):
+    a = random.randint(2, 4)
+    x = random.randint(2, 8)
+    c = random.randint(2, 9)
+    r = a * x + c
+    o = _m6o(x, [r - c, r // a, x + 1, x - 1, x + 2, (r + c) // a, x - 2], str)
+    q = "Şekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?"
+    return _mf_raw(subject, "Eşitlik", q, o, f"{a}x + {c} = {r} → {a}x = {r - c} → x = {x}.", shape=_tz({"x": a, "c": c}, {"c": r})) if o and x > 0 else None
+
+
+def _mf6_ce_t4(subject):
+    a, b = random.choice([(3, 1), (2, 1), (4, 1), (4, 2), (5, 2)])
+    x = random.randint(2, 8)
+    c = random.randint(1, 8)
+    e = c + (a - b) * x
+    o = _m6o(x, [e, e - c, x + 1, x - 1, c, x + 2, (e + c) // (a - b)], str)
+    q = "Şekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?"
+    return _mf_raw(subject, "Eşitlik", q, o, f"{a}x + {c} = {b}x + {e} → {a - b}x = {e - c} → x = {x}.", shape=_tz({"x": a, "c": c}, {"x": b, "c": e})) if o and e > 0 and x > 0 and c != e else None
+
+
+_M6_FAMS = [
+    (_mf6_ts_oku, 1, "tam sayı", None), (_mf6_ts_hop, 2, "tam sayı", None), (_mf6_ts_uzak, 3, "tam sayı", None), (_mf6_ts_mutlak, 2, "tam sayı", None), (_mf6_ts_sirala, 2, "tam sayı", None), (_mf6_ts_termo, 2, "tam sayı", None),
+    (_mf6_va_ort, 2, "veri", "MAT.6.5.1"), (_mf6_va_eksik, 4, "veri", "MAT.6.5.1"), (_mf6_va_cizgi_ort, 2, "veri", "MAT.6.5.1"), (_mf6_va_cizgi_art, 3, "veri", "MAT.6.5.2"), (_mf6_va_pie_aci, 3, "veri", "MAT.6.5.2"), (_mf6_va_pie_say, 3, "veri", "MAT.6.5.2"),
+    (_mf6_dn_agac_eksik, 3, "doğal sayı", "MAT.6.1.3"), (_mf6_dn_agac_n, 2, "doğal sayı", "MAT.6.1.3"), (_mf6_dn_ebob, 3, "doğal sayı", "MAT.6.1.4"), (_mf6_dn_ortak, 2, "doğal sayı", "MAT.6.1.4"), (_mf6_dn_ekok, 3, "doğal sayı", "MAT.6.1.4"),
+    (_mf6_ce_t1, 1, "cebirsel", "MAT.6.2.1"), (_mf6_ce_t2, 2, "cebirsel", "MAT.6.2.1"), (_mf6_ce_t3, 3, "cebirsel", "MAT.6.2.1"), (_mf6_ce_t4, 4, "cebirsel", "MAT.6.2.1"),
+]
+_M6_KW = {"tam sayı": ("tam sayı", "mutlak değer"), "veri": ("veri", "ortalama", "grafik"), "doğal sayı": ("çarpan", "asal", "ebob", "ekok", "doğal sayı"), "cebirsel": ("cebirsel", "denklem", "eşitlik", "değişken")}
+for _f, _d, _kk, _cd in _M6_FAMS:
+    _MF_GENS.append((_vy_wrap(_f), _M6_KW[_kk], (6,)))
+    _DIFF_OF[_f.__name__] = _d
+    if _cd:
+        _MF_ITEMCODE[_f.__name__] = [_cd]
 
 
 _MF_ITEMCODE.update({"_mf_eqlty2": ["MAT.5.2.1"], "_mf_order2": ["MAT.5.2.2"], "_mf_dik_problem": ["MAT.5.4.4"], "_mf_frac_kars": ["MAT.5.1.4"]})
