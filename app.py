@@ -138,7 +138,7 @@ C = {
   MAT: [_u("Doğal Sayılarla İşlemler", "Çarpanlar ve katlar; Asal sayılar; EBOB-EKOK giriş"), _u("Kesirlerle İşlemler", "Kesir işlemleri; Kesir problemleri"),
        _u("Ondalık Gösterim", "Ondalık sayılarla işlemler; Yüzde"), _u("Oran", "Oran kavramı; Orantı giriş"), _u("Tam Sayılar", "Tam sayılarla toplama-çıkarma; Mutlak değer"),
        _u("Cebirsel İfadeler", "Değişken; Cebirsel ifade; Eşitlik"), _u("Alan ve Çevre", "Üçgen, paralelkenar alanı; Çember uzunluğu"),
-       _u("Veri Analizi", "Aritmetik ortalama; Çizgi ve daire grafiği")],
+       _u("Veri Analizi", "Aritmetik ortalama; Çizgi ve daire grafiği"), _u("Açılar ve Dörtgenler", "Paralel doğrular ve kesen; Dörtgenlerin açıları")],
   FEN: [_u("Güneş Sistemi ve Tutulmalar", "Gezegenler; Ay-Güneş tutulması; Uzay araştırmaları"), _u("Vücudumuzdaki Sistemler", "Sindirim; Dolaşım; Solunum; Boşaltım"),
        _u("Kuvvet ve Hareket", "Sürat; Hareket grafikleri; Bileşke kuvvet"), _u("Madde ve Isı", "Saf madde-karışım; Isı alışverişi; Genleşme"),
        _u("Ses ve Işık", "Sesin özellikleri; Işığın yansıması; Mercekler"), _u("Elektrik", "Elektrik devreleri; Ohm yasası giriş; Güvenli kullanım"),
@@ -5059,9 +5059,344 @@ def _m6_ritim(ax, d):
     ax.set_ylim(-1.4, (len(rows) - 1) * 1.5 + .8)
 
 
+def _m6_alan(ax, d):
+    k = d["kind"]
+    b, h = d["b"], d["h"]
+    sc = 5.0 / max(b, 1) if k != "bilesik" else 4.0 / max(b, 1)
+    hh = min(3.2, max(1.6, 3.2 * h / max(b, h)))
+    B = 5.0 if k != "bilesik" else 4.0
+    hs = hh
+    if k == "ucgen":
+        ox = float(d.get("ox", .35)) * B
+        ax.add_patch(Polygon([[0, 0], [B, 0], [ox, hs]], closed=True, fc="#fef3c7", ec=INK, lw=2, zorder=2))
+        ax.plot([ox, ox], [0, hs], color=BLUE, lw=2, ls="--", zorder=3)
+        ax.add_patch(Rectangle((ox - .0, 0), .2, .2, fc="none", ec=BLUE, lw=1.4, zorder=3))
+        ax.text(B / 2, -.4, d["lb"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+        ax.text(ox + .12, hs / 2, d["lh"], ha="left", va="center", fontsize=12, fontweight="bold", color=BLUE)
+        if d.get("ls"):
+            ax.text((B + ox) / 2 + .35, hs / 2 + .05, d["ls"], ha="left", va="center", fontsize=11, color=INK)
+    elif k == "paralel":
+        off = float(d["offr"]) * hs if "offr" in d else float(d.get("off", 1.2))
+        ax.add_patch(Polygon([[0, 0], [B, 0], [B + off, hs], [off, hs]], closed=True, fc="#dbeafe", ec=INK, lw=2, zorder=2))
+        ax.plot([off, off], [0, hs], color=BLUE, lw=2, ls="--", zorder=3)
+        ax.add_patch(Rectangle((off, 0), .2, .2, fc="none", ec=BLUE, lw=1.4, zorder=3))
+        ax.text(B / 2, -.4, d["lb"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+        ax.text(off + .12, hs / 2, d["lh"], ha="left", va="center", fontsize=12, fontweight="bold", color=BLUE)
+        if d.get("ls"):
+            ax.text(B + off / 2 + .2, hs / 2, d["ls"], ha="left", va="center", fontsize=11, color=INK)
+    else:  # bileşik: dikdörtgen + üstünde üçgen
+        w = B
+        rh = hs
+        ax.add_patch(Rectangle((0, 0), w, rh, fc="#dbeafe", ec=INK, lw=2, zorder=2))
+        th = min(1.8, rh)
+        ax.add_patch(Polygon([[0, rh], [w, rh], [w / 2, rh + th]], closed=True, fc="#fef3c7", ec=INK, lw=2, zorder=2))
+        ax.plot([w / 2, w / 2], [rh, rh + th], color=BLUE, lw=2, ls="--", zorder=3)
+        ax.text(w / 2, -.4, d["lb"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+        ax.text(w + .15, rh / 2, d["lh"], ha="left", va="center", fontsize=12, fontweight="bold", color=INK)
+        ax.text(w / 2 + .12, rh + th / 2, d["lt"], ha="left", va="center", fontsize=12, fontweight="bold", color=BLUE)
+    ax.text(B * .5, hs * .42, d.get("in", ""), ha="center", va="center", fontsize=12, color=INK, zorder=4)
+    ax.set_xlim(-.8, B + 3.2)
+    ax.set_ylim(-1.0, hs + 2.3 if k == "bilesik" else hs + .8)
+
+
+def _m6_cember(ax, d):
+    ax.add_patch(Circle((0, 0), 2.0, fc="#fef3c7", ec=INK, lw=2, zorder=1))
+    sub = d.get("mode", "r")
+    ax.add_patch(Circle((0, 0), .06, fc=INK, zorder=4))
+    ax.text(-.2, -.22, "O", ha="right", va="top", fontsize=11, color=INK)
+    if sub == "dilim":
+        th = float(d["theta"])
+        ax.add_patch(Wedge((0, 0), 2.0, 0, th, fc="#fbbf24", ec=INK, lw=2, zorder=2))
+        a = np.radians(th / 2)
+        ax.text(1.0 * np.cos(a) * .9, 1.0 * np.sin(a) * .9, d["lt"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK, zorder=5)
+        ax.plot([0, 2.0], [0, 0], color=INK, lw=2, zorder=3)
+        ax.text(1.0, -.28, d["lr"], ha="center", va="center", fontsize=12, fontweight="bold", color=BLUE, zorder=5)
+    elif sub == "cap":
+        ax.plot([-2, 2], [0, 0], color=BLUE, lw=2.4, zorder=3)
+        ax.text(0, .3, d["lr"], ha="center", va="center", fontsize=12, fontweight="bold", color=BLUE, zorder=5)
+    else:
+        ax.plot([0, 2], [0, 0], color=BLUE, lw=2.4, zorder=3)
+        ax.text(1.0, .3, d["lr"], ha="center", va="center", fontsize=12, fontweight="bold", color=BLUE, zorder=5)
+    if d.get("note"):
+        ax.text(0, -2.55, d["note"], ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.set_xlim(-2.5, 2.5)
+    ax.set_ylim(-3.0, 2.5)
+    ax.set_aspect("equal", adjustable="box")
+
+
+def _m6_alanm(ax, d):
+    r, c = int(d["rows"]), int(d["cols"])
+    a, b = int(d["a"]), int(d["b"])
+    W, H = 5.0, 3.6
+    for i in range(r):
+        for j in range(c):
+            f = "#ffffff"
+            ina, inb = i < a, j < b
+            if ina and inb:
+                f = "#f59e0b"
+            elif ina:
+                f = "#bfdbfe"
+            elif inb:
+                f = "#fde68a"
+            ax.add_patch(Rectangle((j * W / c, (r - 1 - i) * H / r), W / c, H / r, fc=f, ec=INK, lw=1.1, zorder=2))
+    ax.add_patch(Rectangle((0, 0), W, H, fc="none", ec=INK, lw=2.2, zorder=3))
+    ax.set_xlim(-.4, W + .4)
+    ax.set_ylim(-.4, H + .4)
+
+
+def _m6_oran(ax, d):
+    cols = {"K": "#ef4444", "M": "#3b82f6", "S": "#fbbf24"}
+    x = 0.0
+    y = 0.0
+    n = 0
+    for g in d["gr"]:
+        for _ in range(int(g["n"])):
+            ax.add_patch(Circle((x + .4, y), .34, fc=cols.get(g["c"], "#94a3b8"), ec=INK, lw=1.4, zorder=2))
+            x += .95
+            n += 1
+            if x > 7.4:
+                x = 0
+                y -= 1.0
+    ax.set_xlim(-.2, 8.0)
+    ax.set_ylim(y - .6, .7)
+
+
+def _m6_yuzluk(ax, d):
+    n = int(d["n"])
+    for i in range(10):
+        for j in range(10):
+            k = i * 10 + j
+            ax.add_patch(Rectangle((j * .5, (9 - i) * .5), .5, .5, fc="#f59e0b" if k < n else "white", ec=INK, lw=.8, zorder=2))
+    ax.add_patch(Rectangle((0, 0), 5, 5, fc="none", ec=INK, lw=2.2, zorder=3))
+    ax.set_xlim(-.3, 5.3)
+    ax.set_ylim(-.3, 5.3)
+
+
+def _m6_serit2(ax, d):
+    W = 8.0
+    for i, r in enumerate(d["rows"]):
+        y = (len(d["rows"]) - 1 - i) * 1.7
+        n, k = int(r["d"]), int(r["k"])
+        for j in range(n):
+            ax.add_patch(Rectangle((j * W / n, y), W / n, 1.0, fc=_KS_FILL if j < k else "white", ec=INK, lw=1.5, zorder=3))
+        ax.text(-.3, y + .5, r["name"], ha="right", va="center", fontsize=13, fontweight="bold", color=INK)
+    ax.set_xlim(-1.4, W + .4)
+    ax.set_ylim(-.3, len(d["rows"]) * 1.7)
+
+
 def _m6(ax, d):
     st = d.get("sub_type")
-    {"tsayi": _m6_tsayi, "termo": _m6_termo, "terazi": _m6_terazi, "agac": _m6_agac, "venn": _m6_venn, "ritim": _m6_ritim}.get(st, lambda a, b: None)(ax, d)
+    {"tsayi": _m6_tsayi, "termo": _m6_termo, "terazi": _m6_terazi, "agac": _m6_agac, "venn": _m6_venn, "ritim": _m6_ritim, "alan": _m6_alan, "cember": _m6_cember, "alanm": _m6_alanm, "oran": _m6_oran, "yuzluk": _m6_yuzluk, "serit2": _m6_serit2}.get(st, lambda a, b: None)(ax, d)
+
+
+# ---------------------------------------------------------------- 6. SINIF FEN: vücut sistemleri şemaları, ses dalgası, yankı, ışığın yansıması (metindeki her değer/harf şekilde yazılıdır)
+def _f6_venn2(ax, d):
+    ax.add_patch(Rectangle((-3.6, -2.3), 7.2, 5.4, fc="white", ec=INK, lw=2, zorder=1))
+    ax.add_patch(Circle((-1.0, 0), 1.7, fc="#bbf7d0", ec=INK, lw=2.2, alpha=.75, zorder=2))
+    ax.add_patch(Circle((1.0, 0), 1.7, fc="#bfdbfe", ec=INK, lw=2.2, alpha=.75, zorder=3))
+    import textwrap as _tw
+    ax.text(-1.6, 2.5, "\n".join(_tw.wrap(d["ta"], 15)), ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.text(1.6, 2.5, "\n".join(_tw.wrap(d["tb"], 15)), ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    h = d["harf"]
+    ax.text(-1.85, 0, h["sol"], ha="center", va="center", fontsize=22, fontweight="bold", color=INK, zorder=5)
+    ax.text(0, 0, h["orta"], ha="center", va="center", fontsize=22, fontweight="bold", color=INK, zorder=5)
+    ax.text(1.85, 0, h["sag"], ha="center", va="center", fontsize=22, fontweight="bold", color=INK, zorder=5)
+    ax.text(-3.2, -1.9, h["dis"], ha="center", va="center", fontsize=22, fontweight="bold", color=ORANGE, zorder=5)
+    ax.set_xlim(-3.8, 3.8)
+    ax.set_ylim(-2.5, 3.3)
+
+
+def _f6_hucre(ax, t, x, y, r, s=1.0):
+    import numpy as _np
+    from matplotlib.patches import Ellipse
+    if t == "amip":
+        th = _np.linspace(0, 2 * _np.pi, 80)
+        rad = (.36 + .11 * _np.sin(3 * th + r) + .07 * _np.cos(5 * th + 2 * r)) * s
+        ax.fill(x + rad * _np.cos(th), y + rad * _np.sin(th), fc="#fde68a", ec=INK, lw=1.6, zorder=4)
+        ax.add_patch(Circle((x + .05 * s, y), .09 * s, fc="#f59e0b", ec=INK, lw=1, zorder=5))
+    elif t == "paramesyum":
+        ax.add_patch(Ellipse((x, y), .95 * s, .38 * s, angle=r, fc="#fbcfe8", ec=INK, lw=1.6, zorder=4))
+        a = _np.radians(r)
+        for k in range(14):
+            u = 2 * _np.pi * k / 14
+            ex, ey = .475 * s * _np.cos(u), .19 * s * _np.sin(u)
+            px, py = ex * _np.cos(a) - ey * _np.sin(a), ex * _np.sin(a) + ey * _np.cos(a)
+            nx, ny = .09 * s * _np.cos(u + a), .09 * s * _np.sin(u + a)
+            ax.plot([x + px, x + px + nx], [y + py, y + py + ny], color=INK, lw=1, zorder=3)
+    else:
+        ax.add_patch(Ellipse((x, y), .72 * s, .3 * s, angle=r, fc="#86efac", ec=INK, lw=1.6, zorder=4))
+        a = _np.radians(r)
+        tt = _np.linspace(0, 1, 20)
+        fx = x + (.36 * s + .4 * s * tt) * _np.cos(a) - .09 * s * _np.sin(6 * tt) * _np.sin(a)
+        fy = y + (.36 * s + .4 * s * tt) * _np.sin(a) + .09 * s * _np.sin(6 * tt) * _np.cos(a)
+        ax.plot(fx, fy, color=INK, lw=1.2, zorder=3)
+        ax.add_patch(Circle((x - .18 * s * _np.cos(a), y - .18 * s * _np.sin(a)), .05 * s, fc="#ef4444", ec="none", zorder=5))
+
+
+def _f6_mikroalan(ax, d):
+    from matplotlib.patches import Ellipse
+    ax.add_patch(Circle((0, 0), 3.0, fc="#eff6ff", ec=INK, lw=3, zorder=1))
+    for t, x, y, r in d["items"]:
+        _f6_hucre(ax, t, x, y, r)
+    nm = {"amip": "Amip", "paramesyum": "Paramesyum", "öglena": "Öglena"}
+    ks = list(d["tur"])
+    for i, k in enumerate(ks):
+        cx = (i - (len(ks) - 1) / 2) * 3.2
+        _f6_hucre(ax, k, cx - .8, -3.75, 20, .9)
+        ax.text(cx - .15, -3.75, nm[k], ha="left", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.text(0, 3.45, "Mikroskop görüntüsü", ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.set_xlim(-3.4, 3.4)
+    ax.set_ylim(-4.3, 3.8)
+
+
+def _f6_zincir(ax, d):
+    harf = list(d["harf"])
+    ad = list(d.get("ad") or [""] * len(harf))
+    n = len(harf)
+    cols = ["#fde68a", "#fed7aa", "#bbf7d0", "#bfdbfe", "#e9d5ff"]
+    W, G = 1.5, .95
+    tot = n * W + (n - 1) * G
+    for i, h in enumerate(harf):
+        x = i * (W + G)
+        ax.add_patch(FancyBboxPatch((x, 0), W, 1.3, boxstyle="round,pad=0.02,rounding_size=.25", fc=cols[i % 5], ec=INK, lw=2, zorder=2))
+        ax.text(x + W / 2, .65, h, ha="center", va="center", fontsize=22, fontweight="bold", color=INK, zorder=4)
+        if ad[i]:
+            import textwrap as _tw
+            ax.text(x + W / 2, -.22, "\n".join(_tw.wrap(ad[i], 9)), ha="center", va="top", fontsize=9.5, fontweight="bold", color=BLUE, zorder=4, linespacing=1.15)
+        if i < n - 1:
+            ax.annotate("", xy=(x + W + G - .06, .65), xytext=(x + W + .06, .65), arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=2.8), zorder=3)
+    if d.get("title"):
+        ax.text(tot / 2, 1.85, d["title"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.set_xlim(-.4, tot + .4)
+    ax.set_ylim(-1.2, 2.3)
+
+
+def _f6_kalp(ax, d):
+    ax.add_patch(Circle((0, 0), 1.35, fc="#fca5a5", ec=INK, lw=2.2, zorder=2))
+    ax.text(0, .12, d["k"], ha="center", va="center", fontsize=22, fontweight="bold", color=INK, zorder=4)
+    ax.text(0, -.55, "Kalp", ha="center", va="center", fontsize=11, fontweight="bold", color=INK, zorder=4)
+    ax.add_patch(FancyBboxPatch((5.6, -1.7), 2.6, 3.4, boxstyle="round,pad=0.02,rounding_size=.2", fc="#dcfce7", ec=INK, lw=2, zorder=2))
+    ax.text(6.9, 2.05, "Doku", ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    for yy in (-1.0, -.35, .3, .95):
+        ax.plot([5.75, 8.05], [yy, yy], color="#ef4444", lw=1.1, zorder=3)
+    ax.plot([6.9, 6.9], [-1.2, 1.2], color="#ef4444", lw=1.1, zorder=3)
+    ax.text(6.9, -2.15, d["n"], ha="center", va="center", fontsize=20, fontweight="bold", color=ORANGE)
+    ax.annotate("", xy=(5.5, 1.0), xytext=(1.3, 1.0), arrowprops=dict(arrowstyle="-|>", color=BLUE, lw=3), zorder=3)
+    ax.text(3.4, 1.45, d["l"], ha="center", va="center", fontsize=20, fontweight="bold", color=ORANGE)
+    ax.annotate("", xy=(1.3, -1.0), xytext=(5.5, -1.0), arrowprops=dict(arrowstyle="-|>", color=BLUE, lw=3), zorder=3)
+    ax.text(3.4, -1.55, d["m"], ha="center", va="center", fontsize=20, fontweight="bold", color=ORANGE)
+    ax.text(3.9, -2.75, "Oklar kanın akış yönünü gösterir.", ha="center", va="center", fontsize=10.5, color=INK)
+    ax.set_xlim(-1.8, 8.6)
+    ax.set_ylim(-3.2, 2.6)
+
+
+def _f6_dalga(ax, d):
+    L = 8.0
+    xs = np.linspace(0, L, 400)
+    for k, (a, f, y0, lab) in enumerate(zip(d["a"], d["f"], (1.9, -1.9), d["lab"])):
+        ax.plot([0, L], [y0, y0], color="#cbd5e1", lw=1, zorder=1)
+        ax.plot(xs, y0 + a * np.sin(2 * np.pi * f * xs / L), color=BLUE if k == 0 else ORANGE, lw=2.6, zorder=3)
+        ax.text(-.5, y0, lab, ha="center", va="center", fontsize=20, fontweight="bold", color=INK)
+    ax.text(L / 2, 3.55, "İki sesin dalga görüntüsü (aynı ölçek)", ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.set_xlim(-1.1, L + .3)
+    ax.set_ylim(-3.4, 3.9)
+
+
+def _f6_simsek(ax, d):
+    ax.add_patch(Circle((0, 1.05), .32, fc="#fde68a", ec=INK, lw=2, zorder=3))
+    ax.plot([0, 0], [.73, -.5], color=INK, lw=3, zorder=3)
+    ax.plot([-.45, .45], [.3, .3], color=INK, lw=3, zorder=3)
+    ax.plot([0, -.35], [-.5, -1.2], color=INK, lw=3, zorder=3)
+    ax.plot([0, .35], [-.5, -1.2], color=INK, lw=3, zorder=3)
+    for cx, cy, r in ((8.0, 1.7, .7), (8.7, 1.8, .8), (9.4, 1.6, .65)):
+        ax.add_patch(Circle((cx, cy), r, fc="#94a3b8", ec=INK, lw=1.8, zorder=2))
+    ax.add_patch(Polygon([(8.7, 1.1), (8.3, .2), (8.75, .3), (8.45, -.7), (9.2, .5), (8.8, .4), (9.1, 1.1)], closed=True, fc="#fbbf24", ec=INK, lw=1.6, zorder=3))
+    ax.annotate("", xy=(.7, -.2), xytext=(8.1, -.2), arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=2.6))
+    ax.text(4.4, -.7, "Gök gürültüsü  ←  " + d["v"], ha="center", va="center", fontsize=12, fontweight="bold", color=ORANGE)
+    ax.text(4.4, .55, "Şimşek görüldükten " + d["t"] + " sonra\ngök gürültüsü duyuldu", ha="center", va="center", fontsize=11.5, fontweight="bold", color=BLUE)
+    ax.annotate("", xy=(0, -1.9), xytext=(8.7, -1.9), arrowprops=dict(arrowstyle="<|-|>", color=INK, lw=1.8))
+    ax.text(4.3, -2.35, "uzaklık = ?", ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.set_xlim(-1, 9.9)
+    ax.set_ylim(-2.9, 2.8)
+
+
+def _f6_gorunum(ax, d):
+    ax.add_patch(Rectangle((-.15, -1.6), .3, 3.2, fc="#cbd5e1", ec=INK, lw=2, zorder=2))
+    for yy in np.arange(-1.5, 1.6, .4):
+        ax.plot([.15, .45], [yy, yy - .25], color=INK, lw=1, zorder=2)
+    ax.text(0, 1.95, "Düz ayna", ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    x = -float(d["u"])
+    ax.annotate("", xy=(x, .9), xytext=(x, -.6), arrowprops=dict(arrowstyle="-|>", color=BLUE, lw=3.4))
+    ax.text(x, -1.0, "Cisim", ha="center", va="center", fontsize=11, fontweight="bold", color=BLUE)
+    ax.annotate("", xy=(-.15, -1.45), xytext=(x, -1.45), arrowprops=dict(arrowstyle="<|-|>", color=INK, lw=1.8))
+    ax.text(x / 2, -1.85, d["lab"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.annotate("", xy=(-x, .9), xytext=(-x, -.6), arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=3.4, ls="--"))
+    ax.text(-x, -1.0, "Görüntü", ha="center", va="center", fontsize=11, fontweight="bold", color=ORANGE)
+    ax.set_xlim(x - 1.0, -x + 1.0)
+    ax.set_ylim(-2.4, 2.4)
+
+
+def _f6_yanki(ax, d):
+    if d.get("mod") == "simsek":
+        return _f6_simsek(ax, d)
+    ax.add_patch(Circle((0, 1.05), .32, fc="#fde68a", ec=INK, lw=2, zorder=3))
+    ax.plot([0, 0], [.73, -.5], color=INK, lw=3, zorder=3)
+    ax.plot([-.45, .45], [.3, .3], color=INK, lw=3, zorder=3)
+    ax.plot([0, -.35], [-.5, -1.2], color=INK, lw=3, zorder=3)
+    ax.plot([0, .35], [-.5, -1.2], color=INK, lw=3, zorder=3)
+    ax.add_patch(Rectangle((8.2, -1.3), .5, 3.1, fc="#94a3b8", ec=INK, lw=2, zorder=2))
+    ax.text(8.45, 2.15, "Dağ", ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.annotate("", xy=(8.1, .8), xytext=(.7, .8), arrowprops=dict(arrowstyle="-|>", color=BLUE, lw=2.6))
+    ax.annotate("", xy=(.7, -.2), xytext=(8.1, -.2), arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=2.6))
+    ax.text(4.4, 1.3, "Ses  →  " + d["v"], ha="center", va="center", fontsize=12, fontweight="bold", color=BLUE)
+    ax.text(4.4, -.7, "Yankı  ←  süre: " + d["t"], ha="center", va="center", fontsize=12, fontweight="bold", color=ORANGE)
+    ax.annotate("", xy=(0, -1.9), xytext=(8.45, -1.9), arrowprops=dict(arrowstyle="<|-|>", color=INK, lw=1.8))
+    ax.text(4.2, -2.35, "uzaklık = ?", ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.set_xlim(-1, 9.2)
+    ax.set_ylim(-2.9, 2.6)
+
+
+def _f6_yansima(ax, d):
+    from matplotlib.patches import Arc
+    th = np.radians(float(d["gel"]))
+    L = 3.2
+    ax.add_patch(Rectangle((-3.6, -.35), 7.2, .35, fc="#cbd5e1", ec=INK, lw=2, zorder=2))
+    for xx in np.arange(-3.4, 3.5, .5):
+        ax.plot([xx, xx - .25], [-.35, -.6], color=INK, lw=1, zorder=2)
+    ax.text(3.2, -.85, "Düz ayna", ha="right", va="center", fontsize=10.5, fontweight="bold", color=INK)
+    ax.plot([0, 0], [0, L + .3], color=INK, lw=1.6, ls="--", zorder=2)
+    ax.text(.12, L + .35, "Normal", ha="left", va="center", fontsize=10, color=INK)
+    sx, sy = -L * np.sin(th), L * np.cos(th)
+    if d.get("mod") != "aday":
+        ax.annotate("", xy=(0, 0), xytext=(sx, sy), arrowprops=dict(arrowstyle="-|>", color=BLUE, lw=2.8), zorder=4)
+        ax.annotate("", xy=(-sx, sy), xytext=(0, 0), arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=2.8), zorder=4)
+        ax.text(sx - .1, sy + .25, "Gelen ışın", ha="center", va="center", fontsize=10.5, fontweight="bold", color=BLUE)
+        ax.text(-sx + .1, sy + .25, "Yansıyan ışın", ha="center", va="center", fontsize=10.5, fontweight="bold", color=ORANGE)
+    for hh, aa in (d.get("aday") or {}).items():
+        t2 = np.radians(float(aa))
+        ex_, ey_ = L * np.sin(t2) * (1 if aa >= 0 else 1), L * np.cos(t2)
+        ax.plot([0, ex_], [0, ey_], color="#94a3b8", lw=2, ls=(0, (4, 3)), zorder=3)
+        ax.text(ex_ * 1.12, ey_ * 1.08 + .1, hh, ha="center", va="center", fontsize=15, fontweight="bold", color=INK)
+    if d.get("mod") == "aday":
+        ax.annotate("", xy=(0, 0), xytext=(sx, sy), arrowprops=dict(arrowstyle="-|>", color=BLUE, lw=2.8), zorder=4)
+        ax.text(sx - .1, sy + .25, "Gelen ışın", ha="center", va="center", fontsize=10.5, fontweight="bold", color=BLUE)
+    if d.get("mod") == "yuz":
+        a0, a1 = 180 - (90 - float(d["gel"])), 180
+        ax.add_patch(Arc((0, 0), 1.6, 1.6, theta1=a0 - 0, theta2=a1, color=INK, lw=2, zorder=5))
+        mid = np.radians((a0 + a1) / 2)
+        ax.text(1.25 * np.cos(mid) - .25, 1.0 * np.sin(mid) + .12, d["lab"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    else:
+        a0, a1 = 90, 90 + float(d["gel"])
+        ax.add_patch(Arc((0, 0), 1.6, 1.6, theta1=a0, theta2=a1, color=INK, lw=2, zorder=5))
+        mid = np.radians(a1 + 14)
+        ax.text(1.55 * np.cos(mid), 1.55 * np.sin(mid), d["lab"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.set_xlim(-4.2, 4.2)
+    ax.set_ylim(-1.2, L + .8)
+
+
+def _f6(ax, d):
+    st = d.get("sub_type")
+    {"zincir": _f6_zincir, "kalp": _f6_kalp, "dalga": _f6_dalga, "yanki": _f6_yanki, "yansima": _f6_yansima, "gorunum": _f6_gorunum, "venn2": _f6_venn2, "mikroalan": _f6_mikroalan}.get(st, lambda a, b: None)(ax, d)
 
 
 def _mad(ax, d):
@@ -5074,7 +5409,7 @@ _DISPATCH = {
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes, "sos": _sos, "dil": _dil, "m6": _m6,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes, "sos": _sos, "dil": _dil, "m6": _m6, "f6": _f6,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -8362,7 +8697,7 @@ _SCI = {"fen", "science_space", "space_orbit", "eclipse", "moon_phases", "dynamo
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
     "Matematik": _GEO | _CH | {"kes", "m6"},
-    "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio", "light", "kuv", "mad", "elk", "cev", "uzy"},
+    "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio", "light", "kuv", "mad", "elk", "cev", "uzy", "f6"},
     "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc", "sos", "dil"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
     "Türkçe": {"table", "doc", "dil", "sos", "bar_chart"},
@@ -8759,7 +9094,7 @@ def coherent_shape(shape, text, subject=None):
     if not shape:
         return None, False
     k = _kind(shape)
-    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" and k not in ("bio", "light", "kuv", "mad", "elk", "cev", "uzy", "sos", "dil") else ()):  # canlılar şemaları ay/dünya anahtarlarıyla karışmasın
+    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" and k not in ("bio", "light", "kuv", "mad", "elk", "cev", "uzy", "sos", "dil", "f6") else ()):  # canlılar şemaları ay/dünya anahtarlarıyla karışmasın
         if rx.search(text):
             if k not in allowed:
                 return None, True
@@ -11728,7 +12063,7 @@ _TOPIC_GROUPS = {  # ad: (seçilen konularda tetikleyici, soru içeriğinde aran
         ("ay", r"güneş|dünya|\bay\b|ay'ın|ayın|tutulma|evre", r"güneş|dünya|\bay\b|ay'|ayın|evre|tutulma|dolunay|hilal|dördün|yörünge|eksen|gece|gündüz|mevsim|uydu|gök"),
         ("kuvvet", r"kuvvet|sürtünme|dinamometre|ağırlık", r"kuvvet|sürtünme|dinamometre|newton|ağırlık|kütle|\byay\b|\bitme\b|\bçekme\b|hareket"),
         ("madde", r"madde|ısı|sıcaklık|erime|donma", r"madde|ısı|sıcaklık|erime|donma|kaynama|buhar|katı|sıvı|gaz|termometre|hâl|hal\b|yoğuş|°"),
-        ("ışık", r"ışık|gölge|yansıma", r"ışık|gölge|yansı|ayna|saydam|donuk|kaynak|işın|ışın|yayıl"),
+        ("ışık", r"ışık|gölge|yansıma|\bses\b|sesin|yankı", r"ışık|gölge|yansı|ayna|saydam|donuk|kaynak|işın|ışın|yayıl|\bses|yankı|frekans|desibel|titreşim|dalga|şimşek|gök gürültü"),
         ("elektrik", r"elektrik|devre", r"devre|pil|ampul|akım|lamba|anahtar|elektrik|seri|paralel|iletken|yalıtkan"),
         ("hücre", r"hücre|canlı|iskelet|destek ve hareket", r"hücre|organel|canlı|sınıflan|bitki|hayvan|mantar|bakteri|çekirdek|zar|mikroskop|doku|organ|sistem|iskelet|\bkas|kemik|eklem|destek"),
         ("geridonusum", r"geri dönüşüm|atık|sürdürülebilir", r"geri dönüş|atık|kaynak|tasarruf|sürdürül|çöp|kâğıt|kağıt|cam\b|plastik|metal|kompost|israf|çevre"),
@@ -24068,6 +24403,261 @@ for _f, _d, _it in _CD_FAMS3:
 _CD_VIS |= {f.__name__ for f, _d, _i in _CD_FAMS3}
 
 
+_CD_VENN = {
+    "bh": ("Bitkiler", "Hayvanlar", ["Kendi besinini üretir", "Yer değiştiremez", "Yeşil renkli yapıları (klorofil) vardır"], ["Yer değiştirebilir", "Besinini hazır olarak alır", "Duyu organlarıyla çevresini algılar"],
+           ["Hücrelerden oluşur", "Büyür ve gelişir", "Üreyerek soyunu sürdürür", "Solunum yapar"]),
+    "bm": ("Bitkiler", "Mantarlar", ["Kendi besinini üretir", "Yeşil renkli yapıları (klorofil) vardır"], ["Besinini hazır olarak alır", "Klorofili yoktur", "Şapkalı türleri vardır"],
+           ["Yer değiştiremez", "Hücrelerden oluşur", "Çıplak gözle görülebilen türleri vardır"]),
+    "hm": ("Hayvanlar", "Mantarlar", ["Yer değiştirebilir", "Duyu organlarıyla çevresini algılar"], ["Yer değiştiremez", "Şapkalı türleri vardır"],
+           ["Besinini kendisi üretemez", "Hücrelerden oluşur", "Büyür ve gelişir"]),
+}
+_CD_VITEM = "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma"
+
+
+def _cd_venn_base():
+    key = random.choice(list(_CD_VENN))
+    ta, tb, fa, fb, fo = _CD_VENN[key]
+    let = random.sample(_CD_L, 4)
+    sh = {"type": "f6", "sub_type": "venn2", "ta": ta, "tb": tb, "harf": {"sol": let[0], "orta": let[1], "sag": let[2], "dis": let[3]}}
+    return ta, tb, fa, fb, fo, let, sh
+
+
+def _ff_cd_venn_harf(subject):
+    ta, tb, fa, fb, fo, let, sh = _cd_venn_base()
+    reg = random.choice(["sol", "orta", "sag"])
+    f = random.choice({"sol": fa, "orta": fo, "sag": fb}[reg])
+    c = let[{"sol": 0, "orta": 1, "sag": 2}[reg]]
+    q = f"Şekildeki Venn şemasında {ta} ve {tb} kümelerinin bölgeleri harflerle gösterilmiştir. Her bölgeye yalnızca o bölgeye özgü özellikler yazılır.\n“{f}” özelliği şemada hangi harfle gösterilen bölgeye yazılmalıdır?"
+    ex = {"sol": f"Bu özellik yalnız {ta.lower()} aittir; yalnız sol kümede yer alan bölge {c} harfiyle gösterilmiştir.",
+          "orta": f"Bu özellik hem {ta.lower()} hem {tb.lower()} için ortaktır; kesişim bölgesi {c} harfiyle gösterilmiştir.",
+          "sag": f"Bu özellik yalnız {tb.lower()} aittir; yalnız sağ kümede yer alan bölge {c} harfiyle gösterilmiştir."}[reg]
+    return _mf_raw(subject, _CD_T, q, (sorted(let), c), ex, shape=sh)
+
+
+def _ff_cd_venn_ad(subject):
+    ta, tb, fa, fb, fo, let, sh = _cd_venn_base()
+    reg = random.choice(["sol", "orta", "sag"])
+    i = {"sol": 0, "orta": 1, "sag": 2}[reg]
+    c = random.choice({"sol": fa, "orta": fo, "sag": fb}[reg])
+    pool = [x for r, L in (("sol", fa), ("orta", fo), ("sag", fb)) if r != reg for x in L if x not in {"sol": fa, "orta": fo, "sag": fb}[reg]]
+    w = random.sample(pool, 3) if len(pool) >= 3 else None
+    if not w:
+        return None
+    q = f"Şekildeki Venn şemasında {ta} ve {tb} kümelerinin bölgeleri harflerle gösterilmiştir. Her bölgeye yalnızca o bölgeye özgü özellikler yazılır.\n{let[i]} ile gösterilen bölgeye aşağıdaki özelliklerden hangisi yazılabilir?"
+    allv = [c] + w
+    random.shuffle(allv)
+    return _mf_raw(subject, _CD_T, q, (allv, c), f"{let[i]} bölgesi " + {"sol": f"yalnız {ta.lower()}", "orta": f"hem {ta.lower()} hem {tb.lower()}", "sag": f"yalnız {tb.lower()}"}[reg] + " için geçerli özellikleri gösterir.", shape=sh)
+
+
+_CD_FEAT = {"bitki": ("Var", "Yok", "Var"), "hayvan": ("Yok", "Var", "Var"), "mantar": ("Yok", "Yok", "Var")}
+_CD_FH = ["Besinini kendisi üretir", "Yer değiştirebilir", "Hücrelerden oluşur"]
+
+
+def _ff_cd_ozellik_tab(subject):
+    ks = random.sample(list(_CD_FEAT), 3)
+    lb = random.sample(_CD_L, 3)
+    rows = [[lb[i], *_CD_FEAT[ks[i]]] for i in range(3)]
+    k = random.randrange(3)
+    nm = {"bitki": "Bitki", "hayvan": "Hayvan", "mantar": "Mantar"}
+    sh = {"type": "table", "title": "Canlıların özellikleri", "headers": ["Canlı"] + _CD_FH, "rows": rows}
+    q = f"Bir öğrenci bitki, hayvan ve mantar örneklerini harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre {lb[k]} canlısı aşağıdakilerden hangisidir?"
+    wr = [nm[x] for x in nm if x != ks[k]] + ["Mikroskobik canlı (bakteri)", "Cansız varlık"]
+    o = _yn_opts(nm[ks[k]], wr)
+    return _mf_raw(subject, _CD_T, q, o, f"{lb[k]} canlısı besinini kendisi üretmiyor" + (" ve yer değiştirebiliyor: hayvan." if ks[k] == "hayvan" else (" ve yer değiştiremiyor: mantar." if ks[k] == "mantar" else "; bunun yanında yer değiştiremez, kendi besinini üretir: bitki.")), shape=sh) if o else None
+
+
+def _ff_cd_ozellik_say(subject):
+    ks = [random.choice(list(_CD_FEAT)) for _ in range(5)]
+    lb = random.sample(_CD_L, 5)
+    rows = [[lb[i], *_CD_FEAT[ks[i]]] for i in range(5)]
+    j = random.randrange(3) if False else random.choice([0, 1])
+    want = "Var"
+    cnt = sum(1 for k in ks if _CD_FEAT[k][j] == want)
+    if cnt == 0 or cnt == 5:
+        return None
+    sh = {"type": "table", "title": "Canlıların özellikleri", "headers": ["Canlı"] + _CD_FH, "rows": rows}
+    q = f"Bir öğrenci beş canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre “{_CD_FH[j]}” özelliğine sahip kaç canlı vardır?"
+    o = _mf_opts(cnt, [x for x in (cnt + 1, cnt - 1, cnt + 2, 5 - cnt, cnt - 2) if x != cnt and 0 <= x <= 5], str, sort=True)
+    return _mf_raw(subject, _CD_T, q, o, f"Tabloda bu özellik için “Var” yazan {cnt} satır vardır.", shape=sh) if o else None
+
+
+def _lazy_vy(f):
+    def g(subject):
+        return _vy_wrap(f)(subject)
+    g.__name__ = f.__name__
+    g.ITEM = getattr(f, "ITEM", "")
+    return g
+
+
+_CD_FAMS4 = [(_ff_cd_venn_harf, 3), (_ff_cd_venn_ad, 3), (_ff_cd_ozellik_tab, 3), (_ff_cd_ozellik_say, 3)]
+for _f, _d in _CD_FAMS4:
+    _f.ITEM = _CD_VITEM
+    _FF_GENS.append((_lazy_vy(_f), _CD_KW2))
+    _DIFF_OF[_f.__name__] = _d
+_CD_VIS |= {f.__name__ for f, _d in _CD_FAMS4}
+
+
+_CD_VENN.update({
+    "bi": ("Bitkiler", "Mikroskobik canlılar", ["Çıplak gözle görülebilir", "Kök, gövde ve yaprağı olan türleri vardır", "Kendi besinini üretir"], ["Mikroskopla incelenmesi gerekir", "Çıplak gözle görülemez"],
+           ["Hücrelerden oluşur", "Büyür ve gelişir", "Üreyerek soyunu sürdürür"]),
+    "hi": ("Hayvanlar", "Mikroskobik canlılar", ["Çıplak gözle görülebilir", "Duyu organlarıyla çevresini algılar"], ["Mikroskopla incelenmesi gerekir", "Çıplak gözle görülemez"],
+           ["Hücrelerden oluşur", "Büyür ve gelişir", "Yer değiştirebilen türleri vardır"]),
+    "mi": ("Mantarlar", "Mikroskobik canlılar", ["Çıplak gözle görülebilir", "Şapkalı türleri vardır"], ["Mikroskopla incelenmesi gerekir", "Çıplak gözle görülemez"],
+           ["Hücrelerden oluşur", "Büyür ve gelişir", "Kendi besinini üretemeyen türleri vardır"]),
+})
+_CD_ATTR = {"yer": {"Kedi": 1, "Kuş": 1, "Balık": 1, "Amip": 1, "Paramesyum": 1, "Öglena": 1, "Gül": 0, "Çam ağacı": 0, "Şapkalı mantar": 0},
+            "goz": {"Kedi": 1, "Kuş": 1, "Balık": 1, "Gül": 1, "Çam ağacı": 1, "Şapkalı mantar": 1, "Amip": 0, "Paramesyum": 0, "Öglena": 0},
+            "uret": {"Gül": 1, "Çam ağacı": 1, "Öglena": 1, "Kedi": 0, "Kuş": 0, "Balık": 0, "Şapkalı mantar": 0, "Amip": 0, "Paramesyum": 0}}
+_CD_ATN = {"yer": "Yer değiştirebilir", "goz": "Çıplak gözle görülür", "uret": "Besinini kendisi üretir"}
+
+
+def _cd_vc_base():
+    a, b = random.choice([("goz", "uret"), ("yer", "uret")])
+    reg = {"orta": [], "sol": [], "sag": [], "dis": []}
+    for k in _CD_ATTR[a]:
+        x, y = _CD_ATTR[a][k], _CD_ATTR[b][k]
+        reg["orta" if x and y else "sol" if x else "sag" if y else "dis"].append(k)
+    if any(not v for v in reg.values()):
+        return None
+    pick = {r: random.choice(v) for r, v in reg.items()}
+    let = random.sample(_CD_L, 4)
+    sh = {"type": "f6", "sub_type": "venn2", "ta": _CD_ATN[a], "tb": _CD_ATN[b], "harf": {"sol": let[0], "orta": let[1], "sag": let[2], "dis": let[3]}}
+    return a, b, reg, pick, let, sh
+
+
+def _ff_cd_venn_canli_harf(subject):
+    r = _cd_vc_base()
+    if not r:
+        return None
+    a, b, reg, pick, let, sh = r
+    rg = random.choice(["sol", "orta", "sag", "dis"])
+    c = let[["sol", "orta", "sag", "dis"].index(rg)]
+    k = pick[rg]
+    q = f"Şekildeki Venn şemasında “{_CD_ATN[a]}” ve “{_CD_ATN[b]}” kümeleri verilmiştir. Hiçbir kümeye girmeyen canlılar dikdörtgenin içinde, dairelerin dışında yer alır.\n{k} şemada hangi harfle gösterilen bölgeye yazılmalıdır?"
+    return _mf_raw(subject, _CD_T, q, (sorted(let), c), f"{k} için “{_CD_ATN[a]}” özelliği {'var' if _CD_ATTR[a][k] else 'yok'}, “{_CD_ATN[b]}” özelliği {'var' if _CD_ATTR[b][k] else 'yok'}; bu bölge {c} harfiyle gösterilmiştir.", shape=sh)
+
+
+def _ff_cd_venn_canli_ad(subject):
+    r = _cd_vc_base()
+    if not r:
+        return None
+    a, b, reg, pick, let, sh = r
+    rg = random.choice(["sol", "orta", "sag", "dis"])
+    i = ["sol", "orta", "sag", "dis"].index(rg)
+    c = pick[rg]
+    w = [pick[x] for x in pick if x != rg]
+    allv = [c] + w
+    random.shuffle(allv)
+    q = f"Şekildeki Venn şemasında “{_CD_ATN[a]}” ve “{_CD_ATN[b]}” kümeleri verilmiştir. Hiçbir kümeye girmeyen canlılar dikdörtgenin içinde, dairelerin dışında yer alır.\n{let[i]} ile gösterilen bölgeye aşağıdaki canlılardan hangisi yazılmalıdır?"
+    return _mf_raw(subject, _CD_T, q, (allv, c), f"{c} canlısı bu iki özellik bakımından {let[i]} bölgesine girer.", shape=sh)
+
+
+_CD_FEAT2 = {"Bitki": ("Var", "Yok", "Var"), "Hayvan": ("Yok", "Var", "Var"), "Mantar": ("Yok", "Yok", "Var"), "Amip": ("Yok", "Var", "Yok"), "Öglena": ("Var", "Var", "Yok")}
+_CD_FH2 = ["Besinini kendisi üretir", "Yer değiştirebilir", "Çıplak gözle görülür"]
+
+
+def _ff_cd_ozellik_tab2(subject):
+    ks = random.sample(list(_CD_FEAT2), 4)
+    lb = random.sample(_CD_L, 4)
+    rows = [[lb[i], *_CD_FEAT2[ks[i]]] for i in range(4)]
+    k = random.randrange(4)
+    sh = {"type": "table", "title": "Canlıların özellikleri", "headers": ["Canlı"] + _CD_FH2, "rows": rows}
+    q = f"Bir öğrenci dört canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre {lb[k]} canlısı aşağıdakilerden hangisi olabilir?"
+    wr = [x for x in ("Bitki", "Hayvan", "Mantar", "Amip", "Öglena", "Bakteri") if x != ks[k]]
+    random.shuffle(wr)
+    o = _yn_opts(ks[k], wr)
+    return _mf_raw(subject, _CD_T, q, o, f"Tablodaki özelliklere göre {lb[k]} canlısı {ks[k].lower()} grubuna uyar.", shape=sh) if o else None
+
+
+def _ff_cd_tab_tek(subject):
+    for _t in range(60):
+        ks = random.sample(list(_CD_FEAT2), 4)
+        j = random.randrange(3)
+        want = random.choice(["Var", "Yok"])
+        hit = [i for i in range(4) if _CD_FEAT2[ks[i]][j] == want]
+        if len(hit) == 1:
+            break
+    else:
+        return None
+    lb = random.sample(_CD_L, 4)
+    rows = [[lb[i], *_CD_FEAT2[ks[i]]] for i in range(4)]
+    sh = {"type": "table", "title": "Canlıların özellikleri", "headers": ["Canlı"] + _CD_FH2, "rows": rows}
+    neg = "" if want == "Var" else " değil"
+    q = f"Bir öğrenci dört canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre “{_CD_FH2[j].lower()}” özelliği yalnız bir canlıda {'bulunmaktadır' if want == 'Var' else 'bulunmamaktadır'}. Bu canlı hangi harfle gösterilmiştir?"
+    c = lb[hit[0]]
+    return _mf_raw(subject, _CD_T, q, (sorted(lb), c), f"Tabloda bu özellik için “{want}” yazan tek satır {c} satırıdır.", shape=sh)
+
+
+def _cd_mikro_shape():
+    tur = random.sample(["amip", "paramesyum", "öglena"], random.choice([2, 3]))
+    cnt = {t: random.randint(1, 5) for t in tur}
+    items = []
+    pts = []
+    for t in tur:
+        for _ in range(cnt[t]):
+            for _try in range(200):
+                x, y = random.uniform(-2.4, 2.4), random.uniform(-2.4, 2.4)
+                if x * x + y * y <= 2.35 ** 2 and all((x - a) ** 2 + (y - b) ** 2 > 1.0 for a, b in pts):
+                    pts.append((x, y))
+                    items.append((t, round(x, 2), round(y, 2), random.choice([0, 25, 50, 75, 110, 140, 170])))
+                    break
+            else:
+                return None, None, None
+    random.shuffle(items)
+    return {"type": "f6", "sub_type": "mikroalan", "items": [list(i) for i in items], "tur": tur}, cnt, tur
+
+
+_CD_MNX = {"amip": "amip", "paramesyum": "paramesyum", "öglena": "öglena"}
+
+
+def _ff_cd_mikro_say(subject):
+    sh, cnt, tur = _cd_mikro_shape()
+    if not sh:
+        return None
+    t = random.choice(tur)
+    n = cnt[t]
+    q = f"Bir öğrenci mikroskopta incelediği su damlasındaki canlıları şekildeki gibi çizmiştir.\nBuna göre görüntüde kaç tane {_CD_MNX[t]} vardır?"
+    o = _mf_opts(n, [x for x in (n + 1, n - 1, n + 2, sum(cnt.values()), n + 3) if x != n and x > 0], str, sort=True)
+    return _mf_raw(subject, _CD_T, q, o, f"Şekildeki {_CD_MNX[t]} çizimlerini sayarsak {n} tane bulunur.", shape=sh) if o else None
+
+
+def _ff_cd_mikro_top(subject):
+    sh, cnt, tur = _cd_mikro_shape()
+    if not sh:
+        return None
+    n = sum(cnt.values())
+    q = "Bir öğrenci mikroskopta incelediği su damlasındaki canlıları şekildeki gibi çizmiştir.\nBuna göre görüntüde toplam kaç mikroskobik canlı vardır?"
+    o = _mf_opts(n, [x for x in (n + 1, n - 1, n + 2, n - 2, n + 3) if x != n and x > 0], str, sort=True)
+    return _mf_raw(subject, _CD_T, q, o, "Üç türün sayıları toplanır: " + " + ".join(str(cnt[t]) for t in tur) + f" = {n}.", shape=sh) if o else None
+
+
+def _ff_cd_mikro_fark(subject):
+    for _t in range(20):
+        sh, cnt, tur = _cd_mikro_shape()
+        if sh and len(tur) >= 2 and len(set(cnt.values())) > 1:
+            break
+    else:
+        return None
+    a, b = random.sample(tur, 2)
+    if cnt[a] <= cnt[b]:
+        a, b = b, a
+    if cnt[a] == cnt[b]:
+        return None
+    d = cnt[a] - cnt[b]
+    q = f"Bir öğrenci mikroskopta incelediği su damlasındaki canlıları şekildeki gibi çizmiştir.\nBuna göre görüntüdeki {_CD_MNX[a]} sayısı, {_CD_MNX[b]} sayısından kaç fazladır?"
+    o = _mf_opts(d, [x for x in (d + 1, d + 2, d - 1, cnt[a], cnt[b], cnt[a] + cnt[b]) if x != d and x > 0], str, sort=True)
+    return _mf_raw(subject, _CD_T, q, o, f"{cnt[a]} − {cnt[b]} = {d}.", shape=sh) if o else None
+
+
+_CD_FAMS5 = [(_ff_cd_venn_canli_harf, 5), (_ff_cd_venn_canli_ad, 4), (_ff_cd_ozellik_tab2, 4), (_ff_cd_tab_tek, 4), (_ff_cd_mikro_say, 2), (_ff_cd_mikro_top, 3), (_ff_cd_mikro_fark, 5)]
+for _f, _d in _CD_FAMS5:
+    _f.ITEM = _CD_VITEM if _f.__name__ != "_ff_cd_mikro_say" else "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"
+    _FF_GENS.append((_lazy_vy(_f), _CD_KW2))
+    _DIFF_OF[_f.__name__] = _d
+_CD_VIS |= {f.__name__ for f, _d in _CD_FAMS5}
+_DIFF_OF.update({"_ff_cd_venn_harf": 2, "_ff_cd_venn_ad": 3})
+
+
 # ---- Canlılar Dünyası: 3. dalga (mikroskop görüntü alanı, grup kutuları, özellik tabloları, ışık yolu, mantar işlevleri)
 _CD_SLOT = [(-2.7, 2.3), (.2, 2.9), (2.8, 1.9), (-3.0, -.8), (.1, -.1), (3.0, -1.0), (-1.7, -3.0), (1.8, -3.1)]
 _CD_IT_MIK = "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"
@@ -27022,6 +27612,395 @@ for _f, _d, _it, _kw in _GP_DN:
 
 
 
+# ---- 6. SINIF FEN: Vücudumuzdaki Sistemler + Ses ve Işık (şekilli ve metinli aileler)
+_F6_LET = list("KLMNPRST")
+_F6_SYS = {
+    "sin": ("Sindirim Sistemi", "Besinin izlediği yol", ["Ağız", "Yemek borusu", "Mide", "İnce bağırsak", "Kalın bağırsak"],
+            [("Besinlerin dişlerle parçalanarak sindirime başladığı organ", "Ağız"), ("Besinlerin mide özsuyuyla karıştığı organ", "Mide"),
+             ("Besinlerin sindirilmiş hâlde kana geçtiği (emildiği) organ", "İnce bağırsak"), ("Besinlerden geriye kalan suyun emildiği organ", "Kalın bağırsak"),
+             ("Besini mideye ileten kas yapılı borunun adı", "Yemek borusu")], ["Karaciğer", "Pankreas", "Soluk borusu", "Böbrek"]),
+    "sol": ("Solunum Sistemi", "Havanın izlediği yol", ["Burun", "Soluk borusu", "Bronşlar", "Akciğer"],
+            [("Havanın ısıtılıp nemlendirilerek vücuda girdiği organ", "Burun"), ("Havayı akciğerlere ileten borunun adı", "Soluk borusu"),
+             ("Gaz alışverişinin (oksijen–karbondioksit) gerçekleştiği organ", "Akciğer"), ("Soluk borusunun akciğerlere giden iki kola ayrılan bölümü", "Bronşlar")],
+            ["Mide", "Böbrek", "Kalp", "Yemek borusu"]),
+    "bos": ("Boşaltım Sistemi", "İdrarın izlediği yol", ["Böbrek", "İdrar borusu", "İdrar kesesi", "İdrar kanalı"],
+            [("Kandaki zararlı atıkların süzülerek idrarın oluştuğu organ", "Böbrek"), ("İdrarı böbrekten idrar kesesine ileten borunun adı", "İdrar borusu"),
+             ("İdrarın vücuttan atılmadan önce biriktiği organ", "İdrar kesesi"), ("İdrarın vücuttan dışarı atıldığı kanal", "İdrar kanalı")],
+            ["Akciğer", "Mide", "Karaciğer", "Kalp"]),
+}
+
+
+def _f6_zq(sk, kind):
+    ad, ttl, org, gor, ext = _F6_SYS[sk]
+    n = len(org)
+    let = random.sample(_F6_LET, n)
+    if kind == "ad":
+        i = random.randint(1, n - 2)
+        gos = [j for j in range(n) if j != i]
+        caps = [org[j] if (j in random.sample(gos, 2)) else "" for j in range(n)]
+        # iki organ adı şekilde verilir; sorulan organın adı verilmez
+        sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": caps, "title": ttl}
+        q = f"Şekilde {ad.lower()}nde {ttl.lower()} oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre {let[i]} harfiyle gösterilen organ aşağıdakilerden hangisidir?"
+        c = org[i]
+        w = [x for x in org if x != c] + ext
+        random.shuffle(w)
+        allv = [c] + w[:3]
+        random.shuffle(allv)
+        return _mf_raw("Fen Bilimleri", "Vücudumuzdaki Sistemler", q, (allv, c), f"Okların sırasına göre {let[i]} harfi {c} organıdır.", shape=sh)
+    g, c = random.choice(gor)
+    j = org.index(c)
+    sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": list(org), "title": ttl}
+    q = f"Şekilde {ad.lower()}nde {ttl.lower()} organ adlarıyla birlikte gösterilmiştir.\n{g} şekilde hangi harfle gösterilmiştir?"
+    pool = [x for x in let if x != let[j]]
+    if len(pool) < 3:
+        pool += [x for x in _F6_LET if x not in let]
+    ch = sorted([let[j]] + random.sample(pool, 3))
+    return _mf_raw("Fen Bilimleri", "Vücudumuzdaki Sistemler", q, (ch, let[j]), f"{g.split(' organ')[0]} → {c}; şekilde {c} {let[j]} harfiyle gösterilmiştir.", shape=sh)
+
+
+def _ff6_sin_ad(subject):
+    return _f6_zq(random.choice(["sin", "sin", "sol", "bos"]), "ad")
+
+
+def _ff6_sin_harf(subject):
+    return _f6_zq(random.choice(["sin", "sol", "bos"]), "harf")
+
+
+def _ff6_kalp(subject):
+    let = random.sample(_F6_LET, 4)
+    k, l, m, n = let
+    kind = random.choice(["L", "M", "N", "harf_n", "harf_m"])
+    sh = {"type": "f6", "sub_type": "kalp", "k": k, "l": l, "m": m, "n": n}
+    names = ["Atardamar", "Toplardamar", "Kılcal damar", "Kan hücresi", "Akciğer"]
+    if kind in ("L", "M", "N"):
+        c = {"L": "Atardamar", "M": "Toplardamar", "N": "Kılcal damar"}[kind]
+        pick = {"L": l, "M": m, "N": n}[kind]
+        q = f"Şekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\n{pick} harfiyle gösterilen yapı aşağıdakilerden hangisidir?"
+        w = [x for x in names if x != c]
+        random.shuffle(w)
+        allv = [c] + w[:3]
+        random.shuffle(allv)
+        ex = {"L": "Kalpten dokulara kan götüren damarlar atardamarlardır.", "M": "Dokulardan kalbe kan getiren damarlar toplardamarlardır.", "N": "Dokulardaki ince damarlar kılcal damarlardır; madde alışverişi burada olur."}[kind]
+        return _mf_raw("Fen Bilimleri", "Dolaşım Sistemi", q, (allv, c), ex, shape=sh)
+    if kind == "harf_n":
+        q = "Şekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nKan ile hücreler arasında besin ve oksijen alışverişi, şekilde hangi harfle gösterilen yapıda gerçekleşir?"
+        c = n
+        ex = "Madde alışverişi kılcal damarlarda gerçekleşir."
+    else:
+        q = "Şekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nDokulardan kalbe kan getiren damar şekilde hangi harfle gösterilmiştir?"
+        c = m
+        ex = "Kalbe kan getiren damarlar toplardamarlardır; okun yönü kalbe doğrudur."
+    return _mf_raw("Fen Bilimleri", "Dolaşım Sistemi", q, (sorted(let), c), ex, shape=sh)
+
+
+_F6_NABIZ = {
+    "nabız": (["Uyurken", "Dinlenirken", "Yürürken", "Merdiven çıkarken", "Koşarken"], [60, 72, 90, 110, 140], "Bir kişinin 1 dakikadaki nabız sayısı", "Nabız (vuru/dakika)", "nabız sayısı", "vuru"),
+    "soluk": (["Uyurken", "Dinlenirken", "Yürürken", "Merdiven çıkarken", "Koşarken"], [12, 16, 22, 30, 40], "Bir kişinin 1 dakikadaki soluk sayısı", "Soluk (kez/dakika)", "soluk sayısı", "kez"),
+}
+
+
+def _ff6_nabiz(subject):
+    key = random.choice(list(_F6_NABIZ))
+    labs, vals, ttl, yl, nm, bi = _F6_NABIZ[key]
+    idx = sorted(random.sample(range(5), random.choice([3, 4])))
+    L = [labs[i] for i in idx]
+    V = [vals[i] for i in idx]
+    prs = [(a, b) for a in range(len(V)) for b in range(len(V)) if a != b and V[b] % V[a] == 0 and V[b] // V[a] >= 2]
+    ask = random.choice(["fark", "kat"]) if prs else "fark"
+    if ask == "fark":
+        t = V[-1] - V[0]
+        q = f"Grafikte bir kişinin farklı durumlardaki 1 dakikalık {nm} gösterilmiştir.\nBuna göre {L[-1].lower()} ile {L[0].lower()} {nm} arasındaki fark kaçtır?"
+        o = _mf_opts(t, [x for x in (t + 10, t - 10, t + 20, V[-1], V[0] + 10, t + 5, t - 5) if x != t and x > 0], lambda x: f"{x} {bi}", sort=False)
+        ex = f"{V[-1]} − {V[0]} = {t}."
+    else:
+        a, b = random.choice(prs)
+        r = V[b] // V[a]
+        q = f"Grafikte bir kişinin farklı durumlardaki 1 dakikalık {nm} gösterilmiştir.\nBuna göre {L[b].lower()} {nm}, {L[a].lower()} {nm} değerinin kaç katıdır?"
+        o = _mf_opts(r, [x for x in (r + 1, r + 2, max(r - 1, 1), r * 2, 3, 4) if x != r and x > 0], lambda x: f"{x} katı", sort=False)
+        ex = f"{V[b]} ÷ {V[a]} = {r}."
+    sh = _ss_bar(L, V, ttl, yl)
+    return _mf_raw("Fen Bilimleri", "Solunum ve Dolaşım Sistemi", q, o, ex, shape=sh) if o else None
+
+
+def _ff6_dalga(subject):
+    ak, al = random.choice([(1.0, 1.0), (1.4, .7), (.7, 1.4), (1.4, 1.0), (1.0, .6)])
+    fk, fl = random.choice([(2, 2), (2, 4), (4, 2), (3, 5), (5, 3), (2, 3)])
+    if ak == al and fk == fl:
+        return None
+    if ak == al:
+        pass
+    sh = {"type": "f6", "sub_type": "dalga", "a": [ak, al], "f": [fk, fl], "lab": ["K", "L"]}
+    st = [("K sesi, L sesinden daha şiddetlidir.", ak > al), ("L sesi, K sesinden daha şiddetlidir.", al > ak), ("K ve L seslerinin şiddeti eşittir.", ak == al),
+          ("K sesi, L sesinden daha incedir (tizdir).", fk > fl), ("L sesi, K sesinden daha incedir (tizdir).", fl > fk), ("K ve L seslerinin ince–kalınlığı (frekansı) aynıdır.", fk == fl),
+          ("K sesi, L sesinden daha kalındır (pestir).", fk < fl), ("L sesi, K sesinden daha kalındır (pestir).", fl < fk)]
+    T = [t for t, ok in st if ok]
+    F = [t for t, ok in st if not ok]
+    if not T or len(F) < 3:
+        return None
+    # tek doğru ifade: doğru ifadelerden birini seç; diğer doğrular yanlışlar arasına girmez
+    c = random.choice(T)
+    w = random.sample(F, 3)
+    allv = [c] + w
+    random.shuffle(allv)
+    q = "Şekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nBuna göre aşağıdakilerden hangisi söylenebilir?"
+    ex = "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler."
+    return _mf_raw("Fen Bilimleri", "Sesin Özellikleri", q, (allv, c), ex, shape=sh)
+
+
+def _ff6_yanki(subject):
+    t = random.choice([1, 3, 4, 5])
+    v = 340
+    d = v * t // 2
+    sh = {"type": "f6", "sub_type": "yanki", "v": f"{v} m/s", "t": f"{t} s"}
+    q = f"Şekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı {t} saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?"
+    o = _mf_opts(d, [x for x in (v * t, d * 2, d + 170, d - 170, d + 85, v) if x != d and x > 0], lambda x: f"{x} m", sort=False)
+    ex = f"Ses gidiş–dönüşte {v} × {t} = {v * t} m yol alır; uzaklık bunun yarısıdır: {d} m."
+    return _mf_raw("Fen Bilimleri", "Yankı ve Ses", q, o, ex, shape=sh) if o else None
+
+
+def _ff6_yansima(subject):
+    g = random.choice([20, 25, 30, 35, 40, 45, 50, 55, 60])
+    mod = random.choice(["gel", "yuz", "ara"])
+    if mod == "gel":
+        sh = {"type": "f6", "sub_type": "yansima", "gel": g, "lab": f"{g}°", "mod": "gel"}
+        q = f"Şekilde düz aynaya gelen bir ışının normalle yaptığı açı {g}° olarak verilmiştir.\nBuna göre yansıyan ışın ile normal arasındaki açı kaç derecedir?"
+        c = g
+        ex = "Işığın yansımasında gelme açısı yansıma açısına eşittir."
+        wr = [90 - g, 2 * g, 180 - g, 90 + g, g + 10]
+    elif mod == "yuz":
+        sh = {"type": "f6", "sub_type": "yansima", "gel": g, "lab": f"{90 - g}°", "mod": "yuz"}
+        q = f"Şekilde düz aynaya gelen ışının ayna yüzeyiyle yaptığı açı {90 - g}° olarak verilmiştir.\nBuna göre ışığın yansıma açısı (yansıyan ışının normalle yaptığı açı) kaç derecedir?"
+        c = g
+        ex = f"Gelme açısı normalle ölçülür: 90° − {90 - g}° = {g}°. Yansıma açısı da {g}°'dir."
+        wr = [90 - g, 2 * g, 180 - g, 2 * (90 - g), g + 10]
+    else:
+        sh = {"type": "f6", "sub_type": "yansima", "gel": g, "lab": f"{g}°", "mod": "gel"}
+        q = f"Şekilde düz aynaya gelen bir ışının normalle yaptığı açı {g}° olarak verilmiştir.\nBuna göre gelen ışın ile yansıyan ışın arasındaki açı kaç derecedir?"
+        c = 2 * g
+        ex = f"Yansıma açısı da {g}° olduğundan gelen ve yansıyan ışın arasındaki açı {g}° + {g}° = {2 * g}°'dir."
+        wr = [g, 90 - g, 180 - g, 90 + g, 2 * g + 10]
+    o = _mf_opts(c, [x for x in wr if x != c and 0 < x < 180], lambda x: f"{x}°", sort=False)
+    return _mf_raw("Fen Bilimleri", "Işığın Yansıması", q, o, ex, shape=sh) if o else None
+
+
+def _ff6_ses_hiz(subject):
+    ort = [("Hava", 340), ("Su", 1500), ("Çelik", 5000)]
+    (a, va), (b, vb) = random.sample(ort, 2)
+    sh = _ss_bar([a, b], [va, vb], "Sesin farklı ortamlardaki yaklaşık hızı", "Hız (m/s)")
+    d = abs(va - vb)
+    q = f"Grafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?"
+    o = _mf_opts(d, [x for x in (va + vb, d + 100, d - 100, d + 1000, max(va, vb), d + 500) if x != d and x > 0], lambda x: f"{x} m/s", sort=False)
+    return _mf_raw("Fen Bilimleri", "Sesin Yayılması", q, o, f"{max(va, vb)} − {min(va, vb)} = {d} m/s.", shape=sh) if o else None
+
+
+_F6_FACT = [
+    ("Sesin Özellikleri", "Aşağıdakilerden hangisi sesin şiddetini artırmak için yapılabilir?", "Titreşen cismin genliğini artırmak", ["Titreşen cismin frekansını azaltmak", "Sesi boşlukta yaymak", "Ses kaynağından uzaklaşmak"], "Titreşimin genliği büyüdükçe ses şiddeti artar."),
+    ("Sesin Özellikleri", "Ses hangi ortamda yayılamaz?", "Boşlukta", ["Havada", "Suda", "Demirde"], "Ses yayılmak için maddesel ortama ihtiyaç duyar; boşlukta yayılamaz."),
+    ("Sesin Özellikleri", "Gitar telinin kalınlığı azaltıldığında çıkan sesin ince–kalınlığı nasıl değişir?", "Daha ince (tiz) olur", ["Daha kalın (pes) olur", "Değişmez", "Şiddeti kesinlikle artar"], "İnce teller daha hızlı titreşir; frekans artar, ses incelir."),
+    ("Sesin Özellikleri", "Ses yalıtımı için aşağıdakilerden hangisi kullanılır?", "Sünger ve kalın halı", ["Ayna", "Metal levha", "Cam bardak"], "Süngerimsi ve kalın maddeler sesi soğurur."),
+    ("Işığın Yansıması", "Pürüzlü bir yüzeye gelen ışınların her yöne yansıması olayına ne denir?", "Dağınık yansıma", ["Düzgün yansıma", "Kırılma", "Soğurulma"], "Pürüzlü yüzeylerde ışınlar farklı yönlere yansır."),
+    ("Işığın Yansıması", "Işığın yansımasında aşağıdakilerden hangisi her zaman doğrudur?", "Gelme açısı yansıma açısına eşittir.", ["Gelme açısı yansıma açısından büyüktür.", "Yansıma açısı gelme açısından küçüktür.", "Işın yüzeye dik gelirse yansımaz."], "Yansıma kanunu: gelme açısı = yansıma açısı."),
+    ("Işığın Yansıması", "Aşağıdakilerden hangisinde düzgün yansıma görülür?", "Sakin göl yüzeyinde", ["Buruşmuş alüminyum folyoda", "Kuru toprakta", "Kumaş yüzeyde"], "Parlak ve düzgün yüzeylerde düzgün yansıma olur."),
+    ("Işığın Yansıması", "Düz aynadaki görüntü için hangisi doğrudur?", "Görüntü, cisimle aynı büyüklüktedir.", ["Görüntü, cisimden daha büyüktür.", "Görüntü, cisimden daha küçüktür.", "Görüntü ayna yüzeyinde oluşur."], "Düz aynada görüntü cisimle aynı boyda ve aynadan aynı uzaklıktadır."),
+    ("Dolaşım Sistemi", "Kanın kalpten dokulara taşınmasını sağlayan damarlar hangisidir?", "Atardamarlar", ["Toplardamarlar", "Kılcal damarlar", "Soluk borusu"], "Kalpten çıkan damarlara atardamar denir."),
+    ("Dolaşım Sistemi", "Nabız aşağıdakilerden hangisinin sayısını gösterir?", "Kalbin dakikadaki atış sayısını", ["Soluk sayısını", "Kan hücresi sayısını", "İdrar miktarını"], "Nabız, kalbin atışlarının atardamarda hissedilmesidir."),
+    ("Dolaşım Sistemi", "Kanın oksijen taşıyan yapısı aşağıdakilerden hangisidir?", "Alyuvar", ["Akyuvar", "Kan pulcuğu", "Kan plazması"], "Alyuvarlardaki hemoglobin oksijen taşır."),
+    ("Dolaşım Sistemi", "Vücuda giren mikroplarla savaşan kan hücresi hangisidir?", "Akyuvar", ["Alyuvar", "Kan pulcuğu", "Kılcal damar"], "Akyuvarlar savunmada görevlidir."),
+    ("Solunum Sistemi", "Soluk alırken diyaframın durumu nasıldır?", "Düzleşir (aşağı iner)", ["Kubbeleşir (yukarı çıkar)", "Değişmez", "Tamamen kasılmaz"], "Soluk alırken diyafram düzleşir, göğüs boşluğu genişler."),
+    ("Solunum Sistemi", "Soluk verirken akciğerlerden dışarı atılan gaz hangisidir?", "Karbondioksit (ve su buharı)", ["Yalnız oksijen", "Yalnız azot", "Hidrojen"], "Verilen havada karbondioksit oranı fazladır."),
+    ("Boşaltım Sistemi", "Böbreklerin vücuttaki temel görevi nedir?", "Kandaki zararlı atıkları süzmek", ["Besinleri sindirmek", "Gaz alışverişi yapmak", "Kanı vücuda pompalamak"], "Böbrekler kanı süzerek idrarı oluşturur."),
+    ("Boşaltım Sistemi", "Vücuttan atık maddelerin su ve tuzla birlikte atılmasını sağlayan sistem hangisidir?", "Boşaltım sistemi", ["Sindirim sistemi", "Dolaşım sistemi", "Destek ve hareket sistemi"], "Boşaltım sistemi atıkları idrar ve ter ile uzaklaştırır."),
+    ("Sindirim Sistemi", "Karaciğerin sindirim sistemindeki görevi nedir?", "Yağların sindirimine yardım eden safrayı üretmek", ["Besinleri emmek", "Suyu geri emmek", "Besini mideye taşımak"], "Safra yağların sindirimini kolaylaştırır."),
+    ("Sesin Özellikleri", "Ses şiddetinin birimi aşağıdakilerden hangisidir?", "Desibel (dB)", ["Hertz (Hz)", "Newton (N)", "Metre/saniye (m/s)"], "Ses şiddeti desibel ile ölçülür."),
+    ("Sesin Özellikleri", "Sesin frekansının birimi aşağıdakilerden hangisidir?", "Hertz (Hz)", ["Desibel (dB)", "Joule (J)", "Kilogram (kg)"], "Frekans, bir saniyedeki titreşim sayısıdır; birimi Hz'dir."),
+    ("Sesin Özellikleri", "Aşağıdaki ortamların hangisinde ses en hızlı yayılır?", "Çelik", ["Hava", "Su", "Boşluk"], "Ses katılarda sıvılara, sıvılarda gazlara göre daha hızlı yayılır."),
+    ("Sesin Özellikleri", "Bir telin gerginliği artırılırsa çıkan ses nasıl değişir?", "Daha ince (tiz) olur", ["Daha kalın (pes) olur", "Hiç değişmez", "Ses kesilir"], "Gerginlik artınca frekans artar ve ses incelir."),
+    ("Sesin Özellikleri", "Gürültü kirliliğini azaltmak için aşağıdakilerden hangisi yapılır?", "Yerleşim yerlerinin çevresine ağaç dikmek", ["Müziği daha yüksek açmak", "Korna çalmayı artırmak", "Yolları daha geniş yapmak"], "Ağaçlar ve ses bariyerleri sesi soğurur."),
+    ("Sesin Özellikleri", "Sesin duyulabilmesi için hangisi gerekli değildir?", "Boşluk ortamı", ["Ses kaynağı", "Yayıldığı ortam", "Alıcı (kulak)"], "Ses boşlukta yayılmaz; maddesel ortam gerekir."),
+    ("Sesin Özellikleri", "Yankının oluşması için ses dalgasının neye çarpması gerekir?", "Sesi yansıtan bir yüzeye", ["Boşluğa", "Işık ışınına", "Sünger yüzeye"], "Ses yansıtıcı bir yüzeye çarpıp geri döner."),
+    ("Işığın Yansıması", "Aşağıdakilerden hangisi ışığı iyi yansıtan bir yüzeydir?", "Cilalı metal levha", ["Siyah kadife", "Kuru toprak", "Kalın yün kumaş"], "Parlak ve düz yüzeyler ışığı düzgün yansıtır."),
+    ("Işığın Yansıması", "Işık düz aynaya dik gelirse yansıyan ışın nasıl ilerler?", "Aynı yolu izleyerek geri döner", ["Aynaya paralel gider", "Aynadan geçer", "Kaybolur"], "Gelme açısı 0° olduğundan yansıma açısı da 0°'dir."),
+    ("Işığın Yansıması", "Araç farlarında çukur yansıtıcı kullanılmasının amacı nedir?", "Işığı demet hâlinde ileriye yöneltmek", ["Işığı soğurmak", "Işığı dağıtmak", "Işığı kırmak"], "Yansıtıcılar ışınları belirli yönde toplar."),
+    ("Işığın Yansıması", "Yağmurlu havada ıslak asfaltın parlak görünmesinin nedeni nedir?", "Yüzeyde düzgün yansıma olması", ["Işığın tamamen soğurulması", "Işığın kırılması", "Asfaltın ışık yayması"], "Su filmi yüzeyi düzleştirir; yansıma düzgün olur."),
+    ("Işığın Yansıması", "Bir cismi görebilmemiz için aşağıdakilerden hangisi gerekir?", "Cismin yansıttığı ışığın gözümüze ulaşması", ["Gözümüzden ışık çıkması", "Cismin karanlıkta olması", "Cismin ışığı tamamen soğurması"], "Işık cisimden yansıyıp gözümüze gelir."),
+    ("Işığın Yansıması", "Periskopta görüntüyü iletmek için hangi araç kullanılır?", "Düz aynalar", ["Prizmalar yerine yalnız lensler", "Siyah levhalar", "Opak perde"], "Periskopta iki düz ayna ışığı yansıtır."),
+    ("Dolaşım Sistemi", "Kalbin görevi aşağıdakilerden hangisidir?", "Kanı damarlar yoluyla vücuda pompalamak", ["Besinleri sindirmek", "Havayı akciğerlere iletmek", "Atıkları süzmek"], "Kalp kasılarak kanı pompalar."),
+    ("Dolaşım Sistemi", "Kanın sıvı kısmına ne ad verilir?", "Kan plazması", ["Alyuvar", "Akyuvar", "Kan pulcuğu"], "Plazma, kan hücrelerini taşıyan sıvı kısımdır."),
+    ("Dolaşım Sistemi", "Kanamayı durdurmaya yardımcı olan kan hücresi hangisidir?", "Kan pulcukları", ["Alyuvarlar", "Akyuvarlar", "Plazma"], "Kan pulcukları (trombositler) pıhtılaşmayı sağlar."),
+    ("Dolaşım Sistemi", "Kalbe kan getiren damarlar hangisidir?", "Toplardamarlar", ["Atardamarlar", "Kılcal damarlar", "Bronşlar"], "Kalbe dönen kan toplardamarlarla taşınır."),
+    ("Dolaşım Sistemi", "Egzersiz sırasında nabız sayısı nasıl değişir?", "Artar", ["Azalır", "Değişmez", "Sıfırlanır"], "Kaslar daha çok oksijen istediğinden kalp daha hızlı atar."),
+    ("Dolaşım Sistemi", "Kan dolaşımını düzenli tutmak için aşağıdakilerden hangisi önerilir?", "Düzenli spor yapmak", ["Hareketsiz kalmak", "Tuzlu beslenmeyi artırmak", "Sigara kullanmak"], "Düzenli egzersiz kalp ve damar sağlığını korur."),
+    ("Solunum Sistemi", "Akciğerlerde gaz alışverişinin yapıldığı küçük keseciklere ne ad verilir?", "Akciğer kesecikleri (alveoller)", ["Bronşlar", "Soluk borusu", "Diyafram"], "Gaz alışverişi alveollerde olur."),
+    ("Solunum Sistemi", "Solunum sistemini korumak için hangisi yapılmalıdır?", "Temiz havada egzersiz yapmak", ["Sigara dumanı olan ortamda bulunmak", "Kapalı ortamda kalmak", "Ağızdan soluk almaya çalışmak"], "Temiz hava akciğer sağlığını korur."),
+    ("Solunum Sistemi", "Burundan soluk almanın yararı nedir?", "Hava süzülür, ısınır ve nemlenir", ["Hava soğur", "Hava kurur", "Gaz alışverişi hızlanır"], "Burundaki kıllar ve mukus havayı temizler."),
+    ("Solunum Sistemi", "Soluk alırken göğüs kafesi nasıl değişir?", "Genişler", ["Daralır", "Değişmez", "Kapanır"], "Kaburga kasları ve diyafram göğüs boşluğunu genişletir."),
+    ("Boşaltım Sistemi", "Böbreklerde süzülen kandan geriye ne kalır?", "Temizlenmiş kan", ["İdrar", "Besin", "Hava"], "Böbrekler atıkları kandan ayırır."),
+    ("Boşaltım Sistemi", "Ter aşağıdakilerden hangi yolla atılır?", "Deri", ["Akciğer", "Mide", "Karaciğer"], "Deri, ter bezleriyle su ve tuz atar."),
+    ("Boşaltım Sistemi", "İdrar kesesinin görevi nedir?", "İdrarı geçici olarak biriktirmek", ["Kanı süzmek", "Besini sindirmek", "Gaz alışverişi yapmak"], "İdrar, kesede dolana kadar depolanır."),
+    ("Boşaltım Sistemi", "Böbrek sağlığı için aşağıdakilerden hangisi önerilir?", "Yeterli su içmek", ["Hiç su içmemek", "Tuzlu yiyecekleri çoğaltmak", "İdrarı uzun süre tutmak"], "Yeterli su, böbreklerin atıkları atmasına yardım eder."),
+    ("Boşaltım Sistemi", "Boşaltım sistemi hangi organların birleşiminden oluşur?", "Böbrek, idrar borusu, idrar kesesi, idrar kanalı", ["Mide, bağırsak, karaciğer", "Burun, soluk borusu, akciğer", "Kalp, atardamar, toplardamar"], "Bu organlar idrarın oluşup atılmasını sağlar."),
+    ("Sindirim Sistemi", "Safra nerede depolanır?", "Safra kesesinde", ["Midede", "Kalın bağırsakta", "Yemek borusunda"], "Karaciğerde üretilen safra safra kesesinde depolanır."),
+    ("Sindirim Sistemi", "Besinlerin sindirilmiş hâlde kana geçmesine ne ad verilir?", "Emilim", ["Boşaltım", "Solunum", "Dolaşım"], "Emilim ince bağırsakta gerçekleşir."),
+    ("Sindirim Sistemi", "Mide özsuyu hangi besini sindirmeye yardım eder?", "Proteinleri", ["Suyu", "Mineralleri", "Vitaminleri"], "Mide asidi ve enzimler proteinleri parçalar."),
+    ("Sindirim Sistemi", "Yemek borusunda besin nasıl ilerler?", "Kasların dalga gibi kasılmasıyla", ["Yer çekimiyle serbest düşerek", "Diyaframın itmesiyle", "Kalbin pompalamasıyla"], "Peristaltik hareket besini mideye iletir."),
+    ("Sindirim Sistemi", "Sindirim sistemi sağlığı için hangisi önerilir?", "Yemekleri iyice çiğnemek", ["Çiğnemeden yutmak", "Öğün atlamak", "Çok yağlı beslenmek"], "İyi çiğneme sindirimi kolaylaştırır."),
+    ("Sindirim Sistemi", "Pankreasın sindirimdeki görevi nedir?", "Sindirim enzimleri salgılamak", ["Besinleri emmek", "Atıkları süzmek", "Kanı pompalamak"], "Pankreas özsuyu besinleri parçalar."),
+    ("Sindirim Sistemi", "Kimyasal sindirim aşağıdakilerden hangisinde başlar?", "Ağızda (tükürükle)", ["Kalın bağırsakta", "Yemek borusunda", "İdrar kesesinde"], "Tükürük içindeki enzim nişastayı sindirmeye başlar."),
+]
+
+
+def _f6_fact_fam(tp, kws):
+    L = [x for x in _F6_FACT if x[0] == tp]
+
+    def fn(subject):
+        t, q, c, w, ex = random.choice(L)
+        return _fact_q(subject, t, q, c, w, ex)
+    fn.__name__ = "_ff6_fact_" + tp.lower().translate(str.maketrans("ıöüşçğâî ", "iouscgai_"))
+    return fn, kws
+
+
+def _ff6_dalga_hz(subject):
+    hz = random.choice([(200, 400), (200, 800), (300, 900), (100, 300), (250, 500), (400, 800), (400, 1200)])
+    if random.random() < .5:
+        hz = hz[::-1]
+    fk, fl = hz
+    from math import gcd
+    g = gcd(fk, fl)
+    ck, cl = fk // g, fl // g
+    if max(ck, cl) > 6:
+        return None
+    mul = 2 if max(ck, cl) * 2 <= 8 else 1
+    sh = {"type": "f6", "sub_type": "dalga", "a": [1.0, 1.0], "f": [ck * mul, cl * mul], "lab": [f"K\n{fk} Hz", f"L\n{fl} Hz"]}
+    ask = random.choice(["ince", "kat", "kalin"])
+    if ask == "kat":
+        hi, lo = (fl, fk) if fl > fk else (fk, fl)
+        nm_hi, nm_lo = ("L", "K") if fl > fk else ("K", "L")
+        if hi % lo:
+            return None
+        r = hi // lo
+        q = f"Şekilde aynı ortamda yayılan K ve L seslerinin frekansları ve dalga görüntüleri verilmiştir.\nBuna göre {nm_hi} sesinin frekansı, {nm_lo} sesinin frekansının kaç katıdır?"
+        o = _mf_opts(r, [x for x in (r + 1, r + 2, max(r - 1, 1), r * 2, 5, 4) if x != r and x > 0], lambda x: f"{x} katı", sort=False)
+        ex = f"{hi} ÷ {lo} = {r}."
+        return _mf_raw("Fen Bilimleri", "Sesin Özellikleri", q, o, ex, shape=sh) if o else None
+    if fk == fl:
+        return None
+    tiz = "K" if fk > fl else "L"
+    pes = "L" if fk > fl else "K"
+    c = tiz if ask == "ince" else pes
+    q = "Şekilde aynı ortamda yayılan K ve L seslerinin frekansları ve dalga görüntüleri verilmiştir.\nBuna göre " + ("daha ince (tiz) olan ses hangisidir?" if ask == "ince" else "daha kalın (pes) olan ses hangisidir?")
+    allv = ["K sesi", "L sesi", "İkisi de aynı inceliktedir", "Karşılaştırılamaz"]
+    return _mf_raw("Fen Bilimleri", "Sesin Özellikleri", q, (allv, f"{c} sesi"), "Frekansı büyük olan ses daha ince (tiz), küçük olan daha kalın (pes) duyulur.", shape=sh)
+
+
+def _ff6_simsek(subject):
+    t = random.choice([2, 3, 4, 5, 6])
+    v = 340
+    d = v * t
+    sh = {"type": "f6", "sub_type": "yanki", "mod": "simsek", "v": f"{v} m/s", "t": f"{t} s"}
+    q = f"Şekildeki öğrenci şimşeği gördükten {t} saniye sonra gök gürültüsünü duymuştur. Sesin havadaki hızı şekilde verilmiştir.\nIşığın yayılma süresi ihmal edilirse öğrenci şimşeğin çaktığı yerden kaç metre uzaktadır?"
+    o = _mf_opts(d, [x for x in (d // 2, d * 2, d + 340, d - 340, v + t, d + 170) if x != d and x > 0], lambda x: f"{x} m", sort=False)
+    return _mf_raw("Fen Bilimleri", "Sesin Yayılması", q, o, f"Uzaklık = ses hızı × süre = {v} × {t} = {d} m.", shape=sh) if o else None
+
+
+def _ff6_ses_hiz3(subject):
+    v = {"Hava": 340, "Su": 1500, "Çelik": 5000, "Tahta": 3800}
+    ks = random.sample(list(v), 3)
+    vals = [v[k] for k in ks]
+    sh = _ss_bar(ks, vals, "Sesin farklı ortamlardaki yaklaşık hızı", "Hız (m/s)")
+    kind = random.choice(["fark", "t"])
+    if kind == "fark":
+        d = max(vals) - min(vals)
+        q = "Grafikte sesin üç farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre en hızlı ve en yavaş ses hızları arasındaki fark kaç m/s’dir?"
+        o = _mf_opts(d, [x for x in (sum(vals), d + 500, d - 500, max(vals), d + 1000, d + 100) if x != d and x > 0], lambda x: f"{x} m/s", sort=False)
+        ex = f"{max(vals)} − {min(vals)} = {d} m/s."
+    else:
+        a = random.choice([k for k in ks if v[k] >= 1500])
+        d = v[a] * 2
+        q = f"Grafikte sesin üç farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nSes, {a.lower()} ortamında 2 saniyede kaç metre yol alır?"
+        o = _mf_opts(d, [x for x in (v[a], v[a] * 3, v[a] // 2, v[a] + 2, v[a] * 4, d + 340) if x != d and x > 0], lambda x: f"{x} m", sort=False)
+        ex = f"{v[a]} × 2 = {d} m."
+    return _mf_raw("Fen Bilimleri", "Sesin Yayılması", q, o, ex, shape=sh) if o else None
+
+
+def _ff6_yansima_harf(subject):
+    g = random.choice([25, 30, 35, 40, 45, 50, 55])
+    oth = [x for x in (g + 15, g - 15, 70 - g + 10, 80 - g) if x != g and 5 <= x <= 80]
+    ang = [g] + random.sample(oth, 3) if len(oth) >= 3 else None
+    if not ang:
+        return None
+    let = random.sample(_F6_LET, 4)
+    random.shuffle(ang)
+    cand = {let[i]: ang[i] for i in range(4)}
+    c = next(k for k, v in cand.items() if v == g)
+    sh = {"type": "f6", "sub_type": "yansima", "gel": g, "lab": f"{g}°", "mod": "aday", "aday": cand}
+    q = f"Şekilde düz aynaya gelen ışının normalle yaptığı açı {g}° olarak verilmiştir. Yansıyan ışının izleyebileceği yollar kesik çizgilerle ve harflerle gösterilmiştir.\nBuna göre yansıyan ışın hangi harfle gösterilen yolu izler?"
+    return _mf_raw("Fen Bilimleri", "Işığın Yansıması", q, (sorted(let), c), "Yansıma açısı gelme açısına eşittir; normalin diğer tarafında aynı açıyı yapan yol izlenir.", shape=sh)
+
+
+def _ff6_gorunum(subject):
+    u = random.choice([10, 15, 20, 25, 30, 40, 50])
+    sh = {"type": "f6", "sub_type": "gorunum", "u": u / 10, "lab": f"{u} cm"}
+    q = f"Şekilde bir cismin düz aynaya olan uzaklığı {u} cm olarak verilmiştir.\nBuna göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?"
+    c = 2 * u
+    ex = f"Görüntü de aynanın arkasında {u} cm uzaklıktadır; toplam uzaklık {u} + {u} = {c} cm."
+    wr = [u, 3 * u, u + 10, 4 * u, u // 2 + u]
+    o = _mf_opts(c, [x for x in wr if x != c and x > 0], lambda x: f"{x} cm", sort=False)
+    return _mf_raw("Fen Bilimleri", "Işığın Yansıması", q, o, ex, shape=sh) if o else None
+
+
+def _ff6_zincir_sonra(subject):
+    sk = random.choice(["sin", "sol", "bos"])
+    ad, ttl, org, gor, ext = _F6_SYS[sk]
+    n = len(org)
+    let = random.sample(_F6_LET, n)
+    i = random.randint(0, n - 2)
+    sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": list(org), "title": ttl}
+    q = f"Şekilde {ad.lower()}nde {ttl.lower()} organ adlarıyla birlikte gösterilmiştir.\n{org[i]} organından hemen sonra gelen organ şekilde hangi harfle gösterilmiştir?"
+    c = let[i + 1]
+    pool = [x for x in let if x != c]
+    ch = sorted([c] + random.sample(pool, 3 if len(pool) >= 3 else len(pool)))
+    if len(ch) != 4:
+        return None
+    return _mf_raw("Fen Bilimleri", "Vücudumuzdaki Sistemler", q, (ch, c), f"Okların yönüne göre {org[i]} organından sonra {org[i + 1]} gelir; bu organ {c} harfiyle gösterilmiştir.", shape=sh)
+
+
+def _ff6_gaz(subject):
+    o2a, o2v = 21, random.choice([15, 16, 17])
+    co2a, co2v = random.choice([0, 0]), random.choice([3, 4, 5])
+    sh = {"type": "table", "title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)", "headers": ["Gaz", "Alınan hava", "Verilen hava"],
+          "rows": [["Oksijen", f"%{o2a}", f"%{o2v}"], ["Karbondioksit", f"%{co2a}", f"%{co2v}"]]}
+    if random.random() < .5:
+        d = o2a - o2v
+        q = "Tabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre oksijen oranı soluk verirken kaç puan azalmıştır?"
+        ex = f"{o2a} − {o2v} = {d}"
+    else:
+        d = co2v - co2a
+        q = "Tabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?"
+        ex = f"{co2v} − {co2a} = {d}"
+    o = _mf_opts(d, [x for x in (d + 1, d + 2, max(d - 1, 1), d + 5, d + 10, 21 - d) if x != d and x > 0], lambda x: f"%{x}", sort=False)
+    return _mf_raw("Fen Bilimleri", "Solunum Sistemi", q, o, ex, shape=sh) if o else None
+
+
+_F6_FAMS = [(_ff6_sin_ad, 2, "Sindirim, solunum ve boşaltım organlarının sırası", "v"), (_ff6_sin_harf, 3, "Organ ve görevleri", "v"), (_ff6_kalp, 3, "Kalp ve damarlar", "v"),
+            (_ff6_nabiz, 3, "Nabız ve solunum grafikleri", "v"), (_ff6_zincir_sonra, 2, "Organların sırası", "v"), (_ff6_gaz, 3, "Soluk alma ve verme", "v"),
+            (_ff6_dalga, 4, "Sesin şiddeti ve frekansı", "s"), (_ff6_dalga_hz, 4, "Sesin frekansı", "s"), (_ff6_yanki, 4, "Yankı", "s"), (_ff6_simsek, 4, "Sesin yayılma hızı", "s"),
+            (_ff6_ses_hiz, 3, "Sesin yayılma hızı", "s"), (_ff6_ses_hiz3, 3, "Sesin yayılma hızı", "s"),
+            (_ff6_yansima, 3, "Işığın yansıması", "i"), (_ff6_yansima_harf, 3, "Işığın yansıması", "i"), (_ff6_gorunum, 3, "Düz aynada görüntü", "i")]
+_F6_KWS = {"v": ("sindirim", "dolaşım", "solunum", "boşaltım", "vücudumuzdaki"), "s": ("ses", "sesin"), "i": ("ışığ", "yansıma", "ışık")}
+_F6_KWX = {"_ff6_kalp": ("dolaşım", "vücudumuzdaki"), "_ff6_gaz": ("solunum", "vücudumuzdaki"), "_ff6_nabiz": ("dolaşım", "solunum", "vücudumuzdaki")}
+for _f, _d, _it, _g in _F6_FAMS:
+    _f.ITEM = _it
+    _FF_GENS.append((_vy_tag(_f, "6. sınıf Fen"), _F6_KWX.get(_f.__name__, _F6_KWS[_g])))
+    _DIFF_OF[_f.__name__] = _d
+for _tp, _kk in (("Sesin Özellikleri", ("ses", "sesin")), ("Işığın Yansıması", ("ışığ", "yansıma", "ışık")), ("Dolaşım Sistemi", ("dolaşım", "vücudumuzdaki")),
+                 ("Solunum Sistemi", ("solunum", "vücudumuzdaki")), ("Boşaltım Sistemi", ("boşaltım", "vücudumuzdaki")), ("Sindirim Sistemi", ("sindirim", "vücudumuzdaki"))):
+    _f, _kw = _f6_fact_fam(_tp, _kk)
+    _f.ITEM = _tp
+    _FF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 2
+
+
+
 for _r in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS):
     _r[:] = [(_stem_vary(f), k_) for f, k_ in _r]
 
@@ -29359,6 +30338,674 @@ _M6_FAMS = [
 _M6_KW = {"tam sayı": ("tam sayı", "mutlak değer"), "veri": ("veri", "ortalama", "grafik"), "doğal sayı": ("çarpan", "asal", "ebob", "ekok", "doğal sayı"), "cebirsel": ("cebirsel", "denklem", "eşitlik", "değişken")}
 for _f, _d, _kk, _cd in _M6_FAMS:
     _MF_GENS.append((_vy_wrap(_f), _M6_KW[_kk], (6,)))
+    _DIFF_OF[_f.__name__] = _d
+    if _cd:
+        _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- 6. SINIF MATEMATİK (2. aşama): Alan ve Çevre, Kesirler, Oran, Ondalık/Yüzde, Paralel doğrular
+def _fr(n, d):
+    f = _KFr(n, d)
+    return f"{f.numerator}/{f.denominator}"
+
+
+def _frw(c, extra):
+    out = []
+    for n, d in extra:
+        if d > 0 and n > 0 and _KFr(n, d) != c:
+            t = f"{_KFr(n, d).numerator}/{_KFr(n, d).denominator}"
+            if t not in out:
+                out.append(t)
+    return out
+
+
+_AL_TR = [(3, 4, 5), (4, 3, 5), (6, 8, 10), (5, 12, 13)]
+
+
+def _alan_sh(kind, **kw):
+    return {"type": "m6", "sub_type": "alan", "kind": kind, **kw}
+
+
+def _mf6_al_ucgen(subject):
+    b = random.choice([6, 8, 10, 12, 14, 16, 18, 20])
+    h = random.randint(3, 12)
+    t = b * h // 2
+    o = _m6o(t, [b * h, b + h, t + b, t - h, t + h, 2 * b * h], str)
+    sh = _alan_sh("ucgen", b=b, h=h, lb=f"{b} cm", lh=f"{h} cm", ox=random.choice([.25, .4, .6, .75]))
+    q = "Şekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?"
+    return _mf_raw(subject, "Üçgenin alanı", q, o, f"Alan = (taban × yükseklik) ÷ 2 = ({b} × {h}) ÷ 2 = {t} cm².", shape=sh) if o else None
+
+
+def _mf6_al_paralel(subject):
+    p, h, s_ = random.choice([(3, 4, 5), (4, 3, 5), (6, 8, 10), (5, 12, 13), (8, 6, 10)])
+    b = random.randint(max(p + 2, 6), 16)
+    t = b * h
+    o = _m6o(t, [b * s_, b + h, t // 2, 2 * (b + s_), t + b, b * h + h], str)
+    sh = _alan_sh("paralel", b=b, h=h, lb=f"{b} cm", lh=f"{h} cm", ls=f"{s_} cm", offr=p / h)
+    q = "Şekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?"
+    return _mf_raw(subject, "Paralelkenarın alanı", q, o, f"Alan = taban × yükseklik = {b} × {h} = {t} cm² (yan kenar {s_} cm alan hesabında kullanılmaz).", shape=sh) if o else None
+
+
+def _mf6_al_ters(subject):
+    kind = random.choice(["ucgen", "paralel"])
+    b = random.choice([6, 8, 10, 12, 14, 16])
+    h = random.randint(3, 10)
+    A = b * h // (2 if kind == "ucgen" else 1)
+    o = _m6o(h, [h + 1, h - 1, h + 2, A, b, 2 * h, h + 3], str)
+    sh = _alan_sh(kind, b=b, h=max(h, 4), lb=f"{b} cm", lh="h = ?", **({"offr": .3} if kind == "paralel" else {"ox": .4}), **{"in": f"Alan = {A} cm²"})
+    nm = "üçgenin" if kind == "ucgen" else "paralelkenarın"
+    q = f"Şekildeki {nm} alanı {A} cm², taban uzunluğu {b} cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?"
+    ex = f"{A} = {b} × h ÷ 2 → h = {h}." if kind == "ucgen" else f"{A} = {b} × h → h = {h}."
+    return _mf_raw(subject, "Alan bağıntıları", q, o, ex, shape=sh) if o and h > 0 else None
+
+
+def _mf6_al_bilesik(subject):
+    w = random.choice([6, 8, 10, 12])
+    rh = random.randint(3, 8)
+    th = random.choice([2, 4, 6])
+    t = w * rh + w * th // 2
+    o = _m6o(t, [w * rh, w * (rh + th), t + w, t - w, w * rh + w * th, t + 2], str)
+    sh = _alan_sh("bilesik", b=w, h=rh, lb=f"{w} cm", lh=f"{rh} cm", lt=f"{th} cm")
+    q = "Şekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?"
+    return _mf_raw(subject, "Bileşik şekillerin alanı", q, o, f"Dikdörtgen: {w} × {rh} = {w * rh}; üçgen: ({w} × {th}) ÷ 2 = {w * th // 2}; toplam {t} cm².", shape=sh) if o else None
+
+
+def _cem_sh(**kw):
+    return {"type": "m6", "sub_type": "cember", **kw}
+
+
+def _mf6_cm_r(subject):
+    r = random.randint(2, 15)
+    c = 6 * r
+    o = _m6o(c, [3 * r, 12 * r if False else c + r, 9 * r, c + 6, c - 6, 3 * r * r], str)
+    q = "Şekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?"
+    return _mf_raw(subject, "Çemberin çevresi", q, o, f"Çevre = 2 × π × r = 2 × 3 × {r} = {c} cm.", shape=_cem_sh(mode="r", lr=f"r = {r} cm")) if o else None
+
+
+def _mf6_cm_d(subject):
+    d = random.choice([4, 6, 8, 10, 12, 14, 16, 20])
+    c = 3 * d
+    o = _m6o(c, [2 * 3 * d, c + d, d * d, c - 3, c + 6, 3 * d // 2], str)
+    q = "Şekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?"
+    return _mf_raw(subject, "Çemberin çevresi", q, o, f"Çevre = π × çap = 3 × {d} = {c} cm.", shape=_cem_sh(mode="cap", lr=f"çap = {d} cm")) if o else None
+
+
+def _mf6_cm_ters(subject):
+    r = random.randint(2, 12)
+    c = 6 * r
+    o = _m6o(r, [r * 2, c // 3, c // 2, r + 1, r - 1, c // 4 if c // 4 != r else r + 2], str)
+    q = f"Şekildeki çemberin çevresi {c} cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?"
+    return _mf_raw(subject, "Çemberin çevresi", q, o, f"{c} = 2 × 3 × r → r = {c} ÷ 6 = {r} cm.", shape=_cem_sh(mode="r", lr="r = ?", note=f"Çevre = {c} cm")) if o and r > 0 else None
+
+
+def _mf6_cm_yay(subject):
+    th, rm = random.choice([(60, 1), (90, 2), (120, 1), (180, 1), (90, 4), (60, 2)])
+    r = rm * random.randint(1, 6)
+    ln = th * 6 * r // 360
+    if th * 6 * r % 360:
+        return None
+    o = _m6o(ln, [6 * r, ln * 2, ln + r, th * r // 60 + 1, ln + 3, 3 * r], str)
+    q = f"Şekildeki daire diliminin merkez açısı {th}° ve yarıçapı {r} cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?"
+    return _mf_raw(subject, "Çember ve merkez açı", q, o, f"Çember uzunluğu 2 × 3 × {r} = {6 * r} cm; yay = {6 * r} × {th}/360 = {ln} cm.", shape=_cem_sh(mode="dilim", theta=th, lt=f"{th}°", lr=f"r = {r} cm")) if o else None
+
+
+# ---- Kesirler
+_KF_PR = [(2, 3), (3, 4), (2, 5), (3, 6), (4, 6), (4, 8), (3, 5), (6, 8), (5, 10), (2, 4), (4, 5), (5, 6)]
+
+
+def _mf6_kf_alan(subject):
+    d1, d2 = random.choice([(3, 4), (2, 5), (4, 5), (3, 5), (4, 6), (5, 6), (2, 6), (3, 6)])
+    a, b = random.randint(1, d1 - 1), random.randint(1, d2 - 1)
+    c = _KFr(a * b, d1 * d2)
+    o = _m6o(_fr(a * b, d1 * d2), _frw(c, [(a + b, d1 + d2), (a * b, d1 + d2), (a, d1 * d2), (a + b, d1 * d2), (b, d1 * d2), (a * b + 1, d1 * d2)]), lambda x: x)
+    sh = {"type": "m6", "sub_type": "alanm", "rows": d1, "cols": d2, "a": a, "b": b}
+    q = f"Şekilde bir dikdörtgen {d1} satır ve {d2} sütuna bölünmüştür. Mavi renk satırların {a}/{d1}'ünü, sarı renk sütunların {b}/{d2}'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)"
+    return _mf_raw(subject, "Kesirlerle çarpma", q, o, f"{a}/{d1} × {b}/{d2} = {a * b}/{d1 * d2} = {_fr(a * b, d1 * d2)}.", shape=sh) if o else None
+
+
+def _mf6_kf_serit(subject):
+    d1, d2 = random.choice([(2, 3), (3, 4), (2, 4), (3, 6), (4, 8), (2, 6), (4, 6), (5, 10), (3, 9)])
+    a, b = random.randint(1, d1), random.randint(1, d2)
+    op = random.choice(["+", "−"])
+    x, y = _KFr(a, d1), _KFr(b, d2)
+    if op == "−":
+        if x <= y:
+            x, y, a, b, d1, d2 = y, x, b, a, d2, d1
+        res = x - y
+    else:
+        res = x + y
+    if res == 0:
+        return None
+    wr = [(a + b, d1 + d2), (a + b, d1 * d2 // max(1, _KFr(d1, d2).numerator)), (abs(a - b), d1 + d2), (a * b, d1 * d2), (res.numerator + 1, res.denominator), (res.numerator, res.denominator + 1), (res.numerator + 2, res.denominator)]
+    o = _m6o(_fr(res.numerator, res.denominator), _frw(res, wr), lambda v: v)
+    sh = {"type": "m6", "sub_type": "serit2", "rows": [{"name": "K", "d": d1, "k": a}, {"name": "L", "d": d2, "k": b}]}
+    word = "toplamı" if op == "+" else "farkı (büyük − küçük)"
+    q = f"Şekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların {word} en sade biçimde kaçtır?"
+    return _mf_raw(subject, "Kesirlerle toplama-çıkarma", q, o, f"{a}/{d1} {op} {b}/{d2} = {_fr(res.numerator, res.denominator)}." if False else f"K = {a}/{d1}, L = {b}/{d2}; sonuç {_fr(res.numerator, res.denominator)}.", shape=sh) if o else None
+
+
+def _mf6_kf_bar_kalan(subject):
+    dd = random.choice([4, 5, 6, 8, 10])
+    k = random.randint(1, dd - 1)
+    T = dd * random.randint(5, 25)
+    rest = T * (dd - k) // dd
+    o = _m6o(rest, [T * k // dd, T - 1 if False else T // 2, rest + dd, rest - dd, T - k, rest + T // dd], str)
+    nes = random.choice(["sayfa", "soru", "bilet"])
+    sh = {"type": "kes", "sub_type": "bar", "rows": [{"name": "", "segs": [{"l": "", "w": 1, "q": j >= k} for j in range(dd)], "brace": f"{T} {nes}"}]}
+    q = f"Şekildeki çubuk modelde toplam {T} {nes}lik bir bütünün {dd} eş parçaya bölündüğü ve {k} parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç {nes}tir?"
+    return _mf_raw(subject, "Kesir problemleri", q, o, f"Bir parça {T} ÷ {dd} = {T // dd}; kullanılmayan {dd - k} parça: {dd - k} × {T // dd} = {rest}.", shape=sh) if o else None
+
+
+def _mf6_kf_bar_tum(subject):
+    dd = random.choice([4, 5, 6, 8])
+    k = random.randint(2, dd - 1)
+    u = random.randint(3, 12)
+    T = dd * u
+    part = k * u
+    o = _m6o(T, [part, T + u, T - u, part + dd, T + dd, part * 2], str)
+    sh = {"type": "kes", "sub_type": "bar", "rows": [{"name": f"{k}/{dd} = {part}", "segs": [{"l": "", "w": 1, "q": j >= k} for j in range(dd)], "brace": "?"}]}
+    q = f"Şekildeki çubuk modelde bir bütünün {k}/{dd}'sinin {part} olduğu gösterilmiştir. Bütünün tamamı kaçtır?"
+    return _mf_raw(subject, "Kesir problemleri", q, o, f"{k} parça {part} ise bir parça {u}; tamamı {dd} × {u} = {T}.", shape=sh) if o else None
+
+
+# ---- Oran
+def _mf6_or_say(subject):
+    a, b = random.choice([(2, 4), (3, 6), (4, 6), (6, 9), (4, 8), (6, 8), (5, 10), (9, 6), (8, 12), (4, 10)])
+    g = __import__("math").gcd(a, b)
+    ca, cb = a // g, b // g
+    mode = random.choice(["ab", "ba", "at"])
+    if mode == "ab":
+        sa, sb, txt = ca, cb, "kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı"
+    elif mode == "ba":
+        sa, sb, txt = cb, ca, "mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı"
+    else:
+        sa, sb, txt = ca, ca + cb, "kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı"
+    cs = f"{sa}:{sb}"
+    ws = [f"{sb}:{sa}", f"{ca}:{ca + cb}", f"{ca + cb}:{ca}", f"{ca}:{cb + 1}", f"{ca + 1}:{cb}", f"{cb}:{ca + cb}"]
+    ws = [w for w in dict.fromkeys(ws) if w != cs and _KFr(int(w.split(":")[0]), int(w.split(":")[1])) != _KFr(sa, sb)]
+    if len(ws) < 3:
+        return None
+    o = _mf_opts(cs, ws, lambda x: x, sort=False)
+    sh = {"type": "m6", "sub_type": "oran", "gr": [{"c": "K", "n": a}, {"c": "M", "n": b}]}
+    q = f"Şekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. {txt[0].upper() + txt[1:]} en sade biçimde kaçtır?"
+    return _mf_raw(subject, "Oran", q, o, f"Kırmızı {a}, mavi {b}. Oran en sade biçimde {cs} olur.", shape=sh) if o else None
+
+
+def _mf6_or_bar(subject):
+    a, b = random.choice([(1, 3), (2, 3), (3, 5), (2, 5), (1, 4), (3, 4), (3, 2)])
+    u = random.randint(2, 9)
+    T = (a + b) * u
+    nes = random.choice([("boya", "kırmızı", "mavi"), ("harç", "çimento", "kum"), ("karışım", "portakal suyu", "elma suyu")])
+    ask = random.choice([0, 1])
+    c = (a if ask == 0 else b) * u
+    o = _m6o(c, [T // 2 if T // 2 != c else c + 2, c + u, c - u if c > u else c + 2 * u, (a if ask else b) * u, T - u, c + 2], str)
+    sh = {"type": "kes", "sub_type": "bar", "rows": [{"name": "", "segs": [{"l": "K", "w": 1} for _ in range(a)] + [{"l": "M", "w": 1, "q": True} for _ in range(b)], "brace": f"{T} litre"}]}
+    q = f"Şekilde bir karışımın {nes[1]} (K) ve {nes[2]} (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam {T} litre olduğuna göre {(nes[1] if ask == 0 else nes[2])} kaç litredir?"
+    return _mf_raw(subject, "Oran", q, o, f"Toplam {a + b} parça; bir parça {T} ÷ {a + b} = {u} litre. {(nes[1] if ask == 0 else nes[2]).capitalize()}: {(a if ask == 0 else b)} × {u} = {c} litre.", shape=sh) if o and c > 0 else None
+
+
+def _mf6_or_tablo(subject):
+    k = random.choice([3, 4, 5, 6, 8, 12])
+    xs = random.sample(range(1, 9), 3)
+    xs.sort()
+    ys = [k * x for x in xs]
+    z = random.randint(9, 15)
+    ans = k * z
+    o = _m6o(ans, [ans + k, ans - k, ans + 2 * k, z + k, ans + 1, ans - 1], str)
+    thing = random.choice([("Kalem sayısı", "Ödenecek tutar (TL)"), ("Defter sayısı", "Ödenecek tutar (TL)"), ("Süre (saat)", "Yol (km)")])
+    sh = {"type": "table", "title": "Doğru orantılı iki çokluk", "headers": [thing[0], thing[1]], "rows": [[str(x), str(y)] for x, y in zip(xs, ys)] + [[str(z), "?"]]}
+    q = f"Tabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?"
+    return _mf_raw(subject, "Orantı", q, o, f"Oran sabit: {ys[0]} ÷ {xs[0]} = {k}; ? = {z} × {k} = {ans}.", shape=sh) if o else None
+
+
+# ---- Ondalık / yüzde
+def _od6(v):
+    return f"{v:.2f}".replace(".", ",")
+
+
+def _mf6_od_yuzde(subject):
+    n = random.choice([7, 12, 18, 23, 27, 35, 40, 45, 56, 62, 75, 80, 94])
+    o = _m6o(n, [n + 10, 100 - n, n // 10 if n >= 10 else n + 1, n - 5, n + 5, n * 2 if n < 50 else n - 20], lambda v: f"%{v}")
+    q = "Şekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?"
+    return _mf_raw(subject, "Yüzde", q, o, f"100 kareden {n} tanesi boyalı olduğu için %{n}'tür.", shape={"type": "m6", "sub_type": "yuzluk", "n": n}) if o else None
+
+
+def _mf6_od_ond(subject):
+    n = random.choice([7, 12, 23, 35, 47, 56, 62, 78, 85, 94, 5, 9])
+    c = n / 100
+    ws = [n / 10, n / 1000, (100 - n) / 100, int(str(n)[::-1]) / 100 if str(n)[::-1].lstrip("0") else n / 10, n / 100 + .1]
+    ws = [x for x in dict.fromkeys(ws) if abs(x - c) > 1e-9 and x > 0]
+    o = _mf_opts(_od6(c) if n >= 10 else f"{c:.2f}".replace(".", ","), [(_od6(x) if x >= .01 else f"{x:.3f}".replace(".", ",")) for x in ws][:4], lambda x: x, sort=False)
+    q = "Şekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?"
+    return _mf_raw(subject, "Ondalık gösterim", q, o, f"{n}/100 = {c:.2f}".replace(".", ",") + ".", shape={"type": "m6", "sub_type": "yuzluk", "n": n}) if o else None
+
+
+def _mf6_od_kesir(subject):
+    n = random.choice([10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 35, 45, 15, 5, 4, 8, 12, 16, 24, 36, 48, 64, 72, 88, 96])
+    c = _KFr(n, 100)
+    ws = _frw(c, [(n, 10), (n, 1000), (100 - n, 100), (c.numerator, c.denominator + 1), (c.numerator + 1, c.denominator), (n, 100 // max(1, 2) if False else 50)])
+    o = _m6o(_fr(n, 100), ws, lambda x: x)
+    q = "Şekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü en sade kesirle kaçtır?"
+    return _mf_raw(subject, "Kesir, ondalık ve yüzde", q, o, f"{n}/100 = {_fr(n, 100)}.", shape={"type": "m6", "sub_type": "yuzluk", "n": n}) if o else None
+
+
+def _mf6_od_tablo(subject):
+    it = random.sample([("Defter", 12.5), ("Kalem", 3.75), ("Silgi", 2.25), ("Cetvel", 4.5), ("Boya kalemi seti", 18.75), ("Makas", 6.25), ("Kitap kılıfı", 5.5)], 3)
+    a, b = random.sample(range(3), 2)
+    t = it[a][1] + it[b][1]
+    wr = [t + .5, t - .5, t + 1, it[a][1] * 2, it[b][1] + 1, t + .25, t - .25]
+    o = _mf_opts(f"{_od6(t)} TL", [f"{_od6(x)} TL" for x in dict.fromkeys(wr) if abs(x - t) > 1e-9 and x > 0], lambda x: x, sort=False)
+    sh = {"type": "table", "title": "Kırtasiye fiyat listesi", "headers": ["Ürün", "Fiyat (TL)"], "rows": [[n, _od6(v)] for n, v in it]}
+    q = f"Tabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir {it[a][0].lower()} ile bir {it[b][0].lower()} birlikte kaç TL tutar?"
+    return _mf_raw(subject, "Ondalık gösterimlerle işlemler", q, o, f"{_od6(it[a][1])} + {_od6(it[b][1])} = {_od6(t)} TL.", shape=sh) if o else None
+
+
+# ---- Paralel doğrular ve kesen (geo)
+_PL_PTS = {"A": "d1_k", "B": "d2_k", "C": "d1_r", "F": "d1_l", "G": "d2_r", "D": "d2_l", "E": "k_up", "H": "k_down"}
+_PL_POS = {"A": {"UR": ("C", "E"), "UL": ("F", "E"), "LR": ("C", "B"), "LL": ("F", "B")}, "B": {"UR": ("G", "A"), "UL": ("D", "A"), "LR": ("G", "H"), "LL": ("D", "H")}}
+_PL_REL = [("Yöndeş açılar", [("UR", "UR"), ("UL", "UL"), ("LR", "LR"), ("LL", "LL")], True), ("İç ters açılar", [("LR", "UL"), ("LL", "UR")], True),
+           ("Dış ters açılar", [("UR", "LL"), ("UL", "LR")], True), ("İç karşı durumlu açılar", [("LR", "UR"), ("LL", "UL")], False)]
+
+
+def _pl_arc(v, pos, label):
+    a, b = _PL_POS[v][pos]
+    return {"v": v, "a": a, "b": b, "label": label}
+
+
+def _pl_shape(arcs):
+    used = {x for ar in arcs for x in (ar["v"], ar["a"], ar["b"])} | {"A", "B"}
+    pts = {k: _PL_PTS[k] for k in used}
+    sh = {"type": "geo", "sub_type": "parallel", "layout": "transversal", "labels": ["d1", "d2", "k"], "points": pts, "arcs": arcs}
+    try:
+        from . import visuals as _v
+        return sh if _v.par_geometry(sh)["ok"] else None
+    except Exception:
+        return sh
+
+
+def _mf6_pl_olcu(subject):
+    nm, prs, eq = random.choice(_PL_REL)
+    pa, pb = random.choice(prs)
+    th = random.choice([40, 50, 55, 60, 65, 70, 75, 110, 115, 120, 125, 130])
+    ans = th if eq else 180 - th
+    arcs = [_pl_arc("A", pa, f"{th}°"), _pl_arc("B", pb, "x")]
+    sh = _pl_shape(arcs)
+    if not sh:
+        return None
+    g = arcs[0]
+    o = _m6o(ans, [180 - ans, 90 - ans if 90 - ans > 0 else ans + 20, ans + 10, ans - 10, 360 - ans - 180 + 20 if False else ans + 20, ans // 2 + 5], lambda v: f"{v}°")
+    q = f"Şekilde d1 // d2 ve k kesendir. m({g['a']}{g['v']}{g['b']}) = {th}° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?"
+    return _mf_raw(subject, "Paralel doğrular ve kesen", q, o, f"Bu iki açı {nm.lower()} olduğundan " + ("birbirine eşittir." if eq else "toplamları 180°'dir.") + f" x = {ans}°.", shape=sh) if o else None
+
+
+def _mf6_pl_ad(subject):
+    nm, prs, eq = random.choice(_PL_REL)
+    pa, pb = random.choice(prs)
+    arcs = [_pl_arc("A", pa, "α"), _pl_arc("B", pb, "β")]
+    sh = _pl_shape(arcs)
+    if not sh:
+        return None
+    allv = [r[0] for r in _PL_REL]
+    random.shuffle(allv)
+    q = "Şekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?"
+    return _mf_raw(subject, "Paralel doğrular ve kesen", q, (allv, nm), f"α ve β açılarının konumları {nm.lower()} tanımına uyar.", shape=sh)
+
+
+def _mf6_dg_pk(subject):
+    th = random.choice([50, 60, 65, 70, 75, 80, 110, 115, 120])
+    mode = random.choice(["yan", "kars"])
+    giv, ask = ("B", "A") if mode == "yan" else ("B", "D")
+    ans = 180 - th if mode == "yan" else th
+    sh = {"type": "geo", "sub_type": "quad", "kind": "parallelogram", "labels": ["A", "B", "C", "D"], "angles": {giv: f"{th}°", ask: "?"}}
+    o = _m6o(ans, [180 - ans, 90 - ans if 90 - ans > 0 else ans + 20, ans + 10, ans - 10, 360 - 2 * th if 360 - 2 * th > 0 else ans + 30], lambda v: f"{v}°")
+    q = f"Şekildeki ABCD paralelkenarında m({giv}) = {th}° olduğuna göre m({ask}) kaç derecedir?"
+    return _mf_raw(subject, "Dörtgenlerin açıları", q, o, ("Komşu açıların toplamı 180°'dir: " if mode == "yan" else "Karşılıklı açılar eşittir: ") + f"m({ask}) = {ans}°.", shape=sh) if o else None
+
+
+_M6B_FAMS = [
+    (_mf6_al_ucgen, 2, "alan", "MAT.6.4.2"), (_mf6_al_paralel, 3, "alan", "MAT.6.4.2"), (_mf6_al_ters, 3, "alan", "MAT.6.4.2"), (_mf6_al_bilesik, 4, "alan", "MAT.6.4.3"),
+    (_mf6_cm_r, 2, "alan", "MAT.6.4.5"), (_mf6_cm_d, 2, "alan", "MAT.6.4.5"), (_mf6_cm_ters, 4, "alan", "MAT.6.4.5"), (_mf6_cm_yay, 4, "alan", "MAT.6.4.6"),
+    (_mf6_kf_alan, 4, "kesir", "MAT.6.1.7"), (_mf6_kf_serit, 3, "kesir", "MAT.6.1.7"), (_mf6_kf_bar_kalan, 2, "kesir", "MAT.6.1.7"), (_mf6_kf_bar_tum, 3, "kesir", "MAT.6.1.7"),
+    (_mf6_or_say, 2, "oran", None), (_mf6_or_bar, 3, "oran", None), (_mf6_or_tablo, 3, "oran", None),
+    (_mf6_od_yuzde, 1, "ond", "MAT.6.1.7"), (_mf6_od_ond, 2, "ond", "MAT.6.1.5"), (_mf6_od_kesir, 3, "ond", "MAT.6.1.7"), (_mf6_od_tablo, 3, "ond", "MAT.6.1.7"),
+    (_mf6_pl_olcu, 3, "geo", "MAT.6.3.1"), (_mf6_pl_ad, 2, "geo", "MAT.6.3.1"), (_mf6_dg_pk, 3, "geo", "MAT.6.3.4"),
+]
+_M6B_KW = {"alan": ("alan", "çevre", "çember", "üçgen"), "kesir": ("kesir",), "oran": ("oran", "orantı"), "ond": ("ondalık", "yüzde"), "geo": ("paralel", "açı", "dörtgen", "geometri", "geometrik")}
+for _f, _d, _kk, _cd in _M6B_FAMS:
+    _MF_GENS.append((_vy_wrap(_f), _M6B_KW[_kk], (6,)))
+    _DIFF_OF[_f.__name__] = _d
+    if _cd:
+        _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- 6. SINIF MATEMATİK (2. aşama): Alan ve Çevre, Kesirler, Oran, Ondalık/Yüzde, Paralel doğrular
+def _ac(v):
+    return str(v).replace(".", ",")
+
+
+def _a_sh(kind, b, h, lb, lh, **kw):
+    return {"type": "m6", "sub_type": "alan", "kind": kind, "b": b, "h": h, "lb": lb, "lh": lh, **kw}
+
+
+def _mf6_al_ucgen(subject):
+    b = random.choice([6, 8, 10, 12, 14, 16, 18, 20])
+    h = random.randint(4, 13)
+    s = h + random.randint(2, 5)
+    a = b * h // 2
+    o = _m6o(a, [b * h, b + h, s * b // 2, (b + h) * 2, a + b, a + h, b * s], lambda v: f"{v} cm²")
+    sh = _a_sh("ucgen", b, h, f"{b} cm", f"{h} cm", ox=random.choice([.25, .35, .5]), ls=f"{s} cm")
+    q = "Şekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?"
+    return _mf_raw(subject, "Üçgenin alanı", q, o, f"Alan = (taban × yükseklik) ÷ 2 = ({b} × {h}) ÷ 2 = {a} cm². Eğik kenar ({s} cm) alan hesabında kullanılmaz.", shape=sh) if o else None
+
+
+def _mf6_al_paralel(subject):
+    b = random.randint(5, 18)
+    h = random.randint(3, 12)
+    s = h + random.randint(2, 5)
+    a = b * h
+    o = _m6o(a, [b * s, 2 * (b + s), b + h, a // 2, a + b, (b + h) * 2, a - h], lambda v: f"{v} cm²")
+    sh = _a_sh("paralel", b, h, f"{b} cm", f"{h} cm", off=random.choice([1.0, 1.3, 1.6]), ls=f"{s} cm")
+    q = "Şekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?"
+    return _mf_raw(subject, "Paralelkenarın alanı", q, o, f"Alan = taban × yükseklik = {b} × {h} = {a} cm². Eğik kenar ({s} cm) alanda kullanılmaz.", shape=sh) if o else None
+
+
+def _mf6_al_ters(subject):
+    kind = random.choice(["ucgen", "paralel"])
+    b = random.choice([6, 8, 10, 12, 14, 16])
+    h = random.randint(3, 11)
+    a = b * h // 2 if kind == "ucgen" else b * h
+    nm = "üçgenin" if kind == "ucgen" else "paralelkenarın"
+    o = _m6o(h, [h + 1, h - 1, h * 2, a // b if a // b != h else h + 3, h + 2, b])
+    sh = _a_sh(kind, b, h, f"{b} cm", "h = ?", **({"ox": .4} if kind == "ucgen" else {"off": 1.3}), **{"in": f"Alan = {a} cm²"})
+    q = f"Şekilde alanı {a} cm² ve taban uzunluğu {b} cm olan bir {nm} yüksekliği (h) kaç santimetredir?".replace("bir üçgenin yüksekliği", "bir üçgenin yüksekliği").replace("bir paralelkenarın yüksekliği", "bir paralelkenarın yüksekliği")
+    ex = (f"{a} = ({b} × h) ÷ 2 → h = {a * 2} ÷ {b} = {h}." if kind == "ucgen" else f"{a} = {b} × h → h = {a} ÷ {b} = {h}.")
+    return _mf_raw(subject, "Alan problemleri", q, o, ex, shape=sh) if o else None
+
+
+def _mf6_al_bilesik(subject):
+    w = random.choice([6, 8, 10, 12])
+    rh = random.randint(3, 8)
+    t = random.choice([2, 4, 6])
+    a = w * rh + w * t // 2
+    o = _m6o(a, [w * rh, w * rh + w * t, w * (rh + t), a + w, a - w, w * t // 2, 2 * (w + rh)], lambda v: f"{v} cm²")
+    sh = {"type": "m6", "sub_type": "alan", "kind": "bilesik", "b": w, "h": rh, "lb": f"{w} cm", "lh": f"{rh} cm", "lt": f"{t} cm"}
+    q = "Şekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?"
+    return _mf_raw(subject, "Alan problemleri", q, o, f"Dikdörtgen: {w} × {rh} = {w * rh}; üçgen: ({w} × {t}) ÷ 2 = {w * t // 2}; toplam {a} cm².", shape=sh) if o else None
+
+
+def _cm_sh(mode, lr, **kw):
+    return {"type": "m6", "sub_type": "cember", "mode": mode, "lr": lr, **kw}
+
+
+def _mf6_cm_r(subject):
+    r = random.randint(3, 20)
+    c = 6 * r
+    o = _m6o(c, [3 * r, 12 * r if 12 * r != c else c + 6, r * r * 3, 2 * r, c + 6, c - 6, 4 * r], lambda v: f"{v} cm")
+    q = "Şekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)"
+    return _mf_raw(subject, "Çemberin uzunluğu", q, o, f"Çevre = 2 × π × r = 2 × 3 × {r} = {c} cm.", shape=_cm_sh("r", f"r = {r} cm")) if o else None
+
+
+def _mf6_cm_cap(subject):
+    d = random.choice([4, 6, 8, 10, 12, 14, 16, 18, 20, 24])
+    c = 3 * d
+    o = _m6o(c, [6 * d, d * d, 2 * d, c + 3, c - 3, d // 2 * 3 if (d // 2 * 3) != c else c + 6, 9 * d])
+    q = "Şekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)"
+    return _mf_raw(subject, "Çemberin uzunluğu", q, [x for x in [o]][0], f"Çevre = π × d = 3 × {d} = {c} cm.", shape=_cm_sh("cap", f"d = {d} cm")) if o else None
+
+
+def _mf6_cm_ters(subject):
+    r = random.randint(2, 15)
+    c = 6 * r
+    o = _m6o(r, [r * 2, r + 1, r - 1, c // 3 if c // 3 != r else r + 3, c, r + 2, r // 2 + 1 if r // 2 + 1 != r else r + 4], lambda v: f"{v} cm")
+    q = f"Şekilde çevre uzunluğu {c} cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)"
+    return _mf_raw(subject, "Çemberin uzunluğu", q, o, f"Çevre = 2 × 3 × r = 6r = {c} → r = {r} cm.", shape=_cm_sh("r", "r = ?", note=f"Çevre = {c} cm")) if o else None
+
+
+def _mf6_cm_yay(subject):
+    for _ in range(40):
+        th = random.choice([60, 90, 120, 180, 270])
+        r = random.randint(4, 20)
+        if (th * r) % 60 == 0:
+            break
+    else:
+        return None
+    y = th * r // 60
+    o = _m6o(y, [6 * r, 3 * r, y + 3, y - 3, r * th // 90 if r * th // 90 != y else y + 6, y + 6, 2 * r])
+    sh = _cm_sh("dilim", f"r = {r} cm", theta=th, lt=f"{th}°")
+    q = "Şekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)"
+    return _mf_raw(subject, "Çemberin uzunluğu", q, [o][0], f"Çevre = 6 × {r} = {6 * r} cm; yay = {6 * r} × {th}/360 = {y} cm.", shape=sh) if o else None
+
+
+# ---- Kesirler
+def _frs(a, b):
+    f = _KFr(a, b)
+    return f"{f.numerator}/{f.denominator}"
+
+
+def _kb_sh(rows):
+    return {"type": "kes", "sub_type": "bar", "rows": rows}
+
+
+def _kbrow(name, d, k):
+    return {"name": name, "segs": [{"l": "", "w": 1, "q": i >= k} for i in range(d)]}
+
+
+def _mf6_kf_topla(subject):
+    pr = random.choice([(2, 4), (3, 6), (5, 10), (4, 8), (2, 6), (3, 9)])
+    d1, d2 = pr
+    a, b = random.randint(1, d1 - 1), random.randint(1, d2 - 1)
+    s = _KFr(a, d1) + _KFr(b, d2)
+    if s.denominator > 12 or s >= 2:
+        return None
+    sh = _kb_sh([_kbrow("I", d1, a), _kbrow("II", d2, b)])
+    wr = [_frs(a + b, d1 + d2), _frs(a + b, d1), _frs(a + b, d2), _frs(a * b, d1 * d2), _frs(abs(a * d2 - b * d1) or 1, d1 * d2)]
+    o = _m6o(_frs(s.numerator, s.denominator), wr, lambda v: v)
+    q = "Şekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?"
+    return _mf_raw(subject, "Kesir işlemleri", q, o, f"{a}/{d1} + {b}/{d2} = {_frs(a * d2 + b * d1, d1 * d2)} = {_frs(s.numerator, s.denominator)}.", shape=sh) if o else None
+
+
+def _mf6_kf_cikar(subject):
+    pr = random.choice([(2, 4), (3, 6), (5, 10), (4, 8), (2, 6), (3, 9)])
+    d1, d2 = pr
+    for _t in range(30):
+        a, b = random.randint(1, d1 - 1), random.randint(1, d2 - 1)
+        if _KFr(a, d1) > _KFr(b, d2):
+            break
+    s = _KFr(a, d1) - _KFr(b, d2)
+    if s <= 0:
+        return None
+    sh = _kb_sh([_kbrow("I", d1, a), _kbrow("II", d2, b)])
+    wr = [_frs(abs(a - b) or 1, abs(d1 - d2) or 1), _frs(a + b, d1 + d2), _frs(a * d2 + b * d1, d1 * d2), _frs(abs(a - b) or 1, d1), _frs(abs(a - b) or 1, d2)]
+    o = _m6o(_frs(s.numerator, s.denominator), wr, lambda v: v)
+    q = "Şekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?"
+    return _mf_raw(subject, "Kesir işlemleri", q, o, f"{a}/{d1} − {b}/{d2} = {_frs(s.numerator, s.denominator)}.", shape=sh) if o else None
+
+
+def _mf6_kf_alan(subject):
+    d1, d2 = random.randint(3, 6), random.randint(3, 6)
+    a, b = random.randint(1, d1 - 1), random.randint(1, d2 - 1)
+    sh = {"type": "m6", "sub_type": "alanm", "rows": d1, "cols": d2, "a": a, "b": b}
+    ans = f"{a * b}/{d1 * d2}"
+    wr = [f"{a}/{d1}", f"{b}/{d2}", f"{a + b}/{d1 + d2}", f"{a * b}/{d1 + d2}", f"{a + b}/{d1 * d2}"]
+    o = _m6o(ans, wr, lambda v: v)
+    q = f"Şekilde birim kare {d1} eş yatay ve {d2} eş dikey şeride bölünmüştür. Mavi şeritler bütünün {a}/{d1} kesrini, sarı şeritler {b}/{d2} kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?"
+    return _mf_raw(subject, "Kesir işlemleri", q, o, f"{a}/{d1} × {b}/{d2} = {ans}. Turuncu bölgede {a * b} küçük kare, toplamda {d1 * d2} küçük kare vardır.", shape=sh) if o else None
+
+
+def _mf6_kf_problem(subject):
+    d = random.choice([4, 5, 6, 8, 10])
+    k = random.randint(1, d - 1)
+    unit = random.choice([("kitap", "sayfa"), ("depo", "litre"), ("yol", "km")])
+    t = d * random.randint(6, 25)
+    rem = t * (d - k) // d
+    sh = _kb_sh([{"name": "", "segs": [{"l": "", "w": 1, "q": i >= k} for i in range(d)], "brace": f"{t} {unit[1]}"}])
+    o = _m6o(rem, [t * k // d, t - d, t // d, t + k, rem + d, rem - d, t - k], lambda v: f"{v} {unit[1]}")
+    nm = {"kitap": "Şekilde toplam", "depo": "Şekilde toplam", "yol": "Şekilde toplam"}[unit[0]]
+    q = f"Şekildeki çubuk modelinde toplam {t} {unit[1]} olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç {unit[1]}dır?".replace("litredır", "litredir").replace("sayfadır", "sayfadır").replace("kmdır", "km'dir")
+    return _mf_raw(subject, "Kesir problemleri", q, o, f"Her parça {t} ÷ {d} = {t // d}; boyasız {d - k} parça → {rem} {unit[1]}.", shape=sh) if o else None
+
+
+# ---- Oran
+def _mf6_or_say(subject):
+    g = random.choice([(2, 3), (3, 4), (1, 2), (3, 5), (2, 5), (4, 5), (1, 3)])
+    m = random.randint(1, 3)
+    a, b = g[0] * m, g[1] * m
+    if a + b > 24:
+        return None
+    sh = {"type": "m6", "sub_type": "oran", "gr": [{"c": "K", "n": a}, {"c": "M", "n": b}]}
+    ans = f"{g[0]}/{g[1]}"
+    wr = [f"{g[1]}/{g[0]}", f"{g[0]}/{g[0] + g[1]}", f"{g[1]}/{g[0] + g[1]}", f"{a}/{b + 1}", f"{g[0] + 1}/{g[1]}"]
+    o = _m6o(ans, wr, lambda v: v)
+    q = "Şekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?"
+    return _mf_raw(subject, "Oran kavramı", q, o, f"Kırmızı {a}, mavi {b}; oran {a}/{b} = {ans}.", shape=sh) if o else None
+
+
+def _mf6_or_karisim(subject):
+    a, b = random.choice([(1, 2), (2, 3), (1, 3), (3, 5), (2, 5), (1, 4), (3, 4)])
+    m = random.randint(2, 8)
+    t = (a + b) * m
+    ask = random.choice(["K", "M"])
+    segs = [{"l": "K", "w": 1} for _ in range(a)] + [{"l": "M", "w": 1, "q": True} for _ in range(b)]
+    sh = _kb_sh([{"name": "", "segs": segs, "brace": f"{t} L"}])
+    ans = a * m if ask == "K" else b * m
+    nm = "kırmızı boya (K)" if ask == "K" else "mavi boya (M)"
+    o = _m6o(ans, [t - ans, t // (a + b), ans + m, max(ans - m, 1), a + b, ans * 2], lambda v: f"{v} L")
+    q = f"Şekilde toplam {t} L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre {nm} vardır?"
+    return _mf_raw(subject, "Oran kavramı", q, o, f"Toplam {a + b} parça; her parça {t} ÷ {a + b} = {m} L. {nm}: {ans} L.", shape=sh) if o else None
+
+
+def _mf6_or_tablo(subject):
+    sc = random.choice([("Defter sayısı", "Ödenen tutar (TL)", 6, 20), ("Haritadaki uzunluk (cm)", "Gerçek uzunluk (km)", 1, 25), ("Su miktarı (L)", "Yağ miktarı (mL)", 1, 15), ("Çalışma süresi (saat)", "Üretilen parça (adet)", 1, 12)])
+    ks = sorted(random.sample([1, 2, 3, 4, 5, 6, 8], 3))
+    r = random.randint(2, 9) if sc[2] == 1 else random.choice([5, 6, 7, 8, 9, 10, 12])
+    rows = [[str(k), str(k * r)] for k in ks[:2]] + [[str(ks[2]), "?"]]
+    ans = ks[2] * r
+    o = _m6o(ans, [ans + r, ans - r, ans + 2 * r, ks[2] + r, ans + 1, ans - 1, ks[1] * r + ks[2]], str)
+    sh = {"type": "table", "title": "Doğru orantılı iki nicelik", "headers": [sc[0], sc[1]], "rows": rows}
+    q = "Tabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?"
+    return _mf_raw(subject, "Orantı", q, o, f"Her satırda ikinci sayı birincinin {r} katıdır. ? = {ks[2]} × {r} = {ans}.", shape=sh) if o and ans > 0 and ks[0] * r != ans else None
+
+
+# ---- Ondalık gösterim ve yüzde
+def _yz_sh(n):
+    return {"type": "m6", "sub_type": "yuzluk", "n": n}
+
+
+def _mf6_od_yuzde(subject):
+    n = random.choice([x for x in range(8, 93) if x % 5 != 0 or random.random() < .4])
+    mode = random.choice(["boyali", "bos"])
+    ans = n if mode == "boyali" else 100 - n
+    o = _m6o(ans, [100 - ans, ans + 5, ans - 5, ans // 10 + 10, ans + 10, ans + 1], lambda v: f"%{v}")
+    q = f"Şekilde 100 eş kareye bölünmüş bir ızgaranın {'boyalı' if mode == 'boyali' else 'boyasız'} kısmını yüzde olarak yazınız."
+    q = f"Şekilde 100 eş kareye bölünmüş ızgaranın {'boyalı' if mode == 'boyali' else 'boyasız'} kısmı yüzde kaçtır?"
+    return _mf_raw(subject, "Yüzde", q, o, f"100 karenin {n} tanesi boyalı, {100 - n} tanesi boyasızdır → %{ans}.", shape=_yz_sh(n)) if o else None
+
+
+def _mf6_od_ond(subject):
+    n = random.choice([x for x in range(11, 99) if x % 10 != 0])
+    ans = _ac(f"{n / 100:.2f}")
+    wr = [_ac(f"{n / 10:.1f}"), _ac(f"{n / 1000:.3f}"), _ac(f"{(100 - n) / 100:.2f}"), _ac(f"{int(str(n)[::-1]) / 100:.2f}"), _ac(f"{n}")]
+    o = _m6o(ans, wr, lambda v: v)
+    q = "Şekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Ondalık gösterim", q, o, f"100 karenin {n} tanesi boyalı: {n}/100 = {ans}.", shape=_yz_sh(n)) if o else None
+
+
+def _mf6_od_kesir(subject):
+    n = random.choice([10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 65, 70, 75, 80, 85])
+    f = _KFr(n, 100)
+    ans = f"{f.numerator}/{f.denominator}"
+    wr = [f"{n}/100", f"{100 - n}/100", f"{f.denominator}/{f.numerator}", f"{f.numerator}/{f.denominator + 1}", f"{n}/10"]
+    o = _m6o(ans, wr, lambda v: v)
+    q = "Şekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı en sade (sadeleşmiş) kesir olarak aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Kesir, ondalık, yüzde", q, o, f"{n}/100 sadeleştirilince {ans} olur.", shape=_yz_sh(n)) if o else None
+
+
+def _mf6_od_tablo(subject):
+    items = random.sample([("Ekmek", 7.5), ("Süt", 28.75), ("Peynir", 96.5), ("Zeytin", 64.25), ("Bal", 120.0), ("Yoğurt", 35.5), ("Domates", 22.25), ("Çay", 84.75)], 4)
+    i, j = random.sample(range(4), 2)
+    t = items[i][1] + items[j][1]
+    fmt = lambda v: f"{v:.2f}".replace(".", ",")
+    ans = fmt(t)
+    wr = [fmt(t + 1), fmt(t - 1.25), fmt(t + 10), fmt(abs(items[i][1] - items[j][1])), fmt(t + .5), fmt(t - 10)]
+    o = _m6o(ans, wr, lambda v: v)
+    sh = {"type": "table", "title": "Market fiyat listesi", "headers": ["Ürün", "Fiyat (TL)"], "rows": [[n, fmt(v)] for n, v in items]}
+    q = f"Tabloda bir marketteki ürünlerin fiyatları verilmiştir. {items[i][0]} ile {items[j][0]} birlikte alınırsa toplam kaç TL ödenir?"
+    return _mf_raw(subject, "Ondalık sayılarla işlemler", q, o, f"{fmt(items[i][1])} + {fmt(items[j][1])} = {ans} TL.", shape=sh) if o else None
+
+
+# ---- Paralel doğrular ve kesen (geo şeması)
+_PAR_PTS = {"A": "d1_k", "B": "d2_k", "C": "d1_r", "D": "d1_l", "E": "d2_r", "F": "d2_l", "G": "k_up", "H": "k_down"}
+_PAR_ANG = {("A", "UR"): ("A", "C", "G"), ("A", "UL"): ("A", "D", "G"), ("A", "LR"): ("A", "C", "B"), ("A", "LL"): ("A", "D", "B"),
+            ("B", "UR"): ("B", "E", "A"), ("B", "UL"): ("B", "F", "A"), ("B", "LR"): ("B", "E", "H"), ("B", "LL"): ("B", "F", "H")}
+_PAR_REL = [("Yöndeş açılardır", "eq", [("UR", "UR"), ("UL", "UL"), ("LR", "LR"), ("LL", "LL")]), ("İç ters açılardır", "eq", [("LR", "UL"), ("LL", "UR")]),
+            ("Dış ters açılardır", "eq", [("UR", "LL"), ("UL", "LR")]), ("Karşı durumlu (iç) açılardır", "sup", [("LR", "UR"), ("LL", "UL")])]
+
+
+def _par_shape(g, a, x, y):
+    va = _PAR_ANG[("A", g)]
+    vb = _PAR_ANG[("B", a)]
+    pts = {k: v for k, v in _PAR_PTS.items()}
+    sh = {"type": "geo", "sub_type": "parallel", "layout": "transversal", "labels": ["d1", "d2", "k"], "points": pts,
+          "arcs": [{"v": va[0], "a": va[1], "b": va[2], "label": x}, {"v": vb[0], "a": vb[1], "b": vb[2], "label": y}]}
+    return sh, va, vb
+
+
+def _par_ok(sh):
+    try:
+        from . import visuals as _v
+        return bool(_v.par_geometry(sh)["ok"])
+    except Exception:
+        return False
+
+
+def _mf6_pl_olcu(subject):
+    nm, kind, pairs = random.choice(_PAR_REL)
+    g, a = random.choice(pairs)
+    th = random.choice([40, 50, 55, 65, 70, 110, 115, 125, 130, 140])
+    ans = th if kind == "eq" else 180 - th
+    sh, va, vb = _par_shape(g, a, f"{th}°", "x")
+    if not _par_ok(sh):
+        return None
+    o = _m6o(ans, [180 - ans, ans + 10, ans - 10, 90 - ans if ans < 90 else ans - 90, ans + 20, 360 - ans if 360 - ans != ans else ans + 5], lambda v: f"{v}°")
+    q = f"Şekilde d1 // d2 ve k kesendir. m({va[1] + va[0] + va[2]}) = {th}° olduğuna göre m({vb[1] + vb[0] + vb[2]}) = x kaç derecedir?"
+    return _mf_raw(subject, "Paralel doğrular ve kesen", q, o, f"{nm[:-7]} açılarda " + ("ölçüler eşittir" if kind == "eq" else "ölçüler toplamı 180°'dir") + f" → x = {ans}°.", shape=sh) if o else None
+
+
+def _mf6_pl_iliski(subject):
+    nm, kind, pairs = random.choice(_PAR_REL)
+    g, a = random.choice(pairs)
+    sh, va, vb = _par_shape(g, a, "x", "y")
+    if not _par_ok(sh):
+        return None
+    allv = [r[0] for r in _PAR_REL]
+    q = f"Şekilde d1 // d2 ve k kesendir. m({va[1] + va[0] + va[2]}) = x ve m({vb[1] + vb[0] + vb[2]}) = y açıları birbirine göre hangi ilişkidedir?"
+    return _mf_raw(subject, "Paralel doğrular ve kesen", q, (allv, nm), f"Bu iki açı {nm[:-9].lower()} konumundadır.", shape=sh)
+
+
+def _mf6_dg_paralelkenar(subject):
+    t = random.choice([50, 60, 70, 80, 100, 110, 120, 130])
+    pos = "ardışık"
+    kd = random.choice(["parallelogram", "rhombus"])
+    ans = 180 - t
+    ang = {"A": t if False else f"{t}°", "C": "x"} if pos == "karşıt" else {"A": f"{t}°", "B": "x"}
+    sh = {"type": "geo", "sub_type": "quad", "kind": kd, "labels": ["A", "B", "C", "D"], "angles": ang}
+    o = _m6o(ans, [180 - ans, ans + 10, ans - 10, 360 - ans - t if 360 - ans - t > 0 else ans + 20, 90, ans + 20], lambda v: f"{v}°")
+    ask = "C" if pos == "karşıt" else "B"
+    q = f"Şekildeki ABCD {'paralelkenarında' if kd == 'parallelogram' else 'eşkenar dörtgeninde'} m(A) = {t}° olduğuna göre x ile gösterilen m({ask}) kaç derecedir?"
+    return _mf_raw(subject, "Dörtgenlerin açıları", q, o, ("Karşıt açılar eşittir" if pos == "karşıt" else "Ardışık açıların toplamı 180°'dir") + f" → x = {ans}°.", shape=sh) if o else None
+
+
+_M6B_FAMS = [
+    (_mf6_al_ucgen, 2, "alan", "MAT.6.4.2"), (_mf6_al_paralel, 2, "alan", "MAT.6.4.2"), (_mf6_al_ters, 3, "alan", "MAT.6.4.3"), (_mf6_al_bilesik, 3, "alan", "MAT.6.4.3"),
+    (_mf6_cm_r, 1, "alan", "MAT.6.4.5"), (_mf6_cm_cap, 1, "alan", "MAT.6.4.5"), (_mf6_cm_ters, 3, "alan", "MAT.6.4.5"), (_mf6_cm_yay, 4, "alan", "MAT.6.4.6"),
+    (_mf6_kf_topla, 2, "kesir", "MAT.6.1.7"), (_mf6_kf_cikar, 3, "kesir", "MAT.6.1.7"), (_mf6_kf_alan, 3, "kesir", "MAT.6.1.7"), (_mf6_kf_problem, 2, "kesir", "MAT.6.1.7"),
+    (_mf6_or_say, 1, "oran", None), (_mf6_or_karisim, 3, "oran", None), (_mf6_or_tablo, 3, "oran", None),
+    (_mf6_od_yuzde, 1, "ond", "MAT.6.1.7"), (_mf6_od_ond, 2, "ond", "MAT.6.1.5"), (_mf6_od_kesir, 3, "ond", "MAT.6.1.7"), (_mf6_od_tablo, 2, "ond", "MAT.6.1.7"),
+    (_mf6_pl_olcu, 3, "par", "MAT.6.3.1"), (_mf6_pl_iliski, 2, "par", "MAT.6.3.1"), (_mf6_dg_paralelkenar, 2, "par", "MAT.6.3.4"),
+]
+_M6B_KW = {"alan": ("alan", "çevre", "çember", "üçgen", "paralelkenar"), "kesir": ("kesir", "rasyonel"), "oran": ("oran", "orantı"), "ond": ("ondalık", "yüzde"), "par": ("paralel", "kesen", "dörtgen", "açılar")}
+for _f, _d, _kk, _cd in _M6B_FAMS:
+    _MF_GENS.append((_vy_wrap(_f), _M6B_KW[_kk], (6,)))
     _DIFF_OF[_f.__name__] = _d
     if _cd:
         _MF_ITEMCODE[_f.__name__] = [_cd]
