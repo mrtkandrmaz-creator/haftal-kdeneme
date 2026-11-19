@@ -9287,42 +9287,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Üçgenlerde açı",
-"passage": "",
-"question": "Şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(BAC) = 92° olduğuna göre m(BCD) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "two_triangles",
-"names": [
-"A",
-"B",
-"C",
-"D"
-],
-"alpha": 92,
-"angles": {
-"A": "92°",
-"BCD": "?"
-},
-"show_names": false
-},
-"options": {
-"A": "44°",
-"B": "60°",
-"C": "104°",
-"D": "152°"
-},
-"answer": "C",
-"explanation": "|AB| = |AC| olduğundan m(ABC) = m(ACB) = (180 − 92) / 2 = 44°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = 44 + 60 = 104°.",
-"unit": "Alan ve Çevre",
-"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu",
-"d": 4,
-"ts": 1794987260,
-"src": "local",
-"fam": "_mf_twotri"
-},
-{
-"subject": "Matematik",
 "topic": "Çevre",
 "passage": "",
 "question": "Çevre uzunluğu 60 cm olan karenin bir kenarının uzunluğu kaç santimetredir?",
