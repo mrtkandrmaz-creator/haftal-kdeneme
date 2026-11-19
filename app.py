@@ -5458,7 +5458,30 @@ def is_table(shape):
     return shape_type(shape) == "table"
 
 
+_RS_CACHE = {}
+_RS_LOCK = __import__("threading").Lock()
+
+
 def render_shape(shape, dpi=170):
+    """Şekil PNG'si: aynı şekil/dpi için önbellekten döner (her tıklamada yeniden çizilmez); matplotlib tek iş parçacığıyla çalışır."""
+    try:
+        import json as _json
+        key = (_json.dumps(shape, sort_keys=True, ensure_ascii=False, default=str), dpi)
+    except Exception:
+        return _render_shape_raw(shape, dpi)
+    if key in _RS_CACHE:
+        return _RS_CACHE[key]
+    with _RS_LOCK:
+        if key in _RS_CACHE:
+            return _RS_CACHE[key]
+        png = _render_shape_raw(shape, dpi)
+        if len(_RS_CACHE) >= 400:
+            _RS_CACHE.pop(next(iter(_RS_CACHE)))
+        _RS_CACHE[key] = png
+        return png
+
+
+def _render_shape_raw(shape, dpi=170):
     """-> PNG bytes ya da None (tablo ya da çizilemeyen şema)."""
     t = shape_type(shape)
     if not t or t == "table" or t not in _DISPATCH:
