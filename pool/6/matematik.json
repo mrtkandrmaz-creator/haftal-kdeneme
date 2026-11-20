@@ -23363,6 +23363,42 @@
 },
 {
 "subject": "Matematik",
+"topic": "Üçgenlerde açı",
+"passage": "",
+"question": "Şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(ABC) = 50° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "two_triangles",
+"names": [
+"A",
+"B",
+"C",
+"D"
+],
+"alpha": 80,
+"angles": {
+"B": "50°",
+"BCD": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "60°",
+"C": "110°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "|AB| = |AC| olduğundan m(ACB) = m(ABC) = 50°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = 50 + 60 = 110°.",
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu",
+"d": 4,
+"ts": 1795051973,
+"src": "local",
+"fam": "_mf_twotri"
+},
+{
+"subject": "Matematik",
 "topic": "Üçgenin alanı",
 "passage": "",
 "question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
