@@ -5249,6 +5249,93 @@ def _f6_mikroalan(ax, d):
     ax.set_ylim(-4.3, 3.8)
 
 
+# ---------------------------------------------------------------- 6. SINIF SOSYAL: ölçek, koordinat, iklim grafiği, kimlik kartı (metindeki her değer şekilde yazılıdır)
+def _s6_olcek(ax, d):
+    ax.add_patch(FancyBboxPatch((-.4, -2.2), 10.6, 5.0, boxstyle="round,pad=0.02,rounding_size=.3", fc="#ecfccb", ec=INK, lw=2, zorder=1))
+    ax.text(5.0, 2.35, "Ölçek: " + d["olcek"], ha="center", va="center", fontsize=13, fontweight="bold", color=INK, zorder=3)
+    x0 = 1.0
+    cm = float(d["cm"])
+    u = 0.9
+    ax.plot([x0, x0 + cm * u], [.8, .8], color=ORANGE, lw=2.4, ls=(0, (5, 3)), zorder=3)
+    for xx, nm in ((x0, d["a"]), (x0 + cm * u, d["b"])):
+        ax.add_patch(Circle((xx, .8), .17, fc=BLUE, ec=INK, lw=1.6, zorder=5))
+        ax.text(xx, 1.4, nm, ha="center", va="center", fontsize=17, fontweight="bold", color=INK, zorder=5)
+    ax.text(x0 + cm * u / 2, .35, d["lab"], ha="center", va="center", fontsize=12, fontweight="bold", color=ORANGE, zorder=5)
+    ax.plot([x0, x0 + 8 * u], [-1.2, -1.2], color=INK, lw=2, zorder=3)
+    for k in range(9):
+        ax.plot([x0 + k * u, x0 + k * u], [-1.2, -.95 if k % 1 == 0 else -1.05], color=INK, lw=1.6, zorder=3)
+        ax.text(x0 + k * u, -1.6, str(k), ha="center", va="center", fontsize=9.5, color=INK)
+    ax.text(x0 + 8 * u + .25, -1.2, "cm", ha="left", va="center", fontsize=10, fontweight="bold", color=INK)
+    ax.set_xlim(-.6, 10.4)
+    ax.set_ylim(-2.4, 3.0)
+
+
+def _s6_koord(ax, d):
+    lat, lon = list(d["lat"]), list(d["lon"])
+    for i, la in enumerate(lat):
+        ax.plot([0, len(lon) - 1], [i, i], color="#94a3b8", lw=1.2, zorder=1)
+        ax.text(-.25, i, f"{la}°K", ha="right", va="center", fontsize=10.5, fontweight="bold", color=INK)
+    for j, lo in enumerate(lon):
+        ax.plot([j, j], [0, len(lat) - 1], color="#94a3b8", lw=1.2, zorder=1)
+        ax.text(j, -.3, f"{lo}°D", ha="center", va="top", fontsize=10.5, fontweight="bold", color=INK)
+    ax.add_patch(Rectangle((0, 0), len(lon) - 1, len(lat) - 1, fc="#f0fdf4", ec=INK, lw=2, zorder=0))
+    for nm, (la, lo) in d["pts"].items():
+        i, j = lat.index(la), lon.index(lo)
+        ax.add_patch(Circle((j, i), .13, fc=ORANGE, ec=INK, lw=1.4, zorder=5))
+        ax.text(j + .2, i + .2, nm, ha="left", va="bottom", fontsize=16, fontweight="bold", color=INK, zorder=6)
+    ax.set_xlim(-1.3, len(lon) - .3)
+    ax.set_ylim(-.9, len(lat) - .3)
+
+
+def _s6_iklim(ax, d):
+    ax.set_aspect("auto")
+    mo = ["O", "Ş", "M", "N", "M", "H", "T", "A", "E", "E", "K", "A"]
+    xs = np.arange(12)
+    R, T = list(d["R"]), list(d["T"])
+    ax.bar(xs, R, color="#93c5fd", ec=INK, lw=1, width=.7, zorder=2)
+    top = max(R) * 2.15
+    for x, r in zip(xs, R):
+        ax.text(x, r + top * .015, str(r), ha="center", va="bottom", fontsize=7.5, color=INK, zorder=4)
+    ax.set_ylim(0, top)
+    ax.set_xticks(xs)
+    ax.set_xticklabels(mo, fontsize=10)
+    ax.set_ylabel("Yağış (mm)", fontsize=10, color="#1d4ed8")
+    ax2 = ax.twinx()
+    ax2.plot(xs, T, color="#dc2626", lw=2.6, marker="o", ms=4.5, zorder=5)
+    lo, hi = min(T), max(T)
+    ax2.set_ylim(lo - (hi - lo) * 1.1 - 2, hi + 6)
+    for x, t in zip(xs, T):
+        ax2.text(x, t + 1.6, str(t), ha="center", va="bottom", fontsize=7.5, color="#b91c1c", zorder=6)
+    ax2.set_ylabel("Sıcaklık (°C)", fontsize=10, color="#b91c1c")
+    ax.set_title(d.get("title", ""), fontsize=12, fontweight="bold", color=INK)
+    for a in (ax, ax2):
+        a.spines["top"].set_visible(False)
+    ax.axis("on")
+    ax2.axis("on")
+
+
+def _s6_kimlik(ax, d):
+    ax.add_patch(FancyBboxPatch((0, 0), 8.4, 5.0, boxstyle="round,pad=0.02,rounding_size=.35", fc="#e0f2fe", ec=INK, lw=2.4, zorder=1))
+    ax.add_patch(Rectangle((0, 3.9), 8.4, 1.1, fc="#dc2626", ec=INK, lw=2, zorder=2))
+    ax.text(4.2, 4.45, "T.C. KİMLİK KARTI", ha="center", va="center", fontsize=14, fontweight="bold", color="white", zorder=3)
+    ax.add_patch(Rectangle((.5, .6), 1.9, 2.5, fc="#cbd5e1", ec=INK, lw=1.6, zorder=2))
+    ax.add_patch(Circle((1.45, 2.3), .45, fc="#94a3b8", ec=INK, lw=1.2, zorder=3))
+    ax.add_patch(Rectangle((.9, .8), 1.1, 1.0, fc="#94a3b8", ec=INK, lw=1.2, zorder=3))
+    for k, (a, b) in enumerate(d["alan"]):
+        y = 3.2 - k * .8
+        ax.text(2.9, y, a + ":", ha="left", va="center", fontsize=11, fontweight="bold", color=INK, zorder=3)
+        ax.text(5.2, y, b, ha="left", va="center", fontsize=11, color=INK, zorder=3)
+    if d.get("yil"):
+        ax.text(4.2, -.55, "Hesaplama yılı: " + str(d["yil"]), ha="center", va="center", fontsize=11, fontweight="bold", color=ORANGE)
+    ax.set_xlim(-.4, 8.8)
+    ax.set_ylim(-1.0, 5.4)
+
+
+def _s6(ax, d):
+    st = d.get("sub_type")
+    {"olcek": _s6_olcek, "koord": _s6_koord, "iklim": _s6_iklim, "kimlik": _s6_kimlik}.get(st, lambda a, b: None)(ax, d)
+
+
 def _f6_zincir(ax, d):
     harf = list(d["harf"])
     ad = list(d.get("ad") or [""] * len(harf))
@@ -5262,8 +5349,8 @@ def _f6_zincir(ax, d):
         ax.text(x + W / 2, .65, h, ha="center", va="center", fontsize=22, fontweight="bold", color=INK, zorder=4)
         if ad[i]:
             import textwrap as _tw
-            ax.text(x + W / 2, -.22, "\n".join(_tw.wrap(ad[i], 9)), ha="center", va="top", fontsize=9.5, fontweight="bold", color=BLUE, zorder=4, linespacing=1.15)
-        if i < n - 1:
+            ax.text(x + W / 2, -.22, "\n".join(_tw.wrap(ad[i], 13, break_long_words=False)), ha="center", va="top", fontsize=9.5, fontweight="bold", color=BLUE, zorder=4, linespacing=1.15)
+        if i < n - 1 and not d.get("oksuz"):
             ax.annotate("", xy=(x + W + G - .06, .65), xytext=(x + W + .06, .65), arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=2.8), zorder=3)
     if d.get("title"):
         ax.text(tot / 2, 1.85, d["title"], ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
@@ -5409,7 +5496,7 @@ _DISPATCH = {
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes, "sos": _sos, "dil": _dil, "m6": _m6, "f6": _f6,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes, "sos": _sos, "dil": _dil, "m6": _m6, "f6": _f6, "s6": _s6,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -8721,7 +8808,7 @@ _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
     "Matematik": _GEO | _CH | {"kes", "m6"},
     "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio", "light", "kuv", "mad", "elk", "cev", "uzy", "f6"},
-    "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc", "sos", "dil"},
+    "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc", "sos", "dil", "s6", "f6"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
     "Türkçe": {"table", "doc", "dil", "sos", "bar_chart"},
     "İngilizce": {"table", "doc", "dil", "sos", "bar_chart"},
@@ -9117,7 +9204,7 @@ def coherent_shape(shape, text, subject=None):
     if not shape:
         return None, False
     k = _kind(shape)
-    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" and k not in ("bio", "light", "kuv", "mad", "elk", "cev", "uzy", "sos", "dil", "f6") else ()):  # canlılar şemaları ay/dünya anahtarlarıyla karışmasın
+    for _n, rx, allowed in (_TOPIC_RULES if subject != "Matematik" and k not in ("bio", "light", "kuv", "mad", "elk", "cev", "uzy", "sos", "dil", "f6", "s6") else ()):  # canlılar şemaları ay/dünya anahtarlarıyla karışmasın
         if rx.search(text):
             if k not in allowed:
                 return None, True
@@ -27637,6 +27724,7 @@ for _f, _d, _it, _kw in _GP_DN:
 
 # ---- 6. SINIF FEN: Vücudumuzdaki Sistemler + Ses ve Işık (şekilli ve metinli aileler)
 _F6_LET = list("KLMNPRST")
+_G6_ONLY = set()  # yalnız 6. sınıfta seçilebilen aileler (havuz kurucusu ve testler bunu kullanır)
 _F6_SYS = {
     "sin": ("Sindirim Sistemi", "Besinin izlediği yol", ["Ağız", "Yemek borusu", "Mide", "İnce bağırsak", "Kalın bağırsak"],
             [("Besinlerin dişlerle parçalanarak sindirime başladığı organ", "Ağız"), ("Besinlerin mide özsuyuyla karıştığı organ", "Mide"),
@@ -28015,12 +28103,533 @@ for _f, _d, _it, _g in _F6_FAMS:
     _f.ITEM = _it
     _FF_GENS.append((_vy_tag(_f, "6. sınıf Fen"), _F6_KWX.get(_f.__name__, _F6_KWS[_g])))
     _DIFF_OF[_f.__name__] = _d
+    _G6_ONLY.add(_f.__name__)
 for _tp, _kk in (("Sesin Özellikleri", ("ses", "sesin")), ("Işığın Yansıması", ("ışığ", "yansıma", "ışık")), ("Dolaşım Sistemi", ("dolaşım", "vücudumuzdaki")),
                  ("Solunum Sistemi", ("solunum", "vücudumuzdaki")), ("Boşaltım Sistemi", ("boşaltım", "vücudumuzdaki")), ("Sindirim Sistemi", ("sindirim", "vücudumuzdaki"))):
     _f, _kw = _f6_fact_fam(_tp, _kk)
     _f.ITEM = _tp
     _FF_GENS.append((_f, _kw))
     _DIFF_OF[_f.__name__] = 2
+    _G6_ONLY.add(_f.__name__)
+
+
+
+# ---- 6. SINIF SOSYAL BİLGİLER: Harita, İklim/Nüfus, Üretim, Yönetim, Birey, Türk devletleri
+_S6_L = list("KLMNPRST")
+
+
+def _s6n(v):
+    return f"{v:,}".replace(",", " ")
+
+
+def _s6raw(topic, q, opts, ex, sh):
+    return _mf_raw("Sosyal Bilgiler", topic, q, opts, ex, shape=sh)
+
+
+def _ss6_olcek(subject):
+    a, b = random.sample(_S6_L, 2)
+    kind = random.choice(["kesir", "cizgi"])
+    cm = random.choice([2, 3, 4, 5, 6, 7])
+    if kind == "kesir":
+        m = random.choice([500000, 1000000, 2000000, 2500000, 5000000])
+        km = cm * m // 100000
+        ol = "1/" + _s6n(m)
+    else:
+        per = random.choice([10, 20, 25, 50, 100])
+        km = cm * per
+        ol = f"1 cm = {per} km"
+    sh = {"type": "s6", "sub_type": "olcek", "olcek": ol, "cm": cm, "a": a, "b": b, "lab": f"{cm} cm"}
+    q = f"Haritada {a} ve {b} noktaları arasındaki uzaklık ölçülmüş, harita ölçeği şekilde verilmiştir.\nBuna göre {a} ile {b} arasındaki gerçek uzaklık kaç kilometredir?"
+    o = _mf_opts(km, [x for x in (km * 2, km // 2 if km % 2 == 0 else km + 10, km + 10, km * 10, km - 10, cm * 10, km + 50) if x != km and x > 0], lambda x: f"{_s6n(x)} km", sort=False)
+    ex = (f"1 cm gerçekte {_s6n(m)} cm = {_s6n(m // 100000)} km olduğundan {cm} × {_s6n(m // 100000)} = {km} km." if kind == "kesir" else f"{cm} × {per} = {km} km.")
+    return _s6raw("Ölçek", q, o, ex, sh) if o else None
+
+
+def _ss6_olcek_ters(subject):
+    a, b = random.sample(_S6_L, 2)
+    per = random.choice([10, 20, 25, 50])
+    cm = random.choice([3, 4, 5, 6, 7])
+    km = cm * per
+    sh = {"type": "s6", "sub_type": "olcek", "olcek": f"1 cm = {per} km", "cm": cm, "a": a, "b": b, "lab": f"Gerçek uzaklık: {km} km"}
+    q = f"{a} ve {b} noktaları arasındaki gerçek uzaklık ile harita ölçeği şekilde verilmiştir.\nBuna göre bu iki nokta haritada kaç santimetre uzaklıkta gösterilir?"
+    o = _mf_opts(cm, [x for x in (cm + 1, cm - 1, cm + 2, km, per, cm * 2, cm + 3) if x != cm and x > 0], lambda x: f"{x} cm", sort=False)
+    return _s6raw("Ölçek", q, o, f"{km} ÷ {per} = {cm} cm.", sh) if o else None
+
+
+def _ss6_olcek_bul(subject):
+    a, b = random.sample(_S6_L, 2)
+    cm = random.choice([2, 4, 5])
+    m = random.choice([500000, 1000000, 2000000, 5000000])
+    km = cm * m // 100000
+    sh = {"type": "s6", "sub_type": "olcek", "olcek": "?", "cm": cm, "a": a, "b": b, "lab": f"{cm} cm  →  gerçek: {km} km"}
+    q = f"Haritada {a} ile {b} arasındaki uzaklık {cm} cm, gerçek uzaklık ise {km} km'dir.\nBuna göre bu haritanın ölçeği aşağıdakilerden hangisidir?"
+    o = _mf_opts(m, [x for x in (m * 2, m // 2, m * 10, m // 10 if m >= 1000000 else m * 5, km * 1000) if x != m and x > 0], lambda x: "1/" + _s6n(x), sort=False)
+    return _s6raw("Ölçek", q, o, f"{km} km = {_s6n(km * 100000)} cm; {_s6n(km * 100000)} ÷ {cm} = {_s6n(m)} olduğundan ölçek 1/{_s6n(m)}'dir.", sh) if o else None
+
+
+_S6_LAT = [36, 38, 40, 42]
+_S6_LON = [28, 32, 36, 40, 44]
+
+
+def _s6_ko_base(n=4):
+    pts = {}
+    cells = random.sample([(la, lo) for la in _S6_LAT for lo in _S6_LON], n)
+    let = random.sample(_S6_L, n)
+    for k, c in zip(let, cells):
+        pts[k] = c
+    return pts, {"type": "s6", "sub_type": "koord", "lat": _S6_LAT, "lon": _S6_LON, "pts": {k: list(v) for k, v in pts.items()}}
+
+
+def _ss6_koord_nokta(subject):
+    pts, sh = _s6_ko_base()
+    k = random.choice(list(pts))
+    la, lo = pts[k]
+    fmt = lambda c: f"{c[0]}° K, {c[1]}° D"
+    wr = []
+    for c in [(la, x) for x in _S6_LON if x != lo] + [(y, lo) for y in _S6_LAT if y != la] + [(lo - 4 if lo > 28 else 28, la), (pts[o][0], pts[o][1]) if False else (la, lo + 2)]:
+        if c != (la, lo) and fmt(c) not in wr:
+            wr.append(fmt(c))
+    q = f"Şekilde bir haritadaki bazı noktalar harflerle gösterilmiştir. Yatay çizgiler enlemi, dikey çizgiler boylamı göstermektedir.\n{k} noktasının coğrafi koordinatları aşağıdakilerden hangisidir?"
+    o = _mf_opts(fmt((la, lo)), wr, lambda x: x, sort=False)
+    return _s6raw("Koordinat", q, o, f"{k} noktası {la}° kuzey enlemi ile {lo}° doğu boylamının kesiştiği yerdedir.", sh) if o else None
+
+
+def _ss6_koord_harf(subject):
+    pts, sh = _s6_ko_base()
+    k = random.choice(list(pts))
+    la, lo = pts[k]
+    q = f"Şekilde bir haritadaki bazı noktalar harflerle gösterilmiştir. Yatay çizgiler enlemi, dikey çizgiler boylamı göstermektedir.\nKoordinatları {la}° K, {lo}° D olan nokta hangi harfle gösterilmiştir?"
+    return _s6raw("Koordinat", q, (sorted(pts), k), f"{la}° K enlem çizgisi ile {lo}° D boylam çizgisinin kesiştiği nokta {k}'dir.", sh)
+
+
+def _ss6_koord_fark(subject):
+    pts, sh = _s6_ko_base(3)
+    ks = list(pts)
+    for _t in range(40):
+        a, b = random.sample(ks, 2)
+        if pts[a][0] == pts[b][0] or pts[a][1] == pts[b][1]:
+            break
+    else:
+        return None
+    if pts[a][0] == pts[b][0]:
+        d = abs(pts[a][1] - pts[b][1])
+        q = f"Şekilde bir haritadaki bazı noktalar harflerle gösterilmiştir.\n{a} ve {b} noktaları arasındaki boylam farkı kaç derecedir?"
+        ex = f"İki nokta aynı enlemdedir; boylamları {pts[a][1]}° ve {pts[b][1]}° olduğundan fark {d}°'dir."
+    else:
+        d = abs(pts[a][0] - pts[b][0])
+        q = f"Şekilde bir haritadaki bazı noktalar harflerle gösterilmiştir.\n{a} ve {b} noktaları arasındaki enlem farkı kaç derecedir?"
+        ex = f"İki nokta aynı boylamdadır; enlemleri {pts[a][0]}° ve {pts[b][0]}° olduğundan fark {d}°'dir."
+    o = _mf_opts(d, [x for x in (d + 2, d - 2, d + 4, d * 2, d + 1, 2) if x != d and x > 0], lambda x: f"{x}°", sort=False)
+    return _s6raw("Koordinat", q, o, ex, sh) if o else None
+
+
+_S6_IKLIM = {
+    "Akdeniz iklimi": ([10, 11, 13, 17, 21, 26, 29, 29, 25, 20, 15, 11], [220, 140, 90, 50, 30, 10, 3, 5, 20, 70, 130, 250]),
+    "Karadeniz iklimi": ([7, 7, 9, 12, 16, 20, 23, 23, 20, 16, 12, 9], [220, 170, 150, 120, 100, 130, 140, 170, 260, 300, 260, 230]),
+    "Karasal iklim": ([-6, -4, 2, 9, 13, 17, 21, 21, 16, 10, 3, -3], [30, 30, 40, 60, 60, 40, 15, 10, 15, 35, 40, 40]),
+}
+
+
+def _s6_ik_shape(nm, let):
+    T0, R0 = _S6_IKLIM[nm]
+    T = [t + random.choice([-1, 0, 0, 1]) for t in T0]
+    R = [max(2, int(round(r * random.uniform(.9, 1.1) / 5.0) * 5)) if r >= 20 else r for r in R0]
+    return {"type": "s6", "sub_type": "iklim", "T": T, "R": R, "title": f"{let} istasyonu"}, T, R
+
+
+def _ss6_iklim_tur(subject):
+    nm = random.choice(list(_S6_IKLIM))
+    let = random.choice(_S6_L)
+    sh, T, R = _s6_ik_shape(nm, let)
+    q = f"Şekilde {let} istasyonunda ölçülen aylık ortalama sıcaklık (çizgi) ve yağış (sütun) değerleri verilmiştir.\nBu istasyonun iklim özellikleri dikkate alındığında {let} istasyonu hangi iklim tipinin görüldüğü bir yerde bulunmaktadır?"
+    wr = [x for x in _S6_IKLIM if x != nm] + ["Ekvator iklimi", "Kutup iklimi"]
+    random.shuffle(wr)
+    ex = {"Akdeniz iklimi": "Yazlar sıcak ve kurak, kışlar ılık ve yağışlıdır: Akdeniz iklimi.",
+          "Karadeniz iklimi": "Her mevsim yağışlıdır, yazlar serin, kışlar ılıktır: Karadeniz iklimi.",
+          "Karasal iklim": "Kışlar soğuk (sıcaklık 0°C’nin altına iner), yazlar sıcak ve kurak, yağış azdır: Karasal iklim."}[nm]
+    return _s6raw("İklim", q, ([nm] + wr[:3] if False else (lambda L: (L, nm))(random.sample([nm] + wr[:3], 4))), ex, sh)
+
+
+def _ss6_iklim_sayi(subject):
+    nm = random.choice(list(_S6_IKLIM))
+    let = random.choice(_S6_L)
+    sh, T, R = _s6_ik_shape(nm, let)
+    mo = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
+    kind = random.choice(["toplam", "fark", "sicak"])
+    if kind == "toplam":
+        v = sum(R)
+        q = f"Şekilde {let} istasyonunun aylık ortalama sıcaklık (çizgi) ve yağış (sütun) değerleri verilmiştir.\nBuna göre {let} istasyonunun yıllık toplam yağışı kaç mm’dir?"
+        ex = "12 ayın yağış değerleri toplanır: " + " + ".join(map(str, R)) + f" = {v}."
+        wr = [v + 50, v - 50, v + 100, v - 100, v + 20, v + 150]
+        fmt = lambda x: f"{x} mm"
+    elif kind == "fark":
+        v = max(R) - min(R)
+        q = f"Şekilde {let} istasyonunun aylık ortalama sıcaklık (çizgi) ve yağış (sütun) değerleri verilmiştir.\nBuna göre en çok yağış alan ay ile en az yağış alan ay arasındaki yağış farkı kaç mm’dir?"
+        ex = f"{max(R)} − {min(R)} = {v} mm."
+        wr = [v + 10, v - 10, v + 20, v - 20, max(R), v + 30]
+        fmt = lambda x: f"{x} mm"
+    else:
+        v = max(T) - min(T)
+        q = f"Şekilde {let} istasyonunun aylık ortalama sıcaklık (çizgi) ve yağış (sütun) değerleri verilmiştir.\nBuna göre en sıcak ay ile en soğuk ay arasındaki sıcaklık farkı (yıllık sıcaklık farkı) kaç °C’dir?"
+        ex = f"{max(T)} − ({min(T)}) = {v} °C."
+        wr = [v + 2, v - 2, v + 4, v - 4, max(T), v + 6]
+        fmt = lambda x: f"{x} °C"
+    o = _mf_opts(v, [x for x in wr if x != v and x > 0], fmt, sort=False)
+    return _s6raw("İklim", q, o, ex, sh) if o else None
+
+
+def _ss6_nufus_yogun(subject):
+    let = random.sample(_S6_L, 3)
+    rows = []
+    vals = []
+    for k in let:
+        alan = random.choice([2000, 3000, 4000, 5000, 6000, 8000])
+        yog = random.choice([20, 30, 40, 50, 60, 80, 100, 150, 200])
+        nuf = alan * yog
+        rows.append([k, _s6n(nuf), _s6n(alan)])
+        vals.append((k, nuf, alan, yog))
+    k, nuf, alan, yog = random.choice(vals)
+    sh = {"type": "table", "title": "Bazı illerin nüfusu ve yüzölçümü", "headers": ["İl", "Nüfus (kişi)", "Yüzölçümü (km²)"], "rows": rows}
+    q = f"Tabloda üç ilin nüfusu ve yüzölçümü verilmiştir.\nNüfus yoğunluğu = nüfus ÷ yüzölçümü olduğuna göre {k} ilinin nüfus yoğunluğu kaç kişi/km²’dir?"
+    o = _mf_opts(yog, [x for x in (yog * 2, yog // 2 if yog % 2 == 0 else yog + 10, yog + 10, yog * 10, yog - 10, alan // 100, yog + 20) if x != yog and x > 0], lambda x: f"{x} kişi/km²", sort=False)
+    return _s6raw("Nüfus", q, o, f"{_s6n(nuf)} ÷ {_s6n(alan)} = {yog} kişi/km².", sh) if o else None
+
+
+_S6_NUF = [("1927", 13.6), ("1950", 20.9), ("1970", 35.6), ("1990", 56.5), ("2000", 67.8), ("2010", 73.7), ("2020", 83.6)]
+
+
+def _ss6_nufus_grafik(subject):
+    idx = sorted(random.sample(range(len(_S6_NUF)), 4))
+    L = [_S6_NUF[i][0] for i in idx]
+    V = [_S6_NUF[i][1] for i in idx]
+    sh = _ss_bar(L, V, "Türkiye’nin nüfusu (yaklaşık, milyon kişi)", "Nüfus (milyon)")
+    a, b = random.sample(range(4), 2)
+    a, b = min(a, b), max(a, b)
+    d = round(V[b] - V[a], 1)
+    q = "Grafikte Türkiye’nin bazı yıllardaki nüfusu (yaklaşık, milyon kişi) verilmiştir.\n" + f"Buna göre {L[a]} ile {L[b]} yılları arasında nüfus yaklaşık kaç milyon kişi artmıştır?"
+    fm = lambda x: (f"{x:.1f}".replace(".", ",")) + " milyon"
+    o = _mf_opts(d, [round(x, 1) for x in (d + 1.0, d - 1.0, d + 2.5, d + 5.0, V[b], d + 0.5, d * 2) if round(x, 1) != d and x > 0], fm, sort=False)
+    return _s6raw("Nüfus", q, o, f"{fm(V[b])} − {fm(V[a])} = {fm(d)}.", sh) if o else None
+
+
+_S6_ZNC = {
+    "ekmek": ("Ekmeğin tüketiciye ulaşma yolu", ["Buğday tarlası", "Değirmen", "Fırın", "Market", "Tüketici"],
+              [("Buğdayın una dönüştürüldüğü yer", "Değirmen"), ("Unun ekmeğe dönüştürüldüğü yer", "Fırın"), ("Ürünün hammaddesinin yetiştirildiği yer", "Buğday tarlası"), ("Ürünü satın alıp kullanan kişi", "Tüketici")]),
+    "sut": ("Sütün tüketiciye ulaşma yolu", ["Çiftlik", "Süt fabrikası", "Market", "Tüketici"],
+            [("Sütün paketlenip işlendiği yer", "Süt fabrikası"), ("Hammaddenin (çiğ sütün) elde edildiği yer", "Çiftlik"), ("Ürünün tüketiciye satıldığı yer", "Market"), ("Ürünü satın alıp kullanan kişi", "Tüketici")]),
+    "tisort": ("Tişörtün üretim yolu", ["Pamuk tarlası", "İplik fabrikası", "Tekstil atölyesi", "Mağaza", "Tüketici"],
+               [("Pamuğun ipliğe dönüştürüldüğü yer", "İplik fabrikası"), ("İpliğin kumaşa ve tişörte dönüştürüldüğü yer", "Tekstil atölyesi"), ("Hammaddenin yetiştirildiği yer", "Pamuk tarlası"), ("Ürünün tüketiciye satıldığı yer", "Mağaza")]),
+}
+_S6_ZLET = list("KLMNPRST")
+
+
+def _ss6_zq(kind):
+    ck = random.choice(list(_S6_ZNC))
+    ttl, org, gor = _S6_ZNC[ck]
+    n = len(org)
+    let = random.sample(_S6_ZLET, n)
+    if kind == "ad":
+        i = random.randint(1, n - 2)
+        gos = [j for j in range(n) if j != i]
+        pick = set(random.sample(gos, 2))
+        sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": [org[j] if j in pick else "" for j in range(n)], "title": ttl}
+        q = f"Şekilde {ttl.lower()} oklarla gösterilmiştir. Harflerle gösterilen basamaklardan bazılarının adı yazılmıştır.\nBuna göre {let[i]} harfiyle gösterilen basamak aşağıdakilerden hangisidir?"
+        c = org[i]
+        w = [x for x in org if x != c] + ["Depo", "Gümrük", "Banka"]
+        random.shuffle(w)
+        allv = [c] + w[:3]
+        random.shuffle(allv)
+        return _s6raw("Üretimden Tüketime", q, (allv, c), f"Okların sırasına göre {let[i]} harfi {c} basamağıdır.", sh)
+    g, c = random.choice(gor)
+    j = org.index(c)
+    sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": list(org), "title": ttl}
+    q = f"Şekilde {ttl.lower()} basamak adlarıyla birlikte gösterilmiştir.\n{g} şekilde hangi harfle gösterilmiştir?"
+    pool = [x for x in let if x != let[j]]
+    ch = sorted([let[j]] + random.sample(pool, 3))
+    return _s6raw("Üretimden Tüketime", q, (ch, let[j]), f"{g} → {c}; şekilde {c} {let[j]} harfiyle gösterilmiştir.", sh)
+
+
+def _ss6_zinc_ad(subject):
+    return _ss6_zq("ad")
+
+
+def _ss6_zinc_harf(subject):
+    return _ss6_zq("harf")
+
+
+def _ss6_butce(subject):
+    gel = random.choice([[("Maaş", 14000)], [("Maaş", 12000), ("Kira geliri", 3000)], [("Maaş", 9000), ("Ek iş geliri", 2500)]])
+    gid = random.sample([("Kira", 5000), ("Faturalar", 1800), ("Market", 4200), ("Ulaşım", 900), ("Eğitim", 1600), ("Giyim", 1200), ("Sağlık", 700)], random.choice([3, 4]))
+    G, D = sum(v for _, v in gel), sum(v for _, v in gid)
+    d = G - D
+    if d == 0:
+        return None
+    rows = [[n, "Gelir", _s6n(v)] for n, v in gel] + [[n, "Gider", _s6n(v)] for n, v in gid]
+    sh = {"type": "table", "title": "Bir ailenin aylık bütçesi", "headers": ["Kalem", "Tür", "Tutar (TL)"], "rows": rows}
+    if d > 0:
+        q = "Tabloda bir ailenin bir aylık gelir ve giderleri verilmiştir.\nBuna göre bu aile ay sonunda kaç TL tasarruf edebilir?"
+        ex = f"Gelir {_s6n(G)} − gider {_s6n(D)} = {_s6n(d)} TL."
+        v = d
+    else:
+        q = "Tabloda bir ailenin bir aylık gelir ve giderleri verilmiştir.\nBuna göre bu ailenin bütçesi kaç TL açık vermektedir?"
+        ex = f"Gider {_s6n(D)} − gelir {_s6n(G)} = {_s6n(-d)} TL (bütçe açığı)."
+        v = -d
+    o = _mf_opts(v, [x for x in (v + 500, v + 1000, abs(v - 500), v + 2000, G, D, v + 300) if x != v and x > 0], lambda x: f"{_s6n(x)} TL", sort=False)
+    return _s6raw("Üretimden Tüketime", q, o, ex, sh) if o else None
+
+
+def _ss6_secim(subject):
+    let = random.sample(_S6_L, random.choice([3, 4]))
+    for _t in range(60):
+        tot = random.choice([50, 100, 200])
+        cuts = sorted(random.sample(range(1, tot // 5), len(let) - 1))
+        parts = [b - a for a, b in zip([0] + cuts, cuts + [tot // 5])]
+        votes = [p * 5 for p in parts]
+        if len(set(votes)) == len(votes) and min(votes) > 0:
+            break
+    else:
+        return None
+    sh = _ss_bar([f"Aday {k}" for k in let], votes, "Okul meclisi başkanlığı seçimi oy sayıları", "Oy sayısı")
+    srt = sorted(votes, reverse=True)
+    kind = random.choice(["kazanan", "toplam", "fark", "yuzde"] if srt[0] * 100 % tot == 0 else ["kazanan", "toplam", "fark"])
+    w = let[votes.index(srt[0])]
+    if kind == "kazanan":
+        q = "Okul meclisi başkanlığı seçiminde adayların aldığı oylar grafikte verilmiştir. En çok oy alan aday seçimi kazanmaktadır.\nBuna göre seçimi hangi aday kazanmıştır?"
+        return _s6raw("Yönetim ve Katılım", q, (sorted(let), w), f"En çok oyu {srt[0]} oyla Aday {w} almıştır.", sh)
+    if kind == "toplam":
+        v = tot
+        q = "Okul meclisi başkanlığı seçiminde adayların aldığı oylar grafikte verilmiştir. Geçersiz oy yoktur.\nBuna göre seçimde kullanılan toplam oy sayısı kaçtır?"
+        ex = " + ".join(map(str, votes)) + f" = {tot}."
+        wr = [tot + 5, tot - 5, tot + 10, tot - 10, srt[0], tot + 20]
+        fmt = str
+    elif kind == "fark":
+        v = srt[0] - srt[1]
+        q = "Okul meclisi başkanlığı seçiminde adayların aldığı oylar grafikte verilmiştir.\nBuna göre birinci olan aday ile ikinci olan aday arasındaki oy farkı kaçtır?"
+        ex = f"{srt[0]} − {srt[1]} = {v}."
+        wr = [v + 5, v + 10, abs(v - 5), v * 2, srt[0], v + 15]
+        fmt = str
+    else:
+        v = srt[0] * 100 // tot
+        q = "Okul meclisi başkanlığı seçiminde adayların aldığı oylar grafikte verilmiştir. Geçersiz oy yoktur.\nBuna göre kazanan aday, toplam oyların yüzde kaçını almıştır?"
+        ex = f"Toplam oy {tot}; {srt[0]} ÷ {tot} × 100 = %{v}."
+        wr = [v + 5, v + 10, abs(v - 5), v * 2 if v * 2 <= 100 else v - 10, 50, v + 15]
+        fmt = lambda x: f"%{x}"
+    o = _mf_opts(v, [x for x in wr if x != v and x > 0], fmt, sort=False)
+    return _s6raw("Yönetim ve Katılım", q, o, ex, sh) if o else None
+
+
+def _ss6_kimlik(subject):
+    ad = random.choice([("Elif Kaya", "Sivas"), ("Mert Aydın", "Konya"), ("Zeynep Demir", "Rize"), ("Emir Çelik", "Van"), ("Ada Yıldız", "Bursa")])
+    yil = random.choice([2012, 2013, 2014, 2015])
+    gun = f"{random.randint(1, 28):02d}.{random.randint(1, 12):02d}.{yil}"
+    sh = {"type": "s6", "sub_type": "kimlik", "alan": [["Adı Soyadı", ad[0]], ["Doğum yeri", ad[1]], ["Doğum tarihi", gun]], "yil": 2026}
+    ya = 2026 - yil
+    q = f"Şekilde bir öğrencinin kimlik kartı verilmiştir.\nBu öğrenci 2026 yılı sonunda kaç yaşını doldurmuş olur?"
+    o = _mf_opts(ya, [x for x in (ya + 1, ya - 1, ya + 2, ya - 2, yil % 100, ya + 3) if x != ya and x > 0], lambda x: f"{x}", sort=True)
+    return _s6raw("Kimliğimiz", q, o, f"2026 − {yil} = {ya}.", sh) if o else None
+
+
+_S6_DEV = [("Göktürkler", 552), ("Uygurlar", 744), ("Karahanlılar", 840)]
+
+
+def _ss6_devlet_harf(subject):
+    dev = [("Büyük Hun Devleti", ""), ("Göktürkler", " (552)"), ("Uygurlar", " (744)"), ("Karahanlılar", " (840)")]
+    let = random.sample(_S6_ZLET, 4)
+    sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": [n + y for n, y in dev], "title": "Bazı Türk devletleri (zaman sırasına göre)"}
+    cl = [("Mete Han’ın hükümdarlık yaptığı devlet", 0), ("Orhun Yazıtları’nı bırakan devlet", 1), ("Yerleşik hayata geçişte öne çıkan, Uygur alfabesini kullanan devlet", 2),
+          ("Müslüman olan ilk Türk devleti kabul edilen devlet", 3), ("Şekildeki devletler arasında en önce kurulan devlet", 0), ("Şekildeki devletler arasında en son kurulan devlet", 3)]
+    t, i = random.choice(cl)
+    q = f"Şekilde bazı Türk devletleri zaman sırasına göre gösterilmiştir.\n{t} hangi harfle gösterilmiştir?"
+    return _s6raw("İlk Türk Devletleri", q, (sorted(let), let[i]), f"{dev[i][0]} şekilde {let[i]} harfiyle gösterilmiştir.", sh)
+
+
+def _ss6_devlet_fark(subject):
+    let = random.sample(_S6_ZLET, 3)
+    sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": [f"{n} ({y})" for n, y in _S6_DEV], "title": "Bazı Türk devletleri ve kuruluş yılları (MS)"}
+    i, j = random.sample(range(3), 2)
+    i, j = min(i, j), max(i, j)
+    d = _S6_DEV[j][1] - _S6_DEV[i][1]
+    q = f"Şekilde bazı Türk devletleri kuruluş yıllarıyla birlikte zaman sırasına göre gösterilmiştir.\n{let[i]} ile {let[j]} ile gösterilen devletlerin kuruluşları arasında kaç yıl vardır?"
+    o = _mf_opts(d, [x for x in (d + 10, d - 10, d + 100, d + 20, d - 20, _S6_DEV[j][1] - 500) if x != d and x > 0], lambda x: f"{x} yıl", sort=False)
+    return _s6raw("İlk Türk Devletleri", q, o, f"{_S6_DEV[j][1]} − {_S6_DEV[i][1]} = {d} yıl.", sh) if o else None
+
+
+_S6_FACT = [
+    ("Ölçek", "Gerçek uzunlukların ne kadar küçültüldüğünü gösteren orana ne ad verilir?", "Ölçek", ["Lejant", "Koordinat", "Pusula"], "Ölçek, harita uzunluğunun gerçek uzunluğa oranıdır."),
+    ("Ölçek", "1/25 000 ölçekli bir gösterim ile 1/5 000 000 ölçekli gösterim karşılaştırıldığında hangisi daha fazla ayrıntı içerir?", "Ölçeği büyük olan (1/25 000 gibi)", ["Ölçeği küçük olan (1/5 000 000 gibi)", "İkisi de aynı ayrıntıyı gösterir", "Ölçeği olmayan harita"], "Paydası küçük olan ölçek büyük ölçektir ve daha çok ayrıntı gösterir."),
+    ("Ölçek", "Kullanılan simgelerin ne anlama geldiğini açıklayan bölüme ne denir?", "Lejant (işaretler listesi)", ["Ölçek", "Başlık", "Paralel"], "Lejant, haritada kullanılan işaretlerin anlamını gösterir."),
+    ("Koordinat", "Ekvator’un kuzeyindeki yerlerin enlemleri hangi harfle gösterilir?", "K (kuzey)", ["G (güney)", "D (doğu)", "B (batı)"], "Ekvator’un kuzeyi kuzey enlemi, güneyi güney enlemidir."),
+    ("Koordinat", "Başlangıç meridyeninin (Greenwich) doğusundaki yerlerin boylamı hangi yöndedir?", "Doğu boylamı", ["Batı boylamı", "Kuzey enlemi", "Güney enlemi"], "Başlangıç meridyeninin doğusu doğu, batısı batı boylamıdır."),
+    ("Koordinat", "Türkiye hangi yarım kürelerde yer alır?", "Kuzey ve Doğu yarım küre", ["Kuzey ve Batı yarım küre", "Güney ve Doğu yarım küre", "Güney ve Batı yarım küre"], "Türkiye kuzey enlemleri ile doğu boylamları arasındadır."),
+    ("Koordinat", "Enlem çizgilerine (paralel) ilişkin hangisi doğrudur?", "Ekvator’a paralel çizilen dairelerdir.", ["Kutuplardan geçer.", "Başlangıç meridyenine paraleldir.", "Sayıları 360’tır."], "Paraleller ekvatora paralel dairelerdir; 0°–90° arasında numaralanır."),
+    ("İklim", "Yazları sıcak ve kurak, kışları ılık ve yağışlı geçen iklim hangisidir?", "Akdeniz iklimi", ["Karadeniz iklimi", "Karasal iklim", "Kutup iklimi"], "Akdeniz iklimi yaz kuraklığı ile ayırt edilir."),
+    ("İklim", "Türkiye’de her mevsim yağışlı olan iklim tipi hangisidir?", "Karadeniz iklimi", ["Akdeniz iklimi", "Karasal iklim", "Çöl iklimi"], "Karadeniz kıyılarında yağış tüm yıl görülür."),
+    ("İklim", "Türkiye’de kışları soğuk ve kar yağışlı, yazları sıcak ve kurak geçen iklim hangisidir?", "Karasal iklim", ["Akdeniz iklimi", "Karadeniz iklimi", "Ekvator iklimi"], "İç Anadolu ve Doğu Anadolu’da karasal iklim görülür."),
+    ("İklim", "Aşağıdakilerden hangisi iklimi etkileyen faktörlerden biri değildir?", "Nüfus miktarı", ["Enlem", "Yükselti", "Denizlere uzaklık"], "Enlem, yükselti, denize uzaklık ve yer şekilleri iklimi etkiler."),
+    ("Nüfus", "Bir yerin yüzölçümünün her kilometrekaresine düşen ortalama kişi sayısına ne denir?", "Nüfus yoğunluğu", ["Nüfus artış hızı", "Göç", "Nüfus piramidi"], "Nüfus yoğunluğu = nüfus ÷ yüzölçümü."),
+    ("Nüfus", "Aşağıdakilerden hangisi nüfusun dağılışını etkileyen doğal faktörlerden biridir?", "İklim", ["Sanayileşme", "Ulaşım ağı", "Eğitim olanakları"], "İklim, yer şekilleri ve su kaynakları doğal faktörlerdir."),
+    ("Nüfus", "İnsanların bir yerden başka bir yere yerleşmek için gitmesine ne ad verilir?", "Göç", ["Turizm", "Ticaret", "Üretim"], "Göç, yer değiştirme olayıdır."),
+    ("Doğal kaynaklar", "Aşağıdakilerden hangisi yenilenebilir enerji kaynağıdır?", "Rüzgâr", ["Kömür", "Petrol", "Doğal gaz"], "Rüzgâr, güneş ve su tükenmeyen enerji kaynaklarıdır."),
+    ("Doğal kaynaklar", "Aşağıdakilerden hangisi yenilenemeyen (tükenen) bir kaynaktır?", "Petrol", ["Güneş", "Rüzgâr", "Akarsu"], "Fosil yakıtlar tükenir."),
+    ("Doğal kaynaklar", "Kaynakların verimli kullanılması için aşağıdakilerden hangisi yapılmalıdır?", "Geri dönüşüm yapmak", ["Gereksiz alışveriş yapmak", "Işıkları açık bırakmak", "Suyu israf etmek"], "Geri dönüşüm kaynak tasarrufu sağlar."),
+    ("Üretimden Tüketime", "İnsan ihtiyaçlarını karşılamak için mal veya hizmet ortaya çıkarma faaliyetine ne denir?", "Üretim", ["Tüketim", "Tasarruf", "İthalat"], "Üretim, mal veya hizmet oluşturmadır."),
+    ("Üretimden Tüketime", "Gelirin harcanmayıp biriktirilen kısmına ne ad verilir?", "Tasarruf", ["Borç", "Gider", "Vergi"], "Tasarruf, gelirden artan paradır."),
+    ("Üretimden Tüketime", "Yeni bir fikir geliştirip bunu iş hâline getiren ve riski üstlenen kişiye ne denir?", "Girişimci", ["Tüketici", "Memur", "İşçi"], "Girişimci, yeni iş kuran ve riski üstlenen kişidir."),
+    ("Üretimden Tüketime", "Ekonomik faaliyetlerden biri olan tarımın ait olduğu üretim sektörü hangisidir?", "Birincil (hammadde) sektör", ["İkincil (sanayi) sektör", "Üçüncül (hizmet) sektör", "Dış ticaret"], "Tarım, hayvancılık, madencilik birincil sektördür."),
+    ("Üretimden Tüketime", "Bütçenin dengeli olması ne anlama gelir?", "Gelir ile giderin birbirine yaklaşması", ["Giderin gelirden çok olması", "Hiç gider olmaması", "Yalnızca lüks harcama yapılması"], "Dengeli bütçede gider geliri aşmaz."),
+    ("Yönetim ve Katılım", "Halkın kendisini yöneteceklerini oyuyla belirlemesine ne denir?", "Seçim", ["Atama", "Vergi", "Miting"], "Seçimde yurttaşlar oy kullanır."),
+    ("Yönetim ve Katılım", "Aşağıdakilerden hangisi demokratik katılım yollarından biridir?", "Seçimlerde oy kullanmak", ["Kuralları yok saymak", "Sorunları görmezden gelmek", "Yalnız kendi çıkarını düşünmek"], "Oy kullanmak ve sivil toplum çalışmaları katılım yollarıdır."),
+    ("Yönetim ve Katılım", "Türkiye’de yasa yapma yetkisi hangi kuruma aittir?", "Türkiye Büyük Millet Meclisi", ["Belediye", "Muhtarlık", "Valilik"], "Yasama yetkisi TBMM’dedir."),
+    ("Yönetim ve Katılım", "Mahallenin sorunlarını çözmekte görev alan seçilmiş yerel yönetici kimdir?", "Muhtar", ["Vali", "Hâkim", "Emniyet müdürü"], "Muhtar mahalle/köy halkınca seçilir."),
+    ("Yönetim ve Katılım", "Okul meclisi seçiminin demokratik olması için aşağıdakilerden hangisi gerekir?", "Oyların serbest ve gizli kullanılması", ["Adayların oyları açıkça sorulması", "Tek adayın olması", "Oy kullanmaya zorlama"], "Demokratik seçimlerde oy serbest ve gizlidir."),
+    ("Kimliğimiz", "Kişinin ad, soyad ve doğum bilgilerini gösteren resmî belge hangisidir?", "Nüfus cüzdanı/kimlik kartı", ["Karne", "Pasaport fotoğrafı", "Okul diploması"], "Kimlik kartı resmî kimlik belgesidir."),
+    ("Sosyal rol", "Bir öğrencinin aynı anda hem evlat hem sınıf başkanı olması neyi gösterir?", "Birden fazla sosyal rolü olduğunu", ["Hiçbir rolü olmadığını", "Yalnız bir rolü olduğunu", "Rollerin değişmediğini"], "İnsanlar farklı ortamlarda farklı roller üstlenir."),
+    ("Sosyal rol", "Kişiye toplumdan beklenen davranışlar bütününe ne denir?", "Sosyal rol", ["Hobi", "Karakter", "Lakap"], "Rol, kişiden beklenen davranış kalıbıdır."),
+    ("İletişim", "Aşağıdakilerden hangisi sözlü olmayan iletişime örnektir?", "Jest ve mimikler", ["Telefonla konuşma", "Yüz yüze sohbet", "Sunum yapma"], "Beden dili sözsüz iletişimdir."),
+    ("İletişim", "Etkili iletişim için aşağıdakilerden hangisi gereklidir?", "Karşıdakini dinlemek", ["Sürekli sözünü kesmek", "Sesi yükseltmek", "Göz teması kurmamak"], "Dinlemek, iletişimin önemli parçasıdır."),
+    ("İletişim", "Aşağıdakilerden hangisi kitle iletişim aracıdır?", "Televizyon", ["Mektup", "Yüz yüze konuşma", "Telefon görüşmesi"], "Televizyon, gazete ve radyo kitlelere ulaşır."),
+    ("İlk Türk Devletleri", "Türklerin ilk yurdu olarak kabul edilen bölge neresidir?", "Orta Asya", ["Anadolu", "Avrupa", "Afrika"], "Türklerin ana yurdu Orta Asya’dır."),
+    ("İlk Türk Devletleri", "Orhun Yazıtları hangi devlete aittir?", "Göktürkler", ["Hunlar", "Uygurlar", "Karahanlılar"], "Orhun Yazıtları Göktürklerin Türkçe yazılı belgeleridir."),
+    ("İlk Türk Devletleri", "Büyük Hun Devleti’nin ünlü hükümdarı kimdir?", "Mete Han", ["Bilge Kağan", "Kül Tigin", "Tonyukuk"], "Mete Han Hunların ünlü hükümdarıdır."),
+    ("İlk Türk Devletleri", "Orta Asya Türklerinin hayat tarzı için hangisi doğrudur?", "Hayvancılıkla geçinen atlı göçebe yaşam", ["Yalnızca deniz ticareti", "Büyük sanayi üretimi", "Kentlerde bankacılık"], "Orta Asya Türkleri hayvancılıkla geçinen göçebelerdi."),
+    ("İlk Türk Devletleri", "Orta Asya Türklerinin kullandığı taşınabilir konuta ne ad verilir?", "Yurt (çadır)", ["Apartman", "Kale", "Saray"], "Göçebe Türkler yurt adlı çadırlarda yaşardı."),
+    ("İlk Türk Devletleri", "Türk devletlerinde önemli kararların alındığı toplantıya ne ad verilir?", "Kurultay (Toy)", ["Divan-ı Hümayun", "Meclis-i Mebusan", "Loca"], "Kurultay, devlet işlerinin görüşüldüğü toplantıdır."),
+    ("İlk Türk Devletleri", "Uygurların yerleşik hayata geçmesinin sonuçlarından biri aşağıdakilerden hangisidir?", "Tarım ve ticaretin gelişmesi", ["Göçebeliğin artması", "Yazının unutulması", "Kentlerin yıkılması"], "Yerleşik yaşam tarım ve ticareti geliştirdi."),
+]
+
+
+def _ss6_fact_fam(tp, kw, topic=None):
+    L = [x for x in _S6_FACT if x[0] == tp]
+
+    def fn(subject):
+        t, q, c, w, ex = random.choice(L)
+        return _fact_q(subject, t, q, c, w, ex)
+    fn.__name__ = "_ss6_fact_" + tp.replace("İ", "I").lower().translate(str.maketrans("ıöüşçğâî ", "iouscgai_"))
+    return fn, kw
+
+
+_SS6_FAMS = [(_ss6_olcek, 3, "Harita ölçeği ve uzaklık", "h"), (_ss6_olcek_ters, 3, "Harita ölçeği ve uzaklık", "h"), (_ss6_olcek_bul, 4, "Harita ölçeği ve uzaklık", "h"),
+             (_ss6_koord_nokta, 3, "Koordinat", "h"), (_ss6_koord_harf, 3, "Koordinat", "h"), (_ss6_koord_fark, 4, "Koordinat", "h"),
+             (_ss6_iklim_tur, 4, "İklim", "c"), (_ss6_iklim_sayi, 3, "İklim", "c"), (_ss6_nufus_yogun, 4, "Nüfus", "c"), (_ss6_nufus_grafik, 3, "Nüfus", "c"),
+             (_ss6_zinc_ad, 3, "Üretim", "u"), (_ss6_zinc_harf, 3, "Üretim", "u"), (_ss6_butce, 4, "Kaynakların kullanımı", "u"),
+             (_ss6_secim, 3, "Demokratik katılım", "y"), (_ss6_kimlik, 2, "Kimliğimiz", "b"),
+             (_ss6_devlet_harf, 3, "İlk Türk devletleri", "t"), (_ss6_devlet_fark, 4, "İlk Türk devletleri", "t")]
+_SS6_KW = {"h": ("harita", "koordinat", "ölçek"), "c": ("iklim", "nüfus", "doğal kaynak"), "u": ("üretim", "kaynakların", "girişimcilik", "tüketim"),
+           "y": ("demokratik", "katılım", "kurumlar"), "b": ("kimlik", "sosyal rol", "iletişim"), "t": ("türk", "devlet", "orta asya")}
+_SS6_ITEM = {"h": "Harita, koordinat ve ölçek", "c": "İklim, nüfus ve doğal kaynaklar", "u": "Üretim, kaynakların kullanımı ve girişimcilik", "y": "Demokratik katılım ve kurumlar",
+             "b": "Kimliğimiz, sosyal rol ve iletişim", "t": "İlk Türk devletleri ve Orta Asya"}
+for _f, _d, _it, _g in _SS6_FAMS:
+    _f.ITEM = _SS6_ITEM[_g]
+    _SF_GENS.append((_vy_wrap(_f), _SS6_KW[_g]))
+    _DIFF_OF[_f.__name__] = _d
+    _G6_ONLY.add(_f.__name__)
+for _tp, _g in (("Ölçek", "h"), ("Koordinat", "h"), ("İklim", "c"), ("Nüfus", "c"), ("Doğal kaynaklar", "c"), ("Üretimden Tüketime", "u"), ("Yönetim ve Katılım", "y"),
+                ("Kimliğimiz", "b"), ("Sosyal rol", "b"), ("İletişim", "b"), ("İlk Türk Devletleri", "t")):
+    _f, _kw = _ss6_fact_fam(_tp, _SS6_KW[_g])
+    _f.ITEM = _SS6_ITEM[_g]
+    _SF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 2
+    _G6_ONLY.add(_f.__name__)
+
+
+
+# ---- 6. SINIF SOSYAL: kavram kartları (harf-kavram eşleştirme) aileleri
+_S6_KART = {
+    "t": ("İlk Türk devletleri", [("Yurt", "Göçebe Türklerin taşınabilir evi"), ("Kurultay", "Devlet işlerinin görüşüldüğü toplantı"), ("Orhun Yazıtları", "Göktürklerin Türkçe yazılı belgeleri"),
+                                 ("Kağan", "Türk devletlerinde hükümdarın unvanı"), ("Töre", "Toplumun yazısız kuralları"), ("Kımız", "At sütünden yapılan içecek"),
+                                 ("Mete Han", "Büyük Hun Devleti’nin ünlü hükümdarı"), ("Orta Asya", "Türklerin ilk yurdu kabul edilen bölge"), ("Uygurlar", "Yerleşik hayata geçen Türk devleti")]),
+    "y": ("Yönetim ve katılım", [("Muhtar", "Mahalle halkının seçtiği yönetici"), ("Belediye başkanı", "Şehrin yerel hizmetlerini yürüten seçilmiş yönetici"), ("TBMM", "Yasaları yapan kurum"),
+                                 ("Seçim", "Yöneticilerin oyla belirlenmesi"), ("Oy pusulası", "Seçmenin tercihini işaretlediği kâğıt"), ("Sivil toplum kuruluşu", "Gönüllülerin toplum yararına kurduğu örgüt"),
+                                 ("Vali", "Bir ilde devleti temsil eden görevli"), ("Cumhurbaşkanı", "Devletin başı"), ("Dilekçe", "Kurumlara yazılı başvuru belgesi")]),
+    "b": ("Birey ve toplum", [("Sosyal rol", "Kişiden toplumda beklenen davranışlar"), ("Kimlik", "Kişiyi diğerlerinden ayıran özelliklerin bütünü"), ("Empati", "Kendini karşısındakinin yerine koyabilme"),
+                              ("Beden dili", "Jest ve mimiklerle iletişim"), ("Kitle iletişim aracı", "Geniş kitlelere ulaşan iletişim aracı (televizyon gibi)"), ("Dinleme", "Etkili iletişimin temel becerisi"),
+                              ("Önyargı", "Bir kişi hakkında yeterince bilmeden verilen olumsuz hüküm"), ("Dayanışma", "Birlikte hareket edip birbirine destek olma")]),
+    "h": ("Harita bilgisi", [("Lejant", "Harita işaretlerinin anlamını gösteren bölüm"), ("Ölçek", "Harita ile gerçek uzunluk arasındaki oran"), ("Enlem", "Ekvator’a paralel çizilen çizgiler"),
+                             ("Boylam", "Kutuplardan geçen yarım daireler"), ("Ekvator", "0° enlem çizgisi"), ("Başlangıç meridyeni", "0° boylam çizgisi"), ("Pusula", "Yönleri bulmaya yarayan araç"),
+                             ("Kroki", "Bir yerin elle çizilen basit planı")]),
+    "c": ("Türkiye’nin coğrafyası", [("İklim", "Bir yerde uzun yıllar boyunca görülen hava olayları ortalaması"), ("Nüfus yoğunluğu", "Kilometrekareye düşen ortalama kişi sayısı"), ("Göç", "Yer değiştirerek başka yere yerleşme"),
+                                    ("Yükselti", "Deniz seviyesinden olan yükseklik"), ("Yenilenebilir enerji", "Tükenmeyen enerji kaynağı"), ("Hammadde", "Üretimde kullanılan işlenmemiş madde"),
+                                    ("Doğal kaynak", "Doğada kendiliğinden bulunan ve insanın yararlandığı varlık"), ("Yağış", "Yeryüzüne düşen yağmur, kar gibi su")]),
+    "u": ("Üretimden tüketime", [("Üretim", "İhtiyaçları karşılayan mal veya hizmet ortaya çıkarma"), ("Tüketim", "Mal ve hizmetlerin kullanılması"), ("Tasarruf", "Gelirin harcanmayan kısmını biriktirme"),
+                                ("Girişimci", "Yeni iş kuran ve riski üstlenen kişi"), ("Bütçe", "Gelir ve giderlerin planı"), ("Hizmet sektörü", "Ulaşım, sağlık, eğitim gibi faaliyetler"),
+                                ("Fabrika", "Hammaddenin ürüne dönüştürüldüğü yer"), ("Geri dönüşüm", "Atıkların yeniden kullanılabilir hâle getirilmesi")]),
+}
+
+
+def _ss6_kart(key):
+    ttl, bank = _S6_KART[key]
+
+    def fn(subject):
+        pick = random.sample(bank, 4)
+        let = random.sample(_S6_ZLET, 4)
+        sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": [p[0] for p in pick], "title": ttl + " kavramları", "oksuz": True}
+        i = random.randrange(4)
+        q = f"Şekilde “{ttl}” konusuyla ilgili dört kavram harflerle gösterilmiştir.\n“{pick[i][1]}” tanımına uyan kavram hangi harfle gösterilmiştir?"
+        return _s6raw(ttl, q, (sorted(let), let[i]), f"{pick[i][1]} tanımı {pick[i][0]} kavramına aittir; şekilde {let[i]} harfiyle gösterilmiştir.", sh)
+    fn.__name__ = "_ss6_kart_" + key
+    return fn
+
+
+for _k, _kw in (("t", ("türk", "devlet", "orta asya")), ("y", ("demokratik", "katılım", "kurumlar")), ("b", ("kimlik", "sosyal rol", "iletişim")),
+                ("h", ("harita", "koordinat", "ölçek")), ("c", ("iklim", "nüfus", "doğal kaynak")), ("u", ("üretim", "kaynakların", "girişimcilik", "tüketim"))):
+    _f = _ss6_kart(_k)
+    _f.ITEM = _SS6_ITEM[_k]
+    _SF_GENS.append((_vy_wrap(_f), _kw))
+    _DIFF_OF[_f.__name__] = 3
+    _G6_ONLY.add(_f.__name__)
+
+
+
+# ---- 6. SINIF SOSYAL: öncüllü (I-II-III) doğru/yanlış aileleri
+_S6_ONC = {
+    "t": ("İlk Türk devletleri",
+          ["Türklerin ilk yurdu Orta Asya’dır.", "Orhun Yazıtları Göktürklere aittir.", "Kurultay, devlet işlerinin görüşüldüğü toplantıdır.", "Yurt, göçebe Türklerin taşınabilir evidir.",
+           "Uygurlar yerleşik hayata geçmiştir.", "Mete Han, Büyük Hun Devleti’nin hükümdarıdır.", "Orta Asya Türkleri hayvancılıkla geçinmiştir."],
+          ["Orhun Yazıtları Uygurlara aittir.", "Türklerin ilk yurdu Avrupa’dır.", "Kurultay, hükümdarın tek başına karar verdiği yerdir.", "Yurt, taştan yapılmış kalıcı bir konuttur.",
+           "Göktürkler yalnızca denizcilikle geçinmiştir.", "Mete Han, Uygur Devleti’nin hükümdarıdır.", "Türk devletlerinde hükümdara “muhtar” denirdi."]),
+    "y": ("Yönetim ve katılım",
+          ["Seçimde oy kullanmak demokratik katılımdır.", "Muhtar, mahalle halkı tarafından seçilir.", "Yasaları TBMM yapar.", "Belediyeler yerel hizmetleri yürütür.",
+           "Sivil toplum kuruluşları gönüllülük esasına dayanır.", "Oy, serbest ve gizli kullanılır.", "Dilekçe ile kurumlara başvuru yapılabilir."],
+          ["Yasaları muhtar yapar.", "Seçimlerde oylar açıkça sorularak kullanılır.", "Demokratik ülkelerde yurttaşlar yönetime katılamaz.", "Belediye başkanı atamayla gelir.",
+           "Sivil toplum kuruluşları devlet memurlarından oluşur.", "Oy kullanmak yalnızca yöneticilerin hakkıdır.", "Kurumlara başvuru yapmak yasaktır."]),
+    "b": ("Birey ve toplum",
+          ["Bir kişinin birden fazla sosyal rolü olabilir.", "Empati, kendini karşısındakinin yerine koymaktır.", "Beden dili sözsüz iletişimdir.", "Kimlik, bireyi diğerlerinden ayıran özellikleri kapsar.",
+           "Etkili iletişimde dinlemek önemlidir.", "Televizyon, kitle iletişim aracıdır.", "Dayanışma, toplumsal birliği güçlendirir."],
+          ["Bir kişi yalnızca tek bir role sahip olabilir.", "İletişimde karşı tarafı dinlememek etkili bir yoldur.", "Mektup kitle iletişim aracıdır.", "Önyargı, doğru bilgiye dayanır.",
+           "Beden dili iletişimde hiçbir rol oynamaz.", "Sosyal roller hiç değişmez.", "Kimlik yalnızca fotoğraftan ibarettir."]),
+}
+_ROM = ["I", "II", "III"]
+
+
+def _ss6_onc(key):
+    ttl, T, F = _S6_ONC[key]
+
+    def fn(subject):
+        k = random.choice([1, 2])
+        t = random.sample(T, k)
+        f = random.sample(F, 3 - k)
+        st = [(x, True) for x in t] + [(x, False) for x in f]
+        random.shuffle(st)
+        truth = [i for i, (_, ok) in enumerate(st) if ok]
+        sub = lambda ix: ("Yalnız " + _ROM[ix[0]]) if len(ix) == 1 else (" ve ".join(_ROM[i] for i in ix) if len(ix) == 2 else "I, II ve III")
+        c = sub(truth)
+        allsub = [sub([0]), sub([1]), sub([2]), sub([0, 1]), sub([0, 2]), sub([1, 2]), sub([0, 1, 2])]
+        wr = [x for x in allsub if x != c]
+        random.shuffle(wr)
+        allv = [c] + wr[:3]
+        random.shuffle(allv)
+        q = "\n".join(f"{_ROM[i]}. {st[i][0]}" for i in range(3)) + f"\n{ttl} konusunda yukarıdaki ifadelerden hangileri doğrudur?"
+        return _s6raw(ttl, q, (allv, c), "Doğru ifadeler: " + ", ".join(_ROM[i] for i in truth) + ".", None)
+    fn.__name__ = "_ss6_onc_" + key
+    return fn
+
+
+for _k, _kw in (("t", ("türk", "devlet", "orta asya")), ("y", ("demokratik", "katılım", "kurumlar")), ("b", ("kimlik", "sosyal rol", "iletişim"))):
+    _f = _ss6_onc(_k)
+    _f.ITEM = _SS6_ITEM[_k]
+    _SF_GENS.append((_vy_wrap(_f), _kw))
+    _DIFF_OF[_f.__name__] = 3
+    _G6_ONLY.add(_f.__name__)
 
 
 
