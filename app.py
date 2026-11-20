@@ -135,10 +135,10 @@ C = {
       _u("Doğa ve Evren", "Fiiller; Zarflar; Neden-sonuç"), _u("Millî Kültürümüz", "Söz sanatları; Söz grupları; Paragraf"),
       _u("Bilim ve Teknoloji", "Grafik okuma; Bilgilendirici metin; Noktalama"), _u("Sanat ve Estetik", "Şiir; Edat-bağlaç; Yazım kuralları"),
       _u("Birey ve Toplum", "Cümle türleri; Sözel mantık; Görsel okuma")],
-  MAT: [_u("Doğal Sayılarla İşlemler", "Çarpanlar ve katlar; Asal sayılar; EBOB-EKOK giriş"), _u("Kesirlerle İşlemler", "Kesir işlemleri; Kesir problemleri"),
+  MAT: [_u("Doğal Sayılarla İşlemler", "Çarpanlar ve katlar; Asal sayılar; EBOB-EKOK giriş; Bölünebilme kuralları"), _u("Kesirlerle İşlemler", "Kesir işlemleri; Kesir problemleri; Kesir ve bölme"),
        _u("Ondalık Gösterim", "Ondalık sayılarla işlemler; Yüzde"), _u("Oran", "Oran kavramı; Orantı giriş"), _u("Tam Sayılar", "Tam sayılarla toplama-çıkarma; Mutlak değer"),
-       _u("Cebirsel İfadeler", "Değişken; Cebirsel ifade; Eşitlik"), _u("Alan ve Çevre", "Üçgen, paralelkenar alanı; Çember uzunluğu"),
-       _u("Veri Analizi", "Aritmetik ortalama; Çizgi ve daire grafiği"), _u("Açılar ve Dörtgenler", "Paralel doğrular ve kesen; Dörtgenlerin açıları")],
+       _u("Cebirsel İfadeler", "Değişken; Cebirsel ifade; Eşitlik; Örüntüler"), _u("Alan ve Çevre", "Üçgen, paralelkenar alanı; Çember uzunluğu; Uzunluk birimleri"),
+       _u("Veri Analizi", "Aritmetik ortalama; Çizgi ve daire grafiği; Olasılık giriş"), _u("Açılar ve Dörtgenler", "Paralel doğrular ve kesen; Dörtgenlerin açıları; Köşegenler")],
   FEN: [_u("Güneş Sistemi ve Tutulmalar", "Gezegenler; Ay-Güneş tutulması; Uzay araştırmaları"), _u("Vücudumuzdaki Sistemler", "Sindirim; Dolaşım; Solunum; Boşaltım"),
        _u("Kuvvet ve Hareket", "Sürat; Hareket grafikleri; Bileşke kuvvet"), _u("Madde ve Isı", "Saf madde-karışım; Isı alışverişi; Genleşme"),
        _u("Ses ve Işık", "Sesin özellikleri; Işığın yansıması; Mercekler"), _u("Elektrik", "Elektrik devreleri; Ohm yasası giriş; Güvenli kullanım"),
@@ -28724,6 +28724,26 @@ _S6_ONC = {
           ["Bir kişi yalnızca tek bir role sahip olabilir.", "İletişimde karşı tarafı dinlememek etkili bir yoldur.", "Mektup kitle iletişim aracıdır.", "Önyargı, doğru bilgiye dayanır.",
            "Beden dili iletişimde hiçbir rol oynamaz.", "Sosyal roller hiç değişmez.", "Kimlik yalnızca fotoğraftan ibarettir."]),
 }
+
+_S6_ONC["t"][1].extend(["Göktürkler, Türk adını taşıyan ilk devlettir.", "Uygurlar tarıma ve ticarete önem vermiştir.", "Orhun Yazıtları Türkçenin ilk yazılı belgeleri arasındadır.", "Türkler at yetiştiriciliğinde ve atlı savaşçılıkta ileri gitmiştir."])
+_S6_ONC["t"][2].extend(["Hunlar tarıma dayalı yerleşik bir hayat sürmüştür.", "Orhun Yazıtları Latin harfleriyle yazılmıştır.", "Kurultaya yalnızca kadınlar katılabilirdi.", "Uygurlar hiçbir dönemde yerleşik hayata geçmemiştir."])
+_S6_ONC["y"][1].extend(["TBMM üyelerine milletvekili denir.", "Vali, devleti ilde temsil eder.", "Belediye meclisi şehirle ilgili kararlar alır.", "Seçmen olabilmek için 18 yaşını doldurmuş olmak gerekir."])
+_S6_ONC["y"][2].extend(["Milletvekillerini valiler seçer.", "Belediye başkanını Cumhurbaşkanı atar.", "Sivil toplum kuruluşlarına katılmak zorunludur.", "Seçmen olmak için 12 yaşını doldurmak yeterlidir."])
+_S6_ONC["u"] = ("Üretimden tüketime",
+    ["Üretim, ihtiyaçları karşılayan mal veya hizmet ortaya çıkarmadır.", "Tasarruf, gelirin bir kısmını biriktirmektir.", "Bütçe, gelir ve giderlerin planıdır.", "Girişimci, yeni iş kuran kişidir.",
+     "Geri dönüşüm, kaynakların verimli kullanılmasına katkı sağlar.", "Ulaşım ve sağlık hizmet sektörüne örnektir.", "Tüketim, mal ve hizmetlerin kullanılmasıdır."],
+    ["Tasarruf, gelirin tamamını harcamaktır.", "Bütçede giderlerin her zaman gelirden fazla olması gerekir.", "Girişimci, yalnızca başkasının işinde çalışan kişidir.", "Geri dönüşüm doğal kaynakların daha hızlı tükenmesine yol açar.",
+     "Hammadde, üretimden çıkan hazır üründür.", "Eğitim ve sağlık mal üretimine örnektir.", "Tüketim, mal ve hizmet ortaya çıkarmadır."])
+_S6_ONC["h"] = ("Harita bilgisi",
+    ["Ekvator, 0° enlem çizgisidir.", "Başlangıç meridyeni 0° boylam çizgisidir.", "Pusula, yönleri bulmaya yarar.", "Lejant, harita işaretlerinin anlamını gösterir.", "Enlem daireleri birbirine paraleldir.", "Kroki, bir yerin basit planıdır."],
+    ["Boylam daireleri Ekvator’a paraleldir.", "Ekvator, 90° enlem çizgisidir.", "Ölçeği küçük harita, ölçeği büyük haritadan daha fazla ayrıntı gösterir.", "Pusula yalnızca hava durumunu gösterir.", "Lejant, haritanın başlığıdır.", "Başlangıç meridyeni 0° enlem çizgisidir."])
+_S6_ONC["c"] = ("Türkiye’nin coğrafyası",
+    ["İklim, uzun yıllar boyunca görülen hava olaylarının ortalamasıdır.", "Nüfus yoğunluğu, kilometrekareye düşen ortalama kişi sayısıdır.", "Güneş enerjisi yenilenebilir enerji kaynağıdır.", "Göç, yer değiştirerek başka bir yere yerleşmedir.",
+     "Yükselti arttıkça sıcaklık genellikle azalır.", "Hammadde, üretimde kullanılan işlenmemiş maddedir."],
+    ["Kömür yenilenebilir enerji kaynağıdır.", "Yükselti arttıkça sıcaklık genellikle artar.", "İklim, bir günlük hava durumudur.", "Rüzgâr tükenen bir enerji kaynağıdır.", "Nüfus yoğunluğu hesaplanırken yüzölçümü kullanılmaz.", "Göç, aynı evde kalmaktır."])
+_S6_KART["t"][1].extend([("Göktürkler", "Türk adını taşıyan ilk Türk devleti"), ("Ötüken", "Göktürklerin kutsal sayılan yurdu"), ("Bengü taş", "Göktürk yazıtlarının yazıldığı anıt taş"), ("Orhun Vadisi", "Göktürk yazıtlarının bulunduğu bölge")])
+_S6_KART["y"][1].extend([("Milletvekili", "TBMM’de halkı temsil eden kişi"), ("Seçmen", "Oy kullanma hakkı olan kişi"), ("Anayasa", "Devletin temel kurallarını belirleyen en üst yasa"),
+                         ("Referandum", "Önemli bir konuda halkın doğrudan oylaması"), ("Kaymakam", "İlçede devleti temsil eden görevli")])
 _ROM = ["I", "II", "III"]
 
 
@@ -28750,7 +28770,8 @@ def _ss6_onc(key):
     return fn
 
 
-for _k, _kw in (("t", ("türk", "devlet", "orta asya")), ("y", ("demokratik", "katılım", "kurumlar")), ("b", ("kimlik", "sosyal rol", "iletişim"))):
+for _k, _kw in (("t", ("türk", "devlet", "orta asya")), ("y", ("demokratik", "katılım", "kurumlar")), ("b", ("kimlik", "sosyal rol", "iletişim")),
+                ("u", ("üretim", "kaynakların", "girişimcilik", "tüketim")), ("c", ("iklim", "nüfus", "doğal kaynak"))):
     _f = _ss6_onc(_k)
     _f.ITEM = _SS6_ITEM[_k]
     _SF_GENS.append((_vy_wrap(_f), _kw))
@@ -28909,6 +28930,21 @@ _dn6_kart.ITEM = "Hz. Muhammed’in ahlakı ve Medine dönemi"
 _DF_GENS.append((_dl6_tag(_vy_wrap(_dn6_kart), "_dn6_kart", "Medine dönemi"), ("hz. muhammed", "medine")))
 _DIFF_OF["_dn6_kart"] = 3
 _G6_ONLY.add("_dn6_kart")
+
+_SS_TURK = {
+    "goc": ("Hangi cümle göçebe yaşam tarzıyla ilgilidir?", ["Aileler, otlak aramak için mevsimlere göre yer değiştirirdi.", "Yurt adı verilen taşınabilir evlerde yaşanırdı.", "Geçim, hayvancılığa dayanırdı."]),
+    "yerlesik": ("Hangi cümle yerleşik hayatla ilgilidir?", ["Uygurlar tarım yaparak kentlerde yaşamaya başladı.", "Yerleşik hayata geçen Türkler evlerde ve şehirlerde oturdu.", "Sulama kanalları açılarak tarım yapıldı."]),
+    "yazi": ("Hangi cümle Türklerin yazıyla ilgili çalışmalarına örnektir?", ["Orhun Yazıtları’nda Göktürklerin tarihi anlatılır.", "Bengü taşlara yazılan yazıtlar Türkçenin ilk yazılı belgeleri arasındadır.", "Göktürkler kendi alfabelerini kullandı."]),
+    "yonetim": ("Hangi cümle ilk Türk devletlerinin yönetim anlayışıyla ilgilidir?", ["Önemli kararlar kurultayda alınırdı.", "Devleti kağan yönetirdi.", "Toplumun düzeni töreye göre sağlanırdı."]),
+}
+_tg_fam("Sosyal Bilgiler", "Türklerde Devlet ve Kültür", _SS_TURK, "_ss6_tg_turk", "İlk Türk devletleri ve Orta Asya", ("türk", "devlet", "orta asya"), 3, _SF_GENS)
+_SS_YON = {
+    "secim": ("Hangi cümle seçimle ilgilidir?", ["Seçmenler sandığa giderek oy kullanır.", "Adaylar seçim öncesinde projelerini anlatır.", "Oylar sayılarak sonuç belirlenir."]),
+    "yerel": ("Hangi cümle yerel yönetimle ilgilidir?", ["Belediye, mahallenin çöplerini toplar.", "Muhtar, mahalle sakinlerinin sorunlarını iletir.", "Belediye meclisi şehirle ilgili kararlar alır."]),
+    "sivil": ("Hangi cümle sivil toplum kuruluşuyla ilgilidir?", ["Dernek üyeleri ağaç dikme kampanyası düzenledi.", "Vakıf, ihtiyaç sahibi öğrencilere burs verdi.", "Gönüllüler hayvan barınağı için bağış topladı."]),
+    "yasa": ("Hangi cümle yasa yapımıyla ilgilidir?", ["Milletvekilleri kanun teklifini TBMM’de görüştü.", "TBMM’de yeni bir yasa oylanarak kabul edildi.", "Meclis kanunları değiştirebilir."]),
+}
+_tg_fam("Sosyal Bilgiler", "Yönetim ve Katılım", _SS_YON, "_ss6_tg_yon", "Demokratik katılım ve kurumlar", ("demokratik", "katılım", "kurumlar"), 3, _SF_GENS)
 
 _DN_AHLAK2 = {
     "merhamet": ("Hangi davranış merhamete örnektir?", ["Elif, sokaktaki aç kediye mama koydu.", "Ali, yaşlı komşusunun market çantalarını taşıdı.", "Zeynep, hasta arkadaşını ziyaret edip hâlini sordu.", "Mert, yorgun görünen yaşlı teyzeye yerini verdi."]),
@@ -31339,6 +31375,174 @@ for _f, _d, _kk, _cd in _M6_FAMS:
         _MF_ITEMCODE[_f.__name__] = [_cd]
 
 
+
+# ---- 6. SINIF MATEMATİK (3. aşama): kazanım boşlukları — bölünebilme, çarpan-kat, köşegen, uzunluk birimi, kesir-bölme, örüntü, olasılık
+_M6L = list("KLMN")
+
+
+def _m6tab(title, h2, rows):
+    return {"type": "table", "title": title, "headers": ["Harf", h2], "rows": [[a, b] for a, b in rows]}
+
+
+def _m6let(vals):
+    let = _M6L[:]
+    random.shuffle(let)
+    return list(zip(let, vals))
+
+
+def _mf6_bol_tablo(subject):
+    d = random.choice([2, 3, 4, 5, 6, 9, 10])
+    for _ in range(80):
+        nums = [random.randint(120, 9800) for _ in range(4)]
+        ok = [n for n in nums if n % d == 0]
+        if len(ok) == 1 and len(set(nums)) == 4:
+            break
+    else:
+        return None
+    pairs = _m6let(nums)
+    c = next(l for l, n in pairs if n % d == 0)
+    sh = _m6tab("Sayılar", "Sayı", pairs)
+    q = f"Tabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi {d} ile tam bölünür?"
+    n = dict(pairs)[c]
+    return _mf_raw(subject, "Bölünebilme kuralları", q, (sorted(l for l, _ in pairs), c), f"{n} sayısı {d} ile tam bölünür; diğer üç sayı bölünmez.", shape=sh)
+
+
+def _mf6_carpan_tablo(subject):
+    n = random.choice([18, 24, 30, 36, 42, 48, 54, 60, 72])
+    car = [k for k in range(2, n) if n % k == 0]
+    kat = random.choice([True, False])
+    if kat:
+        ans = n * random.randint(2, 6)
+        wr = []
+        while len(wr) < 3:
+            x = n * random.randint(2, 6) + random.choice([1, 2, 3, -1, -2])
+            if x % n and x not in wr and x > 0:
+                wr.append(x)
+        q = f"Tabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi {n} sayısının katıdır?"
+        ex = f"{ans} = {n} × {ans // n} olduğundan {n} sayısının katıdır."
+    else:
+        ans = random.choice(car)
+        wr = []
+        while len(wr) < 3:
+            x = random.randint(4, 29)
+            if n % x and x not in wr and x != ans:
+                wr.append(x)
+        q = f"Tabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi {n} sayısının bir çarpanıdır?"
+        ex = f"{n} sayısı {ans} ile tam bölünür; bu yüzden {ans}, {n} sayısının çarpanıdır."
+    vals = [ans] + wr
+    random.shuffle(vals)
+    pairs = _m6let(vals)
+    c = next(l for l, v in pairs if v == ans)
+    return _mf_raw(subject, "Çarpanlar ve katlar", q, (sorted(l for l, _ in pairs), c), ex, shape=_m6tab("Sayılar", "Sayı", pairs))
+
+
+_KOSE = [("Eşkenar dörtgen", "Köşegenleri birbirini her zaman dik ortalayan dörtgen"), ("Dikdörtgen", "Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen"),
+         ("Yamuk", "Köşegenleri birbirini ortalamayan dörtgen")]
+_KOSE_ALL = ["Eşkenar dörtgen", "Dikdörtgen", "Yamuk", "Paralelkenar"]
+
+
+def _mf6_kose_tablo(subject):
+    ad, tn = random.choice(_KOSE)
+    wr = [x for x in _KOSE_ALL if x != ad]
+    if ad == "Yamuk":
+        wr = ["Eşkenar dörtgen", "Dikdörtgen", "Paralelkenar"]
+    elif ad == "Eşkenar dörtgen":
+        wr = ["Dikdörtgen", "Yamuk", "Paralelkenar"]
+    else:
+        wr = ["Eşkenar dörtgen", "Yamuk", "Paralelkenar"]
+    vals = [ad] + wr
+    random.shuffle(vals)
+    pairs = _m6let(vals)
+    c = next(l for l, v in pairs if v == ad)
+    q = f"Tabloda dört dörtgenin adı harflerle gösterilmiştir. {tn} hangi harfle gösterilmiştir?"
+    ex = f"{tn} {ad.lower()} dörtgenidir; tabloda {c} harfiyle gösterilmiştir."
+    return _mf_raw(subject, "Köşegenler", q, (sorted(l for l, _ in pairs), c), ex, shape=_m6tab("Dörtgenler", "Dörtgen", pairs))
+
+
+def _mf6_uzun_tablo(subject):
+    U = {"mm": 1, "cm": 10, "dm": 100, "m": 1000}
+    for _ in range(80):
+        items = []
+        for _ in range(4):
+            u = random.choice(list(U))
+            v = random.randint(2, 90) if u in ("mm", "cm") else random.randint(2, 15)
+            items.append((v, u, v * U[u]))
+        mm = [x[2] for x in items]
+        if len(set(mm)) == 4 and len({x[1] for x in items}) >= 3:
+            break
+    else:
+        return None
+    en = random.choice([True, False])
+    tgt = max(mm) if en else min(mm)
+    pairs = _m6let([f"{v} {u}" for v, u, _ in items])
+    lab = {l: t for l, t in pairs}
+    ans = next(l for (l, t), it in zip(pairs, [None] * 4)) if False else None
+    for (l, t) in pairs:
+        v, u = t.split()
+        if int(v) * U[u] == tgt:
+            ans = l
+    q = f"Tabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en {'uzun' if en else 'kısa'} olanı hangi harfle gösterilmiştir?"
+    ex = "Uzunluklar milimetreye çevrilince " + ", ".join(f"{l}: {int(t.split()[0]) * U[t.split()[1]]} mm" for l, t in sorted(pairs)) + f" olur; en {'uzun' if en else 'kısa'} {ans} şeridi."
+    return _mf_raw(subject, "Uzunluk birimleri", q, (sorted(lab), ans), ex, shape=_m6tab("Şeritlerin uzunlukları", "Uzunluk", pairs))
+
+
+def _mf6_kesir_bol(subject):
+    for _ in range(80):
+        gr = [(random.randint(1, 7), random.randint(2, 9)) for _ in range(4)]
+        vals = [_KFr(a, b) for a, b in gr]
+        if len(set(vals)) == 4 and all(a < b * 3 for a, b in gr):
+            break
+    else:
+        return None
+    en = random.choice([True, False])
+    t = max(vals) if en else min(vals)
+    pairs = _m6let([f"{a} pizza, {b} kişi" for a, b in gr])
+    ans = None
+    for (l, tx) in pairs:
+        a, b = int(tx.split()[0]), int(tx.split()[2])
+        if _KFr(a, b) == t:
+            ans = l
+    q = f"Tabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en {'çok' if en else 'az'} olan grup hangi harfle gösterilmiştir?"
+    ex = "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: " + ", ".join(f"{l}: {_fr(int(tx.split()[0]), int(tx.split()[2]))}" for l, tx in sorted(pairs)) + f". En {'çok' if en else 'az'} {ans} grubunda."
+    return _mf_raw(subject, "Kesir ve bölme", q, (sorted(l for l, _ in pairs), ans), ex, shape=_m6tab("Gruplar", "Paylaşım", pairs))
+
+
+def _mf6_oruntu_tablo(subject):
+    a = random.randint(2, 6)
+    b = random.randint(1, 7)
+    n = random.choice([8, 9, 10, 12, 15])
+    vals = [a * k + b for k in (1, 2, 3, 4)]
+    c = a * n + b
+    sh = {"type": "table", "title": "Örüntü", "headers": ["Adım", "Kibrit sayısı"], "rows": [[str(k), str(a * k + b)] for k in (1, 2, 3, 4)]}
+    o = _m6o(c, [c + a, c - a, a * n, c + b, (a + 1) * n + b, c + 2 * a], str)
+    q = f"Tabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse {n}. adımda kaç kibrit çöpü gerekir?"
+    return _mf_raw(subject, "Örüntüler", q, o, f"Her adımda {a} kibrit artıyor; kural {a}×adım + {b}. {n}. adım: {a}×{n} + {b} = {c}.", shape=sh) if o and c not in vals else None
+
+
+def _mf6_olasilik_gozlem(subject):
+    kon = random.choice([("kırmızı", "mavi", "yeşil", "Bir torbadan çekilen bilyenin rengi"), ("sarı", "mor", "beyaz", "Bir çarktan çıkan rengin")])
+    cnt = [random.randint(3, 14) for _ in range(3)]
+    tot = sum(cnt)
+    if tot % 2 == 0 and False:
+        return None
+    i = random.randrange(3)
+    ans = _fr(cnt[i], tot)
+    sh = {"type": "table", "title": "Deneme sonuçları", "headers": ["Renk", "Çıkma sayısı"], "rows": [[kon[j], str(cnt[j])] for j in range(3)]}
+    wr = [_fr(cnt[i], tot + cnt[(i + 1) % 3]), _fr(cnt[(i + 1) % 3], tot), _fr(tot - cnt[i], tot), _fr(cnt[i], 3 * cnt[i] + 1), _fr(cnt[i] + 1, tot)]
+    o = _m6o(ans, wr, str)
+    q = f"Tabloda {kon[3]} {tot} denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede {kon[i]} gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?"
+    return _mf_raw(subject, "Olasılık giriş", q, o, f"Toplam {tot} denemede {kon[i]} {cnt[i]} kez çıkmıştır; tahmin {cnt[i]}/{tot} = {ans}.", shape=sh) if o else None
+
+
+_M6N = [(_mf6_bol_tablo, 2, ("bölünebilme",), "MAT.6.1.2"), (_mf6_carpan_tablo, 2, ("çarpan", "asal"), "MAT.6.1.1"), (_mf6_kose_tablo, 3, ("köşegen", "dörtgen"), "MAT.6.3.3"),
+        (_mf6_uzun_tablo, 2, ("uzunluk birim",), "MAT.6.1.8"), (_mf6_kesir_bol, 3, ("kesir ve bölme",), "MAT.6.1.6"), (_mf6_oruntu_tablo, 3, ("örüntü",), "MAT.6.2.2"),
+        (_mf6_olasilik_gozlem, 3, ("olasılık",), "MAT.6.6.1")]
+for _f, _d, _kw, _cd in _M6N:
+    _MF_GENS.append((_vy_wrap(_f), _kw, (6,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
 # ---- 6. SINIF MATEMATİK (2. aşama): Alan ve Çevre, Kesirler, Oran, Ondalık/Yüzde, Paralel doğrular
 def _fr(n, d):
     f = _KFr(n, d)
@@ -31666,12 +31870,189 @@ _M6B_FAMS = [
     (_mf6_od_yuzde, 1, "ond", "MAT.6.1.7"), (_mf6_od_ond, 2, "ond", "MAT.6.1.5"), (_mf6_od_kesir, 3, "ond", "MAT.6.1.7"), (_mf6_od_tablo, 3, "ond", "MAT.6.1.7"),
     (_mf6_pl_olcu, 3, "geo", "MAT.6.3.1"), (_mf6_pl_ad, 2, "geo", "MAT.6.3.1"), (_mf6_dg_pk, 3, "geo", "MAT.6.3.4"),
 ]
-_M6B_KW = {"alan": ("alan", "çevre", "çember", "üçgen"), "kesir": ("kesir",), "oran": ("oran", "orantı"), "ond": ("ondalık", "yüzde"), "geo": ("paralel", "açı", "dörtgen", "geometri", "geometrik")}
+_M6B_KW = {"alan": ("alan", "çevre", "çember", "üçgen"), "kesir": ("kesir",), "oran": ("oran", "orantı"), "ond": ("ondalık", "yüzde"), "geo": ("paralel doğrular", "dörtgenlerin", "açılar ve dörtgen", "geometrik")}
 for _f, _d, _kk, _cd in _M6B_FAMS:
     _MF_GENS.append((_vy_wrap(_f), _M6B_KW[_kk], (6,)))
     _DIFF_OF[_f.__name__] = _d
     if _cd:
         _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+
+# ---- 6. SINIF MATEMATİK (4. aşama): Cebirsel ifadeler ile Açılar ve Dörtgenler genişletme
+def _qx(a, b):
+    """a·x + b biçiminde cebirsel ifade metni."""
+    t = ("" if a == 1 else str(a)) + "x"
+    return t + (f" + {b}" if b > 0 else f" − {-b}" if b < 0 else "")
+
+
+def _mf6_ce_deger(subject):
+    x = random.randint(2, 6)
+    for _ in range(80):
+        ex = [(random.randint(1, 5), random.randint(0, 9)) for _ in range(4)]
+        vals = [a * x + b for a, b in ex]
+        if len(set(vals)) == 4 and len({e for e in ex}) == 4:
+            break
+    else:
+        return None
+    en = random.choice([True, False])
+    t = max(vals) if en else min(vals)
+    pairs = _m6let([_qx(a, b) for a, b in ex])
+    ans = None
+    for (l, tx) in pairs:
+        a, b = [e for e in ex if _qx(*e) == tx][0]
+        if a * x + b == t:
+            ans = l
+    q = f"Tabloda dört cebirsel ifade harflerle gösterilmiştir. x = {x} için değeri en {'büyük' if en else 'küçük'} olan ifade hangi harfle gösterilmiştir?"
+    ex_t = "x yerine " + str(x) + " yazılırsa: " + ", ".join(f"{l}: {[a * x + b for a, b in ex if _qx(a, b) == tx][0]}" for l, tx in sorted(pairs)) + f". En {'büyük' if en else 'küçük'} değer {ans} ifadesindedir."
+    return _mf_raw(subject, "Cebirsel ifade", q, (sorted(l for l, _ in pairs), ans), ex_t, shape=_m6tab("Cebirsel ifadeler", "İfade", pairs))
+
+
+def _mf6_ce_yaz(subject):
+    p = random.randint(2, 9)
+    n1 = random.randint(2, 5)
+    n2 = random.randint(1, 4)
+    pr = random.choice([4, 5, 6, 8, 10])
+    sh = {"type": "table", "title": "Fiyat listesi", "headers": ["Ürün", "Fiyat"], "rows": [["Kalem", "x TL"], ["Defter", f"{pr} TL"]]}
+    a, b = n1, n2 * pr
+    c = _qx(a, b)
+    wr = [_qx(a, pr), _qx(a + n2, b), _qx(n1 * n2, pr), _qx(a, n2 + pr), _qx(a + 1, b), f"{a + n2}x"]
+    o = _m6o(c, wr, str)
+    q = f"Tabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. {n1} kalem ve {n2} defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Cebirsel ifade", q, o, f"{n1} kalem {n1}x TL, {n2} defter {n2} × {pr} = {n2 * pr} TL; toplam {c} TL.", shape=sh) if o else None
+
+
+def _mf6_ce_oruntu_kural(subject):
+    a = random.randint(2, 6)
+    b = random.randint(-2, 6)
+    rows = [[str(k), str(a * k + b)] for k in (1, 2, 3, 4)]
+    if any(int(r[1]) <= 0 for r in rows):
+        return None
+    sh = {"type": "table", "title": "Sayı örüntüsü", "headers": ["Sıra (n)", "Sayı"], "rows": rows}
+    c = _qx(a, b).replace("x", "n")
+    wr = [_qx(a, b + 1), _qx(a + 1, b), _qx(a, -b if b else 1), _qx(b if b > 0 else a + 2, a), _qx(a + 1, b - 1), _qx(a, b + 2)]
+    wr = [w.replace("x", "n") for w in wr]
+    o = _m6o(c, wr, str)
+    q = "Tabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Örüntüler", q, o, f"Terimler her adımda {a} artıyor; n = 1 için {a * 1 + b}. Kural {c}.", shape=sh) if o else None
+
+
+def _mf6_ce_makine(subject):
+    a = random.randint(2, 6)
+    b = random.randint(1, 9)
+    ops = random.choice([("çarpılıp", "eklenir", 1), ("çarpılıp", "çıkarılır", -1)])
+    sg = ops[2]
+    ins = random.sample(range(1, 9), 4)
+    rows = [[str(i), str(a * i + sg * b)] for i in ins[:3]]
+    if any(int(r[1]) <= 0 for r in rows):
+        return None
+    t = ins[3] + random.randint(2, 6)
+    c = a * t + sg * b
+    sh = {"type": "table", "title": "Makinenin girdi–çıktı tablosu", "headers": ["Girdi", "Çıktı"], "rows": rows}
+    o = _m6o(c, [c + b, c - b if c - b > 0 else c + 2 * b, a * t, (a + 1) * t + sg * b, t + a + b, a * t + sg * 2 * b, c + a], str)
+    q = f"Bir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak {t} verilirse çıktı kaç olur?"
+    return _mf_raw(subject, "Cebirsel ifade", q, o, f"Kural: girdi {a} ile {ops[0]} {b} {ops[1]}. {t} için {a} × {t} {'+' if sg > 0 else '−'} {b} = {c}.", shape=sh) if o and str(c) not in [r[1] for r in rows] else None
+
+
+def _mf6_pl_denklem(subject):
+    eq = random.choice([True, False])
+    x = random.randint(10, 40)
+    a = random.randint(1, 3)
+    c1 = random.randint(0, 25)
+    if eq:
+        a2 = random.choice([v for v in (1, 2, 3) if v != a])
+        c2 = a * x + c1 - a2 * x
+        if c2 <= 0 or a * x + c1 >= 170:
+            return None
+        nm, prs, _e = random.choice([r for r in _PL_REL if r[2]])
+        e1, e2 = _qx(a, c1), _qx(a2, c2)
+        sumx = a * x + c1
+    else:
+        a2 = random.randint(1, 3)
+        tot = a + a2
+        rem = 180 - c1
+        # a·x + c1 + a2·x + c2 = 180
+        c2 = random.randint(5, 40)
+        rem = 180 - c1 - c2
+        if rem <= 0 or rem % tot:
+            return None
+        x = rem // tot
+        nm, prs, _e = random.choice([r for r in _PL_REL if not r[2]])
+        e1, e2 = _qx(a, c1), _qx(a2, c2)
+        sumx = a * x + c1
+    pa, pb = random.choice(prs)
+    arcs = [_pl_arc("A", pa, f"({e1})°"), _pl_arc("B", pb, f"({e2})°")]
+    sh = _pl_shape(arcs)
+    if not sh or x <= 0:
+        return None
+    o = _m6o(x, [x + 5, x - 5 if x > 5 else x + 10, x + 10, x - 10 if x > 10 else x + 15, sumx, 180 - x if 180 - x != x else x + 20], str)
+    q = "Şekilde d1 // d2 ve k kesendir. Şekilde gösterilen iki açının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?"
+    ex = f"Bu açılar {nm.lower()} olduğundan " + (f"{e1} = {e2} → x = {x}." if eq else f"({e1}) + ({e2}) = 180 → {a + a2}x = {180 - c1 - c2} → x = {x}.")
+    return _mf_raw(subject, "Paralel doğrular ve kesen", q, o, ex, shape=sh) if o else None
+
+
+def _mf6_dg_yamuk(subject):
+    th = random.choice([50, 55, 60, 65, 70, 75, 80, 100, 105, 110, 120])
+    ask = random.choice(["D", "C"])
+    giv = "A" if ask == "D" else "B"
+    sh = {"type": "geo", "sub_type": "quad", "kind": "trapezoid", "labels": ["A", "B", "C", "D"], "angles": {giv: f"{th}°", ask: "?"}}
+    ans = 180 - th
+    o = _m6o(ans, [th, 90 - th if th < 90 else th - 90 + 10, ans + 10, ans - 10 if ans > 10 else ans + 20, 360 - th - 90, ans + 20], lambda v: f"{v}°")
+    q = f"Şekildeki ABCD yamuğunda [AB] // [DC] dir. m({giv}) = {th}° olduğuna göre m({ask}) kaç derecedir?"
+    return _mf_raw(subject, "Dörtgenlerin açıları", q, o, f"Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m({ask}) = 180° − {th}° = {ans}°.", shape=sh) if o else None
+
+
+def _mf6_dg_genel(subject):
+    for _ in range(60):
+        a, b, c = [random.choice([50, 60, 65, 70, 75, 80, 85, 95, 100, 105, 110, 115, 120]) for _ in range(3)]
+        d = 360 - a - b - c
+        if 40 <= d <= 140:
+            break
+    else:
+        return None
+    L = ["A", "B", "C", "D"]
+    ask = random.choice(L)
+    vals = dict(zip(L, [a, b, c, d]))
+    random.shuffle(L)
+    vals = dict(zip(["A", "B", "C", "D"], random.sample([a, b, c, d], 4)))
+    ans = vals[ask]
+    sh = {"type": "geo", "sub_type": "quad", "kind": "general", "labels": ["A", "B", "C", "D"], "angles": {k: (f"{v}°" if k != ask else "?") for k, v in vals.items()}}
+    o = _m6o(ans, [180 - ans, 360 - ans, ans + 10, ans - 10, ans + 20, 180 - ans + 10], lambda v: f"{v}°")
+    q = f"Şekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m({ask}) kaç derecedir?"
+    return _mf_raw(subject, "Dörtgenlerin açıları", q, o, f"Dörtgenin iç açılarının toplamı 360°'dir: m({ask}) = {ans}°.", shape=sh) if o else None
+
+
+def _mf6_dg_esken(subject):
+    th = random.choice([50, 55, 60, 65, 70, 75, 80, 100, 110, 120])
+    ask = random.choice(["B", "C"])
+    ans = 180 - th if ask == "B" else th
+    sh = {"type": "geo", "sub_type": "quad", "kind": "rhombus", "labels": ["A", "B", "C", "D"], "angles": {"A": f"{th}°", ask: "?"}}
+    o = _m6o(ans, [180 - ans, th // 2 + 10, ans + 10, ans - 10, 360 - 2 * th if 360 - 2 * th != ans else ans + 20, ans + 20], lambda v: f"{v}°")
+    q = f"Şekildeki ABCD eşkenar dörtgeninde m(A) = {th}° olduğuna göre m({ask}) kaç derecedir?"
+    return _mf_raw(subject, "Dörtgenlerin açıları", q, o, ("Karşılıklı açılar eşittir: " if ask == "C" else "Komşu açıların toplamı 180°'dir: ") + f"m({ask}) = {ans}°.", shape=sh) if o else None
+
+
+def _mf6_dg_pk_cebir(subject):
+    x = random.randint(10, 40)
+    a = random.randint(1, 3)
+    a2 = random.randint(1, 3)
+    c1 = random.randint(0, 30)
+    c2 = 180 - c1 - (a + a2) * x
+    if c2 <= 0 or c2 > 60:
+        return None
+    sh = {"type": "geo", "sub_type": "quad", "kind": "parallelogram", "labels": ["A", "B", "C", "D"], "angles": {"A": f"({_qx(a, c1)})°", "B": f"({_qx(a2, c2)})°"}}
+    o = _m6o(x, [x + 5, x - 5 if x > 5 else x + 10, x + 10, 180 - x, x + 15, x - 10 if x > 10 else x + 20], str)
+    q = "Şekildeki ABCD paralelkenarında A ve B açılarının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?"
+    return _mf_raw(subject, "Dörtgenlerin açıları", q, o, f"Komşu açılar toplamı 180°: ({_qx(a, c1)}) + ({_qx(a2, c2)}) = 180 → {a + a2}x = {180 - c1 - c2} → x = {x}.", shape=sh) if o else None
+
+
+_M6C = [(_mf6_ce_deger, 2, ("cebirsel", "değişken"), "MAT.6.2.3"), (_mf6_ce_yaz, 3, ("cebirsel", "değişken"), "MAT.6.2.3"), (_mf6_ce_oruntu_kural, 3, ("örüntü",), "MAT.6.2.2"),
+        (_mf6_ce_makine, 3, ("cebirsel", "değişken"), "MAT.6.2.3"), (_mf6_pl_denklem, 4, ("dörtgenlerin", "paralel doğrular"), "MAT.6.3.2"), (_mf6_dg_yamuk, 3, ("dörtgenlerin", "paralel doğrular"), "MAT.6.3.4"),
+        (_mf6_dg_genel, 2, ("dörtgenlerin", "paralel doğrular"), "MAT.6.3.4"), (_mf6_dg_esken, 3, ("dörtgenlerin", "paralel doğrular"), "MAT.6.3.4"), (_mf6_dg_pk_cebir, 4, ("dörtgenlerin", "paralel doğrular"), "MAT.6.3.4")]
+for _f, _d, _kw, _cd in _M6C:
+    _MF_GENS.append((_vy_wrap(_f), _kw, (6,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
 
 
 # ---- 6. SINIF MATEMATİK (2. aşama): Alan ve Çevre, Kesirler, Oran, Ondalık/Yüzde, Paralel doğrular
