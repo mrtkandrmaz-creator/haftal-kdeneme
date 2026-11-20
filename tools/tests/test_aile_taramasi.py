@@ -10,7 +10,8 @@ D = cur.DIFFICULTIES
 C = cur.C["5"]
 SUBJ = ["Matematik", "Fen Bilimleri", "Sosyal Bilgiler", "Türkçe", "Din Kültürü ve Ahlak Bilgisi", "İngilizce"]
 
-REG = {"Matematik": [(f, k) for f, k, g in ai._MF_GENS if 5 in g], "Fen Bilimleri": ai._FF_GENS, "Sosyal Bilgiler": ai._SF_GENS,
+_G6 = getattr(ai, "_G6_ONLY", set())
+REG = {"Matematik": [(f, k) for f, k, g in ai._MF_GENS if 5 in g], "Fen Bilimleri": [(f, k) for f, k in ai._FF_GENS if f.__name__ not in _G6], "Sosyal Bilgiler": [(f, k) for f, k in ai._SF_GENS if f.__name__ not in _G6],
        "Türkçe": ai._TF_GENS, "Din Kültürü ve Ahlak Bilgisi": ai._DF_GENS, "İngilizce": ai._EF_GENS}
 # Bilerek az soru üreten / tek tür soru üreten aileler (kural: sorun değil, ama çökme ve OFF yine yasak)
 LOW_OK = {"_mf_place", "_mf_fr_addsub", "_ff_boil"}
@@ -37,6 +38,34 @@ for sj, reg in REG.items():
                 continue
             c["ok"] += 1
             if not any(ai._on_topic(q, u + ": " + "; ".join(t), sj, "5. Sınıf") for u, t in hits):
+                c["OFF"] += 1
+        lim = 40 if n in LOW_OK or n.startswith("_bk") else 80
+        if c["EXC"] or c["OFF"] or c["ok"] < lim:
+            fails.append((sj, n, dict(c)))
+C6 = cur.C["6"]
+REG6 = {"Fen Bilimleri": [(f, k) for f, k in ai._FF_GENS if f.__name__ in _G6], "Sosyal Bilgiler": [(f, k) for f, k in ai._SF_GENS if f.__name__ in _G6]}
+for sj, reg in REG6.items():
+    for f, kw in reg:
+        n = f.__name__
+        hits = [(u, t) for u, t in C6[sj] if any(ai._kw_hit((u + ": " + "; ".join(t)).lower(), k) for k in kw)]
+        if not hits:
+            continue  # bu sınıfta seçilemeyen aile (ör. 5. sınıf dışı)
+        c = collections.Counter()
+        for _ in range(120):
+            try:
+                r = f(sj)
+            except Exception as e:
+                c["EXC"] += 1
+                continue
+            if not r:
+                c["none"] += 1
+                continue
+            q = ai._norm_q(r, sj)
+            if not q:
+                c["rej"] += 1
+                continue
+            c["ok"] += 1
+            if not any(ai._on_topic(q, u + ": " + "; ".join(t), sj, "6. Sınıf") for u, t in hits):
                 c["OFF"] += 1
         lim = 40 if n in LOW_OK or n.startswith("_bk") else 80
         if c["EXC"] or c["OFF"] or c["ok"] < lim:
