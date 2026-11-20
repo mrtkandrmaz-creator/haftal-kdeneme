@@ -77,6 +77,8 @@ def main():
         C = cur.C[g]
         reg = {"Matematik": [(f, k) for f, k, gr in ai._MF_GENS if int(g) in gr], "Fen Bilimleri": ai._FF_GENS, "Sosyal Bilgiler": ai._SF_GENS,
                "Türkçe": ai._TF_GENS, "Din Kültürü ve Ahlak Bilgisi": ai._DF_GENS, "İngilizce": ai._EF_GENS}
+        _g6 = getattr(ai, "_G6_ONLY", set())
+        reg = {k: (v if k == "Matematik" else [(f, kw) for f, kw in v if (f.__name__ in _g6) == (str(g) == "6") or (f.__name__ not in _g6)]) for k, v in reg.items()}
         for sj, fams in reg.items():
             if want and sj not in want:
                 continue
