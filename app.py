@@ -5481,9 +5481,56 @@ def _f6_yansima(ax, d):
     ax.set_ylim(-1.2, L + .8)
 
 
+def _f6_tutulma(ax, d):
+    if d.get("mod") == "yorunge":
+        ax.add_patch(Circle((-4.6, 0), 1.3, fc="#fde68a", ec=INK, lw=2, zorder=2))
+        ax.text(-4.6, -1.95, "Güneş", ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+        ax.add_patch(Circle((0, 0), .55, fc="#93c5fd", ec=INK, lw=2, zorder=3))
+        ax.text(0, 0, "Dünya", ha="center", va="center", fontsize=8.5, fontweight="bold", color=INK, zorder=4)
+        t = np.linspace(0, 2 * np.pi, 200)
+        ax.plot(2.2 * np.cos(t), 2.2 * np.sin(t), color="#64748b", lw=1.6, ls="--", zorder=1)
+        for yy in (-.9, 0, .9):
+            ax.annotate("", xy=(-3.0, yy * .6), xytext=(-3.25, yy * .6), arrowprops=dict(arrowstyle="-|>", color="#f59e0b", lw=1.6))
+        pos = {"sol": (-2.2, 0), "sag": (2.2, 0), "ust": (0, 2.2), "alt": (0, -2.2)}
+        for k, let in d["let"].items():
+            x, y = pos[k]
+            ax.add_patch(Circle((x, y), .3, fc="#d1d5db", ec=INK, lw=2, zorder=5))
+            dx, dy = {"sol": (0, .75), "sag": (0, .75), "ust": (.7, 0), "alt": (.7, 0)}[k]
+            ax.text(x + dx, y + dy, let, ha="center", va="center", fontsize=14, fontweight="bold", color=BLUE, zorder=6)
+        ax.text(0, 3.1, "Ay'ın Dünya çevresindeki konumları", ha="center", va="center", fontsize=10.5, fontweight="bold", color=INK)
+        ax.set_xlim(-6.4, 3.4)
+        ax.set_ylim(-3.1, 3.5)
+        return
+    cfg = {"Güneş": (1.25, "#fde68a"), "Ay": (.42, "#d1d5db"), "Dünya": (.75, "#93c5fd")}
+    xs = [-5.2, 0, 5.2] if False else None
+    order = d["sira"]
+    pos = [-5.0, 0.0, 5.0]
+    ax.plot([-6.6, 6.6], [0, 0], color="#94a3b8", lw=1.4, ls="--", zorder=1)
+    for x, nm in zip(pos, order):
+        r, c = cfg[nm]
+        ax.add_patch(Circle((x, 0), r, fc=c, ec=INK, lw=2, zorder=3))
+        ax.text(x, -1.75, nm, ha="center", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.set_xlim(-7, 7)
+    ax.set_ylim(-2.5, 2.2)
+
+
+def _f6_gezsira(ax, d):
+    n = len(d["items"])
+    ax.add_patch(Circle((-.2, 0), 1.0, fc="#fde68a", ec=INK, lw=2, zorder=3))
+    ax.text(-.2, -1.5, "Güneş", ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
+    ax.plot([-.2, n * 2.1 + 1.0], [0, 0], color="#94a3b8", lw=1.2, ls="--", zorder=1)
+    for i, (lab, col) in enumerate(d["items"]):
+        x = 2.4 + i * 2.1
+        ax.add_patch(Circle((x, 0), .5, fc=col, ec=INK, lw=2, zorder=3))
+        isq = len(lab) == 1
+        ax.text(x, -1.5, lab, ha="center", va="center", fontsize=14 if isq else 10.5, fontweight="bold", color=BLUE if isq else INK)
+    ax.set_xlim(-1.6, n * 2.1 + 1.6)
+    ax.set_ylim(-2.2, 1.8)
+
+
 def _f6(ax, d):
     st = d.get("sub_type")
-    {"zincir": _f6_zincir, "kalp": _f6_kalp, "dalga": _f6_dalga, "yanki": _f6_yanki, "yansima": _f6_yansima, "gorunum": _f6_gorunum, "venn2": _f6_venn2, "mikroalan": _f6_mikroalan}.get(st, lambda a, b: None)(ax, d)
+    {"zincir": _f6_zincir, "kalp": _f6_kalp, "dalga": _f6_dalga, "yanki": _f6_yanki, "yansima": _f6_yansima, "gorunum": _f6_gorunum, "venn2": _f6_venn2, "mikroalan": _f6_mikroalan, "tutulma": _f6_tutulma, "gezsira": _f6_gezsira}.get(st, lambda a, b: None)(ax, d)
 
 
 def _mad(ax, d):
@@ -8812,7 +8859,7 @@ ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
     "Türkçe": {"table", "doc", "dil", "sos", "bar_chart"},
     "İngilizce": {"table", "doc", "dil", "sos", "bar_chart"},
-    "Din Kültürü ve Ahlak Bilgisi": {"table", "doc", "dil", "bar_chart"},
+    "Din Kültürü ve Ahlak Bilgisi": {"table", "doc", "dil", "bar_chart", "f6"},
 }
 VISUAL_HINT = {
     "Matematik": "Şekil/grafik/tablo: geometri (üçgen, çember, dikdörtgen), sayı doğrusu, sütun/çizgi/daire grafiği, veri tablosu.",
@@ -28112,6 +28159,85 @@ for _tp, _kk in (("Sesin Özellikleri", ("ses", "sesin")), ("Işığın Yansıma
     _DIFF_OF[_f.__name__] = 2
     _G6_ONLY.add(_f.__name__)
 
+_F6_GEZ = [("Merkür", "#a8a29e"), ("Venüs", "#fcd34d"), ("Dünya", "#60a5fa"), ("Mars", "#f87171"), ("Jüpiter", "#fdba74"), ("Satürn", "#fde68a"), ("Uranüs", "#99f6e4"), ("Neptün", "#818cf8")]
+
+
+def _ff6_tut_dizilis(subject):
+    if random.random() < .5:
+        sira, gun = ["Güneş", "Ay", "Dünya"], True
+    else:
+        sira, gun = ["Güneş", "Dünya", "Ay"], False
+    if random.random() < .5:
+        sira = sira[::-1]
+    sh = {"type": "f6", "sub_type": "tutulma", "mod": "dizilis", "sira": sira}
+    q = "Şekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’dan bakan bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?"
+    q = q.replace("Dünya’dan bakan bir gözlemci", "Dünya’daki uygun bir gözlemci")
+    c = "Güneş tutulması" if gun else "Ay tutulması"
+    o = _mf_opts(c, ["Mevsimlerin oluşması", "Gece ile gündüzün oluşması", "Ay’ın ilk dördün evresi", "Yıldız kayması"], lambda x: x, sort=False)
+    ex = "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur."
+    return _mf_raw("Fen Bilimleri", "Güneş ve Ay Tutulması", q, o, ex, shape=sh) if o else None
+
+
+def _ff6_tut_yorunge(subject):
+    let = random.sample(_F6_LET, 4)
+    kon = ["sol", "sag", "ust", "alt"]
+    random.shuffle(kon)
+    d = dict(zip(kon, let))
+    ask = random.choice(["sol", "sag"])
+    c = d[ask]
+    sh = {"type": "f6", "sub_type": "tutulma", "mod": "yorunge", "let": d}
+    olay = "Güneş tutulması" if ask == "sol" else "Ay tutulması"
+    q = f"Şekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBuna göre Ay hangi harfle gösterilen konumdayken {olay} gözlenir?"
+    ex = "Güneş tutulması için Ay, Güneş ile Dünya’nın arasında olmalıdır." if ask == "sol" else "Ay tutulması için Dünya, Güneş ile Ay’ın arasında olmalıdır; Ay, Dünya’nın gölgesine girer."
+    return _mf_raw("Fen Bilimleri", "Güneş ve Ay Tutulması", q, (sorted(let), c), ex, shape=sh)
+
+
+def _ff6_gez_sira(subject):
+    i0 = random.randint(0, 4)
+    seq = _F6_GEZ[i0:i0 + 4]
+    t = random.randint(1, 2)
+    items = []
+    for j, (nm, col) in enumerate(seq):
+        items.append(("K" if j == t else nm, col))
+    c = seq[t][0]
+    kn = [x[0] for j, x in enumerate(seq) if j != t]
+    if len(kn) < 3:
+        return None
+    sh = {"type": "f6", "sub_type": "gezsira", "items": items}
+    q = f"Şekilde Güneş’ten uzaklaşma sırasına göre dizilmiş dört gezegenden üçünün adı yazılmıştır.\nBuna göre K ile gösterilen gezegen aşağıdakilerden hangisidir?"
+    pool = [x[0] for x in _F6_GEZ if x[0] not in kn and x[0] != c]
+    o = _mf_opts(c, random.sample(pool, 3), lambda x: x, sort=False)
+    ex = "Gezegenler Güneş’ten uzaklaşma sırasıyla: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün. K, " + kn[0] + " ile " + kn[-1] + " arasındaki gezegendir."
+    return _mf_raw("Fen Bilimleri", "Güneş Sistemi", q, o, ex, shape=sh) if o else None
+
+
+_F6_FACT += [
+    ("Güneş Sistemi", "Aşağıdakilerden hangisi Güneş’e en yakın gezegendir?", "Merkür", ["Venüs", "Mars", "Jüpiter"], "Güneş’e en yakın gezegen Merkür’dür."),
+    ("Güneş Sistemi", "Aşağıdakilerden hangisi Güneş sistemindeki en büyük gezegendir?", "Jüpiter", ["Satürn", "Dünya", "Mars"], "Güneş sisteminin en büyük gezegeni Jüpiter’dir."),
+    ("Güneş Sistemi", "Aşağıdaki gezegenlerden hangisi iç (kayaç) gezegenlerden biridir?", "Mars", ["Satürn", "Uranüs", "Neptün"], "Merkür, Venüs, Dünya ve Mars kayaç yapılı iç gezegenlerdir."),
+    ("Güneş Sistemi", "Aşağıdaki gezegenlerden hangisi gaz yapılı dış gezegenlerden biridir?", "Satürn", ["Merkür", "Venüs", "Dünya"], "Jüpiter, Satürn, Uranüs ve Neptün gaz yapılı dış gezegenlerdir."),
+    ("Güneş Sistemi", "Dünya’nın doğal uydusu aşağıdakilerden hangisidir?", "Ay", ["Güneş", "Mars", "Venüs"], "Dünya’nın tek doğal uydusu Ay’dır."),
+    ("Güneş Sistemi", "Güneş sisteminde ışık ve ısı kaynağı olan gök cismi aşağıdakilerden hangisidir?", "Güneş", ["Ay", "Dünya", "Jüpiter"], "Güneş kendi ışığını yayan bir yıldızdır."),
+    ("Güneş Sistemi", "Uzay araştırmalarında uzaydaki cisimleri uzaktan incelemek için aşağıdakilerden hangisi kullanılır?", "Teleskop", ["Termometre", "Dinamometre", "Barometre"], "Teleskoplar uzak gök cisimlerini yakından görmeyi sağlar."),
+    ("Güneş Sistemi", "Aşağıdakilerden hangisi uzay araştırmalarında insanı uzaya götüren araçlardan biridir?", "Uzay mekiği", ["Denizaltı", "Planör", "Zeplin"], "Uzay mekikleri ve roketler insanları uzaya taşır."),
+    ("Güneş Sistemi", "Uzay araştırmalarının insanlığa katkısı olarak aşağıdakilerden hangisi söylenebilir?", "Haberleşme ve hava tahmini uyduları geliştirilmiştir", ["Dünya’nın dönüşü hızlandırılmıştır", "Güneş’in ısısı azaltılmıştır", "Ay’ın yörüngesi değiştirilmiştir"], "Uydu teknolojileri haberleşme ve hava tahmininde kullanılır."),
+    ("Güneş ve Ay Tutulması", "Güneş tutulması sırasında Ay’ın gölgesi nereye düşer?", "Dünya’nın bir bölgesine", ["Güneş’e", "Mars’a", "Ay’ın kendisine"], "Ay’ın gölgesi Dünya’nın küçük bir bölgesine düşer; orada Güneş tutulması görülür."),
+    ("Güneş ve Ay Tutulması", "Ay tutulması sırasında Ay’ın bir kısmı ya da tamamı neyin gölgesine girer?", "Dünya’nın", ["Güneş’in", "Mars’ın", "Venüs’ün"], "Ay tutulmasında Ay, Dünya’nın gölgesine girer."),
+    ("Güneş ve Ay Tutulması", "Aşağıdakilerden hangisi tutulmaların oluşmasında etkili olan ışık özelliğidir?", "Işığın doğrusal yayılması", ["Işığın kırılması", "Işığın soğurulması", "Işığın dağılması"], "Işık doğrusal yayıldığı için engel arkasında gölge oluşur."),
+]
+for _tp in ("Güneş Sistemi", "Güneş ve Ay Tutulması"):
+    _f, _kw = _f6_fact_fam(_tp, ("güneş sistemi", "tutulma", "gezegen", "uzay"))
+    _f.ITEM = _tp
+    _FF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 2
+    _G6_ONLY.add(_f.__name__)
+for _f, _d, _it in ((_ff6_tut_dizilis, 3, "Güneş ve Ay tutulması"), (_ff6_tut_yorunge, 3, "Güneş ve Ay tutulması"), (_ff6_gez_sira, 2, "Gezegenlerin sırası")):
+    _f.ITEM = _it
+    _FF_GENS.append((_vy_tag(_f, "6. sınıf Fen"), ("güneş sistemi", "tutulma", "gezegen", "uzay")))
+    _DIFF_OF[_f.__name__] = _d
+    _G6_ONLY.add(_f.__name__)
+
+
 
 
 # ---- 6. SINIF SOSYAL BİLGİLER: Harita, İklim/Nüfus, Üretim, Yönetim, Birey, Türk devletleri
@@ -28630,6 +28756,244 @@ for _k, _kw in (("t", ("türk", "devlet", "orta asya")), ("y", ("demokratik", "k
     _SF_GENS.append((_vy_wrap(_f), _kw))
     _DIFF_OF[_f.__name__] = 3
     _G6_ONLY.add(_f.__name__)
+
+
+
+# ---- 6. SINIF Türkçe / İngilizce / Din Kültürü: harfli cümle-tablosu aileleri (tek doğru) ve kavram kartları
+_DL6_L = list("KLMN")
+
+
+def _dl6_tag(w, name, item, en=False):
+    def g(subj):
+        r = w(subj)
+        if r and r.get("shape"):
+            r = dict(r)
+            _pre = random.choice(["Exercise", "Task", "Quick check", "Mini quiz", "Warm-up", "Practice", "Review", "Challenge", "Your turn", "Test yourself", "Think", "Question time"]) if en else random.choice(["Konu", "Soru", "Etkinlik", "Çalışma", "Hatırlayalım", "Pekiştirme", "Uygulama", "Değerlendirme", "Deneme", "Tekrar", "Bakalım", "Sıra sende"])
+            r["question"] = _pre + ": " + item + "\n" + str(r["question"])
+        return r
+    g.__name__ = name
+    g.ITEM = item
+    return g
+
+
+def _tg_fam(subject, topic, banks, name, item, kw, diff, reg, en=False, tail=""):
+    def fn(subj):
+        t = random.choice(list(banks))
+        phrase, sents = banks[t]
+        target = random.choice(sents)
+        pool = [s for tg, (ph, L) in banks.items() if tg != t for s in L]
+        d = random.sample(pool, 3)
+        rows = [target] + d
+        random.shuffle(rows)
+        let = _DL6_L[:]
+        random.shuffle(let)
+        lab = {let[i]: rows[i] for i in range(4)}
+        sh = {"type": "table", "title": "Sentences" if en else "Cümleler", "headers": ["Letter" if en else "Harf", "Sentence" if en else "Cümle"], "rows": [[k, lab[k]] for k in sorted(lab)]}
+        c = next(k for k, v in lab.items() if v == target)
+        q = (phrase + "\nFour sentences are given in the table." if en else "Tabloda dört cümle harflerle gösterilmiştir.\n" + phrase)
+        ex = (f"The sentence in row {c} ({target}) matches the question." if en else f"{c} harfli cümle ({target}) sorudaki ölçüte uygundur.")
+        return _mf_raw(subj, topic, q, (sorted(lab), c), ex, shape=sh)
+    fn.__name__ = name
+    fn.ITEM = item
+    wrap = _dl6_tag(_vy_wrap_en(fn) if en else _vy_wrap(fn), name, item, en)
+    reg.append((wrap, kw))
+    _DIFF_OF[name] = diff
+    _G6_ONLY.add(name)
+    return fn
+
+
+_TR_FIIL = {
+    "gecmis": ("Hangisinin yüklemi geçmiş zaman kipiyle çekimlenmiştir?", ["Dün akşam kardeşim erkenden uyudu.", "Ali ödevini sabah bitirmiş.", "Annem pazardan taze meyve aldı.", "Öğretmen bize güzel bir hikâye anlattı.", "Kuşlar sabah erkenden uçup gitti."]),
+    "gelecek": ("Hangisinin yüklemi gelecek zaman kipiyle çekimlenmiştir?", ["Yarın sabah dedemi ziyaret edeceğiz.", "Hafta sonu kitap okuyacağım.", "Yaz tatilinde denize gideceğiz.", "Öğretmenimiz yarın sınav yapacak.", "Arkadaşlarım akşam bize gelecek."]),
+    "simdiki": ("Hangisinin yüklemi şimdiki zaman kipiyle çekimlenmiştir?", ["Çocuklar bahçede top oynuyor.", "Annem mutfakta yemek yapıyor.", "Şu an ödevimi yazıyorum.", "Kedi pencerenin önünde uyuyor.", "Babam gazete okuyor."]),
+    "genis": ("Hangisinin yüklemi geniş zaman kipiyle çekimlenmiştir?", ["Ali her sabah erkenden kalkar.", "Arı çiçeklerden bal yapar.", "Kuşlar kışın sıcak yerlere göç eder.", "Öğretmenimiz her gün bize kitap okur.", "Ayşe sütü çok sever."]),
+    "emir": ("Hangisinin yüklemi emir kipiyle çekimlenmiştir?", ["Odanı hemen topla.", "Kapıyı yavaşça kapat.", "Derslerine düzenli çalış.", "Çöpleri geri dönüşüm kutusuna at.", "Lütfen sessiz ol."]),
+    "istek": ("Hangisinin yüklemi istek kipiyle çekimlenmiştir?", ["Yarın seninle parka gideyim.", "Bu hafta sonu müzeye gidelim.", "Ödevime hemen başlayayım.", "Sana yardım edeyim.", "Birlikte bir resim yapalım."]),
+}
+_TR_ZARF = {
+    "zaman": ("Hangisinde zaman zarfı kullanılmıştır?", ["Dün akşam sinemaya gittik.", "Çocuklar sabah erkenden okula gitti.", "Yarın erken kalkacağım.", "Misafirlerimiz akşam geldi.", "Bugün sınıfta sınav var."]),
+    "yer": ("Hangisinde yer-yön zarfı kullanılmıştır?", ["Çocuklar içeri girdi.", "Kedi yukarı tırmandı.", "Kuşlar aşağı indi.", "Öğrenciler dışarı çıktı.", "Geri bak lütfen."]),
+    "durum": ("Hangisinde durum (nasıl) zarfı kullanılmıştır?", ["Çocuk yavaş yavaş yürüdü.", "Sınıfa sessizce girdi.", "Ali hızlı koştu.", "Kız sevinçle bağırdı.", "Dedem yavaşça oturdu."]),
+    "miktar": ("Hangisinde miktar zarfı kullanılmıştır?", ["Bu filmi çok sevdim.", "Biraz dinlenelim.", "Hava oldukça soğuk.", "Az uyudum.", "Pek konuşmadı."]),
+    "yok": ("Hangisinde zarf kullanılmamıştır?", ["Kedi süt içti.", "Annem kitap okudu.", "Ali top aldı.", "Kuş ağaca kondu.", "Babam çay demledi."]),
+}
+_TR_NEDEN = {
+    "neden": ("Hangisi neden-sonuç cümlesidir?", ["Yağmur yağdığı için maç ertelendi.", "Hasta olduğundan okula gelemedi.", "Ders çalışmadığı için sınavda başarısız oldu.", "Yol kapandığından geç kaldık.", "Çok yorulduğu için erkenden uyudu."]),
+    "amac": ("Hangisi amaç-sonuç cümlesidir?", ["Sınavı kazanmak için gece gündüz çalıştı.", "Sağlıklı kalmak için her gün yürüyüş yapıyor.", "Kitap almak için kırtasiyeye gittik.", "Yarışı kazanmak amacıyla çok antrenman yaptı.", "Zamanında yetişmek için erkenden yola çıktı."]),
+    "kosul": ("Hangisi koşul-sonuç cümlesidir?", ["Erken kalkarsan otobüsü kaçırmazsın.", "Çok çalışırsan başarılı olursun.", "Hava güzel olursa pikniğe gideceğiz.", "Ödevini bitirirsen oyun oynayabilirsin.", "Yağmur yağarsa maç iptal edilecek."]),
+    "karsilastirma": ("Hangisi karşılaştırma cümlesidir?", ["Kardeşim benden daha uzundur.", "Bu ev eskisinden daha geniş.", "Ayşe, Zeynep kadar çalışkandır.", "Bugün dünden daha soğuk.", "Bu kitap ötekinden daha ilginç."]),
+}
+_TR_SANAT = {
+    "benzetme": ("Hangisinde benzetme sanatı vardır?", ["Ali, aslan gibi güçlüdür.", "Gözleri deniz gibi mavi.", "Yüzü ay gibi parlıyordu.", "Çocuk kuş gibi hafifti.", "Elleri buz gibi soğuktu."]),
+    "kisilestirme": ("Hangisinde kişileştirme (teşhis) sanatı vardır?", ["Güneş, sabah dağların ardından gülümseyerek doğdu.", "Rüzgâr, ağaçların kulağına fısıldadı.", "Çiçekler başlarını eğip selam verdi.", "Deniz, öfkeyle kıyıya vurdu.", "Yıldızlar gökte göz kırptı."]),
+    "abartma": ("Hangisinde abartma (mübalağa) sanatı vardır?", ["Bu çantayı taşımaktan kolum koptu.", "Yüz yıldır seni bekliyorum.", "Sınıfa girince kalbim yerinden çıkacaktı.", "Kapıyı çaldığımda bin yıl bekledim.", "Ağlamaktan gözyaşlarından göl oldu."]),
+}
+_TR_GRUP = {
+    "deyim": ("Hangisinde deyim kullanılmıştır?", ["Haberi duyunca ağzı kulaklarına vardı.", "Sınav haftasında başımı kaşıyacak vaktim yoktu.", "Arkadaşım ona kulak verdi.", "Hayal kırıklığına uğrayınca yüzü asıldı.", "Annem, misafirler için kolları sıvadı."]),
+    "atasozu": ("Hangisinde atasözü kullanılmıştır?", ["“Damlaya damlaya göl olur.” diyerek her gün biraz biriktirdi.", "“Ağaç yaşken eğilir.” diye boşuna dememişler.", "“Bugünün işini yarına bırakma.” sözünü hiç unutmam.", "Büyüklerimiz “Sakla samanı gelir zamanı.” der.", "“Komşu komşunun külüne muhtaçtır.” sözü doğrudur."]),
+    "ikileme": ("Hangisinde ikileme kullanılmıştır?", ["Düğüne gelen çoluk çocuk eğlendi.", "Evin her tarafı toz toprak olmuştu.", "Kuşlar cıvıl cıvıl öttü.", "Yaşlı adam ağır ağır yürüdü.", "Yaprakları hışır hışır sesler çıkardı."]),
+}
+_TR_EDAT = {
+    "edat": ("Hangisinde edat kullanılmıştır?", ["Annem için çiçek aldı.", "Akşama kadar ders çalıştık.", "Havaya göre giyinmelisin.", "Yemekten sonra çay içtik.", "Eve doğru yürüdük."]),
+    "baglac": ("Hangisinde bağlaç kullanılmıştır?", ["Ders çalıştım ama sınavı kazanamadım.", "Hem okudu hem yazdı.", "Yağmur yağıyor fakat çıkacağız.", "Ya sen gel ya ben gideyim.", "Ne yazdı ne de okudu."]),
+}
+_TR_YAPI = {
+    "basit": ("Hangisi yapı bakımından basit cümledir?", ["Çocuklar bahçede oynadı.", "Kedi süt içti.", "Annem yemek yaptı.", "Öğretmen tahtaya yazdı.", "Kuşlar göç etti."]),
+    "birlesik": ("Hangisi yapı bakımından birleşik cümledir?", ["Ali, ödevini bitirince oyun oynadı.", "Annem, dün aldığım kitabı okudu.", "Okula giderken arkadaşımı gördüm.", "Sınavı kazanmak için çok çalıştı.", "Yağmur yağdığı için maç ertelendi."]),
+    "sirali": ("Hangisi yapı bakımından sıralı cümledir?", ["Sabah kalktı, yüzünü yıkadı, kahvaltı yaptı.", "Eve geldi, çantasını bıraktı, yemeğe oturdu.", "Kapı açıldı, içeri biri girdi, herkes sustu.", "Gökyüzü karardı, rüzgâr çıktı, yağmur başladı.", "Pazara gittik, meyve aldık, eve döndük."]),
+    "bagli": ("Hangisi yapı bakımından bağlı cümledir?", ["Hava güzeldi ama dışarı çıkmadık.", "Sınava çok çalıştı fakat başaramadı.", "Çocuklar oynadı çünkü hava güzeldi.", "Ders bitti ve herkes dışarı çıktı.", "Ya sen gel ya ben gideyim."]),
+}
+_TR_ANLAM = {
+    "soru": ("Hangisi soru cümlesidir?", ["Bu akşam bize gelecek misin?", "Ödevini bitirdin mi?", "Hangi kitabı okuyorsun?", "Kaçta yola çıkacağız?", "Bu çiçeği kim getirdi?"]),
+    "unlem": ("Hangisi ünlem cümlesidir?", ["Ne kadar güzel bir manzara!", "Yaşasın, tatil başladı!", "Aman Allah’ım, ne büyük bir ağaç!", "Çok korktum!", "Harika bir gün geçirdik!"]),
+    "olumsuz": ("Hangisi olumsuz cümledir?", ["Bugün okula gitmedim.", "Bu soruyu çözemedim.", "Yarın sınıfa gelmeyecek.", "Kardeşim sebze yemiyor.", "Kimseyi görmedik."]),
+}
+_TR_P = [("Fiiller", _TR_FIIL, "_tr6_fiil", ("fiiller",)), ("Zarflar", _TR_ZARF, "_tr6_zarf", ("zarflar",)), ("Neden-sonuç", _TR_NEDEN, "_tr6_neden", ("neden-sonuç", "neden")),
+         ("Söz sanatları", _TR_SANAT, "_tr6_sanat", ("söz sanatları",)), ("Söz grupları", _TR_GRUP, "_tr6_grup", ("söz grupları",)), ("Edat-bağlaç", _TR_EDAT, "_tr6_edat", ("edat-bağlaç", "edat")),
+         ("Cümle türleri", _TR_YAPI, "_tr6_yapi", ("cümle türleri",)), ("Cümle türleri", _TR_ANLAM, "_tr6_anlam", ("cümle türleri",))]
+for _tp, _bk, _nm, _kw in _TR_P:
+    _tg_fam("Türkçe", _tp, _bk, _nm, _tp, _kw, 3, _TF_GENS)
+
+_YZ = [("Ben de bu filmi izledim.", "Bende bu filmi izledim."), ("Sen de bizimle gel.", "Sende bizimle gel."), ("Hem çalıştı hem de başardı.", "Hemde çalıştı hemde başardı."),
+       ("Sanıyorum ki yarın yağmur yağacak.", "Sanıyorumki yarın yağmur yağacak."), ("Herkes bayrama hazırlanıyordu.", "Herkez bayrama hazırlanıyordu."), ("Yalnız bir şeye dikkat et.", "Yanlız bir şeye dikkat et."),
+       ("Birçok kişi sergiyi gezdi.", "Bir çok kişi sergiyi gezdi."), ("Hiçbir şey söylemedi.", "Hiç bir şey söylemedi."), ("Her şey çok güzeldi.", "Herşey çok güzeldi."), ("Yanlış cevap verdi.", "Yalnış cevap verdi."),
+       ("Bugün hava çok güzel.", "Bu gün hava çok güzel."), ("Birkaç arkadaşımla buluştum.", "Bir kaç arkadaşımla buluştum."), ("Şunu da al.", "Şunuda al."), ("Ödevini bitirdin mi?", "Ödevini bitirdinmi?"),
+       ("Annem de babam da geldi.", "Annemde babamda geldi.")]
+
+
+def _tr6_yazim(subject):
+    inv = random.random() < .5
+    pr = random.sample(_YZ, 4)
+    rows = [p[1] for p in pr[:3]] + [pr[3][0]] if not inv else [p[0] for p in pr[:3]] + [pr[3][1]]
+    tgt = rows[3]
+    random.shuffle(rows)
+    let = _DL6_L[:]
+    random.shuffle(let)
+    lab = {let[i]: rows[i] for i in range(4)}
+    sh = {"type": "table", "title": "Cümleler", "headers": ["Harf", "Cümle"], "rows": [[k, lab[k]] for k in sorted(lab)]}
+    c = next(k for k, v in lab.items() if v == tgt)
+    q = "Tabloda dört cümle harflerle gösterilmiştir.\n" + ("Hangisinin yazımında yanlışlık vardır?" if inv else "Hangisinin yazımı doğrudur?")
+    return _mf_raw(subject, "Yazım kuralları", q, (sorted(lab), c), f"{c} harfli cümle ({tgt}) sorudaki ölçüte uygundur.", shape=sh)
+
+
+_tr6_yazim.ITEM = "Yazım kuralları"
+_TF_GENS.append((_dl6_tag(_vy_wrap(_tr6_yazim), "_tr6_yazim", "Yazım kuralları"), ("yazım kuralları",)))
+_DIFF_OF["_tr6_yazim"] = 3
+_G6_ONLY.add("_tr6_yazim")
+
+# ---- Din Kültürü
+_DN_AHLAK = {
+    "sabir": ("Hangi davranış sabra örnektir?", ["Ahmet, zor bir problemi çözemeyince vazgeçmeden tekrar denedi.", "Elif, hastalığı süresince şikâyet etmeden tedavisine devam etti.", "Mehmet, uzun süre sıra beklerken sakin kaldı.", "Zeynep, istediği sonucu alamayınca yılmadan çalışmaya devam etti."]),
+    "comertlik": ("Hangi davranış cömertliğe örnektir?", ["Ayşe, harçlığının bir kısmını ihtiyacı olan arkadaşına verdi.", "Ali, yemeğini yanındakilerle paylaştı.", "Zehra, kıyafetlerini ihtiyaç sahiplerine bağışladı.", "Murat, kitaplarını okula bağışladı."]),
+    "adalet": ("Hangi davranış adalete örnektir?", ["Sınıf başkanı, görevleri herkese eşit dağıttı.", "Hakem, iki takıma da aynı kurallarla davrandı.", "Öğretmen, notları yalnızca cevaplara bakarak verdi.", "Anne, kardeşlerine eşit davrandı."]),
+    "durustluk": ("Hangi davranış dürüstlüğe örnektir?", ["Kerem, bulduğu cüzdanı sahibine teslim etti.", "Elif, yaptığı hatayı kabul etti.", "Mert, sınavda kopya çekmedi.", "Deniz, aldığı fazla para üstünü geri verdi."]),
+    "hosgoru": ("Hangi davranış hoşgörüye örnektir?", ["Ali, farklı düşünen arkadaşını dinleyip saygı gösterdi.", "Elif, hata yapan arkadaşını affetti.", "Mert, farklı kültürden komşusunun adetlerine saygı duydu.", "Can, farklı görüşleri dinlerken sözünü kesmedi."]),
+}
+_tg_fam("Din Kültürü ve Ahlak Bilgisi", "Ahlak ve Değerler", _DN_AHLAK, "_dn6_ahlak", "Sabır, cömertlik ve adalet", ("sabır", "cömertlik", "adalet"), 3, _DF_GENS)
+
+_DN_KART = [("Hicret", "Hz. Muhammed’in Mekke’den Medine’ye göçü"), ("Muhacir", "Mekke’den Medine’ye göç eden Müslümanlar"), ("Ensar", "Medine’de muhacirlere yardım eden Müslümanlar"),
+            ("Mescid-i Nebevî", "Hz. Muhammed’in Medine’de yaptırdığı mescit"), ("Medine Vesikası", "Medine’de farklı toplulukların haklarını güvence altına alan antlaşma"),
+            ("el-Emin", "Hz. Muhammed’e verilen “güvenilir” anlamındaki lakap"), ("Veda Hutbesi", "Hz. Muhammed’in Veda Haccı’nda yaptığı konuşma"), ("Hira Mağarası", "İlk vahyin geldiği yer")]
+
+
+def _dn6_kart(subject):
+    pick = random.sample(_DN_KART, 4)
+    let = random.sample(list("KLMNPRST"), 4)
+    sh = {"type": "f6", "sub_type": "zincir", "harf": let, "ad": [p[0] for p in pick], "title": "Hz. Muhammed’in hayatı ve Medine dönemi", "oksuz": True}
+    i = random.randrange(4)
+    q = f"Şekilde Hz. Muhammed’in hayatı ve Medine dönemiyle ilgili dört kavram harflerle gösterilmiştir.\n“{pick[i][1]}” tanımına uyan kavram hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Hz. Muhammed’in Örnekliği", q, (sorted(let), let[i]), f"Bu tanım {pick[i][0]} kavramına aittir; şekilde {let[i]} harfiyle gösterilmiştir.", shape=sh)
+
+
+_dn6_kart.ITEM = "Hz. Muhammed’in ahlakı ve Medine dönemi"
+_DF_GENS.append((_dl6_tag(_vy_wrap(_dn6_kart), "_dn6_kart", "Medine dönemi"), ("hz. muhammed", "medine")))
+_DIFF_OF["_dn6_kart"] = 3
+_G6_ONLY.add("_dn6_kart")
+
+_DN_AHLAK2 = {
+    "merhamet": ("Hangi davranış merhamete örnektir?", ["Elif, sokaktaki aç kediye mama koydu.", "Ali, yaşlı komşusunun market çantalarını taşıdı.", "Zeynep, hasta arkadaşını ziyaret edip hâlini sordu.", "Mert, yorgun görünen yaşlı teyzeye yerini verdi."]),
+    "sorumluluk": ("Hangi davranış sorumluluğa örnektir?", ["Deniz, kendisine verilen sınıf nöbetini aksatmadan yaptı.", "Can, ödevlerini son güne bırakmadan düzenli yaptı.", "Elif, okuldan aldığı kitabı zamanında iade etti.", "Mehmet, bahçedeki fidanı her gün sulama görevini üstlendi."]),
+    "saygi": ("Hangi davranış saygıya örnektir?", ["Zeynep, büyüklerinin konuşmasını sözünü kesmeden dinledi.", "Ali, sınıfa girerken öğretmenini selamladı.", "Mert, arkadaşının eşyasını izin almadan almadı.", "Ayşe, konuşan arkadaşının sözünü bitirmesini bekledi."]),
+    "yardim": ("Hangi davranış yardımlaşmaya örnektir?", ["Sınıf arkadaşları, kitaplığı birlikte düzenledi.", "Mahalle sakinleri, kışlık yardım kolilerini birlikte hazırladı.", "Kardeşler, evi toplarken işleri paylaştı.", "Öğrenciler, okul bahçesini ekip hâlinde temizledi."]),
+}
+_tg_fam("Din Kültürü ve Ahlak Bilgisi", "Ahlak ve Değerler", _DN_AHLAK2, "_dn6_ahlak2", "Merhamet, sorumluluk ve saygı", ("sabır", "cömertlik", "adalet"), 3, _DF_GENS)
+_DN_HZ = {
+    "guven": ("Aşağıdakilerden hangisi Hz. Muhammed’in güvenilirliğine (el-Emin) örnektir?", ["Mekke’de insanlar değerli eşyalarını emanet olarak ona bırakırdı.", "Kendisine emanet edilen eşyaları sahiplerine eksiksiz geri verirdi.", "Güvenilirliği nedeniyle Mekkeliler ona “el-Emin” adını verdi."]),
+    "merhamet": ("Aşağıdakilerden hangisi Hz. Muhammed’in merhametine örnektir?", ["Yetimlerin ve yoksulların hâlini sorar, onlara yardım ederdi.", "Hayvanlara eziyet edilmesini yasaklayıp iyi davranılmasını isterdi.", "Hasta olanları ziyaret edip hâlini hatırını sorardı."]),
+    "af": ("Aşağıdakilerden hangisi Hz. Muhammed’in affediciliğine örnektir?", ["Mekke’nin fethinde kendisine düşmanlık eden birçok kişiyi affetti.", "Kendisine kötü davrananlara iyilikle karşılık verirdi.", "Taif’te taşlanmasına rağmen o insanlara beddua etmedi."]),
+    "soz": ("Aşağıdakilerden hangisi Hz. Muhammed’in sözünde durduğunu gösterir?", ["Verdiği sözün arkasında durur, sözünden dönmezdi.", "Yaptığı anlaşmalara bağlı kalırdı.", "Söz verdiği zamanda buluşma yerinde hazır olurdu."]),
+    "komsu": ("Aşağıdakilerden hangisi Hz. Muhammed’in komşuluk haklarına verdiği önemi gösterir?", ["Komşularının hâlini sorar, onlara iyi davranırdı.", "Komşusu aç iken kişinin tok yatmaması gerektiğini öğütlerdi.", "Komşularıyla yiyeceklerini paylaşmayı tavsiye ederdi."]),
+}
+_tg_fam("Din Kültürü ve Ahlak Bilgisi", "Hz. Muhammed’in Örnekliği", _DN_HZ, "_dn6_hz", "Hz. Muhammed’in ahlakı", ("hz. muhammed", "ahlak"), 3, _DF_GENS)
+
+# ---- İngilizce
+_EN_TENSE = {
+    "past": ("Which sentence is in the past simple?", ["I visited my grandmother last weekend.", "She watched a film yesterday.", "We played football in the park.", "He cooked dinner last night.", "They traveled to Izmir last summer."]),
+    "future": ("Which sentence talks about the future (will)?", ["I will visit my grandmother tomorrow.", "She will watch a film tonight.", "We will play football next Saturday.", "He will cook dinner for us.", "They will travel to Izmir next summer."]),
+    "cont": ("Which sentence is in the present continuous?", ["I am reading a book now.", "She is watching TV at the moment.", "We are playing in the garden.", "He is cooking dinner right now.", "They are walking to school."]),
+    "simple": ("Which sentence is in the present simple?", ["I read a book every night.", "She watches TV after school.", "We play football on Sundays.", "He cooks dinner every day.", "They walk to school every morning."]),
+}
+
+
+def _sub(d, keys):
+    return {k: d[k] for k in keys}
+
+
+_tg_fam("İngilizce", "Present simple and continuous", _sub(_EN_TENSE, ["cont", "simple", "past", "future"]), "_en6_present", "Present simple; Present continuous", ("present simple", "present continuous"), 3, _EF_GENS, en=True)
+_tg_fam("İngilizce", "Past simple", _sub(_EN_TENSE, ["past", "simple", "cont", "future"]), "_en6_past", "Past simple", ("past simple",), 3, _EF_GENS, en=True)
+_tg_fam("İngilizce", "Future with will", _sub(_EN_TENSE, ["future", "simple", "cont", "past"]), "_en6_future", "Future with will", ("future with will",), 3, _EF_GENS, en=True)
+_EN_JOB = {
+    "doctor": ("Which sentence is about a doctor?", ["She works in a hospital and helps sick people.", "He gives medicine to his patients."]),
+    "teacher": ("Which sentence is about a teacher?", ["She teaches students at school.", "He works in a classroom and gives homework."]),
+    "pilot": ("Which sentence is about a pilot?", ["He flies planes.", "She works at the airport and flies to many countries."]),
+    "chef": ("Which sentence is about a chef?", ["She cooks delicious meals in a restaurant.", "He works in a kitchen and makes soup."]),
+    "farmer": ("Which sentence is about a farmer?", ["He grows vegetables and keeps animals on the farm.", "She works in the fields every day."]),
+    "firefighter": ("Which sentence is about a firefighter?", ["He puts out fires.", "She rescues people from burning buildings."]),
+    "baker": ("Which sentence is about a baker?", ["He makes bread in the morning.", "She sells cakes in a bakery."]),
+}
+_tg_fam("İngilizce", "Jobs", _EN_JOB, "_en6_jobs", "Jobs", ("jobs",), 2, _EF_GENS, en=True)
+_EN_FEEL = {
+    "happy": ("Which sentence shows that the person is happy?", ["I won a big teddy bear at the fair!", "We are eating ice cream and laughing.", "My friends gave me a nice present."]),
+    "sad": ("Which sentence shows that the person is sad?", ["My balloon flew away and I can't find it.", "I lost my ticket and I can't go on the ride.", "My best friend moved to another city."]),
+    "scared": ("Which sentence shows that the person is scared?", ["The roller coaster is very high and I'm shaking.", "I heard a loud noise in the dark house.", "A big dog ran towards me."]),
+    "angry": ("Which sentence shows that the person is angry?", ["Someone broke my toy on purpose.", "My brother took my seat without asking.", "They pushed me in the queue."]),
+}
+_tg_fam("İngilizce", "Feelings", _EN_FEEL, "_en6_feel", "Feelings", ("feelings",), 2, _EF_GENS, en=True)
+_EN_INV = {
+    "invite": ("Which sentence is an invitation?", ["Would you like to come to the fair with me?", "Let's go on the Ferris wheel!", "Do you want to join us at the party?"]),
+    "accept": ("Which sentence accepts an invitation?", ["Yes, I'd love to.", "Great idea! I'm in.", "Sure, I'd like to come."]),
+    "refuse": ("Which sentence refuses an invitation?", ["Sorry, I can't. I have homework.", "No, thanks. I'm busy today.", "I'm sorry, I can't come."]),
+    "thank": ("Which sentence thanks the person?", ["Thank you for inviting me.", "Thanks for the lovely day.", "Thank you for your help."]),
+}
+_tg_fam("İngilizce", "Invitations", _EN_INV, "_en6_inv", "Invitations", ("invitations",), 3, _EF_GENS, en=True)
+_EN_DIR = {
+    "dir": ("Which sentence gives directions?", ["Turn left at the bank.", "Go straight ahead.", "Turn right at the corner."]),
+    "prep": ("Which sentence tells the place of something (preposition)?", ["The library is next to the bank.", "The cinema is opposite the park.", "The shop is between the school and the hospital."]),
+    "like": ("Which sentence tells what someone likes?", ["I like going to the cinema.", "She likes reading books.", "We like walking in the park."]),
+}
+_tg_fam("İngilizce", "Directions", _EN_DIR, "_en6_dir", "Directions", ("directions", "prepositions"), 2, _EF_GENS, en=True)
+_EN_BOOK = {
+    "adv": ("Which sentence could be from an adventure story?", ["The hero sails to a hidden island to find treasure.", "They climb a high mountain to reach the secret cave."]),
+    "sci": ("Which sentence could be from a science fiction story?", ["Robots travel to Mars in a spaceship.", "The scientist builds a time machine."]),
+    "fairy": ("Which sentence could be from a fairy tale?", ["A princess lives in a castle with a dragon.", "The magic mirror answers the queen."]),
+    "detect": ("Which sentence could be from a detective story?", ["The detective looks for clues to find the thief.", "She follows the footprints to the old house."]),
+}
+_tg_fam("İngilizce", "Reading", _EN_BOOK, "_en6_book", "Reading", ("reading",), 3, _EF_GENS, en=True)
+
+_EN_TRAVEL = {
+    "plane": ("Which sentence is about travelling by plane?", ["We checked in at the airport before the flight.", "The plane landed in Izmir at noon.", "We looked out of the plane window."]),
+    "train": ("Which sentence is about travelling by train?", ["We waited for the train at the station.", "The train stopped at every small station.", "We bought our train tickets at the ticket office."]),
+    "ship": ("Which sentence is about travelling by ship?", ["We sailed to the island on a big ship.", "The ferry left the port at ten.", "We watched dolphins from the deck of the ship."]),
+    "bus": ("Which sentence is about travelling by bus?", ["We got on the bus at the bus station.", "The bus driver stopped near the museum.", "We travelled to Konya by bus."]),
+}
+_tg_fam("İngilizce", "Travel", _EN_TRAVEL, "_en6_travel", "Travel", ("travel",), 2, _EF_GENS, en=True)
+_EN_PLAN = {
+    "going": ("Which sentence uses ‘be going to’ for a plan?", ["We are going to visit Bursa next week.", "I am going to swim in the sea tomorrow.", "She is going to buy souvenirs on Sunday."]),
+    "will": ("Which sentence uses ‘will’?", ["I think it will be sunny tomorrow.", "I will send you a postcard.", "He will call you tonight."]),
+    "past": ("Which sentence is about a past holiday?", ["Last summer we visited Cappadocia.", "I stayed in a small hotel last week.", "We took many photos yesterday."]),
+    "pres": ("Which sentence tells what someone is doing right now on holiday?", ["We are swimming in the sea now.", "She is taking photos at the moment.", "They are eating ice cream on the beach now."]),
+}
+_tg_fam("İngilizce", "Holiday plans", _EN_PLAN, "_en6_plan", "Plans", ("plans",), 3, _EF_GENS, en=True)
 
 
 
