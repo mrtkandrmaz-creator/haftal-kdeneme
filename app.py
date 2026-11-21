@@ -1720,7 +1720,7 @@ def _numberline(ax, d):
     ax.spines["bottom"].set_linewidth(2)
     ticks = np.arange(lo, hi + step / 2, step)
     ax.set_xticks(ticks)
-    ax.set_xticklabels([f"{t:g}" for t in ticks], fontsize=8.5, color=INK)
+    ax.set_xticklabels([(f"{t:,.0f}".replace(",", " ") if abs(t) >= 10000 and float(t).is_integer() else f"{t:g}") for t in ticks], fontsize=8.5 if len(ticks) <= 8 else 7.5, color=INK)
     ax.set_xlim(lo - step * .6, hi + step * .6)
     ax.set_ylim(-1, 1.6)
     for m in d.get("marks", []):
@@ -12261,7 +12261,7 @@ _MF_GENS = [
     (_mf_percent_of, ("yüzde",), (5, 6)),
     (_mf_geo, ("çevre", "alan", "uzunluk"), (5, 6)),
     (_mf_market, ("veri", "tablo", "işlem", "problem"), (5, 6)),
-    (_mf_wings, ("işlem", "problem", "basamak"), (5,)),
+    (_mf_wings, ("işlem", "problem"), (5,)),
 ]
 
 
@@ -13243,6 +13243,11 @@ def math_questions(grade_label, n, topics="", seen=(), dl=0):
     out, stems = [], set(seen)
     rkey = ("gen", "Matematik", g_key)
     byname = {f.__name__: f for f in sel if f.__name__ not in _bad_tpl_set()}
+    _want_kz = set(re.findall(r"MAT\.\d\.\d\.\d", str(topics or "")))
+    if _want_kz:  # kazanım kodu seçilmişse: başka kazanıma ait (kodu bilinen) kalıplar anahtar sözcükle sızmasın
+        _f2 = {k: v for k, v in byname.items() if not _MF_ITEMCODE.get(k) or set(_MF_ITEMCODE[k]) & _want_kz}
+        if _f2:
+            byname = _f2
     byname = _dl_filter(byname, dl, "Matematik", grade_label, topics)
     _geo_nm = {f.__name__ for f, kw in pool if any(re.search(r"açı|çokgen|çember|geometri|çizim|çevre|alan|dörtgen|üçgen|ışın|inşa", k) for k in kw)}
     for _pass in range(2):  # her kalıptan sınav başına en çok 1 soru (2. tur yalnızca eksik kalırsa)
@@ -31815,7 +31820,7 @@ def _bd_pad(wr, correct, n=3, extra=()):
 
 
 def _mf_bd_deger(subject):
-    nd = random.choice([6, 7, 8])
+    nd = random.choice([6, 6, 6, 7])
     ds = _bd_n(nd)
     idx = random.choice([i for i in range(nd) if ds[i]])
     pos = nd - 1 - idx
@@ -31829,7 +31834,7 @@ def _mf_bd_deger(subject):
 
 
 def _mf_bd_rakam(subject):
-    nd = random.choice([6, 7, 8])
+    nd = random.choice([6, 6, 6, 7])
     ds = _bd_n(nd)
     idx = random.randrange(nd)
     lb = random.choice(_KS_L)
@@ -31840,7 +31845,7 @@ def _mf_bd_rakam(subject):
 
 
 def _mf_bd_adi(subject):
-    nd = random.choice([6, 7, 8])
+    nd = random.choice([6, 6, 6, 7])
     for _ in range(30):
         ds = _bd_n(nd)
         u = [i for i in range(nd) if ds[i] and ds.count(ds[i]) == 1]
@@ -31858,7 +31863,7 @@ def _mf_bd_adi(subject):
 
 
 def _mf_bd_toplam(subject):
-    nd = random.choice([6, 7, 8])
+    nd = random.choice([6, 6, 6, 7])
     for _ in range(30):
         ds = _bd_n(nd)
         nz = [i for i in range(nd) if ds[i]]
@@ -31937,7 +31942,7 @@ def _mf_bd_basamak_say(subject):
 
 
 def _mf_bd_oku(subject):
-    nd = random.choice([6, 7, 8])
+    nd = random.choice([6, 6, 6, 7])
     ds = _bd_n(nd)
     n = _bd_val(ds)
     w = _say_words(n)
@@ -33988,6 +33993,303 @@ for _f, _d, _kk, _cd in _M6B_FAMS:
 
 _MF_ITEMCODE.update({"_mf_eqlty2": ["MAT.5.2.1"], "_mf_order2": ["MAT.5.2.2"], "_mf_dik_problem": ["MAT.5.4.4"], "_mf_frac_kars": ["MAT.5.1.4"]})
 _MF_ITEMCODE.update(_M5_CODES)
+_MF_ITEMCODE.update({k: ["MAT.5.1.1"] for k in ("_mf_say_kac_tane", "_mf_say_komsu", "_mf_say_sirala", "_mf_say_basdeg3", "_mf_say_basamak_sayisi", "_mf_say_oku", "_mf_say_rakam", "_mf_say_ardisik", "_mf_say_karsi",
+                                               "_mf_say_basdeg2", "_mf_say_yuvarla2", "_mf_say_yuvar", "_mf_say_cozumle", "_mf_yn_say_roman", "_mf_yn_say_kilit")})
+_MF_ITEMCODE.update({k: ["MAT.5.1.2"] for k in ("_mf_say_topla", "_mf_say_cikar", "_mf_say_carpim", "_mf_say_bolum", "_mf_say_kalan_para", "_mf_yn_koli", "_mf_yn_kitap", "_mf_yn_bilet",
+                                               "_mf_prb_arac", "_mf_prb_alis", "_mf_prb_gun", "_mf_kalan")})
+_MF_ITEMCODE.update({"_mf_yn_nufus": ["MAT.5.1.1", "MAT.5.1.2"], "_mf_yn_nufus_fark": ["MAT.5.1.1", "MAT.5.1.2"], "_mf_say_islem_sirasi": ["MAT.5.2.2"]})
+
+
+# ---------------------------------------------------------------- 5. sınıf MAT.5.1.1: altı basamaklı sayılar (Maarif) — sayı doğrusu, tablo, öncüllü ve sayı makinesi
+_S6_T = "Basamak değeri"
+
+
+def _s6_n(lo=100_000, hi=999_999, zeros=True):
+    ds = [random.randint(1, 9)] + [random.choice([0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) if zeros else random.randint(1, 9) for _ in range(5)]
+    return ds
+
+
+def _s6_val(ds):
+    return int("".join(map(str, ds)))
+
+
+def _mf6s_sd_oku(subject):
+    step = random.choice([50_000, 100_000, 20_000, 10_000])
+    lo = random.choice([0, 100_000, 200_000, 300_000]) if step >= 50_000 else random.choice([100_000, 200_000, 340_000])
+    n = random.choice([5, 6])
+    a, b = random.sample(range(1, n + 1), 2)
+    A, B = lo + a * step, lo + b * step
+    sh = {"type": "number_line", "min": lo, "max": lo + n * step, "step": step, "marks": [{"label": "A", "value": A}, {"label": "B", "value": B}]}
+    which, v = random.choice([("A", A), ("B", B)])
+    wr = [v + step, v - step, v + 10 * step if v + 10 * step < 10 ** 7 else v + 2 * step, v + step * 2]
+    wr = [w for w in dict.fromkeys(wr) if w > 0 and w != v]
+    o = _mf_opts(_say_words(v), [_say_words(w) for w in wr], str, sort=False)
+    return _mf_raw(subject, _S6_T, f"Aşağıdaki sayı doğrusunda {which} ile gösterilen sayının okunuşu aşağıdakilerden hangisidir?", o, f"Sayı doğrusunda ardışık iki işaret arası {_fmt_say(step)} artar; {which} noktası {_fmt_say(v)} sayısını gösterir. Okunuşu: {_say_words(v)}.", shape=sh) if o else None
+
+
+def _mf6s_sd_topla(subject):
+    step = random.choice([100_000, 50_000, 10_000])
+    lo = random.choice([0, 100_000, 200_000]) if step != 10_000 else random.choice([100_000, 250_000])
+    n = 5
+    a, b = random.sample(range(1, n + 1), 2)
+    A, B = lo + a * step, lo + b * step
+    sh = {"type": "number_line", "min": lo, "max": lo + n * step, "step": step, "marks": [{"label": "A", "value": A}, {"label": "B", "value": B}]}
+    kind = random.choice(["topla", "fark"])
+    if kind == "fark" and A == B:
+        return None
+    v = A + B if kind == "topla" else abs(A - B)
+    wr = [v + step, v - step, v + 10 * step, A + B + step if kind == "fark" else abs(A - B)]
+    wr = [w for w in dict.fromkeys(wr) if w > 0 and w != v]
+    o = _mf_opts(_fmt_say(v), [_fmt_say(w) for w in wr], str, sort=True)
+    ad = "toplamı" if kind == "topla" else "farkı (büyükten küçüğü çıkararak)"
+    return _mf_raw(subject, _S6_T, f"Aşağıdaki sayı doğrusunda A ve B ile gösterilen sayıların {ad} kaçtır?", o, f"A = {_fmt_say(A)} ve B = {_fmt_say(B)} olduğundan {ad.split(' ')[0]} {_fmt_say(v)} olur.", shape=sh) if o else None
+
+
+def _mf6s_sd_ara(subject):
+    step = random.choice([100_000, 50_000, 10_000, 20_000])
+    lo = random.choice([0, 100_000, 200_000]) if step >= 50_000 else random.choice([100_000, 240_000])
+    n = 5
+    k = random.randint(0, n - 1)
+    A = lo + k * step + step // 2
+    sh = {"type": "number_line", "min": lo, "max": lo + n * step, "step": step, "marks": [{"label": "A", "value": A}]}
+    cor = f"{_fmt_say(lo + k * step)} ile {_fmt_say(lo + (k + 1) * step)}"
+    wr = []
+    for j in range(n):
+        if j != k:
+            wr.append(f"{_fmt_say(lo + j * step)} ile {_fmt_say(lo + (j + 1) * step)}")
+    random.shuffle(wr)
+    o = _mf_opts(cor, wr[:4], str, sort=False)
+    return _mf_raw(subject, _S6_T, "Aşağıdaki sayı doğrusunda A ile gösterilen sayı hangi iki sayı arasındadır?", o, f"A noktası {cor} işaretleri arasında yer alır.", shape=sh) if o else None
+
+
+def _mf6s_sd_yuvarla(subject):
+    step = random.choice([100_000, 10_000])
+    lo = random.choice([100_000, 200_000, 300_000]) if step == 100_000 else random.choice([120_000, 340_000, 560_000])
+    n = 4
+    k = random.randint(0, n - 1)
+    near_hi = random.random() < .5
+    off = random.choice([3, 4]) if not near_hi else random.choice([6, 7])
+    A = lo + k * step + off * step // 10
+    sh = {"type": "number_line", "min": lo, "max": lo + n * step, "step": step, "marks": [{"label": "A", "value": A}]}
+    cor_v = lo + (k + 1) * step if near_hi else lo + k * step
+    nm = "yüz bine" if step == 100_000 else "on bine"
+    wr = [lo + k * step, lo + (k + 1) * step, lo + (k + 2) * step, lo + (k - 1) * step, lo + (k + 3) * step]
+    wr = [w for w in dict.fromkeys(wr) if w != cor_v and w > 0]
+    o = _mf_opts(_fmt_say(cor_v), [_fmt_say(w) for w in wr], str, sort=True)
+    return _mf_raw(subject, _S6_T, f"Aşağıdaki sayı doğrusunda A ile gösterilen sayı en yakın {nm} yuvarlanırsa kaç olur?", o, f"A noktası {_fmt_say(lo + k * step)} ile {_fmt_say(lo + (k + 1) * step)} arasında ve {_fmt_say(cor_v)} sayısına daha yakındır; yuvarlanmış hâli {_fmt_say(cor_v)} olur.", shape=sh) if o else None
+
+
+def _mf6s_makine(subject):
+    step = random.choice([1_000, 10_000, 100_000, 5_000, 20_000, 50_000])
+    n0 = random.randint(100_000, 700_000) // step * step + random.choice([0, 0, 1_000, 2_500]) // 1
+    if n0 + 6 * step >= 1_000_000 or n0 < 100_000:
+        return None
+    up = random.random() < .8
+    if not up:
+        n0 += 6 * step
+    seq = [n0 + (i * step if up else -i * step) for i in range(6)]
+    pos = random.randint(2, 5)
+    cor = seq[pos]
+    cells = [_fmt_say(x) if i != pos else "?" for i, x in enumerate(seq)]
+    wr = [cor + step, cor - step, cor + 10 * step if cor + 10 * step < 10 ** 7 else cor + 2 * step, cor + 2 * step]
+    wr = [w for w in dict.fromkeys(wr) if w > 0 and w != cor]
+    sh = {"type": "table", "title": "Sayı örüntüsü", "headers": ["Sıra", "Sayı"], "rows": [[f"{i + 1}. sayı", cells[i]] for i in range(6)]}
+    o = _mf_opts(_fmt_say(cor), [_fmt_say(w) for w in wr], str, sort=True)
+    yon = "artarak" if up else "azalarak"
+    return _mf_raw(subject, _S6_T, f"Tabloda verilen sayılar belli bir kurala göre {yon} devam etmektedir.\nBuna göre ? yerine gelmesi gereken sayı kaçtır?", o, f"Ardışık sayılar arasındaki fark {_fmt_say(step)}'dir; {pos + 1}. sayı {_fmt_say(cor)} olur.", shape=sh) if o else None
+
+
+def _mf6s_tablo_sira(subject):
+    nm, unit = random.choice([("Dört ilin nüfusu", "kişi"), ("Dört stadyumun kapasitesi", "kişi"), ("Dört kitabın baskı sayısı", "adet"), ("Dört okulun kitaplık kitap sayısı", "kitap"), ("Dört müzenin yıllık ziyaretçi sayısı", "kişi")])
+    vals = random.sample(range(100_000, 999_000, 1_000), 4)
+    vals = [v + random.choice([0, 0, 0, 500]) if random.random() < .0 else v for v in vals]
+    labs = ["A", "B", "C", "D"]
+    kind = random.choice(["en_cok", "en_az", "kucuk_buyuk", "ikinci"])
+    order = sorted(range(4), key=lambda i: vals[i])
+    sh = {"type": "table", "title": nm, "headers": ["Yer", f"Sayı ({unit})"], "rows": [[labs[i], _fmt_say(vals[i])] for i in range(4)]}
+    if kind == "en_cok":
+        q, cor, ex = f"Tabloya göre sayısı en çok olan hangisidir?", labs[order[-1]], f"En büyük sayı {_fmt_say(vals[order[-1]])} olduğundan {labs[order[-1]]}."
+        o = _mf_opts(cor, [x for x in labs if x != cor], str, sort=False)
+    elif kind == "en_az":
+        q, cor, ex = f"Tabloya göre sayısı en az olan hangisidir?", labs[order[0]], f"En küçük sayı {_fmt_say(vals[order[0]])} olduğundan {labs[order[0]]}."
+        o = _mf_opts(cor, [x for x in labs if x != cor], str, sort=False)
+    elif kind == "ikinci":
+        q, cor, ex = f"Tabloya göre sayısı en çok olan ikinci yer hangisidir?", labs[order[-2]], f"Büyükten küçüğe sıralamada ikinci sayı {_fmt_say(vals[order[-2]])} olduğundan {labs[order[-2]]}."
+        o = _mf_opts(cor, [x for x in labs if x != cor], str, sort=False)
+    else:
+        cor = " < ".join(labs[i] for i in order)
+        wr = []
+        for _ in range(30):
+            p = random.sample(labs, 4)
+            t = " < ".join(p)
+            if t != cor and t not in wr:
+                wr.append(t)
+            if len(wr) >= 3:
+                break
+        q, ex = "Tabloya göre sayılar küçükten büyüğe doğru sıralandığında aşağıdakilerden hangisi elde edilir?", "Sayılar karşılaştırılırken önce yüz binler, sonra on binler basamağına bakılır: " + cor + "."
+        o = _mf_opts(cor, wr, str, sort=False)
+    return _mf_raw(subject, "Sayı karşılaştırma", q, o, ex, shape=sh) if o else None
+
+
+def _mf6s_bd_fark(subject):
+    ds = _s6_n()
+    ix = random.sample([i for i in range(6) if ds[i]], 2) if sum(1 for x in ds if x) >= 2 else None
+    if not ix:
+        return None
+    i, j = sorted(ix)
+    lb = random.sample(_KS_L, 2)
+    pi, pj = 5 - i, 5 - j
+    vi, vj = ds[i] * 10 ** pi, ds[j] * 10 ** pj
+    kind = random.choice(["topla", "fark"])
+    v = vi + vj if kind == "topla" else vi - vj
+    wr = [ds[i] + ds[j], vi + ds[j], ds[i] + vj, abs(v) + 10 ** min(pi, pj), v * 10, (ds[i] - ds[j]) * 10 ** pi]
+    wr = [w for w in dict.fromkeys(wr) if w > 0 and w != v]
+    o = _mf_opts(_fmt_say(v), [_fmt_say(w) for w in wr], str, sort=True)
+    ad = "toplamı" if kind == "topla" else "farkı (birincisinden ikincisi çıkarılarak)"
+    return _mf_raw(subject, _S6_T, f"Şekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\n{lb[0]} ile gösterilen basamaktaki rakamın basamak değeri ile {lb[1]} ile gösterilen basamaktaki rakamın basamak değerinin {ad} kaçtır?", o,
+                   f"{lb[0]} basamağının değeri {_fmt_say(vi)}, {lb[1]} basamağının değeri {_fmt_say(vj)}; {ad.split(' ')[0]} {_fmt_say(v)} olur.", shape=_bd_tab(ds, {i: lb[0], j: lb[1]})) if o else None
+
+
+def _mf6s_onculu(subject):
+    ds = _s6_n(zeros=False)
+    n = _s6_val(ds)
+    names = ["yüz binler", "on binler", "binler", "yüzler", "onlar", "birler"]
+    truth, txt = [], []
+    for _ in range(3):
+        i = random.randrange(6)
+        ok = random.random() < .5
+        d = ds[i] if ok else random.choice([x for x in range(1, 10) if x != ds[i]])
+        txt.append(f"{names[i].capitalize()} basamağındaki rakam {d}'dir." if random.random() < .5 else f"{d} rakamı {names[i]} basamağındadır.")
+        truth.append(d == ds[i])
+    if len(set(txt)) < 3:
+        return None
+    RN = ["I", "II", "III"]
+    def lab(mask):
+        s = [RN[k] for k in range(3) if mask[k]]
+        return "Hiçbiri" if not s else ("Yalnız " + s[0] if len(s) == 1 else (" ve ".join(s) if len(s) == 2 else "I, II ve III"))
+    cor = lab(truth)
+    cand = []
+    for m in range(8):
+        mk = [bool(m >> k & 1) for k in range(3)]
+        if mk != truth:
+            cand.append(lab(mk))
+    random.shuffle(cand)
+    o = _mf_opts(cor, cand[:4], str, sort=False)
+    stm = "\n".join(f"{RN[k]}. {txt[k]}" for k in range(3))
+    return _mf_raw(subject, _S6_T, f"Şekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\n{stm}\nBu ifadelerden hangileri doğrudur?", o, f"Tablodaki sayı {_fmt_say(n)}; ifadeler tablo ile karşılaştırıldığında doğru olanlar: {cor}.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf6s_basamak_say(subject):
+    n = random.randint(100_000, 999_999)
+    kind = random.choice(["en_kucuk6", "en_buyuk6", "birsonra", "birgeri"])
+    if kind == "en_kucuk6":
+        q, v = "En küçük altı basamaklı doğal sayı aşağıdakilerden hangisidir?", 100_000
+        wr = [10_000, 99_999, 1_000_000, 100_001]
+        ex = "Altı basamaklı en küçük doğal sayı yüz binler basamağında 1, diğer basamaklarında 0 olan sayıdır: 100 000."
+    elif kind == "en_buyuk6":
+        q, v = "En büyük altı basamaklı doğal sayı aşağıdakilerden hangisidir?", 999_999
+        wr = [99_999, 1_000_000, 999_998, 990_000]
+        ex = "Altı basamaklı en büyük doğal sayının bütün basamaklarında 9 vardır: 999 999."
+    elif kind == "birsonra":
+        n = random.choice([random.randint(100_000, 999_998) // 1000 * 1000 + 999, 199_999, 299_999, 499_999, 599_999, 799_999, 399_999])
+        q, v = f"{_fmt_say(n)} sayısından hemen sonra gelen doğal sayı aşağıdakilerden hangisidir?", n + 1
+        wr = [n + 10, n + 100, n + 1000, n - 1]
+        ex = f"Bir doğal sayıdan hemen sonra gelen sayı, o sayının 1 fazlasıdır: {_fmt_say(n)} + 1 = {_fmt_say(n + 1)}."
+    else:
+        n = random.choice([200_000, 300_000, 400_000, 500_000, 700_000, 900_000, 110_000, 450_000])
+        q, v = f"{_fmt_say(n)} sayısından hemen önce gelen doğal sayı aşağıdakilerden hangisidir?", n - 1
+        wr = [n - 10, n - 100, n - 1000, n + 1]
+        ex = f"Bir doğal sayıdan hemen önce gelen sayı, o sayının 1 eksiğidir: {_fmt_say(n)} − 1 = {_fmt_say(n - 1)}."
+    wr = [w for w in dict.fromkeys(wr) if w != v and w > 0]
+    o = _mf_opts(_fmt_say(v), [_fmt_say(w) for w in wr], str, sort=True)
+    return _mf_raw(subject, _S6_T, q, o, ex) if o else None
+
+
+def _mf6s_okunus_tablo(subject):
+    ds = _s6_n()
+    n = _s6_val(ds)
+    wr = []
+    for k in (10, 100, 1000, 10_000):
+        m = n + k if random.random() < .5 else n - k
+        if 100_000 <= m != n:
+            wr.append(_say_words(m))
+    t = list(ds)
+    t[0], t[1] = t[1], t[0]
+    if t[0] and _s6_val(t) != n:
+        wr.append(_say_words(_s6_val(t)))
+    o = _mf_opts(_say_words(n), list(dict.fromkeys(wr)), str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", "Şekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nBu sayının okunuşu aşağıdakilerden hangisidir?", o, f"Tablodaki sayı {_fmt_say(n)}; okunuşu {_say_words(n)}.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf6s_yaz_tablo(subject):
+    ds = _s6_n()
+    n = _s6_val(ds)
+    w = _say_words(n)
+    wr = []
+    for k in (10, 100, 1000, 10_000, 100_000):
+        m = n + k if random.random() < .5 else n - k
+        if 100_000 <= m != n:
+            wr.append(m)
+    t = list(ds)
+    t[1], t[2] = t[2], t[1]
+    if _s6_val(t) != n:
+        wr.append(_s6_val(t))
+    t = list(ds)
+    t[-1], t[-2] = t[-2], t[-1]
+    if _s6_val(t) != n:
+        wr.append(_s6_val(t))
+    wr = [x for x in dict.fromkeys(wr) if x != n]
+    o = _mf_opts(_fmt_say(n), [_fmt_say(x) for x in wr], str, sort=True)
+    return _mf_raw(subject, "Sayı okuma-yazma", f"“{w}” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?", o, f"Okunuştaki bölükler sırayla yazılır: {_fmt_say(n)}.") if o else None
+
+
+def _mf6s_cozum_bos(subject):
+    ds = _s6_n()
+    n = _s6_val(ds)
+    parts = [(ds[i], 10 ** (5 - i)) for i in range(6) if ds[i]]
+    if len(parts) < 3:
+        return None
+    k = random.randrange(len(parts))
+    shown = []
+    for i, (d, pv) in enumerate(parts):
+        shown.append("□ × " + _fmt_say(pv) if i == k else f"{d} × {_fmt_say(pv)}")
+    cor = parts[k][0]
+    wr = [x for x in range(1, 10) if x != cor]
+    random.shuffle(wr)
+    o = _mf_opts(cor, wr[:4], str, sort=False)
+    return _mf_raw(subject, _S6_T, f"{_fmt_say(n)} sayısının çözümlenmesi " + " + ".join(shown) + f" biçiminde yazılıyor.\nBuna göre □ yerine hangi rakam gelmelidir?", o, f"{_fmt_say(n)} sayısında {_fmt_say(parts[k][1])}'lik basamakta {cor} rakamı vardır.") if o else None
+
+
+def _mf6s_bol_say(subject):
+    ds = _s6_n(zeros=False)
+    n = _s6_val(ds)
+    kind = random.choice(["kac_birlik", "bolum"])
+    if kind == "kac_birlik":
+        u = random.choice([(1000, "bin"), (10_000, "on bin"), (100, "yüz")])
+        q = f"{_fmt_say(n)} sayısında en çok kaç tane {_fmt_say(u[0])} vardır?"
+        v = n // u[0]
+        wr = [v + 1, v - 1, v * 10, v // 10 if v // 10 > 0 else v + 2, n // (u[0] * 10) + 3]
+        ex = f"{_fmt_say(n)} sayısında en çok {_fmt_say(v)} tane {_fmt_say(u[0])} bulunur."
+    else:
+        u = random.choice([(100_000, "yüz binler"), (10_000, "on binler"), (1000, "binler")])
+        pos = len(str(u[0])) - 1
+        v = (n // u[0]) % 10
+        q = f"{_fmt_say(n)} sayısının {u[1]} basamağındaki rakam kaçtır?"
+        wr = [x for x in range(10) if x != v]
+        random.shuffle(wr)
+        ex = f"{_fmt_say(n)} sayısında {u[1]} basamağındaki rakam {v}'dir."
+        wr = wr[:5]
+    wr = [w for w in dict.fromkeys(wr) if w != v and w > 0 or (kind == "bolum" and w != v)]
+    o = _mf_opts(str(v), [str(w) for w in wr], str, sort=False)
+    return _mf_raw(subject, _S6_T, q, o, ex) if o else None
+
+
+_S6_FAMS = [(_mf6s_sd_oku, 2), (_mf6s_sd_topla, 3), (_mf6s_sd_ara, 2), (_mf6s_sd_yuvarla, 3), (_mf6s_makine, 3), (_mf6s_tablo_sira, 2), (_mf6s_bd_fark, 3),
+            (_mf6s_onculu, 4), (_mf6s_basamak_say, 1), (_mf6s_okunus_tablo, 2), (_mf6s_yaz_tablo, 2), (_mf6s_cozum_bos, 3), (_mf6s_bol_say, 2)]
+for _f, _d in _S6_FAMS:
+    _MF_GENS.append((_m5v(_f) or _m5_lead(_f), ("basamak", "okuma ve yazma"), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = ["MAT.5.1.1"]
 
 
 def _fam_item(name, fn, subject, items):
@@ -35763,7 +36065,8 @@ def home():
              ("plan", "violet", "🗓️ Çalışma Planım", "Zayıf kazanımlarına göre 7 günlük kişisel plan", "plan"),
              ("reports", "indigo", "📊 Performans & Raporlar", "Grafikler, ders karşılaştırmaları", "reports"),
              ("archive", "amber", "🗂️ Yanlış Arşivim", "Yanlış yaptığın sorulardan kişisel test", "archive"),
-             ("badges", "slate", "🏅 Rozet & Sertifika", "Başarılarını topla, sertifika al", "badges")]
+             ("badges", "slate", "🏅 Rozet & Sertifika", "Başarılarını topla, sertifika al", "badges"),
+             ("olimp", "orange", "🏆 TÜBİTAK ve Olimpiyat", "Sınıfına uygun bilim olimpiyatları ve proje yarışmaları", "olimp")]
     theme.cells(tools, 3, lambda x: theme.card(f"tool_{x[0]}", x[1], x[2], x[3], _tool_go, (x[4],)))
 
 
@@ -35776,6 +36079,122 @@ def _tool_go(page):
             st.session_state.grade = "5"
     else:
         st.session_state.page = page
+
+
+# ------------------------------------------------------------------ TÜBİTAK ve Olimpiyat
+_OL_BILIM = "https://bilimolimpiyatlari.tubitak.gov.tr/tr/program-hakkinda"
+_OL_2204B = "https://tubitak.gov.tr/tr/yarismalar/2204-b-ortaokul-ogrencileri-arastirma-projeleri-yarismasi"
+_OL_NOT = "Bilgi, TÜBİTAK'ın resmî sayfalarından derlenmiştir. Başvuru tarihleri ve kurallar her yıl değişir; başvurmadan önce güncel çağrı metnini mutlaka kontrol et."
+_OL_ITEMS = {
+    "mat": {"icon": "➗", "color": "blue", "title": "Ulusal Ortaokul Bilim Olimpiyatı • Matematik", "short": "5–8. sınıf • 1. aşama çoktan seçmeli, 2. aşama yazılı", "grades": ("5", "6", "7", "8"),
+            "subject": "Matematik", "link": _OL_BILIM,
+            "info": ["Matematik ve Bilgisayar dallarında 5–8. sınıflar için ayrı düzenlenen Ulusal Ortaokul Bilim Olimpiyatları'nın matematik dalıdır.",
+                     "1. aşama: bütün öğrenciler için aynı çoktan seçmeli sınav (İstanbul Üniversitesi, TÜBİTAK BİDEB adına yürütür).",
+                     "2. aşama: 1. aşamada başarılı olanlar girer; matematikte yazılı (klasik) sınavdır.",
+                     "1. aşamadan sonra başarılı öğrenciler Yaz Okulu'na, madalya alanlar Kış Okulu'na çağrılabilir.",
+                     "Başvuru okul müdürlüğü aracılığıyla yapılır; bireysel başvuru kabul edilmemişti. Öğrenci yalnızca bir daldan başvurabilir (2018 duyurusuna göre)."],
+            "tips": ["Sayı örüntüleri, mantık ve akıl yürütme soruları", "Kesirler, ondalık sayılar, bölünebilme", "Geometri: açı, çevre, alan sezgisi", "Yazılı aşama için çözüm yolunu adım adım yazma alışkanlığı"]},
+    "bil": {"icon": "💻", "color": "teal", "title": "Ulusal Ortaokul Bilim Olimpiyatı • Bilgisayar", "short": "5–8. sınıf • algoritmik düşünme, 2. aşama uygulamalı", "grades": ("5", "6", "7", "8"),
+            "subject": "Matematik", "link": _OL_BILIM,
+            "info": ["Ulusal Ortaokul Bilim Olimpiyatları'nın bilgisayar dalıdır (5–8. sınıflar).",
+                     "1. aşama çoktan seçmeli sınavdır; 2. aşama uygulamalıdır.",
+                     "Algoritma, mantık ve problem çözme becerisi ölçülür."],
+            "tips": ["Akış şeması ve adım adım yönerge soruları", "Örüntü, sıralama ve eleme mantığı", "Kodlama olmadan algoritmik düşünme alıştırmaları"]},
+    "fizik": {"icon": "⚛️", "color": "violet", "title": "Ulusal Bilim Olimpiyatları • Fizik", "short": "8. sınıf ve üzeri • 1. aşama, yaz okulu, 2. aşama", "grades": ("8",),
+              "subject": "Fen Bilimleri", "link": _OL_BILIM,
+              "info": ["Ortaokulda 8. sınıf öğrencileri Ulusal Bilim Olimpiyatları'nın Fizik dalına başvurabilir.",
+                       "1. aşama: 81 il merkezinde ve KKTC'de aynı anda yapılan sınav.", "Yaz Okulu: 2. aşamaya çağrılacak öğrenciler akademisyenlerce eğitilir.",
+                       "2. aşama: Ankara'da TÜBİTAK BİDEB tarafından yapılan sınav; ardından Kış Okulu, takım seçme sınavları ve kamplar."],
+              "tips": ["Kuvvet, hareket ve enerji", "Basınç, ışık ve ses", "Elektrik devreleri ve grafik yorumlama"]},
+    "kimya": {"icon": "🧪", "color": "green", "title": "Ulusal Bilim Olimpiyatları • Kimya", "short": "8. sınıf ve üzeri • 1. aşama, yaz okulu, 2. aşama", "grades": ("8",),
+              "subject": "Fen Bilimleri", "link": _OL_BILIM,
+              "info": ["8. sınıf öğrencileri Ulusal Bilim Olimpiyatları'nın Kimya dalına başvurabilir.", "Aşamalar: 1. aşama sınavı → Yaz Okulu → Ankara'da 2. aşama → Kış Okulu ve takım seçimi."],
+              "tips": ["Maddenin yapısı ve periyodik sistem", "Kimyasal tepkimeler ve karışımlar", "Asit–baz ve günlük hayat kimyası"]},
+    "biyo": {"icon": "🧬", "color": "pink", "title": "Ulusal Bilim Olimpiyatları • Biyoloji", "short": "8. sınıf ve üzeri • 1. aşama, yaz okulu, 2. aşama", "grades": ("8",),
+             "subject": "Fen Bilimleri", "link": _OL_BILIM,
+             "info": ["8. sınıf öğrencileri Ulusal Bilim Olimpiyatları'nın Biyoloji dalına başvurabilir.", "Aşamalar: 1. aşama sınavı → Yaz Okulu → Ankara'da 2. aşama → Kış Okulu ve takım seçimi."],
+             "tips": ["Hücre, DNA ve kalıtım", "Canlıların sınıflandırılması ve ekosistem", "Deney ve gözlem verisi yorumlama"]},
+    "astro": {"icon": "🔭", "color": "indigo", "title": "Ulusal Bilim Olimpiyatları • Astronomi-Astrofizik", "short": "8. sınıf ve üzeri • 1. aşama, yaz okulu, 2. aşama", "grades": ("8",),
+              "subject": "Fen Bilimleri", "link": _OL_BILIM,
+              "info": ["8. sınıf öğrencileri Ulusal Bilim Olimpiyatları'nın Astronomi-Astrofizik dalına başvurabilir.", "Aşamalar: 1. aşama sınavı → Yaz Okulu → Ankara'da 2. aşama → Kış Okulu ve takım seçimi."],
+              "tips": ["Güneş sistemi, Ay ve gök cisimleri", "Mevsimler, gece–gündüz ve yörünge", "Büyüklük ve uzaklık karşılaştırmaları"]},
+    "cog": {"icon": "🌍", "color": "amber", "title": "Ulusal Bilim Olimpiyatları • Coğrafya", "short": "8. sınıf ve üzeri • 1. aşama, yaz okulu, 2. aşama", "grades": ("8",),
+            "subject": "Sosyal Bilgiler", "link": _OL_BILIM,
+            "info": ["Programın lise bölümünde Coğrafya dalı için 8. sınıflar da başvurabilir olarak belirtilmiştir.", "Aşamalar: 1. aşama sınavı → Yaz Okulu → Ankara'da 2. aşama → Kış Okulu ve takım seçimi."],
+            "tips": ["Harita, koordinat ve ölçek", "İklim, yer şekilleri ve doğal afetler", "Nüfus ve yerleşme verilerini yorumlama"]},
+    "proje": {"icon": "🔬", "color": "orange", "title": "TÜBİTAK 2204-B Ortaokul Araştırma Projeleri Yarışması", "short": "Ortaokul öğrencileri • proje • bölge ve final", "grades": ("5", "6", "7", "8"),
+              "subject": None, "link": _OL_2204B,
+              "info": ["Ortaokula devam eden öğrenciler katılabilir; her öğrenci yalnızca bir projede yer alır, bir projede en çok üç öğrenci bulunur.",
+                       "Her projenin bir danışmanı olur; başvuruyu danışman TYBS üzerinden yapar.", "Başvuruda ana alan seçilir; jüri buna göre belirlenir ve sonradan değiştirilemez.",
+                       "Aşamalar: başvuru ve ön değerlendirme → bölge yarışması → final. Bölge birincileri finale çıkar.",
+                       "2026-2027 dönemi başvuruları 21 Ekim 2026 – 10 Şubat 2027 arasındadır (TÜBİTAK sayfasına göre)."],
+              "tips": ["Merak ettiğin bir soruyu araştırma sorusuna çevir", "Hipotez → deney → veri tablosu → sonuç sırasını izle", "Değişkenleri kontrol et, ölçümleri tekrarla", "Proje rehberini TÜBİTAK sitesinden indir"]},
+}
+_OL_BY_GRADE = {"4": [], "5": ["mat", "bil", "proje"], "6": ["mat", "bil", "proje"], "7": ["mat", "bil", "proje"],
+                "8": ["mat", "bil", "fizik", "kimya", "biyo", "astro", "cog", "proje"], "LGS": ["mat", "bil", "fizik", "kimya", "biyo", "astro", "cog", "proje"]}
+
+
+def olimp_home():
+    st.button("⬅ Ana sayfa", key="back_olimp", on_click=nav, args=("home",))
+    st.markdown("<div class='hero'><h1>🏅 TÜBİTAK ve Olimpiyat</h1><p>Önce sınıfını seç; sana uygun olimpiyat ve yarışmaları göstereyim.</p></div>", unsafe_allow_html=True)
+    theme.cells(GRADE_CARDS, 3, lambda c: theme.card(f"ol_g{c[0]}", c[1], f"{c[2]} {c[3]}", f"{len(_OL_BY_GRADE.get(c[0], []))} yarışma / olimpiyat" if _OL_BY_GRADE.get(c[0]) else "Hazırlık dönemi", olimp_pick_grade, (c[0],)))
+    st.caption(_OL_NOT)
+
+
+def olimp_pick_grade(g):
+    st.session_state.olimp_g = g
+    st.session_state.page = "olimp_menu"
+
+
+def olimp_pick_item(k):
+    st.session_state.olimp_item = k
+    st.session_state.page = "olimp_detail"
+
+
+def olimp_menu():
+    g = st.session_state.get("olimp_g") or st.session_state.get("grade") or "5"
+    gl = cur.GRADE_LABELS.get(g, g)
+    st.button("⬅ Sınıf seçimi", key="back_olimp_menu", on_click=nav, args=("olimp",))
+    st.markdown(f"<div class='hero'><h1>🏅 {gl} • TÜBİTAK ve Olimpiyat</h1><p>Bu sınıf düzeyine uygun resmî olimpiyat ve yarışmalar</p></div>", unsafe_allow_html=True)
+    keys = _OL_BY_GRADE.get(g, [])
+    if not keys:
+        st.info("4. sınıfta TÜBİTAK ortaokul olimpiyatlarına başvuru yoktur; ortaokul olimpiyatları 5. sınıftan itibaren başlar. "
+                "Şimdiden mantık, örüntü ve problem çözme alıştırması yapabilirsin.")
+        st.button("🧠 Yeni Nesil Soru Bankası ile hazırlan", key="ol_prep4", type="primary", on_click=_olimp_practice, args=(g, None))
+        st.caption(_OL_NOT)
+        return
+    theme.cells([_OL_ITEMS[k] | {"k": k} for k in keys], 2, lambda it: theme.card(f"ol_{it['k']}", it["color"], f"{it['icon']} {it['title']}", it["short"], olimp_pick_item, (it["k"],)))
+    st.caption(_OL_NOT)
+
+
+def _olimp_practice(g, subject):
+    st.session_state.grade = "8" if g == "LGS" else g
+    st.session_state.mode = "bank"
+    st.session_state.page = "setup"
+    st.session_state.wz = {"step": 1}
+
+
+def olimp_detail():
+    g = st.session_state.get("olimp_g") or "5"
+    k = st.session_state.get("olimp_item")
+    it = _OL_ITEMS.get(k)
+    if not it:
+        nav("olimp_menu")
+        st.rerun()
+        return
+    st.button("⬅ Olimpiyat listesi", key="back_olimp_detail", on_click=nav, args=("olimp_menu",))
+    st.markdown(f"<div class='hero'><h1>{it['icon']} {it['title']}</h1><p>{it['short']}</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='sec-title'>📌 Program</div>", unsafe_allow_html=True)
+    st.markdown("\n".join(f"- {x}" for x in it["info"]))
+    st.markdown("<div class='sec-title'>🎯 Hazırlık için çalış</div>", unsafe_allow_html=True)
+    st.markdown("\n".join(f"- {x}" for x in it["tips"]))
+    if it.get("subject"):
+        st.button(f"🧠 {it['subject']} antrenman sınavı çöz", key="ol_prac", type="primary", on_click=_olimp_practice, args=(g, it["subject"]))
+        st.caption(f"Soru bankasında ders olarak **{it['subject']}** seç; yeni nesil, beceri temelli sorular gelir. (Gerçek olimpiyat soruları değildir; benzer düşünme becerisini çalıştırır.)")
+    else:
+        st.caption("Bu bir proje yarışmasıdır; sınav yoktur. Hazırlığın için proje rehberini ve çağrı metnini incele.")
+    st.link_button("🔗 Resmî TÜBİTAK sayfası", it["link"])
+    st.caption(_OL_NOT)
 
 
 def pick_grade(g):
@@ -38412,6 +38831,7 @@ with st.sidebar:
     st.button("📊 Performans & Raporlar", key="nv_rep", use_container_width=True, on_click=state.nav, args=("reports",))
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
+    st.button("🏆 TÜBİTAK ve Olimpiyat", key="nv_olimp", use_container_width=True, on_click=state.nav, args=("olimp",))
     try:
         from core import store as _gstore
         _tech = str(st.query_params.get("admin", "")) == "1"  # teknik veriler yalnızca adres sonuna ?admin=1 eklenince görünür
@@ -38582,7 +39002,7 @@ if PAGE in ("exam", "ready", "sess_break"):  # soru çözerken dikkat dağıtan 
 ROUTES = {
     "home": setup.home, "modes": setup.modes, "setup": wizard.run, "ready": setup.ready, "pre": setup.pre,
     "exam": exam.exam, "sess_break": exam.sess_break, "selfscore": exam.selfscore, "result": exam.result,
-    "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges, "videos": videos.videos,
+    "olimp": setup.olimp_home, "olimp_menu": setup.olimp_menu, "olimp_detail": setup.olimp_detail, "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges, "videos": videos.videos,
 }
 try:
     ROUTES.get(PAGE, setup.home)()
