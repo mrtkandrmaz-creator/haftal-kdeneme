@@ -96,7 +96,9 @@ C = {
        _u("Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)", "Çevre uzunluğu; Alan ölçme; Alan problemleri"),
        _u("Kesirler", "Kesir türleri; Kesir sıralama; Kesirlerle toplama-çıkarma"),
        _u("Ondalık Gösterim ve Yüzdeler", "Ondalık gösterim; Yüzde kavramı"),
-       _u("Veri Toplama ve Değerlendirme", "Sütun grafiği; Veri yorumlama; Örüntüler")],
+       _u("Veri Toplama ve Değerlendirme", "Sütun grafiği; Veri yorumlama; Örüntüler"),
+       _u("İşlemlerle Cebirsel Düşünme (MAT.5.2.1-4)", "Eşitliğin korunumu; Değişme, birleşme ve dağılma özellikleri; İşlem önceliği; Sayı ve şekil örüntüleri; Aritmetik işlemlerde algoritmalar (cebirsel düşünme)"),
+       _u("Veriden Olasılığa (MAT.5.6.1-2)", "Olasılık çizgisi (imkânsız - kesin, 0 ile 1 arası); Az ve çok olasılıklı olaylar; Eşit olasılıklı olaylar (olasılık)")],
   FEN: [_u("Güneş, Dünya ve Ay", "Güneş'in yapısı ve dönme hareketi; Ay'ın özellikleri, dönme ve dolanma hareketleri; Ay'ın evreleri; Güneş, Dünya ve Ay'ın hareketleri ve büyüklükleri"),
        _u("Canlılar Dünyası", "Canlıları benzerlik ve farklılıklarına göre bitki, hayvan, mantar ve mikroskobik canlı olarak sınıflandırma; Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme; Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi; Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri); Bitki ve hayvanlara örnekler vererek gruplama"),
        _u("Kuvvetin Ölçülmesi ve Sürtünme", "Kuvvetin etkileri ve büyüklüğü (dinamometre, newton); Dinamometre modeli; Kütle, yer çekimi ve ağırlık; Sürtünme kuvveti ve etkileri"),
@@ -5768,12 +5770,78 @@ def _mad(ax, d):
     {"tanecik": _md_tanecik, "gecis": _md_gecis, "termo": _md_termo, "graf": _md_graf, "hal": _md_hal, "iletim": _md_iletim, "yalitim": _md_yalitim, "yon": _md_yon}.get(st, lambda a, b: None)(ax, d)
 
 
+_PRB_RENK = {"Kırmızı": "#ef4444", "Mavi": "#3b82f6", "Sarı": "#facc15", "Yeşil": "#22c55e", "Mor": "#a855f7", "Turuncu": "#f97316", "Pembe": "#ec4899"}
+
+
+def _prob(ax, d):
+    st = d.get("sub_type")
+    if st == "spektrum":
+        ax.annotate("", xy=(10.6, 0), xytext=(-.6, 0), arrowprops=dict(arrowstyle="-|>", color=INK, lw=2.2), zorder=2)
+        for x, t in ((0, "0"), (5, "1/2"), (10, "1")):
+            ax.plot([x, x], [-.25, .25], color=INK, lw=2, zorder=3)
+            ax.text(x, -.75, t, ha="center", va="top", fontsize=13, fontweight="bold", color=INK)
+        ax.text(0, -1.7, "İmkânsız", ha="center", va="top", fontsize=11, color="#b91c1c", fontweight="bold")
+        ax.text(10, -1.7, "Kesin", ha="center", va="top", fontsize=11, color="#15803d", fontweight="bold")
+        for pt in d.get("pts", []):
+            x = 10 * float(pt["p"])
+            ax.plot([x, x], [0, 1.0], color="#94a3b8", lw=1.3, ls=(0, (3, 2)), zorder=1)
+            _bio_bubble(ax, x, 1.5, pt["label"], fs=12, r=.5)
+        ax.set_xlim(-1.4, 11.4)
+        ax.set_ylim(-3.0, 2.4)
+    elif st == "torba":
+        balls = []
+        for k, v in d.get("balls", {}).items():
+            balls += [k] * int(v)
+        n = len(balls)
+        per = 6 if n > 8 else 4
+        rows = (n + per - 1) // per
+        w, h = per * 1.1 + .6, rows * 1.1 + .8
+        ax.add_patch(FancyBboxPatch((0, 0), w, h, boxstyle="round,pad=0,rounding_size=.5", fc="#f1f5f9", ec=INK, lw=2.4, zorder=1))
+        for i, k in enumerate(balls):
+            r_, c_ = divmod(i, per)
+            ax.add_patch(Circle((.75 + c_ * 1.1, .75 + r_ * 1.1), .42, fc=_PRB_RENK.get(k, "#94a3b8"), ec=INK, lw=1.3, zorder=3))
+        ax.set_xlim(-.5, w + .5)
+        ax.set_ylim(-.5, h + .5)
+    elif st == "carki":
+        sec = d.get("sectors", [])
+        n = len(sec)
+        for i, k in enumerate(sec):
+            ax.add_patch(Wedge((0, 0), 3, 90 - (i + 1) * 360 / n, 90 - i * 360 / n, fc=_PRB_RENK.get(k, "#94a3b8"), ec="white", lw=2.5, zorder=2))
+        ax.add_patch(Circle((0, 0), 3, fc="none", ec=INK, lw=2.2, zorder=3))
+        ax.add_patch(Polygon([[-.28, 0], [.28, 0], [0, 3.5]], closed=True, fc="#111827", ec="white", lw=1.2, zorder=5))
+        ax.add_patch(Circle((0, 0), .35, fc="#111827", ec="white", lw=1.2, zorder=6))
+        ax.set_xlim(-3.6, 3.6)
+        ax.set_ylim(-3.4, 4.0)
+
+
+def _orun(ax, d):
+    kind = d.get("kind", "cubuk")
+    steps = int(d.get("steps", 3))
+    x0 = 0.0
+    for i in range(1, steps + 1):
+        if kind == "cubuk":
+            for k in range(i):
+                xs = x0 + k * 1.2
+                for (a, b, c, e) in ((xs, 0, xs + 1.2, 0), (xs, 1.2, xs + 1.2, 1.2), (xs + 1.2, 0, xs + 1.2, 1.2)) + (((xs, 0, xs, 1.2),) if k == 0 else ()):
+                    ax.plot([a, c], [b, e], color="#b45309", lw=5, solid_capstyle="round", zorder=3)
+            wdt = i * 1.2
+        else:
+            for r_ in range(i):
+                for c_ in range(i):
+                    ax.add_patch(Rectangle((x0 + c_ * 1.0, r_ * 1.0), .92, .92, fc="#60a5fa", ec="#1e3a8a", lw=1.2, zorder=3))
+            wdt = i * 1.0
+        ax.text(x0 + wdt / 2, -.7, f"{i}. adım", ha="center", va="top", fontsize=12, fontweight="bold", color=INK)
+        x0 += wdt + 1.6
+    ax.set_xlim(-.6, x0)
+    ax.set_ylim(-1.5, (steps if kind != "cubuk" else 1.2) + .6)
+
+
 _DISPATCH = {
     "fen": _fen, "triangle": _triangle, "circle": _circle, "rectangle": _rectangle,
     "bar_chart": _bar, "science_chart": _bar, "line_chart": _line, "pie_chart": _pie,
     "science_space": _space, "space_orbit": _space, "eclipse": _space, "moon_phases": _space,
     "dynamometer": _dynamometer, "thermometer": _thermometer, "number_line": _numberline,
-    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes, "sos": _sos, "dil": _dil, "m6": _m6, "f6": _f6, "s6": _s6,
+    "forces": _forces, "cylinder": _cylinder, "geo": _geo, "doc": _doc, "bio": _bio, "light": _light, "kuv": _kuv, "mad": _mad, "elk": _elk, "cev": _cev, "uzy": _uzy, "kes": _kes, "sos": _sos, "dil": _dil, "m6": _m6, "f6": _f6, "s6": _s6, "prob": _prob, "orun": _orun,
 }
 _CHARTS = {"bar_chart", "science_chart", "line_chart", "number_line"}
 
@@ -9083,7 +9151,7 @@ _GEO = {"triangle", "circle", "rectangle", "cylinder", "number_line", "geo"}
 _SCI = {"fen", "science_space", "space_orbit", "eclipse", "moon_phases", "dynamometer", "thermometer", "forces", "science_chart", "cylinder"}
 _CH = {"bar_chart", "line_chart", "pie_chart", "table"}
 ALLOWED_SHAPES = {  # her ders yalnızca kendi alanına uygun görsel türlerini kullanabilir
-    "Matematik": _GEO | _CH | {"kes", "m6"},
+    "Matematik": _GEO | _CH | {"kes", "m6", "prob", "orun"},
     "Fen Bilimleri": ((_SCI | _CH) - {"cylinder"}) | {"bio", "light", "kuv", "mad", "elk", "cev", "uzy", "f6"},
     "Sosyal Bilgiler": {"table", "bar_chart", "line_chart", "pie_chart", "number_line", "doc", "sos", "dil", "s6", "f6"},
     "T.C. İnkılap Tarihi ve Atatürkçülük": {"table", "bar_chart", "line_chart", "number_line"},
@@ -12502,6 +12570,8 @@ def _on_topic(q, topics, subject=None, grade_label=None):
                     names = {n for n, _c in sel}
                     hits = {g for g, rx in _MAT_STRONG.items() if re.search(rx, body)}
                     foreign = hits - names
+                    if "cebir" in names:
+                        foreign.discard("geo_nicelik")  # şekil örüntüleri birim karelerle kurulur
                     if "olasılık" in names:
                         foreign.discard("kesir")  # olasılık cevapları kesirle yazılır (1/2 gibi)
                     if foreign and (not (hits & names) or foreign & {"kesir", "olasılık", "sayi", "veri"}):
@@ -29070,6 +29140,304 @@ for _f, _d, _kw, _it in ((_ff_el_hipotez, 3, _EL_KW, _fi(_EL_KW)), (_ff_el_deney
 _F5_VARY |= {"_ff_el_deney_tab", "_ff_md_iletim_tab"}
 
 
+# ---- 5. SINIF MATEMATİK (Maarif): Veriden Olasılığa (MAT.5.6) ve İşlemlerle Cebirsel Düşünme (MAT.5.2)
+_M5_LEAD = ["Matematik dersinde bir etkinlik yapılıyor.", "Bir öğretmen sınıfa soru hazırlamıştır.", "Matematik kulübünde bir çalışma yapılıyor.", "Bir öğrenci defterine not alıyor.",
+            "Sınıfta bir oyun oynanıyor.", "Bir matematik ödevi hazırlanıyor.", "Öğrenciler grup çalışması yapıyor.", "Bir deneme sınavında şu soru sorulmuştur.",
+            "Bir öğrenci konu tekrarı yapıyor.", "Okul etkinliğinde bir yarışma düzenleniyor.", "Bir kitaptaki etkinlik inceleniyor.", "Matematik öğretmeni tahtaya bir soru yazmıştır."]
+
+
+def _m5_lead(f):
+    import functools
+
+    @functools.wraps(f)
+    def w(subject):
+        r = f(subject)
+        if not r:
+            return r
+        r = dict(r)
+        r["question"] = random.choice(_M5_LEAD) + " " + str(r["question"])
+        return r
+    return w
+
+
+def _m5v(f):
+    return _f5_vary(f)
+
+
+_PR_T = "Olasılık"
+_PR_COLS = ["Kırmızı", "Mavi", "Sarı", "Yeşil", "Mor", "Turuncu", "Pembe"]
+_PR_EVT = [("Hilesiz bir zar atıldığında üst yüze gelen sayının 7 olması", 0.0), ("Hilesiz bir zar atıldığında üst yüze gelen sayının 7'den küçük olması", 1.0),
+           ("Hilesiz bir madeni para atıldığında tura gelmesi", 0.5), ("Hilesiz bir zar atıldığında üst yüze 6 gelmesi", 1 / 6), ("Hilesiz bir zar atıldığında üst yüze 6 gelmemesi", 5 / 6)]
+
+
+def _mf5_pr_spek(subject):
+    ch = random.sample(_PR_EVT, 4)
+    lb = random.sample(_CD_L, 4)
+    i = random.randrange(4)
+    pts = [{"label": lb[j], "p": ch[j][1]} for j in range(4)]
+    sh = {"type": "prob", "sub_type": "spektrum", "pts": pts}
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    cat = {0.0: "imkânsız bir olaydır", 1.0: "kesin bir olaydır", 0.5: "yarı yarıya olasılıklı bir olaydır"}.get(ch[i][1], "az olasılıklı bir olaydır" if ch[i][1] < .5 else "çok olasılıklı bir olaydır")
+    return _mf_raw(subject, _PR_T, f"Şekildeki olasılık çizgisinde dört olayın olasılığı harflerle gösterilmiştir.\n\"{ch[i][0]}\" olayının olasılığı hangi harfle gösterilmiştir?", o, f"Bu olay {cat}; olasılık çizgisinde {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _mf5_pr_torba(subject):
+    kind = random.choice(["cok", "az", "imk", "esit"])
+    cols = random.sample(_PR_COLS, 4)
+    if kind == "imk":
+        cnt = {c: random.randint(1, 5) for c in cols[:3]}
+        ask, cor = "imkânsızdır", cols[3]
+        if len(set(cnt.values())) < 1:
+            return None
+        sh_cols = cols[:3]
+        txt = "Torbadan rastgele bir top çekildiğinde çekilen topun hangi renkte olması imkânsızdır?"
+        wr = cols[:3]
+        ex = f"Torbada {cor.lower()} top bulunmadığı için {cor.lower()} top çekilmesi imkânsızdır."
+    elif kind == "esit":
+        v = random.randint(2, 4)
+        o2 = random.sample([x for x in range(1, 6) if x != v], 2)
+        cnt = {cols[0]: v, cols[1]: v, cols[2]: o2[0], cols[3]: o2[1]}
+        cor = " ve ".join(sorted((cols[0], cols[1])))
+        pairs = [" ve ".join(sorted((a, b))) for ai_, a in enumerate(cols) for b in cols[ai_ + 1:]]
+        wr = [x for x in pairs if x != cor]
+        sh_cols = cols
+        txt = "Torbadan rastgele bir top çekildiğinde çekilme olasılıkları eşit olan iki renk hangileridir?"
+        ex = f"{cols[0]} ve {cols[1]} toplarından {v}'er tane vardır; sayıları eşit olduğundan çekilme olasılıkları eşittir."
+    else:
+        cn = random.sample(range(1, 7), 4) if kind != "x" else None
+        cnt = dict(zip(cols, cn))
+        mx = max(cnt, key=cnt.get)
+        mn = min(cnt, key=cnt.get)
+        if kind == "cok":
+            cor, wr, txt = mx, [c for c in cols if c != mx], "Torbadan rastgele bir top çekildiğinde çekilme olasılığı en yüksek olan top hangi renktedir?"
+            ex = f"En çok {mx.lower()} top ({cnt[mx]} tane) olduğundan çekilme olasılığı en yüksek olan renk {mx.lower()}dir."
+        else:
+            cor, wr, txt = mn, [c for c in cols if c != mn], "Torbadan rastgele bir top çekildiğinde çekilme olasılığı en düşük olan top hangi renktedir?"
+            ex = f"En az {mn.lower()} top ({cnt[mn]} tane) olduğundan çekilme olasılığı en düşük olan renk {mn.lower()}dir."
+        sh_cols = cols
+    sh = {"type": "prob", "sub_type": "torba", "balls": {c: cnt[c] for c in sh_cols}}
+    if sum(sh["balls"].values()) > 18 or sum(sh["balls"].values()) < 3:
+        return None
+    o = _yn_opts(cor, wr) if kind != "esit" else _yn_opts(cor, random.sample(wr, 3))
+    return _mf_raw(subject, _PR_T, "Şekildeki torbada farklı renklerde toplar vardır. Toplar aynı büyüklüktedir.\n" + txt, o, ex, shape=sh) if o else None
+
+
+_PR_KAT = ["İmkânsız", "Az olasılıklı", "Eşit olasılıklı (yarı yarıya)", "Çok olasılıklı", "Kesin"]
+
+
+def _pr_kat(k, n):
+    return 0 if k == 0 else 4 if k == n else 1 if 2 * k < n else 2 if 2 * k == n else 3
+
+
+def _mf5_pr_carki(subject):
+    n = random.choice([8, 8, 6, 10])
+    cols = random.sample(_PR_COLS, 3)
+    case = random.choice(["var", "var", "var", "yok", "hepsi"])
+    if case == "hepsi":
+        sec = [cols[0]] * n
+        tgt = cols[0]
+    elif case == "yok":
+        a = random.randint(1, n - 1)
+        sec = [cols[0]] * a + [cols[1]] * (n - a)
+        tgt = cols[2]
+    else:
+        a = random.randint(1, n - 2)
+        b = random.randint(1, n - a - 1)
+        sec = [cols[0]] * a + [cols[1]] * b + [cols[2]] * (n - a - b)
+        tgt = random.choice(cols)
+    random.shuffle(sec)
+    k = sec.count(tgt)
+    c = _pr_kat(k, n)
+    wr = random.sample([x for j, x in enumerate(_PR_KAT) if j != c], 3)
+    o = _yn_opts(_PR_KAT[c], wr)
+    return _mf_raw(subject, _PR_T, f"Şekildeki çark, eş büyüklükte {n} bölgeye ayrılmıştır. Çark çevrildiğinde ok herhangi bir bölgede eşit şansla durur.\nBuna göre okun {tgt.lower()} bölgede durması olayı için aşağıdakilerden hangisi söylenebilir?", o, f"Çarkın {n} bölgesinden {k} tanesi {tgt.lower()} renktedir. Bu olay {_PR_KAT[c].lower()}.", shape={"type": "prob", "sub_type": "carki", "sectors": sec}) if o else None
+
+
+_PR_BANK = {0: ["Hilesiz bir zar atıldığında üst yüze 7 gelmesi", "İçinde yalnızca kırmızı bilye bulunan bir torbadan mavi bilye çekilmesi", "Bir haftanın 8 gün olması", "Tüm kartları sarı olan bir desteden çekilen kartın mavi olması"],
+            4: ["İçinde yalnızca mavi bilye bulunan bir torbadan mavi bilye çekilmesi", "Hilesiz bir madeni para atıldığında yazı ya da tura gelmesi", "Hilesiz bir zar atıldığında üst yüze gelen sayının 7'den küçük olması", "Bir haftada Salı gününün bulunması"],
+            1: ["Hilesiz bir zar atıldığında üst yüze 6 gelmesi", "1 kırmızı, 9 mavi bilyenin bulunduğu torbadan kırmızı bilye çekilmesi", "Hilesiz bir madeni paranın art arda 4 kez atılmasında 4'ünde de tura gelmesi"],
+            3: ["Hilesiz bir zar atıldığında üst yüze 6 gelmemesi", "9 kırmızı, 1 mavi bilyenin bulunduğu torbadan kırmızı bilye çekilmesi", "Hilesiz bir zar atıldığında üst yüze gelen sayının 1'den büyük olması"],
+            2: ["Hilesiz bir madeni para atıldığında tura gelmesi", "Hilesiz bir zar atıldığında üst yüze çift sayı gelmesi", "Hilesiz bir zar atıldığında üst yüze tek sayı gelmesi"]}
+
+
+def _mf5_pr_tablo(subject):
+    cs = random.sample(range(5), 4)
+    ev = [random.choice(_PR_BANK[c]) for c in cs]
+    lb = random.sample(_CD_L, 4)
+    i = random.randrange(4)
+    cat = _PR_KAT[cs[i]]
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    sh = {"type": "table", "title": "Olaylar", "headers": ["Harf", "Olay"], "rows": [[lb[j], ev[j]] for j in range(4)]}
+    nm = {"İmkânsız": "imkânsız", "Az olasılıklı": "az olasılıklı", "Eşit olasılıklı (yarı yarıya)": "yarı yarıya olasılıklı (eşit olasılıklı)", "Çok olasılıklı": "çok olasılıklı", "Kesin": "kesin"}[cat]
+    return _mf_raw(subject, _PR_T, f"Tabloda bazı olaylar harflerle gösterilmiştir.\nBuna göre hangi harfle gösterilen olay {nm} bir olaydır?", o, f"{lb[i]} ile gösterilen \"{ev[i]}\" olayı {nm} bir olaydır.", shape=sh) if o else None
+
+
+def _mf5_pr_aralik(subject):
+    from fractions import Fraction as Fr
+    ok = random.sample(["0", "1/4", "1/2", "3/5", "7/10", "1", "2/3", "1/10", "9/10", "3/4"], 3)
+    bad = random.choice(["5/4", "3/2", "7/5", "11/10", "9/4", "8/3", "2", "13/10"])
+    sh = {"type": "prob", "sub_type": "spektrum", "pts": []}
+    o = _yn_opts(bad, ok)
+    return _mf_raw(subject, _PR_T, "Şekildeki olasılık çizgisinde bir olayın olasılığının alabileceği değerler 0 ile 1 arasındadır.\nBuna göre aşağıdakilerden hangisi bir olayın olasılığı olamaz?", o, f"Bir olayın olasılığı 0 ile 1 arasındadır; {bad} sayısı 1'den büyük olduğu için olasılık olamaz.", shape=sh) if o else None
+
+
+_M5_ORN = [("cubuk", "kibrit çöpleri ile kurulan kare örüntüsünün", lambda n: 3 * n + 1, "çöp", "Her adımda 3 çöp eklenir; n. adımda 3 × n + 1 çöp vardır."),
+           ("kare", "birim karelerle oluşturulan örüntünün", lambda n: n * n, "birim kare", "n. adımda kenar uzunluğu n olan bir kare oluşur; birim kare sayısı n × n'dir.")]
+
+
+def _mf5_cb_orunti(subject):
+    kind, ad, f, bir, kural = random.choice(_M5_ORN)
+    n = random.randint(5, 10)
+    v = f(n)
+    wr = [f(n - 1), f(n + 1), f(n) + 2, f(n) - 2 if kind == "cubuk" else f(n) + n, v + 3, 2 * v]
+    o = _mf_opts(v, wr, str)
+    sh = {"type": "orun", "kind": kind, "steps": 3}
+    return _mf_raw(subject, "Örüntüler", f"Şekilde {ad} ilk üç adımı verilmiştir. Örüntü aynı kuralla devam etmektedir.\nBuna göre {n}. adımda kaç {bir} bulunur?", o, f"{kural} {n}. adımda {v} {bir} bulunur.", shape=sh) if o else None
+
+
+def _mf5_cb_orunti_tab(subject):
+    a, d = random.randint(2, 9), random.randint(2, 7)
+    kind = random.choice(["ar", "ar", "kat"])
+    if kind == "ar":
+        f = lambda n: a + (n - 1) * d
+        kural = f"Her adımda {d} artar."
+    else:
+        d2 = random.randint(2, 3)
+        f = lambda n: a * d2 ** (n - 1)
+        kural = f"Her adımda {d2} ile çarpılır."
+        d = d2
+    rows = [[f"{n}. adım", str(f(n))] for n in range(1, 5)]
+    n = random.randint(5, 6 if kind == "kat" else 10)
+    v = f(n)
+    sh = {"type": "table", "title": "Sayı örüntüsü", "headers": ["Adım", "Sayı"], "rows": rows}
+    wr = [f(n - 1), f(n + 1), v + d, v - d if v - d > 0 else v + 2 * d, v + 1]
+    o = _mf_opts(v, wr, str)
+    return _mf_raw(subject, "Örüntüler", f"Tabloda bir sayı örüntüsünün ilk dört adımı verilmiştir. Örüntü aynı kuralla devam etmektedir.\nBuna göre {n}. adımdaki sayı kaçtır?", o, f"{kural} {n}. adımdaki sayı {v}'dir.", shape=sh) if o else None
+
+
+def _mf5_cb_terazi(subject):
+    kind = random.choice(["t1", "t2"])
+    if kind == "t1":
+        x, c = random.randint(2, 12), random.randint(2, 9)
+        r = x + c
+        a = 1
+    else:
+        a, x = random.choice([2, 3]), random.randint(2, 8)
+        r = a * x
+        c = 0
+    L = {"x": a, "c": c} if c else {"x": a}
+    o = _mf_opts(x, [r, r + c if c else r + a, x + 1, x - 1 if x > 1 else x + 3, c or a, x + 2], str)
+    q = "Şekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x gram ağırlığındadır ve kutular birbirine eşittir.\nBuna göre bir kutunun ağırlığı (x) kaç gramdır?"
+    ex = f"x + {c} = {r} olduğundan iki kefeden {c} gram çıkarılırsa x = {r} − {c} = {x} bulunur." if kind == "t1" else f"{a} × x = {r} olduğundan iki kefedeki ağırlık {a} eşit parçaya bölünürse x = {r} : {a} = {x} bulunur."
+    return _mf_raw(subject, "Eşitliğin Korunumu", q, o, ex, shape=_tz(L, {"c": r})) if o and x > 0 else None
+
+
+def _mf5_cb_koru(subject):
+    a = random.randint(3, 12)
+    k = random.randint(2, 9)
+    kind = random.choice(["ikiek", "ikicik", "solek", "sagcik"])
+    ops = {"ikiek": (f"iki kefeye de {k} gram eklenirse", "Terazi dengede kalır.", "iki kefeye aynı miktar eklenince eşitlik korunur."),
+           "ikicik": (f"iki kefeden de {k} gram çıkarılırsa", "Terazi dengede kalır.", "iki kefeden aynı miktar çıkarılınca eşitlik korunur."),
+           "solek": (f"yalnızca sol kefeye {k} gram eklenirse", "Sol kefe aşağı iner.", "sol kefe daha ağır olur."),
+           "sagcik": (f"yalnızca sağ kefeden {k} gram çıkarılırsa", "Sol kefe aşağı iner.", "sağ kefe daha hafif olur, sol kefe daha ağır kalır.")}
+    cond, cor, why = ops[kind]
+    if kind in ("ikicik", "sagcik") and k >= a:
+        return None
+    w = [x for x in ("Terazi dengede kalır.", "Sol kefe aşağı iner.", "Sağ kefe aşağı iner.", "Terazinin kolları birbirinden ayrılır.") if x != cor]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, "Eşitliğin Korunumu", f"Şekildeki eşit kollu terazinin kefelerinde ağırlıklar bulunmaktadır ve terazi dengededir.\nBuna göre {cond} ne olur?", o, f"Bu durumda {cond}, {cor[0].lower() + cor[1:]} Çünkü {why}", shape=_tz({"c": a}, {"c": a})) if o else None
+
+
+def _mf5_cb_ozellik(subject):
+    kind = random.choice(["bir", "dag", "ad"])
+    if kind == "bir":
+        a, b, c = random.choice([25, 20, 50, 125]), random.randint(11, 29), random.choice([4, 2, 8, 6])
+        if (a * c) % 10:
+            return None
+        v = a * b * c
+        o = _mf_opts(v, [v + a, v - c * 10, a * b + c, v + 100, a + b * c], str)
+        return _mf_raw(subject, "İşlem Özellikleri", f"{a} × {b} × {c} işlemi kolay hesaplanmak isteniyor. Çarpmada değişme ve birleşme özelliklerinden yararlanıp {a} × {c} çarpımı önce yapılırsa sonuç kaç olur?", o, f"{a} × {c} = {a * c}; {a * c} × {b} = {v}.") if o else None
+    if kind == "dag":
+        a = random.randint(12, 58)
+        o_ = _yn_opts(f"{a} × 100 − {a} × 1", [f"{a} × 100 − 1", f"{a} × 90 + 9", f"{a} × 100 + {a}"])
+        return _mf_raw(subject, "İşlem Özellikleri", f"{a} × 99 işlemi dağılma özelliğinden yararlanarak yazılacaktır.\nBuna göre bu işlem aşağıdakilerden hangisine eşittir?", o_, f"99 = 100 − 1 olduğundan {a} × 99 = {a} × 100 − {a} × 1 olur.") if o_ else None
+    o_ = _yn_opts("Toplamada birleşme özelliği", ["Toplamada değişme özelliği", "Çarpmanın toplama üzerine dağılma özelliği", "Çarpmada etkisiz eleman özelliği"])
+    a, b, c = random.randint(11, 40), random.randint(11, 40), random.randint(11, 40)
+    return _mf_raw(subject, "İşlem Özellikleri", f"({a} + {b}) + {c} = {a} + ({b} + {c}) eşitliği aşağıdaki özelliklerden hangisine bir örnektir?", o_, "Toplanan sayıların gruplanışı değişse de sonuç değişmez; bu birleşme özelliğidir.") if o_ else None
+
+
+def _ev(t):
+    return eval(t.replace("×", "*").replace("−", "-").replace(":", "//"))
+
+
+def _mf5_cb_parantez(subject):
+    a, b, c, d = random.randint(2, 9), random.randint(2, 9), random.randint(3, 9), random.randint(1, 2)
+    k = random.choice(["ac", "bc", "ts"])
+    base = f"{a} + {b} × {c} − {d}"
+    if k == "ac":
+        v, txt = _ev(f"({a} + {b}) * {c} - {d}"), f"{a} + {b} toplamı parantez içine alınırsa"
+        wr = [_ev(f"{a} + {b} * {c} - {d}"), _ev(f"{a} + {b} * ({c} - {d})"), _ev(f"({a} + {b}) * ({c} - {d})"), _ev(f"{a} + {b} * {c} + {d}")]
+    elif k == "bc":
+        v, txt = _ev(f"{a} + {b} * ({c} - {d})"), f"{c} − {d} farkı parantez içine alınırsa"
+        wr = [_ev(f"{a} + {b} * {c} - {d}"), _ev(f"({a} + {b}) * {c} - {d}"), _ev(f"({a} + {b}) * ({c} - {d})"), _ev(f"{a} + {b} * {c} + {d}")]
+    else:
+        v, txt = _ev(f"{a} + {b} * {c} - {d}"), "parantez kullanılmadan, işlem önceliğine göre"
+        wr = [_ev(f"({a} + {b}) * {c} - {d}"), _ev(f"{a} + {b} * ({c} - {d})"), _ev(f"({a} + {b}) * ({c} - {d})"), _ev(f"{a} + {b} * {c} + {d}")]
+    wr = [x for x in dict.fromkeys(wr) if x != v]
+    o = _mf_opts(v, wr, str)
+    return _mf_raw(subject, "İşlem Önceliği", f"{base} işleminde {txt} işlemin sonucu kaç olur?", o, f"İşlem önceliğine göre önce parantez içi, sonra çarpma, en son toplama ve çıkarma yapılır; sonuç {v} olur.") if o else None
+
+
+def _mf5_cb_ifade(subject):
+    n1, n2 = random.randint(2, 6), random.randint(2, 5)
+    p1, p2 = random.randint(8, 20), random.randint(3, 9)
+    if p1 == p2 or n1 == n2:
+        return None
+    para = (n1 * p1 + n2 * p2) // 10 * 10 + 10 + random.choice([0, 10])
+    cor = f"{para} − ({n1} × {p1} + {n2} × {p2})"
+    wr = [f"{para} − ({n1} × {p2} + {n2} × {p1})", f"{para} − ({n1} + {n2}) × {p1}", f"{para} − ({p1} + {p2}) × ({n1} + {n2})"]
+    vc = _ev(cor)
+    if any(_ev(x) == vc for x in wr) or vc <= 0:
+        return None
+    o = _yn_opts(cor, wr)
+    return _mf_raw(subject, "İşlem Önceliği", f"Bir kırtasiyede defterin tanesi {p1} TL, kalemin tanesi {p2} TL'dir. {n1} defter ve {n2} kalem satın alıp kasiyere {para} TL veren bir öğrenci vardır.\nÖğrencinin alacağı para üstünü bulmak için aşağıdaki işlemlerden hangisi yapılmalıdır?", o, f"Önce toplam tutar ({n1} × {p1} + {n2} × {p2}) bulunur, sonra verilen paradan çıkarılır; para üstü {vc} TL'dir.") if o else None
+
+
+def _mf5_cb_algo(subject):
+    kind = random.choice(["car", "bol"])
+    if kind == "car":
+        a, b = random.randint(12, 89), random.randint(12, 49)
+        b0, b1 = b % 10, b // 10
+        if b0 == 0:
+            return None
+        v1, v2, t = a * b0, a * b1 * 10, a * b
+        rows = [["1", f"{a} × {b0}", str(v1)], ["2", f"{a} × {b1 * 10}", "?"], ["3", f"{v1} + ?", str(t)]]
+        o = _mf_opts(v2, [a * b1, v2 + a, v2 - a, a * b0 * 10, v1 * 10], str)
+        return _mf_raw(subject, "Çarpma Algoritması", f"Tabloda {a} × {b} işleminin çarpma algoritması adım adım gösterilmiştir. Soru işaretiyle gösterilen sayılar aynı değerdir.\nBuna göre soru işareti yerine hangi sayı gelmelidir?", o, f"{a} × {b1 * 10} = {v2}; {v1} + {v2} = {t}.", shape={"type": "table", "title": "Çarpma algoritması", "headers": ["Adım", "İşlem", "Sonuç"], "rows": rows}) if o else None
+    d = random.randint(6, 19)
+    q_, r_ = random.randint(12, 60), random.randint(1, 5)
+    if r_ >= d:
+        return None
+    n = d * q_ + r_
+    rows = [["Bölünen", str(n)], ["Bölen", str(d)], ["Bölüm", str(q_)], ["Kalan", "?"]]
+    o = _mf_opts(r_, [r_ + 1, r_ + 2, d - r_, q_ % 10 or 3, r_ + 3], str)
+    return _mf_raw(subject, "Bölme Algoritması", f"Tabloda bir bölme işleminin bölünen, bölen ve bölüm değerleri verilmiştir.\nBuna göre soru işareti yerine hangi sayı yazılmalıdır?", o, f"{d} × {q_} + kalan = {n} olduğundan kalan {n} − {d * q_} = {r_}'dir.", shape={"type": "table", "title": "Bölme algoritması", "headers": ["Öğe", "Değer"], "rows": rows}) if o else None
+
+
+_M5_CODES = {}
+_PR_FAMS = [(_mf5_pr_spek, 3, ["MAT.5.6.1"]), (_mf5_pr_torba, 3, ["MAT.5.6.2"]), (_mf5_pr_carki, 3, ["MAT.5.6.2"]), (_mf5_pr_tablo, 3, ["MAT.5.6.1", "MAT.5.6.2"]), (_mf5_pr_aralik, 2, ["MAT.5.6.1"])]
+_CB_FAMS = [(_mf5_cb_orunti, 3, ["MAT.5.2.3"]), (_mf5_cb_orunti_tab, 3, ["MAT.5.2.3"]), (_mf5_cb_terazi, 3, ["MAT.5.2.1"]), (_mf5_cb_koru, 2, ["MAT.5.2.1"]),
+            (_mf5_cb_ozellik, 3, ["MAT.5.2.1"]), (_mf5_cb_parantez, 3, ["MAT.5.2.2"]), (_mf5_cb_ifade, 3, ["MAT.5.2.2"]), (_mf5_cb_algo, 3, ["MAT.5.2.4"])]
+for _f, _d, _c in _PR_FAMS:
+    _MF_GENS.append((_m5v(_f), ("olasılık",), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _M5_CODES[_f.__name__] = _c
+for _f, _d, _c in _CB_FAMS:
+    _MF_GENS.append((_m5v(_f) if _f not in (_mf5_cb_ozellik, _mf5_cb_parantez, _mf5_cb_ifade) else _m5_lead(_f), ("cebirsel düşünme",), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _M5_CODES[_f.__name__] = _c
+
+
 _FF_GENS[:] = [((_f5_vary(_e[0]), _e[1]) if _e[0].__name__ in _F5_VARY else _e) for _e in _FF_GENS]
 
 
@@ -33619,6 +33987,7 @@ for _f, _d, _kk, _cd in _M6B_FAMS:
 
 
 _MF_ITEMCODE.update({"_mf_eqlty2": ["MAT.5.2.1"], "_mf_order2": ["MAT.5.2.2"], "_mf_dik_problem": ["MAT.5.4.4"], "_mf_frac_kars": ["MAT.5.1.4"]})
+_MF_ITEMCODE.update(_M5_CODES)
 
 
 def _fam_item(name, fn, subject, items):
