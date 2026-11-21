@@ -6858,6 +6858,28 @@ def create_profile(name, pin=""):
     return pid, None
 
 
+def delete_profile(pid):
+    """Profili ve tüm verisini siler (yerel + GitHub yedeği). Misafir verisi için drop_guest kullanılır. -> (ok, hata)"""
+    import shutil
+    pid = str(pid or "")
+    if not pid or pid.startswith("guest_") or "/" in pid or "\\" in pid or ".." in pid:
+        return False, "Geçersiz profil."
+    pr = profiles()
+    if pid not in pr:
+        return False, "Profil bulunamadı."
+    pr.pop(pid)
+    _save("profiles.json", pr)
+    shutil.rmtree(os.path.join(DATA, "profiles", pid), ignore_errors=True)
+    if _ACTIVE.get("pid") == pid:
+        _ACTIVE["pid"] = ""
+    try:
+        gh_delete_profile_async(pid)
+        gh_sync_async(0)  # güncel profiles.json yedeğe gitsin
+    except Exception:
+        pass
+    return True, None
+
+
 def verify_profile(pid, pin=""):
     e = profiles().get(pid)
     if not e:
@@ -6885,11 +6907,31 @@ def _load(name, default):
         return default
 
 
+_SAVE_LOCK = _pth.RLock()
+
+
 def _save(name, obj):
-    tmp = _p(name) + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False)
-    os.replace(tmp, _p(name))
+    """Atomik yazım: her yazıcıya ayrı geçici dosya (iki iş parçacığı aynı .tmp'yi ezip 'dosya yok' hatası vermesin)."""
+    path = _p(name)
+    tmp = f"{path}.{os.getpid()}.{_pth.get_ident()}.{uuid.uuid4().hex[:6]}.tmp"
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(obj, f, ensure_ascii=False)
+        with _SAVE_LOCK:
+            for _i in range(5):
+                try:
+                    os.replace(tmp, path)
+                    break
+                except PermissionError:
+                    time.sleep(0.05)
+            else:
+                os.replace(tmp, path)
+    finally:
+        try:
+            if os.path.exists(tmp):
+                os.remove(tmp)
+        except Exception:
+            pass
 
 
 # ---- geçmiş
@@ -7262,32 +7304,45 @@ def reports(subject=None, n=60):
 
 
 def audit_pool_files(keep_fn):
-    """Banka ve beğeni havuzundaki soruları güncel kurallarla yeniden denetler; geçemeyenleri siler. -> silinen sayısı"""
+    """Banka ve beğeni havuzundaki soruları güncel kurallarla yeniden denetler; geçemeyenleri siler. -> silinen sayısı
+    Ağır denetim kilit DIŞINDA yapılır (arayüz kilitte beklemesin); kilit yalnızca son silme anında kısa süre alınır."""
+    import hashlib as _h
+
+    def sig(q):
+        try:
+            return _h.md5(json.dumps(q, sort_keys=True, ensure_ascii=False, default=str).encode("utf-8")).hexdigest()
+        except Exception:
+            return str(id(q))
+
+    def ok_of(q):
+        try:
+            r = keep_fn(q)
+        except Exception:
+            r = True
+        time.sleep(0.002)  # arayüz iş parçacığına yer bırak
+        return r
+
+    with _BANK_LOCK:
+        snap = {k: list(v.get("qs", [])) for k, v in _bank().items()}
+        P0 = list(_load("lpool.json", []))
+    bad = set()
+    for k, qs in snap.items():
+        for q in qs:
+            if not ok_of(q):
+                bad.add(sig(q))
+    badp = {sig(x) for x in P0 if not ok_of(x.get("q"))}
     removed = 0
     with _BANK_LOCK:
         b = _bank()
         for k in list(b):
-            good = []
-            for q in b[k]["qs"]:
-                try:
-                    ok = keep_fn(q)
-                except Exception:
-                    ok = True
-                good.append(q) if ok else None
+            good = [q for q in b[k]["qs"] if sig(q) not in bad]
             removed += len(b[k]["qs"]) - len(good)
             b[k]["qs"] = good
             if not good:
                 b.pop(k)
         _save("bank.json", b)
         P = _load("lpool.json", [])
-        goodp = []
-        for x in P:
-            try:
-                ok = keep_fn(x["q"])
-            except Exception:
-                ok = True
-            if ok:
-                goodp.append(x)
+        goodp = [x for x in P if sig(x) not in badp]
         removed += len(P) - len(goodp)
         _save("lpool.json", goodp)
     return removed
@@ -7583,31 +7638,41 @@ def _gh_walk(cfg, path=""):
 
 
 def gh_pull_once():
-    """Süreç başına bir kez: yerelde olmayan data/**.json dosyalarını GitHub'dan indirir (var olanı ezmez)."""
+    """Süreç başına bir kez: yerelde olmayan data/**.json dosyalarını GitHub'dan indirir (var olanı ezmez).
+    Dosyalar paralel indirilir ve toplam süre sınırlıdır (ilk açılış uzun beklemesin)."""
     if _GH["pulled"]:
         return
     _GH["pulled"] = True
     cfg = gh_cfg()
     if not cfg:
         return
+    t0 = time.time()
     try:
         rels = _gh_walk(cfg)
         if not rels:
             _GH.update(ok=True, msg="yedek henüz yok")
             return
-        n = 0
-        for rel in rels:
-            if os.path.exists(_abs(rel)):
-                continue
+        todo = [r for r in rels if not os.path.exists(_abs(r))]
+        # profiles.json önce gelsin: giriş ekranı için en önemli dosya
+        todo.sort(key=lambda r: (r != "profiles.json", r))
+
+        def one(rel):
+            if time.time() - t0 > 40:
+                return 0
             st2, d = _gh(cfg, "GET", f"/contents/data/{rel}?ref={cfg['branch']}")
             if st2 == 200 and d and d.get("content"):
                 raw = _b64.b64decode(d["content"])
                 os.makedirs(os.path.dirname(_abs(rel)), exist_ok=True)
-                with open(_abs(rel) + ".tmp", "wb") as f:
+                tmp = _abs(rel) + f".{uuid.uuid4().hex[:6]}.tmp"
+                with open(tmp, "wb") as f:
                     f.write(raw)
-                os.replace(_abs(rel) + ".tmp", _abs(rel))
+                os.replace(tmp, _abs(rel))
                 _GH["state"][rel] = _hl.md5(raw).hexdigest()
-                n += 1
+                return 1
+            return 0
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=6) as ex:
+            n = sum(ex.map(one, todo))
         _GH.update(ok=True, msg=f"{n} dosya geri yüklendi")
     except Exception as e:
         _GH.update(ok=False, msg=f"geri yükleme hatası: {type(e).__name__}")
@@ -7643,6 +7708,27 @@ def gh_push():
             return n
     _GH.update(ok=True, msg=f"{n} dosya yedeklendi" if n else "güncel", last=time.time())
     return n
+
+
+def gh_delete_profile_async(pid):
+    """Silinen profilin GitHub yedeğini (data/profiles/<pid>/*.json) arka planda siler; yoksa yeniden başlatmada geri gelmesin."""
+    cfg = gh_cfg()
+    if not cfg or not pid:
+        return False
+
+    def run():
+        try:
+            st_, lst = _gh(cfg, "GET", f"/contents/data/profiles/{pid}?ref={cfg['branch']}")
+            if st_ == 200 and isinstance(lst, list):
+                for it in lst:
+                    if it.get("type") == "file" and it.get("sha"):
+                        _gh(cfg, "DELETE", f"/contents/{it['path']}", {"message": f"profil silindi: {pid}", "sha": it["sha"], "branch": cfg["branch"]})
+            for k in [k for k in _GH["state"] if k.startswith(f"profiles/{pid}/")]:
+                _GH["state"].pop(k, None)
+        except Exception:
+            pass
+    _th.Thread(target=run, daemon=True).start()
+    return True
 
 
 def gh_sync_async(min_interval=120):
@@ -38703,6 +38789,38 @@ from ui import theme, state, setup, wizard, exam, reports, extras, study, videos
 theme.inject()
 
 
+def _profile_delete_ui(pid, key, after_logout=False):
+    """Profil silme: PIN (varsa) + yazarak onay. Profilin geçmişi, yanlışları, ayarları ve yedeği kalıcı olarak silinir."""
+    from core import store as _ps
+    pr = _ps.profiles()
+    if pid not in pr:
+        return
+    nm = pr[pid]["name"]
+    with st.expander("🗑️ Bu profili sil", expanded=False):
+        st.warning(f"**{nm}** profili ve tüm verisi (sınav geçmişi, yanlış arşivi, ayarlar, kayıtlı videolar) kalıcı olarak silinir. Bu işlem geri alınamaz.")
+        pin = st.text_input("Profil PIN'i", type="password", key=f"{key}_dpin") if pr[pid].get("pin") else ""
+        typed = st.text_input(f"Onay için profil adını yaz: {nm}", key=f"{key}_dname", max_chars=30)
+        if st.button("🗑️ Profili kalıcı olarak sil", key=f"{key}_dgo", use_container_width=True):
+            if typed.strip().lower() != nm.strip().lower():
+                st.error("Yazdığın ad profil adıyla eşleşmiyor.")
+            elif not _ps.verify_profile(pid, pin):
+                st.error("PIN yanlış.")
+            else:
+                ok, err = _ps.delete_profile(pid)
+                if not ok:
+                    st.error(err or "Profil silinemedi.")
+                else:
+                    try:
+                        if str(st.query_params.get("u", "")) == pid:
+                            st.query_params.clear()
+                    except Exception:
+                        pass
+                    for _k in list(st.session_state.keys()):
+                        del st.session_state[_k]
+                    st.session_state["_msg_deleted"] = nm
+                    st.rerun()
+
+
 def _profile_gate():
     """Profil girişi: kayıtlı profil (isteğe bağlı PIN), yeni profil ya da misafir modu. Giriş yapılmadan uygulama açılmaz."""
     from core import store as _ps
@@ -38720,6 +38838,8 @@ def _profile_gate():
         pass
     _l, _m, _r = st.columns([1, 2, 1])
     with _m:
+        if st.session_state.get("_msg_deleted"):
+            st.success(f"“{st.session_state.pop('_msg_deleted')}” profili silindi.")
         st.markdown("<div class='brand' style='text-align:center;font-size:2rem;margin:1.5rem 0 .3rem'>🎓 Deneme<span>matik</span></div>"
                     "<div style='text-align:center;opacity:.75;margin-bottom:1rem'>Kimin için çalışıyoruz?</div>", unsafe_allow_html=True)
         if pr:
@@ -38737,6 +38857,7 @@ def _profile_gate():
                     st.rerun()
                 else:
                     st.error("PIN yanlış.")
+            _profile_delete_ui(pid, "lg")
         with st.expander("➕ Yeni profil oluştur", expanded=not pr):
             nm = st.text_input("Ad", key="lg_new", max_chars=30)
             npin = st.text_input("PIN (isteğe bağlı, 4+ karakter)", type="password", key="lg_newpin")
@@ -38785,7 +38906,12 @@ if "meb_loaded" not in st.session_state:
     # MEB müfredatı: arka planda (arayüzü bekletmeden) güncellenir; yerleşik müfredat anında hazırdır
     try:
         import threading
-        if not ai_engine.demo_mode() and meb_live.needs_refresh() and not getattr(sys.modules["core"], "_meb_thread", None):
+        _auto = os.environ.get("MEB_LIVE_AUTO") == "1"
+        try:
+            _auto = _auto or bool(st.secrets.get("meb_live_auto", False))  # varsayılan KAPALI: PDF indirme/ayrıştırma sunucuyu yavaşlatıyordu
+        except Exception:
+            pass
+        if _auto and not ai_engine.demo_mode() and meb_live.needs_refresh() and not getattr(sys.modules["core"], "_meb_thread", None):
             _t = threading.Thread(target=lambda: meb_live.refresh(deadline=60), daemon=True)
             sys.modules["core"]._meb_thread = _t
             _t.start()
@@ -38823,6 +38949,8 @@ with st.sidebar:
     st.markdown("<div style='font-size:.95rem;margin:.2rem 0 .4rem'>" + ("🕶️" if _pg else "👤") + " <b>" + _pn + "</b>"
                 + (" <span style='opacity:.7'>(misafir)</span>" if _pg else "") + "</div>", unsafe_allow_html=True)
     st.button("🚪 Oturumu kapat", key="nv_logout", use_container_width=True, on_click=_logout)
+    if not _pg and st.session_state.get("profile_id"):
+        _profile_delete_ui(st.session_state["profile_id"], "sb")
     st.markdown("---")
     st.button("🏠 Ana Sayfa", key="nv_home", use_container_width=True, on_click=lambda: (state.reset_exam(), state.nav("home")))
     st.button("📄 Yaprak Test", key="nv_leaf", use_container_width=True, on_click=setup._tool_go, args=("leaf_start",))
@@ -38837,8 +38965,9 @@ with st.sidebar:
         _tech = str(st.query_params.get("admin", "")) == "1"  # teknik veriler yalnızca adres sonuna ?admin=1 eklenince görünür
         try:
             from core import ai_engine as _gai
-            _gai.audit_pools_async()
-            _gai.daily_fill_async()
+            if st.session_state.get("page") not in ("exam", "sess_break", "ready"):  # sınav sırasında arka plan işi başlatma
+                _gai.audit_pools_async()
+                _gai.daily_fill_async()
         except Exception:
             pass
         try:
