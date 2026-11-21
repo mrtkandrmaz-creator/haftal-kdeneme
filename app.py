@@ -36106,6 +36106,7 @@ def reset_exam():
         st.session_state[k] = copy.deepcopy(DEFAULTS[k])
 '''
 MODULES['ui/setup'] = r'''# -*- coding: utf-8 -*-
+import re
 import time
 import random
 import uuid
@@ -36260,6 +36261,51 @@ def _olimp_practice(g, subject):
     st.session_state.wz = {"step": 1}
 
 
+_OL_KW = {"fizik": ("kuvvet", "hareket", "enerji", "ışık", "ışığ", "ses", "elektrik", "basınç", "sürtünme", "devre", "ısı", "makine"),
+          "kimya": ("madde", "atom", "tepkime", "karışım", "asit", "baz", "periyodik", "endüstri", "değişim"),
+          "biyo": ("hücre", "canlı", "dna", "genetik", "kalıtım", "ekosistem", "bitki", "sistem", "çevre", "bölünme"),
+          "astro": ("güneş", "dünya", "ay", "uzay", "tutulma", "mevsim", "gök", "yıldız")}
+
+
+def _olimp_muf(g, k, it):
+    """Seçili olimpiyata hazırlık için ilgili dersin sınıf müfredatı (ünite + kazanım). Olimpiyatlar okul müfredatının ötesine de geçebilir."""
+    sj = it.get("subject")
+    if not sj:
+        return
+    gn = "8" if g == "LGS" else g
+    try:
+        top = int(gn)
+    except Exception:
+        return
+    st.markdown("<div class='sec-title'>📚 Müfredat (ünite ve kazanımlar)</div>", unsafe_allow_html=True)
+    if k == "cog":
+        st.caption("8. sınıfta Coğrafya ayrı bir ders değildir; en yakın içerik olan 7. sınıf Sosyal Bilgiler müfredatı gösteriliyor.")
+        pairs = [("7", "Sosyal Bilgiler")]
+    else:
+        lo = 5 if k in ("mat", "bil") else 5
+        pairs = [(str(x), sj) for x in range(lo, top + 1)]
+        st.caption("TÜBİTAK olimpiyat sınavları okul müfredatının ötesine geçebilir ve önceki sınıfların konularını da içerir; bu yüzden 5. sınıftan seçtiğin sınıfa kadar bütün müfredat listelendi. Resmî konu kapsamı için çağrı metnine bak.")
+    if k == "bil":
+        st.caption("Bilgisayar dalı için ayrı bir MEB kazanım listesi burada yok; algoritmik düşünme matematik mantığına dayandığı için Matematik müfredatı gösteriliyor.")
+    tabs = st.tabs([f"{gg}. sınıf" for gg, _s in pairs])
+    for tab, (gg, ss) in zip(tabs, pairs):
+        with tab:
+            try:
+                units = cur.units(gg, ss)
+            except Exception:
+                units = []
+            if not units:
+                st.caption("Bu sınıf için müfredat bulunamadı.")
+            kws = _OL_KW.get(k, ())
+            for name, kz in units:
+                _tx = (name + " " + " ".join(kz)).replace("İ", "i").replace("I", "ı").lower()
+                star = "🎯 " if kws and any(re.search(r"(?<![a-zçğıöşü])" + re.escape(w), _tx) for w in kws) else ""
+                st.markdown(f"**{star}{name}**")
+                st.markdown("\n".join(f"- {x}" for x in kz))
+    if k in _OL_KW:
+        st.caption("🎯 işareti, bu olimpiyat dalıyla en çok ilişkili üniteleri gösterir (anahtar sözcüğe göre; resmî bir liste değildir).")
+
+
 def olimp_detail():
     g = st.session_state.get("olimp_g") or "5"
     k = st.session_state.get("olimp_item")
@@ -36274,6 +36320,7 @@ def olimp_detail():
     st.markdown("\n".join(f"- {x}" for x in it["info"]))
     st.markdown("<div class='sec-title'>🎯 Hazırlık için çalış</div>", unsafe_allow_html=True)
     st.markdown("\n".join(f"- {x}" for x in it["tips"]))
+    _olimp_muf(g, k, it)
     if it.get("subject"):
         st.button(f"🧠 {it['subject']} antrenman sınavı çöz", key="ol_prac", type="primary", on_click=_olimp_practice, args=(g, it["subject"]))
         st.caption(f"Soru bankasında ders olarak **{it['subject']}** seç; yeni nesil, beceri temelli sorular gelir. (Gerçek olimpiyat soruları değildir; benzer düşünme becerisini çalıştırır.)")
