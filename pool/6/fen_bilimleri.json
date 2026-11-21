@@ -26,7 +26,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Ay'ın evreleri",
 "passage": "",
-"question": "Deniz, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt i̇lk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"question": "Deniz, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
 "shape": null,
 "options": {
 "A": "Dolunay – Yeni ay – Son dördün",
@@ -56,7 +56,7 @@
 "D": "Yeni ay"
 },
 "answer": "B",
-"explanation": "Yeni ay evresinden sonra i̇lk dördün evresi gelir.",
+"explanation": "Yeni ay evresinden sonra ilk dördün evresi gelir.",
 "unit": "Güneş Sistemi ve Tutulmalar",
 "topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
 "d": 3,
@@ -152,7 +152,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, Dünya’nın doğal uydusudur.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, Dünya’nın doğal uydusudur.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -194,7 +194,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nII. Ay’ın evreleri her gün tekrarlanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nII. Ay’ın evreleri her gün tekrarlanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -401,7 +401,7 @@
 "options": {
 "A": "L",
 "B": "K",
-"C": "Hepsi aynı büyüklüktedir.",
+"C": "Hepsi aynı büyüklüktedir",
 "D": "N"
 },
 "answer": "D",
@@ -655,7 +655,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Ay'ın evreleri",
 "passage": "",
-"question": "Ay'ın i̇lk dördün evresinden 2 hafta önce gözlemlenen evre aşağıdakilerden hangisidir?",
+"question": "Ay'ın ilk dördün evresinden 2 hafta önce gözlemlenen evre aşağıdakilerden hangisidir?",
 "shape": null,
 "options": {
 "A": "İlk dördün",
@@ -676,7 +676,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Ay'ın evreleri",
 "passage": "",
-"question": "Cenk, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt i̇lk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"question": "Cenk, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
 "shape": null,
 "options": {
 "A": "Yeni ay – Son dördün – Dolunay",
@@ -760,7 +760,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -802,7 +802,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\nIII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\nIII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "I ve II",
@@ -1009,7 +1009,7 @@
 "options": {
 "A": "T",
 "B": "N",
-"C": "Hepsi aynı büyüklüktedir.",
+"C": "Hepsi aynı büyüklüktedir",
 "D": "M"
 },
 "answer": "B",
@@ -1263,7 +1263,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Ay'ın evreleri",
 "passage": "",
-"question": "Ay'ın i̇lk dördün evresinden 3 hafta sonra gözlemlenen evre aşağıdakilerden hangisidir?",
+"question": "Ay'ın ilk dördün evresinden 3 hafta sonra gözlemlenen evre aşağıdakilerden hangisidir?",
 "shape": null,
 "options": {
 "A": "İlk dördün",
@@ -1284,7 +1284,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Ay'ın evreleri",
 "passage": "",
-"question": "Elif, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt i̇lk dördün evresi olduğuna göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"question": "Elif, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğuna göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
 "shape": null,
 "options": {
 "A": "Yeni ay – Son dördün – Dolunay",
@@ -1368,7 +1368,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\nII. Güneş, kendi ışığını yayan bir yıldızdır.\nIII. Dünya, Ay’dan daha küçüktür.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\nII. Güneş, kendi ışığını yayan bir yıldızdır.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -1410,7 +1410,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri her gün tekrarlanır.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri her gün tekrarlanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -1615,7 +1615,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hepsi aynı büyüklüktedir.",
+"A": "Hepsi aynı büyüklüktedir",
 "B": "R",
 "C": "S",
 "D": "K"
@@ -1892,7 +1892,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Ay'ın evreleri",
 "passage": "",
-"question": "Ayşe, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt i̇lk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"question": "Ayşe, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
 "shape": null,
 "options": {
 "A": "Son dördün – Dolunay – Yeni ay",
@@ -1922,7 +1922,7 @@
 "D": "Yeni ay"
 },
 "answer": "A",
-"explanation": "Yeni ay evresinden sonra i̇lk dördün evresi gelir.",
+"explanation": "Yeni ay evresinden sonra ilk dördün evresi gelir.",
 "unit": "Güneş Sistemi ve Tutulmalar",
 "topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
 "d": 3,
@@ -1976,7 +1976,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’dan çok daha büyüktür.\nIII. Güneş, Dünya’nın doğal uydusudur.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’dan çok daha büyüktür.\nIII. Güneş, Dünya’nın doğal uydusudur.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -1997,7 +1997,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -2268,7 +2268,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Dünya, Ay’dan daha küçüktür.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -2289,7 +2289,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nIII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nIII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -2518,7 +2518,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Güneş, Dünya’dan çok daha büyüktür.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Güneş, Dünya’dan çok daha büyüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -2539,7 +2539,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nIII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nIII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -2738,7 +2738,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Güneş, kendi ışığını yayan bir yıldızdır.\nIII. Dünya, Ay’dan daha küçüktür.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Güneş, kendi ışığını yayan bir yıldızdır.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -2759,7 +2759,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -2915,7 +2915,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Dünya, Ay’dan daha küçüktür.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -2936,7 +2936,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri her gün tekrarlanır.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri her gün tekrarlanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -3071,7 +3071,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, Dünya’nın etrafında dolanır.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, Dünya’nın etrafında dolanır.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3092,7 +3092,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nII. Ay’ın evreleri her gün tekrarlanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nII. Ay’ın evreleri her gün tekrarlanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3227,7 +3227,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3248,7 +3248,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -3330,7 +3330,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Güneş, Dünya’dan çok daha büyüktür.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Güneş, Dünya’dan çok daha büyüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -3351,7 +3351,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\ngüneş, dünya ve ay konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3433,7 +3433,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Ay, Dünya’nın doğal uydusudur.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Ay, Dünya’nın doğal uydusudur.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3515,7 +3515,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Ay, Dünya’nın etrafında dolanır.\nIII. Güneş, Dünya’nın etrafında dolanır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Ay, Dünya’nın etrafında dolanır.\nIII. Güneş, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -3597,7 +3597,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Ay, kendi ışığını yayan bir yıldızdır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Ay, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3679,7 +3679,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Güneş, Dünya’nın doğal uydusudur.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Güneş, Dünya’nın doğal uydusudur.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3761,7 +3761,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, Dünya’nın doğal uydusudur.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Dünya, Ay’dan daha küçüktür.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, Dünya’nın doğal uydusudur.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3843,7 +3843,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Ay, Dünya’nın etrafında dolanır.\nII. Ay, kendi ışığını yayan bir yıldızdır.\nIII. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ay, Dünya’nın etrafında dolanır.\nII. Ay, kendi ışığını yayan bir yıldızdır.\nIII. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -3925,7 +3925,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, Dünya’nın doğal uydusudur.\nII. Ay, kendi ışığını yayan bir yıldızdır.\nIII. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, Dünya’nın doğal uydusudur.\nII. Ay, kendi ışığını yayan bir yıldızdır.\nIII. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -4007,7 +4007,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -4089,7 +4089,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Dünya, Ay’dan daha küçüktür.\nII. Ay, Güneş’ten daha büyüktür.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Dünya, Ay’dan daha küçüktür.\nII. Ay, Güneş’ten daha büyüktür.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -4171,7 +4171,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Güneş, Dünya ve Ay",
 "passage": "",
-"question": "I. Güneş, Dünya’nın etrafında dolanır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\ngüneş, dünya ve ay hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Güneş, Dünya’nın etrafında dolanır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -4192,7 +4192,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre K harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre K harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -4458,7 +4458,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre P harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre P harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -4996,7 +4996,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -5034,7 +5034,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nİdrarın vücuttan atılmadan önce biriktiği organ şekilde hangi harfle gösterilmiştir?",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekilde boşaltım sisteminde idrarın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nİdrarın vücuttan atılmadan önce biriktiği organ şekilde hangi harfle gösterilmiştir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -5264,7 +5264,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre S harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre S harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -6241,7 +6241,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -6408,7 +6408,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre P harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre P harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -7014,7 +7014,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBu bilgilere göre M harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBu bilgilere göre M harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -7129,7 +7129,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Vücudumuzdaki Sistemler",
 "passage": "",
-"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde boşaltım sisteminde i̇drarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre M harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre M harfiyle gösterilen organ aşağıdakilerden hangisidir?",
 "shape": {
 "type": "f6",
 "sub_type": "zincir",
@@ -8101,7 +8101,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvet",
 "passage": "",
-"question": "I. Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.\nII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\nIII. Sürtünme kuvveti her zaman hareket yönündedir.\nkuvvet konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.\nII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\nIII. Sürtünme kuvveti her zaman hareket yönündedir.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -8143,7 +8143,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nIII. Ağırlığın birimi kilogram (kg)’dır.\nkuvvetin ölçülmesi ve sürtünme hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nIII. Ağırlığın birimi kilogram (kg)’dır.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -8206,7 +8206,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Havaya atılan cisimlerin yere düşmesinin nedeni yer çekimi kuvvetidir.\nII. Kuvvetin birimi gram’dır.\nIII. Hamura uygulanan kuvvet hamurun kütlesini azaltır.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Havaya atılan cisimlerin yere düşmesinin nedeni yer çekimi kuvvetidir.\nII. Kuvvetin birimi gram’dır.\nIII. Hamura uygulanan kuvvet hamurun kütlesini azaltır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -8248,7 +8248,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Kütlenin birimi kilogramdır.\nII. Basit bir dinamometre modeli bir ampul ve pil ile yapılabilir.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kütlenin birimi kilogramdır.\nII. Basit bir dinamometre modeli bir ampul ve pil ile yapılabilir.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -8290,7 +8290,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Havaya atılan cisimlerin yere düşmesinin nedeni mıknatıs kuvvetidir.\nII. Dinamometre ile ölçülen kuvvetin birimi newton’dur.\nIII. Ağırlığın birimi litre’dir.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Havaya atılan cisimlerin yere düşmesinin nedeni mıknatıs kuvvetidir.\nII. Dinamometre ile ölçülen kuvvetin birimi newton’dur.\nIII. Ağırlığın birimi litre’dir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -8332,7 +8332,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlık bir kuvvet olduğu için birimi newton’dur.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismin kütlesini artırır.\nIII. Makine parçalarındaki sürtünme yağlayarak azaltılır.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ağırlık bir kuvvet olduğu için birimi newton’dur.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismin kütlesini artırır.\nIII. Makine parçalarındaki sürtünme yağlayarak azaltılır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -8524,7 +8524,7 @@
 "A": "R",
 "B": "S",
 "C": "K",
-"D": "Hepsinde sürtünme kuvveti eşittir."
+"D": "Hepsinde sürtünme kuvveti eşittir"
 },
 "answer": "C",
 "explanation": "Sabit hızla çekilirken dinamometre değeri sürtünme kuvvetine eşittir; en fazla değer K yüzeyindedir.",
@@ -8570,7 +8570,7 @@
 "A": "T",
 "B": "L",
 "C": "R",
-"D": "Hepsi aynı derecede pürüzlüdür."
+"D": "Hepsi aynı derecede pürüzlüdür"
 },
 "answer": "C",
 "explanation": "Sürtünme kuvveti yüzey pürüzlendikçe artar; en pürüzsüz yüzey R düzeneğindedir.",
@@ -9228,7 +9228,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvet",
 "passage": "",
-"question": "I. Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.\nII. Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\nkuvvet konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.\nII. Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -9270,7 +9270,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Bir cismin kütlesi Dünya’da ve Ay’da aynıdır.\nII. Bir cismin ağırlığı Dünya’da ve Ay’da aynıdır.\nIII. Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nkuvvetin ölçülmesi ve sürtünme hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Bir cismin kütlesi Dünya’da ve Ay’da aynıdır.\nII. Bir cismin ağırlığı Dünya’da ve Ay’da aynıdır.\nIII. Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -9333,7 +9333,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Kuvvet dinamometre ile ölçülür.\nII. Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.\nIII. Ellerimizi birbirine sürttüğümüzde ısınmamızın nedeni ışığın doğrusal yayılmasıdır.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kuvvet dinamometre ile ölçülür.\nII. Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.\nIII. Ellerimizi birbirine sürttüğümüzde ısınmamızın nedeni ışığın doğrusal yayılmasıdır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -9375,7 +9375,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ölçümden önce dinamometrenin yayı sonuna kadar gerilmelidir.\nII. Dinamometre ile ölçülen kuvvetin birimi litredir.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ölçümden önce dinamometrenin yayı sonuna kadar gerilmelidir.\nII. Dinamometre ile ölçülen kuvvetin birimi litredir.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -9417,7 +9417,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Sürtünme sayesinde lastik tekerlekler yolda kaymadan ilerler.\nII. Bir cismin Ay’daki ağırlığı Dünya’dakinden daha fazladır.\nIII. Basit bir dinamometre modeli bir ampul ve pil ile yapılabilir.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Sürtünme sayesinde lastik tekerlekler yolda kaymadan ilerler.\nII. Bir cismin Ay’daki ağırlığı Dünya’dakinden daha fazladır.\nIII. Basit bir dinamometre modeli bir ampul ve pil ile yapılabilir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -9459,7 +9459,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Sürtünme kuvveti harekete zıt yönde etki eder.\nII. Sürtünme kuvveti, temas eden yüzeylerin hareketini kolaylaştıran ve hızlandıran kuvvettir.\nIII. Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Sürtünme kuvveti harekete zıt yönde etki eder.\nII. Sürtünme kuvveti, temas eden yüzeylerin hareketini kolaylaştıran ve hızlandıran kuvvettir.\nIII. Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -9644,7 +9644,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hepsinde sürtünme kuvveti eşittir.",
+"A": "Hepsinde sürtünme kuvveti eşittir",
 "B": "M",
 "C": "P",
 "D": "S"
@@ -9693,7 +9693,7 @@
 "A": "S",
 "B": "N",
 "C": "M",
-"D": "Hepsi aynı derecede pürüzlüdür."
+"D": "Hepsi aynı derecede pürüzlüdür"
 },
 "answer": "C",
 "explanation": "Sürtünme kuvveti yüzey pürüzlendikçe artar; en pürüzsüz yüzey M düzeneğindedir.",
@@ -10243,7 +10243,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvet",
 "passage": "",
-"question": "I. Kuvvet dinamometre ile ölçülür.\nII. Kuvvetin birimi kilogram (kg)’dır.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\nkuvvet konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Kuvvet dinamometre ile ölçülür.\nII. Kuvvetin birimi kilogram (kg)’dır.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -10285,7 +10285,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Kütle, bir cismin içerdiği madde miktarıdır.\nIII. Ağırlığın birimi kilogram (kg)’dır.\nkuvvetin ölçülmesi ve sürtünme hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Kütle, bir cismin içerdiği madde miktarıdır.\nIII. Ağırlığın birimi kilogram (kg)’dır.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -10348,7 +10348,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Sürtünme kuvveti, temas eden yüzeylerin hareketini kolaylaştıran ve hızlandıran kuvvettir.\nII. Ağırlık, bir cisme etki eden yer çekimi kuvvetidir.\nIII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismin kütlesini artırır.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Sürtünme kuvveti, temas eden yüzeylerin hareketini kolaylaştıran ve hızlandıran kuvvettir.\nII. Ağırlık, bir cisme etki eden yer çekimi kuvvetidir.\nIII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismin kütlesini artırır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -10390,7 +10390,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Kütle bir kuvvettir; ağırlık ise madde miktarının ölçüsüdür.\nII. Dinamometre ile ölçüm yapılırken kuvvet yayın doğrultusunda uygulanmalıdır.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kütle bir kuvvettir; ağırlık ise madde miktarının ölçüsüdür.\nII. Dinamometre ile ölçüm yapılırken kuvvet yayın doğrultusunda uygulanmalıdır.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -10432,7 +10432,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Yer çekimi kuvveti cisimleri Dünya’dan uzaklaştırır.\nII. Kuvvet dinamometre ile ölçülür.\nIII. Sürtünme sayesinde lastik tekerlekler yolda kaymadan ilerler.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Yer çekimi kuvveti cisimleri Dünya’dan uzaklaştırır.\nII. Kuvvet dinamometre ile ölçülür.\nIII. Sürtünme sayesinde lastik tekerlekler yolda kaymadan ilerler.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -10474,7 +10474,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Buz pistinde sürtünme kuvveti halıdakinden daha fazladır.\nII. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nIII. Kuvvetin birimi gram’dır.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Buz pistinde sürtünme kuvveti halıdakinden daha fazladır.\nII. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nIII. Kuvvetin birimi gram’dır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -10659,7 +10659,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hepsinde sürtünme kuvveti eşittir.",
+"A": "Hepsinde sürtünme kuvveti eşittir",
 "B": "S",
 "C": "K",
 "D": "N"
@@ -10707,7 +10707,7 @@
 "options": {
 "A": "T",
 "B": "R",
-"C": "Hepsi aynı derecede pürüzlüdür.",
+"C": "Hepsi aynı derecede pürüzlüdür",
 "D": "P"
 },
 "answer": "B",
@@ -11163,7 +11163,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvet",
 "passage": "",
-"question": "I. Kuvvetin birimi newton (N)’dur.\nII. Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.\nIII. Sürtünme kuvveti hareket yönüne zıt yöndedir.\nkuvvet konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Kuvvetin birimi newton (N)’dur.\nII. Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.\nIII. Sürtünme kuvveti hareket yönüne zıt yöndedir.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -11205,7 +11205,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Ağırlığın birimi kilogram (kg)’dır.\nIII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nkuvvetin ölçülmesi ve sürtünme hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Ağırlığın birimi kilogram (kg)’dır.\nIII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11268,7 +11268,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.\nII. Kuvvetin yalnızca büyüklüğü vardır, yönü yoktur.\nIII. Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.\nII. Kuvvetin yalnızca büyüklüğü vardır, yönü yoktur.\nIII. Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11310,7 +11310,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Sürtünme kuvveti harekete aynı yönde etki eder.\nII. Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.\nIII. Buz pistinde sürtünme kuvveti halıdakinden daha fazladır.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Sürtünme kuvveti harekete aynı yönde etki eder.\nII. Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.\nIII. Buz pistinde sürtünme kuvveti halıdakinden daha fazladır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -11352,7 +11352,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nII. Ölçümden önce dinamometrenin yayı sonuna kadar gerilmelidir.\nIII. Dinamometre ile ölçülen kuvvetin birimi litredir.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nII. Ölçümden önce dinamometrenin yayı sonuna kadar gerilmelidir.\nIII. Dinamometre ile ölçülen kuvvetin birimi litredir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11394,7 +11394,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Kuvvet, cisimlerin yalnızca rengini değiştirebilir.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismi durdurabilir.\nIII. Sürtünme kuvveti harekete zıt yönde etki eder.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kuvvet, cisimlerin yalnızca rengini değiştirebilir.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismi durdurabilir.\nIII. Sürtünme kuvveti harekete zıt yönde etki eder.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11643,7 +11643,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvet",
 "passage": "",
-"question": "I. Kuvvetin birimi newton (N)’dur.\nII. Yer çekimi kuvveti cisimleri yukarı doğru iter.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.\nkuvvet konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Kuvvetin birimi newton (N)’dur.\nII. Yer çekimi kuvveti cisimleri yukarı doğru iter.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11664,7 +11664,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nII. Ağırlığın birimi newton (N)’dur.\nIII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nkuvvetin ölçülmesi ve sürtünme hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nII. Ağırlığın birimi newton (N)’dur.\nIII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11706,7 +11706,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlık, bir cismin kapladığı hacimdir.\nII. Kuvvet termometre ile ölçülür.\nIII. Hamura uygulanan kuvvet hamurun şeklini değiştirir.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ağırlık, bir cismin kapladığı hacimdir.\nII. Kuvvet termometre ile ölçülür.\nIII. Hamura uygulanan kuvvet hamurun şeklini değiştirir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -11748,7 +11748,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Kuvvetin birimi newton’dur.\nII. Dinamometreye uygulanan kuvvet arttıkça yayın uzaması artar.\nIII. Yer çekimi kuvveti cisimleri Dünya’dan uzaklaştırır.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kuvvetin birimi newton’dur.\nII. Dinamometreye uygulanan kuvvet arttıkça yayın uzaması artar.\nIII. Yer çekimi kuvveti cisimleri Dünya’dan uzaklaştırır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11790,7 +11790,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlık, bir cismin kapladığı hacimdir.\nII. Pürüzlü yüzeylerde sürtünme kuvveti, pürüzsüz yüzeylere göre daha fazladır.\nIII. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ağırlık, bir cismin kapladığı hacimdir.\nII. Pürüzlü yüzeylerde sürtünme kuvveti, pürüzsüz yüzeylere göre daha fazladır.\nIII. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -11832,7 +11832,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Kuvvet, cisimlerin hızını, yönünü ve şeklini değiştirebilir.\nII. Ellerimizi birbirine sürttüğümüzde ısınmamızın nedeni ışığın doğrusal yayılmasıdır.\nIII. Yer çekimi kuvveti temas gerektirmeden etki eder.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kuvvet, cisimlerin hızını, yönünü ve şeklini değiştirebilir.\nII. Ellerimizi birbirine sürttüğümüzde ısınmamızın nedeni ışığın doğrusal yayılmasıdır.\nIII. Yer çekimi kuvveti temas gerektirmeden etki eder.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -12106,7 +12106,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvet",
 "passage": "",
-"question": "I. Sürtünme kuvveti hareket yönüne zıt yöndedir.\nII. Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.\nIII. Kuvvet termometre ile ölçülür.\nkuvvet konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Sürtünme kuvveti hareket yönüne zıt yöndedir.\nII. Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.\nIII. Kuvvet termometre ile ölçülür.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -12127,7 +12127,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır.\nII. Ağırlığın birimi newton (N)’dur.\nIII. Ağırlığın birimi kilogram (kg)’dır.\nkuvvetin ölçülmesi ve sürtünme hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır.\nII. Ağırlığın birimi newton (N)’dur.\nIII. Ağırlığın birimi kilogram (kg)’dır.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -12169,7 +12169,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Hamura uygulanan kuvvet hamurun kütlesini azaltır.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismi durdurabilir.\nIII. Kuvvet, cisimlerin yalnızca rengini değiştirebilir.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Hamura uygulanan kuvvet hamurun kütlesini azaltır.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismi durdurabilir.\nIII. Kuvvet, cisimlerin yalnızca rengini değiştirebilir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -12211,7 +12211,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Ağırlığın birimi litre’dir.\nII. Sürtünme kuvveti harekete zıt yönde etki eder.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ağırlığın birimi litre’dir.\nII. Sürtünme kuvveti harekete zıt yönde etki eder.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -12253,7 +12253,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Kütle bir kuvvettir; ağırlık ise madde miktarının ölçüsüdür.\nII. Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.\nIII. Ağırlık bir kuvvet olduğu için birimi newton’dur.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kütle bir kuvvettir; ağırlık ise madde miktarının ölçüsüdür.\nII. Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.\nIII. Ağırlık bir kuvvet olduğu için birimi newton’dur.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -12295,7 +12295,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Kuvvetin Ölçülmesi ve Sürtünme",
 "passage": "",
-"question": "I. Dinamometrenin ölçeği cismin kütlesini değiştirir.\nII. Makine parçalarındaki sürtünme yağlayarak azaltılır.\nIII. Sürtünme kuvveti temas gerektirmeden etki eder.\nYukarıda kuvvetin ölçülmesi ve sürtünme ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Dinamometrenin ölçeği cismin kütlesini değiştirir.\nII. Makine parçalarındaki sürtünme yağlayarak azaltılır.\nIII. Sürtünme kuvveti temas gerektirmeden etki eder.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -12702,7 +12702,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\nIII. Metaller ısıyı iyi ileten maddelerdir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\nIII. Metaller ısıyı iyi ileten maddelerdir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -12796,7 +12796,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hiçbiri gaz hâlini göstermez.",
+"A": "Hiçbiri gaz hâlini göstermez",
 "B": "P",
 "C": "T",
 "D": "R"
@@ -13172,7 +13172,7 @@
 "A": "P",
 "B": "L",
 "C": "N",
-"D": "Hiçbirinde hâl değişimi gerçekleşmez."
+"D": "Hiçbirinde hâl değişimi gerçekleşmez"
 },
 "answer": "B",
 "explanation": "Hâl değişimi sırasında sıcaklık sabit kalır; sıcaklığın 0 °C'de sabit kaldığı bölge L ile gösterilmiştir.",
@@ -13318,7 +13318,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hepsi ısıyı aynı iletir.",
+"A": "Hepsi ısıyı aynı iletir",
 "B": "P",
 "C": "K",
 "D": "S"
@@ -13361,7 +13361,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hiçbirinde raptiye düşmez.",
+"A": "Hiçbirinde raptiye düşmez",
 "B": "M",
 "C": "L",
 "D": "S"
@@ -13496,7 +13496,7 @@
 "A": "L",
 "B": "K",
 "C": "N",
-"D": "Hepsinde su aynı sıcaklıkta kalır."
+"D": "Hepsinde su aynı sıcaklıkta kalır"
 },
 "answer": "A",
 "explanation": "Suyun sıcaklığı en yüksek kalan kap en az soğumuştur; bu kap L ile gösterilendir.",
@@ -13511,7 +13511,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Isı alışverişi",
 "passage": "",
-"question": "Şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nBuna göre ısı alışverişi ile ilgili aşağıdakilerden hangisi doğrudur?",
+"question": "Şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nBuna göre “Isı alışverişi” ile ilgili aşağıdakilerden hangisi doğrudur?",
 "shape": {
 "type": "mad",
 "sub_type": "yon",
@@ -13793,7 +13793,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Metaller ısıyı iyi ileten maddelerdir.\nII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Sıcaklık dinamometre ile ölçülür.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Metaller ısıyı iyi ileten maddelerdir.\nII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Sıcaklık dinamometre ile ölçülür.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -13887,7 +13887,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hiçbiri gaz hâlini göstermez.",
+"A": "Hiçbiri gaz hâlini göstermez",
 "B": "L",
 "C": "K",
 "D": "S"
@@ -14263,7 +14263,7 @@
 "A": "K",
 "B": "L",
 "C": "P",
-"D": "Hiçbirinde hâl değişimi gerçekleşmez."
+"D": "Hiçbirinde hâl değişimi gerçekleşmez"
 },
 "answer": "C",
 "explanation": "Hâl değişimi sırasında sıcaklık sabit kalır; sıcaklığın 0 °C'de sabit kaldığı bölge P ile gösterilmiştir.",
@@ -14359,7 +14359,7 @@
 "A": "L",
 "B": "R",
 "C": "S",
-"D": "Hepsi ısıyı aynı iletir."
+"D": "Hepsi ısıyı aynı iletir"
 },
 "answer": "A",
 "explanation": "Isıyı iyi ileten çubukta mum çabuk erir ve daha çok raptiye düşer; en iyi ileten çubuk L ile gösterilendir.",
@@ -14399,7 +14399,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hiçbirinde raptiye düşmez.",
+"A": "Hiçbirinde raptiye düşmez",
 "B": "N",
 "C": "K",
 "D": "S"
@@ -14460,7 +14460,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Isı alışverişi",
 "passage": "",
-"question": "Verilen şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nVerilenlere göre ısı alışverişi ile ilgili aşağıdakilerden hangisi doğrudur?",
+"question": "Verilen şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nVerilenlere göre “Isı alışverişi” ile ilgili aşağıdakilerden hangisi doğrudur?",
 "shape": {
 "type": "mad",
 "sub_type": "yon",
@@ -14696,7 +14696,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Metaller ısıyı iyi ileten maddelerdir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Metaller ısıyı iyi ileten maddelerdir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -14791,7 +14791,7 @@
 },
 "options": {
 "A": "S",
-"B": "Hiçbiri gaz hâlini göstermez.",
+"B": "Hiçbiri gaz hâlini göstermez",
 "C": "T",
 "D": "L"
 },
@@ -15163,7 +15163,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hiçbirinde hâl değişimi gerçekleşmez.",
+"A": "Hiçbirinde hâl değişimi gerçekleşmez",
 "B": "M",
 "C": "L",
 "D": "S"
@@ -15260,7 +15260,7 @@
 },
 "options": {
 "A": "M",
-"B": "Hepsi ısıyı aynı iletir.",
+"B": "Hepsi ısıyı aynı iletir",
 "C": "T",
 "D": "L"
 },
@@ -15304,7 +15304,7 @@
 "options": {
 "A": "P",
 "B": "K",
-"C": "Hiçbirinde raptiye düşmez.",
+"C": "Hiçbirinde raptiye düşmez",
 "D": "S"
 },
 "answer": "B",
@@ -15363,7 +15363,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Isı alışverişi",
 "passage": "",
-"question": "Yandaki şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nBu bilgilere göre ısı alışverişi ile ilgili aşağıdakilerden hangisi doğrudur?",
+"question": "Yandaki şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nBu bilgilere göre “Isı alışverişi” ile ilgili aşağıdakilerden hangisi doğrudur?",
 "shape": {
 "type": "mad",
 "sub_type": "yon",
@@ -15587,7 +15587,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Sıcaklık termometre ile ölçülür.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Sıcaklık termometre ile ölçülür.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -15827,7 +15827,7 @@
 },
 "options": {
 "A": "L",
-"B": "Hiçbirinde hâl değişimi gerçekleşmez.",
+"B": "Hiçbirinde hâl değişimi gerçekleşmez",
 "C": "M",
 "D": "R"
 },
@@ -15871,7 +15871,7 @@
 "options": {
 "A": "K",
 "B": "P",
-"C": "Hiçbirinde raptiye düşmez.",
+"C": "Hiçbirinde raptiye düşmez",
 "D": "R"
 },
 "answer": "A",
@@ -15887,7 +15887,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Isı alışverişi",
 "passage": "",
-"question": "Şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nVerilenlere göre ısı alışverişi ile ilgili aşağıdakilerden hangisi doğrudur?",
+"question": "Şekilde sıcaklıkları yazılı iki cisim birbirine temas ettirilmiştir.\nVerilenlere göre “Isı alışverişi” ile ilgili aşağıdakilerden hangisi doğrudur?",
 "shape": {
 "type": "mad",
 "sub_type": "yon",
@@ -16065,7 +16065,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Isı yalıtımı ısı kaybını artırır.\nIII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Isı yalıtımı ısı kaybını artırır.\nIII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -16306,7 +16306,7 @@
 "options": {
 "A": "S",
 "B": "N",
-"C": "Hiçbirinde hâl değişimi gerçekleşmez.",
+"C": "Hiçbirinde hâl değişimi gerçekleşmez",
 "D": "T"
 },
 "answer": "B",
@@ -16350,7 +16350,7 @@
 "A": "R",
 "B": "P",
 "C": "L",
-"D": "Hiçbirinde raptiye düşmez."
+"D": "Hiçbirinde raptiye düşmez"
 },
 "answer": "A",
 "explanation": "Isıyı en iyi ileten çubukta en çok raptiye düşer: R (bakır).",
@@ -16473,7 +16473,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -16669,7 +16669,7 @@
 "options": {
 "A": "P",
 "B": "K",
-"C": "Hiçbirinde hâl değişimi gerçekleşmez.",
+"C": "Hiçbirinde hâl değişimi gerçekleşmez",
 "D": "S"
 },
 "answer": "A",
@@ -16710,7 +16710,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hiçbirinde raptiye düşmez.",
+"A": "Hiçbirinde raptiye düşmez",
 "B": "S",
 "C": "M",
 "D": "K"
@@ -16840,7 +16840,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Isı yalıtımı ısı kaybını artırır.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Tahta, metallerden daha iyi ısı iletir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Isı yalıtımı ısı kaybını artırır.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Tahta, metallerden daha iyi ısı iletir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -17025,7 +17025,7 @@
 },
 "options": {
 "A": "N",
-"B": "Hiçbirinde raptiye düşmez.",
+"B": "Hiçbirinde raptiye düşmez",
 "C": "P",
 "D": "M"
 },
@@ -17092,7 +17092,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Tahta, metallerden daha iyi ısı iletir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Tahta, metallerden daha iyi ısı iletir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -17234,7 +17234,7 @@
 "A": "K",
 "B": "S",
 "C": "L",
-"D": "Hiçbirinde raptiye düşmez."
+"D": "Hiçbirinde raptiye düşmez"
 },
 "answer": "A",
 "explanation": "Isıyı en iyi ileten çubukta en çok raptiye düşer: K (bakır).",
@@ -17299,7 +17299,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Sıcaklık dinamometre ile ölçülür.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Sıcaklık dinamometre ile ölçülür.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -17438,7 +17438,7 @@
 "show_names": false
 },
 "options": {
-"A": "Hiçbirinde raptiye düşmez.",
+"A": "Hiçbirinde raptiye düşmez",
 "B": "T",
 "C": "P",
 "D": "N"
@@ -17506,7 +17506,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Sıcaklık termometre ile ölçülür.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Sıcaklık termometre ile ölçülür.\nII. Isı alışverişinde ısı, sıcak maddeden soğuk maddeye akar.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -17600,7 +17600,7 @@
 "A": "N",
 "B": "R",
 "C": "L",
-"D": "Hiçbirinde raptiye düşmez."
+"D": "Hiçbirinde raptiye düşmez"
 },
 "answer": "A",
 "explanation": "Isıyı en iyi ileten çubukta en çok raptiye düşer: N (bakır).",
@@ -17665,7 +17665,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nII. Sıcaklık termometre ile ölçülür.\nIII. Isı yalıtımı ısı kaybını artırır.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nII. Sıcaklık termometre ile ölçülür.\nIII. Isı yalıtımı ısı kaybını artırır.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -17781,7 +17781,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Sıcaklık dinamometre ile ölçülür.\nII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Tahta, metallerden daha iyi ısı iletir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Sıcaklık dinamometre ile ölçülür.\nII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Tahta, metallerden daha iyi ısı iletir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -17897,7 +17897,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Sıcaklık dinamometre ile ölçülür.\nII. Isı yalıtımı ısı kaybını artırır.\nIII. Metaller ısıyı iyi ileten maddelerdir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Sıcaklık dinamometre ile ölçülür.\nII. Isı yalıtımı ısı kaybını artırır.\nIII. Metaller ısıyı iyi ileten maddelerdir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -18013,7 +18013,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Sıcaklık dinamometre ile ölçülür.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Sıcaklık dinamometre ile ölçülür.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -18129,7 +18129,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Sıcaklık dinamometre ile ölçülür.\nII. Yün kazak ısı yalıtımı sağlar.\nIII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Sıcaklık dinamometre ile ölçülür.\nII. Yün kazak ısı yalıtımı sağlar.\nIII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -18245,7 +18245,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Yün kazak ısı yalıtımı sağlar.\nIII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Tahta, metallerden daha iyi ısı iletir.\nII. Yün kazak ısı yalıtımı sağlar.\nIII. Erime, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -18361,7 +18361,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Tahta, metallerden daha iyi ısı iletir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nIII. Tahta, metallerden daha iyi ısı iletir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -18477,7 +18477,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Yün kazak ısı yalıtımı sağlar.\nII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\nIII. Donma, katı bir maddenin ısı alarak sıvı hâle geçmesidir.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -18593,7 +18593,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Madde ve Değişim",
 "passage": "",
-"question": "I. Metaller ısıyı iyi ileten maddelerdir.\nII. Yün kazak ısı yalıtımı sağlar.\nIII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\nmadde ve değişim hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"question": "I. Metaller ısıyı iyi ileten maddelerdir.\nII. Yün kazak ısı yalıtımı sağlar.\nIII. Isı alışverişinde ısı, soğuk maddeden sıcak maddeye akar.\n“Madde ve Değişim” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -20951,7 +20951,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik",
 "passage": "",
-"question": "I. Devrenin açık olduğu durumda elektrik akımı geçer.\nII. Pil, devreye elektrik enerjisi sağlar.\nIII. Anahtar, devreyi açıp kapatmaya yarar.\nelektrik konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Devrenin açık olduğu durumda elektrik akımı geçer.\nII. Pil, devreye elektrik enerjisi sağlar.\nIII. Anahtar, devreyi açıp kapatmaya yarar.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -20993,7 +20993,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nII. Devre elemanları sembollerle gösterilir.\nIII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nII. Devre elemanları sembollerle gösterilir.\nIII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -21056,7 +21056,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nII. Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.\nIII. Basit bir devrede mıknatıs ve cetvel bulunması zorunludur.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nII. Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.\nIII. Basit bir devrede mıknatıs ve cetvel bulunması zorunludur.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "I ve II",
@@ -21098,7 +21098,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Anahtar kapatıldığında devre tamamlanır ve ampul yanar.\nII. Demir çivi elektriği iletmez.\nIII. Basit bir devrede mıknatıs ve cetvel bulunması zorunludur.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Anahtar kapatıldığında devre tamamlanır ve ampul yanar.\nII. Demir çivi elektriği iletmez.\nIII. Basit bir devrede mıknatıs ve cetvel bulunması zorunludur.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -21140,7 +21140,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Anahtar, devrede elektrik enerjisi üretir.\nII. Pil sayısının etkisi incelenirken ampul çeşidi ve sayısı sabit tutulmalıdır.\nIII. Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Anahtar, devrede elektrik enerjisi üretir.\nII. Pil sayısının etkisi incelenirken ampul çeşidi ve sayısı sabit tutulmalıdır.\nIII. Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -21182,7 +21182,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Elektrik tasarrufu için LED ampul tercih edilmelidir.\nII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nIII. Bağlantı kabloları devrede elektrik enerjisi üretir.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Elektrik tasarrufu için LED ampul tercih edilmelidir.\nII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nIII. Bağlantı kabloları devrede elektrik enerjisi üretir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -21953,7 +21953,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik",
 "passage": "",
-"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Anahtar, devreyi açıp kapatmaya yarar.\nIII. Devrenin açık olduğu durumda elektrik akımı geçer.\nelektrik konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Anahtar, devreyi açıp kapatmaya yarar.\nIII. Devrenin açık olduğu durumda elektrik akımı geçer.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -21995,7 +21995,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Devre elemanları sembollerle gösterilemez.\nII. Ampul, ışık enerjisini elektrik enerjisine dönüştürür.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Devre elemanları sembollerle gösterilemez.\nII. Ampul, ışık enerjisini elektrik enerjisine dönüştürür.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -22058,7 +22058,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nII. Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.\nIII. Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nII. Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.\nIII. Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -22100,7 +22100,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Anahtar, devreyi açıp kapatmak için kullanılır.\nII. Demir çivi elektriği iletmez.\nIII. Bakır tel elektriği ileten bir iletkendir.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Anahtar, devreyi açıp kapatmak için kullanılır.\nII. Demir çivi elektriği iletmez.\nIII. Bakır tel elektriği ileten bir iletkendir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -22142,7 +22142,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Anahtar, devreyi açıp kapatmak için kullanılır.\nII. Pil sayısının etkisi incelenirken pil sayısı sabit tutulmalıdır.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı azalır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Anahtar, devreyi açıp kapatmak için kullanılır.\nII. Pil sayısının etkisi incelenirken pil sayısı sabit tutulmalıdır.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -22184,7 +22184,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Pil, devreyi açıp kapatma görevi yapar.\nII. Prize metal cisim sokmak elektrik çarpmasına yol açabileceği için tehlikelidir.\nIII. Elektrik tasarrufu için LED ampul tercih edilmelidir.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Pil, devreyi açıp kapatma görevi yapar.\nII. Prize metal cisim sokmak elektrik çarpmasına yol açabileceği için tehlikelidir.\nIII. Elektrik tasarrufu için LED ampul tercih edilmelidir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız III",
@@ -22906,7 +22906,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik",
 "passage": "",
-"question": "I. Ampul, devreye elektrik enerjisi sağlar.\nII. Anahtar, devreyi açıp kapatmaya yarar.\nIII. Elektrik akımının geçmesi için devrenin kapalı olması gerekir.\nelektrik konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Ampul, devreye elektrik enerjisi sağlar.\nII. Anahtar, devreyi açıp kapatmaya yarar.\nIII. Elektrik akımının geçmesi için devrenin kapalı olması gerekir.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -22948,7 +22948,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Devre elemanları sembollerle gösterilemez.\nII. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Devre elemanları sembollerle gösterilemez.\nII. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -23011,7 +23011,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nIII. Pil, devreye elektrik enerjisi sağlar.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nIII. Pil, devreye elektrik enerjisi sağlar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -23053,7 +23053,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Anahtar açıkken devre kapalıdır ve akım geçer.\nIII. Anahtar kapatıldığında devre tamamlanır ve ampul yanar.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Anahtar açıkken devre kapalıdır ve akım geçer.\nIII. Anahtar kapatıldığında devre tamamlanır ve ampul yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -23095,7 +23095,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Kullanılmayan elektrikli cihazlar kapatılıp fişleri çekilmelidir.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Kullanılmayan elektrikli cihazlar kapatılıp fişleri çekilmelidir.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -23137,7 +23137,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nII. Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.\nIII. Seri bağlı özdeş ampullerin sayısı azaltılırsa her ampulün parlaklığı azalır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nII. Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.\nIII. Seri bağlı özdeş ampullerin sayısı azaltılırsa her ampulün parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -23765,7 +23765,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik",
 "passage": "",
-"question": "I. Elektrik akımının geçmesi için devrenin kapalı olması gerekir.\nII. Anahtar açıkken ampul ışık verir.\nIII. Pil, devreye elektrik enerjisi sağlar.\nelektrik konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Elektrik akımının geçmesi için devrenin kapalı olması gerekir.\nII. Anahtar açıkken ampul ışık verir.\nIII. Pil, devreye elektrik enerjisi sağlar.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -23807,7 +23807,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nIII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nIII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -23870,7 +23870,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Elektrik kazalarından korunmak için ıslak elle prize dokunulabilir.\nII. Basit bir devrede pil, ampul, anahtar ve kablolar bulunur.\nIII. Anahtar açıkken devre kapalıdır ve akım geçer.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Elektrik kazalarından korunmak için ıslak elle prize dokunulabilir.\nII. Basit bir devrede pil, ampul, anahtar ve kablolar bulunur.\nIII. Anahtar açıkken devre kapalıdır ve akım geçer.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -23912,7 +23912,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Plastik kaşık elektriği ileten bir iletkendir.\nII. Ampulün yanması için devrenin kapalı olması gerekir.\nIII. Anahtar açıkken devre kapalıdır ve akım geçer.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Plastik kaşık elektriği ileten bir iletkendir.\nII. Ampulün yanması için devrenin kapalı olması gerekir.\nIII. Anahtar açıkken devre kapalıdır ve akım geçer.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -23954,7 +23954,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Plastik cetvel elektriği iletmez.\nII. Kauçuk elektriği iyi ileten bir iletkendir.\nIII. Ampulün parlaklığı kabloların renginin değişmesine bağlıdır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Plastik cetvel elektriği iletmez.\nII. Kauçuk elektriği iyi ileten bir iletkendir.\nIII. Ampulün parlaklığı kabloların renginin değişmesine bağlıdır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -23996,7 +23996,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Plastik kaşık elektriği ileten bir iletkendir.\nII. Kullanılmayan elektrikli cihazlar hep açık bırakılmalıdır.\nIII. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Plastik kaşık elektriği ileten bir iletkendir.\nII. Kullanılmayan elektrikli cihazlar hep açık bırakılmalıdır.\nIII. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -24451,7 +24451,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik",
 "passage": "",
-"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Anahtar açıkken ampul ışık verir.\nIII. Devrenin açık olduğu durumda elektrik akımı geçer.\nelektrik konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Anahtar açıkken ampul ışık verir.\nIII. Devrenin açık olduğu durumda elektrik akımı geçer.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -24472,7 +24472,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.\nII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı artar.\nIII. Devre elemanları sembollerle gösterilir.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.\nII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı artar.\nIII. Devre elemanları sembollerle gösterilir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -24514,7 +24514,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Plastik cetvel elektriği iletmez.\nII. Devre şemasında semboller, akımı artırmak için kullanılır.\nIII. Anahtar, devrede elektrik enerjisi üretir.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Plastik cetvel elektriği iletmez.\nII. Devre şemasında semboller, akımı artırmak için kullanılır.\nIII. Anahtar, devrede elektrik enerjisi üretir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -24556,7 +24556,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Anahtar kapatıldığında devre açılır ve ampul yanar.\nII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nIII. Kauçuk elektriği iletmeyen bir yalıtkandır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Anahtar kapatıldığında devre açılır ve ampul yanar.\nII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nIII. Kauçuk elektriği iletmeyen bir yalıtkandır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -24598,7 +24598,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Pil sayısının etkisi incelenirken pil sayısı sabit tutulmalıdır.\nII. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı azalır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Pil sayısının etkisi incelenirken pil sayısı sabit tutulmalıdır.\nII. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -24619,7 +24619,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Anahtar açıkken devre açıktır ve akım geçmez.\nII. Prize metal cisim sokmak elektrik çarpmasına yol açabileceği için tehlikelidir.\nIII. Plastik kaşık elektriği ileten bir iletkendir.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Anahtar açıkken devre açıktır ve akım geçmez.\nII. Prize metal cisim sokmak elektrik çarpmasına yol açabileceği için tehlikelidir.\nIII. Plastik kaşık elektriği ileten bir iletkendir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "I ve II",
@@ -25004,7 +25004,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik",
 "passage": "",
-"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Devrenin açık olduğu durumda elektrik akımı geçer.\nIII. Anahtar açıkken ampul ışık verir.\nelektrik konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Devrenin açık olduğu durumda elektrik akımı geçer.\nIII. Anahtar açıkken ampul ışık verir.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -25025,7 +25025,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Devre elemanları sembollerle gösterilir.\nII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Devre elemanları sembollerle gösterilir.\nII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -25067,7 +25067,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nII. Plastik cetvel elektriği iletmez.\nIII. Devre şemasında semboller, akımı artırmak için kullanılır.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nII. Plastik cetvel elektriği iletmez.\nIII. Devre şemasında semboller, akımı artırmak için kullanılır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız II",
@@ -25109,7 +25109,7 @@
 "subject": "Fen Bilimleri",
 "topic": "Elektrik Devre Elemanları",
 "passage": "",
-"question": "I. Kullanılmayan elektrikli cihazlar hep açık bırakılmalıdır.\nII. Bakır tel elektriği ileten bir iletkendir.\nIII. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nYukarıda elektrik devre elemanları ile ilgili verilen bilgilerden hangileri doğrudur?",
+"question": "I. Kullanılmayan elektrikli cihazlar hep açık bırakılmalıdır.\nII. Bakır tel elektriği ileten bir iletkendir.\nIII. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
 "shape": null,
 "options": {
 "A": "Yalnız I",
@@ -25268,7 +25268,7 @@
 "D": "Objektif"
 },
 "answer": "C",
-"explanation": "K harfi tabla kısmını gösterir; bu kısım: i̇ncelenecek örneğin (lamın) üzerine konulduğu kısım.",
+"explanation": "K harfi tabla kısmını gösterir; bu kısım: incelenecek örneğin (lamın) üzerine konulduğu kısım.",
 "unit": "Canlılar Dünyası",
 "topics": "Hücre, Sınıflandırma, Ekosistem",
 "d": 3,
@@ -26506,7 +26506,7 @@
 "D": "Objektif"
 },
 "answer": "C",
-"explanation": "L harfi lam kısmını gösterir: i̇ncelenecek örneğin üzerine konulduğu ince cam.",
+"explanation": "L harfi lam kısmını gösterir: incelenecek örneğin üzerine konulduğu ince cam.",
 "unit": "Canlılar Dünyası",
 "topics": "Hücre, Sınıflandırma, Ekosistem",
 "d": 3,
@@ -28021,7 +28021,7 @@
 "D": "Tabla"
 },
 "answer": "A",
-"explanation": "M harfi objektif kısmını gösterir; bu kısım: i̇ncelenecek örneğe en yakın olan, görüntüyü büyüten mercek.",
+"explanation": "M harfi objektif kısmını gösterir; bu kısım: incelenecek örneğe en yakın olan, görüntüyü büyüten mercek.",
 "unit": "Canlılar Dünyası",
 "topics": "Hücre, Sınıflandırma, Ekosistem",
 "d": 3,
@@ -29082,7 +29082,7 @@
 "D": "Lam"
 },
 "answer": "D",
-"explanation": "R harfi lam kısmını gösterir: i̇ncelenecek örneğin üzerine konulduğu ince cam.",
+"explanation": "R harfi lam kısmını gösterir: incelenecek örneğin üzerine konulduğu ince cam.",
 "unit": "Canlılar Dünyası",
 "topics": "Hücre, Sınıflandırma, Ekosistem",
 "d": 3,
@@ -31291,7 +31291,7 @@
 "D": "Lamel"
 },
 "answer": "C",
-"explanation": "R harfi lam kısmını gösterir: i̇ncelenecek örneğin üzerine konulduğu ince cam.",
+"explanation": "R harfi lam kısmını gösterir: incelenecek örneğin üzerine konulduğu ince cam.",
 "unit": "Canlılar Dünyası",
 "topics": "Hücre, Sınıflandırma, Ekosistem",
 "d": 3,
