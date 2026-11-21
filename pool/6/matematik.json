@@ -40984,42 +40984,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Üçgenlerde açı",
-"passage": "",
-"question": "Şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(BAC) = 50° olduğuna göre m(BCD) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "two_triangles",
-"names": [
-"A",
-"B",
-"C",
-"D"
-],
-"alpha": 50,
-"angles": {
-"A": "50°",
-"BCD": "?"
-},
-"show_names": false
-},
-"options": {
-"A": "60°",
-"B": "65°",
-"C": "110°",
-"D": "125°"
-},
-"answer": "D",
-"explanation": "|AB| = |AC| olduğundan m(ABC) = m(ACB) = (180 − 50) / 2 = 65°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = 65 + 60 = 125°.",
-"unit": "Alan ve Çevre",
-"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
-"d": 4,
-"ts": 1795168872,
-"src": "local",
-"fam": "_mf_twotri"
-},
-{
-"subject": "Matematik",
 "topic": "Uzunluk birimleri",
 "passage": "",
 "question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en uzun olanı hangi harfle gösterilmiştir?",

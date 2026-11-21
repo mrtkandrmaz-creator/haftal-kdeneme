@@ -16800,6 +16800,28 @@
 "ts": 1795246403,
 "src": "local",
 "fam": "_en_yn_weather"
+},
+{
+"subject": "İngilizce",
+"topic": "Wild animals",
+"passage": "Ali: Look at the documentary, Mia! The lion is chasing a zebra.\nMia: Yes, but the giraffe is eating leaves from the tall tree nearby. It does not seem scared at all.\nAli: True. The zebra is fast, but the lion is a dangerous predator in the savanna.",
+"question": "In the conversation, which of the following animals is identified by its action of consuming vegetation?",
+"shape": null,
+"options": {
+"A": "The predator",
+"B": "The giraffe",
+"C": "The zebra",
+"D": "The lion"
+},
+"answer": "B",
+"explanation": "The dialogue states that the giraffe is eating leaves from the tall tree. Since eating leaves is consuming vegetation, the giraffe is the correct subject.",
+"_sty": "s:|its action consum vegeta",
+"listen": true,
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 4,
+"ts": 1795247388
 }
 ]
 }
