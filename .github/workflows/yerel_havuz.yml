@@ -33,7 +33,7 @@ jobs:
           git fetch origin userdata:refs/remotes/origin/userdata || true
           git archive origin/userdata data 2>/dev/null | tar -x -C _ud || true
       - name: Yerel havuzu yenile
-        run: python tools/build_local_pool.py --grades 5 --max-per-unit 80 --bad-dir _ud/data
+        run: python tools/build_local_pool.py --grades 5 --max-per-unit 3000 --per-family 30 --tries 150 --bad-dir _ud/data
       - name: Değişiklikleri kaydet
         run: |
           git config user.name "denemematik-bot"
