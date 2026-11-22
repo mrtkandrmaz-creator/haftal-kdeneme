@@ -31780,7 +31780,7 @@ def _pool_slug(t):
 
 def _pool_path(subject, grade_label):
     gl = str(grade_label or "")
-    gd = "lgs" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))
+    gd = "8" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))  # LGS = 8. sınıf havuzu
     root = os.environ.get("DENEMEMATIK_POOL_DIR")
     if not root:
         from . import store
@@ -31839,7 +31839,7 @@ def src_facts(subject, grade_label, topics="", limit=30):
     """sources/<sınıf>/<ders>.json içindeki onaylı bilgi kartlarından, konuya uyan ünitelerin bilgilerini döndürür."""
     try:
         gl = str(grade_label or "")
-        gd = "lgs" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))
+        gd = "8" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))  # LGS = 8. sınıf havuzu
         root = os.environ.get("DENEMEMATIK_SRC_DIR")
         if not root:
             from . import store
@@ -31986,7 +31986,7 @@ def tpl_questions(grade_label, n, topics="", seen=()):
         return []
     try:
         gl = str(grade_label or "")
-        gd = "lgs" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))
+        gd = "8" if "LGS" in gl.upper() else (next((c for c in gl if c.isdigit()), "x"))  # LGS = 8. sınıf havuzu
         root = os.environ.get("DENEMEMATIK_TPL_DIR")
         if not root:
             from . import store

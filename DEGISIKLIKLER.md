@@ -131,3 +131,7 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Havuz kurucusunda şekilli sorular için yineleme anahtarı değişti: açılış cümlesi ve harf/rakam farkı soruyu "farklı" saymıyor, içerik (şekildeki sözcükler, sorulan öge, cevap) farklıysa farklı sayılıyor. Aile başına üst sınır 30 → 60 (deneme 250).
 - Din havuzu 1660 → 2828; şekilli/tablolu soru 293 (%18) → 813 (%29). Hatalı/yinelenen 0; run_checks 12/12.
 - Bazı ailelerde (ör. dört vakit, dört kavram) içerik gerçekten 4 farklı soruyla sınırlı; fazlası için yeni bilgi gerekir.
+
+## 7/8. sınıf deneme havuzu ve LGS (2026-11-22)
+- Havuz kurucusu 7 ve 8. sınıf için çalışıyor: pool/7/matematik.json (9 soru), pool/8/matematik.json (13 soru). Doğrulandı (cevap şıklarda, şıklar tekil, yineleme yok). Soru az: bu sınıflar için soru kalıbı çok az; havuzu büyütmek için önce kalıp yazılmalı.
+- LGS hatası: LGS Hazırlık seçilince hazır havuz `pool/lgs/` klasöründe aranıyordu (yok), yani LGS'de hazır havuz hiç kullanılmıyordu. Artık LGS = 8. sınıf havuzu (`pool/8/`).
