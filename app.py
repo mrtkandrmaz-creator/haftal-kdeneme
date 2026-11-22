@@ -7003,8 +7003,18 @@ def _p(name):
 
 
 # ---- profiller (ad + isteğe bağlı PIN); misafir verisi geçicidir (çıkışta silinir, GitHub'a yedeklenmez)
+def _tombs():
+    """Silinen profil kimlikleri (yedekten geri gelmesin diye ayrıca tutulur)."""
+    t = _load("deleted_profiles.json", {})
+    return t if isinstance(t, dict) else {}
+
+
 def profiles():
-    return _load("profiles.json", {})
+    pr = _load("profiles.json", {})
+    if not isinstance(pr, dict):
+        return {}
+    tb = _tombs()
+    return {k: v for k, v in pr.items() if k not in tb} if tb else pr
 
 
 def _pin_hash(pin, salt):
@@ -7029,6 +7039,10 @@ def create_profile(name, pin=""):
     first = not pr
     pr[pid] = {"name": name, "salt": salt, "pin": _pin_hash(pin, salt) if pin else "", "created": int(time.time())}
     _save("profiles.json", pr)
+    tb = _tombs()
+    if pid in tb:  # aynı kimlikle yeniden oluşturulan profil silinmiş sayılmasın
+        tb.pop(pid, None)
+        _save("deleted_profiles.json", tb)
     d = os.path.join(DATA, "profiles", pid)
     os.makedirs(d, exist_ok=True)
     if first:  # eski veriler ilk profile geçer
@@ -7037,6 +7051,10 @@ def create_profile(name, pin=""):
             src = os.path.join(DATA, nm)
             if os.path.exists(src):
                 shutil.copyfile(src, os.path.join(d, nm))
+    try:
+        gh_flush(wait=10)  # profil listesi hemen yedeğe gitsin (yeniden başlatmada kaybolmasın)
+    except Exception:
+        pass
     return pid, None
 
 
@@ -7051,12 +7069,14 @@ def delete_profile(pid):
         return False, "Profil bulunamadı."
     pr.pop(pid)
     _save("profiles.json", pr)
+    tb = _tombs()
+    tb[pid] = int(time.time())
+    _save("deleted_profiles.json", tb)
     shutil.rmtree(os.path.join(DATA, "profiles", pid), ignore_errors=True)
     if _ACTIVE.get("pid") == pid:
         _ACTIVE["pid"] = ""
     try:
-        gh_delete_profile_async(pid)
-        gh_sync_async(0)  # güncel profiles.json yedeğe gitsin
+        gh_flush(wait=12, delete_pid=pid)  # profil listesi + silme işareti + profil dosyaları GitHub'dan silinir
     except Exception:
         pass
     return True, None
@@ -7835,8 +7855,8 @@ def gh_pull_once():
             _GH.update(ok=True, msg="yedek henüz yok")
             return
         todo = [r for r in rels if not os.path.exists(_abs(r))]
-        # profiles.json önce gelsin: giriş ekranı için en önemli dosya
-        todo.sort(key=lambda r: (r != "profiles.json", r))
+        # profiles.json ve silinen profil listesi önce gelsin: giriş ekranı için en önemli dosyalar
+        todo.sort(key=lambda r: (r not in ("profiles.json", "deleted_profiles.json"), r))
 
         def one(rel):
             if time.time() - t0 > 40:
@@ -7853,15 +7873,27 @@ def gh_pull_once():
                 return 1
             return 0
         from concurrent.futures import ThreadPoolExecutor
+        head = [r for r in todo if r in ("profiles.json", "deleted_profiles.json")]
+        n = sum(one(r) for r in head)
+        tb = _tombs()  # silinmiş profillerin dosyaları geri indirilmesin
+        rest = [r for r in todo if r not in head and not (r.startswith("profiles/") and r.split("/")[1] in tb)]
         with ThreadPoolExecutor(max_workers=6) as ex:
-            n = sum(ex.map(one, todo))
+            n += sum(ex.map(one, rest))
         _GH.update(ok=True, msg=f"{n} dosya geri yüklendi")
     except Exception as e:
         _GH.update(ok=False, msg=f"geri yükleme hatası: {type(e).__name__}")
 
 
-def gh_push():
+_GH_PUSH_LOCK = _th.Lock()
+
+
+def gh_push(only=None):
     """Değişen data/**.json dosyalarını GitHub dalına yazar (misafir verisi hariç). -> gönderilen dosya sayısı"""
+    with _GH_PUSH_LOCK:  # eşzamanlı yedekler sıraya girer (biri diğerini atlamasın)
+        return _gh_push_locked(only)
+
+
+def _gh_push_locked(only=None):
     cfg = gh_cfg()
     if not cfg:
         return 0
@@ -7869,7 +7901,7 @@ def gh_push():
         _GH.update(ok=False, msg="dal oluşturulamadı / depo erişimi yok")
         return 0
     n = 0
-    for rel in _local_files():
+    for rel in (only if only is not None else _local_files()):
         try:
             raw = open(_abs(rel), "rb").read()
         except Exception:
@@ -7892,24 +7924,47 @@ def gh_push():
     return n
 
 
-def gh_delete_profile_async(pid):
-    """Silinen profilin GitHub yedeğini (data/profiles/<pid>/*.json) arka planda siler; yoksa yeniden başlatmada geri gelmesin."""
+def _gh_delete_profile_files(cfg, pid):
+    """data/profiles/<pid>/ altındaki dosyaları GitHub dalından siler (409/sha uyuşmazlığında yeniden dener)."""
+    for _round in range(3):
+        st_, lst = _gh(cfg, "GET", f"/contents/data/profiles/{pid}?ref={cfg['branch']}")
+        if st_ != 200 or not isinstance(lst, list) or not lst:
+            break
+        for it in lst:
+            if it.get("type") == "file" and it.get("sha"):
+                _gh(cfg, "DELETE", f"/contents/{it['path']}", {"message": f"profil silindi: {pid}", "sha": it["sha"], "branch": cfg["branch"]})
+    for k in [k for k in _GH["state"] if k.startswith(f"profiles/{pid}/")]:
+        _GH["state"].pop(k, None)
+
+
+def gh_flush(wait=10, delete_pid=None):
+    """Profil listesini (profiles.json + deleted_profiles.json) hemen GitHub'a yazar; en çok `wait` sn bekler.
+    Zamanlayıcıya ve 'çalışıyor' bayrağına bağlı değildir; yeni/silinen profil yeniden başlatmada kaybolmasın."""
     cfg = gh_cfg()
-    if not cfg or not pid:
+    if not cfg:
         return False
 
     def run():
         try:
-            st_, lst = _gh(cfg, "GET", f"/contents/data/profiles/{pid}?ref={cfg['branch']}")
-            if st_ == 200 and isinstance(lst, list):
-                for it in lst:
-                    if it.get("type") == "file" and it.get("sha"):
-                        _gh(cfg, "DELETE", f"/contents/{it['path']}", {"message": f"profil silindi: {pid}", "sha": it["sha"], "branch": cfg["branch"]})
-            for k in [k for k in _GH["state"] if k.startswith(f"profiles/{pid}/")]:
-                _GH["state"].pop(k, None)
-        except Exception:
-            pass
-    _th.Thread(target=run, daemon=True).start()
+            if delete_pid:
+                _gh_delete_profile_files(cfg, delete_pid)
+            only = [r for r in ("profiles.json", "deleted_profiles.json") if os.path.exists(_abs(r))]
+            only += [r for r in _local_files() if r.startswith("profiles/") and r not in only and _GH["state"].get(r) is None]
+            gh_push(only)
+        except Exception as e:
+            _GH.update(ok=False, msg=f"hata: {type(e).__name__}")
+    t = _th.Thread(target=run, daemon=True)
+    t.start()
+    t.join(wait)
+    return not t.is_alive()
+
+
+def gh_delete_profile_async(pid):
+    """Silinen profilin GitHub yedeğini arka planda siler."""
+    cfg = gh_cfg()
+    if not cfg or not pid:
+        return False
+    _th.Thread(target=lambda: _gh_delete_profile_files(cfg, pid), daemon=True).start()
     return True
 
 
@@ -38475,7 +38530,7 @@ def modes():
          "Ortak Yazılı Sınav • 5 senaryo • 100 puan • 40 dk" if official else "OYSS formatında antrenman (resmî uygulama 5-6-7. sınıfta)"),
         ("topic", "violet", "🎯 Konu Tarama", "Ünite ve kazanım seç • 10-30 soru"),
         ("bank", "pink", "🧠 Yeni Nesil Soru Bankası", "Beceri temelli • görsel ve veri yoğun karma sorular"),
-        ("leaf", "green", "📄 Yaprak Test", "Tek kazanım • 6-12 soru • PDF'e hazır"),
+        ("leaf", "green", "📄 Yaprak Test", "Tek kazanım • 5-25 soru • PDF'e hazır"),
         ("youtube", "red", "▶️ YouTube Video", "Konuna uygun ders videoları • burada izle • sonra izlemek için kaydet"),
     ]
     theme.cells(items, 3, lambda x: theme.card(f"m_{x[0]}", x[1], x[2], x[3], pick_mode, (x[0],)))
@@ -39151,8 +39206,8 @@ def topic():
             choice(f"tk_{i}", it[1], it[2], it[3], it[4], (lambda: setv(tops=[])) if i == "all" else toggle_in, args=() if i == "all" else ("tops", tps[int(i)]))
         theme.cells(items, 2, _tp)
         chosen = sel
-        opts = [6, 8, 10, 12] if leaf else [10, 15, 20, 30]
-        n = theme.pick_cards("v_wz_n_" + st.session_state.mode, opts, opts[2 if leaf else 1], 4, "cnt", label_fn=lambda x: f"{x}\nsoru", label="🔢 Kazanım soru sayısı")
+        opts = [5, 10, 20, 25] if leaf else [10, 15, 20, 30]
+        n = theme.pick_cards("v_wz_n_" + st.session_state.mode, opts, opts[1], 4, "cnt", label_fn=lambda x: f"{x}\nsoru", label="🔢 Kazanım soru sayısı")
         diff = su.difficulty_select("diff_tp")
         go_btn = st.button("🚀 Testi Üret", key="gen_tp", type="primary", use_container_width=True)
         st.button("← Geri", key="wz_back_3", on_click=back, args=(first,), use_container_width=True)
