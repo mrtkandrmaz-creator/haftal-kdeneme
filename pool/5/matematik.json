@@ -32793,6 +32793,28 @@
 "ts": 1795331780,
 "src": "local",
 "fam": "_mf5_pr_carki"
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+"passage": "Bir şehir kütüphanesindeki raflarda bulunan kitapların türlerine göre dağılımı şu şekildedir: Macera kitapları tüm kitapların 2/5'ini, bilim kurgu kitapları 3/10'unu oluşturmaktadır. Kütüphane sorumlusu, bu iki türdeki kitapları özel bir 'Genç Okurlar' standında birleştirmek istemektedir.",
+"question": "Buna göre, 'Genç Okurlar' standına yerleştirilecek olan macera ve bilim kurgu kitaplarının, kütüphanedeki tüm kitapların kaçta kaçına denk geldiğini gösteren ifade aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "9/10",
+"B": "7/10",
+"C": "1/2",
+"D": "4/5"
+},
+"answer": "B",
+"explanation": "2/5 kesri 2 ile genişletilerek 4/10'a dönüştürülür. 4/10 + 3/10 = 7/10 işlemi ile toplam oran bulunur.",
+"vfd2": true,
+"_sty": "s:|eden kesir aşağıd hangis",
+"crit": 1,
+"unit": "1. Tema: Sayılar ve Nicelikler (2)",
+"topics": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme, MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaş",
+"d": 1,
+"ts": 1795332959
 }
 ]
 }

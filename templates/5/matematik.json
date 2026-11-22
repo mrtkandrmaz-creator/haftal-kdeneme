@@ -4738,6 +4738,37 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "Doğal sayılar ve işlemler içeren gerçek yaşam problemleri",
+   "text": "Bir bahçede {a} sıra ve her sıraya {b} tane fidan dikilecektir. Toplam kaç fidan dikilecektir?",
+   "vars": {
+    "a": {
+     "lo": 3,
+     "hi": 9
+    },
+    "b": {
+     "lo": 4,
+     "hi": 12
+    }
+   },
+   "derived": {},
+   "constraints": [],
+   "answer": "a*b",
+   "wrong": [
+    "a+b",
+    "a*b+a",
+    "a*b-b"
+   ],
+   "unit": "adet",
+   "explanation": "{a} x {b} = {ans}",
+   "positive": true,
+   "id": "m5-0118",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
   }
  ]
 }

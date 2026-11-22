@@ -16797,6 +16797,27 @@
 "ts": 1795331821,
 "src": "local",
 "fam": "_en_yn_weather"
+},
+{
+"subject": "İngilizce",
+"topic": "Wild animals",
+"passage": "In the rainforest, some animals hide to survive. The jaguar has spots to blend with leaves. The colorful macaw flies high in the trees to stay away from predators. The green snake remains still on branches to catch insects.",
+"question": "Which of the following inferences about the rainforest animals is correct?",
+"shape": null,
+"options": {
+"A": "The jaguar hunts by flying over the forest canopy.",
+"B": "The macaw prefers to stay on the forest floor to hide.",
+"C": "The snake's behavior helps it reach its prey effectively.",
+"D": "All mentioned animals have spots to remain invisible."
+},
+"answer": "C",
+"explanation": "The passage states the green snake remains still on branches to catch insects. Option C accurately reflects that this behavior is a strategy for hunting/catching prey. Option A is false (jaguar does not fly). Option B is false (macaw flies high). Option D is false (only the jaguar is mentioned as having spots).",
+"_sty": "s:|the rainfo animal correc",
+"vfd2": true,
+"unit": "Life in Nature",
+"topics": "Types of animals, Wild animals, Habitats, Can/must, Comparatives and superlatives",
+"d": 4,
+"ts": 1795333011
 }
 ]
 }
