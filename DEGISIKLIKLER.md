@@ -125,3 +125,8 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Üretici varsayılanı ünite başına 80 → 3000, aile başına 14 → 30. Gece iş akışı (`yerel_havuz.yml`) 80 ile çalışıp havuzu küçültüyordu; 3000/30 yapıldı.
 - Fen 6246 → 6305, Matematik 8143 → 8297 (1000 sınırına dayanan üniteler serbest kaldı). Toplam 21 849 soru; hatalı/yinelenen 0.
 - Daha fazla soru için yeni kalıp/bilgi gerekir: kalan sınır ailelerin farklı soru kökü sayısı.
+
+## Din Kültürü şekilli/tablolu soru artışı (2026-11-22)
+- 13 yeni şekilli aile: Allah'ın güzel isimleri (durum cümlesi, anlam, farklı grup), Kur'an (sure ayet sayıları tablosu, kavramlar: ayet/sure/cüz/mushaf, sure açıklamaları), Namaz (vakitten sonraki namaz, duruş tarifi, farz rekât tablosu), Peygamberler (kıssa ters soru, ilahî kitaplar), Cami (bölümler + şadırvan, cami–il).
+- Din havuzu 1660 → 1849; şekilli/tablolu soru 293 (%18) → 480 (%26). Hatalı/yinelenen 0; run_checks 12/12.
+- Sınır: aynı kazanımdaki soruların başı (konu + açılış cümlesi) yineleme denetiminde aynı sayıldığı için bir kazanımda yaklaşık 45–50 farklı şekilli soru çıkıyor; fazlası için açılış cümlesi çeşidi artırılmalı.

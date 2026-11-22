@@ -28583,6 +28583,197 @@ for _f, _d, _it, _kw in _GP_DN:
     _DIFF_OF[_f.__name__] = _d
 
 
+# ---- Din Kültürü: şekilli/tablolu ek aileler (kart, tablo, duruş çizimi)
+_DN2_ISIM_SEN = {"Hâlık": ["Deniz, gökyüzündeki yıldızlara bakınca bütün varlıkları yaratanın Allah olduğunu düşündü.", "Elif, doğadaki canlıların çeşitliliğini görünce her şeyi yaratanı andı."],
+                 "Rezzâk": ["Bahçıvan, ürünlerin yağmurla yetiştiğini görünce bütün canlılara rızık verenin Allah olduğunu söyledi.", "Çiftçi hasadı toplarken rızkı verenin Allah olduğunu hatırladı."],
+                 "Rahîm": ["Mert, annesinin hasta kardeşine gösterdiği şefkati görünce Allah'ın çok merhametli olduğunu düşündü.", "Ayşe, Allah'ın kullarına karşı çok merhametli olduğunu öğrendi."],
+                 "Semî": ["Zeynep, sessizce yaptığı duayı bile Allah'ın işittiğini bilerek rahatladı.", "Ali, Allah'ın her sesi işittiğini düşünerek duasını içinden yaptı."],
+                 "Basîr": ["Can, yalnızken bile Allah'ın kendisini gördüğünü bilerek doğru davrandı.", "Selin, Allah'ın her şeyi gördüğünü düşünerek haksızlık yapmaktan kaçındı."],
+                 "Alîm": ["Emre, Allah'ın gizli ve açık her şeyi bildiğini düşünerek yalan söylemedi.", "Defne, Allah'ın bütün olup bitenleri bilmesine hayran kaldı."],
+                 "Gaffâr": ["Kerem, hatasını anlayıp özür dileyince Allah'ın günahları bağışlayan olduğunu hatırladı.", "Nur, yaptığı yanlıştan pişman olup Allah'tan bağışlanma diledi."]}
+
+
+def _fgd_isim_sen(subject):
+    ks = random.sample(range(7), 4)
+    c = random.randrange(4)
+    ws = [_GP_ISIM[k][0] for k in ks]
+    q = f"Şekilde Allah'ın dört güzel ismi harflerle gösterilmiştir. {random.choice(_DN2_ISIM_SEN[ws[c]])} Bu durumda hangi isme işaret edilmiştir?"
+    return _gp_cards(subject, "Allah'ın güzel isimleri", ws, c, q, f"Metindeki durum {ws[c]} ismiyle ilgilidir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+def _fgd_isim_anlam(subject):
+    ks = random.sample(range(7), 4)
+    c = random.randrange(4)
+    hf = _lt(4)
+    sh = _dl_sh(sub_type="kavram", sozler=[{"h": hf[i], "w": _GP_ISIM[ks[i]][0]} for i in range(4)])
+    allv = [_GP_ISIM[k][1].capitalize() for k in ks]
+    cor = _GP_ISIM[ks[c]][1].capitalize()
+    q = f"Şekilde Allah'ın dört güzel ismi harflerle gösterilmiştir. {hf[c]} harfiyle gösterilen ismin anlamı aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Allah'ın güzel isimleri", q, (allv, cor), f"{hf[c]} ile gösterilen isim {_GP_ISIM[ks[c]][0]}'dır; anlamı “{_GP_ISIM[ks[c]][1]}”dır.", shape=sh)
+
+
+def _fgd_isim_odd(subject):
+    A = ["Semî", "Basîr", "Alîm"]
+    B = ["Rezzâk", "Rahîm", "Gaffâr"]
+    return _gp_odd(subject, "Allah'ın güzel isimleri", A, B, "bilmek, işitmek ve görmekle ilgili", "rızık vermek, merhamet etmek ve bağışlamakla ilgili", ask_b=random.random() < .5)
+
+
+_DN2_SURE = [("Fâtiha", 7), ("İhlâs", 4), ("Kevser", 3), ("Kureyş", 4), ("Nâs", 6), ("Felak", 5), ("Asr", 3)]
+
+
+def _fdn_sure_tab(subject):
+    for _ in range(30):
+        ks = random.sample(range(7), 4)
+        vs = [_DN2_SURE[k][1] for k in ks]
+        mode = random.choice(["en", "az", "fark"])
+        if mode == "en" and vs.count(max(vs)) == 1:
+            c = _DN2_SURE[ks[vs.index(max(vs))]][0]
+            q = "Tabloya göre ayet sayısı en fazla olan sure hangisidir?"
+            ex = f"Ayet sayısı en fazla olan sure {c} ({max(vs)} ayet)."
+        elif mode == "az" and vs.count(min(vs)) == 1:
+            c = _DN2_SURE[ks[vs.index(min(vs))]][0]
+            q = "Tabloya göre ayet sayısı en az olan sure hangisidir?"
+            ex = f"Ayet sayısı en az olan sure {c} ({min(vs)} ayet)."
+        elif mode == "fark":
+            a, b = random.sample(range(4), 2)
+            if vs[a] <= vs[b]:
+                a, b = b, a
+            if vs[a] == vs[b]:
+                continue
+            d = vs[a] - vs[b]
+            sh = {"type": "table", "title": "Bazı surelerin ayet sayıları", "headers": ["Sure", "Ayet sayısı"], "rows": [[_DN2_SURE[k][0], str(_DN2_SURE[k][1])] for k in ks]}
+            o = _mf_opts(d, [x for x in (d + 1, d + 2, max(d - 1, 1), d + 3, d + 4) if x != d and x > 0], str, sort=False)
+            if not o:
+                continue
+            q = f"Tabloya göre {_DN2_SURE[ks[a]][0]} suresinin ayet sayısı, {_DN2_SURE[ks[b]][0]} suresinden kaç fazladır?"
+            return _mf_raw(subject, "Kur'an-ı Kerim'in iç düzeni", q, o, f"{vs[a]} − {vs[b]} = {d}.", shape=sh)
+        else:
+            continue
+        sh = {"type": "table", "title": "Bazı surelerin ayet sayıları", "headers": ["Sure", "Ayet sayısı"], "rows": [[_DN2_SURE[k][0], str(_DN2_SURE[k][1])] for k in ks]}
+        allv = [_DN2_SURE[k][0] for k in ks]
+        if c in [str(v) for v in vs]:
+            continue
+        return _mf_raw(subject, "Kur'an-ı Kerim'in iç düzeni", q, (allv, c), ex, shape=sh)
+    return None
+
+
+_DN2_TERIM = [("Ayet", "Kur'an-ı Kerim'de sureleri oluşturan cümlelerin her birine verilen ad"), ("Sure", "Kur'an-ı Kerim'in yüz on dört bölümünün her biri"),
+              ("Cüz", "Kur'an-ı Kerim'in otuz eşit bölümünün her biri"), ("Mushaf", "Kur'an-ı Kerim'in kitap hâline getirilmiş yazılı nüshası")]
+
+
+def _fdn_terim(subject):
+    ks = list(range(4))
+    random.shuffle(ks)
+    c = random.randrange(4)
+    ws = [_DN2_TERIM[k][0] for k in ks]
+    q = f"Şekilde Kur'an-ı Kerim ile ilgili dört kavram harflerle gösterilmiştir. “{_DN2_TERIM[ks[c]][1]}” açıklaması hangi harfle gösterilen kavrama aittir?"
+    return _gp_cards(subject, "Kur'an-ı Kerim'in iç düzeni", ws, c, q, f"Bu açıklama {ws[c]} kavramına aittir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_DN2_SUREK = [("Fâtiha", "Kur'an-ı Kerim'in ilk suresi olan ve namazda okunan sure"), ("İhlâs", "Allah'ın bir ve tek olduğunu bildiren sure"), ("Kevser", "Allah'ın Hz. Muhammed'e Kevser'i (bol hayır ve nimeti) verdiğini bildiren sure"),
+              ("Kureyş", "Kureyş kabilesine verilen nimetleri hatırlatarak Kâbe'nin Rabbine kulluk etmeyi öğütleyen sure")]
+
+
+def _fdn_surek(subject):
+    ks = list(range(4))
+    random.shuffle(ks)
+    c = random.randrange(4)
+    ws = [_DN2_SUREK[k][0] for k in ks]
+    q = f"Şekilde dört surenin adı harflerle gösterilmiştir. “{_DN2_SUREK[ks[c]][1]}” hangi harfle gösterilmiştir?"
+    return _gp_cards(subject, "Kur'an-ı Kerim'in ana konuları ve sureler", ws, c, q, f"Bu açıklama {ws[c]} suresine aittir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+def _fdn_vakit_sonra(subject):
+    hf = _lt(5)
+    mp = {k: hf[i] for i, (k, _n) in enumerate(_DN_VAKIT)}
+    i = random.randrange(4)
+    nxt = _DN_VAKIT[i + 1][1]
+    q = f"Şekilde güneşin gün içindeki konumuna göre beş vakit namaz harflerle gösterilmiştir. {hf[i]} harfiyle gösterilen vakitten hemen sonra kılınan namaz hangisidir?"
+    _al = [nxt] + random.sample([n for _k, n in _DN_VAKIT if n != nxt], 3)
+    random.shuffle(_al)
+    return _mf_raw(subject, "Namaz ibadeti", q, (_al, nxt), f"{hf[i]} ile gösterilen vakit {_DN_VAKIT[i][1]} vaktidir; ondan sonra {nxt} namazı kılınır.", shape=_dl_sh(sub_type="gok", harf=mp))
+
+
+_DN2_POZ = {"p1": ("Namaza ayakta durarak başlanır; eller bağlanır", "kıyam"), "p2": ("Belden öne eğilinir; eller dizlere konur, sırt düz tutulur", "rükû"),
+            "p3": ("Alın ve burun yere konulur", "secde"), "p4": ("Dizler üzerine oturulur; tahiyyat okunur", "oturuş")}
+
+
+def _fdn_poz_tarif(subject):
+    hf = _lt(4)
+    pz = random.sample(list(_DN2_POZ), 4)
+    k = random.randrange(4)
+    sh = _dl_sh(sub_type="poz", pozlar=[{"k": pz[i], "h": hf[i]} for i in range(4)])
+    q = f"Şekilde namazdaki dört duruş harflerle gösterilmiştir. “{_DN2_POZ[pz[k]][0]}” tarifi hangi harfle gösterilen duruşa aittir?"
+    return _mf_raw(subject, "Namazın kılınışı", q, (sorted(hf), hf[k]), f"Bu tarif {_DN2_POZ[pz[k]][1]} duruşuna aittir; şekilde {hf[k]} harfiyle gösterilmiştir.", shape=sh)
+
+
+def _fdn_rekat_tab(subject):
+    a, b = random.sample(range(5), 2)
+    sh = {"type": "table", "title": "Beş vakit namazın farz rekât sayıları", "headers": ["Vakit", "Farz rekât sayısı"], "rows": [[n, str(v)] for n, v in _DN_FARZ]}
+    t = _DN_FARZ[a][1] + _DN_FARZ[b][1]
+    o = _mf_opts(t, [x for x in (t + 1, t - 1, t + 2, t - 2, t + 3, 9, 10) if x != t and x > 0], str, sort=False)
+    q = f"Tabloya göre {_DN_FARZ[a][0]} ve {_DN_FARZ[b][0]} namazlarının farz rekât sayıları toplamı kaçtır?"
+    return _mf_raw(subject, "Namaz ibadeti", q, o, f"{_DN_FARZ[a][1]} + {_DN_FARZ[b][1]} = {t}.", shape=sh) if o else None
+
+
+def _fgd_kissa_ters(subject):
+    ks = random.sample(range(7), 4)
+    c = random.randrange(4)
+    hf = _lt(4)
+    sh = _dl_sh(sub_type="kavram", sozler=[{"h": hf[i], "w": _GP_KISSA[ks[i]][0]} for i in range(4)])
+    allv = [_GP_KISSA[k][1] for k in ks]
+    q = f"Şekilde dört peygamberin adı harflerle gösterilmiştir. {hf[c]} harfiyle gösterilen peygamber hakkında aşağıdakilerden hangisi doğrudur?"
+    return _mf_raw(subject, "Peygamber kıssalarındaki öğütler", q, (allv, _GP_KISSA[ks[c]][1]), f"{hf[c]} ile gösterilen peygamber {_GP_KISSA[ks[c]][0]}'dir: {_GP_KISSA[ks[c]][1]}", shape=sh)
+
+
+_DN2_KITAP = [("Hz. Musa", "Tevrat"), ("Hz. Davud", "Zebur"), ("Hz. İsa", "İncil"), ("Hz. Muhammed", "Kur'an-ı Kerim")]
+
+
+def _fgd_kitap(subject):
+    ks = list(range(4))
+    random.shuffle(ks)
+    c = random.randrange(4)
+    ws = [_DN2_KITAP[k][0] for k in ks]
+    q = f"Şekilde dört peygamberin adı harflerle gösterilmiştir. {_DN2_KITAP[ks[c]][1]}, bu peygamberlerden hangisine gönderilmiştir?"
+    return _gp_cards(subject, "Peygamberlik ve ilahî kitaplar", ws, c, q, f"{_DN2_KITAP[ks[c]][1]}, {ws[c]}'e gönderilmiştir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_DN2_BOL = [("Kubbe", "Caminin üstünü örten yarım küre biçimindeki bölüm"), ("Mihrap", "Kıble yönünü gösteren, duvardaki oyuk bölüm"), ("Minber", "Cuma hutbesinin okunduğu merdivenli bölüm"),
+            ("Minare", "Ezanın okunduğu yüksek kule"), ("Şadırvan", "Abdest almak için yapılan, çevresinde musluklar bulunan, çoğunlukla avludaki yapı")]
+
+
+def _fgd_bolum(subject):
+    ks = random.sample(range(5), 4)
+    c = random.randrange(4)
+    ws = [_DN2_BOL[k][0] for k in ks]
+    q = f"Şekilde cami ve çevresiyle ilgili dört kavram harflerle gösterilmiştir. “{_DN2_BOL[ks[c]][1]}” hangi harfle gösterilen kavramdır?"
+    return _gp_cards(subject, "Camilerin bölümleri (mihrap, minber, kubbe, minare)", ws, c, q, f"Bu açıklama {ws[c]} kavramına aittir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_DN2_CAMI = [("Selimiye Camii", "Edirne"), ("Sultanahmet Camii", "İstanbul"), ("Kocatepe Camii", "Ankara"), ("Ulu Cami (Bursa)", "Bursa"), ("Divriği Ulu Camii", "Sivas"), ("Alâeddin Camii", "Konya")]
+
+
+def _fgd_cami_il(subject):
+    ks = random.sample(range(6), 4)
+    c = random.randrange(4)
+    ws = [_DN2_CAMI[k][1] for k in ks]
+    nm = _DN2_CAMI[ks[c]][0]
+    q = f"Şekilde dört ilimizin adı harflerle gösterilmiştir. {nm} hangi harfle gösterilen ilimizdedir?"
+    return _gp_cards(subject, "Cami örnekleri", ws, c, q, f"{nm}, {ws[c]} ilimizdedir; şekilde {{H}} harfiyle gösterilmiştir.")
+
+
+_GP_DN2 = [(_fgd_isim_sen, 2, "Allah'ın güzel isimleri", ("allah", "güzel isim", "sıfat")), (_fgd_isim_anlam, 2, "Allah'ın güzel isimleri", ("allah", "güzel isim", "sıfat")),
+           (_fgd_isim_odd, 3, "Allah'ın güzel isimleri", ("allah", "güzel isim", "sıfat")), (_fdn_sure_tab, 3, "Kur'an-ı Kerim'in iç düzeni", ("kur'an", "sure", "ayet")),
+           (_fdn_terim, 2, "Kur'an-ı Kerim'in iç düzeni", ("kur'an", "sure", "ayet", "cüz", "mushaf")), (_fdn_surek, 3, "Kur'an-ı Kerim'in iç düzeni", ("kur'an", "sure", "ayet", "kevser", "kureyş", "ihlas")),
+           (_fdn_vakit_sonra, 2, "Namaz ibadeti", ("namaz", "vakit")), (_fdn_poz_tarif, 2, "Namazın kılınışı", ("namaz",)), (_fdn_rekat_tab, 2, "Namaz ibadeti", ("namaz",)),
+           (_fgd_kissa_ters, 2, "Peygamber kıssalarındaki öğütler", ("peygamber", "kıssa", "kıssalar")), (_fgd_kitap, 2, "Peygamber kıssalarındaki öğütler", ("peygamber", "kıssa", "kıssalar", "kitap")),
+           (_fgd_bolum, 2, "Camilerin bölümleri (mihrap, minber, kubbe, minare)", ("cami", "mimari", "mihrap", "minber")), (_fgd_cami_il, 2, "Cami örnekleri", ("cami", "mimari", "mimarimizde"))]
+for _f, _d, _it, _kw in _GP_DN2:
+    _f.ITEM = _it
+    _DF_GENS.append((_vy_tag(_f, _it), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
 
 # ---- 6. SINIF FEN: Vücudumuzdaki Sistemler + Ses ve Işık (şekilli ve metinli aileler)
 _F6_LET = list("KLMNPRST")
