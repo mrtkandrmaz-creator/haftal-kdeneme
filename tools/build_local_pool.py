@@ -32,6 +32,30 @@ def _kz_of(ai, unit, fam):
     return both or fk or uk
 
 
+def _bkey(ai, q):
+    """Yineleme anahtarı. Açılış cümlesi ve harf/rakam değişimleri soruyu 'farklı' yapmaz; içerik (şekildeki sözcükler,
+    sorulan öge, doğru cevabın sözcüğü) farklıysa farklı soru sayılır. Yalnızca 'Konu:' açılışlı şekilli sorulara uygulanır."""
+    import json as _j
+    qt = str(q.get("question") or "")
+    sh = q.get("shape")
+    if not (sh and qt.startswith("Konu:")):
+        return ai._stem(q)
+    core = "\n".join(qt.split("\n")[2:]) or qt
+    core = re.sub(r"\b[A-ZÇĞİÖŞÜ]\b", "X", core)
+    core = re.sub(r"\d+", "0", core.lower())
+    ans = str((q.get("options") or {}).get(str(q.get("answer", "")).upper()[:1], ""))
+    js = _j.dumps(sh, ensure_ascii=False, sort_keys=True)
+    if len(ans) == 1:  # cevap bir harf: şekilde o harfle gösterilen sözcüğü anahtara kat
+        for m in re.finditer(r'"h": "(.)", "w": "([^"]+)"', js):
+            if m.group(1) == ans:
+                ans = "w:" + m.group(2)
+    js = re.sub(r'"(h|harf|k)": "[A-ZÇĞİÖŞÜ]"', '"h": "X"', js)
+    words = ",".join(sorted(re.findall(r'"(?:w|k)": "([^"]+)"', js)))
+    rows = js if sh.get("type") != "dil" else ""
+    import hashlib
+    return "k:" + hashlib.md5((core + "|" + ans + "|" + words + "|" + rows).encode()).hexdigest()[:16]
+
+
 def _mask(q):
     t = re.sub(r"\d+([.,]\d+)?", "0", str(q.get("question") or ""))
     sh = q.get("shape") or {}
@@ -43,10 +67,10 @@ def main():
     ap.add_argument("--grades", default="5")
     ap.add_argument("--subjects", default="")
     ap.add_argument("--max-per-unit", type=int, default=3000)
-    ap.add_argument("--tries", type=int, default=160, help="aile başına üretim denemesi")
+    ap.add_argument("--tries", type=int, default=250, help="aile başına üretim denemesi")
     ap.add_argument("--per-form", type=int, default=3, help="aynı kalıptan (sayılar maskeli) en çok kaç soru")
     ap.add_argument("--bad-dir", default="", help="userdata dalındaki data/ klasörü: hatalı bildirilen soru/kalıplar havuza girmez ve eski kayıtlardan silinir")
-    ap.add_argument("--per-family", type=int, default=30, help="bir ünitede aile başına en çok soru")
+    ap.add_argument("--per-family", type=int, default=60, help="bir ünitede aile başına en çok soru")
     args = ap.parse_args()
     random.seed()
     os.environ["DENEMEMATIK_NO_POOL"] = "1"
@@ -88,7 +112,7 @@ def main():
             keep = [q for q in keep if not ai._is_bad(ai._stem(q)) and not ai._is_bad_form(q) and not ai._is_bad_exact(q.get("question"), (q.get("options") or {}).get(str(q.get("answer", "")).upper()[:1]))]
             if len(keep) != _n0:
                 print(f"   hatalı bildirimlerden silinen (yapay zekâ kayıtları): {_n0 - len(keep)}")
-            stems = {ai._stem(q) for q in keep}
+            stems = {_bkey(ai, q) for q in keep}
             new = []
             for unit, topics in C[sj]:
                 utxt = unit + ": " + "; ".join(topics)
@@ -108,7 +132,7 @@ def main():
                             q = None
                         if not q or not ai._on_topic(q, utxt, sj, label):
                             continue
-                        s, m = ai._stem(q), _mask(q)
+                        s, m = _bkey(ai, q), _mask(q)
                         if not s or s in stems or forms[m] >= args.per_form:
                             continue
                         stems.add(s)

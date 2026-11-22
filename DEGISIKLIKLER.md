@@ -128,5 +128,6 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 
 ## Din Kültürü şekilli/tablolu soru artışı (2026-11-22)
 - 13 yeni şekilli aile: Allah'ın güzel isimleri (durum cümlesi, anlam, farklı grup), Kur'an (sure ayet sayıları tablosu, kavramlar: ayet/sure/cüz/mushaf, sure açıklamaları), Namaz (vakitten sonraki namaz, duruş tarifi, farz rekât tablosu), Peygamberler (kıssa ters soru, ilahî kitaplar), Cami (bölümler + şadırvan, cami–il).
-- Din havuzu 1660 → 1849; şekilli/tablolu soru 293 (%18) → 480 (%26). Hatalı/yinelenen 0; run_checks 12/12.
-- Sınır: aynı kazanımdaki soruların başı (konu + açılış cümlesi) yineleme denetiminde aynı sayıldığı için bir kazanımda yaklaşık 45–50 farklı şekilli soru çıkıyor; fazlası için açılış cümlesi çeşidi artırılmalı.
+- Havuz kurucusunda şekilli sorular için yineleme anahtarı değişti: açılış cümlesi ve harf/rakam farkı soruyu "farklı" saymıyor, içerik (şekildeki sözcükler, sorulan öge, cevap) farklıysa farklı sayılıyor. Aile başına üst sınır 30 → 60 (deneme 250).
+- Din havuzu 1660 → 2828; şekilli/tablolu soru 293 (%18) → 813 (%29). Hatalı/yinelenen 0; run_checks 12/12.
+- Bazı ailelerde (ör. dört vakit, dört kavram) içerik gerçekten 4 farklı soruyla sınırlı; fazlası için yeni bilgi gerekir.
