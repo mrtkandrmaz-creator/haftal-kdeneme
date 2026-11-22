@@ -39,6 +39,11 @@ def _bkey(ai, q):
     qt = str(q.get("question") or "")
     sh = q.get("shape")
     if not sh:
+        ps = str(q.get("passage") or "")
+        if len(ps) >= 20:  # öncüllü/metinli soru: kök aynı olsa da önculler (içerik) farklıysa farklı soru
+            import hashlib as _h0
+            ans0 = str((q.get("options") or {}).get(str(q.get("answer", "")).upper()[:1], ""))
+            return "p:" + _h0.md5((re.sub(r"\d+", "0", qt.lower()) + "|" + ps + "|" + ans0).encode()).hexdigest()[:16]
         return ai._stem(q)
     core = qt
     if core.startswith("Konu:"):
@@ -72,6 +77,9 @@ def _bkey(ai, q):
 def _mask(q):
     t = re.sub(r"\d+([.,]\d+)?", "0", str(q.get("question") or ""))
     sh = q.get("shape") or {}
+    ps = str(q.get("passage") or "")
+    if len(ps) >= 20 and not sh:
+        t += "|" + re.sub(r"\s+", " ", ps.lower())[:400]
     return re.sub(r"\s+", " ", t.lower()).strip() + "|" + str(sh.get("type") or "") + "|" + re.sub(r"\d+", "0", str(sh.get("title") or ""))
 
 

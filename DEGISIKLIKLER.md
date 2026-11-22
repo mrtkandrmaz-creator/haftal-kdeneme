@@ -148,3 +148,9 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - MAT.5.1.1 havuzu 1178 → 2712; Matematik 5. sınıf toplam 17 794 (aile başına 60 sınırıyla yeniden kuruldu; dosya ≈14 MB). Hatalı/yinelenen 0; run_checks 12/12.
 - Sınır: "sayı doğrusu" ve "yuvarlama" bu çıktıda resmî metinde açıkça yok; mevcut aileler zaten var, değiştirilmedi.
 - (2026-11-23, devam) 8 yeni biçim daha: yanlış/doğru ifade seçimi, "kaç sıfır kullanılır", gizli rakam (?) tablosu, bölük tablosundan sayı oluşturma, bölüklü çözümleme (430 × 1 000 000 + …), iki öğrencinin okunuşunu karşılaştırma, n basamaklı en büyük/küçük sayı, üç sayıyı harfle sıralama. Sorular 4–5 farklı kök cümlesiyle çeşitlendi. MAT.5.1.1 havuzu 2963, Matematik 5 toplam 18 049; hatalı/yinelenen 0.
+
+## Az soru üreten aileler (2026-11-23)
+- Neden: havuz kurucusu yinelenen soruyu soru metninin ilk 70 karakterine bakarak eliyordu; kök cümlesi aynı olan ama içeriği (şekildeki sözcükler, öncüller, cevap) farklı sorular yok sayılıyordu. Ör. `_df_yn_r_allah` 252 farklı soru üretiyor, havuzda 1 vardı.
+- Çözüm (tools/build_local_pool.py): şekilli sorularda şekil içeriğine, metinli/öncüllü sorularda öncül metnine ve cevaba bakan yineleme anahtarı; aynı kalıptan en çok 3 sınırı da öncül metnini hesaba katıyor.
+- 5. sınıf havuzu yeniden kuruldu (hepsinde hatalı/yinelenen 0, run_checks 12/12): Fen 6305 → 15 234, Türkçe 2643 → 5327, Sosyal 1747 → 3702, İngilizce 1197 → 3055, Din 1660 → 2965, Matematik 18 049. Toplam ≈ 48 000 soru, pool klasörü ≈ 45 MB (Fen ve Matematik ≈ 15 MB'er; yüklenmesi 0,3 sn).
+- Hâlâ az soru üretenler gerçekten içerik sınırlı: ör. dört terim/dört vakit/dört kavram kartı (4 farklı soru), tek bilgiye dayalı kalıplar. Bunlar için yeni bilgi/kalıp yazmak gerekir.
