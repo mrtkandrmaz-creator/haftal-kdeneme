@@ -7,6 +7,7 @@ MODULES sözlüğündeki her kayıt bir modüldür (ör. core/curriculum = müfr
 """
 import os
 import sys
+import time
 import types
 import streamlit as st
 
@@ -7963,6 +7964,61 @@ def bank_stats():
         sj = (e.get("meta") or {}).get("subject", "?")
         per[sj] = per.get(sj, 0) + len(e["qs"])
     return {"total": sum(per.values()), "per": per}
+
+
+# ---- takılma izleme: yavaş adımlar bellekte (son 400 kayıt) tutulur; yalnızca ?admin=1 ekranında görünür
+import threading as _pth
+_PERF = []
+_PERF_LK = _pth.Lock()
+
+
+def perf_add(name, secs, err=""):
+    try:
+        with _PERF_LK:
+            _PERF.append((time.time(), str(name), float(secs), str(err)[:120]))
+            if len(_PERF) > 400:
+                del _PERF[:100]
+    except Exception:
+        pass
+
+
+def perf_timed(name):
+    import functools
+
+    def deco(fn):
+        @functools.wraps(fn)
+        def w(*a, **k):
+            t0 = time.time()
+            try:
+                return fn(*a, **k)
+            except BaseException as e:
+                perf_add(name, time.time() - t0, type(e).__name__)
+                raise
+            finally:
+                dt = time.time() - t0
+                if dt >= 0.15:  # küçük işleri kaydetme (kayıt şişmesin)
+                    perf_add(name, dt)
+        return w
+    return deco
+
+
+def perf_summary():
+    """({ad: (adet, ort, en çok)}, en yavaş 8 kayıt, son 5 hata)"""
+    with _PERF_LK:
+        rows = list(_PERF)
+    agg = {}
+    for _t, n, d, _e in rows:
+        c, tot, mx = agg.get(n, (0, 0.0, 0.0))
+        agg[n] = (c + 1, tot + d, max(mx, d))
+    agg = {n: (c, tot / c, mx) for n, (c, tot, mx) in agg.items()}
+    slow = sorted(rows, key=lambda r: -r[2])[:8]
+    errs = [r for r in rows if r[3]][-5:]
+    return agg, slow, errs
+
+
+for _pn in ("_save", "_load", "gh_pull_once"):
+    if _pn in globals():
+        globals()[_pn] = perf_timed("store." + _pn.strip("_"))(globals()[_pn])
 '''
 MODULES['core/meb_live'] = r'''# -*- coding: utf-8 -*-
 """MEB Öğretim Programları (mufredat.meb.gov.tr) sitesinden program PDF'lerini çeker, kazanım kodlarını ayrıştırır
@@ -12658,6 +12714,8 @@ def _on_topic(q, topics, subject=None, grade_label=None):
                     foreign = hits - names
                     if "cebir" in names:
                         foreign.discard("geo_nicelik")  # şekil örüntüleri birim karelerle kurulur
+                        if "algoritma" in tl:
+                            foreign.discard("sayi")  # basamaklı toplama/çıkarma/çarpma algoritmaları rakam ve basamak sözcüğü içerir
                     if "olasılık" in names:
                         foreign.discard("kesir")  # olasılık cevapları kesirle yazılır (1/2 gibi)
                     if foreign and (not (hits & names) or foreign & {"kesir", "olasılık", "sayi", "veri"}):
@@ -28773,7 +28831,8 @@ def _f5_vary(fn):
             return r
         r = dict(r)
         if (r.get("shape") or {}).get("type") == "table":
-            pre = random.choice(["Tabloya göre", "Verilen tabloya bakarak", "Aşağıdaki tabloyu inceleyerek", "Tablodaki bilgilere göre", "Tabloda verilenleri dikkate alarak", "Tabloyu dikkatle inceleyerek", "Deney tablosuna göre", "Tablodaki verilerden yararlanarak"])
+            pre = random.choice(["Tabloya göre", "Verilen tabloya bakarak", "Aşağıdaki tabloyu inceleyerek", "Tablodaki bilgilere göre", "Tabloda verilenleri dikkate alarak", "Tabloyu dikkatle inceleyerek", "Tablodaki verilerden yararlanarak"]
+                                + (["Deney tablosuna göre"] if r.get("subject") != "Matematik" else []))  # "deney" yalnızca fen derslerinde
         else:
             pre = random.choice(_VY_PRE)
         r["question"] = pre + " " + random.choice(_VY_SUF) + "\n" + str(r["question"])
@@ -34378,6 +34437,168 @@ for _f, _d in _S6_FAMS:
     _MF_ITEMCODE[_f.__name__] = ["MAT.5.1.1"]
 
 
+# ---- 5. sınıf Matematik: az soru üreten (sabit soru kökü yüzünden aynı kalıba düşen) aileleri çeşitli açılış cümleleriyle çoğalt.
+# Sınav kurulurken aynı kalıptan en çok 2 soru alındığı için havuzun büyümesi sınavda benzer soru getirmez.
+_M5_LEAD2 = ["Aşağıdaki soruyu dikkatle okuyunuz.", "Konu tekrarı için hazırlanan bir soru:", "Bir deneme sınavında şu soru sorulmuştur.", "Bir okul yazılısında şu soru yer almıştır.",
+             "Bir çalışma kâğıdında şu soru vardır.", "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.", "Bir matematik ödevinde şu soru yer alıyor.", "Bir öğrenci konu tekrarı yapıyor.",
+             "Ders sonunda küçük bir değerlendirme yapılıyor.", "Matematik öğretmeni tahtaya bir soru yazmıştır.", "Bir kitaptaki etkinlik inceleniyor.", "Bir öğrenci kendi kendine soru çözüyor.",
+             "Aşağıdaki problemi çözünüz.", "Şu soruyu yanıtlayınız.", "Bir tekrar testinde şu soru sorulmuştur.", "Matematik dersinde şu soru çözülüyor."]
+_M5_LOW = set(['_mf_abk_oku', '_mf_ac_but_cift', '_mf_ac_cift', '_mf_ac_fark', '_mf_aci_cevir', '_mf_aci_cikar', '_mf_aci_donme', '_mf_aci_kalan', '_mf_aci_olcer', '_mf_aci_say', '_mf_aci_say2', '_mf_aci_siniflama', '_mf_aci_topla', '_mf_aci_toplam2', '_mf_aci_tur2', '_mf_aci_ucgen_toplam', '_mf_aci_yarim', '_mf_ang_butunler', '_mf_ang_komsu', '_mf_ang_ters', '_mf_ang_tur', '_mf_aortay_cebir', '_mf_bahce', '_mf_bar_enaz', '_mf_bar_enok', '_mf_bar_fark', '_mf_bar_iki', '_mf_bar_yorum', '_mf_basdeg', '_mf_bd_basamak_say', '_mf_bd_boluk', '_mf_bd_cozum', '_mf_bd_fazla', '_mf_bd_oku', '_mf_but_cebir', '_mf_but_cift', '_mf_but_say', '_mf_but_x', '_mf_butunler_oran', '_mf_ca_alan_say', '_mf_ca_birim', '_mf_ca_cevre_say', '_mf_ca_eksik_kenar', '_mf_ca_esitcevre', '_mf_ca_halı', '_mf_ca_kare_cevre', '_mf_ca_karesay', '_mf_ca_kenar', '_mf_ca_kiyas', '_mf_ca_tel', '_mf_ca_tur', '_mf_cards', '_mf_cem_bilgi', '_mf_cem_cap', '_mf_cem_cevre_say', '_mf_cem_kiris', '_mf_cem_masa', '_mf_cem_pergel', '_mf_cem_yaricap', '_mf_cember_cap', '_mf_cevre_say', '_mf_cg_aci_say', '_mf_cg_cevre', '_mf_cg_cevre2', '_mf_cg_kosegen', '_mf_cg_ozellik', '_mf_cizim_ad', '_mf_cozum', '_mf_dec_addsub', '_mf_dec_conv', '_mf_dg_aci_say', '_mf_dg_alet', '_mf_dg_bilgi', '_mf_dg_cizim_sira', '_mf_dg_nokta', '_mf_dg_paralel', '_mf_dg_say', '_mf_dg_say2', '_mf_dik_olcu', '_mf_dik_par', '_mf_eqlty', '_mf_eqlty2', '_mf_fr_addsub', '_mf_fr_of', '_mf_fracorder', '_mf_gv_L_alan', '_mf_gv_L_cevre', '_mf_gv_U', '_mf_gv_aci_sayisi', '_mf_gv_aci_tur_bak', '_mf_gv_aol_iki', '_mf_gv_aol_oku', '_mf_gv_aol_sol', '_mf_gv_aol_tum', '_mf_gv_aol_tur', '_mf_gv_cerceve', '_mf_gv_cokgen_kose', '_mf_gv_dik_say', '_mf_gv_dp_nokta', '_mf_gv_dp_say', '_mf_gv_duzgun_cevre', '_mf_gv_duzgun_kenar', '_mf_gv_ikizkenar_cevre', '_mf_gv_izg_alan', '_mf_gv_izg_cevre', '_mf_gv_izg_eksik', '_mf_gv_izg_kars', '_mf_gv_kare_dizi', '_mf_gv_kosegen', '_mf_gv_saat_30', '_mf_gv_saat_aci', '_mf_gv_saat_tur', '_mf_gv_uc_dogru', '_mf_gv_ucgen_cevre', '_mf_gv_ucgen_eksik', '_mf_gv_ucgen_tur', '_mf_inter', '_mf_isin_bas', '_mf_kalan', '_mf_kes_buyuk_kucuk', '_mf_kes_buyuk_say', '_mf_kes_para', '_mf_kes_problem_kalan', '_mf_kes_sadele', '_mf_kes_sayidog', '_mf_kes_tam_say', '_mf_kes_tamtopla', '_mf_kes_tersi', '_mf_kes_tur', '_mf_kom_cebir', '_mf_kom_oran', '_mf_kr_cift', '_mf_kr_en_kucuk', '_mf_ks_bilesik', '_mf_ks_birim', '_mf_ks_bos', '_mf_ks_cikar', '_mf_ks_esd_denk', '_mf_ks_esitdegil', '_mf_ks_grp_kac', '_mf_ks_grp_oran', '_mf_ks_sd_bul', '_mf_ks_sd_en', '_mf_ks_sd_fark', '_mf_ks_sd_oku', '_mf_ks_sd_tam', '_mf_ks_topla', '_mf_lset_dogru', '_mf_lset_isin', '_mf_lset_parca', '_mf_od_esit_say', '_mf_od_esles_farkli', '_mf_od_grid_cikar', '_mf_od_grup_kac', '_mf_od_hangi', '_mf_od_kart_en', '_mf_od_kart_say', '_mf_od_kart_sira', '_mf_od_kesir', '_mf_od_ondalik', '_mf_od_sd_bul', '_mf_od_sd_en', '_mf_od_sd_oku', '_mf_od_serit', '_mf_od_yanlis', '_mf_ond_aralik', '_mf_ond_basdeg', '_mf_ond_birim', '_mf_ond_buyuk', '_mf_ond_carp', '_mf_ond_cikar', '_mf_ond_kesir', '_mf_ond_sira', '_mf_ond_topla', '_mf_ond_yaz', '_mf_order2', '_mf_orun_kural', '_mf_par_kesis', '_mf_para', '_mf_pct_esit', '_mf_poly_set', '_mf_prb_alis', '_mf_prb_arac', '_mf_prb_gun', '_mf_say', '_mf_say_ardisik', '_mf_say_basamak_sayisi', '_mf_say_basdeg2', '_mf_say_bolum', '_mf_say_carpim', '_mf_say_cikar', '_mf_say_cozumle', '_mf_say_islem_sirasi', '_mf_say_kac_tane', '_mf_say_kalan_para', '_mf_say_kars', '_mf_say_karsi', '_mf_say_komsu', '_mf_say_rakam', '_mf_say_sirala', '_mf_say_topla', '_mf_say_yuvar', '_mf_say_yuvarla2', '_mf_tab_fark', '_mf_tab_karar', '_mf_tab_tum', '_mf_tab_yorum', '_mf_ters_cebir', '_mf_ters_x', '_mf_tum_cebir', '_mf_tum_cift', '_mf_tum_say', '_mf_tum_x', '_mf_tumler_oran', '_mf_veri_acik', '_mf_veri_mod', '_mf_veri_ort', '_mf_vt_pikto_yarim', '_mf_wings', '_mf_yn_aci_cift_roman', '_mf_yn_aci_roman', '_mf_yn_bahce', '_mf_yn_bilet', '_mf_yn_but_tahta', '_mf_yn_cember_yol', '_mf_yn_cevre_roman', '_mf_yn_cokgen_roman', '_mf_yn_dg_roman', '_mf_yn_fidan', '_mf_yn_indirim_kars', '_mf_yn_kapi', '_mf_yn_kes_depo', '_mf_yn_kes_roman', '_mf_yn_kes_tarif', '_mf_yn_kes_yol', '_mf_yn_kitap', '_mf_yn_koli', '_mf_yn_market', '_mf_yn_nufus', '_mf_yn_nufus_fark', '_mf_yn_oda_fayans', '_mf_yn_pizza', '_mf_yn_say_kilit', '_mf_yn_say_roman', '_mf_yn_tum_kat', '_mf_yn_tum_rampa', '_mf_yn_veri_en', '_mf_yn_veri_hedef', '_mf_yn_veri_ort', '_mf_yn_veri_roman', '_mf_yn_yakit', '_mf_yn_yaris', '_mf_yn_yaris_en', '_mf_yn_yuzde_roman', '_mf_yuvarla', '_mf_yuz_fiyat', '_mf_yuz_kesir', '_mf_yuz_oran', '_mf_yuz_say', '_mf_yuz_sinif', '_mf_yuzde_hes', '_mf_yv_hangisine', '_mf_yv_yakin', '_mf_zaman'])
+
+
+def _m5_lead2(f):
+    import functools
+
+    @functools.wraps(f)
+    def w(subject):
+        r = f(subject)
+        if not r:
+            return r
+        r = dict(r)
+        r["question"] = random.choice(_M5_LEAD2) + "\n" + str(r["question"])
+        return r
+    w._m5l2 = True
+    return w
+
+
+for _i, (_f, _kw, _gs) in enumerate(list(_MF_GENS)):
+    if _gs == (5,) and _f.__name__ in _M5_LOW and not getattr(_f, "_m5l2", False):
+        _MF_GENS[_i] = (_m5_lead2(_f), _kw, _gs)
+
+
+# ---------------------------------------------------------------- MAT.5.2.4 aritmetik işlemlerde algoritmalar (basamaklı yöntemler)
+def _al_tab(rows, title=None):
+    return {"type": "table", "title": title or "Basamaklı işlem", "headers": ["İşlem", "Yüzler", "Onlar", "Birler"], "rows": rows}
+
+
+def _mf5_al_topla_eksik(subject):
+    a = random.randint(120, 689)
+    b = random.randint(120, 989 - a) if a < 880 else 0
+    if b < 100:
+        return None
+    c = a + b
+    if c > 999:
+        return None
+    da, db, dc = [str(x).zfill(3) for x in (a, b, c)]
+    i, j = random.sample(range(3), 2)
+    ra, rb = list(da), list(db)
+    ra[i], rb[j] = "A", "B"
+    rows = [["1. toplanan", *ra], ["2. toplanan", *rb], ["Toplam", *dc]]
+    va, vb = int(da[i]), int(db[j])
+    k = random.choice(["topla", "fark_a", "carp"])
+    if k == "topla":
+        cor, ask = va + vb, "A + B"
+    elif k == "fark_a":
+        if va == vb:
+            return None
+        cor, ask = abs(va - vb), "A ile B arasındaki fark (büyükten küçüğü çıkararak)"
+    else:
+        cor, ask = va * vb, "A × B"
+    wr = [cor + 1, cor + 2, max(0, cor - 1), cor + 10, cor * 2, va, vb]
+    wr = [w for w in dict.fromkeys(wr) if w != cor and w >= 0]
+    o = _mf_opts(cor, wr, str, sort=True)
+    return _mf_raw(subject, "Toplama Algoritması", f"Aşağıda bir toplama işlemi basamaklarına ayrılarak yazılmıştır. Silinen rakamlar A ve B ile gösterilmiştir.\n{ask} kaçtır?", o,
+                   f"Her basamak ayrı ayrı incelenir (eldeler de hesaba katılır): A = {va}, B = {vb}. {ask} = {cor}.", shape=_al_tab(rows, "Toplama işlemi")) if o else None
+
+
+def _mf5_al_cikarma_eksik(subject):
+    a = random.randint(400, 999)
+    b = random.randint(101, a - 100)
+    c = a - b
+    da, db, dc = str(a), str(b).zfill(3), str(c).zfill(3)
+    i = random.randrange(3)
+    ra, rc = list(da), list(dc)
+    ra[i] = "A"
+    rc[(i + random.choice([1, 2])) % 3] = "B"
+    rows = [["Eksilen", *ra], ["Çıkan", *db], ["Fark", *rc]]
+    # tek çözüm kontrolü: A ve B'yi 0-9 deneyerek say
+    sols = 0
+    for xa in range(10):
+        for xb in range(10):
+            aa = "".join(str(xa) if ch == "A" else ch for ch in ra)
+            cc = "".join(str(xb) if ch == "B" else ch for ch in rc)
+            if aa[0] != "0" and int(aa) - b == int(cc):
+                sols += 1
+    if sols != 1:
+        return None
+    va = int(da[i])
+    vb = int(next(dc[x] for x in range(3) if rc[x] == "B"))
+    cor = va + vb
+    wr = [cor + 1, cor + 2, max(0, cor - 1), cor + 3, va, vb]
+    wr = [w for w in dict.fromkeys(wr) if w != cor and w >= 0]
+    o = _mf_opts(cor, wr, str, sort=True)
+    return _mf_raw(subject, "Çıkarma Algoritması", "Aşağıda bir çıkarma işlemi basamaklarına ayrılarak yazılmıştır. Silinen rakamlar A ve B ile gösterilmiştir.\nA + B kaçtır?", o,
+                   f"Basamaklar sağdan sola (onluk bozma da hesaba katılarak) incelenir: A = {va}, B = {vb}; A + B = {cor}.", shape=_al_tab(rows, "Çıkarma işlemi")) if o else None
+
+
+def _mf5_al_kismi(subject):
+    a, b = random.randint(12, 49), random.randint(12, 39)
+    p1, p2 = a * (b % 10), a * (b // 10) * 10
+    rows = [["Çarpılan", str(a)], ["Çarpan", str(b)], ["1. kısmi çarpım", "A"], ["2. kısmi çarpım", "B"], ["Çarpım", "C"]]
+    k = random.choice(["A", "B", "C"])
+    cor = {"A": p1, "B": p2, "C": a * b}[k]
+    nm = {"A": f"{a} × {b % 10}", "B": f"{a} × {b // 10 * 10}", "C": "A + B"}[k]
+    wr = [cor + 10, cor - 10, cor // 10 if cor >= 100 and cor % 10 == 0 else cor + 20, cor + 100, p1 + a, a * b + 10]
+    wr = [w for w in dict.fromkeys(wr) if w != cor and w > 0]
+    o = _mf_opts(cor, wr, str, sort=True)
+    tab = {"type": "table", "title": f"{a} × {b} işleminin yapılışı", "headers": ["Adım", "Sayı"], "rows": rows[:2] + [["1. kısmi çarpım", "A"], ["2. kısmi çarpım", "B"], ["Çarpım", "C"]]}
+    return _mf_raw(subject, "Çarpma Algoritması", f"Tabloda {a} × {b} işlemi iki kısmi çarpım kullanılarak yapılmıştır.\n{k} ile gösterilen sayı kaçtır?", o,
+                   f"1. kısmi çarpım {a} × {b % 10} = {p1}; 2. kısmi çarpım {a} × {b // 10 * 10} = {p2}; çarpım {a * b}. Buna göre {k} = {cor}.", shape=tab) if o else None
+
+
+def _mf5_al_bolme(subject):
+    b, q, r = random.randint(3, 12), random.randint(6, 40), 0
+    r = random.randint(1, b - 1)
+    n = b * q + r
+    k = random.choice(["bolunen", "bolen", "kalan_max", "bolum_dogru", "buyuk_bolunen"])
+    if k == "bolunen":
+        t, cor, ex = f"Bir bölme işleminde bölen {b}, bölüm {q} ve kalan {r}'dir.\nBu işlemde bölünen sayı kaçtır?", n, f"Bölünen = bölen × bölüm + kalan = {b} × {q} + {r} = {n}."
+        wr = [b * q, n + b, n - r + 1, b + q + r, n + 1]
+    elif k == "bolen":
+        t, cor, ex = f"Bir bölme işleminde bölünen {n}, bölüm {q} ve kalan {r}'dir.\nBu işlemde bölen sayı kaçtır?", b, f"{n} − {r} = {n - r} sayısı {q} ile bölününce bölen {b} bulunur."
+        wr = [b + 1, b - 1, q, b + 2, r + 2]
+    elif k == "kalan_max":
+        t, cor, ex = f"Bir bölme işleminde bölen {b} ise kalan en çok kaç olabilir?", b - 1, f"Kalan her zaman bölenden küçüktür; en büyük kalan {b} − 1 = {b - 1} olur."
+        wr = [b, b + 1, b - 2 if b > 3 else b + 2, b // 2 + 3]
+    elif k == "bolum_dogru":
+        t, cor, ex = f"{n} ÷ {b} işleminin bölümü ve kalanı toplamı kaçtır?", q + r, f"{n} = {b} × {q} + {r} olduğundan bölüm {q}, kalan {r}; toplam {q + r}."
+        wr = [q + r + 1, q - r if q > r else q + r + 2, q + b, q, q + r + 2]
+    else:
+        t, cor, ex = f"Bir bölme işleminde bölen {b} ve bölüm {q}'dir.\nKalan en büyük olduğunda bölünen sayı kaç olur?", b * q + b - 1, f"En büyük kalan {b} − 1 = {b - 1}; bölünen = {b} × {q} + {b - 1} = {b * q + b - 1}."
+        wr = [b * q, b * q + b, b * q + b + 1, b * q + 1, b * q + b - 2]
+    wr = [w for w in dict.fromkeys(wr) if w != cor and w >= 0]
+    o = _mf_opts(cor, wr, str, sort=True)
+    return _mf_raw(subject, "Bölme Algoritması", t, o, ex) if o else None
+
+
+def _mf5_al_dortislem(subject):
+    a, b, c = random.randint(12, 60), random.randint(3, 9), random.randint(2, 9)
+    k = random.choice(["topla_carp", "cikar_bol"])
+    if k == "topla_carp":
+        t = f"Bir işlemde önce {a} ile {b} toplanıyor, çıkan sonuç {c} ile çarpılıyor, sonra bulunan sayıdan {c} çıkarılıyor.\nSon sonuç kaçtır?"
+        cor = (a + b) * c - c
+        wr = [a + b * c - c, (a + b) * c, (a + b) * (c - 1) + 1, a * c + b - c]
+        ex = f"({a} + {b}) × {c} = {(a + b) * c}; {(a + b) * c} − {c} = {cor}."
+    else:
+        d = random.randint(3, 9)
+        n = d * random.randint(5, 30)
+        e = random.randint(2, 20)
+        t = f"Bir sayı önce {d} ile bölünüyor, bulunan sonuca {e} ekleniyor. Başlangıçtaki sayı {n} olduğuna göre son sonuç kaçtır?"
+        cor = n // d + e
+        wr = [n // d - e if n // d > e else n // d + e + 1, n + e, n // d * e, n // d + e + d]
+        ex = f"{n} ÷ {d} = {n // d}; {n // d} + {e} = {cor}."
+    wr = [w for w in dict.fromkeys(wr) if w != cor and w >= 0]
+    o = _mf_opts(cor, wr, str, sort=True)
+    return _mf_raw(subject, "Aritmetik İşlemler", t, o, ex) if o else None
+
+
+_AL_FAMS = [(_mf5_al_topla_eksik, 3), (_mf5_al_cikarma_eksik, 3), (_mf5_al_kismi, 3), (_mf5_al_bolme, 2), (_mf5_al_dortislem, 2)]
+for _f, _d in _AL_FAMS:
+    _MF_GENS.append((_m5v(_f) if _f.__name__ in ("_mf5_al_topla_eksik", "_mf5_al_cikarma_eksik", "_mf5_al_kismi") else _m5_lead2(_f), ("cebirsel düşünme",), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = ["MAT.5.2.4"]
+
+
 def _fam_item(name, fn, subject, items):
     """Hazır kalıp hangi alt konuya/kazanıma ait? Birkaç örnek sorusunun metni alt konu metniyle eşleştirilir (önbellekli)."""
     key = (name, tuple(items))
@@ -35591,6 +35812,15 @@ def grade_open(questions, open_answers, grade_label):
                     pts = 0.0
                 out[i] = {"points": pts, "verdict": str(r.get("verdict") or ""), "feedback": str(r.get("feedback") or ""), "tip": str(r.get("tip") or "")}
     return out, errs
+
+
+try:
+    from . import store as _pst
+    for _pn in ("generate_mc", "generate_oyss"):  # sınav hazırlama süresi ?admin=1 ekranında görünür
+        if _pn in globals():
+            globals()[_pn] = _pst.perf_timed("ai." + _pn)(globals()[_pn])
+except Exception:
+    pass
 '''
 MODULES['core/coach'] = r'''# -*- coding: utf-8 -*-
 """Öğrenci koçu: aralıklı tekrar, seri/hedef/seviye, çalışma planı, süre analizi, yapay zekâ anlatımı."""
@@ -36153,7 +36383,8 @@ def home():
              ("reports", "indigo", "📊 Performans & Raporlar", "Grafikler, ders karşılaştırmaları", "reports"),
              ("archive", "amber", "🗂️ Yanlış Arşivim", "Yanlış yaptığın sorulardan kişisel test", "archive"),
              ("badges", "slate", "🏅 Rozet & Sertifika", "Başarılarını topla, sertifika al", "badges"),
-             ("olimp", "orange", "🏆 TÜBİTAK ve Olimpiyat", "Sınıfına uygun bilim olimpiyatları ve proje yarışmaları", "olimp")]
+             ("olimp", "orange", "🏆 TÜBİTAK ve Olimpiyat", "Sınıfına uygun bilim olimpiyatları ve proje yarışmaları", "olimp"),
+             ("zihin", "teal", "🧮 Zihinden Matematik", "Hız antrenmanı: kısa yollar, süreli turlar, rekorlar", "zihin")]
     theme.cells(tools, 3, lambda x: theme.card(f"tool_{x[0]}", x[1], x[2], x[3], _tool_go, (x[4],)))
 
 
@@ -36247,6 +36478,7 @@ def olimp_menu():
     if not keys:
         st.info("4. sınıfta TÜBİTAK ortaokul olimpiyatlarına başvuru yoktur; ortaokul olimpiyatları 5. sınıftan itibaren başlar. "
                 "Şimdiden mantık, örüntü ve problem çözme alıştırması yapabilirsin.")
+        st.button("🧩 Olimpiyat tarzı antrenman", key="ol_oz4", on_click=olimp_train_start, args=(g, "mat"))
         st.button("🧠 Yeni Nesil Soru Bankası ile hazırlan", key="ol_prep4", type="primary", on_click=_olimp_practice, args=(g, None))
         st.caption(_OL_NOT)
         return
@@ -36321,6 +36553,9 @@ def olimp_detail():
     st.markdown("<div class='sec-title'>🎯 Hazırlık için çalış</div>", unsafe_allow_html=True)
     st.markdown("\n".join(f"- {x}" for x in it["tips"]))
     _olimp_muf(g, k, it)
+    if k in ("mat", "bil"):
+        st.button("🧩 Olimpiyat tarzı antrenman (10 soru)", key="ol_oz", type="primary", on_click=olimp_train_start, args=(g, k))
+        st.caption("Kanguru/olimpiyat tarzı mantık, örüntü ve sayı bulmacaları; her soru kodla üretilir, çözümü açıklamalı gösterilir. (Gerçek olimpiyat soruları değildir.)")
     if it.get("subject"):
         st.button(f"🧠 {it['subject']} antrenman sınavı çöz", key="ol_prac", type="primary", on_click=_olimp_practice, args=(g, it["subject"]))
         st.caption(f"Soru bankasında ders olarak **{it['subject']}** seç; yeni nesil, beceri temelli sorular gelir. (Gerçek olimpiyat soruları değildir; benzer düşünme becerisini çalıştırır.)")
@@ -36328,6 +36563,971 @@ def olimp_detail():
         st.caption("Bu bir proje yarışmasıdır; sınav yoktur. Hazırlığın için proje rehberini ve çağrı metnini incele.")
     st.link_button("🔗 Resmî TÜBİTAK sayfası", it["link"])
     st.caption(_OL_NOT)
+
+
+# ------------------------------------------------------------------ ZİHİNDEN MATEMATİK (hız antrenmanı; sorular kodla üretilir, yapay zekâ gerekmez)
+from decimal import Decimal as _D
+
+
+def _zfmt(d):
+    d = _D(d)
+    t = format(d.normalize(), "f")
+    if "." in t:
+        t = t.rstrip("0").rstrip(".")
+    return t.replace(".", ",")
+
+
+def _zparse(s):
+    s = str(s or "").strip().replace(" ", "").replace(",", ".")
+    try:
+        return _D(s)
+    except Exception:
+        return None
+
+
+_Z_SUF = {2: "'si", 3: "'ü", 4: "'ü", 5: "'i", 6: "'sı", 8: "'i", 10: "'u", 12: "'si"}
+
+
+def _z_add(L):
+    a, b = [(random.randint(10, 99), random.randint(10, 99)), (random.randint(100, 999), random.randint(11, 99)), (random.randint(100, 999), random.randint(100, 999))][L - 1]
+    return f"{a} + {b} = ?", _D(a + b), "Önce onlukları/yüzlükleri topla, sonra birlere geç. Ya da birini en yakın yuvarlak sayıya tamamla: 68 + 27 → 70 + 25."
+
+
+def _z_sub(L):
+    if L == 1:
+        a = random.randint(30, 99); b = random.randint(11, a - 1)
+    elif L == 2:
+        a = random.randint(101, 999); b = random.randint(11, 99)
+    else:
+        a = random.choice([1000, 2000, 500, 300, random.randint(400, 999)]); b = random.randint(101, a - 1)
+    return f"{a} − {b} = ?", _D(a - b), "Çıkarılan sayıyı yuvarla, sonra düzelt: 83 − 29 → 83 − 30 + 1. Yuvarlak sayıdan çıkarırken 9'a tamamla."
+
+
+def _z_tab(L):
+    a, b = [(random.randint(2, 5), random.randint(2, 10)), (random.randint(6, 9), random.randint(6, 9)), (random.randint(11, 15), random.randint(3, 9))][L - 1]
+    tip = "9'lar için: 10 katından kendini çıkar (9 × 7 = 70 − 7). 6, 7, 8'ler için tabloyu ritimle tekrar et."
+    if L == 3:
+        tip = "Dağılma özelliği: 13 × 7 = 10 × 7 + 3 × 7 = 70 + 21."
+    return f"{a} × {b} = ?", _D(a * b), tip
+
+
+def _z_kisa(L):
+    pool = [("5", lambda: random.randint(12, 98) * 2), ("9", lambda: random.randint(12, 60)), ("11", lambda: random.randint(12, 99)),
+            ("25", lambda: random.randint(2, 20) * 4), ("50", lambda: random.randint(3, 40)), ("99", lambda: random.randint(3, 30)), ("101", lambda: random.randint(12, 99))]
+    pool = pool[:3] if L == 1 else pool[:5] if L == 2 else pool
+    k, g = random.choice(pool)
+    n = g()
+    tips = {"5": "×5: sayıyı 10 ile çarpıp yarısını al (46 × 5 = 460 ÷ 2 = 230).", "9": "×9: 10 ile çarp, sayıyı çıkar (34 × 9 = 340 − 34).",
+            "11": "×11: 10 ile çarp, sayıyı ekle (34 × 11 = 340 + 34).", "25": "×25: 4'e böl, 100 ile çarp (32 × 25 = 8 × 100).",
+            "50": "×50: 100 ile çarp, 2'ye böl.", "99": "×99: 100 ile çarp, sayıyı çıkar (7 × 99 = 700 − 7).", "101": "×101: 100 ile çarp, sayıyı ekle."}
+    return f"{n} × {k} = ?", _D(n * int(k)), tips[k]
+
+
+def _z_bol(L):
+    if L == 1:
+        b = random.randint(2, 9); q = random.randint(2, 10)
+    elif L == 2:
+        b = random.randint(3, 9); q = random.randint(11, 99)
+    else:
+        b = random.randint(6, 12); q = random.randint(12, 60)
+    if L == 3 and random.random() < .5:
+        r = random.randint(1, b - 1); a = b * q + r
+        return f"{a} ÷ {b} işleminde kalan kaçtır?", _D(r), "Bölüneni bölenin en yakın küçük katından çıkar: 47 ÷ 6 → 6 × 7 = 42, kalan 5."
+    return f"{b * q} ÷ {b} = ?", _D(q), "Bölme, çarpmanın tersidir: kendine sor 'hangi sayıyı ... ile çarpınca bu sayı olur?'."
+
+
+def _z_tam(L):
+    if L == 1:
+        n = random.randint(11, 99); t = 100 if random.random() < .6 else (n // 10 + 1) * 10
+    elif L == 2:
+        n = random.randint(101, 999); t = 1000
+    else:
+        d = random.randint(1, 99); return f"0,{d:02d} + □ = 1 ise □ kaçtır?", _D(1) - _D(d) / 100, "Ondalık tamamlama: her basamağı 9'a, son basamağı 10'a tamamla (0,37 → 0,63)."
+    return f"{n} sayısını {t} sayısına tamamlamak için kaç eklenmelidir?", _D(t - n), "Birler basamağını 10'a, diğer basamakları 9'a tamamla (ör. 100'e tamamlama: 63 → 37)."
+
+
+def _z_us10(L):
+    k = random.choice([10, 100, 1000]) if L > 1 else random.choice([10, 100])
+    n = _D(random.randint(11, 999)) / _D(random.choice([1, 10, 100] if L > 1 else [1, 10]))
+    if random.random() < .5:
+        return f"{_zfmt(n)} × {k} = ?", n * k, "10, 100, 1000 ile çarparken virgül sağa, sıfır sayısı kadar basamak kayar."
+    return f"{_zfmt(n * k)} ÷ {k} = ?", n, "10, 100, 1000'e bölerken virgül sola, sıfır sayısı kadar basamak kayar."
+
+
+def _z_yuz(L):
+    p = random.choice([50, 10] if L == 1 else [50, 10, 25, 20] if L == 2 else [50, 10, 25, 20, 5, 75, 15])
+    base = {50: 2, 10: 10, 25: 4, 20: 5, 5: 20, 75: 4, 15: 20}[p]
+    n = base * random.randint(1, 12 if L < 3 else 20)
+    tips = {50: "%50 = yarısı.", 10: "%10: virgülü bir basamak sola kaydır.", 25: "%25 = dörtte biri (iki kez yarıla).", 20: "%20 = %10'un iki katı (ya da beşte biri).",
+            5: "%5 = %10'un yarısı.", 75: "%75 = dörtte üçü (%50 + %25).", 15: "%15 = %10 + %5."}
+    suf = {50: "'si", 10: "'u", 25: "'i", 20: "'si", 5: "'i", 75: "'i", 15: "'i"}[p]
+    return f"{n} sayısının %{p}{suf} kaçtır?", _D(n * p) / 100, tips[p]
+
+
+def _z_kesir(L):
+    fr = [(1, 2), (1, 4), (1, 5), (1, 3)] if L == 1 else [(3, 4), (2, 3), (3, 5), (2, 5), (1, 6)] if L == 2 else [(5, 8), (7, 10), (5, 6), (3, 8), (7, 12), (4, 9)]
+    a, b = random.choice(fr)
+    n = b * random.randint(2, 12 if L < 3 else 15)
+    return f"{n} sayısının {a}/{b}{_Z_SUF.get(b, chr(39) + 'i')} kaçtır?", _D(n // b * a), f"Önce {n} sayısını {b} eş parçaya böl ({n // b}), sonra {a} ile çarp."
+
+
+def _z_kare(L):
+    if L == 1:
+        n = random.randint(2, 12)
+    elif L == 2:
+        n = random.randint(11, 20)
+    else:
+        n = random.randint(13, 25)
+    if L == 3 and random.random() < .4:
+        c = random.randint(2, 10)
+        return f"{c}³ = ?", _D(c ** 3), "Küp: sayıyı üç kez çarp; önce karesini al, sonra bir kez daha çarp."
+    return f"{n}² = ?", _D(n * n), "Kare alma: 5 ile biten sayılarda (n)(n+1) yaz, sonuna 25 ekle: 35² → 3 × 4 = 12 → 1225. Diğerleri için dağılma özelliği: 13² = 169."
+
+
+def _z_onc(L):
+    a, b, c = random.randint(2, 9), random.randint(2, 9), random.randint(2, 9)
+    d = random.randint(1, 20)
+    if L == 1:
+        t = f"{d} + {a} × {b}"; v = d + a * b
+    elif L == 2:
+        t = f"{a} × ({b} + {c}) − {d}"; v = a * (b + c) - d
+        if v < 0:
+            return _z_onc(L)
+    else:
+        e = random.randint(2, 6)
+        t = f"({a * e} + {b * e}) ÷ {e} + {c} × {d}"; v = (a * e + b * e) // e + c * d
+    return f"{t} = ?", _D(v), "Önce parantez, sonra çarpma/bölme (soldan sağa), en son toplama/çıkarma."
+
+
+def _z_eksik(L):
+    a = random.randint(11, 60) if L == 1 else random.randint(25, 400)
+    b = a + random.randint(10, 90 if L < 3 else 500)
+    k = random.choice(["+", "−", "×", "÷"]) if L > 1 else random.choice(["+", "−"])
+    if k == "+":
+        return f"□ + {a} = {b}", _D(b - a), "Eksik toplananı bulmak için toplamdan bilineni çıkar."
+    if k == "−":
+        return f"{b} − □ = {a}", _D(b - a), "Eksik çıkanı bulmak için eksilenden farkı çıkar."
+    m = random.randint(3, 12); q = random.randint(3, 15)
+    if k == "×":
+        return f"□ × {m} = {m * q}", _D(q), "Eksik çarpanı bulmak için çarpımı bilinen çarpana böl."
+    return f"□ ÷ {m} = {q}", _D(m * q), "Eksik bölüneni bulmak için bölümü bölenle çarp."
+
+
+def _z_ebob(L):
+    from math import gcd
+    a, b = random.choice([(12, 18), (8, 12), (6, 15), (10, 25), (12, 20), (18, 24), (16, 24), (9, 15), (14, 21), (20, 30), (24, 36), (15, 20), (28, 42), (30, 45)])
+    if random.random() < .5:
+        return f"{a} ve {b} sayılarının EBOB'u kaçtır?", _D(gcd(a, b)), "Her iki sayıyı da tam bölen en büyük sayıyı ara: küçük sayının bölenlerini büyükten küçüğe dene."
+    return f"{a} ve {b} sayılarının EKOK'u kaçtır?", _D(a * b // gcd(a, b)), "Büyük sayının katlarını yaz, küçük sayıya bölünen ilk katı bul."
+
+
+def _z_ondtop(L):
+    a = _D(random.randint(11, 99)) / 10
+    b = _D(random.randint(11, 99)) / (10 if L == 1 else 100)
+    if random.random() < .5:
+        return f"{_zfmt(a)} + {_zfmt(b)} = ?", a + b, "Virgülleri alt alta getir; basamakları ayrı ayrı topla."
+    if a < b:
+        a, b = b, a
+    return f"{_zfmt(a)} − {_zfmt(b)} = ?", a - b, "Virgülleri alt alta getir; gerekirse sağa sıfır ekleyerek basamak sayısını eşitle."
+
+
+def _z_us(L):
+    if random.random() < .5:
+        t = random.randint(2, 12)
+        return f"√{t * t} = ?", _D(t), "Karekök: hangi sayının karesi bu sayıdır? Bildiğin karelerle eşleştir."
+    b, e = random.choice([(2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4), (4, 3), (5, 3), (10, 3), (6, 2), (7, 2), (2, 7), (2, 8)])
+    return f"{b}^{e} = ?", _D(b ** e), "Üssü adım adım aç: 2⁵ = 2 × 2 = 4 → 8 → 16 → 32."
+
+
+_Z_CATS = [  # (anahtar, simge, başlık, açıklama, en küçük sınıf, üretici)
+    ("add", "➕", "Hızlı Toplama", "2–3 basamaklı zihinden toplama", 4, _z_add),
+    ("sub", "➖", "Hızlı Çıkarma", "Yuvarlayıp düzeltme kısayolu", 4, _z_sub),
+    ("tab", "✖️", "Çarpım Tablosu", "Hızlı ve hatasız çarpım", 4, _z_tab),
+    ("kisa", "⚡", "Kısa Yol Çarpma", "×5, ×9, ×11, ×25, ×99 hileleri", 4, _z_kisa),
+    ("bol", "➗", "Bölme ve Kalan", "Çarpmanın tersi, kalan bulma", 4, _z_bol),
+    ("tam", "🎯", "Tamamlama", "10, 100, 1000'e tamamlama", 4, _z_tam),
+    ("eksik", "🧩", "Eksik Sayıyı Bul", "□ + 47 = 120 gibi", 4, _z_eksik),
+    ("onc", "🔢", "İşlem Önceliği", "Parantez, çarpma, toplama sırası", 5, _z_onc),
+    ("us10", "🔟", "10, 100, 1000 ile Çarpma/Bölme", "Virgül kaydırma", 5, _z_us10),
+    ("ond", "💧", "Ondalık Toplama-Çıkarma", "Virgülleri alt alta getir", 5, _z_ondtop),
+    ("yuz", "💯", "Yüzde Zihinden", "%10, %25, %50, %75 kısa yolları", 5, _z_yuz),
+    ("kes", "🍕", "Kesir Zihinden", "Bir sayının 3/4'ü, 2/5'i", 5, _z_kesir),
+    ("kare", "⬛", "Kare ve Küp", "Kare ve küp sayılar", 6, _z_kare),
+    ("ebob", "🔗", "EBOB – EKOK", "Küçük sayılarla hızlı bulma", 6, _z_ebob),
+    ("us", "🚀", "Üslü Sayı ve Karekök", "2⁵, √144 gibi", 8, _z_us),
+]
+_Z_BY = {c[0]: c for c in _Z_CATS}
+_Z_LV = ["Kolay", "Orta", "Zor"]
+
+
+def _zgrade():
+    g = st.session_state.get("zm_g") or st.session_state.get("grade") or "5"
+    return 8 if g == "LGS" else int(g) if str(g).isdigit() else 5
+
+
+def _zcats(gr):
+    return [c for c in _Z_CATS if c[4] <= gr]
+
+
+def _zgen(key, lvl, gr):
+    if key == "mix":
+        key = random.choice([c[0] for c in _zcats(gr)])
+    c = _Z_BY[key]
+    for _ in range(20):
+        t, a, tip = c[5](lvl)
+        if t:
+            return {"cat": key, "q": t, "a": str(a), "tip": tip}
+    return {"cat": key, "q": "2 + 2 = ?", "a": "4", "tip": ""}
+
+
+def _zstats():
+    """Günlük hedef, bugünkü ilerleme, seri ve son 7 gün. -> dict"""
+    import datetime as _dt
+    try:
+        s = store.settings()
+    except Exception:
+        s = {}
+    goal = int(s.get("zm_goal", 5) or 5)
+    daily = s.get("zm_daily", {}) or {}
+    today = store._today()
+    if not isinstance(today, _dt.date):
+        today = _dt.date.fromisoformat(str(today))
+
+    def done(d):
+        return int(daily.get(str(d), {}).get("sec", 0)) >= goal * 60
+    streak = 0
+    d = today if done(today) else today - _dt.timedelta(days=1)  # bugün henüz bitmediyse dünden say
+    while done(d):
+        streak += 1
+        d -= _dt.timedelta(days=1)
+    week = [(today - _dt.timedelta(days=i)) for i in range(6, -1, -1)]
+    return {"goal": goal, "today_sec": int(daily.get(str(today), {}).get("sec", 0)), "today_q": int(daily.get(str(today), {}).get("q", 0)),
+            "today_ok": int(daily.get(str(today), {}).get("ok", 0)), "streak": streak, "week": [(w, int(daily.get(str(w), {}).get("sec", 0))) for w in week],
+            "total_days": sum(1 for v in daily.values() if int(v.get("sec", 0)) >= goal * 60)}
+
+
+def _zgoal_panel():
+    stt = _zstats()
+    goal_s = stt["goal"] * 60
+    pct = min(1.0, stt["today_sec"] / goal_s)
+    flame = "🔥" if stt["streak"] else "⚪"
+    st.markdown(f"<div style='border:1px solid rgba(128,128,128,.35);border-radius:14px;padding:.7rem 1rem;margin:.4rem 0 .8rem'>"
+                f"<b>🎯 Günlük hedef: {stt['goal']} dakika</b> &nbsp; {flame} <b>{stt['streak']} günlük seri</b>"
+                f"<div style='opacity:.75;font-size:.9rem'>Bugün: {stt['today_sec'] // 60} dk {stt['today_sec'] % 60} sn • {stt['today_q']} soru"
+                + (f" • %{100 * stt['today_ok'] // max(1, stt['today_q'])} doğru" if stt["today_q"] else "") + "</div></div>", unsafe_allow_html=True)
+    st.progress(pct)
+    if pct >= 1:
+        st.success("✅ Bugünkü hedefi tamamladın! Seri devam ediyor.")
+    else:
+        rem = goal_s - stt["today_sec"]
+        st.caption(f"Hedefe {rem // 60} dk {rem % 60} sn kaldı.")
+    names = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"]
+    cells = []
+    for d, sec in stt["week"]:
+        mark = "🟩" if sec >= goal_s else "🟨" if sec > 0 else "⬜"
+        cells.append(f"{mark}<br><span style='font-size:.7rem;opacity:.7'>{names[d.weekday()]}</span>")
+    st.markdown("<div style='display:flex;gap:.8rem;text-align:center;font-size:1.3rem'>" + "".join(f"<div>{c}</div>" for c in cells) + "</div>", unsafe_allow_html=True)
+    st.caption(f"Son 7 gün • 🟩 hedef tamam • 🟨 çalıştın • toplam {stt['total_days']} hedef günü")
+    cur_goal = stt["goal"]
+    opts = [3, 5, 10, 15, 20]
+    new = st.radio("Günlük hedef (dakika)", opts, index=opts.index(cur_goal) if cur_goal in opts else 1, horizontal=True, key="zm_goal_sel")
+    if new != cur_goal:
+        try:
+            store.save_settings(zm_goal=int(new))
+            st.rerun()
+        except Exception:
+            pass
+
+
+def zihin_home():
+    st.button("⬅ Ana sayfa", key="back_zihin", on_click=nav, args=("home",))
+    st.markdown("<div class='hero'><h1>🧮 Zihinden Matematik</h1><p>Hız ve doğruluk antrenmanı • kısa yollar • kendi rekorunu kır</p></div>", unsafe_allow_html=True)
+    _zgoal_panel()
+    gs = ["4", "5", "6", "7", "8"]
+    cur_g = str(_zgrade())
+    gsel = st.radio("Sınıf düzeyi", gs, index=gs.index(cur_g) if cur_g in gs else 1, horizontal=True, format_func=lambda x: f"{x}. sınıf", key="zm_gsel")
+    st.session_state.zm_g = gsel
+    gr = int(gsel)
+    c1, c2 = st.columns(2)
+    with c1:
+        lvl = st.radio("Zorluk", [0, 1, 2, 3], index=0, horizontal=True, format_func=lambda x: "Otomatik" if x == 0 else _Z_LV[x - 1], key="zm_lvl",
+                       help="Otomatik: üst üste hızlı ve doğru yaptıkça zorlaşır, hata yapınca kolaylaşır.")
+    with c2:
+        mode = st.radio("Tür", ["10 soru", "20 soru", "30 soru", "60 saniye"], index=1, horizontal=True, key="zm_mode")
+    best = {}
+    try:
+        best = store.settings().get("zm_best", {}) or {}
+    except Exception:
+        pass
+
+    def card(c):
+        key = c[0]
+        rec = best.get(f"{key}|{mode}|{lvl}")
+        sub = c[3] + (f" • 🏆 {rec}" if rec else "")
+        theme.card(f"zm_{key}", "teal", f"{c[1]} {c[2]}", sub, zihin_start, (key, lvl, mode))
+    wk = _zweak_cats(gr)
+    items = [("mix", "🎲", "Karma Antrenman", "Bu sınıfın bütün türlerinden karışık", 4, None)]
+    if wk:
+        items.append(("weak", "🧠", "Zayıf Yönlerimi Çalış", "En çok zorlandığın: " + ", ".join(_Z_BY[k][2] for k, _p in wk[:3]), 4, None))
+    items += _zcats(gr)
+    theme.cells(items, 3, card)
+    st.button("📘 Kısa Yol Dersleri (örnekli anlatım)", key="zm_lessons", use_container_width=True, on_click=nav, args=("zihin_ders",))
+    if wk:
+        with st.expander("📊 Türlere göre durumun", expanded=False):
+            try:
+                _stt = store.settings().get("zm_stats", {}) or {}
+            except Exception:
+                _stt = {}
+            for c in _zcats(gr):
+                v = _stt.get(c[0])
+                if v and v.get("n"):
+                    st.markdown(f"{c[1]} **{c[2]}** — %{100 * v['ok'] // v['n']} doğru • ortalama {v['sec'] / v['n']:.1f} sn • {v['n']} soru")
+    with st.expander("💡 Hızlanma ipuçları", expanded=False):
+        st.markdown("- Önce **doğruluk**, sonra hız: yanlışlar seni yavaşlatır.\n- Sayıyı **parçala**: 47 + 38 → 47 + 30 + 8.\n- **Yuvarla ve düzelt**: 99 ile çarpmak = 100 ile çarpıp bir kez çıkarmak.\n"
+                    "- Her gün **5 dakika** düzenli çalışmak, haftada bir uzun çalışmaktan daha etkilidir.\n- Cevabı yazıp **Enter**'a bas; ondalık için virgül kullan (örn. 2,5).")
+
+
+def _zweak_cats(gr):
+    """Doğruluğu düşük/yavaş türler (en az 5 çözülmüş soru): [(anahtar, puan)] en zayıf başta."""
+    try:
+        stt = store.settings().get("zm_stats", {}) or {}
+    except Exception:
+        stt = {}
+    ok_keys = {c[0] for c in _zcats(gr)}
+    out = []
+    for k, v in stt.items():
+        if k in ok_keys and int(v.get("n", 0)) >= 5:
+            acc = v["ok"] / v["n"]
+            avg = v["sec"] / v["n"]
+            out.append((k, (1 - acc) * 2 + min(avg, 20) / 8))
+    return sorted([x for x in out if x[1] >= 0.6], key=lambda x: -x[1])  # yalnızca gerçekten zorlanılan türler
+
+
+def _zgen_for(key, lvl, gr, weak=None):
+    if key == "weak":
+        key = random.choice(weak or [c[0] for c in _zcats(gr)])
+    return _zgen(key, lvl, gr)
+
+
+def zihin_start(key, lvl, mode):
+    gr = int(st.session_state.get("zm_g") or 5)
+    timed = mode == "60 saniye"
+    n = 60 if timed else int(mode.split()[0])
+    auto = lvl == 0
+    base = 1 if gr <= 4 else 2
+    cur_lvl = base if auto else lvl
+    weak = [k for k, _p in _zweak_cats(gr)[:3]] if key == "weak" else None
+    if key == "weak" and not weak:
+        key = "mix"
+    seen = set()
+
+    def fresh(L):
+        for _ in range(60):
+            q = _zgen_for(key, L, gr, weak)
+            if q["q"] not in seen:
+                seen.add(q["q"])
+                return q
+        return q
+    qs = [fresh(cur_lvl)] if auto else [fresh(cur_lvl) for _ in range(n)]
+    st.session_state.zm = {"key": key, "lvl": lvl, "mode": mode, "timed": timed, "n": n, "qs": qs, "i": 0, "res": [], "t0": None, "shown": -1, "start": time.time(),
+                           "last": "", "auto": auto, "lvl_cur": cur_lvl, "streak_up": 0, "streak_dn": 0, "lvls": [], "weak": weak, "seen": seen, "gr": gr}
+    st.session_state.page = "zihin_play"
+
+
+def _zfinish():
+    z = st.session_state.zm
+    if z.get("done"):  # aynı tur iki kez kaydedilmesin
+        st.session_state.page = "zihin_sonuc"
+        return
+    res = z["res"]
+    ok = sum(1 for r in res if r["ok"])
+    tot = sum(r["dt"] for r in res)
+    avg = tot / len(res) if res else 0
+    rec = None
+    try:
+        s = store.settings()
+        best = dict(s.get("zm_best", {}) or {})
+        k = f"{z['key']}|{z['mode']}|{z['lvl']}"
+        if z["timed"]:
+            val = ok
+            if val > 0 and (not best.get(k) or int(str(best[k]).split()[0]) < val):
+                best[k] = f"{val} doğru"; rec = "Yeni rekor!"
+        else:
+            acc = ok / max(1, len(res))
+            if acc >= .9 and len(res) >= z["n"]:
+                val = round(avg, 1)
+                old = best.get(k)
+                try:
+                    oldv = float(str(old).split()[0].replace(",", ".")) if old else None
+                except Exception:
+                    oldv = None
+                if oldv is None or val < oldv:
+                    best[k] = f"{str(val).replace('.', ',')} sn/soru"; rec = "Yeni rekor!"
+        stats = dict(s.get("zm_stats", {}) or {})
+        for r in res:
+            v = dict(stats.get(r["cat"], {"n": 0, "ok": 0, "sec": 0}))
+            v["n"] = int(v.get("n", 0)) + 1
+            v["ok"] = int(v.get("ok", 0)) + (1 if r["ok"] else 0)
+            v["sec"] = round(float(v.get("sec", 0)) + r["dt"], 1)
+            if v["n"] > 400:  # eski verinin ağırlığı azalsın
+                v = {"n": v["n"] // 2, "ok": v["ok"] // 2, "sec": round(v["sec"] / 2, 1)}
+            stats[r["cat"]] = v
+        daily = dict(s.get("zm_daily", {}) or {})
+        day = str(store._today())
+        cur_d = dict(daily.get(day, {}))
+        cur_d["sec"] = int(cur_d.get("sec", 0) + tot)
+        cur_d["q"] = int(cur_d.get("q", 0) + len(res))
+        cur_d["ok"] = int(cur_d.get("ok", 0) + ok)
+        daily[day] = cur_d
+        for k_ in sorted(daily)[:-90]:  # yalnızca son 90 gün
+            daily.pop(k_, None)
+        store.save_settings(zm_best=best, zm_daily=daily, zm_stats=stats)
+    except Exception:
+        pass
+    z["done"] = {"ok": ok, "n": len(res), "avg": avg, "total": time.time() - z["start"], "rec": rec, "lvl_end": z.get("lvl_cur"), "auto": z.get("auto")}
+    st.session_state.page = "zihin_sonuc"
+
+
+def zihin_play():
+    z = st.session_state.get("zm")
+    if not z:
+        nav("zihin")
+        st.rerun()
+        return
+    i = z["i"]
+    left = None
+    if z["timed"]:
+        left = 60 - (time.time() - z["start"])
+        if left <= 0:
+            _zfinish()
+            st.rerun()
+            return
+    if i >= len(z["qs"]):
+        _zfinish()
+        st.rerun()
+        return
+    q = z["qs"][i]
+    if z["shown"] != i:
+        z["shown"] = i
+        z["t0"] = time.time()
+    cat = _Z_BY.get(q["cat"])
+    st.button("⬅ Bırak", key="zm_quit", on_click=nav, args=("zihin",))
+    st.progress(min(1.0, (i / z["n"]) if not z["timed"] else (1 - max(0, left) / 60)))
+    hdr = f"{cat[1]} {cat[2]} • " if cat else ""
+    st.caption(hdr + (f"⏱ kalan ≈ {int(left)} sn • {sum(1 for r in z['res'] if r['ok'])} doğru" if z["timed"] else f"Soru {i + 1}/{z['n']}"))
+    if z["last"]:
+        st.markdown(z["last"])
+    st.markdown(f"<div style='font-size:2.4rem;font-weight:800;text-align:center;margin:.6rem 0 .2rem'>{q['q']}</div>", unsafe_allow_html=True)
+    with st.form(key=f"zf_{i}", clear_on_submit=False):
+        ans = st.text_input("Cevabın", key=f"za_{i}", placeholder="Cevabı yaz, Enter'a bas", label_visibility="collapsed")
+        go = st.form_submit_button("Gönder ▶", use_container_width=True, type="primary")
+    try:  # kutuya otomatik odaklan
+        from streamlit.components.v1 import html as _h
+        _h("<script>setTimeout(function(){var d=window.parent.document;var el=d.querySelector('input[aria-label=\"Cevabın\"]');if(el){el.focus();}},120);</script>", height=0)
+    except Exception:
+        pass
+    if go:
+        dt = time.time() - (z["t0"] or time.time())
+        v = _zparse(ans)
+        corr = _D(q["a"])
+        ok = v is not None and v == corr
+        z["res"].append({"q": q["q"], "a": q["a"], "given": ans, "ok": ok, "dt": dt, "tip": q["tip"], "cat": q["cat"]})
+        z["last"] = (f"✅ **{_zfmt(corr)}** doğru • {dt:.1f} sn" if ok else f"❌ Doğru cevap **{_zfmt(corr)}** • {dt:.1f} sn")
+        z["i"] += 1
+        if z.get("auto"):
+            fast = dt < (6 if z["lvl_cur"] == 1 else 9 if z["lvl_cur"] == 2 else 14)
+            z["streak_up"] = z["streak_up"] + 1 if (ok and fast) else 0
+            z["streak_dn"] = z["streak_dn"] + 1 if not ok else 0
+            if z["streak_up"] >= 3 and z["lvl_cur"] < 3:
+                z["lvl_cur"] += 1; z["streak_up"] = 0
+                z["last"] += f"  \n⬆️ Seviye yükseldi: **{_Z_LV[z['lvl_cur'] - 1]}**"
+            elif z["streak_dn"] >= 2 and z["lvl_cur"] > 1:
+                z["lvl_cur"] -= 1; z["streak_dn"] = 0
+                z["last"] += f"  \n⬇️ Biraz kolaylaştırdım: **{_Z_LV[z['lvl_cur'] - 1]}**"
+            if z["i"] < z["n"]:
+                for _ in range(60):
+                    nq = _zgen_for(z["key"], z["lvl_cur"], z["gr"], z.get("weak"))
+                    if nq["q"] not in z["seen"]:
+                        break
+                z["seen"].add(nq["q"])
+                z["qs"].append(nq)
+        st.rerun()
+
+
+_Z_LESSONS = [
+    ("Yuvarla ve telafi et (toplama)", "add", ["Sayılardan birini en yakın onluğa/yüzlüğe tamamla.", "Eklediğini diğerinden çıkar."], ["68 + 27 → 68'e 2 ekle = 70, 27'den 2 çıkar = 25 → 70 + 25 = 95", "197 + 48 → 200 + 45 = 245"]),
+    ("Yuvarla ve düzelt (çıkarma)", "sub", ["Çıkarılan sayıyı yuvarla.", "Fazla çıkardığını geri ekle."], ["83 − 29 → 83 − 30 + 1 = 54", "540 − 198 → 540 − 200 + 2 = 342"]),
+    ("5 ile çarpma", "kisa", ["Sayıyı 10 ile çarp.", "Sonucun yarısını al."], ["46 × 5 → 460'ın yarısı = 230", "38 × 5 → 380'in yarısı = 190"]),
+    ("9 ile çarpma", "kisa", ["Sayıyı 10 ile çarp.", "Sayının kendisini çıkar."], ["34 × 9 → 340 − 34 = 306", "27 × 9 → 270 − 27 = 243"]),
+    ("11 ile çarpma", "kisa", ["Sayıyı 10 ile çarp.", "Sayının kendisini ekle. (İki basamaklıda: rakamları aç, ortaya toplamını yaz.)"], ["34 × 11 → 340 + 34 = 374  (3 | 3+4 | 4)", "52 × 11 → 520 + 52 = 572"]),
+    ("25 ile çarpma", "kisa", ["Sayıyı 4'e böl.", "Sonucu 100 ile çarp."], ["32 × 25 → 32 ÷ 4 = 8 → 800", "44 × 25 → 11 × 100 = 1100"]),
+    ("99 ile çarpma", "kisa", ["Sayıyı 100 ile çarp.", "Sayının kendisini çıkar."], ["7 × 99 → 700 − 7 = 693", "15 × 99 → 1500 − 15 = 1485"]),
+    ("Dağılma özelliği ile çarpma", "tab", ["Büyük çarpanı onluk + birlik diye parçala.", "Her parçayı ayrı çarp, topla."], ["13 × 7 → 10 × 7 + 3 × 7 = 70 + 21 = 91", "24 × 6 → 20 × 6 + 4 × 6 = 120 + 24 = 144"]),
+    ("Tamamlama (100'e, 1000'e)", "tam", ["Birler basamağını 10'a, diğerlerini 9'a tamamla."], ["63 → 100'e: 6→3, 3→7 → 37", "632 → 1000'e: 6→3, 3→6, 2→8 → 368"]),
+    ("Yüzde kısa yolları", "yuz", ["%10: virgülü bir sola kaydır.", "%5 = %10'un yarısı, %15 = %10 + %5.", "%25 = dörtte biri, %50 = yarısı."], ["240'ın %10'u = 24; %5'i = 12; %15'i = 36", "180'in %25'i = 180 ÷ 4 = 45"]),
+    ("Bir sayının kesri", "kes", ["Sayıyı paydaya böl (bir parça).", "Payla çarp."], ["48'in 3/4'ü → 48 ÷ 4 = 12 → 12 × 3 = 36", "35'in 2/5'i → 35 ÷ 5 = 7 → 7 × 2 = 14"]),
+    ("5 ile biten sayının karesi", "kare", ["Onlar basamağını bir fazlasıyla çarp.", "Sonuna 25 yaz."], ["35² → 3 × 4 = 12 → 1225", "75² → 7 × 8 = 56 → 5625"]),
+    ("Bölmeyi parçala", "bol", ["Bölüneni bölenin kolay katlarına ayır.", "Parçaları ayrı böl, topla."], ["156 ÷ 6 → 120 ÷ 6 + 36 ÷ 6 = 20 + 6 = 26", "91 ÷ 7 → 70 ÷ 7 + 21 ÷ 7 = 10 + 3 = 13"]),
+    ("10, 100, 1000 ile çarpma", "us10", ["Çarparken virgül sağa, bölerken sola kayar.", "Kayma miktarı = sıfır sayısı."], ["4,5 × 100 = 450", "36 ÷ 1000 = 0,036"]),
+]
+
+
+def zihin_ders():
+    st.button("⬅ Zihinden Matematik", key="back_zders", on_click=nav, args=("zihin",))
+    st.markdown("<div class='hero'><h1>📘 Kısa Yol Dersleri</h1><p>Önce tekniği oku, sonra aynı türde antrenman yap</p></div>", unsafe_allow_html=True)
+    gr = int(st.session_state.get("zm_g") or 5)
+    for i, (title, key, steps, exs) in enumerate(_Z_LESSONS):
+        c = _Z_BY.get(key)
+        if c and c[4] > gr:
+            continue
+        with st.expander(f"{c[1] if c else '💡'} {title}", expanded=False):
+            st.markdown("**Adımlar**\n" + "\n".join(f"{j + 1}. {x}" for j, x in enumerate(steps)))
+            st.markdown("**Örnekler**\n" + "\n".join(f"- {x}" for x in exs))
+            st.button(f"▶ {c[2]} çalış (20 soru)", key=f"zl_{i}", on_click=zihin_start, args=(key, 0, "20 soru"))
+
+
+def zihin_sonuc():
+    z = st.session_state.get("zm")
+    d = (z or {}).get("done")
+    if not d:
+        nav("zihin")
+        st.rerun()
+        return
+    pct = 100 * d["ok"] / max(1, d["n"])
+    st.markdown(f"<div class='hero'><h1>🏁 Bitti!</h1><p>{d['ok']} / {d['n']} doğru • %{pct:.0f} • ortalama {d['avg']:.1f} sn/soru</p></div>", unsafe_allow_html=True)
+    if d.get("rec"):
+        st.success("🏆 " + d["rec"])
+    if d.get("auto") and d.get("lvl_end"):
+        st.caption(f"Otomatik seviye: son seviye **{_Z_LV[d['lvl_end'] - 1]}**")
+    try:
+        _st = _zstats()
+        _left = max(0, _st["goal"] * 60 - _st["today_sec"])
+        if _left == 0:
+            st.success(f"🎯 Günlük hedef tamam • 🔥 {_st['streak']} günlük seri")
+        else:
+            st.caption(f"🎯 Günlük hedefe {_left // 60} dk {_left % 60} sn kaldı • 🔥 seri: {_st['streak']} gün")
+    except Exception:
+        pass
+    comment = ("Harika! Şimdi bir üst zorluğu dene." if pct >= 90 and d["avg"] < 6 else "Çok doğru; şimdi hızını artır." if pct >= 90 else "Önce yanlışlarını gözden geçir; sonra tekrar dene." if pct < 70 else "İyi gidiyorsun; kısa yolları uygula.")
+    st.info(comment)
+    wrong = [r for r in z["res"] if not r["ok"]]
+    slow = sorted([r for r in z["res"] if r["ok"]], key=lambda r: -r["dt"])[:3]
+    if wrong:
+        st.markdown("<div class='sec-title'>❌ Yanlışlar ve kısa yollar</div>", unsafe_allow_html=True)
+        for r in wrong[:12]:
+            st.markdown(f"**{r['q']}** → doğru: **{_zfmt(_D(r['a']))}**" + (f" (sen: {r['given'] or '—'})") + (f"  \n💡 {r['tip']}" if r["tip"] else ""))
+    if slow:
+        st.markdown("<div class='sec-title'>🐢 En yavaş çözdüklerin</div>", unsafe_allow_html=True)
+        for r in slow:
+            st.markdown(f"{r['q']} → {r['dt']:.1f} sn" + (f"  \n💡 {r['tip']}" if r["tip"] else ""))
+    c1, c2 = st.columns(2)
+    with c1:
+        st.button("🔁 Aynısını tekrar çöz", key="zm_again", use_container_width=True, type="primary", on_click=zihin_start, args=(z["key"], z["lvl"], z["mode"]))
+    with c2:
+        st.button("📋 Menüye dön", key="zm_menu", use_container_width=True, on_click=nav, args=("zihin",))
+
+
+# ------------------------------------------------------------------ OLİMPİYAT TARZI ANTRENMAN (Kanguru/ortaokul olimpiyatı tarzı mantık, örüntü ve sayı problemleri; kodla üretilir ve çözümü hesapla doğrulanır)
+_O_NAMES = ["Ali", "Bora", "Ceren", "Deniz", "Elif", "Fatih", "Gül", "Hakan", "İpek", "Kaan", "Lale", "Mert"]
+_O_LV = ["Kolay", "Orta", "Zor"]
+_O_GEN = {"Ali": "Ali'nin", "Bora": "Bora'nın", "Ceren": "Ceren'in", "Deniz": "Deniz'in", "Elif": "Elif'in", "Fatih": "Fatih'in", "Gül": "Gül'ün", "Hakan": "Hakan'ın", "İpek": "İpek'in", "Kaan": "Kaan'ın", "Lale": "Lale'nin", "Mert": "Mert'in"}
+_O_ABL = {"Ali": "Ali'den", "Bora": "Bora'dan", "Ceren": "Ceren'den", "Deniz": "Deniz'den", "Elif": "Elif'ten", "Fatih": "Fatih'ten", "Gül": "Gül'den", "Hakan": "Hakan'dan", "İpek": "İpek'ten", "Kaan": "Kaan'dan", "Lale": "Lale'den", "Mert": "Mert'ten"}
+
+
+def _oly_pack(q, cor, wrongs, expl, cat, shape=None):
+    """5 şıklı soru: doğru + 4 tekil çeldirici; şıklar sayıysa küçükten büyüğe sıralanır."""
+    cor = str(cor)
+    ws = []
+    for w in wrongs:
+        w = str(w)
+        if w != cor and w not in ws:
+            ws.append(w)
+    if len(ws) < 4:
+        return None
+    opts = ws[:4] + [cor]
+    try:
+        opts.sort(key=lambda x: float(x.replace(",", ".")))
+    except Exception:
+        random.shuffle(opts)
+    return {"q": q, "opts": opts, "ans": opts.index(cor), "expl": expl, "cat": cat, "shape": shape}
+
+
+def _near(v, k=4):
+    out = [v + d for d in (1, -1, 2, -2, 3, -3, 10, -10, 5) if v + d > 0 and v + d != v]
+    random.shuffle(out)
+    return out[:k + 3]
+
+
+def _o_dizi(L):
+    kind = random.choice(["ar", "kare", "geo", "fark_artan"] if L > 1 else ["ar", "kare", "fark_artan"])
+    n = random.randint(5, 6)
+    if kind == "ar":
+        a, d = random.randint(2, 15), random.randint(3, 9)
+        seq = [a + i * d for i in range(n + 3)]
+        rule = f"Her terim, kendinden önceki terimden {d} fazladır."
+    elif kind == "kare":
+        c = random.randint(0, 5)
+        seq = [(i + 1) ** 2 + c for i in range(n + 3)]
+        rule = f"Terimler sırayla 1², 2², 3², … sayılarının {c} fazlasıdır." if c else "Terimler sırayla 1², 2², 3², … sayılarıdır."
+    elif kind == "geo":
+        a, r = random.randint(1, 4), random.choice([2, 3])
+        seq = [a * r ** i for i in range(n + 1)]
+        rule = f"Her terim, kendinden önceki terimin {r} katıdır."
+    else:
+        a, d0 = random.randint(1, 10), random.randint(1, 3)
+        seq = [a]
+        for i in range(n + 3):
+            seq.append(seq[-1] + d0 + i)
+        rule = "Ardışık terimler arasındaki fark her adımda 1 artar."
+    shown = seq[:n]
+    ask = seq[n]
+    return _oly_pack(f"Bir sayı dizisinin ilk terimleri {', '.join(map(str, shown))}, … biçimindedir.\nBu dizinin {n + 1}. terimi kaçtır?", ask, _near(ask) + [shown[-1] + (shown[-1] - shown[-2])], f"{rule} Buna göre {n + 1}. terim {ask} olur.", "Sayı örüntüsü")
+
+
+def _o_yalan(L):
+    names = random.sample(_O_NAMES, 3)
+    for _ in range(300):
+        stm = []
+        for i in range(3):
+            j = random.choice([x for x in range(3) if x != i])
+            k = random.choice([x for x in range(3) if x != i and x != j]) if random.random() < .4 else None
+            kind = random.choice(["T", "L"]) if k is None else random.choice(["LL", "TL", "same"])
+            stm.append((kind, j, k))
+
+        def ev(kind, j, k, tr):
+            if kind == "T":
+                return tr[j]
+            if kind == "L":
+                return not tr[j]
+            if kind == "LL":
+                return (not tr[j]) and (not tr[k])
+            if kind == "TL":
+                return tr[j] and not tr[k]
+            return tr[j] == tr[k]
+        sols = []
+        for m in range(8):
+            tr = [bool(m >> i & 1) for i in range(3)]
+            if all(ev(*stm[i], tr) == tr[i] for i in range(3)):
+                sols.append(tr)
+        if len(sols) != 1:
+            continue
+        tr = sols[0]
+
+        def txt(kind, j, k):
+            if kind == "T":
+                return f"“{names[j]} doğru söylüyor.”"
+            if kind == "L":
+                return f"“{names[j]} yalan söylüyor.”"
+            if kind == "LL":
+                return f"“{names[j]} ve {names[k]} yalan söylüyor.”"
+            if kind == "TL":
+                return f"“{names[j]} doğru, {names[k]} yalan söylüyor.”"
+            return f"“{names[j]} ile {names[k]} aynı türden (ikisi de doğru ya da ikisi de yalan söylüyor).”"
+        body = "\n".join(f"{names[i]}: {txt(*stm[i])}" for i in range(3))
+        ask = random.choice(["kac", "kim"])
+        if ask == "kac":
+            cor = sum(tr)
+            _who = ", ".join(names[i] for i in range(3) if tr[i]) or "hiç kimse"
+            return _oly_pack(f"{names[0]}, {names[1]} ve {names[2]} adlı üç arkadaştan her biri ya her zaman doğru ya da her zaman yalan söylemektedir.\n{body}\nBuna göre bu üç kişiden kaç tanesi doğru söylemektedir?", cor, [x for x in range(4) if x != cor] + ["Belirlenemez"], f"Sekiz olasılık denendiğinde yalnızca bir durum tüm cümlelerle çelişmez: doğru söyleyen {_who}.", "Mantık")
+        who = [i for i in range(3) if tr[i]]
+        if len(who) != 1:
+            continue
+        return _oly_pack(f"{names[0]}, {names[1]} ve {names[2]} adlı üç arkadaştan her biri ya her zaman doğru ya da her zaman yalan söylemektedir.\n{body}\nBuna göre doğru söyleyen kişi kimdir?",
+                         names[who[0]], [names[x] for x in range(3) if x != who[0]] + ["Hiçbiri", "Üçü de"], f"Tüm olasılıklar denendiğinde tek tutarlı durumda yalnızca {names[who[0]]} doğru söyler.", "Mantık")
+    return None
+
+
+def _o_rakam(L):
+    kind = random.choice(["en_kucuk", "en_buyuk", "farkli"])
+    if kind == "farkli":
+        s = random.randint(10, 22)
+        c = [n for n in range(100, 1000) if len(set(str(n))) == 3 and sum(map(int, str(n))) == s]
+        if len(c) < 4:
+            return None
+        return _oly_pack(f"Rakamları birbirinden farklı ve rakamları toplamı {s} olan en küçük üç basamaklı doğal sayı kaçtır?", min(c), [c[1], c[len(c) // 2], max(c), min(c) + 9], f"Yüzler basamağı mümkün olduğunca küçük (1) seçilir; kalan rakamlar farklı olacak biçimde en küçük sayı {min(c)} bulunur.", "Sayı bulmaca")
+    s = random.randint(12, 34)
+    nd = 3 if s <= 27 else 4
+    lo, hi = 10 ** (nd - 1), 10 ** nd
+    c = [n for n in range(lo, hi) if sum(map(int, str(n))) == s]
+    if len(c) < 5:
+        return None
+    if kind == "en_kucuk":
+        cor = min(c)
+        return _oly_pack(f"Rakamları toplamı {s} olan en küçük {nd} basamaklı doğal sayı kaçtır?", cor, [c[1], c[len(c) // 3], c[len(c) // 2], max(c), cor + 9], f"Büyük rakamlar sağa yazılır, soldaki basamaklar mümkün olduğunca küçük tutulur: {cor}.", "Sayı bulmaca")
+    cor = max(c)
+    return _oly_pack(f"Rakamları toplamı {s} olan en büyük {nd} basamaklı doğal sayı kaçtır?", cor, [c[-2], c[-3], c[len(c) // 2], min(c), cor - 9], f"Büyük rakamlar sola yazılır: {cor}.", "Sayı bulmaca")
+
+
+def _o_kare_say(L):
+    n = random.randint(3, 6 if L < 3 else 8)
+    cor = sum(k * k for k in range(1, n + 1))
+    return _oly_pack(f"Kenarları birim kareler yönünde olan {n} × {n}'lik bir kare ızgarada, kenarları ızgara çizgileri üzerinde bulunan toplam kaç kare vardır?", cor, [n * n, cor - n, cor + n, 2 * n * n, cor + 1], f"{n}² + {(n - 1)}² + … + 1² = {cor}.", "Sayma")
+
+
+def _o_toka(L):
+    n = random.randint(5, 12 if L > 1 else 8)
+    return _oly_pack(f"{n} arkadaş buluşuyor ve herkes diğerlerinin her biriyle bir kez tokalaşıyor.\nToplam kaç tokalaşma yapılmıştır?", n * (n - 1) // 2, [n * (n - 1), n * n, n * (n + 1) // 2, n * (n - 1) // 2 + n, n * (n - 1) // 2 - 1], f"Her kişi {n - 1} kişiyle tokalaşır; her tokalaşma iki kez sayıldığından {n} × {n - 1} ÷ 2 = {n * (n - 1) // 2}.", "Sayma")
+
+
+def _o_gun(L):
+    gunler = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+    s = random.randrange(7)
+    n = random.choice([30, 45, 60, 100, 150]) if L == 1 else random.choice([100, 200, 365, 500, 1000, 2026])
+    cor = gunler[(s + n) % 7]
+    wr = [g for g in gunler if g != cor]
+    random.shuffle(wr)
+    return _oly_pack(f"Bugün {gunler[s]} ise {n} gün sonra haftanın hangi günü olur?", cor, wr[:4], f"{n} ÷ 7 işleminde kalan {n % 7}; {gunler[s]} gününden {n % 7} gün sonrası {cor} olur.", "Döngü")
+
+
+def _o_kombi(L):
+    kind = random.choice(["yol", "kiyafet", "rakam"])
+    if kind == "yol":
+        a, b = random.randint(2, 5), random.randint(2, 6)
+        return _oly_pack(f"A şehrinden B şehrine {a} farklı yol, B şehrinden C şehrine {b} farklı yol vardır.\nA'dan C'ye B üzerinden kaç farklı yolla gidilebilir?", a * b, [a + b, a * b + a, a * b - 1, a * b + b, a * b + 2], f"Çarpma ilkesi: {a} × {b} = {a * b}.", "Sayma")
+    if kind == "kiyafet":
+        a, b, c = random.randint(2, 5), random.randint(2, 5), random.randint(2, 4)
+        return _oly_pack(f"Bir öğrencinin {a} gömleği, {b} pantolonu ve {c} ceketi vardır.\nBu öğrenci kaç farklı kombin yapabilir?", a * b * c, [a + b + c, a * b * c + a, a * b * c - 1, a * b + c, a * b * c + b], f"{a} × {b} × {c} = {a * b * c}.", "Sayma")
+    ds = random.sample(range(1, 9), 4)
+    cnt = sum(1 for a in ds for b in ds for c in ds if len({a, b, c}) == 3)
+    return _oly_pack(f"{ds[0]}, {ds[1]}, {ds[2]} ve {ds[3]} rakamları kullanılarak rakamları birbirinden farklı kaç tane üç basamaklı doğal sayı yazılabilir?", cnt, [cnt // 2, cnt + 12, 4 * 4 * 4, cnt - 4, 3 * 4], f"Yüzler basamağı için 4, onlar için 3, birler için 2 seçenek: 4 × 3 × 2 = {cnt}.", "Sayma")
+
+
+def _o_yas(L):
+    for _ in range(100):
+        k, g, t = random.randint(2, 4), random.randint(2, 6), random.randint(20, 60)
+        for kid in range(2, 15):
+            if kid + k * kid + 2 * g == t:
+                names = random.sample(_O_NAMES, 2)
+                return _oly_pack(f"{_O_GEN[names[0]]} yaşı kardeşi {_O_GEN[names[1]]} yaşının {k} katıdır. {g} yıl sonra ikisinin yaşları toplamı {t} olacaktır.\n{_O_GEN[names[1]]} bugünkü yaşı kaçtır?", kid, [kid + 1, kid - 1, kid + 2, kid * 2, kid + 3], f"Bugünkü yaşlar toplamı {t} − 2 × {g} = {t - 2 * g}; {names[1]} {kid} yaşındadır, {names[0]} {k * kid} yaşındadır ({kid} + {k * kid} = {t - 2 * g}).", "Problem")
+    return None
+
+
+def _o_ort(L):
+    n = random.randint(4, 7)
+    m1 = random.randint(10, 30)
+    m2 = random.randint(m1 - 5, m1 + 5)
+    if m2 == m1:
+        return None
+    cor = n * m1 - (n - 1) * m2
+    if cor <= 0:
+        return None
+    return _oly_pack(f"{n} sayının aritmetik ortalaması {m1} olarak veriliyor. Bu sayılardan biri çıkarılınca kalan {n - 1} sayının ortalaması {m2} oluyor.\nÇıkarılan sayı kaçtır?", cor, _near(cor), f"Toplam {n} × {m1} = {n * m1}; kalanların toplamı {(n - 1)} × {m2} = {(n - 1) * m2}; fark {cor}.", "Problem")
+
+
+def _o_sihirli(L):
+    base = [[2, 7, 6], [9, 5, 1], [4, 3, 8]]
+    c = random.randint(0, 12)
+    f = random.randint(1, 3 if L < 3 else 5)
+    g = [[x * f + c for x in r] for r in base]
+    for _ in range(random.randint(0, 3)):
+        g = [list(r) for r in zip(*g[::-1])]
+    if random.random() < .5:
+        g = [r[::-1] for r in g]
+    i, j = random.choice([(0, 0), (0, 2), (2, 0), (2, 2), (0, 1), (1, 0), (1, 2), (2, 1), (1, 1)])
+    cor = g[i][j]
+    rows = [[("?" if (a, b) == (i, j) else str(g[a][b])) for b in range(3)] for a in range(3)]
+    M = sum(g[0])
+    return _oly_pack("Tablodaki 3 × 3'lük karede her satırdaki, her sütundaki ve iki köşegendeki sayıların toplamı birbirine eşittir.\n? yerine hangi sayı gelmelidir?", cor, _near(cor), f"Ortak toplam {M}; ? işaretli satırdaki diğer sayılar toplamı çıkarılırsa {cor} bulunur.", "Sihirli kare",
+                     {"type": "table", "title": "Sihirli kare", "headers": ["1. sütun", "2. sütun", "3. sütun"], "rows": rows})
+
+
+def _o_kibrit(L):
+    n = random.randint(5, 12)
+    per = random.choice([3, 4]) if L > 1 else 3
+    cor = per * n + 1
+    sh = {"type": "table", "title": "Kibrit çöpü örüntüsü", "headers": ["Kare sayısı", "Çöp sayısı"], "rows": [[str(i), str(per * i + 1)] for i in (1, 2, 3)]} if per == 3 else None
+    if per == 3:
+        q = f"Kibrit çöpleriyle yan yana kareler yapılıyor: 1 kare için 4, 2 kare için 7, 3 kare için 10 çöp gerekiyor.\n{n} kare yan yana yapmak için kaç çöp gerekir?"
+        return _oly_pack(q, cor, _near(cor) + [4 * n], f"Her yeni kare 3 çöp ekler: 3 × {n} + 1 = {cor}.", "Sayı örüntüsü", sh)
+    sh = {"type": "table", "title": "Kibrit çöpü örüntüsü", "headers": ["Basamak", "Çöp sayısı"], "rows": [[str(i), str(4 * i + 1)] for i in (1, 2, 3)]}
+    return _oly_pack(f"Bir şekil örüntüsünde 1. şekil 5, 2. şekil 9, 3. şekil 13 çöpten oluşuyor.\n{n}. şekil kaç çöpten oluşur?", cor, _near(cor) + [5 * n], f"Her şekilde çöp sayısı 4 artar: 4 × {n} + 1 = {cor}.", "Sayı örüntüsü", sh)
+
+
+def _o_sayfa(L):
+    n = random.randint(40, 130)
+    cor = sum(len(str(i)) for i in range(1, n + 1))
+    return _oly_pack(f"Bir kitabın sayfaları 1, 2, 3, …, {n} biçiminde numaralandırılıyor.\nBu numaralandırmada toplam kaç rakam kullanılır?", cor, _near(cor) + [n * 2, n + 9], f"1–9 arası 9 rakam, 10–99 arası 2 × 90 = 180 rakam, sonrası 3 rakamlı sayılar; toplam {cor}.", "Sayma")
+
+
+def _o_guvercin(L):
+    k = random.randint(3, 5)
+    m = random.randint(2, 4)
+    cor = k * (m - 1) + 1
+    cols = ["kırmızı", "mavi", "yeşil", "sarı", "mor"][:k]
+    return _oly_pack(f"Bir torbada {', '.join(cols)} renkli ve her renkten yeterince bilye vardır. Bilyeler gözler kapalı çekiliyor.\nAynı renkten en az {m} bilye çekmeyi garanti etmek için en az kaç bilye çekilmelidir?", cor, [k * m, k * (m - 1), cor + 1, cor - 1, k + m], f"En kötü durumda her renkten {m - 1} tane çekilir ({k} × {m - 1} = {k * (m - 1)}); bir sonraki bilye {m}. aynı renk olur: {cor}.", "Mantık")
+
+
+def _o_kalan(L):
+    for _ in range(50):
+        a, b = random.choice([(3, 4), (4, 5), (5, 6), (3, 5), (5, 7), (4, 7)])
+        r1, r2 = random.randint(1, a - 1), random.randint(1, b - 1)
+        c = [n for n in range(1, 400) if n % a == r1 and n % b == r2]
+        if len(c) >= 2:
+            cor = c[0]
+            return _oly_pack(f"Bir doğal sayı {a} ile bölündüğünde {r1}, {b} ile bölündüğünde {r2} kalanını vermektedir.\nBu özelliği taşıyan en küçük doğal sayı kaçtır?",
+                             cor, _near(cor) + [c[1]], f"Koşulu sağlayan sayılar {cor}, {c[1]}, … diye sürer; en küçüğü {cor}.", "Sayı bulmaca")
+    return None
+
+
+def _o_sira(L):
+    n = random.choice([4, 5]) if L > 1 else 4
+    names = random.sample(_O_NAMES, n)
+    order = names[:]  # uzundan kısaya
+    pairs = [(order[i], order[i + 1]) for i in range(n - 1)]
+    random.shuffle(pairs)
+    stm = [f"{a}, {_O_ABL[b]} uzundur." for a, b in pairs]
+    ask = random.choice(["en_kisa", "en_uzun", "ortanca"]) if n == 5 else random.choice(["en_kisa", "en_uzun"])
+    cor = {"en_kisa": order[-1], "en_uzun": order[0], "ortanca": order[2] if n == 5 else order[1]}[ask]
+    lab = {"en_kisa": "en kısa", "en_uzun": "en uzun", "ortanca": "boyca ortadaki (3.)"}[ask]
+    wr = [x for x in names if x != cor]
+    return _oly_pack(f"{n} arkadaşın boyları karşılaştırılıyor:\n" + "\n".join(stm) + f"\nBuna göre {lab} kişi kimdir?", cor, wr + ["Belirlenemez"], f"İfadeler zincirleme sıralanırsa uzundan kısaya: {', '.join(order)}.", "Mantık")
+
+
+def _o_makine(L):
+    steps = random.randint(2, 3)
+    ops = []
+    x = random.randint(2, 12)
+    start = x
+    desc = []
+    for _ in range(steps):
+        k = random.choice(["+", "-", "*"])
+        v = random.randint(2, 9)
+        if k == "-" and x - v < 1:
+            k = "+"
+        x = x + v if k == "+" else x - v if k == "-" else x * v
+        desc.append({"+": f"{v} ekler", "-": f"{v} çıkarır", "*": f"{v} ile çarpar"}[k])
+    if x > 400:
+        return None
+    return _oly_pack("Bir makine kendisine girilen sayıya sırasıyla şu işlemleri uygular:\n" + "\n".join(f"{i + 1}. adım: {d}" for i, d in enumerate(desc)) + f"\nMakineden çıkan sayı {x} ise makineye girilen sayı kaçtır?", start, _near(start) + [x], f"İşlemler tersten uygulanır: çıkıştan başlayıp her adımın tersi yapılınca {start} bulunur.", "Algoritma")
+
+
+def _o_ikili(L):
+    n = random.randint(5, 31 if L < 3 else 63)
+    b = bin(n)[2:]
+    if random.random() < .5:
+        return _oly_pack(f"İkilik (ikili) sayı sisteminde yazılan {b} sayısı onluk sistemde kaça eşittir?", n, _near(n), f"Her rakam 2'nin kuvvetiyle çarpılıp toplanır: {b} = {n}.", "Algoritma")
+    wr = {bin(n + d)[2:] for d in (1, -1, 2, -2, 3) if n + d > 0}
+    wr.discard(b)
+    return _oly_pack(f"Onluk sistemdeki {n} sayısı ikilik sistemde nasıl yazılır?", b, sorted(wr)[:6], f"{n} sayısı sürekli 2'ye bölünüp kalanlar sondan başa yazılırsa {b} elde edilir.", "Algoritma")
+
+
+_O_GENS = {"dizi": _o_dizi, "yalan": _o_yalan, "rakam": _o_rakam, "kare": _o_kare_say, "toka": _o_toka, "gun": _o_gun, "kombi": _o_kombi, "yas": _o_yas, "ort": _o_ort,
+           "sihirli": _o_sihirli, "kibrit": _o_kibrit, "sayfa": _o_sayfa, "guvercin": _o_guvercin, "kalan": _o_kalan, "sira": _o_sira, "makine": _o_makine, "ikili": _o_ikili}
+_O_SETS = {"mat": ["dizi", "yalan", "rakam", "kare", "toka", "gun", "kombi", "yas", "ort", "sihirli", "kibrit", "sayfa", "guvercin", "kalan", "sira"],
+           "bil": ["makine", "ikili", "dizi", "yalan", "kibrit", "sira", "rakam", "kalan", "sihirli"]}
+_O_MIN_G = {"yas": 6, "ort": 6, "guvercin": 6, "ikili": 7, "kalan": 6, "kare": 6, "sihirli": 5}
+
+
+def _o_make(kind, gr, lvl):
+    ks = [k for k in _O_SETS.get(kind, _O_SETS["mat"]) if _O_MIN_G.get(k, 5) <= gr]
+    for _ in range(80):
+        k = random.choice(ks)
+        try:
+            q = _O_GENS[k](lvl)
+        except Exception:
+            q = None
+        if q and len(set(q["opts"])) == 5:
+            q["gen"] = k
+            return q
+    return None
+
+
+def olimp_train_start(g, kind, lvl=None):
+    gr = max(5, 8 if g == "LGS" else int(g))
+    L = lvl if lvl in (1, 2, 3) else (1 if gr <= 5 else 2 if gr <= 7 else 3)
+    qs, seen = [], set()
+    for _ in range(400):
+        q = _o_make(kind, gr, L)
+        if q and q["q"] not in seen:
+            seen.add(q["q"])
+            qs.append(q)
+        if len(qs) >= 10:
+            break
+    st.session_state.oz = {"kind": kind, "g": g, "lvl": L, "qs": qs, "i": 0, "res": [], "show": None, "t0": time.time()}
+    st.session_state.page = "olimp_play"
+
+
+def olimp_play():
+    z = st.session_state.get("oz")
+    if not z or not z["qs"]:
+        nav("olimp_menu")
+        st.rerun()
+        return
+    i = z["i"]
+    if i >= len(z["qs"]):
+        st.session_state.page = "olimp_sonuc"
+        st.rerun()
+        return
+    q = z["qs"][i]
+    st.button("⬅ Bırak", key="oz_quit", on_click=nav, args=("olimp_menu",))
+    st.progress(i / len(z["qs"]))
+    st.caption(f"🧩 Olimpiyat tarzı • {q['cat']} • Soru {i + 1}/{len(z['qs'])} • {_O_LV[z['lvl'] - 1]}")
+    st.markdown("**" + q["q"].replace("\n", "  \n") + "**")
+    if q.get("shape"):
+        try:
+            sh = q["shape"]
+            st.table({h: [r[k] for r in sh["rows"]] for k, h in enumerate(sh["headers"])})
+        except Exception:
+            pass
+    letters = "ABCDE"
+    shown = z["show"]
+    if shown is None:
+        pick = st.radio("Cevabın", list(range(5)), index=None, format_func=lambda k: f"{letters[k]}) {q['opts'][k]}", key=f"oz_r_{i}")
+        if st.button("Cevapla", key=f"oz_go_{i}", type="primary", disabled=pick is None):
+            z["show"] = pick
+            z["res"].append({"ok": pick == q["ans"], "q": q["q"], "cor": f"{letters[q['ans']]}) {q['opts'][q['ans']]}", "given": f"{letters[pick]}) {q['opts'][pick]}", "expl": q["expl"], "cat": q["cat"]})
+            st.rerun()
+    else:
+        ok = shown == q["ans"]
+        (st.success if ok else st.error)(("✅ Doğru!" if ok else f"❌ Yanlış. Doğru cevap: {letters[q['ans']]}) {q['opts'][q['ans']]}"))
+        st.info("💡 " + q["expl"])
+        st.button("Sonraki ▶" if i + 1 < len(z["qs"]) else "Sonucu gör 🏁", key=f"oz_next_{i}", type="primary", on_click=_olimp_next)
+
+
+def _olimp_next():
+    z = st.session_state.oz
+    z["i"] += 1
+    z["show"] = None
+
+
+def olimp_sonuc():
+    z = st.session_state.get("oz")
+    if not z or not z["res"]:
+        nav("olimp_menu")
+        st.rerun()
+        return
+    ok = sum(1 for r in z["res"] if r["ok"])
+    n = len(z["res"])
+    if not z.get("saved"):
+        z["saved"] = True
+        try:
+            best = dict(store.settings().get("oz_best", {}) or {})
+            k = f"{z['kind']}|{z['lvl']}"
+            if ok > int(best.get(k, 0)):
+                best[k] = ok
+                z["rec"] = True
+            store.save_settings(oz_best=best)
+        except Exception:
+            pass
+    st.markdown(f"<div class='hero'><h1>🏁 Bitti!</h1><p>{ok} / {n} doğru • %{100 * ok // max(1, n)}</p></div>", unsafe_allow_html=True)
+    if z.get("rec"):
+        st.success("🏆 Yeni rekor!")
+    by = {}
+    for r in z["res"]:
+        by.setdefault(r["cat"], [0, 0])
+        by[r["cat"]][1] += 1
+        by[r["cat"]][0] += 1 if r["ok"] else 0
+    st.markdown("**Türlere göre:** " + " • ".join(f"{k}: {a}/{b}" for k, (a, b) in by.items()))
+    wrong = [r for r in z["res"] if not r["ok"]]
+    if wrong:
+        st.markdown("<div class='sec-title'>❌ Yanlışlar ve çözümleri</div>", unsafe_allow_html=True)
+        for r in wrong:
+            st.markdown(f"**{r['q']}**".replace("\n", "  \n") + f"\n\nSenin cevabın: {r['given']} • Doğru: **{r['cor']}**\n\n💡 {r['expl']}")
+    c1, c2 = st.columns(2)
+    with c1:
+        st.button("🔁 Yeni 10 soru", key="oz_again", use_container_width=True, type="primary", on_click=olimp_train_start, args=(z["g"], z["kind"], z["lvl"]))
+    with c2:
+        st.button("📋 Olimpiyat listesi", key="oz_menu", use_container_width=True, on_click=nav, args=("olimp_menu",))
 
 
 def pick_grade(g):
@@ -39006,6 +40206,7 @@ with st.sidebar:
     st.button("📊 Performans & Raporlar", key="nv_rep", use_container_width=True, on_click=state.nav, args=("reports",))
     st.button("🗂️ Yanlış Arşivim", key="nv_arc", use_container_width=True, on_click=state.nav, args=("archive",))
     st.button("🏅 Rozet & Sertifika", key="nv_bdg", use_container_width=True, on_click=state.nav, args=("badges",))
+    st.button("🧮 Zihinden Matematik", key="nv_zihin", use_container_width=True, on_click=state.nav, args=("zihin",))
     st.button("🏆 TÜBİTAK ve Olimpiyat", key="nv_olimp", use_container_width=True, on_click=state.nav, args=("olimp",))
     try:
         from core import store as _gstore
@@ -39164,6 +40365,17 @@ with st.sidebar:
                         st.markdown("\n".join(f"- {a} • {b} • {c}: %{int(r * 100)} doğru ({n} çözüm)" for a, b, c, n, r in _uh[:15]))
             except Exception:
                 pass
+            try:
+                _pa, _ps, _pe = _gstore.perf_summary()
+                with st.expander("⏱️ Yavaş adımlar (bu oturum)", expanded=False):
+                    if _pa:
+                        st.markdown("\n".join(f"- {n}: {c} kez • ort {a:.1f} sn • en çok {m:.1f} sn" for n, (c, a, m) in sorted(_pa.items(), key=lambda kv: -kv[1][2])[:12]))
+                    else:
+                        st.caption("0,15 sn üzeri yavaş adım kaydı yok.")
+                    if _pe:
+                        st.markdown("**Son hatalar**\n" + "\n".join(f"- {n}: {e}" for _t, n, _d, e in _pe))
+            except Exception:
+                pass
             _bs = _gstore.bank_stats()
             st.markdown(f"<div style='font-size:.85rem;line-height:1.7;margin-top:.5rem'><b>🏦 Soru bankası</b><br>Hazır soru: <b>{_bs['total']}</b><br>" + "<br>".join(f"&nbsp;&nbsp;{k}: {v}" for k, v in sorted(_bs["per"].items(), key=lambda kv: -kv[1])[:8]) + "</div>", unsafe_allow_html=True)
             _lp, _lk = _gstore.lpool_count(), len(_gstore.liked())
@@ -39178,8 +40390,9 @@ if PAGE in ("exam", "ready", "sess_break"):  # soru çözerken dikkat dağıtan 
 ROUTES = {
     "home": setup.home, "modes": setup.modes, "setup": wizard.run, "ready": setup.ready, "pre": setup.pre,
     "exam": exam.exam, "sess_break": exam.sess_break, "selfscore": exam.selfscore, "result": exam.result,
-    "olimp": setup.olimp_home, "olimp_menu": setup.olimp_menu, "olimp_detail": setup.olimp_detail, "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges, "videos": videos.videos,
+    "zihin": setup.zihin_home, "zihin_play": setup.zihin_play, "zihin_sonuc": setup.zihin_sonuc, "zihin_ders": setup.zihin_ders, "olimp": setup.olimp_home, "olimp_play": setup.olimp_play, "olimp_sonuc": setup.olimp_sonuc, "olimp_menu": setup.olimp_menu, "olimp_detail": setup.olimp_detail, "reports": reports.reports, "review": study.review, "plan": study.plan, "archive": extras.archive, "badges": extras.badges, "videos": videos.videos,
 }
+_t_page = time.time()
 try:
     ROUTES.get(PAGE, setup.home)()
 except st.errors.StreamlitAPIException:
@@ -39187,7 +40400,19 @@ except st.errors.StreamlitAPIException:
 except Exception as e:  # sayfa çökmesin: nazik hata + ana sayfaya dön
     if type(e).__name__ in ("RerunException", "StopException"):
         raise
+    try:
+        from core import store as _pstore
+        _pstore.perf_add("sayfa:" + str(PAGE), time.time() - _t_page, type(e).__name__ + ": " + str(e))
+    except Exception:
+        pass
     st.error(f"⚠️ Beklenmeyen bir sorun oluştu ({type(e).__name__}). Aşağıdaki düğmeyle devam edebilirsin.")
     with st.expander("Teknik ayrıntı"):
         st.code(f"{type(e).__name__}: {e}")
     st.button("🏠 Ana sayfaya dön", key="err_home", type="primary", on_click=lambda: (state.reset_exam(), state.nav("home")))
+
+try:  # sayfa çizimi 0,5 sn'den uzun sürdüyse kaydet (?admin=1 ekranında görünür)
+    if time.time() - _t_page >= 0.5:
+        from core import store as _pstore2
+        _pstore2.perf_add("sayfa:" + str(PAGE), time.time() - _t_page)
+except Exception:
+    pass
