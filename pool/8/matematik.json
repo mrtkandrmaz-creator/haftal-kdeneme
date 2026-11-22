@@ -1,0 +1,308 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Üslü ifadeler",
+"passage": "",
+"question": "5⁶ × 5⁴ = 5ˣ eşitliğinde x kaçtır?",
+"shape": null,
+"options": {
+"A": "2",
+"B": "10",
+"C": "24",
+"D": "50"
+},
+"answer": "B",
+"explanation": "Tabanlar aynı: üsler toplanır, x = 6 + 4 = 10.",
+"unit": "Üslü İfadeler",
+"topics": "Üslü ifadeler, Bilimsel gösterim",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_exp8"
+},
+{
+"subject": "Matematik",
+"topic": "Üslü ifadeler",
+"passage": "",
+"question": "(2⁶)⁵ = 2ˣ eşitliğinde x kaçtır?",
+"shape": null,
+"options": {
+"A": "29",
+"B": "30",
+"C": "31",
+"D": "60"
+},
+"answer": "B",
+"explanation": "Üssün üssü: üsler çarpılır, x = 6×5 = 30.",
+"unit": "Üslü İfadeler",
+"topics": "Üslü ifadeler, Bilimsel gösterim",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_exp8"
+},
+{
+"subject": "Matematik",
+"topic": "Üslü ifadeler",
+"passage": "",
+"question": "(5⁶)³ = 5ˣ eşitliğinde x kaçtır?",
+"shape": null,
+"options": {
+"A": "9",
+"B": "17",
+"C": "18",
+"D": "90"
+},
+"answer": "C",
+"explanation": "Üssün üssü: üsler çarpılır, x = 6×3 = 18.",
+"unit": "Üslü İfadeler",
+"topics": "Üslü ifadeler, Bilimsel gösterim",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_exp8"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Bir torbada 8 kırmızı, 6 mavi ve 7 yeşil bilye vardır. Torbadan rastgele çekilen bir bilyenin mavi olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/5",
+"B": "5/7",
+"C": "1/3",
+"D": "2/7"
+},
+"answer": "D",
+"explanation": "Toplam 21 bilye var; mavi olan 6 tane → 6/21 = 2/7.",
+"unit": "Basit Olayların Olma Olasılığı",
+"topics": "Olasılık, Örnek uzay",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_prob8"
+},
+{
+"subject": "Matematik",
+"topic": "Denklemler",
+"passage": "",
+"question": "4x + 10 = 22 denkleminde x kaçtır?",
+"shape": null,
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "6"
+},
+"answer": "B",
+"explanation": "4x = 12 → x = 3.",
+"unit": "Cebirsel İfadeler ve Özdeşlikler",
+"topics": "Özdeşlikler, Çarpanlara ayırma",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_eq1"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifadeler ve özdeşlikler",
+"passage": "",
+"question": "(x + 6)² ifadesinin açılımında x’li terimin katsayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "7",
+"B": "12",
+"C": "13",
+"D": "36"
+},
+"answer": "B",
+"explanation": "(x+6)² = x² + 12x + 36.",
+"unit": "Cebirsel İfadeler ve Özdeşlikler",
+"topics": "Özdeşlikler, Çarpanlara ayırma",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_ident"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifadeler ve özdeşlikler",
+"passage": "",
+"question": "(x – 4)(x + 4) çarpımının açılımının sabit terimi kaçtır?",
+"shape": null,
+"options": {
+"A": "–16",
+"B": "8",
+"C": "17",
+"D": "4"
+},
+"answer": "A",
+"explanation": "(x–4)(x+4) = x² – 16; sabit terim –16.",
+"unit": "Cebirsel İfadeler ve Özdeşlikler",
+"topics": "Özdeşlikler, Çarpanlara ayırma",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_ident"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitsizlikler",
+"passage": "",
+"question": "5x – 2 < 33 eşitsizliğini sağlayan en büyük x tam sayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
+},
+"answer": "C",
+"explanation": "5x < 35 → x < 35/5; en büyük tam sayı 6.",
+"unit": "Eşitsizlikler",
+"topics": "Eşitsizlikler, Sayı doğrusu",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_ineq"
+},
+{
+"subject": "Matematik",
+"topic": "Pisagor bağıntısı",
+"passage": "",
+"question": "Dik kenar uzunlukları 5 cm ve 12 cm olan bir dik üçgenin hipotenüs uzunluğu kaç cm’dir?",
+"shape": null,
+"options": {
+"A": "12 cm",
+"B": "13 cm",
+"C": "17 cm",
+"D": "30 cm"
+},
+"answer": "B",
+"explanation": "5² + 12² = 169 = 13².",
+"unit": "Üçgenler",
+"topics": "Üçgen eşitsizliği, Pisagor, Benzerlik",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_pyth"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenlerde açı",
+"passage": "",
+"question": "Verilen şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(ABC) = 70° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "two_triangles",
+"names": [
+"A",
+"B",
+"C",
+"D"
+],
+"alpha": 40,
+"angles": {
+"B": "70°",
+"BCD": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "70°",
+"C": "100°",
+"D": "130°"
+},
+"answer": "D",
+"explanation": "|AB| = |AC| olduğundan m(ACB) = m(ABC) = 70°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = 70 + 60 = 130°.",
+"unit": "Üçgenler",
+"topics": "Üçgen eşitsizliği, Pisagor, Benzerlik",
+"d": 4,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_twotri"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenlerde açı",
+"passage": "",
+"question": "Şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(ABC) = 60° olduğuna göre m(BAD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "two_triangles",
+"names": [
+"A",
+"B",
+"C",
+"D"
+],
+"alpha": 60,
+"angles": {
+"B": "60°",
+"BAD": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "110°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "|AB| = |AC| olduğundan m(ACB) = 60° ve m(BAC) = 180 − 2 × 60 = 60°. ACD eşkenar olduğundan m(CAD) = 60°. m(BAD) = 60 + 60 = 120°.",
+"unit": "Üçgenler",
+"topics": "Üçgen eşitsizliği, Pisagor, Benzerlik",
+"d": 4,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_twotri"
+},
+{
+"subject": "Matematik",
+"topic": "Silindir",
+"passage": "",
+"question": "Taban yarıçapı 2 cm ve yüksekliği 2 cm olan dik silindirin hacmi kaç cm³’tür? (π yerine 3 alınız.)",
+"shape": null,
+"options": {
+"A": "12 cm³",
+"B": "48 cm³",
+"C": "26 cm³",
+"D": "24 cm³"
+},
+"answer": "D",
+"explanation": "V = πr²h = 3×2²×2 = 24.",
+"unit": "Dönüşüm Geometrisi ve Geometrik Cisimler",
+"topics": "Yansıma-öteleme, Dik prizma, Silindir, koni",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_cyl"
+},
+{
+"subject": "Matematik",
+"topic": "Silindir",
+"passage": "",
+"question": "Taban yarıçapı 3 cm ve yüksekliği 7 cm olan dik silindirin yanal alanı kaç cm²’dir? (π yerine 3 alınız.)",
+"shape": null,
+"options": {
+"A": "18 cm²",
+"B": "63 cm²",
+"C": "126 cm²",
+"D": "252 cm²"
+},
+"answer": "C",
+"explanation": "A = 2πrh = 2×3×3×7 = 126.",
+"unit": "Dönüşüm Geometrisi ve Geometrik Cisimler",
+"topics": "Yansıma-öteleme, Dik prizma, Silindir, koni",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_cyl"
+}
+]
+}
