@@ -139,4 +139,4 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 ## İngilizce şekilli genişletme (2026-11-23)
 - Neighbourhood/Nature/Universe üniteleri için 10 yeni şekilli aile: evler, eğlence yerleri, kroki (above/below), bina yüksekliği grafiği, hayvan türleri, habitatlar, hayvan hızı grafiği, mevsimler, gezegenler, kıtalar.
 - Havuz kurucusunda yineleme anahtarı tüm şekilli sorulara genişletildi (açılış cümlesi, harf ve grafikte soruyla ilgisiz çubuklar soruyu farklı saymaz).
-- İngilizce havuzu 1197 → 2525 soru (şekilli 1536); hatalı/yinelenen 0; run_checks 12/12.
+- İngilizce havuzu 1197 → 2583 soru (şekilli ~1590); hatalı/yinelenen 0; run_checks 12/12.

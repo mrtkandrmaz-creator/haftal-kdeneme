@@ -28218,13 +28218,13 @@ def _fen_en_bld(subject):
     return _mf_raw(subject, "Comparatives", q, o, f"{_EN_BLD[a][1]} − {_EN_BLD[b][1]} = {d} metres.", shape=sh) if o else None
 
 
-_EN_ANI = {"bird": ["eagle", "parrot", "penguin", "owl"], "mammal": ["lion", "dolphin", "cow", "monkey", "elephant"], "reptile": ["snake", "turtle", "crocodile"], "fish": ["shark", "goldfish", "salmon"], "insect": ["butterfly", "ant", "bee"]}
+_EN_ANIM = {"bird": ["eagle", "parrot", "penguin", "owl"], "mammal": ["lion", "dolphin", "cow", "monkey", "elephant"], "reptile": ["snake", "turtle", "crocodile"], "fish": ["shark", "goldfish", "salmon"], "insect": ["butterfly", "ant", "bee"]}
 
 
 def _fen_en_animal(subject):
-    cat = random.choice(list(_EN_ANI))
-    others = [x for c, v in _EN_ANI.items() if c != cat for x in v]
-    ws = [random.choice(_EN_ANI[cat])] + random.sample(others, 3)
+    cat = random.choice(list(_EN_ANIM))
+    others = [x for c, v in _EN_ANIM.items() if c != cat for x in v]
+    ws = [random.choice(_EN_ANIM[cat])] + random.sample(others, 3)
     order = list(range(4))
     random.shuffle(order)
     w2 = [ws[i] for i in order]
