@@ -38,12 +38,25 @@ def _bkey(ai, q):
     import json as _j
     qt = str(q.get("question") or "")
     sh = q.get("shape")
-    if not (sh and qt.startswith("Konu:")):
+    if not sh:
         return ai._stem(q)
-    core = "\n".join(qt.split("\n")[2:]) or qt
+    core = qt
+    if core.startswith("Konu:"):
+        core = "\n".join(core.split("\n")[1:]) or core
+    for e in getattr(ai, "_VY_EN", []):  # İngilizce açılış cümlesi
+        if core.startswith(e + " "):
+            core = core[len(e) + 1:]
+            break
+    ls = core.split("\n")
+    if len(ls) > 1 and any(ls[0].endswith(x) for x in getattr(ai, "_VY_SUF", [])):  # Türkçe açılış satırı
+        core = "\n".join(ls[1:])
     core = re.sub(r"\b[A-ZÇĞİÖŞÜ]\b", "X", core)
     core = re.sub(r"\d+", "0", core.lower())
     ans = str((q.get("options") or {}).get(str(q.get("answer", "")).upper()[:1], ""))
+    if isinstance(sh, dict) and sh.get("type") == "bar_chart":  # grafikte soruyla ilgisiz çubuklar soruyu farklı yapmaz
+        import hashlib as _h
+        ops = "|".join(sorted(str(v) for v in (q.get("options") or {}).values()))
+        return "k:" + _h.md5((core + "|" + ans + "|" + ops).encode()).hexdigest()[:16]
     js = _j.dumps(sh, ensure_ascii=False, sort_keys=True)
     if len(ans) == 1:  # cevap bir harf: şekilde o harfle gösterilen sözcüğü anahtara kat
         for m in re.finditer(r'"h": "(.)", "w": "([^"]+)"', js):

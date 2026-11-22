@@ -135,3 +135,8 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 ## 7/8. sınıf deneme havuzu ve LGS (2026-11-22)
 - Havuz kurucusu 7 ve 8. sınıf için çalışıyor: pool/7/matematik.json (9 soru), pool/8/matematik.json (13 soru). Doğrulandı (cevap şıklarda, şıklar tekil, yineleme yok). Soru az: bu sınıflar için soru kalıbı çok az; havuzu büyütmek için önce kalıp yazılmalı.
 - LGS hatası: LGS Hazırlık seçilince hazır havuz `pool/lgs/` klasöründe aranıyordu (yok), yani LGS'de hazır havuz hiç kullanılmıyordu. Artık LGS = 8. sınıf havuzu (`pool/8/`).
+
+## İngilizce şekilli genişletme (2026-11-23)
+- Neighbourhood/Nature/Universe üniteleri için 10 yeni şekilli aile: evler, eğlence yerleri, kroki (above/below), bina yüksekliği grafiği, hayvan türleri, habitatlar, hayvan hızı grafiği, mevsimler, gezegenler, kıtalar.
+- Havuz kurucusunda yineleme anahtarı tüm şekilli sorulara genişletildi (açılış cümlesi, harf ve grafikte soruyla ilgisiz çubuklar soruyu farklı saymaz).
+- İngilizce havuzu 1197 → 2525 soru (şekilli 1536); hatalı/yinelenen 0; run_checks 12/12.

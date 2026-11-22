@@ -28152,6 +28152,155 @@ for _f, _d, _it, _kw in _EN_FAMS:
     _DIFF_OF[_f.__name__] = _d
 
 
+# ---- İNGİLİZCE: Neighbourhood / Nature / Universe üniteleri için şekilli (harfli kart, tablo, grafik, kroki) aileler
+def _en_cards(subject, topic, ws, ci, q, ex):
+    hf = _lt(len(ws))
+    sh = _dl_sh(sub_type="kavram", sozler=[{"h": hf[i], "w": ws[i]} for i in range(len(ws))])
+    return _mf_raw(subject, topic, q, (sorted(hf), hf[ci]), ex.replace("{H}", hf[ci]), shape=sh)
+
+
+def _en_clue(subject, topic, data, noun, qfmt, exfmt, k=4):
+    """data: [(ad, ipucu)] -> k kart harfle gösterilir; ipucuna uyan kartın harfi sorulur."""
+    ks = random.sample(range(len(data)), k)
+    c = random.randrange(k)
+    ws = [data[i][0] for i in ks]
+    return _en_cards(subject, topic, ws, c, qfmt.format(noun=noun, clue=data[ks[c]][1]), exfmt.format(w=ws[c], clue=data[ks[c]][1], H="{H}"))
+
+
+_EN_HOUSE = [("flat", "a home on one floor of a tall building"), ("villa", "a big house with a garden, often near the sea"), ("farmhouse", "a house in the countryside near the fields"),
+             ("tent", "a temporary home made of cloth for camping"), ("cottage", "a small old house in a village"), ("skyscraper", "a very tall building with many floors")]
+
+
+def _fen_en_house(subject):
+    return _en_clue(subject, "Types of houses", _EN_HOUSE, "house", "Four types of homes are shown with letters. Which letter shows {clue}?", "The answer is {w}: it is {clue}. It is shown by {H}.")
+
+
+_EN_REC = [("swimming pool", "You can swim there."), ("cinema", "You can watch a film there."), ("zoo", "You can see wild animals there."), ("museum", "You can see old and interesting things there."),
+           ("stadium", "You can watch a football match there."), ("park", "You can walk and have a picnic there."), ("library", "You can read and borrow books there.")]
+
+
+def _fen_en_rec(subject):
+    return _en_clue(subject, "Places for recreation", _EN_REC, "place", "Four places in the city are shown with letters. Which letter shows the place? {clue}", "{clue} The place is the {w}; it is shown by {H}.")
+
+
+def _fen_en_map2(subject):
+    n = random.choice([5, 6])
+    cells = random.sample([(c, r) for c in range(3) for r in range(3)], n)
+    ad = random.sample(_EN_PLACE, n)
+    hf = random.sample(_DL, n)
+    ys = [{"h": hf[i], "ad": ad[i], "c": cells[i][0], "r": cells[i][1]} for i in range(n)]
+    for _t in range(40):
+        a = random.choice(ys)
+        dy = random.choice([1, -1])
+        b = next((y for y in ys if (y["c"], y["r"]) == (a["c"], a["r"] + dy)), None)
+        if b:
+            break
+    else:
+        return None
+    side = "below" if dy == 1 else "above"
+    o = (sorted([b["h"]] + [y["h"] for y in random.sample([y for y in ys if y is not a and y is not b], 3)]), b["h"])
+    sh = {"type": "sos", "sub_type": "kroki", "cols": 3, "rows": 3, "yerler": ys, "pusula": False}
+    return _mf_raw(subject, "Places in the neighbourhood", f"Which letter shows the place {side} the {a['ad']}?", o, f"On the map, the {b['ad']} ({b['h']}) is {side} the {a['ad']}.", shape=sh)
+
+
+_EN_BLD = [("Tower", 120), ("Bridge", 80), ("Hotel", 60), ("Mosque", 45), ("Library", 30), ("Hospital", 50), ("School", 25)]
+
+
+def _fen_en_bld(subject):
+    ks = random.sample(range(len(_EN_BLD)), 4)
+    a, b = random.sample(ks, 2)
+    if _EN_BLD[a][1] < _EN_BLD[b][1]:
+        a, b = b, a
+    d = _EN_BLD[a][1] - _EN_BLD[b][1]
+    o = _mf_opts(d, [x for x in (d + 5, d + 10, max(d - 5, 5), d + 15, d - 10, d + 20) if x != d and x > 0], str, sort=False)
+    sh = {"type": "bar_chart", "labels": [_EN_BLD[k][0] for k in ks], "values": [_EN_BLD[k][1] for k in ks], "title": "Heights of buildings in our city", "ylabel": "Height (m)"}
+    q = f"The {_EN_BLD[a][0].lower()} is taller than the {_EN_BLD[b][0].lower()}. How many metres taller is it?"
+    return _mf_raw(subject, "Comparatives", q, o, f"{_EN_BLD[a][1]} − {_EN_BLD[b][1]} = {d} metres.", shape=sh) if o else None
+
+
+_EN_ANI = {"bird": ["eagle", "parrot", "penguin", "owl"], "mammal": ["lion", "dolphin", "cow", "monkey", "elephant"], "reptile": ["snake", "turtle", "crocodile"], "fish": ["shark", "goldfish", "salmon"], "insect": ["butterfly", "ant", "bee"]}
+
+
+def _fen_en_animal(subject):
+    cat = random.choice(list(_EN_ANI))
+    others = [x for c, v in _EN_ANI.items() if c != cat for x in v]
+    ws = [random.choice(_EN_ANI[cat])] + random.sample(others, 3)
+    order = list(range(4))
+    random.shuffle(order)
+    w2 = [ws[i] for i in order]
+    ci = order.index(0)
+    art = "an" if cat[0] in "aeiou" else "a"
+    return _en_cards(subject, "Types of animals", w2, ci, f"Four animals are shown with letters. Which letter shows {art} {cat}?", f"A {w2[ci]} is {art} {cat}. It is shown by {{H}}.")
+
+
+_EN_HAB = [("desert", "camel"), ("ocean", "dolphin"), ("forest", "bear"), ("farm", "cow"), ("North Pole", "polar bear"), ("jungle", "monkey")]
+
+
+def _fen_en_habitat(subject):
+    ks = random.sample(range(len(_EN_HAB)), 4)
+    c = random.randrange(4)
+    ws = [_EN_HAB[k][0].capitalize() if _EN_HAB[k][0] != "North Pole" else "North Pole" for k in ks]
+    an = _EN_HAB[ks[c]][1]
+    art = "an" if an[0] in "aeiou" else "a"
+    return _en_cards(subject, "Habitats", ws, c, f"Four habitats are shown with letters. Where does {art} {an} live?", f"A {an} lives in the {_EN_HAB[ks[c]][0]}. It is shown by {{H}}.")
+
+
+_EN_SPEED = [("Cheetah", 110), ("Lion", 80), ("Horse", 65), ("Rabbit", 55), ("Elephant", 40), ("Dog", 60)]
+
+
+def _fen_en_speed(subject):
+    ks = random.sample(range(len(_EN_SPEED)), 4)
+    a, b = random.sample(ks, 2)
+    if _EN_SPEED[a][1] < _EN_SPEED[b][1]:
+        a, b = b, a
+    d = _EN_SPEED[a][1] - _EN_SPEED[b][1]
+    o = _mf_opts(d, [x for x in (d + 5, d + 10, max(d - 5, 5), d + 15, d - 10, d + 20) if x != d and x > 0], str, sort=False)
+    if not o:
+        return None
+    q = f"How many km/h faster is the {_EN_SPEED[a][0].lower()} than the {_EN_SPEED[b][0].lower()}?"
+    sh = {"type": "bar_chart", "labels": [_EN_SPEED[k][0] for k in ks], "values": [_EN_SPEED[k][1] for k in ks], "title": "Animal speeds", "ylabel": "Speed (km/h)"}
+    return _mf_raw(subject, "Comparatives and superlatives", q, o, f"{_EN_SPEED[a][1]} − {_EN_SPEED[b][1]} = {d} km/h.", shape=sh)
+
+
+_EN_SEASON = [("Spring", "Flowers open and the weather gets warmer."), ("Summer", "The weather is hot and children go swimming."), ("Autumn", "Leaves fall from the trees."), ("Winter", "It snows and the weather is very cold.")]
+
+
+def _fen_en_season(subject):
+    ks = list(range(4))
+    random.shuffle(ks)
+    c = random.randrange(4)
+    ws = [_EN_SEASON[k][0] for k in ks]
+    return _en_cards(subject, "Seasons", ws, c, f"Four seasons are shown with letters. Which letter shows the season? {_EN_SEASON[ks[c]][1]}", f"{_EN_SEASON[ks[c]][1]} This is {ws[c].lower()}. It is shown by {{H}}.")
+
+
+_EN_PLANET = [("Earth", "We live on this planet."), ("Mars", "It is called the Red Planet."), ("Jupiter", "It is the biggest planet in the Solar System."), ("Saturn", "It has big rings around it."),
+              ("Mercury", "It is the closest planet to the Sun."), ("Venus", "It is the hottest planet in the Solar System.")]
+
+
+def _fen_en_planet(subject):
+    return _en_clue(subject, "Planet Earth", _EN_PLANET, "planet", "Four planets are shown with letters. Which letter shows the planet? {clue}", "{clue} The planet is {w}; it is shown by {H}.")
+
+
+_EN_CONT = [("Asia", "It is the biggest continent."), ("Antarctica", "It is the coldest continent."), ("Africa", "The Sahara Desert is on this continent."), ("Europe", "Paris, Rome and London are on this continent."),
+            ("Australia", "Kangaroos live on this continent and it is also a country.")]
+
+
+def _fen_en_cont(subject):
+    return _en_clue(subject, "Continents and climate", _EN_CONT, "continent", "Four continents are shown with letters. Which letter shows the continent? {clue}", "{clue} The continent is {w}; it is shown by {H}.")
+
+
+_EN_FAMS2 = [(_fen_en_house, 2, "Types of houses", ("types of houses", "life in the neighbourhood")), (_fen_en_rec, 2, "Places for recreation", ("places for recreation", "neighbourhood")),
+             (_fen_en_map2, 3, "Places for recreation", ("neighbourhood", "places", "there is/are")), (_fen_en_bld, 3, "Comparatives", ("comparatives", "neighbourhood")),
+             (_fen_en_animal, 2, "Types of animals", ("types of animals", "life in nature")), (_fen_en_habitat, 2, "Habitats", ("habitats", "life in nature")),
+             (_fen_en_season, 2, "Seasons", ("seasons", "life in the universe")), (_fen_en_planet, 2, "Planet Earth", ("planet earth", "life in the universe")),
+             (_fen_en_cont, 3, "Continents and climate", ("continents", "life in the universe")),
+             (_fen_en_speed, 3, "Comparatives and superlatives", ("comparatives", "life in nature"))]
+for _f, _d, _it, _kw in _EN_FAMS2:
+    _f.ITEM = _it
+    _EF_GENS.append((_vy_wrap_en(_f), _kw))
+    _DIFF_OF[_f.__name__] = _d
+
+
 # ---- TÜRKÇE
 _TR_KAT = {"meyve": ["elma", "armut", "kiraz", "üzüm", "muz"], "hayvan": ["kedi", "koyun", "inek", "kuş", "tavşan"], "meslek": ["doktor", "öğretmen", "aşçı", "pilot", "terzi"],
            "renk": ["kırmızı", "mavi", "yeşil", "sarı", "mor"], "spor": ["futbol", "yüzme", "voleybol", "basketbol", "atletizm"], "taşıt": ["otobüs", "tren", "uçak", "gemi", "bisiklet"]}
