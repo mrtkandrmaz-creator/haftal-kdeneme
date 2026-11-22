@@ -107,6 +107,8 @@ C = {
        _u("Işığın Yayılması", "Işık kaynakları ve ışığın doğrusal yayılması; Saydam, yarı saydam ve opak maddeler; Gölge oluşumu ve tam gölge"),
        _u("İnsan ve Çevre", "Evsel atıklar ve atık azaltma; Geri dönüşüm ve geri dönüştürülebilen maddeler; Kaynakların etkili kullanımı; Atık yönetimi; İnsan faaliyetlerinin çevreye etkisi (kirlilik)"),
        _u("Elektrik Devre Elemanları", "Devre elemanları ve sembolleri; Devre şeması ve deney; Ampul parlaklığını etkileyen değişkenler; Elektrik tasarrufu ve güvenliği"),
+       _u("Hücre Organelleri (Ek)", "Hücre organelleri: mitokondri, endoplazmik retikulum, Golgi aygıtı, lizozom, ribozom; organel işlevleri"),
+       _u("Hücre ve Yapı Düzeyleri", "Bitki ve hayvan hücresi: hücre zarı, sitoplazma, çekirdek, hücre duvarı, kloroplast, koful; Hücre, doku, organ, sistem ve organizma ilişkisi; hücre çizimi ve modeli, kısımların görevleri, gerekçeli değerlendirme"),
        _u("Destek ve Hareket Sistemi", "Destek ve hareket sistemi: kemik, eklem ve kas; İskelet sisteminin görevleri (destek, koruma, hareket); Eklemler ve eklem çeşitleri; Kasların çalışması; Destek ve hareket sistemi sağlığı")],
   SOS: [_u("Birlikte Yaşamak", "Gruplar ve roller; Kültürel özelliklere saygı; Yardımlaşma ve dayanışma"),
        _u("Evimiz Dünya", "Göreceli konum; Doğal ve beşerî çevre; Afetler ve farkındalık; Komşu devletler"),
@@ -3426,8 +3428,187 @@ def _bio_iskelet(ax, d):
     ax.set_ylim(-.3, 12.2)
 
 
+_HC_ANC = {"bitki": {"duvar": (3.15, -1.2), "zar": (3.0, 1.1), "sitoplazma": (-1.0, -.55), "cekirdek": (-1.0, .75), "kloroplast": (2.0, 1.6), "koful": (1.3, -.2)},
+           "hayvan": {"zar": (3.12, .5), "sitoplazma": (-1.9, -1.1), "cekirdek": (0.0, .0)}}
+
+
+def _bio_hucre(ax, d):
+    """Bitki ya da hayvan hücresi çizimi; labels: {yapı: harf} (harf yazılmayan yapılar çizilir ama işaretlenmez)."""
+    from matplotlib.patches import FancyBboxPatch as _FB
+    kind = d.get("kind", "bitki")
+    lab = d.get("labels", {})
+    if kind == "bitki":
+        ax.add_patch(_FB((-3.3, -2.4), 6.6, 4.8, boxstyle="round,pad=0,rounding_size=.35", fc="#86efac", ec="#166534", lw=2.2, zorder=1))
+        ax.add_patch(_FB((-3.0, -2.1), 6.0, 4.2, boxstyle="round,pad=0,rounding_size=.25", fc="#fef9c3", ec="#be185d", lw=1.8, zorder=2))
+        ax.add_patch(Ellipse((1.3, -.2), 2.3, 2.5, fc="#bae6fd", ec="#0369a1", lw=1.5, zorder=3))
+        for (cx, cy) in ((-2.1, 1.45), (-2.0, -1.5), (-.2, -1.6), (2.0, 1.6), (-2.2, .1)):
+            ax.add_patch(Ellipse((cx, cy), .75, .42, fc="#22c55e", ec="#15803d", lw=1.2, zorder=4))
+    else:
+        ax.add_patch(Ellipse((0, 0), 6.4, 4.6, fc="#fef9c3", ec="#be185d", lw=2.2, zorder=2))
+    ax.add_patch(Circle((-1.0, .75) if kind == "bitki" else (0, 0), .8 if kind == "bitki" else 1.0, fc="#c4b5fd", ec="#5b21b6", lw=1.8, zorder=5))
+    ax.add_patch(Circle((-1.0, .75) if kind == "bitki" else (0, 0), .28 if kind == "bitki" else .35, fc="#7c3aed", ec="none", zorder=6))
+    anc = _HC_ANC[kind]
+    items = [(part, l) for part, l in lab.items() if part in anc]
+    items.sort(key=lambda t: -anc[t[0]][1])
+    n = len(items)
+    for k, (part, l) in enumerate(items):
+        by = 2.2 - k * (4.4 / max(n - 1, 1)) if n > 1 else 0
+        ax_, ay_ = anc[part]
+        ax.plot([ax_, 4.6], [ay_, by], color="#94a3b8", lw=1.2, ls=(0, (3, 2)), zorder=7)
+        ax.add_patch(Circle((ax_, ay_), .09, fc="#ea580c", ec="none", zorder=8))
+        _bio_bubble(ax, 5.1, by, l, fs=12, r=.45)
+    ax.set_xlim(-3.8, 5.8)
+    ax.set_ylim(-2.8, 2.8)
+
+
+_OG_ANC = {"hayvan": {"cekirdek": (-1.1, .2), "er": (.6, .55), "ribozom": (-1.5, -1.4), "golgi": (1.9, -.7), "mito": (1.8, 1.0), "lizozom": (.2, -1.3), "zar": (3.15, -.4), "sitoplazma": (-.5, -.95)},
+           "bitki": {"cekirdek": (-1.6, .9), "er": (-.15, .9), "ribozom": (-1.2, -1.55), "golgi": (-1.7, -.5), "mito": (-.3, -1.1), "kloroplast": (1.7, 1.75), "koful": (1.6, -.2), "duvar": (3.15, -1.2), "zar": (3.0, 1.1), "sitoplazma": (-.5, -.3)}}
+
+
+def _og_er(ax, x0, x1, ys):
+    import numpy as _np
+    t = _np.linspace(x0, x1, 60)
+    for y0 in ys:
+        ax.plot(t, y0 + .1 * _np.sin(9 * (t - x0)), color="#a16207", lw=2.2, zorder=6, solid_capstyle="round")
+        for xx in _np.linspace(x0 + .1, x1 - .1, 5):
+            ax.add_patch(Circle((xx, y0 + .1 * _np.sin(9 * (xx - x0)) + .09), .035, fc="#1f2937", ec="none", zorder=7))
+
+
+def _og_golgi(ax, cx, cy, w=.9):
+    import numpy as _np
+    t = _np.linspace(-1, 1, 30)
+    for k in range(4):
+        ax.plot(cx + w * .5 * t, cy + (k - 1.5) * .17 - .1 * (t ** 2) + .06, color="#be185d", lw=3.2, zorder=6, solid_capstyle="round")
+
+
+def _og_mito(ax, cx, cy, w=1.1, h=.55):
+    import numpy as _np
+    ax.add_patch(Ellipse((cx, cy), w, h, fc="#fdba74", ec="#c2410c", lw=1.8, zorder=6))
+    xs = _np.linspace(cx - w * .32, cx + w * .32, 7)
+    ys = [cy + (.13 if i % 2 == 0 else -.13) for i in range(7)]
+    ax.plot(xs, ys, color="#c2410c", lw=1.3, zorder=7)
+
+
+def _og_chloro(ax, cx, cy, w=.95, h=.5):
+    ax.add_patch(Ellipse((cx, cy), w, h, fc="#22c55e", ec="#15803d", lw=1.4, zorder=6))
+    for dx in (-.22, 0, .22):
+        ax.add_patch(Ellipse((cx + dx, cy), .12, .26, fc="#14532d", ec="none", zorder=7))
+
+
+def _bio_organel(ax, d):
+    """Organelli hücre çizimi (mitokondri, endoplazmik retikulum, golgi, lizozom, ribozom, çekirdek...). labels: {yapı: harf}."""
+    from matplotlib.patches import FancyBboxPatch as _FB
+    kind = d.get("kind", "hayvan")
+    lab = d.get("labels", {})
+    if kind == "hayvan":
+        ax.add_patch(Ellipse((0, 0), 6.4, 4.6, fc="#fef9c3", ec="#be185d", lw=2.2, zorder=2))
+        ax.add_patch(Circle((-1.1, .2), .95, fc="#c4b5fd", ec="#5b21b6", lw=1.8, zorder=5))
+        ax.add_patch(Circle((-1.1, .2), .3, fc="#7c3aed", ec="none", zorder=6))
+        _og_er(ax, -.05, 1.25, (.9, .55, .2))
+        _og_golgi(ax, 1.9, -.7)
+        _og_mito(ax, 1.8, 1.0)
+        _og_mito(ax, -2.3, -.6, .9, .45)
+        for (cx, cy) in ((.2, -1.3), (-2.3, 1.1)):
+            ax.add_patch(Circle((cx, cy), .24, fc="#bef264", ec="#4d7c0f", lw=1.4, zorder=6))
+        for (cx, cy) in ((-1.5, -1.4), (-1.3, -1.52), (-1.72, -1.52), (-1.45, -1.25), (-1.2, -1.3)):
+            ax.add_patch(Circle((cx, cy), .05, fc="#1f2937", ec="none", zorder=7))
+    else:
+        ax.add_patch(_FB((-3.3, -2.4), 6.6, 4.8, boxstyle="round,pad=0,rounding_size=.35", fc="#86efac", ec="#166534", lw=2.2, zorder=1))
+        ax.add_patch(_FB((-3.0, -2.1), 6.0, 4.2, boxstyle="round,pad=0,rounding_size=.25", fc="#fef9c3", ec="#be185d", lw=1.8, zorder=2))
+        ax.add_patch(Ellipse((1.6, -.2), 2.0, 2.6, fc="#bae6fd", ec="#0369a1", lw=1.5, zorder=3))
+        ax.add_patch(Circle((-1.6, .9), .75, fc="#c4b5fd", ec="#5b21b6", lw=1.8, zorder=5))
+        ax.add_patch(Circle((-1.6, .9), .25, fc="#7c3aed", ec="none", zorder=6))
+        _og_er(ax, -.75, .45, (1.2, .9, .6))
+        _og_golgi(ax, -1.7, -.5)
+        _og_mito(ax, -.3, -1.1)
+        for (cx, cy) in ((1.7, 1.75), (-2.3, -1.6), (.9, -1.75)):
+            _og_chloro(ax, cx, cy)
+        for (cx, cy) in ((-1.2, -1.55), (-1.0, -1.65), (-1.4, -1.65), (-1.15, -1.4)):
+            ax.add_patch(Circle((cx, cy), .05, fc="#1f2937", ec="none", zorder=7))
+    anc = _OG_ANC[kind]
+    items = [(p, l) for p, l in lab.items() if p in anc]
+    items.sort(key=lambda t: -anc[t[0]][1])
+    n = len(items)
+    sp = (4.4 / (n - 1)) if n > 1 else 1
+    r = min(.45, sp * .42)
+    for k, (part, l) in enumerate(items):
+        by = 2.2 - k * sp if n > 1 else 0
+        ax_, ay_ = anc[part]
+        ax.plot([ax_, 4.6], [ay_, by], color="#94a3b8", lw=1.2, ls=(0, (3, 2)), zorder=8)
+        ax.add_patch(Circle((ax_, ay_), .09, fc="#ea580c", ec="none", zorder=9))
+        _bio_bubble(ax, 5.1, by, l, fs=12 if r > .38 else 10, r=r)
+    ax.set_xlim(-3.8, 5.8)
+    ax.set_ylim(-2.8, 2.8)
+
+
+def _m2_bact(ax, it):
+    import numpy as _np
+    t, x, y, a = it["t"], it["x"], it["y"], it.get("a", 0)
+    if t == "kok":
+        ax.add_patch(Circle((x, y), .3, fc="#a78bfa", ec="#5b21b6", lw=1.5, zorder=5))
+    elif t == "basil":
+        ax.add_patch(Ellipse((x, y), 1.15, .4, angle=a, fc="#6ee7b7", ec="#047857", lw=1.5, zorder=5))
+    elif t == "spiral":
+        u = _np.linspace(-.6, .6, 60)
+        ca, sa = _np.cos(_np.radians(a)), _np.sin(_np.radians(a))
+        px, py = u * 1.0, .17 * _np.sin(u * 20)
+        ax.plot(x + px * ca - py * sa, y + px * sa + py * ca, color="#db2777", lw=3.6, zorder=5, solid_capstyle="round")
+    elif t == "maya":
+        ax.add_patch(Ellipse((x, y), .9, .78, fc="#fde68a", ec="#b45309", lw=1.6, zorder=5))
+        ax.add_patch(Circle((x - .12, y + .06), .12, fc="#f59e0b", ec="none", zorder=6))
+        if it.get("bud"):
+            ca, sa = _np.cos(_np.radians(a)), _np.sin(_np.radians(a))
+            ax.add_patch(Ellipse((x + .6 * ca, y + .56 * sa), .42, .38, fc="#fef3c7", ec="#b45309", lw=1.4, zorder=4))
+
+
+def _bio_mikro2(ax, d):
+    """Mikroskop görüş alanı: bakteri (kok/basil/spiral), maya (tomurcuk), küf (hif ve spor kesesi). items + labels (harfli)."""
+    kind = d.get("kind", "bakteri")
+    its = d.get("items", [])
+    anc = []
+    if kind in ("bakteri", "maya"):
+        ax.add_patch(Circle((0, 0), 2.7, fc="#e0f2fe", ec="#334155", lw=3, zorder=1))
+        for it in its:
+            _m2_bact(ax, it)
+            if it.get("l"):
+                anc.append((it["x"], it["y"], it["l"]))
+    else:
+        ax.add_patch(Rectangle((-2.9, -2.3), 5.8, 1.2, fc="#fde68a", ec="#b45309", lw=2, zorder=1))
+        for it in its:
+            x, h = it["x"], it["h"]
+            ax.plot([x, x], [-1.1, -1.1 + h], color="#6b7280", lw=2.4, zorder=3)
+            ax.plot([x - .5, x, x + .5], [-1.1 + h * .45, -1.1 + h * .2, -1.1 + h * .5], color="#9ca3af", lw=1.3, zorder=2)
+            ax.add_patch(Circle((x, -1.1 + h + .12), .3, fc="#475569", ec="#1e293b", lw=1.5, zorder=4))
+        lab = d.get("labels", {})
+        if its:
+            f0 = its[0]
+            if "hif" in lab:
+                anc.append((f0["x"], -1.1 + f0["h"] * .5, lab["hif"]))
+            if "spor" in lab:
+                anc.append((f0["x"], -1.1 + f0["h"] + .12, lab["spor"]))
+            if "ekmek" in lab:
+                anc.append((-2.0, -1.7, lab["ekmek"]))
+    anc.sort(key=lambda t: -t[1])
+    n = len(anc)
+    sp = (4.4 / (n - 1)) if n > 1 else 1
+    r = min(.45, sp * .42)
+    for k, (ax_, ay_, l) in enumerate(anc):
+        by = 2.2 - k * sp if n > 1 else 0
+        ax.plot([ax_, 4.6], [ay_, by], color="#94a3b8", lw=1.2, ls=(0, (3, 2)), zorder=8)
+        ax.add_patch(Circle((ax_, ay_), .08, fc="#ea580c", ec="none", zorder=9))
+        _bio_bubble(ax, 5.1, by, l, fs=12 if r > .38 else 10, r=r)
+    ax.set_xlim(-3.8, 5.8)
+    ax.set_ylim(-2.8, 2.8)
+
+
 def _bio(ax, d):
     st = d.get("sub_type")
+    if st == "mikro2":
+        return _bio_mikro2(ax, d)
+    if st == "organel":
+        return _bio_organel(ax, d)
+    if st == "hucre":
+        return _bio_hucre(ax, d)
     if st == "field":
         return _bio_field(ax, d)
     if st == "groups":
@@ -28490,7 +28671,7 @@ def _ff6_yanki(subject):
     d = v * t // 2
     sh = {"type": "f6", "sub_type": "yanki", "v": f"{v} m/s", "t": f"{t} s"}
     q = f"Şekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı {t} saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?"
-    o = _mf_opts(d, [x for x in (v * t, d * 2, d + 170, d - 170, d + 85, v) if x != d and x > 0], lambda x: f"{x} m", sort=False)
+    o = _mf_opts(d, [x for x in (v * t, d * 2, d + 170, d - 170, d + 85, v, d + 340, d + 255, d * 3, d + 510) if x != d and x > 0], lambda x: f"{x} m", sort=False)
     ex = f"Ses gidiş–dönüşte {v} × {t} = {v * t} m yol alır; uzaklık bunun yarısıdır: {d} m."
     return _mf_raw("Fen Bilimleri", "Yankı ve Ses", q, o, ex, shape=sh) if o else None
 
@@ -29223,6 +29404,737 @@ _g = _gr_fam(_DH_T, _DH_I1, _DH_KW,
              ("Düzenli spor yapmak kemik ve kasları güçlendirir", True, "hareket kemiklerin ve kasların gelişimini destekler.", ["spor yapmak kemikleri zayıflatır.", "spor yalnızca eklemleri sertleştirir."])], "_ff_gr_dh")
 _FF_GENS.append((_g, _DH_KW))
 _DIFF_OF["_ff_gr_dh"] = 3
+
+# ---- Maarif FB.5.3.1-2 (Canlıların Yapısına Yolculuk): hücre ve yapı düzeyleri
+_HC_T = "Hücre"
+_HC_I1 = "Bitki ve hayvan hücresi"
+_HC_I2 = "Hücre, doku, organ, sistem ve organizma"
+_HC_KW = ("hücre", "doku", "organ ve sistem", "organizma")
+_HC_AD = {"duvar": "Hücre duvarı", "zar": "Hücre zarı", "sitoplazma": "Sitoplazma", "cekirdek": "Çekirdek", "kloroplast": "Kloroplast", "koful": "Koful"}
+_HC_GOREV = {"duvar": "hücreye şekil verir ve hücreyi korur", "zar": "hücreye giren ve çıkan maddeleri kontrol eder", "sitoplazma": "hücrenin içini dolduran, yapıların içinde bulunduğu sıvımsı kısımdır",
+             "cekirdek": "hücrenin yönetim merkezidir", "kloroplast": "yeşil renk verir ve besin üretimine katılır", "koful": "su ve çeşitli maddeleri depolar"}
+_HC_LEAD = ["Fen dersinde hücreler inceleniyor.", "Öğretmen sınıfa hücre modelleri getirmiştir.", "Bir öğrenci hücre konusunu tekrar ediyor.", "Fen kulübünde hücre çalışması yapılıyor.",
+            "Canlıların yapı birimi olan hücreler inceleniyor.", "Hücre konusu için bir etkinlik hazırlanmıştır.", "Öğrenciler hücrelerin kısımlarını araştırıyor.", "Fen defterine hücre notları yazılıyor.",
+            "Sınıfta hücre modeli yapılıyor.", "Hücrelerle ilgili bir değerlendirme yapılıyor.", "Fen öğretmeni hücre posteri hazırlamıştır.", "Hücre ünitesi tekrar edilirken şu soru soruluyor.",
+            "Bir öğrenci hücre ünitesinin test sorusunu çözüyor.", "Fen laboratuvarında hücre etkinliği yapılıyor.", "Kitaptaki hücre şemasıyla ilgili bir soru hazırlanmıştır.", "Hücre bilgisi sınav öncesi tekrar ediliyor.",
+            "Arkadaşlar hücre konusunu birbirine soruyor.", "Hücrenin yapısına ilişkin bir çalışma kâğıdı dağıtılmıştır.", "Öğrenciler hücre kartlarıyla oyun oynuyor.", "Fen dersinde hücre bölümü işleniyor.",
+            "Bir öğrenci hücre konusundaki eksiklerini tamamlıyor.", "Sınıf panosuna hücre konusuyla ilgili bir soru asılmıştır.", "Öğretmen hücre konusunu özetledikten sonra soru soruyor.", "Hücre konusu için hazırlanan bir deneme sorusu verilmiştir."]
+_HC_ORT = ["zar", "sitoplazma", "cekirdek"]
+_HC_BIT = ["duvar", "kloroplast"]
+
+
+def _hc_sh(kind, parts):
+    lb = random.sample(_CD_L, len(parts))
+    return lb, {"type": "bio", "sub_type": "hucre", "kind": kind, "labels": {p: l for p, l in zip(parts, lb)}}
+
+
+def _hc_bas(kind):
+    nm = "bitki" if kind == "bitki" else "hayvan"
+    return random.choice(_HC_LEAD) + " " + random.choice([f"Şekilde bir {nm} hücresinin bazı kısımları harflerle gösterilmiştir.", f"Bir {nm} hücresinin çiziminde bazı yapılar harflerle işaretlenmiştir.",
+                          f"Aşağıdaki {nm} hücresi modelinde bazı kısımlar harflerle belirtilmiştir.", f"Bir öğrenci {nm} hücresinin çizimini yapmış ve bazı kısımları harflerle adlandırmıştır.",
+                          f"Çizimdeki {nm} hücresinin bazı yapıları harflerle gösterilmiştir.", f"Şekildeki {nm} hücresi modelinde bazı bölümler harflerle numaralandırılmıştır.",
+                          f"Bir {nm} hücresi çizilmiş ve bazı yapıları harflerle belirtilmiştir.", f"Verilen {nm} hücresi şemasında bazı kısımlar harflerle gösterilmiştir."])
+
+
+def _ff_hc_ad(subject):
+    kind = random.choice(["bitki", "hayvan"])
+    pool = _HC_ORT + (_HC_BIT + ["koful"] if kind == "bitki" else [])
+    parts = random.sample(pool, min(4, len(pool)))
+    lb, sh = _hc_sh(kind, parts)
+    i = random.randrange(len(parts))
+    wr = [_HC_AD[k] for k in _HC_AD if k != parts[i]]
+    o = _yn_opts(_HC_AD[parts[i]], random.sample(wr, 3))
+    return _mf_raw(subject, _HC_T, _hc_bas(kind) + f"\nBuna göre {lb[i]} harfiyle gösterilen yapının adı aşağıdakilerden hangisidir?", o, f"{lb[i]} ile gösterilen yapı {_HC_AD[parts[i]].lower()}dır.", shape=sh) if o else None
+
+
+def _ff_hc_gorev(subject):
+    kind = random.choice(["bitki", "hayvan"])
+    pool = _HC_ORT + (_HC_BIT + ["koful"] if kind == "bitki" else [])
+    parts = random.sample(pool, min(4, len(pool)))
+    lb, sh = _hc_sh(kind, parts)
+    i = random.randrange(len(parts))
+    others = [k for k in pool if k != parts[i]]
+    w = [_HC_GOREV[k][0].upper() + _HC_GOREV[k][1:] for k in random.sample([k for k in _HC_GOREV if k != parts[i]], 3)]
+    c = _HC_GOREV[parts[i]]
+    c = c[0].upper() + c[1:]
+    o = _yn_opts(c, w)
+    return _mf_raw(subject, _HC_T, _hc_bas(kind) + f"\nBuna göre {lb[i]} harfiyle gösterilen yapı ile ilgili aşağıdaki ifadelerden hangisi doğrudur?", o, f"{lb[i]} ile gösterilen yapı {_HC_AD[parts[i]].lower()}dır; {_HC_GOREV[parts[i]]}.", shape=sh) if o else None
+
+
+def _ff_hc_tur(subject):
+    kind = random.choice(["bitki", "hayvan"])
+    extra = random.choice(_HC_BIT) if kind == "bitki" else None
+    parts = ["zar", "cekirdek", "sitoplazma"] + ([extra] if extra else [])
+    lb, sh = _hc_sh(kind, parts)
+    if kind == "bitki":
+        names = ", ".join(f"{l}: {_HC_AD[p].lower()}" for l, p in sorted(zip(lb, parts)))
+        cor, wr = "Bitki hücresi; çünkü şekilde hücre duvarı, kloroplast ya da koful gibi yalnızca bitki hücrelerinde bulunan bir yapı gösterilmiştir.", [
+            "Hayvan hücresi; çünkü şekilde çekirdek ve sitoplazma gösterilmiştir.", "Hayvan hücresi; çünkü hücre zarı yalnızca hayvan hücrelerinde bulunur.", "Bitki hücresi; çünkü çekirdek yalnızca bitki hücrelerinde bulunur."]
+        ex = f"Şekilde {_HC_AD[extra].lower()} gösterilmiştir; bu yapı yalnızca bitki hücresinde bulunur. ({names})"
+    else:
+        cor, wr = "Hayvan hücresi; çünkü şekilde hücre duvarı ve kloroplast bulunmamaktadır.", [
+            "Bitki hücresi; çünkü şekilde çekirdek gösterilmiştir.", "Bitki hücresi; çünkü şekilde hücre zarı gösterilmiştir.", "Hayvan hücresi; çünkü hayvan hücresinde sitoplazma bulunmaz."]
+        ex = "Hücre duvarı ve kloroplast yoktur; zar, sitoplazma ve çekirdek hayvan hücresinde de bulunur."
+    o = _yn_opts(cor, wr)
+    nm = "bitki" if kind == "bitki" else "hayvan"
+    return _mf_raw(subject, _HC_T, random.choice(_HC_LEAD) + f" Şekilde bir hücrenin çizimi ve bazı kısımları verilmiştir.\nBu hücre ile ilgili aşağıdakilerden hangisi doğrudur?", o, ex, shape=sh) if o else None
+
+
+def _ff_hc_tablo(subject):
+    plant_only = random.sample(["Hücre duvarı", "Kloroplast"], 2)
+    common = random.sample(["Hücre zarı", "Çekirdek", "Sitoplazma"], 2)
+    ids = random.sample(["K", "L", "M", "N"], 4)
+    names = plant_only + common
+    random.shuffle(names)
+    lab = dict(zip(names, ids))
+    order = sorted(names, key=lambda n: lab[n])
+    sh = {"type": "table", "title": "Hücre yapıları", "headers": ["Yapı", "Bitki hücresinde", "Hayvan hücresinde"], "rows": [[lab[n], "Var", "Yok" if n in plant_only else "Var"] for n in order]}
+    if random.random() < .5:
+        a, b = sorted((lab[plant_only[0]], lab[plant_only[1]]))
+        _po = sorted(plant_only)
+        cor = f"{_po[0]} ve {_po[1].lower()}"
+        w = ["Hücre zarı ve çekirdek", "Çekirdek ve sitoplazma", f"Hücre zarı ve {random.choice(plant_only).lower()}"]
+        q = random.choice(_HC_LEAD) + f" Tabloda bir bitki ve bir hayvan hücresinde bulunan bazı yapılar K, L, M ve N harfleriyle gösterilmiştir.\nBuna göre yalnızca bitki hücresinde bulunan {a} ve {b} yapıları aşağıdakilerden hangisi olabilir?"
+        ex = f"{a} ve {b} yapıları hayvan hücresinde bulunmaz; bu yapılar hücre duvarı ve kloroplasttır."
+    else:
+        a, b = sorted((lab[common[0]], lab[common[1]]))
+        _cm = sorted(common)
+        cor = f"{_cm[0]} ve {_cm[1].lower()}"
+        w = ["Hücre duvarı ve kloroplast", f"Hücre duvarı ve {random.choice(common).lower()}", f"{random.choice(common)} ve kloroplast"]
+        q = random.choice(_HC_LEAD) + f" Tabloda bir bitki ve bir hayvan hücresinde bulunan bazı yapılar K, L, M ve N harfleriyle gösterilmiştir.\nBuna göre her iki hücrede de bulunan {a} ve {b} yapıları aşağıdakilerden hangisi olabilir?"
+        ex = f"{a} ve {b} yapıları hem bitki hem hayvan hücresinde bulunur; bunlar hücre zarı, çekirdek ve sitoplazmadan ikisidir."
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _HC_T, q, o, ex, shape=sh) if o else None
+
+
+_HC_DUZ = [("kas hücresi", "kas dokusu", "kalp", "dolaşım sistemi", "insan"), ("sinir hücresi", "sinir dokusu", "beyin", "sinir sistemi", "insan"),
+           ("kemik hücresi", "kemik dokusu", "kafatası kemiği", "iskelet sistemi", "insan"), ("sünger hücresi", "sünger doku", "yaprak", "sürgün sistemi", "gül bitkisi")]
+_HC_SIR = ["hücre", "doku", "organ", "sistem", "organizma"]
+
+
+def _ff_hc_duzey(subject):
+    if random.random() < .35:
+        c = " → ".join(_HC_SIR)
+        w = []
+        while len(w) < 3:
+            x = _HC_SIR[:]
+            random.shuffle(x)
+            t = " → ".join(x)
+            if t != c and t not in w:
+                w.append(t)
+        o = _yn_opts(c, w)
+        return _mf_raw(subject, _HC_T, random.choice(["Canlılarda yapı düzeyleri en küçükten en büyüğe doğru hangi seçenekte doğru sıralanmıştır?", "Aşağıdaki sıralamalardan hangisi canlının yapı düzeylerini basitten karmaşığa doğru göstermektedir?"]), o, "Hücreler dokuyu, dokular organı, organlar sistemi, sistemler organizmayı oluşturur.") if o else None
+    row = random.choice(_HC_DUZ)
+    lv = random.randrange(5)
+    lvn = ["Hücre", "Doku", "Organ", "Sistem", "Organizma"]
+    sh = {"type": "table", "title": "Yapı düzeyleri", "headers": ["Yapı düzeyi", "Örnek"], "rows": [[lvn[j], ("?" if j == lv else row[j])] for j in range(5)]}
+    cor = row[lv]
+    pool = [x for ch in _HC_DUZ for j, x in enumerate(ch) if j != lv and x not in row] + [row[j] for j in range(5) if j != lv]
+    pool = list(dict.fromkeys(pool))
+    o = _yn_opts(cor, random.sample(pool, 3))
+    return _mf_raw(subject, _HC_T, random.choice(_HC_LEAD) + f" Tabloda bir canlıya ait yapı düzeyleri ve örnekleri verilmiştir.\nBuna göre ? yerine {lvn[lv].lower()} düzeyine ait aşağıdaki örneklerden hangisi yazılmalıdır?", o, f"{lvn[lv]} düzeyine örnek {cor} olmalıdır; sıra hücre, doku, organ, sistem, organizma biçimindedir.", shape=sh) if o else None
+
+
+_HC_FACT = [("Hücreler canlıların yapı ve görev birimidir.", "Hücreler yalnızca bitkilerde bulunur."), ("Hayvan hücresinde hücre duvarı bulunmaz.", "Hayvan hücresinde hücre duvarı bulunur."),
+            ("Bitki hücresinde kloroplast bulunur.", "Hayvan hücresinde kloroplast bulunur."), ("Çekirdek hücrenin yönetim merkezidir.", "Çekirdek hücrenin besin deposudur."),
+            ("Hücre zarı madde alışverişini kontrol eder.", "Hücre zarı yalnızca bitki hücrelerinde bulunur."), ("Aynı görevi yapan hücreler doku oluşturur.", "Dokular hücreleri oluşturur."),
+            ("Organlar bir araya gelerek sistemi oluşturur.", "Sistemler bir araya gelerek hücreyi oluşturur."), ("Kloroplast besin üretimine katılır.", "Kloroplast hayvan hücresinin yönetim merkezidir.")]
+
+
+def _ff_hc_oncul(subject):
+    ch = random.sample(_HC_FACT, 3)
+    tv = [random.random() < .5 for _ in range(3)]
+    if not any(tv) and random.random() < .7:
+        tv[random.randrange(3)] = True
+    txt = [c[0] if t else c[1] for c, t in zip(ch, tv)]
+    rom = ["I", "II", "III"]
+    corr = [rom[j] for j in range(3) if tv[j]]
+    if not corr:
+        return None
+    nm = lambda L: "Yalnız " + L[0] if len(L) == 1 else (" ve ".join(L) if len(L) == 2 else "I, II ve III")
+    cor = nm(corr)
+    allo = ["Yalnız I", "Yalnız II", "Yalnız III", "I ve II", "I ve III", "II ve III", "I, II ve III"]
+    o = _yn_opts(cor, random.sample([x for x in allo if x != cor], 3))
+    body = "\n".join(f"{rom[j]}. {txt[j]}" for j in range(3))
+    return _mf_raw(subject, _HC_T, random.choice(["Hücre ve yapı düzeyleri konusunda üç ifade yazılmıştır.", "Fen dersinde hücrelerle ilgili aşağıdaki ifadeler yazılmıştır."]) + "\n" + body + "\nBuna göre bu ifadelerden hangileri doğrudur?", o, f"Doğru ifadeler: {cor}.") if o else None
+
+
+for _f, _d, _it in ((_ff_hc_ad, 2, _HC_I1), (_ff_hc_gorev, 3, _HC_I1), (_ff_hc_tur, 3, _HC_I1), (_ff_hc_tablo, 2, _HC_I1), (_ff_hc_duzey, 2, _HC_I2), (_ff_hc_oncul, 3, _HC_I1)):
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _HC_KW))
+    _DIFF_OF[_f.__name__] = _d
+_g = _gr_fam(_HC_T, _HC_I1, _HC_KW,
+            [("Bitki hücresinde hücre duvarı bulunur", True, "hücre duvarı bitki hücresine şekil verir ve onu korur.", ["hücre duvarı yalnızca hayvan hücresinde bulunur.", "hücre duvarı hücrenin yönetim merkezidir."]),
+             ("Hayvan hücresinde kloroplast bulunur", False, "kloroplast yalnızca bitki hücrelerinde bulunur.", ["kloroplast hayvan hücresine yeşil renk verir.", "kloroplast hücre zarının bir parçasıdır."]),
+             ("Çekirdek hücrenin yönetim merkezidir", True, "hücrenin faaliyetleri çekirdek tarafından yönetilir.", ["çekirdek hücrenin içine giren maddeleri depolar.", "çekirdek hücreye şekil verir."]),
+             ("Hücre zarı yalnızca bitki hücresinde bulunur", False, "hücre zarı hem bitki hem hayvan hücresinde vardır.", ["hücre zarı yalnızca hayvan hücresini korur.", "hücre zarı çekirdeğin içinde yer alır."]),
+             ("Aynı görevi yapan hücreler dokuyu oluşturur", True, "benzer hücrelerin bir araya gelmesiyle doku meydana gelir.", ["dokular bir araya gelerek hücreyi oluşturur.", "yalnızca farklı hücreler doku oluşturur."])], "_ff_gr_hc")
+_FF_GENS.append((_g, _HC_KW))
+_DIFF_OF["_ff_gr_hc"] = 3
+
+
+# ---- Hücre ünitesi genişletmesi
+def _ff_hc_harf(subject):
+    parts = random.sample(_HC_ORT + _HC_BIT + ["koful"], 5)
+    lb, sh = _hc_sh("bitki", parts)
+    i = random.randrange(5)
+    letters = sorted(lb)
+    w = [x for x in letters if x != lb[i]]
+    o = _yn_opts(lb[i], random.sample(w, 3))
+    return _mf_raw(subject, _HC_T, _hc_bas("bitki") + f"\nBuna göre {_HC_AD[parts[i]].lower()} hangi harfle gösterilmiştir?", o, f"Çizimde {_HC_AD[parts[i]].lower()} {lb[i]} harfiyle gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_hc_yok(subject):
+    parts = ["zar", "sitoplazma", "cekirdek"]
+    lb, sh = _hc_sh("hayvan", parts)
+    cor = random.choice(["Hücre duvarı", "Kloroplast"])
+    w = ["Hücre zarı", "Sitoplazma", "Çekirdek"]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _HC_T, _hc_bas("hayvan") + "\nBuna göre bu hücrede aşağıdaki yapılardan hangisi bulunmaz?", o, f"Hayvan hücresinde hücre duvarı ve kloroplast bulunmaz; çizimde yalnızca zar, sitoplazma ve çekirdek vardır.", shape=sh) if o else None
+
+
+_HC_MOD = [("Jelatin", "sitoplazma"), ("Fındık", "cekirdek"), ("Karton kutu kenarı", "duvar"), ("İnce plastik poşet", "zar"), ("Yeşil boncuk", "kloroplast")]
+
+
+def _ff_hc_model(subject):
+    items = random.sample(_HC_MOD, 4)
+    i = random.randrange(4)
+    sh = {"type": "table", "title": "Bitki hücresi modeli", "headers": ["Kullanılan malzeme", "Temsil ettiği yapı"], "rows": [[m, ("?" if j == i else _HC_AD[y])] for j, (m, y) in enumerate(items)]}
+    cor = _HC_AD[items[i][1]]
+    w = [_HC_AD[k] for k in _HC_AD if k != items[i][1] and k not in [y for _m, y in items]]
+    w += [_HC_AD[y] for _m, y in items if y != items[i][1]]
+    o = _yn_opts(cor, random.sample(list(dict.fromkeys(w)), 3))
+    return _mf_raw(subject, _HC_T, random.choice(_HC_LEAD) + f" Bir öğrenci bitki hücresi modeli yapmış ve kullandığı malzemeleri tabloda göstermiştir.\nBuna göre \"{items[i][0]}\" malzemesinin temsil ettiği yapı için ? yerine aşağıdakilerden hangisi yazılmalıdır?", o,
+                   f"{items[i][0]} {cor.lower()} yapısına benzetilir: {_HC_GOREV[items[i][1]]}.", shape=sh) if o else None
+
+
+_HC_OS = [("Kalp", "Dolaşım sistemi"), ("Damar", "Dolaşım sistemi"), ("Akciğer", "Solunum sistemi"), ("Soluk borusu", "Solunum sistemi"), ("Mide", "Sindirim sistemi"),
+          ("Bağırsak", "Sindirim sistemi"), ("Beyin", "Sinir sistemi"), ("Omurilik", "Sinir sistemi"), ("Böbrek", "Boşaltım sistemi")]
+
+
+def _ff_hc_organ(subject):
+    sysn = ["Dolaşım sistemi", "Solunum sistemi", "Sindirim sistemi", "Sinir sistemi", "Boşaltım sistemi"]
+    pick = random.sample(sysn, 4)
+    rows = [random.choice([o for o, sy in _HC_OS if sy == x]) for x in pick]
+    i = random.randrange(4)
+    sh = {"type": "table", "title": "Organ ve sistemler", "headers": ["Organ", "Ait olduğu sistem"], "rows": [[rows[j], ("?" if j == i else pick[j])] for j in range(4)]}
+    cor = pick[i]
+    o = _yn_opts(cor, random.sample([x for x in sysn if x != cor], 3))
+    return _mf_raw(subject, _HC_T, random.choice(_HC_LEAD) + f" Tabloda bazı organlar ve ait oldukları sistemler verilmiştir.\nBuna göre {rows[i].lower()} için ? yerine hangi sistem yazılmalıdır?", o, f"{rows[i]}, {cor.lower()[:-1]}ine ait bir organdır.", shape=sh) if o else None
+
+
+def _ff_hc_organ2(subject):
+    sysn = {"Dolaşım sistemi": ["Kalp", "Damar"], "Solunum sistemi": ["Akciğer", "Soluk borusu"], "Sindirim sistemi": ["Mide", "Bağırsak"], "Sinir sistemi": ["Beyin", "Omurilik"], "Boşaltım sistemi": ["Böbrek"]}
+    sk = random.choice(list(sysn))
+    cor = random.choice(sysn[sk])
+    wr = [x for k, v in sysn.items() if k != sk for x in v]
+    o = _yn_opts(cor, random.sample(wr, 3))
+    return _mf_raw(subject, _HC_T, random.choice([f"Aşağıdakilerden hangisi {sk.lower()[:-1]}ine ait bir organdır?", f"Aşağıdaki organlardan hangisi {sk.lower()[:-1]}inde yer alır?"]), o, f"{cor}, {sk.lower()[:-1]}ine ait bir organdır.") if o else None
+
+
+_HC_DOKU = [("Kas dokusu", "kasılma ve gevşeme özelliği gösterir", "kasılma ve gevşeme özelliği gösteren"), ("Sinir dokusu", "uyarıları iletir", "uyarıları ileten"),
+            ("Kan dokusu", "madde taşınmasına yardım eder", "madde taşınmasına yardım eden"), ("Örtü dokusu", "vücut yüzeyini ve organların içini kaplar", "vücut yüzeyini ve organların içini kaplayan")]
+
+
+def _ff_hc_doku(subject):
+    i = random.randrange(4)
+    cor = _HC_DOKU[i][0]
+    o = _yn_opts(cor, [d[0] for d in _HC_DOKU if d[0] != cor])
+    return _mf_raw(subject, _HC_T, random.choice(_HC_LEAD) + f" Aynı görevi yapan hücreler bir araya gelerek doku oluşturur.\nBuna göre {_HC_DOKU[i][2]} doku aşağıdakilerden hangisidir?", o, f"{cor} {_HC_DOKU[i][1]}.") if o else None
+
+
+def _ff_hc_eslestir(subject):
+    ks = [k for k in _HC_GOREV if k != "sitoplazma"]
+    ch = random.sample(ks, 4)
+    neg = random.random() < .5
+    j = random.randrange(4)
+    pairs = []
+    for k in ch:
+        pairs.append(f"{_HC_AD[k]}: {_HC_GOREV[k]}")
+    if neg:  # yanlış eşleşen bir tane
+        wrong = random.choice([x for x in ks if x != ch[j]])
+        pairs[j] = f"{_HC_AD[ch[j]]}: {_HC_GOREV[wrong]}"
+        cor = pairs[j]
+        w = [f"{_HC_AD[k]}: {_HC_GOREV[k]}" for k in ch if k != ch[j]]
+        q = "Aşağıdaki yapı–görev eşleştirmelerinden hangisi yanlıştır?"
+        ex = f"{_HC_AD[ch[j]]} için verilen görev yanlıştır; doğrusu: {_HC_AD[ch[j]]} {_HC_GOREV[ch[j]]}."
+    else:
+        wrong = [random.choice([x for x in ks if x != k]) for k in ch]
+        cor = pairs[j]
+        w = [f"{_HC_AD[ch[t]]}: {_HC_GOREV[wrong[t]]}" for t in range(4) if t != j]
+        q = "Aşağıdaki yapı–görev eşleştirmelerinden hangisi doğrudur?"
+        ex = f"{_HC_AD[ch[j]]} {_HC_GOREV[ch[j]]}."
+    cor_ = cor[0].upper() + cor[1:]
+    o = _yn_opts(cor_, [x[0].upper() + x[1:] for x in w])
+    return _mf_raw(subject, _HC_T, random.choice(_HC_LEAD) + " " + q, o, ex) if o else None
+
+
+_HC_FACT2 = [("Bitki hücresinin en dışında hücre duvarı bulunur.", "Bitki hücresinin en dışında çekirdek bulunur."), ("Kloroplast bitkilerin besin üretmesine katılır.", "Kloroplast bitkilerde yalnızca su depolar."),
+             ("Hücre zarı hücreyi çevreler ve madde geçişini kontrol eder.", "Hücre zarı hücrenin içini tamamen dolduran sıvıdır."), ("Sitoplazma hücre yapılarının içinde bulunduğu sıvımsı ortamdır.", "Sitoplazma hücrenin yönetim merkezidir."),
+             ("Koful su ve bazı maddeleri depolar.", "Koful hücrenin yönetim merkezidir."), ("Organlar bir araya gelerek sistemleri oluşturur.", "Sistemler bir araya gelerek dokuları oluşturur."),
+             ("Doku, aynı görevi yapan hücre topluluğudur.", "Doku, farklı organların birleşmesiyle oluşur."), ("Bir organizma hücre, doku, organ ve sistemlerden oluşabilir.", "Organizmada hücre bulunmaz, yalnızca sistemler bulunur."),
+             ("Kalp bir organ, dolaşım sistemi ise bir sistemdir.", "Kalp bir doku, dolaşım sistemi ise bir hücredir."), ("Hem bitki hem hayvan hücresinde çekirdek bulunur.", "Çekirdek yalnızca bitki hücrelerinde bulunur.")]
+_g2 = _gr_fam(_HC_T, _HC_I2, _HC_KW,
+              [("Hücre, doku, organ, sistem, organizma sırası küçükten büyüğe doğrudur", True, "yapı düzeyleri hücreden organizmaya doğru büyür.", ["yapı düzeyleri organizmadan hücreye doğru büyür.", "sistemler dokulardan daha küçük yapılardır."]),
+               ("Dokular bir araya gelerek organı oluşturur", True, "farklı dokular organı meydana getirir.", ["organlar bir araya gelerek hücreyi oluşturur.", "hücreler doğrudan sistemi oluşturur."]),
+               ("Kalp bir sistemdir", False, "kalp bir organdır; dolaşım sisteminin parçasıdır.", ["kalp bir hücredir.", "kalp bir dokudur."]),
+               ("Hayvan hücresinde hücre duvarı yoktur", True, "hücre duvarı bitki hücresine özgü bir yapıdır.", ["hayvan hücresi hücre duvarı olmadan yaşayamaz.", "hücre duvarı hayvan hücresinin yönetim merkezidir."]),
+               ("Sinir sistemi bir organdır", False, "sinir sistemi birçok organdan (beyin, omurilik gibi) oluşan bir sistemdir.", ["sinir sistemi tek bir dokudur.", "sinir sistemi tek bir hücredir."])], "_ff_gr_hc2")
+_FF_GENS.append((_g2, _HC_KW))
+_DIFF_OF["_ff_gr_hc2"] = 3
+
+
+def _ff_hc_oncul2(subject):
+    ch = random.sample(_HC_FACT2, 3)
+    tv = [random.random() < .5 for _ in range(3)]
+    if not any(tv):
+        tv[random.randrange(3)] = True
+    txt = [c[0] if t else c[1] for c, t in zip(ch, tv)]
+    rom = ["I", "II", "III"]
+    corr = [rom[j] for j in range(3) if tv[j]]
+    nm = lambda L: "Yalnız " + L[0] if len(L) == 1 else (" ve ".join(L) if len(L) == 2 else "I, II ve III")
+    cor = nm(corr)
+    allo = ["Yalnız I", "Yalnız II", "Yalnız III", "I ve II", "I ve III", "II ve III", "I, II ve III"]
+    o = _yn_opts(cor, random.sample([x for x in allo if x != cor], 3))
+    body = "\n".join(f"{rom[j]}. {txt[j]}" for j in range(3))
+    return _mf_raw(subject, _HC_T, random.choice(_HC_LEAD) + "\n" + body + "\nBuna göre bu ifadelerden hangileri doğrudur?", o, f"Doğru ifadeler: {cor}.") if o else None
+
+
+for _f, _d, _it in ((_ff_hc_harf, 2, _HC_I1), (_ff_hc_yok, 2, _HC_I1), (_ff_hc_model, 3, _HC_I1), (_ff_hc_organ, 2, _HC_I2), (_ff_hc_organ2, 1, _HC_I2),
+                    (_ff_hc_doku, 2, _HC_I2), (_ff_hc_eslestir, 3, _HC_I1), (_ff_hc_oncul2, 3, _HC_I2)):
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _HC_KW))
+    _DIFF_OF[_f.__name__] = _d
+
+
+# ---- Ek ünite: Hücre organelleri (mitokondri, endoplazmik retikulum, golgi, lizozom, ribozom...)
+_OG_T = "Hücre organelleri"
+_OG_I1 = "Organeller ve görevleri"
+_OG_I2 = "Bitki ve hayvan hücresi organelleri"
+_OG_KW = ("organel", "mitokondri", "golgi", "ribozom", "lizozom", "endoplazmik")
+_OG_AD = {"cekirdek": "Çekirdek", "er": "Endoplazmik retikulum", "ribozom": "Ribozom", "golgi": "Golgi aygıtı", "mito": "Mitokondri", "lizozom": "Lizozom", "kloroplast": "Kloroplast",
+          "koful": "Koful", "duvar": "Hücre duvarı", "zar": "Hücre zarı", "sitoplazma": "Sitoplazma"}
+_OG_GOREV = {"cekirdek": "hücrenin faaliyetlerini yönetir ve kalıtım maddesini taşır", "er": "hücre içinde madde taşınmasını sağlayan kanal ağıdır", "ribozom": "protein üretir",
+             "golgi": "maddeleri paketleyerek hücre dışına salgılanmasını sağlar", "mito": "besinlerdeki enerjiyi hücrenin kullanacağı enerjiye dönüştürür", "lizozom": "besinleri ve yıpranmış yapıları sindirir",
+             "kloroplast": "fotosentezle besin üretir", "koful": "su ve çeşitli maddeleri depolar", "duvar": "bitki hücresine şekil verir ve onu korur", "zar": "madde giriş çıkışını kontrol eder",
+             "sitoplazma": "organellerin içinde bulunduğu sıvıdır"}
+_OG_FAB = {"cekirdek": "Yönetim binası", "mito": "Enerji santrali", "golgi": "Paketleme ve dağıtım bölümü", "er": "Taşıma bantları", "ribozom": "Üretim makineleri", "lizozom": "Geri dönüşüm ve atık birimi",
+           "kloroplast": "Güneş enerjisi paneli", "zar": "Giriş kapısı ve güvenlik", "duvar": "Dış koruma duvarı", "koful": "Depo"}
+_OG_HAY = ["cekirdek", "er", "ribozom", "golgi", "mito", "lizozom", "zar", "sitoplazma"]
+_OG_BIT = ["cekirdek", "er", "ribozom", "golgi", "mito", "kloroplast", "koful", "duvar", "zar", "sitoplazma"]
+_OG_LEAD = ["Fen dersinde hücre organelleri inceleniyor.", "Öğretmen organel modelleri getirmiştir.", "Bir öğrenci organelleri tekrar ediyor.", "Fen kulübünde organel çalışması yapılıyor.",
+            "Hücrenin kısımları olan organeller inceleniyor.", "Organeller için bir etkinlik hazırlanmıştır.", "Öğrenciler organellerin görevlerini araştırıyor.", "Fen defterine organel notları yazılıyor.",
+            "Sınıfta hücre organelleri modeli yapılıyor.", "Organellerle ilgili bir değerlendirme yapılıyor.", "Fen öğretmeni organel posteri hazırlamıştır.", "Organel ünitesi tekrar edilirken şu soru soruluyor.",
+            "Bir öğrenci organel testini çözüyor.", "Fen laboratuvarında organel etkinliği yapılıyor.", "Kitaptaki organel şemasıyla ilgili bir soru hazırlanmıştır.", "Organel bilgisi sınav öncesi tekrar ediliyor.",
+            "Arkadaşlar organelleri birbirine soruyor.", "Organellere ilişkin bir çalışma kâğıdı dağıtılmıştır.", "Öğrenciler organel kartlarıyla oyun oynuyor.", "Fen dersinde hücrenin organelleri işleniyor.",
+            "Bir öğrenci organel konusundaki eksiklerini tamamlıyor.", "Sınıf panosuna organelle ilgili bir soru asılmıştır.", "Öğretmen organelleri özetledikten sonra soru soruyor.", "Organeller için hazırlanan bir deneme sorusu verilmiştir."]
+
+
+def _og_sh(kind, n=5, must=()):
+    pool = _OG_HAY if kind == "hayvan" else _OG_BIT
+    parts = list(must) + random.sample([x for x in pool if x not in must], n - len(must))
+    random.shuffle(parts)
+    lb = random.sample(_CD_L, len(parts))
+    return parts, lb, {"type": "bio", "sub_type": "organel", "kind": kind, "labels": {p: l for p, l in zip(parts, lb)}}
+
+
+def _og_bas(kind):
+    nm = "bitki" if kind == "bitki" else "hayvan"
+    return random.choice(_OG_LEAD) + " " + random.choice([f"Şekilde bir {nm} hücresinin organelleri harflerle gösterilmiştir.", f"Bir {nm} hücresinin çiziminde bazı organeller harflerle işaretlenmiştir.",
+                                                         f"Aşağıdaki {nm} hücresi modelinde bazı yapılar harflerle belirtilmiştir.", f"Çizimdeki {nm} hücresinin bazı organelleri harflerle gösterilmiştir.",
+                                                         f"Şekildeki {nm} hücresinde bazı bölümler harflerle numaralandırılmıştır.", f"Verilen {nm} hücresi şemasında bazı organeller harflerle gösterilmiştir."])
+
+
+def _ff_og_ad(subject):
+    kind = random.choice(["hayvan", "bitki"])
+    parts, lb, sh = _og_sh(kind)
+    i = random.randrange(5)
+    o = _yn_opts(_OG_AD[parts[i]], random.sample([v for k, v in _OG_AD.items() if k != parts[i]], 3))
+    return _mf_raw(subject, _OG_T, _og_bas(kind) + f"\nBuna göre {lb[i]} harfiyle gösterilen organelin adı aşağıdakilerden hangisidir?", o, f"{lb[i]} ile gösterilen organel: {_OG_AD[parts[i]].lower()}. {_OG_AD[parts[i]]} {_OG_GOREV[parts[i]]}.", shape=sh) if o else None
+
+
+def _ff_og_harf(subject):
+    kind = random.choice(["hayvan", "bitki"])
+    parts, lb, sh = _og_sh(kind)
+    i = random.randrange(5)
+    o = _yn_opts(lb[i], random.sample([x for x in sorted(lb) if x != lb[i]], 3))
+    return _mf_raw(subject, _OG_T, _og_bas(kind) + f"\nBuna göre {_OG_AD[parts[i]].lower()} hangi harfle gösterilmiştir?", o, f"Çizimde {_OG_AD[parts[i]].lower()} {lb[i]} harfiyle gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_og_gorev(subject):
+    kind = random.choice(["hayvan", "bitki"])
+    parts, lb, sh = _og_sh(kind)
+    cand = [k for k in parts if k != "sitoplazma"]
+    k = random.choice(cand)
+    i = parts.index(k)
+    c = _OG_GOREV[k]
+    c = c[0].upper() + c[1:]
+    ws = [_OG_GOREV[x] for x in _OG_GOREV if x != k and x != "sitoplazma"]
+    o = _yn_opts(c, [w[0].upper() + w[1:] for w in random.sample(ws, 3)])
+    return _mf_raw(subject, _OG_T, _og_bas(kind) + f"\nBuna göre {lb[i]} harfiyle gösterilen organel ile ilgili aşağıdaki ifadelerden hangisi doğrudur?", o, f"{lb[i]} ile gösterilen organel: {_OG_AD[k].lower()}. {_OG_AD[k]} {_OG_GOREV[k]}.", shape=sh) if o else None
+
+
+def _ff_og_yok(subject):
+    parts, lb, sh = _og_sh("hayvan", 5)
+    cor = random.choice(["Kloroplast", "Hücre duvarı"])
+    o = _yn_opts(cor, [_OG_AD[x] for x in random.sample(parts, 3)])
+    return _mf_raw(subject, _OG_T, _og_bas("hayvan") + "\nBuna göre bu hücrede aşağıdaki yapılardan hangisi bulunmaz?", o, "Hayvan hücrelerinde kloroplast ve hücre duvarı bulunmaz; çizimde de gösterilmemiştir.", shape=sh) if o else None
+
+
+def _ff_og_tur(subject):
+    kind = random.choice(["hayvan", "bitki"])
+    if kind == "bitki":
+        parts, lb, sh = _og_sh("bitki", 5, (random.choice(["kloroplast", "duvar"]),))
+        cor = "Bitki hücresi; çünkü çizimde yalnızca bitki hücrelerinde bulunan bir yapı (kloroplast ya da hücre duvarı) gösterilmiştir."
+        w = ["Hayvan hücresi; çünkü çizimde mitokondri ve çekirdek gösterilmiştir.", "Hayvan hücresi; çünkü hayvan hücresinde kloroplast bulunur.", "Bitki hücresi; çünkü mitokondri yalnızca bitki hücrelerinde bulunur."]
+        ex = "Kloroplast ve hücre duvarı yalnızca bitki hücrelerinde bulunur."
+    else:
+        parts, lb, sh = _og_sh("hayvan", 5, ("lizozom",))
+        cor = "Hayvan hücresi; çünkü çizimde kloroplast ve hücre duvarı bulunmamaktadır."
+        w = ["Bitki hücresi; çünkü çizimde mitokondri gösterilmiştir.", "Bitki hücresi; çünkü çizimde çekirdek ve golgi aygıtı gösterilmiştir.", "Hayvan hücresi; çünkü hayvan hücresinde mitokondri bulunmaz."]
+        ex = "Çizimde kloroplast ve hücre duvarı yoktur; mitokondri, golgi ve çekirdek hayvan hücresinde de bulunur."
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + " Şekilde bir hücrenin organelleri harflerle gösterilmiştir.\nBu hücre hangi canlıya aittir ve nedeni nedir?", o, ex, shape=sh) if o else None
+
+
+def _ff_og_fabrika(subject):
+    ks = random.sample(["cekirdek", "mito", "golgi", "er", "ribozom", "lizozom"], 4)
+    i = random.randrange(4)
+    sh = {"type": "table", "title": "Hücre bir fabrikaya benzetilirse", "headers": ["Fabrikadaki bölüm", "Hücredeki organel"], "rows": [[_OG_FAB[k], ("?" if j == i else _OG_AD[k])] for j, k in enumerate(ks)]}
+    o = _yn_opts(_OG_AD[ks[i]], random.sample([_OG_AD[x] for x in ("cekirdek", "mito", "golgi", "er", "ribozom", "lizozom") if x != ks[i]], 3))
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + f" Hücre bir fabrikaya benzetilmiş ve karşılıklar tabloda gösterilmiştir.\nBuna göre \"{_OG_FAB[ks[i]]}\" bölümüne karşılık gelen organel için ? yerine hangisi yazılmalıdır?", o,
+                   f"{_OG_FAB[ks[i]]} bölümüne karşılık gelen organel: {_OG_AD[ks[i]].lower()}. {_OG_AD[ks[i]]} {_OG_GOREV[ks[i]]}.", shape=sh) if o else None
+
+
+def _ff_og_fabrika2(subject):
+    ks = random.sample(["cekirdek", "mito", "golgi", "er", "ribozom", "lizozom"], 4)
+    i = random.randrange(4)
+    sh = {"type": "table", "title": "Hücre bir fabrikaya benzetilirse", "headers": ["Hücredeki organel", "Fabrikadaki bölüm"], "rows": [[_OG_AD[k], ("?" if j == i else _OG_FAB[k])] for j, k in enumerate(ks)]}
+    o = _yn_opts(_OG_FAB[ks[i]], random.sample([_OG_FAB[x] for x in ("cekirdek", "mito", "golgi", "er", "ribozom", "lizozom") if x != ks[i]], 3))
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + f" Tabloda her organel, fabrikadaki bir bölümle eşleştirilmiştir.\nBuna göre {_OG_AD[ks[i]].lower()} için ? yerine fabrikadaki hangi bölüm yazılmalıdır?", o,
+                   f"{_OG_AD[ks[i]]} {_OG_GOREV[ks[i]]}. Fabrikadaki karşılığı: {_OG_FAB[ks[i]].lower()}.", shape=sh) if o else None
+
+
+def _ff_og_eslestir(subject):
+    ks = [k for k in _OG_GOREV if k != "sitoplazma"]
+    ch = random.sample(ks, 4)
+    j = random.randrange(4)
+    cap = lambda t: t[0].upper() + t[1:]
+    if random.random() < .5:
+        wrong = random.choice([x for x in ks if x != ch[j]])
+        pr = [f"{_OG_AD[k]}: {_OG_GOREV[k]}" for k in ch]
+        cor = f"{_OG_AD[ch[j]]}: {_OG_GOREV[wrong]}"
+        w = [p for t, p in enumerate(pr) if t != j]
+        q = "Aşağıdaki organel–görev eşleştirmelerinden hangisi yanlıştır?"
+        ex = f"{_OG_AD[ch[j]]} için verilen görev yanlıştır; doğrusu: {_OG_AD[ch[j]].lower()} {_OG_GOREV[ch[j]]}."
+    else:
+        cor = f"{_OG_AD[ch[j]]}: {_OG_GOREV[ch[j]]}"
+        w = [f"{_OG_AD[ch[t]]}: {_OG_GOREV[random.choice([x for x in ks if x != ch[t]])]}" for t in range(4) if t != j]
+        q = "Aşağıdaki organel–görev eşleştirmelerinden hangisi doğrudur?"
+        ex = f"{_OG_AD[ch[j]]} {_OG_GOREV[ch[j]]}."
+    o = _yn_opts(cap(cor), [cap(x) for x in w])
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + " " + q, o, ex) if o else None
+
+
+def _ff_og_enerji(subject):
+    ids = random.sample(["K", "L", "M", "N"], 3)
+    vals = random.sample([20, 40, 80, 150, 300, 600, 1200], 3)
+    sh = {"type": "table", "title": "Hücrelerdeki mitokondri sayısı", "headers": ["Hücre", "Mitokondri sayısı"], "rows": [[a, str(v)] for a, v in sorted(zip(ids, vals))]}
+    hi = random.random() < .5
+    t = max(range(3), key=lambda x: vals[x]) if hi else min(range(3), key=lambda x: vals[x])
+    cor = ids[t]
+    o = _yn_opts(cor, [x for x in ids if x != cor] + ["Üç hücrenin enerji ihtiyacı eşittir"])
+    q = f"Mitokondri, hücrenin enerji üretmesini sağlayan organeldir. Tabloda üç farklı hücredeki mitokondri sayısı verilmiştir.\nBuna göre enerji ihtiyacı {'en fazla' if hi else 'en az'} olan hücre hangisi olabilir?"
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + " " + q, o, f"Mitokondri enerji üretir; {'en çok' if hi else 'en az'} mitokondri taşıyan {cor} hücresinin enerji ihtiyacı {'en fazla' if hi else 'en az'} olabilir.", shape=sh) if o else None
+
+
+def _ff_og_tablo(subject):
+    po = random.sample(["Kloroplast", "Hücre duvarı"], 2)
+    cm = random.sample(["Mitokondri", "Golgi aygıtı", "Ribozom", "Endoplazmik retikulum", "Çekirdek", "Lizozom"], 2)
+    ids = random.sample(["K", "L", "M", "N"], 4)
+    names = po + cm
+    random.shuffle(names)
+    lab = dict(zip(names, ids))
+    sh = {"type": "table", "title": "Hücre yapıları", "headers": ["Yapı", "Bitki hücresinde", "Hayvan hücresinde"], "rows": [[lab[n], "Var", "Yok" if n in po else "Var"] for n in sorted(names, key=lambda x: lab[x])]}
+    if random.random() < .5:
+        a, b = sorted((lab[po[0]], lab[po[1]]))
+        cor = f"{sorted(po)[0]} ve {sorted(po)[1].lower()}"
+        w = [f"{cm[0]} ve {cm[1].lower()}", f"{cm[0]} ve {random.choice(po).lower()}", f"{cm[1]} ve {random.choice(po).lower()}"]
+        q = f"Tabloda bir bitki ve bir hayvan hücresinde bulunan bazı yapılar K, L, M ve N harfleriyle gösterilmiştir.\nBuna göre yalnızca bitki hücresinde bulunan {a} ve {b} yapıları aşağıdakilerden hangisi olabilir?"
+        ex = f"{a} ve {b} hayvan hücresinde bulunmaz; bunlar kloroplast ve hücre duvarıdır."
+    else:
+        a, b = sorted((lab[cm[0]], lab[cm[1]]))
+        cor = f"{sorted(cm)[0]} ve {sorted(cm)[1].lower()}"
+        w = [f"{po[0]} ve {po[1].lower()}", f"{po[0]} ve {random.choice(cm).lower()}", f"{po[1]} ve {random.choice(cm).lower()}"]
+        q = f"Tabloda bir bitki ve bir hayvan hücresinde bulunan bazı yapılar K, L, M ve N harfleriyle gösterilmiştir.\nBuna göre her iki hücrede de bulunan {a} ve {b} yapıları aşağıdakilerden hangisi olabilir?"
+        ex = f"{a} ve {b} hem bitki hem hayvan hücresinde bulunur; bunlar {sorted(cm)[0].lower()} ve {sorted(cm)[1].lower()} olabilir."
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + " " + q, o, ex, shape=sh) if o else None
+
+
+def _ff_og_protein(subject):
+    seq = ["Ribozom", "Endoplazmik retikulum", "Golgi aygıtı"]
+    cor = " → ".join(seq)
+    w = []
+    import itertools as _it
+    for pm in _it.permutations(seq):
+        t = " → ".join(pm)
+        if t != cor:
+            w.append(t)
+    o = _yn_opts(cor, random.sample(w, 3))
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + " Hücrede üretilen bir proteinin hücre dışına salgılanması sırasında üç organel görev alır.\nBu organeller aşağıdakilerden hangisinde görev sırasına göre doğru yazılmıştır?", o,
+                   "Protein ribozomda üretilir, endoplazmik retikulumla taşınır, Golgi aygıtında paketlenerek hücre dışına salgılanır.") if o else None
+
+
+_OG_FACT = [("Mitokondri hücrenin enerji santrali olarak bilinir.", "Mitokondri hücrede protein paketler."), ("Ribozomlar protein üretir.", "Ribozomlar hücreye şekil verir."),
+            ("Golgi aygıtı maddeleri paketleyip salgılar.", "Golgi aygıtı fotosentez yapar."), ("Lizozom besinleri ve yıpranmış yapıları sindirir.", "Lizozom hücrenin yönetim merkezidir."),
+            ("Kloroplast yalnızca bitki hücrelerinde bulunur.", "Kloroplast hem hayvan hem bitki hücrelerinde bulunur."), ("Endoplazmik retikulum hücre içi madde taşınmasında görev alır.", "Endoplazmik retikulum enerji üretir."),
+            ("Hem bitki hem hayvan hücresinde mitokondri bulunur.", "Mitokondri yalnızca hayvan hücresinde bulunur."), ("Koful su ve bazı maddeleri depolar.", "Koful hücrede protein üretir."),
+            ("Çekirdek kalıtım maddesini taşır.", "Çekirdek hücrenin enerji santralidir."), ("Hücre duvarı hayvan hücresinde bulunmaz.", "Hücre duvarı hayvan hücresinin dış koruma tabakasıdır.")]
+
+
+def _ff_og_oncul(subject):
+    ch = random.sample(_OG_FACT, 3)
+    tv = [random.random() < .5 for _ in range(3)]
+    if not any(tv):
+        tv[random.randrange(3)] = True
+    txt = [c[0] if t else c[1] for c, t in zip(ch, tv)]
+    rom = ["I", "II", "III"]
+    corr = [rom[j] for j in range(3) if tv[j]]
+    nm = lambda L: "Yalnız " + L[0] if len(L) == 1 else (" ve ".join(L) if len(L) == 2 else "I, II ve III")
+    cor = nm(corr)
+    allo = ["Yalnız I", "Yalnız II", "Yalnız III", "I ve II", "I ve III", "II ve III", "I, II ve III"]
+    o = _yn_opts(cor, random.sample([x for x in allo if x != cor], 3))
+    body = "\n".join(f"{rom[j]}. {txt[j]}" for j in range(3))
+    return _mf_raw(subject, _OG_T, random.choice(_OG_LEAD) + "\n" + body + "\nBuna göre bu ifadelerden hangileri doğrudur?", o, f"Doğru ifadeler: {cor}.") if o else None
+
+
+for _f, _d, _it in ((_ff_og_ad, 2, _OG_I1), (_ff_og_harf, 2, _OG_I1), (_ff_og_gorev, 3, _OG_I1), (_ff_og_yok, 2, _OG_I2), (_ff_og_tur, 3, _OG_I2), (_ff_og_fabrika, 2, _OG_I1),
+                    (_ff_og_fabrika2, 2, _OG_I1), (_ff_og_eslestir, 3, _OG_I1), (_ff_og_enerji, 3, _OG_I1), (_ff_og_tablo, 3, _OG_I2), (_ff_og_protein, 3, _OG_I1), (_ff_og_oncul, 3, _OG_I1)):
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _OG_KW))
+    _DIFF_OF[_f.__name__] = _d
+_g3 = _gr_fam(_OG_T, _OG_I1, _OG_KW,
+              [("Mitokondri hücrede enerji üretiminde görev alır", True, "mitokondri besinlerdeki enerjiyi hücrenin kullanabileceği enerjiye dönüştürür.", ["mitokondri hücrenin yönetim merkezidir.", "mitokondri yalnızca bitki hücrelerinde bulunur."]),
+               ("Ribozom hücre içi madde taşınmasını sağlar", False, "ribozom protein üretir; madde taşınmasında endoplazmik retikulum görev alır.", ["ribozom hücrenin enerji santralidir.", "ribozom fotosentez yapar."]),
+               ("Golgi aygıtı maddeleri paketleyip hücre dışına salgılar", True, "salgı maddeleri Golgi aygıtında paketlenir.", ["Golgi aygıtı protein üretir.", "Golgi aygıtı yalnızca bitkilerde bulunur."]),
+               ("Lizozom bitki hücresinin besin üreten organelidir", False, "besin üretimi kloroplastın görevidir; lizozom sindirimle ilgilidir.", ["lizozom hücrenin yönetim merkezidir.", "lizozom enerji üretir."]),
+               ("Endoplazmik retikulum hücre içinde madde taşınmasında rol oynar", True, "endoplazmik retikulum kanal ağı biçimindedir ve madde taşır.", ["endoplazmik retikulum maddeleri sindirir.", "endoplazmik retikulum bitki hücresine şekil verir."]),
+               ("Kloroplast hayvan hücrelerinde bulunur", False, "kloroplast yalnızca bitki hücrelerinde (ve bazı canlılarda) bulunur; hayvan hücresinde yoktur.", ["kloroplast mitokondri ile aynı görevi yapar.", "kloroplast hücre zarının bir parçasıdır."])], "_ff_gr_og")
+_FF_GENS.append((_g3, _OG_KW))
+_DIFF_OF["_ff_gr_og"] = 3
+
+
+# ---- Canlılar Dünyası genişletmesi: mikroskobik canlılar (bakteri, maya) ve mantarlar (küf) — bol görselli
+_MK_T = "Canlılar dünyası"
+_MK_I_MIK = "Mikroskobik canlılara (bakteri, amip, öglena, paramesyum) örnekler verme"
+_MK_I_MAN = "Şapkalı mantarlara örnekler verme ve zehirli mantarların yenilmemesi"
+_MK_I_GOZ = "Mikroskopla mikroskobik canlıların varlığını gözlemleme (güvenlik ve hijyen tedbirleri)"
+_MK_KW = ("mikroskobik", "canlılar dünyası", "canlıları")
+_MK_KWM = ("mantar", "canlılar dünyası", "canlıları")
+_MK_LEAD = ["Fen dersinde mikroskop gözlemi yapılıyor.", "Öğretmen mikroskopta bir örnek incelemiştir.", "Bir öğrenci mikroskop görüntüsünü çizmiştir.", "Fen kulübünde gözlem çalışması yapılıyor.",
+            "Mikroskopla incelenen bir örneğin görüntüsü verilmiştir.", "Öğrenciler mikroskop görüntülerini karşılaştırıyor.", "Fen laboratuvarında hazırlanan preparat inceleniyor.", "Bir öğrenci gözlem defterine çizim yapmıştır.",
+            "Sınıfta mikroskobik canlılar konusu işleniyor.", "Gözlem sonuçlarıyla ilgili bir soru hazırlanmıştır.", "Fen öğretmeni mikroskop görüntüsünü tahtaya çizmiştir.", "Mikroskop görüntüsü şemayla gösterilmiştir.",
+            "Bir öğrenci preparat incelemesini tekrar ediyor.", "Arkadaşlar mikroskop görüntülerini yorumluyor.", "Gözlem etkinliği için hazırlanan soru verilmiştir.", "Öğrenciler mikroskopta gördüklerini kaydediyor.",
+            "Mikroskop başında çalışan bir öğrenci şunu çizmiştir.", "Laboratuvar çalışması sonunda şu görüntü elde edilmiştir.", "Hazırlanan preparatın mikroskop görüntüsü aşağıdadır.", "Fen dersinde canlıların gözlemi yapılıyor.",
+            "Bir grup öğrenci mikroskopta farklı örnekler inceliyor.", "Öğretmen sınıfa bir mikroskop çizimi dağıtmıştır.", "Gözlem raporu için bir çizim hazırlanmıştır.", "Mikroskop çalışmasıyla ilgili bir deneme sorusu verilmiştir."]
+_MK_TUR = {"kok": ("Kok", "yuvarlak"), "basil": ("Basil", "çubuk biçimli"), "spiral": ("Spiral", "sarmal biçimli")}
+
+
+def _mk_place(types, n_each=None, rmax=2.0, mind=.95, tries=400):
+    """Görüş alanı içinde çakışmayan konumlar; types: tür listesi (her öğe için)."""
+    pts = []
+    out = []
+    for t in types:
+        for _ in range(tries):
+            x, y = random.uniform(-rmax, rmax), random.uniform(-rmax, rmax)
+            if x * x + y * y > rmax * rmax:
+                continue
+            if all((x - a) ** 2 + (y - b) ** 2 >= mind * mind for a, b in pts):
+                pts.append((x, y))
+                out.append({"t": t, "x": round(x, 2), "y": round(y, 2), "a": random.choice([0, 20, 40, 60, 90, 120, 150])})
+                break
+        else:
+            return None
+    return out
+
+
+def _ff_mk_bak_ad(subject):
+    ts = random.sample(["kok", "basil", "spiral"], 3)
+    its = _mk_place(ts)
+    if not its:
+        return None
+    lb = random.sample(_CD_L, 3)
+    for it, l in zip(its, lb):
+        it["l"] = l
+    sh = {"type": "bio", "sub_type": "mikro2", "kind": "bakteri", "items": its}
+    i = random.randrange(3)
+    cor = f"{_MK_TUR[ts[i]][0]} ({_MK_TUR[ts[i]][1]})"
+    w = [f"{_MK_TUR[k][0]} ({_MK_TUR[k][1]})" for k in _MK_TUR if k != ts[i]] + ["Vibriyo (virgül biçimli)"]
+    o = _yn_opts(cor, w)
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + f" Mikroskopta üç farklı bakteri görülmüş ve harflerle gösterilmiştir.\nBuna göre {lb[i]} ile gösterilen bakterinin biçimine göre adı aşağıdakilerden hangisidir?", o,
+                   f"{lb[i]} ile gösterilen bakteri {_MK_TUR[ts[i]][1]} olduğu için {_MK_TUR[ts[i]][0].lower()} adı verilir.", shape=sh) if o else None
+
+
+def _ff_mk_bak_say(subject):
+    k = random.choice(list(_MK_TUR))
+    nk = random.randint(2, 7)
+    others = [x for x in _MK_TUR if x != k]
+    ts = [k] * nk + [random.choice(others) for _ in range(random.randint(2, 5))]
+    random.shuffle(ts)
+    its = _mk_place(ts, mind=.9)
+    if not its:
+        return None
+    sh = {"type": "bio", "sub_type": "mikro2", "kind": "bakteri", "items": its}
+    o = _mf_opts(nk, [nk + d for d in (1, -1, 2, -2, 3) if nk + d > 0], lambda x: str(x))
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + f" Şekilde bir mikroskop görüş alanında bakteriler gösterilmiştir.\nBuna göre bu görüntüde {_MK_TUR[k][1]} ({_MK_TUR[k][0].lower()}) bakterilerden kaç tane vardır?", o,
+                   f"Görüş alanında {_MK_TUR[k][1]} bakterilerden {nk} tane vardır.", shape=sh) if o else None
+
+
+def _ff_mk_bak_en(subject):
+    cnt = random.sample([1, 2, 3, 4, 5, 6], 3)
+    ks = list(_MK_TUR)
+    random.shuffle(ks)
+    ts = [k for k, c in zip(ks, cnt) for _ in range(c)]
+    random.shuffle(ts)
+    its = _mk_place(ts, mind=.85)
+    if not its:
+        return None
+    mx = ks[cnt.index(max(cnt))]
+    sh = {"type": "bio", "sub_type": "mikro2", "kind": "bakteri", "items": its}
+    cor = f"{_MK_TUR[mx][0]} ({_MK_TUR[mx][1]})"
+    o = _yn_opts(cor, [f"{_MK_TUR[k][0]} ({_MK_TUR[k][1]})" for k in _MK_TUR if k != mx] + ["Üç türün sayısı eşittir"])
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + " Şekilde mikroskopta görülen bakteriler gösterilmiştir.\nBuna göre görüntüde en çok bulunan bakteri biçimi aşağıdakilerden hangisidir?", o,
+                   f"Çizimde en çok {_MK_TUR[mx][1]} bakteri ({max(cnt)} tane) vardır.", shape=sh) if o else None
+
+
+def _ff_mk_maya_say(subject):
+    n = random.randint(4, 8)
+    nb = random.randint(1, min(5, n - 1))
+    its = _mk_place(["maya"] * n, rmax=2.0, mind=1.1)
+    if not its:
+        return None
+    for it in random.sample(its, nb):
+        it["bud"] = True
+    sh = {"type": "bio", "sub_type": "mikro2", "kind": "maya", "items": its}
+    ask_bud = random.random() < .5
+    cor = nb if ask_bud else n
+    o = _mf_opts(cor, [cor + d for d in (1, -1, 2, -2, 3) if cor + d > 0], lambda x: str(x))
+    q = "Maya mantarı hücreleri tomurcuklanarak çoğalır. Şekilde mikroskopta görülen maya hücreleri gösterilmiştir.\n" + ("Buna göre şekilde tomurcuklanmakta olan kaç maya hücresi vardır?" if ask_bud else "Buna göre şekilde toplam kaç maya hücresi vardır?")
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + " " + q, o, f"Şekildeki {n} maya hücresinin {nb} tanesi tomurcuklanmaktadır.", shape=sh) if o else None
+
+
+def _ff_mk_maya_tur(subject):
+    n = random.randint(4, 7)
+    its = _mk_place(["maya"] * n, rmax=2.0, mind=1.1)
+    if not its:
+        return None
+    for it in random.sample(its, random.randint(1, 3)):
+        it["bud"] = True
+    sh = {"type": "bio", "sub_type": "mikro2", "kind": "maya", "items": its}
+    o = _yn_opts("Maya mantarı", ["Amip", "Paramesyum", "Öglena"])
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + " Şekilde mikroskopta incelenen bir canlının görüntüsü verilmiştir. Bu canlı tomurcuklanarak çoğalır ve ekmek hamurunun kabarmasını sağlar.\nBuna göre bu canlı aşağıdakilerden hangisidir?", o,
+                   "Hamurun kabarmasını sağlayan ve tomurcuklanarak çoğalan canlı maya mantarıdır.", shape=sh) if o else None
+
+
+def _ff_mk_kuf_ad(subject):
+    its = [{"x": x, "h": round(random.uniform(1.4, 2.2), 2)} for x in random.sample([-2.0, -1.0, 0.0, 1.0, 2.0], random.randint(2, 4))]
+    lb = random.sample(_CD_L, 3)
+    labs = {"hif": lb[0], "spor": lb[1], "ekmek": lb[2]}
+    sh = {"type": "bio", "sub_type": "mikro2", "kind": "kuf", "items": its, "labels": labs}
+    k = random.choice(["hif", "spor", "ekmek"])
+    nm = {"hif": "Hif (iplik)", "spor": "Spor kesesi", "ekmek": "Ekmek (besin kaynağı)"}
+    ex = {"hif": "Küf mantarının ince iplik biçimli yapılarına hif denir.", "spor": "Hiflerin ucundaki, spor üreten yuvarlak yapı spor kesesidir.", "ekmek": "Küf mantarı ekmeğin üzerinde yaşar ve ondan besin sağlar."}
+    o = _yn_opts(nm[k], [nm[x] for x in nm if x != k] + ["Kloroplast"])
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + f" Şekilde ekmek üzerinde gelişen bir küf mantarının çizimi ve bazı kısımları harflerle gösterilmiştir.\nBuna göre {labs[k]} harfiyle gösterilen kısım aşağıdakilerden hangisidir?", o, ex[k], shape=sh) if o else None
+
+
+def _ff_mk_kuf_say(subject):
+    n = random.randint(2, 5)
+    its = [{"x": x, "h": round(random.uniform(1.4, 2.3), 2)} for x in random.sample([-2.2, -1.1, 0.0, 1.1, 2.2], n)]
+    sh = {"type": "bio", "sub_type": "mikro2", "kind": "kuf", "items": its}
+    o = _mf_opts(n, [n + d for d in (1, -1, 2, -2, 3) if n + d > 0], lambda x: str(x))
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + " Şekilde bir ekmek diliminde gelişen küf mantarının spor keseleri (uçtaki yuvarlak yapılar) gösterilmiştir.\nBuna göre şekilde kaç tane spor kesesi vardır?", o,
+                   f"Çizimde ekmek üzerinde {n} hifin ucunda birer spor kesesi bulunmaktadır; toplam {n} tane.", shape=sh) if o else None
+
+
+def _ff_mk_buyut(subject):
+    oc = random.choice([5, 10, 15])
+    ob = random.choice([4, 10, 20, 40])
+    tot = oc * ob
+    mode = random.choice(["toplam", "objektif", "ocular"])
+    rows = {"toplam": [["Göz merceği (oküler)", f"{oc} kat"], ["Objektif", f"{ob} kat"], ["Toplam büyütme", "?"]],
+            "objektif": [["Göz merceği (oküler)", f"{oc} kat"], ["Objektif", "?"], ["Toplam büyütme", f"{tot} kat"]],
+            "ocular": [["Göz merceği (oküler)", "?"], ["Objektif", f"{ob} kat"], ["Toplam büyütme", f"{tot} kat"]]}[mode]
+    sh = {"type": "table", "title": "Mikroskop büyütmesi", "headers": ["Mercek", "Büyütme"], "rows": rows}
+    cor = {"toplam": tot, "objektif": ob, "ocular": oc}[mode]
+    o = _mf_opts(cor, [x for x in (cor * 2, cor + 5, cor // 2 if cor > 1 else 3, cor + 10, cor * 3, oc + ob, abs(oc - ob)) if x != cor and x > 0], lambda x: f"{x} kat", sort=True)
+    qs = {"toplam": "Bir mikroskopta toplam büyütme, göz merceğinin ve objektifin büyütmelerinin çarpımına eşittir.\nTabloya göre bu mikroskobun toplam büyütmesi kaç kattır?",
+          "objektif": "Bir mikroskopta toplam büyütme, göz merceğinin ve objektifin büyütmelerinin çarpımına eşittir.\nTabloya göre kullanılan objektifin büyütmesi kaç kattır?",
+          "ocular": "Bir mikroskopta toplam büyütme, göz merceğinin ve objektifin büyütmelerinin çarpımına eşittir.\nTabloya göre göz merceğinin büyütmesi kaç kattır?"}[mode]
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + " " + qs, o, f"Toplam büyütme = göz merceği × objektif = {oc} × {ob} = {tot} kat; sorulan değer {cor} kattır.", shape=sh) if o else None
+
+
+def _ff_mk_objektif(subject):
+    oc = 10
+    obs = random.sample([4, 10, 20, 40, 100], 3)
+    ids = ["K", "L", "M"]
+    sh = {"type": "table", "title": "Objektifler (göz merceği 10 kat)", "headers": ["Mercek takımı", "Objektif büyütmesi"], "rows": [[i, f"{o} kat"] for i, o in zip(ids, obs)]}
+    big = random.random() < .5
+    t = obs.index(max(obs) if big else min(obs))
+    cor = ids[t]
+    o = _yn_opts(cor, [x for x in ids if x != cor] + ["Üçünde de görüntü aynı büyüklüktedir"])
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + f" Bir öğrenci göz merceği 10 kat olan mikroskopta üç farklı objektifi sırayla kullanmıştır.\nBuna göre aynı örneğin görüntüsü hangi objektifle {'en büyük' if big else 'en küçük'} görülür?", o,
+                   f"Göz merceği sabit olduğundan toplam büyütme objektife bağlıdır; {'en büyük' if big else 'en küçük'} objektif {cor} takımıdır.", shape=sh) if o else None
+
+
+_MK_YR = [("Yoğurt yapımında kullanılan", "Bakteri"), ("Ekmek hamurunun kabarmasını sağlayan", "Maya mantarı"), ("Islak ekmekte gelişip ekmeği bozan", "Küf mantarı"),
+          ("Su birikintilerinde yaşayan, yalancı ayaklarıyla hareket eden", "Amip"), ("Kirpikleriyle hareket eden", "Paramesyum"), ("Hem bitki hem hayvan özelliği gösteren, kamçılı ve yeşil", "Öglena")]
+
+
+def _ff_mk_tablo(subject):
+    ch = random.sample(_MK_YR, 4)
+    i = random.randrange(4)
+    sh = {"type": "table", "title": "Mikroskobik canlılar ve mantarlar", "headers": ["Özellik", "Canlı"], "rows": [[f, ("?" if j == i else c)] for j, (f, c) in enumerate(ch)]}
+    cor = ch[i][1]
+    o = _yn_opts(cor, random.sample([c for _f, c in _MK_YR if c != cor], 3))
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + f" Tabloda bazı canlıların özellikleri ve adları verilmiştir.\nBuna göre ? yerine aşağıdakilerden hangisi yazılmalıdır?", o, f"{ch[i][0]} canlı: {cor.lower()}.", shape=sh) if o else None
+
+
+_MK_HIJ = [("Mikroskop kullanılan örnekleri ağza götürmemek", True), ("Gözlemden sonra ellerimizi yıkamak", True), ("Preparatları çıplak elle kırarak incelemek", False), ("Küflenmiş besini koklayıp tadına bakmak", False),
+           ("Bilmediğimiz mantarları toplayıp yemek", False), ("Laboratuvarda yemek yememek", True)]
+
+
+def _ff_mk_hijyen(subject):
+    ch = random.sample(_MK_HIJ, 3)
+    rom = ["I", "II", "III"]
+    corr = [rom[j] for j in range(3) if ch[j][1]]
+    if not corr:
+        return None
+    nm = lambda L: "Yalnız " + L[0] if len(L) == 1 else (" ve ".join(L) if len(L) == 2 else "I, II ve III")
+    cor = nm(corr)
+    allo = ["Yalnız I", "Yalnız II", "Yalnız III", "I ve II", "I ve III", "II ve III", "I, II ve III"]
+    o = _yn_opts(cor, random.sample([x for x in allo if x != cor], 3))
+    body = "\n".join(f"{rom[j]}. {ch[j][0]}" for j in range(3))
+    return _mf_raw(subject, _MK_T, random.choice(_MK_LEAD) + " Mikroskopla ve mikroskobik canlılarla çalışırken aşağıdaki davranışlar sıralanmıştır.\n" + body + "\nBuna göre bu davranışlardan hangileri doğrudur?", o, f"Doğru (güvenli) davranışlar: {cor}.") if o else None
+
+
+for _f, _kw, _d, _it in ((_ff_mk_bak_ad, _MK_KW, 2, _MK_I_MIK), (_ff_mk_bak_say, _MK_KW, 2, _MK_I_MIK), (_ff_mk_bak_en, _MK_KW, 3, _MK_I_MIK), (_ff_mk_maya_say, _MK_KWM, 2, _MK_I_MIK),
+                         (_ff_mk_maya_tur, _MK_KWM, 3, _MK_I_MIK), (_ff_mk_kuf_ad, _MK_KWM, 3, _MK_I_MAN), (_ff_mk_kuf_say, _MK_KWM, 2, _MK_I_MAN), (_ff_mk_buyut, _MK_KW, 3, _MK_I_GOZ),
+                         (_ff_mk_objektif, _MK_KW, 3, _MK_I_GOZ), (_ff_mk_tablo, _MK_KW, 2, _MK_I_MIK), (_ff_mk_hijyen, _MK_KW, 3, _MK_I_GOZ)):
+    _f.ITEM = _it
+    _FF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
+_g4 = _gr_fam(_MK_T, _MK_I_MIK, _MK_KW,
+              [("Bakteriler çıplak gözle görülemeyen mikroskobik canlılardır", True, "bakteriler ancak mikroskopla görülebilecek kadar küçüktür.", ["bakteriler yalnızca bitkilerde yaşar.", "bakteriler çıplak gözle kolayca görülür."]),
+               ("Amip kirpikleriyle hareket eder", False, "amip yalancı ayaklarıyla hareket eder; kirpikle hareket eden paramesyumdur.", ["amip kamçısıyla hareket eder.", "amip hareket edemez."]),
+               ("Maya mantarı tomurcuklanarak çoğalır", True, "maya hücresinin üzerinde oluşan tomurcuk koparak yeni bir hücre olur.", ["maya mantarı yalnızca tohumla çoğalır.", "maya mantarı eşeyli üreyen bir hayvandır."]),
+               ("Küf mantarı besinini fotosentezle üretir", False, "küf mantarı yeşil değildir; besinini hazır olarak (örneğin ekmekten) alır.", ["küf mantarı güneş ışığından besin üretir.", "küf mantarı kloroplast taşıdığı için yeşildir."]),
+               ("Paramesyum kirpikleriyle hareket eder", True, "paramesyumun vücudu kirpiklerle kaplıdır.", ["paramesyum yalancı ayaklarıyla hareket eder.", "paramesyum yeşil renklidir ve fotosentez yapar."]),
+               ("Bütün mikroskobik canlılar insanlar için zararlıdır", False, "yoğurt yapımında kullanılan bakteriler gibi yararlı mikroskobik canlılar da vardır.", ["mikroskobik canlıların hepsi besin üretir.", "mikroskobik canlılar yalnızca suda bulunur."])], "_ff_gr_mk")
+_FF_GENS.append((_g4, _MK_KW))
+_DIFF_OF["_ff_gr_mk"] = 3
+
 
 # ---- Maarif uyumu: hipotez ve değişken kontrolü (Elektrik), ısı iletimi deneyi (Madde)
 _EL_LEAD = ["Fen dersinde bir devre deneyi yapılıyor.", "Ampulle ilgili bir araştırma planlanıyor.", "Fen kulübünde basit elektrik devreleri kuruluyor.",
@@ -39820,7 +40732,7 @@ def search_youtube(query, n=8, cq=""):
 
 _MAARIF_AD = {"Güneş, Dünya ve Ay": "Gökyüzündeki Komşularımız ve Biz", "Canlılar Dünyası": "Canlıların Yapısına Yolculuk (önceki program)", "Kuvvetin Ölçülmesi ve Sürtünme": "Kuvveti Tanıyalım",
               "Madde ve Değişim": "Maddenin Doğası", "Işığın Yayılması": "Işığın Dünyası", "İnsan ve Çevre": "Sürdürülebilir Yaşam ve Geri Dönüşüm", "Elektrik Devre Elemanları": "Yaşamımızdaki Elektrik",
-              "Destek ve Hareket Sistemi": "Canlıların Yapısına Yolculuk"}
+              "Destek ve Hareket Sistemi": "Canlıların Yapısına Yolculuk", "Hücre ve Yapı Düzeyleri": "Canlıların Yapısına Yolculuk", "Hücre Organelleri (Ek)": "Ek konu (ileri düzey): hücre organelleri"}
 
 
 def _clean(t):
