@@ -92,7 +92,7 @@ C = {
        _u("Açı Ölçme (MAT.5.3.3-4)", "Açı ölçme ve çizme; Açı türleri; Açıortay"),
        _u("Açı İlişkileri: Tümler, Bütünler, Komşu ve Ters Açılar (MAT.5.3.4)", "Tümler açılar (toplamı 90°); Bütünler açılar (toplamı 180°); Komşu açılar; Ters (karşıt) açılar; Kesişen iki doğrunun oluşturduğu açılar"),
        _u("Çokgenler ve Çember (MAT.5.3.5-7)", "Çokgenlerin elemanları; Çember ve daire elemanları; Çokgen çizimi"),
-       _u("Basamak Değerlerini Çözümleme (MAT.5.1.1)", "Milyonlu sayılar; Basamak değeri; Sayı okuma-yazma"),
+       _u("Basamak Değerlerini Çözümleme (MAT.5.1.1)", "Milyonlu sayılar; Bölük; Basamak değeri; Sayı okuma-yazma; Çok basamaklı sayılar"),
        _u("Doğal Sayılarla Dört İşlem (MAT.5.1.2)", "Dört işlem problemleri; Zihinden işlem; Tahmin"),
        _u("Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)", "Çevre uzunluğu; Alan ölçme; Alan problemleri"),
        _u("Kesirler", "Kesir türleri; Kesir sıralama; Kesirlerle toplama-çıkarma"),
@@ -4874,7 +4874,7 @@ def _kes_serit(ax, d):
 
 
 _BD_PL = ["Birler", "Onlar", "Yüzler", "Binler", "On\nbinler", "Yüz\nbinler", "Milyonlar", "On\nmilyonlar", "Yüz\nmilyonlar"]
-_BD_BL = ["Birler", "Binler", "Milyonlar"]
+_BD_BL = ["Birler", "Binler", "Milyonlar", "Milyarlar"]
 
 
 def _bd_sp(v):
@@ -4892,7 +4892,7 @@ def _kes_basamak(ax, d):
         lo_i = max(0, n - 3 * g - 3)
         x0, x1 = lo_i * cw, hi_i * cw
         ax.add_patch(Rectangle((x0, 3.0), x1 - x0, .8, fc="#fde68a", ec=INK, lw=1.6, zorder=2))
-        ax.text((x0 + x1) / 2, 3.4, _BD_BL[(n - 1 - (hi_i - 1)) // 3] + (" bölüğü" if x1 - x0 >= cw * 3 - .1 else ""), ha="center", va="center", fontsize=10.5 if x1 - x0 >= cw * 3 - .1 else 7.5, fontweight="bold", color=INK, zorder=3)
+        ax.text((x0 + x1) / 2, 3.4, _BD_BL[(n - 1 - (hi_i - 1)) // 3] + (" bölüğü" if x1 - x0 >= cw * 3 - .1 else ""), ha="center", va="center", fontsize=(9.2 if n > 9 else 10.5) if x1 - x0 >= cw * 3 - .1 else 7.5, fontweight="bold", color=INK, zorder=3)
     for i in range(n):
         pos = n - 1 - i
         ax.add_patch(Rectangle((i * cw, 2.2), cw, .8, fc="#e0f2fe", ec=INK, lw=1.4, zorder=2))
@@ -33229,7 +33229,7 @@ for _f, _d, _cd in _OD_FAMS:
 
 
 # ---- 5. SINIF MATEMATİK "BASAMAK DEĞERLERİNİ ÇÖZÜMLEME": ŞEKİLLİ SORU AİLELERİ — basamak tablosu, abaküs, rakam kartları, yuvarlama sayı doğrusu
-_BD_PLN = ["Birler", "Onlar", "Yüzler", "Binler", "On binler", "Yüz binler", "Milyonlar", "On milyonlar", "Yüz milyonlar"]
+_BD_PLN = ["Birler", "Onlar", "Yüzler", "Binler", "On binler", "Yüz binler", "Milyonlar", "On milyonlar", "Yüz milyonlar", "Milyarlar", "On milyarlar", "Yüz milyarlar"]
 
 
 def _fmt_say_raw(t):
@@ -33621,6 +33621,225 @@ for _f, _d, _cd in _BD_FAMS:
     _MF_GENS.append((_od_vary(_f), ("basamak", "milyon"), (5,)))
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- MAT.5.1.1 (Maarif): bölük kavramı, 12 basamağa kadar okuma-yazma, ara basamak/bölük sıfır içeren sayılar, bağlamlar, genelleme önermeleri
+def _say_words12(n):
+    """1..999 999 999 999 arası sayının Türkçe okunuşu (milyar dahil)."""
+    g, r = divmod(n, 1_000_000_000)
+    w = []
+    if g:
+        w.append(_say_300(g) + " milyar")
+    if r:
+        w.append(_say_words(r))
+    return " ".join(w)
+
+
+_BL_AD = ["Birler", "Binler", "Milyonlar", "Milyarlar"]
+
+
+def _bl_num(nd, zero=True):
+    """nd basamaklı sayı; bölüklerden bazıları (ya da ara basamaklar) 0 olabilir. -> basamak listesi"""
+    ng = (nd + 2) // 3
+    sizes = [nd - 3 * (ng - 1)] + [3] * (ng - 1)
+    ds = []
+    for gi, sz in enumerate(sizes):
+        if gi == 0:
+            g = [random.randint(1, 9)] + [random.randint(0, 9) for _ in range(sz - 1)]
+        elif zero and random.random() < .35:
+            g = [0, 0, 0]
+        else:
+            g = [random.choice([0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for _ in range(3)]
+        ds += g
+    if ds[-1] == 0 and random.random() < .5:
+        ds[-1] = random.randint(1, 9)
+    return ds
+
+
+def _bl_wr(n):
+    """Okunuşu aynı olan ya da yakın yazılışlı yanlış sayılar (bölük kaydırma, sıfır atlama, rakam yer değiştirme)."""
+    s = str(n)
+    out = []
+    if len(s) > 3:
+        out.append(int(s[:-3] + "0" + s[-3:]) if len(s) < 12 else int(s[:-3] + "0" + s[-3:-1]))  # bir basamak araya girer
+        out.append(int(s[:-1]))
+    out.append(n * 10 if len(s) < 12 else n // 10)
+    t = list(s)
+    if len(t) > 3:
+        t[1], t[-2] = t[-2], t[1]
+        out.append(int("".join(t)))
+    out.append(n + 1000)
+    out.append(n - 1000 if n > 1000 else n + 100)
+    return [x for x in out if x > 0 and x != n]
+
+
+def _mf_bl_tablo_oku(subject):
+    nd = random.choice([8, 9, 10, 11, 12])
+    ds = _bl_num(nd)
+    n = _bd_val(ds)
+    wr = [_say_words12(x) for x in _bl_wr(n)]
+    c = _say_words12(n)
+    o = _mf_opts(c, [w for w in wr if w != c], str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", "Şekilde bir doğal sayı basamak ve bölük tablosunda gösterilmiştir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?", o,
+                   f"Sayı {_fmt_say(n)}; bölükler soldan sağa okunur ve bölük adı söylenir: {c}.", shape=_bd_tab(ds)) if o else None
+
+
+def _mf_bl_yaz(subject):
+    nd = random.choice([7, 8, 9, 10, 11, 12])
+    ds = _bl_num(nd)
+    n = _bd_val(ds)
+    w = _say_words12(n)
+    wr = [_fmt_say(x) for x in _bl_wr(n)]
+    c = _fmt_say(n)
+    o = _mf_opts(c, [x for x in wr if x != c], str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", f"“{w}” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?", o,
+                   f"Her bölük üç basamaklı yazılır; olmayan bölük ve basamaklar 0 ile doldurulur: {c}.") if o else None
+
+
+def _mf_bl_boluk_say(subject):
+    nd = random.choice([7, 8, 9, 10, 11, 12])
+    ds = _bl_num(nd, zero=False)
+    n = _bd_val(ds)
+    k = (nd + 2) // 3
+    o = _mf_opts(str(k), [str(x) for x in (k - 1, k + 1, k + 2, nd, 2) if x != k and x > 0], str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", f"{_fmt_say(n)} sayısı kaç bölükten oluşur?", o, f"{nd} basamaklı sayı sağdan üçerli gruplanır; {k} bölük olur.") if o else None
+
+
+def _mf_bl_hangi(subject):
+    nd = random.choice([8, 9, 10, 11, 12])
+    ds = _bl_num(nd, zero=False)
+    idx = random.choice([i for i in range(nd) if ds[i]])
+    pos = nd - 1 - idx
+    lb = random.choice(_KS_L)
+    c = _BL_AD[pos // 3] + " bölüğü"
+    wr = [b + " bölüğü" for b in _BL_AD if b + " bölüğü" != c]
+    o = _mf_opts(c, wr[:3] if nd >= 10 else wr, str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak ve bölük tablosunda gösterilmiştir.\nBuna göre {lb} ile gösterilen rakam hangi bölüktedir?", o,
+                   f"{lb} ile gösterilen rakam {_BD_PLN[pos].lower()} basamağındadır; bu basamak {c} içindedir.", shape=_bd_tab(ds, marks={idx: lb})) if o else None
+
+
+def _mf_bl_deger12(subject):
+    nd = random.choice([9, 10, 11, 12])
+    ds = _bl_num(nd, zero=False)
+    idx = random.choice([i for i in range(nd) if ds[i]])
+    pos = nd - 1 - idx
+    lb = random.choice(_KS_L)
+    d = ds[idx]
+    c = d * 10 ** pos
+    wr = [d * 10 ** (pos + 1), d * 10 ** (pos - 1) if pos else d * 10, d, d * 10 ** (pos + 3) if pos + 3 < 13 else d * 10 ** (pos - 3 if pos >= 3 else 0), c + 10 ** pos if d < 9 else c - 10 ** pos]
+    o = _mf_opts(_fmt_say(c), [_fmt_say(x) for x in wr if x != c and x > 0], str, sort=False)
+    return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak ve bölük tablosunda gösterilmiştir.\nBuna göre {lb} ile gösterilen rakamın basamak değeri kaçtır?", o,
+                   f"{lb} ile gösterilen rakam {_BD_PLN[pos].lower()} basamağındaki {d} rakamıdır; basamak değeri {d} × {_fmt_say(10 ** pos)} = {_fmt_say(c)}.", shape=_bd_tab(ds, marks={idx: lb})) if o else None
+
+
+def _mf_bl_sifir(subject):
+    """Maarif örneği: bölükte/ara basamakta 0 bulunan sayıların okunuş-yazılış karşılaştırması (harfli kartlar)."""
+    base = random.randint(1, 9)
+    k = random.choice([1, 2])
+    mil = base
+    a = mil * 1_000_000 * (1000 ** (k - 1))
+    if k == 2:
+        a = mil * 1_000_000_000
+    b = a + random.randint(100, 999) * (1000 if k == 1 else 1_000_000) + random.randint(100, 999)
+    c3 = a + random.randint(11, 99)
+    d4 = a + random.randint(1, 9) * (1000 if k == 1 else 1_000_000)
+    vals = [a, b, c3, d4]
+    if len(set(vals)) < 4:
+        return None
+    ci = random.randrange(4)
+    hf = _lt(4)
+    sh = _yn_tbl("Sayı kartları", ["Kart", "Sayı"], [[hf[i], _fmt_say(vals[i])] for i in range(4)])
+    w = _say_words12(vals[ci])
+    q = f"Tabloda dört kartın üzerindeki doğal sayılar verilmiştir. Okunuşu “{w}” olan sayı hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Sayı okuma-yazma", q, (sorted(hf), hf[ci]), f"“{w}” sayısı {_fmt_say(vals[ci])} biçiminde yazılır; bu sayı {hf[ci]} ile gösterilmiştir.", shape=sh)
+
+
+def _mf_bl_buyuk(subject):
+    nd = random.choice([9, 10, 11, 12])
+    base = _bl_num(nd, zero=False)
+    vals = {_bd_val(base)}
+    for _ in range(3):
+        e = random.choice([nd, nd, nd - 1, nd - 2]) if nd > 9 else nd
+        vals.add(_bd_val(_bl_num(max(e, 7), zero=True)))
+    vals = list(vals)
+    if len(vals) < 4:
+        return None
+    random.shuffle(vals)
+    hf = _lt(4)
+    big = random.random() < .5
+    t = max(vals) if big else min(vals)
+    if sorted(vals).count(t) != 1:
+        return None
+    sh = _yn_tbl("Sayı kartları", ["Kart", "Sayı"], [[hf[i], _fmt_say(vals[i])] for i in range(4)])
+    q = f"Tabloda dört kartın üzerindeki doğal sayılar verilmiştir. Bu sayılardan en {'büyük' if big else 'küçük'} olanı hangi harfle gösterilmiştir?"
+    return _mf_raw(subject, "Sayı karşılaştırma ve sıralama", q, (sorted(hf), hf[vals.index(t)]),
+                   f"Önce basamak sayısına, eşitse en soldaki bölükten başlayarak bölüklere bakılır. En {'büyük' if big else 'küçük'} sayı {_fmt_say(t)} sayısıdır.", shape=sh)
+
+
+_BL_CTX = [("Elektrik üretimi (kWh)", ["Rüzgâr santrali", "Güneş santrali", "Hidroelektrik santral", "Doğal gaz santrali"]),
+           ("Yıllık ziyaretçi sayısı (kişi)", ["Müze", "Hayvanat bahçesi", "Kütüphane", "Bilim merkezi"]),
+           ("Yıllık bütçe (₺)", ["Belediye", "Hastane", "Üniversite", "Okul grubu"]),
+           ("Üretilen ürün (adet)", ["Fabrika A", "Fabrika B", "Fabrika C", "Fabrika D"])]
+
+
+def _mf_bl_baglam(subject):
+    ttl, names = random.choice(_BL_CTX)
+    nd = random.choice([8, 9, 10])
+    vals = set()
+    while len(vals) < 3:
+        vals.add(_bd_val(_bl_num(nd, zero=False)))
+    vals = list(vals)
+    nm = random.sample(names, 3)
+    big = random.random() < .5
+    t = max(vals) if big else min(vals)
+    if sorted(vals).count(t) != 1:
+        return None
+    sh = _yn_tbl(ttl, ["Kaynak", "Değer"], [[nm[i], _fmt_say(vals[i])] for i in range(3)])
+    c = _say_words12(t)
+    o = _mf_opts(c, [w for w in (_say_words12(v) for v in vals if v != t)] + [_say_words12(x) for x in _bl_wr(t)[:2]], str, sort=False)
+    q = f"Tabloda üç değer verilmiştir. En {'büyük' if big else 'küçük'} değerin okunuşu aşağıdakilerden hangisidir?"
+    return _mf_raw(subject, "Sayı okuma-yazma", q, o, f"En {'büyük' if big else 'küçük'} değer {_fmt_say(t)} olup okunuşu “{c}” biçimindedir.", shape=sh) if o else None
+
+
+def _mf_bl_onerme(subject):
+    nd = random.choice([7, 8, 9, 10, 11, 12])
+    ds = _bl_num(nd, zero=False)
+    n = _bd_val(ds)
+    s = str(n)
+    k = (nd + 2) // 3
+    pool = []
+    pool.append(_yn_pick(f"{_fmt_say(n)} sayısı {k} bölükten oluşur.", f"{_fmt_say(n)} sayısı {k + 1} bölükten oluşur."))
+    pool.append(_yn_pick(f"{_fmt_say(n)} sayısı {nd} basamaklıdır.", f"{_fmt_say(n)} sayısı {nd - 1} basamaklıdır."))
+    _w3 = int(s[-6:-3] or 0)
+    if _w3 == int(s[-3:]):
+        _w3 += 1
+    pool.append(_yn_pick(f"{_fmt_say(n)} sayısının birler bölüğündeki rakamların oluşturduğu sayı {int(s[-3:])} olarak okunur.", f"{_fmt_say(n)} sayısının birler bölüğündeki rakamların oluşturduğu sayı {_w3} olarak okunur."))
+    pool.append(_yn_pick("Her bölük, sağdan sola doğru üçer basamaktan oluşur (en soldaki bölük eksik olabilir).", "Her bölük sağdan sola doğru beşer basamaktan oluşur."))
+    pool.append(_yn_pick(f"{_fmt_say(n)} sayısının okunuşunda en soldaki bölükten başlanır.", f"{_fmt_say(n)} sayısının okunuşunda birler bölüğünden başlanır."))
+    if nd >= 10:
+        pool.append(_yn_pick(f"{_fmt_say(n)} sayısının okunuşunda “milyar” sözcüğü geçer.", f"{_fmt_say(n)} sayısının okunuşunda “trilyon” sözcüğü geçer."))
+    elif nd >= 7:
+        pool.append(_yn_pick(f"{_fmt_say(n)} sayısının okunuşunda “milyon” sözcüğü geçer.", f"{_fmt_say(n)} sayısının okunuşunda “milyar” sözcüğü geçer."))
+    st3 = random.sample(pool, 3)
+    return _yn_rom("Sayı okuma-yazma", "", "Aşağıdaki ifadelerden hangileri doğrudur?", st3, f"Doğru ifadeler: " + ", ".join(["I", "II", "III"][i] for i, (_t, b) in enumerate(st3) if b) + ".")
+
+
+def _mf_bl_hesap(subject):
+    k = random.choice([3, 4, 5, 6, 7, 8, 9, 10])
+    n = int("9" * k)
+    t = n + 1
+    c = _say_words12(t)
+    wr = [_say_words12(n), _say_words12(int("1" + "0" * (k - 1))) if k > 3 else _say_words12(10 * t), _say_words12(t * 10), _say_words12(int("1" + "0" * (k + 1)))]
+    o = _mf_opts(c, [w for w in wr if w != c], str, sort=False)
+    return _mf_raw(subject, "Sayı okuma-yazma", f"Bir hesap makinesinin ekranında {_fmt_say(n)} sayısı görülmektedir. Bu sayıya 1 eklenirse ekrandaki yeni sayının okunuşu aşağıdakilerden hangisi olur?", o,
+                   f"{_fmt_say(n)} + 1 = {_fmt_say(t)}; okunuşu “{c}” biçimindedir.") if o else None
+
+
+_BL_FAMS = [(_mf_bl_tablo_oku, 3), (_mf_bl_yaz, 3), (_mf_bl_boluk_say, 2), (_mf_bl_hangi, 2), (_mf_bl_deger12, 3), (_mf_bl_sifir, 3), (_mf_bl_buyuk, 3), (_mf_bl_baglam, 3), (_mf_bl_onerme, 4), (_mf_bl_hesap, 3)]
+for _f, _d in _BL_FAMS:
+    _MF_GENS.append((_od_vary(_f), ("basamak", "milyon", "bölük", "milyar"), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = ["MAT.5.1.1"]
 
 
 

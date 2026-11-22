@@ -140,3 +140,10 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Neighbourhood/Nature/Universe üniteleri için 10 yeni şekilli aile: evler, eğlence yerleri, kroki (above/below), bina yüksekliği grafiği, hayvan türleri, habitatlar, hayvan hızı grafiği, mevsimler, gezegenler, kıtalar.
 - Havuz kurucusunda yineleme anahtarı tüm şekilli sorulara genişletildi (açılış cümlesi, harf ve grafikte soruyla ilgisiz çubuklar soruyu farklı saymaz).
 - İngilizce havuzu 1197 → 2583 soru (şekilli ~1590); hatalı/yinelenen 0; run_checks 12/12.
+
+## Matematik 5 · MAT.5.1.1 Maarif karşılaştırması ve genişletme (2026-11-23)
+- Resmî Maarif programı (tymm.meb.gov.tr) MAT.5.1.1: "Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme". Kapsam: bölük kavramı ve okunuşla ilişkisi, en çok 12 basamaklı sayılar, ara basamakta/bölükte 0 bulunan sayıların (3 000 000, 3 241 123, 3 000 085) okunuş-yazılış karşılaştırması, basamak değeri ve büyüklük karşılaştırma, bağlamlar (nüfus, enerji, bütçe).
+- Eksik bulunanlar: 9'dan fazla basamak yoktu (milyar bölüğü yok), bölük kavramına özel soru neredeyse yoktu, sıfır içeren bölük karşılaştırması ve genelleme önermeleri yoktu.
+- 10 yeni aile: bölük tablosundan okunuş (8–12 basamak), okunuştan yazılış, bölük sayısı, işaretli rakamın bölüğü, 12 basamağa kadar basamak değeri, sıfırlı sayı kartları (tablo), en büyük/küçük sayı (tablo), bağlam tablosu (elektrik, ziyaretçi, bütçe), I–II–III önermeler, hesap makinesi (9 999 + 1). Basamak tablosu milyar bölüğüne kadar çiziliyor.
+- MAT.5.1.1 havuzu 1178 → 2712; Matematik 5. sınıf toplam 17 794 (aile başına 60 sınırıyla yeniden kuruldu; dosya ≈14 MB). Hatalı/yinelenen 0; run_checks 12/12.
+- Sınır: "sayı doğrusu" ve "yuvarlama" bu çıktıda resmî metinde açıkça yok; mevcut aileler zaten var, değiştirilmedi.
