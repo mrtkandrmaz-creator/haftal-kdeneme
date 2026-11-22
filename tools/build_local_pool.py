@@ -4,7 +4,7 @@
 Kodla üretilen (cevabı hesaplanan) soru ailelerinden ünite başına çeşitli, tekrarsız, kural filtrelerinden
 geçmiş soruları pool/<sınıf>/<ders>.json içine yazar. Yapay zekâ havuz kayıtlarına dokunmaz; yalnızca
 önceki 'src':'local' kayıtlarını yeniler.
-Kullanım:  python tools/build_local_pool.py --grades 5 --max-per-unit 80
+Kullanım:  python tools/build_local_pool.py --grades 5 --max-per-unit 3000
 """
 import argparse, collections, json, os, random, re, sys, tempfile, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -17,7 +17,7 @@ ROOT = bp.ROOT
 _UNIT_KZ = {"Temel Geometrik Çizimler": ["MAT.5.3.1", "MAT.5.3.2"], "Açı Ölçme": ["MAT.5.3.3", "MAT.5.3.4"], "Açı İlişkileri": ["MAT.5.3.4"],
             "Çokgenler ve Çember": ["MAT.5.3.5", "MAT.5.3.6", "MAT.5.3.7"], "Basamak Değerlerini": ["MAT.5.1.1"], "Doğal Sayılarla Dört İşlem": ["MAT.5.1.2"],
             "Dikdörtgenin Çevre": ["MAT.5.4.1", "MAT.5.4.2", "MAT.5.4.3", "MAT.5.4.4"], "Kesirler": ["MAT.5.1.3", "MAT.5.1.4"], "Ondalık Gösterim": ["MAT.5.1.3"],
-            "Veri Toplama": ["MAT.5.5.1", "MAT.5.5.2"]}
+            "Veri Toplama": ["MAT.5.5.1", "MAT.5.5.2"], "İşlemlerle Cebirsel": ["MAT.5.2.1", "MAT.5.2.2", "MAT.5.2.3", "MAT.5.2.4"], "Veriden Olasılığa": ["MAT.5.6.1", "MAT.5.6.2"]}
 _UNIT_KZ_EXTRA = {"Veri Toplama": ["MAT.5.2.3"]}  # örüntü kalıpları (yalnız kendi kalıp kodu 5.2.3 ise bu kazanıma bağlanır)
 
 
@@ -42,11 +42,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--grades", default="5")
     ap.add_argument("--subjects", default="")
-    ap.add_argument("--max-per-unit", type=int, default=80)
+    ap.add_argument("--max-per-unit", type=int, default=3000)
     ap.add_argument("--tries", type=int, default=160, help="aile başına üretim denemesi")
     ap.add_argument("--per-form", type=int, default=3, help="aynı kalıptan (sayılar maskeli) en çok kaç soru")
     ap.add_argument("--bad-dir", default="", help="userdata dalındaki data/ klasörü: hatalı bildirilen soru/kalıplar havuza girmez ve eski kayıtlardan silinir")
-    ap.add_argument("--per-family", type=int, default=14, help="bir ünitede aile başına en çok soru")
+    ap.add_argument("--per-family", type=int, default=30, help="bir ünitede aile başına en çok soru")
     args = ap.parse_args()
     random.seed()
     os.environ["DENEMEMATIK_NO_POOL"] = "1"
