@@ -156,6 +156,6 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Hâlâ az soru üretenler gerçekten içerik sınırlı: ör. dört terim/dört vakit/dört kavram kartı (4 farklı soru), tek bilgiye dayalı kalıplar. Bunlar için yeni bilgi/kalıp yazmak gerekir.
 
 ## İngilizce bilgi bankası genişletmesi (2026-11-23)
-- Neighbourhood, Nature, Universe ünitelerine 45 yeni bilgi maddesi (kazanım başına 3: eğlence yerleri, ev türleri, karşılaştırma, ’s, there is/are; hayvan türleri, vahşi hayvanlar, yaşam alanları, can, must, üstünlük/karşılaştırma; gezegenler, kıtalar, iklim, mevsimler, tatil, be going to). Her madde tek doğru, doğru ifade ve öncüllü kalıplara dönüşüyor.
+- Neighbourhood, Nature, Universe ünitelerine 48 yeni bilgi maddesi (kazanım başına 3: eğlence yerleri, ev türleri, karşılaştırma, ’s, there is/are; hayvan türleri, vahşi hayvanlar, yaşam alanları, can, must, üstünlük/karşılaştırma; gezegenler, kıtalar, iklim, mevsimler, tatil, be going to). Her madde tek doğru, doğru ifade ve öncüllü kalıplara dönüşüyor.
 - Havuz 3055 → 3087; bu ünitelerde bilgi tabanlı aile sayısı 29→39, 13→23, 10→20. Artış küçük: bilgi tabanlı kalıplar her madde için yalnız birkaç soru üretiyor.
 - Hata düzeltildi (yayına çıkmadı): ek maddeler bilgi–kazanım hizasını bozup bilgi tabanlı ailelerin tamamını devre dışı bırakıyordu; maddeler ek bilgi listesi (`_FACT_EXTRA`) üzerinden eklenerek giderildi.
