@@ -4769,6 +4769,253 @@
     "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
     "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
    ]
+  },
+  {
+   "topic": "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+   "text": "Bir dikdörtgenin bir kenarı {a} cm, çevresi {p} cm'dir. Dikdörtgenin diğer kenarının uzunluğunu bulunuz. Buna göre diğer kenar kaç cm'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 8
+    },
+    "p": {
+     "lo": 20,
+     "hi": 40,
+     "step": 2
+    }
+   },
+   "derived": {},
+   "constraints": [
+    "p % 2 == 0",
+    "a*2 < p"
+   ],
+   "answer": "p/2 - a",
+   "wrong": [
+    "p/2 + a",
+    "p - a",
+    "a*2"
+   ],
+   "unit": "cm",
+   "explanation": "{p}/2 - {a} = {ans}",
+   "positive": true,
+   "id": "m5-0119",
+   "unit_name": "4. Tema: Geometrik Nicelikler",
+   "topics": [
+    "MAT.5.4.1. Kenar uzunlukları doğal sayı olan bir dikdörtgenin çevre uzunluğu verildiğinde kenar uzunluklarını yorumlayabilme",
+    "MAT.5.4.2. Birim karelerden yola çıkarak dikdörtgenin alanını değerlendirebilme",
+    "MAT.5.4.3. Kenar uzunlukları doğal sayı olan bir dikdörtgenin alanı verildiğinde çevre uzunluğunu, çevresi verildiğinde alanını yorumlayabilme",
+    "MAT.5.4.4. Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemleri çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.6.1",
+   "text": "Ali bir markette {a} adet kalem alıyor. Her bir kalemin fiyatı {p} TL. Toplam harcaması nedir? Buna göre toplam harcama kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0120",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+   "text": "Ali, bir markette {a} kilogram elma alıyor. Elmaların kilogram fiyatı {p} TL. Ali, elmaların toplam fiyatını bulmak istiyor. Buna göre toplam fiyat kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0121",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (2)",
+   "topics": [
+    "MAT.5.1.3. Gerçek yaşam durumlarına karşılık gelen kesirleri farklı biçimlerde temsil edebilme",
+    "MAT.5.1.4. Farklı gösterimlerle ifade edilen kesirlerin karşılaştırılmasına yönelik çıkarım yapabilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+   "text": "Ali bir markette {a} kilogram elma alıyor. Her kilogram elmanın fiyatı {p} TL. Ali'nin toplam harcaması kaç TL'dir? Buna göre cevap kaçtır?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0122",
+   "unit_name": "1. Tema: Sayılar ve Nicelikler (1)",
+   "topics": [
+    "MAT.5.1.1. Altı basamaklı sayıları okuma ve yazmayı çok basamaklı sayılara genelleyebilme",
+    "MAT.5.1.2. Doğal sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+   ]
+  },
+  {
+   "topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+   "text": "Ali okul kantininde satılan meyvelerin fiyatlarını inceliyor. {a} çeşit meyve var ve her birinin fiyatı {p} TL. Toplam maliyet kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0123",
+   "unit_name": "5. Tema: İstatistiksel Araştırma Süreci",
+   "topics": [
+    "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+    "MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel sonuç veya yorumları tartışabilme"
+   ]
+  },
+  {
+   "topic": "Matematiksel İşlemler",
+   "text": "Elif markette bir çorap çifti almış. Bir çiftin fiyatı {p} TL. Çorapların toplam fiyatı {a} kez aynı çifti aldığında ne kadar olur? Buna göre toplam fiyatı TL cinsinden hesapla.",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0124",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }

@@ -719633,6 +719633,52 @@
 "ts": 1795420740,
 "src": "local",
 "fam": "_mf5_pr_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme",
+"passage": "Bir arkeolojik kazı alanında çıkarılan farklı türdeki çömlek parçaları sayılarak kategorize edilmiştir. Kazı ekibi, elde edilen verileri değerlendirerek restorasyon öncelik belirleme çalışması yapacaktır. Tabloda kazı alanındaki dört farklı çömlek türünün adetleri verilmiştir.",
+"question": "Bu verilere dayanarak restorasyon ekibinin en çok parça bulunan iki çömlek türüne öncelik vermesi durumunda, çalışmaya alınacak toplam çömlek parçası sayısı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Çömlek Türleri ve Adetleri",
+"headers": [
+"Çömlek Türü",
+"Parça Sayısı"
+],
+"rows": [
+[
+"Boyalı Küp",
+"145"
+],
+[
+"Toprak Vazo",
+"230"
+],
+[
+"Kil Çanak",
+"310"
+],
+[
+"Mermer Kase",
+"95"
+]
+]
+},
+"options": {
+"A": "455",
+"B": "540",
+"C": "555",
+"D": "635"
+},
+"answer": "B",
+"explanation": "Tablodaki parça sayıları incelendiğinde en yüksek iki değer Kil Çanak (310) ve Toprak Vazo (230) türlerinedir. Bu iki türün parça sayıları toplanır: 310 + 230 = 540.",
+"vfd2": true,
+"_sty": "s:table|parças sayısı kaç olur",
+"unit": "5. Tema: İstatistiksel Araştırma Süreci",
+"topics": "MAT.5.5.1. Kategorik veri ile çalışabilme ve veriye dayalı karar verebilme, MAT.5.5.2. Başkaları tarafından oluşturulan kategorik veriye dayalı istatistiksel so",
+"d": 1,
+"ts": 1795422218
 }
 ]
 }
