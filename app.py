@@ -864,83 +864,12 @@ def liste_cek(deger):
 
 
 
-def _sar(metin, genislik=11):
-    return textwrap.fill(_t(metin), genislik, break_long_words=False, break_on_hyphens=False)
-
-
-def _guzel_adim(ust):
-    for st_ in (0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000):
-        if ust / st_ <= 10:
-            return st_
-    return max(ust / 10, 1)
-
-
 
 def _guzel_maks(v):
     for m in (5, 10, 20, 25, 50, 100, 200, 500):
         if v <= m:
             return m
     return float(np.ceil(v / 100) * 100)
-
-
-def _dinamometre_tek(ax, cx, kuvvet, maks, ad="", yuk="", n=1, deger_yaz=False):
-    w = 1.3 if n == 1 else 1.18
-    ust, alt = 4.5, 1.9
-    kuvvet = min(max(kuvvet, 0.0), maks)
-    # asma halkası + gövde
-    ax.add_patch(plt.Circle((cx, 4.78), 0.15, fill=False, ec='#475569', linewidth=2.4, zorder=2))
-    ax.plot([cx, cx], [4.63, ust], color='#475569', linewidth=2.6, zorder=2)
-    ax.add_patch(FancyBboxPatch((cx - w / 2, alt), w, ust - alt, boxstyle="round,pad=0,rounding_size=0.12",
-                                fc='#e2e8f0', ec='#0f172a', linewidth=2.2, zorder=2))
-    px0, px1 = cx - w / 2 + 0.09, cx + w / 2 - 0.09
-    ax.add_patch(Rectangle((px0, alt + 0.1), px1 - px0, ust - alt - 0.2, fc='#ffffff', ec='#94a3b8', linewidth=1.2, zorder=3))
-    s0, s1 = ust - 0.32, alt + 0.3
-
-    def yv(v):
-        return s0 - (v / maks) * (s0 - s1)
-    adim = 1.0 if maks <= 10 else maks / 10.0
-    for v in np.arange(0, maks + 1e-9, adim):
-        ax.plot([px0, px0 + 0.16], [yv(v), yv(v)], color='#0f172a', linewidth=1.4, zorder=4)
-        ax.text(px0 + 0.21, yv(v), f"{v:g}", fontsize=7.5, va='center', ha='left', color='#0f172a', zorder=4)
-        if v + adim / 2 <= maks + 1e-9:
-            ax.plot([px0, px0 + 0.08], [yv(v + adim / 2)] * 2, color='#0f172a', linewidth=0.9, zorder=4)
-    ax.text(px1 - 0.03, ust - 0.2, "N", fontsize=9, fontweight='bold', color='#dc2626', ha='right', va='center', zorder=4)
-    # kılavuz yuva
-    ax.add_patch(Rectangle((cx - 0.045, yv(maks) - 0.06), 0.09, (yv(0) - yv(maks)) + 0.12, fc='#cbd5e1', ec='none', zorder=3))
-    # ibre + çubuk + kanca
-    yp = yv(kuvvet)
-    ext = 0.1 + 0.3 * (kuvvet / maks)
-    uc = alt - ext
-    ax.plot([cx, cx], [yp, uc], color='#64748b', linewidth=3, zorder=4, solid_capstyle='butt')
-    ax.plot([px0 + 0.02, cx - 0.09], [yp, yp], color='#dc2626', linewidth=1.2, zorder=3.5, alpha=0.9)
-    ax.plot([cx - 0.09, px1 - 0.02], [yp, yp], color='#dc2626', linewidth=3.2, zorder=5, solid_capstyle='round')
-    ax.add_patch(plt.Circle((cx, uc - 0.08), 0.08, fill=False, ec='#475569', linewidth=2, zorder=4))
-    ip_ust = uc - 0.16
-    bw, bh = (0.92, 0.6) if n == 1 else (0.8, 0.54)
-    ax.plot([cx, cx], [ip_ust, ip_ust - 0.2], color='#475569', linewidth=2, zorder=4)
-    wy = ip_ust - 0.2 - bh
-    ax.add_patch(Rectangle((cx - bw / 2, wy), bw, bh, fc='#cbd5e1', ec='#0f172a', linewidth=2, zorder=4))
-    ax.text(cx, wy + bh / 2, _t(yuk) or "Yük", fontsize=8.5 if n == 1 else 8, fontweight='bold', ha='center', va='center', color='#0f172a', zorder=5)
-    if ad:
-        ax.text(cx, max(wy - 0.22, 0.2), _t(ad), fontsize=12, fontweight='bold', ha='center', va='center', color='#0f172a')
-    if deger_yaz:
-        ax.text(cx + w / 2 + 0.1, yp, f"{kuvvet:g} N", fontsize=9, fontweight='bold', color='#dc2626', ha='left', va='center',
-                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#fca5a5', lw=1), zorder=6)
-
-
-def _dinamometre_ciz(ax, et):
-    ham = et.get("kuvvetler") if et.get("kuvvetler") is not None else et.get("kuvvet")
-    ks = [sayi_cek(x, 0.0) for x in liste_cek(ham)][:3] or [4.0]
-    maks = sayi_cek(et.get("maks"), None) or _guzel_maks(max(ks))
-    maks = max(maks, max(ks))
-    yukler = liste_cek(et.get("yukler") if et.get("yukler") is not None else et.get("yuk"))
-    isimler = liste_cek(et.get("isimler"))
-    deger_yaz = _norm(et.get("deger_yaz", "hayir")) in ("evet", "true", "1")
-    n = len(ks)
-    merkezler = {1: [3.0], 2: [1.9, 4.1], 3: [1.0, 3.0, 5.0]}[n]
-    for i, (cx, kv) in enumerate(zip(merkezler, ks)):
-        _dinamometre_tek(ax, cx, kv, maks, isimler[i] if i < len(isimler) else "",
-                         yukler[i] if i < len(yukler) else "", n=n, deger_yaz=deger_yaz)
 
 
 def _surtunme_ciz(ax, et):
@@ -7959,15 +7888,6 @@ def gh_flush(wait=10, delete_pid=None):
     return not t.is_alive()
 
 
-def gh_delete_profile_async(pid):
-    """Silinen profilin GitHub yedeğini arka planda siler."""
-    cfg = gh_cfg()
-    if not cfg or not pid:
-        return False
-    _th.Thread(target=lambda: _gh_delete_profile_files(cfg, pid), daemon=True).start()
-    return True
-
-
 def gh_sync_async(min_interval=120):
     """Ana iş parçacığından çağrılır; en az min_interval sn arayla arka planda değişenleri yedekler."""
     if not gh_cfg() or _GH["running"] or time.time() - _GH["last"] < min_interval:
@@ -8556,11 +8476,6 @@ def extra_keys():
     return out
 
 
-def has_any_keys():
-    g, m = load_keys()
-    return bool(g or m or extra_keys())
-
-
 def demo_mode():
     return os.environ.get("DENEMEMATIK_DEMO") == "1"
 
@@ -8696,11 +8611,6 @@ def load_models(gkeys=None, mkeys=None):
         except Exception:
             pass
     return g, m
-
-
-def model_summary():
-    with _DISC_LOCK:
-        return {k: len(v["ids"]) for k, v in _DISC.items()}
 
 
 class _HttpErr(Exception):
@@ -9199,11 +9109,6 @@ VERIFY_SYSTEM = "Sen titiz bir MEB soru doğrulayıcısısın. Soruları bağım
 VERIFY_STATS = {"checked": 0, "rejected": 0, "unverified": 0}
 
 
-def verify_stats():
-    with _POOL_LOCK:
-        return dict(VERIFY_STATS)
-
-
 def _vq_text(i, q):
     sh = q.get("shape")
     sh_txt = json.dumps(sh, ensure_ascii=False)[:1500] if sh else "yok"
@@ -9497,9 +9402,6 @@ _SR_FOOT = (
 )
 
 # Tam metin (geriye dönük uyumluluk)
-SHAPE_RULES = _SR_HEAD + _SR_BASIC + _SR_GEO + _SR_CHART + _SR_NUMLINE + _SR_SCI + _SR_FOOT
-
-
 def shape_rules(subject, geo_on=False):
     """Prompt kısaltma: yalnızca dersin ve konunun gerektirdiği görsel kuralları gönderilir."""
     if subject not in VISUAL_SUBJECTS:
@@ -9768,7 +9670,6 @@ def _chart_answer_ok(shape, qtext, opts, ans):
     return True
 
 
-_INSTR = re.compile(r"dinamometre|termometre|mezür|dereceli\s+silindir|ölçü\s+silindiri", re.I)
 _READ = re.compile(r"gösteriyor|gösterir|gösterdiği|okun|ölçülen|ölçer|kaç\s*(?:N|newton|°\s*C|derece|mL|ml|mililitre|cm3|cm³)\b", re.I)
 _NOREAD = re.compile(r"hacm|fark|değişim|artış|azal|ağırlığ|kütle|cisim|bileşke|net\s+kuvvet|ısı|ortalama|toplam|oran|sonra|önce", re.I)
 _FN = re.compile(r"(\d+(?:[.,]\d+)?)\s*(?:N\b|newton)", re.I)
@@ -11528,12 +11429,6 @@ def _bank_meta(p, grade_label, difficulty):
     return {"grade_label": grade_label, "subject": p["subject"], "difficulty": difficulty, "topics": str(p.get("topics", ""))[:120]}
 
 
-def bank_counts(plan, grade_label, difficulty):
-    """Plandaki her ders için bankada hazır soru sayısı."""
-    from . import store
-    return {p["subject"]: store.bank_count(bank_key_for(p, grade_label, difficulty)) for p in plan}
-
-
 def _relaxed_ok(q, kept):
     """Gevşetilmiş çeşitlilik: yalnızca (neredeyse) birebir kopyayı reddeder."""
     w = _qwords(q)
@@ -11566,14 +11461,6 @@ _LQ_THEMES = [
     ("Afet farkındalığı eğitimine katılanlar", "Grup", "kişi", ["Öğrenciler", "Öğretmenler", "Veliler", "Gönüllüler", "Mahalle sakinleri", "Okul personeli"], 15, 90, 1,
      "okulda düzenlenen afet farkındalığı eğitimine katılan grupları inceliyor"),
 ]
-_LQ_TIME = [
-    ("Bir ilçenin yıllara göre nüfusu (bin kişi)", "bin kişi", 40, 120, "ilçenin yıllara göre nüfus değişimini inceliyor"),
-    ("Bir okulda yıllara göre kayıtlı öğrenci sayısı", "öğrenci", 300, 900, "okuldaki kayıtlı öğrenci sayısının yıllara göre değişimini inceliyor"),
-    ("Bir şehre yıllara göre gelen turist sayısı (bin kişi)", "bin kişi", 50, 200, "şehre gelen turist sayısının yıllara göre değişimini inceliyor"),
-    ("Bir mahallede yıllara göre dikilen fidan sayısı", "fidan", 100, 600, "mahallede yıllara göre dikilen fidan sayısını inceliyor"),
-]
-
-
 def _lq_vals(n, lo, hi, step):
     pool = list(range(lo, hi + 1, step))
     return random.sample(pool, n) if len(pool) >= n else None
@@ -12703,19 +12590,6 @@ def _mf_fracops(subject):
     return _mf_raw(subject, "Kesirlerle işlemler", f"{show(f1)} {sym} {show(f2)} işleminin sonucu aşağıdakilerden hangisidir? (Kesirler en sade biçimde yazılmıştır.)", o, f"{show(f1)} {sym} {show(f2)} = {show(r)}.") if o else None
 
 
-def _mf_tri_angle(subject):
-    a, b = random.choice(range(30, 90, 5)), random.choice(range(30, 90, 5))
-    if a + b >= 170:
-        return None
-    c = 180 - a - b
-    shape = {"type": "geo", "sub_type": "triangle", "kind": "scalene", "labels": ["A", "B", "C"], "angles": {"A": f"{a}°", "B": f"{b}°", "C": "?"}}
-    wr = [180 - a, 180 - b, a + b, 90 - a, c + 10, c - 10]
-    wr = [w for w in wr if w != c and w > 0]
-    random.shuffle(wr)
-    o = _mf_opts(c, wr, lambda x: f"{x}°")
-    return _mf_raw(subject, "Üçgenin açıları", f"Şekildeki ABC üçgeninde m(A) = {a}° ve m(B) = {b}° olduğuna göre m(C) kaç derecedir?", o, f"İç açılar toplamı 180°: 180 − {a} − {b} = {c}°.", shape=shape) if o else None
-
-
 def _mf_eq1(subject):
     x = random.randint(2, 12)
     a, b = random.randint(2, 9), random.randint(1, 15)
@@ -12739,18 +12613,6 @@ def _mf_discount(subject):
     random.shuffle(wr)
     o = _mf_opts(new, wr, lambda x: f"{x} TL")
     return _mf_raw(subject, "Yüzde problemleri", f"Etiket fiyatı {price} TL olan bir ürüne %{p} indirim uygulanıyor. İndirimli fiyat kaç TL olur?", o, f"İndirim = {price}×{p}/100 = {price * p // 100}; {price} − {price * p // 100} = {new} TL.") if o else None
-
-
-def _mf_circle(subject):
-    r = random.choice([2, 3, 4, 5, 6, 7, 10])
-    kind = random.choice(["per", "area"])
-    c = 2 * 3 * r if kind == "per" else 3 * r * r
-    wr = [3 * r, c * 2, r * r, 2 * r, c + r] if kind == "per" else [2 * 3 * r, 3 * r, r * r, c * 2, c + r]
-    wr = [w for w in wr if w != c]
-    random.shuffle(wr)
-    o = _mf_opts(c, wr, lambda v: f"{v} cm" if kind == "per" else f"{v} cm²")
-    q = f"Yarıçapı {r} cm olan bir çemberin çevresi kaç cm’dir? (π yerine 3 alınız.)" if kind == "per" else f"Yarıçapı {r} cm olan bir dairenin alanı kaç cm²’dir? (π yerine 3 alınız.)"
-    return _mf_raw(subject, "Çember ve daire", q, o, f"{'2πr = 2×3×' + str(r) if kind == 'per' else 'πr² = 3×' + str(r) + '²'} = {c}.") if o else None
 
 
 def _mf_exp8(subject):
@@ -14125,18 +13987,6 @@ def _ff_ortam(subject):
                     "opak": "Opak (donuk) maddeler ışığı geçirmez; arkasında tam gölge oluşur."}[kind] + f" {c} bu gruptadır.")
 
 
-def _ff_iletken(subject):
-    ilet = ["bakır tel", "demir çivi", "alüminyum folyo", "çelik kaşık", "gümüş yüzük"]
-    yal = ["plastik kalem", "tahta çubuk", "lastik silgi", "cam bardak", "kuru kâğıt", "yün kazak"]
-    if random.random() < .5:
-        c = random.choice(ilet)
-        return _fact_q(subject, "Elektrik", "Bir elektrik devresine bağlandığında akımı ileten madde aşağıdakilerden hangisidir?", c, random.sample(yal, 3),
-                       f"Metaller elektrik akımını iletir; {c} metaldendir. Diğerleri yalıtkandır.")
-    c = random.choice(yal)
-    return _fact_q(subject, "Elektrik", "Aşağıdakilerden hangisi elektrik akımını iletmeyen (yalıtkan) bir maddedir?", c, random.sample(ilet, 3),
-                   f"{c} yalıtkandır; diğer seçenekler metal olduğu için iletkendir.")
-
-
 def _ff_devre(subject):
     fn = [("pil", "devreye elektrik enerjisi sağlamak"), ("anahtar", "devreyi açıp kapatmak"), ("ampul", "elektrik enerjisini ışık enerjisine dönüştürmek"),
           ("bağlantı kablosu", "elektrik akımını elemanlar arasında iletmek")]
@@ -14582,12 +14432,6 @@ _DIFF_OF.update({"_mf_tum_x": 2, "_mf_but_x": 2, "_mf_tum_cebir": 4, "_mf_but_ce
 
 
 # ================================================================ 5. SINIF: TÜM ÜNİTELER İÇİN GENİŞ KALIP SETİ
-def _stmt_q(subject, topic, stem, T, F, ex_t):
-    """Tek doğru ifade: doğrulanmış doğru ifadelerden biri + yanlış ifadelerden üçü (olumlu kök)."""
-    c = random.choice(T)
-    return _fact_q(subject, topic, stem, c, random.sample(F, 3) if len(F) >= 3 else F, ex_t.format(c=c))
-
-
 # ---------------------------------------------------------------- MATEMATİK
 def _lset(subject, want):
     kinds = ["segment", "ray", "line"]
@@ -15179,14 +15023,6 @@ def _dk_intro():
 
 def _dk_money(v):
     return f"{v} ₺"
-
-
-def _dk_nums(subject, q, v, ex, shape, step=None):
-    st = step or random.choice([1, 2, 5])
-    cands = [v + st, v - st, v + 2 * st, v - 2 * st, v + 10, v * 2, v + 5]
-    wr = [c for c in cands if c > 0 and c != v]
-    o = _mf_opts(v, wr, lambda x: f"{x} ₺", sort=True) if False else None
-    return None
 
 
 def _dk_num(subject, q, v, unit, ex, shape, deltas=(1, 2, 3, 5, 10)):
@@ -16259,10 +16095,6 @@ for _f, _kw, _it, _df in _NEW_MAT:
 
 
 # ---- Matematik 5: 2. ek grup (üniteler arası çeşitliliği artırır; hepsi kodla hesaplanır)
-def _tl(v):
-    return f"{v:,}".replace(",", ".")
-
-
 def _mf_say_sirala(subject):
     xs = random.sample(range(100000, 9999999, 7919), 4)
     en_b = random.random() < .5
@@ -17758,7 +17590,6 @@ for _f, _kw, _d in _SY_NEW:
 
 
 # ---- Din Kültürü 5: YENİ NESİL (öncüllü yargı, tablo okuma, bağlamlı senaryo)
-_DY_DIN = "Din Kültürü ve Ahlak Bilgisi"
 _DY_ROM = {
     "allah": ("Allah inancı", "Allah'ın güzel isimleri", ("allah", "evren", "ihlas", "güzel isim"),
               "Bir öğrenci, Allah inancıyla ilgili öğrendiklerini not etmiştir.",
@@ -17958,10 +17789,6 @@ def _en_doc(title, blocks, theme=None, deco=None, sub=None, tsize=None):
     return d
 
 
-def _en_tm(h, m=0):
-    return f"{h}.{m:02d}"
-
-
 # --- 1) Restaurant menu
 _EN_MENU = [("Soup", 25), ("Salad", 30), ("Pizza", 60), ("Hamburger", 55), ("Spaghetti", 50), ("Chicken", 70), ("Ice cream", 25), ("Cake", 35), ("Orange juice", 20), ("Tea", 10), ("Lemonade", 20)]
 
@@ -18108,9 +17935,6 @@ def _en_yn_weather(subject):
 
 
 # --- 7) Daily routine
-_EN_ACT = ["get up", "have breakfast", "go to school", "have lunch", "do homework", "have dinner", "go to bed", "watch TV", "play football"]
-
-
 def _en_yn_routine(subject):
     n = random.choice(_EN_NAMES)
     acts = random.sample(["get up", "have breakfast", "go to school", "have lunch", "do homework", "have dinner", "go to bed"], 5)
@@ -18727,11 +18551,6 @@ def _mf_gv_dp_nokta(subject):
 
 
 # --- iki/üç doğrunun oluşturduğu açılar (5.3.4)
-def _gv_l3(dirs):
-    a1, a2, a3 = dirs
-    return [a2 - a1, a3 - a2, 180 - (a3 - a1)]
-
-
 def _mf_gv_uc_dogru(subject):
     for _ in range(30):
         a1 = random.choice([10, 20, 30])
@@ -18760,12 +18579,6 @@ def _mf_gv_aci_tur_bak(subject):
     return _gvq(subject, "Açı türleri", "Şekildeki AOB açısı hangi açı türündendir?", t, [x for x in _GV_TUR if x != t], f"Açı dik açıdan {'küçük' if a < 90 else 'büyük'} (ve doğru açıdan küçük) olduğundan {t.lower()}dır.", sh)
 
 
-def _mf_gv_dik_say2(subject):
-    tilt = random.choice([0, 10, 20, 30, 40])
-    sh = {"type": "geo", "sub_type": "perpendicular", "tilt": tilt}
-    return _gvq(subject, "Açı türleri", "Şekildeki d₁ ve d₂ doğruları O noktasında kesişmektedir. Kesişme noktasında oluşan açılardan kaçı dik açıdır?", 4, [1, 2, 3], "Dik kesişen iki doğru dört dik açı oluşturur.", sh, str, sort=True)
-
-
 def _mf_gv_cember_el(subject):
     L = random.sample(list("ABCDEFGHK"), 5)
     sh = {"type": "geo", "sub_type": "circle_parts", "parts": ["radius", "diameter", "chord"], "center": "O", "labels": L}
@@ -18774,14 +18587,6 @@ def _mf_gv_cember_el(subject):
     t = pick.capitalize()
     return _gvq(subject, "Çember ve daire elemanları", f"Şekilde O merkezli çember üzerindeki {seg} doğru parçası çemberin hangi elemanıdır?", t, [x for x in ["Yarıçap", "Çap", "Kiriş", "Teğet"] if x != t],
                 f"{seg} " + {"yarıçap": "merkezi çember üzerindeki bir noktaya birleştirir: yarıçaptır.", "çap": "merkezden geçen kirişdir: çaptır.", "kiriş": "çember üzerindeki iki noktayı birleştirir ve merkezden geçmez: kiriştir."}[pick], sh)
-
-
-def _mf_gv_cember_dizi(subject):
-    n = random.randint(2, 5)
-    r = random.choice([2, 3, 4, 5, 6])
-    sh = {"type": "geo", "sub_type": "nested_circles", "mode": "chain", "n": n, "labels": [f"{r} cm", "?"]}
-    L = 2 * r * n
-    return _gvq(subject, "Çember ve daire elemanları", "Şekilde yarıçapı verilen eş çemberler yan yana, birbirine değecek biçimde dizilmiştir. Çemberlerin dizildiği toplam uzunluk kaç cm'dir?", L, [r * n, L + r, L - r, 2 * r + n], f"Bir çemberin çapı 2 × {r} = {2 * r} cm; {n} çember: {n} × {2 * r} = {L} cm.", sh, lambda v: f"{v} cm", sort=True)
 
 
 _GV_FAMS = [
@@ -20390,50 +20195,6 @@ _DFACTS["Mimarimizde Dinî Motifler"] += [
 
 _DFKW = {"Allah İnancı": ("allah", "ihlas", "evrendeki düzen"), "Namaz": ("namaz", "tahiyyat"), "Kur'an-ı Kerim": ("kur'an", "kur’an", "kevser"),
          "Peygamber Kıssaları": ("peygamber", "kureyş", "kıssa"), "Mimarimizde Dinî Motifler": ("mimari", "cami", "mihrap")}
-
-
-def _dfact_gens(unit, F):
-    ids = list(range(len(F)))
-    rk = ("fact", unit)
-
-    def pick(k):
-        o = [i for i in _recent_order(rk, ids)][:k]
-        for i in o:
-            _recent_mark(rk, i)
-        return o
-
-    def single(subject):
-        i = pick(1)[0]
-        lab, q, c, wr, t, f = F[i]
-        return _fact_q(subject, unit, q, c, random.sample(wr, 3), t)
-
-    def dogru(subject):
-        o = pick(4)
-        if len(o) < 4:
-            return None
-        c = F[o[0]][4]
-        wr = [F[j][5] for j in o[1:]]
-        stem = random.choice(["{l} konusunda aşağıdaki bilgilerden hangisi doğrudur?", "Aşağıdakilerden hangisi {l} ile ilgili doğru bir bilgidir?", "{l} hakkında verilen bilgilerden hangisi doğrudur?"]).format(l=F[o[0]][0])
-        return _fact_q(subject, unit, stem, c, wr, f"“{c}” ifadesi doğrudur; diğer ifadeler yanlıştır.")
-
-    def onc(subject):
-        o = pick(3)
-        if len(o) < 3:
-            return None
-        k = random.choice([1, 2])
-        tv = set(random.sample(range(3), k))
-        items = [(F[o[i]][4] if i in tv else F[o[i]][5], i in tv) for i in range(3)]
-        rom = ["I", "II", "III"]
-        true_set = [rom[i] for i, (_s, v) in enumerate(items) if v]
-        corr = f"Yalnız {true_set[0]}" if len(true_set) == 1 else " ve ".join(true_set)
-        wr = [x for x in _ONC_OPT if x != corr]
-        random.shuffle(wr)
-        opts = sorted([corr] + wr[:3], key=_ONC_OPT.index)
-        body = "\n".join(f"{rom[i]}. {s}" for i, (s, _v) in enumerate(items))
-        q = f"{body}\nYukarıda “{unit}” ile ilgili verilen bilgilerden hangileri doğrudur?"
-        return _mf_raw(subject, unit, q, (opts, corr), "Doğru ifadeler: " + ", ".join(true_set) + ". Diğer ifadeler yanlıştır.")
-
-    return single, dogru, onc
 
 
 # ================================================================ 5. SINIF FEN / SOSYAL / TÜRKÇE / İNGİLİZCE — BİLGİ BANKALARI (ünite başına ~15 ayrı bilgi; her sınavda farklı bilgiler seçilir)
@@ -22525,49 +22286,6 @@ _EFACTS_KW = {'School Life': ('school life', 'clubs', 'national days', "mustn't"
 _BANK_STEMS_TR = ["{u} ünitesiyle ilgili aşağıdaki bilgilerden hangisi doğrudur?", "{u} konusunda verilen bilgilerden hangisi doğrudur?", "Aşağıdakilerden hangisi {u} ünitesine ait doğru bir bilgidir?", "{u} ile ilgili aşağıdaki ifadelerden hangisi doğrudur?"]
 _BANK_STEMS_EN = ["Which sentence about “{l}” is correct?", "Which statement about “{l}” is true?", "Choose the correct sentence about “{l}”."]
 
-
-def _bank_gens(unit, F, en):
-    ids = list(range(len(F)))
-    rk = ("fact", unit)
-
-    def pick(k):
-        o = [i for i in _recent_order(rk, ids)][:k]
-        for i in o:
-            _recent_mark(rk, i)
-        return o
-
-    def single(subject):
-        i = pick(1)[0]
-        lab, q, c, wr, t, f = F[i]
-        return _fact_q(subject, unit, q, c, random.sample(wr, 3), t)
-
-    def dogru(subject):
-        o = pick(4)
-        if len(o) < 4:
-            return None
-        c = F[o[0]][4]
-        wr = [F[j][5] for j in o[1:]]
-        stem = random.choice(_BANK_STEMS_EN if en else _BANK_STEMS_TR).replace("{l}", F[o[0]][0]).replace("{u}", unit)
-        return _fact_q(subject, unit, stem, c, wr, (f"“{c}” is correct; the other sentences are wrong." if en else f"“{c}” ifadesi doğrudur; diğer ifadeler yanlıştır."))
-
-    def onc(subject):
-        o = pick(3)
-        if len(o) < 3:
-            return None
-        k = random.choice([1, 2])
-        tv = set(random.sample(range(3), k))
-        items = [(F[o[i]][4] if i in tv else F[o[i]][5], i in tv) for i in range(3)]
-        rom = ["I", "II", "III"]
-        true_set = [rom[i] for i, (_s, v) in enumerate(items) if v]
-        corr = f"Yalnız {true_set[0]}" if len(true_set) == 1 else " ve ".join(true_set)
-        wr = [x for x in _ONC_OPT if x != corr]
-        random.shuffle(wr)
-        opts = sorted([corr] + wr[:3], key=_ONC_OPT.index)
-        body = "\n".join(f"{rom[i]}. {s}" for i, (s, _v) in enumerate(items))
-        q = f"{body}\nYukarıda “{unit}” ile ilgili verilen bilgilerden hangileri doğrudur?"
-        return _mf_raw(subject, unit, q, (opts, corr), "Doğru ifadeler: " + ", ".join(true_set) + ". Diğer ifadeler yanlıştır.")
-
-    return (single, dogru) if en else (single, dogru, onc)
 
 _FACT_ITEM = {
     # Fen
@@ -25788,9 +25506,6 @@ def _ff_cd_kart_ayni(subject):
 
 
 _CD_OZT = {"bitki": ("Evet", "Hayır"), "hayvan": ("Hayır", "Evet"), "mantar": ("Hayır", "Hayır"), "öglena": ("Evet", "Evet")}
-_CD_OZN = {"bitki": "bitki", "hayvan": "hayvan", "mantar": "mantar", "öglena": "öglena"}
-
-
 def _ff_cd_tablo_ozellik(subject):
     ks = ["bitki", "hayvan", "mantar", "öglena"]
     random.shuffle(ks)
@@ -26247,9 +25962,6 @@ for _f, _d, _it in _LT_FAMS:
     _f.ITEM = _it
     _FF_GENS.append((_f, _LT_KW))
     _DIFF_OF[_f.__name__] = _d
-_LT_VIS = {f.__name__ for f, _d, _i in _LT_FAMS}
-
-
 # ---- 5. SINIF FEN "KUVVETİN ÖLÇÜLMESİ VE SÜRTÜNME": ŞEKİLLİ SORU AİLELERİ — kuvvetin etkileri, yüzeyde çekme, dinamometre+kütle, yay uzaması
 _KV_T = "Kuvvet ve sürtünme"
 _KV_KW = ("kuvvet", "sürtünme", "dinamometre", "ağırlık", "kütle", "yay", "newton")
@@ -26492,9 +26204,6 @@ for _f, _d, _it in _KV_FAMS:
     _f.ITEM = _it
     _FF_GENS.append((_f, _KV_KW))
     _DIFF_OF[_f.__name__] = _d
-_KV_VIS = {f.__name__ for f, _d, _i in _KV_FAMS}
-
-
 # ---- 5. SINIF FEN "MADDE VE DEĞİŞİM": ŞEKİLLİ SORU AİLELERİ — tanecik modeli, hâl değişimi, termometre, sıcaklık-zaman grafiği, ısı iletimi ve yalıtımı
 _MD_KW = ("ısı", "sıcaklık", "hâl", "madde", "tanecik", "erime", "kaynama", "yalıtım", "iletim", "donma", "buharlaş", "yoğuş")
 _MD_I1 = "Maddenin tanecikli yapısı ve hâlleri"
@@ -26857,9 +26566,6 @@ for _f, _d, _it in _MD_FAMS:
     _f.ITEM = _it
     _FF_GENS.append((_f, _MD_KW))
     _DIFF_OF[_f.__name__] = _d
-_MD_VIS = {f.__name__ for f, _d, _i in _MD_FAMS}
-
-
 # ---- 5. SINIF FEN "ELEKTRİK DEVRE ELEMANLARI": ŞEKİLLİ SORU AİLELERİ — semboller, devre şeması, ampul parlaklığı
 _EL_KW = ("elektrik", "devre", "ampul", "pil", "anahtar", "parlaklık")
 _EL_I1 = "Devre elemanları ve sembolleri"
@@ -27147,9 +26853,6 @@ _CV_I5 = "İnsan faaliyetlerinin çevreye etkisi (kirlilik)"
 _CV_GERI = ["cam", "gazete", "plastik", "teneke"]
 _CV_ORG = ["muz", "elma"]
 _CV_KUTU = {"gazete": "mavi", "plastik": "sari", "cam": "yesil", "teneke": "gri"}
-_CV_MAD = {"mavi": "kâğıt", "sari": "plastik", "yesil": "cam", "gri": "metal"}
-
-
 def _cv_pan(kinds, per=4):
     lb = random.sample(_CD_L, len(kinds))
     return lb, {"type": "cev", "sub_type": "esya", "per_row": per, "panels": [{"kind": k, "label": lb[i]} for i, k in enumerate(kinds)]}
@@ -27714,11 +27417,6 @@ def _ss_kroki(n=None):
 
 def _ss_sh(ys):
     return {"type": "sos", "sub_type": "kroki", "cols": 3, "rows": 3, "yerler": ys}
-
-
-def _ss_art(ad, dur):
-    """'Okul'un' / 'Parkın' gibi tamlayan eki: yalnızca güvenli biçim — addan sonra 'yerinin' kullanılır."""
-    return f"{ad} yerinin"
 
 
 def _sf_ss_yon(subject):
@@ -32863,9 +32561,6 @@ for _f, _d, _cd in _KS_FAMS:
     _MF_GENS.append((_ks_vary(_f), ("kesir",), (5,)))
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = [_cd]
-_KS_VIS = {f.__name__ for f, _d, _c in _KS_FAMS}
-
-
 # ---- 5. SINIF MATEMATİK "ONDALIK GÖSTERİM VE YÜZDELER": ŞEKİLLİ SORU AİLELERİ — 100'lük ızgara, onluk şerit, ondalık sayı doğrusu, yüzde şeridi, temsil kartları
 def _od(h):
     """Yüzde (yüzlükte) değerinden ondalık yazım: 35 -> 0,35 ; 30 -> 0,3 ; 150 -> 1,5."""
@@ -32877,12 +32572,6 @@ def _od(h):
 
 def _od_pc(h):
     return f"%{int(h)}"
-
-
-def _od_fr(h):
-    h = int(h)
-    simple = {10: "1/10", 20: "2/10", 30: "3/10", 40: "4/10", 50: "5/10", 60: "6/10", 70: "7/10", 80: "8/10", 90: "9/10"}
-    return simple.get(h, f"{h}/100") if random.random() < .5 else f"{h}/100"
 
 
 def _od_rep(h, kind):
@@ -34050,7 +33739,6 @@ def _vy_wrap(fn):
 
 # ---- 5. SINIF MATEMATİK "VERİ TOPLAMA VE DEĞERLENDİRME": ek şekilli aileler — çizgi grafiği, daire grafiği, şekil (simge) grafiği
 _VT_AY = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran"]
-_VT_GUN = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"]
 _VT_ITEM = ["Kitap", "Defter", "Kalem", "Silgi", "Çanta"]
 
 
@@ -34201,9 +33889,6 @@ for _f, _d, _cd in _VT_FAMS:
 
 # ---- 5. SINIF MATEMATİK "DOĞAL SAYILARLA DÖRT İŞLEM": çubuk (bar) model, işlem makinesi, eşit gruplar
 _DD_ISIM = [("Ali", "Veli"), ("Ayşe", "Elif"), ("Mert", "Can"), ("Zeynep", "Deniz"), ("Selin", "Burak")]
-_DD_NESNE = [("kitap", "kitap"), ("kalem", "kalem"), ("bilye", "bilye"), ("sticker", "sticker"), ("kart", "kart")]
-
-
 def _dd_gen(n):
     if n[-1] in "aeıioöuüAEIİOÖUÜ":
         return n + "'nin" if n[-1] in "eiEİ" else n + "'nın" if n[-1] in "aıAI" else n + ("'nun" if n[-1] in "ouOU" else "'nün")
@@ -34846,9 +34531,6 @@ def _frw(c, extra):
     return out
 
 
-_AL_TR = [(3, 4, 5), (4, 3, 5), (6, 8, 10), (5, 12, 13)]
-
-
 def _alan_sh(kind, **kw):
     return {"type": "m6", "sub_type": "alan", "kind": kind, **kw}
 
@@ -34937,9 +34619,6 @@ def _mf6_cm_yay(subject):
 
 
 # ---- Kesirler
-_KF_PR = [(2, 3), (3, 4), (2, 5), (3, 6), (4, 6), (4, 8), (3, 5), (6, 8), (5, 10), (2, 4), (4, 5), (5, 6)]
-
-
 def _mf6_kf_alan(subject):
     d1, d2 = random.choice([(3, 4), (2, 5), (4, 5), (3, 5), (4, 6), (5, 6), (2, 6), (3, 6)])
     a, b = random.randint(1, d1 - 1), random.randint(1, d2 - 1)
@@ -39319,17 +38998,6 @@ def weight_panel(g, key, boxed=True):
     return out
 
 
-def subject_counts(g, defaults, key):
-    out = {}
-    with st.expander("⚙️ Ders başına soru sayıları", expanded=False):
-        def _c(s):
-            out[s] = st.number_input(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", 0, 40, int(defaults.get(s, 0)), key=f"{key}_{s}")
-        theme.cells(cur.subjects_for(g), 2, _c)
-    out = {k: v for k, v in out.items() if v > 0}
-    st.caption(f"Toplam: **{sum(out.values())} soru** • Süre: **{sum(out.values()) * SEC_PER_Q // 60} dk** (soru başına 90 sn)")
-    return out
-
-
 def _avoid():
     return store.recent_stems()
 
@@ -40295,10 +39963,6 @@ def _go(delta=0, to=None):
 def _clear(idx):
     st.session_state.answers.pop(idx, None)
     st.session_state.pop(f"q_{idx}", None)
-
-
-def _jump():
-    _go(to=st.session_state.get("jump_sel", 0))
 
 
 @st.fragment(run_every=1)
@@ -41273,11 +40937,6 @@ def _answer_review(key, ok):
     st.session_state.rev_msg = (ok, days)
     st.session_state.rev_done = st.session_state.get("rev_done", 0) + 1
     st.session_state.rev_ok = st.session_state.get("rev_ok", 0) + (1 if ok else 0)
-
-
-def _rev_pick(key):
-    ok_key = st.session_state.get("rev_cur")
-    st.session_state.rev_checked = True
 
 
 def review():
