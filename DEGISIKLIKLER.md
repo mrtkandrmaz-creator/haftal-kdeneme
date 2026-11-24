@@ -170,3 +170,10 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Çalışma zamanı (`_pool_load`) yalnızca seçilen ünite/tema parçalarını okur (Matematik: kz kodundan tema eşleşmesi indeksle yapılır); en çok 14 parça önbellekte. Eski tek dosya yoksa/klasör yoksa geri dönüş (fallback) çalışır.
 - Ölçüm: Fen ilk çağrı 1,5 sn → 0,04 sn; tüm dersler yüklenince bellek ≈160 MB → yalnızca kullanılan parçalar. Eski/yeni aday kümeleri tüm ders/ünite için birebir aynı (fark 0).
 - `tools/build_pool.py` `read_pool/write_pool` parça düzenini kullanır; `yerel_havuz.yml` değişmedi.
+
+## Sosyal Bilgiler ve Türkçe bilgi bankası genişletmesi (2026-11-24)
+- Sosyal Bilgiler: 6 üniteye 55 yeni bilgi maddesi (grup–rol, bayram/dil kültürü, imece; yön bilgisi, afet hazırlığı, komşu devletler; Göbeklitepe/Çatalhöyük/UNESCO, tekerlek, Frigler; oy verme yaşı, hak–sorumluluk, vergi, polis; bütçe açığı, madencilik, balıkçılık, ticaret; iletişim/ulaşım teknolojisi, güvenli internet, psikoloji).
+- Türkçe: 6 üniteye 64 yeni madde (geleneksel oyunlar, hakem, zıt anlam, yansıma; Atatürk: ilk okul, Gazi unvanı, harf devrimi 1928, kadınlara seçme hakkı 1934; duygular ve beden dili; Hıdırellez, Nevruz, kilim, hat, keşkek, aşure, deyim/atasözü; dize/kıta, 5N1K; sağlıklı beslenme, ilk yardım).
+- Her madde tek doğru, doğru ifade ve öncüllü kalıplara dönüşür (`_FACT_EXTRA` ile, bilgi–kazanım hizası korunarak).
+- Havuz: Sosyal 3702 → 3761, Türkçe 5327 → 5377. Artış küçük: bilgi tabanlı kalıplar madde başına birkaç soru üretir; hatalı/yinelenen 0, run_checks 12/12.
+- Bu maddeleri ben yazdım; bir öğretmen gözden geçirmeli (özellikle tarihler, Göbeklitepe yaşı ve uyku süresi).
