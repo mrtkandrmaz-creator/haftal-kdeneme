@@ -1,0 +1,26 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Eşitsizlikler",
+"passage": "",
+"question": "5x – 2 < 33 eşitsizliğini sağlayan en büyük x tam sayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
+},
+"answer": "C",
+"explanation": "5x < 35 → x < 35/5; en büyük tam sayı 6.",
+"unit": "Eşitsizlikler",
+"topics": "Eşitsizlikler, Sayı doğrusu",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_ineq"
+}
+]
+}

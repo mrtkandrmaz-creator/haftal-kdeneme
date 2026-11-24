@@ -1,0 +1,81 @@
+{
+"v": 2,
+"units": {
+"temel_geometrik_cizimler_ve_insalar_mat_5_3_1_2_1d12.json": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
+"aci_olcme_mat_5_3_3_4_d4b8.json": "Açı Ölçme (MAT.5.3.3-4)",
+"aci_iliskileri_tumler_butunler_komsu_ve_ters_acilar_mat_5_3__e5d0.json": "Açı İlişkileri: Tümler, Bütünler, Komşu ve Ters Açılar (MAT.5.3.4)",
+"cokgenler_ve_cember_mat_5_3_5_7_430d.json": "Çokgenler ve Çember (MAT.5.3.5-7)",
+"basamak_degerlerini_cozumleme_mat_5_1_1_2296.json": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
+"dogal_sayilarla_dort_islem_mat_5_1_2_cdf8.json": "Doğal Sayılarla Dört İşlem (MAT.5.1.2)",
+"dikdortgenin_cevre_ve_alani_mat_5_4_1_2_012e.json": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
+"kesirler_9b24.json": "Kesirler",
+"ondalik_gosterim_ve_yuzdeler_3673.json": "Ondalık Gösterim ve Yüzdeler",
+"veri_toplama_ve_degerlendirme_a1e6.json": "Veri Toplama ve Değerlendirme",
+"islemlerle_cebirsel_dusunme_mat_5_2_1_4_5f29.json": "İşlemlerle Cebirsel Düşünme (MAT.5.2.1-4)",
+"veriden_olasiliga_mat_5_6_1_2_247b.json": "Veriden Olasılığa (MAT.5.6.1-2)"
+},
+"kz": {
+"temel_geometrik_cizimler_ve_insalar_mat_5_3_1_2_1d12.json": [
+"MAT.5.3.1",
+"MAT.5.3.2",
+"MAT.5.3.3",
+"MAT.5.3.4"
+],
+"aci_olcme_mat_5_3_3_4_d4b8.json": [
+"MAT.5.3.3",
+"MAT.5.3.4",
+"MAT.5.3.6"
+],
+"aci_iliskileri_tumler_butunler_komsu_ve_ters_acilar_mat_5_3__e5d0.json": [
+"MAT.5.3.1",
+"MAT.5.3.4",
+"MAT.5.3.6"
+],
+"cokgenler_ve_cember_mat_5_3_5_7_430d.json": [
+"MAT.5.3.1",
+"MAT.5.3.2",
+"MAT.5.3.5",
+"MAT.5.3.6",
+"MAT.5.3.7"
+],
+"basamak_degerlerini_cozumleme_mat_5_1_1_2296.json": [
+"MAT.5.1.1"
+],
+"dogal_sayilarla_dort_islem_mat_5_1_2_cdf8.json": [
+"MAT.5.1.1",
+"MAT.5.1.2",
+"MAT.5.2.2"
+],
+"dikdortgenin_cevre_ve_alani_mat_5_4_1_2_012e.json": [
+"MAT.5.4.1",
+"MAT.5.4.2",
+"MAT.5.4.3",
+"MAT.5.4.4"
+],
+"kesirler_9b24.json": [
+"MAT.5.1.3",
+"MAT.5.1.4"
+],
+"ondalik_gosterim_ve_yuzdeler_3673.json": [
+"MAT.5.1.3",
+"MAT.5.1.4"
+],
+"veri_toplama_ve_degerlendirme_a1e6.json": [
+"MAT.5.2.1",
+"MAT.5.2.3",
+"MAT.5.5.1",
+"MAT.5.5.2"
+],
+"islemlerle_cebirsel_dusunme_mat_5_2_1_4_5f29.json": [
+"MAT.5.1.2",
+"MAT.5.2.1",
+"MAT.5.2.2",
+"MAT.5.2.3",
+"MAT.5.2.4"
+],
+"veriden_olasiliga_mat_5_6_1_2_247b.json": [
+"MAT.5.6.1",
+"MAT.5.6.2"
+]
+}
+}

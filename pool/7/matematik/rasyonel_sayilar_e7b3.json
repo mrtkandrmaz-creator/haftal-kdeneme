@@ -1,0 +1,26 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Kesirlerle işlemler",
+"passage": "",
+"question": "3/4 + 1/5 işleminin sonucu aşağıdakilerden hangisidir? (Kesirler en sade biçimde yazılmıştır.)",
+"shape": null,
+"options": {
+"A": "3/20",
+"B": "4/9",
+"C": "1/5",
+"D": "19/20"
+},
+"answer": "D",
+"explanation": "3/4 + 1/5 = 19/20.",
+"unit": "Rasyonel Sayılar",
+"topics": "Rasyonel sayılarla işlemler, Sıralama",
+"d": 2,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_fracops"
+}
+]
+}

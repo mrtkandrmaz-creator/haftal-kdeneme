@@ -1,0 +1,68 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Denklemler",
+"passage": "",
+"question": "4x + 10 = 22 denkleminde x kaçtır?",
+"shape": null,
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "6"
+},
+"answer": "B",
+"explanation": "4x = 12 → x = 3.",
+"unit": "Cebirsel İfadeler ve Özdeşlikler",
+"topics": "Özdeşlikler, Çarpanlara ayırma",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_eq1"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifadeler ve özdeşlikler",
+"passage": "",
+"question": "(x + 6)² ifadesinin açılımında x’li terimin katsayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "7",
+"B": "12",
+"C": "13",
+"D": "36"
+},
+"answer": "B",
+"explanation": "(x+6)² = x² + 12x + 36.",
+"unit": "Cebirsel İfadeler ve Özdeşlikler",
+"topics": "Özdeşlikler, Çarpanlara ayırma",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_ident"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifadeler ve özdeşlikler",
+"passage": "",
+"question": "(x – 4)(x + 4) çarpımının açılımının sabit terimi kaçtır?",
+"shape": null,
+"options": {
+"A": "–16",
+"B": "8",
+"C": "17",
+"D": "4"
+},
+"answer": "A",
+"explanation": "(x–4)(x+4) = x² – 16; sabit terim –16.",
+"unit": "Cebirsel İfadeler ve Özdeşlikler",
+"topics": "Özdeşlikler, Çarpanlara ayırma",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_ident"
+}
+]
+}

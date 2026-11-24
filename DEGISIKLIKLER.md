@@ -159,3 +159,14 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Neighbourhood, Nature, Universe ünitelerine 48 yeni bilgi maddesi (kazanım başına 3: eğlence yerleri, ev türleri, karşılaştırma, ’s, there is/are; hayvan türleri, vahşi hayvanlar, yaşam alanları, can, must, üstünlük/karşılaştırma; gezegenler, kıtalar, iklim, mevsimler, tatil, be going to). Her madde tek doğru, doğru ifade ve öncüllü kalıplara dönüşüyor.
 - Havuz 3055 → 3087; bu ünitelerde bilgi tabanlı aile sayısı 29→39, 13→23, 10→20. Artış küçük: bilgi tabanlı kalıplar her madde için yalnız birkaç soru üretiyor.
 - Hata düzeltildi (yayına çıkmadı): ek maddeler bilgi–kazanım hizasını bozup bilgi tabanlı ailelerin tamamını devre dışı bırakıyordu; maddeler ek bilgi listesi (`_FACT_EXTRA`) üzerinden eklenerek giderildi.
+
+## Temizlik (2026-11-24)
+- Hiçbir yerden çağrılmayan 41 işlev/sabit (266 satır) kaldırıldı (ör. kullanılmayan şekil çizicileri, eski banka yardımcıları, `gh_delete_profile_async`). app.py 42 133 → 41 792 satır; run_checks 12/12.
+- Depo kökündeki eski/yinelenen dosyalar kaldırıldı: `build_pool.py`, `build_templates.py`, `build_pool.yml` (gerçekleri `tools/` ve `.github/workflows/` içinde), `requirements`, `requirements.txt.txt` (gerçeği `requirements.txt`).
+- Ölçüm: app.py yüklenmesi ≈0,8 sn; dosya boyutu takılmaların nedeni değil. Olası nedenler: GitHub eşitleme, 45 MB havuzun okunması, soru üretim döngüleri (`?admin=1` ile ölçülür).
+
+## Havuz parçalama (2026-11-24)
+- `pool/<sınıf>/<ders>.json` tek dosyası yerine `pool/<sınıf>/<ders>/<ünite>_<hash>.json` parçaları + `_index.json` (ünite→dosya, kazanım kodları).
+- Çalışma zamanı (`_pool_load`) yalnızca seçilen ünite/tema parçalarını okur (Matematik: kz kodundan tema eşleşmesi indeksle yapılır); en çok 14 parça önbellekte. Eski tek dosya yoksa/klasör yoksa geri dönüş (fallback) çalışır.
+- Ölçüm: Fen ilk çağrı 1,5 sn → 0,04 sn; tüm dersler yüklenince bellek ≈160 MB → yalnızca kullanılan parçalar. Eski/yeni aday kümeleri tüm ders/ünite için birebir aynı (fark 0).
+- `tools/build_pool.py` `read_pool/write_pool` parça düzenini kullanır; `yerel_havuz.yml` değişmedi.

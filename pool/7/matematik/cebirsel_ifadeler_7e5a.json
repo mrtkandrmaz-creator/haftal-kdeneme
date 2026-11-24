@@ -1,0 +1,26 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Denklemler",
+"passage": "",
+"question": "7x + 7 = 42 denkleminde x kaçtır?",
+"shape": null,
+"options": {
+"A": "4",
+"B": "5",
+"C": "7",
+"D": "35"
+},
+"answer": "B",
+"explanation": "7x = 35 → x = 5.",
+"unit": "Cebirsel İfadeler",
+"topics": "Cebirsel ifadeler, Denklemler",
+"d": 2,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_eq1"
+}
+]
+}

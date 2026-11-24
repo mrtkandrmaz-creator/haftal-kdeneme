@@ -31671,6 +31671,64 @@ def _pool_read(path):
     return qs
 
 
+def _pool_shard_name(unit):
+    import hashlib
+    u = str(unit or "")
+    return (_pool_slug(u) or "x")[:60] + "_" + hashlib.md5(u.encode("utf-8")).hexdigest()[:4] + ".json"
+
+
+def _pool_load(path, sel_u=None, subject="", grade_label=""):
+    """Havuzu okur. <ders>/ klasörü varsa ünite parçalarından (yalnızca seçilen ünite/tema parçaları) yükler; yoksa eski tek dosya."""
+    d = path[:-5] if path.endswith(".json") else path
+    ip = os.path.join(d, "_index.json")
+    if not os.path.isfile(ip):
+        return _pool_read(path)
+    idx = _pool_read_obj(ip)
+    files = idx.get("units") or {}
+    if sel_u is None:
+        pick = list(files)
+    else:
+        pick = [f for f, u in files.items() if u in sel_u]
+        if subject == "Matematik":
+            try:
+                from . import curriculum as _cu
+                g = next((c for c in str(grade_label) if c.isdigit()), "")
+                units = _cu.units(g, "Matematik")
+                for f, kzs in (idx.get("kz") or {}).items():
+                    if f in pick:
+                        continue
+                    th = {n for n, ks in units if any(str(k).startswith(c + ".") for k in ks for c in kzs)}
+                    if th & set(sel_u):
+                        pick.append(f)
+            except Exception:
+                pass
+    out = []
+    for f in pick:
+        out.extend(_pool_read(os.path.join(d, f)))
+    # bellek: en çok 14 parça önbellekte kalsın
+    keys = [k for k in _POOL_CACHE if k.startswith(d + os.sep) and not k.endswith("_index.json")]
+    for k in keys[:-14]:
+        _POOL_CACHE.pop(k, None)
+    return out
+
+
+def _pool_read_obj(path):
+    try:
+        mt = os.path.getmtime(path)
+    except Exception:
+        return {}
+    c = _POOL_CACHE.get(path)
+    if c and c[0] == mt:
+        return c[1]
+    try:
+        with open(path, encoding="utf-8") as f:
+            o = json.load(f) or {}
+    except Exception:
+        o = {}
+    _POOL_CACHE[path] = (mt, o)
+    return o
+
+
 STYLE_EXAMPLES = {}  # gece betiği doldurur: {ders: [beğenilen soru sözlükleri]}
 
 
@@ -31909,11 +31967,11 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
     En az kullanılanlar önce gelir; görülmüş (geçmiş) sorular ve konu dışı sorular atlanır."""
     if n <= 0 or demo_mode() or os.environ.get("DENEMEMATIK_NO_POOL") == "1":
         return []
-    qs = _pool_read(_pool_path(subject, grade_label))
+    sel_u = _selected_units(grade_label, subject, topics)
+    qs = _pool_load(_pool_path(subject, grade_label), sel_u, subject, grade_label)
     if not qs:
         return []
     want = _pool_tok(topics)
-    sel_u = _selected_units(grade_label, subject, topics)
     store = None
     use = {}
     try:

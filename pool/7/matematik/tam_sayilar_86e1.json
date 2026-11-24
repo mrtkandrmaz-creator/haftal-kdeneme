@@ -1,0 +1,26 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "11 – (–14) + (–8) işleminin sonucu kaçtır?",
+"shape": null,
+"options": {
+"A": "15",
+"B": "–17",
+"C": "17",
+"D": "18"
+},
+"answer": "C",
+"explanation": "11 – (–14) + (–8) = 17.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla işlemler, Üslü ifadeler",
+"d": 2,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_intops"
+}
+]
+}

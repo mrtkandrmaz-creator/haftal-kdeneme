@@ -1,0 +1,68 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Üslü ifadeler",
+"passage": "",
+"question": "5⁶ × 5⁴ = 5ˣ eşitliğinde x kaçtır?",
+"shape": null,
+"options": {
+"A": "2",
+"B": "10",
+"C": "24",
+"D": "50"
+},
+"answer": "B",
+"explanation": "Tabanlar aynı: üsler toplanır, x = 6 + 4 = 10.",
+"unit": "Üslü İfadeler",
+"topics": "Üslü ifadeler, Bilimsel gösterim",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_exp8"
+},
+{
+"subject": "Matematik",
+"topic": "Üslü ifadeler",
+"passage": "",
+"question": "(2⁶)⁵ = 2ˣ eşitliğinde x kaçtır?",
+"shape": null,
+"options": {
+"A": "29",
+"B": "30",
+"C": "31",
+"D": "60"
+},
+"answer": "B",
+"explanation": "Üssün üssü: üsler çarpılır, x = 6×5 = 30.",
+"unit": "Üslü İfadeler",
+"topics": "Üslü ifadeler, Bilimsel gösterim",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_exp8"
+},
+{
+"subject": "Matematik",
+"topic": "Üslü ifadeler",
+"passage": "",
+"question": "(5⁶)³ = 5ˣ eşitliğinde x kaçtır?",
+"shape": null,
+"options": {
+"A": "9",
+"B": "17",
+"C": "18",
+"D": "90"
+},
+"answer": "C",
+"explanation": "Üssün üssü: üsler çarpılır, x = 6×3 = 18.",
+"unit": "Üslü İfadeler",
+"topics": "Üslü ifadeler, Bilimsel gösterim",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_exp8"
+}
+]
+}

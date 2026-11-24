@@ -1,0 +1,47 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Silindir",
+"passage": "",
+"question": "Taban yarıçapı 2 cm ve yüksekliği 2 cm olan dik silindirin hacmi kaç cm³’tür? (π yerine 3 alınız.)",
+"shape": null,
+"options": {
+"A": "12 cm³",
+"B": "48 cm³",
+"C": "26 cm³",
+"D": "24 cm³"
+},
+"answer": "D",
+"explanation": "V = πr²h = 3×2²×2 = 24.",
+"unit": "Dönüşüm Geometrisi ve Geometrik Cisimler",
+"topics": "Yansıma-öteleme, Dik prizma, Silindir, koni",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_cyl"
+},
+{
+"subject": "Matematik",
+"topic": "Silindir",
+"passage": "",
+"question": "Taban yarıçapı 3 cm ve yüksekliği 7 cm olan dik silindirin yanal alanı kaç cm²’dir? (π yerine 3 alınız.)",
+"shape": null,
+"options": {
+"A": "18 cm²",
+"B": "63 cm²",
+"C": "126 cm²",
+"D": "252 cm²"
+},
+"answer": "C",
+"explanation": "A = 2πrh = 2×3×3×7 = 126.",
+"unit": "Dönüşüm Geometrisi ve Geometrik Cisimler",
+"topics": "Yansıma-öteleme, Dik prizma, Silindir, koni",
+"d": 2,
+"ts": 1795373898,
+"src": "local",
+"fam": "_mf_cyl"
+}
+]
+}

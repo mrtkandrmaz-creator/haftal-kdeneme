@@ -1,0 +1,89 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "5 kg fındık 30 TL olduğu bilindiğine göre aynı fiyattan 8 kg fındık kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "48 TL",
+"B": "60 TL",
+"C": "54 TL",
+"D": "40 TL"
+},
+"answer": "A",
+"explanation": "1 kg = 30 ÷ 5 = 6 TL; 8 kg = 8×6 = 48 TL.",
+"unit": "Oran-Orantı ve Yüzdeler",
+"topics": "Doğru-ters orantı, Yüzde problemleri",
+"d": 2,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde problemleri",
+"passage": "",
+"question": "Etiket fiyatı 40 TL olan bir ürüne %20 indirim uygulanıyor. İndirimli fiyat kaç TL olur?",
+"shape": null,
+"options": {
+"A": "48 TL",
+"B": "20 TL",
+"C": "32 TL",
+"D": "42 TL"
+},
+"answer": "C",
+"explanation": "İndirim = 40×20/100 = 8; 40 − 8 = 32 TL.",
+"unit": "Oran-Orantı ve Yüzdeler",
+"topics": "Doğru-ters orantı, Yüzde problemleri",
+"d": 2,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_discount"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "2 kg portakal 24 TL olduğuna göre aynı fiyattan 9 kg portakal kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "96 TL",
+"B": "31 TL",
+"C": "108 TL",
+"D": "120 TL"
+},
+"answer": "C",
+"explanation": "1 kg = 24 ÷ 2 = 12 TL; 9 kg = 9×12 = 108 TL.",
+"unit": "Oran-Orantı ve Yüzdeler",
+"topics": "Doğru-ters orantı, Yüzde problemleri",
+"d": 2,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "2 kg elma 18 TL olduğuna göre aynı fiyattan 5 kg elma kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "54 TL",
+"B": "45 TL",
+"C": "21 TL",
+"D": "36 TL"
+},
+"answer": "B",
+"explanation": "1 kg = 18 ÷ 2 = 9 TL; 5 kg = 5×9 = 45 TL.",
+"unit": "Oran-Orantı ve Yüzdeler",
+"topics": "Doğru-ters orantı, Yüzde problemleri",
+"d": 2,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_prop"
+}
+]
+}

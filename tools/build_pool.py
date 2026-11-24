@@ -33,9 +33,24 @@ def load_pkg(app_py):
     return ai_engine, curriculum, store
 
 
+def _shard_dir(path):
+    return path[:-5] if path.endswith(".json") else path
+
+
 def read_pool(ai, g, subject):
+    """Havuzu okur: ünite parçaları (pool/<sınıf>/<ders>/) varsa onlardan, yoksa eski tek dosyadan. (path, sorular)"""
     path = ai._pool_path(subject, g)
+    d = _shard_dir(path)
+    ip = os.path.join(d, "_index.json")
     try:
+        if os.path.isfile(ip):
+            with open(ip, encoding="utf-8") as f:
+                idx = json.load(f) or {}
+            qs = []
+            for fn in idx.get("units", {}):
+                with open(os.path.join(d, fn), encoding="utf-8") as f:
+                    qs.extend((json.load(f) or {}).get("qs", []))
+            return path, qs
         with open(path, encoding="utf-8") as f:
             return path, (json.load(f) or {}).get("qs", [])
     except Exception:
@@ -43,11 +58,41 @@ def read_pool(ai, g, subject):
 
 
 def write_pool(path, qs):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    tmp = path + ".tmp"
+    """Soruları ünite başına ayrı parça dosyalara yazar (tembel yükleme için) ve eski tek dosyayı siler."""
+    import hashlib
+    d = _shard_dir(path)
+    os.makedirs(d, exist_ok=True)
+
+    def shard(u):
+        u = str(u or "")
+        t = u.replace("İ", "i").replace("I", "ı").lower()
+        for a, b2 in zip("ıöüşçğ", "iouscg"):
+            t = t.replace(a, b2)
+        return (re.sub(r"[^a-z0-9]+", "_", t).strip("_") or "x")[:60] + "_" + hashlib.md5(u.encode("utf-8")).hexdigest()[:4] + ".json"
+
+    groups = {}
+    for q in qs:
+        groups.setdefault(q.get("unit", ""), []).append(q)
+    units, kzm = {}, {}
+    for u, lst in groups.items():
+        fn = shard(u)
+        units[fn] = u
+        kzs = sorted({str(x).rsplit(".", 1)[0] if False else str(x) for q in lst for x in (q.get("kz") or [])})
+        if kzs:
+            kzm[fn] = kzs
+        tmp = os.path.join(d, fn + ".tmp")
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump({"v": 1, "qs": lst}, f, ensure_ascii=False, indent=0)
+        os.replace(tmp, os.path.join(d, fn))
+    for fn in os.listdir(d):
+        if fn.endswith(".json") and fn != "_index.json" and fn not in units:
+            os.remove(os.path.join(d, fn))
+    tmp = os.path.join(d, "_index.json.tmp")
     with open(tmp, "w", encoding="utf-8") as f:
-        json.dump({"v": 1, "qs": qs}, f, ensure_ascii=False, indent=0)
-    os.replace(tmp, path)
+        json.dump({"v": 2, "units": units, "kz": kzm}, f, ensure_ascii=False, indent=0)
+    os.replace(tmp, os.path.join(d, "_index.json"))
+    if os.path.isfile(path):
+        os.remove(path)
 
 
 def collect_bad(bad_dir):

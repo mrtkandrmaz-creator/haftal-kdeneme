@@ -1,0 +1,77 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Üçgenlerde açı",
+"passage": "",
+"question": "Şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(ABC) = 60° olduğuna göre m(BAD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "two_triangles",
+"names": [
+"A",
+"B",
+"C",
+"D"
+],
+"alpha": 60,
+"angles": {
+"B": "60°",
+"BAD": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "110°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "|AB| = |AC| olduğundan m(ACB) = 60° ve m(BAC) = 180 − 2 × 60 = 60°. ACD eşkenar olduğundan m(CAD) = 60°. m(BAD) = 60 + 60 = 120°.",
+"unit": "Doğrular ve Açılar",
+"topics": "Açı ilişkileri, Paralel doğrular",
+"d": 4,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_twotri"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenlerde açı",
+"passage": "",
+"question": "Verilen şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(ABC) = 80° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "two_triangles",
+"names": [
+"A",
+"B",
+"C",
+"D"
+],
+"alpha": 20,
+"angles": {
+"B": "80°",
+"BCD": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "80°",
+"C": "100°",
+"D": "140°"
+},
+"answer": "D",
+"explanation": "|AB| = |AC| olduğundan m(ACB) = m(ABC) = 80°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = 80 + 60 = 140°.",
+"unit": "Doğrular ve Açılar",
+"topics": "Açı ilişkileri, Paralel doğrular",
+"d": 4,
+"ts": 1795373835,
+"src": "local",
+"fam": "_mf_twotri"
+}
+]
+}
