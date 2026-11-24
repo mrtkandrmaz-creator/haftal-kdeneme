@@ -57,42 +57,6 @@
 "ts": 1795373898,
 "src": "local",
 "fam": "_mf_twotri"
-},
-{
-"subject": "Matematik",
-"topic": "Üçgenlerde açı",
-"passage": "",
-"question": "Şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(ABC) = 60° olduğuna göre m(BAD) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "two_triangles",
-"names": [
-"A",
-"B",
-"C",
-"D"
-],
-"alpha": 60,
-"angles": {
-"B": "60°",
-"BAD": "?"
-},
-"show_names": false
-},
-"options": {
-"A": "60°",
-"B": "110°",
-"C": "120°",
-"D": "130°"
-},
-"answer": "C",
-"explanation": "|AB| = |AC| olduğundan m(ACB) = 60° ve m(BAC) = 180 − 2 × 60 = 60°. ACD eşkenar olduğundan m(CAD) = 60°. m(BAD) = 60 + 60 = 120°.",
-"unit": "Üçgenler",
-"topics": "Üçgen eşitsizliği, Pisagor, Benzerlik",
-"d": 4,
-"ts": 1795373898,
-"src": "local",
-"fam": "_mf_twotri"
 }
 ]
 }

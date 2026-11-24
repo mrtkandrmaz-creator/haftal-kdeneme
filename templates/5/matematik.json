@@ -5016,6 +5016,94 @@
     "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
     "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
    ]
+  },
+  {
+   "topic": "MAT.5.6.1",
+   "text": "Ali markette bir paket çikolata alıyor. Paketin fiyatı {p} TL ve Ali {a} paket çikolata almayı düşünüyor. Ali {a} paket çikolata alırsa toplam harcaması kaç TL'dir?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0125",
+   "unit_name": "6. Tema: Veriden Olasılığa",
+   "topics": [
+    "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme",
+    "MAT.5.6.2. Olayları az ya da çok olasılıklı şeklinde yapılandırabilme"
+   ]
+  },
+  {
+   "topic": "Eşitliğin korunumu",
+   "text": "Elif markette {a} adet elma alıyor. Her elma {p} TL. Buna göre elmaların toplam fiyatı kaç TL?",
+   "vars": {
+    "a": {
+     "lo": 2,
+     "hi": 9
+    },
+    "p": {
+     "lo": 10,
+     "hi": 40,
+     "step": 5
+    },
+    "k": {
+     "choices": [
+      2,
+      4,
+      5
+     ]
+    }
+   },
+   "derived": {
+    "t": "a*p"
+   },
+   "constraints": [
+    "a*p<400"
+   ],
+   "answer": "a*p",
+   "wrong": [
+    "a+p",
+    "p-a",
+    "a*p+p"
+   ],
+   "unit": "TL",
+   "explanation": "{a} x {p} = {ans}",
+   "positive": true,
+   "id": "m5-0126",
+   "unit_name": "2. Tema: İşlemlerle Cebirsel Düşünme",
+   "topics": [
+    "MAT.5.2.1. Eşitliğin korunumuna ve işlem özelliklerine yönelik çıkarım yapabilme",
+    "MAT.5.2.2. Karşılaştığı günlük hayat ya da matematiksel durumlarda işlem önceliğini yorumlayabilme",
+    "MAT.5.2.3. Sayı ve şekil örüntülerinin kuralına ilişkin muhakeme yapabilme",
+    "MAT.5.2.4. Temel aritmetik işlem içeren durumlardaki algoritmaları yorumlayabilme"
+   ]
   }
  ]
 }
