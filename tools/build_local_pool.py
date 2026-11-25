@@ -135,6 +135,7 @@ def main():
                 print(f"   hatalı bildirimlerden silinen (yapay zekâ kayıtları): {_n0 - len(keep)}")
             stems = {_bkey(ai, q) for q in keep}
             new = []
+            _tsets = bp.unit_topic_sets(C[sj])
             for unit, topics in C[sj]:
                 utxt = unit + ": " + "; ".join(topics)
                 per = []
@@ -152,6 +153,8 @@ def main():
                         except Exception:
                             q = None
                         if not q or not ai._on_topic(q, utxt, sj, label):
+                            continue
+                        if bp.topic_other_unit(q, unit, _tsets):
                             continue
                         s, m = _bkey(ai, q), _mask(q)
                         if not s or s in stems or forms[m] >= args.per_form:

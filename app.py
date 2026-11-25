@@ -14084,7 +14084,7 @@ def _tf_atasozu(subject):
     return _fact_q(subject, "Atasözleri", f"“{a}” atasözünün ana düşüncesi aşağıdakilerden hangisidir?", m, [x for _a, x in _ATASOZ if x != m], f"Bu atasözü şu anlama gelir: {m}")
 
 
-_TF_GENS = [(_tf_zit, ("söz varlığı", "anlam", "sözcük")), (_tf_deyim, ("deyim", "gelenek")), (_tf_atasozu, ("atasöz", "gelenek", "deyim"))]
+_TF_GENS = [(_tf_zit, ("söz varlığı", "anlam", "sözcük")), (_tf_deyim, ("deyim", "gelenek ve görenek")), (_tf_atasozu, ("atasöz", "gelenek ve görenek", "deyim"))]
 
 
 def turkce_questions(grade_label, n, topics="", seen=(), dl=0):
@@ -19424,8 +19424,8 @@ _choice_fam("Atatürk’ü Tanımak", "_tf_ata3", _TF_GENS, ("atatürk", "istikl
              ("Atatürk hangi şehirde doğmuştur?", "Selanik", ["İstanbul", "Ankara", "İzmir"], "Atatürk 1881’de Selanik’te doğmuştur."),
              ("Çocuklara armağan edilen bayram aşağıdakilerden hangisidir?", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı", ["30 Ağustos Zafer Bayramı", "29 Ekim Cumhuriyet Bayramı", "19 Mayıs Atatürk’ü Anma, Gençlik ve Spor Bayramı"], "23 Nisan çocuklara armağan edilmiştir.")], 2)
 _tfpool("Geleneklerimiz", ["Bayramlarda büyükleri ziyaret etmek geleneklerimizdendir.", "Misafirperverlik, misafire iyi davranmak ve onu ağırlamaktır.", "Atasözleri, uzun deneyimlerden doğan öğüt veren kalıplaşmış sözlerdir.", "Deyimler, genellikle gerçek anlamından farklı bir anlamda kullanılan kalıplaşmış sözlerdir."],
-        ["Bayramlarda büyükleri ziyaret etmek geleneklerimizden değildir.", "Misafirperverlik, misafire kayıtsız kalmaktır.", "Atasözleri, yalnızca şiirlerde kullanılan sözlerdir.", "Deyimler, her zaman gerçek anlamıyla kullanılır."], ["Bayramlar", "Misafirperverlik", "Atasözleri", "Deyimler"], "_tf_gelenek", _TF_GENS, ("gelenek", "misafir", "deyim", "atasöz"), 2)
-_choice_fam("Geleneklerimiz", "_tf_elsanat", _TF_GENS, ("gelenek", "el sanat", "kutlama"),
+        ["Bayramlarda büyükleri ziyaret etmek geleneklerimizden değildir.", "Misafirperverlik, misafire kayıtsız kalmaktır.", "Atasözleri, yalnızca şiirlerde kullanılan sözlerdir.", "Deyimler, her zaman gerçek anlamıyla kullanılır."], ["Bayramlar", "Misafirperverlik", "Atasözleri", "Deyimler"], "_tf_gelenek", _TF_GENS, ("gelenek ve görenek", "misafir", "deyim", "atasöz"), 2)
+_choice_fam("Geleneklerimiz", "_tf_elsanat", _TF_GENS, ("gelenek ve görenek", "el sanat", "kutlama"),
             [("Aşağıdakilerden hangisi geleneksel el sanatlarımızdan biridir?", "Ebru", ["Satranç", "Yüzme", "Basketbol", "Voleybol"], "Ebru geleneksel bir el sanatıdır."),
              ("Türk kültüründe yüzyıllardır yaşatılan sanatlardan biri aşağıdakilerden hangisidir?", "Çini", ["Futbol", "Atletizm", "Satranç", "Tenis"], "Çini geleneksel bir el sanatıdır."),
              ("Usta-çırak geleneğiyle yaşatılan el sanatlarımızdan biri hangisidir?", "Kilim dokumacılığı", ["Basketbol", "Yüzme", "Satranç", "Tenis"], "Kilim dokumacılığı geleneksel bir el sanatıdır.")], 1)

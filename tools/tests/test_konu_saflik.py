@@ -69,6 +69,14 @@ for sj, (gens, facts) in REG.items():
         if kw and u in ut and not any(ai._kw_hit(ut[u], k) for k in kw):
             problems.append(("anahtar-eslesmiyor", sj, f, u))
 
+# --- 2b) Etiketi başka ünitenin kazanımı olan soru yok
+for sj in REG:
+    _, qs = bp.read_pool(ai, G, sj)
+    sets = bp.unit_topic_sets(cur.units("5", sj))
+    for q in qs:
+        if bp.topic_other_unit(q, q["unit"], sets):
+            problems.append(("etiket-baska-unite", sj, q.get("fam"), q["unit"], q.get("topic")))
+
 # --- 3) _unit_guard
 for sj in ("Fen Bilimleri", "Sosyal Bilgiler", "Din Kültürü ve Ahlak Bilgisi"):
     _, qs = bp.read_pool(ai, G, sj)

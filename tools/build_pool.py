@@ -330,3 +330,24 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Soru etiketi (topic) yalnızca BAŞKA bir ünitenin kazanım/ünite adıysa o soru bu üniteye ait değildir.
+TOPIC_ALLOW = {("simple present", "Personal Life"), ("simple present", "Family Life"),
+               ("comparatives and superlatives", "Life in the Neighbourhood & City")}
+
+
+def _tn(t):
+    return " ".join(str(t or "").replace("İ", "i").replace("I", "ı").lower().split())
+
+
+def unit_topic_sets(units):
+    """units: [(ünite, [kazanımlar])] -> {ünite: {normalize ad ve kazanımlar}}"""
+    return {u: {_tn(k) for k in ks} | {_tn(u)} for u, ks in units}
+
+
+def topic_other_unit(q, unit, sets):
+    t = _tn(q.get("topic"))
+    if not t or t in sets.get(unit, ()) or (t, unit) in TOPIC_ALLOW:
+        return False
+    return any(t in s for u, s in sets.items() if u != unit)
