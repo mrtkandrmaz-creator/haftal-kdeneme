@@ -185,3 +185,8 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - **İngilizce:** genel okuma metni (`_en_read`) "Life in…" anahtarıyla World/Nature/Universe ünitelerine, mahalle haritası ve ev soruları okul/sınıf ünitelerine, sınıf "there is" sorusu Neighbourhood ünitesine giriyordu; anahtar sözcükler daraltıldı.
 - Havuz yeniden kuruldu: Türkçe 5377 → 4960, İngilizce 3097 → 2554 (çıkanlar konu dışı sorulardı), Matematik 18 384; hatalı 0, run_checks 12/12. Fen, Sosyal ve Din'de ünite denetimi (`_unit_guard`) tüm havuzda ret vermedi.
 - Bilinçli bırakılanlar: Türkçe'de belge/afiş okuma kalıpları (kermes, davetiye, tarife…) "Görselle iletilen anlam" ve "Bilgilendirici metin" kazanımlarına bağlı olduğu için birden çok ünitede kalıyor.
+
+## Konu saflığı testi (2026-11-25)
+- Yeni test `tools/tests/test_konu_saflik.py` (run_checks'te 13. test, ≈2 sn): (1) Matematik havuzundaki kazanım kodları kalıbın güncel eşlemesini aşamaz, MAT.5.1.1 altında yuvarlama/tablodan toplam/örüntü kalıpları ve olasılık–alan çevre altında market sorusu bulunamaz; (2) diğer derslerde soru, kalıbının anahtar sözcüklerinin eşleştiği ünite dışında çıkamaz, bilgi bankası kalıbı yalnızca kendi ünitesinde çıkar; (3) Fen/Sosyal/Din havuzunda `_unit_guard` ret vermez.
+- Doğrulama: aynı test eski (düzeltmeden önceki) havuzda 1 062 sorun buluyor (Matematik kz 518, kapsam dışı 458, market 60, Türkçe banka 15, anahtar eşleşmeyen 11); yeni havuzda 0.
+- Havuz yeniden kurulduktan sonra test geçmezse push edilmemeli; yeni kalıp eklerken kazanım kodunu `_MF_ITEMCODE`'a yazmayı unutmayın.
