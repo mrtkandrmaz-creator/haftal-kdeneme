@@ -33,7 +33,7 @@
 "options": {
 "A": "Yalnız II",
 "B": "I ve II",
-"C": "I ve III",
+"C": "II ve III",
 "D": "I, II ve III"
 },
 "answer": "B",
@@ -52,7 +52,7 @@
 "subject": "Matematik",
 "topic": "Olasılık",
 "passage": "",
-"question": "Sepette 8 elma, 1 portakal ve 4 armut vardır. Rastgele seçilen birinin portakal olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 10’dan büyük olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
 "shape": null,
 "options": {
 "A": "0",
@@ -2721,7 +2721,7 @@
 },
 "options": {
 "A": "N",
-"B": "P",
+"B": "R",
 "C": "M",
 "D": "S"
 },
@@ -2937,9 +2937,9 @@
 "title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)",
 "headers": [
 "Marka",
-"Elma",
-"Armut",
-"Portakal"
+"Kalem",
+"Silgi",
+"Kalemtıraş"
 ],
 "rows": [
 [
@@ -19567,9 +19567,9 @@
 "rows": [
 [
 "A Marka",
-"25",
-"50",
-"50"
+"30",
+"20",
+"15"
 ],
 [
 "B Marka",
@@ -23678,8 +23678,8 @@
 "title": "Kutulardaki bilyeler",
 "headers": [
 "Kutu",
-"Sarı bilye",
-"Mavi bilye"
+"Mavi bilye",
+"Yeşil bilye"
 ],
 "rows": [
 [
@@ -23691,11 +23691,6 @@
 "L",
 "8",
 "5"
-],
-[
-"L",
-"0",
-"4"
 ],
 [
 "M",
@@ -23715,8 +23710,8 @@
 "C": "K kutusu",
 "D": "N kutusu"
 },
-"answer": "B",
-"explanation": "L kutusunda sarı bilye bulunmadığı için çekilen bilyenin sarı olması imkânsızdır.",
+"answer": "C",
+"explanation": "K kutusunda yeşil bilye bulunmadığı için çekilen bilyenin mavi olması kesindir.",
 "kz": [
 "MAT.5.6.1"
 ],
@@ -25009,7 +25004,7 @@
 "rows": [
 [
 "1. kart",
-"3"
+"5"
 ],
 [
 "2. kart",

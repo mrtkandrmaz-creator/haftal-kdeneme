@@ -373,8 +373,8 @@
 "C": "40",
 "D": "60"
 },
-"answer": "B",
-"explanation": "80 TL’nin %10’i 80 × 10 ÷ 100 = 8 TL’dir.",
+"answer": "C",
+"explanation": "200 TL’nin %20’i 200 × 20 ÷ 100 = 40 TL’dir.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -3755,27 +3755,27 @@
 ],
 "rows": [
 [
-"Yoğurt",
-"32,5"
-],
-[
 "Zeytin",
 "45,5"
 ],
 [
 "Süt",
 "24,5"
+],
+[
+"Ekmek",
+"8,0"
 ]
 ]
 },
 "options": {
-"A": "174,5",
-"B": "175,5",
-"C": "176,0",
-"D": "176,5"
+"A": "205,5",
+"B": "206,5",
+"C": "207,0",
+"D": "207,5"
 },
 "answer": "B",
-"explanation": "4 × 32,5 + 45,5 = 175,5 TL.",
+"explanation": "4 × 45,5 + 24,5 = 206,5 TL.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -4043,7 +4043,7 @@
 "cards": [
 {
 "kind": "grid",
-"k": 35
+"k": 5
 }
 ],
 "show_names": false
@@ -4078,19 +4078,19 @@
 "cards": [
 {
 "kind": "grid",
-"k": 40
+"k": 5
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "40/1000",
-"B": "40/100",
-"C": "60/100",
-"D": "50/100"
+"A": "5/10",
+"B": "95/100",
+"C": "5/1000",
+"D": "5/100"
 },
-"answer": "B",
-"explanation": "100 kareden 40 tanesi taralıdır: 40/100.",
+"answer": "D",
+"explanation": "100 kareden 5 tanesi taralıdır: 5/100.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -4553,19 +4553,19 @@
 "shape": {
 "type": "kes",
 "sub_type": "grup",
-"n": 16,
-"d": 4,
-"k": 3,
+"n": 8,
+"d": 2,
+"k": 1,
 "show_names": false
 },
 "options": {
-"A": "3",
+"A": "1",
 "B": "4",
-"C": "12",
-"D": "16"
+"C": "5",
+"D": "8"
 },
-"answer": "C",
-"explanation": "16 ÷ 4 = 4 top her grupta; 3 grup: 3 × 4 = 12 top.",
+"answer": "B",
+"explanation": "8 ÷ 2 = 4 top her grupta; 1 grup: 1 × 4 = 4 top.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -5759,16 +5759,6 @@
 "kind": "grid",
 "k": 50,
 "label": "T"
-},
-{
-"kind": "text",
-"text": "0,25",
-"label": "R"
-},
-{
-"kind": "text",
-"text": "1/2",
-"label": "L"
 }
 ],
 "show_names": false
@@ -9966,10 +9956,10 @@
 "question": "Aşağıdaki soruyu dikkatle okuyunuz.\n6,2 litrelik bir bidondan 3,2 litre su kullanılıyor. Bidonda kaç litre su kalır?",
 "shape": null,
 "options": {
-"A": "3,0",
-"B": "4,0",
-"C": "4,1",
-"D": "5,0"
+"A": "2,0",
+"B": "3,0",
+"C": "3,1",
+"D": "4,0"
 },
 "answer": "B",
 "explanation": "6,2 − 3,2 = 3,0 L.",
@@ -10059,879 +10049,7 @@
 "subject": "Matematik",
 "topic": "Ondalık gösterim",
 "passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nTabloda bir marketteki bazı ürünlerin fiyatları verilmiştir. Ece, 4 adet yoğurt ve 1 adet ekmek alırsa kaç TL öder?",
-"shape": {
-"type": "table",
-"title": "Market Fiyat Listesi",
-"headers": [
-"Ürün",
-"Fiyat (TL)"
-],
-"rows": [
-[
-"Yoğurt",
-"32,5"
-],
-[
-"Ekmek",
-"8,0"
-],
-[
-"Peynir",
-"62,5"
-]
-]
-},
-"options": {
-"A": "137,0",
-"B": "138,0",
-"C": "138,5",
-"D": "139,0"
-},
-"answer": "B",
-"explanation": "4 × 32,5 + 8,0 = 138,0 TL.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_yn_market"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzde kavramı",
-"passage": "Bir okulda 50 öğrenciye uygulanan ankette öğrencilerin %10’i “evet”, kalanı “hayır” cevabını vermiştir.\nI. Anketi cevaplayanların 7 kişisi “evet” demiştir.\nII. “Hayır” diyenlerin sayısı 42 kişidir.\nIII. “Evet” diyenler katılımcıların yarısından azdır.",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nBuna göre aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "Yalnız III",
-"B": "Yalnız I",
-"C": "I, II ve III",
-"D": "I ve II"
-},
-"answer": "A",
-"explanation": "%10 de 50’in 10/100’üdür: 5.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_yn_yuzde_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nAşağıdaki şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı görülmektedir.\nBuna göre taralı kısım hangi ondalık gösterimle ifade edilir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 1,
-"cards": [
-{
-"kind": "grid",
-"k": 15
-}
-],
-"show_names": false
-},
-"options": {
-"A": "0,15",
-"B": "0,25",
-"C": "0,85",
-"D": "1,5"
-},
-"answer": "A",
-"explanation": "100 kareden 15 tanesi taralıdır: 15/100 = 0,15.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 2,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_ondalik"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nAşağıdaki şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım hangi kesirle ifade edilir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 1,
-"cards": [
-{
-"kind": "grid",
-"k": 90
-}
-],
-"show_names": false
-},
-"options": {
-"A": "90/100",
-"B": "100/100",
-"C": "10/100",
-"D": "90/1000"
-},
-"answer": "A",
-"explanation": "100 kareden 90 tanesi taralıdır: 90/100.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 2,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_kesir"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nYandaki şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı verilmiştir.\nBuna göre taralı kısım için aşağıdakilerden hangisi yanlıştır?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 1,
-"cards": [
-{
-"kind": "grid",
-"k": 75
-}
-],
-"show_names": false
-},
-"options": {
-"A": "%25",
-"B": "%75",
-"C": "0,75",
-"D": "75/100"
-},
-"answer": "A",
-"explanation": "Taralı kısım %75, 75/100 ve 0,75 ile gösterilir; %25 bu değere eşit değildir.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_yanlis"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzdeler",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nVerilen şekilde 100 eş kareye bölünmüş dört bütünün taralı kısımları harflerle verilmiştir.\nBuna göre taralı kısmı %35 ifadesine eşit olan şekil hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 2,
-"cards": [
-{
-"kind": "grid",
-"k": 90,
-"label": "K"
-},
-{
-"kind": "grid",
-"k": 35,
-"label": "M"
-},
-{
-"kind": "grid",
-"k": 45,
-"label": "S"
-},
-{
-"kind": "grid",
-"k": 10,
-"label": "L"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "L",
-"B": "S",
-"C": "M",
-"D": "K"
-},
-"answer": "C",
-"explanation": "%35 = 35 kare taralıdır; bu şekil M ile gösterilmiştir.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_hangi"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Görselde 10 eş parçaya bölünmüş bir bütünün taralı kısmı verilmiştir.\nBuna göre taralı kısım hangi kesirle ifade edilir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 1,
-"cards": [
-{
-"kind": "serit",
-"k": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "2/10",
-"B": "8/100",
-"C": "8/10",
-"D": "1/8"
-},
-"answer": "C",
-"explanation": "10 parçadan 8 tanesi taralıdır: 8/10 = 0,8 = %80.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 2,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_onluk"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzdeler",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nAşağıdaki şekilde eş parçalara bölünmüş dört bütünün taralı kısımları verilmiştir.\nBuna göre kaç şekilde taralı kısım %30 değerine eşittir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 2,
-"cards": [
-{
-"kind": "serit",
-"k": 8,
-"label": "K"
-},
-{
-"kind": "grid",
-"k": 30,
-"label": "R"
-},
-{
-"kind": "grid",
-"k": 80,
-"label": "P"
-},
-{
-"kind": "serit",
-"k": 3,
-"label": "N"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "0",
-"B": "1",
-"C": "2",
-"D": "3"
-},
-"answer": "C",
-"explanation": "Taralı kısmı 30/100 = 0,3 = %30 olan şekil sayısı 2'dür.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_esit_say"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nVerilen sayı doğrusunda her tam bölüm 10 eş aralığa bölünmüştür.\nBuna göre M noktası hangi ondalık sayıyı gösterir?",
-"shape": {
-"type": "kes",
-"sub_type": "sayi",
-"max": 2,
-"d": 10,
-"points": [
-{
-"p": 4,
-"label": "M"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "0,04",
-"B": "0,3",
-"C": "0,4",
-"D": "0,5"
-},
-"answer": "C",
-"explanation": "M noktası 0'dan itibaren 4. çizgidedir; her aralık 0,1 olduğundan değeri 0,4 olur.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_sd_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen sayı doğrusunda her tam bölüm 10 eş aralığa bölünmüştür. Dört nokta harflerle verilmiştir.\nBuna göre 0,7 sayısını gösteren nokta hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "sayi",
-"max": 1,
-"d": 10,
-"points": [
-{
-"p": 7,
-"label": "P"
-},
-{
-"p": 6,
-"label": "M"
-},
-{
-"p": 3,
-"label": "L"
-},
-{
-"p": 9,
-"label": "K"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "P",
-"B": "K",
-"C": "L",
-"D": "M"
-},
-"answer": "A",
-"explanation": "0,7 sayısı 0'dan itibaren 7. çizgidedir; bu nokta P ile gösterilmiştir.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_sd_bul"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nYandaki sayı doğrusunda her tam bölüm 10 eş aralığa bölünmüştür. Üç nokta harflerle görülmektedir.\nBuna göre en büyük ondalık sayıyı gösteren nokta hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "sayi",
-"max": 1,
-"d": 10,
-"points": [
-{
-"p": 6,
-"label": "R"
-},
-{
-"p": 7,
-"label": "N"
-},
-{
-"p": 3,
-"label": "P"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "P",
-"B": "Üçü de eşittir",
-"C": "R",
-"D": "N"
-},
-"answer": "D",
-"explanation": "Sayı doğrusunda sağdaki sayı daha büyüktür; en büyük değer N noktasındadır.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_sd_en"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Verilen sayı doğrusunda 0 ile 0,1 arası 10 eş aralığa bölünmüştür.\nBuna göre S noktası hangi ondalık sayıyı gösterir?",
-"shape": {
-"type": "kes",
-"sub_type": "aralik",
-"lo": 0,
-"hi": 1,
-"scale": 10,
-"points": [
-{
-"p": 2,
-"label": "S"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "0,02",
-"B": "0,03",
-"C": "0,1",
-"D": "0,2"
-},
-"answer": "A",
-"explanation": "0 ile 0,1 arası 10 eş parçadır; her parça 0,01 olur. S noktası 2. çizgidedir: 0,02.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 5,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_sd_aralik"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzdeler",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nYandaki şerit 10 eş parçaya bölünmüş ve uçları %0 ve %100 olarak işaretlenmiştir.\nBuna göre taralı kısım yüzde kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "serit",
-"d": 10,
-"k": 4,
-"show_names": false
-},
-"options": {
-"A": "%40",
-"B": "%60",
-"C": "%4",
-"D": "%50"
-},
-"answer": "A",
-"explanation": "Şeridin tamamı %100 ve 10 parçadır; her parça %10. 4 parça: %40.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_serit"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzdeler",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nŞekilde 6 top 2 eş gruba ayrılmıştır. Renkli gruplar bütünün %50 kadarını göstermektedir.\nBuna göre 6 topun %50 kadarı kaç toptur?",
-"shape": {
-"type": "kes",
-"sub_type": "grup",
-"n": 6,
-"d": 2,
-"k": 1,
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "3",
-"C": "4",
-"D": "6"
-},
-"answer": "B",
-"explanation": "6 ÷ 2 = 3 top her grupta; 1 grup: 1 × 3 = 3 top.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_grup_kac"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzdeler",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nGörselde 100 eş kareye bölünmüş iki bütünün taralı kısımları görülmektedir.\nBuna göre birinci şekildeki taralı kısımdan ikinci şekildeki taralı kısım çıkarılırsa kalan kısım yüzde kaç olur?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 2,
-"cards": [
-{
-"kind": "grid",
-"k": 50
-},
-{
-"kind": "grid",
-"k": 40
-}
-],
-"sep": "−",
-"show_names": false
-},
-"options": {
-"A": "%90",
-"B": "%15",
-"C": "%10",
-"D": "%5"
-},
-"answer": "C",
-"explanation": "%50 − %40 = %10.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_grid_cikar"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nŞekilde aynı bütünün dört farklı gösterimi harfli kartlarla verilmiştir.\nBuna göre hangi kart diğerlerinden farklı bir değeri gösterir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 2,
-"cards": [
-{
-"kind": "text",
-"text": "0,1",
-"label": "L"
-},
-{
-"kind": "text",
-"text": "%10",
-"label": "T"
-},
-{
-"kind": "text",
-"text": "25/100",
-"label": "R"
-},
-{
-"kind": "text",
-"text": "1/10",
-"label": "N"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "L",
-"B": "T",
-"C": "R",
-"D": "N"
-},
-"answer": "C",
-"explanation": "Üç kart 10/100 değerine eşittir; 25/100 farklı değerdedir ve R kartındadır.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_esles_farkli"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nYandaki şekilde farklı gösterimlerle yazılmış dört değer harfli kartlarla verilmiştir.\nBuna göre en küçük değeri gösteren kart hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 2,
-"cards": [
-{
-"kind": "text",
-"text": "5/10",
-"label": "K"
-},
-{
-"kind": "text",
-"text": "0,4",
-"label": "M"
-},
-{
-"kind": "text",
-"text": "1/5",
-"label": "S"
-},
-{
-"kind": "text",
-"text": "3/10",
-"label": "L"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "L",
-"B": "S",
-"C": "M",
-"D": "K"
-},
-"answer": "B",
-"explanation": "Kartlardaki değerler: K: 5/10, M: 0,4, S: 1/5, L: 3/10; en küçük değer 1/5 (S).",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_kart_en"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nYandaki şekilde farklı gösterimlerle yazılmış üç değer harfli kartlarla verilmiştir.\nBuna göre kartlardaki değerler küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 3,
-"cards": [
-{
-"kind": "text",
-"text": "2/5",
-"label": "K"
-},
-{
-"kind": "text",
-"text": "75/100",
-"label": "S"
-},
-{
-"kind": "text",
-"text": "8/10",
-"label": "N"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "K < S < N",
-"B": "K < N < S",
-"C": "N < S < K",
-"D": "S < N < K"
-},
-"answer": "A",
-"explanation": "Değerler: K: 2/5, S: 75/100, N: 8/10; küçükten büyüğe K < S < N.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_kart_sira"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nYandaki şekilde farklı gösterimlerle yazılmış dört değer harfli kartlarla verilmiştir.\nBuna göre kaç kart 1/2 değerine eşittir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 2,
-"cards": [
-{
-"kind": "text",
-"text": "2/5",
-"label": "K"
-},
-{
-"kind": "text",
-"text": "5/10",
-"label": "P"
-},
-{
-"kind": "text",
-"text": "0,25",
-"label": "T"
-},
-{
-"kind": "text",
-"text": "1/10",
-"label": "N"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "0",
-"B": "1",
-"C": "2",
-"D": "3"
-},
-"answer": "B",
-"explanation": "1/2 değerine eşit olan kart sayısı 1'dir.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_od_kart_say"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Okunuşu “iki yüz otuz bir tam yüzde otuz yedi” olan ondalık gösterim aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "231,37",
-"B": "231,370",
-"C": "231,037",
-"D": "231,73"
-},
-"answer": "A",
-"explanation": "iki yüz otuz bir tam yüzde otuz yedi = 231,37.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 2,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_decimal"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık Gösterim",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nAyşe’nin 6,5 metre uzunluğunda bir ipi vardır. 4,8 metresini kullanırsa geriye kaç metre ip kalır?",
-"shape": null,
-"options": {
-"A": "0,7",
-"B": "1,7",
-"C": "1,8",
-"D": "2,7"
-},
-"answer": "B",
-"explanation": "6,5 − 4,8 = 1,7.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 2,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_dec_addsub"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzde",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nBir kütüphanedeki 60 kitabın %20’i çocuk kitabıdır. Kütüphanedeki çocuk kitabı sayısı kaçtır?",
-"shape": null,
-"options": {
-"A": "12",
-"B": "22",
-"C": "24",
-"D": "48"
-},
-"answer": "A",
-"explanation": "60 × 20/100 = 12.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_yuzde_hes"
-},
-{
-"subject": "Matematik",
-"topic": "Yüzde kavramı",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nSelin, 25 soruluk bir denemede 15 soruyu doğru yaptı. Doğru cevap oranı yüzde kaçtır?",
-"shape": null,
-"options": {
-"A": "%50",
-"B": "%85",
-"C": "%60",
-"D": "%75"
-},
-"answer": "C",
-"explanation": "15/25 = 60/100 olduğundan oran %60’tir.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795634590,
-"src": "local",
-"fam": "_mf_yuz_oran"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nTabloda bir marketteki bazı ürünlerin fiyatları verilmiştir. Ece, 3 adet zeytin ve 1 adet yoğurt alırsa kaç TL öder?",
+"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nTabloda bir marketteki bazı ürünlerin fiyatları verilmiştir. Ece, 2 adet zeytin ve 1 adet yoğurt alırsa kaç TL öder?",
 "shape": {
 "type": "table",
 "title": "Market Fiyat Listesi",
@@ -10955,13 +10073,13 @@
 ]
 },
 "options": {
-"A": "168,0",
-"B": "169,0",
-"C": "169,5",
-"D": "170,0"
+"A": "122,5",
+"B": "123,5",
+"C": "124,0",
+"D": "124,5"
 },
 "answer": "B",
-"explanation": "3 × 45,5 + 32,5 = 169,0 TL.",
+"explanation": "2 × 45,5 + 32,5 = 123,5 TL.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -35831,19 +34949,19 @@
 "cards": [
 {
 "kind": "grid",
-"k": 90
+"k": 75
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "0,1",
-"B": "0,9",
-"C": "1",
-"D": "9,0"
+"A": "0,25",
+"B": "0,75",
+"C": "0,85",
+"D": "7,5"
 },
 "answer": "B",
-"explanation": "100 kareden 90 tanesi taralıdır: 90/100 = 0,9.",
+"explanation": "100 kareden 75 tanesi taralıdır: 75/100 = 0,75.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -62346,14 +61464,14 @@
 "answer": "C",
 "explanation": "Sayı doğrusunda sağdaki sayı daha büyüktür; en büyük değer N noktasındadır.",
 "kz": [
-"MAT.5.1.3"
+"MAT.5.1.4"
 ],
 "unit": "Ondalık Gösterim ve Yüzdeler",
 "topics": "Ondalık gösterim, Yüzde kavramı",
 "d": 3,
 "ts": 1795635415,
 "src": "local",
-"fam": "_mf_od_sd_oku"
+"fam": "_mf_od_sd_en"
 },
 {
 "subject": "Matematik",
@@ -65818,11 +64936,6 @@
 "kind": "serit",
 "k": 1,
 "label": "T"
-},
-{
-"kind": "text",
-"text": "25/100",
-"label": "N"
 }
 ],
 "show_names": false

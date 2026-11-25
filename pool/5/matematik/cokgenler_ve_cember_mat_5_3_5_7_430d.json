@@ -9073,18 +9073,27 @@
 "shape": {
 "type": "geo",
 "sub_type": "nested_triangles",
-"mode": "grid",
-"n": 2,
+"mode": "fan",
+"m": 4,
+"labels": [
+"A",
+"B",
+"C",
+"D",
+"E",
+"F",
+"G"
+],
 "show_names": false
 },
 "options": {
-"A": "4",
-"B": "5",
-"C": "6",
-"D": "7"
+"A": "5",
+"B": "6",
+"C": "14",
+"D": "15"
 },
-"answer": "B",
-"explanation": "Yukarı bakan: boyu 1 olan 3, boyu 2 olan 1 (ABC) = 4; aşağı bakan boyu 1 olan 1. Toplam 4 + 1 = 5.",
+"answer": "D",
+"explanation": "Tabanda B ve C dahil 6 nokta vardır. Tepe A ile taban üzerindeki her iki nokta bir üçgen oluşturur: 6 noktadan 2 seçme = 15.",
 "kz": [
 "MAT.5.3.5"
 ],
@@ -11743,7 +11752,7 @@
 "subject": "Matematik",
 "topic": "Çember ve daire elemanları",
 "passage": "",
-"question": "Verilen şekildeki O merkezli çemberde gösterilen BC doğru parçasına ne ad verilir?",
+"question": "Şekildeki O merkezli çemberde DE doğru parçası aşağıdakilerden hangisidir?",
 "shape": {
 "type": "geo",
 "sub_type": "circle_parts",
@@ -11928,8 +11937,8 @@
 "C": "4",
 "D": "6"
 },
-"answer": "B",
-"explanation": "Pergel açıklığı çemberin yarıçapıdır; çap = 2 × 11 = 22 cm.",
+"answer": "C",
+"explanation": "Pergel açıklığı çemberin yarıçapıdır; çap = 2 × 2 = 4 cm.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -17137,7 +17146,7 @@
 "subject": "Matematik",
 "topic": "Üçgenin kenar özellikleri",
 "passage": "",
-"question": "Şu soruyu yanıtlayınız.\nŞekildeki ABC üçgeninin çevre uzunluğu kaç cm'dir?",
+"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekildeki ABC üçgeninin çevre uzunluğu kaç cm'dir?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -19581,81 +19590,25 @@
 "sub_type": "polyfree",
 "pts": [
 [
--0.7071067811865475,
-0.7071067811865476
+6.123233995736766e-17,
+1.0
 ],
 [
--0.7071067811865477,
--0.7071067811865475
+-0.9510565162951535,
+0.3090169943749475
 ],
 [
-0.7071067811865474,
--0.7071067811865477
+-0.5877852522924732,
+-0.8090169943749473
 ],
 [
-0.7071067811865477,
-0.7071067811865474
+0.5877852522924729,
+-0.8090169943749476
+],
+[
+0.9510565162951536,
+0.3090169943749472
 ]
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D"
-],
-"show_names": false
-},
-"options": {
-"A": "4",
-"B": "7",
-"C": "8",
-"D": "9"
-},
-"answer": "C",
-"explanation": "Açı, köşe ve kenar sayıları eşittir: 4 + 4 = 8.",
-"kz": [
-"MAT.5.3.5"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_cokgen_kose"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin açı özellikleri",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-4,
-0
-],
-[
-4,
-3
-],
-[
-2,
-4.8
-],
-[
-0,
-3
-]
-],
-"rights": [
-0,
-1
 ],
 "vlabels": [
 "A",
@@ -29047,47 +29000,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Çember ve daire elemanları",
-"passage": "",
-"question": "Verilen şekildeki O merkezli çemberde DE doğru parçası aşağıdakilerden hangisidir?",
-"shape": {
-"type": "geo",
-"sub_type": "circle_parts",
-"center": "O",
-"parts": [
-"radius",
-"diameter",
-"chord"
-],
-"labels": [
-"A",
-"B",
-"C",
-"D",
-"E"
-],
-"show_names": false
-},
-"options": {
-"A": "Yarıçap",
-"B": "Çap",
-"C": "Kiriş",
-"D": "Yay"
-},
-"answer": "C",
-"explanation": "Merkezden geçmeyen, çember üzerinde iki noktayı birleştiren doğru parçası kiriştir.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 1,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_cember_ad"
-},
-{
-"subject": "Matematik",
 "topic": "Çokgenlerin elemanları",
 "passage": "",
 "question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nŞekilde K, L, M ve N ile gösterilen çokgenlerden hangisi 4 kenarlı bir çokgendir?",
@@ -29128,7 +29040,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Şekillerin elemanları",
+"topic": "Daire elemanları",
 "passage": "",
 "question": "Bir kitaptaki etkinlik inceleniyor.\nYarıçapı 27 cm olan çemberin çapı kaç cm’dir?",
 "shape": null,
@@ -29181,13 +29093,13 @@
 "question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nKare bir çokgendir. Aşağıdakilerden hangisi kare için doğrudur?",
 "shape": null,
 "options": {
-"A": "Dört kenarı her zaman eşittir.",
-"B": "Üç kenarı vardır.",
-"C": "Dört açısı da diktir.",
-"D": "Hiçbir açısı dik değildir."
+"A": "Dört kenarının uzunluğu eşittir.",
+"B": "Yalnızca iki kenarı eşittir.",
+"C": "Hiçbir açısı dik değildir.",
+"D": "Üç köşesi vardır."
 },
-"answer": "C",
-"explanation": "Doğru ifade: “Dört açısı da diktir.” Dikdörtgen için geçerli bir özelliktir; diğer seçenekler dikdörtgen için doğru değildir.",
+"answer": "A",
+"explanation": "Doğru ifade: “Dört kenarının uzunluğu eşittir.” Kare için geçerli bir özelliktir; diğer seçenekler kare için doğru değildir.",
 "kz": [
 "MAT.5.3.5"
 ],
@@ -29200,7 +29112,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Daire elemanları",
+"topic": "Şekillerin elemanları",
 "passage": "",
 "question": "Bir çalışma kâğıdında şu soru vardır.\nBir kenarı 7 cm olan düzgün beşgen çokgenin çevresi kaç cm’dir?",
 "shape": null,
@@ -30144,37 +30056,13 @@
 "question": "Şu soruyu yanıtlayınız.\nBir kenarı 4 cm olan düzgün sekizgen çokgenin çevresi kaç cm’dir?",
 "shape": null,
 "options": {
-"A": "12",
-"B": "14",
-"C": "16",
-"D": "17"
+"A": "24",
+"B": "32",
+"C": "36",
+"D": "40"
 },
 "answer": "B",
-"explanation": "Pergel açıklığı çemberin yarıçapıdır; çap = 2 × 7 = 14 cm.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_cem_pergel"
-},
-{
-"subject": "Matematik",
-"topic": "Şekillerin elemanları",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nBir kenarı 7 cm olan düzgün beşgen çokgenin çevresi kaç cm’dir?",
-"shape": null,
-"options": {
-"A": "30",
-"B": "35",
-"C": "40",
-"D": "49"
-},
-"answer": "B",
-"explanation": "Düzgün çokgenin 5 kenarı eşittir: 5 × 7 = 35 cm.",
+"explanation": "Düzgün çokgenin 8 kenarı eşittir: 8 × 4 = 32 cm.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -30246,7 +30134,7 @@
 "D": "Yalnız II"
 },
 "answer": "A",
-"explanation": "Düzgün altıgen çokgenin 6 eşit kenarı ve 6 köşesi vardır.",
+"explanation": "Düzgün sekizgen çokgenin 8 eşit kenarı ve 8 köşesi vardır.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -30740,7 +30628,7 @@
 0
 ],
 [
-7,
+6,
 0
 ],
 [
@@ -31372,14 +31260,6 @@
 0.4999999999999997,
 0.8660254037844388
 ]
-],
-"side_labels": [
-"",
-"6 cm",
-"",
-"",
-"",
-""
 ],
 "ticks": [
 [
@@ -33626,7 +33506,7 @@
 0
 ],
 [
-10,
+7,
 0
 ],
 [
@@ -33674,7 +33554,7 @@
 "subject": "Matematik",
 "topic": "İki çemberin kesişimi ve üçgen",
 "passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nMerkezleri A ve B noktaları olan, yarıçapları eşit olan iki çember C noktasında kesişmektedir. A merkezli çemberin yarıçapı 12 cm ve |AB| = 21 cm'dir.\nBuna göre |BC| kaç cm'dir?",
+"question": "Bir matematik ödevinde şu soru yer alıyor.\nMerkezleri A ve B noktaları olan, yarıçapları eşit olan iki çember C noktasında kesişmektedir. A merkezli çemberin yarıçapı 4 cm ve |AB| = 5 cm'dir.\nBuna göre |BC| kaç cm'dir?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -33684,12 +33564,12 @@
 0
 ],
 [
-21,
+5,
 0
 ],
 [
-10.5,
-5.809475019311125
+2.5,
+3.122498999199199
 ]
 ],
 "vlabels": [
@@ -33698,20 +33578,20 @@
 "C"
 ],
 "side_labels": [
-"21 cm",
+"5 cm",
 "?",
-"12 cm"
+"4 cm"
 ],
 "show_names": false
 },
 "options": {
-"A": "12",
-"B": "21",
-"C": "24",
-"D": "33"
+"A": "4",
+"B": "5",
+"C": "8",
+"D": "9"
 },
 "answer": "A",
-"explanation": "Çemberlerin yarıçapları eşit olduğundan |BC| = |AC| = 12 cm'dir.",
+"explanation": "Çemberlerin yarıçapları eşit olduğundan |BC| = |AC| = 4 cm'dir.",
 "kz": [
 "MAT.5.3.7"
 ],
@@ -34646,7 +34526,7 @@
 0
 ],
 [
-6,
+3,
 0
 ],
 [
@@ -34660,7 +34540,6 @@
 "C"
 ],
 "side_labels": [
-"6 cm",
 "3 cm",
 "?",
 "5 cm"
@@ -34827,7 +34706,6 @@
 "BC": "5 cm",
 "AB": "3 cm"
 },
-"caption": "ABC üçgeninin çevresi = 23 cm",
 "show_names": false
 },
 "options": {
@@ -35051,7 +34929,7 @@
 "D": "Yalnız II"
 },
 "answer": "A",
-"explanation": "Düzgün sekizgen çokgenin 8 eşit kenarı ve 8 köşesi vardır.",
+"explanation": "Düzgün beşgen çokgenin 5 eşit kenarı ve 5 köşesi vardır.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -36085,17 +35963,17 @@
 "E",
 "F"
 ],
-"center_label": "Çevre = 36 cm",
+"center_label": "Çevre = 24 cm",
 "show_names": false
 },
 "options": {
-"A": "5 cm",
-"B": "6 cm",
-"C": "7 cm",
-"D": "30 cm"
+"A": "3 cm",
+"B": "4 cm",
+"C": "5 cm",
+"D": "18 cm"
 },
 "answer": "B",
-"explanation": "Çokgenin 6 eş kenarı vardır: 36 ÷ 6 = 6 cm.",
+"explanation": "Çokgenin 6 eş kenarı vardır: 24 ÷ 6 = 4 cm.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -36111,1107 +35989,6 @@
 "topic": "Üçgenin kenar özellikleri",
 "passage": "",
 "question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nVerilen şekildeki ABC üçgeninin çevre uzunluğu kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-4,
-0
-],
-[
-4.875,
-10.965143637910085
-]
-],
-"vlabels": [
-"A",
-"B",
-"C"
-],
-"side_labels": [
-"4 cm",
-"11 cm",
-"12 cm"
-],
-"show_names": false
-},
-"options": {
-"A": "23 cm",
-"B": "24 cm",
-"C": "27 cm",
-"D": "29 cm"
-},
-"answer": "C",
-"explanation": "Çevre = 4 + 11 + 12 = 27 cm.",
-"kz": [
-"MAT.5.3.7"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_ucgen_cevre"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin elemanları",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nŞekilde A köşesinden çizilen kesik çizgiler köşegenleri göstermektedir. Bu çokgenin A köşesinden çizilebilecek köşegen sayısı kaçtır?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
--0.3826834323650897,
-0.9238795325112867
-],
-[
--0.9238795325112867,
-0.3826834323650899
-],
-[
--0.9238795325112868,
--0.38268343236508967
-],
-[
--0.3826834323650895,
--0.9238795325112868
-],
-[
-0.38268343236509,
--0.9238795325112866
-],
-[
-0.9238795325112868,
--0.38268343236508956
-],
-[
-0.9238795325112867,
-0.38268343236508995
-],
-[
-0.3826834323650896,
-0.9238795325112868
-]
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D",
-"E",
-"F",
-"G",
-"H"
-],
-"segments": [
-[
--0.3826834323650897,
-0.9238795325112867,
--0.9238795325112868,
--0.38268343236508967
-],
-[
--0.3826834323650897,
-0.9238795325112867,
--0.3826834323650895,
--0.9238795325112868
-],
-[
--0.3826834323650897,
-0.9238795325112867,
-0.38268343236509,
--0.9238795325112866
-],
-[
--0.3826834323650897,
-0.9238795325112867,
-0.9238795325112868,
--0.38268343236508956
-],
-[
--0.3826834323650897,
-0.9238795325112867,
-0.9238795325112867,
-0.38268343236508995
-]
-],
-"show_names": false
-},
-"options": {
-"A": "5",
-"B": "6",
-"C": "7",
-"D": "8"
-},
-"answer": "A",
-"explanation": "Bir köşeden, kendisi ve komşu iki köşe dışındaki köşelere köşegen çizilir: 8 − 3 = 5.",
-"kz": [
-"MAT.5.3.5"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 4,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_kosegen"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin elemanları",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nŞekildeki çokgenin açı sayısı ile köşe sayısının toplamı kaçtır?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-6.123233995736766e-17,
-1.0
-],
-[
--0.9510565162951535,
-0.3090169943749475
-],
-[
--0.5877852522924732,
--0.8090169943749473
-],
-[
-0.5877852522924729,
--0.8090169943749476
-],
-[
-0.9510565162951536,
-0.3090169943749472
-]
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D",
-"E"
-],
-"show_names": false
-},
-"options": {
-"A": "5",
-"B": "9",
-"C": "10",
-"D": "11"
-},
-"answer": "C",
-"explanation": "Açı, köşe ve kenar sayıları eşittir: 5 + 5 = 10.",
-"kz": [
-"MAT.5.3.5"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_cokgen_kose"
-},
-{
-"subject": "Matematik",
-"topic": "Çember ve daire elemanları",
-"passage": "",
-"question": "Şekilde O merkezli çember üzerindeki [BA] doğru parçası çemberin hangi elemanıdır?",
-"shape": {
-"type": "geo",
-"sub_type": "circle_parts",
-"parts": [
-"radius",
-"diameter",
-"chord"
-],
-"center": "O",
-"labels": [
-"F",
-"B",
-"A",
-"K",
-"E"
-],
-"show_names": false
-},
-"options": {
-"A": "Çap",
-"B": "Kiriş",
-"C": "Teğet",
-"D": "Yarıçap"
-},
-"answer": "A",
-"explanation": "[BA] merkezden geçen kirişdir: çaptır.",
-"kz": [
-"MAT.5.3.2"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_cember_el"
-},
-{
-"subject": "Matematik",
-"topic": "İki çemberin kesişimi ve üçgen",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nMerkezleri A ve B noktaları olan iki çember C noktasında kesişmektedir. A merkezli çemberin yarıçapı 8 cm, B merkezli çemberin yarıçapı 6 cm ve |AB| = 4 cm'dir.\nBuna göre ABC üçgeni kenar uzunluklarına göre hangi türdendir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-4,
-0
-],
-[
-5.5,
-5.809475019311125
-]
-],
-"vlabels": [
-"A",
-"B",
-"C"
-],
-"side_labels": [
-"4 cm",
-"6 cm",
-"8 cm"
-],
-"show_names": false
-},
-"options": {
-"A": "Eşkenar üçgen",
-"B": "Çeşitkenar üçgen",
-"C": "İkizkenar üçgen",
-"D": "Dik üçgen"
-},
-"answer": "B",
-"explanation": "|AC| = 8 cm, |BC| = 6 cm ve |AB| = 4 cm olduğundan ABC üçgeni çeşitkenar üçgendir.",
-"kz": [
-"MAT.5.3.7"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf5_ck_tur"
-},
-{
-"subject": "Matematik",
-"topic": "İki çemberin kesişimi ve üçgen",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nMerkezleri A ve B noktaları olan, yarıçapları 12 cm olan iki çember C noktasında kesişmektedir. |AB| = 14 cm'dir.\nBuna göre ABC üçgeninin çevresi kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-14,
-0
-],
-[
-7.0,
-9.746794344808963
-]
-],
-"vlabels": [
-"A",
-"B",
-"C"
-],
-"side_labels": [
-"14 cm",
-"12 cm",
-"12 cm"
-],
-"ticks": [
-[
-1,
-2
-]
-],
-"show_names": false
-},
-"options": {
-"A": "24",
-"B": "26",
-"C": "36",
-"D": "38"
-},
-"answer": "D",
-"explanation": "|AC| = |BC| = 12 cm (yarıçap) ve |AB| = 14 cm olduğundan çevre 12 + 12 + 14 = 38 cm'dir.",
-"kz": [
-"MAT.5.3.7"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf5_ck_cevre"
-},
-{
-"subject": "Matematik",
-"topic": "İki çemberin kesişimi ve üçgen",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nMerkezleri A ve B noktaları olan, yarıçapları eşit olan iki çember C noktasında kesişmektedir. A merkezli çemberin yarıçapı 8 cm ve |AB| = 12 cm'dir.\nBuna göre |BC| kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-12,
-0
-],
-[
-6.0,
-5.291502622129181
-]
-],
-"vlabels": [
-"A",
-"B",
-"C"
-],
-"side_labels": [
-"12 cm",
-"?",
-"8 cm"
-],
-"show_names": false
-},
-"options": {
-"A": "8",
-"B": "12",
-"C": "16",
-"D": "20"
-},
-"answer": "A",
-"explanation": "Çemberlerin yarıçapları eşit olduğundan |BC| = |AC| = 8 cm'dir.",
-"kz": [
-"MAT.5.3.7"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 2,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf5_ck_eksik"
-},
-{
-"subject": "Matematik",
-"topic": "İki çemberin kesişimi ve üçgen",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nMerkezleri A ve B noktaları olan iki çember C noktasında kesişmektedir. Çemberlerin yarıçapları |AC| = 4 cm, |BC| = 4 cm ve |AB| = 3 cm'dir.\nBuna göre ABC üçgeninde hangi kenarların uzunlukları eşittir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-3,
-0
-],
-[
-1.5,
-3.7080992435478315
-]
-],
-"vlabels": [
-"A",
-"B",
-"C"
-],
-"side_labels": [
-"3 cm",
-"4 cm",
-"4 cm"
-],
-"show_names": false
-},
-"options": {
-"A": "|AC| ve |BC|",
-"B": "|AB| ve |BC|",
-"C": "|AB| ve |AC|",
-"D": "Üç kenarı da eşittir"
-},
-"answer": "A",
-"explanation": "|AB| = 3 cm, |AC| = 4 cm, |BC| = 4 cm olduğundan: |AC| ve |BC|.",
-"kz": [
-"MAT.5.3.7"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf5_ck_esit"
-},
-{
-"subject": "Matematik",
-"topic": "Çember",
-"passage": "",
-"question": "Yandaki şekilde birbirine teğet 3 eş çember yan yana dizilmiştir. Her bir çemberin yarıçapı 2 cm olduğu bilindiğine göre dizinin toplam uzunluğu kaç cm’dir?",
-"shape": {
-"type": "geo",
-"sub_type": "nested_circles",
-"mode": "chain",
-"n": 3,
-"labels": [
-"r = 2 cm",
-"?"
-],
-"show_names": false
-},
-"options": {
-"A": "6 cm",
-"B": "8 cm",
-"C": "12 cm",
-"D": "14 cm"
-},
-"answer": "C",
-"explanation": "Her çemberin çapı 2 × 2 = 4 cm; 3 çember: 3 × 4 = 12 cm.",
-"kz": [
-"MAT.5.3.2"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 4,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_nest"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerde çevre",
-"passage": "",
-"question": "Şekilde kenar uzunluğu 10 cm olan ABC eşkenar üçgeninin içinde, kenar uzunluğu 5 cm olan DEF eşkenar üçgeni bulunmaktadır. Bu bilgilere göre ABC üçgeninin çevresi, DEF üçgeninin çevresinden kaç cm fazladır?",
-"shape": {
-"type": "geo",
-"sub_type": "nested_triangles",
-"mode": "midpoint",
-"outer": "10 cm",
-"inner": "5 cm",
-"show_names": false
-},
-"options": {
-"A": "5 cm",
-"B": "15 cm",
-"C": "30 cm",
-"D": "45 cm"
-},
-"answer": "B",
-"explanation": "ABC'nin çevresi 30 cm; DEF'in çevresi 15 cm. Fark 30 − 15 = 15 cm.",
-"kz": [
-"MAT.5.3.5"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 4,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_ntri"
-},
-{
-"subject": "Matematik",
-"topic": "Çember ve üçgen",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nŞekilde A ve B merkezli iki çember C noktasında kesişmektedir. Çemberlerin yarıçapları ve merkezleri arasındaki uzaklık şekilde verilmiştir. Verilenlere göre ABC üçgeni aşağıdakilerden hangisidir?",
-"shape": {
-"type": "geo",
-"sub_type": "nested_circles",
-"mode": "intersect",
-"names": [
-"A",
-"B",
-"C"
-],
-"r1": 6,
-"r2": 9,
-"d": 5,
-"sides": {
-"AC": "6 cm",
-"BC": "9 cm",
-"AB": "5 cm"
-},
-"show_names": false
-},
-"options": {
-"A": "Çeşitkenar üçgen",
-"B": "Dik üçgen",
-"C": "Eşkenar üçgen",
-"D": "İkizkenar üçgen"
-},
-"answer": "A",
-"explanation": "|AC| = 6 cm, |BC| = 9 cm ve |AB| = 5 cm. Üç kenar da farklı: çeşitkenar.",
-"kz": [
-"MAT.5.3.7"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 4,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_inter"
-},
-{
-"subject": "Matematik",
-"topic": "Çember ve daire elemanları",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nŞekildeki O merkezli çemberin yarıçapı 6 cm’dir. Bu çemberin çapı kaç cm’dir?",
-"shape": {
-"type": "circle",
-"center": "O",
-"radius": "6 cm",
-"show_diameter": true,
-"show_names": false
-},
-"options": {
-"A": "6",
-"B": "8",
-"C": "12",
-"D": "14"
-},
-"answer": "C",
-"explanation": "Çap, yarıçapın 2 katıdır: 2 × 6 = 12 cm.",
-"kz": [
-"MAT.5.3.2"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 2,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_cember_cap"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin elemanları",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nVerilen şekilde K, L, M ve N ile gösterilen çokgenlerden hangisinin 6 kenarı vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "polygon_set",
-"kinds": [
-"üçgen",
-"dörtgen",
-"beşgen",
-"altıgen"
-],
-"labels": [
-"K",
-"L",
-"M",
-"N"
-],
-"show_names": false
-},
-"options": {
-"A": "M",
-"B": "N",
-"C": "L",
-"D": "K"
-},
-"answer": "B",
-"explanation": "Altıgenin 6 kenarı vardır; şekilde bu çokgen N harfiyle gösterilmiştir.",
-"kz": [
-"MAT.5.3.6"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 2,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_poly_set"
-},
-{
-"subject": "Matematik",
-"topic": "Daire elemanları",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\n“Çapın uzunluğu yarıçapın uzunluğunun ...” ifadesi aşağıdakilerden hangisiyle doğru tamamlanır?",
-"shape": null,
-"options": {
-"A": "yarısıdır",
-"B": "2 katıdır",
-"C": "3 katıdır",
-"D": "4 katıdır"
-},
-"answer": "B",
-"explanation": "Çap = 2 × yarıçap.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 2,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_cem_bilgi"
-},
-{
-"subject": "Matematik",
-"topic": "Şekillerin elemanları",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nBir kenarı 5 cm olan düzgün altıgen çokgenin çevresi kaç cm’dir?",
-"shape": null,
-"options": {
-"A": "24",
-"B": "25",
-"C": "30",
-"D": "36"
-},
-"answer": "C",
-"explanation": "Düzgün çokgenin 6 kenarı eşittir: 6 × 5 = 30 cm.",
-"kz": [
-"MAT.5.3.6"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 2,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_cg_cevre2"
-},
-{
-"subject": "Matematik",
-"topic": "Şekillerin elemanları",
-"passage": "Bir kenarı 9 cm olan düzgün beşgen çokgen çiziliyor.\nI. Bir beşgen çokgenin 6 köşesi vardır.\nII. Kenarları eşit olan bu çokgenin çevresi 45 cm’dir.\nIII. Bu çokgenin kenar sayısı köşe sayısına eşittir.",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nBuna göre aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "II ve III",
-"B": "Yalnız II",
-"C": "I, II ve III",
-"D": "Yalnız I"
-},
-"answer": "A",
-"explanation": "Düzgün beşgen çokgenin 5 eşit kenarı ve 5 köşesi vardır.",
-"kz": [
-"MAT.5.3.6"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 4,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_yn_cokgen_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin kenar özellikleri",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nVerilen şekildeki düzgün çokgenin çevre uzunluğu kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-6.123233995736766e-17,
-1.0
-],
-[
--0.9510565162951535,
-0.3090169943749475
-],
-[
--0.5877852522924732,
--0.8090169943749473
-],
-[
-0.5877852522924729,
--0.8090169943749476
-],
-[
-0.9510565162951536,
-0.3090169943749472
-]
-],
-"side_labels": [
-"",
-"",
-"5 cm",
-"",
-""
-],
-"ticks": [
-[
-0,
-1,
-2,
-3,
-4
-]
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D",
-"E"
-],
-"show_names": false
-},
-"options": {
-"A": "10 cm",
-"B": "20 cm",
-"C": "25 cm",
-"D": "30 cm"
-},
-"answer": "C",
-"explanation": "Tüm kenarları eşit olan çokgenin 5 kenarı vardır: 5 × 5 = 25 cm.",
-"kz": [
-"MAT.5.3.6"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_duzgun_cevre"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin kenar özellikleri",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nYandaki şekilde çevre uzunluğu yazılı düzgün çokgenin bir kenarı kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
--0.3826834323650897,
-0.9238795325112867
-],
-[
--0.9238795325112867,
-0.3826834323650899
-],
-[
--0.9238795325112868,
--0.38268343236508967
-],
-[
--0.3826834323650895,
--0.9238795325112868
-],
-[
-0.38268343236509,
--0.9238795325112866
-],
-[
-0.9238795325112868,
--0.38268343236508956
-],
-[
-0.9238795325112867,
-0.38268343236508995
-],
-[
-0.3826834323650896,
-0.9238795325112868
-]
-],
-"ticks": [
-[
-0,
-1,
-2,
-3,
-4,
-5,
-6,
-7
-]
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D",
-"E",
-"F",
-"G",
-"H"
-],
-"center_label": "Çevre = 40 cm",
-"show_names": false
-},
-"options": {
-"A": "4 cm",
-"B": "5 cm",
-"C": "6 cm",
-"D": "32 cm"
-},
-"answer": "B",
-"explanation": "Çokgenin 8 eş kenarı vardır: 40 ÷ 8 = 5 cm.",
-"kz": [
-"MAT.5.3.6"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 4,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_duzgun_kenar"
-},
-{
-"subject": "Matematik",
-"topic": "Üçgenin kenar özellikleri",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nVerilen şekildeki ABC üçgeninin çevre uzunluğu kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-8,
-0
-],
-[
-2.5625,
-10.697363869196934
-]
-],
-"vlabels": [
-"A",
-"B",
-"C"
-],
-"side_labels": [
-"8 cm",
-"12 cm",
-"11 cm"
-],
-"show_names": false
-},
-"options": {
-"A": "23 cm",
-"B": "28 cm",
-"C": "31 cm",
-"D": "33 cm"
-},
-"answer": "C",
-"explanation": "Çevre = 8 + 12 + 11 = 31 cm.",
-"kz": [
-"MAT.5.3.7"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_ucgen_cevre"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin elemanları",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nYandaki şekilde A köşesinden çizilen kesik çizgiler köşegenleri göstermektedir. Bu çokgenin A köşesinden çizilebilecek köşegen sayısı kaçtır?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-6.123233995736766e-17,
-1.0
-],
-[
--0.9510565162951535,
-0.3090169943749475
-],
-[
--0.5877852522924732,
--0.8090169943749473
-],
-[
-0.5877852522924729,
--0.8090169943749476
-],
-[
-0.9510565162951536,
-0.3090169943749472
-]
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D",
-"E"
-],
-"segments": [
-[
-6.123233995736766e-17,
-1.0,
--0.5877852522924732,
--0.8090169943749473
-],
-[
-6.123233995736766e-17,
-1.0,
-0.5877852522924729,
--0.8090169943749476
-]
-],
-"show_names": false
-},
-"options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "5"
-},
-"answer": "A",
-"explanation": "Bir köşeden, kendisi ve komşu iki köşe dışındaki köşelere köşegen çizilir: 5 − 3 = 2.",
-"kz": [
-"MAT.5.3.5"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 4,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_kosegen"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin elemanları",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nŞekildeki çokgenin köşe sayısı ile kenar sayısının toplamı kaçtır?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
--0.4999999999999998,
-0.8660254037844387
-],
-[
--1.0,
-1.2246467991473532e-16
-],
-[
--0.5000000000000004,
--0.8660254037844384
-],
-[
-0.5000000000000001,
--0.8660254037844386
-],
-[
-1.0,
--2.4492935982947064e-16
-],
-[
-0.4999999999999997,
-0.8660254037844388
-]
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D",
-"E",
-"F"
-],
-"show_names": false
-},
-"options": {
-"A": "6",
-"B": "10",
-"C": "12",
-"D": "14"
-},
-"answer": "C",
-"explanation": "Bir çokgenin köşe ve kenar sayısı eşittir: 6 + 6 = 12.",
-"kz": [
-"MAT.5.3.5"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_cokgen_kose"
-},
-{
-"subject": "Matematik",
-"topic": "Çember ve daire elemanları",
-"passage": "",
-"question": "Şekilde O merkezli çember üzerindeki [HK] doğru parçası çemberin hangi elemanıdır?",
-"shape": {
-"type": "geo",
-"sub_type": "circle_parts",
-"parts": [
-"radius",
-"diameter",
-"chord"
-],
-"center": "O",
-"labels": [
-"B",
-"H",
-"K",
-"E",
-"A"
-],
-"show_names": false
-},
-"options": {
-"A": "Teğet",
-"B": "Kiriş",
-"C": "Yarıçap",
-"D": "Çap"
-},
-"answer": "D",
-"explanation": "[HK] merkezden geçen kirişdir: çaptır.",
-"kz": [
-"MAT.5.3.2"
-],
-"unit": "Çokgenler ve Çember (MAT.5.3.5-7)",
-"topics": "Çokgenlerin elemanları, Çember ve daire elemanları, Çokgen çizimi",
-"d": 3,
-"ts": 1795634575,
-"src": "local",
-"fam": "_mf_gv_cember_el"
-},
-{
-"subject": "Matematik",
-"topic": "İki çemberin kesişimi ve üçgen",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nMerkezleri A ve B noktaları olan iki çember C noktasında kesişmektedir. A merkezli çemberin yarıçapı 6 cm, B merkezli çemberin yarıçapı 4 cm ve |AB| = 6 cm'dir.\nBuna göre ABC üçgeni kenar uzunluklarına göre hangi türdendir?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -37784,18 +36561,18 @@
 "shape": {
 "type": "circle",
 "center": "O",
-"radius": "10 cm",
+"radius": "6 cm",
 "show_diameter": true,
 "show_names": false
 },
 "options": {
-"A": "10",
-"B": "12",
-"C": "20",
-"D": "22"
+"A": "6",
+"B": "8",
+"C": "12",
+"D": "14"
 },
 "answer": "C",
-"explanation": "Çap, yarıçapın 2 katıdır: 2 × 10 = 20 cm.",
+"explanation": "Çap, yarıçapın 2 katıdır: 2 × 6 = 12 cm.",
 "kz": [
 "MAT.5.3.2"
 ],
@@ -40429,18 +39206,18 @@
 "type": "geo",
 "sub_type": "nested_triangles",
 "mode": "midpoint",
-"outer": "10 cm",
-"inner": "5 cm",
+"outer": "20 cm",
+"inner": "10 cm",
 "show_names": false
 },
 "options": {
-"A": "15 cm",
-"B": "30 cm",
-"C": "45 cm",
-"D": "48 cm"
+"A": "30 cm",
+"B": "60 cm",
+"C": "90 cm",
+"D": "93 cm"
 },
 "answer": "C",
-"explanation": "ABC'nin çevresi 3 × 10 = 30 cm; DEF'in çevresi 3 × 5 = 15 cm. Toplam 30 + 15 = 45 cm.",
+"explanation": "ABC'nin çevresi 3 × 20 = 60 cm; DEF'in çevresi 3 × 10 = 30 cm. Toplam 60 + 30 = 90 cm.",
 "kz": [
 "MAT.5.3.5"
 ],
@@ -40624,7 +39401,7 @@
 "D": "I, II ve III"
 },
 "answer": "A",
-"explanation": "Düzgün beşgen çokgenin 5 eşit kenarı ve 5 köşesi vardır.",
+"explanation": "Düzgün sekizgen çokgenin 8 eşit kenarı ve 8 köşesi vardır.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -41514,36 +40291,46 @@
 "sub_type": "polyfree",
 "pts": [
 [
--0.4999999999999998,
-0.8660254037844387
+-0.3826834323650897,
+0.9238795325112867
 ],
 [
--1.0,
-1.2246467991473532e-16
+-0.9238795325112867,
+0.3826834323650899
 ],
 [
--0.5000000000000004,
--0.8660254037844384
+-0.9238795325112868,
+-0.38268343236508967
 ],
 [
-0.5000000000000001,
--0.8660254037844386
+-0.3826834323650895,
+-0.9238795325112868
 ],
 [
-1.0,
--2.4492935982947064e-16
+0.38268343236509,
+-0.9238795325112866
 ],
 [
-0.4999999999999997,
-0.8660254037844388
+0.9238795325112868,
+-0.38268343236508956
+],
+[
+0.9238795325112867,
+0.38268343236508995
+],
+[
+0.3826834323650896,
+0.9238795325112868
 ]
 ],
 "side_labels": [
+"4 cm",
 "",
 "",
 "",
 "",
-"7 cm",
+"",
+"",
 ""
 ],
 "ticks": [
@@ -41553,7 +40340,9 @@
 2,
 3,
 4,
-5
+5,
+6,
+7
 ]
 ],
 "vlabels": [
@@ -41562,18 +40351,20 @@
 "C",
 "D",
 "E",
-"F"
+"F",
+"G",
+"H"
 ],
 "show_names": false
 },
 "options": {
-"A": "14 cm",
-"B": "35 cm",
-"C": "42 cm",
-"D": "49 cm"
+"A": "8 cm",
+"B": "28 cm",
+"C": "32 cm",
+"D": "36 cm"
 },
 "answer": "C",
-"explanation": "Tüm kenarları eşit olan çokgenin 6 kenarı vardır: 6 × 7 = 42 cm.",
+"explanation": "Tüm kenarları eşit olan çokgenin 8 kenarı vardır: 8 × 4 = 32 cm.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -47859,42 +46650,38 @@
 "subject": "Matematik",
 "topic": "Çokgenlerin elemanları",
 "passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nŞekilde A köşesinden çizilen kesik çizgiler köşegenleri göstermektedir. Bu çokgenin A köşesinden çizilebilecek köşegen sayısı kaçtır?",
+"question": "Bir deneme sınavında şu soru sorulmuştur.\nYandaki şekilde A köşesinden çizilen kesik çizgiler köşegenleri göstermektedir. Bu çokgenin A köşesinden çizilebilecek köşegen sayısı kaçtır?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
 "pts": [
 [
--0.3826834323650897,
-0.9238795325112867
+6.123233995736766e-17,
+1.0
 ],
 [
--0.9238795325112867,
-0.3826834323650899
+-0.78183148246803,
+0.6234898018587333
 ],
 [
--0.9238795325112868,
--0.38268343236508967
+-0.9749279121818236,
+-0.22252093395631428
 ],
 [
--0.3826834323650895,
--0.9238795325112868
+-0.4338837391175583,
+-0.900968867902419
 ],
 [
-0.38268343236509,
--0.9238795325112866
+0.43388373911755795,
+-0.9009688679024193
 ],
 [
-0.9238795325112868,
--0.38268343236508956
+0.9749279121818237,
+-0.22252093395631378
 ],
 [
-0.9238795325112867,
-0.38268343236508995
-],
-[
-0.3826834323650896,
-0.9238795325112868
+0.78183148246803,
+0.6234898018587334
 ]
 ],
 "vlabels": [
@@ -47904,39 +46691,32 @@
 "D",
 "E",
 "F",
-"G",
-"H"
+"G"
 ],
 "segments": [
 [
--0.3826834323650897,
-0.9238795325112867,
--0.9238795325112868,
--0.38268343236508967
+6.123233995736766e-17,
+1.0,
+-0.9749279121818236,
+-0.22252093395631428
 ],
 [
--0.3826834323650897,
-0.9238795325112867,
--0.3826834323650895,
--0.9238795325112868
+6.123233995736766e-17,
+1.0,
+-0.4338837391175583,
+-0.900968867902419
 ],
 [
--0.3826834323650897,
-0.9238795325112867,
-0.38268343236509,
--0.9238795325112866
+6.123233995736766e-17,
+1.0,
+0.43388373911755795,
+-0.9009688679024193
 ],
 [
--0.3826834323650897,
-0.9238795325112867,
-0.9238795325112868,
--0.38268343236508956
-],
-[
--0.3826834323650897,
-0.9238795325112867,
-0.9238795325112867,
-0.38268343236508995
+6.123233995736766e-17,
+1.0,
+0.9749279121818237,
+-0.22252093395631378
 ]
 ],
 "show_names": false

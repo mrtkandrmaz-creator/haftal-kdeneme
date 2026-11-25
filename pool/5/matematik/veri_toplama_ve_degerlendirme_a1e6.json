@@ -3181,10 +3181,10 @@
 "question": "Tabloda “Bir köyde yıllık ürün miktarı” verisi gösterilmiştir. Buğday ve Ayçiçeği için verilen sayıların toplamı kaçtır?",
 "shape": {
 "type": "table",
-"title": "Kütüphanede bir haftada ödünç alınan kitap türleri",
+"title": "Bir köyde yıllık ürün miktarı",
 "headers": [
-"Kitap türü",
-"Kitap"
+"Ürün",
+"Ton"
 ],
 "rows": [
 [
@@ -53986,11 +53986,7 @@
 },
 {
 "name": "Defter",
-"n": 4
-},
-{
-"name": "Kitap",
-"n": 8
+"n": 7
 }
 ],
 "unit": 10,
@@ -54407,10 +54403,10 @@
 "question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nTabloda “Afet farkındalığı eğitimine katılanlar” verisi gösterilmiştir. En büyük sayı ile en küçük sayı arasındaki fark kaçtır?",
 "shape": {
 "type": "table",
-"title": "Bir köyde yıllık ürün miktarı",
+"title": "Afet farkındalığı eğitimine katılanlar",
 "headers": [
-"Ürün",
-"Ton"
+"Grup",
+"Kişi"
 ],
 "rows": [
 [
@@ -54559,7 +54555,7 @@
 "subject": "Matematik",
 "topic": "İstatistik",
 "passage": "",
-"question": "Çetele tablosunda her “||||/” grubu 5 birimi gösterir. Müzik için kaç birim çetele tutulmuştur?",
+"question": "Çetele tablosunda her “||||/” grubu 5 birimi gösterir. Robotik için kaç birim çetele tutulmuştur?",
 "shape": {
 "type": "table",
 "title": "Okul kulüplerine kayıtlı öğrenci sayısı (çetele)",
@@ -54569,12 +54565,8 @@
 ],
 "rows": [
 [
-"Tiyatro",
-"||||/ ||||/ |"
-],
-[
-"Halk oyunları",
-"||||/ ||||/ ||"
+"Robotik",
+"||||/"
 ],
 [
 "Kodlama",
@@ -54591,13 +54583,13 @@
 ]
 },
 "options": {
-"A": "9",
-"B": "10",
-"C": "11",
-"D": "15"
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "10"
 },
 "answer": "B",
-"explanation": "2 grup × 5 + 0 = 10.",
+"explanation": "1 grup × 5 + 0 = 5.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -54615,9 +54607,9 @@
 "question": "Çetele tablosunda her “||||/” grubu 5 birimi gösterir. 5/C ve 5/F için tutulan çetelelerin toplamı kaç birimdir?",
 "shape": {
 "type": "table",
-"title": "Okul kulüplerine kayıtlı öğrenci sayısı (çetele)",
+"title": "Kitap bağışı kampanyasında sınıflara göre toplanan kitap sayısı (çetele)",
 "headers": [
-"Kulüp",
+"Sınıf",
 "Çetele"
 ],
 "rows": [
@@ -54655,7 +54647,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Eşitlik",
+"topic": "Cebirsel İfadeler",
 "passage": "",
 "question": "Aşağıdaki soruyu dikkatle okuyunuz.\nBir sayının 5 katına 15 eklendiğinde 40 elde ediliyor. Bu sayı kaçtır?",
 "shape": null,
@@ -54679,7 +54671,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Örüntüler",
+"topic": "Veri toplama ve değerlendirme",
 "passage": "",
 "question": "Zeynep 28, Ali 37, Mert 39 kitap okumuştur. Üçü birlikte kaç kitap okumuştur?",
 "shape": null,
@@ -54985,8 +54977,7 @@
 "labels": [
 "Ocak",
 "Şubat",
-"Mart",
-"Nisan"
+"Mart"
 ],
 "values": [
 40,
@@ -57629,8 +57620,8 @@
 "C": "Elma",
 "D": "Çilek"
 },
-"answer": "A",
-"explanation": "Grafikte en küçük dilim Muz meyvesine aittir.",
+"answer": "D",
+"explanation": "Grafikte en küçük dilim Çilek meyvesine aittir.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -57653,10 +57644,6 @@
 {
 "name": "Silgi",
 "n": 7
-},
-{
-"name": "Kalem",
-"n": 2
 },
 {
 "name": "Kitap",
@@ -60358,7 +60345,7 @@
 },
 {
 "name": "Kalem",
-"n": 7
+"n": 6
 },
 {
 "name": "Defter",
@@ -62916,13 +62903,13 @@
 "show_names": false
 },
 "options": {
-"A": "24",
-"B": "26",
-"C": "28",
-"D": "30"
+"A": "20",
+"B": "22",
+"C": "24",
+"D": "26"
 },
 "answer": "B",
-"explanation": "6 tam simge ve bir yarım simge: 6 × 4 + 2 = 26.",
+"explanation": "5 tam simge ve bir yarım simge: 5 × 4 + 2 = 22.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -62966,7 +62953,7 @@
 "A": "Yalnız I",
 "B": "Yalnız II",
 "C": "I ve II",
-"D": "I ve III"
+"D": "I, II ve III"
 },
 "answer": "C",
 "explanation": "Doğru ifadeler: I, II.",
@@ -63227,10 +63214,10 @@
 "question": "Tabloda “Bir şehirde yıl boyunca ziyaret edilen yerler (bin kişi)” verisi gösterilmiştir. Müze ve Şelale için verilen sayıların toplamı kaçtır?",
 "shape": {
 "type": "table",
-"title": "Okul kulüplerine kayıtlı öğrenci sayısı",
+"title": "Bir şehirde yıl boyunca ziyaret edilen yerler (bin kişi)",
 "headers": [
-"Kulüp",
-"Öğrenci"
+"Mekân",
+"Bin kişi"
 ],
 "rows": [
 [
@@ -64779,7 +64766,7 @@
 "A": "4",
 "B": "5",
 "C": "6",
-"D": "7"
+"D": "10"
 },
 "answer": "B",
 "explanation": "1 grup × 5 + 0 = 5.",
@@ -74443,10 +74430,10 @@
 "question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nTabloda “Okul kulüplerine kayıtlı öğrenci sayısı” verisi gösterilmiştir. Bu verilere göre sayısı en fazla olan hangisidir?",
 "shape": {
 "type": "table",
-"title": "Bir mahallede kullanılan ulaşım araçları",
+"title": "Okul kulüplerine kayıtlı öğrenci sayısı",
 "headers": [
-"Ulaşım aracı",
-"Kişi"
+"Kulüp",
+"Öğrenci"
 ],
 "rows": [
 [
@@ -78121,15 +78108,15 @@
 "question": "Bir okul yazılısında şu soru yer almıştır.\nTabloda “Bir köyde yıllık ürün miktarı” verisi gösterilmiştir. Bu verilere göre sayısı en fazla olan hangisidir?",
 "shape": {
 "type": "table",
-"title": "Bir mahallede kullanılan ulaşım araçları",
+"title": "Bir köyde yıllık ürün miktarı",
 "headers": [
-"Ulaşım aracı",
-"Kişi"
+"Ürün",
+"Ton"
 ],
 "rows": [
 [
-"Tramvay",
-"62"
+"Mısır",
+"54"
 ],
 [
 "Pamuk",
@@ -78340,30 +78327,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Örüntüler",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nBir örüntünün ilk üç terimi şöyledir: 2, 7, 12. Örüntü aynı kuralla sürdüğüne göre 15. terim kaçtır?",
-"shape": null,
-"options": {
-"A": "67",
-"B": "72",
-"C": "77",
-"D": "78"
-},
-"answer": "B",
-"explanation": "Her adımda 5 artıyor: 2 + 14 × 5 = 72.",
-"kz": [
-"MAT.5.2.3"
-],
-"unit": "Veri Toplama ve Değerlendirme",
-"topics": "Sütun grafiği, Veri yorumlama, Örüntüler",
-"d": 4,
-"ts": 1795634592,
-"src": "local",
-"fam": "_mf_orun_kural"
-},
-{
-"subject": "Matematik",
 "topic": "Veri toplama ve değerlendirme",
 "passage": "",
 "question": "Ece 10, Can 35, Ali 17 kitap okumuştur. Üçü birlikte kaç kitap okumuştur?",
@@ -78483,79 +78446,6 @@
 "ts": 1795635416,
 "src": "local",
 "fam": "_mf_yn_veri_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Veri toplama ve değerlendirme",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nTabloda bir öğrencinin dört gün boyunca çözdüğü soru sayıları verilmiştir. Öğrencinin günlük ortalama çözdüğü soru sayısı kaçtır?",
-"shape": {
-"type": "table",
-"title": "Bir Öğrencinin Günlük Soru Çözme Sayısı",
-"headers": [
-"Gün",
-"Çözülen soru"
-],
-"rows": [
-[
-"Pazartesi",
-"26"
-],
-[
-"Salı",
-"28"
-],
-[
-"Çarşamba",
-"30"
-],
-[
-"Perşembe",
-"36"
-]
-]
-},
-"options": {
-"A": "27",
-"B": "29",
-"C": "30",
-"D": "31"
-},
-"answer": "C",
-"explanation": "Toplam 120; 120 ÷ 4 = 30.",
-"kz": [
-"MAT.5.5.1"
-],
-"unit": "Veri Toplama ve Değerlendirme",
-"topics": "Sütun grafiği, Veri yorumlama, Örüntüler",
-"d": 3,
-"ts": 1795634592,
-"src": "local",
-"fam": "_mf_yn_veri_ort"
-},
-{
-"subject": "Matematik",
-"topic": "İşlem Özellikleri",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\n27 + 22 + 39 = 39 + 27 + □ eşitliğinde □ yerine hangi sayı yazılmalıdır?",
-"shape": null,
-"options": {
-"A": "22",
-"B": "27",
-"C": "39",
-"D": "49"
-},
-"answer": "A",
-"explanation": "Toplamada değişme özelliği vardır: 27 + 22 + 39 = 39 + 27 + 22.",
-"kz": [
-"MAT.5.2.1"
-],
-"unit": "Veri Toplama ve Değerlendirme",
-"topics": "Sütun grafiği, Veri yorumlama, Örüntüler",
-"d": 2,
-"ts": 1795634592,
-"src": "local",
-"fam": "_mf_eqlty2"
 },
 {
 "subject": "Matematik",
@@ -78786,10 +78676,10 @@
 "show_names": false
 },
 "options": {
-"A": "Elma",
-"B": "Muz",
-"C": "Çilek",
-"D": "Kiraz"
+"A": "Çilek",
+"B": "Kiraz",
+"C": "Muz",
+"D": "Elma"
 },
 "answer": "B",
 "explanation": "Grafikte en büyük dilim Kiraz meyvesine aittir.",
@@ -78818,10 +78708,6 @@
 },
 {
 "name": "Kitap",
-"n": 4
-},
-{
-"name": "Defter",
 "n": 4
 },
 {
@@ -78921,11 +78807,15 @@
 "n": 8
 },
 {
+"name": "Çanta",
+"n": 5
+},
+{
 "name": "Defter",
 "n": 6
 }
 ],
-"unit": 2,
+"unit": 10,
 "thing": "adet",
 "show_names": false
 },
@@ -78957,7 +78847,7 @@
 "sub_type": "pikto",
 "rows": [
 {
-"name": "Kalem",
+"name": "Defter",
 "n": 3
 },
 {

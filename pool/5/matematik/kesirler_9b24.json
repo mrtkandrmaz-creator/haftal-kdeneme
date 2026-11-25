@@ -10571,7 +10571,7 @@
 "d": 4,
 "ts": 1795635413,
 "src": "local",
-"fam": "_mf_ks_sd_oku"
+"fam": "_mf_ks_sd_tam"
 },
 {
 "subject": "Matematik",
@@ -10746,10 +10746,10 @@
 "shape": {
 "type": "kes",
 "sub_type": "esdeger",
-"n1": 2,
-"k1": 1,
+"n1": 5,
+"k1": 4,
 "n2": 10,
-"k2": 5,
+"k2": 8,
 "show_names": false
 },
 "options": {
@@ -15235,7 +15235,7 @@
 "subject": "Matematik",
 "topic": "Kesirler",
 "passage": "",
-"question": "Verilen şekilde aynı uzunlukta iki şerit görülmektedir. Üstteki şeridin taralı kısmı 1/2'dir ve alttaki şeridin taralı kısmına eşittir.\nBuna göre alttaki şeridin taralı kısmı hangi kesirle gösterilir?",
+"question": "Şekilde aynı uzunlukta iki şerit gösterilmiştir. Üstteki şeridin taralı kısmı 1/2'dir ve alttaki şeridin taralı kısmına eşittir.\nBuna göre alttaki şeridin taralı kısmı hangi kesirle gösterilir?",
 "shape": {
 "type": "kes",
 "sub_type": "esdeger",
@@ -15342,10 +15342,10 @@
 "question": "Bir tekrar testinde şu soru sorulmuştur.\nBir kantinde gün boyunca 24 sandviç hazırlanmıştır. Sandviçlerin 2/6 kadarı satılmıştır. Kaç sandviç satılmıştır?",
 "shape": null,
 "options": {
-"A": "9",
-"B": "18",
-"C": "72",
-"D": "81"
+"A": "4",
+"B": "8",
+"C": "12",
+"D": "16"
 },
 "answer": "B",
 "explanation": "24 ÷ 6 = 4; 4 × 2 = 8.",
@@ -15770,7 +15770,7 @@
 "D": "2,25"
 },
 "answer": "A",
-"explanation": "Bileşik kesre çevrilir: 9/4 − 7/4 = 2/4 = 2/4.",
+"explanation": "12 kişilik, 6 kişilik tarifin 2 katıdır: 1/4 × 2 = 0,5 kg.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -16998,7 +16998,7 @@
 "subject": "Matematik",
 "topic": "Kesirlerle toplama-çıkarma",
 "passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nBir ip 8 eş parçaya bölünmüştür. Ali 2 parçasını, Veli 2 parçasını kullanmıştır. İpin kullanılmayan kısmı bütünün kaçıdır?",
+"question": "Bir çalışma kâğıdında şu soru vardır.\nBir ip 6 eş parçaya bölünmüştür. Ali 2 parçasını, Veli 1 parçasını kullanmıştır. İpin kullanılmayan kısmı bütünün kaçıdır?",
 "shape": null,
 "options": {
 "A": "4/6",
@@ -17196,7 +17196,7 @@
 "D": "110"
 },
 "answer": "C",
-"explanation": "Harcanan 4/8; kalan 4/8. 1/8 = 30 TL; kalan 30 × 4 = 120 TL.",
+"explanation": "Harcanan 3/5; kalan 2/5. 1/5 = 50 TL; kalan 50 × 2 = 100 TL.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -17231,10 +17231,10 @@
 ]
 },
 "options": {
-"A": "2,0",
-"B": "2,5",
-"C": "4,0",
-"D": "4,5"
+"A": "1,5",
+"B": "2,0",
+"C": "3,0",
+"D": "3,5"
 },
 "answer": "A",
 "explanation": "12 kişilik, 4 kişilik tarifin 3 katıdır: 1/2 × 3 = 1,5 kg.",
@@ -18329,8 +18329,8 @@
 "C": "4 1/6",
 "D": "7/6"
 },
-"answer": "B",
-"explanation": "Bir tam sayı ile bir basit kesirden oluşan kesir tam sayılı kesirdir.",
+"answer": "D",
+"explanation": "Payı paydasına eşit ya da paydasından büyük olan kesir bileşik kesirdir.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -19021,7 +19021,7 @@
 "d": 3,
 "ts": 1795635413,
 "src": "local",
-"fam": "_mf_ks_hangi"
+"fam": "_mf_ks_tamsayili"
 },
 {
 "subject": "Matematik",
@@ -19123,7 +19123,7 @@
 "k": 1
 }
 ],
-"sep": "+",
+"sep": "−",
 "show_names": false
 },
 "options": {
@@ -19156,19 +19156,7 @@
 "panels": [
 {
 "form": "cubuk",
-"n": 12,
-"k": 3,
-"label": "T"
-},
-{
-"form": "cubuk",
-"n": 12,
-"k": 5,
-"label": "K"
-},
-{
-"form": "cubuk",
-"n": 6,
+"n": 5,
 "k": 3,
 "label": "M"
 },
@@ -19274,7 +19262,7 @@
 "form": "daire",
 "n": 2,
 "k": 1,
-"label": "T"
+"label": "L"
 },
 {
 "form": "izgara",
@@ -20827,7 +20815,7 @@
 "type": "kes",
 "sub_type": "sayi",
 "max": 1,
-"d": 4,
+"d": 6,
 "points": [
 {
 "p": 2,
@@ -21728,10 +21716,10 @@
 "show_names": false
 },
 "options": {
-"A": "1/4",
-"B": "1/3",
-"C": "4/1",
-"D": "3/4"
+"A": "5/1",
+"B": "5/6",
+"C": "1/6",
+"D": "6/5"
 },
 "answer": "B",
 "explanation": "Bütün 6 eş parçaya bölünmüş ve 5 parçası taralıdır; kesir 5/6.",
@@ -22453,7 +22441,7 @@
 "subject": "Matematik",
 "topic": "Kesirler",
 "passage": "",
-"question": "Yandaki şekilde bir kümedeki toplar verilmiştir. Kırmızı toplar bütünün bir kısmını oluşturmaktadır.\nBuna göre kırmızı toplar kümenin kaçıdır?",
+"question": "Aşağıdaki şekilde bir kümedeki toplar görülmektedir. Kırmızı toplar bütünün bir kısmını oluşturmaktadır.\nBuna göre kırmızı toplar kümenin kaçıdır?",
 "shape": {
 "type": "kes",
 "sub_type": "grup",
@@ -26962,19 +26950,19 @@
 {
 "form": "dik",
 "n": 4,
-"k": 3
+"k": 2
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "4/3",
-"B": "3/1",
-"C": "1/4",
+"A": "2/2",
+"B": "4/2",
+"C": "2/4",
 "D": "3/4"
 },
-"answer": "D",
-"explanation": "Bütün 4 eş parçaya bölünmüş ve 3 parçası taralıdır; kesir 3/4.",
+"answer": "C",
+"explanation": "Bütün 4 parçadır, 2 parça taralıdır; taranmayan 2 parça: 2/4.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -27140,7 +27128,7 @@
 "subject": "Matematik",
 "topic": "Kesirler",
 "passage": "",
-"question": "Yandaki şekilde eş parçalara bölünmüş özdeş bütünlerin taralı kısımları gösterilmiştir.\nBuna göre taralı bölümlerin tamamı hangi tam sayılı kesirle ifade edilir?",
+"question": "Aşağıdaki şekilde eş parçalara bölünmüş özdeş bütünlerin taralı kısımları verilmiştir.\nBuna göre taralı bölümlerin tamamı hangi tam sayılı kesirle ifade edilir?",
 "shape": {
 "type": "kes",
 "sub_type": "bolge",
@@ -27184,9 +27172,9 @@
 "per_row": 1,
 "panels": [
 {
-"form": "daire",
-"n": 8,
-"k": 3,
+"form": "dik",
+"n": 3,
+"k": 2,
 "w": 3
 }
 ],
@@ -27199,7 +27187,7 @@
 "D": "10/3"
 },
 "answer": "A",
-"explanation": "Her bütün 8 parçadır; taralı parçalar 3 × 8 + 3 = 27: 27/8.",
+"explanation": "Her bütün 3 parçadır; taralı parçalar 3 × 3 + 2 = 11: 11/3.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -28766,10 +28754,6 @@
 {
 "p": 2,
 "label": "L"
-},
-{
-"p": 5,
-"label": "T"
 }
 ],
 "show_names": false
@@ -28845,7 +28829,7 @@
 "type": "kes",
 "sub_type": "sayi",
 "max": 2,
-"d": 4,
+"d": 6,
 "points": [
 {
 "p": 7,
@@ -30143,7 +30127,7 @@
 "subject": "Matematik",
 "topic": "Kesirler",
 "passage": "",
-"question": "Şekilde bir kümedeki toplar gösterilmiştir. Kırmızı toplar bütünün bir kısmını oluşturmaktadır.\nBuna göre kırmızı toplar kümenin kaçıdır?",
+"question": "Aşağıdaki şekilde bir kümedeki toplar görülmektedir. Kırmızı toplar bütünün bir kısmını oluşturmaktadır.\nBuna göre kırmızı toplar kümenin kaçıdır?",
 "shape": {
 "type": "kes",
 "sub_type": "grup",
@@ -30209,9 +30193,9 @@
 "shape": {
 "type": "kes",
 "sub_type": "grup",
-"n": 10,
-"d": 5,
-"k": 4,
+"n": 8,
+"d": 4,
+"k": 3,
 "show_names": false
 },
 "options": {
@@ -31467,20 +31451,20 @@
 "shape": {
 "type": "kes",
 "sub_type": "esdeger",
-"n1": 4,
-"k1": 1,
+"n1": 6,
+"k1": 3,
 "n2": 12,
-"k2": 3,
+"k2": 6,
 "show_names": false
 },
 "options": {
-"A": "1",
-"B": "3",
-"C": "4",
+"A": "3",
+"B": "6",
+"C": "7",
 "D": "9"
 },
 "answer": "B",
-"explanation": "Her parça 3 parçaya bölününce pay da 3 katına çıkar: 1 × 3 = 3.",
+"explanation": "Her parça 2 parçaya bölününce pay da 2 katına çıkar: 3 × 2 = 6.",
 "kz": [
 "MAT.5.1.4"
 ],
@@ -31621,7 +31605,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Kesirler",
+"topic": "Kesir türleri",
 "passage": "",
 "question": "Bir matematik ödevinde şu soru yer alıyor.\nAşağıdakilerden hangisi basit kesirdir?",
 "shape": null,
@@ -31717,7 +31701,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
+"topic": "Kesirler",
 "passage": "",
 "question": "Bir deneme sınavında şu soru sorulmuştur.\nBir kitabın 1/4’i 5 sayfadır. Kitap kaç sayfadır?",
 "shape": null,
@@ -31738,54 +31722,6 @@
 "ts": 1795635413,
 "src": "local",
 "fam": "_mf_kes_tersi"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nBir ip 6 eş parçaya bölünmüştür. Ali 2 parçasını, Veli 1 parçasını kullanmıştır. İpin kullanılmayan kısmı bütünün kaçıdır?",
-"shape": null,
-"options": {
-"A": "4/6",
-"B": "3/8",
-"C": "3/6",
-"D": "2/6"
-},
-"answer": "C",
-"explanation": "Kullanılan 2/6 + 1/6 = 3/6; kalan 6/6 − 3/6 = 3/6.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795634588,
-"src": "local",
-"fam": "_mf_kes_problem_kalan"
-},
-{
-"subject": "Matematik",
-"topic": "Kesir sıralama",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nPayda değeri 11 olan 5/11, 9/11, 4/11, 1/11 kesirlerinden en küçüğü hangisidir?",
-"shape": null,
-"options": {
-"A": "5/11",
-"B": "1/11",
-"C": "9/11",
-"D": "4/11"
-},
-"answer": "B",
-"explanation": "Paydalar eşit olduğunda payı en küçük olan kesir en küçüktür: 1/11.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795634588,
-"src": "local",
-"fam": "_mf_kes_buyuk_kucuk"
 },
 {
 "subject": "Matematik",
@@ -31831,54 +31767,6 @@
 "ts": 1795635413,
 "src": "local",
 "fam": "_mf_yn_kes_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nBir otobüs şehirler arası yolun sabah 1/10’ünü, öğleden sonra 3/10’ünü almıştır. Geriye 300 km yol kaldığına göre bu iki şehir arası kaç km’dir?",
-"shape": null,
-"options": {
-"A": "500",
-"B": "550",
-"C": "600",
-"D": "650"
-},
-"answer": "A",
-"explanation": "Alınan yol 4/10; kalan 6/10 = 300 km. Her 1/10 = 50 km; tamamı 10 × 50 = 500 km.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 4,
-"ts": 1795634588,
-"src": "local",
-"fam": "_mf_yn_kes_yol"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
-"passage": "",
-"question": "Elif’in 200 TL harçlığı vardır. Harçlığının 2/5’ü ile tatlı, 1/5’ü ile oyuncak alıyor. Elif’in geriye kaç TL’si kalır?",
-"shape": null,
-"options": {
-"A": "70",
-"B": "80",
-"C": "90",
-"D": "120"
-},
-"answer": "B",
-"explanation": "Harcanan 3/5; kalan 2/5. 1/5 = 40 TL; kalan 40 × 2 = 80 TL.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795634588,
-"src": "local",
-"fam": "_mf_yn_kes_harclik"
 },
 {
 "subject": "Matematik",
@@ -37941,8 +37829,8 @@
 ],
 "rows": [
 [
-"Un",
-"1/4 kg"
+"Yağ",
+"1/4 litre"
 ],
 [
 "Yumurta",
@@ -37951,10 +37839,10 @@
 ]
 },
 "options": {
-"A": "0,75",
-"B": "1,0",
-"C": "1,5",
-"D": "3,25"
+"A": "1,0",
+"B": "1,25",
+"C": "2,0",
+"D": "4,25"
 },
 "answer": "A",
 "explanation": "24 kişilik, 6 kişilik tarifin 4 katıdır: 1/4 × 4 = 1,0 litre.",
@@ -37970,7 +37858,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
+"topic": "Kesirler",
 "passage": "",
 "question": "Görselde eş parçalara bölünmüş bir bütünün taralı kısmı görülmektedir.\nBuna göre taralı kısım bütünün kaçıdır?",
 "shape": {
@@ -38226,7 +38114,7 @@
 "d": 3,
 "ts": 1795635413,
 "src": "local",
-"fam": "_mf_ks_birim"
+"fam": "_mf_ks_tamsayili"
 },
 {
 "subject": "Matematik",
@@ -38363,7 +38251,7 @@
 "form": "cubuk",
 "n": 12,
 "k": 3,
-"label": "R"
+"label": "P"
 },
 {
 "form": "cubuk",
@@ -38408,7 +38296,7 @@
 "subject": "Matematik",
 "topic": "Kesirler",
 "passage": "",
-"question": "Aşağıdaki şekilde aynı uzunlukta üç şeridin taralı kısımları harflerle gösterilmiştir.\nBuna göre şeritlerin taralı kısımları küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?",
+"question": "Şekilde aynı uzunlukta üç şeridin taralı kısımları harflerle görülmektedir.\nBuna göre şeritlerin taralı kısımları küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?",
 "shape": {
 "type": "kes",
 "sub_type": "bolge",
@@ -38681,7 +38569,7 @@
 "type": "kes",
 "sub_type": "sayi",
 "max": 1,
-"d": 8,
+"d": 5,
 "points": [
 {
 "p": 2,
@@ -38751,19 +38639,19 @@
 "shape": {
 "type": "kes",
 "sub_type": "grup",
-"n": 6,
-"d": 3,
+"n": 18,
+"d": 6,
 "k": 1,
 "show_names": false
 },
 "options": {
 "A": "1",
-"B": "2",
-"C": "3",
-"D": "4"
+"B": "3",
+"C": "6",
+"D": "15"
 },
 "answer": "B",
-"explanation": "6 ÷ 3 = 2 top her grupta; 1 grup: 1 × 2 = 2 top.",
+"explanation": "18 ÷ 6 = 3 top her grupta; 1 grup: 1 × 3 = 3 top.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -69971,7 +69859,7 @@
 "type": "kes",
 "sub_type": "sayi",
 "max": 1,
-"d": 10,
+"d": 6,
 "points": [
 {
 "p": 2,

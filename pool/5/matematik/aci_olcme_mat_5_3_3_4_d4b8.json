@@ -1784,10 +1784,10 @@
 "show_names": false
 },
 "options": {
-"A": "0°",
-"B": "15°",
-"C": "45°",
-"D": "75°"
+"A": "105°",
+"B": "120°",
+"C": "135°",
+"D": "165°"
 },
 "answer": "C",
 "explanation": "Yelkovan 6'da (180°), akrep 10. ile 11. rakamın tam ortasındadır (315°). Fark = 135°.",
@@ -3024,13 +3024,13 @@
 "show_names": false
 },
 "options": {
-"A": "Geniş açı",
-"B": "Dik açı",
+"A": "Doğru açı",
+"B": "Geniş açı",
 "C": "Dar açı",
-"D": "Doğru açı"
+"D": "Dik açı"
 },
-"answer": "C",
-"explanation": "Açı dik açıdan küçük (ve doğru açıdan küçük) olduğundan dar açıdır.",
+"answer": "B",
+"explanation": "Açı dik açıdan büyük (ve doğru açıdan küçük) olduğundan geniş açıdır.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -3435,7 +3435,7 @@
 "subject": "Matematik",
 "topic": "Ölçü ve tür bilgisi",
 "passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nÖlçüsü bir doğru açının yarısı kadar olan açı kaç derecedir?",
+"question": "Aşağıdaki problemi çözünüz.\nÖlçüsü bir dik açının iki katı kadar olan açı kaç derecedir?",
 "shape": null,
 "options": {
 "A": "30°",
@@ -3443,8 +3443,8 @@
 "C": "90°",
 "D": "180°"
 },
-"answer": "C",
-"explanation": "Dik açı 90°, doğru açı 180°’dir; buna göre sonuç 90°’dir.",
+"answer": "D",
+"explanation": "Dik açı 90°, doğru açı 180°’dir; buna göre sonuç 180°’dir.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -3609,10 +3609,10 @@
 "A": "30",
 "B": "36",
 "C": "40",
-"D": "72"
+"D": "45"
 },
-"answer": "D",
-"explanation": "Tam tur 360°’dir; 360 ÷ 5 = 72°.",
+"answer": "B",
+"explanation": "Tam tur 360°’dir; 360 ÷ 10 = 36°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -3890,7 +3890,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 3,
+"hour": 10,
 "minute": 0,
 "show_names": false
 },
@@ -3916,7 +3916,7 @@
 "subject": "Matematik",
 "topic": "Çokgenlerin açı özellikleri",
 "passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
+"question": "Bir tekrar testinde şu soru sorulmuştur.\nŞekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -5100,7 +5100,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 65,
+"degree": 25,
 "rotation": 10,
 "labels": [
 "O",
@@ -5305,9 +5305,9 @@
 "B",
 "C"
 ],
-"split": 110,
+"split": 40,
 "split_labels": [
-"110°",
+"40°",
 ""
 ],
 "angle_label": "80°",
@@ -5665,16 +5665,16 @@
 "subject": "Matematik",
 "topic": "Ölçü ve tür bilgisi",
 "passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nBir pergelin ucu yarım tur döndürülüyor. Dönme açısı kaç derecedir?",
+"question": "Bir deneme sınavında şu soru sorulmuştur.\nBir pergelin ucu tam tur döndürülüyor. Dönme açısı kaç derecedir?",
 "shape": null,
 "options": {
 "A": "45",
 "B": "90",
 "C": "180",
-"D": "270"
+"D": "360"
 },
-"answer": "C",
-"explanation": "Yarım tur 180°’dir.",
+"answer": "D",
+"explanation": "Tam tur 360°’dir.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -6016,7 +6016,7 @@
 0
 ],
 [
-5,
+3,
 3
 ],
 [
@@ -6026,8 +6026,6 @@
 ],
 "rights": [
 0,
-1,
-2,
 3
 ],
 "vlabels": [
@@ -6044,8 +6042,8 @@
 "C": "3",
 "D": "4"
 },
-"answer": "D",
-"explanation": "Şekilde 4 köşede dik açı işareti vardır.",
+"answer": "B",
+"explanation": "Şekilde 2 köşede dik açı işareti vardır.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -6073,19 +6071,18 @@
 "O",
 "A",
 "B",
-"C",
-"D"
+"C"
 ],
 "show_names": false
 },
 "options": {
-"A": "4",
-"B": "5",
-"C": "6",
-"D": "7"
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "6"
 },
-"answer": "C",
-"explanation": "4 ışından ikisi seçilir: 6 farklı açı oluşur.",
+"answer": "B",
+"explanation": "3 ışından ikisi seçilir: 3 farklı açı oluşur.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -8168,7 +8165,7 @@
 "subject": "Matematik",
 "topic": "Açı ilişkileri",
 "passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nŞekilde üç doğru O noktasında kesişmektedir. x ile gösterilen açının ölçüsü kaç derecedir?",
+"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nŞekilde üç doğru O noktasında kesişmektedir. x ile gösterilen açının ölçüsü kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "lines3",
@@ -8253,10 +8250,10 @@
 "B",
 "C"
 ],
-"split": 65,
+"split": 55,
 "split_labels": [
-"65°",
-"75°"
+"55°",
+""
 ],
 "angle_label": "130°",
 "show_names": false
@@ -24317,8 +24314,8 @@
 "C": "90°",
 "D": "180°"
 },
-"answer": "B",
-"explanation": "Dik açı 90°, doğru açı 180°’dir; buna göre sonuç 45°’dir.",
+"answer": "C",
+"explanation": "Dik açı 90°, doğru açı 180°’dir; buna göre sonuç 90°’dir.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -24389,8 +24386,8 @@
 "C": "180",
 "D": "270"
 },
-"answer": "B",
-"explanation": "Dörtte bir tur 90°’dir.",
+"answer": "C",
+"explanation": "Yarım tur 180°’dir.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -24429,7 +24426,7 @@
 "subject": "Matematik",
 "topic": "Açı ölçme",
 "passage": "",
-"question": "Şu soruyu yanıtlayınız.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
+"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
@@ -24584,7 +24581,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 5,
+"hour": 10,
 "minute": 0,
 "show_names": false
 },
@@ -24680,8 +24677,12 @@
 0
 ],
 [
-4,
+5,
 0
+],
+[
+3,
+3
 ],
 [
 0,
@@ -24689,12 +24690,14 @@
 ]
 ],
 "rights": [
-0
+0,
+3
 ],
 "vlabels": [
 "A",
 "B",
-"C"
+"C",
+"D"
 ],
 "show_names": false
 },
@@ -24704,8 +24707,8 @@
 "C": "3",
 "D": "4"
 },
-"answer": "A",
-"explanation": "Şekilde 1 köşede dik açı işareti vardır.",
+"answer": "B",
+"explanation": "Şekilde 2 köşede dik açı işareti vardır.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -24797,7 +24800,7 @@
 "subject": "Matematik",
 "topic": "Açı türleri",
 "passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nVerilen şekildeki AOB açısı hangi açı türündendir?",
+"question": "Bir öğrenci kendi kendine soru çözüyor.\nŞekildeki AOB açısı hangi açı türündendir?",
 "shape": {
 "type": "geo",
 "sub_type": "angle",
@@ -24836,7 +24839,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 90,
+"degree": 130,
 "rotation": 10,
 "labels": [
 "O",
@@ -24844,22 +24847,22 @@
 "B",
 "C"
 ],
-"split": 70,
+"split": 85,
 "split_labels": [
-"70°",
+"85°",
 ""
 ],
-"angle_label": "90°",
+"angle_label": "130°",
 "show_names": false
 },
 "options": {
-"A": "20",
-"B": "30",
-"C": "70",
-"D": "90"
+"A": "45",
+"B": "55",
+"C": "85",
+"D": "130"
 },
 "answer": "A",
-"explanation": "m(COB) = 90° − 70° = 20°.",
+"explanation": "m(COB) = 130° − 85° = 45°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -24921,7 +24924,7 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 110,
-"rotation": 20,
+"rotation": 0,
 "labels": [
 "O",
 "A",
@@ -24936,7 +24939,7 @@
 "C": "Dar açı",
 "D": "Dik açı"
 },
-"answer": "C",
+"answer": "A",
 "explanation": "110° ölçülü açı: 90°’den büyük, 180°’den küçük → geniş açı.",
 "kz": [
 "MAT.5.3.3"
@@ -24969,7 +24972,7 @@
 "40°",
 "50°"
 ],
-"angle_label": "100°",
+"angle_label": "90°",
 "show_names": false
 },
 "options": {
@@ -25039,10 +25042,10 @@
 "question": "Ders sonunda küçük bir değerlendirme yapılıyor.\n149° ölçüsündeki bir açı hangi türde açıdır?",
 "shape": null,
 "options": {
-"A": "doğru açı",
-"B": "dar açı",
-"C": "geniş açı",
-"D": "dik açı"
+"A": "geniş açı",
+"B": "doğru açı",
+"C": "dik açı",
+"D": "dar açı"
 },
 "answer": "A",
 "explanation": "90°’den büyük, 180°’den küçük açı geniş açıdır.",
@@ -25162,10 +25165,10 @@
 "A": "45",
 "B": "90",
 "C": "180",
-"D": "270"
+"D": "360"
 },
-"answer": "C",
-"explanation": "Yarım tur 180°’dir.",
+"answer": "D",
+"explanation": "Tam tur 360°’dir.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -25329,18 +25332,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
-"degree": 70,
+"degree": 50,
 "base": "right",
 "show_names": false
 },
 "options": {
-"A": "20°",
-"B": "70°",
-"C": "110°",
-"D": "160°"
+"A": "40°",
+"B": "50°",
+"C": "130°",
+"D": "140°"
 },
 "answer": "A",
-"explanation": "m(AOB) = 70° okunur. Tümleyeni 90° − 70° = 20°.",
+"explanation": "m(AOB) = 50° okunur. Tümleyeni 90° − 50° = 40°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -25355,22 +25358,22 @@
 "subject": "Matematik",
 "topic": "Açı ölçme",
 "passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nVerilen şekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
+"question": "Bir öğrenci konu tekrarı yapıyor.\nŞekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 3,
+"hour": 4,
 "minute": 0,
 "show_names": false
 },
 "options": {
-"A": "60°",
-"B": "90°",
-"C": "120°",
-"D": "270°"
+"A": "90°",
+"B": "120°",
+"C": "150°",
+"D": "240°"
 },
 "answer": "B",
-"explanation": "Saat tam 3.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 90°.",
+"explanation": "Saat tam 4.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 120°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -26947,18 +26950,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 5,
+"hour": 9,
 "minute": 30,
 "show_names": false
 },
 "options": {
-"A": "15°",
-"B": "30°",
-"C": "45°",
-"D": "75°"
+"A": "90°",
+"B": "105°",
+"C": "135°",
+"D": "165°"
 },
-"answer": "A",
-"explanation": "Yelkovan 6'da (180°), akrep 5. ile 6. rakamın tam ortasındadır (165°). Fark = 15°.",
+"answer": "B",
+"explanation": "Yelkovan 6'da (180°), akrep 9. ile 10. rakamın tam ortasındadır (285°). Fark = 105°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -27003,7 +27006,7 @@
 "subject": "Matematik",
 "topic": "Çokgenlerin açı özellikleri",
 "passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
+"question": "Konu tekrarı için hazırlanan bir soru:\nŞekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -30979,10 +30982,10 @@
 "show_names": false
 },
 "options": {
-"A": "55°",
-"B": "85°",
-"C": "95°",
-"D": "105°"
+"A": "35°",
+"B": "45°",
+"C": "55°",
+"D": "135°"
 },
 "answer": "B",
 "explanation": "Yan yana üç açının toplamı doğru açıdır: 180° − 50° − 85° = 45°.",
@@ -32567,9 +32570,9 @@
 "B",
 "C"
 ],
-"split": 60,
+"split": 35,
 "split_labels": [
-"60°",
+"35°",
 ""
 ],
 "angle_label": "100°",
@@ -32650,7 +32653,7 @@
 "A",
 "B"
 ],
-"angle_label": "110°",
+"angle_label": "45°",
 "show_names": false
 },
 "options": {
@@ -33484,22 +33487,22 @@
 "B",
 "C"
 ],
-"split": 55,
+"split": 68,
 "split_labels": [
-"2x+9",
-"3x−14"
+"2x+20",
+"3x−4"
 ],
-"angle_label": "110°",
+"angle_label": "136°",
 "show_names": false
 },
 "options": {
-"A": "18",
-"B": "23",
-"C": "28",
-"D": "55"
+"A": "19",
+"B": "24",
+"C": "29",
+"D": "68"
 },
 "answer": "B",
-"explanation": "Açıortay açıyı eşit böler: 2x + 9 = 3x − 14 → x = 23.",
+"explanation": "Açıortay açıyı eşit böler: 2x + 20 = 3x − 4 → x = 24.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -33899,7 +33902,7 @@
 "subject": "Matematik",
 "topic": "Çokgenlerin açı özellikleri",
 "passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
+"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nŞekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -33909,16 +33912,12 @@
 0
 ],
 [
-4,
+5,
 0
 ],
 [
-4,
+3,
 3
-],
-[
-2,
-4.8
 ],
 [
 0,
@@ -33927,14 +33926,13 @@
 ],
 "rights": [
 0,
-1
+3
 ],
 "vlabels": [
 "A",
 "B",
 "C",
-"D",
-"E"
+"D"
 ],
 "show_names": false
 },
@@ -34371,8 +34369,8 @@
 {
 "subject": "Matematik",
 "topic": "Ölçü ve tür bilgisi",
-"passage": "Bir öğretmen tahtaya ölçüleri 75° ve 100° olan iki açı çizmiştir.\nI. 75° ölçüsündeki açı dar açıdır.\nII. 100° ölçüsündeki açı dik açıdır.\nIII. Bu iki açının toplamı 185°’dir.",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nBuna göre aşağıdaki yargılardan hangileri doğrudur?",
+"passage": "",
+"question": "Konu tekrarı için hazırlanan bir soru:\nBir pergelin ucu yarım tur döndürülüyor. Dönme açısı kaç derecedir?",
 "shape": null,
 "options": {
 "A": "45",
@@ -40659,18 +40657,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 11,
+"hour": 4,
 "minute": 0,
 "show_names": false
 },
 "options": {
-"A": "Doğru açı",
-"B": "Dik açı",
-"C": "Dar açı",
-"D": "Geniş açı"
+"A": "Geniş açı",
+"B": "Dar açı",
+"C": "Doğru açı",
+"D": "Dik açı"
 },
-"answer": "C",
-"explanation": "Saat 11.00 olduğunda iki ibre arası 30°'dir; bu dar açıdır.",
+"answer": "A",
+"explanation": "Saat 4.00 olduğunda iki ibre arası 120°'dir; bu geniş açıdır.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -44479,19 +44477,19 @@
 ],
 "arcs": {
 "0": "x",
-"1": "35°",
-"2": "110°"
+"1": "40°",
+"2": "90°"
 },
 "show_names": false
 },
 "options": {
-"A": "25°",
-"B": "35°",
-"C": "45°",
-"D": "145°"
+"A": "40°",
+"B": "50°",
+"C": "60°",
+"D": "130°"
 },
 "answer": "B",
-"explanation": "Yan yana üç açının toplamı doğru açıdır: 180° − 35° − 110° = 35°.",
+"explanation": "Yan yana üç açının toplamı doğru açıdır: 180° − 40° − 90° = 50°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -44521,8 +44519,8 @@
 },
 "options": {
 "A": "Dik açı",
-"B": "Doğru açı",
-"C": "Geniş açı",
+"B": "Geniş açı",
+"C": "Doğru açı",
 "D": "Dar açı"
 },
 "answer": "D",
@@ -44553,7 +44551,7 @@
 "B",
 "C"
 ],
-"split": 40,
+"split": 45,
 "split_labels": [
 "45°",
 ""
@@ -45731,18 +45729,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 11,
+"hour": 9,
 "minute": 0,
 "show_names": false
 },
 "options": {
-"A": "30°",
-"B": "60°",
-"C": "90°",
-"D": "330°"
+"A": "60°",
+"B": "90°",
+"C": "120°",
+"D": "270°"
 },
-"answer": "A",
-"explanation": "Saat tam 11.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 30°.",
+"answer": "B",
+"explanation": "Saat tam 9.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 90°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -45757,7 +45755,7 @@
 "subject": "Matematik",
 "topic": "Açı ölçme",
 "passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nŞekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
+"question": "Bir tekrar testinde şu soru sorulmuştur.\nŞekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "clock",
@@ -47880,13 +47878,13 @@
 "show_names": false
 },
 "options": {
-"A": "45°",
-"B": "60°",
-"C": "75°",
-"D": "105°"
+"A": "60°",
+"B": "75°",
+"C": "105°",
+"D": "135°"
 },
-"answer": "A",
-"explanation": "Yelkovan 6'da (180°), akrep 4. ile 5. rakamın tam ortasındadır (135°). Fark = 45°.",
+"answer": "B",
+"explanation": "Yelkovan 6'da (180°), akrep 8. ile 9. rakamın tam ortasındadır (255°). Fark = 75°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -48848,8 +48846,8 @@
 "show_names": false
 },
 "options": {
-"A": "Doğru açı",
-"B": "Dik açı",
+"A": "Dik açı",
+"B": "Doğru açı",
 "C": "Dar açı",
 "D": "Geniş açı"
 },
@@ -49480,17 +49478,17 @@
 "B",
 "C"
 ],
-"split": 75,
+"split": 90,
 "split_labels": [
-"75°",
-"15°"
+"90°",
+""
 ],
-"angle_label": "90°",
+"angle_label": "150°",
 "show_names": false
 },
 "options": {
 "A": "60",
-"B": "80",
+"B": "70",
 "C": "90",
 "D": "150"
 },

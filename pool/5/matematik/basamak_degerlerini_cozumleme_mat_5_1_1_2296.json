@@ -437,52 +437,7 @@
 "subject": "Matematik",
 "topic": "Milyonlu sayılar",
 "passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nTabloda üç ilin nüfusları verilmiştir. Bu üç ilin toplam nüfusu kaç kişidir?",
-"shape": {
-"type": "table",
-"title": "Bazı İllerin Nüfusu (kişi)",
-"headers": [
-"İl",
-"Nüfus"
-],
-"rows": [
-[
-"Konya",
-"4 530 000"
-],
-[
-"İzmir",
-"3 161 000"
-],
-[
-"Antalya",
-"4 271 000"
-]
-]
-},
-"options": {
-"A": "11 952 000",
-"B": "11 962 000",
-"C": "11 972 000",
-"D": "12 062 000"
-},
-"answer": "B",
-"explanation": "4 530 000 + 3 161 000 + 4 271 000 = 11 962 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795634579,
-"src": "local",
-"fam": "_mf_yn_nufus"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nTabloya göre nüfusu en çok olan il ile nüfusu en az olan ilin nüfusları arasındaki fark kaçtır?",
+"question": "Bir öğrenci konu tekrarı yapıyor.\nTabloda üç ilin nüfusları verilmiştir. Bu üç ilin toplam nüfusu kaç kişidir?",
 "shape": {
 "type": "table",
 "title": "Bazı İllerin Nüfusu (kişi)",
@@ -1002,13 +957,13 @@
 "show_names": false
 },
 "options": {
-"A": "3",
-"B": "4",
-"C": "5",
-"D": "6"
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
 },
 "answer": "C",
-"explanation": "Tabloda 5 rakam vardır; sayı 5 basamaklıdır.",
+"explanation": "Tabloda 6 rakam vardır; sayı 6 basamaklıdır.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -1240,7 +1195,7 @@
 "n": 4
 },
 {
-"n": 3
+"n": 0
 },
 {
 "n": 0
@@ -1635,16 +1590,16 @@
 "subject": "Matematik",
 "topic": "Sayı okuma-yazma",
 "passage": "",
-"question": "“yüz bin” sayısı rakamlarla yazıldığında kaç tane sıfır kullanılır?",
+"question": "“on milyar” sayısı rakamlarla yazıldığında kaç tane sıfır kullanılır?",
 "shape": null,
 "options": {
-"A": "4",
-"B": "5",
-"C": "6",
-"D": "7"
+"A": "9",
+"B": "10",
+"C": "11",
+"D": "12"
 },
 "answer": "B",
-"explanation": "Sayı 100 000; sıfır sayısı 5.",
+"explanation": "Sayı 10 000 000 000; sıfır sayısı 10.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -1668,7 +1623,7 @@
 "n": 5
 },
 {
-"n": 8
+"n": 0
 },
 {
 "n": 6
@@ -1713,7 +1668,7 @@
 "subject": "Matematik",
 "topic": "Sayı okuma-yazma",
 "passage": "",
-"question": "Tabloda bir doğal sayının bölüklerindeki rakamlar verilmiştir. Bu bölükler birleştirilirse hangi sayı elde edilir?",
+"question": "Tabloda verilen bölükler yan yana yazılarak bir doğal sayı oluşturuluyor. Oluşan sayı hangisidir?",
 "shape": {
 "type": "table",
 "title": "Bir sayının bölükleri",
@@ -1722,10 +1677,6 @@
 "Bölükteki rakamlar"
 ],
 "rows": [
-[
-"Milyarlar bölüğü",
-"9"
-],
 [
 "Milyonlar bölüğü",
 "46"
@@ -1966,13 +1917,13 @@
 "question": "268 176 267 873 sayısı kaç bölükten oluşur?",
 "shape": null,
 "options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "5"
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
 },
 "answer": "B",
-"explanation": "7 basamaklı sayı sağdan üçerli gruplanır; 3 bölük olur.",
+"explanation": "12 basamaklı sayı sağdan üçerli gruplanır; 4 bölük olur.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -2211,7 +2162,7 @@
 "question": "Tabloda üç değer verilmiştir. En büyük değerin okunuşu aşağıdakilerden hangisidir?",
 "shape": {
 "type": "table",
-"title": "Elektrik üretimi (kWh)",
+"title": "Yıllık bütçe (₺)",
 "headers": [
 "Kaynak",
 "Değer"
@@ -2345,8 +2296,8 @@
 "shape": {
 "type": "number_line",
 "min": 100000,
-"max": 350000,
-"step": 50000,
+"max": 150000,
+"step": 10000,
 "marks": [
 {
 "label": "A",
@@ -2384,9 +2335,9 @@
 "question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nAşağıdaki sayı doğrusunda A ile gösterilen sayı hangi iki sayı arasındadır?",
 "shape": {
 "type": "number_line",
-"min": 200000,
-"max": 450000,
-"step": 50000,
+"min": 100000,
+"max": 150000,
+"step": 10000,
 "marks": [
 {
 "label": "A",
@@ -3758,7 +3709,7 @@
 "n": 3
 },
 {
-"n": 9
+"n": 4
 },
 {
 "n": 7
@@ -6840,7 +6791,7 @@
 "n": 0
 },
 {
-"n": 0
+"n": 3
 }
 ],
 "label": "K"
@@ -6875,12 +6826,6 @@
 "type": "kes",
 "sub_type": "kartrk",
 "d": [
-{
-"n": 0
-},
-{
-"n": 6
-},
 {
 "n": 8
 },
@@ -7181,10 +7126,6 @@
 ],
 "rows": [
 [
-"Milyarlar bölüğü",
-"92"
-],
-[
 "Milyonlar bölüğü",
 "36"
 ],
@@ -7406,10 +7347,10 @@
 "question": "89 000 130 sayısı kaç bölükten oluşur?",
 "shape": null,
 "options": {
-"A": "3",
-"B": "4",
-"C": "5",
-"D": "6"
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
 },
 "answer": "B",
 "explanation": "8 basamaklı sayı sağdan üçerli gruplanır; 3 bölük olur.",
@@ -7496,7 +7437,7 @@
 "n": 2
 },
 {
-"n": 8
+"n": 0
 },
 {
 "n": 1
@@ -28391,9 +28332,6 @@
 "n": 0
 },
 {
-"n": 9
-},
-{
 "n": 1
 },
 {
@@ -28557,9 +28495,9 @@
 },
 "options": {
 "A": "7",
-"B": "7 000",
-"C": "70 000",
-"D": "700 000"
+"B": "70 000",
+"C": "700 000",
+"D": "7 000 000"
 },
 "answer": "C",
 "explanation": "N ile gösterilen rakam yüz binler basamağındaki 7 rakamıdır; basamak değeri 7 × 100 000 = 700 000.",
@@ -28678,7 +28616,7 @@
 "question": "Tabloda üç değer verilmiştir. En büyük değerin okunuşu aşağıdakilerden hangisidir?",
 "shape": {
 "type": "table",
-"title": "Yıllık ziyaretçi sayısı (kişi)",
+"title": "Elektrik üretimi (kWh)",
 "headers": [
 "Kaynak",
 "Değer"
@@ -29762,7 +29700,7 @@
 "n": 7
 },
 {
-"n": 3
+"n": 9
 },
 {
 "n": 3
@@ -29816,13 +29754,7 @@
 "n": 2
 },
 {
-"n": 1
-},
-{
-"n": 8
-},
-{
-"n": 6
+"n": 0
 },
 {
 "n": 0
@@ -29961,7 +29893,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 6
+"n": 4
 },
 {
 "n": 2
@@ -30162,15 +30094,6 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 8
-},
-{
-"n": 8
-},
-{
-"n": 0
-},
-{
 "n": 7
 },
 {
@@ -30189,10 +30112,7 @@
 "n": 2
 },
 {
-"n": 0
-},
-{
-"n": 5
+"n": 6
 }
 ],
 "show_names": false
@@ -30293,19 +30213,7 @@
 "n": 4
 },
 {
-"n": 5
-},
-{
-"n": 8
-},
-{
-"n": 0
-},
-{
-"n": 2
-},
-{
-"n": 7
+"n": 6
 }
 ],
 "marks": {
@@ -30316,10 +30224,10 @@
 "show_names": false
 },
 "options": {
-"A": "2",
-"B": "20",
-"C": "200",
-"D": "2 000"
+"A": "6",
+"B": "7",
+"C": "60",
+"D": "600"
 },
 "answer": "A",
 "explanation": "R çubuğunda 6 boncuk vardır ve çubuk birler basamağıdır: 6.",
@@ -30358,7 +30266,7 @@
 "n": 0
 }
 ],
-"label": "M"
+"label": "T"
 },
 {
 "d": [
@@ -31027,10 +30935,10 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 6
+"n": 9
 },
 {
-"n": 5
+"n": 3
 },
 {
 "n": 5
@@ -31614,10 +31522,7 @@
 "n": 5
 },
 {
-"n": 5
-},
-{
-"n": 2
+"n": 9
 },
 {
 "n": 0
@@ -124675,7 +124580,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 5
+"n": 3
 },
 {
 "n": 1

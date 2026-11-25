@@ -311,24 +311,24 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 75,
+"degree": 25,
 "rotation": 0,
 "labels": [
 "O",
 "A",
 "B"
 ],
-"angle_label": "75°",
+"angle_label": "25°",
 "show_names": false
 },
 "options": {
-"A": "5°",
-"B": "15°",
-"C": "25°",
-"D": "165°"
+"A": "55°",
+"B": "65°",
+"C": "75°",
+"D": "115°"
 },
 "answer": "B",
-"explanation": "Tümler açıların toplamı 90° olur: 90 − 75 = 15°.",
+"explanation": "Tümler açıların toplamı 90° olur: 90 − 25 = 65°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -1261,7 +1261,7 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 90,
-"rotation": 10,
+"rotation": 0,
 "labels": [
 "O",
 "A",
@@ -1864,17 +1864,17 @@
 "shape": {
 "type": "geo",
 "sub_type": "ptsline",
-"n": 3,
+"n": 6,
 "show_names": false
 },
 "options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "6"
+"A": "6",
+"B": "14",
+"C": "15",
+"D": "16"
 },
-"answer": "B",
-"explanation": "3 noktadan ikisi seçilir: 3 doğru parçası.",
+"answer": "C",
+"explanation": "6 noktadan ikisi seçilir: 15 doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -7996,7 +7996,7 @@
 "d": 2,
 "ts": 1795635402,
 "src": "local",
-"fam": "_mf_ang_tumler"
+"fam": "_mf_ang_butunler"
 },
 {
 "subject": "Matematik",
@@ -8322,22 +8322,22 @@
 "B",
 "C"
 ],
-"split": 20,
+"split": 40,
 "split_labels": [
 "x",
-"x+140"
+"x+100"
 ],
 "angle_label": "180°",
 "show_names": false
 },
 "options": {
-"A": "10",
-"B": "20",
-"C": "30",
-"D": "140"
+"A": "30",
+"B": "40",
+"C": "50",
+"D": "100"
 },
 "answer": "B",
-"explanation": "x + (x + 140) = 180° → 2x = 40 → x = 20°.",
+"explanation": "x + (x + 100) = 180° → 2x = 80 → x = 40°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -8981,7 +8981,7 @@
 "d": 2,
 "ts": 1795635402,
 "src": "local",
-"fam": "_mf_ang_tumler"
+"fam": "_mf_ang_butunler"
 },
 {
 "subject": "Matematik",
@@ -9187,22 +9187,22 @@
 "B",
 "C"
 ],
-"split": 20,
+"split": 30,
 "split_labels": [
 "x",
-"x+50"
+"x+30"
 ],
 "angle_label": "90°",
 "show_names": false
 },
 "options": {
-"A": "10",
-"B": "20",
-"C": "30",
-"D": "50"
+"A": "20",
+"B": "30",
+"C": "40",
+"D": "60"
 },
 "answer": "B",
-"explanation": "x + (x + 50) = 90° → 2x = 40 → x = 20°.",
+"explanation": "x + (x + 30) = 90° → 2x = 60 → x = 30°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -9377,19 +9377,19 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles_two_lines",
-"degree": 135,
-"given": "3x",
+"degree": 144,
+"given": "4x",
 "ask": "x",
 "show_names": false
 },
 "options": {
-"A": "35",
-"B": "45",
-"C": "55",
-"D": "135"
+"A": "26",
+"B": "36",
+"C": "46",
+"D": "144"
 },
 "answer": "B",
-"explanation": "Komşu açılar bütünlerdir: 3x + x = 180° → x = 45°.",
+"explanation": "Komşu açılar bütünlerdir: 4x + x = 180° → x = 36°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -11699,7 +11699,7 @@
 "subject": "Matematik",
 "topic": "Doğru parçası",
 "passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen şekildeki doğru parçası üzerinde işaretli noktalar bulunmaktadır. Uç noktaları bu noktalardan ikisi olan kaç farklı doğru parçası vardır?",
+"question": "Bir okul yazılısında şu soru yer almıştır.\nVerilen şekildeki doğru parçası üzerinde işaretli noktalar bulunmaktadır. Uç noktaları bu noktalardan ikisi olan kaç farklı doğru parçası vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "ptsline",
@@ -11737,13 +11737,13 @@
 "show_names": false
 },
 "options": {
-"A": "5",
-"B": "9",
-"C": "10",
-"D": "11"
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
 },
 "answer": "C",
-"explanation": "5 noktadan ikisi seçilir: 10 farklı doğru parçası.",
+"explanation": "4 noktadan ikisi seçilir: 6 farklı doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -11797,7 +11797,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles4",
-"degree": 130,
+"degree": 40,
 "labels": [
 "L",
 "P",
@@ -13034,7 +13034,7 @@
 "D": "65"
 },
 "answer": "B",
-"explanation": "Tümler açıların toplamı 90°’dir: 90 − 65 = 25.",
+"explanation": "65° + x = 90° olduğundan x = 90 − 65 = 25°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -13043,7 +13043,7 @@
 "d": 2,
 "ts": 1795635402,
 "src": "local",
-"fam": "_mf_ang_tumler"
+"fam": "_mf_tum_x"
 },
 {
 "subject": "Matematik",
@@ -13085,7 +13085,7 @@
 "d": 4,
 "ts": 1795635402,
 "src": "local",
-"fam": "_mf_tumler_oran"
+"fam": "_mf_tum_cebir"
 },
 {
 "subject": "Matematik",
@@ -14075,7 +14075,7 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 180,
-"rotation": 0,
+"rotation": 10,
 "labels": [
 "O",
 "A",
@@ -14595,7 +14595,7 @@
 "D": "7"
 },
 "answer": "C",
-"explanation": "4 noktadan ikisi seçilir: 6 doğru parçası.",
+"explanation": "4 noktadan ikisi seçilir: 6 farklı doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -14614,7 +14614,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles4",
-"degree": 140,
+"degree": 70,
 "labels": [
 "T",
 "M",
@@ -14624,10 +14624,10 @@
 "show_names": false
 },
 "options": {
-"A": "40°",
-"B": "50°",
-"C": "140°",
-"D": "150°"
+"A": "20°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
 },
 "answer": "B",
 "explanation": "Komşu açıların ölçüleri toplamı 180°’dir: 180° − 110° = 70°.",
@@ -14903,7 +14903,7 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 90,
-"rotation": 0,
+"rotation": 10,
 "labels": [
 "O",
 "A",
@@ -14945,29 +14945,29 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 90,
-"rotation": 10,
+"rotation": 0,
 "labels": [
 "O",
 "A",
 "B",
 "C"
 ],
-"split": 25,
+"split": 30,
 "split_labels": [
 "x",
-"x+40"
+"x+30"
 ],
 "angle_label": "90°",
 "show_names": false
 },
 "options": {
-"A": "15",
-"B": "25",
-"C": "35",
-"D": "40"
+"A": "20",
+"B": "30",
+"C": "40",
+"D": "60"
 },
 "answer": "B",
-"explanation": "x + (x + 40) = 90° → 2x = 50 → x = 25°.",
+"explanation": "x + (x + 30) = 90° → 2x = 60 → x = 30°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -16433,7 +16433,7 @@
 "A",
 "B"
 ],
-"angle_label": "50°",
+"angle_label": "60°",
 "show_names": false
 },
 "options": {
@@ -16729,7 +16729,7 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 180,
-"rotation": 10,
+"rotation": 0,
 "labels": [
 "O",
 "A",
@@ -16942,20 +16942,20 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles_two_lines",
-"degree": 61,
-"given": "2x+13",
-"ask": "3x−11",
+"degree": 46,
+"given": "2x+6",
+"ask": "3x−14",
 "vertical": true,
 "show_names": false
 },
 "options": {
-"A": "19",
-"B": "24",
-"C": "29",
-"D": "61"
+"A": "15",
+"B": "20",
+"C": "25",
+"D": "46"
 },
 "answer": "B",
-"explanation": "Ters açılar eşittir: 2x + 13 = 3x − 11 → x = 24.",
+"explanation": "Ters açılar eşittir: 2x + 6 = 3x − 14 → x = 20.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -20402,13 +20402,13 @@
 "show_names": false
 },
 "options": {
-"A": "40°",
-"B": "50°",
-"C": "140°",
-"D": "150°"
+"A": "30°",
+"B": "40°",
+"C": "50°",
+"D": "140°"
 },
-"answer": "C",
-"explanation": "Ters açıların ölçüleri eşittir: 140°.",
+"answer": "B",
+"explanation": "Komşu açıların ölçüleri toplamı 180°’dir: 180° − 140° = 40°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -20427,7 +20427,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles4",
-"degree": 130,
+"degree": 60,
 "labels": [
 "N",
 "R",
@@ -21441,22 +21441,22 @@
 "B",
 "C"
 ],
-"split": 70,
+"split": 50,
 "split_labels": [
-"70°",
+"50°",
 "x"
 ],
 "angle_label": "90°",
 "show_names": false
 },
 "options": {
-"A": "10",
-"B": "20",
-"C": "30",
-"D": "70"
+"A": "30",
+"B": "40",
+"C": "50",
+"D": "140"
 },
 "answer": "B",
-"explanation": "70° + x = 90° olduğundan x = 90 − 70 = 20°.",
+"explanation": "50° + x = 90° olduğundan x = 90 − 50 = 40°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -28596,24 +28596,24 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 35,
+"degree": 40,
 "rotation": 0,
 "labels": [
 "O",
 "A",
 "B"
 ],
-"angle_label": "35°",
+"angle_label": "40°",
 "show_names": false
 },
 "options": {
-"A": "45°",
-"B": "55°",
-"C": "65°",
-"D": "125°"
+"A": "40°",
+"B": "50°",
+"C": "60°",
+"D": "130°"
 },
 "answer": "B",
-"explanation": "Tümler açıların toplamı 90° olur: 90 − 35 = 55°.",
+"explanation": "Tümler açıların toplamı 90° olur: 90 − 40 = 50°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -28628,7 +28628,7 @@
 "subject": "Matematik",
 "topic": "Açı ilişkileri",
 "passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nŞekilde AOB doğru açısı OC ışınıyla iki açıya bölünmüştür. m(AOC) = 20° ise m(COB) = x kaç derecedir?",
+"question": "Bir tekrar testinde şu soru sorulmuştur.\nVerilen şekildeki AOB doğru açısı OC ışınıyla iki açıya ayrılmıştır. m(AOC) = 115° ve m(COB) = x olduğuna göre x kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "angle",
@@ -28640,22 +28640,22 @@
 "B",
 "C"
 ],
-"split": 20,
+"split": 115,
 "split_labels": [
-"20°",
+"115°",
 "x"
 ],
 "angle_label": "180°",
 "show_names": false
 },
 "options": {
-"A": "20",
-"B": "150",
-"C": "160",
-"D": "170"
+"A": "55",
+"B": "65",
+"C": "75",
+"D": "115"
 },
-"answer": "C",
-"explanation": "20° + x = 180° olduğundan x = 180 − 20 = 160°.",
+"answer": "B",
+"explanation": "115° + x = 180° olduğundan x = 180 − 115 = 65°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -36859,41 +36859,11 @@
 "subject": "Matematik",
 "topic": "Doğru parçası",
 "passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nVerilen şekildeki doğru parçası üzerinde işaretli noktalar bulunmaktadır. Uç noktaları bu noktalardan ikisi olan kaç farklı doğru parçası vardır?",
+"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen şekildeki doğru parçası üzerinde işaretli noktalar bulunmaktadır. Uç noktaları bu noktalardan ikisi olan kaç farklı doğru parçası vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "ptsline",
-"n": 3,
-"show_names": false
-},
-"options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "6"
-},
-"answer": "B",
-"explanation": "3 noktadan ikisi seçilir: 3 doğru parçası.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Açı İlişkileri: Tümler, Bütünler, Komşu ve Ters Açılar (MAT.5.3.4)",
-"topics": "Tümler açılar (toplamı 90°), Bütünler açılar (toplamı 180°), Komşu açılar, Ters (karşıt) açılar, Kesişen iki doğrunun oluşturduğu açılar",
-"d": 5,
-"ts": 1795634573,
-"src": "local",
-"fam": "_mf_gv_dp_say"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru parçası",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nŞekildeki noktalardan hiçbir üçü aynı doğru üzerinde değildir. Bu noktalardan ikisi birleştirilerek kaç farklı doğru parçası çizilebilir?",
-"shape": {
-"type": "geo",
-"sub_type": "ptsscatter",
 "n": 4,
-"seed": 5,
 "show_names": false
 },
 "options": {
@@ -36903,7 +36873,7 @@
 "D": "7"
 },
 "answer": "C",
-"explanation": "4 noktadan ikisi seçilir: 6 farklı doğru parçası.",
+"explanation": "4 noktadan ikisi seçilir: 6 doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -36952,7 +36922,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles4",
-"degree": 65,
+"degree": 140,
 "labels": [
 "R",
 "M",
@@ -36962,13 +36932,13 @@
 "show_names": false
 },
 "options": {
-"A": "25°",
-"B": "65°",
-"C": "75°",
-"D": "115°"
+"A": "30°",
+"B": "40°",
+"C": "50°",
+"D": "140°"
 },
 "answer": "B",
-"explanation": "Komşu açıların ölçüleri toplamı 180°’dir: 180° − 115° = 65°.",
+"explanation": "Komşu açıların ölçüleri toplamı 180°’dir: 180° − 140° = 40°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -37620,7 +37590,7 @@
 "subject": "Matematik",
 "topic": "Çokgenlerin açı özellikleri",
 "passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nŞekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
+"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -42642,29 +42612,29 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 90,
-"rotation": 0,
+"rotation": 10,
 "labels": [
 "O",
 "A",
 "B",
 "C"
 ],
-"split": 40,
+"split": 10,
 "split_labels": [
-"40°",
+"10°",
 "x"
 ],
 "angle_label": "90°",
 "show_names": false
 },
 "options": {
-"A": "40",
-"B": "50",
-"C": "60",
-"D": "130"
+"A": "10",
+"B": "70",
+"C": "80",
+"D": "90"
 },
-"answer": "B",
-"explanation": "40° + x = 90° olduğundan x = 90 − 40 = 50°.",
+"answer": "C",
+"explanation": "10° + x = 90° olduğundan x = 90 − 10 = 80°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -44331,22 +44301,22 @@
 "B",
 "C"
 ],
-"split": 30,
+"split": 50,
 "split_labels": [
 "x",
-"5x"
+"x+80"
 ],
 "angle_label": "180°",
 "show_names": false
 },
 "options": {
-"A": "30",
-"B": "40",
-"C": "150",
-"D": "160"
+"A": "40",
+"B": "50",
+"C": "60",
+"D": "80"
 },
-"answer": "A",
-"explanation": "x + 5x = 180° → x = 30°; AOC = 30°, COB = 150°.",
+"answer": "B",
+"explanation": "x + (x + 80) = 180° → 2x = 100 → x = 50°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -46600,10 +46570,10 @@
 "show_names": false
 },
 "options": {
-"A": "50",
-"B": "55",
-"C": "60",
-"D": "65"
+"A": "52",
+"B": "57",
+"C": "62",
+"D": "67"
 },
 "answer": "B",
 "explanation": "Komşu açılar bütünlerdir: (x + 15) + (2x − 6) = 180 → 3x = 171 → x = 57.",
@@ -48029,20 +47999,20 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles_two_lines",
-"degree": 110,
-"given": "110°",
+"degree": 50,
+"given": "50°",
 "ask": "x",
 "vertical": true,
 "show_names": false
 },
 "options": {
-"A": "20",
-"B": "70",
-"C": "110",
-"D": "120"
+"A": "40",
+"B": "50",
+"C": "60",
+"D": "130"
 },
-"answer": "C",
-"explanation": "Ters açıların ölçüleri eşittir: x = 110°.",
+"answer": "B",
+"explanation": "Ters açıların ölçüleri eşittir: x = 50°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -48152,13 +48122,13 @@
 "show_names": false
 },
 "options": {
-"A": "4",
-"B": "5",
-"C": "6",
-"D": "7"
+"A": "6",
+"B": "14",
+"C": "15",
+"D": "16"
 },
 "answer": "C",
-"explanation": "4 noktadan ikisi seçilir: 6 farklı doğru parçası.",
+"explanation": "6 noktadan ikisi seçilir: 15 farklı doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -48212,7 +48182,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angles4",
-"degree": 130,
+"degree": 110,
 "labels": [
 "S",
 "R",
