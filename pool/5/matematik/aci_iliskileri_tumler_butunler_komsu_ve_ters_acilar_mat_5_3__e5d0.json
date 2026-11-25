@@ -4318,7 +4318,7 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 180,
-"rotation": 0,
+"rotation": 10,
 "labels": [
 "O",
 "A",
@@ -4711,8 +4711,8 @@
 "C": "77",
 "D": "82"
 },
-"answer": "C",
-"explanation": "Küçük açı a ise a + 2a = 90°; a = 30°, büyük açı 60°.",
+"answer": "B",
+"explanation": "Küçük açı a ise a + 4a = 90°; a = 18°, büyük açı 72°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -4875,13 +4875,13 @@
 "show_names": false
 },
 "options": {
-"A": "5",
-"B": "9",
-"C": "10",
-"D": "11"
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
 },
 "answer": "C",
-"explanation": "5 noktadan ikisi seçilir: 10 farklı doğru parçası.",
+"explanation": "4 noktadan ikisi seçilir: 6 farklı doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -5154,19 +5154,19 @@
 "B",
 "C"
 ],
-"split": 60,
+"split": 36,
 "split_labels": [
 "x",
-"2x"
+"4x"
 ],
 "angle_label": "180°",
 "show_names": false
 },
 "options": {
-"A": "60",
-"B": "70",
-"C": "120",
-"D": "130"
+"A": "36",
+"B": "46",
+"C": "144",
+"D": "154"
 },
 "answer": "A",
 "explanation": "x + 4x = 180° → x = 36°; AOC = 36°, COB = 144°.",
@@ -9281,9 +9281,9 @@
 "B",
 "C"
 ],
-"split": 170,
+"split": 40,
 "split_labels": [
-"170°",
+"40°",
 "x"
 ],
 "angle_label": "180°",
@@ -15984,29 +15984,29 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 180,
-"rotation": 0,
+"rotation": 10,
 "labels": [
 "O",
 "A",
 "B",
 "C"
 ],
-"split": 50,
+"split": 55,
 "split_labels": [
 "x",
-"x+80"
+"x+70"
 ],
 "angle_label": "180°",
 "show_names": false
 },
 "options": {
-"A": "40",
-"B": "50",
-"C": "60",
-"D": "80"
+"A": "45",
+"B": "55",
+"C": "65",
+"D": "70"
 },
 "answer": "B",
-"explanation": "x + (x + 80) = 180° → 2x = 100 → x = 50°.",
+"explanation": "x + (x + 70) = 180° → 2x = 110 → x = 55°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -21720,10 +21720,10 @@
 "show_names": false
 },
 "options": {
-"A": "30",
-"B": "40",
-"C": "50",
-"D": "140"
+"A": "20",
+"B": "30",
+"C": "40",
+"D": "150"
 },
 "answer": "B",
 "explanation": "Komşu açılar bütünlerdir: 5x + x = 180° → x = 30°.",
@@ -21860,7 +21860,7 @@
 "subject": "Matematik",
 "topic": "Toplamı 90° ve 180° olan ikililer",
 "passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısının tümleyeni (tümler açısı) kaç derecedir?",
+"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısının tümleyeni (tümler açısı) kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
@@ -22084,9 +22084,9 @@
 "show_names": false
 },
 "options": {
-"A": "30",
-"B": "40",
-"C": "50",
+"A": "50",
+"B": "120",
+"C": "130",
 "D": "140"
 },
 "answer": "C",
@@ -22193,7 +22193,7 @@
 "C": "72",
 "D": "82"
 },
-"answer": "C",
+"answer": "A",
 "explanation": "x + 4x = 90° → x = 18°; AOC = 18°, COB = 72°.",
 "kz": [
 "MAT.5.3.4"
@@ -22317,10 +22317,10 @@
 "A": "10",
 "B": "30",
 "C": "40",
-"D": "60"
+"D": "50"
 },
-"answer": "B",
-"explanation": "x + (x + 30) = 90° → 2x = 60 → x = 30°.",
+"answer": "C",
+"explanation": "x + (x + 10) = 90° → 2x = 80 → x = 40°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -22532,10 +22532,10 @@
 "show_names": false
 },
 "options": {
-"A": "55",
-"B": "60",
-"C": "65",
-"D": "70"
+"A": "63",
+"B": "68",
+"C": "73",
+"D": "78"
 },
 "answer": "B",
 "explanation": "Komşu açılar bütünlerdir: (x + 21) + (2x − 45) = 180 → 3x = 204 → x = 68.",
@@ -22736,17 +22736,17 @@
 "shape": {
 "type": "geo",
 "sub_type": "ptsline",
-"n": 6,
+"n": 3,
 "show_names": false
 },
 "options": {
-"A": "6",
-"B": "14",
-"C": "15",
-"D": "16"
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "6"
 },
-"answer": "C",
-"explanation": "6 noktadan ikisi seçilir: 15 doğru parçası.",
+"answer": "B",
+"explanation": "3 noktadan ikisi seçilir: 3 doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -23210,29 +23210,29 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 180,
-"rotation": 10,
+"rotation": 0,
 "labels": [
 "O",
 "A",
 "B",
 "C"
 ],
-"split": 50,
+"split": 55,
 "split_labels": [
 "x",
-"x+80"
+"x+70"
 ],
 "angle_label": "180°",
 "show_names": false
 },
 "options": {
-"A": "40",
-"B": "50",
-"C": "60",
-"D": "80"
+"A": "45",
+"B": "55",
+"C": "65",
+"D": "70"
 },
 "answer": "B",
-"explanation": "x + (x + 80) = 180° → 2x = 100 → x = 50°.",
+"explanation": "x + (x + 70) = 180° → 2x = 110 → x = 55°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -23345,12 +23345,12 @@
 "subject": "Matematik",
 "topic": "Açı ilişkileri",
 "passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nKesişen iki doğrunun oluşturduğu ters açılardan biri şekilde verilmiştir. Buna göre x değeri kaç derecedir?",
+"question": "Bir matematik ödevinde şu soru yer alıyor.\nŞekilde iki doğru kesişmiş ve ters (karşıt) açılar oluşmuştur. Açılardan birinin ölçüsü verildiğine göre x kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "angles_two_lines",
-"degree": 130,
-"given": "130°",
+"degree": 50,
+"given": "50°",
 "ask": "x",
 "vertical": true,
 "show_names": false
@@ -24858,7 +24858,7 @@
 "type": "geo",
 "sub_type": "angles_two_lines",
 "degree": 120,
-"given": "120°",
+"given": "2x",
 "ask": "x",
 "show_names": false
 },
@@ -24869,7 +24869,7 @@
 "D": "120"
 },
 "answer": "B",
-"explanation": "Komşu açılar bütünlerdir: 180 − 120 = 60.",
+"explanation": "Komşu açılar bütünlerdir: 2x + x = 180° → x = 60°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -25885,17 +25885,17 @@
 "shape": {
 "type": "geo",
 "sub_type": "ptsline",
-"n": 3,
+"n": 6,
 "show_names": false
 },
 "options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "6"
+"A": "6",
+"B": "14",
+"C": "15",
+"D": "16"
 },
-"answer": "B",
-"explanation": "3 noktadan ikisi seçilir: 3 doğru parçası.",
+"answer": "C",
+"explanation": "6 noktadan ikisi seçilir: 15 doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -25919,13 +25919,13 @@
 "show_names": false
 },
 "options": {
-"A": "4",
-"B": "5",
-"C": "6",
-"D": "7"
+"A": "5",
+"B": "9",
+"C": "10",
+"D": "11"
 },
 "answer": "C",
-"explanation": "4 noktadan ikisi seçilir: 6 farklı doğru parçası.",
+"explanation": "5 noktadan ikisi seçilir: 10 farklı doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -25981,7 +25981,6 @@
 "sub_type": "angles4",
 "degree": 60,
 "labels": [
-"P",
 "R",
 "P",
 "N",
@@ -26121,22 +26120,22 @@
 "B",
 "C"
 ],
-"split": 30,
+"split": 15,
 "split_labels": [
 "x",
-"2x"
+"5x"
 ],
 "angle_label": "90°",
 "show_names": false
 },
 "options": {
-"A": "30",
-"B": "40",
-"C": "60",
-"D": "70"
+"A": "15",
+"B": "25",
+"C": "75",
+"D": "85"
 },
 "answer": "A",
-"explanation": "x + 2x = 90° → x = 30°; AOC = 30°, COB = 60°.",
+"explanation": "x + 5x = 90° → x = 15°; AOC = 15°, COB = 75°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -26587,15 +26586,15 @@
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
-"degree": 40,
+"degree": 60,
 "base": "right",
 "show_names": false
 },
 "options": {
-"A": "40°",
-"B": "50°",
-"C": "130°",
-"D": "140°"
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "150°"
 },
 "answer": "C",
 "explanation": "m(AOB) = 60° okunur. Bütünleyeni 180° − 60° = 120°.",
@@ -26613,7 +26612,7 @@
 "subject": "Matematik",
 "topic": "Çokgenlerin açı özellikleri",
 "passage": "",
-"question": "Şu soruyu yanıtlayınız.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
+"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -26927,7 +26926,7 @@
 "C": "60",
 "D": "70"
 },
-"answer": "A",
+"answer": "C",
 "explanation": "x + 2x = 90° → x = 30°; AOC = 30°, COB = 60°.",
 "kz": [
 "MAT.5.3.4"
@@ -34877,29 +34876,29 @@
 "type": "geo",
 "sub_type": "angle",
 "degree": 90,
-"rotation": 10,
+"rotation": 0,
 "labels": [
 "O",
 "A",
 "B",
 "C"
 ],
-"split": 80,
+"split": 60,
 "split_labels": [
-"80°",
+"60°",
 "x"
 ],
 "angle_label": "90°",
 "show_names": false
 },
 "options": {
-"A": "10",
-"B": "20",
-"C": "80",
-"D": "170"
+"A": "20",
+"B": "30",
+"C": "40",
+"D": "60"
 },
-"answer": "A",
-"explanation": "80° + x = 90° olduğundan x = 90 − 80 = 10°.",
+"answer": "B",
+"explanation": "60° + x = 90° olduğundan x = 90 − 60 = 30°.",
 "kz": [
 "MAT.5.3.4"
 ],

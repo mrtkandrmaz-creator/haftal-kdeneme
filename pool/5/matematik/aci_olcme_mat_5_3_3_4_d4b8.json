@@ -2784,18 +2784,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 5,
+"hour": 4,
 "minute": 0,
 "show_names": false
 },
 "options": {
-"A": "120°",
-"B": "150°",
-"C": "180°",
-"D": "210°"
+"A": "90°",
+"B": "120°",
+"C": "150°",
+"D": "240°"
 },
 "answer": "B",
-"explanation": "Saat tam 5.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 150°.",
+"explanation": "Saat tam 4.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 120°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -2870,7 +2870,7 @@
 "subject": "Matematik",
 "topic": "Çokgenlerin açı özellikleri",
 "passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nŞekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
+"question": "Bir matematik ödevinde şu soru yer alıyor.\nŞekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
 "shape": {
 "type": "geo",
 "sub_type": "polyfree",
@@ -3032,7 +3032,7 @@
 "D": "Geniş açı"
 },
 "answer": "D",
-"explanation": "Açı dik açıdan küçük (ve doğru açıdan küçük) olduğundan dar açıdır.",
+"explanation": "Açı dik açıdan büyük (ve doğru açıdan küçük) olduğundan geniş açıdır.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -3125,7 +3125,7 @@
 "d": 4,
 "ts": 1795634055,
 "src": "local",
-"fam": "_mf_aci_cikar"
+"fam": "_mf_aci_tur2"
 },
 {
 "subject": "Matematik",
@@ -3179,58 +3179,22 @@
 "B",
 "C"
 ],
-"split": 45,
+"split": 25,
 "split_labels": [
-"45°",
-"60°"
+"25°",
+"30°"
 ],
-"angle_label": "105°",
+"angle_label": "55°",
 "show_names": false
 },
 "options": {
-"A": "Dik açı",
-"B": "Dar açı",
-"C": "Geniş açı",
-"D": "Doğru açı"
+"A": "5",
+"B": "45",
+"C": "55",
+"D": "65"
 },
 "answer": "C",
-"explanation": "m(AOB) = 45° + 60° = 105° olduğundan bu açı geniş açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_tur2"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nŞekildeki AOB açısı, ölçüsüne göre hangi açı türüne girer?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 45,
-"rotation": 0,
-"labels": [
-"O",
-"A",
-"B"
-],
-"angle_label": "45°",
-"show_names": false
-},
-"options": {
-"A": "Dar açı",
-"B": "Doğru açı",
-"C": "Geniş açı",
-"D": "Dik açı"
-},
-"answer": "A",
-"explanation": "45° ölçülü açı: 90°’den küçük → dar açı.",
+"explanation": "25° + 30° = 55°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -5329,865 +5293,8 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 70,
+"degree": 90,
 "rotation": 10,
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"split": 35,
-"split_labels": [
-"35°",
-""
-],
-"angle_label": "70°",
-"show_names": false
-},
-"options": {
-"A": "35",
-"B": "45",
-"C": "70",
-"D": "105"
-},
-"answer": "C",
-"explanation": "Açıortay açıyı iki eşit parçaya böler: 2 × 35° = 70°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aortay_a"
-},
-{
-"subject": "Matematik",
-"topic": "Açıortay",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nŞekilde OC ışını AOB açısının açıortayıdır. m(AOC) = 2x + 7° ve m(COB) = 3x − 7° olduğuna göre x kaçtır?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 70,
-"rotation": 0,
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"split": 35,
-"split_labels": [
-"2x+7",
-"3x−7"
-],
-"angle_label": "70°",
-"show_names": false
-},
-"options": {
-"A": "9",
-"B": "14",
-"C": "19",
-"D": "35"
-},
-"answer": "B",
-"explanation": "Açıortay açıyı eşit böler: 2x + 7 = 3x − 7 → x = 14.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aortay_cebir"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nAşağıdakilerden hangisi ölçüsü 90° olan açının türünü doğru olarak verir?",
-"shape": null,
-"options": {
-"A": "doğru açı",
-"B": "dar açı",
-"C": "dik açı",
-"D": "geniş açı"
-},
-"answer": "C",
-"explanation": "90° dik açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 1,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_siniflama"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Verilen ölçülerden hangisi dar açı belirtir?",
-"shape": null,
-"options": {
-"A": "24°",
-"B": "90°",
-"C": "164°",
-"D": "180°"
-},
-"answer": "A",
-"explanation": "Dar açı 90°’den küçüktür; bu nedenle 24° dar açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 1,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_hangi"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nBir açıyı ölçen Ceren, açıölçerde bir kenarın 0°’den başlayarak 10° çizgisinden, diğer kenarın 90° çizgisinden geçtiğini görüyor. Bu açının ölçüsü kaç derecedir?",
-"shape": null,
-"options": {
-"A": "10°",
-"B": "80°",
-"C": "90°",
-"D": "100°"
-},
-"answer": "B",
-"explanation": "Kenarlar arasındaki açı iki okuma arasındaki farktır: 90 − 10 = 80°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_olcer"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\n67°, 114°, 160°, 136°, 165°, 162° ölçülerindeki açılar arasında kaç tane dar açı vardır?",
-"shape": null,
-"options": {
-"A": "0",
-"B": "1",
-"C": "2",
-"D": "3"
-},
-"answer": "B",
-"explanation": "90°’den küçük ölçüler sayılır: 1 tane.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_say"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir açıortay, ölçüsü 90° olan açıyı iki eş parçaya ayırır. Her bir parçanın ölçüsü kaç derecedir?",
-"shape": null,
-"options": {
-"A": "45°",
-"B": "55°",
-"C": "90°",
-"D": "180°"
-},
-"answer": "A",
-"explanation": "Açıortay açıyı iki eş parçaya böler: 90 ÷ 2 = 45°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_ortay2"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nÖlçüsü bir dik açının yarısı kadar olan açı kaç derecedir?",
-"shape": null,
-"options": {
-"A": "30°",
-"B": "45°",
-"C": "90°",
-"D": "180°"
-},
-"answer": "B",
-"explanation": "Dik açı 90°, doğru açı 180°’dir; buna göre sonuç 45°’dir.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_yarim"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nAli, ölçüleri 51° ve 26° olan iki açıyı köşelerini çakıştırarak yan yana koyuyor. Oluşan yeni açı hangi türdendir?",
-"shape": null,
-"options": {
-"A": "geniş açı",
-"B": "doğru açı",
-"C": "dik açı",
-"D": "dar açı"
-},
-"answer": "D",
-"explanation": "51 + 26 = 77° olduğundan oluşan açı dar açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_toplam2"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nAçıölçerle 25° ölçülen bir açı için aşağıdakilerden hangisi doğrudur?",
-"shape": null,
-"options": {
-"A": "Dar açıdır",
-"B": "Doğru açıdır",
-"C": "Geniş açıdır",
-"D": "Dik açıdır"
-},
-"answer": "A",
-"explanation": "25° için açı türü dar açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 1,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_cevir"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nBir dik açının 70°’lik kısmı boyanıyor. Boyanmamış kısım kaç derecedir?",
-"shape": null,
-"options": {
-"A": "10",
-"B": "20",
-"C": "25",
-"D": "30"
-},
-"answer": "B",
-"explanation": "Dik açı 90°’dir; 90 − 70 = 20°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_kalan"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nÖlçüleri 130° ve 60° olan açılar için aşağıdakilerden hangisi doğrudur?",
-"shape": null,
-"options": {
-"A": "130° dar, 60° geniş açıdır",
-"B": "130° geniş, 60° dar açıdır",
-"C": "130° dar, 60° dik açıdır",
-"D": "130° dik, 60° dar açıdır"
-},
-"answer": "B",
-"explanation": "130° geniş, 60° dar açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_say2"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nBir üçgenin iki açısı 69° ve 53° ise üçüncü açısı kaç derecedir?",
-"shape": null,
-"options": {
-"A": "38",
-"B": "58",
-"C": "63",
-"D": "68"
-},
-"answer": "B",
-"explanation": "İç açılar toplamı 180°; 180 − 69 − 53 = 58°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_ucgen_toplam"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nBir pergelin ucu yarım tur döndürülüyor. Dönme açısı kaç derecedir?",
-"shape": null,
-"options": {
-"A": "45",
-"B": "90",
-"C": "180",
-"D": "270"
-},
-"answer": "C",
-"explanation": "Yarım tur 180°’dir.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_donme"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nDairesel bir pizza merkezden eşit açılı 6 dilime kesiliyor. Her dilimin merkezdeki açısı kaç derecedir?",
-"shape": null,
-"options": {
-"A": "30",
-"B": "36",
-"C": "40",
-"D": "60"
-},
-"answer": "D",
-"explanation": "Tam tur 360°’dir; 360 ÷ 6 = 60°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_yn_pizza"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nBir kapı önce 40° açılıyor, sonra 20° daha açılıyor. Kapının son durumdaki açıklık açısı hangi türdendir ve kaç derecedir?",
-"shape": null,
-"options": {
-"A": "Geniş açı, 60°",
-"B": "Dar açı, 60°",
-"C": "Dik açı, 60°",
-"D": "Dar açı, 70°"
-},
-"answer": "B",
-"explanation": "40 + 20 = 60° ve 90°’den küçüktür: dar açı.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_yn_kapi"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "Bir öğretmen tahtaya ölçüleri 25° ve 130° olan iki açı çizmiştir.\nI. 25° ölçüsündeki açı geniş açıdır.\nII. 130° ölçüsündeki açı geniş açıdır.\nIII. Bu iki açının toplamı 165°’dir.",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nBuna göre aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "Yalnız II",
-"B": "I, II ve III",
-"C": "II ve III",
-"D": "I ve III"
-},
-"answer": "A",
-"explanation": "Açı türleri 90° ile karşılaştırılarak belirlenir.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_yn_aci_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nYandaki şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 50,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "40°",
-"B": "50°",
-"C": "60°",
-"D": "130°"
-},
-"answer": "B",
-"explanation": "OA ışını sağdaki 0°'den başladığı için dış ölçekten okunur: m(AOB) = 50°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nVerilen şekilde OA ışını açıölçerin sol taraftaki 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 40,
-"base": "left",
-"show_names": false
-},
-"options": {
-"A": "30°",
-"B": "40°",
-"C": "50°",
-"D": "140°"
-},
-"answer": "B",
-"explanation": "OA ışını soldaki 0°'den başladığı için iç ölçekten okunur: m(AOB) = 40°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_sol"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nVerilen şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısı hangi açı türündendir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 40,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "Dar açı",
-"B": "Doğru açı",
-"C": "Geniş açı",
-"D": "Dik açı"
-},
-"answer": "A",
-"explanation": "Açıölçerden m(AOB) = 40° okunur; bu açı dar açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_tur"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nYandaki şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. m(BOC) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 40,
-"degree2": 100,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "40°",
-"B": "60°",
-"C": "100°",
-"D": "140°"
-},
-"answer": "B",
-"explanation": "m(AOB) = 40° ve m(AOC) = 100° okunur. m(BOC) = 100° − 40° = 60°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_iki"
-},
-{
-"subject": "Matematik",
-"topic": "Toplamı 90° ve 180° olan ikililer",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısının tümleyeni (tümler açısı) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 70,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "20°",
-"B": "70°",
-"C": "110°",
-"D": "160°"
-},
-"answer": "A",
-"explanation": "m(AOB) = 70° okunur. Tümleyeni 90° − 70° = 20°.",
-"kz": [
-"MAT.5.3.4"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_tum"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nŞekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "clock",
-"hour": 8,
-"minute": 0,
-"show_names": false
-},
-"options": {
-"A": "90°",
-"B": "120°",
-"C": "150°",
-"D": "240°"
-},
-"answer": "B",
-"explanation": "Saat tam 8.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 120°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_saat_aci"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nŞekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "clock",
-"hour": 4,
-"minute": 30,
-"show_names": false
-},
-"options": {
-"A": "45°",
-"B": "60°",
-"C": "75°",
-"D": "105°"
-},
-"answer": "A",
-"explanation": "Yelkovan 6'da (180°), akrep 4. ile 5. rakamın tam ortasındadır (135°). Fark = 45°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_saat_30"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nŞekildeki saatte akrep ile yelkovanın oluşturduğu küçük açı hangi açı türündendir?",
-"shape": {
-"type": "geo",
-"sub_type": "clock",
-"hour": 2,
-"minute": 0,
-"show_names": false
-},
-"options": {
-"A": "Doğru açı",
-"B": "Dar açı",
-"C": "Dik açı",
-"D": "Geniş açı"
-},
-"answer": "B",
-"explanation": "Saat 2.00 olduğunda iki ibre arası 60°'dir; bu dar açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_saat_tur"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin açı özellikleri",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nŞekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-5,
-0
-],
-[
-3,
-3
-],
-[
-0,
-3
-]
-],
-"rights": [
-0,
-3
-],
-"vlabels": [
-"A",
-"B",
-"C",
-"D"
-],
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "2",
-"C": "3",
-"D": "4"
-},
-"answer": "B",
-"explanation": "Şekilde 2 köşede dik açı işareti vardır.",
-"kz": [
-"MAT.5.3.6"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_dik_say"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nYandaki şekilde köşesi O olan ışınlar gösterilmiştir. Bu ışınlardan ikisi seçilerek oluşturulabilecek kaç farklı açı vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "rays",
-"angs": [
-0,
-35,
-70,
-105,
-140
-],
-"labels": [
-"O",
-"A",
-"B",
-"C",
-"D",
-"E"
-],
-"show_names": false
-},
-"options": {
-"A": "5",
-"B": "9",
-"C": "10",
-"D": "11"
-},
-"answer": "C",
-"explanation": "5 ışından ikisi seçilir: 10 farklı açı oluşur.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aci_sayisi"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ilişkileri",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nŞekilde üç doğru O noktasında kesişmektedir. x ile gösterilen açının ölçüsü kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "lines3",
-"dirs": [
-30,
-65,
-105
-],
-"arcs": {
-"0": "x",
-"1": "40°",
-"2": "105°"
-},
-"show_names": false
-},
-"options": {
-"A": "25°",
-"B": "35°",
-"C": "45°",
-"D": "145°"
-},
-"answer": "B",
-"explanation": "Yan yana üç açının toplamı doğru açıdır: 180° − 40° − 105° = 35°.",
-"kz": [
-"MAT.5.3.4"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_uc_dogru"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen şekildeki AOB açısı hangi açı türündendir?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 115,
-"rotation": 10,
-"labels": [
-"O",
-"A",
-"B"
-],
-"show_names": false
-},
-"options": {
-"A": "Dik açı",
-"B": "Doğru açı",
-"C": "Dar açı",
-"D": "Geniş açı"
-},
-"answer": "D",
-"explanation": "Açı dik açıdan büyük (ve doğru açıdan küçük) olduğundan geniş açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aci_tur_bak"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nVerilen şekilde OC ışını ölçüsü 120° olan AOB açısını iki açıya ayırmıştır. m(AOC) = 45° olduğuna göre m(COB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 120,
-"rotation": 0,
 "labels": [
 "O",
 "A",
@@ -6199,17 +5306,17 @@
 "45°",
 ""
 ],
-"angle_label": "120°",
+"angle_label": "90°",
 "show_names": false
 },
 "options": {
 "A": "45",
-"B": "75",
-"C": "85",
-"D": "120"
+"B": "55",
+"C": "90",
+"D": "135"
 },
-"answer": "B",
-"explanation": "m(COB) = 120° − 45° = 75°.",
+"answer": "C",
+"explanation": "Açıortay açıyı iki eşit parçaya böler: 2 × 45° = 90°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -6218,11 +5325,11 @@
 "d": 2,
 "ts": 1795634055,
 "src": "local",
-"fam": "_mf_aci_cikar"
+"fam": "_mf_aortay_a"
 },
 {
 "subject": "Matematik",
-"topic": "Açı türleri",
+"topic": "Açıortay",
 "passage": "",
 "question": "Bir matematik ödevinde şu soru yer alıyor.\nŞekilde OC ışını AOB açısının açıortayıdır. m(AOC) = 2x + 19° ve m(COB) = 3x − 6° olduğuna göre x kaçtır?",
 "shape": {
@@ -8250,11 +7357,11 @@
 "d": 2,
 "ts": 1795634055,
 "src": "local",
-"fam": "_mf_ang_tur"
+"fam": "_mf_aci_topla"
 },
 {
 "subject": "Matematik",
-"topic": "Açı ölçme",
+"topic": "Açıortay",
 "passage": "",
 "question": "Yandaki şekilde OC ışını AOB açısının açıortayıdır. m(AOC) = 20° olduğuna göre m(AOB) kaç derecedir?",
 "shape": {
@@ -8700,128 +7807,7 @@
 "subject": "Matematik",
 "topic": "Açı ölçme",
 "passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 140,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "40°",
-"B": "130°",
-"C": "140°",
-"D": "150°"
-},
-"answer": "C",
-"explanation": "OA ışını sağdaki 0°'den başladığı için dış ölçekten okunur: m(AOB) = 140°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nYandaki şekilde OA ışını açıölçerin sol taraftaki 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 140,
-"base": "left",
-"show_names": false
-},
-"options": {
-"A": "40°",
-"B": "130°",
-"C": "140°",
-"D": "150°"
-},
-"answer": "C",
-"explanation": "OA ışını soldaki 0°'den başladığı için iç ölçekten okunur: m(AOB) = 140°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_sol"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısı hangi açı türündendir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 100,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "Doğru açı",
-"B": "Dik açı",
-"C": "Geniş açı",
-"D": "Dar açı"
-},
-"answer": "C",
-"explanation": "Açıölçerden m(AOB) = 100° okunur; bu açı geniş açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_tur"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nVerilen şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. m(BOC) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 30,
-"degree2": 70,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "30°",
-"B": "40°",
-"C": "70°",
-"D": "100°"
-},
-"answer": "B",
-"explanation": "m(AOB) = 30° ve m(AOC) = 70° okunur. m(BOC) = 70° − 30° = 40°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_iki"
-},
-{
-"subject": "Matematik",
-"topic": "Toplamı 90° ve 180° olan ikililer",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nVerilen şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısının tümleyeni (tümler açısı) kaç derecedir?",
+"question": "Bir çalışma kâğıdında şu soru vardır.\nVerilen şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
@@ -8981,10 +7967,10 @@
 "show_names": false
 },
 "options": {
-"A": "60°",
-"B": "90°",
-"C": "120°",
-"D": "270°"
+"A": "30°",
+"B": "60°",
+"C": "90°",
+"D": "300°"
 },
 "answer": "B",
 "explanation": "Saat tam 2.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 60°.",
@@ -9044,7 +8030,7 @@
 "A": "Dik açı",
 "B": "Geniş açı",
 "C": "Doğru açı",
-"D": "Dik açı"
+"D": "Dar açı"
 },
 "answer": "D",
 "explanation": "Saat 2.00 olduğunda iki ibre arası 60°'dir; bu dar açıdır.",
@@ -9072,8 +8058,12 @@
 0
 ],
 [
-4,
+5,
 0
+],
+[
+3,
+3
 ],
 [
 0,
@@ -9081,12 +8071,14 @@
 ]
 ],
 "rights": [
-0
+0,
+3
 ],
 "vlabels": [
 "A",
 "B",
-"C"
+"C",
+"D"
 ],
 "show_names": false
 },
@@ -9096,8 +8088,8 @@
 "C": "3",
 "D": "4"
 },
-"answer": "A",
-"explanation": "Şekilde 1 köşede dik açı işareti vardır.",
+"answer": "B",
+"explanation": "Şekilde 2 köşede dik açı işareti vardır.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -10170,10 +9162,10 @@
 "show_names": false
 },
 "options": {
-"A": "Doğru açı",
-"B": "Dar açı",
+"A": "Dar açı",
+"B": "Dik açı",
 "C": "Geniş açı",
-"D": "Dik açı"
+"D": "Doğru açı"
 },
 "answer": "A",
 "explanation": "Açı dik açıdan küçük (ve doğru açıdan küçük) olduğundan dar açıdır.",
@@ -10279,14 +9271,14 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 90,
+"degree": 165,
 "rotation": 20,
 "labels": [
 "O",
 "A",
 "B"
 ],
-"angle_label": "90°",
+"angle_label": "165°",
 "show_names": false
 },
 "options": {
@@ -12102,7 +11094,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 80,
+"degree": 125,
 "rotation": 10,
 "labels": [
 "O",
@@ -16222,72 +15214,30 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 150,
-"rotation": 0,
+"degree": 128,
+"rotation": 10,
 "labels": [
 "O",
 "A",
 "B",
 "C"
 ],
-"split": 75,
+"split": 64,
 "split_labels": [
-"75°",
-""
+"2x+20",
+"3x−2"
 ],
-"angle_label": "150°",
+"angle_label": "128°",
 "show_names": false
 },
 "options": {
-"A": "75",
-"B": "85",
-"C": "150",
-"D": "225"
-},
-"answer": "C",
-"explanation": "Açıortay açıyı iki eşit parçaya böler: 2 × 75° = 150°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aortay_a"
-},
-{
-"subject": "Matematik",
-"topic": "Açıortay",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen şekilde OC ışını AOB açısının açıortayıdır. m(AOC) = 2x + 6° ve m(COB) = 3x − 4° olduğu bilindiğine göre x kaçtır?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 52,
-"rotation": 0,
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"split": 26,
-"split_labels": [
-"2x+6",
-"3x−4"
-],
-"angle_label": "52°",
-"show_names": false
-},
-"options": {
-"A": "5",
-"B": "10",
-"C": "15",
-"D": "26"
+"A": "17",
+"B": "22",
+"C": "27",
+"D": "64"
 },
 "answer": "B",
-"explanation": "Açıortay açıyı eşit böler: 2x + 6 = 3x − 4 → x = 10.",
+"explanation": "Açıortay açıyı eşit böler: 2x + 20 = 3x − 2 → x = 22.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -16310,8 +15260,8 @@
 "C": "doğru açı",
 "D": "dar açı"
 },
-"answer": "D",
-"explanation": "0°’den büyük ve 90°’den küçük açı dardır.",
+"answer": "B",
+"explanation": "90° dik açıdır.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -16356,7 +15306,7 @@
 "A": "0",
 "B": "1",
 "C": "2",
-"D": "3"
+"D": "4"
 },
 "answer": "D",
 "explanation": "90°’den küçük ölçüler sayılır: 4 tane.",
@@ -16497,13 +15447,13 @@
 "question": "Bir öğrenci kendi kendine soru çözüyor.\nBir pergelin ucu tam tur döndürülüyor. Dönme açısı kaç derecedir?",
 "shape": null,
 "options": {
-"A": "110",
-"B": "115",
-"C": "125",
-"D": "135"
+"A": "45",
+"B": "90",
+"C": "180",
+"D": "360"
 },
-"answer": "B",
-"explanation": "Doğru açı 180°’dir; 180 − 65 = 115°.",
+"answer": "D",
+"explanation": "Tam tur 360°’dir.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -16775,18 +15725,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 2,
+"hour": 9,
 "minute": 30,
 "show_names": false
 },
 "options": {
-"A": "105°",
-"B": "120°",
+"A": "90°",
+"B": "105°",
 "C": "135°",
 "D": "165°"
 },
-"answer": "A",
-"explanation": "Yelkovan 6'da (180°), akrep 2. ile 3. rakamın tam ortasındadır (75°). Fark = 105°.",
+"answer": "B",
+"explanation": "Yelkovan 6'da (180°), akrep 9. ile 10. rakamın tam ortasındadır (285°). Fark = 105°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -16805,7 +15755,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 5,
+"hour": 6,
 "minute": 0,
 "show_names": false
 },
@@ -16973,7 +15923,7 @@
 "subject": "Matematik",
 "topic": "Açı türleri",
 "passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekildeki AOB açısı hangi açı türündendir?",
+"question": "Bir matematik ödevinde şu soru yer alıyor.\nŞekildeki AOB açısı hangi açı türündendir?",
 "shape": {
 "type": "geo",
 "sub_type": "angle",
@@ -16992,8 +15942,8 @@
 "C": "Doğru açı",
 "D": "Dar açı"
 },
-"answer": "A",
-"explanation": "Açı dik açıdan büyük (ve doğru açıdan küçük) olduğundan geniş açıdır.",
+"answer": "D",
+"explanation": "Açı dik açıdan küçük (ve doğru açıdan küçük) olduğundan dar açıdır.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -17020,9 +15970,9 @@
 "B",
 "C"
 ],
-"split": 40,
+"split": 75,
 "split_labels": [
-"40°",
+"75°",
 ""
 ],
 "angle_label": "110°",
@@ -17182,12 +16132,12 @@
 "B",
 "C"
 ],
-"split": 43,
+"split": 45,
 "split_labels": [
 "45°",
 ""
 ],
-"angle_label": "86°",
+"angle_label": "90°",
 "show_names": false
 },
 "options": {
@@ -17426,18 +16376,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
-"degree": 20,
+"degree": 120,
 "base": "right",
 "show_names": false
 },
 "options": {
-"A": "10°",
-"B": "20°",
-"C": "30°",
-"D": "160°"
+"A": "60°",
+"B": "110°",
+"C": "120°",
+"D": "130°"
 },
-"answer": "B",
-"explanation": "OA ışını sağdaki 0°'den başladığı için dış ölçekten okunur: m(AOB) = 20°.",
+"answer": "C",
+"explanation": "OA ışını sağdaki 0°'den başladığı için dış ölçekten okunur: m(AOB) = 120°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -17577,7 +16527,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 1,
+"hour": 10,
 "minute": 0,
 "show_names": false
 },
@@ -18414,10 +17364,10 @@
 "show_names": false
 },
 "options": {
-"A": "120°",
-"B": "150°",
-"C": "180°",
-"D": "210°"
+"A": "30°",
+"B": "60°",
+"C": "90°",
+"D": "300°"
 },
 "answer": "B",
 "explanation": "Saat tam 10.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 60°.",
@@ -18439,18 +17389,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 1,
+"hour": 8,
 "minute": 30,
 "show_names": false
 },
 "options": {
-"A": "105°",
-"B": "135°",
-"C": "150°",
-"D": "165°"
+"A": "60°",
+"B": "75°",
+"C": "105°",
+"D": "135°"
 },
 "answer": "B",
-"explanation": "Yelkovan 6'da (180°), akrep 1. ile 2. rakamın tam ortasındadır (45°). Fark = 135°.",
+"explanation": "Yelkovan 6'da (180°), akrep 8. ile 9. rakamın tam ortasındadır (255°). Fark = 75°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -19377,18 +18327,20 @@
 "O",
 "A",
 "B",
-"C"
+"C",
+"D",
+"E"
 ],
 "show_names": false
 },
 "options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "6"
+"A": "5",
+"B": "9",
+"C": "10",
+"D": "11"
 },
-"answer": "B",
-"explanation": "3 ışından ikisi seçilir: 3 farklı açı oluşur.",
+"answer": "C",
+"explanation": "5 ışından ikisi seçilir: 10 farklı açı oluşur.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -19754,8 +18706,8 @@
 "C": "2",
 "D": "3"
 },
-"answer": "C",
-"explanation": "90°’den büyük, 180°’den küçük ölçüler sayılır: 2 tane.",
+"answer": "D",
+"explanation": "90°’den küçük ölçüler sayılır: 3 tane.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -22852,8 +21804,8 @@
 "shape": {
 "type": "geo",
 "sub_type": "angle",
-"degree": 45,
-"rotation": 0,
+"degree": 35,
+"rotation": 10,
 "labels": [
 "O",
 "A",
@@ -23040,10 +21992,10 @@
 "A": "0",
 "B": "1",
 "C": "2",
-"D": "4"
+"D": "3"
 },
 "answer": "D",
-"explanation": "90°’den büyük, 180°’den küçük ölçüler sayılır: 4 tane.",
+"explanation": "90°’den büyük, 180°’den küçük ölçüler sayılır: 3 tane.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -23303,7 +22255,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
-"degree": 60,
+"degree": 120,
 "base": "right",
 "show_names": false
 },
@@ -23311,10 +22263,10 @@
 "A": "30°",
 "B": "60°",
 "C": "120°",
-"D": "150°"
+"D": "140°"
 },
-"answer": "C",
-"explanation": "m(AOB) = 60° okunur. Bütünleyeni 180° − 60° = 120°.",
+"answer": "B",
+"explanation": "m(AOB) = 120° okunur. Bütünleyeni 180° − 120° = 60°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -23393,7 +22345,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 3,
+"hour": 4,
 "minute": 0,
 "show_names": false
 },
@@ -29070,8 +28022,8 @@
 "options": {
 "A": "Dik açı",
 "B": "Dar açı",
-"C": "Geniş açı",
-"D": "Dik açı"
+"C": "Doğru açı",
+"D": "Geniş açı"
 },
 "answer": "D",
 "explanation": "Açı dik açıdan büyük (ve doğru açıdan küçük) olduğundan geniş açıdır.",
@@ -30345,18 +29297,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
-"degree": 110,
+"degree": 40,
 "base": "right",
 "show_names": false
 },
 "options": {
-"A": "20°",
-"B": "70°",
-"C": "110°",
-"D": "130°"
+"A": "40°",
+"B": "50°",
+"C": "130°",
+"D": "140°"
 },
 "answer": "B",
-"explanation": "m(AOB) = 110° okunur. Bütünleyeni 180° − 110° = 70°.",
+"explanation": "m(AOB) = 40° okunur. Tümleyeni 90° − 40° = 50°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -31889,18 +30841,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 4,
+"hour": 7,
 "minute": 0,
 "show_names": false
 },
 "options": {
-"A": "90°",
-"B": "120°",
-"C": "150°",
-"D": "240°"
+"A": "120°",
+"B": "150°",
+"C": "180°",
+"D": "210°"
 },
 "answer": "B",
-"explanation": "Saat tam 4.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 120°.",
+"explanation": "Saat tam 7.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 150°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -31989,17 +30941,28 @@
 0
 ],
 [
+4,
+3
+],
+[
+2,
+4.8
+],
+[
 0,
 3
 ]
 ],
 "rights": [
-0
+0,
+1
 ],
 "vlabels": [
 "A",
 "B",
-"C"
+"C",
+"D",
+"E"
 ],
 "show_names": false
 },
@@ -32009,8 +30972,8 @@
 "C": "3",
 "D": "4"
 },
-"answer": "A",
-"explanation": "Şekilde 1 köşede dik açı işareti vardır.",
+"answer": "B",
+"explanation": "Şekilde 2 köşede dik açı işareti vardır.",
 "kz": [
 "MAT.5.3.6"
 ],
@@ -32910,22 +31873,22 @@
 "B",
 "C"
 ],
-"split": 40,
+"split": 35,
 "split_labels": [
-"40°",
+"35°",
 ""
 ],
-"angle_label": "130°",
+"angle_label": "90°",
 "show_names": false
 },
 "options": {
-"A": "40",
-"B": "90",
-"C": "100",
-"D": "130"
+"A": "35",
+"B": "55",
+"C": "65",
+"D": "90"
 },
 "answer": "B",
-"explanation": "m(COB) = 130° − 40° = 90°.",
+"explanation": "m(COB) = 90° − 35° = 55°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -32961,10 +31924,10 @@
 "show_names": false
 },
 "options": {
-"A": "Geniş açı",
-"B": "Dar açı",
-"C": "Doğru açı",
-"D": "Dik açı"
+"A": "Dar açı",
+"B": "Doğru açı",
+"C": "Dik açı",
+"D": "Geniş açı"
 },
 "answer": "A",
 "explanation": "m(AOB) = 35° + 40° = 75° olduğundan bu açı dar açıdır.",
@@ -33348,8 +32311,8 @@
 "options": {
 "A": "60°",
 "B": "70°",
-"C": "110°",
-"D": "180°"
+"C": "120°",
+"D": "130°"
 },
 "answer": "A",
 "explanation": "m(AOB) = 70° ve m(AOC) = 130° okunur. m(BOC) = 130° − 70° = 60°.",
@@ -33401,7 +32364,7 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 3,
+"hour": 9,
 "minute": 0,
 "show_names": false
 },
@@ -33549,760 +32512,9 @@
 "sub_type": "rays",
 "angs": [
 20,
-60,
-100
-],
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"show_names": false
-},
-"options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "6"
-},
-"answer": "B",
-"explanation": "3 ışından ikisi seçilir: 3 farklı açı oluşur.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aci_sayisi"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ilişkileri",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nŞekilde üç doğru O noktasında kesişmektedir. x ile gösterilen açının ölçüsü kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "lines3",
-"dirs": [
-10,
-60,
-110
-],
-"arcs": {
-"0": "x",
-"1": "50°",
-"2": "80°"
-},
-"show_names": false
-},
-"options": {
-"A": "40°",
-"B": "50°",
-"C": "60°",
-"D": "130°"
-},
-"answer": "B",
-"explanation": "Yan yana üç açının toplamı doğru açıdır: 180° − 50° − 80° = 50°.",
-"kz": [
-"MAT.5.3.4"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_uc_dogru"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nŞekildeki AOB açısı hangi açı türündendir?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 125,
-"rotation": 10,
-"labels": [
-"O",
-"A",
-"B"
-],
-"show_names": false
-},
-"options": {
-"A": "Dik açı",
-"B": "Geniş açı",
-"C": "Doğru açı",
-"D": "Dar açı"
-},
-"answer": "B",
-"explanation": "Açı dik açıdan büyük (ve doğru açıdan küçük) olduğundan geniş açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aci_tur_bak"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nÖlçüsü 110° olan AOB açısı, şekildeki OC ışınıyla iki açıya ayrılmıştır. m(AOC) = 90° ise m(COB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 110,
-"rotation": 10,
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"split": 90,
-"split_labels": [
-"90°",
-""
-],
-"angle_label": "110°",
-"show_names": false
-},
-"options": {
-"A": "20",
-"B": "30",
-"C": "90",
-"D": "110"
-},
-"answer": "A",
-"explanation": "m(COB) = 110° − 90° = 20°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_cikar"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nŞekilde OC ışını AOB açısını iki açıya ayırmıştır. m(AOC) = 45° ve m(COB) = 85° olduğuna göre AOB açısı hangi açı türündedir?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 130,
-"rotation": 0,
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"split": 45,
-"split_labels": [
-"45°",
-"85°"
-],
-"angle_label": "130°",
-"show_names": false
-},
-"options": {
-"A": "Dar açı",
-"B": "Dik açı",
-"C": "Doğru açı",
-"D": "Geniş açı"
-},
-"answer": "D",
-"explanation": "m(AOB) = 45° + 85° = 130° olduğundan bu açı geniş açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_tur2"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nAOB açısının ölçüsü şekilde verilmiştir. Bu açı hangi türdendir?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 165,
-"rotation": 20,
-"labels": [
-"O",
-"A",
-"B"
-],
-"angle_label": "165°",
-"show_names": false
-},
-"options": {
-"A": "Dar açı",
-"B": "Doğru açı",
-"C": "Dik açı",
-"D": "Geniş açı"
-},
-"answer": "D",
-"explanation": "165° ölçülü açı: 90°’den büyük, 180°’den küçük → geniş açı.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_ang_tur"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nŞekilde OC ışını AOB açısını iki parçaya ayırmaktadır. m(AOC) = 40°, m(COB) = 60° ise m(AOB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 100,
-"rotation": 0,
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"split": 40,
-"split_labels": [
-"40°",
-"60°"
-],
-"angle_label": "100°",
-"show_names": false
-},
-"options": {
-"A": "20",
-"B": "90",
-"C": "100",
-"D": "110"
-},
-"answer": "C",
-"explanation": "40° + 60° = 100°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_topla"
-},
-{
-"subject": "Matematik",
-"topic": "Açıortay",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nŞekilde OC ışını AOB açısının açıortayıdır. m(AOC) = 2x + 6° ve m(COB) = 3x − 3° olduğuna göre x kaçtır?",
-"shape": {
-"type": "geo",
-"sub_type": "angle",
-"degree": 48,
-"rotation": 10,
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"split": 24,
-"split_labels": [
-"2x+6",
-"3x−3"
-],
-"angle_label": "48°",
-"show_names": false
-},
-"options": {
-"A": "4",
-"B": "9",
-"C": "14",
-"D": "24"
-},
-"answer": "B",
-"explanation": "Açıortay açıyı eşit böler: 2x + 6 = 3x − 3 → x = 9.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aortay_cebir"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nAşağıdakilerden hangisi ölçüsü 90° olan açının türünü doğru olarak verir?",
-"shape": null,
-"options": {
-"A": "dar açı",
-"B": "dik açı",
-"C": "geniş açı",
-"D": "doğru açı"
-},
-"answer": "B",
-"explanation": "90° dik açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 1,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_siniflama"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nÖlçüleri 137°, 110°, 147°, 123°, 21°, 106° olan altı açıdan kaç tanesi dar açıdır?",
-"shape": null,
-"options": {
-"A": "0",
-"B": "1",
-"C": "2",
-"D": "3"
-},
-"answer": "B",
-"explanation": "90°’den küçük ölçüler sayılır: 1 tane.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_say"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nÖlçüsü bir doğru açının yarısı kadar olan açı kaç derecedir?",
-"shape": null,
-"options": {
-"A": "30°",
-"B": "45°",
-"C": "90°",
-"D": "180°"
-},
-"answer": "C",
-"explanation": "Dik açı 90°, doğru açı 180°’dir; buna göre sonuç 90°’dir.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_yarim"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nÖlçüleri 59° ve 33° olan iki açı ortak bir kenar boyunca birleştiriliyor. Elde edilen açı hangi türdendir?",
-"shape": null,
-"options": {
-"A": "dik açı",
-"B": "dar açı",
-"C": "doğru açı",
-"D": "geniş açı"
-},
-"answer": "D",
-"explanation": "59 + 33 = 92° olduğundan oluşan açı geniş açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_toplam2"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nBir pergelin ucu tam tur döndürülüyor. Dönme açısı kaç derecedir?",
-"shape": null,
-"options": {
-"A": "45",
-"B": "90",
-"C": "180",
-"D": "360"
-},
-"answer": "D",
-"explanation": "Tam tur 360°’dir.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 2,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_aci_donme"
-},
-{
-"subject": "Matematik",
-"topic": "Ölçü ve tür bilgisi",
-"passage": "Bir öğretmen tahtaya ölçüleri 40° ve 110° olan iki açı çizmiştir.\nI. 40° ölçüsündeki açı dar açıdır.\nII. 110° ölçüsündeki açı geniş açıdır.\nIII. Bu iki açının toplamı 160°’dir.",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nBuna göre aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "I ve II",
-"B": "I ve III",
-"C": "Yalnız III",
-"D": "II ve III"
-},
-"answer": "A",
-"explanation": "Açı türleri 90° ile karşılaştırılarak belirlenir.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_yn_aci_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 20,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "10°",
-"B": "20°",
-"C": "30°",
-"D": "160°"
-},
-"answer": "B",
-"explanation": "OA ışını sağdaki 0°'den başladığı için dış ölçekten okunur: m(AOB) = 20°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nŞekilde OA ışını açıölçerin sol taraftaki 0° çizgisi üzerindedir. Açıölçerle ölçülen m(AOB) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 50,
-"base": "left",
-"show_names": false
-},
-"options": {
-"A": "40°",
-"B": "50°",
-"C": "60°",
-"D": "130°"
-},
-"answer": "B",
-"explanation": "OA ışını soldaki 0°'den başladığı için iç ölçekten okunur: m(AOB) = 50°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_sol"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nŞekilde OA ışını açıölçerin sol taraftaki 0° çizgisi üzerindedir. AOB açısı hangi açı türündendir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 110,
-"base": "left",
-"show_names": false
-},
-"options": {
-"A": "Doğru açı",
-"B": "Dar açı",
-"C": "Geniş açı",
-"D": "Dik açı"
-},
-"answer": "C",
-"explanation": "Açıölçerden m(AOB) = 110° okunur; bu açı geniş açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_tur"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. m(BOC) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 50,
-"degree2": 120,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "50°",
-"B": "70°",
-"C": "120°",
-"D": "170°"
-},
-"answer": "B",
-"explanation": "m(AOB) = 50° ve m(AOC) = 120° okunur. m(BOC) = 120° − 50° = 70°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_iki"
-},
-{
-"subject": "Matematik",
-"topic": "Toplamı 90° ve 180° olan ikililer",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nYandaki şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. AOB açısının bütünleyeni (bütünler açısı) kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "protractor",
-"degree": 60,
-"base": "right",
-"show_names": false
-},
-"options": {
-"A": "30°",
-"B": "60°",
-"C": "120°",
-"D": "150°"
-},
-"answer": "C",
-"explanation": "m(AOB) = 60° okunur. Bütünleyeni 180° − 60° = 120°.",
-"kz": [
-"MAT.5.3.4"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_aol_tum"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nVerilen şekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "clock",
-"hour": 11,
-"minute": 0,
-"show_names": false
-},
-"options": {
-"A": "30°",
-"B": "60°",
-"C": "90°",
-"D": "330°"
-},
-"answer": "A",
-"explanation": "Saat tam 11.00'dır; saatte iki rakam arası 30°'dir. Küçük açı = 30°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 4,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_saat_aci"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nVerilen şekildeki saatte akrep ile yelkovan arasında oluşan küçük açı kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "clock",
-"hour": 9,
-"minute": 30,
-"show_names": false
-},
-"options": {
-"A": "90°",
-"B": "105°",
-"C": "135°",
-"D": "165°"
-},
-"answer": "B",
-"explanation": "Yelkovan 6'da (180°), akrep 9. ile 10. rakamın tam ortasındadır (285°). Fark = 105°.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 5,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_saat_30"
-},
-{
-"subject": "Matematik",
-"topic": "Açı türleri",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nVerilen şekildeki saatte akrep ile yelkovanın oluşturduğu küçük açı hangi açı türündendir?",
-"shape": {
-"type": "geo",
-"sub_type": "clock",
-"hour": 9,
-"minute": 0,
-"show_names": false
-},
-"options": {
-"A": "Doğru açı",
-"B": "Geniş açı",
-"C": "Dik açı",
-"D": "Dar açı"
-},
-"answer": "C",
-"explanation": "Saat 9.00 olduğunda iki ibre arası 90°'dir; bu dik açıdır.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_saat_tur"
-},
-{
-"subject": "Matematik",
-"topic": "Çokgenlerin açı özellikleri",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nVerilen şekildeki çokgende dik açı işaretleri gösterilmiştir. Bu çokgende kaç tane dik açı vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-4,
-0
-],
-[
-0,
-3
-]
-],
-"rights": [
-0
-],
-"vlabels": [
-"A",
-"B",
-"C"
-],
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "2",
-"C": "3",
-"D": "4"
-},
-"answer": "A",
-"explanation": "Şekilde 1 köşede dik açı işareti vardır.",
-"kz": [
-"MAT.5.3.6"
-],
-"unit": "Açı Ölçme (MAT.5.3.3-4)",
-"topics": "Açı ölçme ve çizme, Açı türleri, Açıortay",
-"d": 3,
-"ts": 1795597055,
-"src": "local",
-"fam": "_mf_gv_dik_say"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nYandaki şekilde köşesi O olan ışınlar gösterilmiştir. Bu ışınlardan ikisi seçilerek oluşturulabilecek kaç farklı açı vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "rays",
-"angs": [
-10,
-50,
+55,
 90,
-130
+125
 ],
 "labels": [
 "O",
@@ -35938,9 +34150,9 @@
 "B",
 "C"
 ],
-"split": 100,
+"split": 25,
 "split_labels": [
-"100°",
+"25°",
 ""
 ],
 "angle_label": "140°",
@@ -37123,7 +35335,7 @@
 "subject": "Matematik",
 "topic": "Açı ölçme",
 "passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nŞekilde OA ışını açıölçerin 0° çizgisi üzerindedir. m(BOC) kaç derecedir?",
+"question": "Matematik dersinde şu soru çözülüyor.\nYandaki şekilde OA ışını açıölçerin 0° çizgisi üzerindedir. m(BOC) kaç derecedir?",
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
@@ -37886,13 +36098,13 @@
 "show_names": false
 },
 "options": {
-"A": "20°",
-"B": "50°",
-"C": "70°",
-"D": "90°"
+"A": "30°",
+"B": "60°",
+"C": "90°",
+"D": "150°"
 },
-"answer": "B",
-"explanation": "m(AOB) = 20° ve m(AOC) = 70° okunur. m(BOC) = 70° − 20° = 50°.",
+"answer": "A",
+"explanation": "m(AOB) = 60° ve m(AOC) = 90° okunur. m(BOC) = 90° − 60° = 30°.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -40184,18 +38396,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "protractor",
-"degree": 140,
+"degree": 70,
 "base": "right",
 "show_names": false
 },
 "options": {
-"A": "40°",
-"B": "50°",
-"C": "140°",
+"A": "20°",
+"B": "70°",
+"C": "110°",
 "D": "160°"
 },
-"answer": "A",
-"explanation": "m(AOB) = 140° okunur. Bütünleyeni 180° − 140° = 40°.",
+"answer": "C",
+"explanation": "m(AOB) = 70° okunur. Bütünleyeni 180° − 70° = 110°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -40274,18 +38486,18 @@
 "shape": {
 "type": "geo",
 "sub_type": "clock",
-"hour": 11,
+"hour": 2,
 "minute": 0,
 "show_names": false
 },
 "options": {
-"A": "Dik açı",
-"B": "Doğru açı",
-"C": "Geniş açı",
-"D": "Dar açı"
+"A": "Doğru açı",
+"B": "Dik açı",
+"C": "Dar açı",
+"D": "Geniş açı"
 },
-"answer": "D",
-"explanation": "Saat 11.00 olduğunda iki ibre arası 30°'dir; bu dar açıdır.",
+"answer": "C",
+"explanation": "Saat 2.00 olduğunda iki ibre arası 60°'dir; bu dar açıdır.",
 "kz": [
 "MAT.5.3.3"
 ],
@@ -46942,8 +45154,8 @@
 "sub_type": "rays",
 "angs": [
 0,
-40,
-80
+30,
+60
 ],
 "labels": [
 "O",

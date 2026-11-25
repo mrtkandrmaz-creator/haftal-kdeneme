@@ -737,10 +737,7 @@
 "n": 5
 },
 {
-"n": 6
-},
-{
-"n": 6
+"n": 1
 },
 {
 "n": 5
@@ -1151,12 +1148,6 @@
 "n": 9
 },
 {
-"n": 4
-},
-{
-"n": 8
-},
-{
 "n": 0
 },
 {
@@ -1230,7 +1221,7 @@
 "n": 1
 }
 ],
-"label": "K"
+"label": "R"
 },
 {
 "d": [
@@ -1309,135 +1300,6 @@
 "n": 4
 },
 {
-"n": 5
-},
-{
-"n": 1
-}
-],
-"label": "T"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "P",
-"B": "R",
-"C": "T",
-"D": "Üçü de eşittir"
-},
-"answer": "B",
-"explanation": "Gösterilen sayılar P: 10 805, R: 10 288, T: 60 451; en küçük olan R.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_buyuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Şekilde 4 rakam kartı verilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en büyük doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 7
-},
-{
-"n": 8
-},
-{
-"n": 0
-},
-{
-"n": 5
-}
-],
-"show_names": false
-},
-"options": {
-"A": "578",
-"B": "7 850",
-"C": "8 705",
-"D": "8 750"
-},
-"answer": "D",
-"explanation": "Rakamlar büyükten küçüğe dizilir: 8 750.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_en_buyuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nYandaki şekilde 5 rakam kartı görülmektedir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük 5 basamaklı doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 5
-},
-{
-"n": 8
-},
-{
-"n": 2
-},
-{
-"n": 0
-},
-{
-"n": 6
-}
-],
-"show_names": false
-},
-"options": {
-"A": "02 568",
-"B": "20 568",
-"C": "28 650",
-"D": "86 520"
-},
-"answer": "B",
-"explanation": "Sayının ilk basamağı 0 olamaz; en küçük sıfır olmayan rakam başa, kalanlar küçükten büyüğe dizilir: 20 568.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_en_kucuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nAşağıdaki şekilde 4 rakam kartı görülmektedir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek çift olan en büyük doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 7
-},
-{
 "n": 3
 },
 {
@@ -1446,193 +1308,13 @@
 ],
 "label": "M"
 },
-"options": {
-"A": "5",
-"B": "6",
-"C": "7",
-"D": "8"
-},
-"answer": "C",
-"explanation": "Tabloda 7 rakam vardır; sayı 7 basamaklıdır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 1,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_basamak_say"
-},
 {
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nVerilen şekilde bir doğal sayı basamak tablosunda görülmektedir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
 "d": [
 {
 "n": 1
 },
 {
 "n": 7
-},
-{
-"n": 3
-},
-{
-"n": 0
-},
-{
-"n": 6
-},
-{
-"n": 0
-}
-],
-"show_names": false
-},
-"options": {
-"A": "yüz yetmiş üç bin yüz altmış",
-"B": "yüz yetmiş iki bin altmış",
-"C": "yüz yetmiş üç bin yetmiş",
-"D": "yüz yetmiş üç bin altmış"
-},
-"answer": "D",
-"explanation": "Bölükler soldan sağa okunur: yüz yetmiş üç bin altmış.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nAşağıdaki şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının binler bölüğündeki rakamların oluşturduğu sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 7
-},
-{
-"n": 0
-},
-{
-"n": 1
-},
-{
-"n": 9
-},
-{
-"n": 9
-},
-{
-"n": 1
-},
-{
-"n": 6
-},
-{
-"n": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "70",
-"B": "168",
-"C": "199",
-"D": "991"
-},
-"answer": "C",
-"explanation": "Binler bölüğü, tablodaki ortadaki üç basamaktır: 199.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_boluk"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nYandaki abaküste her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre abaküste gösterilen sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 1,
-"panels": [
-{
-"d": [
-{
-"n": 7
-},
-{
-"n": 9
-},
-{
-"n": 0
-},
-{
-"n": 8
-}
-]
-}
-],
-"show_names": false
-},
-"options": {
-"A": "6 908",
-"B": "7 908",
-"C": "8 097",
-"D": "8 908"
-},
-"answer": "B",
-"explanation": "Soldan sağa boncuk sayıları 7, 9, 0, 8; sayı 7 908.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki abaküste her çubuk bir basamağı göstermektedir.\nBuna göre N ile gösterilen çubuktaki boncukların temsil ettiği değer kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 1,
-"panels": [
-{
-"d": [
-{
-"n": 1
-},
-{
-"n": 2
-},
-{
-"n": 8
 },
 {
 "n": 6
@@ -1712,10 +1394,7 @@
 "n": 4
 },
 {
-"n": 8
-},
-{
-"n": 7
+"n": 1
 }
 ],
 "show_names": false
@@ -2187,10 +1866,13 @@
 "n": 7
 },
 {
-"n": 4
+"n": 0
 },
 {
-"n": 4
+"n": 0
+},
+{
+"n": 0
 },
 {
 "n": 0
@@ -2206,21 +1888,6 @@
 },
 {
 "n": 9
-},
-{
-"n": 8
-},
-{
-"n": 0
-},
-{
-"n": 0
-},
-{
-"n": 1
-},
-{
-"n": 2
 }
 ],
 "show_names": false
@@ -2331,16 +1998,7 @@
 "n": 6
 },
 {
-"n": 3
-},
-{
-"n": 9
-},
-{
 "n": 2
-},
-{
-"n": 0
 },
 {
 "n": 3
@@ -6488,13 +6146,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 6
-},
-{
-"n": 5
-},
-{
-"n": 0
+"n": 9
 },
 {
 "n": 9
@@ -6705,7 +6357,10 @@
 "n": 7
 },
 {
-"n": 1
+"n": 2
+},
+{
+"n": 7
 },
 {
 "n": 0
@@ -6753,7 +6408,7 @@
 "n": 0
 },
 {
-"n": 1
+"n": 4
 },
 {
 "n": 5
@@ -6816,13 +6471,13 @@
 "show_names": false
 },
 "options": {
-"A": "5",
-"B": "6",
-"C": "7",
-"D": "8"
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
 },
 "answer": "C",
-"explanation": "Tabloda 7 rakam vardır; sayı 7 basamaklıdır.",
+"explanation": "Tabloda 6 rakam vardır; sayı 6 basamaklıdır.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -7120,7 +6775,7 @@
 "n": 9
 }
 ],
-"label": "K"
+"label": "P"
 }
 ],
 "show_names": false
@@ -7253,7 +6908,7 @@
 "n": 8
 },
 {
-"n": 6
+"n": 7
 },
 {
 "n": 6
@@ -7349,7 +7004,7 @@
 "n": 2
 },
 {
-"n": 5
+"n": 8
 }
 ],
 "show_names": false
@@ -7545,7 +7200,7 @@
 "subject": "Matematik",
 "topic": "Sayı okuma-yazma",
 "passage": "",
-"question": "Tabloda bir doğal sayının bölüklerindeki rakamlar verilmiştir. Bu bölükler birleştirilirse hangi sayı elde edilir?",
+"question": "Bir sayının bölükleri tabloda ayrı ayrı yazılmıştır. Bu sayı rakamlarla nasıl yazılır?",
 "shape": {
 "type": "table",
 "title": "Bir sayının bölükleri",
@@ -7885,7 +7540,7 @@
 "n": 8
 },
 {
-"n": 3
+"n": 9
 },
 {
 "n": 5
@@ -21703,10 +21358,10 @@
 "question": "Aşağıdaki tabloyu inceleyerek aşağıdaki soruyu cevaplayınız.\nTabloya göre sayılar küçükten büyüğe doğru sıralandığında aşağıdakilerden hangisi elde edilir?",
 "shape": {
 "type": "table",
-"title": "Dört stadyumun kapasitesi",
+"title": "Dört okulun kitaplık kitap sayısı",
 "headers": [
 "Yer",
-"Sayı (kişi)"
+"Sayı (kitap)"
 ],
 "rows": [
 [
@@ -21822,10 +21477,7 @@
 "n": 8
 },
 {
-"n": 7
-},
-{
-"n": 2
+"n": 9
 }
 ],
 "show_names": false
@@ -33225,9 +32877,6 @@
 {
 "d": [
 {
-"n": 9
-},
-{
 "n": 4
 },
 {
@@ -33404,39 +33053,6 @@
 "n": 0
 },
 {
-"n": 3
-}
-],
-"show_names": false
-},
-"options": {
-"A": "135 789",
-"B": "897 531",
-"C": "987 513",
-"D": "987 531"
-},
-"answer": "D",
-"explanation": "Rakamlar büyükten küçüğe dizilir: 987 531.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_en_buyuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nAşağıdaki şekilde 4 rakam kartı görülmektedir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük 4 basamaklı doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
 "n": 2
 },
 {
@@ -33467,40 +33083,19 @@
 "d": 2,
 "ts": 1795634060,
 "src": "local",
-"fam": "_mf_bl_sifir_say"
+"fam": "_mf_kr_en_buyuk"
 },
 {
 "subject": "Matematik",
-"topic": "Sayı okuma-yazma",
+"topic": "Sayı oluşturma",
 "passage": "",
 "question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nYandaki şekilde 4 rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük 4 basamaklı doğal sayı kaçtır?",
 "shape": {
 "type": "kes",
-"sub_type": "basamak",
+"sub_type": "kartrk",
 "d": [
 {
-"n": 1
-},
-{
-"n": 1
-},
-{
-"n": 8
-},
-{
-"n": 2
-},
-{
-"n": 6
-},
-{
-"n": 4
-},
-{
-"n": 4
-},
-{
-"n": 6
+"n": 7
 },
 {
 "n": 5
@@ -33512,19 +33107,16 @@
 "n": 3
 }
 ],
-"hide": [
-10
-],
 "show_names": false
 },
 "options": {
-"A": "0",
-"B": "2",
-"C": "7",
-"D": "8"
+"A": "0 357",
+"B": "3 057",
+"C": "3 750",
+"D": "7 530"
 },
-"answer": "D",
-"explanation": "Okunuşa göre sayı 118 264 463 080 olur; ? yerindeki rakam 8.",
+"answer": "B",
+"explanation": "Sayının ilk basamağı 0 olamaz; en küçük sıfır olmayan rakam başa, kalanlar küçükten büyüğe dizilir: 3 057.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -33533,661 +33125,19 @@
 "d": 3,
 "ts": 1795634060,
 "src": "local",
-"fam": "_mf_bl_gizli"
+"fam": "_mf_kr_en_kucuk"
 },
 {
 "subject": "Matematik",
-"topic": "Sayı okuma-yazma",
+"topic": "Sayı oluşturma",
 "passage": "",
 "question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nGörselde 4 rakam kartı verilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek çift olan en büyük doğal sayı kaçtır?",
 "shape": {
 "type": "kes",
-"sub_type": "basamak",
+"sub_type": "kartrk",
 "d": [
-{
-"n": 7
-},
-{
-"n": 6
-},
-{
-"n": 7
-},
-{
-"n": 0
-},
-{
-"n": 0
-},
-{
-"n": 0
-},
-{
-"n": 0
-},
-{
-"n": 0
-},
-{
-"n": 7
-}
-],
-"show_names": false
-},
-"options": {
-"A": "yedi yüz altmış yedi milyon yedi",
-"B": "yedi milyar altı yüz yetmiş milyon yetmiş",
-"C": "yedi milyar altı yüz yetmiş milyon yedi",
-"D": "yetmiş altı milyon yedi yüz bin"
-},
-"answer": "A",
-"explanation": "Sayı 767 000 007; bölükler soldan sağa okunur ve bölük adı söylenir: yedi yüz altmış yedi milyon yedi.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_tablo_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“sekiz milyon sekiz” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?",
-"shape": null,
-"options": {
-"A": "800 000",
-"B": "8 000 008",
-"C": "80 000 008",
-"D": "80 000 080"
-},
-"answer": "B",
-"explanation": "Her bölük üç basamaklı yazılır; olmayan bölük ve basamaklar 0 ile doldurulur: 8 000 008.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_yaz"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki şekilde bir doğal sayı basamak ve bölük tablosunda görülmektedir.\nBuna göre P ile gösterilen rakam hangi bölüktedir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 3
-},
-{
-"n": 8
-},
-{
-"n": 8
-},
-{
-"n": 5
-},
-{
-"n": 9
-},
 {
 "n": 1
-},
-{
-"n": 1
-},
-{
-"n": 4
-}
-],
-"marks": {
-"3": "P"
-},
-"show_names": false
-},
-"options": {
-"A": "Milyonlar bölüğü",
-"B": "Birler bölüğü",
-"C": "Binler bölüğü",
-"D": "Milyarlar bölüğü"
-},
-"answer": "C",
-"explanation": "P ile gösterilen rakam on binler basamağındadır; bu basamak Binler bölüğü içindedir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_hangi"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilde bir doğal sayı basamak ve bölük tablosunda verilmiştir.\nBuna göre N ile gösterilen rakamın basamak değeri kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 7
-},
-{
-"n": 1
-},
-{
-"n": 9
-},
-{
-"n": 3
-},
-{
-"n": 0
-},
-{
-"n": 6
-},
-{
-"n": 6
-},
-{
-"n": 0
-},
-{
-"n": 3
-},
-{
-"n": 2
-},
-{
-"n": 7
-}
-],
-"marks": {
-"10": "N"
-},
-"show_names": false
-},
-"options": {
-"A": "7",
-"B": "8",
-"C": "70",
-"D": "7 000"
-},
-"answer": "A",
-"explanation": "N ile gösterilen rakam birler basamağındaki 7 rakamıdır; basamak değeri 7 × 1 = 7.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_deger12"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Tabloda dört kartın üzerindeki doğal sayılar verilmiştir. Okunuşu “yedi milyar seksen iki” olan sayı hangi harfle gösterilmiştir?",
-"shape": {
-"type": "table",
-"title": "Sayı kartları",
-"headers": [
-"Kart",
-"Sayı"
-],
-"rows": [
-[
-"M",
-"7 000 000 000"
-],
-[
-"T",
-"7 138 000 331"
-],
-[
-"K",
-"7 000 000 082"
-],
-[
-"L",
-"7 006 000 000"
-]
-]
-},
-"options": {
-"A": "K",
-"B": "M",
-"C": "T",
-"D": "L"
-},
-"answer": "A",
-"explanation": "“yedi milyar seksen iki” sayısı 7 000 000 082 biçiminde yazılır; bu sayı K ile gösterilmiştir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_sifir"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı karşılaştırma ve sıralama",
-"passage": "",
-"question": "Dört kartın sayıları tabloda verilmiştir. Sayısı diğerlerinden en büyük olan kart hangisidir?",
-"shape": {
-"type": "table",
-"title": "Sayı kartları",
-"headers": [
-"Kart",
-"Sayı"
-],
-"rows": [
-[
-"S",
-"829 222 468"
-],
-[
-"N",
-"37 222 178 655"
-],
-[
-"K",
-"61 327 403 237"
-],
-[
-"P",
-"88 356 591 656"
-]
-]
-},
-"options": {
-"A": "S",
-"B": "K",
-"C": "N",
-"D": "P"
-},
-"answer": "D",
-"explanation": "Önce basamak sayısına, eşitse en soldaki bölükten başlayarak bölüklere bakılır. En büyük sayı 88 356 591 656 sayısıdır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_buyuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "I. 29 570 801 sayısı 4 bölükten oluşur.\nII. 29 570 801 sayısının okunuşunda en soldaki bölükten başlanır.\nIII. 29 570 801 sayısının birler bölüğündeki rakamların oluşturduğu sayı 801 olarak okunur.",
-"question": "Verilen ifadelerden hangileri doğru bilgi içermektedir?",
-"shape": null,
-"options": {
-"A": "II ve III",
-"B": "Yalnız III",
-"C": "I ve II",
-"D": "I ve III"
-},
-"answer": "A",
-"explanation": "Doğru ifadeler: II, III.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_onerme"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nAşağıdaki sayı doğrusunda A ile gösterilen sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "number_line",
-"min": 100000,
-"max": 150000,
-"step": 10000,
-"marks": [
-{
-"label": "A",
-"value": 150000
-},
-{
-"label": "B",
-"value": 120000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "yüz kırk bin",
-"B": "yüz elli bin",
-"C": "yüz altmış bin",
-"D": "iki yüz elli bin"
-},
-"answer": "B",
-"explanation": "Sayı doğrusunda ardışık iki işaret arası 10 000 artar; A noktası 150 000 sayısını gösterir. Okunuşu: yüz elli bin.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nAşağıdaki sayı doğrusunda A ve B ile gösterilen sayıların toplamı kaçtır?",
-"shape": {
-"type": "number_line",
-"min": 200000,
-"max": 700000,
-"step": 100000,
-"marks": [
-{
-"label": "A",
-"value": 600000
-},
-{
-"label": "B",
-"value": 700000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "1 200 000",
-"B": "1 300 000",
-"C": "1 400 000",
-"D": "2 300 000"
-},
-"answer": "B",
-"explanation": "A = 600 000 ve B = 700 000 olduğundan toplamı 1 300 000 olur.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_topla"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nAşağıdaki sayı doğrusunda A ile gösterilen sayı hangi iki sayı arasındadır?",
-"shape": {
-"type": "number_line",
-"min": 100000,
-"max": 200000,
-"step": 20000,
-"marks": [
-{
-"label": "A",
-"value": 190000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "100 000 ile 120 000",
-"B": "160 000 ile 180 000",
-"C": "180 000 ile 200 000",
-"D": "120 000 ile 140 000"
-},
-"answer": "C",
-"explanation": "A noktası 180 000 ile 200 000 işaretleri arasında yer alır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_ara"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nAşağıdaki sayı doğrusunda A ile gösterilen sayı en yakın yüz bine yuvarlanırsa kaç olur?",
-"shape": {
-"type": "number_line",
-"min": 200000,
-"max": 600000,
-"step": 100000,
-"marks": [
-{
-"label": "A",
-"value": 540000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "400 000",
-"B": "500 000",
-"C": "600 000",
-"D": "700 000"
-},
-"answer": "B",
-"explanation": "A noktası 500 000 ile 600 000 arasında ve 500 000 sayısına daha yakındır; yuvarlanmış hâli 500 000 olur.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_yuvarla"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Tabloyu dikkatle inceleyerek aşağıdaki soruyu cevaplayınız.\nTabloda verilen sayılar belli bir kurala göre azalarak devam etmektedir.\nBuna göre ? yerine gelmesi gereken sayı kaçtır?",
-"shape": {
-"type": "table",
-"title": "Sayı örüntüsü",
-"headers": [
-"Sıra",
-"Sayı"
-],
-"rows": [
-[
-"1. sayı",
-"587 000"
-],
-[
-"2. sayı",
-"586 000"
-],
-[
-"3. sayı",
-"585 000"
-],
-[
-"4. sayı",
-"584 000"
-],
-[
-"5. sayı",
-"583 000"
-],
-[
-"6. sayı",
-"?"
-]
-]
-},
-"options": {
-"A": "581 000",
-"B": "582 000",
-"C": "583 000",
-"D": "592 000"
-},
-"answer": "B",
-"explanation": "Ardışık sayılar arasındaki fark 1 000'dir; 6. sayı 582 000 olur.",
-"kz": [
-"MAT.5.2.3"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_makine"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı karşılaştırma",
-"passage": "",
-"question": "Aşağıdaki tabloyu inceleyerek aşağıdaki soruyu çözünüz.\nTabloya göre sayısı en az olan hangisidir?",
-"shape": {
-"type": "table",
-"title": "Dört kitabın baskı sayısı",
-"headers": [
-"Yer",
-"Sayı (adet)"
-],
-"rows": [
-[
-"A",
-"805 000"
-],
-[
-"B",
-"490 000"
-],
-[
-"C",
-"748 000"
-],
-[
-"D",
-"678 000"
-]
-]
-},
-"options": {
-"A": "B",
-"B": "A",
-"C": "D",
-"D": "C"
-},
-"answer": "A",
-"explanation": "En küçük sayı 490 000 olduğundan B.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_tablo_sira"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nR ile gösterilen basamaktaki rakamın basamak değeri ile P ile gösterilen basamaktaki rakamın basamak değerinin toplamı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 5
-},
-{
-"n": 7
-},
-{
-"n": 5
-},
-{
-"n": 7
-},
-{
-"n": 2
-}
-],
-"marks": {
-"1": "R",
-"3": "P"
-},
-"show_names": false
-},
-"options": {
-"A": "10",
-"B": "505",
-"C": "50 005",
-"D": "50 500"
-},
-"answer": "D",
-"explanation": "R basamağının değeri 50 000, P basamağının değeri 500; toplamı 50 500 olur.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_bd_fark"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nI. 7 rakamı yüzler basamağındadır.\nII. Yüzler basamağındaki rakam 9'dir.\nIII. 6 rakamı birler basamağındadır.\nBu ifadelerden hangileri doğrudur?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 6
-},
-{
-"n": 5
-},
-{
-"n": 6
 },
 {
 "n": 7
@@ -37440,7 +36390,7 @@
 "subject": "Matematik",
 "topic": "Basamak değeri",
 "passage": "",
-"question": "Şekle göre aşağıdaki soruyu çözünüz.\nAşağıdaki sayı doğrusunda A ve B ile gösterilen sayıların toplamı kaçtır?",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nAşağıdaki sayı doğrusunda A ve B ile gösterilen sayıların toplamı kaçtır?",
 "shape": {
 "type": "number_line",
 "min": 100000,
@@ -37612,7 +36562,7 @@
 "question": "Tablodaki verilerden yararlanarak soruya cevap veriniz.\nTabloya göre sayılar küçükten büyüğe doğru sıralandığında aşağıdakilerden hangisi elde edilir?",
 "shape": {
 "type": "table",
-"title": "Dört ilin nüfusu",
+"title": "Dört müzenin yıllık ziyaretçi sayısı",
 "headers": [
 "Yer",
 "Sayı (kişi)"
@@ -37667,7 +36617,7 @@
 "n": 9
 },
 {
-"n": 9
+"n": 0
 },
 {
 "n": 0
@@ -38638,12 +37588,6 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 6
-},
-{
-"n": 9
-},
-{
 "n": 8
 },
 {
@@ -39362,12 +38306,6 @@
 "d": [
 {
 "n": 2
-},
-{
-"n": 5
-},
-{
-"n": 4
 },
 {
 "n": 7
@@ -40991,6 +39929,9 @@
 "n": 6
 },
 {
+"n": 4
+},
+{
 "n": 0
 }
 ],
@@ -41127,7 +40068,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 4
+"n": 8
 },
 {
 "n": 3
@@ -41179,18 +40120,6 @@
 },
 {
 "n": 9
-},
-{
-"n": 9
-},
-{
-"n": 2
-},
-{
-"n": 8
-},
-{
-"n": 2
 },
 {
 "n": 0
@@ -41283,7 +40212,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 7
+"n": 8
 },
 {
 "n": 8
@@ -41343,7 +40272,7 @@
 "n": 9
 },
 {
-"n": 0
+"n": 3
 },
 {
 "n": 5
@@ -41593,7 +40522,7 @@
 "n": 2
 },
 {
-"n": 6
+"n": 5
 },
 {
 "n": 4
@@ -41633,7 +40562,7 @@
 "n": 4
 },
 {
-"n": 0
+"n": 2
 }
 ],
 "label": "K"
@@ -41717,7 +40646,7 @@
 "sub_type": "kartrk",
 "d": [
 {
-"n": 1
+"n": 9
 },
 {
 "n": 0
@@ -42012,7 +40941,7 @@
 "subject": "Matematik",
 "topic": "Sayı okuma-yazma",
 "passage": "",
-"question": "Görselde bir doğal sayı basamak ve bölük tablosunda verilmiştir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?",
+"question": "Yandaki şekilde bir doğal sayı basamak ve bölük tablosunda gösterilmiştir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?",
 "shape": {
 "type": "kes",
 "sub_type": "basamak",
@@ -42126,7 +41055,7 @@
 "n": 9
 },
 {
-"n": 2
+"n": 0
 },
 {
 "n": 5
@@ -42139,7 +41068,7 @@
 }
 ],
 "marks": {
-"2": "S"
+"0": "N"
 },
 "show_names": false
 },
@@ -42724,12 +41653,6 @@
 },
 {
 "n": 5
-},
-{
-"n": 7
-},
-{
-"n": 6
 }
 ],
 "show_names": false
@@ -43137,10 +42060,10 @@
 ]
 },
 "options": {
-"A": "2 469 000",
-"B": "2 479 000",
-"C": "2 489 000",
-"D": "2 579 000"
+"A": "2 839 000",
+"B": "2 849 000",
+"C": "2 859 000",
+"D": "2 949 000"
 },
 "answer": "B",
 "explanation": "5 048 000 − 2 199 000 = 2 849 000.",
@@ -43456,10 +42379,6 @@
 "n": 3
 }
 ],
-"marks": {
-"0": "T",
-"1": "K"
-},
 "show_names": false
 },
 "options": {
@@ -43499,7 +42418,7 @@
 "n": 6
 },
 {
-"n": 6
+"n": 4
 },
 {
 "n": 5
@@ -43643,989 +42562,6 @@
 "n": 0
 },
 {
-"n": 9
-},
-{
-"n": 5
-}
-],
-"marks": {
-"3": "N"
-},
-"show_names": false
-},
-"options": {
-"A": "Milyarlar bölüğü",
-"B": "Birler bölüğü",
-"C": "Milyonlar bölüğü",
-"D": "Binler bölüğü"
-},
-"answer": "C",
-"explanation": "N ile gösterilen rakam yüz milyonlar basamağındadır; bu basamak Milyonlar bölüğü içindedir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_hangi"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilde bir doğal sayı basamak ve bölük tablosunda verilmiştir.\nBuna göre M ile gösterilen rakamın basamak değeri kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 1
-},
-{
-"n": 6
-},
-{
-"n": 9
-},
-{
-"n": 4
-},
-{
-"n": 5
-},
-{
-"n": 1
-},
-{
-"n": 0
-},
-{
-"n": 1
-},
-{
-"n": 0
-},
-{
-"n": 6
-},
-{
-"n": 6
-},
-{
-"n": 7
-}
-],
-"marks": {
-"1": "M"
-},
-"show_names": false
-},
-"options": {
-"A": "6",
-"B": "6 000 000 000",
-"C": "60 000 000 000",
-"D": "600 000 000 000"
-},
-"answer": "C",
-"explanation": "M ile gösterilen rakam on milyarlar basamağındaki 6 rakamıdır; basamak değeri 6 × 10 000 000 000 = 60 000 000 000.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_deger12"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Tabloda dört kartın üzerindeki doğal sayılar verilmiştir. Okunuşu “iki milyar” olan sayı hangi harfle gösterilmiştir?",
-"shape": {
-"type": "table",
-"title": "Sayı kartları",
-"headers": [
-"Kart",
-"Sayı"
-],
-"rows": [
-[
-"L",
-"2 000 000 000"
-],
-[
-"S",
-"2 193 000 372"
-],
-[
-"R",
-"2 000 000 040"
-],
-[
-"K",
-"2 009 000 000"
-]
-]
-},
-"options": {
-"A": "S",
-"B": "R",
-"C": "K",
-"D": "L"
-},
-"answer": "D",
-"explanation": "“iki milyar” sayısı 2 000 000 000 biçiminde yazılır; bu sayı L ile gösterilmiştir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_sifir"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "I. 6 200 061 sayısının okunuşunda en soldaki bölükten başlanır.\nII. 6 200 061 sayısının birler bölüğündeki rakamların oluşturduğu sayı 200 olarak okunur.\nIII. 6 200 061 sayısı 6 basamaklıdır.",
-"question": "Bölük ve okunuşla ilgili yazılan I, II ve III numaralı ifadelerden hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "Yalnız I",
-"B": "I, II ve III",
-"C": "II ve III",
-"D": "Yalnız III"
-},
-"answer": "A",
-"explanation": "Doğru ifadeler: I.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_onerme"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nAşağıdaki sayı doğrusunda B ile gösterilen sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "number_line",
-"min": 300000,
-"max": 900000,
-"step": 100000,
-"marks": [
-{
-"label": "A",
-"value": 500000
-},
-{
-"label": "B",
-"value": 800000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "sekiz yüz bin",
-"B": "dokuz yüz bin",
-"C": "bir milyon sekiz yüz bin",
-"D": "yedi yüz bin"
-},
-"answer": "A",
-"explanation": "Sayı doğrusunda ardışık iki işaret arası 100 000 artar; B noktası 800 000 sayısını gösterir. Okunuşu: sekiz yüz bin.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nAşağıdaki sayı doğrusunda A ve B ile gösterilen sayıların toplamı kaçtır?",
-"shape": {
-"type": "number_line",
-"min": 0,
-"max": 500000,
-"step": 100000,
-"marks": [
-{
-"label": "A",
-"value": 200000
-},
-{
-"label": "B",
-"value": 100000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "200 000",
-"B": "300 000",
-"C": "400 000",
-"D": "1 300 000"
-},
-"answer": "B",
-"explanation": "A = 200 000 ve B = 100 000 olduğundan toplamı 300 000 olur.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_topla"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nAşağıdaki sayı doğrusunda A ile gösterilen sayı hangi iki sayı arasındadır?",
-"shape": {
-"type": "number_line",
-"min": 240000,
-"max": 290000,
-"step": 10000,
-"marks": [
-{
-"label": "A",
-"value": 255000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "240 000 ile 250 000",
-"B": "250 000 ile 260 000",
-"C": "280 000 ile 290 000",
-"D": "270 000 ile 280 000"
-},
-"answer": "B",
-"explanation": "A noktası 250 000 ile 260 000 işaretleri arasında yer alır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_ara"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nAşağıdaki sayı doğrusunda A ile gösterilen sayı en yakın on bine yuvarlanırsa kaç olur?",
-"shape": {
-"type": "number_line",
-"min": 340000,
-"max": 380000,
-"step": 10000,
-"marks": [
-{
-"label": "A",
-"value": 353000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "340 000",
-"B": "350 000",
-"C": "360 000",
-"D": "370 000"
-},
-"answer": "B",
-"explanation": "A noktası 350 000 ile 360 000 arasında ve 350 000 sayısına daha yakındır; yuvarlanmış hâli 350 000 olur.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_yuvarla"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Tablodaki bilgilere göre aşağıdaki soruyu cevaplayınız.\nTabloda verilen sayılar belli bir kurala göre azalarak devam etmektedir.\nBuna göre ? yerine gelmesi gereken sayı kaçtır?",
-"shape": {
-"type": "table",
-"title": "Sayı örüntüsü",
-"headers": [
-"Sıra",
-"Sayı"
-],
-"rows": [
-[
-"1. sayı",
-"502 500"
-],
-[
-"2. sayı",
-"492 500"
-],
-[
-"3. sayı",
-"482 500"
-],
-[
-"4. sayı",
-"472 500"
-],
-[
-"5. sayı",
-"?"
-],
-[
-"6. sayı",
-"452 500"
-]
-]
-},
-"options": {
-"A": "452 500",
-"B": "462 500",
-"C": "472 500",
-"D": "562 500"
-},
-"answer": "B",
-"explanation": "Ardışık sayılar arasındaki fark 10 000'dir; 5. sayı 462 500 olur.",
-"kz": [
-"MAT.5.2.3"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_makine"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı karşılaştırma",
-"passage": "",
-"question": "Tablodaki bilgilere göre şu soruyu yanıtlayınız.\nTabloya göre sayısı en az olan hangisidir?",
-"shape": {
-"type": "table",
-"title": "Dört ilin nüfusu",
-"headers": [
-"Yer",
-"Sayı (kişi)"
-],
-"rows": [
-[
-"A",
-"483 000"
-],
-[
-"B",
-"171 000"
-],
-[
-"C",
-"398 000"
-],
-[
-"D",
-"147 000"
-]
-]
-},
-"options": {
-"A": "D",
-"B": "A",
-"C": "B",
-"D": "C"
-},
-"answer": "A",
-"explanation": "En küçük sayı 147 000 olduğundan D.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_tablo_sira"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda aşağıdaki soruyu cevaplayınız.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nN ile gösterilen basamaktaki rakamın basamak değeri ile P ile gösterilen basamaktaki rakamın basamak değerinin farkı (birincisinden ikincisi çıkarılarak) kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 4
-},
-{
-"n": 4
-},
-{
-"n": 4
-},
-{
-"n": 1
-},
-{
-"n": 2
-},
-{
-"n": 3
-}
-],
-"marks": {
-"1": "N",
-"5": "P"
-},
-"show_names": false
-},
-"options": {
-"A": "7",
-"B": "39 997",
-"C": "39 998",
-"D": "40 003"
-},
-"answer": "B",
-"explanation": "N basamağının değeri 40 000, P basamağının değeri 3; farkı 39 997 olur.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_bd_fark"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nI. 8 rakamı birler basamağındadır.\nII. Binler basamağındaki rakam 4'dir.\nIII. 7 rakamı birler basamağındadır.\nBu ifadelerden hangileri doğrudur?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 6
-},
-{
-"n": 1
-},
-{
-"n": 5
-},
-{
-"n": 8
-},
-{
-"n": 4
-},
-{
-"n": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "Yalnız I",
-"B": "I ve III",
-"C": "Hiçbiri",
-"D": "I ve II"
-},
-"answer": "A",
-"explanation": "Tablodaki sayı 615 848; ifadeler tablo ile karşılaştırıldığında doğru olanlar: Yalnız I.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_onculu"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nBu sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 4
-},
-{
-"n": 2
-},
-{
-"n": 5
-},
-{
-"n": 0
-},
-{
-"n": 4
-},
-{
-"n": 5
-}
-],
-"show_names": false
-},
-"options": {
-"A": "dört yüz yirmi dört bin dokuz yüz kırk beş",
-"B": "dört yüz yirmi beş bin elli beş",
-"C": "dört yüz yirmi dört bin kırk beş",
-"D": "dört yüz yirmi beş bin kırk beş"
-},
-"answer": "D",
-"explanation": "Tablodaki sayı 425 045; okunuşu dört yüz yirmi beş bin kırk beş.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_okunus_tablo"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“yedi yüz yetmiş dört bin iki yüz on iki” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?",
-"shape": null,
-"options": {
-"A": "774 212",
-"B": "774 222",
-"C": "774 312",
-"D": "775 212"
-},
-"answer": "A",
-"explanation": "Okunuştaki bölükler sırayla yazılır: 774 212.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_yaz_tablo"
-},
-{
-"subject": "Matematik",
-"topic": "Doğal sayılar",
-"passage": "",
-"question": "Okunuşu “otuz altı milyon yüz doksan üç bin altı yüz” olan sayı aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "3 619 360",
-"B": "36 193 600",
-"C": "36 193 604",
-"D": "61 936 003"
-},
-"answer": "B",
-"explanation": "otuz altı milyon yüz doksan üç bin altı yüz = 36 193 600.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_read"
-},
-{
-"subject": "Matematik",
-"topic": "Doğal sayılar",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\n199 102 390 sayısının okunuşu aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "dokuz yüz doksan bir milyon yirmi üç bin dokuz yüz bir",
-"B": "yüz doksan dokuz milyon yüz iki bin üç yüz doksan",
-"C": "on dokuz milyon dokuz yüz on bin iki yüz otuz dokuz",
-"D": "yüz doksan dokuz milyon on iki bin üç yüz doksan"
-},
-"answer": "B",
-"explanation": "199 102 390 sayısı “yüz doksan dokuz milyon yüz iki bin üç yüz doksan” diye okunur.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say"
-},
-{
-"subject": "Matematik",
-"topic": "Doğal sayılar",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nVerilen sayılar arasında en büyük olanı hangisidir?",
-"shape": null,
-"options": {
-"A": "615.166",
-"B": "6.402.813",
-"C": "3.689.061",
-"D": "3.217.210"
-},
-"answer": "B",
-"explanation": "Basamak sayısı çok olan ve en yüksek basamağı büyük olan sayı daha büyüktür; en büyük sayı 6.402.813.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_kars"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“yirmi milyon iki yüz bin üç yüz kırk dört” sayısı aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "20 199 344",
-"B": "20 200 344",
-"C": "20 200 354",
-"D": "20 201 344"
-},
-"answer": "B",
-"explanation": "yirmi milyon iki yüz bin üç yüz kırk dört sayısı rakamlarla 20 200 344 olarak yazılır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\n4 122 500 sayısının 1 000 eksiği kaçtır?",
-"shape": null,
-"options": {
-"A": "4 112 500",
-"B": "4 121 500",
-"C": "4 122 400",
-"D": "4 123 500"
-},
-"answer": "B",
-"explanation": "4 122 500 − 1 000 = 4 121 500.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_komsu"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\n1 048 472 sayısı en yakın bine yuvarlanırsa kaç olur?",
-"shape": null,
-"options": {
-"A": "1 047 000",
-"B": "1 048 000",
-"C": "1 048 472",
-"D": "1 049 000"
-},
-"answer": "B",
-"explanation": "Yuvarlanacak basamağın sağındaki rakama bakılır; sonuç 1 048 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_yuvarla2"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\n1 800 sayısında kaç tane 100 vardır?",
-"shape": null,
-"options": {
-"A": "1",
-"B": "18",
-"C": "19",
-"D": "180"
-},
-"answer": "B",
-"explanation": "1 800 ÷ 100 = 18.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_kac_tane"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nTabloda üç ilin nüfusları verilmiştir. Bu üç ilin toplam nüfusu kaç kişidir?",
-"shape": {
-"type": "table",
-"title": "Bazı İllerin Nüfusu (kişi)",
-"headers": [
-"İl",
-"Nüfus"
-],
-"rows": [
-[
-"Antalya",
-"2 421 000"
-],
-[
-"Ankara",
-"5 233 000"
-],
-[
-"İzmir",
-"2 347 000"
-]
-]
-},
-"options": {
-"A": "9 991 000",
-"B": "10 001 000",
-"C": "10 011 000",
-"D": "10 101 000"
-},
-"answer": "B",
-"explanation": "2 421 000 + 5 233 000 + 2 347 000 = 10 001 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yn_nufus"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nTabloya göre nüfusu en çok olan il ile nüfusu en az olan ilin nüfusları arasındaki fark kaçtır?",
-"shape": {
-"type": "table",
-"title": "Bazı İllerin Nüfusu (kişi)",
-"headers": [
-"İl",
-"Nüfus"
-],
-"rows": [
-[
-"Konya",
-"4 900 000"
-],
-[
-"Antalya",
-"2 310 000"
-],
-[
-"Bursa",
-"1 829 000"
-]
-]
-},
-"options": {
-"A": "3 061 000",
-"B": "3 071 000",
-"C": "3 081 000",
-"D": "3 171 000"
-},
-"answer": "B",
-"explanation": "4 900 000 − 1 829 000 = 3 071 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yn_nufus_fark"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "Bir şehirdeki toplam ziyaretçi sayısı 3 027 932 olarak açıklanmıştır.\nI. 3 027 932 sayısı yedi basamaklıdır.\nII. Birler basamağındaki rakam 3’dir.\nIII. Bu sayının yüz binler basamağındaki rakam 2’dir.",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nBu sayıyla ilgili aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "Yalnız I",
-"B": "I ve III",
-"C": "Yalnız II",
-"D": "Yalnız III"
-},
-"answer": "A",
-"explanation": "Sayının basamakları tek tek incelenir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yn_say_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Sayıların çözümlenmesi",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\n4 × 1.000.000 + 5 × 1.000 + 8 işleminin sonucu aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "4.005.008",
-"B": "4.008.005",
-"C": "405.008",
-"D": "4.000.508"
-},
-"answer": "A",
-"explanation": "4.000.000 + 5.000 + 8 = 4.005.008.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_cozum"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki şekilde bir doğal sayı basamak tablosunda görülmektedir.\nBuna göre T ile gösterilen basamaktaki rakamın basamak değeri kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 2
-},
-{
-"n": 1
-},
-{
-"n": 3
-},
-{
-"n": 4
-},
-{
-"n": 8
-},
-{
-"n": 8
-}
-],
-"marks": {
-"0": "T"
-},
-"show_names": false
-},
-"options": {
-"A": "2",
-"B": "20 000",
-"C": "200 000",
-"D": "2 000 000"
-},
-"answer": "C",
-"explanation": "T basamağında 2 rakamı vardır ve bu basamak yüz binler basamağıdır: 2 × 100 000 = 200 000.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_deger"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki şekilde bir doğal sayı basamak tablosunda verilmiştir.\nL ile gösterilen basamaktaki rakam kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 6
-},
-{
-"n": 6
-},
-{
-"n": 9
-},
-{
-"n": 6
-},
-{
-"n": 6
-},
-{
 "n": 2
 },
 {
@@ -44680,7 +42616,7 @@
 "n": 7
 },
 {
-"n": 5
+"n": 3
 },
 {
 "n": 3
@@ -44789,136 +42725,12 @@
 "n": 0
 },
 {
-"n": 0
-},
-{
-"n": 4
-}
-],
-"hide": [
-6
-],
-"show_names": false
-},
-"options": {
-"A": "3",
-"B": "4",
-"C": "7",
-"D": "8"
-},
-"answer": "B",
-"explanation": "Okunuşa göre sayı 2 410 504 olur; ? yerindeki rakam 4.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_gizli"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Zeynep ve Mert, 889 622 086 sayısını okuyor. Zeynep “sekiz milyar sekiz yüz doksan altı milyon iki yüz yirmi bin seksen altı”, Mert “sekiz yüz seksen dokuz milyon altı yüz yirmi iki bin seksen altı” diye okuyor. Aşağıdakilerden hangisi doğrudur?",
-"shape": null,
-"options": {
-"A": "Yalnız Mert doğru okumuştur.",
-"B": "İkisi de doğru okumuştur.",
-"C": "Yalnız Zeynep doğru okumuştur.",
-"D": "İkisi de yanlış okumuştur."
-},
-"answer": "A",
-"explanation": "Doğru okunuş: “sekiz yüz seksen dokuz milyon altı yüz yirmi iki bin seksen altı”. Yalnız Mert doğru okumuştur.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_kim_dogru"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Verilen şekilde bir doğal sayı basamak ve bölük tablosunda verilmiştir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 4
-},
-{
-"n": 9
-},
-{
-"n": 8
-},
-{
-"n": 3
-},
-{
-"n": 2
-},
-{
-"n": 4
-},
-{
-"n": 2
-},
-{
-"n": 8
-},
-{
-"n": 6
-},
-{
 "n": 7
 }
 ],
 "label": "M"
 },
 {
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“beş yüz otuz sekiz milyon dört yüz altmış iki bin sekiz yüz seksen altı” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?",
-"shape": null,
-"options": {
-"A": "53 846 288",
-"B": "538 462 886",
-"C": "5 384 620 886",
-"D": "5 384 628 860"
-},
-"answer": "B",
-"explanation": "Her bölük üç basamaklı yazılır; olmayan bölük ve basamaklar 0 ile doldurulur: 538 462 886.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_yaz"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Görselde bir doğal sayı basamak ve bölük tablosunda gösterilmiştir.\nBuna göre R ile gösterilen rakam hangi bölüktedir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
 "d": [
 {
 "n": 7
@@ -44958,18 +42770,7 @@
 "n": 7
 },
 {
-"d": [
-{
-"n": 1
-},
-{
-"n": 0
-},
-{
-"n": 2
-},
-{
-"n": 2
+"n": 5
 },
 {
 "n": 0
@@ -45328,16 +43129,7 @@
 "n": 6
 },
 {
-"n": 8
-},
-{
-"n": 6
-},
-{
-"n": 9
-},
-{
-"n": 5
+"n": 7
 },
 {
 "n": 9
@@ -45629,18 +43421,18 @@
 }
 ],
 "marks": {
-"8": "T"
+"7": "M"
 },
 "show_names": false
 },
 "options": {
-"A": "2",
-"B": "3",
-"C": "20",
-"D": "2 000"
+"A": "4",
+"B": "40",
+"C": "400",
+"D": "40 000"
 },
-"answer": "A",
-"explanation": "T ile gösterilen rakam birler basamağındaki 2 rakamıdır; basamak değeri 2 × 1 = 2.",
+"answer": "B",
+"explanation": "M ile gösterilen rakam onlar basamağındaki 4 rakamıdır; basamak değeri 4 × 10 = 40.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -52790,9 +50582,9 @@
 "question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nAşağıdaki sayı doğrusunda A ile gösterilen sayı en yakın yüz bine yuvarlanırsa kaç olur?",
 "shape": {
 "type": "number_line",
-"min": 120000,
-"max": 160000,
-"step": 10000,
+"min": 100000,
+"max": 500000,
+"step": 100000,
 "marks": [
 {
 "label": "A",
@@ -63967,13 +61759,13 @@
 "show_names": false
 },
 "options": {
-"A": "140 000",
-"B": "150 000",
-"C": "160 000",
-"D": "170 000"
+"A": "200 000",
+"B": "300 000",
+"C": "400 000",
+"D": "500 000"
 },
 "answer": "B",
-"explanation": "A noktası 150 000 ile 160 000 arasında ve 150 000 sayısına daha yakındır; yuvarlanmış hâli 150 000 olur.",
+"explanation": "A noktası 300 000 ile 400 000 arasında ve 300 000 sayısına daha yakındır; yuvarlanmış hâli 300 000 olur.",
 "kz": [
 "MAT.5.1.2"
 ],
@@ -72677,7 +70469,7 @@
 "subject": "Matematik",
 "topic": "Basamak değeri",
 "passage": "",
-"question": "Tablodaki bilgilere göre soruyu çözünüz.\nTabloda verilen sayılar belli bir kurala göre artarak devam etmektedir.\nBuna göre ? yerine gelmesi gereken sayı kaçtır?",
+"question": "Tabloyu dikkatle inceleyerek soruya cevap veriniz.\nTabloda verilen sayılar belli bir kurala göre artarak devam etmektedir.\nBuna göre ? yerine gelmesi gereken sayı kaçtır?",
 "shape": {
 "type": "table",
 "title": "Sayı örüntüsü",
@@ -79011,34 +76803,34 @@
 ],
 [
 "2. sayı",
-"300 000"
+"462 500"
 ],
 [
 "3. sayı",
-"400 000"
-],
-[
-"4. sayı",
-"500 000"
-],
-[
-"5. sayı",
 "?"
 ],
 [
+"4. sayı",
+"502 500"
+],
+[
+"5. sayı",
+"522 500"
+],
+[
 "6. sayı",
-"700 000"
+"542 500"
 ]
 ]
 },
 "options": {
-"A": "500 000",
-"B": "600 000",
-"C": "700 000",
-"D": "1 600 000"
+"A": "462 500",
+"B": "482 500",
+"C": "502 500",
+"D": "682 500"
 },
 "answer": "B",
-"explanation": "Ardışık sayılar arasındaki fark 100 000'dir; 5. sayı 600 000 olur.",
+"explanation": "Ardışık sayılar arasındaki fark 20 000'dir; 3. sayı 482 500 olur.",
 "kz": [
 "MAT.5.2.3"
 ],
@@ -79217,7 +77009,7 @@
 "n": 5
 },
 {
-"n": 9
+"n": 0
 },
 {
 "n": 9
@@ -79442,7 +77234,7 @@
 "subject": "Matematik",
 "topic": "Milyonlu sayılar",
 "passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nTabloda üç ilin nüfusları verilmiştir. Bu üç ilin toplam nüfusu kaç kişidir?",
+"question": "Bir okul yazılısında şu soru yer almıştır.\nTabloda üç ilin nüfusları verilmiştir. Bu üç ilin toplam nüfusu kaç kişidir?",
 "shape": {
 "type": "table",
 "title": "Bazı İllerin Nüfusu (kişi)",
@@ -79998,7 +77790,7 @@
 "n": 6
 },
 {
-"n": 0
+"n": 6
 },
 {
 "n": 6
@@ -81861,15 +79653,6 @@
 "n": 0
 },
 {
-"n": 9
-},
-{
-"n": 3
-},
-{
-"n": 5
-},
-{
 "n": 8
 },
 {
@@ -81984,13 +79767,13 @@
 "show_names": false
 },
 "options": {
-"A": "4",
-"B": "5",
-"C": "6",
-"D": "7"
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
 },
 "answer": "C",
-"explanation": "Tabloda 6 rakam vardır; sayı 6 basamaklıdır.",
+"explanation": "Tabloda 7 rakam vardır; sayı 7 basamaklıdır.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -82066,9 +79849,6 @@
 },
 {
 "n": 9
-}
-],
-"label": "P"
 },
 {
 "n": 0
@@ -82084,12 +79864,6 @@
 },
 {
 "n": 1
-},
-{
-"n": 1
-},
-{
-"n": 5
 }
 ],
 "show_names": false
@@ -102248,7 +100022,7 @@
 "n": 1
 },
 {
-"n": 8
+"n": 0
 },
 {
 "n": 1
@@ -103817,10 +101591,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 3
-},
-{
-"n": 3
+"n": 9
 },
 {
 "n": 2
@@ -104412,43 +102183,7 @@
 "n": 9
 },
 {
-"n": 7
-},
-{
-"n": 6
-}
-],
-"show_names": false
-},
-"options": {
-"A": "3 227 976",
-"B": "3 317 976",
-"C": "3 326 976",
-"D": "3 337 976"
-},
-"answer": "B",
-"explanation": "10 000 çıkarılırsa ilgili basamaktaki rakam 1 azalır: 3 317 976.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_fazla"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen şekilde bir doğal sayı basamak tablosunda verilmiştir.\nBuna göre bu sayı kaç basamaklıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 9
+"n": 0
 },
 {
 "n": 4
@@ -106602,9 +104337,6 @@
 "n": 5
 }
 ],
-"marks": {
-"10": "R"
-},
 "show_names": false
 },
 "options": {
@@ -106623,80 +104355,7 @@
 "d": 3,
 "ts": 1795634061,
 "src": "local",
-"fam": "_mf_bl_deger12"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Tabloda dört kartın üzerindeki doğal sayılar verilmiştir. Okunuşu “sekiz milyon elli beş” olan sayı hangi harfle gösterilmiştir?",
-"shape": {
-"type": "table",
-"title": "Sayı kartları",
-"headers": [
-"Kart",
-"Sayı"
-],
-"rows": [
-[
-"R",
-"8 000 000"
-],
-[
-"K",
-"8 319 775"
-],
-[
-"P",
-"8 000 055"
-],
-[
-"N",
-"8 004 000"
-]
-]
-},
-"options": {
-"A": "P",
-"B": "K",
-"C": "N",
-"D": "R"
-},
-"answer": "A",
-"explanation": "“sekiz milyon elli beş” sayısı 8 000 055 biçiminde yazılır; bu sayı P ile gösterilmiştir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_sifir"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "I. Her bölük, sağdan sola doğru üçer basamaktan oluşur (en soldaki bölük eksik olabilir).\nII. 98 506 072 078 sayısının birler bölüğündeki rakamların oluşturduğu sayı 72 olarak okunur.\nIII. 98 506 072 078 sayısı 4 bölükten oluşur.",
-"question": "Bölük ve okunuşla ilgili yazılan I, II ve III numaralı ifadelerden hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "I ve III",
-"B": "II ve III",
-"C": "Yalnız I",
-"D": "Yalnız II"
-},
-"answer": "A",
-"explanation": "Doğru ifadeler: I, III.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_onerme"
+"fam": "_mf_bd_boluk"
 },
 {
 "subject": "Matematik",
@@ -106704,14 +104363,14 @@
 "passage": "",
 "question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nGörseldeki abaküste her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre abaküste gösterilen sayı kaçtır?",
 "shape": {
-"type": "number_line",
-"min": 200000,
-"max": 700000,
-"step": 100000,
-"marks": [
+"type": "kes",
+"sub_type": "abakus",
+"per_row": 1,
+"panels": [
 {
-"label": "A",
-"value": 600000
+"d": [
+{
+"n": 1
 },
 {
 "n": 8
@@ -106743,7 +104402,7 @@
 "d": 2,
 "ts": 1795634061,
 "src": "local",
-"fam": "_mf6s_sd_oku"
+"fam": "_mf_abk_oku"
 },
 {
 "subject": "Matematik",
@@ -106752,7 +104411,10 @@
 "question": "Görseldeki abaküste her çubuk bir basamağı göstermektedir.\nBuna göre L ile gösterilen çubuktaki boncukların temsil ettiği değer kaçtır?",
 "shape": {
 "type": "kes",
-"sub_type": "basamak",
+"sub_type": "abakus",
+"per_row": 1,
+"panels": [
+{
 "d": [
 {
 "n": 3
@@ -106887,9 +104549,6 @@
 "n": 7
 },
 {
-"n": 4
-},
-{
 "n": 3
 },
 {
@@ -106935,161 +104594,28 @@
 "sub_type": "kartrk",
 "d": [
 {
-"n": 2
-},
-{
-"n": 9
-},
-{
-"n": 6
-},
-{
-"n": 1
-}
-],
-"show_names": false
-},
-"options": {
-"A": "1 296",
-"B": "9 216",
-"C": "9 612",
-"D": "9 621"
-},
-"answer": "C",
-"explanation": "Birler basamağına en küçük çift rakam konur, kalanlar büyükten küçüğe dizilir: 9 612.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_cift"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nGörseldeki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre N sayısı en yakın bine yuvarlanırsa kaç olur?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 600,
-"s": 1000,
-"r": 4,
-"label": "N",
-"show_names": false
-},
-"options": {
-"A": "600 000",
-"B": "600 400",
-"C": "601 000",
-"D": "610 000"
-},
-"answer": "A",
-"explanation": "N sayısı 600 000 ile 601 000 arasındadır ve soldaki sayıya daha yakındır: 600 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_yakin"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nAşağıdaki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre L sayısı bu iki sayıdan hangisine daha yakındır?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 500,
-"s": 1000,
-"r": 2,
-"label": "L",
-"show_names": false
-},
-"options": {
-"A": "500 000",
-"B": "502 000",
-"C": "İkisine de eşit uzaklıktadır.",
-"D": "501 000"
-},
-"answer": "A",
-"explanation": "L noktası 500 000 sayısına daha yakın konumdadır.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_hangisine"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Görseldeki tabloda okunuşu “yüz doksan altı milyar sekiz yüz otuz yedi milyon yüz kırk sekiz bin iki yüz yirmi dört” olan sayı gösterilmiştir. Buna göre ? yerine hangi rakam gelmelidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 1
-},
-{
-"n": 9
-},
-{
-"n": 6
-},
-{
 "n": 8
 },
 {
-"n": 3
+"n": 1
+},
+{
+"n": 4
 },
 {
 "n": 7
-},
-{
-"n": 1
-},
-{
-"n": 4
-},
-{
-"n": 8
-},
-{
-"n": 2
-},
-{
-"n": 2
-},
-{
-"n": 4
 }
-],
-"hide": [
-11
 ],
 "show_names": false
 },
 "options": {
-"A": "3",
-"B": "4",
-"C": "5",
-"D": "8"
+"A": "1 478",
+"B": "8 174",
+"C": "8 714",
+"D": "8 741"
 },
-"answer": "B",
-"explanation": "Okunuşa göre sayı 196 837 148 224 olur; ? yerindeki rakam 4.",
+"answer": "C",
+"explanation": "Birler basamağına en küçük çift rakam konur, kalanlar büyükten küçüğe dizilir: 8 714.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -107183,713 +104709,13 @@
 "n": 4
 },
 {
-"n": 0
-},
-{
-"n": 4
-},
-{
-"n": 2
-},
-{
-"n": 5
-},
-{
-"n": 8
-},
-{
-"n": 3
-}
-],
-"marks": {
-"1": "P"
-},
-"show_names": false
-},
-"options": {
-"A": "Birler bölüğü",
-"B": "Binler bölüğü",
-"C": "Milyonlar bölüğü",
-"D": "Milyarlar bölüğü"
-},
-"answer": "D",
-"explanation": "P ile gösterilen rakam on milyarlar basamağındadır; bu basamak Milyarlar bölüğü içindedir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_hangi"
-},
-{
-"n": 5
-},
-{
-"n": 4
-},
-{
-"n": 1
-},
-{
-"n": 5
-},
-{
-"n": 7
-}
-],
-"show_names": false
-},
-"options": {
-"A": "I ve III",
-"B": "I, II ve III",
-"C": "Yalnız III",
-"D": "Yalnız II"
-},
-"answer": "A",
-"explanation": "Tablodaki sayı 831 157; ifadeler tablo ile karşılaştırıldığında doğru olanlar: I ve III.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_onculu"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nBu sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
 "n": 3
 },
 {
-"n": 0
-},
-{
-"n": 6
-},
-{
-"n": 4
-},
-{
-"n": 4
-},
-{
-"n": 2
-}
-],
-"show_names": false
-},
-"options": {
-"A": "üç yüz altı bin dört yüz kırk iki",
-"B": "üç yüz altı bin dört yüz elli iki",
-"C": "üç yüz beş bin dört yüz kırk iki",
-"D": "üç yüz altı bin üç yüz kırk iki"
-},
-"answer": "A",
-"explanation": "Tablodaki sayı 306 442; okunuşu üç yüz altı bin dört yüz kırk iki.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_okunus_tablo"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“dokuz yüz yirmi bir bin dokuz yüz yetmiş beş” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?",
-"shape": null,
-"options": {
-"A": "920 975",
-"B": "921 975",
-"C": "921 985",
-"D": "922 075"
-},
-"answer": "B",
-"explanation": "Okunuştaki bölükler sırayla yazılır: 921 975.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_yaz_tablo"
-},
-{
-"subject": "Matematik",
-"topic": "Doğal sayılar",
-"passage": "",
-"question": "Okunuşu “doksan milyon beş yüz yetmiş iki bin iki yüz altmış dört” olan sayı aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "9 057 226",
-"B": "90 572 264",
-"C": "95 072 264",
-"D": "905 072 264"
-},
-"answer": "B",
-"explanation": "doksan milyon beş yüz yetmiş iki bin iki yüz altmış dört = 90 572 264.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_read"
-},
-{
-"subject": "Matematik",
-"topic": "Doğal sayılar",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nVerilen sayılar arasında en büyük olanı hangisidir?",
-"shape": null,
-"options": {
-"A": "715.241",
-"B": "8.142.777",
-"C": "2.233.620",
-"D": "4.857.706"
-},
-"answer": "B",
-"explanation": "Basamak sayısı çok olan ve en yüksek basamağı büyük olan sayı daha büyüktür; en büyük sayı 8.142.777.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_kars"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“sekiz yüz otuz bir bin dokuz” sayısı aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "830 009",
-"B": "831 009",
-"C": "831 019",
-"D": "832 009"
-},
-"answer": "B",
-"explanation": "sekiz yüz otuz bir bin dokuz sayısı rakamlarla 831 009 olarak yazılır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\n5 090 999 sayısının 100 000 eksiği kaçtır?",
-"shape": null,
-"options": {
-"A": "4 090 999",
-"B": "4 990 999",
-"C": "5 080 999",
-"D": "5 190 999"
-},
-"answer": "B",
-"explanation": "5 090 999 − 100 000 = 4 990 999.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_komsu"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "Bir şehirdeki toplam ziyaretçi sayısı 3 384 920 olarak açıklanmıştır.\nI. 3 384 920 sayısı yedi basamaklıdır.\nII. Birler basamağındaki rakam 0’dir.\nIII. Bu sayının yüz binler basamağındaki rakam 5’dir.",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nBu sayıyla ilgili aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "I ve II",
-"B": "I, II ve III",
-"C": "Yalnız II",
-"D": "I ve III"
-},
-"answer": "A",
-"explanation": "Sayının basamakları tek tek incelenir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yn_say_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre K ile gösterilen basamaktaki rakamın basamak değeri kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 4
-},
-{
-"n": 1
-},
-{
-"n": 4
-},
-{
-"n": 0
-},
-{
-"n": 6
-},
-{
-"n": 0
-}
-],
-"marks": {
-"0": "K"
-},
-"show_names": false
-},
-"options": {
-"A": "4",
-"B": "40 000",
-"C": "400 000",
-"D": "4 000 000"
-},
-"answer": "C",
-"explanation": "K basamağında 4 rakamı vardır ve bu basamak yüz binler basamağıdır: 4 × 100 000 = 400 000.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_deger"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nS ile gösterilen basamaktaki rakam kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 7
-},
-{
-"n": 1
-},
-{
-"n": 9
-},
-{
-"n": 7
-},
-{
-"n": 3
-}
-],
-"marks": {
-"1": "S"
-},
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "5",
-"C": "7",
-"D": "9"
-},
-"answer": "C",
-"explanation": "S ile işaretli basamakta 7 rakamı yazılıdır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 1,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_rakam"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Şekilde bir doğal sayı basamak tablosunda verilmiştir.\nBuna göre L ve P ile gösterilen basamaklardaki rakamların basamak değerleri toplamı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 1
-},
-{
-"n": 2
-},
-{
-"n": 2
-},
-{
-"n": 7
-},
-{
-"n": 5
-}
-],
-"marks": {
-"1": "L",
-"5": "P"
-},
-"show_names": false
-},
-"options": {
-"A": "6",
-"B": "10 005",
-"C": "10 050",
-"D": "100 005"
-},
-"answer": "B",
-"explanation": "10 000 + 5 = 10 005.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_toplam"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nVerilen şekilde bir doğal sayı basamak tablosunda görülmektedir.\nBuna göre bu sayının çözümlenmiş hâli aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 7
-},
-{
-"n": 7
-},
-{
-"n": 3
-},
-{
-"n": 9
-},
-{
-"n": 3
-},
-{
-"n": 7
-},
-{
-"n": 6
-}
-],
-"show_names": false
-},
-"options": {
-"A": "7 × 1 000 000 + 7 × 100 000 + 7 × 10 000 + 9 × 1 000 + 3 × 100 + 3 × 10 + 6 × 1",
-"B": "7 × 1 000 000 + 7 × 100 000 + 3 × 10 000 + 9 × 10 000 + 3 × 100 + 7 × 10 + 6 × 1",
-"C": "7 × 1 000 000 + 7 × 10 000 + 3 × 10 000 + 9 × 1 000 + 3 × 100 + 7 × 10 + 6 × 1",
-"D": "7 × 1 000 000 + 7 × 100 000 + 3 × 10 000 + 9 × 1 000 + 3 × 100 + 7 × 10 + 6 × 1"
-},
-"answer": "D",
-"explanation": "Her rakam kendi basamak değeriyle çarpılır: 7 × 1 000 000 + 7 × 100 000 + 3 × 10 000 + 9 × 1 000 + 3 × 100 + 7 × 10 + 6 × 1.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_cozum"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nAşağıdaki şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının 100 000 eksiği kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
 "n": 5
 },
 {
 "n": 4
-},
-{
-"n": 1
-},
-{
-"n": 1
-},
-{
-"n": 7
-},
-{
-"n": 6
-},
-{
-"n": 7
-}
-],
-"show_names": false
-},
-"options": {
-"A": "4 411 767",
-"B": "5 311 767",
-"C": "5 401 767",
-"D": "5 511 767"
-},
-"answer": "B",
-"explanation": "100 000 çıkarılırsa ilgili basamaktaki rakam 1 azalır: 5 311 767.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_fazla"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nYandaki şekilde bir doğal sayı basamak tablosunda görülmektedir.\nBuna göre bu sayı kaç basamaklıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 8
-},
-{
-"n": 6
-},
-{
-"n": 3
-},
-{
-"n": 8
-},
-{
-"n": 9
-},
-{
-"n": 5
-},
-{
-"n": 9
-},
-{
-"n": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "6",
-"B": "7",
-"C": "8",
-"D": "9"
-},
-"answer": "C",
-"explanation": "Tabloda 8 rakam vardır; sayı 8 basamaklıdır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 1,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_basamak_say"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 4
-},
-{
-"n": 4
-},
-{
-"n": 0
-},
-{
-"n": 7
-},
-{
-"n": 2
-},
-{
-"n": 1
-},
-{
-"n": 7
-}
-],
-"show_names": false
-},
-"options": {
-"A": "dört milyon dört yüz yedi bin iki yüz yirmi yedi",
-"B": "dört milyon dört yüz yedi bin iki yüz on yedi",
-"C": "dört milyon dört yüz yedi bin yüz on yedi",
-"D": "dört milyon dört yüz altı bin iki yüz on yedi"
-},
-"answer": "B",
-"explanation": "Bölükler soldan sağa okunur: dört milyon dört yüz yedi bin iki yüz on yedi.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nYandaki şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının binler bölüğündeki rakamların oluşturduğu sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 2
-},
-{
-"n": 3
-},
-{
-"n": 0
-},
-{
-"n": 7
-},
-{
-"n": 8
-},
-{
-"n": 8
-},
-{
-"n": 6
-},
-{
-"n": 4
-},
-{
-"n": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "230",
-"B": "648",
-"C": "788",
-"D": "887"
-},
-"answer": "C",
-"explanation": "Binler bölüğü, tablodaki ortadaki üç basamaktır: 788.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_boluk"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nYandaki abaküste her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre abaküste gösterilen sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 1,
-"panels": [
-{
-"d": [
-{
-"n": 6
-},
-{
-"n": 1
-},
-{
-"n": 2
 },
 {
 "n": 6
@@ -107902,345 +104728,6 @@
 },
 {
 "n": 3
-}
-]
-}
-],
-"show_names": false
-},
-"options": {
-"A": "60 261",
-"B": "61 261",
-"C": "62 261",
-"D": "71 261"
-},
-"answer": "B",
-"explanation": "Soldan sağa boncuk sayıları 6, 1, 2, 6, 1; sayı 61 261.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki abaküste her çubuk bir basamağı göstermektedir.\nBuna göre M ile gösterilen çubuktaki boncukların temsil ettiği değer kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 1,
-"panels": [
-{
-"d": [
-{
-"n": 6
-},
-{
-"n": 0
-},
-{
-"n": 3
-},
-{
-"n": 5
-}
-],
-"marks": {
-"3": "M"
-}
-}
-],
-"show_names": false
-},
-"options": {
-"A": "5",
-"B": "6",
-"C": "50",
-"D": "500"
-},
-"answer": "A",
-"explanation": "M çubuğunda 5 boncuk vardır ve çubuk birler basamağıdır: 5.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_deger"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki şekilde üç abaküs harflerle gösterilmiştir. Her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre en büyük sayıyı gösteren abaküs hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 2,
-"panels": [
-{
-"d": [
-{
-"n": 4
-},
-{
-"n": 3
-},
-{
-"n": 7
-},
-{
-"n": 8
-}
-],
-"label": "T"
-},
-{
-"d": [
-{
-"n": 5
-},
-{
-"n": 0
-},
-{
-"n": 5
-},
-{
-"n": 8
-}
-],
-"label": "P"
-},
-{
-"d": [
-{
-"n": 8
-},
-{
-"n": 2
-},
-{
-"n": 7
-},
-{
-"n": 1
-}
-],
-"label": "K"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "K",
-"B": "T",
-"C": "P",
-"D": "Üçü de eşittir"
-},
-"answer": "A",
-"explanation": "Gösterilen sayılar T: 4 378, P: 5 058, K: 8 271; en büyük olan K.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_buyuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nYandaki şekilde 4 rakam kartı görülmektedir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük 4 basamaklı doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 7
-},
-{
-"n": 9
-},
-{
-"n": 0
-},
-{
-"n": 5
-}
-],
-"show_names": false
-},
-"options": {
-"A": "0 579",
-"B": "5 079",
-"C": "5 970",
-"D": "9 750"
-},
-"answer": "B",
-"explanation": "Sayının ilk basamağı 0 olamaz; en küçük sıfır olmayan rakam başa, kalanlar küçükten büyüğe dizilir: 5 079.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_en_kucuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nGörselde 5 rakam kartı verilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek çift olan en büyük doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 4
-},
-{
-"n": 5
-},
-{
-"n": 7
-},
-{
-"n": 9
-},
-{
-"n": 1
-}
-],
-"show_names": false
-},
-"options": {
-"A": "15 794",
-"B": "97 154",
-"C": "97 514",
-"D": "97 541"
-},
-"answer": "C",
-"explanation": "Birler basamağına en küçük çift rakam konur, kalanlar büyükten küçüğe dizilir: 97 514.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_cift"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nAşağıdaki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre P sayısı en yakın on bine yuvarlanırsa kaç olur?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 30,
-"s": 10000,
-"r": 2,
-"label": "P",
-"show_names": false
-},
-"options": {
-"A": "300 000",
-"B": "302 000",
-"C": "310 000",
-"D": "400 000"
-},
-"answer": "A",
-"explanation": "P sayısı 300 000 ile 310 000 arasındadır ve soldaki sayıya daha yakındır: 300 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_yakin"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nAşağıdaki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre N sayısı bu iki sayıdan hangisine daha yakındır?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 20,
-"s": 10000,
-"r": 1,
-"label": "N",
-"show_names": false
-},
-"options": {
-"A": "210 000",
-"B": "İkisine de eşit uzaklıktadır.",
-"C": "220 000",
-"D": "200 000"
-},
-"answer": "D",
-"explanation": "N noktası 200 000 sayısına daha yakın konumdadır.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_hangisine"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Şekildeki tabloda okunuşu “altmış dört milyon beş yüz on bin beş yüz yirmi beş” olan sayı verilmiştir. Buna göre ? yerine hangi rakam gelmelidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 6
-},
-{
-"n": 4
-},
-{
-"n": 5
-},
-{
-"n": 1
-},
-{
-"n": 0
-},
-{
-"n": 5
-},
-{
-"n": 2
-},
-{
-"n": 5
 }
 ],
 "hide": [
@@ -109341,7 +105828,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 9
+"n": 6
 },
 {
 "n": 4
@@ -109350,10 +105837,10 @@
 "n": 0
 },
 {
-"n": 9
+"n": 4
 },
 {
-"n": 0
+"n": 1
 },
 {
 "n": 7
@@ -109956,7 +106443,7 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 2
+"n": 8
 },
 {
 "n": 4
@@ -111967,7 +108454,7 @@
 "D": "Yalnız III"
 },
 "answer": "A",
-"explanation": "Doğru ifadeler: II, III.",
+"explanation": "Doğru ifadeler: II.",
 "kz": [
 "MAT.5.1.1"
 ],
@@ -112107,19 +108594,19 @@
 "marks": [
 {
 "label": "A",
-"value": 240000
+"value": 340000
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "100 000",
-"B": "200 000",
-"C": "300 000",
-"D": "400 000"
+"A": "200 000",
+"B": "300 000",
+"C": "400 000",
+"D": "500 000"
 },
 "answer": "B",
-"explanation": "A noktası 200 000 ile 300 000 arasında ve 200 000 sayısına daha yakındır; yuvarlanmış hâli 200 000 olur.",
+"explanation": "A noktası 300 000 ile 400 000 arasında ve 300 000 sayısına daha yakındır; yuvarlanmış hâli 300 000 olur.",
 "kz": [
 "MAT.5.1.2"
 ],
@@ -112161,7 +108648,7 @@
 ],
 [
 "5. sayı",
-"385 000"
+"?"
 ],
 [
 "6. sayı",
@@ -112791,9 +109278,6 @@
 "sub_type": "basamak",
 "d": [
 {
-"n": 2
-},
-{
 "n": 3
 },
 {
@@ -113403,7 +109887,7 @@
 "n": 6
 },
 {
-"n": 9
+"n": 1
 },
 {
 "n": 3
@@ -113866,10 +110350,7 @@
 "n": 7
 },
 {
-"n": 0
-},
-{
-"n": 7
+"n": 5
 }
 ],
 "marks": {
@@ -115775,10 +112256,10 @@
 "show_names": false
 },
 "options": {
-"A": "9",
-"B": "9 000",
-"C": "90 000",
-"D": "900 000"
+"A": "6",
+"B": "600",
+"C": "6 000",
+"D": "60 000"
 },
 "answer": "C",
 "explanation": "P basamağında 6 rakamı vardır ve bu basamak binler basamağıdır: 6 × 1 000 = 6 000.",
@@ -116112,133 +112593,7 @@
 "n": 9
 },
 {
-"n": 8
-},
-{
 "n": 6
-}
-],
-"marks": {
-"3": "P"
-}
-}
-],
-"show_names": false
-},
-"options": {
-"A": "8",
-"B": "80",
-"C": "800",
-"D": "8 000"
-},
-"answer": "B",
-"explanation": "P çubuğunda 8 boncuk vardır ve çubuk onlar basamağıdır: 80.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_deger"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilde üç abaküs harflerle görülmektedir. Her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre en küçük sayıyı gösteren abaküs hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 2,
-"panels": [
-{
-"d": [
-{
-"n": 9
-},
-{
-"n": 7
-},
-{
-"n": 4
-},
-{
-"n": 0
-}
-],
-"label": "N"
-},
-{
-"d": [
-{
-"n": 2
-},
-{
-"n": 2
-},
-{
-"n": 4
-},
-{
-"n": 7
-}
-],
-"label": "S"
-},
-{
-"d": [
-{
-"n": 7
-},
-{
-"n": 5
-},
-{
-"n": 2
-},
-{
-"n": 0
-}
-],
-"label": "M"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "N",
-"B": "Üçü de eşittir",
-"C": "S",
-"D": "M"
-},
-"answer": "C",
-"explanation": "Gösterilen sayılar N: 9 740, S: 2 247, M: 7 520; en küçük olan S.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_buyuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nGörselde 4 rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük 4 basamaklı doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 6
-},
-{
-"n": 7
 },
 {
 "n": 0
@@ -116293,987 +112648,6 @@
 },
 {
 "n": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "0 678",
-"B": "6 078",
-"C": "6 870",
-"D": "8 760"
-},
-"answer": "B",
-"explanation": "Sayının ilk basamağı 0 olamaz; en küçük sıfır olmayan rakam başa, kalanlar küçükten büyüğe dizilir: 6 078.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_en_kucuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nŞekilde 4 rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek çift olan en büyük doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 3
-},
-{
-"n": 6
-},
-{
-"n": 1
-},
-{
-"n": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "1 368",
-"B": "8 136",
-"C": "8 316",
-"D": "8 631"
-},
-"answer": "C",
-"explanation": "Birler basamağına en küçük çift rakam konur, kalanlar büyükten küçüğe dizilir: 8 316.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_cift"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nYandaki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre R sayısı en yakın on bine yuvarlanırsa kaç olur?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 10,
-"s": 10000,
-"r": 8,
-"label": "R",
-"show_names": false
-},
-"options": {
-"A": "100 000",
-"B": "108 000",
-"C": "110 000",
-"D": "200 000"
-},
-"answer": "C",
-"explanation": "R sayısı 100 000 ile 110 000 arasındadır ve sağdaki sayıya daha yakındır: 110 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_yakin"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nYandaki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre R sayısı bu iki sayıdan hangisine daha yakındır?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 600,
-"s": 1000,
-"r": 6,
-"label": "R",
-"show_names": false
-},
-"options": {
-"A": "600 000",
-"B": "602 000",
-"C": "İkisine de eşit uzaklıktadır.",
-"D": "601 000"
-},
-"answer": "D",
-"explanation": "R noktası 601 000 sayısına daha yakın konumdadır.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_hangisine"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Verilen tabloda okunuşu “sekiz yüz kırk iki milyar beş yüz yetmiş milyon beş yüz on sekiz bin sekiz yüz seksen sekiz” olan sayı görülmektedir. Buna göre ? yerine hangi rakam gelmelidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 8
-},
-{
-"n": 4
-},
-{
-"n": 2
-},
-{
-"n": 5
-},
-{
-"n": 7
-},
-{
-"n": 0
-},
-{
-"n": 5
-},
-{
-"n": 1
-},
-{
-"n": 8
-},
-{
-"n": 8
-},
-{
-"n": 8
-},
-{
-"n": 8
-}
-],
-"hide": [
-11
-],
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "2",
-"C": "5",
-"D": "8"
-},
-"answer": "D",
-"explanation": "Okunuşa göre sayı 842 570 518 888 olur; ? yerindeki rakam 8.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_gizli"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Mert ve Zeynep, 418 000 165 742 sayısını okuyor. Mert “dört yüz on sekiz milyar yüz altmış beş bin yedi yüz kırk iki”, Zeynep “dört yüz on sekiz milyar yüz altmış beş bin yedi yüz kırk iki” diye okuyor. Aşağıdakilerden hangisi doğrudur?",
-"shape": null,
-"options": {
-"A": "İkisi de doğru okumuştur.",
-"B": "Yalnız Mert doğru okumuştur.",
-"C": "Yalnız Zeynep doğru okumuştur.",
-"D": "İkisi de yanlış okumuştur."
-},
-"answer": "A",
-"explanation": "Doğru okunuş: “dört yüz on sekiz milyar yüz altmış beş bin yedi yüz kırk iki”. İkisi de doğru okumuştur.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_kim_dogru"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“elli dokuz milyon beş yüz dört bin iki” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?",
-"shape": null,
-"options": {
-"A": "5 950 400",
-"B": "59 504 002",
-"C": "595 040 002",
-"D": "595 040 020"
-},
-"answer": "B",
-"explanation": "Her bölük üç basamaklı yazılır; olmayan bölük ve basamaklar 0 ile doldurulur: 59 504 002.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_yaz"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki şekilde bir doğal sayı basamak ve bölük tablosunda verilmiştir.\nBuna göre T ile gösterilen rakam hangi bölüktedir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 5
-},
-{
-"n": 5
-},
-{
-"n": 9
-},
-{
-"n": 2
-},
-{
-"n": 0
-},
-{
-"n": 0
-},
-{
-"n": 3
-},
-{
-"n": 2
-},
-{
-"n": 1
-}
-],
-"marks": {
-"8": "T"
-},
-"show_names": false
-},
-"options": {
-"A": "Milyonlar bölüğü",
-"B": "Birler bölüğü",
-"C": "Binler bölüğü",
-"D": "Milyarlar bölüğü"
-},
-"answer": "B",
-"explanation": "T ile gösterilen rakam onlar basamağındadır; bu basamak Birler bölüğü içindedir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_hangi"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilde bir doğal sayı basamak ve bölük tablosunda verilmiştir.\nBuna göre T ile gösterilen rakamın basamak değeri kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 2
-},
-{
-"n": 6
-},
-{
-"n": 1
-},
-{
-"n": 2
-},
-{
-"n": 3
-},
-{
-"n": 9
-},
-{
-"n": 9
-},
-{
-"n": 4
-},
-{
-"n": 1
-}
-],
-"marks": {
-"4": "T"
-},
-"show_names": false
-},
-"options": {
-"A": "3",
-"B": "3 000",
-"C": "30 000",
-"D": "300 000"
-},
-"answer": "C",
-"explanation": "T ile gösterilen rakam on binler basamağındaki 3 rakamıdır; basamak değeri 3 × 10 000 = 30 000.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_deger12"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Tabloda dört kartın üzerindeki doğal sayılar verilmiştir. Okunuşu “sekiz milyar” olan sayı hangi harfle gösterilmiştir?",
-"shape": {
-"type": "table",
-"title": "Sayı kartları",
-"headers": [
-"Kart",
-"Sayı"
-],
-"rows": [
-[
-"R",
-"8 000 000 000"
-],
-[
-"M",
-"8 994 000 582"
-],
-[
-"S",
-"8 000 000 087"
-],
-[
-"L",
-"8 009 000 000"
-]
-]
-},
-"options": {
-"A": "M",
-"B": "R",
-"C": "S",
-"D": "L"
-},
-"answer": "B",
-"explanation": "“sekiz milyar” sayısı 8 000 000 000 biçiminde yazılır; bu sayı R ile gösterilmiştir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_sifir"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "I. 7 205 971 358 sayısının okunuşunda birler bölüğünden başlanır.\nII. 7 205 971 358 sayısının birler bölüğündeki rakamların oluşturduğu sayı 358 olarak okunur.\nIII. 7 205 971 358 sayısının okunuşunda “trilyon” sözcüğü geçer.",
-"question": "Yukarıdaki ifadelerden doğru olanlar hangileridir?",
-"shape": null,
-"options": {
-"A": "Yalnız II",
-"B": "II ve III",
-"C": "Yalnız I",
-"D": "I ve II"
-},
-"answer": "A",
-"explanation": "Doğru ifadeler: II.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_onerme"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nAşağıdaki sayı doğrusunda B ile gösterilen sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "number_line",
-"min": 200000,
-"max": 450000,
-"step": 50000,
-"marks": [
-{
-"label": "A",
-"value": 300000
-},
-{
-"label": "B",
-"value": 250000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "yedi yüz elli bin",
-"B": "iki yüz elli bin",
-"C": "iki yüz bin",
-"D": "üç yüz bin"
-},
-"answer": "B",
-"explanation": "Sayı doğrusunda ardışık iki işaret arası 50 000 artar; B noktası 250 000 sayısını gösterir. Okunuşu: iki yüz elli bin.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nAşağıdaki sayı doğrusunda A ve B ile gösterilen sayıların toplamı kaçtır?",
-"shape": {
-"type": "number_line",
-"min": 100000,
-"max": 150000,
-"step": 10000,
-"marks": [
-{
-"label": "A",
-"value": 140000
-},
-{
-"label": "B",
-"value": 130000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "260 000",
-"B": "270 000",
-"C": "280 000",
-"D": "370 000"
-},
-"answer": "B",
-"explanation": "A = 140 000 ve B = 130 000 olduğundan toplamı 270 000 olur.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_topla"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Şekle göre soruya cevap veriniz.\nAşağıdaki sayı doğrusunda A ile gösterilen sayı en yakın on bine yuvarlanırsa kaç olur?",
-"shape": {
-"type": "number_line",
-"min": 120000,
-"max": 160000,
-"step": 10000,
-"marks": [
-{
-"label": "A",
-"value": 153000
-}
-],
-"show_names": false
-},
-"options": {
-"A": "140 000",
-"B": "150 000",
-"C": "160 000",
-"D": "170 000"
-},
-"answer": "B",
-"explanation": "A noktası 150 000 ile 160 000 arasında ve 150 000 sayısına daha yakındır; yuvarlanmış hâli 150 000 olur.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_sd_yuvarla"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki tabloyu inceleyerek şu soruyu yanıtlayınız.\nTabloda verilen sayılar belli bir kurala göre artarak devam etmektedir.\nBuna göre ? yerine gelmesi gereken sayı kaçtır?",
-"shape": {
-"type": "table",
-"title": "Sayı örüntüsü",
-"headers": [
-"Sıra",
-"Sayı"
-],
-"rows": [
-[
-"1. sayı",
-"306 000"
-],
-[
-"2. sayı",
-"307 000"
-],
-[
-"3. sayı",
-"308 000"
-],
-[
-"4. sayı",
-"309 000"
-],
-[
-"5. sayı",
-"310 000"
-],
-[
-"6. sayı",
-"?"
-]
-]
-},
-"options": {
-"A": "310 000",
-"B": "311 000",
-"C": "312 000",
-"D": "321 000"
-},
-"answer": "B",
-"explanation": "Ardışık sayılar arasındaki fark 1 000'dir; 6. sayı 311 000 olur.",
-"kz": [
-"MAT.5.2.3"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_makine"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı karşılaştırma",
-"passage": "",
-"question": "Tablodaki bilgilere göre soruyu çözünüz.\nTabloya göre sayısı en çok olan ikinci yer hangisidir?",
-"shape": {
-"type": "table",
-"title": "Dört okulun kitaplık kitap sayısı",
-"headers": [
-"Yer",
-"Sayı (kitap)"
-],
-"rows": [
-[
-"A",
-"972 000"
-],
-[
-"B",
-"463 000"
-],
-[
-"C",
-"429 000"
-],
-[
-"D",
-"880 000"
-]
-]
-},
-"options": {
-"A": "D",
-"B": "C",
-"C": "B",
-"D": "A"
-},
-"answer": "A",
-"explanation": "Büyükten küçüğe sıralamada ikinci sayı 880 000 olduğundan D.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_tablo_sira"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki görsele göre sorulanı bulunuz.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nT ile gösterilen basamaktaki rakamın basamak değeri ile N ile gösterilen basamaktaki rakamın basamak değerinin farkı (birincisinden ikincisi çıkarılarak) kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 2
-},
-{
-"n": 5
-},
-{
-"n": 0
-},
-{
-"n": 6
-},
-{
-"n": 5
-},
-{
-"n": 7
-}
-],
-"marks": {
-"4": "T",
-"5": "N"
-},
-"show_names": false
-},
-"options": {
-"A": "12",
-"B": "43",
-"C": "44",
-"D": "57"
-},
-"answer": "B",
-"explanation": "T basamağının değeri 50, N basamağının değeri 7; farkı 43 olur.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_bd_fark"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nI. 5 rakamı yüzler basamağındadır.\nII. 6 rakamı yüz binler basamağındadır.\nIII. Onlar basamağındaki rakam 5'dir.\nBu ifadelerden hangileri doğrudur?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 1
-},
-{
-"n": 2
-},
-{
-"n": 8
-},
-{
-"n": 5
-},
-{
-"n": 5
-},
-{
-"n": 6
-}
-],
-"show_names": false
-},
-"options": {
-"A": "I ve III",
-"B": "Hiçbiri",
-"C": "Yalnız I",
-"D": "I ve II"
-},
-"answer": "A",
-"explanation": "Tablodaki sayı 128 556; ifadeler tablo ile karşılaştırıldığında doğru olanlar: I ve III.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_onculu"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Yandaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nBu sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 4
-},
-{
-"n": 2
-},
-{
-"n": 3
-},
-{
-"n": 4
-},
-{
-"n": 8
-}
-],
-"show_names": false
-},
-"options": {
-"A": "beş yüz kırk üç bin üç yüz kırk sekiz",
-"B": "beş yüz kırk iki bin dört yüz kırk sekiz",
-"C": "beş yüz kırk iki bin üç yüz elli sekiz",
-"D": "beş yüz kırk iki bin üç yüz kırk sekiz"
-},
-"answer": "D",
-"explanation": "Tablodaki sayı 542 348; okunuşu beş yüz kırk iki bin üç yüz kırk sekiz.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_okunus_tablo"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“dört yüz bin seksen” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?",
-"shape": null,
-"options": {
-"A": "399 080",
-"B": "399 980",
-"C": "400 080",
-"D": "400 090"
-},
-"answer": "C",
-"explanation": "Okunuştaki bölükler sırayla yazılır: 400 080.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf6s_yaz_tablo"
-},
-{
-"subject": "Matematik",
-"topic": "Doğal sayılar",
-"passage": "",
-"question": "Okunuşu “doksan iki milyon yedi yüz yirmi dokuz bin doksan beş” olan sayı aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "9 272 909",
-"B": "27 290 959",
-"C": "92 720 995",
-"D": "92 729 095"
-},
-"answer": "D",
-"explanation": "doksan iki milyon yedi yüz yirmi dokuz bin doksan beş = 92 729 095.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_read"
-},
-{
-"subject": "Matematik",
-"topic": "Doğal sayılar",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nVerilen sayılar arasında en büyük olanı hangisidir?",
-"shape": null,
-"options": {
-"A": "6.114.881",
-"B": "1.722.324",
-"C": "1.038.916",
-"D": "3.501.245"
-},
-"answer": "A",
-"explanation": "Basamak sayısı çok olan ve en yüksek basamağı büyük olan sayı daha büyüktür; en büyük sayı 6.114.881.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_kars"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“beş milyon sekiz yüz bin altı yüz kırk iki” sayısı aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "5 799 642",
-"B": "5 800 642",
-"C": "5 800 652",
-"D": "5 801 642"
-},
-"answer": "B",
-"explanation": "beş milyon sekiz yüz bin altı yüz kırk iki sayısı rakamlarla 5 800 642 olarak yazılır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\n944 999 sayısının 1 milyon fazlası kaçtır?",
-"shape": null,
-"options": {
-"A": "-55 001",
-"B": "1 044 999",
-"C": "1 944 999",
-"D": "2 944 999"
-},
-"answer": "C",
-"explanation": "944 999 + 1 000 000 = 1 944 999.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_say_komsu"
-},
-{
-"subject": "Matematik",
-"topic": "Milyonlu sayılar",
-"passage": "Bir şehirdeki toplam ziyaretçi sayısı 1 486 860 olarak açıklanmıştır.\nI. 1 486 860 sayısı altı basamaklıdır.\nII. Birler basamağındaki rakam 0’dir.\nIII. Bu sayının yüz binler basamağındaki rakam 6’dir.",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nBu sayıyla ilgili aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "Yalnız II",
-"B": "I ve II",
-"C": "Yalnız III",
-"D": "I ve III"
-},
-"answer": "A",
-"explanation": "Sayının basamakları tek tek incelenir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yn_say_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Görselde bir doğal sayı basamak tablosunda görülmektedir.\nBuna göre R ile gösterilen basamaktaki rakamın basamak değeri kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 8
-},
-{
-"n": 2
-},
-{
-"n": 0
-},
-{
-"n": 3
-},
-{
-"n": 9
-},
-{
-"n": 9
 },
 {
 "n": 4
@@ -119208,859 +114582,6 @@
 "n": 0
 },
 {
-"n": 4
-}
-],
-"marks": {
-"2": "R"
-},
-"show_names": false
-},
-"options": {
-"A": "4",
-"B": "6",
-"C": "8",
-"D": "9"
-},
-"answer": "C",
-"explanation": "R ile işaretli basamakta 8 rakamı yazılıdır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 1,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_rakam"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Aşağıdaki şekilde bir doğal sayı basamak tablosunda verilmiştir.\nBuna göre M ve N ile gösterilen basamaklardaki rakamların basamak değerleri toplamı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 9
-},
-{
-"n": 4
-},
-{
-"n": 9
-},
-{
-"n": 6
-},
-{
-"n": 2
-},
-{
-"n": 2
-}
-],
-"marks": {
-"4": "M",
-"0": "N"
-},
-"show_names": false
-},
-"options": {
-"A": "11",
-"B": "900 020",
-"C": "900 200",
-"D": "9 000 020"
-},
-"answer": "B",
-"explanation": "20 + 900 000 = 900 020.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_toplam"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nGörselde bir doğal sayı basamak tablosunda verilmiştir.\nBuna göre bu sayının çözümlenmiş hâli aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 7
-},
-{
-"n": 0
-},
-{
-"n": 3
-},
-{
-"n": 1
-},
-{
-"n": 9
-},
-{
-"n": 3
-},
-{
-"n": 7
-}
-],
-"show_names": false
-},
-"options": {
-"A": "7 × 1 000 000 + 3 × 10 000 + 1 × 1 000 + 9 × 1 000 + 3 × 10 + 7 × 1",
-"B": "7 × 1 000 000 + 3 × 10 000 + 1 × 100 + 9 × 100 + 3 × 10 + 7 × 1",
-"C": "3 × 1 000 000 + 3 × 10 000 + 1 × 1 000 + 9 × 100 + 7 × 10 + 7 × 1",
-"D": "7 × 1 000 000 + 3 × 10 000 + 1 × 1 000 + 9 × 100 + 3 × 10 + 7 × 1"
-},
-"answer": "D",
-"explanation": "Her rakam kendi basamak değeriyle çarpılır: 7 × 1 000 000 + 3 × 10 000 + 1 × 1 000 + 9 × 100 + 3 × 10 + 7 × 1.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_cozum"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Bir öğrenci konu tekrarı yapıyor.\nŞekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının 10 000 eksiği kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 3
-},
-{
-"n": 4
-},
-{
-"n": 1
-},
-{
-"n": 1
-},
-{
-"n": 9
-},
-{
-"n": 1
-},
-{
-"n": 1
-}
-],
-"show_names": false
-},
-"options": {
-"A": "3 311 911",
-"B": "3 401 911",
-"C": "3 410 911",
-"D": "3 421 911"
-},
-"answer": "B",
-"explanation": "10 000 çıkarılırsa ilgili basamaktaki rakam 1 azalır: 3 401 911.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_fazla"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nYandaki şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayı kaç basamaklıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 1
-},
-{
-"n": 0
-},
-{
-"n": 7
-},
-{
-"n": 2
-},
-{
-"n": 5
-},
-{
-"n": 0
-}
-],
-"show_names": false
-},
-"options": {
-"A": "4",
-"B": "5",
-"C": "6",
-"D": "7"
-},
-"answer": "C",
-"explanation": "Tabloda 6 rakam vardır; sayı 6 basamaklıdır.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 1,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_basamak_say"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nVerilen şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının okunuşu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 6
-},
-{
-"n": 4
-},
-{
-"n": 7
-},
-{
-"n": 1
-},
-{
-"n": 1
-}
-],
-"show_names": false
-},
-"options": {
-"A": "beş yüz altmış beş bin yedi yüz on bir",
-"B": "beş yüz altmış dört bin yedi yüz yirmi bir",
-"C": "beş yüz altmış dört bin sekiz yüz on bir",
-"D": "beş yüz altmış dört bin yedi yüz on bir"
-},
-"answer": "D",
-"explanation": "Bölükler soldan sağa okunur: beş yüz altmış dört bin yedi yüz on bir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nAşağıdaki şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının binler bölüğündeki rakamların oluşturduğu sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 9
-},
-{
-"n": 1
-},
-{
-"n": 8
-},
-{
-"n": 0
-},
-{
-"n": 1
-},
-{
-"n": 3
-},
-{
-"n": 3
-}
-],
-"show_names": false
-},
-"options": {
-"A": "9",
-"B": "81",
-"C": "133",
-"D": "180"
-},
-"answer": "D",
-"explanation": "Binler bölüğü, tablodaki ortadaki üç basamaktır: 180.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bd_boluk"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nGörseldeki abaküste her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre abaküste gösterilen sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 1,
-"panels": [
-{
-"d": [
-{
-"n": 3
-},
-{
-"n": 1
-},
-{
-"n": 0
-},
-{
-"n": 5
-},
-{
-"n": 4
-}
-]
-}
-],
-"show_names": false
-},
-"options": {
-"A": "30 054",
-"B": "31 054",
-"C": "32 054",
-"D": "41 054"
-},
-"answer": "B",
-"explanation": "Soldan sağa boncuk sayıları 3, 1, 0, 5, 4; sayı 31 054.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Şekildeki abaküste her çubuk bir basamağı göstermektedir.\nBuna göre N ile gösterilen çubuktaki boncukların temsil ettiği değer kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 1,
-"panels": [
-{
-"d": [
-{
-"n": 8
-},
-{
-"n": 5
-},
-{
-"n": 5
-},
-{
-"n": 4
-},
-{
-"n": 8
-},
-{
-"n": 0
-}
-],
-"marks": {
-"4": "N"
-}
-}
-],
-"show_names": false
-},
-"options": {
-"A": "8",
-"B": "80",
-"C": "800",
-"D": "8 000"
-},
-"answer": "B",
-"explanation": "N çubuğunda 8 boncuk vardır ve çubuk onlar basamağıdır: 80.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_deger"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilde üç abaküs harflerle gösterilmiştir. Her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre en büyük sayıyı gösteren abaküs hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "abakus",
-"per_row": 2,
-"panels": [
-{
-"d": [
-{
-"n": 2
-},
-{
-"n": 0
-},
-{
-"n": 6
-},
-{
-"n": 0
-}
-],
-"label": "M"
-},
-{
-"d": [
-{
-"n": 8
-},
-{
-"n": 2
-},
-{
-"n": 7
-},
-{
-"n": 0
-}
-],
-"label": "K"
-},
-{
-"d": [
-{
-"n": 4
-},
-{
-"n": 8
-},
-{
-"n": 1
-},
-{
-"n": 1
-}
-],
-"label": "T"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "Üçü de eşittir",
-"B": "M",
-"C": "T",
-"D": "K"
-},
-"answer": "D",
-"explanation": "Gösterilen sayılar M: 2 060, K: 8 270, T: 4 811; en büyük olan K.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_abk_buyuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nGörselde 6 rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük 6 basamaklı doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 1
-},
-{
-"n": 0
-},
-{
-"n": 3
-},
-{
-"n": 7
-},
-{
-"n": 8
-},
-{
-"n": 6
-}
-],
-"show_names": false
-},
-"options": {
-"A": "013 678",
-"B": "103 678",
-"C": "187 630",
-"D": "876 310"
-},
-"answer": "B",
-"explanation": "Sayının ilk basamağı 0 olamaz; en küçük sıfır olmayan rakam başa, kalanlar küçükten büyüğe dizilir: 103 678.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_en_kucuk"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı oluşturma",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nVerilen şekilde 5 rakam kartı verilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek çift olan en büyük doğal sayı kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "kartrk",
-"d": [
-{
-"n": 8
-},
-{
-"n": 7
-},
-{
-"n": 1
-},
-{
-"n": 6
-},
-{
-"n": 4
-}
-],
-"show_names": false
-},
-"options": {
-"A": "14 678",
-"B": "87 416",
-"C": "87 614",
-"D": "87 641"
-},
-"answer": "C",
-"explanation": "Birler basamağına en küçük çift rakam konur, kalanlar büyükten küçüğe dizilir: 87 614.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 4,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_kr_cift"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekildeki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre L sayısı en yakın yüz bine yuvarlanırsa kaç olur?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 10,
-"s": 100000,
-"r": 9,
-"label": "L",
-"show_names": false
-},
-"options": {
-"A": "1 000 000",
-"B": "1 090 000",
-"C": "1 100 000",
-"D": "2 000 000"
-},
-"answer": "C",
-"explanation": "L sayısı 1 000 000 ile 1 100 000 arasındadır ve sağdaki sayıya daha yakındır: 1 100 000.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_yakin"
-},
-{
-"subject": "Matematik",
-"topic": "Yuvarlama",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nYandaki sayı doğrusunda uçlardaki iki sayı arası 10 eş aralığa bölünmüştür.\nBuna göre M sayısı bu iki sayıdan hangisine daha yakındır?",
-"shape": {
-"type": "kes",
-"sub_type": "yuvarla",
-"b": 30,
-"s": 1000,
-"r": 2,
-"label": "M",
-"show_names": false
-},
-"options": {
-"A": "30 000",
-"B": "İkisine de eşit uzaklıktadır.",
-"C": "32 000",
-"D": "31 000"
-},
-"answer": "A",
-"explanation": "M noktası 30 000 sayısına daha yakın konumdadır.",
-"kz": [
-"MAT.5.1.2"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_yv_hangisine"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Aşağıdaki tabloda okunuşu “dört milyon yedi yüz yetmiş sekiz bin sekiz yüz otuz dört” olan sayı görülmektedir. Buna göre ? yerine hangi rakam gelmelidir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 4
-},
-{
-"n": 7
-},
-{
-"n": 7
-},
-{
-"n": 8
-},
-{
-"n": 8
-},
-{
-"n": 3
-},
-{
-"n": 4
-}
-],
-"hide": [
-6
-],
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "3",
-"C": "4",
-"D": "7"
-},
-"answer": "C",
-"explanation": "Okunuşa göre sayı 4 778 834 olur; ? yerindeki rakam 4.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_gizli"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "Elif ve Zeynep, 984 000 918 009 sayısını okuyor. Elif “dokuz yüz seksen dört milyar dokuz yüz on sekiz bin”, Zeynep “dokuz yüz seksen dört milyar dokuz yüz on sekiz bin dokuz” diye okuyor. Aşağıdakilerden hangisi doğrudur?",
-"shape": null,
-"options": {
-"A": "Yalnız Zeynep doğru okumuştur.",
-"B": "İkisi de doğru okumuştur.",
-"C": "Yalnız Elif doğru okumuştur.",
-"D": "İkisi de yanlış okumuştur."
-},
-"answer": "A",
-"explanation": "Doğru okunuş: “dokuz yüz seksen dört milyar dokuz yüz on sekiz bin dokuz”. Yalnız Zeynep doğru okumuştur.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_kim_dogru"
-},
-{
-"subject": "Matematik",
-"topic": "Sayı okuma-yazma",
-"passage": "",
-"question": "“altı yüz yirmi yedi milyar yedi yüz yirmi yedi milyon yedi yüz üç” sayısı rakamlarla aşağıdakilerden hangisi gibi yazılır?",
-"shape": null,
-"options": {
-"A": "62 772 700 070",
-"B": "607 727 000 723",
-"C": "627 727 000 070",
-"D": "627 727 000 703"
-},
-"answer": "D",
-"explanation": "Her bölük üç basamaklı yazılır; olmayan bölük ve basamaklar 0 ile doldurulur: 627 727 000 703.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 3,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_yaz"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Verilen şekilde bir doğal sayı basamak ve bölük tablosunda görülmektedir.\nBuna göre N ile gösterilen rakam hangi bölüktedir?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 5
-},
-{
-"n": 9
-},
-{
-"n": 8
-},
-{
-"n": 2
-},
-{
-"n": 2
-},
-{
-"n": 3
-},
-{
-"n": 2
-},
-{
-"n": 4
-}
-],
-"marks": {
-"7": "N"
-},
-"show_names": false
-},
-"options": {
-"A": "Birler bölüğü",
-"B": "Milyonlar bölüğü",
-"C": "Binler bölüğü",
-"D": "Milyarlar bölüğü"
-},
-"answer": "A",
-"explanation": "N ile gösterilen rakam birler basamağındadır; bu basamak Birler bölüğü içindedir.",
-"kz": [
-"MAT.5.1.1"
-],
-"unit": "Basamak Değerlerini Çözümleme (MAT.5.1.1)",
-"topics": "Milyonlu sayılar, Bölük, Basamak değeri, Sayı okuma-yazma, Çok basamaklı sayılar",
-"d": 2,
-"ts": 1795597063,
-"src": "local",
-"fam": "_mf_bl_hangi"
-},
-{
-"subject": "Matematik",
-"topic": "Basamak değeri",
-"passage": "",
-"question": "Yandaki şekilde bir doğal sayı basamak ve bölük tablosunda verilmiştir.\nBuna göre P ile gösterilen rakamın basamak değeri kaçtır?",
-"shape": {
-"type": "kes",
-"sub_type": "basamak",
-"d": [
-{
-"n": 1
-},
-{
-"n": 9
-},
-{
-"n": 8
-},
-{
-"n": 4
-},
-{
 "n": 1
 },
 {
@@ -121096,21 +115617,9 @@
 "n": 4
 },
 {
-"n": 5
-},
-{
-"n": 4
-},
-{
-"n": 3
-},
-{
 "n": 8
 }
 ],
-"marks": {
-"5": "P"
-},
 "show_names": false
 },
 "options": {

@@ -27969,18 +27969,18 @@
 "n": 5.5
 }
 ],
-"unit": 2,
+"unit": 4,
 "thing": "adet",
 "show_names": false
 },
 "options": {
-"A": "12",
-"B": "13",
-"C": "14",
-"D": "15"
+"A": "20",
+"B": "22",
+"C": "24",
+"D": "26"
 },
 "answer": "B",
-"explanation": "6 tam simge ve bir yarım simge: 6 × 2 + 1 = 13.",
+"explanation": "5 tam simge ve bir yarım simge: 5 × 4 + 2 = 22.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -28236,7 +28236,7 @@
 "d": 2,
 "ts": 1795634070,
 "src": "local",
-"fam": "_mf_bar_top"
+"fam": "_mf_bar_enok"
 },
 {
 "subject": "Matematik",
@@ -28489,10 +28489,10 @@
 "question": "Aşağıdaki problemi çözünüz.\nTabloda “Bir köyde yıllık ürün miktarı” verisi gösterilmiştir. Bu tabloya göre aşağıdaki yorumlardan hangisi doğrudur?",
 "shape": {
 "type": "table",
-"title": "Afet farkındalığı eğitimine katılanlar",
+"title": "Bir köyde yıllık ürün miktarı",
 "headers": [
-"Grup",
-"Kişi"
+"Ürün",
+"Ton"
 ],
 "rows": [
 [
@@ -28567,13 +28567,13 @@
 ]
 },
 "options": {
-"A": "9",
-"B": "10",
-"C": "11",
-"D": "15"
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "9"
 },
 "answer": "B",
-"explanation": "2 grup × 5 + 0 = 10.",
+"explanation": "0 grup × 5 + 4 = 4.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -28854,7 +28854,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Veri toplama ve değerlendirme",
+"topic": "İşlem Özellikleri",
 "passage": "",
 "question": "Aşağıdaki problemi çözünüz.\n6 × 9 + 6 × 5 = 6 × □ eşitliğinde □ yerine hangi sayı yazılmalıdır?",
 "shape": null,
@@ -29294,7 +29294,7 @@
 "n": 7
 }
 ],
-"unit": 2,
+"unit": 10,
 "thing": "adet",
 "show_names": false
 },
@@ -29347,9 +29347,9 @@
 },
 "options": {
 "A": "Yalnız II",
-"B": "I ve II",
+"B": "Yalnız III",
 "C": "I ve III",
-"D": "I, II ve III"
+"D": "II ve III"
 },
 "answer": "C",
 "explanation": "Doğru ifadeler: I, III.",
@@ -29491,10 +29491,10 @@
 "shape": {
 "type": "bar_chart",
 "labels": [
-"Su",
-"Süt",
-"Meyve suyu",
-"Ayran"
+"Pzt",
+"Sal",
+"Çar",
+"Per"
 ],
 "values": [
 30,
@@ -29502,7 +29502,7 @@
 4,
 26
 ],
-"title": "Bir kantinde satılan içecekler",
+"title": "Bir kütüphaneye gelen ziyaretçi sayısı (günlere göre)",
 "show_names": false
 },
 "options": {
@@ -29554,14 +29554,14 @@
 "answer": "C",
 "explanation": "En büyük değer 24; bu sütun Çar.",
 "kz": [
-"MAT.5.5.2"
+"MAT.5.5.1"
 ],
 "unit": "Veri Toplama ve Değerlendirme",
 "topics": "Sütun grafiği, Veri yorumlama, Örüntüler",
 "d": 2,
 "ts": 1795634070,
 "src": "local",
-"fam": "_mf_bar_iki"
+"fam": "_mf_bar_enok"
 },
 {
 "subject": "Matematik",
@@ -30167,7 +30167,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Veri toplama ve değerlendirme",
+"topic": "İşlem Özellikleri",
 "passage": "",
 "question": "Şu soruyu yanıtlayınız.\n6 × 5 + 6 × 3 = 6 × □ eşitliğinde □ yerine hangi sayı yazılmalıdır?",
 "shape": null,
@@ -30200,7 +30200,9 @@
 "Ocak",
 "Şubat",
 "Mart",
-"Nisan"
+"Nisan",
+"Mayıs",
+"Haziran"
 ],
 "values": [
 15,
@@ -30566,61 +30568,13 @@
 "show_names": false
 },
 "options": {
-"A": "5",
+"A": "3",
 "B": "10",
 "C": "15",
 "D": "20"
 },
-"answer": "B",
-"explanation": "(4 − 2) × 5 = 10.",
-"kz": [
-"MAT.5.5.1"
-],
-"unit": "Veri Toplama ve Değerlendirme",
-"topics": "Sütun grafiği, Veri yorumlama, Örüntüler",
-"d": 3,
-"ts": 1795597075,
-"src": "local",
-"fam": "_mf_vt_pikto_fark"
-},
-{
-"subject": "Matematik",
-"topic": "Veri okuma",
-"passage": "",
-"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekil grafiğinde bir kırtasiyede satılan ürünlerin sayısı gösterilmiştir.\nBuna göre kaç adet defter satılmıştır?",
-"shape": {
-"type": "kes",
-"sub_type": "pikto",
-"rows": [
-{
-"name": "Defter",
-"n": 7
-},
-{
-"name": "Kalem",
-"n": 3
-},
-{
-"name": "Silgi",
-"n": 4
-},
-{
-"name": "Kitap",
-"n": 5
-}
-],
-"unit": 5,
-"thing": "adet",
-"show_names": false
-},
-"options": {
-"A": "7",
-"B": "30",
-"C": "35",
-"D": "40"
-},
 "answer": "C",
-"explanation": "7 simge × 5 = 35.",
+"explanation": "3 simge × 5 = 15.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -32047,10 +32001,10 @@
 "shape": {
 "type": "bar_chart",
 "labels": [
-"İnek",
-"Koyun",
-"Tavuk",
-"At"
+"Pzt",
+"Sal",
+"Çar",
+"Per"
 ],
 "values": [
 21,
@@ -32058,7 +32012,7 @@
 10,
 15
 ],
-"title": "Bir çiftlikteki hayvan sayısı",
+"title": "Bir kütüphaneye gelen ziyaretçi sayısı (günlere göre)",
 "show_names": false
 },
 "options": {
@@ -40289,109 +40243,7 @@
 "subject": "Matematik",
 "topic": "İstatistik",
 "passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nTabloda “Afet farkındalığı eğitimine katılanlar” verisi gösterilmiştir. En büyük sayı ile en küçük sayı arasındaki fark kaçtır?",
-"shape": {
-"type": "table",
-"title": "Afet farkındalığı eğitimine katılanlar",
-"headers": [
-"Grup",
-"Kişi"
-],
-"rows": [
-[
-"Okul personeli",
-"61"
-],
-[
-"Mahalle sakinleri",
-"81"
-],
-[
-"Gönüllüler",
-"27"
-],
-[
-"Öğretmenler",
-"60"
-]
-]
-},
-"options": {
-"A": "53",
-"B": "54",
-"C": "55",
-"D": "108"
-},
-"answer": "B",
-"explanation": "81 − 27 = 54.",
-"kz": [
-"MAT.5.5.1"
-],
-"unit": "Veri Toplama ve Değerlendirme",
-"topics": "Sütun grafiği, Veri yorumlama, Örüntüler",
-"d": 2,
-"ts": 1795597075,
-"src": "local",
-"fam": "_mf_tab_fark"
-},
-{
-"subject": "Matematik",
-"topic": "İstatistik",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nTabloda “Kütüphanede bir haftada ödünç alınan kitap türleri” verisi gösterilmiştir. Bu verilere göre sayısı en fazla olan hangisidir?",
-"shape": {
-"type": "table",
-"title": "Kütüphanede bir haftada ödünç alınan kitap türleri",
-"headers": [
-"Kitap türü",
-"Kitap"
-],
-"rows": [
-[
-"Tarih",
-"18"
-],
-[
-"Bilim",
-"26"
-],
-[
-"Roman",
-"46"
-],
-[
-"Şiir",
-"59"
-],
-[
-"Masal",
-"66"
-]
-]
-},
-"options": {
-"A": "Roman",
-"B": "Masal",
-"C": "Tarih",
-"D": "Bilim"
-},
-"answer": "B",
-"explanation": "En büyük sayı 66 ile Masal satırındadır.",
-"kz": [
-"MAT.5.5.1"
-],
-"unit": "Veri Toplama ve Değerlendirme",
-"topics": "Sütun grafiği, Veri yorumlama, Örüntüler",
-"d": 3,
-"ts": 1795597075,
-"src": "local",
-"fam": "_mf_tab_karar"
-},
-{
-"subject": "Matematik",
-"topic": "İstatistik",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nTabloda “Kitap bağışı kampanyasında sınıflara göre toplanan kitap sayısı” verisi gösterilmiştir. Bu tabloya göre aşağıdaki yorumlardan hangisi doğrudur?",
+"question": "Matematik dersinde şu soru çözülüyor.\nTabloda “Kitap bağışı kampanyasında sınıflara göre toplanan kitap sayısı” verisi gösterilmiştir. En büyük sayı ile en küçük sayı arasındaki fark kaçtır?",
 "shape": {
 "type": "table",
 "title": "Kitap bağışı kampanyasında sınıflara göre toplanan kitap sayısı",
@@ -40715,9 +40567,9 @@
 "question": "Bir öğrenci konu tekrarı yapıyor.\nTabloda bir sınıftaki öğrencilerin sevdiği meyve türleri verilmiştir. En çok sevilen ile en az sevilen arasındaki öğrenci sayısı farkı kaçtır?",
 "shape": {
 "type": "table",
-"title": "Sınıfın Sevdiği Ders Anketi",
+"title": "Sınıfın Sevdiği Meyve Anketi",
 "headers": [
-"Ders",
+"Meyve",
 "Öğrenci sayısı"
 ],
 "rows": [
@@ -45984,7 +45836,7 @@
 "subject": "Matematik",
 "topic": "Veri toplama ve değerlendirme",
 "passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nTabloda bir öğrencinin dört gün boyunca çözdüğü soru sayıları verilmiştir. Öğrencinin günlük ortalama çözdüğü soru sayısı kaçtır?",
+"question": "Bir matematik ödevinde şu soru yer alıyor.\nTabloda bir öğrencinin dört gün boyunca çözdüğü soru sayıları verilmiştir. Öğrencinin günlük ortalama çözdüğü soru sayısı kaçtır?",
 "shape": {
 "type": "table",
 "title": "Bir Öğrencinin Günlük Soru Çözme Sayısı",
@@ -46004,10 +45856,6 @@
 [
 "Çarşamba",
 "27"
-],
-[
-"Çarşamba",
-"23"
 ],
 [
 "Perşembe",
@@ -51131,7 +50979,7 @@
 "subject": "Matematik",
 "topic": "Veri okuma",
 "passage": "",
-"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nAşağıdaki çizgi grafiğinde bir kitapçının her ay sattığı kitap sayısı verilmiştir.\nBuna göre Nisan ayında kaç kitap satılmıştır?",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nAşağıdaki çizgi grafiğinde bir kitapçının her ay sattığı kitap sayısı verilmiştir.\nBuna göre Mart ayında kaç kitap satılmıştır?",
 "shape": {
 "type": "line_chart",
 "labels": [
@@ -61367,7 +61215,8 @@
 "labels": [
 "Ocak",
 "Şubat",
-"Mart"
+"Mart",
+"Nisan"
 ],
 "values": [
 75,
@@ -67627,10 +67476,10 @@
 "show_names": false
 },
 "options": {
-"A": "85",
-"B": "90",
-"C": "95",
-"D": "100"
+"A": "140",
+"B": "145",
+"C": "150",
+"D": "155"
 },
 "answer": "B",
 "explanation": "35 + 55 + 35 + 20 = 145.",
@@ -75186,8 +75035,8 @@
 "sub_type": "pikto",
 "rows": [
 {
-"name": "Çanta",
-"n": 8
+"name": "Kitap",
+"n": 3
 },
 {
 "name": "Çanta",
@@ -75207,13 +75056,13 @@
 "show_names": false
 },
 "options": {
-"A": "8",
-"B": "9",
-"C": "10",
-"D": "11"
+"A": "20",
+"B": "22",
+"C": "24",
+"D": "26"
 },
 "answer": "B",
-"explanation": "4 tam simge ve bir yarım simge: 4 × 2 + 1 = 9.",
+"explanation": "5 tam simge ve bir yarım simge: 5 × 4 + 2 = 22.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -75234,9 +75083,9 @@
 "title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)",
 "headers": [
 "Marka",
-"Ekmek",
-"Süt",
-"Peynir"
+"Kalem",
+"Silgi",
+"Kalemtıraş"
 ],
 "rows": [
 [
@@ -75469,7 +75318,7 @@
 "d": 2,
 "ts": 1795634070,
 "src": "local",
-"fam": "_mf_bar_top"
+"fam": "_mf_bar_enok"
 },
 {
 "subject": "Matematik",

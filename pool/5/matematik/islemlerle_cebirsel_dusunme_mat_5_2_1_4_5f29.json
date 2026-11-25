@@ -42,7 +42,7 @@
 "rows": [
 [
 "A Marka",
-"20",
+"40",
 "55",
 "10"
 ],
@@ -11456,9 +11456,9 @@
 },
 "options": {
 "A": "12",
-"B": "16",
-"C": "18",
-"D": "30"
+"B": "13",
+"C": "19",
+"D": "26"
 },
 "answer": "A",
 "explanation": "x + 7 = 19 olduğundan iki kefeden 7 gram çıkarılırsa x = 19 − 7 = 12 bulunur.",
@@ -13464,7 +13464,7 @@
 "c": 4
 },
 "R": {
-"c": 12
+"c": 11
 },
 "show_names": false
 },
@@ -13698,7 +13698,7 @@
 "subject": "Matematik",
 "topic": "Çıkarma Algoritması",
 "passage": "",
-"question": "Verilen tabloya bakarak sorulanı bulunuz.\nAşağıda bir çıkarma işlemi basamaklarına ayrılarak yazılmıştır. Silinen rakamlar A ve B ile gösterilmiştir.\nA + B kaçtır?",
+"question": "Tabloda verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nAşağıda bir çıkarma işlemi basamaklarına ayrılarak yazılmıştır. Silinen rakamlar A ve B ile gösterilmiştir.\nA + B kaçtır?",
 "shape": {
 "type": "table",
 "title": "Çıkarma işlemi",
@@ -21552,10 +21552,11 @@
 "question": "Tablodaki verilerden yararlanarak aşağıdaki soruyu cevaplayınız.\nTabloda 44 × 46 işleminin çarpma algoritması adım adım gösterilmiştir. Soru işaretiyle gösterilen sayılar aynı değerdir.\nBuna göre soru işareti yerine hangi sayı gelmelidir?",
 "shape": {
 "type": "table",
-"title": "Bölme algoritması",
+"title": "Çarpma algoritması",
 "headers": [
-"Öğe",
-"Değer"
+"Adım",
+"İşlem",
+"Sonuç"
 ],
 "rows": [
 [
@@ -22680,8 +22681,8 @@
 "options": {
 "A": "Yalnız I",
 "B": "Yalnız II",
-"C": "I ve III",
-"D": "I, II ve III"
+"C": "Yalnız III",
+"D": "II ve III"
 },
 "answer": "A",
 "explanation": "Doğru ifadeler: I.",
@@ -22746,21 +22747,21 @@
 "sub_type": "terazi",
 "L": {
 "x": 1,
-"c": 9
+"c": 7
 },
 "R": {
-"c": 13
+"c": 12
 },
 "show_names": false
 },
 "options": {
-"A": "4",
-"B": "5",
-"C": "13",
-"D": "22"
+"A": "5",
+"B": "6",
+"C": "12",
+"D": "19"
 },
 "answer": "A",
-"explanation": "x + 9 = 13 olduğundan iki kefeden 9 gram çıkarılırsa x = 13 − 9 = 4 bulunur.",
+"explanation": "x + 7 = 12 olduğundan iki kefeden 7 gram çıkarılırsa x = 12 − 7 = 5 bulunur.",
 "kz": [
 "MAT.5.2.1"
 ],
@@ -24231,8 +24232,8 @@
 [
 "2. toplanan",
 "B",
-"5",
-"9"
+"6",
+"1"
 ],
 [
 "Toplam",
@@ -24879,9 +24880,9 @@
 ],
 [
 "Fark",
-"1",
+"B",
 "7",
-"B"
+"9"
 ]
 ]
 },
@@ -27783,7 +27784,7 @@
 "D": "12"
 },
 "answer": "B",
-"explanation": "Basamaklar sağdan sola (onluk bozma da hesaba katılarak) incelenir: A = 8, B = 6; A + B = 14.",
+"explanation": "Basamaklar sağdan sola (onluk bozma da hesaba katılarak) incelenir: A = 7, B = 3; A + B = 10.",
 "kz": [
 "MAT.5.2.4"
 ],
@@ -31665,7 +31666,7 @@
 ],
 [
 "Çarpan",
-"33"
+"13"
 ],
 [
 "1. kısmi çarpım",

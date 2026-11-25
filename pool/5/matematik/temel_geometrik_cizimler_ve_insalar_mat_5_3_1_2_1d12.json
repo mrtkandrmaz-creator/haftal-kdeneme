@@ -76,9 +76,9 @@
 "type": "geo",
 "sub_type": "lines_set",
 "kinds": [
-"line",
+"segment",
 "ray",
-"segment"
+"line"
 ],
 "show_names": false
 },
@@ -2431,7 +2431,7 @@
 "subject": "Matematik",
 "topic": "Doğru, ışın, doğru parçası",
 "passage": "",
-"question": "Şekilde I., II., III. ve IV. ile numaralandırılmış çizimlerden kaç tanesine doğru parçası denilemez?",
+"question": "Verilen şekilde I., II., III. ve IV. ile numaralandırılmış çizimlerden kaç tanesi doğru parçasıdır?",
 "shape": {
 "type": "geo",
 "sub_type": "lines_set",
@@ -3857,17 +3857,17 @@
 "d₁",
 "d₂"
 ],
-"tilt": 15,
+"tilt": 0,
 "show_names": false
 },
 "options": {
-"A": "45",
-"B": "60",
-"C": "90",
-"D": "180"
+"A": "90",
+"B": "180",
+"C": "270",
+"D": "360"
 },
-"answer": "C",
-"explanation": "Dik doğrular 90°’lik açı oluşturur.",
+"answer": "D",
+"explanation": "4 × 90° = 360°.",
 "kz": [
 "MAT.5.3.4"
 ],
@@ -3930,10 +3930,6 @@
 [
 "L",
 "Kesişirken dört dik açı oluşturur."
-],
-[
-"M",
-"İki ucu da sınırlıdır ve uzunluğu ölçülebilir."
 ],
 [
 "M",
@@ -4633,15 +4629,15 @@
 "sub_type": "lines_set",
 "kinds": [
 "segment",
-"ray",
-"line"
+"line",
+"ray"
 ],
 "show_names": false
 },
 "options": {
-"A": "III",
+"A": "II",
 "B": "I",
-"C": "II",
+"C": "III",
 "D": "Hiçbiri"
 },
 "answer": "A",
@@ -5358,9 +5354,9 @@
 "type": "geo",
 "sub_type": "lines_set",
 "kinds": [
-"line",
+"ray",
 "segment",
-"ray"
+"line"
 ],
 "show_names": false
 },
@@ -5566,13 +5562,13 @@
 "question": "Şu soruyu yanıtlayınız.\nBir doğru parçasının orta noktasını bulmak için aşağıdakilerden hangisi kullanılır?",
 "shape": null,
 "options": {
-"A": "Gönye",
-"B": "Açıölçer",
-"C": "Pergel",
-"D": "Cetvel"
+"A": "Pergel ve çizgilik (cetvel)",
+"B": "Yalnızca açıölçer",
+"C": "Yalnızca gönye",
+"D": "Yalnızca kalem"
 },
-"answer": "B",
-"explanation": "Açılar açıölçerle ölçülür.",
+"answer": "A",
+"explanation": "Orta nokta pergel ve cetvelle çizilen dik açıortay ile bulunur.",
 "kz": [
 "MAT.5.3.2"
 ],
@@ -6764,10 +6760,10 @@
 "question": "Bir öğrenci konu tekrarı yapıyor.\nDoğrusal olmayan A, B, C, D noktalarından ikişer nokta birleştirilerek kaç farklı doğru parçası çizilebilir? (Hiçbir üç nokta aynı doğru üzerinde değildir.)",
 "shape": null,
 "options": {
-"A": "1",
-"B": "2",
-"C": "3",
-"D": "5"
+"A": "2",
+"B": "4",
+"C": "5",
+"D": "6"
 },
 "answer": "D",
 "explanation": "Her nokta diğer 3 noktayla birleşir; çiftler iki kez sayıldığı için 4 × 3 ÷ 2 = 6.",
@@ -12150,13 +12146,13 @@
 "show_names": false
 },
 "options": {
-"A": "6",
-"B": "14",
-"C": "15",
-"D": "16"
+"A": "5",
+"B": "9",
+"C": "10",
+"D": "11"
 },
 "answer": "C",
-"explanation": "6 noktadan ikisi seçilir: 15 farklı doğru parçası.",
+"explanation": "5 noktadan ikisi seçilir: 10 farklı doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -12967,7 +12963,7 @@
 ],
 [
 "N",
-"Kesişirken dört dik açı oluşturur."
+"Başlangıç noktası vardır ve bir yönde sonsuza kadar uzanır."
 ]
 ]
 },
@@ -13027,631 +13023,6 @@
 "topic": "Doğru, ışın, doğru parçası",
 "passage": "",
 "question": "Bir kitaptaki etkinlik inceleniyor.\nVerilen şekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir ışındır?",
-"shape": {
-"type": "geo",
-"sub_type": "lines_set",
-"kinds": [
-"segment",
-"line",
-"ray"
-],
-"show_names": false
-},
-"options": {
-"A": "II",
-"B": "I",
-"C": "III",
-"D": "Hiçbiri"
-},
-"answer": "A",
-"explanation": "Doğru parçasının iki ucu da sınırlıdır.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_lset_parca"
-},
-{
-"subject": "Matematik",
-"topic": "Paralel ve dik doğrular",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nŞekildeki d₁ ve d₂ doğrularının birbirine göre durumu aşağıdakilerden hangisidir?",
-"shape": {
-"type": "geo",
-"sub_type": "parallel",
-"labels": [
-"d₁",
-"d₂"
-],
-"tilt": 15,
-"show_names": false
-},
-"options": {
-"A": "Birbirine teğet",
-"B": "Paralel",
-"C": "Dik",
-"D": "Çakışık"
-},
-"answer": "B",
-"explanation": "Hiç kesişmeyen ve aralarındaki uzaklık değişmeyen doğrular paralel doğrulardır.",
-"kz": [
-"MAT.5.3.4"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dik_par"
-},
-{
-"subject": "Matematik",
-"topic": "Çizim araçları",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nBir açının ölçüsünü bulmak için en uygun araç hangisidir?",
-"shape": null,
-"options": {
-"A": "gönye",
-"B": "cetvel",
-"C": "pergel",
-"D": "açıölçer"
-},
-"answer": "D",
-"explanation": "Bir açının ölçüsünü bulmak için açıölçer kullanılır.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_alet"
-},
-{
-"subject": "Matematik",
-"topic": "Nokta ve doğru bilgisi",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nDoğrusal olmayan A, B, C, D, E, F noktalarından ikişer nokta birleştirilerek kaç farklı doğru parçası çizilebilir? (Hiçbir üç nokta aynı doğru üzerinde değildir.)",
-"shape": null,
-"options": {
-"A": "13",
-"B": "14",
-"C": "15",
-"D": "16"
-},
-"answer": "C",
-"explanation": "Her nokta diğer 5 noktayla birleşir; çiftler iki kez sayıldığı için 6 × 5 ÷ 2 = 15.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 4,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_say"
-},
-{
-"subject": "Matematik",
-"topic": "Nokta ve doğru bilgisi",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\n“Bir doğru parçasının ...” ifadesi aşağıdakilerden hangisiyle doğru tamamlanır?",
-"shape": null,
-"options": {
-"A": "üç ucu vardır",
-"B": "iki ucu vardır",
-"C": "bir ucu vardır",
-"D": "hiç ucu yoktur"
-},
-"answer": "B",
-"explanation": "Bir doğru parçasının iki ucu vardır.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_bilgi"
-},
-{
-"subject": "Matematik",
-"topic": "Doğruların konumu",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nBir doğru üzerindeki bir noktadan geçen ve bu doğruya dik olan kaç tane doğru çizilebilir?",
-"shape": null,
-"options": {
-"A": "3",
-"B": "2",
-"C": "1",
-"D": "sonsuz sayıda"
-},
-"answer": "C",
-"explanation": "O noktadan geçen ve doğruya dik yalnızca bir doğru çizilebilir.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 2,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_paralel"
-},
-{
-"subject": "Matematik",
-"topic": "Nokta ve doğru bilgisi",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nBir doğru üzerinde peş peşe işaretlenen 3 noktanın doğru parçası sayısı, her iki noktayı birleştirerek bulunur. 3 nokta için kaç doğru parçası oluşur?",
-"shape": null,
-"options": {
-"A": "1",
-"B": "2",
-"C": "3",
-"D": "5"
-},
-"answer": "C",
-"explanation": "Her iki nokta bir doğru parçası verir: 3 × 2 ÷ 2 = 3.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 4,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_aci_say"
-},
-{
-"subject": "Matematik",
-"topic": "Nokta ve doğru bilgisi",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\n“Başlangıç noktası olan ve bir yönde sonsuza kadar uzanan çizgiye ...” ifadesi aşağıdakilerden hangisiyle doğru tamamlanır?",
-"shape": null,
-"options": {
-"A": "doğru denir",
-"B": "doğru parçası denir",
-"C": "ışın denir",
-"D": "açı denir"
-},
-"answer": "C",
-"explanation": "Başlangıç noktası olan ve bir yönde sonsuza kadar uzanan çizgiye ışın denir.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_nokta"
-},
-{
-"subject": "Matematik",
-"topic": "Çizim araçları",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nVerilen bir açıyı ölçmek için hangi araç kullanılır?",
-"shape": null,
-"options": {
-"A": "Gönye",
-"B": "Açıölçer",
-"C": "Cetvel",
-"D": "Pergel"
-},
-"answer": "B",
-"explanation": "Açılar açıölçerle ölçülür.",
-"kz": [
-"MAT.5.3.2"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_cizim_sira"
-},
-{
-"subject": "Matematik",
-"topic": "Nokta ve doğru bilgisi",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nBir ışın üzerinde başlangıç noktası dışında 4 nokta işaretleniyor. Bu noktalar ve başlangıç noktası arasında başlangıç noktasından geçen kaç farklı doğru parçası oluşturulabilir?",
-"shape": null,
-"options": {
-"A": "2",
-"B": "4",
-"C": "5",
-"D": "6"
-},
-"answer": "B",
-"explanation": "Başlangıç noktası diğer 4 noktanın her biriyle birleştirilir: 4 doğru parçası.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 4,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dg_say2"
-},
-{
-"subject": "Matematik",
-"topic": "Çizim araçları",
-"passage": "Bir öğretmen geometri dersinde çizim araçları hakkında bazı bilgiler yazmıştır.\nI. Bir doğru üzerinde sonsuz sayıda nokta vardır.\nII. Bir doğru parçasının iki ucu da belirlidir.\nIII. Açıölçer ile açıların ölçüsü bulunur.",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nBuna göre aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "I, II ve III",
-"B": "I ve II",
-"C": "I ve III",
-"D": "II ve III"
-},
-"answer": "A",
-"explanation": "Her yargı temel geometri bilgileriyle ayrı ayrı denetlenir.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 3,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_yn_dg_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Açı ölçme",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekilde köşesi O olan ışınlar gösterilmiştir. Bu ışınlardan ikisi seçilerek oluşturulabilecek kaç farklı açı vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "rays",
-"angs": [
-0,
-30,
-60
-],
-"labels": [
-"O",
-"A",
-"B",
-"C"
-],
-"show_names": false
-},
-"options": {
-"A": "2",
-"B": "3",
-"C": "4",
-"D": "6"
-},
-"answer": "B",
-"explanation": "3 ışından ikisi seçilir: 3 farklı açı oluşur.",
-"kz": [
-"MAT.5.3.3"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 5,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_gv_aci_sayisi"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru parçası",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nŞekildeki doğru parçası üzerinde işaretli noktalar bulunmaktadır. Uç noktaları bu noktalardan ikisi olan kaç farklı doğru parçası vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "ptsline",
-"n": 6,
-"show_names": false
-},
-"options": {
-"A": "6",
-"B": "14",
-"C": "15",
-"D": "16"
-},
-"answer": "C",
-"explanation": "6 noktadan ikisi seçilir: 15 doğru parçası.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 5,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_gv_dp_say"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru parçası",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nŞekildeki noktalardan hiçbir üçü aynı doğru üzerinde değildir. Bu noktalardan ikisi birleştirilerek kaç farklı doğru parçası çizilebilir?",
-"shape": {
-"type": "geo",
-"sub_type": "ptsscatter",
-"n": 5,
-"seed": 44,
-"show_names": false
-},
-"options": {
-"A": "5",
-"B": "9",
-"C": "10",
-"D": "11"
-},
-"answer": "C",
-"explanation": "5 noktadan ikisi seçilir: 10 farklı doğru parçası.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 5,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_gv_dp_nokta"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru, ışın, doğru parçası",
-"passage": "",
-"question": "Şekildeki numaralandırılmış çizimler arasında hiçbir ucu sınırlı olmayan kaç çizim vardır?",
-"shape": {
-"type": "geo",
-"sub_type": "lines_set",
-"kinds": [
-"line",
-"ray",
-"ray",
-"segment"
-],
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "2",
-"C": "3",
-"D": "4"
-},
-"answer": "A",
-"explanation": "Hiçbir ucu sınırlı olmayan çizimler doğru olarak adlandırılır; şekilde bunlardan 1 tane vardır.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 3,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dogru_say"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru, ışın, doğru parçası",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nVerilen şekildeki çizim aşağıdakilerden hangisini temsil eder?",
-"shape": {
-"type": "geo",
-"sub_type": "segment",
-"labels": [
-"M",
-"N"
-],
-"show_names": false
-},
-"options": {
-"A": "Işın",
-"B": "Doğru parçası",
-"C": "Doğru",
-"D": "Açı"
-},
-"answer": "B",
-"explanation": "İki ucu da sınırlı olan çizim doğru parçasıdır.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_cizim_ad"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru, ışın, doğru parçası",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nŞekilde gösterilen ışının başlangıç noktası hangisidir?",
-"shape": {
-"type": "geo",
-"sub_type": "ray",
-"labels": [
-"M",
-"N"
-],
-"show_names": false
-},
-"options": {
-"A": "M noktası",
-"B": "N noktası",
-"C": "Her iki nokta",
-"D": "Hiçbiri"
-},
-"answer": "A",
-"explanation": "Işının başlangıç noktası, sınırlı olan uçtur: M.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 2,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_isin_bas"
-},
-{
-"subject": "Matematik",
-"topic": "Paralel ve dik doğrular",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nŞekilde d₁ ve d₂ doğruları birbirini dik kesmektedir. Oluşan dört açının ölçüleri toplamı kaç derecedir?",
-"shape": {
-"type": "geo",
-"sub_type": "perpendicular",
-"labels": [
-"d₁",
-"d₂"
-],
-"tilt": 0,
-"show_names": false
-},
-"options": {
-"A": "90",
-"B": "180",
-"C": "270",
-"D": "360"
-},
-"answer": "D",
-"explanation": "4 × 90° = 360°.",
-"kz": [
-"MAT.5.3.4"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 2,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_dik_olcu"
-},
-{
-"subject": "Matematik",
-"topic": "Paralel ve dik doğrular",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nŞekildeki d₁ ve d₂ doğruları, aralarındaki uzaklık her yerde aynı kalacak biçimde çizilmiştir. Bu doğrular için aşağıdakilerden hangisi söylenebilir?",
-"shape": {
-"type": "geo",
-"sub_type": "parallel",
-"labels": [
-"d₁",
-"d₂"
-],
-"show_names": false
-},
-"options": {
-"A": "Kesişen doğrular",
-"B": "Çakışık doğru parçaları",
-"C": "Dik doğrular",
-"D": "Paralel doğrular"
-},
-"answer": "D",
-"explanation": "Aralarındaki uzaklık değişmeyen ve hiç kesişmeyen doğrular paraleldir.",
-"kz": [
-"MAT.5.3.4"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 2,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_par_kesis"
-},
-{
-"subject": "Matematik",
-"topic": "Temel geometrik kavramlar",
-"passage": "",
-"question": "Soru: Doğru, ışın ve doğru parçası\nYandaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda dört ifade harflerle gösterilmiştir.\nHangisi bir ışını anlatır?",
-"shape": {
-"type": "table",
-"title": "İfadeler",
-"headers": [
-"Harf",
-"İfade"
-],
-"rows": [
-[
-"K",
-"İki yönde de sonsuza kadar uzanır."
-],
-[
-"L",
-"Başlangıç noktası vardır ve bir yönde sonsuza kadar uzanır."
-],
-[
-"M",
-"İki ucu da sınırlıdır ve uzunluğu ölçülebilir."
-],
-[
-"N",
-"Başlangıç ve bitiş noktası yoktur."
-]
-]
-},
-"options": {
-"A": "M",
-"B": "N",
-"C": "L",
-"D": "K"
-},
-"answer": "C",
-"explanation": "L harfli ifade (Başlangıç noktası vardır ve bir yönde sonsuza kadar uzanır.) sorudaki kavrama uygundur.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 2,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf5_tg_cumle"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru, ışın, doğru parçası",
-"passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nŞekilde I., II. ve III. ile numaralandırılmış çizimlerden hangisi bir doğrudur?",
-"shape": {
-"type": "geo",
-"sub_type": "lines_set",
-"kinds": [
-"line",
-"ray",
-"segment"
-],
-"show_names": false
-},
-"options": {
-"A": "I",
-"B": "II",
-"C": "III",
-"D": "Hiçbiri"
-},
-"answer": "A",
-"explanation": "Doğru iki yönde de sonsuza uzanır.",
-"kz": [
-"MAT.5.3.1"
-],
-"unit": "Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2)",
-"topics": "Doğru, ışın, doğru parçası, Paralel ve dik doğrular, Geometrik çizimler",
-"d": 1,
-"ts": 1795597054,
-"src": "local",
-"fam": "_mf_lset_dogru"
-},
-{
-"subject": "Matematik",
-"topic": "Doğru, ışın, doğru parçası",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nŞekilde I., II. ve III. ile gösterilen çizimlerden hangisinin bir başlangıç noktası vardır ve bir yönde sonsuza uzanır?",
 "shape": {
 "type": "geo",
 "sub_type": "lines_set",
@@ -13965,17 +13336,17 @@
 "shape": {
 "type": "geo",
 "sub_type": "ptsline",
-"n": 6,
+"n": 3,
 "show_names": false
 },
 "options": {
-"A": "6",
-"B": "14",
-"C": "15",
-"D": "16"
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "6"
 },
-"answer": "C",
-"explanation": "6 noktadan ikisi seçilir: 15 doğru parçası.",
+"answer": "B",
+"explanation": "3 noktadan ikisi seçilir: 3 doğru parçası.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -14028,7 +13399,7 @@
 "ray",
 "ray",
 "segment",
-"ray"
+"segment"
 ],
 "show_names": false
 },
@@ -33013,10 +32384,6 @@
 "İki ucu da sınırlıdır ve uzunluğu ölçülebilir."
 ],
 [
-"M",
-"Kesişirken dört dik açı oluşturur."
-],
-[
 "N",
 "Başlangıç noktası vardır ve bir yönde sonsuza kadar uzanır."
 ]
@@ -33570,7 +32937,7 @@
 "C": "M",
 "D": "N"
 },
-"answer": "D",
+"answer": "A",
 "explanation": "K harfli ifade (İki yönde de sonsuza kadar uzanır.) sorudaki kavrama uygundur.",
 "kz": [
 "MAT.5.3.1"
@@ -35206,8 +34573,8 @@
 "sub_type": "lines_set",
 "kinds": [
 "segment",
-"line",
-"ray"
+"ray",
+"line"
 ],
 "show_names": false
 },
@@ -35539,7 +34906,7 @@
 "question": "Bir deneme sınavında şu soru sorulmuştur.\nŞekildeki d₁ ve d₂ doğruları birbirine diktir. Doğruların kesiştiği noktada oluşan bir açının ölçüsü kaç derecedir?",
 "shape": {
 "type": "geo",
-"sub_type": "parallel",
+"sub_type": "perpendicular",
 "labels": [
 "d₁",
 "d₂"
@@ -36276,9 +35643,9 @@
 },
 "options": {
 "A": "Paralel",
-"B": "Dik",
-"C": "Birbirine teğet",
-"D": "Çakışık"
+"B": "Birbirine teğet",
+"C": "Çakışık",
+"D": "Dik"
 },
 "answer": "A",
 "explanation": "Hiç kesişmeyen ve aralarındaki uzaklık değişmeyen doğrular paralel doğrulardır.",
@@ -36329,7 +35696,7 @@
 "D": "iki tanedir"
 },
 "answer": "C",
-"explanation": "Bir doğru parçasının iki ucu vardır.",
+"explanation": "İki farklı noktadan geçen doğru sayısı bir tanedir.",
 "kz": [
 "MAT.5.3.1"
 ],
@@ -36507,10 +35874,10 @@
 "question": "Matematik dersinde şu soru çözülüyor.\nŞekildeki çizim aşağıdakilerden hangisini temsil eder?",
 "shape": {
 "type": "geo",
-"sub_type": "line",
+"sub_type": "ray",
 "labels": [
-"K",
-"L"
+"P",
+"R"
 ],
 "show_names": false
 },

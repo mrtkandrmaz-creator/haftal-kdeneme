@@ -7744,7 +7744,7 @@
 "subject": "Matematik",
 "topic": "Yüzdeler",
 "passage": "",
-"question": "Yandaki şekilde 100 eş kareye bölünmüş iki bütünün taralı kısımları görülmektedir.\nBuna göre bu iki taralı kısmın toplamı yüzde kaçtır?",
+"question": "Yandaki şekilde 100 eş kareye bölünmüş iki bütünün taralı kısımları verilmiştir.\nBuna göre bu iki taralı kısmın toplamı yüzde kaçtır?",
 "shape": {
 "type": "kes",
 "sub_type": "kart",
@@ -8045,7 +8045,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Yüzdeler",
+"topic": "Ondalık Gösterim",
 "passage": "",
 "question": "Şu soruyu yanıtlayınız.\nAyşe’nin 3,5 metre uzunluğunda bir ipi vardır. 2,9 metresini kullanırsa geriye kaç metre ip kalır?",
 "shape": null,
@@ -8065,7 +8065,7 @@
 "d": 2,
 "ts": 1795634068,
 "src": "local",
-"fam": "_mf_percent_of"
+"fam": "_mf_dec_addsub"
 },
 {
 "subject": "Matematik",
@@ -10059,12 +10059,8 @@
 ],
 "rows": [
 [
-"Zeytin",
-"45,5"
-],
-[
-"Ekmek",
-"8,0"
+"Peynir",
+"62,5"
 ],
 [
 "Süt",
@@ -11741,13 +11737,13 @@
 "question": "Bir kitaptaki etkinlik inceleniyor.\nBir araç 150 km yolda 10 litre yakıt tüketmektedir. Litresi 40,0 TL olan yakıtla bu yolculuk için kaç TL ödenir?",
 "shape": null,
 "options": {
-"A": "356,0",
-"B": "366,0",
-"C": "376,0",
-"D": "396,5"
+"A": "390,0",
+"B": "400,0",
+"C": "410,0",
+"D": "440,0"
 },
 "answer": "B",
-"explanation": "12 × 30,5 = 366,0 TL.",
+"explanation": "10 × 40,0 = 400,0 TL.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -28429,116 +28425,14 @@
 "label": "K"
 },
 {
-"kind": "grid",
-"k": 50,
-"label": "P"
-},
-{
-"kind": "grid",
-"k": 10,
+"kind": "serit",
+"k": 9,
 "label": "R"
 },
 {
 "kind": "grid",
 "k": 40,
 "label": "S"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "N",
-"B": "K",
-"C": "P",
-"D": "T"
-},
-"answer": "D",
-"explanation": "Kartlardaki değerler: T: 0,1, N: 4/5, K: 3/5, P: %75; en küçük değer 0,1 (T).",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795597074,
-"src": "local",
-"fam": "_mf_od_kart_en"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nGörselde farklı gösterimlerle yazılmış üç değer harfli kartlarla verilmiştir.\nBuna göre kartlardaki değerler küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 3,
-"cards": [
-{
-"kind": "text",
-"text": "1/10",
-"label": "L"
-},
-{
-"kind": "text",
-"text": "2/5",
-"label": "P"
-},
-{
-"kind": "text",
-"text": "75/100",
-"label": "M"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "P < M < L",
-"B": "L < M < P",
-"C": "L < P < M",
-"D": "P < L < M"
-},
-"answer": "C",
-"explanation": "Değerler: L: 1/10, P: 2/5, M: 75/100; küçükten büyüğe L < P < M.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795597074,
-"src": "local",
-"fam": "_mf_od_kart_sira"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nAşağıdaki şekilde farklı gösterimlerle yazılmış dört değer harfli kartlarla verilmiştir.\nBuna göre kaç kart 1/2 değerine eşittir?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 2,
-"cards": [
-{
-"kind": "text",
-"text": "%80",
-"label": "M"
-},
-{
-"kind": "text",
-"text": "50/100",
-"label": "R"
-},
-{
-"kind": "text",
-"text": "5/10",
-"label": "N"
-},
-{
-"kind": "text",
-"text": "%50",
-"label": "T"
 }
 ],
 "show_names": false
@@ -28569,7 +28463,7 @@
 "shape": {
 "type": "kes",
 "sub_type": "sayi",
-"max": 1,
+"max": 2,
 "d": 10,
 "points": [
 {
@@ -28795,19 +28689,19 @@
 "shape": {
 "type": "kes",
 "sub_type": "grup",
-"n": 20,
-"d": 5,
-"k": 4,
+"n": 16,
+"d": 4,
+"k": 1,
 "show_names": false
 },
 "options": {
-"A": "4",
-"B": "16",
-"C": "17",
-"D": "20"
+"A": "1",
+"B": "4",
+"C": "8",
+"D": "12"
 },
 "answer": "B",
-"explanation": "20 ÷ 5 = 4 top her grupta; 4 grup: 4 × 4 = 16 top.",
+"explanation": "16 ÷ 4 = 4 top her grupta; 1 grup: 1 × 4 = 4 top.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -28998,7 +28892,7 @@
 "d": 4,
 "ts": 1795634068,
 "src": "local",
-"fam": "_mf_od_esles_farkli"
+"fam": "_mf_od_kart_en"
 },
 {
 "subject": "Matematik",
@@ -29058,58 +28952,7 @@
 "cards": [
 {
 "kind": "text",
-"text": "75/100",
-"label": "R"
-},
-{
-"kind": "text",
-"text": "9/10",
-"label": "L"
-},
-{
-"kind": "text",
-"text": "%10",
-"label": "S"
-},
-{
-"kind": "text",
-"text": "%20",
-"label": "N"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "N",
-"B": "L",
-"C": "R",
-"D": "S"
-},
-"answer": "D",
-"explanation": "Kartlardaki değerler: R: 75/100, L: 9/10, S: %10, N: %20; en küçük değer %10 (S).",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 4,
-"ts": 1795597074,
-"src": "local",
-"fam": "_mf_od_kart_en"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nŞekilde farklı gösterimlerle yazılmış üç değer harfli kartlarla verilmiştir.\nBuna göre kartlardaki değerler küçükten büyüğe doğru hangi seçenekte doğru sıralanmıştır?",
-"shape": {
-"type": "kes",
-"sub_type": "kart",
-"per_row": 3,
-"cards": [
-{
-"kind": "text",
-"text": "%30",
+"text": "0,75",
 "label": "T"
 },
 {
@@ -29366,7 +29209,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Ondalık gösterim",
+"topic": "Yüzde kavramı",
 "passage": "",
 "question": "Aşağıdaki soruyu dikkatle okuyunuz.\nSelin, 25 soruluk bir denemede 3 soruyu doğru yaptı. Doğru cevap oranı yüzde kaçtır?",
 "shape": null,
@@ -29553,30 +29396,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nBir araç 200 km yolda 6 litre yakıt tüketmektedir. Litresi 25,5 TL olan yakıtla bu yolculuk için kaç TL ödenir?",
-"shape": null,
-"options": {
-"A": "143,0",
-"B": "153,0",
-"C": "163,0",
-"D": "178,5"
-},
-"answer": "B",
-"explanation": "6 × 25,5 = 153,0 TL.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795597074,
-"src": "local",
-"fam": "_mf_yn_yakit"
-},
-{
-"subject": "Matematik",
 "topic": "Yüzde kavramı",
 "passage": "",
 "question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nTabloda aynı ürünün iki mağazadaki fiyat bilgileri verilmiştir. Hangi mağazada ürün daha ucuza alınır?",
@@ -29653,10 +29472,10 @@
 "A": "0,05",
 "B": "0,1",
 "C": "0,2",
-"D": "0,25"
+"D": "0,5"
 },
-"answer": "C",
-"explanation": "%20 = 1/5 = 0,2.",
+"answer": "D",
+"explanation": "%50 = 1/2 = 0,5.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -29714,19 +29533,19 @@
 "cards": [
 {
 "kind": "grid",
-"k": 15
+"k": 60
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "0,15",
-"B": "0,25",
-"C": "0,85",
-"D": "1,5"
+"A": "0,4",
+"B": "0,6",
+"C": "0,7",
+"D": "6,0"
 },
-"answer": "A",
-"explanation": "100 kareden 15 tanesi taralıdır: 15/100 = 0,15.",
+"answer": "B",
+"explanation": "100 kareden 60 tanesi taralıdır: 60/100 = 0,6.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -31033,7 +30852,7 @@
 "cards": [
 {
 "kind": "grid",
-"k": 5
+"k": 10
 }
 ],
 "show_names": false
@@ -31460,7 +31279,7 @@
 "C": "L",
 "D": "Üçü de eşittir"
 },
-"answer": "C",
+"answer": "A",
 "explanation": "Sayı doğrusunda sağdaki sayı daha büyüktür; en büyük değer K noktasındadır.",
 "kz": [
 "MAT.5.1.4"
@@ -31613,7 +31432,7 @@
 "cards": [
 {
 "kind": "grid",
-"k": 35
+"k": 20
 },
 {
 "kind": "grid",
@@ -31653,7 +31472,7 @@
 "cards": [
 {
 "kind": "grid",
-"k": 55
+"k": 90
 },
 {
 "kind": "grid",
@@ -33639,30 +33458,6 @@
 },
 {
 "subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nBir araç 150 km yolda 6 litre yakıt tüketmektedir. Litresi 25,5 TL olan yakıtla bu yolculuk için kaç TL ödenir?",
-"shape": null,
-"options": {
-"A": "143,0",
-"B": "153,0",
-"C": "163,0",
-"D": "178,5"
-},
-"answer": "B",
-"explanation": "6 × 25,5 = 153,0 TL.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795597074,
-"src": "local",
-"fam": "_mf_yn_yakit"
-},
-{
-"subject": "Matematik",
 "topic": "Yüzde kavramı",
 "passage": "",
 "question": "Bir öğrenci kendi kendine soru çözüyor.\nTabloda aynı ürünün iki mağazadaki fiyat bilgileri verilmiştir. Hangi mağazada ürün daha ucuza alınır?",
@@ -33922,16 +33717,6 @@
 "kind": "grid",
 "k": 75,
 "label": "P"
-},
-{
-"kind": "grid",
-"k": 50,
-"label": "K"
-},
-{
-"kind": "grid",
-"k": 10,
-"label": "N"
 }
 ],
 "show_names": false
@@ -34818,16 +34603,16 @@
 "subject": "Matematik",
 "topic": "Ondalık gösterim",
 "passage": "",
-"question": "Matematik dersinde şu soru çözülüyor.\nAyşe, 12,50 TL’lik bir defter ile 4,25 TL’lik bir kalem aldı ve kasiyere 50 TL verdi. Para üstü kaç TL’dir?",
+"question": "Bir öğrenci kendi kendine soru çözüyor.\n3,4 kg kaç gramdır?",
 "shape": null,
 "options": {
-"A": "16,75",
-"B": "32,25",
-"C": "33,25",
-"D": "34,25"
+"A": "340",
+"B": "3400",
+"C": "3500",
+"D": "34000"
 },
-"answer": "C",
-"explanation": "Ödenen 12,50 + 4,25 = 16,75 TL; para üstü 50 − 16,75 = 33,25 TL.",
+"answer": "B",
+"explanation": "1 kg = 1000 g olduğundan 3,4 × 1000 = 3400 g.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -35140,8 +34925,8 @@
 "C": "%65",
 "D": "%60"
 },
-"answer": "A",
-"explanation": "100 kareden 25 tanesi taralıdır: %25.",
+"answer": "C",
+"explanation": "100 kareden 65 tanesi taralıdır: %65.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -35877,7 +35662,7 @@
 "d": 4,
 "ts": 1795634068,
 "src": "local",
-"fam": "_mf_od_esles_farkli"
+"fam": "_mf_od_kart_en"
 },
 {
 "subject": "Matematik",
@@ -35964,8 +35749,8 @@
 "C": "2",
 "D": "3"
 },
-"answer": "D",
-"explanation": "1/5 değerine eşit olan kart sayısı 3'dir.",
+"answer": "C",
+"explanation": "1/2 değerine eşit olan kart sayısı 2'dir.",
 "kz": [
 "MAT.5.1.4"
 ],
@@ -36258,8 +36043,8 @@
 "45,5"
 ],
 [
-"Peynir",
-"62,5"
+"Yoğurt",
+"32,5"
 ],
 [
 "Süt",
@@ -36367,8 +36152,8 @@
 "C": "Berk",
 "D": "Defne"
 },
-"answer": "C",
-"explanation": "Süresi en az olan en hızlıdır: Ece.",
+"answer": "D",
+"explanation": "Süresi en az olan en hızlıdır: Defne.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -36436,7 +36221,7 @@
 "D": "I ve II"
 },
 "answer": "A",
-"explanation": "%25 de 20’in 25/100’üdür: 5.",
+"explanation": "%10 de 20’in 10/100’üdür: 2.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -36828,7 +36613,7 @@
 "d": 3,
 "ts": 1795634068,
 "src": "local",
-"fam": "_mf_yn_yaris"
+"fam": "_mf_od_sd_oku"
 },
 {
 "subject": "Matematik",
@@ -40456,7 +40241,7 @@
 ],
 "rows": [
 [
-"D",
+"B",
 "400",
 "%25"
 ],
@@ -40545,19 +40330,19 @@
 "cards": [
 {
 "kind": "grid",
-"k": 50
+"k": 65
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "%50",
-"B": "%60",
-"C": "%55",
-"D": "%45"
+"A": "%35",
+"B": "%65",
+"C": "%60",
+"D": "%75"
 },
-"answer": "A",
-"explanation": "100 kareden 50 tanesi taralıdır: %50.",
+"answer": "B",
+"explanation": "100 kareden 65 tanesi taralıdır: %65.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -40615,7 +40400,7 @@
 "cards": [
 {
 "kind": "grid",
-"k": 20
+"k": 5
 }
 ],
 "show_names": false
@@ -40761,14 +40546,14 @@
 "answer": "A",
 "explanation": "Taralı kare sayıları M: 5, T: 50, N: 75; küçükten büyüğe M < T < N.",
 "kz": [
-"MAT.5.1.3"
+"MAT.5.1.4"
 ],
 "unit": "Ondalık Gösterim ve Yüzdeler",
 "topics": "Ondalık gösterim, Yüzde kavramı",
 "d": 3,
 "ts": 1795634068,
 "src": "local",
-"fam": "_mf_od_hangi"
+"fam": "_mf_od_sira"
 },
 {
 "subject": "Matematik",
@@ -40782,7 +40567,7 @@
 "cards": [
 {
 "kind": "serit",
-"k": 4
+"k": 9
 }
 ],
 "show_names": false
@@ -40868,20 +40653,20 @@
 "d": 10,
 "points": [
 {
-"p": 8,
-"label": "P"
+"p": 5,
+"label": "S"
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "0,08",
-"B": "0,7",
-"C": "0,8",
-"D": "0,9"
+"A": "0,05",
+"B": "0,4",
+"C": "0,5",
+"D": "0,6"
 },
 "answer": "C",
-"explanation": "P noktası 0'dan itibaren 8. çizgidedir; her aralık 0,1 olduğundan değeri 0,8 olur.",
+"explanation": "S noktası 0'dan itibaren 5. çizgidedir; her aralık 0,1 olduğundan değeri 0,5 olur.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -40900,7 +40685,7 @@
 "shape": {
 "type": "kes",
 "sub_type": "sayi",
-"max": 1,
+"max": 2,
 "d": 10,
 "points": [
 {
@@ -40992,8 +40777,8 @@
 "shape": {
 "type": "kes",
 "sub_type": "aralik",
-"lo": 6,
-"hi": 7,
+"lo": 8,
+"hi": 9,
 "scale": 10,
 "points": [
 {
@@ -41004,10 +40789,10 @@
 "show_names": false
 },
 "options": {
-"A": "0,6",
-"B": "0,68",
-"C": "0,69",
-"D": "0,96"
+"A": "0,8",
+"B": "0,87",
+"C": "0,88",
+"D": "0,89"
 },
 "answer": "C",
 "explanation": "0,8 ile 0,9 arası 10 eş parçadır; her parça 0,01 olur. P noktası 8. çizgidedir: 0,88.",
@@ -41678,8 +41463,8 @@
 "45,5"
 ],
 [
-"Peynir",
-"62,5"
+"Yoğurt",
+"32,5"
 ]
 ]
 },
@@ -48996,8 +48781,8 @@
 "shape": {
 "type": "kes",
 "sub_type": "aralik",
-"lo": 2,
-"hi": 3,
+"lo": 8,
+"hi": 9,
 "scale": 10,
 "points": [
 {
@@ -49008,10 +48793,10 @@
 "show_names": false
 },
 "options": {
-"A": "0,2",
-"B": "0,27",
-"C": "0,28",
-"D": "0,72"
+"A": "0,18",
+"B": "0,8",
+"C": "0,81",
+"D": "0,82"
 },
 "answer": "C",
 "explanation": "0,8 ile 0,9 arası 10 eş parçadır; her parça 0,01 olur. K noktası 1. çizgidedir: 0,81.",
@@ -50690,8 +50475,8 @@
 "C": "2",
 "D": "3"
 },
-"answer": "B",
-"explanation": "1/10 değerine eşit olan kart sayısı 1'dir.",
+"answer": "C",
+"explanation": "1/4 değerine eşit olan kart sayısı 2'dir.",
 "kz": [
 "MAT.5.1.4"
 ],
@@ -66002,7 +65787,7 @@
 "subject": "Matematik",
 "topic": "Ondalık gösterim",
 "passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nTabloda bir marketteki bazı ürünlerin fiyatları verilmiştir. Ece, 3 adet yoğurt ve 1 adet süt alırsa kaç TL öder?",
+"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nTabloda bir marketteki bazı ürünlerin fiyatları verilmiştir. Ece, 4 adet zeytin ve 1 adet süt alırsa kaç TL öder?",
 "shape": {
 "type": "table",
 "title": "Market Fiyat Listesi",
@@ -66012,27 +65797,27 @@
 ],
 "rows": [
 [
-"Yoğurt",
-"32,5"
+"Zeytin",
+"45,5"
 ],
 [
 "Süt",
 "24,5"
 ],
 [
-"Peynir",
-"62,5"
+"Ekmek",
+"8,0"
 ]
 ]
 },
 "options": {
-"A": "121,0",
-"B": "122,0",
-"C": "122,5",
-"D": "123,0"
+"A": "205,5",
+"B": "206,5",
+"C": "207,0",
+"D": "207,5"
 },
 "answer": "B",
-"explanation": "3 × 32,5 + 24,5 = 122,0 TL.",
+"explanation": "4 × 45,5 + 24,5 = 206,5 TL.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -67546,19 +67331,19 @@
 "shape": {
 "type": "kes",
 "sub_type": "grup",
-"n": 8,
+"n": 4,
 "d": 2,
 "k": 1,
 "show_names": false
 },
 "options": {
 "A": "1",
-"B": "4",
-"C": "5",
-"D": "8"
+"B": "2",
+"C": "3",
+"D": "4"
 },
 "answer": "B",
-"explanation": "8 ÷ 2 = 4 top her grupta; 1 grup: 1 × 4 = 4 top.",
+"explanation": "4 ÷ 2 = 2 top her grupta; 1 grup: 1 × 2 = 2 top.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -67585,7 +67370,7 @@
 },
 {
 "kind": "grid",
-"k": 35
+"k": 45
 }
 ],
 "sep": "−",
@@ -69131,54 +68916,13 @@
 "shape": {
 "type": "kes",
 "sub_type": "sayi",
-"max": 2,
+"max": 1,
 "d": 10,
 "points": [
 {
 "p": 5,
 "label": "T"
 },
-{
-"p": 1,
-"label": "S"
-},
-{
-"p": 18,
-"label": "R"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "Üçü de eşittir",
-"B": "S",
-"C": "T",
-"D": "R"
-},
-"answer": "B",
-"explanation": "Sayı doğrusunda sağdaki sayı daha büyüktür; en küçük değer S noktasındadır.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Ondalık Gösterim ve Yüzdeler",
-"topics": "Ondalık gösterim, Yüzde kavramı",
-"d": 3,
-"ts": 1795597074,
-"src": "local",
-"fam": "_mf_od_sd_en"
-},
-{
-"subject": "Matematik",
-"topic": "Ondalık gösterim",
-"passage": "",
-"question": "Yandaki sayı doğrusunda 0,1 ile 0,2 arası 10 eş aralığa bölünmüştür.\nBuna göre T noktası hangi ondalık sayıyı gösterir?",
-"shape": {
-"type": "kes",
-"sub_type": "aralik",
-"lo": 1,
-"hi": 2,
-"scale": 10,
-"points": [
 {
 "p": 6,
 "label": "P"
@@ -69366,11 +69110,11 @@
 "cards": [
 {
 "kind": "grid",
-"k": 90
+"k": 50
 },
 {
 "kind": "grid",
-"k": 55
+"k": 10
 }
 ],
 "sep": "−",
@@ -69382,8 +69126,8 @@
 "C": "%40",
 "D": "%35"
 },
-"answer": "A",
-"explanation": "%90 − %55 = %35.",
+"answer": "C",
+"explanation": "%50 − %10 = %40.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -70677,7 +70421,7 @@
 "cards": [
 {
 "kind": "grid",
-"k": 15
+"k": 25
 }
 ],
 "show_names": false
@@ -71670,7 +71414,7 @@
 "cards": [
 {
 "kind": "serit",
-"k": 2
+"k": 9
 }
 ],
 "show_names": false
@@ -71681,8 +71425,8 @@
 "C": "%90",
 "D": "%10"
 },
-"answer": "B",
-"explanation": "10 parçadan 2 tanesi taralıdır: 2/10 = 0,2 = %20.",
+"answer": "C",
+"explanation": "10 parçadan 9 tanesi taralıdır: 9/10 = 0,9 = %90.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -72624,7 +72368,7 @@
 "shape": {
 "type": "kes",
 "sub_type": "sayi",
-"max": 1,
+"max": 2,
 "d": 10,
 "points": [
 {
@@ -74496,25 +74240,25 @@
 "shape": {
 "type": "kes",
 "sub_type": "aralik",
-"lo": 5,
-"hi": 6,
+"lo": 3,
+"hi": 4,
 "scale": 10,
 "points": [
 {
-"p": 5,
-"label": "T"
+"p": 4,
+"label": "S"
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "0,5",
-"B": "0,55",
-"C": "0,56",
-"D": "0,65"
+"A": "0,3",
+"B": "0,34",
+"C": "0,35",
+"D": "0,43"
 },
 "answer": "B",
-"explanation": "0,5 ile 0,6 arası 10 eş parçadır; her parça 0,01 olur. T noktası 5. çizgidedir: 0,55.",
+"explanation": "0,3 ile 0,4 arası 10 eş parçadır; her parça 0,01 olur. S noktası 4. çizgidedir: 0,34.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -74602,7 +74346,7 @@
 },
 {
 "kind": "grid",
-"k": 20
+"k": 65
 }
 ],
 "sep": "−",
@@ -74706,11 +74450,6 @@
 "kind": "text",
 "text": "%30",
 "label": "K"
-},
-{
-"kind": "text",
-"text": "10/100",
-"label": "M"
 }
 ],
 "show_names": false
@@ -74819,7 +74558,7 @@
 "D": "3"
 },
 "answer": "C",
-"explanation": "1/5 değerine eşit olan kart sayısı 2'dir.",
+"explanation": "3/4 değerine eşit olan kart sayısı 2'dir.",
 "kz": [
 "MAT.5.1.4"
 ],
@@ -74950,10 +74689,6 @@
 [
 "Ekmek",
 "8,0"
-],
-[
-"Zeytin",
-"45,5"
 ]
 ]
 },
@@ -76755,19 +76490,19 @@
 "cards": [
 {
 "kind": "grid",
-"k": 80
+"k": 75
 }
 ],
 "show_names": false
 },
 "options": {
-"A": "0,2",
-"B": "0,8",
-"C": "0,9",
-"D": "8,0"
+"A": "0,25",
+"B": "0,75",
+"C": "0,85",
+"D": "7,5"
 },
 "answer": "B",
-"explanation": "100 kareden 80 tanesi taralıdır: 80/100 = 0,8.",
+"explanation": "100 kareden 75 tanesi taralıdır: 75/100 = 0,75.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -77096,13 +76831,13 @@
 "show_names": false
 },
 "options": {
-"A": "S",
-"B": "Üçü de eşittir",
-"C": "T",
-"D": "M"
+"A": "L",
+"B": "P",
+"C": "Üçü de eşittir",
+"D": "N"
 },
 "answer": "D",
-"explanation": "Sayı doğrusunda sağdaki sayı daha büyüktür; en büyük değer M noktasındadır.",
+"explanation": "Sayı doğrusunda sağdaki sayı daha büyüktür; en büyük değer N noktasındadır.",
 "kz": [
 "MAT.5.1.4"
 ],
@@ -77370,7 +77105,7 @@
 },
 {
 "kind": "text",
-"text": "0,25",
+"text": "2/10",
 "label": "S"
 },
 {

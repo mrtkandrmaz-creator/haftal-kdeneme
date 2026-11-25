@@ -3,7 +3,7 @@
 "qs": [
 {
 "subject": "Matematik",
-"topic": "Çevre ve alan",
+"topic": "Uzunluk ölçme",
 "passage": "",
 "question": "Okan defterine çizdiği doğru parçasının üzerine başlangıç ve bitiş noktaları dâhil olmak üzere 20 cm aralıklarla 7 nokta işaretleyebiliyor.\nOkan’ın çizdiği doğru parçasının uzunluğu kaç milimetredir?",
 "shape": null,
@@ -59,7 +59,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Alan ölçme",
+"topic": "Çevre uzunluğu",
 "passage": "",
 "question": "Şekildeki karenin çevresi kaç cm’dir?",
 "shape": {
@@ -3667,13 +3667,13 @@
 "question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\n7 m² kaç cm²’dir?",
 "shape": null,
 "options": {
-"A": "400",
-"B": "4000",
-"C": "40000",
-"D": "400000"
+"A": "700",
+"B": "7000",
+"C": "70000",
+"D": "700000"
 },
 "answer": "C",
-"explanation": "1 m² = 10 000 cm²; 4 × 10 000 = 40000.",
+"explanation": "1 m² = 10 000 cm²; 7 × 10 000 = 70000.",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -13338,7 +13338,7 @@
 "subject": "Matematik",
 "topic": "Alan problemleri",
 "passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nZemini 6 m × 4 m olan bir oda kenarı 20 cm olan kare fayanslarla döşenecektir. Bu iş için kaç fayans gerekir?",
+"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nZemini 5 m × 5 m olan bir oda kenarı 50 cm olan kare fayanslarla döşenecektir. Bu iş için kaç fayans gerekir?",
 "shape": null,
 "options": {
 "A": "80",
@@ -33527,7 +33527,7 @@
 "subject": "Matematik",
 "topic": "Dikdörtgenin alanı",
 "passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nŞekildeki boyalı dikdörtgenin alanı kaç cm²'dir?",
+"question": "Konu tekrarı için hazırlanan bir soru:\nŞekildeki boyalı dikdörtgenin alanı kaç cm²'dir?",
 "shape": {
 "type": "geo",
 "sub_type": "grid",
@@ -33549,10 +33549,6 @@
 3
 ],
 [
-0,
-4
-],
-[
 1,
 0
 ],
@@ -33567,10 +33563,6 @@
 [
 1,
 3
-],
-[
-1,
-4
 ],
 [
 2,
@@ -33589,21 +33581,49 @@
 3
 ],
 [
-2,
-4
+3,
+0
+],
+[
+3,
+1
+],
+[
+3,
+2
+],
+[
+3,
+3
+],
+[
+4,
+0
+],
+[
+4,
+1
+],
+[
+4,
+2
+],
+[
+4,
+3
 ]
 ],
 "legend": "Her karenin alanı 1 cm² dir.",
 "show_names": false
 },
 "options": {
-"A": "10 cm²",
-"B": "15 cm²",
-"C": "16 cm²",
-"D": "18 cm²"
+"A": "16 cm²",
+"B": "18 cm²",
+"C": "20 cm²",
+"D": "25 cm²"
 },
-"answer": "B",
-"explanation": "Dikdörtgen 3 sütun ve 5 satır karedir: 3 × 5 = 15 cm².",
+"answer": "C",
+"explanation": "Dikdörtgen 5 sütun ve 4 satır karedir: 5 × 4 = 20 cm².",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -50323,44 +50343,12 @@
 1
 ],
 [
-0,
-2
-],
-[
-0,
-3
-],
-[
-0,
-4
-],
-[
-0,
-5
-],
-[
 1,
 0
 ],
 [
 1,
 1
-],
-[
-1,
-2
-],
-[
-1,
-3
-],
-[
-1,
-4
-],
-[
-1,
-5
 ],
 [
 2,
@@ -50371,44 +50359,12 @@
 1
 ],
 [
-2,
-2
-],
-[
-2,
-3
-],
-[
-2,
-4
-],
-[
-2,
-5
-],
-[
 3,
 0
 ],
 [
 3,
 1
-],
-[
-3,
-2
-],
-[
-3,
-3
-],
-[
-3,
-4
-],
-[
-3,
-5
 ],
 [
 4,
@@ -50419,33 +50375,33 @@
 1
 ],
 [
-4,
-2
+5,
+0
 ],
 [
-4,
-3
+5,
+1
 ],
 [
-4,
-4
+6,
+0
 ],
 [
-4,
-5
+6,
+1
 ]
 ],
 "legend": "Her karenin bir kenarı 1 cm dir.",
 "show_names": false
 },
 "options": {
-"A": "11 cm",
-"B": "22 cm",
-"C": "24 cm",
-"D": "30 cm"
+"A": "9 cm",
+"B": "14 cm",
+"C": "18 cm",
+"D": "20 cm"
 },
-"answer": "B",
-"explanation": "Kenarlar 5 cm ve 6 cm: 2 × (5 + 6) = 22 cm.",
+"answer": "C",
+"explanation": "Kenarlar 7 cm ve 2 cm: 2 × (7 + 2) = 18 cm.",
 "kz": [
 "MAT.5.4.1"
 ],
@@ -63772,7 +63728,7 @@
 "subject": "Matematik",
 "topic": "Dikdörtgenin alanı ve çevresi",
 "passage": "",
-"question": "Bir okul yazılısında şu soru yer almıştır.\nŞekildeki A ve B dikdörtgenleri için aşağıdakilerden hangisi doğrudur?",
+"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nVerilen şekildeki A ve B dikdörtgenleri için aşağıdakilerden hangisi doğrudur?",
 "shape": {
 "type": "geo",
 "sub_type": "grid",
@@ -64078,12 +64034,12 @@
 "show_names": false
 },
 "options": {
-"A": "Alanları eşit, çevresi daha uzun olan B şeklidir",
-"B": "B şeklinin alanı daha büyüktür, çevreleri eşittir",
-"C": "Alanları eşit, çevreleri de eşittir",
-"D": "A şeklinin hem alanı hem çevresi daha büyüktür"
+"A": "A şeklinin hem alanı hem çevresi daha büyüktür",
+"B": "Alanları eşit, çevresi daha uzun olan B şeklidir",
+"C": "B şeklinin alanı daha büyüktür, çevreleri eşittir",
+"D": "Alanları eşit, çevreleri de eşittir"
 },
-"answer": "A",
+"answer": "B",
 "explanation": "İkisinin de alanı 36 cm²'dir. Çevreler: A = 24 cm, B = 26 cm; B şeklinin çevresi daha uzundur.",
 "kz": [
 "MAT.5.4.3"
@@ -64106,23 +64062,11 @@
 "cells": [
 [
 0,
-0
-],
-[
-0,
 1
 ],
 [
 0,
 2
-],
-[
-0,
-3
-],
-[
-0,
-4
 ],
 [
 1,
@@ -64137,14 +64081,6 @@
 2
 ],
 [
-1,
-3
-],
-[
-1,
-4
-],
-[
 2,
 0
 ],
@@ -64155,14 +64091,6 @@
 [
 2,
 2
-],
-[
-2,
-4
-],
-[
-3,
-0
 ],
 [
 3,
@@ -64191,44 +64119,16 @@
 [
 5,
 1
-],
-[
-3,
-2
-],
-[
-3,
-4
-],
-[
-4,
-0
-],
-[
-4,
-1
-],
-[
-4,
-2
-],
-[
-4,
-3
-],
-[
-4,
-4
 ]
 ],
 "legend": "Her karenin alanı 1 cm² dir.",
 "show_names": false
 },
 "options": {
-"A": "1",
-"B": "2",
-"C": "3",
-"D": "4"
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
 },
 "answer": "B",
 "explanation": "Şekil 6 × 3 = 18 karelik bir dikdörtgenin içindedir. 18 − 15 = 3 kare eksiktir.",
@@ -64334,10 +64234,6 @@
 7
 ],
 [
-2,
-7
-],
-[
 0,
 7
 ]
@@ -64418,7 +64314,6 @@
 "",
 "5 cm",
 "3 cm",
-"2 cm",
 "",
 "",
 ""
@@ -64457,7 +64352,7 @@
 0
 ],
 [
-12,
+10,
 0
 ],
 [
@@ -64490,7 +64385,7 @@
 ]
 ],
 "side_labels": [
-"12 m",
+"10 m",
 "",
 "",
 "10 m"
@@ -64521,335 +64416,6 @@
 "ts": 1795634065,
 "src": "local",
 "fam": "_mf_gv_cerceve"
-},
-{
-"subject": "Matematik",
-"topic": "Dikdörtgenin çevre uzunluğu",
-"passage": "",
-"question": "Aşağıdaki problemi çözünüz.\nVerilen şekilde kenar uzunluğu verilen eş kareler yan yana getirilmiştir. Oluşan dikdörtgenin çevre uzunluğu kaç cm'dir?",
-"shape": {
-"type": "geo",
-"sub_type": "polyfree",
-"pts": [
-[
-0,
-0
-],
-[
-14,
-0
-],
-[
-14,
-7
-],
-[
-0,
-7
-]
-],
-"segments": [
-[
-7,
-0,
-7,
-7
-]
-],
-"side_labels": [
-"",
-"",
-"",
-"7 cm"
-],
-"show_names": false
-},
-"options": {
-"A": "21 cm",
-"B": "28 cm",
-"C": "42 cm",
-"D": "56 cm"
-},
-"answer": "C",
-"explanation": "Dikdörtgenin uzun kenarı 2 × 7 = 14 cm, kısa kenarı 7 cm: 2 × (14 + 7) = 42 cm.",
-"kz": [
-"MAT.5.4.3"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 4,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_gv_kare_dizi"
-},
-{
-"subject": "Matematik",
-"topic": "Alan ölçme",
-"passage": "",
-"question": "Verilen şekildeki dikdörtgenin alanı kaç santimetrekaredir?",
-"shape": {
-"type": "rectangle",
-"width": 8,
-"height": 14,
-"width_label": "8 cm",
-"height_label": "14 cm",
-"show_names": false
-},
-"options": {
-"A": "22",
-"B": "44",
-"C": "112",
-"D": "120"
-},
-"answer": "C",
-"explanation": "8 × 14 = 112 cm².",
-"kz": [
-"MAT.5.4.1"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 2,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_rect_cevre"
-},
-{
-"subject": "Matematik",
-"topic": "Alan ve çevre ilişkisi",
-"passage": "",
-"question": "Verilen şekilde alanı verilen dikdörtgenin çevresi kaç santimetredir?",
-"shape": {
-"type": "rectangle",
-"width": 6,
-"height": 11,
-"width_label": "6 cm",
-"height_label": "?",
-"center_label": "Alan = 66 cm²",
-"show_names": false
-},
-"options": {
-"A": "17",
-"B": "23",
-"C": "34",
-"D": "66"
-},
-"answer": "C",
-"explanation": "Alan = 66 ve bir kenar 6 cm olduğundan diğer kenar 66 ÷ 6 = 11 cm; çevre = 2 × (6 + 11) = 34 cm.",
-"kz": [
-"MAT.5.4.3"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 4,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_alan_cevre"
-},
-{
-"subject": "Matematik",
-"topic": "Çevre uzunluğu",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nÇevresi 28 cm olan ve kenar uzunlukları santimetre cinsinden birer doğal sayı olan kaç farklı dikdörtgen çizilebilir? (Kare de dikdörtgen kabul edilir; uzun ve kısa kenarı aynı olan dikdörtgenler aynı sayılır.)",
-"shape": null,
-"options": {
-"A": "6",
-"B": "7",
-"C": "8",
-"D": "14"
-},
-"answer": "B",
-"explanation": "Kenarların toplamı 14 cm olmalıdır: 1+13, 2+12, 3+11, 4+10, 5+9, 6+8, 7+7. Toplam 7 farklı dikdörtgen vardır.",
-"kz": [
-"MAT.5.4.3"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 3,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_cevre_say"
-},
-{
-"subject": "Matematik",
-"topic": "Dikdörtgenin Çevresi",
-"passage": "",
-"question": "Şekildeki dikdörtgen biçimli parkın çevresine bir sıra korkuluk yapılacaktır. Korkuluğun metresi 8 TL olduğuna göre toplam ücret kaç TL’dir?",
-"shape": {
-"type": "rectangle",
-"width": 9,
-"height": 20,
-"width_label": "9 m",
-"height_label": "20 m",
-"center_label": "",
-"show_names": false
-},
-"options": {
-"A": "464 TL",
-"B": "232 TL",
-"C": "1440 TL",
-"D": "66 TL"
-},
-"answer": "A",
-"explanation": "Çevre = 2 × (9 + 20) = 58 m; maliyet = 58 × 8 = 464 TL.",
-"kz": [
-"MAT.5.4.4"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 3,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_dik_problem"
-},
-{
-"subject": "Matematik",
-"topic": "Çevre ve alan",
-"passage": "",
-"question": "Verilen şekildeki ABCD dikdörtgeninde |AB| = 4 cm ve |BC| = 3 cm’dir.\nBu bilgilere göre bu dikdörtgenin çevresi kaç santimetredir?",
-"shape": {
-"type": "geo",
-"sub_type": "quad",
-"kind": "rectangle",
-"labels": [
-"A",
-"B",
-"C",
-"D"
-],
-"sides": {
-"AB": "4 cm",
-"BC": "3 cm"
-},
-"show_names": false
-},
-"options": {
-"A": "7",
-"B": "12",
-"C": "14",
-"D": "16"
-},
-"answer": "C",
-"explanation": "Çevre = 2 × (4 + 3) = 14 cm.",
-"kz": [
-"MAT.5.4.2"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 3,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_geo"
-},
-{
-"subject": "Matematik",
-"topic": "Çevre ve alan",
-"passage": "",
-"question": "Şekildeki dikdörtgenin alanı ve bir kenarının uzunluğu verilmiştir. Bu dikdörtgenin diğer kenarının uzunluğu kaç cm’dir?",
-"shape": {
-"type": "rectangle",
-"width": 9,
-"height": 6,
-"width_label": "9 cm",
-"height_label": "?",
-"center_label": "Alan = 54 cm²",
-"show_names": false
-},
-"options": {
-"A": "6",
-"B": "9",
-"C": "15",
-"D": "45"
-},
-"answer": "A",
-"explanation": "54 ÷ 9 = 6.",
-"kz": [
-"MAT.5.4.1"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 3,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_rect_eksik"
-},
-{
-"subject": "Matematik",
-"topic": "Alan ölçme",
-"passage": "",
-"question": "Verilen şekildeki karenin alanı kaç santimetrekaredir?",
-"shape": {
-"type": "rectangle",
-"width": 6,
-"height": 6,
-"width_label": "6 cm",
-"height_label": "6 cm",
-"show_names": false
-},
-"options": {
-"A": "12",
-"B": "24",
-"C": "36",
-"D": "42"
-},
-"answer": "C",
-"explanation": "6 × 6 = 36 cm².",
-"kz": [
-"MAT.5.4.2"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 2,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_kare"
-},
-{
-"subject": "Matematik",
-"topic": "Alan problemleri",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\nÇevresi 60 cm olan karenin alanı kaç cm²’dir?",
-"shape": null,
-"options": {
-"A": "195",
-"B": "225",
-"C": "229",
-"D": "240"
-},
-"answer": "B",
-"explanation": "Kenar 60 ÷ 4 = 15 cm; alan 15 × 15 = 225 cm².",
-"kz": [
-"MAT.5.4.1"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 3,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_ca_kare_cevre"
-},
-{
-"subject": "Matematik",
-"topic": "Alan problemleri",
-"passage": "Kenar uzunlukları 17 cm ve 7 cm olan bir dikdörtgen çiziliyor.\nI. Çevresi 48 cm’dir.\nII. Alanı 119 cm²’dir.\nIII. Bu dikdörtgenin dört kenarı da birbirine eşittir.",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nBu dikdörtgenle ilgili aşağıdaki yargılardan hangileri doğrudur?",
-"shape": null,
-"options": {
-"A": "I ve II",
-"B": "Yalnız I",
-"C": "I, II ve III",
-"D": "Yalnız II"
-},
-"answer": "A",
-"explanation": "Çevre = 2 × (a + b), alan = a × b.",
-"kz": [
-"MAT.5.4.4"
-],
-"unit": "Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2)",
-"topics": "Çevre uzunluğu, Alan ölçme, Alan problemleri",
-"d": 4,
-"ts": 1795597069,
-"src": "local",
-"fam": "_mf_yn_cevre_roman"
 },
 {
 "subject": "Matematik",
@@ -65170,6 +64736,10 @@
 3
 ],
 [
+0,
+4
+],
+[
 1,
 0
 ],
@@ -65186,6 +64756,10 @@
 3
 ],
 [
+1,
+4
+],
+[
 2,
 0
 ],
@@ -65200,19 +64774,23 @@
 [
 2,
 3
+],
+[
+2,
+4
 ]
 ],
 "legend": "Her karenin alanı 1 cm² dir.",
 "show_names": false
 },
 "options": {
-"A": "8 cm²",
-"B": "12 cm²",
-"C": "14 cm²",
-"D": "15 cm²"
+"A": "10 cm²",
+"B": "15 cm²",
+"C": "16 cm²",
+"D": "18 cm²"
 },
 "answer": "B",
-"explanation": "Dikdörtgen 3 sütun ve 4 satır karedir: 3 × 4 = 12 cm².",
+"explanation": "Dikdörtgen 3 sütun ve 5 satır karedir: 3 × 5 = 15 cm².",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -66459,7 +66037,7 @@
 "subject": "Matematik",
 "topic": "Dikdörtgenin alanı",
 "passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nVerilen şekildeki boyalı bölgenin en az kaç birim kare eklenirse bir dikdörtgen oluşur?",
+"question": "Bir öğrenci kendi kendine soru çözüyor.\nŞekildeki boyalı bölgenin en az kaç birim kare eklenirse bir dikdörtgen oluşur?",
 "shape": {
 "type": "geo",
 "sub_type": "grid",
@@ -66497,14 +66075,6 @@
 3
 ],
 [
-1,
-4
-],
-[
-1,
-5
-],
-[
 2,
 0
 ],
@@ -66519,14 +66089,6 @@
 [
 2,
 3
-],
-[
-2,
-4
-],
-[
-2,
-5
 ],
 [
 3,
@@ -66545,14 +66107,6 @@
 3
 ],
 [
-3,
-4
-],
-[
-3,
-5
-],
-[
 4,
 0
 ],
@@ -66567,14 +66121,6 @@
 [
 4,
 3
-],
-[
-4,
-4
-],
-[
-4,
-5
 ],
 [
 5,
@@ -66594,8 +66140,8 @@
 "C": "3",
 "D": "4"
 },
-"answer": "A",
-"explanation": "Şekil 4 × 3 = 12 karelik bir dikdörtgenin içindedir. 12 − 11 = 1 kare eksiktir.",
+"answer": "B",
+"explanation": "Şekil 6 × 4 = 24 karelik bir dikdörtgenin içindedir. 24 − 22 = 2 kare eksiktir.",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -66637,7 +66183,7 @@
 ],
 [
 0,
-9
+8
 ]
 ],
 "side_labels": [
@@ -66646,7 +66192,7 @@
 "3 cm",
 "6 cm",
 "",
-"9 cm"
+"8 cm"
 ],
 "show_names": false
 },
@@ -66682,7 +66228,7 @@
 0
 ],
 [
-8,
+9,
 0
 ],
 [
@@ -66695,11 +66241,11 @@
 ],
 [
 3,
-7
+5
 ],
 [
 0,
-7
+5
 ]
 ],
 "side_labels": [
@@ -67814,8 +67360,8 @@
 6
 ],
 [
-5,
-5
+4,
+6
 ],
 [
 4,
@@ -67827,11 +67373,11 @@
 ],
 [
 2,
-5
+6
 ],
 [
 0,
-5
+6
 ]
 ],
 "side_labels": [
@@ -70559,10 +70105,10 @@
 "show_names": false
 },
 "options": {
-"A": "24 cm",
-"B": "25 cm",
-"C": "32 cm",
-"D": "42 cm"
+"A": "64 cm²",
+"B": "96 cm²",
+"C": "192 cm²",
+"D": "200 cm²"
 },
 "answer": "C",
 "explanation": "Bir karenin alanı 8 × 8 = 64 cm²; 3 kare: 3 × 64 = 192 cm².",
@@ -70900,7 +70446,7 @@
 "subject": "Matematik",
 "topic": "Dikdörtgenin alanı ve çevresi",
 "passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nVerilen şekildeki A ve B dikdörtgenleri için aşağıdakilerden hangisi doğrudur?",
+"question": "Bir çalışma kâğıdında şu soru vardır.\nŞekildeki A ve B dikdörtgenleri için aşağıdakilerden hangisi doğrudur?",
 "shape": {
 "type": "geo",
 "sub_type": "grid",
@@ -70993,10 +70539,6 @@
 2
 ],
 [
-0,
-3
-],
-[
 1,
 0
 ],
@@ -71007,10 +70549,6 @@
 [
 1,
 2
-],
-[
-1,
-3
 ],
 [
 2,
@@ -71025,10 +70563,6 @@
 2
 ],
 [
-2,
-3
-],
-[
 3,
 0
 ],
@@ -71041,10 +70575,6 @@
 2
 ],
 [
-3,
-3
-],
-[
 4,
 0
 ],
@@ -71055,10 +70585,6 @@
 [
 4,
 2
-],
-[
-4,
-3
 ],
 [
 5,
@@ -71236,25 +70762,17 @@
 7
 ],
 [
-3,
-7
-],
-[
-3,
-9
-],
-[
 0,
-9
+7
 ]
 ],
 "side_labels": [
 "6 cm",
 "",
-"5 cm",
+"3 cm",
 "2 cm",
 "",
-"9 cm"
+"7 cm"
 ],
 "show_names": false
 },
@@ -71278,7 +70796,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Dikdörtgenin çevre uzunluğu",
+"topic": "Dikdörtgenin alanı",
 "passage": "",
 "question": "Bir öğrenci konu tekrarı yapıyor.\nŞekildeki L biçimli bölgenin alanı kaç cm²'dir? (Köşeler dik açıdır.)",
 "shape": {
@@ -71352,7 +70870,7 @@
 0
 ],
 [
-9,
+10,
 0
 ],
 [
@@ -71566,6 +71084,14 @@
 1
 ],
 [
+0,
+2
+],
+[
+0,
+3
+],
+[
 1,
 0
 ],
@@ -71574,25 +71100,105 @@
 1
 ],
 [
+1,
+2
+],
+[
+1,
+3
+],
+[
 2,
 0
 ],
 [
 2,
 1
+],
+[
+2,
+2
+],
+[
+2,
+3
+],
+[
+3,
+0
+],
+[
+3,
+1
+],
+[
+3,
+2
+],
+[
+3,
+3
+],
+[
+4,
+0
+],
+[
+4,
+1
+],
+[
+4,
+2
+],
+[
+4,
+3
+],
+[
+5,
+0
+],
+[
+5,
+1
+],
+[
+5,
+2
+],
+[
+5,
+3
+],
+[
+6,
+0
+],
+[
+6,
+1
+],
+[
+6,
+2
+],
+[
+6,
+3
 ]
 ],
 "legend": "Her karenin alanı 1 cm² dir.",
 "show_names": false
 },
 "options": {
-"A": "4 cm²",
-"B": "6 cm²",
-"C": "9 cm²",
-"D": "10 cm²"
+"A": "22 cm²",
+"B": "24 cm²",
+"C": "28 cm²",
+"D": "35 cm²"
 },
-"answer": "B",
-"explanation": "Dikdörtgen 3 sütun ve 2 satır karedir: 3 × 2 = 6 cm².",
+"answer": "C",
+"explanation": "Dikdörtgen 7 sütun ve 4 satır karedir: 7 × 4 = 28 cm².",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -71828,6 +71434,10 @@
 "cells": [
 [
 0,
+0
+],
+[
+0,
 1
 ],
 [
@@ -72047,11 +71657,11 @@
 ],
 [
 2,
-6
+7
 ],
 [
 0,
-6
+7
 ]
 ],
 "side_labels": [
@@ -72246,14 +71856,6 @@
 1
 ],
 [
-0,
-2
-],
-[
-0,
-3
-],
-[
 1,
 0
 ],
@@ -72262,73 +71864,25 @@
 1
 ],
 [
-1,
-2
-],
-[
-1,
-3
-],
-[
 2,
 0
 ],
 [
 2,
 1
-],
-[
-2,
-2
-],
-[
-2,
-3
-],
-[
-3,
-0
-],
-[
-3,
-1
-],
-[
-3,
-2
-],
-[
-3,
-3
-],
-[
-4,
-0
-],
-[
-4,
-1
-],
-[
-4,
-2
-],
-[
-4,
-3
 ]
 ],
 "legend": "Her karenin alanı 1 cm² dir.",
 "show_names": false
 },
 "options": {
-"A": "16 cm²",
-"B": "18 cm²",
-"C": "20 cm²",
-"D": "25 cm²"
+"A": "4 cm²",
+"B": "6 cm²",
+"C": "9 cm²",
+"D": "10 cm²"
 },
-"answer": "C",
-"explanation": "Dikdörtgen 5 sütun ve 4 satır karedir: 5 × 4 = 20 cm².",
+"answer": "B",
+"explanation": "Dikdörtgen 3 sütun ve 2 satır karedir: 3 × 2 = 6 cm².",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -72814,7 +72368,7 @@
 0
 ],
 [
-5,
+9,
 0
 ],
 [
@@ -72826,21 +72380,21 @@
 2
 ],
 [
-2,
-5
+6,
+9
 ],
 [
 0,
-5
+9
 ]
 ],
 "side_labels": [
-"5 cm",
+"9 cm",
 "",
 "3 cm",
 "7 cm",
 "",
-"5 cm"
+"9 cm"
 ],
 "show_names": false
 },
@@ -73644,7 +73198,7 @@
 0
 ],
 [
-5,
+8,
 0
 ],
 [
@@ -73661,7 +73215,7 @@
 ],
 [
 0,
-9
+7
 ]
 ],
 "side_labels": [
@@ -74000,20 +73554,12 @@
 1
 ],
 [
-0,
-2
-],
-[
 1,
 0
 ],
 [
 1,
 1
-],
-[
-1,
-2
 ],
 [
 2,
@@ -74024,10 +73570,6 @@
 1
 ],
 [
-2,
-2
-],
-[
 3,
 0
 ],
@@ -74036,57 +73578,25 @@
 1
 ],
 [
-3,
-2
-],
-[
 4,
 0
 ],
 [
 4,
 1
-],
-[
-4,
-2
-],
-[
-5,
-0
-],
-[
-5,
-1
-],
-[
-5,
-2
-],
-[
-6,
-0
-],
-[
-6,
-1
-],
-[
-6,
-2
 ]
 ],
 "legend": "Her karenin alanı 1 cm² dir.",
 "show_names": false
 },
 "options": {
-"A": "18 cm²",
-"B": "20 cm²",
-"C": "21 cm²",
-"D": "28 cm²"
+"A": "8 cm²",
+"B": "10 cm²",
+"C": "14 cm²",
+"D": "15 cm²"
 },
-"answer": "C",
-"explanation": "Dikdörtgen 7 sütun ve 3 satır karedir: 7 × 3 = 21 cm².",
+"answer": "B",
+"explanation": "Dikdörtgen 5 sütun ve 2 satır karedir: 5 × 2 = 10 cm².",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -75237,28 +74747,12 @@
 2
 ],
 [
-0,
-3
-],
-[
-0,
-4
-],
-[
 1,
 0
 ],
 [
 1,
 2
-],
-[
-1,
-3
-],
-[
-1,
-4
 ],
 [
 2,
@@ -75285,14 +74779,6 @@
 2
 ],
 [
-3,
-3
-],
-[
-3,
-4
-],
-[
 4,
 0
 ],
@@ -75301,12 +74787,16 @@
 2
 ],
 [
-4,
-3
+5,
+0
 ],
 [
-4,
-4
+5,
+1
+],
+[
+5,
+2
 ]
 ],
 "legend": "Her karenin alanı 1 cm² dir.",
@@ -75319,7 +74809,7 @@
 "D": "4"
 },
 "answer": "B",
-"explanation": "Şekil 5 × 5 = 25 karelik bir dikdörtgenin içindedir. 25 − 23 = 2 kare eksiktir.",
+"explanation": "Şekil 6 × 3 = 18 karelik bir dikdörtgenin içindedir. 18 − 16 = 2 kare eksiktir.",
 "kz": [
 "MAT.5.4.2"
 ],
@@ -75406,33 +74896,33 @@
 0
 ],
 [
-5,
+10,
 0
 ],
 [
+10,
+2
+],
+[
+5,
+2
+],
+[
 5,
 6
 ],
 [
-3,
-6
-],
-[
-3,
-8
-],
-[
 0,
-8
+6
 ]
 ],
 "side_labels": [
+"10 cm",
+"",
 "5 cm",
+"4 cm",
 "",
-"2 cm",
-"2 cm",
-"",
-"8 cm"
+"6 cm"
 ],
 "show_names": false
 },
@@ -75484,8 +74974,8 @@
 4
 ],
 [
-3,
-2
+2,
+4
 ],
 [
 2,

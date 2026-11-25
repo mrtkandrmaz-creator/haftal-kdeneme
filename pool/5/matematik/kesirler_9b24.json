@@ -770,7 +770,7 @@
 "subject": "Matematik",
 "topic": "Kesirler",
 "passage": "",
-"question": "Konu tekrarı için hazırlanan bir soru:\nVerilen şekilde dört bütün parçalara ayrılmış ve bir kısmı taranmıştır.\nBuna göre hangi şekildeki taralı kısım bir kesir olarak ifade edilemez?",
+"question": "Bir deneme sınavında şu soru sorulmuştur.\nVerilen şekilde dört bütün parçalara ayrılmış ve bir kısmı taranmıştır.\nBuna göre hangi şekildeki taralı kısım bir kesir olarak ifade edilemez?",
 "shape": {
 "type": "kes",
 "sub_type": "bolge",
@@ -1784,7 +1784,7 @@
 "subject": "Matematik",
 "topic": "Kesir sıralama",
 "passage": "",
-"question": "Aşağıdaki kesirlerden hangisi 1/2’den büyüktür?",
+"question": "Aşağıdaki kesirlerden hangisi 1/2’den küçüktür?",
 "shape": null,
 "options": {
 "A": "10/12",
@@ -16612,19 +16612,19 @@
 "shape": {
 "type": "kes",
 "sub_type": "grup",
-"n": 9,
-"d": 3,
-"k": 2,
+"n": 10,
+"d": 5,
+"k": 4,
 "show_names": false
 },
 "options": {
 "A": "2",
-"B": "3",
-"C": "6",
-"D": "9"
+"B": "4",
+"C": "8",
+"D": "10"
 },
 "answer": "C",
-"explanation": "9 ÷ 3 = 3 top her grupta; 2 grup: 2 × 3 = 6 top.",
+"explanation": "10 ÷ 5 = 2 top her grupta; 4 grup: 4 × 2 = 8 top.",
 "kz": [
 "MAT.5.1.3"
 ],
@@ -16924,7 +16924,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Kesir sıralama",
+"topic": "Kesirlerle toplama-çıkarma",
 "passage": "",
 "question": "Bir okul yazılısında şu soru yer almıştır.\n2 2/4 + 2 1/4 işleminin sonucu aşağıdakilerden hangisidir?",
 "shape": null,
@@ -17554,7 +17554,7 @@
 "d": 3,
 "ts": 1795634066,
 "src": "local",
-"fam": "_mf_ks_birim"
+"fam": "_mf_ks_tamsayili"
 },
 {
 "subject": "Matematik",
@@ -17656,6 +17656,7 @@
 "k": 2
 }
 ],
+"sep": "−",
 "show_names": false
 },
 "options": {
@@ -17708,19 +17709,7 @@
 "form": "cubuk",
 "n": 10,
 "k": 5,
-"label": "R"
-},
-{
-"form": "cubuk",
-"n": 5,
-"k": 1,
-"label": "S"
-},
-{
-"form": "cubuk",
-"n": 3,
-"k": 1,
-"label": "K"
+"label": "L"
 }
 ],
 "show_names": false
@@ -17811,14 +17800,8 @@
 {
 "form": "daire",
 "n": 8,
-"k": 3,
-"label": "T"
-},
-{
-"form": "daire",
-"n": 6,
-"k": 5,
-"label": "N"
+"k": 4,
+"label": "L"
 },
 {
 "form": "daire",
@@ -41571,10 +41554,6 @@
 "n": 6,
 "k": 5,
 "label": "R"
-},
-{
-"p": 1,
-"label": "M"
 }
 ],
 "show_names": false
@@ -42102,8 +42081,8 @@
 "shape": {
 "type": "kes",
 "sub_type": "sayi",
-"max": 1,
-"d": 4,
+"max": 2,
+"d": 5,
 "points": [
 {
 "p": 8,
@@ -42127,7 +42106,7 @@
 "D": "T"
 },
 "answer": "D",
-"explanation": "Sayı doğrusunda sağa gidildikçe sayı büyür; en büyük kesir T noktasındadır.",
+"explanation": "Sayı doğrusunda sağa gidildikçe sayı büyür; en küçük kesir T noktasındadır.",
 "kz": [
 "MAT.5.1.4"
 ],
@@ -42147,7 +42126,7 @@
 "type": "kes",
 "sub_type": "sayi",
 "max": 2,
-"d": 6,
+"d": 4,
 "points": [
 {
 "p": 7,
@@ -42347,10 +42326,10 @@
 "shape": {
 "type": "kes",
 "sub_type": "esdeger",
-"n1": 6,
+"n1": 4,
 "k1": 3,
 "n2": 12,
-"k2": 6,
+"k2": 9,
 "show_names": false
 },
 "options": {
@@ -42469,7 +42448,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Kesirler",
+"topic": "Kesir türleri",
 "passage": "",
 "question": "Aşağıdaki problemi çözünüz.\nAşağıdakilerden hangisi tam sayılı kesirdir?",
 "shape": null,
@@ -42541,7 +42520,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Kesir sıralama",
+"topic": "Kesirlerle toplama-çıkarma",
 "passage": "",
 "question": "Konu tekrarı için hazırlanan bir soru:\n2 2/6 + 1 5/6 işleminin sonucu aşağıdakilerden hangisidir?",
 "shape": null,
@@ -42565,7 +42544,7 @@
 },
 {
 "subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
+"topic": "Kesirler",
 "passage": "",
 "question": "Bir tekrar testinde şu soru sorulmuştur.\nBir sayının 1/4’i 8 olduğuna göre bu sayının tamamı kaçtır?",
 "shape": null,
@@ -42586,54 +42565,6 @@
 "ts": 1795634066,
 "src": "local",
 "fam": "_mf_kes_tersi"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
-"passage": "",
-"question": "Bir kitaptaki etkinlik inceleniyor.\nBir ip 10 eş parçaya bölünmüştür. Ali 3 parçasını, Veli 3 parçasını kullanmıştır. İpin kullanılmayan kısmı bütünün kaçıdır?",
-"shape": null,
-"options": {
-"A": "5/10",
-"B": "3/10",
-"C": "4/10",
-"D": "6/10"
-},
-"answer": "C",
-"explanation": "Kullanılan 3/10 + 3/10 = 6/10; kalan 10/10 − 6/10 = 4/10.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_kes_problem_kalan"
-},
-{
-"subject": "Matematik",
-"topic": "Kesir sıralama",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nPayda değeri 11 olan 10/11, 5/11, 3/11, 8/11 kesirlerinden en küçüğü hangisidir?",
-"shape": null,
-"options": {
-"A": "8/11",
-"B": "10/11",
-"C": "5/11",
-"D": "3/11"
-},
-"answer": "D",
-"explanation": "Paydalar eşit olduğunda payı en küçük olan kesir en küçüktür: 3/11.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_kes_buyuk_kucuk"
 },
 {
 "subject": "Matematik",
@@ -70848,614 +70779,6 @@
 "points": [
 {
 "p": 2,
-"label": "M"
-},
-{
-"p": 4,
-"label": "K"
-}
-],
-"show_names": false
-},
-"options": {
-"A": "3/5",
-"B": "6/5",
-"C": "4/5",
-"D": "2/5"
-},
-"answer": "D",
-"explanation": "4/5 − 2/5 = 2/5.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 4,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_sd_fark"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Verilen şekilde bir kümedeki toplar gösterilmiştir. Kırmızı toplar bütünün bir kısmını oluşturmaktadır.\nBuna göre kırmızı toplar kümenin kaçıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "grup",
-"n": 6,
-"k": 5,
-"per_row": 6,
-"show_names": false
-},
-"options": {
-"A": "6/5",
-"B": "5/1",
-"C": "5/6",
-"D": "1/6"
-},
-"answer": "C",
-"explanation": "Toplam 6 top, 5 tanesi kırmızıdır: 5/6.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_grp_kesir"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Bir öğrenci kendi kendine soru çözüyor.\nŞekilde 12 top 6 eş gruba ayrılmıştır. Renkli gruplar bütünün 3/6 kadarını göstermektedir.\nBuna göre 12 topun 3/6 kadarı kaç toptur?",
-"shape": {
-"type": "kes",
-"sub_type": "grup",
-"n": 12,
-"d": 6,
-"k": 3,
-"show_names": false
-},
-"options": {
-"A": "2",
-"B": "3",
-"C": "6",
-"D": "8"
-},
-"answer": "C",
-"explanation": "12 ÷ 6 = 2 top her grupta; 3 grup: 3 × 2 = 6 top.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 4,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_grp_kac"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Öğretmen, öğrencilerden aşağıdakini çözmelerini istiyor.\nYandaki şekilde 24 top 8 eş gruba ayrılmış ve bazı gruplar renklendirilmiştir.\nBuna göre renkli gruplar bütünün kaçıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "grup",
-"n": 24,
-"d": 8,
-"k": 6,
-"show_names": false
-},
-"options": {
-"A": "6/8",
-"B": "6/2",
-"C": "8/6",
-"D": "2/8"
-},
-"answer": "A",
-"explanation": "8 eş grubun 6 tanesi renklidir: 6/8.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_grp_oran"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Şu soruyu yanıtlayınız.\nVerilen şekilde aynı uzunlukta iki şeridin taralı kısımları birbirine eşittir. Üstteki şerit 3 eş parçaya, alttaki şerit 6 eş parçaya bölünmüştür.\n1/3 = □/6 eşitliğinde □ yerine hangi sayı yazılmalıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "esdeger",
-"n1": 3,
-"k1": 1,
-"n2": 6,
-"k2": 2,
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "2",
-"C": "3",
-"D": "4"
-},
-"answer": "B",
-"explanation": "Her parça 2 parçaya bölününce pay da 2 katına çıkar: 1 × 2 = 2.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 4,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_esd_denk"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Şekilde aynı uzunlukta iki şerit verilmiştir. Üstteki şeridin taralı kısmı 1/2'dir ve alttaki şeridin taralı kısmına eşittir.\nBuna göre alttaki şeridin taralı kısmı hangi kesirle gösterilir?",
-"shape": {
-"type": "kes",
-"sub_type": "esdeger",
-"n1": 2,
-"k1": 1,
-"n2": 6,
-"k2": 3,
-"show_names": false
-},
-"options": {
-"A": "3/6",
-"B": "4/6",
-"C": "1/6",
-"D": "3/2"
-},
-"answer": "A",
-"explanation": "Taralı kısımlar eşit olduğu için alttaki kesir 1/2'e denktir: 3/6.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 4,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_esd_hangi"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Aşağıdaki soruyu dikkatle okuyunuz.\nÖzdeş K, L ve M şişelerinin sırasıyla 1/9, 1/8 ve 1/3’i doludur. Buna göre şişelerdeki sıvı miktarlarının küçükten büyüğe sıralanışı aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "K < L < M",
-"B": "M < L < K",
-"C": "K < M < L",
-"D": "M < K < L"
-},
-"answer": "A",
-"explanation": "Payı 1 olan kesirlerde payda büyüdükçe kesir küçülür: 1/9 < 1/8 < 1/3.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_fracorder"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Bir sınıftaki öğrencilerin 1/12’i kahverengi, 1/3’i yeşil, 5/12’i ela ve 1/6’i bal rengi gözlüdür.\nVerilenlere göre bu sınıfta hangi renk göze sahip öğrenci sayısı en azdır?",
-"shape": null,
-"options": {
-"A": "kahverengi",
-"B": "yeşil",
-"C": "ela",
-"D": "bal rengi"
-},
-"answer": "A",
-"explanation": "Paydaları 12 yapınca paylar [1, 4, 5, 2]; en küçük pay 1 (kahverengi).",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_fracmax"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\nMert bir pizzanın 3/6 kadarını, kardeşi ise aynı pizzanın 1/6 kadarını yedi. İkisi birlikte pizzanın kaçını yemiştir?",
-"shape": null,
-"options": {
-"A": "5/6",
-"B": "2/6",
-"C": "3/6",
-"D": "4/6"
-},
-"answer": "D",
-"explanation": "3/6 + 1/6 = 4/6.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_fr_addsub"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nBir kantinde gün boyunca 24 sandviç hazırlanmıştır. Sandviçlerin 7/8 kadarı satılmıştır. Kaç sandviç satılmıştır?",
-"shape": null,
-"options": {
-"A": "3",
-"B": "12",
-"C": "21",
-"D": "24"
-},
-"answer": "C",
-"explanation": "24 ÷ 8 = 3; 3 × 7 = 21.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_fr_of"
-},
-{
-"subject": "Matematik",
-"topic": "Kesir türleri",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nAşağıdakilerden hangisi bileşik kesirdir?",
-"shape": null,
-"options": {
-"A": "6/10",
-"B": "16/9",
-"C": "4 8/9",
-"D": "4/9"
-},
-"answer": "B",
-"explanation": "Payı paydasına eşit ya da paydasından büyük olan kesir bileşik kesirdir.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 1,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_kes_tur"
-},
-{
-"subject": "Matematik",
-"topic": "Kesir türleri",
-"passage": "",
-"question": "Bir tekrar testinde şu soru sorulmuştur.\n15/20 kesrinin en sade (sadeleşmiş) hâli aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "3/5",
-"B": "4/10",
-"C": "4/4",
-"D": "3/4"
-},
-"answer": "D",
-"explanation": "Pay ve payda ortak çarpan olan 5 ile bölünür: 15÷5/20÷5 = 3/4.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_kes_sadele"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Ders sonunda küçük bir değerlendirme yapılıyor.\nBir sayı doğrusunda 0 ile 1 arası 5 eşit aralığa ayrılmıştır. 0’dan itibaren 3. işaret hangi kesirdir?",
-"shape": null,
-"options": {
-"A": "2/5",
-"B": "3/6",
-"C": "4/5",
-"D": "3/5"
-},
-"answer": "D",
-"explanation": "Her parça 1/5 kesrini gösterir; 3. çizgi 3/5 kesridir.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_kes_sayidog"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirlerle toplama-çıkarma",
-"passage": "",
-"question": "Matematik öğretmeni tahtaya bir soru yazmıştır.\n3 3/6 + 4 1/6 işleminin sonucu aşağıdakilerden hangisidir?",
-"shape": null,
-"options": {
-"A": "6 4/6",
-"B": "8 4/6",
-"C": "7 4/6",
-"D": "7 5/6"
-},
-"answer": "C",
-"explanation": "Bileşik kesre çevrilir: 21/6 + 25/6 = 46/6 = 7 4/6.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_kes_tamtopla"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Bir deneme sınavında şu soru sorulmuştur.\nBir kitabın 1/6’i 7 sayfadır. Kitap kaç sayfadır?",
-"shape": null,
-"options": {
-"A": "28",
-"B": "36",
-"C": "42",
-"D": "48"
-},
-"answer": "C",
-"explanation": "Sayının 6 eş parçasından biri 7 ise tamamı 6 × 7 = 42 olur.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 4,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_kes_tersi"
-},
-{
-"subject": "Matematik",
-"topic": "Kesir türleri",
-"passage": "Aynı büyüklükteki üç pizza her biri 12 eş dilime bölünmüştür. Tabloda üç arkadaşın birer pizzadan yediği kısımlar gösterilmiştir.\nI. En çok kısmı Defne yemiştir.\nII. Üçünün yediği kısım bir pizzanın tamamından azdır.\nIII. Defne ile Deniz’nin yediği kısım birlikte Ayşe’nin yediği kısımdan fazladır.",
-"question": "Bir matematik ödevinde şu soru yer alıyor.\nBuna göre aşağıdaki yargılardan hangileri doğrudur?",
-"shape": {
-"type": "table",
-"title": "Yenilen kısımlar",
-"headers": [
-"Kişi",
-"Yediği kısım"
-],
-"rows": [
-[
-"Ayşe",
-"1/12"
-],
-[
-"Defne",
-"4/12"
-],
-[
-"Deniz",
-"5/12"
-]
-]
-},
-"options": {
-"A": "II ve III",
-"B": "Yalnız II",
-"C": "Yalnız I",
-"D": "I, II ve III"
-},
-"answer": "A",
-"explanation": "Paydalar eşit olduğundan paylar karşılaştırılır; payların toplamı 10, pizza ise 12 dilimdir.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 4,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_yn_kes_roman"
-},
-{
-"subject": "Matematik",
-"topic": "Kesir türleri",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nTabloda 6 kişilik bir pastanın tarifi verilmiştir. 18 kişilik pasta için kaç kg şeker gerekir?",
-"shape": {
-"type": "table",
-"title": "Bir pasta tarifi",
-"headers": [
-"Malzeme",
-"Miktar"
-],
-"rows": [
-[
-"Şeker",
-"1/2 kg"
-],
-[
-"Yumurta",
-"2 adet"
-]
-]
-},
-"options": {
-"A": "1,5",
-"B": "2,0",
-"C": "3,0",
-"D": "3,5"
-},
-"answer": "A",
-"explanation": "18 kişilik, 6 kişilik tarifin 3 katıdır: 1/2 × 3 = 1,5 kg.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_yn_kes_tarif"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Özdeş dört şişeden M şişesinin 3/4’i, L şişesinin 1/2’i, N şişesinin 1/12’i ve K şişesinin 5/6’i sıvıyla doludur. Buna göre hangi şişede sıvı en çoktur?",
-"shape": null,
-"options": {
-"A": "K",
-"B": "N",
-"C": "L",
-"D": "M"
-},
-"answer": "A",
-"explanation": "Kesirler ortak paydada karşılaştırılır; en büyük kesir 5/6 olduğundan sıvı en çok olan K şişesidir.",
-"kz": [
-"MAT.5.1.4"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 3,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_frac_kars"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Yandaki şekilde eş parçalara bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım bütünün kaçıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "bolge",
-"per_row": 1,
-"panels": [
-{
-"form": "daire",
-"n": 5,
-"k": 4
-}
-],
-"show_names": false
-},
-"options": {
-"A": "4/5",
-"B": "4/1",
-"C": "5/4",
-"D": "1/5"
-},
-"answer": "A",
-"explanation": "Bütün 5 eş parçaya bölünmüş ve 4 parçası taralıdır; kesir 4/5.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_oku"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Bir çalışma kâğıdında şu soru vardır.\nAşağıdaki şekilde eş parçalara bölünmüş bir bütünün bir kısmı taranmıştır.\nBuna göre taranmayan kısım bütünün kaçıdır?",
-"shape": {
-"type": "kes",
-"sub_type": "bolge",
-"per_row": 1,
-"panels": [
-{
-"form": "izgara",
-"n": 4,
-"k": 3
-}
-],
-"show_names": false
-},
-"options": {
-"A": "1/3",
-"B": "4/1",
-"C": "3/4",
-"D": "1/4"
-},
-"answer": "D",
-"explanation": "Bütün 4 parçadır, 3 parça taralıdır; taranmayan 1 parça: 1/4.",
-"kz": [
-"MAT.5.1.3"
-],
-"unit": "Kesirler",
-"topics": "Kesir türleri, Kesir sıralama, Kesirlerle toplama-çıkarma",
-"d": 2,
-"ts": 1795597071,
-"src": "local",
-"fam": "_mf_ks_bos"
-},
-{
-"subject": "Matematik",
-"topic": "Kesirler",
-"passage": "",
-"question": "Yandaki şekilde eş parçalara bölünmüş dört bütün harflerle gösterilmiştir.\nBuna göre taralı kısmı 5/8 kesrini gösteren şekil hangi harfle gösterilmiştir?",
-"shape": {
-"type": "kes",
-"sub_type": "bolge",
-"per_row": 2,
-"panels": [
-{
-"form": "cubuk",
-"n": 8,
-"k": 1,
-"label": "K"
-},
-{
-"form": "dik",
-"n": 8,
-"k": 4,
-"label": "L"
-},
-{
-"form": "daire",
-"n": 8,
-"k": 5,
 "label": "R"
 },
 {
@@ -71553,20 +70876,20 @@
 "shape": {
 "type": "kes",
 "sub_type": "esdeger",
-"n1": 4,
-"k1": 1,
+"n1": 6,
+"k1": 4,
 "n2": 12,
-"k2": 3,
+"k2": 8,
 "show_names": false
 },
 "options": {
-"A": "1",
-"B": "3",
-"C": "4",
-"D": "9"
+"A": "4",
+"B": "8",
+"C": "9",
+"D": "10"
 },
 "answer": "B",
-"explanation": "Her parça 3 parçaya bölününce pay da 3 katına çıkar: 1 × 3 = 3.",
+"explanation": "Her parça 2 parçaya bölününce pay da 2 katına çıkar: 4 × 2 = 8.",
 "kz": [
 "MAT.5.1.4"
 ],

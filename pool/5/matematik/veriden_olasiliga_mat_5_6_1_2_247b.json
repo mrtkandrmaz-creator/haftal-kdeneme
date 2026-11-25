@@ -124,7 +124,7 @@
 "subject": "Matematik",
 "topic": "Olasılık",
 "passage": "",
-"question": "Hilesiz bir zar atılıyor. Aşağıdaki olaylardan hangisinin olasılığı 1 olan (kesin) bir olaydır?",
+"question": "Hilesiz bir zar atılıyor. Aşağıdaki olaylardan hangisinin olasılığı 1/2 olan bir olaydır?",
 "shape": null,
 "options": {
 "A": "Üst yüze gelen sayı 7’dir.",
@@ -177,10 +177,6 @@
 "type": "prob",
 "sub_type": "spektrum",
 "pts": [
-{
-"label": "K",
-"p": 0.5
-},
 {
 "label": "M",
 "p": 1.0
@@ -4767,9 +4763,9 @@
 "title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)",
 "headers": [
 "Marka",
-"Elma",
-"Armut",
-"Portakal"
+"Defter",
+"Cetvel",
+"Pergel"
 ],
 "rows": [
 [
@@ -12820,8 +12816,8 @@
 "C": "I ve III",
 "D": "I, II ve III"
 },
-"answer": "B",
-"explanation": "Doğru ifadeler: II.",
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III.",
 "kz": [
 "MAT.5.5.1"
 ],
@@ -14056,35 +14052,6 @@
 "ts": 1795634075,
 "src": "local",
 "fam": "_mf5_pr_kart"
-},
-{
-"subject": "Matematik",
-"topic": "Olasılık",
-"passage": "",
-"question": "Yandaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki olasılık çizgisinde bir olayın olasılığının alabileceği değerler 0 ile 1 arasındadır.\nBuna göre aşağıdakilerden hangisi bir olayın olasılığı olamaz?",
-"shape": {
-"type": "prob",
-"sub_type": "spektrum",
-"pts": [],
-"show_names": false
-},
-"options": {
-"A": "1",
-"B": "7/5",
-"C": "3/4",
-"D": "1/10"
-},
-"answer": "B",
-"explanation": "Bir olayın olasılığı 0 ile 1 arasındadır; 7/5 sayısı 1'den büyük olduğu için olasılık olamaz.",
-"kz": [
-"MAT.5.6.1"
-],
-"unit": "Veriden Olasılığa (MAT.5.6.1-2)",
-"topics": "Olasılık çizgisi (imkânsız - kesin, 0 ile 1 arası), Az ve çok olasılıklı olaylar, Eşit olasılıklı olaylar (olasılık)",
-"d": 2,
-"ts": 1795597082,
-"src": "local",
-"fam": "_mf5_pr_aralik"
 },
 {
 "subject": "Matematik",
