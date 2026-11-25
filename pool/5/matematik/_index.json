@@ -39,7 +39,9 @@
 "MAT.5.3.7"
 ],
 "basamak_degerlerini_cozumleme_mat_5_1_1_2296.json": [
-"MAT.5.1.1"
+"MAT.5.1.1",
+"MAT.5.1.2",
+"MAT.5.2.3"
 ],
 "dogal_sayilarla_dort_islem_mat_5_1_2_cdf8.json": [
 "MAT.5.1.1",
@@ -74,6 +76,9 @@
 "MAT.5.2.4"
 ],
 "veriden_olasiliga_mat_5_6_1_2_247b.json": [
+"MAT.5.1.2",
+"MAT.5.2.4",
+"MAT.5.5.1",
 "MAT.5.6.1",
 "MAT.5.6.2"
 ]

@@ -177,3 +177,11 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Her madde tek doğru, doğru ifade ve öncüllü kalıplara dönüşür (`_FACT_EXTRA` ile, bilgi–kazanım hizası korunarak).
 - Havuz: Sosyal 3702 → 3761, Türkçe 5327 → 5377. Artış küçük: bilgi tabanlı kalıplar madde başına birkaç soru üretir; hatalı/yinelenen 0, run_checks 12/12.
 - Bu maddeleri ben yazdım; bir öğretmen gözden geçirmeli (özellikle tarihler, Göbeklitepe yaşı ve uyku süresi).
+
+## Konu sızıntısı temizliği — 5. sınıf tüm dersler (2026-11-25)
+- **Matematik · MAT.5.1.1 (çok basamaklı sayıları okuma-yazma):** kapsam dışı 8 kalıp kendi kazanımına taşındı: yuvarlama (4 kalıp), tablodan toplam/fark (nüfus, 2 kalıp), sayı doğrusunda fark → MAT.5.1.2; azalan sayı örüntüsü → MAT.5.2.3. Altı/çok basamaklı sayı kazanımında artık yalnızca okunuş–yazılış, basamak/bölük, basamak değeri, çözümleme, karşılaştırma–sıralama, rakam kartları ve sayı doğrusunda konum soruları var (64 aile, 2615 soru).
+- **Matematik · market ve arı kanadı problemleri:** fiyat tablosu sorusu (`_mf_market`) olasılık ve alan-çevre kazanımlarına, arı problemi alan-çevre kazanımına bağlıydı; kazanım kodları düzeltildi (MAT.5.6.2 ve 5.4.4 altında artık yok).
+- **Türkçe:** "gelenek" anahtar sözcüğü "Geleneksel çocuk oyunları" ile eşleştiği için Oyun Dünyası ünitesine Geleneklerimiz maddeleri (Nevruz, kına gecesi, halk oyunları) karışıyordu; anahtar sözcük "gelenek ve görenek" yapıldı.
+- **İngilizce:** genel okuma metni (`_en_read`) "Life in…" anahtarıyla World/Nature/Universe ünitelerine, mahalle haritası ve ev soruları okul/sınıf ünitelerine, sınıf "there is" sorusu Neighbourhood ünitesine giriyordu; anahtar sözcükler daraltıldı.
+- Havuz yeniden kuruldu: Türkçe 5377 → 4960, İngilizce 3097 → 2554 (çıkanlar konu dışı sorulardı), Matematik 18 384; hatalı 0, run_checks 12/12. Fen, Sosyal ve Din'de ünite denetimi (`_unit_guard`) tüm havuzda ret vermedi.
+- Bilinçli bırakılanlar: Türkçe'de belge/afiş okuma kalıpları (kermes, davetiye, tarife…) "Görselle iletilen anlam" ve "Bilgilendirici metin" kazanımlarına bağlı olduğu için birden çok ünitede kalıyor.
