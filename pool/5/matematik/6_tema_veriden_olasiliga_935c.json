@@ -1,0 +1,27 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "MAT.5.6.2",
+"passage": "Müze gezisi sırasında öğrencilere 12 farklı sergi kartı verildi. Kartların 5'i tarih, 4'ü bilim, 3'ü sanat konularındadır. Öğrenciler rastgele bir kart çekiyor.",
+"question": "Aşağıdakilerden hangisi \"az olasılıklı\" bir olaydır?",
+"shape": null,
+"options": {
+"A": "Çekilen kartın bilim konulu olması",
+"B": "Çekilen kartın tarih ya da bilim konulu olması",
+"C": "Çekilen kartın sanat konulu olması",
+"D": "Çekilen kartın tarih konulu olması"
+},
+"answer": "C",
+"explanation": "Olasılıklar: tarih 5/12 ≈ 0,42, bilim 4/12 ≈ 0,33, sanat 3/12 = 0,25. En düşük olasılık sanat kartı çekmek (%25) olduğu için \"az olasılıklı\" olay B şıkkıdır.",
+"vfd2": true,
+"_sty": "s:|hangis olasıl bir olaydı",
+"crit": 1,
+"unit": "6. Tema: Veriden Olasılığa",
+"topics": "MAT.5.6.1. Herhangi bir olayın olasılığının 0 (imkânsız) ile 1 (kesin) arasında olduğunu (olasılık spektrumu) yorumlayabilme, MAT.5.6.2. Olayları az ya da çok o",
+"d": 1,
+"ts": 1795598415
+}
+]
+}
