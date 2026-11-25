@@ -30,6 +30,8 @@ for q in qs:
         problems.append(("mat-5.1.1-kapsam-disi", f))
     if f == "_mf_market" and kz & {"MAT.5.6.1", "MAT.5.6.2", "MAT.5.4.4"}:
         problems.append(("mat-market", sorted(kz)))
+    if len(kz) != 1:
+        problems.append(("mat-tek-kazanim-degil", f, sorted(kz)))  # her kalıp tek kazanıma bağlı olmalı
 
 # --- 2) Diğer dersler
 REG = {"Fen Bilimleri": (ai._FF_GENS, ai._FFACTS), "Sosyal Bilgiler": (ai._SF_GENS, ai._SFACTS), "Türkçe": (ai._TF_GENS, ai._TFACTS),

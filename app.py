@@ -36029,6 +36029,28 @@ _MF_ITEMCODE.update({k: ["MAT.5.1.2"] for k in ("_mf_say_yuvar", "_mf_say_yuvarl
 _MF_ITEMCODE["_mf6s_makine"] = ["MAT.5.2.3"]
 _MF_ITEMCODE["_mf_market"] = ["MAT.5.1.2", "MAT.5.2.4", "MAT.5.5.1"]  # fiyat tablosu: olasılık ve alan-çevre kazanımlarına sızmasın
 _MF_ITEMCODE["_mf_wings"] = ["MAT.5.1.2", "MAT.5.2.4"]
+# Her Matematik kalıbı tek kazanıma bağlı (kazanım seçildiğinde yalnızca o kazanımın soruları gelsin)
+_M5_SINGLE = {
+    "MAT.5.3.3": "_mf_aci_cevir _mf_aci_donme _mf_aci_hangi _mf_aci_kalan _mf_aci_olcer _mf_aci_ortay2 _mf_aci_saat _mf_aci_say _mf_aci_say2 _mf_aci_siniflama _mf_aci_toplam2 _mf_aci_ucgen_toplam _mf_aci_yarim _mf_aortay_a _mf_aortay_cebir _mf_yn_aci_roman _mf_yn_kapi _mf_yn_pizza",
+    "MAT.5.3.1": "_mf_cem_bilgi _mf_cem_cap _mf_cem_cevre_say _mf_cem_kiris _mf_cem_masa _mf_cem_pergel _mf_yn_cember_yol _mf_dg_aci_say _mf_dg_alet _mf_dg_bilgi _mf_dg_nokta _mf_dg_paralel _mf_dg_say _mf_dg_say2 _mf_yn_dg_roman",
+    "MAT.5.3.2": "_mf_dg_cizim_sira",
+    "MAT.5.3.5": "_mf_cg_aci_say _mf_cg_kose _mf_cg_kosegen _mf_cg_koseler _mf_cg_ozellik",
+    "MAT.5.3.6": "_mf_cg_cevre _mf_cg_cevre2 _mf_yn_cokgen_roman",
+    "MAT.5.4.1": "_mf_ca_cevre_say _mf_ca_kare_cevre",
+    "MAT.5.4.2": "_mf_ca_alan_say _mf_ca_birim _mf_ca_karesay",
+    "MAT.5.4.3": "_mf_ca_kenar _mf_ca_eksik_kenar _mf_ca_esitcevre _mf_ca_kiyas",
+    "MAT.5.4.4": "_mf_ca_tel _mf_ca_halı _mf_yn_cevre_roman _mf_yn_fidan _mf_yn_oda_fayans",
+    "MAT.5.1.3": "_mf_kes_okuma _mf_kes_para _mf_kes_problem_kalan _mf_kes_sayidog _mf_kes_tam_say _mf_kes_tamtopla _mf_kes_tersi _mf_kes_tur _mf_yn_kes_depo _mf_yn_kes_harclik _mf_yn_kes_tarif _mf_yn_kes_yol",
+    "MAT.5.1.4": "_mf_kes_buyuk_kucuk _mf_kes_buyuk_say _mf_kes_esit _mf_kes_sadele _mf_kes_yari _mf_yn_kes_roman",
+    "MAT.5.5.1": "_mf_veri_acik _mf_veri_mod _mf_veri_ort _mf_veri_tablo _mf_yn_veri_en _mf_yn_veri_hedef _mf_yn_veri_ort _mf_market",
+    "MAT.5.5.2": "_mf_yn_veri_roman",
+    "MAT.5.6.2": "_mf5_pr_tablo",
+    "MAT.5.1.2": "_mf_wings",
+}
+for _c, _names in _M5_SINGLE.items():
+    for _n in _names.split():
+        _MF_ITEMCODE[_n] = [_c]
+_MF_ITEMCODE.update({"_mf_addsub": ["MAT.5.2.4"], "_mf_estimate": ["MAT.5.1.2"], "_mf_remainder": ["MAT.5.1.2"]})
 
 
 # ---- 5. sınıf Matematik: az soru üreten (sabit soru kökü yüzünden aynı kalıba düşen) aileleri çeşitli açılış cümleleriyle çoğalt.
