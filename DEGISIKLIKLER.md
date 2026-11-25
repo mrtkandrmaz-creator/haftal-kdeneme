@@ -201,3 +201,10 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Rapor sırasında yeni sızıntılar bulundu ve kapatıldı: Türkçe Oyun Dünyası'na girmeye devam eden bayram/el sanatı/deyim kalıpları ("gelenek" anahtarı → "gelenek ve görenek"), İngilizce School Life'a başka ünitelerin diyalogları, İngilizce Personal/Family Life dışındaki ünitelere sızan etiketler, Fen Elektrik'e su tüketimi grafiği (İnsan ve Çevre konusu).
 - Genel kural (`build_pool.topic_other_unit`): sorunun etiketi yalnızca başka bir ünitenin kazanımı ise o üniteye alınmaz. Havuz kurucusu ve `test_konu_saflik` aynı kuralı uygular (izin listesi: Simple Present→Personal/Family Life, Comparatives and superlatives→Neighbourhood).
 - Havuz yeniden kuruldu (Fen 15 198, Türkçe 4 838, Sosyal 3 758, Din 2 966, İngilizce 2 567); run_checks 13/13.
+
+## Matematik 5: ince kazanımlar için yeni görselli kalıplar (2026-11-25)
+- Eklendi (16 kalıp, hepsi tablo/şekilli; cevaplar kodla hesaplanır): olasılık MAT.5.6.1 (`_mf5_pr_olasi_tab`, `_mf5_pr_kutu`, `_mf5_pr_kart`), günlük hayat işlem önceliği MAT.5.2.2 (`_mf5_cb_fis`, `_mf5_cb_para_ustu`, `_mf5_cb_ifade_tab`, `_mf5_cb_adim_tab`), örüntü MAT.5.2.3 (`_mf5_ort_tab`, `_mf5_ort_kural`), iki çemberin kesişimiyle üçgen MAT.5.3.7 (`_mf5_ck_tur/_cevre/_eksik/_esit`), çevre MAT.5.4.1 (`_mf5_cv_dik_tab`, `_mf5_cv_dik_sekil`, `_mf5_cv_eksik_kenar`).
+- Metindeki tüm değerler (yarıçap, |AB|, çevre vb.) şekilde/tabloda da yazılıdır; dik üçgen çıkabilecek ölçüler "kenara göre tür" sorusundan elenir (çift doğru önlenir).
+- Kalite kapısı dersleri: tablo en az 2 satır olmalı; cevap metni tabloda aynen geçmemeli (sızıntı); şıkların rakam dizisi birbirinden farklı olmalı.
+- Havuz yeniden kuruldu: MAT.5.6.1 71→251, 5.2.2 111→303, 5.3.7 120→312, 5.4.1 169→325 soru. MAT.5.2.3 (92) hâlâ ince; ek örüntü kalıbı gerekir.
+- run_checks 13/13 yeşil.
