@@ -36395,7 +36395,7 @@ def _mf5_ort_tab(subject):
     wr = [ans + 1, ans - 1, ans + 2, ans - 2, last + (seq[1] - seq[0] if kind == "ar" else 1), ans + 10, ans - 10]
     o = _mf_opts(ans, [w for w in wr if w != ans and w > 0], str)
     sh = _yn_tbl("Sayı örüntüsü", ["Adım", "Sayı"], rows)
-    return _mf_raw(subject, "Örüntüler", f"Tabloda bir sayı örüntüsünün ilk {show} adımı verilmiştir. Örüntü aynı kuralla devam etmektedir.\nBuna göre {ask_n}. adımdaki sayı kaçtır?", o, f"{kural} Bu kurala göre {ask_n}. adımdaki sayı {ans} olur.", shape=sh) if o else None
+    return _mf_raw(subject, "Sayı ve şekil örüntüleri", f"Tabloda bir sayı örüntüsünün ilk {show} adımı verilmiştir. Örüntü aynı kuralla devam etmektedir.\nBuna göre {ask_n}. adımdaki sayı kaçtır?", o, f"{kural} Bu kurala göre {ask_n}. adımdaki sayı {ans} olur.", shape=sh) if o else None
 
 
 def _mf5_ort_kural(subject):
@@ -36414,7 +36414,7 @@ def _mf5_ort_kural(subject):
     ol, c = o
     random.shuffle(ol)
     sh = _yn_tbl("Sayı örüntüsü", ["Adım", "Sayı"], [[f"{i + 1}. adım", seq[i]] for i in range(5)])
-    return _mf_raw(subject, "Örüntüler", "Tabloda bir sayı örüntüsünün ilk beş adımı verilmiştir.\nBu örüntünün kuralı aşağıdakilerden hangisidir?", (ol, c), f"Ardışık sayılar karşılaştırıldığında: {cor}", shape=sh)
+    return _mf_raw(subject, "Sayı ve şekil örüntüleri", "Tabloda bir sayı örüntüsünün ilk beş adımı verilmiştir.\nBu örüntünün kuralı aşağıdakilerden hangisidir?", (ol, c), f"Ardışık sayılar karşılaştırıldığında: {cor}", shape=sh)
 
 
 def _ck_tri(subject, ra, rb, d, q, cor, wrongs, ex, labels=None, ticks=None):
@@ -36552,6 +36552,84 @@ for _f, _kw, _d, _cd in _M5N_FAMS:
     _MF_GENS.append((_m5_lead2(_f), _kw, (5,)))
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- MAT.5.2.3 ek örüntü kalıpları (2026-11-25)
+def _ort_t(subject, q, ans, wr, ex, rows, title="Örüntü tablosu", head=("Adım", "Sayı")):
+    o = _mf_opts(ans, [w for w in wr if w != ans and w > 0], str)
+    if not o:
+        return None
+    return _mf_raw(subject, "Sayı ve şekil örüntüleri", q, o, ex, shape=_yn_tbl(title, list(head), rows))
+
+
+def _mf5_ort_kibrit(subject):
+    k, c = random.choice([(3, 1), (4, 1), (5, 1), (2, 1), (3, 2), (4, 2)])
+    nm = random.choice(["kibrit çöpü", "çubuk", "boncuk"])
+    n = random.choice([8, 9, 10, 12])
+    ans = k * n + c
+    rows = [[f"{i}. şekil", k * i + c] for i in range(1, 5)]
+    return _ort_t(subject, f"Tabloda bir örüntüde oluşturulan şekillerde kullanılan {nm} sayıları verilmiştir. Örüntü aynı kuralla devam etmektedir.\nBuna göre {n}. şekilde kaç {nm} kullanılır?", ans,
+                  [k * n, ans + k, ans - k, (k + c) * n, ans + c, ans - 1], f"Her şekilde {k} artar; {n}. şekildeki sayı {k} × {n} + {c} = {ans} olur.", rows, f"Şekillerdeki {nm} sayısı", ("Şekil", f"{nm.capitalize()} sayısı"))
+
+
+def _mf5_ort_kacinci(subject):
+    a, d = random.randint(2, 9), random.randint(2, 7)
+    n = random.randint(7, 14)
+    t = a + (n - 1) * d
+    rows = [[f"{i}. adım", a + (i - 1) * d] for i in range(1, 5)]
+    return _ort_t(subject, f"Tabloda bir sayı örüntüsünün ilk dört adımı verilmiştir. Örüntü aynı kuralla devam etmektedir.\nBuna göre bu örüntüde {t} sayısı kaçıncı adımdadır?", n,
+                  [n - 1, n + 1, n + 2, t // d, n - 2, n * 2], f"Her adımda {d} artar. {t} = {a} + ({n} − 1) × {d} olduğundan {t} sayısı {n}. adımdadır.", rows)
+
+
+def _mf5_ort_eksik(subject):
+    a, d = random.randint(3, 15), random.randint(2, 9)
+    seq = [a + i * d for i in range(6)]
+    hid = random.choice([2, 3, 4])
+    ans = seq[hid]
+    rows = [[f"{i + 1}. adım", "?" if i == hid else seq[i]] for i in range(6)]
+    return _ort_t(subject, "Tabloda bir sayı örüntüsünün ilk altı adımı verilmiştir; bir adımdaki sayı soru işaretiyle gösterilmiştir.\nBuna göre soru işareti yerine hangi sayı gelmelidir?", ans,
+                  [ans + 1, ans - 1, ans + d, ans - d, ans + 2, ans - 2], f"Ardışık sayılar arasındaki fark {d}'dir. {hid + 1}. adımdaki sayı {ans} olur.", rows)
+
+
+def _mf5_ort_azalan(subject):
+    d = random.randint(2, 9)
+    a = random.randint(7, 11) * d + random.randint(0, 3)
+    n = random.choice([6, 7, 8])
+    ans = a - (n - 1) * d
+    if ans <= 0:
+        return None
+    rows = [[f"{i}. gün", a - (i - 1) * d] for i in range(1, 5)]
+    return _ort_t(subject, f"Bir depodaki su, her gün aynı miktarda azalmaktadır. Tabloda ilk dört günün başındaki su miktarı (litre) verilmiştir.\nBuna göre {n}. günün başında depoda kaç litre su vardır?", ans,
+                  [ans + d, ans - d, a - n * d if a - n * d > 0 else ans + 2, ans + 2 * d, a - d * (n - 2)], f"Her gün {d} litre azalır. {n}. gün: {a} − {n - 1} × {d} = {ans} litre.", rows, "Depodaki su miktarı", ("Gün", "Su (litre)"))
+
+
+def _mf5_ort_iki(subject):
+    for _ in range(60):
+        a1, d1, a2, d2 = random.randint(2, 12), random.randint(2, 6), random.randint(2, 12), random.randint(2, 6)
+        if d1 == d2 or (a2 - a1) % (d1 - d2) != 0:
+            continue
+        k = (a2 - a1) // (d1 - d2)
+        if 3 <= k <= 9:
+            break
+    else:
+        return None
+    n = k + 1
+    rows = [[f"{i}. gün", a1 + (i - 1) * d1, a2 + (i - 1) * d2] for i in range(1, 5)]
+    # n. adımda eşit: a1+(n-1)d1 = a2+(n-1)d2 -> n-1 = k
+    nm = random.choice([("Ali", "Ece"), ("Can", "Elif"), ("Mert", "Zeynep")])
+    q = f"Tabloda {nm[0]} ve {nm[1]}'in ilk dört günde biriktirdiği para (TL) verilmiştir. Her ikisi de her gün aynı miktarda artırmaktadır.\nBuna göre kaçıncı günde ikisinin parası eşit olur?"
+    o = _mf_opts(n, [n - 1, n + 1, n + 2, n - 2], str)
+    if not o:
+        return None
+    return _mf_raw(subject, "Sayı ve şekil örüntüleri", q, o, f"{nm[0]}: her gün {d1} artar, {nm[1]}: her gün {d2} artar. {n}. günde: {a1 + (n - 1) * d1} = {a2 + (n - 1) * d2} TL.",
+                   shape=_yn_tbl("Biriken para (TL)", ["Gün", nm[0], nm[1]], rows))
+
+
+for _f, _d in ((_mf5_ort_kibrit, 3), (_mf5_ort_kacinci, 3), (_mf5_ort_eksik, 2), (_mf5_ort_azalan, 3), (_mf5_ort_iki, 4)):
+    _MF_GENS.append((_m5_lead2(_f), ("cebirsel düşünme",), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = ["MAT.5.2.3"]
+
 
 
 def _fam_item(name, fn, subject, items):

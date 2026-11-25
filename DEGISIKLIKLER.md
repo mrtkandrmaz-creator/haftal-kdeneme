@@ -208,3 +208,8 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Kalite kapısı dersleri: tablo en az 2 satır olmalı; cevap metni tabloda aynen geçmemeli (sızıntı); şıkların rakam dizisi birbirinden farklı olmalı.
 - Havuz yeniden kuruldu: MAT.5.6.1 71→251, 5.2.2 111→303, 5.3.7 120→312, 5.4.1 169→325 soru. MAT.5.2.3 (92) hâlâ ince; ek örüntü kalıbı gerekir.
 - run_checks 13/13 yeşil.
+
+## MAT.5.2.3 ek örüntü kalıpları (2026-11-25)
+- 5 yeni tablolu kalıp: kibrit/çubuk şekil örüntüsünde n. şekil, kaçıncı adımda X sayısı, eksik terim, azalan örüntü (depodaki su), iki kişinin birikimi hangi günde eşit. Cevaplar kodla hesaplanır.
+- Neden havuza geç girdi: konu etiketi "Örüntüler" Veri Toplama ünitesinin etiketiydi, etiket denetimi soruları Cebirsel Düşünme'den eliyordu; etiket "Sayı ve şekil örüntüleri" yapıldı (eski `_mf5_ort_tab`/`_mf5_ort_kural` de bu yüzden az soru veriyordu).
+- MAT.5.2.3: 92 → 452 soru, 3 → 10 kalıp, %92 şekilli. Matematik 5 havuzu 18 750; run_checks 13/13.
