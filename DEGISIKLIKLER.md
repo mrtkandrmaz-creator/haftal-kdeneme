@@ -232,3 +232,8 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
   - Yeni neden "Konu dışı (seçtiğim üniteye uymuyor)": kalıp bozuk sayılmaz; yalnız (kalıp, ünite) çifti ve o soru dışlanır (`offtopic.json`), kalıp başka ünitelerde çalışmaya devam eder.
   - Beğendim: kalıptan gelen sorular için yapay zekâsız, anında 8 benzer soru (aynı kalıp, farklı değerler) beğeni havuzuna eklenir; yapay zekâ anahtarı varsa eski arka plan üretimi de çalışır. Beğeni havuzunda kalıp soruları artık içerikle ayırt edilir (kökü aynı olan tablo soruları birbirini silmez).
 - Sınır: gece havuz kurucusu konu dışı listesini henüz okumuyor; çalışma anı filtresi yeterli. run_checks 13/13.
+
+## Toplu tutarlılık taraması — 5. sınıf (2026-11-26)
+- Yeni araçlar: `tools/tutarlilik_taramasi.py` (yapı, güncel kalite kapıları, şekil–metin uyumu, metindeki sayıların şekilde bulunması, cevap sızıntısı, yinelenen soru) ve `tools/aritmetik_dogrulama.py` (açıklamalardaki her işlemi bağımsız hesaplar). Yeni test `test_havuz_aritmetik` (run_checks 14/14): işlem hatası ve yapı hatası varsa push edilmemeli.
+- Sonuç (≈49 000 soru): yapı hatası 0 (4 tekil şık, cevap şıkta), yinelenen 0, cevap sızıntısı 0, güncel kapıları geçmeyen 0. Açıklamalardaki 5 863 işlem (Matematik 4 441, Fen 1 111, Sosyal 311) bağımsız hesapla doğrulandı: hata 0. Sayısal doğru şıkkın açıklamada bulunması: 98 uyarı, hepsi yanlış alarm (sayı yazıyla yazılmış ya da "0/1 noktada" gibi sözel açıklama).
+- Matematik'te "metindeki sayı şekilde yok" 1 658 aday: incelenen kalıpların hepsi meşru (rakam kartı adedi, çubuk sayısı, "toplamı 90°" gibi tanım sabitleri, bölük biçimi "100 000"). Gri alan: `_mf_market` ve `_mf_yn_bilet`'te "kasaya verilen para" yalnız metinde; tablo ürün fiyatlarını içerir.
