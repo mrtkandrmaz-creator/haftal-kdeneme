@@ -32129,7 +32129,7 @@ def _pool_unit_ok(q, sel_u, grade_label, subject, topics=""):
     return ok
 
 
-def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty=""):
+def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="", extra=0):
     """Gece/haftalık çalışan betiğin ürettiği, kural + çapraz model doğrulamasından geçmiş soruları döndürür.
     En az kullanılanlar önce gelir; görülmüş (geçmiş) sorular ve konu dışı sorular atlanır."""
     if n <= 0 or demo_mode() or os.environ.get("DENEMEMATIK_NO_POOL") == "1":
@@ -32175,10 +32175,18 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
         far = dw is not None and isinstance(q.get("d"), int) and abs(q["d"] - dw) > 1
         cand.append((far, use.get(s, 0), -ov, random.random(), q))
     cand.sort(key=lambda t: t[:4])
+    # aynı kalıptan bir sınava en çok _fcap soru: fazlalar sona itilir (havuz yetmezse yine kullanılır)
+    _fcap = max(2, -(-n // 8))
+    _fr, _head, _tail = {}, [], []
+    for t in cand:
+        f = t[4].get("fam") or ""
+        _fr[f] = _fr.get(f, 0) + 1
+        (_head if (not f or _fr[f] <= _fcap) else _tail).append(t)
+    cand = _head + _tail
     out, stems = [], set(seen)
     per_unit = {}
     for far, _u, _o, _r, q in cand:
-        if len(out) >= n:
+        if len(out) >= n + extra:
             break
         un = q.get("unit", "")
         if per_unit.get(un, 0) >= max(2, -(-n // 2)):
@@ -32198,7 +32206,8 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
             x["_pu"] = q.get("unit", "")
         if q.get("listen") and len(str(x.get("passage") or "").split()) >= 20:
             x["listen"] = True  # dinleme sorusu: metin ekranda gizlenir, sesli çalınır
-        use[_stem(q)] = use.get(_stem(q), 0) + 1
+        if len(out) < n:  # fazladan istenenler (yedek) kullanım sayacını artırmaz
+            use[_stem(q)] = use.get(_stem(q), 0) + 1
         per_unit[un] = per_unit.get(un, 0) + 1
         out.append(x)
     if out and store is not None:
@@ -32224,6 +32233,8 @@ def _style_key(q):
     try:
         if q.get("tpl"):
             return "t:" + str(q["tpl"])
+        if q.get("fam"):
+            return "f:" + str(q["fam"])  # havuz sorusu: kalıp adı (aynı kalıptan çok soru aynı sınava girmesin)
         qq = str(q.get("question", "")).replace("İ", "i").replace("I", "ı").lower()
         qq = re.sub(r"\d+", "0", qq)
         w = re.findall(r"[a-zçğıöşü]{3,}", qq)[-4:]
@@ -37454,7 +37465,8 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     pass
             if not demo_mode() and not like and os.environ.get("DENEMEMATIK_NO_POOL") != "1":  # 00c) önceden üretilip doğrulanmış havuz (yapay zekâ kaynaklı; API'siz)
                 try:
-                    take(st_, pool_questions(subj, grade_label, p.get("topics", ""), n - len(st_["qs"]), seen=seen, difficulty=difficulty))
+                    _need = n - len(st_["qs"])
+                    take(st_, pool_questions(subj, grade_label, p.get("topics", ""), _need, seen=seen, difficulty=difficulty, extra=2 * _need))  # fazlası yedeğe: sınav doldururken aynı kalıp yığılmasın
                 except Exception:
                     pass
             if bank_ok:  # 0) bankadan doldur
@@ -37533,7 +37545,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
         p, qs_ = st_["p"], st_["qs"]
         _hs = hist.get(p.get("subject")) if not like else None
         if len(qs_) < p["n"] and st_["reserve"]:  # son çare 1: elenenlerden; aynı kalıp en çok 2, geçmişe benzeyen ve önceki sınav sorusu yok
-            _greedy_fill(qs_, st_["reserve"], p["n"], _hs, seen, items=st_.get("items"))
+            _greedy_fill(qs_, st_["reserve"] + [q for q in st_["over"] if q not in st_["reserve"]], p["n"], _hs, seen, items=st_.get("items"))
         if len(qs_) < p["n"] and not like:  # 2b. kademe = hazır kalıplardan (kodla hesaplanan, hatasız) önceki sınavlara bakmadan; yalnızca bu sınavdaki kopyalar hariç
             _fn = {"Matematik": math_questions, "Fen Bilimleri": fen_questions, "Sosyal Bilgiler": sosyal_questions, "Türkçe": turkce_questions, "Din Kültürü ve Ahlak Bilgisi": din_questions, "İngilizce": eng_questions}.get(p.get("subject"))
             if _fn:
@@ -37541,7 +37553,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
                     inx = {_stem(q) for q in qs_}
                     _cand = []
                     for _dd in ((dl, 0) if dl else (0,)):  # önce seçilen zorluğa uyanlar, yetmezse zorluk gözetmeden
-                        for _rep in range(3):  # her çağrı kalıp başına bir örnek verir; çeşitlilik için birkaç tur
+                        for _rep in range(6):  # her çağrı kalıp başına bir örnek verir; çeşitlilik için birkaç tur
                             for q in _fn(grade_label, (p["n"] - len(qs_)) * 3, p.get("topics", ""), seen=inx, dl=_dd):
                                 if _stem(q) in inx or not _on_topic(q, p.get("topics", ""), p.get("subject"), grade_label):
                                     continue
