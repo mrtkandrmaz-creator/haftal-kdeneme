@@ -11234,6 +11234,37 @@ def _norm_q(q, subject):
     _nv = [_optnum(v) for v in opts.values()]
     if all(x is not None for x in _nv) and len(set(_nv)) == 4:  # sayısal şıklar LGS'deki gibi küçükten büyüğe sıralı
         _correct = opts[ans]
+        try:  # doğru şık hep B/C'ye düşmesin: düz tamsayı şıklarda doğrunun sırası rastgele; eksik çeldirici, yanlışların doğruya göre simetriğinden alınır
+            if all(re.fullmatch(r"\d{1,7}", str(v).strip()) for v in opts.values()):
+                c0 = int(str(_correct).strip())
+                wr0 = sorted(int(str(v).strip()) for k, v in opts.items() if k != ans)
+                lo0 = [w for w in wr0 if w < c0][::-1]  # doğruya yakından uzağa
+                hi0 = [w for w in wr0 if w > c0]
+                r0 = random.choice([0, 1, 2, 3])
+                U0 = 100 if max(wr0 + [c0]) <= 100 else max(wr0 + [c0]) * 1.5
+                have = set(wr0) | {c0}
+                dif = sorted({abs(w - c0) for w in wr0})
+                def _mir(src, want_lo):
+                    out_ = []
+                    for k_ in (1, 2, 3):
+                        for d_ in dif:
+                            m = c0 - k_ * d_ if want_lo else c0 + k_ * d_
+                            if m > 0 and m not in have and len(str(m)) == len(str(c0)) and m <= U0:
+                                out_.append(m)
+                                have.add(m)
+                    return out_
+                if len(lo0) < r0:
+                    lo0 = lo0 + sorted(_mir(hi0, True), reverse=True)
+                if len(hi0) < 3 - r0:
+                    hi0 = hi0 + sorted(_mir(lo0, False))
+                if len(lo0) >= r0 and len(hi0) >= 3 - r0:
+                    nw = lo0[:r0] + hi0[:3 - r0]
+                    vs = sorted(nw + [c0])
+                    opts = dict(zip("ABCD", [str(v) for v in vs]))
+                    ans = [k for k, v in opts.items() if v == str(c0)][0]
+                    _correct = str(c0)
+        except Exception:
+            pass
         opts = dict(zip("ABCD", [v for _k, v in sorted(opts.items(), key=lambda kv: _optnum(kv[1]))]))
         ans = [k for k, v in opts.items() if v == _correct][0]
     elif not any(_NOSHUF.search(v) for v in opts.values()):  # şık konumu dengesi: doğru cevap dağılımı
@@ -12011,6 +12042,16 @@ def _mf_opts(correct, wrongs, fmt=str, sort=True):
             ws.append(w)
     if len(ws) < 3:
         return None
+    if sort and len(ws) == 3 and isinstance(correct, int) and not isinstance(correct, bool) and all(isinstance(w, int) and not isinstance(w, bool) for w in ws):
+        try:  # sayısal şıklarda doğru hep ortaya düşmesin: yanlışların doğruya göre simetriğini de aday yap (aynı basamak sayısı, makul üst sınır)
+            allv0 = [correct] + ws
+            U = 100 if max(allv0) <= 100 else max(allv0) * 1.5
+            for w in list(ws):
+                m = 2 * correct - w
+                if m > 0 and m not in allv0 and m not in ws and len(str(m)) == len(str(correct)) and m <= U:
+                    ws.append(m)
+        except Exception:
+            pass
     if sort and len(ws) > 3:
         try:  # doğru şık sıralı şıklarda hep ortaya düşmesin: hedef sırayı rastgele seç, yanlışları ona göre al (A–D dengesi)
             lo = sorted((w for w in ws if w < correct), key=lambda w: correct - w if isinstance(w, (int, float)) else 0, reverse=False)

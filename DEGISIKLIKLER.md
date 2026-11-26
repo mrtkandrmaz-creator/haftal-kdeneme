@@ -264,3 +264,7 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 ### Fen – Destek ve Hareket Sistemi: 6 yeni kalıp
 - `_ff_dh_eklem_tur` (iskelet şeklinde eklem özelliği), `_ff_dh_kas_tab` (kasların zıt çalışması, tablo), `_ff_dh_hareket_bar` (haftalık egzersiz grafiği: en çok / fark), `_ff_dh_eslestir_yanlis` (yapı–görev tablosunda yanlış satır), `_ff_dh_ortak` (iki yapının ortak özelliği, iskelet şekli), `_ff_dh_olay_sekil` (günlük olay + iskelet şekli).
 - Ünite 14 → 20 kalıp, 728 → 1040 soru. Sınav testinde aynı kalıptan en çok 10 → 7. run_checks 14/14.
+
+### Cevap harfi dengesi – çeldirici dizilişi (`_norm_q`)
+- Düz tamsayı şıklarda (sıralı) doğru şıkkın sırası artık rastgele (A–D); eksik çeldirici, doğrunun ±1/2/3×fark komşularından üretilir (aynı basamak sayısı, makul üst sınır). Tek doğru cevap korunur.
+- Matematik havuzu: B %37→%30, D %12→%18; sabit harfli kalıp 138→60 (kalanlar ondalık/kesir/birimli şıklar). Sınav testi: A 387 / B 411 / C 388 / D 374.
