@@ -260,3 +260,7 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - `_mf_opts`: yanlış adayı >3 ise doğru şıkkın sıradaki yeri rastgele seçilir.
 - `_balance_letters` (yeni, `generate_mc` sonunda): sınav genelinde harf dağılımını dengeler; serbest şıklarda yer değiştirir, sıralı sayısal şıklarda yalnız ters çevirir (A↔D, B↔C). Matematik: A 339/B 493/C 422/D 306 (önce 320/566/461/213).
 - Kalan: sıralı sayısal sorularda doğru şık yapısal olarak B/C'de; tam denge için üreticilerde çeldirici dizilimi çeşitlendirilmeli. Fen "Destek ve Hareket Sistemi" 14 kalıp (en çok 10 aynı kalıp) – yeni kalıp gerekir.
+
+### Fen – Destek ve Hareket Sistemi: 6 yeni kalıp
+- `_ff_dh_eklem_tur` (iskelet şeklinde eklem özelliği), `_ff_dh_kas_tab` (kasların zıt çalışması, tablo), `_ff_dh_hareket_bar` (haftalık egzersiz grafiği: en çok / fark), `_ff_dh_eslestir_yanlis` (yapı–görev tablosunda yanlış satır), `_ff_dh_ortak` (iki yapının ortak özelliği, iskelet şekli), `_ff_dh_olay_sekil` (günlük olay + iskelet şekli).
+- Ünite 14 → 20 kalıp, 728 → 1040 soru. Sınav testinde aynı kalıptan en çok 10 → 7. run_checks 14/14.

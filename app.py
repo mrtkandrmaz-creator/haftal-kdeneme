@@ -29742,6 +29742,113 @@ _g = _gr_fam(_DH_T, _DH_I1, _DH_KW,
 _FF_GENS.append((_g, _DH_KW))
 _DIFF_OF["_ff_gr_dh"] = 3
 
+# ---- Destek ve hareket sistemi: ek kalıplar (görselli/tablolu; 5. sınıf)
+_DH_EKL_OZ = {"kafatasi": "Kafatasını oluşturan kemikler arasındaki eklem hareket etmez (oynamaz).", "omuz": "Kolun her yöne dönebilmesini sağlar.",
+              "dirsek": "Kolun yalnızca ileri geri bükülmesini sağlar.", "diz": "Bacağın yalnızca ileri geri bükülmesini sağlar."}
+
+
+def _ff_dh_eklem_tur(subject):
+    p = random.choice(list(_DH_EKL_OZ))
+    parts = [p] + random.sample([k for k in ("kafatasi", "omuz", "dirsek", "diz", "omurga", "kaburga") if k != p], 3)
+    random.shuffle(parts)
+    lb, sh = _dh_sh(parts)
+    i = parts.index(p)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    ox = _DH_EKL_OZ[p].rstrip(".")
+    qx = {"kafatasi": "Kafatasını oluşturan kemikler arasındaki eklemin hareket etmediği (oynamadığı)", "omuz": "Kolun her yöne dönebilmesini sağlayan",
+          "dirsek": "Kolun yalnızca ileri geri bükülmesini sağlayan", "diz": "Bacağın yalnızca ileri geri bükülmesini sağlayan"}[p]
+    return _mf_raw(subject, _DH_T, _DH_BAS + f"\nBuna göre {qx} yapı hangi harfle gösterilmiştir?", o, f"{ox}. Bu yapı {_DH_AD[p].lower()} olup {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _ff_dh_kas_tab(subject):
+    bk = random.choice([("kolun bükülmesi", "kolun uzatılması"), ("dizin bükülmesi", "dizin uzatılması")])
+    k1 = random.choice([True, False])
+    t1, t2 = ("Kasılır", "Gevşer") if k1 else ("Gevşer", "Kasılır")
+    sh = {"type": "table", "title": f"{bk[0].capitalize()} sırasında kasların durumu", "headers": ["Kas", "Durum"], "rows": [["I. kas", t1], ["II. kas", t2]]}
+    cor = f"I. kas {t2.lower()}, II. kas {t1.lower()}"
+    wr = [f"I. kas {t1.lower()}, II. kas {t2.lower()}", "I. kas ve II. kas birlikte kasılır", "I. kas ve II. kas birlikte gevşer"]
+    o = _yn_opts(cor, wr)
+    q = f"Kaslar bir kemiği çekerek hareket sağlar ve birbirine zıt çiftler hâlinde çalışır. Tabloda {bk[0]} sırasında iki kasın durumu verilmiştir.\nBuna göre {bk[1]} sırasında bu kaslar nasıl çalışır?"
+    return _mf_raw(subject, _DH_T, q, o, f"Kaslar zıt çalışır: biri kasılırken diğeri gevşer. {bk[0].capitalize()} sırasında I. kas {t1.lower()}, II. kas {t2.lower()} ise {bk[1]} sırasında tersi olur: {cor}.", shape=sh) if o else None
+
+
+def _ff_dh_hareket_bar(subject):
+    lb = random.sample(_CD_L, 4)
+    vals = random.sample([60, 90, 120, 150, 180, 210, 240], 4)
+    sh = {"type": "bar_chart", "title": "Öğrencilerin haftalık egzersiz süresi (dakika)", "labels": lb, "values": vals}
+    if random.random() < .5:
+        i = vals.index(max(vals))
+        o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+        q = "Kemik ve kas gelişimini destekleyen düzenli hareket açısından haftada en çok egzersiz yapan öğrenci hangisidir?"
+        ex = f"En uzun sütun {lb[i]} öğrencisine aittir ({vals[i]} dakika)."
+    else:
+        a, b = random.sample(range(4), 2)
+        d = abs(vals[a] - vals[b])
+        wr = [d + x for x in (30, -30, 60, 90) if d + x > 0]
+        o = _yn_opts(str(d), [str(w) for w in wr[:3]]) if len(wr) >= 3 else None
+        q = f"Öğrencilerin haftalık egzersiz süreleri grafikte verilmiştir. {lb[a]} ile {lb[b]} öğrencilerinin egzersiz süreleri arasındaki fark kaç dakikadır?"
+        ex = f"{max(vals[a], vals[b])} − {min(vals[a], vals[b])} = {d} dakikadır."
+        if o:
+            o = ([x + " dakika" for x in o[0]], o[1] + " dakika")
+    return _mf_raw(subject, _DH_T, ("Bir okulda öğrencilerin haftalık egzersiz süreleri incelenmiştir.\n" if "fark" not in q else "") + q, o, ex, shape=sh) if o else None
+
+
+def _ff_dh_eslestir_yanlis(subject):
+    ch = random.sample(_DH_GVS, 4)
+    gv = [c[1] for c in ch]
+    i = random.randrange(4)
+    k = random.choice([j for j in range(4) if j != i])
+    shown = list(gv)
+    shown[i] = gv[k]
+    if shown[i] == gv[i]:
+        return None
+    sh = {"type": "table", "title": "Yapılar ve görevleri", "headers": ["Sıra", "Yapı", "Görevi"], "rows": [[str(j + 1), ch[j][0], shown[j]] for j in range(4)]}
+    cor = f"{i + 1}. satır"
+    o = _yn_opts(cor, [f"{j + 1}. satır" for j in range(4) if j != i])
+    return _mf_raw(subject, _DH_T, "Bir öğrenci destek ve hareket sistemindeki bazı yapıları ve görevlerini tabloya yazmıştır.\nBuna göre hangi satırdaki eşleştirme yanlıştır?", o, f"{i + 1}. satırda {ch[i][0].lower()} için yazılan görev yanlıştır. Doğrusu: {gv[i]}", shape=sh) if o else None
+
+
+_DH_ORT = {"Kemik": ("Vücuda şekil verir ve destek sağlar.", ["kafatasi", "omurga", "kaburga", "kol", "kalca", "uyluk", "kaval"]),
+           "Eklem": ("Kemiklerin birleştiği yerlerdir.", ["omuz", "dirsek", "diz"])}
+
+
+def _ff_dh_ortak(subject):
+    g = random.choice(["Kemik", "Eklem"])
+    a, b = random.sample(_DH_ORT[g][1], 2)
+    other = [k for k in _DH_KEM + _DH_EKL if k not in (a, b)]
+    parts = [a, b] + random.sample(other, 2)
+    lb, sh = _dh_sh(parts)
+    og = "Eklem" if g == "Kemik" else "Kemik"
+    cor = _DH_ORT[g][0]
+    wr = [_DH_ORT[og][0], "Kasılıp gevşeyerek kemikleri hareket ettirir.", "Besinlerin sindirilmesine yardımcı olur."]
+    o = _yn_opts(cor, wr)
+    return _mf_raw(subject, _DH_T, _DH_BAS + f"\nBuna göre {lb[0]} ve {lb[1]} harfleriyle gösterilen yapıların ortak özelliği aşağıdakilerden hangisidir?", o, f"{lb[0]} ve {lb[1]} ile gösterilen {_DH_AD[a].lower()} ve {_DH_AD[b].lower()} birer {g.lower()} yapısıdır; ortak özellikleri: {cor}", shape=sh) if o else None
+
+
+_DH_OLAY = [("Basketbol oynayan bir öğrenci dizinin çevresinde ağrı hissediyor. Ağrı, bacak kemiklerinin birleştiği eklemde başlıyor.", "diz"),
+            ("Bisikletten düşen bir öğrenci başını çarpıyor. Doktor, beyni koruyan kemiği kontrol ediyor.", "kafatasi"),
+            ("Voleybol oynarken kolunu çok zorlayan bir öğrenci omzunda ağrı hissediyor. Kolun gövdeye bağlandığı eklem sızlıyor.", "omuz"),
+            ("Düşen bir öğrencinin kol kemiklerinin birleştiği ve kolu büken eklemde şişlik oluşuyor.", "dirsek"),
+            ("Ağır sırt çantası taşıyan bir öğrenci sırtında ağrı duyuyor. Doktor, omuriliği koruyan kemik sırasını inceliyor.", "omurga"),
+            ("Bir öğrenci düştüğünde göğsünde ağrı hissediyor. Doktor, kalbi ve akciğerleri koruyan kemikleri kontrol ediyor.", "kaburga")]
+
+
+def _ff_dh_olay_sekil(subject):
+    t, p = random.choice(_DH_OLAY)
+    parts = [p] + random.sample([k for k in _DH_KEM + _DH_EKL if k != p], 3)
+    random.shuffle(parts)
+    lb, sh = _dh_sh(parts)
+    i = parts.index(p)
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    return _mf_raw(subject, _DH_T, t + "\n" + _DH_BAS + "\nBuna göre ilgili yapı hangi harfle gösterilmiştir?", o, f"Anlatılan yapı {_DH_AD[p].lower()}dir ve {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+for _f, _d in ((_ff_dh_eklem_tur, 3), (_ff_dh_kas_tab, 3), (_ff_dh_hareket_bar, 2), (_ff_dh_eslestir_yanlis, 3), (_ff_dh_ortak, 3), (_ff_dh_olay_sekil, 3)):
+    _f.ITEM = _DH_I2 if _f is _ff_dh_hareket_bar else _DH_I1
+    _FF_GENS.append((_f, _DH_KW))
+    _DIFF_OF[_f.__name__] = _d
+    _F5_VARY.add(_f.__name__)
+
 # ---- Maarif FB.5.3.1-2 (Canlıların Yapısına Yolculuk): hücre ve yapı düzeyleri
 _HC_T = "Hücre"
 _HC_I1 = "Bitki ve hayvan hücresi"
