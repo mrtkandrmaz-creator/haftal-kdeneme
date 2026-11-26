@@ -74,13 +74,21 @@ def _bkey(ai, q):
     return "k:" + hashlib.md5((core + "|" + ans + "|" + words + "|" + rows).encode()).hexdigest()[:16]
 
 
+_CONTENT_TITLES = {"Grup, rol ve görev", "Kurum ve görevi", "Davranışlar", "Vatandaşlık durumları", "Olay ve tarihi", "Dinleme davranışları", "Oyun sırasındaki davranışlar"}
+
+
 def _mask(q):
     t = re.sub(r"\d+([.,]\d+)?", "0", str(q.get("question") or ""))
     sh = q.get("shape") or {}
     ps = str(q.get("passage") or "")
     if len(ps) >= 20 and not sh:
         t += "|" + re.sub(r"\s+", " ", ps.lower())[:400]
-    return re.sub(r"\s+", " ", t.lower()).strip() + "|" + str(sh.get("type") or "") + "|" + re.sub(r"\d+", "0", str(sh.get("title") or ""))
+    ttl = str(sh.get("title") or "")
+    cont = ""
+    if ttl in _CONTENT_TITLES:  # içeriği (sözcükler) asıl farkı oluşturan eşleştirme/davranış tabloları: satır içeriği de anahtara girer
+        import hashlib as _h1
+        cont = "|" + _h1.md5(json.dumps(sh.get("rows"), ensure_ascii=False).encode()).hexdigest()[:12]
+    return re.sub(r"\s+", " ", t.lower()).strip() + "|" + str(sh.get("type") or "") + "|" + re.sub(r"\d+", "0", ttl) + cont
 
 
 def main():

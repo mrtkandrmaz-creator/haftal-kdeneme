@@ -36631,6 +36631,109 @@ for _f, _d in ((_mf5_ort_kibrit, 3), (_mf5_ort_kacinci, 3), (_mf5_ort_eksik, 2),
     _MF_ITEMCODE[_f.__name__] = ["MAT.5.2.3"]
 
 
+# ---- 5. sınıf Sosyal Bilgiler / Türkçe: tablolu (görselli) eşleştirme ve davranış soruları (2026-11-26)
+_LR_L = ["K", "L", "M", "N"]
+
+
+def _mk_swap(name, subject, topic, title, heads, triples, kw_unit, reg):
+    """Satır başına (A, B, C) üçlüsü: ilk iki sütun tabloda kalır, üçüncü sütun (görev) bir satırda başka bir üçlünün görevi ile değiştirilir.
+    'yanlış eşleşen satır' ya da 'doğru eşleşen satır' sorulur. Şıklar yalnızca harftir; cevap tabloda tek başına yazılmaz."""
+    def fn(subject=subject):
+        for _ in range(30):
+            tr = random.sample(triples, 5)
+            tab, extra = tr[:4], tr[4]
+            kind = random.choice(["yanlis", "dogru"])
+            vals = [t[2] for t in tab]
+            if kind == "yanlis":
+                bad = random.randrange(4)
+                vals[bad] = extra[2]
+                ansi = bad
+            else:
+                good = random.randrange(4)
+                others = [j for j in range(4) if j != good]
+                pool = [t[2] for j, t in enumerate(tab) if j != good] + [extra[2]]
+                random.shuffle(pool)
+                for j, v in zip(others, pool[:3]):
+                    vals[j] = v
+                if any(vals[j] == tab[j][2] for j in others):
+                    continue
+                ansi = good
+            rows = [[_LR_L[j], tab[j][0], tab[j][1], vals[j]] for j in range(4)]
+            o = _yn_opts(f"{_LR_L[ansi]} satırı", [f"{_LR_L[j]} satırı" for j in range(4) if j != ansi])
+            if not o:
+                continue
+            sh = _yn_tbl(title, ["Satır"] + list(heads), rows)
+            if kind == "yanlis":
+                q = f"Tabloda {title.lower()} ile ilgili dört satır verilmiştir.\nBuna göre hangi satırdaki eşleştirme yanlıştır?"
+                ex = f"{_LR_L[ansi]} satırında {tab[ansi][1]} için '{vals[ansi]}' yazılmıştır; doğrusu '{tab[ansi][2]}' olmalıdır."
+            else:
+                q = f"Tabloda {title.lower()} ile ilgili dört satır verilmiştir.\nBuna göre hangi satırdaki eşleştirme doğrudur?"
+                ex = f"{_LR_L[ansi]} satırında {tab[ansi][1]} için '{tab[ansi][2]}' yazılmıştır; bu eşleştirme doğrudur, diğer satırlardaki görevler başka rollere aittir."
+            return _mf_raw(subject, topic, q, o, ex, shape=sh)
+        return None
+    fn.__name__ = name
+    reg.append((fn, kw_unit))
+    return fn
+
+
+def _mk_behav(name, subject, topic, title, head, good, bad, q_good, q_bad, expl_good, expl_bad, kw_unit, reg):
+    def fn(subject=subject):
+        kind = random.choice(["iyi", "kotu"])
+        if kind == "iyi":
+            g = random.choice(good)
+            ws = random.sample(bad, 3)
+            items = ws + [g]
+            q, ex = q_good, expl_good
+        else:
+            g = random.choice(bad)
+            ws = random.sample(good, 3)
+            items = ws + [g]
+            q, ex = q_bad, expl_bad
+        random.shuffle(items)
+        ai_ = items.index(g)
+        rows = [[_LR_L[j], items[j]] for j in range(4)]
+        o = _yn_opts(f"{_LR_L[ai_]} satırı", [f"{_LR_L[j]} satırı" for j in range(4) if j != ai_])
+        if not o:
+            return None
+        return _mf_raw(subject, topic, f"Tabloda dört davranış verilmiştir.\n{q}", o, f"{_LR_L[ai_]} satırındaki '{g}' davranışı: {ex}", shape=_yn_tbl(title, ["Satır", head], rows))
+    fn.__name__ = name
+    reg.append((fn, kw_unit))
+    return fn
+
+
+_SFN, _TFN = [], []
+_mk_swap("_sf_bg_rol_gorev", "Sosyal Bilgiler", "Gruplar ve roller", "Grup, rol ve görev", ("Grup", "Rol", "Görevi"),
+         [("Aile", "Anne/baba", "Çocuklarının bakımını ve eğitimini üstlenmek"), ("Okul", "Öğretmen", "Öğrencilere bilgi ve beceri kazandırmak"), ("Okul", "Müdür", "Okulun yönetimini sağlamak"),
+          ("Spor takımı", "Kaptan", "Takım arkadaşlarını sahada yönlendirmek"), ("Sınıf", "Nöbetçi öğrenci", "Sınıfın düzen ve temizliğine yardım etmek"), ("Orkestra", "Şef", "Müzisyenleri uyum içinde yönetmek"),
+          ("Apartman", "Yönetici", "Ortak giderleri ve bakım işlerini düzenlemek"), ("Kütüphane", "Görevli", "Kitapların ödünç verilmesini sağlamak")], ("birlikte yaşamak",), _SFN)
+_mk_swap("_sf_yd_kurum_gorev", "Sosyal Bilgiler", "Başvuru yapılabilecek kurumlar", "Kurum ve görevi", ("Kurum", "Hizmet alanı", "Görevi"),
+         [("Muhtarlık", "Mahalle", "Mahalle sakinlerinin ikametgâh işlemlerine yardımcı olmak"), ("Belediye", "Şehir", "Çöp toplama, park ve yol yapımı gibi hizmetleri yürütmek"), ("Hastane", "Sağlık", "Hastaları muayene edip tedavi etmek"),
+          ("Polis", "Güvenlik", "Kamu düzenini ve vatandaşların güvenliğini sağlamak"), ("İtfaiye", "Afet ve acil durum", "Yangınları söndürmek ve kurtarma çalışması yapmak"), ("Adliye", "Hukuk", "Davalara bakıp adil karar vermek"),
+          ("Postane", "Haberleşme", "Mektup ve kargoları ulaştırmak"), ("Okul müdürlüğü", "Eğitim", "Öğrencilerin okulla ilgili sorunlarını dinleyip çözmek")], ("yaşayan demokrasimiz",), _SFN)
+_mk_behav("_sf_bg_kultur_davranis", "Sosyal Bilgiler", "Kültürel özelliklere saygı", "Davranışlar", "Davranış",
+          ["Arkadaşının bayramını kutlamak", "Farklı yöreden gelen arkadaşının yemeklerini merak edip tadına bakmak", "Başka dil konuşan arkadaşını sabırla dinlemek", "Farklı kıyafet geleneklerine saygı göstermek", "Komşusunun inançlarına saygı göstermek"],
+          ["Arkadaşının giyimiyle alay etmek", "Farklı şiveyle konuşan arkadaşına gülmek", "Başka bayramları değersiz saymak", "Farklı yöreden gelen arkadaşını oyuna almamak", "Bir kültürün yemeklerini küçümsemek"],
+          "Aşağıdaki davranışlardan hangisi farklı kültürel özelliklere saygı gösterildiğini belirtir?", "Aşağıdaki davranışlardan hangisi farklı kültürel özelliklere saygı gösterildiğini belirtmez?",
+          "farklı kültürlere saygı örneğidir.", "farklı kültürlere saygısızlıktır.", ("birlikte yaşamak",), _SFN)
+_mk_behav("_sf_yd_hak_sorumluluk", "Sosyal Bilgiler", "Hak ve sorumluluklar", "Vatandaşlık durumları", "Durum",
+          ["Sağlık hizmetlerinden yararlanmak", "Düşüncelerini özgürce söylemek", "Dinlenmek ve oyun oynamak", "Güvenli bir ortamda yaşamak"],
+          ["Vergi vermek", "Trafik kurallarına uymak", "Çevreyi temiz tutmak", "Okul kurallarına uymak", "Kamu malına zarar vermemek"],
+          "Aşağıdakilerden hangisi bir vatandaşlık HAKKIDIR?", "Aşağıdakilerden hangisi bir vatandaşlık SORUMLULUĞUDUR?", "bir haktır.", "bir sorumluluktur.", ("yaşayan demokrasimiz",), _SFN)
+_mk_swap("_tf_atatürk_olay_tarih", "Türkçe", "Atatürk'ün hayatı", "Olay ve tarihi", ("Olay", "Yer/Kurum", "Tarihi"),
+         [("Samsun'a çıkış", "Millî Mücadele'nin başlangıcı", "19 Mayıs 1919"), ("TBMM'nin açılması", "Ankara", "23 Nisan 1920"), ("Başkomutanlık Meydan Muharebesi zaferi", "Dumlupınar", "30 Ağustos 1922"),
+          ("Cumhuriyet'in ilanı", "Ankara", "29 Ekim 1923"), ("Atatürk'ün vefatı", "İstanbul", "10 Kasım 1938"), ("Türk harflerinin kabulü", "Harf Devrimi", "1 Kasım 1928")], ("atatürk'ü tanımak",), _TFN)
+_mk_behav("_tf_iletisim_dinleme", "Türkçe", "Aile, arkadaş ve komşuluk iletişimi", "Dinleme davranışları", "Davranış",
+          ["Konuşanı sözünü kesmeden dinlemek", "Konuşanla göz teması kurmak", "Anlamadığı yeri nazikçe tekrar sormak", "Konuşan kişiye yönelerek dinlemek"],
+          ["Konuşurken telefonla oynamak", "Konuşanın sözünü kesmek", "Dinlerken arkadaşıyla fısıldaşmak", "Konuşan kişiye arkasını dönmek", "Dinlerken alay etmek"],
+          "Aşağıdakilerden hangisi iyi bir dinleyicinin davranışıdır?", "Aşağıdakilerden hangisi iyi bir dinleyicinin davranışı DEĞİLDİR?", "iyi dinleyici davranışıdır.", "iyi dinleyici davranışı değildir.", ("sosyal",), _TFN)
+_mk_behav("_tf_oyun_kural", "Türkçe", "Kurallı oyunlar", "Oyun sırasındaki davranışlar", "Davranış",
+          ["Oyun kurallarına uymak", "Sırasını sabırla beklemek", "Kaybeden arkadaşını üzmeden kazandığını kutlamak", "Hakemin kararına saygı göstermek"],
+          ["Oyunda hile yapmak", "Kaybedince oyunu bozmak", "Sırasını beklemeden oynamak", "Rakibine kötü sözler söylemek", "Kuralları kendine göre değiştirmek"],
+          "Aşağıdakilerden hangisi kurallı bir oyunda olumlu bir davranıştır?", "Aşağıdakilerden hangisi kurallı bir oyunda olumlu bir davranış DEĞİLDİR?", "olumlu bir oyun davranışıdır.", "olumlu bir oyun davranışı değildir.", ("oyun dünyası",), _TFN)
+_SF_GENS += _SFN
+_TF_GENS += _TFN
+
+
 
 def _fam_item(name, fn, subject, items):
     """Hazır kalıp hangi alt konuya/kazanıma ait? Birkaç örnek sorusunun metni alt konu metniyle eşleştirilir (önbellekli)."""

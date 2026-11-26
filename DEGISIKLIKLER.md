@@ -213,3 +213,9 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - 5 yeni tablolu kalıp: kibrit/çubuk şekil örüntüsünde n. şekil, kaçıncı adımda X sayısı, eksik terim, azalan örüntü (depodaki su), iki kişinin birikimi hangi günde eşit. Cevaplar kodla hesaplanır.
 - Neden havuza geç girdi: konu etiketi "Örüntüler" Veri Toplama ünitesinin etiketiydi, etiket denetimi soruları Cebirsel Düşünme'den eliyordu; etiket "Sayı ve şekil örüntüleri" yapıldı (eski `_mf5_ort_tab`/`_mf5_ort_kural` de bu yüzden az soru veriyordu).
 - MAT.5.2.3: 92 → 452 soru, 3 → 10 kalıp, %92 şekilli. Matematik 5 havuzu 18 750; run_checks 13/13.
+
+## Sosyal Bilgiler ve Türkçe tablolu soru artışı (2026-11-26)
+- 7 yeni tablolu kalıp: Birlikte Yaşamak (grup–rol–görev eşleştirme, farklı kültürlere saygı davranışı), Yaşayan Demokrasimiz (kurum–görev eşleştirme, hak mı sorumluluk mu), Atatürk'ü Tanımak (olay–tarih eşleştirme), İletişim (iyi dinleyici davranışı), Oyun Dünyası (kurallı oyunda davranış). Şıklar yalnızca satır harfidir (K–N); cevap tabloda tek başına yazılmaz; yanlış/doğru satır kodla belirlenir, iki yönlü sorulur ("yanlıştır" / "doğrudur", "hak" / "sorumluluk").
+- Havuz kurucusunda bu tabloların satır içeriği yineleme anahtarına girer (`_CONTENT_TITLES`); önceden aynı kökten en çok 3 soru alındığı için içeriği farklı sorular elenirdi.
+- Türkçe İletişim ünitesi için anahtar sözcük "sosyal" (ünite adındaki noktalı i yüzünden "sosyal ilişkiler" eşleşmiyordu).
+- Şekilli oran: Birlikte Yaşamak %14→%28, Yaşayan Demokrasimiz %22→%33, Atatürk'ü Tanımak %23→%29, Oyun Dünyası %28→%34, İletişim %25→%32. Sosyal 3 784, Türkçe 5 020 soru; run_checks 13/13.

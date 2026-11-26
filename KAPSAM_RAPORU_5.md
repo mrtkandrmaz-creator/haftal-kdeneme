@@ -95,19 +95,19 @@
 | Elektrik Devre Elemanları · elektrik devre elemanları | 374 | 14 | %16 🖼 görsel az |
 | Madde ve Değişim · madde ve değişim | 581 | 20 | %10 🖼 görsel az |
 
-## Türkçe — 4838 soru, 131 kalıp, şekilli/tablolu %44
+## Türkçe — 5020 soru, 134 kalıp, şekilli/tablolu %46
 
 
 ### Ünite bazında
 
 | Ünite | Soru | Kalıp | Şekilli |
 |---|---|---|---|
-| Atatürk'ü Tanımak | 590 | 22 | %22 🖼 görsel az |
-| Duygularımı Tanıyorum | 1109 | 28 | %72 |
-| Geleneklerimiz | 694 | 25 | %26 |
-| Oyun Dünyası | 653 | 20 | %28 |
-| Sağlıklı Yaşıyorum | 1240 | 33 | %58 |
-| İletişim ve Sosyal İlişkiler | 552 | 21 | %25 🖼 görsel az |
+| Atatürk'ü Tanımak | 647 | 23 | %29 |
+| Duygularımı Tanıyorum | 1111 | 28 | %72 |
+| Geleneklerimiz | 695 | 25 | %26 |
+| Oyun Dünyası | 713 | 21 | %34 |
+| Sağlıklı Yaşıyorum | 1239 | 33 | %58 |
+| İletişim ve Sosyal İlişkiler | 615 | 22 | %32 |
 
 ### Alt konu etiketi bazında (yaklaşık; aynı konunun farklı yazımları birleştirildi, yalnızca ince olanlar)
 
@@ -123,31 +123,34 @@
 | İletişim ve Sosyal İlişkiler · empati | 24 | 1 | %100 ⚠ |
 | Sağlıklı Yaşıyorum · konu | 31 | 1 | %0 ⚠ |
 | Duygularımı Tanıyorum · duygular | 36 | 2 | %100 ⚠ |
-| İletişim ve Sosyal İlişkiler · metin türleri | 41 | 3 | %0 🖼 görsel az |
+| İletişim ve Sosyal İlişkiler · metin türleri | 43 | 3 | %0 🖼 görsel az |
+| Atatürk'ü Tanımak · atatürk’ü tanımak | 59 | 5 | %0 🖼 görsel az |
 | Oyun Dünyası · çıkarım | 60 | 1 | %0 ⚠ |
-| Atatürk'ü Tanımak · atatürk’ü tanımak | 62 | 5 | %0 🖼 görsel az |
+| Oyun Dünyası · kurallı oyunlar | 60 | 1 | %100 ⚠ |
+| Atatürk'ü Tanımak · atatürk'ün hayatı | 60 | 1 | %100 ⚠ |
+| İletişim ve Sosyal İlişkiler · aile, arkadaş ve komşuluk iletişimi | 60 | 1 | %100 ⚠ |
 | İletişim ve Sosyal İlişkiler · görsel okuma | 96 | 2 | %100 ⚠ |
 | Oyun Dünyası · geleneksel çocuk oyunları | 120 | 2 | %100 ⚠ |
-| Duygularımı Tanıyorum · duygularımı tanıyorum | 314 | 12 | %0 🖼 görsel az |
+| Duygularımı Tanıyorum · duygularımı tanıyorum | 316 | 12 | %0 🖼 görsel az |
 | Oyun Dünyası · oyun dünyası | 363 | 13 | %0 🖼 görsel az |
-| İletişim ve Sosyal İlişkiler · i̇letişim ve sosyal i̇lişkiler | 375 | 13 | %0 🖼 görsel az |
-| Sağlıklı Yaşıyorum · sağlıklı yaşıyorum | 477 | 17 | %0 🖼 görsel az |
-| Geleneklerimiz · geleneklerimiz | 499 | 18 | %0 🖼 görsel az |
+| İletişim ve Sosyal İlişkiler · i̇letişim ve sosyal i̇lişkiler | 376 | 13 | %0 🖼 görsel az |
+| Sağlıklı Yaşıyorum · sağlıklı yaşıyorum | 476 | 17 | %0 🖼 görsel az |
+| Geleneklerimiz · geleneklerimiz | 500 | 18 | %0 🖼 görsel az |
 | Atatürk'ü Tanımak · atatürk'ü tanımak | 520 | 15 | %23 🖼 görsel az |
 
-## Sosyal Bilgiler — 3758 soru, 126 kalıp, şekilli/tablolu %33
+## Sosyal Bilgiler — 4002 soru, 130 kalıp, şekilli/tablolu %37
 
 
 ### Ünite bazında
 
 | Ünite | Soru | Kalıp | Şekilli |
 |---|---|---|---|
-| Birlikte Yaşamak | 540 | 19 | %12 🖼 görsel az |
+| Birlikte Yaşamak | 660 | 21 | %28 |
 | Evimiz Dünya | 926 | 25 | %45 |
 | Hayatımızdaki Ekonomi | 758 | 24 | %49 |
 | Ortak Mirasımız | 500 | 17 | %36 |
 | Teknoloji ve Sosyal Bilimler | 397 | 18 | %22 ⚠ |
-| Yaşayan Demokrasimiz | 637 | 23 | %20 🖼 görsel az |
+| Yaşayan Demokrasimiz | 761 | 25 | %33 |
 
 ### Alt konu etiketi bazında (yaklaşık; aynı konunun farklı yazımları birleştirildi, yalnızca ince olanlar)
 
@@ -155,18 +158,17 @@
 |---|---|---|---|
 | Hayatımızdaki Ekonomi · i̇htiyaç, i̇stek ve bütçe | 3 | 1 | %0 ⚠ |
 | Yaşayan Demokrasimiz · yaşayan demokrasi | 4 | 1 | %0 ⚠ |
-| Yaşayan Demokrasimiz · başvuru yapılabilecek kurumlar | 5 | 1 | %0 ⚠ |
 | Ortak Mirasımız · ortak miras | 9 | 2 | %0 ⚠ |
 | Hayatımızdaki Ekonomi · bütçe ve tasarruf | 9 | 1 | %100 ⚠ |
 | Hayatımızdaki Ekonomi · i̇htiyaç ve i̇stek | 36 | 2 | %89 ⚠ |
-| Birlikte Yaşamak · kültürel özelliklere saygı | 60 | 1 | %0 ⚠ |
 | Ortak Mirasımız · ortak mirasımız ve ilk yerleşimler | 60 | 1 | %0 ⚠ |
 | Ortak Mirasımız · ortak miras ögeleri | 60 | 1 | %100 ⚠ |
 | Yaşayan Demokrasimiz · etkin vatandaş | 60 | 1 | %0 ⚠ |
 | Teknoloji ve Sosyal Bilimler · teknolojik gelişmelerin toplum hayatına etkisi | 60 | 1 | %100 ⚠ |
 | Evimiz Dünya · afetler ve farkındalık | 64 | 2 | %0 ⚠ |
+| Yaşayan Demokrasimiz · başvuru yapılabilecek kurumlar | 65 | 2 | %92 ⚠ |
 | Hayatımızdaki Ekonomi · kaynakların verimli kullanımı | 69 | 2 | %13 ⚠ |
-| Birlikte Yaşamak · gruplar ve roller | 80 | 4 | %5 🖼 görsel az |
+| Birlikte Yaşamak · kültürel özelliklere saygı | 120 | 2 | %50 ⚠ |
 | Evimiz Dünya · komşu devletler | 120 | 2 | %50 ⚠ |
 | Hayatımızdaki Ekonomi · yaşadığı ildeki ekonomik faaliyetler | 120 | 2 | %100 ⚠ |
 | Teknoloji ve Sosyal Bilimler · teknoloji ve sosyal bilimler | 251 | 14 | %0 🖼 görsel az |
@@ -284,11 +286,11 @@
 | Life in the Neighbourhood & City · places in the neighbourhood | 120 | 2 | %100 ⚠ |
 | Life in the Universe & Future · be going to | 120 | 2 | %50 ⚠ |
 
-## Özet: 152 ince alan
+## Özet: 150 ince alan
 
 - **Matematik:** MAT.5.2.1 (244); MAT.5.3.2 (218); MAT.5.4.3 (248)
 - **Fen Bilimleri:** Madde ve Değişim · isı i̇letimi (1); Güneş, Dünya ve Ay · ay’ın evreleri (3); Işığın Yayılması · işık (3); Madde ve Değişim · hâl değişimi (4); Kuvvetin Ölçülmesi ve Sürtünme · kuvvet ve ağırlık (6); İnsan ve Çevre · çevre ve geri dönüşüm (6); Elektrik Devre Elemanları · elektrik devresi (18); Elektrik Devre Elemanları · elektrik (26); Kuvvetin Ölçülmesi ve Sürtünme · kütle ve ağırlık (27); Canlılar Dünyası · mikroskobik canlılar ve mantarlar (37); Kuvvetin Ölçülmesi ve Sürtünme · dinamometre modeli (42); İnsan ve Çevre · kaynakların etkili kullanımı (42); Madde ve Değişim · kaynama (60); Işığın Yayılması · saydam, yarı saydam ve opak maddeler (60); İnsan ve Çevre · çevre kirliliği (60); Elektrik Devre Elemanları · elektrik tasarrufu (60); Kuvvetin Ölçülmesi ve Sürtünme · kuvvet (66); Kuvvetin Ölçülmesi ve Sürtünme · kuvvetin ölçülmesi ve sürtünme (321); İnsan ve Çevre · i̇nsan ve çevre (336); Güneş, Dünya ve Ay · güneş, dünya ve ay (361); Elektrik Devre Elemanları · elektrik devre elemanları (374); Madde ve Değişim · madde ve değişim (581)
-- **Türkçe:** Atatürk'ü Tanımak (590); İletişim ve Sosyal İlişkiler (552); Geleneklerimiz · halk oyunları (4); Geleneklerimiz · atasözleri (6); Atatürk'ü Tanımak · millî bayramlar (8); Geleneklerimiz · deyimler (9); Sağlıklı Yaşıyorum · bilgilendirici metin (9); İletişim ve Sosyal İlişkiler · olumlu dil (16); Geleneklerimiz · el sanatları (20); İletişim ve Sosyal İlişkiler · empati (24); Sağlıklı Yaşıyorum · konu (31); Duygularımı Tanıyorum · duygular (36); İletişim ve Sosyal İlişkiler · metin türleri (41); Oyun Dünyası · çıkarım (60); Atatürk'ü Tanımak · atatürk’ü tanımak (62); İletişim ve Sosyal İlişkiler · görsel okuma (96); Oyun Dünyası · geleneksel çocuk oyunları (120); Duygularımı Tanıyorum · duygularımı tanıyorum (314); Oyun Dünyası · oyun dünyası (363); İletişim ve Sosyal İlişkiler · i̇letişim ve sosyal i̇lişkiler (375); Sağlıklı Yaşıyorum · sağlıklı yaşıyorum (477); Geleneklerimiz · geleneklerimiz (499); Atatürk'ü Tanımak · atatürk'ü tanımak (520)
-- **Sosyal Bilgiler:** Birlikte Yaşamak (540); Teknoloji ve Sosyal Bilimler (397); Yaşayan Demokrasimiz (637); Hayatımızdaki Ekonomi · i̇htiyaç, i̇stek ve bütçe (3); Yaşayan Demokrasimiz · yaşayan demokrasi (4); Yaşayan Demokrasimiz · başvuru yapılabilecek kurumlar (5); Ortak Mirasımız · ortak miras (9); Hayatımızdaki Ekonomi · bütçe ve tasarruf (9); Hayatımızdaki Ekonomi · i̇htiyaç ve i̇stek (36); Birlikte Yaşamak · kültürel özelliklere saygı (60); Ortak Mirasımız · ortak mirasımız ve ilk yerleşimler (60); Ortak Mirasımız · ortak miras ögeleri (60); Yaşayan Demokrasimiz · etkin vatandaş (60); Teknoloji ve Sosyal Bilimler · teknolojik gelişmelerin toplum hayatına etkisi (60); Evimiz Dünya · afetler ve farkındalık (64); Hayatımızdaki Ekonomi · kaynakların verimli kullanımı (69); Birlikte Yaşamak · gruplar ve roller (80); Evimiz Dünya · komşu devletler (120); Hayatımızdaki Ekonomi · yaşadığı ildeki ekonomik faaliyetler (120); Teknoloji ve Sosyal Bilimler · teknoloji ve sosyal bilimler (251); Hayatımızdaki Ekonomi · hayatımızdaki ekonomi (260); Birlikte Yaşamak · birlikte yaşamak (276); Yaşayan Demokrasimiz · yaşayan demokrasimiz (314); Evimiz Dünya · evimiz dünya (316)
+- **Türkçe:** Geleneklerimiz · halk oyunları (4); Geleneklerimiz · atasözleri (6); Atatürk'ü Tanımak · millî bayramlar (8); Geleneklerimiz · deyimler (9); Sağlıklı Yaşıyorum · bilgilendirici metin (9); İletişim ve Sosyal İlişkiler · olumlu dil (16); Geleneklerimiz · el sanatları (20); İletişim ve Sosyal İlişkiler · empati (24); Sağlıklı Yaşıyorum · konu (31); Duygularımı Tanıyorum · duygular (36); İletişim ve Sosyal İlişkiler · metin türleri (43); Atatürk'ü Tanımak · atatürk’ü tanımak (59); Oyun Dünyası · çıkarım (60); Oyun Dünyası · kurallı oyunlar (60); Atatürk'ü Tanımak · atatürk'ün hayatı (60); İletişim ve Sosyal İlişkiler · aile, arkadaş ve komşuluk iletişimi (60); İletişim ve Sosyal İlişkiler · görsel okuma (96); Oyun Dünyası · geleneksel çocuk oyunları (120); Duygularımı Tanıyorum · duygularımı tanıyorum (316); Oyun Dünyası · oyun dünyası (363); İletişim ve Sosyal İlişkiler · i̇letişim ve sosyal i̇lişkiler (376); Sağlıklı Yaşıyorum · sağlıklı yaşıyorum (476); Geleneklerimiz · geleneklerimiz (500); Atatürk'ü Tanımak · atatürk'ü tanımak (520)
+- **Sosyal Bilgiler:** Teknoloji ve Sosyal Bilimler (397); Hayatımızdaki Ekonomi · i̇htiyaç, i̇stek ve bütçe (3); Yaşayan Demokrasimiz · yaşayan demokrasi (4); Ortak Mirasımız · ortak miras (9); Hayatımızdaki Ekonomi · bütçe ve tasarruf (9); Hayatımızdaki Ekonomi · i̇htiyaç ve i̇stek (36); Ortak Mirasımız · ortak mirasımız ve ilk yerleşimler (60); Ortak Mirasımız · ortak miras ögeleri (60); Yaşayan Demokrasimiz · etkin vatandaş (60); Teknoloji ve Sosyal Bilimler · teknolojik gelişmelerin toplum hayatına etkisi (60); Evimiz Dünya · afetler ve farkındalık (64); Yaşayan Demokrasimiz · başvuru yapılabilecek kurumlar (65); Hayatımızdaki Ekonomi · kaynakların verimli kullanımı (69); Birlikte Yaşamak · kültürel özelliklere saygı (120); Evimiz Dünya · komşu devletler (120); Hayatımızdaki Ekonomi · yaşadığı ildeki ekonomik faaliyetler (120); Teknoloji ve Sosyal Bilimler · teknoloji ve sosyal bilimler (251); Hayatımızdaki Ekonomi · hayatımızdaki ekonomi (260); Birlikte Yaşamak · birlikte yaşamak (276); Yaşayan Demokrasimiz · yaşayan demokrasimiz (314); Evimiz Dünya · evimiz dünya (316)
 - **Din Kültürü ve Ahlak Bilgisi:** Kur'an-ı Kerim (564); Mimarimizde Dinî Motifler (531); Namaz (691); Peygamber Kıssaları (523); Kur'an-ı Kerim · kur'an-ı kerim'in ana konuları ve sureler (4); Peygamber Kıssaları · peygamberlik ve ilahî kitaplar (4); Mimarimizde Dinî Motifler · camilerin bölümleri (mihrap, minber, kubbe, minare) (20); Mimarimizde Dinî Motifler · camilerin bölümleri (36); Peygamber Kıssaları · peygamber kıssalarındaki öğütler (60); Mimarimizde Dinî Motifler · cami örnekleri (64); Allah İnancı · allah inancı (65); Kur'an-ı Kerim · kur’an-ı kerim (70); Allah İnancı · allah i̇nancı (406); Mimarimizde Dinî Motifler · mimarimizde dinî motifler (411); Kur'an-ı Kerim · kur'an-ı kerim (414); Peygamber Kıssaları · peygamber kıssaları (459); Namaz · namaz (586)
 - **İngilizce:** Classroom Life (281); Life in Nature (256); Life in the Universe & Future (318); Life in the World (296); Personal Life (342); School Life (217); Life in the World · can for permission (1); Life in the World · countable/uncountable nouns (1); School Life · mustn't/can't (3); Classroom Life · vocabulary (3); Life in the Universe & Future · weather (4); School Life · question words (6); Family Life · family members (6); School Life · modals (can / must / mustn’t) (7); School Life · places (8); Personal Life · question tags (8); Life in the World · countable / uncountable nouns (8); Personal Life · adverbs of frequency (9); Life in Nature · comparatives and superlatives (9); Classroom Life · plurals (10); Life in Nature · superlatives (10); School Life · dialogues (11); Life in the Universe & Future · seasons (12); Classroom Life · days of the week (14); Classroom Life · prepositions of place (15) … +38
