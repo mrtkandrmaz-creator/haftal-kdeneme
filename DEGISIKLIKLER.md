@@ -219,3 +219,8 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Havuz kurucusunda bu tabloların satır içeriği yineleme anahtarına girer (`_CONTENT_TITLES`); önceden aynı kökten en çok 3 soru alındığı için içeriği farklı sorular elenirdi.
 - Türkçe İletişim ünitesi için anahtar sözcük "sosyal" (ünite adındaki noktalı i yüzünden "sosyal ilişkiler" eşleşmiyordu).
 - Şekilli oran: Birlikte Yaşamak %14→%28, Yaşayan Demokrasimiz %22→%33, Atatürk'ü Tanımak %23→%29, Oyun Dünyası %28→%34, İletişim %25→%32. Sosyal 3 784, Türkçe 5 020 soru; run_checks 13/13.
+
+## Din Kültürü tablolu soru artışı (2026-11-26)
+- 6 yeni tablolu kalıp: namaz–kılınma zamanı, caminin bölümü–işlevi (mihrap, minber, kubbe, minare, şadırvan), Kur'an kavramları (sure, cüz, ayet, mushaf, hatim), peygamber–olay–öğüt eşleştirme (Nuh, Eyüp, Yunus, İbrahim, Süleyman); Kur'an'a saygı ve nimetlere şükür davranışları. Sosyal/Türkçe'deki eşleştirme/davranış yapısı: şıklar yalnızca satır harfi, doğru/yanlış satır kodla belirlenir, iki yönlü sorulur.
+- Din 5. sınıf: 2 966 → 3 319 soru, 115 → 121 kalıp, şekilli oran %22 → %30 (Allah İnancı %34, Kur'an %31, Mimari %30, Namaz %25, Peygamber %32). run_checks 13/13.
+- Not: eşleştirme içerikleri (özellikle peygamber kıssası öğütleri) bir Din Kültürü öğretmeni tarafından gözden geçirilmeli.

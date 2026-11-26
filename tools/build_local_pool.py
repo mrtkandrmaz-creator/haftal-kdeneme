@@ -74,7 +74,7 @@ def _bkey(ai, q):
     return "k:" + hashlib.md5((core + "|" + ans + "|" + words + "|" + rows).encode()).hexdigest()[:16]
 
 
-_CONTENT_TITLES = {"Grup, rol ve görev", "Kurum ve görevi", "Davranışlar", "Vatandaşlık durumları", "Olay ve tarihi", "Dinleme davranışları", "Oyun sırasındaki davranışlar"}
+_CONTENT_TITLES = {"Grup, rol ve görev", "Kurum ve görevi", "Davranışlar", "Vatandaşlık durumları", "Olay ve tarihi", "Dinleme davranışları", "Oyun sırasındaki davranışlar", "Namaz ve kılınma zamanı", "Caminin bölümü ve işlevi", "Kur'an'la ilgili kavramlar", "Peygamber, olay ve öğüt", "Kur'an'a karşı davranışlar", "Nimetlere karşı davranışlar"}
 
 
 def _mask(q):

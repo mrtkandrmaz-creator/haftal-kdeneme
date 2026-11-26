@@ -36734,6 +36734,31 @@ _SF_GENS += _SFN
 _TF_GENS += _TFN
 
 
+# ---- 5. sınıf Din Kültürü: tablolu eşleştirme/davranış soruları (2026-11-26)
+_DFN = []
+_mk_swap("_df_tab_namaz_vakit", "Din Kültürü ve Ahlak Bilgisi", "Namaz ibadeti", "Namaz ve kılınma zamanı", ("Namaz", "Günün bölümü", "Kılınma zamanı"),
+         [("Sabah namazı", "Günün ilk namazı", "Şafak sökmesinden güneş doğuncaya kadar"), ("Öğle namazı", "Gün ortası", "Güneş tepe noktasını geçtikten sonra"), ("İkindi namazı", "Öğleden sonra", "Öğle ile akşam arasında"),
+          ("Akşam namazı", "Gün batımı", "Güneş battıktan hemen sonra"), ("Yatsı namazı", "Günün son namazı", "Gece karanlığı iyice bastıktan sonra")], ("namaz",), _DFN)
+_mk_swap("_df_tab_cami_bolum", "Din Kültürü ve Ahlak Bilgisi", "Camilerin bölümleri (mihrap, minber, kubbe, minare)", "Caminin bölümü ve işlevi", ("Bölüm", "Yeri", "İşlevi"),
+         [("Mihrap", "Kıble duvarı", "Kıble yönünü göstermek"), ("Minber", "Mihrabın sağında", "İmamın hutbe okumasına imkân vermek"), ("Kubbe", "Caminin üst kısmı", "Üst örtüyü oluşturmak ve sesin yayılmasına yardımcı olmak"),
+          ("Minare", "Caminin yanındaki kule", "Ezanın uzaktan duyulmasına yardımcı olmak"), ("Şadırvan", "Cami avlusu", "Abdest almaya imkân vermek")], ("mimarimizde",), _DFN)
+_mk_swap("_df_tab_kuran_kavram", "Din Kültürü ve Ahlak Bilgisi", "Kur'an-ı Kerim'in iç düzeni", "Kur'an'la ilgili kavramlar", ("Kavram", "Sayısı / yeri", "Anlamı"),
+         [("Sure", "114 tane", "Kur'an'ın ayetlerden oluşan bölümü"), ("Cüz", "30 tane", "Kur'an'ın otuzda biri"), ("Ayet", "Sure içinde", "Surelerin her bir cümlesi"),
+          ("Mushaf", "Tek kitap", "Kur'an'ın kitap hâline getirilmiş yazılı nüshası"), ("Hatim", "Baştan sona", "Kur'an'ı baştan sona okumak")], ("kur'an",), _DFN)
+_mk_swap("_df_tab_peygamber_ogut", "Din Kültürü ve Ahlak Bilgisi", "Peygamber kıssalarındaki öğütler", "Peygamber, olay ve öğüt", ("Peygamber", "Kıssadaki olay", "Kıssanın öğüdü"),
+         [("Hz. Nuh", "Gemi yaptı", "Allah'ın emrine uyup üzerine düşeni yapmak"), ("Hz. Eyüp", "Uzun süre hasta yattı", "Zorluklar karşısında sabırlı olmak"), ("Hz. Yunus", "Balığın karnında dua etti", "Hatasını anlayınca Allah'a yönelmek"),
+          ("Hz. İbrahim", "Putları kırdı", "Doğru bildiğini cesaretle savunmak"), ("Hz. Süleyman", "Hayvanların dilini anladı", "Sahip olunan nimetlere şükretmek")], ("peygamber",), _DFN)
+_mk_behav("_df_tab_kuran_saygi", "Din Kültürü ve Ahlak Bilgisi", "Temel özellikleri", "Kur'an'a karşı davranışlar", "Davranış",
+          ["Kur'an okunurken sessizce dinlemek", "Kur'an'ı temiz ve uygun bir yerde saklamak", "Kur'an'ın anlamını öğrenmeye çalışmak", "Kur'an'ı özenle ve saygıyla tutmak"],
+          ["Kur'an okunurken gürültü yapmak", "Kur'an'ın üzerine eşya koymak", "Kur'an'ı yere atmak", "Kur'an okuyanla alay etmek"],
+          "Aşağıdaki davranışlardan hangisi Kur'an-ı Kerim'e saygının bir göstergesidir?", "Aşağıdaki davranışlardan hangisi Kur'an-ı Kerim'e saygının bir göstergesi DEĞİLDİR?", "Kur'an'a saygı göstergesidir.", "Kur'an'a saygıyla bağdaşmaz.", ("kur'an",), _DFN)
+_mk_behav("_df_tab_sukur", "Din Kültürü ve Ahlak Bilgisi", "Allah'ın varlığı ve birliği", "Nimetlere karşı davranışlar", "Davranış",
+          ["Yemekten sonra Allah'a hamdetmek", "Sahip olduğu nimetlerin kıymetini bilmek", "Yiyecek ve içecekleri israf etmemek", "Elindekini ihtiyacı olanlarla paylaşmak"],
+          ["Yiyecekleri israf etmek", "Sahip olduklarını küçümsemek", "Her zaman yalnızca şikâyet etmek", "Verilen nimetlere değer vermemek"],
+          "Aşağıdaki davranışlardan hangisi Allah'ın verdiği nimetlere şükretmenin bir örneğidir?", "Aşağıdaki davranışlardan hangisi Allah'ın verdiği nimetlere şükretmenin bir örneği DEĞİLDİR?", "nimetlere şükretmenin göstergesidir.", "nimetlere şükretmekle bağdaşmaz.", ("evrendeki",), _DFN)
+_DF_GENS += _DFN
+
+
 
 def _fam_item(name, fn, subject, items):
     """Hazır kalıp hangi alt konuya/kazanıma ait? Birkaç örnek sorusunun metni alt konu metniyle eşleştirilir (önbellekli)."""
