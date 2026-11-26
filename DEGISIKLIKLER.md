@@ -253,3 +253,10 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Her ders/ünite için ardışık sahte sınavlar (6×20) kurulur; sınav içi aynı soru/içerik, sınavlar arası tekrar, aynı kalıp yığılması, eksik adet, cevap harfi dağılımı ölçülür.
 - Bulgu: sınav içi tekrar 0, eksik soru 0, cevap harfleri dengeli. Tek ünitede aynı kalıptan 9–12 soru gelebiliyordu.
 - Düzeltme: havuz soruları `fam` ile tarz anahtarına girer; `pool_questions` kalıp başına sınırlı seçer ve yedek aday döndürür (`extra`); doldurma yedekleri artırıldı. Sonuç: arası tekrar 0'a indi, yığılma en çok 5–6'ya (Sosyal "Ortak Mirasımız" 4–5; _bks2 öncül/tek varyantları aynı ailenin üç adı sayılıyor).
+
+### Yığılma + cevap harfi dengesi (devam)
+- `_greedy_fill`: kalıp sınırı (2→3→4) son çare kademesine kadar korunur; sınırsız yalnız `allow_hist/allow_seen` kademesinde. Fen "Hücre Organelleri" 10→≤5, Matematik "Veriden Olasılığa" 13→≤5.
+- Bulgu: Matematik havuzunda 138 kalıbın cevap harfi neredeyse sabit (örn. `_mf_bar_top` hep C) ve havuz geneli B %37, D %12. Sıralı sayısal şıklar hep ortaya düşüyordu.
+- `_mf_opts`: yanlış adayı >3 ise doğru şıkkın sıradaki yeri rastgele seçilir.
+- `_balance_letters` (yeni, `generate_mc` sonunda): sınav genelinde harf dağılımını dengeler; serbest şıklarda yer değiştirir, sıralı sayısal şıklarda yalnız ters çevirir (A↔D, B↔C). Matematik: A 339/B 493/C 422/D 306 (önce 320/566/461/213).
+- Kalan: sıralı sayısal sorularda doğru şık yapısal olarak B/C'de; tam denge için üreticilerde çeldirici dizilimi çeşitlendirilmeli. Fen "Destek ve Hareket Sistemi" 14 kalıp (en çok 10 aynı kalıp) – yeni kalıp gerekir.

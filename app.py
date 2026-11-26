@@ -11415,6 +11415,60 @@ def _spread_answers(qs):
     return qs
 
 
+def _balance_letters(qs):
+    """Doğru cevap harflerini sınav genelinde dengeler (her harf ~%25). Serbest sırada: doğru şıkla hedef harfteki şık yer değiştirir;
+    sayısal ve sıralı şıklar (küçükten büyüğe) yalnızca ters çevrilir (büyükten küçüğe) – sıralama düzeni bozulmaz."""
+    def kind(q):
+        o = q.get("options") or {}
+        if len(o) != 4 or any(_NOSHUF.search(str(v)) for v in o.values()):
+            return None
+        nv = [_optnum(v) for v in o.values()]
+        if not all(x is not None for x in nv):
+            return "free"
+        if len(set(nv)) < 4:
+            return "free"
+        if nv == sorted(nv) or nv == sorted(nv, reverse=True):
+            return "rev"
+        return None
+    n = len(qs)
+    if n < 4:
+        return qs
+    tgt = -(-n // 4)
+    cnt = {k: sum(1 for q in qs if q.get("answer") == k) for k in "ABCD"}
+    order = list(range(n))
+    random.shuffle(order)
+    for i in order:
+        q = qs[i]
+        cur = q.get("answer")
+        if cnt.get(cur, 0) <= tgt:
+            continue
+        kd = kind(q)
+        if not kd:
+            continue
+        o = q["options"]
+        under = [k for k in "ABCD" if cnt[k] < tgt and k != cur]
+        if kd == "rev":
+            opp = "ABCD"[3 - "ABCD".index(cur)]
+            under = [opp] if opp in under else []
+        if not under:
+            continue
+        new = min(under, key=lambda k: (cnt[k], random.random()))
+        nb = [qs[j].get("answer") for j in (i - 1, i + 1) if 0 <= j < n]
+        if nb.count(new) == 2 and qs[i - 1].get("answer") == new:
+            continue  # üç ardışık aynı harf olmasın
+        if kd == "rev":
+            vals = list(o.values())[::-1]
+            q["options"] = dict(zip("ABCD", vals))
+        else:
+            o2 = dict(o)
+            o2[cur], o2[new] = o[new], o[cur]
+            q["options"] = o2
+        q["answer"] = new
+        cnt[cur] -= 1
+        cnt[new] += 1
+    return qs
+
+
 def accept_diverse(q, kept, n):
     """Aynı sette benzer soru/aynı görsel/aynı görsel türü yığılması varsa reddeder."""
     if demo_mode():
@@ -11957,6 +12011,15 @@ def _mf_opts(correct, wrongs, fmt=str, sort=True):
             ws.append(w)
     if len(ws) < 3:
         return None
+    if sort and len(ws) > 3:
+        try:  # doğru şık sıralı şıklarda hep ortaya düşmesin: hedef sırayı rastgele seç, yanlışları ona göre al (A–D dengesi)
+            lo = sorted((w for w in ws if w < correct), key=lambda w: correct - w if isinstance(w, (int, float)) else 0, reverse=False)
+            hi = sorted((w for w in ws if w > correct), key=lambda w: w - correct if isinstance(w, (int, float)) else 0)
+            r = random.choice([0, 1, 2, 3])
+            if len(lo) >= r and len(hi) >= 3 - r:
+                ws = lo[:r] + hi[:3 - r]
+        except Exception:
+            pass
     ws = ws[:3]
     allv = [correct] + ws
     if sort:
@@ -37239,7 +37302,7 @@ def _greedy_fill(qs_, cands, n, hsets, seen_, allow_hist=False, allow_seen=False
     have = [_qwords(q) for q in qs_]
     sigs = {(q.get("question"), tuple((q.get("options") or {}).values())) for q in qs_}
     pool = list(cands)
-    for cap in (2, 3, 99):
+    for cap in ((2, 3, 99) if (allow_hist or allow_seen) else (2, 3, 4)):  # sınırsız kalıp yalnızca son çare kademesinde; önce başka kalıplar (geçmişe benzese de) denenir
         while len(qs_) < n:
             best, bk = None, None
             for q in pool:
@@ -37617,6 +37680,7 @@ def generate_mc(plan, grade_label, difficulty, scope_label, avoid=None, focus=""
     if no_keys and not questions:
         return [], ["API anahtarı bulunamadı"]
     _spread_answers(questions)
+    _balance_letters(questions)
     for i, q in enumerate(questions, 1):
         q["id"] = i
     if count:
