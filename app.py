@@ -6943,7 +6943,8 @@ def profiles():
     if not isinstance(pr, dict):
         return {}
     tb = _tombs()
-    return {k: v for k, v in pr.items() if k not in tb} if tb else pr
+    out = {k: v for k, v in pr.items() if k not in tb} if tb else pr
+    return {k: ({**v, "pin": ""} if isinstance(v, dict) else v) for k, v in out.items()}  # PIN/parola kaldırıldı: eski kayıtlardaki PIN yok sayılır
 
 
 def _pin_hash(pin, salt):
@@ -6966,7 +6967,7 @@ def create_profile(name, pin=""):
         pid = f"{base}-{i}"; i += 1
     salt = uuid.uuid4().hex[:8]
     first = not pr
-    pr[pid] = {"name": name, "salt": salt, "pin": _pin_hash(pin, salt) if pin else "", "created": int(time.time())}
+    pr[pid] = {"name": name, "salt": salt, "pin": "", "created": int(time.time())}  # parola yok
     _save("profiles.json", pr)
     tb = _tombs()
     if pid in tb:  # aynı kimlikle yeniden oluşturulan profil silinmiş sayılmasın
@@ -7015,7 +7016,7 @@ def verify_profile(pid, pin=""):
     e = profiles().get(pid)
     if not e:
         return False
-    return (not e.get("pin")) or e["pin"] == _pin_hash(pin, e.get("salt", ""))
+    return True  # parola/PIN kaldırıldı
 
 
 def new_guest():
@@ -7807,7 +7808,10 @@ def gh_pull_once():
         if not rels:
             _GH.update(ok=True, msg="yedek henüz yok")
             return
-        todo = [r for r in rels if not os.path.exists(_abs(r))]
+        _head = ("profiles.json", "deleted_profiles.json")
+        # profil listesi ve silinen-profil işaretleri her açılışta yedekten (güncel) alınır; depoda kalmış eski kopya onu gölgelemesin
+        todo = [r for r in rels if not os.path.exists(_abs(r)) or r in _head]
+        _loc_tb = _tombs()
         # profiles.json ve silinen profil listesi önce gelsin: giriş ekranı için en önemli dosyalar
         todo.sort(key=lambda r: (r not in ("profiles.json", "deleted_profiles.json"), r))
 
@@ -7828,6 +7832,10 @@ def gh_pull_once():
         from concurrent.futures import ThreadPoolExecutor
         head = [r for r in todo if r in ("profiles.json", "deleted_profiles.json")]
         n = sum(one(r) for r in head)
+        if _loc_tb:  # yerelde silinmiş işaretli olanlar da kalsın
+            _mt = _tombs()
+            _mt.update({k: v for k, v in _loc_tb.items() if k not in _mt})
+            _save("deleted_profiles.json", _mt)
         tb = _tombs()  # silinmiş profillerin dosyaları geri indirilmesin
         rest = [r for r in todo if r not in head and not (r.startswith("profiles/") and r.split("/")[1] in tb)]
         with ThreadPoolExecutor(max_workers=6) as ex:
@@ -42265,7 +42273,7 @@ def _profile_delete_ui(pid, key, after_logout=False):
     nm = pr[pid]["name"]
     with st.expander("🗑️ Bu profili sil", expanded=False):
         st.warning(f"**{nm}** profili ve tüm verisi (sınav geçmişi, yanlış arşivi, ayarlar, kayıtlı videolar) kalıcı olarak silinir. Bu işlem geri alınamaz.")
-        pin = st.text_input("Profil PIN'i", type="password", key=f"{key}_dpin") if pr[pid].get("pin") else ""
+        pin = ""
         typed = st.text_input(f"Onay için profil adını yaz: {nm}", key=f"{key}_dname", max_chars=30)
         if st.button("🗑️ Profili kalıcı olarak sil", key=f"{key}_dgo", use_container_width=True):
             if typed.strip().lower() != nm.strip().lower():
@@ -42297,7 +42305,7 @@ def _profile_gate():
     pr = _ps.profiles()
     try:  # PIN'siz profil için sayfa yenilemede otomatik giriş
         _u = st.query_params.get("u")
-        if _u and _u in pr and not pr[_u].get("pin"):
+        if _u and _u in pr:
             st.session_state.update(profile_id=_u, profile_name=pr[_u]["name"], is_guest=False)
             _ps.set_active(_u)
             return
@@ -42311,8 +42319,8 @@ def _profile_gate():
                     "<div style='text-align:center;opacity:.75;margin-bottom:1rem'>Kimin için çalışıyoruz?</div>", unsafe_allow_html=True)
         if pr:
             ids = list(pr)
-            pid = st.selectbox("👤 Profil", ids, format_func=lambda i: pr[i]["name"] + ("  🔒" if pr[i].get("pin") else ""), key="lg_pick")
-            pin = st.text_input("PIN", type="password", key="lg_pin") if pr[pid].get("pin") else ""
+            pid = st.selectbox("👤 Profil", ids, format_func=lambda i: pr[i]["name"], key="lg_pick")
+            pin = ""
             if st.button("▶ Giriş yap", key="lg_go", use_container_width=True, type="primary"):
                 if _ps.verify_profile(pid, pin):
                     st.session_state.update(profile_id=pid, profile_name=pr[pid]["name"], is_guest=False)
@@ -42327,7 +42335,7 @@ def _profile_gate():
             _profile_delete_ui(pid, "lg")
         with st.expander("➕ Yeni profil oluştur", expanded=not pr):
             nm = st.text_input("Ad", key="lg_new", max_chars=30)
-            npin = st.text_input("PIN (isteğe bağlı, 4+ karakter)", type="password", key="lg_newpin")
+            npin = ""
             if st.button("Profili oluştur ve gir", key="lg_create", use_container_width=True):
                 if npin and len(npin) < 4:
                     st.error("PIN en az 4 karakter olmalı.")
