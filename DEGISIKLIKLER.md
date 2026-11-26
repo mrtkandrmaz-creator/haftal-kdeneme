@@ -224,3 +224,11 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - 6 yeni tablolu kalıp: namaz–kılınma zamanı, caminin bölümü–işlevi (mihrap, minber, kubbe, minare, şadırvan), Kur'an kavramları (sure, cüz, ayet, mushaf, hatim), peygamber–olay–öğüt eşleştirme (Nuh, Eyüp, Yunus, İbrahim, Süleyman); Kur'an'a saygı ve nimetlere şükür davranışları. Sosyal/Türkçe'deki eşleştirme/davranış yapısı: şıklar yalnızca satır harfi, doğru/yanlış satır kodla belirlenir, iki yönlü sorulur.
 - Din 5. sınıf: 2 966 → 3 319 soru, 115 → 121 kalıp, şekilli oran %22 → %30 (Allah İnancı %34, Kur'an %31, Mimari %30, Namaz %25, Peygamber %32). run_checks 13/13.
 - Not: eşleştirme içerikleri (özellikle peygamber kıssası öğütleri) bir Din Kültürü öğretmeni tarafından gözden geçirilmeli.
+
+## Hatalı / konu dışı bildirim ve beğenilen soruya benzer üretim (2026-11-26)
+- İnceleme: havuzdan gelen soruda kalıp (fam) bilgisi ekrana taşınmıyordu. "Hatalı" bildirimi yalnız aynı soru ve aynı soru biçimini engelliyor, kalıbın kendisini kapatmıyordu; "beğendim" benzer soruyu yalnızca yapay zekâ anahtarıyla (arka planda) üretiyordu, anahtar yoksa hiçbir şey olmuyordu.
+- Düzeltme: havuz sorusu artık kalıp adını (`fam`) ve ünitesini (`_pu`) taşır.
+  - Hatalı bildirim: soru + biçim engellenir ve kalıp "Devre dışı kalıplar"a düşer (kenar çubuğundaki yönetici listesinden yeniden açılır); havuz bu kalıbı çalışma anında atlar.
+  - Yeni neden "Konu dışı (seçtiğim üniteye uymuyor)": kalıp bozuk sayılmaz; yalnız (kalıp, ünite) çifti ve o soru dışlanır (`offtopic.json`), kalıp başka ünitelerde çalışmaya devam eder.
+  - Beğendim: kalıptan gelen sorular için yapay zekâsız, anında 8 benzer soru (aynı kalıp, farklı değerler) beğeni havuzuna eklenir; yapay zekâ anahtarı varsa eski arka plan üretimi de çalışır. Beğeni havuzunda kalıp soruları artık içerikle ayırt edilir (kökü aynı olan tablo soruları birbirini silmez).
+- Sınır: gece havuz kurucusu konu dışı listesini henüz okumuyor; çalışma anı filtresi yeterli. run_checks 13/13.

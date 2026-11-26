@@ -7322,6 +7322,11 @@ def bad_tpls():
     return set(_load("bad_tpls.json", {}))
 
 
+def offtopic_pairs():
+    """'Konu dışı' bildirilen (kalıp, ünite) çiftleri: o kalıp yalnız o ünitede bir daha gelmez (kalıbın kendisi bozuk değildir)."""
+    return {tuple(x) for x in _load("offtopic.json", []) if isinstance(x, (list, tuple)) and len(x) == 2}
+
+
 def reenable_tpl(name):
     bt = _load("bad_tpls.json", {})
     bt.pop(name, None)
@@ -7422,7 +7427,7 @@ def report_log(q, reason=""):
     L = _load("reports.json", [])
     L.append({"ts": int(time.time()), "subject": q.get("subject", ""), "topic": str(q.get("topic", ""))[:60],
               "reason": reason or "yakalanmadı", "head": str(q.get("question", ""))[:140], "has_shape": bool(q.get("shape")),
-              "tpl": str(q.get("tpl") or ""), "src": ("kalıp" if q.get("tpl") else "havuz" if q.get("pool") else "banka/yapay zekâ"),
+              "tpl": str(q.get("tpl") or q.get("fam") or ""), "src": ("kalıp" if q.get("tpl") else "havuz" if q.get("pool") else "banka/yapay zekâ"),
               "full": {"question": str(q.get("question", ""))[:700], "passage": str(q.get("passage") or "")[:500], "options": q.get("options"), "answer": q.get("answer"),
                        "explanation": str(q.get("explanation") or "")[:400], "shape": (q.get("shape") or {}).get("type") if isinstance(q.get("shape"), dict) else None},
               "key": _exact_key(q.get("question", ""), _q_correct(q))})
@@ -7519,6 +7524,22 @@ def report_bad(q, reason=""):
     except Exception:
         pass
     import re as _re
+    if "[Konu dışı" in str(reason):  # konu dışı: soru bozuk değil, bu ünitede yeri yok → yalnız (kalıp, ünite) çifti ve bu soru dışlanır
+        try:
+            _fm0 = str(q.get("tpl") or q.get("fam") or "")
+            _un0 = str(q.get("_pu") or "")
+            _of = _load("offtopic.json", [])
+            if _fm0 and _un0 and [_fm0, _un0] not in _of:
+                _of.append([_fm0, _un0])
+                _save("offtopic.json", _of[-3000:])
+            _k0 = _load("bad_keys.json", [])
+            _e0 = _exact_key(q.get("question", ""), _q_correct(q))
+            if _e0 not in _k0:
+                _k0.append(_e0)
+                _save("bad_keys.json", _k0[-3000:])
+            return True
+        except Exception:
+            return False
     stem = _re.sub(r"\W+", " ", _re.sub(r"\d+", "0", str(q.get("question", "")).lower()))[:70].strip()
     try:  # 1) tam metin + doğru cevap: kaynağı ne olursa olsun aynı soru bir daha gelmez
         _k = _load("bad_keys.json", [])
@@ -7549,10 +7570,10 @@ def report_bad(q, reason=""):
                 _bk_done = True
         except Exception:
             pass
-    if q.get("tpl") and not _bk_done:  # hazır kalıptan gelen hatalı soru: kalıp ben inceleyene kadar devre dışı kalır (aynı hata tekrar etmesin)
+    if (q.get("tpl") or q.get("fam")) and not _bk_done:  # hazır kalıptan gelen hatalı soru: kalıp ben inceleyene kadar devre dışı kalır (aynı hata tekrar etmesin)
         try:
             bt = _load("bad_tpls.json", {})
-            e = bt.setdefault(str(q["tpl"]), {"n": 0, "why": []})
+            e = bt.setdefault(str(q.get("tpl") or q.get("fam")), {"n": 0, "why": []})
             e["n"] += 1
             e["why"] = (e["why"] + [str(reason)[:120]])[-5:]
             e["ex"] = str(q.get("question", ""))[:160]
@@ -7622,16 +7643,19 @@ def lpool_put(subject, grade_label, difficulty, topics, qs, src=""):
     if not clean:
         return 0
     tp = _lp_topics(topics)
+
+    def _lk(x):  # kalıptan gelen sorularda kök aynı olabilir (ör. "Tabloda dört davranış verilmiştir"): içerik de anahtara girer
+        return _bstem(x) + (("|" + str(x.get("question")) + str(x.get("options"))) if x.get("fam") else "")
     with _BANK_LOCK:
         P = _load("lpool.json", [])
-        have = {_bstem(x["q"]) for x in P}
+        have = {_lk(x["q"]) for x in P}
         added = 0
         for c in clean:
-            if _bstem(c) in have:
+            if _lk(c) in have:
                 continue
             P.append({"q": c, "subject": subject, "grade_label": grade_label, "difficulty": difficulty,
                       "code": tp["code"], "kz": tp["kz"], "src": src, "ts": int(time.time())})
-            have.add(_bstem(c))
+            have.add(_lk(c))
             added += 1
         _save("lpool.json", P[-LPOOL_TOTAL:])
         return added
@@ -32121,10 +32145,17 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
     except Exception:
         pass
     cand = []
+    try:
+        _btp = set(_bad_tpl_set())
+        _off = store.offtopic_pairs() if store else set()
+    except Exception:
+        _btp, _off = set(), set()
     for q in qs:
         s = _stem(q)
         if not s or s in seen or _is_bad(s):
             continue
+        if q.get("fam") and (q["fam"] in _btp or (q["fam"], q.get("unit", "")) in _off):
+            continue  # hatalı bildirilen kalıp / bu ünitede konu dışı bildirilen kalıp
         if sel_u is not None:
             if not _pool_unit_ok(q, sel_u, grade_label, subject, topics):
                 continue  # havuz sorusu başka ünitenin/kazanımın: KESİN atla
@@ -32154,6 +32185,9 @@ def pool_questions(subject, grade_label, topics="", n=1, seen=(), difficulty="")
         stems.add(_stem(x))
         x["vfd"] = True
         x["pool"] = True
+        if q.get("fam"):
+            x["fam"] = q["fam"]  # bildirim/beğeni için kalıp izi (kullanıcıya gösterilmez)
+            x["_pu"] = q.get("unit", "")
         if q.get("listen") and len(str(x.get("passage") or "").split()) >= 20:
             x["listen"] = True  # dinleme sorusu: metin ekranda gizlenir, sesli çalınır
         use[_stem(q)] = use.get(_stem(q), 0) + 1
@@ -37655,6 +37689,48 @@ def like_similar_async(q, grade_label, difficulty, n=2, auto=False):
     return True
 
 
+def _fam_fn(name):
+    for G in (_FF_GENS, _SF_GENS, _TF_GENS, _DF_GENS, _EF_GENS, _MF_GENS):
+        for it in G:
+            if getattr(it[0], "__name__", "") == name:
+                return it[0]
+    return None
+
+
+def like_similar_local(q, grade_label, difficulty, n=8):
+    """Beğenilen soru hazır kalıptan (havuz) geldiyse: aynı kalıptan, yapay zekâ kullanmadan, farklı değerlerle benzer sorular üretip beğeni havuzuna koyar."""
+    try:
+        from . import store
+        fam = str(q.get("fam") or "")
+        subj = q.get("subject") or ""
+        fn = _fam_fn(fam) if fam else None
+        if not fn or not subj:
+            return 0
+        seen = {store._bstem(q)}
+        seen_full = {str(q.get("question")) + str(q.get("options"))}
+        outs = []
+        for _ in range(n * 15):
+            try:
+                x = _norm_q(fn(subj), subj)
+            except Exception:
+                x = None
+            if not x:
+                continue
+            k = str(x.get("question")) + str(x.get("options"))
+            if k in seen_full:
+                continue
+            seen_full.add(k)
+            x["vfd"] = True
+            x["fam"] = fam
+            outs.append(x)
+            if len(outs) >= n:
+                break
+        topics = str(q.get("topic") or subj)
+        return store.lpool_put(subj, grade_label, difficulty, topics, outs, src=store._bstem(q))
+    except Exception:
+        return 0
+
+
 def like_refill_async(grade_label, difficulty, per_src=5, max_src=2):
     """Beğenilen soruların benzer havuzunu büyütür: havuzda en az benzeri kalan beğenilenler için 2'şer soru daha üretir."""
     try:
@@ -40982,6 +41058,7 @@ def _listen_box(text, key=""):
 def _like(q, flag, m):
     try:
         if store.like_q(q, m):
+            ai.like_similar_local(q, m.get("grade_label", ""), m.get("difficulty", ""))  # hazır kalıp: anında, yapay zekâsız
             ai.like_similar_async(q, m.get("grade_label", ""), m.get("difficulty", ""))
     except Exception:
         pass
@@ -40989,13 +41066,15 @@ def _like(q, flag, m):
 
 
 REPORT_REASONS = ["Sorun nedir? (seçin)", "Cevap anahtarı yanlış", "Şekil/tablo metinle uyumsuz", "Veri eksik, çözülemiyor",
-                  "Soru belirsiz (birden çok doğru şık)", "Bilgi yanlış / müfredat dışı", "Diğer"]
+                  "Soru belirsiz (birden çok doğru şık)", "Bilgi yanlış / müfredat dışı", "Konu dışı (seçtiğim üniteye uymuyor)", "Diğer"]
 
 
 def _report(q, flag, rkey=None):
     try:
         why = st.session_state.get(rkey) if rkey else None
         why = "" if (not why or why == REPORT_REASONS[0]) else f"[{why}] "
+        if why.startswith("[Konu dışı"):
+            why = "[Konu dışı] "
         store.report_bad(q, why + str(ai.diagnose(q, q.get("subject"))))
     except Exception:
         pass
