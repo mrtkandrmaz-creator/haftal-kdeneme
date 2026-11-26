@@ -351,3 +351,45 @@ def topic_other_unit(q, unit, sets):
     if not t or t in sets.get(unit, ()) or (t, unit) in TOPIC_ALLOW:
         return False
     return any(t in s for u, s in sets.items() if u != unit)
+
+
+# ---- MAT.5.1.1 (altı basamaklı sayılar) kapsam kuralı: yalnız altı basamaklı sayılar, günlük hayat problemi yok
+import json as _json5
+import re as _re5
+_TH5 = _re5.compile(r"(?<![\d.,])(\d{1,3})((?:[ .]\d{3})+)(?![\d])")
+
+
+def _maxd5(t):
+    t = _TH5.sub(lambda m: m.group(1) + _re5.sub(r"[ .]", "", m.group(2)), str(t))
+    return max([len(x) for x in _re5.findall(r"\d+", t)] or [0])
+
+
+def qdig(q):
+    """Sorudaki (metin, şık, şekil) en büyük sayının basamak sayısı; basamak tablosu/abaküs çubukları da sayılır."""
+    m = 0
+    sh = q.get("shape") or {}
+    if sh.get("sub_type") == "basamak":
+        m = len(sh.get("d") or [])
+    if sh.get("sub_type") == "abakus":
+        m = max([m] + [len(p.get("d") or []) for p in sh.get("panels") or []])
+    for part in (q.get("question", ""), q.get("passage", ""), _json5.dumps(q.get("options"), ensure_ascii=False)):
+        m = max(m, _maxd5(part))
+    if sh.get("type") in ("table", "number_line", "kes") and sh.get("sub_type") not in ("basamak", "abakus"):
+        for c in _re5.findall(r'"([^"]*)"', _json5.dumps(sh, ensure_ascii=False)):
+            if _re5.fullmatch(r"[\d .,]+", c):
+                m = max(m, _maxd5(c))
+    return m
+
+
+# Bu kalıplardan gelen sorular MAT.5.1.1'de yalnızca altı basamaklı sayı içeriyorsa kalır (kalıp tek-basamak sayısına sahip değilse: LOOSE)
+SIX_STRICT = set("""_mf6s_basamak_say _mf6s_bd_fark _mf6s_bol_say _mf6s_cozum_bos _mf6s_okunus_tablo _mf6s_onculu _mf6s_sd_ara _mf6s_yaz_tablo
+_mf_abk_deger _mf_abk_oku _mf_bd_adi _mf_bd_basamak_say _mf_bd_cozum _mf_bd_deger _mf_bd_fazla _mf_bd_oku _mf_bd_rakam _mf_bd_toplam
+_mf_kr_en_buyuk _mf_kr_en_kucuk _mf_say_ardisik _mf_say_komsu _mf_say_oku
+_mf6n_bd_artir _mf6n_bd_sifir _mf6n_bd_yer _mf6n_tab_buyuk _mf6n_okunus_esle _mf6n_okunus_yanlis _mf6n_cozum_tab _mf6n_tab_deger_en _mf6n_abk_oku _mf6n_abk_buyuk _mf6n_abk_deger _mf6n_kart6 _mf6n_boluk_toplam""".split())
+SIX_LOOSE = {"_mf6s_sd_oku", "_mf6n_boluk_tab"}  # sayı doğrusu etiketi / rakam sütunu: basamak sayısı metinden ölçülemez
+
+
+def mat511_ok(fam, q):
+    if fam in SIX_LOOSE:
+        return True
+    return fam in SIX_STRICT and qdig(q) == 6

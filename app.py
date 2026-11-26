@@ -36065,6 +36065,293 @@ for _f, _d in _S6_FAMS:
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = ["MAT.5.1.1"]
 
+# ---- MAT.5.1.1 altı basamaklı sayılar: yeni görselli kalıplar (basamak tablosu, abaküs, rakam kartı, tablo) — 2026-11-26
+_PLN6 = ["Yüz binler", "On binler", "Binler", "Yüzler", "Onlar", "Birler"]
+
+
+def _s6w(ds, hi=9):
+    return [random.randint(1, hi)] + [random.randint(0, hi) for _ in range(5)]
+
+
+def _mf6n_bd_artir(subject):
+    ds = _s6_n()
+    i = random.choice([k for k in range(6) if ds[k] <= 7])
+    a = random.choice([1, 2, 3, 4])
+    lb = random.choice(_KS_L)
+    pos = 5 - i
+    n = _s6_val(ds)
+    kind = random.choice(["yeni", "fark"])
+    if kind == "yeni":
+        c = n + a * 10 ** pos
+        wr = [n + a, n + a * 10 ** (pos + 1) if pos < 5 else n + a * 10 ** 4, n + a * 10 ** max(pos - 1, 0), n - a * 10 ** pos, n + 10 ** pos]
+        q = f"{lb} ile gösterilen basamaktaki rakam {a} artırılırsa oluşan yeni sayı kaç olur?"
+        ex = f"{lb} basamağı {_PLN6[i].lower()} basamağıdır; rakam {a} artınca sayı {a} × {_fmt_say(10 ** pos)} = {_fmt_say(a * 10 ** pos)} artar: {_fmt_say(n)} + {_fmt_say(a * 10 ** pos)} = {_fmt_say(c)}."
+        o = _mf_opts(_fmt_say(c), [_fmt_say(w) for w in dict.fromkeys(wr) if w != c and 100_000 <= w <= 999_999], str, sort=True)
+    else:
+        c = a * 10 ** pos
+        wr = [a, a * 10 ** (pos + 1), a * 10 ** max(pos - 1, 0), 10 ** pos, a * 10 ** (pos + 2)]
+        q = f"{lb} ile gösterilen basamaktaki rakam {a} artırılırsa sayı kaç artar?"
+        ex = f"{lb} basamağı {_PLN6[i].lower()} basamağıdır; rakam {a} artınca sayı {a} × {_fmt_say(10 ** pos)} = {_fmt_say(c)} artar."
+        o = _mf_opts(_fmt_say(c), [_fmt_say(w) for w in dict.fromkeys(wr) if w != c and 0 < w < 1_000_000], str, sort=True)
+    return _mf_raw(subject, _S6_T, f"Şekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\n{q}", o, ex, shape=_bd_tab(ds, {i: lb})) if o else None
+
+
+def _mf6n_bd_sifir(subject):
+    ds = _s6_n(zeros=False)
+    i = random.choice(range(1, 6))
+    lb = random.choice(_KS_L)
+    pos = 5 - i
+    n = _s6_val(ds)
+    d = ds[i]
+    kind = random.choice(["yeni", "azal"])
+    if kind == "yeni":
+        c = n - d * 10 ** pos
+        wr = [n - d, n - d * 10 ** (pos + 1) if pos < 5 else n - d * 10 ** 4, n - 10 ** pos, n + d * 10 ** pos, n - d * 10 ** max(pos - 1, 0)]
+        q = f"{lb} ile gösterilen basamaktaki rakam 0 yapılırsa oluşan yeni sayı kaç olur?"
+        ex = f"{lb} basamağındaki {d} rakamının basamak değeri {_fmt_say(d * 10 ** pos)}'dir; rakam 0 olunca sayı bu kadar azalır: {_fmt_say(n)} − {_fmt_say(d * 10 ** pos)} = {_fmt_say(c)}."
+        o = _mf_opts(_fmt_say(c), [_fmt_say(w) for w in dict.fromkeys(wr) if w != c and 100_000 <= w <= 999_999], str, sort=True)
+    else:
+        c = d * 10 ** pos
+        wr = [d, d * 10 ** (pos + 1), d * 10 ** max(pos - 1, 0), 10 ** pos, d * 10 ** (pos + 2)]
+        q = f"{lb} ile gösterilen basamaktaki rakam 0 yapılırsa sayı kaç azalır?"
+        ex = f"Rakam 0 yapılınca sayı, o rakamın basamak değeri kadar azalır: {_fmt_say(c)}."
+        o = _mf_opts(_fmt_say(c), [_fmt_say(w) for w in dict.fromkeys(wr) if w != c and 0 < w < 1_000_000], str, sort=True)
+    return _mf_raw(subject, _S6_T, f"Şekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\n{q}", o, ex, shape=_bd_tab(ds, {i: lb})) if o else None
+
+
+def _mf6n_bd_yer(subject):
+    ds = _s6_n(zeros=False)
+    i, j = sorted(random.sample(range(6), 2))
+    if ds[i] == ds[j]:
+        return None
+    lb = random.sample(_KS_L, 2)
+    t = list(ds)
+    t[i], t[j] = t[j], t[i]
+    n, c = _s6_val(ds), _s6_val(t)
+    wr = [n, _s6_val(ds[::-1]), c + 10 ** (5 - j) - 10 ** (5 - i) if c + 10 ** (5 - j) - 10 ** (5 - i) > 0 else c + 100]
+    for _ in range(6):
+        u = list(ds)
+        a, b = random.sample(range(6), 2)
+        u[a], u[b] = u[b], u[a]
+        wr.append(_s6_val(u))
+    wr = [w for w in dict.fromkeys(wr) if w != c and 100_000 <= w <= 999_999]
+    o = _mf_opts(_fmt_say(c), [_fmt_say(w) for w in wr], str, sort=True)
+    return _mf_raw(subject, _S6_T, f"Şekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\n{lb[0]} ve {lb[1]} ile gösterilen basamaklardaki rakamların yerleri değiştirilirse oluşan yeni sayı kaç olur?", o,
+                   f"Tablodaki sayı {_fmt_say(n)}; {_PLN6[i].lower()} ve {_PLN6[j].lower()} basamaklarındaki rakamlar yer değiştirince sayı {_fmt_say(c)} olur.", shape=_bd_tab(ds, {i: lb[0], j: lb[1]})) if o else None
+
+
+def _s6_close(k=None, cnt=4):
+    k = k or random.choice([2, 3, 4])
+    head = [random.randint(1, 9)] + [random.randint(0, 9) for _ in range(k - 1)]
+    vs = set()
+    for _ in range(80):
+        vs.add(_s6_val(head + [random.randint(0, 9) for _ in range(6 - k)]))
+        if len(vs) == cnt:
+            break
+    return list(vs) if len(vs) == cnt else None
+
+
+def _mf6n_tab_buyuk(subject):
+    vs = _s6_close()
+    if not vs:
+        return None
+    random.shuffle(vs)
+    lb = random.sample(_KS_L, 4)
+    kind = random.choice(["en_buyuk", "en_kucuk", "ikinci_buyuk", "ikinci_kucuk"])
+    order = sorted(range(4), key=lambda x: vs[x])
+    i = {"en_buyuk": order[-1], "en_kucuk": order[0], "ikinci_buyuk": order[-2], "ikinci_kucuk": order[1]}[kind]
+    ask = {"en_buyuk": "en büyük", "en_kucuk": "en küçük", "ikinci_buyuk": "büyükten küçüğe sıralandığında ikinci", "ikinci_kucuk": "küçükten büyüğe sıralandığında ikinci"}[kind]
+    o = _yn_opts(lb[i], [lb[x] for x in range(4) if x != i])
+    sh = _yn_tbl("Sayı kartları", ["Kart", "Sayı"], [[lb[x], _fmt_say(vs[x])] for x in range(4)])
+    return _mf_raw(subject, "Sayı karşılaştırma", f"Tabloda dört kartın üzerindeki altı basamaklı sayılar verilmiştir.\nBuna göre {ask} sayı hangi kartın üzerindedir?", o,
+                   f"Sayılar yüz binler basamağından başlanarak karşılaştırılır: {', '.join(f'{lb[x]}: {_fmt_say(vs[x])}' for x in range(4))}. {ask.capitalize()} sayı {lb[i]} kartındadır.", shape=sh) if o else None
+
+
+def _mf6n_okunus_esle(subject):
+    vs = _s6_close(cnt=4)
+    if not vs:
+        return None
+    random.shuffle(vs)
+    lb = random.sample(_KS_L, 4)
+    i = random.randrange(4)
+    o = _yn_opts(lb[i], [lb[x] for x in range(4) if x != i])
+    sh = _yn_tbl("Altı basamaklı sayılar", ["Harf", "Sayı"], [[lb[x], _fmt_say(vs[x])] for x in range(4)])
+    return _mf_raw(subject, "Sayı okuma-yazma", f"Tabloda dört sayı harflerle gösterilmiştir.\nOkunuşu “{_say_words(vs[i])}” olan sayı hangi harfle gösterilmiştir?", o,
+                   f"“{_say_words(vs[i])}” sayısı rakamlarla {_fmt_say(vs[i])} biçiminde yazılır; bu sayı {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+
+
+def _mf6n_okunus_yanlis(subject):
+    vs = _s6_close(k=random.choice([1, 2]), cnt=4)
+    if not vs:
+        return None
+    random.shuffle(vs)
+    lb = random.sample(_KS_L, 4)
+    bad = random.randrange(4)
+    rd = [_say_words(v) for v in vs]
+    for _ in range(10):
+        m = vs[bad] + random.choice([-1, 1]) * random.choice([10, 100, 1000, 10_000])
+        if 100_000 <= m <= 999_999 and _say_words(m) != rd[bad] and _say_words(m) not in rd:
+            rd[bad] = _say_words(m)
+            break
+    else:
+        return None
+    o = _yn_opts(lb[bad], [lb[x] for x in range(4) if x != bad])
+    sh = _yn_tbl("Sayılar ve okunuşları", ["Harf", "Sayı", "Okunuşu"], [[lb[x], _fmt_say(vs[x]), rd[x]] for x in range(4)])
+    return _mf_raw(subject, "Sayı okuma-yazma", "Tabloda dört sayı ve bu sayıların okunuşları verilmiştir.\nBuna göre hangi harfle gösterilen satırdaki okunuş yanlıştır?", o,
+                   f"{lb[bad]} satırındaki {_fmt_say(vs[bad])} sayısının doğru okunuşu “{_say_words(vs[bad])}” olmalıdır.", shape=sh) if o else None
+
+
+def _mf6n_cozum_tab(subject):
+    ds = _s6_n()
+    nzs = [k for k in range(6) if ds[k]]
+    hid = random.choice(nzs)
+    vals = [ds[k] * 10 ** (5 - k) for k in range(6)]
+    rows = [[_PLN6[k], str(ds[k]), "?" if k == hid else _fmt_say(vals[k])] for k in range(6)]
+    c = vals[hid]
+    d = ds[hid]
+    wr = [d * 10 ** p for p in range(0, 6) if p != 5 - hid] + [c * 10, c * 100]
+    o = _mf_opts(_fmt_say(c), [_fmt_say(w) for w in dict.fromkeys(wr) if w != c and 0 < w < 1_000_000], str, sort=True)
+    return _mf_raw(subject, _S6_T, "Tabloda altı basamaklı bir doğal sayının basamakları, bu basamaklardaki rakamlar ve basamak değerleri verilmiştir.\nBuna göre soru işareti yerine hangi değer gelmelidir?", o,
+                   f"{_PLN6[hid]} basamağındaki rakam {d} olduğundan basamak değeri {d} × {_fmt_say(10 ** (5 - hid))} = {_fmt_say(c)} olur.", shape=_yn_tbl("Sayının çözümlenmesi", ["Basamak", "Rakam", "Basamak değeri"], rows)) if o else None
+
+
+def _mf6n_tab_deger_en(subject):
+    d = random.randint(1, 9)
+    pos = random.sample(range(6), 4)
+    vs, lb = [], random.sample(_KS_L, 4)
+    for p in pos:
+        ds = []
+        for k in range(6):
+            if k == p:
+                ds.append(d)
+            else:
+                ds.append(random.choice([x for x in range(10) if x != d and not (k == 0 and x == 0)]))
+        vs.append(_s6_val(ds))
+    kind = random.choice(["en_buyuk", "en_kucuk"])
+    i = pos.index(min(pos)) if kind == "en_buyuk" else pos.index(max(pos))
+    o = _yn_opts(lb[i], [lb[x] for x in range(4) if x != i])
+    ask = "en büyük" if kind == "en_buyuk" else "en küçük"
+    cv = d * 10 ** (5 - pos[i])
+    sh = _yn_tbl("Sayı kartları", ["Kart", "Sayı"], [[lb[x], _fmt_say(vs[x])] for x in range(4)])
+    return _mf_raw(subject, _S6_T, f"Tabloda dört kartın üzerindeki altı basamaklı sayılar verilmiştir. Her sayıda {d} rakamı bir kez kullanılmıştır.\nBuna göre hangi kartta {d} rakamının basamak değeri {ask}tür?" if ask == "en küçük" else
+                   f"Tabloda dört kartın üzerindeki altı basamaklı sayılar verilmiştir. Her sayıda {d} rakamı bir kez kullanılmıştır.\nBuna göre hangi kartta {d} rakamının basamak değeri en büyüktür?", o,
+                   f"{d} rakamının basamak değerleri: " + ", ".join(f"{lb[x]}: {_fmt_say(d * 10 ** (5 - pos[x]))}" for x in range(4)) + f". {ask.capitalize()} değer {_fmt_say(cv)} ile {lb[i]} kartındadır.", shape=sh) if o else None
+
+
+def _mf6n_abk_oku(subject):
+    ds = _s6_n()
+    n = _s6_val(ds)
+    kind = random.choice(["sayi", "okunus", "fazla"])
+    sh = {"type": "kes", "sub_type": "abakus", "per_row": 1, "panels": [_bd_abk(ds)]}
+    if kind == "sayi":
+        c, q = _fmt_say(n), "Buna göre abaküste gösterilen sayı kaçtır?"
+        wr = [n + 1000, n - 1000, n + 100_000 if n < 899_999 else n - 100_000, _s6_val(ds[::-1]) if ds[-1] else n + 100, n + 100, n + 10]
+        ex = f"Soldan sağa boncuk sayıları {', '.join(map(str, ds))}; sayı {_fmt_say(n)}."
+    elif kind == "okunus":
+        c, q = _say_words(n), "Buna göre abaküste gösterilen sayının okunuşu aşağıdakilerden hangisidir?"
+        wr = [_say_words(m) for m in (n + 1000, n - 1000, n + 10_000, n - 10_000, n + 100) if 100_000 <= m <= 999_999]
+        ex = f"Abaküsteki sayı {_fmt_say(n)}; okunuşu “{c}”."
+    else:
+        k = random.choice([100, 1000, 10_000])
+        if n + k > 999_999:
+            return None
+        c, q = _fmt_say(n + k), f"Buna göre abaküste gösterilen sayının {_fmt_say(k)} fazlası kaçtır?"
+        wr = [n + k * 10, n + k // 10, n - k, n + 2 * k, n + k + k // 10]
+        ex = f"Abaküsteki sayı {_fmt_say(n)}; {_fmt_say(k)} fazlası {_fmt_say(n)} + {_fmt_say(k)} = {c}."
+    if kind != "okunus":
+        wr = [_fmt_say(w) for w in dict.fromkeys(wr) if 0 < w < 1_000_000]
+    o = _mf_opts(c, [w for w in dict.fromkeys(wr) if w != c], str, sort=(kind != "okunus"))
+    return _mf_raw(subject, _S6_T, f"Şekildeki abaküste her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\n{q}", o, ex, shape=sh) if o else None
+
+
+def _mf6n_abk_buyuk(subject):
+    vs = _s6_close(cnt=4)
+    if not vs:
+        return None
+    random.shuffle(vs)
+    lb = random.sample(_KS_L, 4)
+    ask = random.choice(["en büyük", "en küçük"])
+    i = vs.index(max(vs) if ask == "en büyük" else min(vs))
+    o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
+    sh = {"type": "kes", "sub_type": "abakus", "per_row": 2, "panels": [_bd_abk([int(c) for c in str(v)], label=lb[j]) for j, v in enumerate(vs)]}
+    return _mf_raw(subject, _S6_T, f"Şekilde dört abaküs harflerle gösterilmiştir. Her çubuktaki boncuk sayısı o basamaktaki rakamı göstermektedir.\nBuna göre {ask} sayıyı gösteren abaküs hangi harfle gösterilmiştir?", o,
+                   f"Gösterilen sayılar {', '.join(f'{lb[j]}: {_fmt_say(vs[j])}' for j in range(4))}; {ask} olan {lb[i]}.", shape=sh) if o else None
+
+
+def _mf6n_abk_deger(subject):
+    ds = _s6_n()
+    idx = random.choice([k for k in range(6) if ds[k]])
+    pos = 5 - idx
+    lb = random.choice(_KS_L)
+    d = ds[idx]
+    c = d * 10 ** pos
+    wr = [d, d * 10 ** (pos + 1) if pos < 5 else d * 10 ** 4, d * 10 ** max(pos - 1, 0), d * 10 ** (pos + 2) if pos < 4 else d * 10 ** 3, (d + 1 if d < 9 else d - 1) * 10 ** pos]
+    o = _mf_opts(_fmt_say(c), [_fmt_say(w) for w in dict.fromkeys(wr) if w != c and 0 < w < 1_000_000], str, sort=True)
+    return _mf_raw(subject, _S6_T, f"Şekildeki abaküste her çubuk bir basamağı göstermektedir.\nBuna göre {lb} ile gösterilen çubuktaki boncukların temsil ettiği değer kaçtır?", o,
+                   f"{lb} çubuğunda {d} boncuk vardır ve çubuk {_PLN6[idx].lower()} basamağıdır: {_fmt_say(c)}.", shape={"type": "kes", "sub_type": "abakus", "per_row": 1, "panels": [_bd_abk(ds, {idx: lb})]}) if o else None
+
+
+def _mf6n_kart6(subject):
+    import itertools
+    kind = random.choice(["en_buyuk", "en_kucuk", "cift_buyuk", "tek_kucuk"])
+    ds = random.sample(range(10), 6)
+    if kind == "cift_buyuk" and not any(x % 2 == 0 for x in ds):
+        return None
+    if kind == "tek_kucuk" and not any(x % 2 == 1 for x in ds):
+        return None
+    allv = sorted({int("".join(map(str, p))) for p in itertools.permutations(ds) if p[0] != 0})
+    if kind == "en_buyuk":
+        c, q = allv[-1], "yazılabilecek en büyük doğal sayı kaçtır?"
+    elif kind == "en_kucuk":
+        c, q = allv[0], "yazılabilecek en küçük altı basamaklı doğal sayı kaçtır?"
+    elif kind == "cift_buyuk":
+        c, q = max(v for v in allv if v % 2 == 0), "yazılabilecek çift olan en büyük doğal sayı kaçtır?"
+    else:
+        c, q = min(v for v in allv if v % 2 == 1), "yazılabilecek tek olan en küçük altı basamaklı doğal sayı kaçtır?"
+    near = [v for v in allv if v != c and sum(a != b for a, b in zip(str(v), str(c))) <= 2]
+    random.shuffle(near)
+    o = _mf_opts(_fmt_say(c), [_fmt_say(v) for v in near[:6]], str, sort=True)
+    return _mf_raw(subject, "Sayı oluşturma", f"Şekilde 6 rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak {q}", o, f"Kurala uygun, tüm kartlar kullanılarak yazılabilen sayılar karşılaştırıldığında doğru sayı {_fmt_say(c)} bulunur.", shape=_kr_sh(ds)) if o else None
+
+
+def _mf6n_boluk_tab(subject):
+    ds = _s6_n()
+    b1, b2 = ds[:3], ds[3:]
+    n = _s6_val(ds)
+    kind = random.choice(["yaz", "oku"])
+    sh = _yn_tbl("Bölükler", ["Bölük", "Rakamlar"], [["Binler bölüğü", " ".join(map(str, b1))], ["Birler bölüğü", " ".join(map(str, b2))]])
+    if kind == "yaz":
+        c = _fmt_say(n)
+        sw = _s6_val(b2 + b1)
+        wr = [sw if sw >= 100_000 else n + 1000, _s6_val(b1 + [0] + b2[:2]), _s6_val(b1 + b2[::-1]) if b2[::-1] != b2 else n + 10, _s6_val(b1[::-1] + b2) if b1[::-1] != b1 else n + 1000]
+        q = "Bu bölükler yan yana yazılarak altı basamaklı bir doğal sayı oluşturuluyor.\nBuna göre oluşan sayı kaçtır?"
+        o = _mf_opts(c, [_fmt_say(w) for w in dict.fromkeys(wr) if w != n and 100_000 <= w <= 999_999], str, sort=True)
+    else:
+        c = _say_words(n)
+        q = "Bu bölükler yan yana yazılarak altı basamaklı bir doğal sayı oluşturuluyor.\nBuna göre oluşan sayının okunuşu aşağıdakilerden hangisidir?"
+        wr = [_say_words(m) for m in (_s6_val(b2 + b1), n + 1000, n - 1000, n + 100, _s6_val(b1 + b2[::-1])) if m != n and 100_000 <= m <= 999_999]
+        o = _mf_opts(c, list(dict.fromkeys(wr)), str, sort=False)
+    return _mf_raw(subject, "Bölükler", f"Tabloda bir sayının binler ve birler bölüğündeki rakamlar verilmiştir.\n{q}", o, f"Binler bölüğü {''.join(map(str, b1))}, birler bölüğü {''.join(map(str, b2))}; sayı {_fmt_say(n)}.", shape=sh) if o else None
+
+
+def _mf6n_boluk_toplam(subject):
+    ds = _s6_n()
+    kind = random.choice(["binler", "birler"])
+    c = sum(ds[:3]) if kind == "binler" else sum(ds[3:])
+    wr = [sum(ds[3:]) if kind == "binler" else sum(ds[:3]), sum(ds), c + 1, c - 1 if c > 1 else c + 2, c + 10]
+    o = _mf_opts(str(c), [str(w) for w in dict.fromkeys(wr) if w != c and 0 <= w < 1_000_000], str, sort=True)
+    nm = "binler" if kind == "binler" else "birler"
+    return _mf_raw(subject, "Bölükler", f"Şekilde altı basamaklı bir doğal sayı basamak tablosunda gösterilmiştir.\nBu sayının {nm} bölüğündeki rakamların toplamı kaçtır?", o,
+                   f"{nm.capitalize()} bölüğündeki rakamlar {', '.join(map(str, ds[:3] if kind == 'binler' else ds[3:]))}; toplamları {c}.", shape=_bd_tab(ds)) if o else None
+
+
+_S6N_FAMS = [(_mf6n_bd_artir, 3), (_mf6n_bd_sifir, 3), (_mf6n_bd_yer, 3), (_mf6n_tab_buyuk, 2), (_mf6n_okunus_esle, 2), (_mf6n_okunus_yanlis, 3), (_mf6n_cozum_tab, 2), (_mf6n_tab_deger_en, 3),
+             (_mf6n_abk_oku, 2), (_mf6n_abk_buyuk, 2), (_mf6n_abk_deger, 2), (_mf6n_kart6, 3), (_mf6n_boluk_tab, 2), (_mf6n_boluk_toplam, 2)]
+for _f, _d in _S6N_FAMS:
+    _MF_GENS.append((_m5v(_f) or _m5_lead(_f), ("basamak", "okuma ve yazma"), (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = ["MAT.5.1.1"]
+
 # MAT.5.1.1 (altı/çok basamaklı sayıları okuma-yazma) kapsamı dışındaki kalıplar kendi kazanımına taşındı:
 # yuvarlama / tablodan toplam-fark / sayı doğrusunda fark -> MAT.5.1.2 (doğal sayılarla işlemler), azalan sayı örüntüsü -> MAT.5.2.3
 _MF_ITEMCODE.update({k: ["MAT.5.1.2"] for k in ("_mf_say_yuvar", "_mf_say_yuvarla2", "_mf_yv_yakin", "_mf_yv_hangisine", "_mf6s_sd_yuvarla", "_mf6s_sd_topla", "_mf_yn_nufus", "_mf_yn_nufus_fark")})

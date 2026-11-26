@@ -3,30 +3,30 @@
 İnce alan eşikleri: ünite < 400 soru, Matematik kazanımı < 250, alt konu < 25 soru ya da kalıp < 3 ⚠ ile işaretlenir.
 
 
-## Matematik — 18750 soru, 418 kalıp, şekilli/tablolu %71
+## Matematik — 18123 soru, 392 kalıp, şekilli/tablolu %75
 
 ### Kazanım bazında
 
 | Kazanım | Soru | Kalıp | Şekilli |
 |---|---|---|---|
-| MAT.5.1.1 | 2613 | 64 | %61 |
-| MAT.5.1.2 | 1513 | 36 | %64 |
-| MAT.5.1.3 | 3239 | 75 | %62 |
+| MAT.5.1.1 | 1962 | 38 | %92 |
+| MAT.5.1.2 | 1525 | 36 | %64 |
+| MAT.5.1.3 | 3243 | 75 | %62 |
 | MAT.5.1.4 | 944 | 21 | %76 |
-| MAT.5.2.1 | 244 | 5 | %40 ⚠ |
+| MAT.5.2.1 | 245 | 5 | %40 ⚠ |
 | MAT.5.2.2 | 303 | 9 | %63 |
-| MAT.5.2.3 | 452 | 10 | %92 |
+| MAT.5.2.3 | 454 | 10 | %93 |
 | MAT.5.2.4 | 335 | 7 | %72 |
-| MAT.5.3.1 | 1199 | 25 | %55 |
-| MAT.5.3.2 | 218 | 4 | %78 ⚠ |
-| MAT.5.3.3 | 1409 | 31 | %65 |
+| MAT.5.3.1 | 1202 | 25 | %55 |
+| MAT.5.3.2 | 216 | 4 | %79 ⚠ |
+| MAT.5.3.3 | 1413 | 31 | %65 |
 | MAT.5.3.4 | 1562 | 31 | %90 |
 | MAT.5.3.5 | 303 | 9 | %66 |
-| MAT.5.3.6 | 433 | 7 | %70 |
+| MAT.5.3.6 | 436 | 7 | %69 |
 | MAT.5.3.7 | 312 | 6 | %100 |
-| MAT.5.4.1 | 325 | 8 | %86 |
-| MAT.5.4.2 | 251 | 7 | %79 |
-| MAT.5.4.3 | 248 | 8 | %61 ⚠ |
+| MAT.5.4.1 | 326 | 8 | %86 |
+| MAT.5.4.2 | 246 | 7 | %79 ⚠ |
+| MAT.5.4.3 | 249 | 8 | %61 ⚠ |
 | MAT.5.4.4 | 375 | 10 | %67 |
 | MAT.5.5.1 | 1612 | 27 | %92 |
 | MAT.5.5.2 | 300 | 5 | %100 |
@@ -37,18 +37,18 @@
 
 | Ünite | Soru | Kalıp | Şekilli |
 |---|---|---|---|
-| Açı Ölçme (MAT.5.3.3-4) | 1529 | 34 | %68 |
-| Açı İlişkileri: Tümler, Bütünler, Komşu ve Ters Açılar (MAT.5.3.4) | 1422 | 30 | %89 |
-| Basamak Değerlerini Çözümleme (MAT.5.1.1) | 3000 | 73 | %66 |
-| Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2) | 1199 | 33 | %73 |
-| Doğal Sayılarla Dört İşlem (MAT.5.1.2) | 1215 | 33 | %53 |
-| Kesirler | 2011 | 47 | %66 |
-| Ondalık Gösterim ve Yüzdeler | 2172 | 49 | %65 |
-| Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2) | 1173 | 22 | %66 |
+| Açı Ölçme (MAT.5.3.3-4) | 1533 | 34 | %68 |
+| Açı İlişkileri: Tümler, Bütünler, Komşu ve Ters Açılar (MAT.5.3.4) | 1424 | 30 | %89 |
+| Basamak Değerlerini Çözümleme (MAT.5.1.1) | 2420 | 47 | %91 |
+| Dikdörtgenin Çevre ve Alanı (MAT.5.4.1-2) | 1196 | 33 | %73 |
+| Doğal Sayılarla Dört İşlem (MAT.5.1.2) | 1158 | 31 | %56 |
+| Kesirler | 2009 | 47 | %66 |
+| Ondalık Gösterim ve Yüzdeler | 2178 | 49 | %64 |
+| Temel Geometrik Çizimler ve İnşalar (MAT.5.3.1-2) | 1172 | 22 | %67 |
 | Veri Toplama ve Değerlendirme | 1858 | 36 | %87 |
 | Veriden Olasılığa (MAT.5.6.1-2) | 620 | 14 | %79 |
-| Çokgenler ve Çember (MAT.5.3.5-7) | 1312 | 33 | %68 |
-| İşlemlerle Cebirsel Düşünme (MAT.5.2.1-4) | 1239 | 28 | %80 |
+| Çokgenler ve Çember (MAT.5.3.5-7) | 1315 | 33 | %68 |
+| İşlemlerle Cebirsel Düşünme (MAT.5.2.1-4) | 1240 | 28 | %80 |
 
 ## Fen Bilimleri — 15198 soru, 413 kalıp, şekilli/tablolu %80
 
@@ -288,9 +288,9 @@
 | Life in the Neighbourhood & City · places in the neighbourhood | 120 | 2 | %100 ⚠ |
 | Life in the Universe & Future · be going to | 120 | 2 | %50 ⚠ |
 
-## Özet: 148 ince alan
+## Özet: 149 ince alan
 
-- **Matematik:** MAT.5.2.1 (244); MAT.5.3.2 (218); MAT.5.4.3 (248)
+- **Matematik:** MAT.5.2.1 (245); MAT.5.3.2 (216); MAT.5.4.2 (246); MAT.5.4.3 (249)
 - **Fen Bilimleri:** Madde ve Değişim · isı i̇letimi (1); Güneş, Dünya ve Ay · ay’ın evreleri (3); Işığın Yayılması · işık (3); Madde ve Değişim · hâl değişimi (4); Kuvvetin Ölçülmesi ve Sürtünme · kuvvet ve ağırlık (6); İnsan ve Çevre · çevre ve geri dönüşüm (6); Elektrik Devre Elemanları · elektrik devresi (18); Elektrik Devre Elemanları · elektrik (26); Kuvvetin Ölçülmesi ve Sürtünme · kütle ve ağırlık (27); Canlılar Dünyası · mikroskobik canlılar ve mantarlar (37); Kuvvetin Ölçülmesi ve Sürtünme · dinamometre modeli (42); İnsan ve Çevre · kaynakların etkili kullanımı (42); Madde ve Değişim · kaynama (60); Işığın Yayılması · saydam, yarı saydam ve opak maddeler (60); İnsan ve Çevre · çevre kirliliği (60); Elektrik Devre Elemanları · elektrik tasarrufu (60); Kuvvetin Ölçülmesi ve Sürtünme · kuvvet (66); Kuvvetin Ölçülmesi ve Sürtünme · kuvvetin ölçülmesi ve sürtünme (321); İnsan ve Çevre · i̇nsan ve çevre (336); Güneş, Dünya ve Ay · güneş, dünya ve ay (361); Elektrik Devre Elemanları · elektrik devre elemanları (374); Madde ve Değişim · madde ve değişim (581)
 - **Türkçe:** Geleneklerimiz · halk oyunları (4); Geleneklerimiz · atasözleri (6); Atatürk'ü Tanımak · millî bayramlar (8); Geleneklerimiz · deyimler (9); Sağlıklı Yaşıyorum · bilgilendirici metin (9); İletişim ve Sosyal İlişkiler · olumlu dil (16); Geleneklerimiz · el sanatları (20); İletişim ve Sosyal İlişkiler · empati (24); Sağlıklı Yaşıyorum · konu (31); Duygularımı Tanıyorum · duygular (36); İletişim ve Sosyal İlişkiler · metin türleri (43); Atatürk'ü Tanımak · atatürk’ü tanımak (59); Oyun Dünyası · çıkarım (60); Oyun Dünyası · kurallı oyunlar (60); Atatürk'ü Tanımak · atatürk'ün hayatı (60); İletişim ve Sosyal İlişkiler · aile, arkadaş ve komşuluk iletişimi (60); İletişim ve Sosyal İlişkiler · görsel okuma (96); Oyun Dünyası · geleneksel çocuk oyunları (120); Duygularımı Tanıyorum · duygularımı tanıyorum (316); Oyun Dünyası · oyun dünyası (363); İletişim ve Sosyal İlişkiler · i̇letişim ve sosyal i̇lişkiler (376); Sağlıklı Yaşıyorum · sağlıklı yaşıyorum (476); Geleneklerimiz · geleneklerimiz (500); Atatürk'ü Tanımak · atatürk'ü tanımak (520)
 - **Sosyal Bilgiler:** Teknoloji ve Sosyal Bilimler (397); Hayatımızdaki Ekonomi · i̇htiyaç, i̇stek ve bütçe (3); Yaşayan Demokrasimiz · yaşayan demokrasi (4); Ortak Mirasımız · ortak miras (9); Hayatımızdaki Ekonomi · bütçe ve tasarruf (9); Hayatımızdaki Ekonomi · i̇htiyaç ve i̇stek (36); Ortak Mirasımız · ortak mirasımız ve ilk yerleşimler (60); Ortak Mirasımız · ortak miras ögeleri (60); Yaşayan Demokrasimiz · etkin vatandaş (60); Teknoloji ve Sosyal Bilimler · teknolojik gelişmelerin toplum hayatına etkisi (60); Evimiz Dünya · afetler ve farkındalık (64); Yaşayan Demokrasimiz · başvuru yapılabilecek kurumlar (65); Hayatımızdaki Ekonomi · kaynakların verimli kullanımı (69); Birlikte Yaşamak · kültürel özelliklere saygı (120); Evimiz Dünya · komşu devletler (120); Hayatımızdaki Ekonomi · yaşadığı ildeki ekonomik faaliyetler (120); Teknoloji ve Sosyal Bilimler · teknoloji ve sosyal bilimler (251); Hayatımızdaki Ekonomi · hayatımızdaki ekonomi (260); Birlikte Yaşamak · birlikte yaşamak (276); Yaşayan Demokrasimiz · yaşayan demokrasimiz (314); Evimiz Dünya · evimiz dünya (316)

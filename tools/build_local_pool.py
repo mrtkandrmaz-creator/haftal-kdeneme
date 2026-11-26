@@ -164,6 +164,8 @@ def main():
                             continue
                         if bp.topic_other_unit(q, unit, _tsets):
                             continue
+                        if sj == "Matematik" and "MAT.5.1.1" in _kz_of(ai, unit, f.__name__) and not bp.mat511_ok(f.__name__, q):
+                            continue  # altı basamaklı sayılar: yalnız 6 basamaklı, günlük hayat problemi yok
                         s, m = _bkey(ai, q), _mask(q)
                         if not s or s in stems or forms[m] >= args.per_form:
                             continue

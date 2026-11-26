@@ -32,6 +32,8 @@ for q in qs:
         problems.append(("mat-market", sorted(kz)))
     if len(kz) != 1:
         problems.append(("mat-tek-kazanim-degil", f, sorted(kz)))  # her kalıp tek kazanıma bağlı olmalı
+    if "MAT.5.1.1" in kz and not bp.mat511_ok(f, q):
+        problems.append(("mat-5.1.1-alti-basamak-disi", f, bp.qdig(q), str(q.get("question"))[:60]))  # altı basamaklı sayılar: yalnız 6 basamaklı, günlük hayat problemi yok
 
 # --- 2) Diğer dersler
 REG = {"Fen Bilimleri": (ai._FF_GENS, ai._FFACTS), "Sosyal Bilgiler": (ai._SF_GENS, ai._SFACTS), "Türkçe": (ai._TF_GENS, ai._TFACTS),
