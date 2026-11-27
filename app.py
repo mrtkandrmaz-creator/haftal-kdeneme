@@ -37845,6 +37845,69 @@ for _f, _d in ((_mf5_ort_kibrit, 3), (_mf5_ort_kacinci, 3), (_mf5_ort_eksik, 2),
 
 # ---- 5. sınıf Sosyal Bilgiler / Türkçe: tablolu (görselli) eşleştirme ve davranış soruları (2026-11-26)
 _LR_L = ["K", "L", "M", "N"]
+_LR_5 = ["K", "L", "M", "N", "P"]
+_HARD_ARGS = []
+
+
+def _pair_opts(ans, n=5):
+    """İki harfli şık kümesi: doğru çift + doğru çiftle bir harf paylaşan üç yanlış çift."""
+    allp = [(a, b) for a in range(n) for b in range(a + 1, n)]
+    wr = [p for p in allp if p != ans and (p[0] in ans or p[1] in ans)]
+    if len(wr) < 3:
+        return None
+    wr = random.sample(wr, 3)
+    f = lambda p: f"{_LR_5[p[0]]} ve {_LR_5[p[1]]}"
+    return _yn_opts(f(ans), [f(p) for p in wr])
+
+
+def _mk_swap5(name, subject, topic, title, heads, triples, kw_unit, reg):
+    """Zorluk 5: 5 satırlı tabloda iki satırın görevi değiştirilmiş; hangi iki satır yanlış (çok aşamalı kontrol)."""
+    def fn(subject=subject):
+        for _ in range(30):
+            if len(triples) < 5:
+                return None
+            tr = random.sample(triples, 5)
+            bad = sorted(random.sample(range(5), 2))
+            vals = [t[2] for t in tr]
+            vals[bad[0]], vals[bad[1]] = vals[bad[1]], vals[bad[0]]
+            rows = [[_LR_5[j], tr[j][0], tr[j][1], vals[j]] for j in range(5)]
+            o = _pair_opts(tuple(bad))
+            if not o:
+                continue
+            q = f"Tabloda {title.lower()} ile ilgili beş satır verilmiştir. Bu satırların ikisinde eşleştirme yanlış yapılmıştır.\nBuna göre hangi iki satırdaki eşleştirme yanlıştır?"
+            ex = (f"{_LR_5[bad[0]]} satırında {tr[bad[0]][1]} için '{vals[bad[0]]}', {_LR_5[bad[1]]} satırında {tr[bad[1]][1]} için '{vals[bad[1]]}' yazılmıştır; "
+                  f"doğruları sırasıyla '{tr[bad[0]][2]}' ve '{tr[bad[1]][2]}' olmalıdır. Diğer satırlar doğrudur.")
+            return _mf_raw(subject, topic, q, o, ex, shape=_yn_tbl(title, ["Satır"] + list(heads), rows))
+        return None
+    fn.__name__ = name
+    reg.append((fn, kw_unit))
+    _DIFF_OF[name] = 5
+    return fn
+
+
+def _mk_behav5(name, subject, topic, title, head, good, bad, q_good, q_bad, kw_unit, reg):
+    """Zorluk 5: 5 davranıştan tam ikisi istenen türde; hangi ikisi (her davranış tek tek değerlendirilir)."""
+    def fn(subject=subject):
+        kind = random.choice(["iyi", "kotu"])
+        gs, bs = (good, bad) if kind == "iyi" else (bad, good)
+        if len(gs) < 2 or len(bs) < 3:
+            return None
+        items = random.sample(gs, 2) + random.sample(bs, 3)
+        random.shuffle(items)
+        ans = tuple(j for j in range(5) if items[j] in gs)
+        if len(ans) != 2:
+            return None
+        o = _pair_opts(ans)
+        if not o:
+            return None
+        rows = [[_LR_5[j], items[j]] for j in range(5)]
+        q = "Tabloda beş davranış verilmiştir.\n" + (q_good if kind == "iyi" else q_bad).replace("hangisi", "hangileri")
+        ex = f"{_LR_5[ans[0]]} ('{items[ans[0]]}') ve {_LR_5[ans[1]]} ('{items[ans[1]]}') satırları ölçüte uyar; diğer satırlar uymaz."
+        return _mf_raw(subject, topic, q, o, ex, shape=_yn_tbl(title, ["Satır", head], rows))
+    fn.__name__ = name
+    reg.append((fn, kw_unit))
+    _DIFF_OF[name] = 5
+    return fn
 
 
 def _mk_swap(name, subject, topic, title, heads, triples, kw_unit, reg):
@@ -37885,6 +37948,7 @@ def _mk_swap(name, subject, topic, title, heads, triples, kw_unit, reg):
         return None
     fn.__name__ = name
     reg.append((fn, kw_unit))
+    _HARD_ARGS.append(("swap", name, subject, topic, title, heads, triples, kw_unit, reg))
     return fn
 
 
@@ -37910,6 +37974,7 @@ def _mk_behav(name, subject, topic, title, head, good, bad, q_good, q_bad, expl_
         return _mf_raw(subject, topic, f"Tabloda dört davranış verilmiştir.\n{q}", o, f"{_LR_L[ai_]} satırındaki '{g}' davranışı: {ex}", shape=_yn_tbl(title, ["Satır", head], rows))
     fn.__name__ = name
     reg.append((fn, kw_unit))
+    _HARD_ARGS.append(("behav", name, subject, topic, title, head, good, bad, q_good, q_bad, kw_unit, reg))
     return fn
 
 
@@ -37969,6 +38034,13 @@ _mk_behav("_df_tab_sukur", "Din Kültürü ve Ahlak Bilgisi", "Allah'ın varlı�
           ["Yiyecekleri israf etmek", "Sahip olduklarını küçümsemek", "Her zaman yalnızca şikâyet etmek", "Verilen nimetlere değer vermemek"],
           "Aşağıdaki davranışlardan hangisi Allah'ın verdiği nimetlere şükretmenin bir örneğidir?", "Aşağıdaki davranışlardan hangisi Allah'ın verdiği nimetlere şükretmenin bir örneği DEĞİLDİR?", "nimetlere şükretmenin göstergesidir.", "nimetlere şükretmekle bağdaşmaz.", ("evrendeki",), _DFN)
 _DF_GENS += _DFN
+
+for _h in list(_HARD_ARGS):
+    _reg5 = {"Sosyal Bilgiler": _SF_GENS, "Türkçe": _TF_GENS, "Din Kültürü ve Ahlak Bilgisi": _DF_GENS}[_h[2]]
+    if _h[0] == "swap":
+        _mk_swap5(_h[1] + "_5", _h[2], _h[3], _h[4], _h[5], _h[6], _h[7], _reg5)
+    else:
+        _mk_behav5(_h[1] + "_5", _h[2], _h[3], _h[4], _h[5], _h[6], _h[7], _h[8], _h[9], _h[10], _reg5)
 
 
 
