@@ -279,3 +279,9 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - `report_bad` "Konu dışı": (kalıp, ünite) sayacı `offtopic_cnt.json`'a yazılır. `tools/build_local_pool.py` (`--bad-dir`): tüm profillerde toplam ≥2 bildirim alan (kalıp, ünite) çifti ve `bad_tpls.json`'da ≥2 bildirimli kalıp gece havuzuna girmez (1 bildirimde çalışma anındaki dışlama sürer). Sahte klasörle denendi: işaretli çift havuzdan çıktı.
 - İngilizce "School Life": görselli oran %1 → %57 (495 sorunun 281'i). Yeni kalıplar: `_en_yn_club` (kulüp programı), `_en_yn_places` (okul yerleri/kat), `_en_yn_natday` (ulusal bayramlar), `_en_yn_countries` (ülke/dil), `_en_yn_sp_day` (Simple Present, günlük program), `_en_yn_signs` (tabelalar/emir kipi), `_en_club_bar` (kulüp grafiği).
 - `tools/gorsel_inceleme.py`: `_en_` önekli kalıplar İngilizce olarak değerlendirilir (doc şekilleri artık çizilir). Gözle taramada taşan metin (19 Mayıs satırı) ve "Watch tv" yazımı bulunup düzeltildi.
+
+### İngilizce Classroom Life + Family Life görselleri
+- Classroom Life: `_en_cl_objects` (There is/are, sınıf envanteri), `_en_cl_subjects`, `_en_cl_week` (günler/dersler), `_en_cl_time` (saat söyleme), `_en_cl_bar` (sevilen dersler grafiği). Görselli oran %39 → %61 (441 soru).
+- Family Life: `_en_fl_progress` (Present Progressive, fotoğraf), `_en_fl_pp_sp` (her gün/şimdi tablosu, PP vs SP), `_en_fl_hobby`, `_en_fl_chores_tab` (görev çizelgesi), `_en_fl_bar` (hobi grafiği). Görselli oran %32 → %51 (604 soru).
+- Hata yakalandı: yeni `_EN_NUM` adı eski bir listeyi ezecekti (dosyada aynı ad vardı) → `_EN_NUMW`. Yeni kalıp adlarının benzersizliği tarandı.
+- Kalan en düşük: Personal Life %47.

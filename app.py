@@ -19070,6 +19070,167 @@ for _f, _kw, _d in ((_en_yn_club, ("clubs", "school life"), 2), (_en_yn_places, 
     _EF_GENS.append((_f, _kw))
     _DIFF_OF[_f.__name__] = _d
 
+# ---- Classroom Life ve Family Life: görselli ek kalıplar
+_EN_OBJ = [("pencil", "pencils"), ("book", "books"), ("chair", "chairs"), ("desk", "desks"), ("window", "windows"), ("door", "doors"), ("bag", "bags"), ("ruler", "rulers"), ("board", "boards"), ("clock", "clocks")]
+_EN_NUMW = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten", 12: "twelve", 20: "twenty"}
+
+
+def _en_cl_objects(subject):
+    ob = random.sample(_EN_OBJ, 4)
+    ns = [random.choice([1, 2, 3, 4, 5, 6, 8, 10, 12, 20]) for _ in ob]
+    sh = _en_doc("OUR CLASSROOM", [["grid", ["Object", "Number"], [[o[0].capitalize() if n == 1 else o[1].capitalize(), str(n)] for o, n in zip(ob, ns)]]], deco="books")
+    i = random.randrange(4)
+    o, n = ob[i], ns[i]
+    kind = random.choice(["count", "there"])
+    if kind == "count":
+        return _en_pick("Classroom objects", f"How many {o[1]} are there in the classroom?", str(n), [str(x) for x in (n + 1, n + 2, max(n - 1, 0), n + 5) if x != n], f"Tabloda {o[1]} için {n} yazıyor.", shape=sh)
+    ok = f"There is one {o[0]}." if n == 1 else f"There are {_EN_NUMW[n]} {o[1]}."
+    wr = [f"There are one {o[0]}." if n == 1 else f"There is {_EN_NUMW[n]} {o[1]}.", f"There is {_EN_NUMW[n]} {o[0]}." if n > 1 else f"There is two {o[1]}.",
+          f"There are {_EN_NUMW.get(n + 1, 'eleven')} {o[1]}." if n > 1 else f"There are one {o[1]}."]
+    wr.append(f"There is {_EN_NUMW[n]} {o[1]}s." if n > 1 else f"There are {_EN_NUMW[n]} {o[0]}.")
+    return _en_pick("There is/are", "Which sentence is TRUE according to the table?", ok, wr, f"Tabloda {o[0] if n == 1 else o[1]} sayısı {n}; 1 için 'There is', çoğul için 'There are' kullanılır.", shape=sh)
+
+
+_EN_SUBJ = ["Maths", "Science", "English", "Music", "Art", "P.E.", "History", "Turkish"]
+
+
+def _en_cl_subjects(subject):
+    ns = random.sample(["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"], 4)
+    sb = random.sample(_EN_SUBJ, 4)
+    sh = _en_doc("FAVOURITE SUBJECTS", [["grid", ["Name", "Favourite subject"], [[n, s] for n, s in zip(ns, sb)]]], deco="books")
+    i = random.randrange(4)
+    if random.random() < .5:
+        return _en_pick("School subjects", f"What is {ns[i]}'s favourite subject?", sb[i], [s for s in _EN_SUBJ if s != sb[i]], f"Tabloda {ns[i]} için {sb[i]} yazıyor.", shape=sh)
+    return _en_pick("School subjects", f"Who likes {sb[i]}?", ns[i], [n for n in ns if n != ns[i]] + [n for n in ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"] if n not in ns][:1], f"{sb[i]} dersini seven kişi {ns[i]}.", shape=sh)
+
+
+def _en_cl_week(subject):
+    sb = random.sample(_EN_SUBJ, 4)
+    ds = random.sample(_EN_DAYS5, 4)
+    sh = _en_doc("WEEKLY LESSONS", [["grid", ["Lesson", "Day"], [[s, d] for s, d in zip(sb, ds)]]], deco="books")
+    i = random.randrange(4)
+    kind = random.choice(["day", "less"])
+    if kind == "day":
+        return _en_pick("Days of the week", f"What day is the {sb[i]} lesson?", ds[i], [d for d in _EN_DAYS5 if d != ds[i]], f"Tabloda {sb[i]} dersi {ds[i]} günü.", shape=sh)
+    return _en_pick("Days of the week", f"Which lesson do we have on {ds[i]}?", sb[i], [s for s in sb if s != sb[i]] + [s for s in _EN_SUBJ if s not in sb][:1], f"{ds[i]} günü dersi {sb[i]}.", shape=sh)
+
+
+_EN_CLK = {"3.00": "It's three o'clock.", "3.15": "It's a quarter past three.", "3.30": "It's half past three.", "3.45": "It's a quarter to four.", "3.10": "It's ten past three.", "3.20": "It's twenty past three.",
+           "3.50": "It's ten to four.", "3.40": "It's twenty to four."}
+
+
+def _en_cl_time(subject):
+    ls = random.sample(["Maths", "Science", "English", "Music", "Art", "P.E."], 4)
+    ts = random.sample(list(_EN_CLK), 4)
+    sh = _en_doc("TODAY'S LESSONS", [["grid", ["Lesson", "Time"], [[s, t] for s, t in zip(ls, ts)]]], deco="books")
+    i = random.randrange(4)
+    return _en_pick("Telling the time", f"What time is the {ls[i]} lesson?", _EN_CLK[ts[i]], [v for k, v in _EN_CLK.items() if k != ts[i]], f"Tabloda {ls[i]} dersi {ts[i]}; İngilizce: {_EN_CLK[ts[i]]}", shape=sh)
+
+
+def _en_cl_bar(subject):
+    sb = random.sample(_EN_SUBJ, 4)
+    vs = random.sample([4, 5, 6, 7, 8, 9, 10, 11], 4)
+    sh = {"type": "bar_chart", "title": "Favourite subjects of Class 5A", "labels": sb, "values": vs}
+    i, j = random.sample(range(4), 2)
+    if random.random() < .5:
+        return _en_pick("School subjects", f"How many students like {sb[i]}?", str(vs[i]), [str(x) for x in (vs[i] + 1, vs[i] - 1, vs[i] + 3, vs[j]) if x != vs[i]], f"Grafikte {sb[i]} için {vs[i]} öğrenci görünüyor.", shape=sh)
+    tot = sum(vs)
+    return _en_pick("School subjects", "How many students are there in the chart in total?", str(tot), [str(tot + 2), str(tot - 3), str(tot + 5), str(tot - 1)], f"{' + '.join(map(str, vs))} = {tot}.", shape=sh)
+
+
+_EN_ING = {"cook": "cooking", "read": "reading", "watch": "watching", "wash": "washing", "play": "playing", "clean": "cleaning", "write": "writing", "sleep": "sleeping", "make": "making", "run": "running",
+           "water": "watering", "paint": "painting"}
+_EN_3S = {"cook": "cooks", "read": "reads", "watch": "watches", "wash": "washes", "play": "plays", "clean": "cleans", "write": "writes", "sleep": "sleeps", "make": "makes", "run": "runs", "water": "waters", "paint": "paints"}
+_EN_OBJ_OF = {"cook": "dinner", "read": "a book", "watch": "TV", "wash": "the car", "play": "the piano", "clean": "the kitchen", "write": "a letter", "sleep": "", "make": "a cake", "run": "in the park", "water": "the flowers",
+              "paint": "a picture"}
+_EN_FAM = [("Mum", "She"), ("Dad", "He"), ("Sister", "She"), ("Brother", "He"), ("Grandma", "She"), ("Grandpa", "He")]
+
+
+def _en_fl_progress(subject):
+    mem = random.sample(_EN_FAM, 4)
+    vb = random.sample(list(_EN_ING), 4)
+    rows = [[m, (v + " " + _EN_OBJ_OF[v]).strip()] for (m, _), v in zip(mem, vb)]
+    sh = _en_doc("FAMILY PHOTO", [["grid", ["Person", "Activity (now)"], [[m, a.capitalize()] for m, a in rows]]], deco="balloons")
+    i = random.randrange(4)
+    m, pr = mem[i]
+    v = vb[i]
+    ob = (" " + _EN_OBJ_OF[v]) if _EN_OBJ_OF[v] else ""
+    ok = f"{pr} is {_EN_ING[v]}{ob}."
+    wr = [f"{pr} {_EN_3S[v]}{ob}.", f"{pr} {_EN_ING[v]}{ob}.", f"{pr} is {v}{ob}.", f"{pr} are {_EN_ING[v]}{ob}."]
+    return _en_pick("Present Progressive", f"Look at the photo. What is {m} doing now?", ok, wr, f"Şu anda olan eylem için am/is/are + fiil-ing kullanılır: {ok}", shape=sh)
+
+
+def _en_fl_pp_sp(subject):
+    mem = random.sample(_EN_FAM, 3)
+    ev = random.sample(list(_EN_3S), 6)
+    rows = [[m, (ev[2 * k] + " " + _EN_OBJ_OF[ev[2 * k]]).strip(), (ev[2 * k + 1] + " " + _EN_OBJ_OF[ev[2 * k + 1]]).strip()] for k, (m, _) in enumerate(mem)]
+    sh = _en_doc("EVERY DAY and NOW", [["grid", ["Person", "Every day", "Now"], [[r[0], r[1].capitalize(), r[2].capitalize()] for r in rows]]], deco="balloons")
+    k = random.randrange(3)
+    m, pr = mem[k]
+    ed, nw = ev[2 * k], ev[2 * k + 1]
+    ode = (" " + _EN_OBJ_OF[ed]) if _EN_OBJ_OF[ed] else ""
+    onw = (" " + _EN_OBJ_OF[nw]) if _EN_OBJ_OF[nw] else ""
+    if random.random() < .5:
+        ok = f"{pr} {_EN_3S[ed]}{ode} every day."
+        wr = [f"{pr} is {_EN_ING[ed]}{ode} every day.", f"{pr} {_EN_3S[nw]}{onw} every day.", f"{pr} {ed}{ode} every day.", f"{pr} is {_EN_ING[nw]}{onw} every day."]
+        ex = f"Tabloda her gün için '{ed}' yazıyor; alışkanlıkta Simple Present kullanılır: {ok}"
+    else:
+        ok = f"{pr} is {_EN_ING[nw]}{onw} now."
+        wr = [f"{pr} {_EN_3S[nw]}{onw} now.", f"{pr} is {_EN_ING[ed]}{ode} now.", f"{pr} {_EN_ING[nw]}{onw} now.", f"{pr} {_EN_3S[ed]}{ode} now."]
+        ex = f"Tabloda şimdi için '{nw}' yazıyor; şu anki eylemde Present Progressive kullanılır: {ok}"
+    return _en_pick("Present Progressive vs Simple Present", f"Which sentence about {m} is TRUE according to the table?", ok, wr, ex, shape=sh)
+
+
+_EN_HOB = ["swimming", "reading", "painting", "playing chess", "riding a bike", "dancing", "playing the guitar", "cooking"]
+
+
+def _en_fl_hobby(subject):
+    ns = random.sample(["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"], 4)
+    hb = random.sample(_EN_HOB, 4)
+    sh = _en_doc("OUR HOBBIES", [["grid", ["Name", "Hobby"], [[n, h.capitalize()] for n, h in zip(ns, hb)]]], deco="stars")
+    i = random.randrange(4)
+    he = "She" if ns[i] in _FEM else "He"
+    if random.random() < .5:
+        return _en_pick("Hobbies and activities", f"What does {ns[i]} like doing?", f"{he} likes {hb[i]}.", [f"{he} likes {h}." for h in _EN_HOB if h != hb[i]], f"Tabloda {ns[i]} için {hb[i]} yazıyor.", shape=sh)
+    return _en_pick("Hobbies and activities", f"Who likes {hb[i]}?", ns[i], [n for n in ns if n != ns[i]] + [x for x in _NAMES if x not in ns][:1], f"{hb[i]} hobisi olan kişi {ns[i]}.", shape=sh)
+
+
+_EN_CHORE = ["wash the dishes", "clean the room", "take out the rubbish", "water the plants", "make the bed", "set the table", "feed the cat", "iron the clothes"]
+_EN_CHORE_3 = {"wash the dishes": "washes the dishes", "clean the room": "cleans the room", "take out the rubbish": "takes out the rubbish", "water the plants": "waters the plants", "make the bed": "makes the bed",
+               "set the table": "sets the table", "feed the cat": "feeds the cat", "iron the clothes": "irons the clothes"}
+
+
+def _en_fl_chores_tab(subject):
+    mem = random.sample(_EN_FAM, 4)
+    ch = random.sample(_EN_CHORE, 4)
+    days = random.sample(_EN_DAYS5, 4)
+    sh = _en_doc("CHORE CHART", [["grid", ["Person", "Chore", "Day"], [[m, c.capitalize(), d] for (m, _), c, d in zip(mem, ch, days)]]], deco="stars", theme="turuncu")
+    i = random.randrange(4)
+    m, pr = mem[i]
+    ok = f"{pr} {_EN_CHORE_3[ch[i]]} on {days[i]}."
+    wr = [f"{pr} {ch[i]} on {days[i]}.", f"{pr} {_EN_CHORE_3[ch[(i + 1) % 4]]} on {days[i]}.", f"{pr} {_EN_CHORE_3[ch[i]]} on {days[(i + 1) % 4]}.", f"{pr} is {({'wash': 'washing', 'clean': 'cleaning', 'take': 'taking', 'water': 'watering', 'make': 'making', 'set': 'setting', 'feed': 'feeding', 'iron': 'ironing'})[ch[i].split(' ', 1)[0]]} {ch[i].split(' ', 1)[1]} on {days[i]}."]
+    return _en_pick("Chores", f"Which sentence about {m} is TRUE according to the chart?", ok, wr, f"Tabloda {m} için '{ch[i]}' ve {days[i]} yazıyor; he/she ile fiil -s/-es alır.", shape=sh)
+
+
+def _en_fl_bar(subject):
+    hb = random.sample(_EN_HOB, 4)
+    vs = random.sample([3, 4, 5, 6, 7, 8, 9, 10], 4)
+    sh = {"type": "bar_chart", "title": "Hobbies in our class", "labels": [h.capitalize() for h in hb], "values": vs}
+    i, j = random.sample(range(4), 2)
+    if random.random() < .5:
+        return _en_pick("Hobbies and activities", f"How many students like {hb[i]}?", str(vs[i]), [str(x) for x in (vs[i] + 1, vs[i] - 1, vs[i] + 3, vs[j]) if x != vs[i]], f"Grafikte {hb[i]} için {vs[i]} öğrenci görünüyor.", shape=sh)
+    d = abs(vs[i] - vs[j])
+    hi, lo = (hb[i], hb[j]) if vs[i] > vs[j] else (hb[j], hb[i])
+    return _en_pick("Hobbies and activities", f"How many more students like {hi} than {lo}?", str(d), [str(x) for x in (d + 1, d + 3, vs[i] + vs[j], max(d - 1, 1)) if x != d], f"{max(vs[i], vs[j])} − {min(vs[i], vs[j])} = {d}.", shape=sh)
+
+
+for _f, _kw, _d in ((_en_cl_objects, ("classroom life", "classroom objects", "there is/are"), 2), (_en_cl_subjects, ("classroom life", "school subjects"), 2), (_en_cl_week, ("classroom life", "days of the week", "timetable"), 2),
+                    (_en_cl_time, ("classroom life", "telling the time"), 3), (_en_cl_bar, ("classroom life", "school subjects"), 3), (_en_fl_progress, ("family life", "present progressive"), 3),
+                    (_en_fl_pp_sp, ("family life", "present progressive vs"), 4), (_en_fl_hobby, ("family life", "hobbies and activities"), 2), (_en_fl_chores_tab, ("family life", "chores"), 3),
+                    (_en_fl_bar, ("family life", "hobbies and activities"), 3)):
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
+
 _NAMES = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
 _FEM = {"Ayşe", "Elif", "Zeynep"}
 
