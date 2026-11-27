@@ -29729,8 +29729,16 @@ _DH_GVS = [("Kafatası", "Beyni korur."), ("Kaburga kemikleri", "Kalbi ve akciğ
            ("Dirsek", "Kolun bükülmesini sağlar."), ("Diz", "Bacağın bükülmesini sağlar."), ("Kaslar", "Kasılıp gevşeyerek kemikleri hareket ettirir.")]
 
 
+def _dh_gvs4():
+    """Yapı–görev çifti seç; görevleri birbirine karışabilen (uyluk/diz/kaslar: bacak hareketi) yapılardan en çok biri gelsin."""
+    while True:
+        ch = random.sample(_DH_GVS, 4)
+        if sum(1 for c in ch if c[0] in ("Uyluk kemiği", "Diz", "Kaslar")) <= 1:
+            return ch
+
+
 def _ff_dh_tab_gorev(subject):
-    ch = random.sample(_DH_GVS, 4)
+    ch = _dh_gvs4()
     lb = random.sample(_CD_L, 4)
     i = random.randrange(4)
     o = _yn_opts(lb[i], [lb[j] for j in range(4) if j != i])
@@ -29835,7 +29843,7 @@ def _ff_dh_hareket_bar(subject):
 
 
 def _ff_dh_eslestir_yanlis(subject):
-    ch = random.sample(_DH_GVS, 4)
+    ch = _dh_gvs4()
     gv = [c[1] for c in ch]
     i = random.randrange(4)
     k = random.choice([j for j in range(4) if j != i])
@@ -37100,6 +37108,163 @@ _M5N_FAMS = [(_mf5_pr_olasi_tab, ("olasılık",), 2, "MAT.5.6.1"), (_mf5_pr_kutu
              (_mf5_ck_tur, ("üçgen", "çember"), 3, "MAT.5.3.7"), (_mf5_ck_cevre, ("üçgen", "çember"), 3, "MAT.5.3.7"), (_mf5_ck_eksik, ("üçgen", "çember"), 2, "MAT.5.3.7"), (_mf5_ck_esit, ("üçgen", "çember"), 3, "MAT.5.3.7"),
              (_mf5_cv_dik_tab, ("çevre", "alan"), 2, "MAT.5.4.1"), (_mf5_cv_dik_sekil, ("çevre", "alan"), 1, "MAT.5.4.1"), (_mf5_cv_eksik_kenar, ("çevre", "alan"), 2, "MAT.5.4.1")]
 for _f, _kw, _d, _cd in _M5N_FAMS:
+    _MF_GENS.append((_m5_lead2(_f), _kw, (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- MAT.5.2.1 (eşitliğin korunumu, işlem özellikleri) ve MAT.5.3.2 (pergel, cetvel, çember çizimi) ek kalıplar
+def _mf5_eq_koru_tab(subject):
+    op = random.choice(["+", "−", "×", "÷"])
+    a = random.randint(3, 15)
+    x = random.randint(4, 30)
+    if op == "+":
+        b = x + a
+        rows = [["1. adım", f"x + {a} = {b}"], ["2. adım", f"x + {a} − {a} = {b} − {a}"], ["3. adım", "x = ?"]]
+        wr = [b + a, b, a, x + 1, x - 1, b - a - 1]
+    elif op == "−":
+        b = x
+        rows = [["1. adım", f"x − {a} = {b}"], ["2. adım", f"x − {a} + {a} = {b} + {a}"], ["3. adım", "x = ?"]]
+        x = b + a
+        wr = [b - a if b > a else b + 2 * a, b, a, x + 1, x - 1, a * b]
+    elif op == "×":
+        x = random.randint(3, 14)
+        a = random.randint(3, 9)
+        b = a * x
+        rows = [["1. adım", f"{a} × x = {b}"], ["2. adım", f"{a} × x ÷ {a} = {b} ÷ {a}"], ["3. adım", "x = ?"]]
+        wr = [b - a, b + a, a, x + 1, x - 1, x * 2]
+    else:
+        x = random.randint(3, 14)
+        a = random.randint(3, 9)
+        b = x
+        rows = [["1. adım", f"x ÷ {a} = {b}"], ["2. adım", f"x ÷ {a} × {a} = {b} × {a}"], ["3. adım", "x = ?"]]
+        x = a * b
+        wr = [b + a, a, b, x + a, x - a, b * (a + 1)]
+    wr = [w for w in dict.fromkeys(wr) if w != x and w > 0]
+    o = _mf_opts(x, wr, str)
+    if not o:
+        return None
+    q = "Tabloda eşitliğin korunumu kullanılarak bir bilinmeyenli eşitlik çözülmüştür. Her adımda eşitliğin iki tarafına da aynı işlem uygulanmıştır.\nBuna göre ? yerine hangi sayı gelmelidir?"
+    return _mf_raw(subject, "İşlem Özellikleri", q, o, f"İki tarafa da aynı işlem uygulandığında eşitlik bozulmaz; 2. adımdaki işlem sonucunda x = {x} bulunur.", shape=_yn_tbl("Eşitliğin korunumu", ["Adım", "Eşitlik"], rows))
+
+
+def _eq_stm():
+    a, b, c = sorted(random.sample(range(3, 20), 3), reverse=True)  # a > b > c: çıkarmalarda negatif sayı çıkmasın (5. sınıf)
+    T = [(f"{a} + {b} = {b} + {a}", True), (f"{a} × {b} = {b} × {a}", True), (f"({a} + {b}) + {c} = {a} + ({b} + {c})", True),
+         (f"{a} × ({b} + {c}) = {a} × {b} + {a} × {c}", True), (f"{a} × 1 = {a}", True), (f"{a} + 0 = {a}", True), (f"{a} × 0 = 0", True),
+         (f"{a} × ({b} − {c}) = {a} × {b} − {a} × {c}", True)]
+    F = [(f"{a} × ({b} + {c}) = {a} × {b} + {c}", False), (f"{a} + 0 = 0", False), (f"{a} × 0 = {a}", False), (f"{a} + {b} = {a} × {b}", False),
+         (f"{a} × ({b} − {c}) = {a} × {b} − {c}", False)]
+    if a - b > c:
+        F.append((f"({a} − {b}) − {c} = {a} − ({b} − {c})", False))
+    return T, F
+
+
+def _chk(t):
+    l, r = t.split(" = ")
+    ev = lambda s: eval(s.replace("×", "*").replace("−", "-"))
+    return ev(l) == ev(r)
+
+
+def _mf5_eq_ozellik_yanlis(subject):
+    T, F = _eq_stm()
+    tr = random.sample(T, 3)
+    fl = random.choice(F)
+    if any(not _chk(t) for t, _ in tr) or _chk(fl[0]):
+        return None
+    allr = tr + [fl]
+    random.shuffle(allr)
+    i = [t for t, _ in allr].index(fl[0])
+    o = _yn_opts(f"{i + 1}. satır", [f"{j + 1}. satır" for j in range(4) if j != i])
+    sh = _yn_tbl("Eşitlikler", ["Satır", "Eşitlik"], [[str(j + 1), allr[j][0]] for j in range(4)])
+    return _mf_raw(subject, "İşlem Özellikleri", "Bir öğrenci işlem özelliklerine ait bazı eşitlikleri tabloya yazmıştır.\nBuna göre hangi satırdaki eşitlik doğru değildir?", o, f"{i + 1}. satırdaki eşitliğin iki tarafı aynı sonucu vermez; diğer eşitlikler işlem özelliklerine uygundur.", shape=sh) if o else None
+
+
+def _mf5_eq_ozellik_ad(subject):
+    def mk():
+        a, b, c, d = random.sample(range(3, 15), 4)
+        return {"Toplamada değişme özelliği": [f"{a} + {b} = {b} + {a}", f"{c} + {d} = {d} + {c}"],
+                "Çarpmada değişme özelliği": [f"{a} × {b} = {b} × {a}", f"{c} × {d} = {d} × {c}"],
+                "Toplamada birleşme özelliği": [f"({a} + {b}) + {c} = {a} + ({b} + {c})", f"({b} + {d}) + {a} = {b} + ({d} + {a})"],
+                "Çarpmada birleşme özelliği": [f"({a} × 2) × {c} = {a} × (2 × {c})", f"({b} × 3) × {d} = {b} × (3 × {d})"],
+                "Çarpmanın toplama üzerine dağılma özelliği": [f"{a} × ({b} + {c}) = {a} × {b} + {a} × {c}", f"{d} × ({b} + {a}) = {d} × {b} + {d} × {a}"],
+                "Çarpmada etkisiz eleman özelliği": [f"{a} × 1 = {a}", f"{b} × 1 = {b}"], "Toplamada etkisiz eleman özelliği": [f"{a} + 0 = {a}", f"{b} + 0 = {b}"]}
+    P = mk()
+    k = random.choice(list(P))
+    o = _yn_opts(k, random.sample([x for x in P if x != k], 3))
+    return _mf_raw(subject, "İşlem Özellikleri", "Tabloda iki eşitlik verilmiştir. Her iki eşitlik de aynı işlem özelliğine örnektir.\nBuna göre bu eşitliklerde kullanılan işlem özelliği aşağıdakilerden hangisidir?", o,
+                   f"İki eşitlikte de aynı kural uygulanmıştır: {k.lower()}.", shape=_yn_tbl("Eşitlikler", ["Örnek", "Eşitlik"], [["I", P[k][0]], ["II", P[k][1]]])) if o else None
+
+
+def _mf5_eq_eksik_sayi(subject):
+    a, b, c, d, e, f = random.sample(range(3, 19), 6)
+    kind = random.choice(["birl", "dag", "deg"])
+    if kind == "birl":
+        r1, r2, ans = f"({a} + {b}) + {c} = {a} + ({b} + {c})", f"({d} + {e}) + {f} = {d} + (□ + {f})", e
+        ex = f"Toplamada birleşme özelliğinde toplananların gruplanışı değişir, sayılar aynı kalır: □ = {e}."
+    elif kind == "dag":
+        r1, r2, ans = f"{a} × ({b} + {c}) = {a} × {b} + {a} × {c}", f"{d} × ({e} + {f}) = {d} × □ + {d} × {f}", e
+        ex = f"Dağılma özelliğinde çarpan her toplananla çarpılır: □ = {e}."
+    else:
+        r1, r2, ans = f"{a} × {b} = {b} × {a}", f"{d} × {e} = □ × {d}", e
+        ex = f"Çarpmada değişme özelliğinde çarpanların yeri değişir: □ = {e}."
+    o = _mf_opts(ans, [f, d, e + f, e + 1, e - 1, d + e], str)
+    return _mf_raw(subject, "İşlem Özellikleri", "Tabloda birinci satırda bir işlem özelliğine ait örnek verilmiştir. İkinci satırdaki eşitlik de aynı özellikle yazılmıştır.\nBuna göre □ yerine hangi sayı gelmelidir?", o, ex,
+                   shape=_yn_tbl("Eşitlikler", ["Satır", "Eşitlik"], [["Örnek", r1], ["Eksik", r2]])) if o else None
+
+
+def _mf5_in_pergel_tab(subject):
+    rs = random.sample([2, 3, 4, 5, 6, 7, 8, 9], 3)
+    nm = ["K", "L", "M"]
+    i = random.randrange(3)
+    ans = rs[i] * 2
+    o = _mf_opts(ans, [rs[i], rs[i] + 2, ans + 2, ans - 2, rs[i] * 3, ans + 4], lambda v: f"{v} cm")
+    return _mf_raw(subject, "Çember ve daire elemanları", f"Bir öğrenci pergelini tabloda gösterilen açıklıklara ayarlayarak merkezleri farklı üç çember çiziyor.\nBuna göre {nm[i]} çemberinin çapı kaç cm'dir?", o,
+                   f"Pergelin açıklığı çemberin yarıçapıdır: {rs[i]} cm. Çap yarıçapın 2 katıdır: 2 × {rs[i]} = {ans} cm.", shape=_yn_tbl("Pergel açıklıkları", ["Çember", "Pergel açıklığı"], [[nm[j], f"{rs[j]} cm"] for j in range(3)])) if o else None
+
+
+def _mf5_in_cetvel_tab(subject):
+    a1 = random.randint(0, 4)
+    l1 = random.randint(3, 9)
+    a2 = random.randint(0, 4)
+    l2 = random.randint(3, 9)
+    if l1 == l2:
+        return None
+    b1, b2 = a1 + l1, a2 + l2
+    rows = [["|AB|", f"{a1}", f"{b1}"], ["|CD|", f"{a2}", f"{b2}"]]
+    sh = _yn_tbl("Cetvelle yapılan ölçümler", ["Doğru parçası", "Başlangıç (cm)", "Bitiş (cm)"], rows)
+    if random.random() < .5:
+        ans = l1 + l2
+        q, ex, wr = "|AB| ile |CD| doğru parçalarının uzunlukları toplamı kaç cm'dir?", f"|AB| = {b1} − {a1} = {l1} cm, |CD| = {b2} − {a2} = {l2} cm; toplam {ans} cm.", [b1 + b2, b1 + l2, l1 + b2, ans + 2, ans - 2]
+    else:
+        ans = abs(l1 - l2)
+        q, ex, wr = "|AB| ile |CD| doğru parçalarının uzunlukları arasındaki fark kaç cm'dir?", f"|AB| = {l1} cm, |CD| = {l2} cm; fark {ans} cm.", [abs(b1 - b2), ans + 1, ans + 2, l1 + l2, abs(a1 - a2) + 1]
+    o = _mf_opts(ans, [w for w in wr if w > 0 and w != ans], lambda v: f"{v} cm")
+    return _mf_raw(subject, "Doğru, ışın ve doğru parçası", "Bir öğrenci iki doğru parçasının uzunluğunu cetvelle ölçmüş ve cetvel üzerindeki başlangıç ve bitiş noktalarını tabloya yazmıştır. Ölçümlerde doğru parçasının uçları cetvelin farklı yerlerine konmuştur.\n" + q, o, ex, shape=sh) if o else None
+
+
+def _mf5_in_halka_tab(subject):
+    r = sorted(random.sample(range(2, 13), 3))
+    nm = random.sample(["K", "L", "M", "N", "P", "R"], 3)
+    sh = _yn_tbl("Aynı merkezli çemberler", ["Çember", "Yarıçap"], [[nm[j], f"{r[j]} cm"] for j in range(3)])
+    if random.random() < .5:
+        ans = 2 * r[2]
+        q = f"Merkezleri aynı olan üç çemberin yarıçapları tabloda verilmiştir.\nBuna göre en büyük çemberin çapı kaç cm'dir?"
+        ex = f"En büyük çember {nm[2]}'dir; yarıçapı {r[2]} cm olduğundan çapı 2 × {r[2]} = {ans} cm'dir."
+        wr = [r[2], r[2] + 2, ans + 2, ans - 2, r[0] + r[1] + r[2]]
+    else:
+        ans = r[2] - r[1]
+        q = f"Merkezleri aynı olan üç çemberin yarıçapları tabloda verilmiştir.\nBuna göre {nm[1]} ile {nm[2]} çemberleri arasındaki halkanın genişliği (yarıçaplar arası fark) kaç cm'dir?"
+        ex = f"{r[2]} − {r[1]} = {ans} cm."
+        wr = [r[2] + r[1], ans + 1, ans + 2, r[2] - r[0], 2 * ans]
+    o = _mf_opts(ans, [w for w in wr if w > 0 and w != ans], lambda v: f"{v} cm")
+    return _mf_raw(subject, "Çember ve daire elemanları", q, o, ex, shape=sh) if o else None
+
+
+_M5E_FAMS = [(_mf5_eq_koru_tab, ("cebirsel düşünme",), 2, "MAT.5.2.1"), (_mf5_eq_ozellik_yanlis, ("cebirsel düşünme",), 3, "MAT.5.2.1"), (_mf5_eq_ozellik_ad, ("cebirsel düşünme",), 2, "MAT.5.2.1"),
+             (_mf5_eq_eksik_sayi, ("cebirsel düşünme",), 3, "MAT.5.2.1"), (_mf5_in_pergel_tab, ("çember",), 2, "MAT.5.3.2"), (_mf5_in_cetvel_tab, ("doğru parça", "doğru", "ışın"), 2, "MAT.5.3.2"),
+             (_mf5_in_halka_tab, ("çember",), 3, "MAT.5.3.2")]
+for _f, _kw, _d, _cd in _M5E_FAMS:
     _MF_GENS.append((_m5_lead2(_f), _kw, (5,)))
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = [_cd]

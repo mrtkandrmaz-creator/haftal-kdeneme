@@ -268,3 +268,9 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 ### Cevap harfi dengesi – çeldirici dizilişi (`_norm_q`)
 - Düz tamsayı şıklarda (sıralı) doğru şıkkın sırası artık rastgele (A–D); eksik çeldirici, doğrunun ±1/2/3×fark komşularından üretilir (aynı basamak sayısı, makul üst sınır). Tek doğru cevap korunur.
 - Matematik havuzu: B %37→%30, D %12→%18; sabit harfli kalıp 138→60 (kalanlar ondalık/kesir/birimli şıklar). Sınav testi: A 387 / B 411 / C 388 / D 374.
+
+### Görsel inceleme + Matematik 5.2.1 / 5.3.2 ek kalıplar
+- Yeni `tools/gorsel_inceleme.py`: seçilen kalıplardan örnek üretip şekil/tabloyu çizen HTML inceleme sayfası. Fen DH, 5.1.1 basamak tabloları, olasılık, örüntü, çember-üçgen, terazi kalıpları gözle tarandı; çizim hatası yok.
+- Bulgu/düzeltme: Fen yapı–görev kalıplarında kaslar/uyluk/diz aynı "bacak hareketi" görevini alabiliyordu (belirsiz) → `_dh_gvs4` ile en çok biri.
+- MAT.5.2.1 (eşitliğin korunumu/işlem özellikleri): `_mf5_eq_koru_tab`, `_mf5_eq_ozellik_yanlis`, `_mf5_eq_ozellik_ad`, `_mf5_eq_eksik_sayi` (hepsi tablolu; çıkarmada negatif sayı çıkmaz). 245 → 438 soru.
+- MAT.5.3.2 (pergel, cetvel, çember): `_mf5_in_pergel_tab`, `_mf5_in_cetvel_tab`, `_mf5_in_halka_tab`. 216 → 458 soru.
