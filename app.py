@@ -1716,6 +1716,8 @@ def _arrow(ax, a, b, both=False, color=INK, lw=2):
     ax.add_patch(FancyArrowPatch(a, b, arrowstyle="<|-|>" if both else "-|>", mutation_scale=16, color=color, lw=lw, shrinkA=0, shrinkB=0, zorder=3))
 
 
+
+
 def _rot(v, deg):
     t = np.radians(deg)
     return np.array([v[0] * np.cos(t) - v[1] * np.sin(t), v[0] * np.sin(t) + v[1] * np.cos(t)])
@@ -1733,6 +1735,10 @@ def _arc_mark(ax, o, a0, a1, r=.7, color=ORANGE, label=None):
     if label:
         m = np.radians((a0 + a1) / 2)
         ax.text(o[0] + (r + .42) * np.cos(m), o[1] + (r + .42) * np.sin(m), label, fontsize=10, fontweight="bold", color=color, ha="center", va="center", zorder=6)
+
+
+
+
 
 
 def _regular(n, R=2.0, rot=90):
@@ -1864,6 +1870,8 @@ def par_geometry(d):
     return res
 
 
+
+
 def _par_draw(ax, d):
     g = par_geometry(d)
     pos, layout = g["pos"], g["layout"]
@@ -1959,7 +1967,6 @@ def _geo(ax, d):
             ax.text(*(o + 3.9 * u), (L + ["d₁", "d₂"])[k], fontsize=11, fontweight="bold", color=BLUE, ha="center", va="center")
         if d.get("transversal"):
             w = _rot([1, 0], _f(d.get("angle", 60), 60) + tilt)
-            _arrow(ax, -2.6 * w + n * -.9 - n * .0, 2.6 * w + n * 0.9 + n * 0, both=True, color=GREEN) if False else None
             # kesen: iki doğruyu kesecek şekilde
             c = n * 0
             _arrow(ax, c - 2.4 * w, c + 2.4 * w, both=True, color=GREEN)
@@ -2146,8 +2153,6 @@ def _draw_cevians(ax, P, L, d):
         ax.plot(*zip(o, F), color=GREEN, lw=1.8, ls="--", zorder=3)
         ax.plot(*F, "o", color=INK, ms=4, zorder=5)
         e = C_ - B_; ne = np.linalg.norm(e)
-        for X in (B_, C_):  # ayak üçgenin dışındaysa kenar uzatılır
-            pass
         tb = np.dot(F - B_, e) / (ne * ne)
         if tb < 0:
             ax.plot(*zip(B_, F), color=INK, lw=1.4, ls=":", zorder=2)
@@ -2332,7 +2337,7 @@ def _circle_parts(ax, d):
     if "diameter" in parts:
         p, q = pt(160), pt(340); ax.plot(*zip(p, q), color=GREEN, lw=2.2, zorder=3); lab(p, L[1]); lab(q, L[2])
     if "chord" in parts:
-        p, q = pt(250), pt(300) if False else pt(295); ax.plot(*zip(p, q), color=ORANGE, lw=2.2, zorder=3); lab(p, L[3]); lab(q, L[4])
+        p, q = pt(250), pt(295); ax.plot(*zip(p, q), color=ORANGE, lw=2.2, zorder=3); lab(p, L[3]); lab(q, L[4])
     if "arc" in parts:
         th = np.radians(np.linspace(40, 110, 40)); ax.plot(R * np.cos(th), R * np.sin(th), color="#8b5cf6", lw=5, zorder=4, solid_capstyle="round")
     if "tangent" in parts:
@@ -3307,7 +3312,7 @@ def _bio_groups(ax, d):
             cy = y0 - 2.35
             _bio_icon(ax, it.get("kind"), cx, cy, .62 if m > 2 else .75)
             if it.get("label"):
-                _bio_bubble(ax, cx - .5, cy - 1.15 if False else cy + .95, it["label"], fs=9, r=.3)
+                _bio_bubble(ax, cx - .5, cy + .95, it["label"], fs=9, r=.3)
     ax.set_xlim(-.3, max(per, 2) * (BW + .5))
     ax.set_ylim(-rows * (BH + .6) + .3, .3)
 
@@ -3742,7 +3747,7 @@ def _lt_bolge(ax, d):
         ax.plot([1.3, 10.0], [ly, ty], color="#f59e0b", lw=1.1, ls="--", zorder=2)
     for ty in (4.0, 2.0):
         ax.plot([1.3, 5.0], [ly, ty], color="#f59e0b", lw=1.3, zorder=2)
-    ax.plot([1.3, 10.0], [ly, 6.0 if False else 6.0], color="#f59e0b", lw=1.0, zorder=1, alpha=.0)
+    ax.plot([1.3, 10.0], [ly, 6.0], color="#f59e0b", lw=1.0, zorder=1, alpha=.0)
     _lt_lamp(ax, 1.0, ly, .8)
     A = {"lamp": (1.0, 4.35), "obj": (5.0, 4.9), "shadow": (10.9, 3.0), "lit": (10.9, 5.0)}
     for k, t in lab.items():
@@ -3992,7 +3997,6 @@ def _kv_yay(ax, d):
         ox = i * 4.2 + 1.2
         L = float(p["len"]) * u
         ax.plot([ox - .8, ox + .8], [8.2, 8.2], color=INK, lw=4, zorder=3)
-        _kv_zig(ax, ox, ox, 8.2, 1) if False else None
         ys = np.linspace(8.2, 8.2 - L, 25)
         xs = [ox + (.28 if j % 2 else -.28) * (1 if 0 < j < 24 else 0) for j in range(25)]
         ax.plot(xs, ys, color="#475569", lw=2, zorder=3)
@@ -4010,7 +4014,7 @@ def _kv_yay(ax, d):
         if p.get("label"):
             _bio_bubble(ax, ox - 1.0, 9.1, p["label"], fs=12, r=.42)
     ax.set_xlim(-.3, len(ps) * 4.2 + .4)
-    ax.set_ylim(-1.0 if False else 8.2 - max(float(p["len"]) * u + .75 * max(int(p.get("n", 0)), 1) for p in ps) - .6, 9.8)
+    ax.set_ylim(8.2 - max(float(p["len"]) * u + .75 * max(int(p.get("n", 0)), 1) for p in ps) - .6, 9.8)
 
 
 def _kuv(ax, d):
@@ -4557,8 +4561,6 @@ def _uz_gunes(ax, d):
     ax.add_patch(Circle((0, 0), 3.4, fc="#fef3c7", ec="#f59e0b", lw=1.8, zorder=2))
     ax.add_patch(Circle((0, 0), 2.5, fc="#fb923c", ec="#c2410c", lw=2, zorder=3))
     ax.add_patch(Circle((0, 0), 1.2, fc="#fef08a", ec="#b45309", lw=2, zorder=4))
-    for key, (tx, ty, ax_, ay_) in {"c1": (1.0, 0.0, 5.6, 1.6), "c2": (0.0, 2.05, 5.6, 0.0), "c3": (-0.0, 3.1, 5.6, -1.6)}.items():
-        pass
     spots = {"c1": ((.4, -.3), (5.4, -2.0)), "c2": ((-1.9, 1.4), (-5.4, 1.6)), "c3": ((2.6, 2.4), (5.4, 1.7))}
     for key, ((px, py), (lx, ly)) in spots.items():
         if lb.get(key):
@@ -5845,7 +5847,7 @@ def _f6_tutulma(ax, d):
         ax.set_ylim(-3.1, 3.5)
         return
     cfg = {"Güneş": (1.25, "#fde68a"), "Ay": (.42, "#d1d5db"), "Dünya": (.75, "#93c5fd")}
-    xs = [-5.2, 0, 5.2] if False else None
+    xs = None
     order = d["sira"]
     pos = [-5.0, 0.0, 5.0]
     ax.plot([-6.6, 6.6], [0, 0], color="#94a3b8", lw=1.4, ls="--", zorder=1)
@@ -6947,9 +6949,6 @@ def profiles():
     return {k: ({**v, "pin": ""} if isinstance(v, dict) else v) for k, v in out.items()}  # PIN/parola kaldırıldı: eski kayıtlardaki PIN yok sayılır
 
 
-def _pin_hash(pin, salt):
-    import hashlib
-    return hashlib.sha256((salt + str(pin)).encode("utf-8")).hexdigest()
 
 
 def create_profile(name, pin=""):
@@ -12304,7 +12303,7 @@ def _mf_power(subject):
     wr = [a * b + c * d, a ** b * c ** d, (a + c) ** (b + d), a ** b + c * d, a * b + c ** d]
     random.shuffle(wr)
     o = _mf_opts(val, wr, str)
-    return _mf_raw(subject, "Üslü nicelikler", f"{a}^{b} + {c}^{d} işleminin sonucu kaçtır?".replace("^", "ˆ") if False else f"{a}{_sup(b)} + {c}{_sup(d)} işleminin sonucu kaçtır?", o,
+    return _mf_raw(subject, "Üslü nicelikler", f"{a}{_sup(b)} + {c}{_sup(d)} işleminin sonucu kaçtır?", o,
                    f"{a}{_sup(b)} = {a ** b}, {c}{_sup(d)} = {c ** d}; toplam {val}.") if o else None
 
 
@@ -12387,7 +12386,7 @@ def _mf_decimal(subject):
         fp = random.choice([7, 17, 27, 37, 43, 59])
     word = f"{say_tr(ip)} tam yüzde {say_tr(fp)}"
     s = f"{ip},{fp:02d}"
-    wr = [f"{ip},{fp}0".replace(f"{fp}0", f"{fp}0")[:len(s)] if False else f"{ip},{fp:02d}".replace(f",{fp:02d}", f",{fp:02d}"[::1])]
+    wr = [f"{ip},{fp:02d}".replace(f",{fp:02d}", f",{fp:02d}"[::1])]
     alts = [f"{ip},{(fp % 10)}{fp // 10}", f"{ip},{fp:03d}", f"{ip}{fp:02d},".rstrip(",") + "", f"{ip},{fp}0"]
     alts = [a for a in alts if a != s and "," in a]
     alts += [f"{ip + 1},{fp:02d}"]
@@ -12691,7 +12690,7 @@ def _mf_gcdlcm(subject):
 def _mf_intops(subject):
     a, b, c = random.randint(2, 15), random.randint(2, 15), random.randint(2, 15)
     forms = [(f"(–{a}) + {b} – (–{c})", -a + b + c), (f"{a} – (–{b}) + (–{c})", a + b - c), (f"(–{a}) × {b} + {c}", -a * b + c),
-             (f"(–{a}) – {b} – (–{c})", -a - b + c), (f"{a} × (–{b}) – (–{c})", -a * b + c if False else a * -b + c)]
+             (f"(–{a}) – {b} – (–{c})", -a - b + c), (f"{a} × (–{b}) – (–{c})", a * -b + c)]
     ex_, v = random.choice(forms)
     wr = [v + 2, v - 2, -v, abs(v) + 1, v + 2 * (a % 5 + 1)]
     wr = [w for w in wr if w != v]
@@ -13450,7 +13449,7 @@ def _mf_cetele5(subject, kind):
     cs = random.sample(cats, n)
     vals = random.sample(range(3, 15), n)
     shape = {"type": "table", "title": title + " (çetele)", "headers": [hdr, "Çetele"], "rows": [[c, _tally(v)] for c, v in zip(cs, vals)]}
-    lead = f"Çetele tablosunda her “||||/” grubu 5 {unit}yi göstermektedir." if False else "Çetele tablosunda her “||||/” grubu 5 birimi gösterir."
+    lead = "Çetele tablosunda her “||||/” grubu 5 birimi gösterir."
     if kind == "say":
         i = random.randrange(n)
         c = vals[i]
@@ -15263,7 +15262,7 @@ def _tf_dk_davet(subject):
         al = ["Lale Sokak No: 6", "Gül Caddesi No: 12", "Papatya Sokak No: 3", "Menekşe Caddesi No: 20", "Karanfil Sokak No: 9"]
         return _dk_pick(subject, f"{_dk_intro()}, parti hangi adreste yapılacaktır?", adres, [a for a in al if a != adres], f"Davetiyede adres {adres} olarak yazar.", sh)
     dog = f"Parti {_GUN[d.weekday()]} günü yapılacaktır."
-    wr = [f"Parti {_GUN[(d.weekday() + k) % 7]} günü yapılacaktır." for k in (1, 2, 3)] + [f"Doğum günü kutlanan kişi {kime}’dir." if False else f"Parti saat {_dk_tm(saat + 60)}’de başlayacaktır."]
+    wr = [f"Parti {_GUN[(d.weekday() + k) % 7]} günü yapılacaktır." for k in (1, 2, 3)] + [f"Parti saat {_dk_tm(saat + 60)}’de başlayacaktır."]
     return _dk_pick(subject, f"{_dk_intro()}, aşağıdakilerden hangisi söylenebilir?", dog, wr, f"Davetiyede {_dk_dstr(d)} yazar; bu gün {_GUN[d.weekday()]} günüdür.", sh)
 
 
@@ -15281,7 +15280,6 @@ def _tf_dk_saatler(subject):
             end += 60
         hours[i] = end
         rows.append([_GUN[i], _dk_tm(acil), _dk_tm(end)])
-    rows = [r for r in rows if r[1] != "Kapalı" or True]
     sh = {"type": "doc", "theme": random.choice(["yesil", "mavi", "turkuaz"]), "deco": random.choice(["books", "leaves"]), "title": f"{yer.upper()} ÇALIŞMA SAATLERİ", "tsize": 13.5,
           "blocks": [["grid", ["Gün", "Açılış", "Kapanış"], rows]]}
     ds = {i: (hours[i] - acil) for i in hours}
@@ -15466,7 +15464,7 @@ def _tf_dk_yarisma(subject):
     kind = random.choice(["sart", "toplam", "gun", "fark"])
     if kind == "sart":
         c = random.choice(yok)
-        return _dk_pick(subject, f"{_dk_intro()}, aşağıdakilerden hangisi yarışma şartlarından biri değildir?", c, sart[:3] if False else random.sample(sart, 3), f"“{c}” ifadesi duyuruda yer almaz.", sh)
+        return _dk_pick(subject, f"{_dk_intro()}, aşağıdakilerden hangisi yarışma şartlarından biri değildir?", c, random.sample(sart, 3), f"“{c}” ifadesi duyuruda yer almaz.", sh)
     if kind == "toplam":
         v = sum(odul)
         return _dk_num(subject, f"{_dk_intro()}, ilk üç dereceye verilecek ödüllerin toplamı kaç ₺’dir?", v, " ₺", f"{odul[0]} + {odul[1]} + {odul[2]} = {v} ₺.", sh, (50, 100, 150))
@@ -15947,7 +15945,7 @@ def _mf_ond_aralik(subject):
     d = random.randint(1, 8)
     lo, hi = d / 10, (d + 1) / 10
     mid = round((lo + hi) / 2, 2)
-    fmt = lambda t: f"{t:.2f}".replace(".", ",").rstrip("0").rstrip(",") if False else f"{t}".replace(".", ",")
+    fmt = lambda t: f"{t}".replace(".", ",")
     c = fmt(mid)
     wr = [fmt(round(lo - 0.05, 2)), fmt(round(hi + 0.05, 2)), fmt(round(lo, 2)), fmt(round(hi + 0.1, 2))]
     wr = [z for z in dict.fromkeys(wr) if z != c]
@@ -16086,7 +16084,7 @@ _CEM_BIL = [("Bir çemberde çizilebilecek çap sayısı", "Sonsuz sayıda", ["1
 
 def _mf_cem_bilgi(subject):
     s, c, wr, ex = random.choice(_CEM_BIL)
-    return _mfn("Çember ve daire elemanları", f"{s} için aşağıdakilerden hangisi doğrudur?" if False else f"“{s} ...” ifadesi aşağıdakilerden hangisiyle doğru tamamlanır?", c, wr, ex)
+    return _mfn("Çember ve daire elemanları", f"“{s} ...” ifadesi aşağıdakilerden hangisiyle doğru tamamlanır?", c, wr, ex)
 
 
 _CGOZ = {"kare": ["Dört kenarının uzunluğu eşittir.", "Dört açısı da diktir.", "Karşılıklı kenarları paraleldir."],
@@ -16097,7 +16095,7 @@ _CGOZ_YOK = {"kare": ["Yalnızca iki kenarı eşittir.", "Hiçbir açısı dik d
 def _mf_cg_ozellik(subject):
     k = random.choice(list(_CGOZ))
     c = random.choice(_CGOZ[k])
-    return _mfn("Çokgenlerin elemanları", f"{k.capitalize()} bir çokgendir. Aşağıdakilerden hangisi {k} için doğrudur?", c, _CGOZ_YOK[k] + ["Bütün kenarları paralel ve köşesi dörttür." if False else "Yalnızca bir köşesi vardır."], f"Doğru ifade: “{c}” {k.capitalize()} için geçerli bir özelliktir; diğer seçenekler {k} için doğru değildir.")
+    return _mfn("Çokgenlerin elemanları", f"{k.capitalize()} bir çokgendir. Aşağıdakilerden hangisi {k} için doğrudur?", c, _CGOZ_YOK[k] + ["Yalnızca bir köşesi vardır."], f"Doğru ifade: “{c}” {k.capitalize()} için geçerli bir özelliktir; diğer seçenekler {k} için doğru değildir.")
 
 
 def _mf_cem_pergel(subject):
@@ -16144,7 +16142,9 @@ def _mf_dg_paralel(subject):
 def _mf_ca_karesay(subject):
     a, b = random.choice([(6, 4), (8, 3), (5, 6), (9, 2), (7, 4), (10, 3), (12, 2)])
     n = a * b
-    return _mfn("Alan ölçme", f"Kenarı 1 cm olan {n} tane kare, boşluk kalmayacak biçimde dikdörtgen oluşturacak şekilde dizilecektir. Uzun kenarı {a} cm ise kısa kenarı kaç cm olur?" if False else f"Kenarı 1 cm olan {n} tane kare birim boşluk kalmadan dikdörtgen şeklinde diziliyor. Uzun kenar {a} cm ise kısa kenar kaç cm’dir?", b, _wrongs_num(b, [1, 2, 3]), f"Alan {n} cm²’dir; {n} ÷ {a} = {b} cm.", sort=True)
+    return _mfn("Alan ölçme", f"Kenarı 1 cm olan {n} tane kare birim boşluk kalmadan dikdörtgen şeklinde diziliyor. Uzun kenar {a} cm ise kısa kenar kaç cm’dir?", b, _wrongs_num(b, [1, 2, 3]), f"Alan {n} cm²’dir; {n} ÷ {a} = {b} cm.", sort=True)
+
+
 
 
 def _mf_ca_halı(subject):
@@ -16302,7 +16302,7 @@ def _mf_kes_buyuk_kucuk(subject):
     ns = random.sample(range(1, d), 4)
     b = random.random() < .5
     c = max(ns) if b else min(ns)
-    return _mfn("Kesir sıralama", f"Paydaları eşit olan kesirler arasında bir sıralama yapılırken {'en büyük' if b else 'en küçük'} kesri bulmak için nereye bakılır ve hangisi seçilir?" if False else f"Payda değeri {d} olan {', '.join(f'{x}/{d}' for x in ns)} kesirlerinden {'en büyüğü' if b else 'en küçüğü'} hangisidir?", f"{c}/{d}", [f"{x}/{d}" for x in ns if x != c], f"Paydalar eşit olduğunda payı {'en büyük' if b else 'en küçük'} olan kesir {'en büyük' if b else 'en küçük'}tür: {c}/{d}.")
+    return _mfn("Kesir sıralama", f"Payda değeri {d} olan {', '.join(f'{x}/{d}' for x in ns)} kesirlerinden {'en büyüğü' if b else 'en küçüğü'} hangisidir?", f"{c}/{d}", [f"{x}/{d}" for x in ns if x != c], f"Paydalar eşit olduğunda payı {'en büyük' if b else 'en küçük'} olan kesir {'en büyük' if b else 'en küçük'}tür: {c}/{d}.")
 
 
 def _mf_kes_tam_say(subject):
@@ -16374,14 +16374,14 @@ def _mf_cg_cevre2(subject):
     n, a = random.choice([(3, 8), (4, 6), (5, 7), (6, 5), (8, 4), (5, 9)])
     ad = {3: "üçgen", 4: "kare", 5: "beşgen", 6: "altıgen", 8: "sekizgen"}[n]
     v = n * a
-    return _mfn("Çokgenlerin elemanları", f"Kenar uzunlukları birbirine eşit olan bir {ad}nin bir kenarı {a} cm’dir. Bu çokgenin çevresi kaç cm’dir?" if False else f"Bir kenarı {a} cm olan düzgün {ad} çokgenin çevresi kaç cm’dir?", v, _wrongs_num(v, [a, n, 2 * a]) + [a * a], f"Düzgün çokgenin {n} kenarı eşittir: {n} × {a} = {v} cm.", sort=True)
+    return _mfn("Çokgenlerin elemanları", f"Bir kenarı {a} cm olan düzgün {ad} çokgenin çevresi kaç cm’dir?", v, _wrongs_num(v, [a, n, 2 * a]) + [a * a], f"Düzgün çokgenin {n} kenarı eşittir: {n} × {a} = {v} cm.", sort=True)
 
 
 def _mf_cg_koseler(subject):
     n = random.choice([3, 4, 5, 6, 7, 8, 9, 10])
     ad = {3: "üçgen", 4: "dörtgen", 5: "beşgen", 6: "altıgen", 7: "yedigen", 8: "sekizgen", 9: "dokuzgen", 10: "ongen"}[n]
     ask = random.choice(["köşe", "kenar"])
-    return _mfn("Çokgenlerin elemanları", f"Bir {ad}nin kaç {ask}si vardır?" if False else f"Bir {ad} çokgenin kaç tane {ask}i bulunur?", n, _wrongs_num(n, [1, 2]), f"{ad.capitalize()} çokgenin {n} köşesi ve {n} kenarı vardır.", sort=True)
+    return _mfn("Çokgenlerin elemanları", f"Bir {ad} çokgenin kaç tane {ask}i bulunur?", n, _wrongs_num(n, [1, 2]), f"{ad.capitalize()} çokgenin {n} köşesi ve {n} kenarı vardır.", sort=True)
 
 
 def _mf_cem_yaricap(subject):
@@ -16423,7 +16423,7 @@ def _mf_but_say(subject):
 
 def _mf_ac_fark(subject):
     a = random.randint(10, 80)
-    return _mfn("Açı ilişkileri", f"Bir açının tümleyeni ile bütünleyeni arasındaki fark kaç derecedir?" if False else f"Ölçüsü {a}° olan açının bütünleyeni, tümleyeninden kaç derece fazladır?", 90, [60, 45, 180, 30, 120], "Bütünleyen − tümleyen = (180 − a) − (90 − a) = 90°.")
+    return _mfn("Açı ilişkileri", f"Ölçüsü {a}° olan açının bütünleyeni, tümleyeninden kaç derece fazladır?", 90, [60, 45, 180, 30, 120], "Bütünleyen − tümleyen = (180 − a) − (90 − a) = 90°.")
 
 
 def _mf_ac_cift(subject):
@@ -16491,7 +16491,7 @@ def _mf_ca_eksik_kenar(subject):
 
 def _mf_dg_aci_say(subject):
     n = random.randint(3, 9)
-    return _mfn("Doğru, ışın, doğru parçası", f"Bir doğru üzerinde işaretlenen {n} noktadan ikisi seçilerek kaç farklı doğru parçası çizilebilir?" if False else f"Bir doğru üzerinde peş peşe işaretlenen {n} noktanın doğru parçası sayısı, her iki noktayı birleştirerek bulunur. {n} nokta için kaç doğru parçası oluşur?", n * (n - 1) // 2, _wrongs_num(n * (n - 1) // 2, [1, 2, n]), f"Her iki nokta bir doğru parçası verir: {n} × {n - 1} ÷ 2 = {n * (n - 1) // 2}.", sort=True)
+    return _mfn("Doğru, ışın, doğru parçası", f"Bir doğru üzerinde peş peşe işaretlenen {n} noktanın doğru parçası sayısı, her iki noktayı birleştirerek bulunur. {n} nokta için kaç doğru parçası oluşur?", n * (n - 1) // 2, _wrongs_num(n * (n - 1) // 2, [1, 2, n]), f"Her iki nokta bir doğru parçası verir: {n} × {n - 1} ÷ 2 = {n * (n - 1) // 2}.", sort=True)
 
 
 _NEW_MAT2 = [
@@ -16559,7 +16559,7 @@ def _mf_say_ardisik(subject):
     n = random.randint(100000, 999990)
     k = random.choice([1, 10, 100, 1000])
     ad = {1: "1", 10: "10", 100: "100", 1000: "1 000"}[k]
-    return _mfn("Milyonlu sayılar", f"{_fmt_say(n)} sayısından sonra gelen, {ad} fazlası olan sayı hangisidir?" if False else f"{_fmt_say(n)} sayısının {ad} fazlası kaçtır?", _fmt_say(n + k), [_fmt_say(n - k), _fmt_say(n + 10 * k), _fmt_say(n + k // 10 if k > 1 else n + 2), _fmt_say(n + 100 * k)], f"{_fmt_say(n)} + {ad} = {_fmt_say(n + k)}.")
+    return _mfn("Milyonlu sayılar", f"{_fmt_say(n)} sayısının {ad} fazlası kaçtır?", _fmt_say(n + k), [_fmt_say(n - k), _fmt_say(n + 10 * k), _fmt_say(n + k // 10 if k > 1 else n + 2), _fmt_say(n + 100 * k)], f"{_fmt_say(n)} + {ad} = {_fmt_say(n + k)}.")
 
 
 def _mf_dg_nokta(subject):
@@ -16620,7 +16620,7 @@ def _mf_aci_ucgen_toplam(subject):
 
 def _mf_aci_donme(subject):
     k = random.choice([(90, "dörtte bir"), (180, "yarım"), (360, "tam")])
-    return _mfn("Açı ölçme ve çizme", f"Bir yelkovan {k[1]} tur döndüğünde taradığı açı kaç derecedir?" if False else f"Bir pergelin ucu {k[1]} tur döndürülüyor. Dönme açısı kaç derecedir?", k[0], [x for x in (45, 90, 180, 270, 360) if x != k[0]][:4], f"{k[1].capitalize()} tur {k[0]}°’dir.", sort=True)
+    return _mfn("Açı ölçme ve çizme", f"Bir pergelin ucu {k[1]} tur döndürülüyor. Dönme açısı kaç derecedir?", k[0], [x for x in (45, 90, 180, 270, 360) if x != k[0]][:4], f"{k[1].capitalize()} tur {k[0]}°’dir.", sort=True)
 
 
 _NEW_MAT3 = [
@@ -16766,7 +16766,7 @@ def _mf_yn_kitap(subject):
     gun = random.randint(8, 20)
     sf = g * gun
     ek = random.choice([5, 6, 7])
-    return _mfn("Doğal sayılarla işlemler", f"{sf} sayfalık bir kitabı Ayşe günde {g} sayfa okuyarak bitiriyor. Aynı kitabı günde {g + ek} sayfa okuyan Mert aynı günde başlayıp kaç gün sonra bitirir?" if False else f"{sf} sayfalık bir kitabı Ayşe her gün {g} sayfa okuyarak bitiriyor. Ayşe kitabı kaç günde bitirir?", gun, _wrongs_num(gun, [1, 2, 3]), f"{sf} ÷ {g} = {gun} gün.", sort=True)
+    return _mfn("Doğal sayılarla işlemler", f"{sf} sayfalık bir kitabı Ayşe her gün {g} sayfa okuyarak bitiriyor. Ayşe kitabı kaç günde bitirir?", gun, _wrongs_num(gun, [1, 2, 3]), f"{sf} ÷ {g} = {gun} gün.", sort=True)
 
 
 def _mf_yn_nufus(subject):
@@ -17117,7 +17117,7 @@ _FY_EXP = [
 def _fy_vals(mode, n, xs):
     if mode == "lin":
         k = random.choice([2, 3, 4])
-        return [k * (i + 1) * (xs[0] if isinstance(xs[0], int) and xs[0] > 1 and False else 1) for i in range(n)], k
+        return [k * (i + 1) * 1 for i in range(n)], k
     if mode == "lin10":
         return [10 * x for x in xs], 10
     if mode == "lin_off":
@@ -17170,7 +17170,7 @@ def _fy_exp_family(spec):
             i, j = random.sample(range(len(xs)), 2)
             d = abs(vals[i] - vals[j])
             xi, xj = (xl[i], xl[j])
-            lab = (lambda x: f"{x} " if False else f"“{x}”")
+            lab = (lambda x: f"“{x}”")
             q = f"Tabloya göre {lab(xi)} değerine karşılık gelen ölçüm ile {lab(xj)} değerine karşılık gelen ölçüm arasındaki fark kaç {unit}'dir?" if mode in ("lin", "lin10", "lin_off", "dec") else \
                 f"Tabloya göre {xi} ile {xj} için ölçülen değerler arasındaki fark kaç {unit}'dir?"
             o = _mf_opts(d, [d + 1, abs(d - 2) or d + 3, d + 5, vals[i] + vals[j]], lambda v: f"{v} {unit}")
@@ -17181,7 +17181,7 @@ def _fy_exp_family(spec):
                 ny = vals[-1] + step
             else:
                 ny = vals[-1] + (vals[1] - vals[0])
-            q = f"Deneyin koşulları aynı kalırsa {hx.split('(')[0].strip().lower()} {nx} olduğunda {hy.split('(')[0].strip().lower()} kaç {unit} olur?" if False else f"Deney aynı koşullarda sürdürülürse {_lbl(nx)} için ölçülecek sonuç kaç {unit} olur?"
+            q = f"Deney aynı koşullarda sürdürülürse {_lbl(nx)} için ölçülecek sonuç kaç {unit} olur?"
             o = _mf_opts(ny, [ny + vals[0], ny - 1, ny + 2, vals[-1]], lambda v: f"{v} {unit}")
             return _mf_raw(subject, topic, q, o, f"Her adımda değişim {ny - vals[-1]} {unit}; sıradaki değer {vals[-1]} + {ny - vals[-1]} = {ny} {unit}.", shape=shape, passage=lead) if o else None
         # roman
@@ -18048,7 +18048,7 @@ def _en_yn_zoo(subject):
     hs = [x for x in an if x[1] == h]
     if len(hs) != 1:
         return None
-    return _en_pick(topic, f"Which animal lives in the {h}?", a.title(), [x[0].title() for x in an if x[0] != a] + ["Tiger"], f"Kartta {h} yaşam alanı olan hayvan {a}.", shape=sh) if False else _en_pick(topic, f"Which animal lives in the {h}?", a.title(), [x[0].title() for x in an if x[0] != a], f"Kartta {h} yaşam alanı olan tek hayvan {a}.", shape=sh)
+    return _en_pick(topic, f"Which animal lives in the {h}?", a.title(), [x[0].title() for x in an if x[0] != a], f"Kartta {h} yaşam alanı olan tek hayvan {a}.", shape=sh)
 
 
 # --- 6) Weather report
@@ -18094,7 +18094,7 @@ def _en_yn_routine(subject):
         wr = [fm(x) for x in (6 * 60 + 30, 7 * 60, 8 * 60 + 30, 12 * 60, 13 * 60, 15 * 60 + 30, 17 * 60, 18 * 60 + 30, 20 * 60, 22 * 60) if x != ts[i]]
         return _en_pick(topic, f"What time does {n} {acts[i]}?", fm(ts[i]), wr, f"Çizelgede '{acts[i]}' saati {fm(ts[i])}.", shape=sh)
     i, j = sorted(random.sample(range(5), 2))
-    s = f"{n} {acts[i]}s before {_en_pro(n).lower()} {acts[j]}s." if False else f"{_en_pro(n)} {_s3(acts[i].split()[0])} {' '.join(acts[i].split()[1:])} before {_en_pro(n).lower()} {_s3(acts[j].split()[0])} {' '.join(acts[j].split()[1:])}."
+    s = f"{_en_pro(n)} {_s3(acts[i].split()[0])} {' '.join(acts[i].split()[1:])} before {_en_pro(n).lower()} {_s3(acts[j].split()[0])} {' '.join(acts[j].split()[1:])}."
     f_ = f"{_en_pro(n)} {_s3(acts[j].split()[0])} {' '.join(acts[j].split()[1:])} before {_en_pro(n).lower()} {_s3(acts[i].split()[0])} {' '.join(acts[i].split()[1:])}."
     k = random.choice([a for a in order if a not in acts])
     z = f"{_en_pro(n)} {_s3(k.split()[0])} {' '.join(k.split()[1:])} at {fm(random.choice(ts))}."
@@ -18233,7 +18233,7 @@ def _en_yn_chores(subject):
     pro = _en_pro(ns[i])
     kind = random.choice(["who", "what"])
     if kind == "who":
-        return _en_pick(topic, f"Who {ch[i].replace('wash', 'washes').replace('take', 'takes').replace('water', 'waters').replace('clean', 'cleans').replace('set', 'sets').replace('tidy', 'tidies')}?", ns[i], [n for n in _EN_NAMES if n != ns[i]][:6], f"Tabloya göre {ns[i]} bu işi yapar.", shape=sh) if False else _en_pick(topic, f"Who is responsible for this chore: “{ch[i]}”?", ns[i], [n for n in ns if n != ns[i]] + [x for x in _EN_NAMES if x not in ns][:2], f"Tabloya göre {ns[i]}.", shape=sh)
+        return _en_pick(topic, f"Who is responsible for this chore: “{ch[i]}”?", ns[i], [n for n in ns if n != ns[i]] + [x for x in _EN_NAMES if x not in ns][:2], f"Tabloya göre {ns[i]}.", shape=sh)
     return _en_pick(topic, f"What chore does {ns[i]} do?", ch[i].capitalize(), [c.capitalize() for c in ["wash the dishes", "take out the rubbish", "water the plants", "clean the windows", "set the table", "tidy up the living room"] if c != ch[i]], f"Tabloya göre {ns[i]}: {ch[i]}.", shape=sh)
 
 
@@ -18244,7 +18244,7 @@ def _en_yn_photo(subject):
     topic = "Present Progressive"
     m, a = random.choice(ms)
     verb = "is" 
-    return _en_pick(topic, f"What is {m.lower() if m in ('Mum','Dad') and False else m} doing in the photo?", a.capitalize() if False else f"{m} is {a}.", [f"{m} is {x}." for x in ["cooking dinner", "reading a newspaper", "knitting a scarf", "playing computer games", "doing her homework", "watering the plants", "sleeping", "singing"] if x != a], f"Notlara göre: {m} is {a}.", shape=sh)
+    return _en_pick(topic, f"What is {m} doing in the photo?", f"{m} is {a}.", [f"{m} is {x}." for x in ["cooking dinner", "reading a newspaper", "knitting a scarf", "playing computer games", "doing her homework", "watering the plants", "sleeping", "singing"] if x != a], f"Notlara göre: {m} is {a}.", shape=sh)
 
 
 # --- 15) E-mail reading
@@ -18265,7 +18265,7 @@ def _en_yn_email(subject):
     if kind == "live":
         return _en_pick(topic, f"Where does {n} live?", f"In {city}", [f"In {x}" for x in ["London", "Manchester", "Edinburgh", "Dublin", "Sydney", "Ankara"] if x != city], f"E-postada {city} yazıyor.", passage=mail)
     if kind == "pet":
-        return _en_pick(topic, f"What pet does {n} have?", pet.replace("a ", "A ").capitalize() if False else pet.capitalize(), [x.capitalize() for x in ["a cat", "a dog", "a rabbit", "a parrot", "a fish"] if x != pet], f"E-postada {pet} yazıyor.", passage=mail)
+        return _en_pick(topic, f"What pet does {n} have?", pet.capitalize(), [x.capitalize() for x in ["a cat", "a dog", "a rabbit", "a parrot", "a fish"] if x != pet], f"E-postada {pet} yazıyor.", passage=mail)
     if kind == "hobby":
         h = random.choice(hobby)
         return _en_pick(topic, f"Which activity does {n} like?", h.capitalize(), [x.capitalize() for x in ["playing football", "drawing pictures", "reading comics", "riding a bike", "playing the guitar", "swimming", "cooking", "dancing"] if x not in hobby], f"E-postada {h} yazıyor.", passage=mail)
@@ -18531,7 +18531,7 @@ def _mf_gv_kare_dizi(subject):
 
 
 def _gv_reg(n):
-    th = np.radians(90 + 360 * np.arange(n) / n) if False else None
+    th = None
     import math as _m
     return [[_m.cos(_m.radians(90 + 360 * i / n + (180 / n if n % 2 == 0 else 0))), _m.sin(_m.radians(90 + 360 * i / n + (180 / n if n % 2 == 0 else 0)))] for i in range(n)]
 
@@ -18629,7 +18629,7 @@ def _mf_gv_ikizkenar_cevre(subject):
         return None
     sh = {"type": "geo", "sub_type": "polyfree", "pts": pts, "vlabels": ["A", "B", "C"], "side_labels": [f"{a} cm", "", ""], "ticks": [[1, 2]]}
     sh["side_labels"] = [f"{a} cm", "", ""]
-    sh["pts"] = [[0, 0], [a, 0], [a / 2.0, (a * a - (a / 2.0) ** 2) ** .5]] if False else pts
+    sh["pts"] = pts
     # AB = c = a (taban değil): üçgen AB=a, AC=a eşit; BC = b taban
     sh = {"type": "geo", "sub_type": "polyfree", "pts": _gv_tri_pts(b, a, a), "vlabels": ["A", "B", "C"], "side_labels": [f"{a} cm", f"{b} cm", ""], "ticks": [[0, 2]]}
     p = 2 * a + b
@@ -18774,8 +18774,6 @@ def _tf_par_konu(subject):
     return _fact_q(subject, "Konu", "Bu parçanın konusu aşağıdakilerden hangisidir?", konu, others[:3], f"Parçanın tamamı {konu} hakkındadır.", passage=p)
 
 
-for _f in (_tf_par_ana, _tf_par_cikarim, _tf_par_konu):
-    pass
 _tf_par_ana.ITEM = "Metnin ana fikri"
 _tf_par_konu.ITEM = "Metnin ana fikri"
 _tf_par_cikarim.ITEM = "Metnin yüzey anlamı"
@@ -19306,7 +19304,7 @@ def _en_hop_room(subject):
     sh = _en_doc("TODAY'S LESSONS", [["grid", ["Lesson", "Room"], [[l, r] for l, r in zip(ls, rm)]], ["grid", ["Room", "Floor"], [[r, fl[r]] for r in sorted(set(rm))]]], deco="books")
     k = random.randrange(4)
     ans = fl[rm[k]]
-    return _en_pick("Classroom objects" if False else "Telling the time" if False else "Days of the week", f"On which floor is the {ls[k]} lesson?", f"On the {ans}", [f"On the {x}" for x in ("ground floor", "1st floor", "2nd floor", "3rd floor") if x != ans],
+    return _en_pick(("Days of the week"), f"On which floor is the {ls[k]} lesson?", f"On the {ans}", [f"On the {x}" for x in ("ground floor", "1st floor", "2nd floor", "3rd floor") if x != ans],
                     f"{ls[k]} dersi {rm[k]}'da; {rm[k]} {ans}'ta.", shape=sh)
 
 
@@ -25168,16 +25166,16 @@ def _ff_cd_kart_tek(subject):
     g = random.choice(["mantar", "mikro"])
     ks, lb, sh = _cd_cards(6, {"mantar": 1, "mikro": 1, "bitki": 1, "hayvan": 1})
     i = [j for j, k in enumerate(ks) if _cd_g(k) == g][0]
-    o = _yn_opts(lb[i], [lb[j] for j in range(len(ks)) if j != i][:3] if False else random.sample([lb[j] for j in range(len(ks)) if j != i], 3))
+    o = _yn_opts(lb[i], random.sample([lb[j] for j in range(len(ks)) if j != i], 3))
     gad = {"mantar": "mantar grubunda yer alır", "mikro": "mikroskobik canlı grubunda yer alır"}[g]
-    return _mf_raw(subject, _CD_T, f"Şekilde bazı canlılar harflerle gösterilmiştir. Bu canlılardan hangisi {gad.replace(' yer alır', ' yer alan canlıdır') if False else gad}?", o, f"{_CD_AD[ks[i]]} {gad}; şekilde {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
+    return _mf_raw(subject, _CD_T, f"Şekilde bazı canlılar harflerle gösterilmiştir. Bu canlılardan hangisi {gad}?", o, f"{_CD_AD[ks[i]]} {gad}; şekilde {lb[i]} ile gösterilmiştir.", shape=sh) if o else None
 
 
 def _ff_cd_kart_say(subject):
     g = random.choice(["bitki", "hayvan"])
     nb = random.choice([1, 2])
     nh = random.choice([1, 2, 3])
-    ks, lb, sh = _cd_cards(0, {"bitki": nb, "hayvan": nh, "mantar": random.choice([0, 1]) if False else 1, "mikro": random.choice([1, 2])})
+    ks, lb, sh = _cd_cards(0, {"bitki": nb, "hayvan": nh, "mantar": 1, "mikro": random.choice([1, 2])})
     cnt = sum(1 for k in ks if _cd_g(k) == g)
     nm = {"bitki": "bitki", "hayvan": "hayvan"}[g]
     o = _yn_opts(str(cnt), [str(x) for x in range(0, 6) if x != cnt][:5] and random.sample([str(x) for x in range(0, 7) if x != cnt], 3))
@@ -25558,7 +25556,7 @@ def _ff_cd_agac_olcut(subject):
     mac = random.choice(["gül", "çam", "lale", "papatya", "ağaç", "balık", "kelebek", "kuş", "kedi", "mantar"])
     if random.random() < .5:
         # ? mikroskobik tarafta
-        left = ["K", _CD_AD[mik]] if False else [_CD_AD[mik], "K"]
+        left = [_CD_AD[mik], "K"]
         right = [_CD_AD[mac]]
         cor_pool = [x for x in _MIKRO if x != mik]
         cor = _CD_AD[random.choice(cor_pool)]
@@ -25710,7 +25708,7 @@ def _ff_cd_ozellik_say(subject):
     ks = [random.choice(list(_CD_FEAT)) for _ in range(5)]
     lb = random.sample(_CD_L, 5)
     rows = [[lb[i], *_CD_FEAT[ks[i]]] for i in range(5)]
-    j = random.randrange(3) if False else random.choice([0, 1])
+    j = random.choice([0, 1])
     want = "Var"
     cnt = sum(1 for k in ks if _CD_FEAT[k][j] == want)
     if cnt == 0 or cnt == 5:
@@ -27077,7 +27075,7 @@ def _ff_md_graf_hal(subject):
         ask = random.choice([0, 1, 2])
     cor = st[ask]
     allst = ["Katı", "Sıvı", "Gaz", "Katı ve sıvı birlikte", "Sıvı ve gaz birlikte"]
-    o = _yn_opts(cor, [x for x in allst if x != cor and (x in st.values() or True)][:3] if True else None)
+    o = _yn_opts(cor, [x for x in allst if x != cor][:3])
     return _mf_raw(subject, "Hâl değişimleri", f"Şekilde ısıtılan bir {'buz parçasının' if kind == 'buz' else 'suyun'} sıcaklık-zaman grafiği verilmiştir. Bölgeler harflerle gösterilmiştir.\nBuna göre {lb[ask]} ile gösterilen bölgede madde hangi hâl ya da hâllerdedir?", o, f"{lb[ask]} bölgesinde madde {cor.lower()} hâldedir.", shape=sh) if o else None
 
 
@@ -27401,7 +27399,7 @@ def _ff_el_kart_esit(subject):
     for _ in range(80):
         a = random.choice([1, 2, 3])
         eq = [(a, a, False), (a + 0, a, False)]
-        ps = [(1, 1, False), (2, 2, False)] if random.random() < .5 else [(1, 2, False), (2, 4 if False else 2, False)]
+        ps = [(1, 1, False), (2, 2, False)] if random.random() < .5 else [(1, 2, False), (2, 2, False)]
         ps = [(1, 1, False), (2, 2, False), (random.choice([2, 3]), 1, False), (1, random.choice([2, 3]), False)]
         rs = [_el_rat(*x) for x in ps]
         if sorted(rs).count(1.0) == 2:
@@ -27778,7 +27776,7 @@ def _ff_uz_yor_konum(subject):
     t = {0: "", 2: "sağ yarısının aydınlık göründüğü ve büyüyen evrede olduğu (ilk dördün)", 4: "tamamının aydınlık göründüğü (dolunay)", 6: "sol yarısının aydınlık göründüğü ve küçüldüğü (son dördün)"}[i]
     if i == 0:
         t = "hiç görülmediği (yeni ay)"
-    o = _yn_opts(lb[i], [lb[j] for j in range(8) if j != i][:3] if False else random.sample([lb[j] for j in range(8) if j != i], 3))
+    o = _yn_opts(lb[i], random.sample([lb[j] for j in range(8) if j != i], 3))
     return _mf_raw(subject, "Ay'ın evreleri", f"Şekilde Ay'ın Dünya çevresindeki sekiz konumu harflerle gösterilmiştir. Güneş ışınları soldan gelmektedir.\nBuna göre Ay, Dünya'dan bakıldığında {t} evrede iken hangi harfle gösterilen konumdadır?", o, f"Bu evre şekilde {lb[i]} konumuna karşılık gelir.", shape=sh) if o else None
 
 
@@ -28101,7 +28099,7 @@ def _sf_ss_yon2(subject):
     allv = [c] + random.sample(alts, 3)
     random.shuffle(allv)
     q = f"Şekilde bir mahallenin krokisi ve yön okları verilmiştir. {a['ad']} yerinden {b['ad']} yerine doğru gidilirse hangi yöne gidilmiş olur?"
-    return _fact_q(subject, "Göreceli konum", q, c.capitalize(), [x.capitalize() for x in alts], f"Krokide {a['ad']} ile {b['ad']} karşılaştırıldığında {b['ad']}, {a['ad']} yerinin {c} yönündedir.", passage="") if False else _mf_raw(subject, "Göreceli konum", q, ([x.capitalize() for x in sorted(allv)], c.capitalize()), f"Krokide {b['ad']}, {a['ad']} yerinin {c} yönünde bulunur.", shape=_ss_sh(ys))
+    return _mf_raw(subject, "Göreceli konum", q, ([x.capitalize() for x in sorted(allv)], c.capitalize()), f"Krokide {b['ad']}, {a['ad']} yerinin {c} yönünde bulunur.", shape=_ss_sh(ys))
 
 
 def _sf_ss_uc(subject):
@@ -28336,7 +28334,7 @@ def _sf_ss_tekn_line(subject):
     a, b = min(a, b), max(a, b)
     d = v[b] - v[a]
     o = _mf_opts(d, [x for x in (d + 1, d + 2, max(d - 1, 1), v[b], d + 3) if x != d and x > 0], lambda x: f"{x} öğrenci", sort=False)
-    sh = {"type": "line_chart", "labels": yil, "values": v, "title": "Akıllı tahta kullanan sınıf sayısına göre yıllar", "ylabel": "Sınıf sayısı"} if False else {"type": "line_chart", "labels": yil, "values": v, "title": "Bir okulda bilgisayar laboratuvarını kullanan öğrenci sayısı", "ylabel": "Öğrenci sayısı"}
+    sh = {"type": "line_chart", "labels": yil, "values": v, "title": "Bir okulda bilgisayar laboratuvarını kullanan öğrenci sayısı", "ylabel": "Öğrenci sayısı"}
     q = f"Bir okulda teknolojik gelişmelerin eğitime yansıması sonucu bilgisayar laboratuvarını kullanan öğrenci sayısı yıllara göre çizgi grafiğinde gösterilmiştir. Buna göre {yil[a]} yılından {yil[b]} yılına kullanan öğrenci sayısı kaç artmıştır?"
     return _mf_raw(subject, "Teknolojik gelişmelerin toplum hayatına etkisi", q, o, f"{v[b]} − {v[a]} = {d}.", shape=sh) if o else None
 
@@ -31580,7 +31578,7 @@ def _ss6_koord_nokta(subject):
     la, lo = pts[k]
     fmt = lambda c: f"{c[0]}° K, {c[1]}° D"
     wr = []
-    for c in [(la, x) for x in _S6_LON if x != lo] + [(y, lo) for y in _S6_LAT if y != la] + [(lo - 4 if lo > 28 else 28, la), (pts[o][0], pts[o][1]) if False else (la, lo + 2)]:
+    for c in [(la, x) for x in _S6_LON if x != lo] + [(y, lo) for y in _S6_LAT if y != la] + [(lo - 4 if lo > 28 else 28, la), (la, lo + 2)]:
         if c != (la, lo) and fmt(c) not in wr:
             wr.append(fmt(c))
     q = f"Şekilde bir haritadaki bazı noktalar harflerle gösterilmiştir. Yatay çizgiler enlemi, dikey çizgiler boylamı göstermektedir.\n{k} noktasının coğrafi koordinatları aşağıdakilerden hangisidir?"
@@ -31641,7 +31639,7 @@ def _ss6_iklim_tur(subject):
     ex = {"Akdeniz iklimi": "Yazlar sıcak ve kurak, kışlar ılık ve yağışlıdır: Akdeniz iklimi.",
           "Karadeniz iklimi": "Her mevsim yağışlıdır, yazlar serin, kışlar ılıktır: Karadeniz iklimi.",
           "Karasal iklim": "Kışlar soğuk (sıcaklık 0°C’nin altına iner), yazlar sıcak ve kurak, yağış azdır: Karasal iklim."}[nm]
-    return _s6raw("İklim", q, ([nm] + wr[:3] if False else (lambda L: (L, nm))(random.sample([nm] + wr[:3], 4))), ex, sh)
+    return _s6raw("İklim", q, ((lambda L: (L, nm))(random.sample([nm] + wr[:3], 4))), ex, sh)
 
 
 def _ss6_iklim_sayi(subject):
@@ -32567,10 +32565,6 @@ def _pool_read(path):
     return qs
 
 
-def _pool_shard_name(unit):
-    import hashlib
-    u = str(unit or "")
-    return (_pool_slug(u) or "x")[:60] + "_" + hashlib.md5(u.encode("utf-8")).hexdigest()[:4] + ".json"
 
 
 def _pool_load(path, sel_u=None, subject="", grade_label=""):
@@ -33612,7 +33606,7 @@ def _mf_od_yanlis(subject):
     wrong = random.choice([f"{k}/10", f"%{100 - k}", _od(100 - k), f"0,0{k}" if k < 10 else f"{k},0"])
     right = [f"%{k}", f"{k}/100", _od(k)]
     wrong = wrong if wrong not in right else f"%{k + 10}"
-    o = _mf_opts(wrong, right + [f"{k}/100"] if False else right, str, sort=False)
+    o = _mf_opts(wrong, right, str, sort=False)
     return _mf_raw(subject, "Ondalık gösterim", "Şekilde 100 eş kareye bölünmüş bir bütünün taralı kısmı gösterilmiştir.\nBuna göre taralı kısım için aşağıdakilerden hangisi yanlıştır?", o, f"Taralı kısım %{k}, {k}/100 ve {_od(k)} ile gösterilir; {wrong} bu değere eşit değildir.", shape=sh) if o else None
 
 
@@ -33647,7 +33641,7 @@ def _mf_od_onluk(subject):
     sh = _od_kart([{"kind": "serit", "k": k}], 1)
     kind = random.choice(["d", "y", "k"])
     if kind == "d":
-        cor, wr, ask = _od(k * 10), [_od(k), f"0,0{k}", _od((10 - k) * 10), f"{k},0" if False else _od(k * 10 + 10)], "hangi ondalık gösterimle"
+        cor, wr, ask = _od(k * 10), [_od(k), f"0,0{k}", _od((10 - k) * 10), _od(k * 10 + 10)], "hangi ondalık gösterimle"
     elif kind == "y":
         cor, wr, ask = f"%{k * 10}", [f"%{k}", f"%{(10 - k) * 10}", f"%{k * 10 + 10}", f"%{k * 100}"], "yüzde kaçtır, yani"
     else:
@@ -34058,7 +34052,7 @@ def _mf_bd_fazla(subject):
     if m <= 0 or len(str(m)) != nd:
         return _mf_bd_fazla(subject)
     ad = {1000: "1 000", 10000: "10 000", 100000: "100 000"}[k]
-    wr = [n + sg * k * 10 if len(str(n + sg * k * 10)) == nd or True else n, n + sg * k // 10, n - sg * k, n + sg * k * 100, n + sg * 10 * (k // 100)]
+    wr = [n + sg * k * 10, n + sg * k // 10, n - sg * k, n + sg * k * 100, n + sg * 10 * (k // 100)]
     wr = _bd_pad([_fmt_say(x) for x in wr if x > 0], _fmt_say(m))
     o = _mf_opts(_fmt_say(m), wr, str, sort=False)
     return _mf_raw(subject, "Basamak değeri", f"Şekilde bir doğal sayı basamak tablosunda gösterilmiştir.\nBuna göre bu sayının {ad} {'fazlası' if sg > 0 else 'eksiği'} kaçtır?", o, f"{ad} {'eklenirse' if sg > 0 else 'çıkarılırsa'} ilgili basamaktaki rakam {'1 artar' if sg > 0 else '1 azalır'}: {_fmt_say(m)}.", shape=_bd_tab(ds)) if o else None
@@ -34226,8 +34220,8 @@ def _mf_kr_en_kucuk(subject):
     c_ds = [nz[0]] + rest
     c = _fmt_say(int("".join(map(str, c_ds))))
     wrong_zero = "0" + "".join(map(str, sorted(ds)[1:]))
-    wrong_zero = " ".join(wrong_zero[max(i - 3, 0):i] for i in range(len(wrong_zero) % 3 or 3, len(wrong_zero) + 1, 3)) if False else _fmt_say_raw(wrong_zero)
-    wr = [_fmt_say(int("".join(map(str, sorted(ds, reverse=True))))), wrong_zero[:1] + " " + wrong_zero[1:] if False else wrong_zero, _fmt_say(int("".join(map(str, [nz[0]] + sorted(ds, reverse=True)[:0] + sorted(rest, reverse=True))))), _fmt_say(int("".join(map(str, [nz[1] if len(nz) > 1 else nz[0]] + [x for x in sorted(ds) if x != (nz[1] if len(nz) > 1 else nz[0])]))))]
+    wrong_zero = _fmt_say_raw(wrong_zero)
+    wr = [_fmt_say(int("".join(map(str, sorted(ds, reverse=True))))), wrong_zero, _fmt_say(int("".join(map(str, [nz[0]] + sorted(ds, reverse=True)[:0] + sorted(rest, reverse=True))))), _fmt_say(int("".join(map(str, [nz[1] if len(nz) > 1 else nz[0]] + [x for x in sorted(ds) if x != (nz[1] if len(nz) > 1 else nz[0])]))))]
     wr = _bd_pad(wr, c)
     o = _mf_opts(c, wr, str, sort=False)
     return _mf_raw(subject, "Sayı oluşturma", f"Şekilde {nd} rakam kartı gösterilmiştir.\nBu kartların hepsi birer kez kullanılarak yazılabilecek en küçük {nd} basamaklı doğal sayı kaçtır?", o, f"Sayının ilk basamağı 0 olamaz; en küçük sıfır olmayan rakam başa, kalanlar küçükten büyüğe dizilir: {c}.", shape=_kr_sh(ds)) if o else None
@@ -34730,7 +34724,7 @@ def _vt_pik(rows, unit, thing):
 
 
 def _mf_vt_cizgi_oku(subject):
-    labs = random.sample(_VT_AY, 4) if False else _VT_AY[:random.choice([4, 5, 6])]
+    labs = _VT_AY[:random.choice([4, 5, 6])]
     vals = [random.choice(range(10, 100, 5)) for _ in labs]
     i = random.randrange(len(labs))
     o = _mf_opts(vals[i], [x for x in dict.fromkeys(vals + [vals[i] + 5, vals[i] - 5, vals[i] + 10]) if x != vals[i] and x > 0], str, sort=False)
@@ -34816,7 +34810,7 @@ def _mf_vt_pikto_top(subject):
     names, ns = _vt_rows(4)
     t = sum(ns) * u
     o = _mf_opts(t, [x for x in (t + u, t - u, t + 2 * u, t - 2 * u, sum(ns)) if x != t and x > 0], str, sort=False)
-    sh = _vt_pik([{"name": names[i], "n": ns[i]} for i in range(4)], u, "kitap" if False else "adet")
+    sh = _vt_pik([{"name": names[i], "n": ns[i]} for i in range(4)], u, "adet")
     return _mf_raw(subject, "Veri yorumlama", _vt_o("Şekil grafiğinde bir kırtasiyede satılan ürünlerin sayısı gösterilmiştir.", "Aşağıdaki şekil grafiğinde bir kırtasiyenin bir günde sattığı ürünler gösterilmiştir.") + f"\nBuna göre bu kırtasiyede toplam kaç ürün satılmıştır?", o, f"Toplam simge sayısı {sum(ns)} ve her simge {u} adet: {sum(ns)} × {u} = {t}.", shape=sh) if o else None
 
 
@@ -35230,7 +35224,7 @@ _EB_PAIRS = [(12, 18), (16, 24), (18, 30), (20, 30), (24, 36), (12, 20), (18, 27
 def _venn_sh(a, b):
     da, db = _dv(a), _dv(b)
     com = [x for x in da if x in db]
-    return {"type": "m6", "sub_type": "venn", "ta": f"{a}'nın çarpanları" if False else f"{a} sayısının çarpanları", "tb": f"{b} sayısının çarpanları", "a": [x for x in da if x not in com], "ab": com, "b": [x for x in db if x not in com]}, com
+    return {"type": "m6", "sub_type": "venn", "ta": f"{a} sayısının çarpanları", "tb": f"{b} sayısının çarpanları", "a": [x for x in da if x not in com], "ab": com, "b": [x for x in db if x not in com]}, com
 
 
 def _mf6_dn_ebob(subject):
@@ -35259,7 +35253,7 @@ def _mf6_dn_ekok(subject):
     l = a * b // __import__("math").gcd(a, b)
     sh = {"type": "m6", "sub_type": "ritim", "max": l, "rows": [{"name": "A", "step": a}, {"name": "B", "step": b}]}
     nes = random.choice([("iki otobüs", "dakikada bir"), ("iki fener", "saniyede bir"), ("iki arkadaş", "günde bir")])
-    unit = nes[1].split()[0] if False else nes[1].replace(" bir", "")
+    unit = nes[1].replace(" bir", "")
     o = _m6o(l, [l + a, l - a if l - a > 0 else l + b, l + b, a * b if a * b != l else l + 2 * a, l * 2, a + b], str)
     q = f"Şekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her {a}, B her {b} birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?"
     return _mf_raw(subject, "EBOB-EKOK giriş", q, o, f"{a} ve {b}'nin ortak katlarından en küçüğü EKOK({a}, {b}) = {l} olur.", shape=sh) if o else None
@@ -35423,7 +35417,7 @@ def _mf6_uzun_tablo(subject):
     tgt = max(mm) if en else min(mm)
     pairs = _m6let([f"{v} {u}" for v, u, _ in items])
     lab = {l: t for l, t in pairs}
-    ans = next(l for (l, t), it in zip(pairs, [None] * 4)) if False else None
+    ans = None
     for (l, t) in pairs:
         v, u = t.split()
         if int(v) * U[u] == tgt:
@@ -35470,8 +35464,6 @@ def _mf6_olasilik_gozlem(subject):
     kon = random.choice([("kırmızı", "mavi", "yeşil", "Bir torbadan çekilen bilyenin rengi"), ("sarı", "mor", "beyaz", "Bir çarktan çıkan rengin")])
     cnt = [random.randint(3, 14) for _ in range(3)]
     tot = sum(cnt)
-    if tot % 2 == 0 and False:
-        return None
     i = random.randrange(3)
     ans = _fr(cnt[i], tot)
     sh = {"type": "table", "title": "Deneme sonuçları", "headers": ["Renk", "Çıkma sayısı"], "rows": [[kon[j], str(cnt[j])] for j in range(3)]}
@@ -35504,6 +35496,8 @@ def _frw(c, extra):
             if t not in out:
                 out.append(t)
     return out
+
+
 
 
 def _alan_sh(kind, **kw):
@@ -35561,7 +35555,7 @@ def _cem_sh(**kw):
 def _mf6_cm_r(subject):
     r = random.randint(2, 15)
     c = 6 * r
-    o = _m6o(c, [3 * r, 12 * r if False else c + r, 9 * r, c + 6, c - 6, 3 * r * r], str)
+    o = _m6o(c, [3 * r, c + r, 9 * r, c + 6, c - 6, 3 * r * r], str)
     q = "Şekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?"
     return _mf_raw(subject, "Çemberin çevresi", q, o, f"Çevre = 2 × π × r = 2 × 3 × {r} = {c} cm.", shape=_cem_sh(mode="r", lr=f"r = {r} cm")) if o else None
 
@@ -35622,7 +35616,7 @@ def _mf6_kf_serit(subject):
     sh = {"type": "m6", "sub_type": "serit2", "rows": [{"name": "K", "d": d1, "k": a}, {"name": "L", "d": d2, "k": b}]}
     word = "toplamı" if op == "+" else "farkı (büyük − küçük)"
     q = f"Şekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların {word} en sade biçimde kaçtır?"
-    return _mf_raw(subject, "Kesirlerle toplama-çıkarma", q, o, f"{a}/{d1} {op} {b}/{d2} = {_fr(res.numerator, res.denominator)}." if False else f"K = {a}/{d1}, L = {b}/{d2}; sonuç {_fr(res.numerator, res.denominator)}.", shape=sh) if o else None
+    return _mf_raw(subject, "Kesirlerle toplama-çıkarma", q, o, f"K = {a}/{d1}, L = {b}/{d2}; sonuç {_fr(res.numerator, res.denominator)}.", shape=sh) if o else None
 
 
 def _mf6_kf_bar_kalan(subject):
@@ -35630,7 +35624,7 @@ def _mf6_kf_bar_kalan(subject):
     k = random.randint(1, dd - 1)
     T = dd * random.randint(5, 25)
     rest = T * (dd - k) // dd
-    o = _m6o(rest, [T * k // dd, T - 1 if False else T // 2, rest + dd, rest - dd, T - k, rest + T // dd], str)
+    o = _m6o(rest, [T * k // dd, T // 2, rest + dd, rest - dd, T - k, rest + T // dd], str)
     nes = random.choice(["sayfa", "soru", "bilet"])
     sh = {"type": "kes", "sub_type": "bar", "rows": [{"name": "", "segs": [{"l": "", "w": 1, "q": j >= k} for j in range(dd)], "brace": f"{T} {nes}"}]}
     q = f"Şekildeki çubuk modelde toplam {T} {nes}lik bir bütünün {dd} eş parçaya bölündüğü ve {k} parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç {nes}tir?"
@@ -35700,6 +35694,8 @@ def _mf6_or_tablo(subject):
 
 
 # ---- Ondalık / yüzde
+
+
 def _od6(v):
     return f"{v:.2f}".replace(".", ",")
 
@@ -35724,7 +35720,7 @@ def _mf6_od_ond(subject):
 def _mf6_od_kesir(subject):
     n = random.choice([10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 35, 45, 15, 5, 4, 8, 12, 16, 24, 36, 48, 64, 72, 88, 96])
     c = _KFr(n, 100)
-    ws = _frw(c, [(n, 10), (n, 1000), (100 - n, 100), (c.numerator, c.denominator + 1), (c.numerator + 1, c.denominator), (n, 100 // max(1, 2) if False else 50)])
+    ws = _frw(c, [(n, 10), (n, 1000), (100 - n, 100), (c.numerator, c.denominator + 1), (c.numerator + 1, c.denominator), (n, 50)])
     o = _m6o(_fr(n, 100), ws, lambda x: x)
     q = "Şekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü en sade kesirle kaçtır?"
     return _mf_raw(subject, "Kesir, ondalık ve yüzde", q, o, f"{n}/100 = {_fr(n, 100)}.", shape={"type": "m6", "sub_type": "yuzluk", "n": n}) if o else None
@@ -35774,7 +35770,7 @@ def _mf6_pl_olcu(subject):
     if not sh:
         return None
     g = arcs[0]
-    o = _m6o(ans, [180 - ans, 90 - ans if 90 - ans > 0 else ans + 20, ans + 10, ans - 10, 360 - ans - 180 + 20 if False else ans + 20, ans // 2 + 5], lambda v: f"{v}°")
+    o = _m6o(ans, [180 - ans, 90 - ans if 90 - ans > 0 else ans + 20, ans + 10, ans - 10, ans + 20, ans // 2 + 5], lambda v: f"{v}°")
     q = f"Şekilde d1 // d2 ve k kesendir. m({g['a']}{g['v']}{g['b']}) = {th}° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?"
     return _mf_raw(subject, "Paralel doğrular ve kesen", q, o, f"Bu iki açı {nm.lower()} olduğundan " + ("birbirine eşittir." if eq else "toplamları 180°'dir.") + f" x = {ans}°.", shape=sh) if o else None
 
@@ -36481,7 +36477,7 @@ def _mf6_dg_paralelkenar(subject):
     pos = "ardışık"
     kd = random.choice(["parallelogram", "rhombus"])
     ans = 180 - t
-    ang = {"A": t if False else f"{t}°", "C": "x"} if pos == "karşıt" else {"A": f"{t}°", "B": "x"}
+    ang = {"A": f"{t}°", "C": "x"} if pos == "karşıt" else {"A": f"{t}°", "B": "x"}
     sh = {"type": "geo", "sub_type": "quad", "kind": kd, "labels": ["A", "B", "C", "D"], "angles": ang}
     o = _m6o(ans, [180 - ans, ans + 10, ans - 10, 360 - ans - t if 360 - ans - t > 0 else ans + 20, 90, ans + 20], lambda v: f"{v}°")
     ask = "C" if pos == "karşıt" else "B"
@@ -36809,8 +36805,6 @@ for _f, _d in _S6_FAMS:
 _PLN6 = ["Yüz binler", "On binler", "Binler", "Yüzler", "Onlar", "Birler"]
 
 
-def _s6w(ds, hi=9):
-    return [random.randint(1, hi)] + [random.randint(0, hi) for _ in range(5)]
 
 
 def _mf6n_bd_artir(subject):
@@ -37374,7 +37368,7 @@ def _mf5_pr_kart(subject):
 
 
 def _mf5_cb_fis(subject):
-    items = random.sample([("Defter", 8, 15), ("Kalem", 3, 6), ("Silgi", 2, 5), ("Cetvel", 4, 9), ("Boya kalemi seti", 12, 25), ("Ekmek", 2, 7), ("Süt", 3, 12), ("Elma (kg)", 2, 18), ("Peynir", 1, 60)], 0) if False else None
+    items = None
     cat = random.sample([("Defter", 15), ("Kalem", 6), ("Silgi", 5), ("Cetvel", 9), ("Ekmek", 7), ("Süt", 12), ("Elma (kg)", 18), ("Simit", 8), ("Peynir (paket)", 45)], random.choice([2, 3]))
     rows = [[nm, random.randint(2, 6), p] for nm, p in cat]
     tot = sum(r[1] * r[2] for r in rows)
@@ -37547,7 +37541,7 @@ def _mf5_ck_esit(subject):
         ra, rb, d = (random.randint(3, 11) for _ in range(3))
         eq = {"ab_ac": d == ra != rb, "ab_bc": d == rb != ra, "ac_bc": ra == rb != d, "hepsi": ra == rb == d, "yok": len({ra, rb, d}) == 3}
         if kind == "ab_ac":
-            rb, ra = (ra, d)[::-1][0:1][0] if False else rb, ra
+            rb, ra = rb, ra
         if _gv_tri_pts(rb, ra, d):
             if kind == "ab_ac":
                 ra = d

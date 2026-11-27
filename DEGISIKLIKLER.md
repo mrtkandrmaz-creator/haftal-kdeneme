@@ -306,3 +306,8 @@ Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve 
 - Havuz yeniden kuruldu: Sosyal 4238, Türkçe 5202, Din 3707; run_checks 14/14.
 - Sınır: zorluk yalnızca çok aşamalı kontrolle artıyor; metin okuma/çıkarım tipi zorluk-5 (uzun paragraf, harita-infografik) hâlâ yok.
 - (devam) Türkçe: `_tf_par_oncul` — paragraftan I-II-III yargı çıkarımı (yalnız biri parçaya uygun; zorluk 5). Sosyal Bilgiler: krokide 2 ve 3 adımlı rota (`_sf_ss_yol`, `_sf_ss_yol3`; zorluk 5, şıklar harf, metindeki yönler şekildeki pusulayla uyumlu). Havuz: Sosyal 4360, Türkçe 5260; run_checks 14/14.
+
+## Kod temizliği (2026-11-28)
+- Modül bazında (app.py içindeki MODULES metinleri) ölü kod taraması: kullanılmayan işlev, sabit, import, yinelenen tanım.
+- Silinenler: kullanılmayan 3 işlev (`_pool_shard_name`, `_s6w`, `_pin_hash`), 65 adet `X if False else Y` ölü dalı (Y'ye indirildi), `and False` / `or True` kalıpları, boş `for … pass` döngüleri. app.py 43 953 → ~43 880 satır.
+- Dikkat: ilk denemede ölü sanılan `_rot/_regular/_poly/_par_draw` (eski `_geo` takma adı `_geo_basic` kullanıyor), `_alan_sh/_od6` (altıncı sınıf kalıpları) ve `_mf_ca_halı` (Türkçe karakterli ad) geri konuldu; run_checks 14/14. Aynı adla yeniden tanımlanan eski sürümler (`_geo`, `_bio_icon`, `_mf6_*`) kayıt listelerinde kullanıldığı için bilerek silinmedi.
