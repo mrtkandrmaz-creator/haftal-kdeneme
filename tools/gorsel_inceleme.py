@@ -9,7 +9,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT, N, PRE = sys.argv[1], int(sys.argv[2]), tuple(sys.argv[3].split(","))
 ai, cur, store = bp.load_pkg(os.path.join(_ROOT, "app.py"))
 vis = importlib.import_module(ai.__name__.rsplit(".", 1)[0] + ".visuals")
-SUBJ = {"_ff": "Fen Bilimleri", "_mf": "Matematik", "_sf": "Sosyal Bilgiler", "_tf": "Türkçe", "_df": "Din Kültürü ve Ahlak Bilgisi"}
+SUBJ = {"_en": "İngilizce", "_ff": "Fen Bilimleri", "_mf": "Matematik", "_sf": "Sosyal Bilgiler", "_tf": "Türkçe", "_df": "Din Kültürü ve Ahlak Bilgisi"}
 
 
 def png(shape):

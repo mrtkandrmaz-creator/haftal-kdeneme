@@ -274,3 +274,8 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Bulgu/düzeltme: Fen yapı–görev kalıplarında kaslar/uyluk/diz aynı "bacak hareketi" görevini alabiliyordu (belirsiz) → `_dh_gvs4` ile en çok biri.
 - MAT.5.2.1 (eşitliğin korunumu/işlem özellikleri): `_mf5_eq_koru_tab`, `_mf5_eq_ozellik_yanlis`, `_mf5_eq_ozellik_ad`, `_mf5_eq_eksik_sayi` (hepsi tablolu; çıkarmada negatif sayı çıkmaz). 245 → 438 soru.
 - MAT.5.3.2 (pergel, cetvel, çember): `_mf5_in_pergel_tab`, `_mf5_in_cetvel_tab`, `_mf5_in_halka_tab`. 216 → 458 soru.
+
+### Bildirimler gece üreticiye bağlandı + İngilizce School Life görselleri
+- `report_bad` "Konu dışı": (kalıp, ünite) sayacı `offtopic_cnt.json`'a yazılır. `tools/build_local_pool.py` (`--bad-dir`): tüm profillerde toplam ≥2 bildirim alan (kalıp, ünite) çifti ve `bad_tpls.json`'da ≥2 bildirimli kalıp gece havuzuna girmez (1 bildirimde çalışma anındaki dışlama sürer). Sahte klasörle denendi: işaretli çift havuzdan çıktı.
+- İngilizce "School Life": görselli oran %1 → %57 (495 sorunun 281'i). Yeni kalıplar: `_en_yn_club` (kulüp programı), `_en_yn_places` (okul yerleri/kat), `_en_yn_natday` (ulusal bayramlar), `_en_yn_countries` (ülke/dil), `_en_yn_sp_day` (Simple Present, günlük program), `_en_yn_signs` (tabelalar/emir kipi), `_en_club_bar` (kulüp grafiği).
+- `tools/gorsel_inceleme.py`: `_en_` önekli kalıplar İngilizce olarak değerlendirilir (doc şekilleri artık çizilir). Gözle taramada taşan metin (19 Mayıs satırı) ve "Watch tv" yazımı bulunup düzeltildi.

@@ -123,6 +123,25 @@ def main():
         if acc:
             with open(os.path.join(_st.DATA, fn), "w", encoding="utf-8") as f:
                 json.dump(sorted(set(acc)), f, ensure_ascii=False)
+    # konu dışı bildirimleri ((kalıp, ünite) çifti) ve hatalı kalıp bildirimleri: tüm profillerde toplam >= 2 ise o kalıp/ünite havuza girmez
+    off_n, tpl_n = collections.Counter(), collections.Counter()
+    for d_ in dirs:
+        try:
+            with open(os.path.join(d_, "offtopic_cnt.json"), encoding="utf-8") as f:
+                for k_, v_ in json.load(f).items():
+                    off_n[k_] += int(v_)
+        except Exception:
+            pass
+        try:
+            with open(os.path.join(d_, "bad_tpls.json"), encoding="utf-8") as f:
+                for k_, v_ in json.load(f).items():
+                    tpl_n[k_] += int((v_ or {}).get("n", 1)) if isinstance(v_, dict) else 1
+        except Exception:
+            pass
+    skip_pair = {tuple(k_.split("|", 1)) for k_, n_ in off_n.items() if n_ >= 2 and "|" in k_}
+    skip_fam = {k_ for k_, n_ in tpl_n.items() if n_ >= 2}
+    if skip_pair or skip_fam:
+        print(f"   bildirimlerden havuza alınmayacak: {len(skip_pair)} (kalıp, ünite) çifti, {len(skip_fam)} kalıp")
     want = [s.strip() for s in args.subjects.split(",") if s.strip()]
     tot = 0
     for g in [x.strip() for x in args.grades.split(",") if x.strip()]:
@@ -149,6 +168,8 @@ def main():
                 per = []
                 for f, kw in fams:
                     if not any(ai._kw_hit(utxt.lower(), k) for k in kw):
+                        continue
+                    if f.__name__ in skip_fam or (f.__name__, unit) in skip_pair:
                         continue
                     item = getattr(f, "ITEM", None)
                     got, forms = [], collections.Counter()

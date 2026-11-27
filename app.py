@@ -7533,6 +7533,11 @@ def report_bad(q, reason=""):
             if _fm0 and _un0 and [_fm0, _un0] not in _of:
                 _of.append([_fm0, _un0])
                 _save("offtopic.json", _of[-3000:])
+            if _fm0 and _un0:  # kaç kez bildirildi: gece havuz üreticisi 2. bildirimde (kalıp, ünite) çiftini havuza hiç almaz
+                _oc = _load("offtopic_cnt.json", {})
+                _kk = _fm0 + "|" + _un0
+                _oc[_kk] = int(_oc.get(_kk, 0)) + 1
+                _save("offtopic_cnt.json", _oc)
             _k0 = _load("bad_keys.json", [])
             _e0 = _exact_key(q.get("question", ""), _q_correct(q))
             if _e0 not in _k0:
@@ -18940,6 +18945,131 @@ _EF_GENS = []
 for _f, _it, _kw, _d in _EN_NEW:
     _EF_GENS.append((_f, _kw))
     _DIFF_OF[_f.__name__] = _d
+# ---- School Life: görselli ek kalıplar (kulüpler, okul yerleri, ulusal bayramlar, ülkeler, ders programı, tabelalar, grafik)
+_EN_CLUBS = ["Chess Club", "Art Club", "Drama Club", "Music Club", "Sports Club", "Science Club", "Reading Club", "Dance Club"]
+_EN_DAYS5 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+
+
+def _en_yn_club(subject):
+    cl = random.sample(_EN_CLUBS, 4)
+    ds = random.sample(_EN_DAYS5, 4)
+    hs = random.sample([3, 4, 5], 3) + [random.choice([3, 4, 5])]
+    sh = _en_doc("SCHOOL CLUBS", [["grid", ["Club", "Day", "Time"], [[c, d, f"{h}.00 p.m."] for c, d, h in zip(cl, ds, hs)]]], deco="stars")
+    topic = "Clubs"
+    i = random.randrange(4)
+    kind = random.choice(["day", "club", "time"])
+    if kind == "day":
+        return _en_pick(topic, f"When does the {cl[i]} meet?", f"On {ds[i]}", [f"On {d}" for d in _EN_DAYS5 if d != ds[i]], f"Tabloda {cl[i]} için {ds[i]} yazıyor.", shape=sh)
+    if kind == "club":
+        return _en_pick(topic, f"Which club meets on {ds[i]}?", cl[i], [c for c in cl if c != cl[i]] + [c for c in _EN_CLUBS if c not in cl][:2], f"{ds[i]} günü toplanan kulüp {cl[i]}.", shape=sh)
+    return _en_pick(topic, f"What time does the {cl[i]} meet?", f"At {hs[i]}.00 p.m.", [f"At {h}.00 p.m." for h in (2, 3, 4, 5, 6) if h != hs[i]], f"Tabloda {cl[i]} için {hs[i]}.00 p.m. yazıyor.", shape=sh)
+
+
+_EN_PLACES = [("library", "1st floor"), ("canteen", "ground floor"), ("gym", "ground floor"), ("art room", "2nd floor"), ("music room", "2nd floor"), ("science lab", "3rd floor"), ("computer lab", "3rd floor"),
+              ("headmaster's office", "1st floor")]
+
+
+def _en_yn_places(subject):
+    pl = random.sample(_EN_PLACES, 4)
+    sh = _en_doc("OUR SCHOOL", [["grid", ["Place", "Floor"], [[p.capitalize(), f] for p, f in pl]]], deco="books")
+    topic = "School places and rules"
+    p, f = random.choice(pl)
+    fl = ["ground floor", "1st floor", "2nd floor", "3rd floor"]
+    if random.random() < .5:
+        return _en_pick(topic, f"Where is the {p}?", f"On the {f}" if f != "ground floor" else "On the ground floor", [f"On the {x}" for x in fl if x != f], f"Tabloda {p} için {f} yazıyor.", shape=sh)
+    same = [x for x in pl if x[1] == f]
+    if len(same) != 1:
+        return None
+    return _en_pick(topic, f"Which place is on the {f}?", p.capitalize(), [x[0].capitalize() for x in pl if x[0] != p], f"{f} bölümünde yalnızca {p} var.", shape=sh)
+
+
+_EN_NAT = [("23 April", "Children's Day"), ("19 May", "Youth and Sports Day"), ("30 August", "Victory Day"), ("29 October", "Republic Day")]
+
+
+def _en_yn_natday(subject):
+    sh = _en_doc("NATIONAL DAYS IN TÜRKİYE", [["grid", ["Date", "Celebration"], [[d, n] for d, n in _EN_NAT]]], deco="stars", theme="kirmizi")
+    topic = "National days"
+    d, n = random.choice(_EN_NAT)
+    wd = [x for x, _ in _EN_NAT if x != d] + ["1 May", "10 November"]
+    if random.random() < .5:
+        short = n
+        return _en_pick(topic, f"When is {short}?", f"On {d}", [f"On {x}" for x in wd], f"Tabloda {short} için {d} yazıyor.", shape=sh)
+    return _en_pick(topic, f"What do we celebrate on {d}?", n, [x[1] for x in _EN_NAT if x[1] != n] + ["Teachers' Day"], f"Tabloda {d} tarihi için {n} yazıyor.", shape=sh)
+
+
+_EN_CTRY = [("Maria", "Spain", "Spanish"), ("Hans", "Germany", "German"), ("Pierre", "France", "French"), ("Kenji", "Japan", "Japanese"), ("Ali", "Türkiye", "Turkish"), ("John", "England", "English"),
+            ("Anna", "Italy", "Italian")]
+
+
+def _en_yn_countries(subject):
+    ps = random.sample(_EN_CTRY, 4)
+    sh = _en_doc("NEW FRIENDS", [["grid", ["Name", "Country", "Language"], [[n, c, l] for n, c, l in ps]]], deco="balloons")
+    topic = "Countries"
+    n, c, l = random.choice(ps)
+    kind = random.choice(["from", "lang", "who"])
+    if kind == "from":
+        return _en_pick(topic, f"Where is {n} from?", f"{n} is from {c}.", [f"{n} is from {x[1]}." for x in ps if x[1] != c] + [f"{n} is from Brazil."], f"Tabloda {n} için {c} yazıyor.", shape=sh)
+    if kind == "lang":
+        return _en_pick(topic, f"What language does {n} speak?", l, [x[2] for x in ps if x[2] != l] + ["Russian"], f"Tabloda {n} için {l} yazıyor.", shape=sh)
+    return _en_pick(topic, f"Who speaks {l}?", n, [x[0] for x in ps if x[0] != n] + [x[0] for x in _EN_CTRY if x not in ps][:1], f"{l} konuşan kişi {n}.", shape=sh)
+
+
+_EN_ACT = [("7.00 a.m.", "have breakfast"), ("8.00 a.m.", "go to school"), ("12.30 p.m.", "have lunch"), ("4.00 p.m.", "do homework"), ("5.00 p.m.", "play football"), ("7.30 p.m.", "watch TV"),
+           ("8.30 p.m.", "brush teeth")]
+
+
+def _en_yn_sp_day(subject):
+    nm = random.choice(["Ali", "Mert", "Cem", "Emre"])
+    pr = [_EN_ACT[k] for k in sorted(random.sample(range(len(_EN_ACT)), 4))]
+    tm = [t for t, _ in pr]
+    ac = [a for _, a in pr]
+    sh = _en_doc(f"{nm.upper()}'S DAY", [["grid", ["Time", "Activity"], [[t, a[0].upper() + a[1:]] for t, a in zip(tm, ac)]]], deco="stars")
+    topic = "Simple Present"
+    i = random.randrange(4)
+
+    def v(a):
+        w, r = a.split(" ", 1)
+        w3 = {"have": "has", "go": "goes", "do": "does", "watch": "watches", "brush": "brushes"}.get(w, w + "s")
+        return f"{w3} {r}"
+    ing = {"have": "having", "go": "going", "do": "doing", "play": "playing", "watch": "watching", "brush": "brushing"}
+    ok = f"{nm} {v(ac[i])} at {tm[i]}"
+    wr = [f"{nm} {ac[i]} at {tm[i]}", f"{nm} {v(ac[(i + 1) % 4])} at {tm[i]}", f"{nm} {v(ac[i])} at {tm[(i + 1) % 4]}", f"{nm} {ing[ac[i].split(' ', 1)[0]]} {ac[i].split(' ', 1)[1]} at {tm[i]}"]
+    return _en_pick(topic, "Which sentence is TRUE according to the table?", ok, wr, f"Tabloda saat {tm[i]} için '{ac[i]}' yazıyor; he/she ile fiil -s/-es alır: {ok}", shape=sh)
+
+
+_EN_SIGN = [("Library", "Be quiet!"), ("Canteen", "Wash your hands."), ("Gym", "Wear sports shoes."), ("Corridor", "Don't run."), ("Science lab", "Wear your goggles."), ("Garden", "Don't pick the flowers."),
+            ("Computer lab", "Don't eat or drink.")]
+
+
+def _en_yn_signs(subject):
+    sg = random.sample(_EN_SIGN, 4)
+    sh = _en_doc("SCHOOL SIGNS", [["grid", ["Place", "Sign"], [[p, s] for p, s in sg]]], deco="stars", theme="turuncu")
+    topic = "Imperatives"
+    p, s = random.choice(sg)
+    if random.random() < .5:
+        return _en_pick(topic, f"Where can you see the sign \"{s}\"?", f"In the {p.lower()}" if p not in ("Garden", "Corridor") else f"In the {p.lower()}", [f"In the {x[0].lower()}" for x in sg if x[0] != p] + ["In the classroom"], f"Tabloda '{s}' işareti {p.lower()} için yazılmış.", shape=sh)
+    return _en_pick(topic, f"Which sign is in the {p.lower()}?", f"\"{s}\"", [f"\"{x[1]}\"" for x in sg if x[0] != p], f"Tabloda {p.lower()} için '{s}' yazıyor.", shape=sh)
+
+
+def _en_club_bar(subject):
+    cl = random.sample(_EN_CLUBS, 4)
+    vs = random.sample([6, 8, 10, 12, 14, 16, 18, 20], 4)
+    sh = {"type": "bar_chart", "title": "Students in school clubs", "labels": cl, "values": vs}
+    topic = "Clubs"
+    i, j = random.sample(range(4), 2)
+    if random.random() < .5:
+        return _en_pick(topic, f"How many students are in the {cl[i]}?", str(vs[i]), [str(x) for x in (vs[i] + 2, vs[i] - 2, vs[i] + 4, vs[j])], f"Grafikte {cl[i]} için {vs[i]} öğrenci görünüyor.", shape=sh)
+    d = abs(vs[i] - vs[j])
+    return _en_pick(topic, f"How many more students are in the {cl[i] if vs[i] > vs[j] else cl[j]} than in the {cl[j] if vs[i] > vs[j] else cl[i]}?", str(d), [str(x) for x in (d + 2, d + 4, vs[i] + vs[j], max(d - 2, 1))],
+                    f"{max(vs[i], vs[j])} − {min(vs[i], vs[j])} = {d}.", shape=sh) if d > 0 else None
+
+
+for _f, _kw, _d in ((_en_yn_club, ("clubs", "school life"), 2), (_en_yn_places, ("school places", "school life"), 2), (_en_yn_natday, ("national days", "school life"), 3),
+                    (_en_yn_countries, ("countries", "school life"), 2), (_en_yn_sp_day, ("simple present", "school life"), 3), (_en_yn_signs, ("imperatives", "school life"), 2),
+                    (_en_club_bar, ("clubs", "school life"), 3)):
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = _d
+
 _NAMES = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
 _FEM = {"Ayşe", "Elif", "Zeynep"}
 
