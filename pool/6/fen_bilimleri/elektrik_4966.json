@@ -1,0 +1,4409 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Nehir, seri bağlı bir devrede özdeş pillerle özdeş bir ampulü yakıyor. Her denemede devreye farklı sayıda pil bağlayıp ampulün ne kadar ışık verdiğine bakıyor ve sonuçları tabloya yazıyor. Bağlantı kabloları ve ampul her denemede aynıdır.",
+"question": "Bu deneyde değiştirilen değişken aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Deney sonuçları",
+"headers": [
+"Devreye bağlanan pil (adet)",
+"Ampulün verdiği ışık"
+],
+"rows": [
+[
+"1",
+"Az"
+],
+[
+"2",
+"Orta"
+],
+[
+"3",
+"Çok"
+]
+]
+},
+"options": {
+"A": "Pil sayısı",
+"B": "Ampulün özdeş olması",
+"C": "Bağlantı kablolarının cinsi",
+"D": "Ampulün parlaklığı"
+},
+"answer": "A",
+"explanation": "Her denemede devreye bağlanan pil sayısı değiştirilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn_ampul"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Basit bir elektrik devresinde bağlantı kablosu elemanının görevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "devreye elektrik enerjisi sağlamak",
+"B": "elektrik enerjisini ışık enerjisine dönüştürmek",
+"C": "elektrik akımını elemanlar arasında iletmek",
+"D": "devreyi açıp kapatmak"
+},
+"answer": "C",
+"explanation": "Bağlantı kablosu devrede elektrik akımını elemanlar arasında iletmek görevini üstlenir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Şekildeki basit elektrik devresinde devreyi açıp kapatmaya yarayan devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "fen",
+"sub_type": "devre",
+"etiketler": {
+"pil": "N",
+"anahtar": "S",
+"ampul": "M",
+"kablo": "L"
+},
+"acik": "evet",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Anahtar devreyi açıp kapatır. Şekilde bu eleman S harfiyle gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "Anahtar ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ampul, devreye elektrik enerjisi sağlar.",
+"B": "Anahtar açıkken ampul ışık verir.",
+"C": "Devrenin açık olduğu durumda elektrik akımı geçer.",
+"D": "Anahtar, devreyi açıp kapatmaya yarar."
+},
+"answer": "D",
+"explanation": "“Anahtar, devreyi açıp kapatmaya yarar.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Elif, özdeş pillerle kurduğu seri devreye özdeş ampulleri art arda bağlıyor ve ampullerin parlaklığını bir ışık ölçerle ölçüyor.",
+"question": "Tabloya göre “1 ampul” değerine karşılık gelen ölçüm ile “3 ampul” değerine karşılık gelen ölçüm arasındaki fark kaç birim'dir?",
+"shape": {
+"type": "table",
+"title": "Ampul parlaklığı",
+"headers": [
+"Seri bağlı ampul sayısı",
+"Parlaklık (birim)"
+],
+"rows": [
+[
+"1 ampul",
+"39"
+],
+[
+"2 ampul",
+"31"
+],
+[
+"3 ampul",
+"30"
+],
+[
+"4 ampul",
+"25"
+]
+]
+},
+"options": {
+"A": "7 birim",
+"B": "9 birim",
+"C": "10 birim",
+"D": "14 birim"
+},
+"answer": "B",
+"explanation": "39 − 30 = 9 birim.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_ampul"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Bir devrede anahtarın görevi merak ediliyor.",
+"question": "Bir elektrik devresinde anahtarın görevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Devreyi açıp kapatarak akımı kontrol etmek",
+"B": "Devreye enerji sağlamak",
+"C": "Işık yaymak",
+"D": "Akımın şiddetini artırmak"
+},
+"answer": "A",
+"explanation": "Anahtar devreyi açar veya kapatır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_sen_elektrik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik tasarrufu",
+"passage": "Bir ailenin evinde kullanılan bazı elektrikli cihazların bir saatte tükettiği elektrik enerjisi tabloda verilmiştir.",
+"question": "Ütü cihazı 2 saat boyunca çalıştırılırsa toplam kaç watt-saat elektrik enerjisi tüketir?",
+"shape": {
+"type": "table",
+"title": "Cihazların Saatlik Elektrik Tüketimi",
+"headers": [
+"Cihaz",
+"Tüketim (watt-saat)"
+],
+"rows": [
+[
+"Televizyon",
+"90"
+],
+[
+"Süpürge",
+"150"
+],
+[
+"Ütü",
+"200"
+]
+]
+},
+"options": {
+"A": "202 watt-saat",
+"B": "600 watt-saat",
+"C": "610 watt-saat",
+"D": "400 watt-saat"
+},
+"answer": "D",
+"explanation": "200 × 2 = 400 watt-saat.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_tasarruf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "I. Devrenin açık olduğu durumda elektrik akımı geçer.\nII. Pil, devreye elektrik enerjisi sağlar.\nIII. Anahtar, devreyi açıp kapatmaya yarar.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Ampul sayısı ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ampul, ışık enerjisini elektrik enerjisine dönüştürür.",
+"B": "Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.",
+"C": "Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı artar.",
+"D": "Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır."
+},
+"answer": "D",
+"explanation": "“Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nII. Devre elemanları sembollerle gösterilir.\nIII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrik devresinde pilin görevi nedir?",
+"shape": null,
+"options": {
+"A": "Akımı yalıtmak",
+"B": "Elektrik enerjisi sağlamak",
+"C": "Devreyi açıp kapamak",
+"D": "Işık yaymak"
+},
+"answer": "B",
+"explanation": "Pil, devreye elektrik enerjisi sağlar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrik Devre Elemanları konusunda verilen bilgilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Anahtar açıkken devre kapalıdır ve akım geçer.",
+"B": "Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.",
+"C": "Bağlantı kabloları devrede elektrik enerjisi üretir.",
+"D": "Seri bağlı özdeş ampullerin sayısı azaltılırsa her ampulün parlaklığı azalır."
+},
+"answer": "B",
+"explanation": "“Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nII. Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.\nIII. Basit bir devrede mıknatıs ve cetvel bulunması zorunludur.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "I ve II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Anahtar açıkken devre ile ilgili hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ampul daha parlak yanar",
+"B": "Devre kapalıdır ve akım geçer",
+"C": "Devre açıktır ve akım geçmez",
+"D": "Pil çalışmaya başlar"
+},
+"answer": "C",
+"explanation": "Anahtar açıkken devre açıktır ve akım geçmez.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Anahtar kapatıldığında devre tamamlanır ve ampul yanar.\nII. Demir çivi elektriği iletmez.\nIII. Basit bir devrede mıknatıs ve cetvel bulunması zorunludur.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Ampul parlaklığını etkileyen değişkenlerden biri hangisidir?",
+"shape": null,
+"options": {
+"A": "Kabloların rengi",
+"B": "Devredeki pil sayısı",
+"C": "Odanın büyüklüğü",
+"D": "Ampulün rengi yalnızca"
+},
+"answer": "B",
+"explanation": "Ampulün parlaklığı devredeki pil sayısına bağlıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Anahtar, devrede elektrik enerjisi üretir.\nII. Pil sayısının etkisi incelenirken ampul çeşidi ve sayısı sabit tutulmalıdır.\nIII. Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrik tasarrufu için hangi ampul tercih edilmelidir?",
+"shape": null,
+"options": {
+"A": "LED ampul",
+"B": "Gün boyu yanık kalan ampul",
+"C": "Eski tip akkor ampul",
+"D": "Daha yüksek güçte ampul"
+},
+"answer": "A",
+"explanation": "Elektrik tasarrufu için LED ampul tercih edilmelidir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Elektrik tasarrufu için LED ampul tercih edilmelidir.\nII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nIII. Bağlantı kabloları devrede elektrik enerjisi üretir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nBuna göre açık anahtar sembolü hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e3",
+"label": "R"
+},
+{
+"kind": "e1",
+"label": "N"
+},
+{
+"kind": "e2",
+"label": "L"
+},
+{
+"kind": "e4",
+"label": "P"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "R",
+"D": "P"
+},
+"answer": "D",
+"explanation": "Açık anahtar sembolü P ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Verilen şekilde bir devre elemanının sembolü N harfiyle gösterilmiştir.\nVerilenlere göre N ile gösterilen sembol aşağıdakilerden hangisini temsil eder?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e2",
+"label": "N"
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Pil",
+"B": "Kapalı anahtar",
+"C": "Açık anahtar",
+"D": "Ampul"
+},
+"answer": "D",
+"explanation": "N sembolü ampul sembolüdür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Verilen şekilde bazı devre elemanlarının sembolleri gösterilmiştir.\nVerilenlere göre şekilde kaç tane ampul sembolü vardır?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e1",
+"label": "S"
+},
+{
+"kind": "e3",
+"label": "L"
+},
+{
+"kind": "e2",
+"label": "M"
+},
+{
+"kind": "e2",
+"label": "T"
+},
+{
+"kind": "e1",
+"label": "K"
+},
+{
+"kind": "e2",
+"label": "N"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "3",
+"D": "5"
+},
+"answer": "C",
+"explanation": "Şekilde 3 tane ampul sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekilde bir elektrik devresinin şeması verilmiştir. Devre elemanları harflerle gösterilmiştir.\nBu bilgilere göre devreyi açıp kapatmaya yarayan devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 1,
+"acik": true,
+"labels": {
+"p": "K",
+"s": "L",
+"a": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "P",
+"D": "Hiçbiri"
+},
+"answer": "B",
+"explanation": "Bu görevi yapan eleman şekilde L ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde basit bir elektrik devresinin şeması verilmiştir.\nVerilenlere göre bu devrede kaç tane ampul kullanılmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 3,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "C",
+"explanation": "Şemada 3 tane ampul sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_say_pil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekilde bir elektrik devresinin şeması verilmiştir.\nBu bilgilere göre bu devrede pil, ampul ve anahtar sembolleri toplam kaç tanedir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 1,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "7"
+},
+"answer": "B",
+"explanation": "2 pil + 1 ampul + 1 anahtar = 4.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_toplam"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre ampul ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 1,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "Anahtar açık olduğu için devreden akım geçmez, ampul yanmaz.",
+"B": "Pil sayısı fazla olduğu için ampul yanar.",
+"C": "Anahtar kapalı olduğu için ampul yanmaz.",
+"D": "Anahtarın durumu ampulün yanmasını etkilemez."
+},
+"answer": "A",
+"explanation": "Anahtar açık olduğu için devreden akım geçmez, ampul yanmaz.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_yanar"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekildeki elektrik devresinde ampul ışık vermemektedir.\nBuna göre bunun nedeni aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 0,
+"namp": 1,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Kablonun rengi uygun olmadığı için.",
+"B": "Devrede pil olmadığı için.",
+"C": "Devredeki ampul sayısı az olduğu için.",
+"D": "Anahtar kapalı olduğu için."
+},
+"answer": "B",
+"explanation": "Devrede pil olmadığı için.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekildeki elektrik devresinde ampul ışık vermemektedir.\nBuna göre ampulün ışık vermesi için aşağıdakilerden hangisi yapılmalıdır?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 2,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "Devreden ampul çıkarılmalıdır.",
+"B": "Anahtar kapatılmalıdır.",
+"C": "Devreye bir ampul daha eklenmelidir.",
+"D": "Anahtar açık bırakılmalıdır."
+},
+"answer": "B",
+"explanation": "Anahtar kapatılmalıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_cozum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Şekildeki devrede anahtar kapalıdır ve ampul ışık vermektedir.\nBuna göre bu devreye bir pil daha eklenirse ampulün parlaklığı nasıl değişir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Artar.",
+"B": "Azalır.",
+"C": "Ampul söner.",
+"D": "Değişmez."
+},
+"answer": "A",
+"explanation": "Ampul parlaklığı pil sayısı arttıkça artar, ampul sayısı arttıkça azalır; bu değişiklikte parlaklık artar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_degis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Şekilde özdeş pil ve ampullerle kurulmuş dört devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nBuna göre hangi devredeki ampuller en parlak yanar?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 3,
+"namp": 2,
+"acik": false,
+"label": "T"
+},
+{
+"npil": 1,
+"namp": 1,
+"acik": false,
+"label": "P"
+},
+{
+"npil": 2,
+"namp": 3,
+"acik": false,
+"label": "M"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "K"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "K",
+"C": "M",
+"D": "P"
+},
+"answer": "B",
+"explanation": "Parlaklık, pil sayısı ne kadar çok ve ampul sayısı ne kadar azsa o kadar büyüktür; en parlak yanan devre K ile gösterilendir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Verilen şekilde özdeş pil ve ampullerle kurulmuş üç devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nVerilenlere göre devrelerdeki ampullerin parlaklıkları büyükten küçüğe doğru hangi seçenekte doğru sıralanmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 1,
+"namp": 3,
+"acik": false,
+"label": "S"
+},
+{
+"npil": 2,
+"namp": 3,
+"acik": false,
+"label": "P"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "N"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "P > S > N",
+"B": "S > P > N",
+"C": "N > P > S",
+"D": "S > N > P"
+},
+"answer": "C",
+"explanation": "Parlaklık sıralaması: N > P > S.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 5,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Şekilde iki devrenin şeması verilmiştir. S ve L devrelerindeki ampullerin parlaklıkları birbirinden farklıdır.\nBuna göre bu farkın nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "S"
+},
+{
+"npil": 3,
+"namp": 1,
+"acik": false,
+"label": "L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Ampul sayısı",
+"B": "Anahtarın şekli",
+"C": "Pil sayısı",
+"D": "Kablo uzunluğu"
+},
+"answer": "C",
+"explanation": "İki devre arasındaki tek fark pil sayısıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde dört elektrik devresinin şeması verilmiştir.\nVerilenlere göre kaç devredeki ampul ışık verir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 3,
+"namp": 1,
+"acik": true,
+"label": "K"
+},
+{
+"npil": 1,
+"namp": 2,
+"acik": false,
+"label": "M"
+},
+{
+"npil": 0,
+"namp": 2,
+"acik": false,
+"label": "S"
+},
+{
+"npil": 3,
+"namp": 1,
+"acik": true,
+"label": "T"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Anahtarı kapalı ve pili olan devrelerde ampul yanar; bunların sayısı 1'dür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_yanan"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde dört elektrik devresinin şeması verilmiştir.\nBuna göre hangi devredeki ampul ışık verir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 0,
+"namp": 1,
+"acik": false,
+"label": "R"
+},
+{
+"npil": 2,
+"namp": 2,
+"acik": true,
+"label": "K"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": true,
+"label": "N"
+},
+{
+"npil": 1,
+"namp": 1,
+"acik": false,
+"label": "S"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "S",
+"C": "K",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Pili olan ve anahtarı kapalı olan tek devre S ile gösterilendir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_hangi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Nehir, seri bağlı bir devrede özdeş pillerle özdeş bir ampulü yakıyor. Her denemede devreye farklı sayıda pil bağlayıp ampulün ne kadar ışık verdiğine bakıyor ve sonuçları tabloya yazıyor. Bağlantı kabloları ve ampul her denemede aynıdır.",
+"question": "Bu deneyde gözlenen (sonuç olarak incelenen) değişken aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Deney sonuçları",
+"headers": [
+"Devreye bağlanan pil (adet)",
+"Ampulün verdiği ışık"
+],
+"rows": [
+[
+"1",
+"Az"
+],
+[
+"2",
+"Orta"
+],
+[
+"3",
+"Çok"
+]
+]
+},
+"options": {
+"A": "Pil sayısı",
+"B": "Ampulün parlaklığı",
+"C": "Bağlantı kablolarının cinsi",
+"D": "Ampulün özdeş olması"
+},
+"answer": "B",
+"explanation": "Pil sayısı değiştirilince değişen ve gözlenen şey ampulün parlaklığıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn_ampul"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Basit bir elektrik devresinde anahtar elemanının görevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "elektrik enerjisini ışık enerjisine dönüştürmek",
+"B": "elektrik akımını elemanlar arasında iletmek",
+"C": "devreyi açıp kapatmak",
+"D": "devreye elektrik enerjisi sağlamak"
+},
+"answer": "C",
+"explanation": "Anahtar devrede devreyi açıp kapatmak görevini üstlenir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Şekildeki basit elektrik devresinde devreye elektrik enerjisi sağlayan devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "fen",
+"sub_type": "devre",
+"etiketler": {
+"pil": "S",
+"anahtar": "L",
+"ampul": "T",
+"kablo": "K"
+},
+"acik": "evet",
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "S",
+"D": "T"
+},
+"answer": "C",
+"explanation": "Pil devrenin enerji kaynağıdır. Şekilde bu eleman S harfiyle gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "Pil ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ampul, devreye elektrik enerjisi sağlar.",
+"B": "Anahtar açıkken ampul ışık verir.",
+"C": "Pil, devreye elektrik enerjisi sağlar.",
+"D": "Devrenin açık olduğu durumda elektrik akımı geçer."
+},
+"answer": "C",
+"explanation": "“Pil, devreye elektrik enerjisi sağlar.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Ailesiyle elektrik tasarrufu konuşan Ece öneriler sıralıyor.",
+"question": "Aşağıdakilerden hangisi elektrik tasarrufu sağlar?",
+"shape": null,
+"options": {
+"A": "Kullanılmayan odanın ışığını kapatmak",
+"B": "Her odada birden fazla ampul yakmak",
+"C": "Gün boyu tüm lambaları açık tutmak",
+"D": "Kullanılmayan cihazları prizde açık bırakmak"
+},
+"answer": "A",
+"explanation": "Gereksiz yanan lambaları kapatmak tasarruf sağlar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_sen_elektrik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik tasarrufu",
+"passage": "Bir ailenin evinde kullanılan bazı elektrikli cihazların bir saatte tükettiği elektrik enerjisi tabloda verilmiştir.",
+"question": "Televizyon cihazı 2 saat boyunca çalıştırılırsa toplam kaç watt-saat elektrik enerjisi tüketir?",
+"shape": {
+"type": "table",
+"title": "Cihazların Saatlik Elektrik Tüketimi",
+"headers": [
+"Cihaz",
+"Tüketim (watt-saat)"
+],
+"rows": [
+[
+"Süpürge",
+"150"
+],
+[
+"Televizyon",
+"90"
+],
+[
+"Ampul",
+"20"
+]
+]
+},
+"options": {
+"A": "270 watt-saat",
+"B": "180 watt-saat",
+"C": "92 watt-saat",
+"D": "280 watt-saat"
+},
+"answer": "B",
+"explanation": "90 × 2 = 180 watt-saat.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_tasarruf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Anahtar, devreyi açıp kapatmaya yarar.\nIII. Devrenin açık olduğu durumda elektrik akımı geçer.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Ampul ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ampul, ışık enerjisini elektrik enerjisine dönüştürür.",
+"B": "Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.",
+"C": "Ampul, elektrik enerjisini ışık enerjisine dönüştürür.",
+"D": "Devre elemanları sembollerle gösterilemez."
+},
+"answer": "C",
+"explanation": "“Ampul, elektrik enerjisini ışık enerjisine dönüştürür.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Devre elemanları sembollerle gösterilemez.\nII. Ampul, ışık enerjisini elektrik enerjisine dönüştürür.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve II"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Basit bir elektrik devresinde bulunması gereken elemanlar hangileridir?",
+"shape": null,
+"options": {
+"A": "Mıknatıs ve cetvel",
+"B": "Yalnızca pil ve su",
+"C": "Yalnızca ampul",
+"D": "Pil, ampul, anahtar ve bağlantı kabloları"
+},
+"answer": "D",
+"explanation": "Basit bir devrede pil, ampul, anahtar ve kablolar bulunur.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrik Devre Elemanları ünitesiyle ilgili aşağıdaki bilgilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Pil, devreyi açıp kapatma görevi yapar.",
+"B": "Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.",
+"C": "Devre elemanlarının sembollerle gösterildiği çizime harita denir.",
+"D": "Ampulün yanması için devrenin açık olması gerekir."
+},
+"answer": "B",
+"explanation": "“Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nII. Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.\nIII. Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Bir ampulün yanması için devre nasıl olmalıdır?",
+"shape": null,
+"options": {
+"A": "Pilsiz",
+"B": "Kapalı",
+"C": "Açık",
+"D": "Anahtarı sürekli çıkarılmış"
+},
+"answer": "B",
+"explanation": "Ampulün yanması için devrenin kapalı olması gerekir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Anahtar, devreyi açıp kapatmak için kullanılır.\nII. Demir çivi elektriği iletmez.\nIII. Bakır tel elektriği ileten bir iletkendir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Seri bağlı devrede pil sayısı azaltılırsa ampulün parlaklığı nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Önce artar sonra söner",
+"B": "Azalır",
+"C": "Artar",
+"D": "Değişmez"
+},
+"answer": "B",
+"explanation": "Seri bağlı devrede pil sayısı azaltılırsa ampulün parlaklığı azalır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Anahtar, devreyi açıp kapatmak için kullanılır.\nII. Pil sayısının etkisi incelenirken pil sayısı sabit tutulmalıdır.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Kullanılmayan elektrikli cihazlar için ne yapılmalıdır?",
+"shape": null,
+"options": {
+"A": "Yüksek ayara alınmalıdır",
+"B": "Kapatılıp fişi çekilmelidir",
+"C": "Hep açık bırakılmalıdır",
+"D": "Bekleme modunda bırakılmalıdır"
+},
+"answer": "B",
+"explanation": "Kullanılmayan elektrikli cihazlar kapatılıp fişleri çekilmelidir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Pil, devreyi açıp kapatma görevi yapar.\nII. Prize metal cisim sokmak elektrik çarpmasına yol açabileceği için tehlikelidir.\nIII. Elektrik tasarrufu için LED ampul tercih edilmelidir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Yandaki şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nVerilenlere göre kapalı anahtar sembolü hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e4",
+"label": "S"
+},
+{
+"kind": "e3",
+"label": "R"
+},
+{
+"kind": "e1",
+"label": "T"
+},
+{
+"kind": "e2",
+"label": "L"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "T",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Kapalı anahtar sembolü R ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Şekilde bir devre elemanının sembolü K harfiyle gösterilmiştir.\nBuna göre K ile gösterilen sembol aşağıdakilerden hangisini temsil eder?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e4",
+"label": "K"
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Pil",
+"B": "Kapalı anahtar",
+"C": "Açık anahtar",
+"D": "Ampul"
+},
+"answer": "C",
+"explanation": "K sembolü açık anahtar sembolüdür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Yandaki şekilde bazı devre elemanlarının sembolleri gösterilmiştir.\nBuna göre şekilde kaç tane kapalı anahtar sembolü vardır?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e4",
+"label": "M"
+},
+{
+"kind": "e2",
+"label": "R"
+},
+{
+"kind": "e3",
+"label": "S"
+},
+{
+"kind": "e4",
+"label": "K"
+},
+{
+"kind": "e2",
+"label": "P"
+},
+{
+"kind": "e4",
+"label": "N"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "4",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Şekilde 1 tane kapalı anahtar sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde bir elektrik devresinin şeması verilmiştir. Devre elemanları harflerle gösterilmiştir.\nBuna göre devreye elektrik enerjisi sağlayan devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 1,
+"acik": false,
+"labels": {
+"p": "T",
+"s": "K",
+"a": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "T",
+"C": "K",
+"D": "Hiçbiri"
+},
+"answer": "B",
+"explanation": "Bu görevi yapan eleman şekilde T ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde basit bir elektrik devresinin şeması verilmiştir.\nBu bilgilere göre bu devrede kaç tane pil kullanılmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 3,
+"namp": 1,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "D",
+"explanation": "Şemada 3 tane pil sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_say_pil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede pil, ampul ve anahtar sembolleri toplam kaç tanedir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 3,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "6",
+"D": "7"
+},
+"answer": "C",
+"explanation": "3 pil + 2 ampul + 1 anahtar = 6.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_toplam"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde bir elektrik devresinin şeması verilmiştir.\nBu bilgilere göre ampul ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Ampul sayısı fazla olduğu için ampul yanmaz.",
+"B": "Anahtar açık olduğu için ampul yanar.",
+"C": "Anahtar kapalı olduğu için devre tamamlanmıştır, ampul yanar.",
+"D": "Anahtarın durumu ampulün yanmasını etkilemez."
+},
+"answer": "C",
+"explanation": "Anahtar kapalı olduğu için devre tamamlanmıştır, ampul yanar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_yanar"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekildeki elektrik devresinde ampul ışık vermemektedir.\nBu bilgilere göre bunun nedeni aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 3,
+"namp": 1,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "Kablonun rengi uygun olmadığı için.",
+"B": "Anahtar açık olduğu için devre tamamlanmamıştır.",
+"C": "Devredeki ampul sayısı az olduğu için.",
+"D": "Devrede çok fazla pil olduğu için."
+},
+"answer": "B",
+"explanation": "Anahtar açık olduğu için devre tamamlanmamıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Verilen şekildeki devrede anahtar kapalıdır ve ampul ışık vermektedir.\nBu bilgilere göre bu devreye bir pil daha eklenirse ampulün parlaklığı nasıl değişir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 3,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Azalır.",
+"B": "Artar.",
+"C": "Ampul söner.",
+"D": "Değişmez."
+},
+"answer": "B",
+"explanation": "Ampul parlaklığı pil sayısı arttıkça artar, ampul sayısı arttıkça azalır; bu değişiklikte parlaklık artar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_degis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Yandaki şekilde özdeş pil ve ampullerle kurulmuş dört devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nVerilenlere göre hangi devredeki ampuller en parlak yanar?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 1,
+"namp": 2,
+"acik": false,
+"label": "S"
+},
+{
+"npil": 2,
+"namp": 3,
+"acik": false,
+"label": "R"
+},
+{
+"npil": 1,
+"namp": 1,
+"acik": false,
+"label": "L"
+},
+{
+"npil": 3,
+"namp": 2,
+"acik": false,
+"label": "T"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "L",
+"C": "R",
+"D": "S"
+},
+"answer": "A",
+"explanation": "Parlaklık, pil sayısı ne kadar çok ve ampul sayısı ne kadar azsa o kadar büyüktür; en parlak yanan devre T ile gösterilendir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Yandaki şekilde özdeş pil ve ampullerle kurulmuş üç devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nBuna göre devrelerdeki ampullerin parlaklıkları büyükten küçüğe doğru hangi seçenekte doğru sıralanmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 1,
+"namp": 1,
+"acik": false,
+"label": "P"
+},
+{
+"npil": 3,
+"namp": 1,
+"acik": false,
+"label": "M"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "M > L > P",
+"B": "L > M > P",
+"C": "P > M > L",
+"D": "P > L > M"
+},
+"answer": "A",
+"explanation": "Parlaklık sıralaması: M > L > P.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 5,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Yandaki şekilde iki devrenin şeması verilmiştir. S ve K devrelerindeki ampullerin parlaklıkları birbirinden farklıdır.\nBuna göre bu farkın nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "S"
+},
+{
+"npil": 4,
+"namp": 1,
+"acik": false,
+"label": "K"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Pil sayısı",
+"B": "Ampul sayısı",
+"C": "Kablo uzunluğu",
+"D": "Anahtarın şekli"
+},
+"answer": "A",
+"explanation": "İki devre arasındaki tek fark pil sayısıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekilde dört elektrik devresinin şeması verilmiştir.\nBu bilgilere göre kaç devredeki ampul ışık verir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 1,
+"namp": 1,
+"acik": true,
+"label": "P"
+},
+{
+"npil": 1,
+"namp": 2,
+"acik": true,
+"label": "N"
+},
+{
+"npil": 2,
+"namp": 2,
+"acik": false,
+"label": "R"
+},
+{
+"npil": 0,
+"namp": 2,
+"acik": false,
+"label": "K"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "A",
+"explanation": "Anahtarı kapalı ve pili olan devrelerde ampul yanar; bunların sayısı 1'dür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_yanan"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde dört elektrik devresinin şeması verilmiştir.\nVerilenlere göre hangi devredeki ampul ışık verir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 1,
+"namp": 1,
+"acik": true,
+"label": "S"
+},
+{
+"npil": 1,
+"namp": 1,
+"acik": false,
+"label": "T"
+},
+{
+"npil": 1,
+"namp": 2,
+"acik": true,
+"label": "L"
+},
+{
+"npil": 0,
+"namp": 1,
+"acik": false,
+"label": "K"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "T",
+"C": "K",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Pili olan ve anahtarı kapalı olan tek devre T ile gösterilendir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_hangi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Nehir, seri bağlı bir devrede özdeş pillerle özdeş bir ampulü yakıyor. Her denemede devreye farklı sayıda pil bağlayıp ampulün ne kadar ışık verdiğine bakıyor ve sonuçları tabloya yazıyor. Bağlantı kabloları ve ampul her denemede aynıdır.",
+"question": "Bu deneyin güvenilir olması için aşağıdakilerden hangisi her denemede aynı tutulmalıdır?",
+"shape": null,
+"options": {
+"A": "Ampulün yanıp yanmaması",
+"B": "Pil sayısı",
+"C": "Ampulün parlaklığı",
+"D": "Ampulün özdeş olması"
+},
+"answer": "D",
+"explanation": "Yalnızca pil sayısı değiştirilir; ampul ve kablolar gibi diğer koşullar sabit tutulur.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn_ampul"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Basit bir elektrik devresinde pil elemanının görevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "devreyi açıp kapatmak",
+"B": "devreye elektrik enerjisi sağlamak",
+"C": "devredeki akımı iki katına çıkarmak",
+"D": "elektrik enerjisini ışık enerjisine dönüştürmek"
+},
+"answer": "B",
+"explanation": "Pil devrede devreye elektrik enerjisi sağlamak görevini üstlenir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Verilen şekildeki basit elektrik devresinde devreye elektrik enerjisi sağlayan devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "fen",
+"sub_type": "devre",
+"etiketler": {
+"pil": "P",
+"anahtar": "R",
+"ampul": "N",
+"kablo": "S"
+},
+"acik": "hayir",
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "S",
+"C": "P",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Pil devrenin enerji kaynağıdır. Şekilde bu eleman P harfiyle gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "Elektrik devresinin kapalı olması ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Devrenin açık olduğu durumda elektrik akımı geçer.",
+"B": "Elektrik akımının geçmesi için devrenin kapalı olması gerekir.",
+"C": "Ampul, devreye elektrik enerjisi sağlar.",
+"D": "Anahtar açıkken ampul ışık verir."
+},
+"answer": "B",
+"explanation": "“Elektrik akımının geçmesi için devrenin kapalı olması gerekir.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Bir öğrenci elektrikli aletlerle ilgili güvenlik kurallarını yazıyor.",
+"question": "Aşağıdakilerden hangisi elektrik güvenliği açısından doğrudur?",
+"shape": null,
+"options": {
+"A": "Aynı prize çok sayıda cihaz takmak",
+"B": "Çıplak kablolara dokunmak",
+"C": "Prize metal cisim sokmak",
+"D": "Elektrikli aletleri ıslak elle tutmamak"
+},
+"answer": "D",
+"explanation": "Su elektriği ilettiğinden ıslak elle dokunmak tehlikelidir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_sen_elektrik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik tasarrufu",
+"passage": "Bir ailenin evinde kullanılan bazı elektrikli cihazların bir saatte tükettiği elektrik enerjisi tabloda verilmiştir.",
+"question": "Bilgisayar cihazı 4 saat boyunca çalıştırılırsa toplam kaç watt-saat elektrik enerjisi tüketir?",
+"shape": {
+"type": "table",
+"title": "Cihazların Saatlik Elektrik Tüketimi",
+"headers": [
+"Cihaz",
+"Tüketim (watt-saat)"
+],
+"rows": [
+[
+"Bilgisayar",
+"120"
+],
+[
+"Televizyon",
+"90"
+],
+[
+"Ütü",
+"200"
+]
+]
+},
+"options": {
+"A": "600 watt-saat",
+"B": "124 watt-saat",
+"C": "480 watt-saat",
+"D": "610 watt-saat"
+},
+"answer": "C",
+"explanation": "120 × 4 = 480 watt-saat.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_tasarruf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "I. Ampul, devreye elektrik enerjisi sağlar.\nII. Anahtar, devreyi açıp kapatmaya yarar.\nIII. Elektrik akımının geçmesi için devrenin kapalı olması gerekir.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Pil sayısı ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Devre elemanları sembollerle gösterilemez.",
+"B": "Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.",
+"C": "Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı artar.",
+"D": "Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar."
+},
+"answer": "D",
+"explanation": "“Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Devre elemanları sembollerle gösterilemez.\nII. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrik devresinde anahtarın görevi nedir?",
+"shape": null,
+"options": {
+"A": "Işık yaymak",
+"B": "Elektrik enerjisi üretmek",
+"C": "Devreyi açıp kapatmak",
+"D": "Akımı hızlandırmak"
+},
+"answer": "C",
+"explanation": "Anahtar, devreyi açıp kapatmak için kullanılır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Aşağıdakilerden hangisi Elektrik Devre Elemanları ünitesine ait doğru bir bilgidir?",
+"shape": null,
+"options": {
+"A": "Plastik kaşık elektriği ileten bir iletkendir.",
+"B": "Anahtar açıkken devre kapalıdır ve akım geçer.",
+"C": "Demir çivi elektriği iletmez.",
+"D": "Anahtar, devreyi açıp kapatmak için kullanılır."
+},
+"answer": "D",
+"explanation": "“Anahtar, devreyi açıp kapatmak için kullanılır.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nIII. Pil, devreye elektrik enerjisi sağlar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Aşağıdakilerden hangisi elektriği iletmeyen yalıtkan bir maddedir?",
+"shape": null,
+"options": {
+"A": "Bakır tel",
+"B": "Kauçuk",
+"C": "Alüminyum folyo",
+"D": "Demir çivi"
+},
+"answer": "B",
+"explanation": "Kauçuk elektriği iletmeyen bir yalıtkandır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Anahtar açıkken devre kapalıdır ve akım geçer.\nIII. Anahtar kapatıldığında devre tamamlanır ve ampul yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Artar",
+"B": "Ampul söner",
+"C": "Değişmez",
+"D": "Azalır"
+},
+"answer": "A",
+"explanation": "Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı artar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Ampulün yanması için devrenin açık olması gerekir.\nII. Kullanılmayan elektrikli cihazlar kapatılıp fişleri çekilmelidir.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Prize metal cisim sokmak neden tehlikelidir?",
+"shape": null,
+"options": {
+"A": "Prizi soğutur",
+"B": "Elektrik çarpmasına yol açabilir",
+"C": "Pili şarj eder",
+"D": "Ampulü daha parlak yakar"
+},
+"answer": "B",
+"explanation": "Prize metal cisim sokmak elektrik çarpmasına yol açabileceği için tehlikelidir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nII. Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.\nIII. Seri bağlı özdeş ampullerin sayısı azaltılırsa her ampulün parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve II"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nBu bilgilere göre pil sembolü hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e4",
+"label": "N"
+},
+{
+"kind": "e1",
+"label": "K"
+},
+{
+"kind": "e3",
+"label": "R"
+},
+{
+"kind": "e2",
+"label": "P"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "K",
+"C": "N",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Pil sembolü K ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Şekilde bir devre elemanının sembolü P harfiyle gösterilmiştir.\nVerilenlere göre P ile gösterilen sembol aşağıdakilerden hangisini temsil eder?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e5",
+"label": "P"
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Kablo",
+"B": "Ampul",
+"C": "Pil",
+"D": "Kapalı anahtar"
+},
+"answer": "A",
+"explanation": "P sembolü kablo sembolüdür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Verilen şekilde bazı devre elemanlarının sembolleri gösterilmiştir.\nBuna göre şekilde kaç tane pil sembolü vardır?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e4",
+"label": "K"
+},
+{
+"kind": "e4",
+"label": "S"
+},
+{
+"kind": "e2",
+"label": "T"
+},
+{
+"kind": "e2",
+"label": "P"
+},
+{
+"kind": "e1",
+"label": "R"
+},
+{
+"kind": "e4",
+"label": "L"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "4",
+"D": "5"
+},
+"answer": "A",
+"explanation": "Şekilde 1 tane pil sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Yandaki şekilde bir elektrik devresinin şeması verilmiştir. Devre elemanları harflerle gösterilmiştir.\nBuna göre devreyi açıp kapatmaya yarayan devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 1,
+"acik": true,
+"labels": {
+"p": "N",
+"s": "R",
+"a": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "Hiçbiri",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Bu görevi yapan eleman şekilde R ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Yandaki şekilde basit bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede kaç tane pil kullanılmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 3,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "D",
+"explanation": "Şemada 3 tane pil sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_say_pil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Yandaki şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede pil, ampul ve anahtar sembolleri toplam kaç tanedir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 2,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "5",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "2 pil + 2 ampul + 1 anahtar = 5.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_toplam"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Yandaki şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre ampul ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 2,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "Anahtar kapalı olduğu için ampul yanmaz.",
+"B": "Anahtarın durumu ampulün yanmasını etkilemez.",
+"C": "Anahtar açık olduğu için devreden akım geçmez, ampul yanmaz.",
+"D": "Pil sayısı fazla olduğu için ampul yanar."
+},
+"answer": "C",
+"explanation": "Anahtar açık olduğu için devreden akım geçmez, ampul yanmaz.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_yanar"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekildeki elektrik devresinde ampul ışık vermemektedir.\nVerilenlere göre bunun nedeni aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 1,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "Anahtar açık olduğu için devre tamamlanmamıştır.",
+"B": "Devredeki ampul sayısı az olduğu için.",
+"C": "Devrede çok fazla pil olduğu için.",
+"D": "Kablonun rengi uygun olmadığı için."
+},
+"answer": "A",
+"explanation": "Anahtar açık olduğu için devre tamamlanmamıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Şekildeki devrede anahtar kapalıdır ve ampul ışık vermektedir.\nBu bilgilere göre bu devreye bir pil çıkarılırsa ampulün parlaklığı nasıl değişir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 1,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Ampul söner.",
+"B": "Azalır.",
+"C": "Değişmez.",
+"D": "Artar."
+},
+"answer": "B",
+"explanation": "Ampul parlaklığı pil sayısı arttıkça artar, ampul sayısı arttıkça azalır; bu değişiklikte parlaklık azalır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_degis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Verilen şekilde özdeş pil ve ampullerle kurulmuş dört devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nVerilenlere göre hangi devredeki ampuller en sönük yanar?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 3,
+"namp": 3,
+"acik": false,
+"label": "P"
+},
+{
+"npil": 1,
+"namp": 2,
+"acik": false,
+"label": "R"
+},
+{
+"npil": 3,
+"namp": 1,
+"acik": false,
+"label": "N"
+},
+{
+"npil": 1,
+"namp": 3,
+"acik": false,
+"label": "S"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "P",
+"C": "R",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Parlaklık, pil sayısı ne kadar çok ve ampul sayısı ne kadar azsa o kadar büyüktür; en sönük yanan devre S ile gösterilendir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Şekilde özdeş pil ve ampullerle kurulmuş üç devrenin şeması verilmiştir. Tüm anahtarlar kapalıdır.\nBu bilgilere göre devrelerdeki ampullerin parlaklıkları büyükten küçüğe doğru hangi seçenekte doğru sıralanmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 3,
+"namp": 3,
+"acik": false,
+"label": "L"
+},
+{
+"npil": 2,
+"namp": 3,
+"acik": false,
+"label": "R"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "N"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "N > L > R",
+"B": "L > R > N",
+"C": "L > N > R",
+"D": "R > N > L"
+},
+"answer": "A",
+"explanation": "Parlaklık sıralaması: N > L > R.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 5,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Yandaki şekilde iki devrenin şeması verilmiştir. K ve S devrelerindeki ampullerin parlaklıkları birbirinden farklıdır.\nBuna göre bu farkın nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "K"
+},
+{
+"npil": 1,
+"namp": 1,
+"acik": false,
+"label": "S"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Anahtarın şekli",
+"B": "Pil sayısı",
+"C": "Kablo uzunluğu",
+"D": "Ampul sayısı"
+},
+"answer": "B",
+"explanation": "İki devre arasındaki tek fark pil sayısıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde dört elektrik devresinin şeması verilmiştir.\nBuna göre kaç devredeki ampul ışık verir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 0,
+"namp": 1,
+"acik": false,
+"label": "S"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "L"
+},
+{
+"npil": 3,
+"namp": 2,
+"acik": true,
+"label": "P"
+},
+{
+"npil": 2,
+"namp": 2,
+"acik": true,
+"label": "R"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "A",
+"explanation": "Anahtarı kapalı ve pili olan devrelerde ampul yanar; bunların sayısı 1'dür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_yanan"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Basit bir elektrik devresinde ampul elemanının görevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "devredeki akımı iki katına çıkarmak",
+"B": "elektrik akımını elemanlar arasında iletmek",
+"C": "elektrik enerjisini ışık enerjisine dönüştürmek",
+"D": "devreye elektrik enerjisi sağlamak"
+},
+"answer": "C",
+"explanation": "Ampul devrede elektrik enerjisini ışık enerjisine dönüştürmek görevini üstlenir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Verilen şekildeki basit elektrik devresinde devreyi açıp kapatmaya yarayan devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "fen",
+"sub_type": "devre",
+"etiketler": {
+"pil": "P",
+"anahtar": "S",
+"ampul": "N",
+"kablo": "R"
+},
+"acik": "hayir",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "P",
+"C": "N",
+"D": "R"
+},
+"answer": "A",
+"explanation": "Anahtar devreyi açıp kapatır. Şekilde bu eleman S harfiyle gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik devresi",
+"passage": "Pil, ampul ve kablolardan oluşan bir devrede anahtar açıkken ampul yanmıyor. Pil ve ampul sağlamdır.",
+"question": "Ampulün yanmamasının nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Devrenin açık olması nedeniyle akımın geçmemesi",
+"B": "Kabloların uzun olması",
+"C": "Pilin bitmiş olması",
+"D": "Ampulün özdeş olması"
+},
+"answer": "A",
+"explanation": "Anahtar açıkken devre tamamlanmaz, akım geçmez.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_sen_elektrik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik tasarrufu",
+"passage": "Bir ailenin evinde kullanılan bazı elektrikli cihazların bir saatte tükettiği elektrik enerjisi tabloda verilmiştir.",
+"question": "Ampul cihazı 2 saat boyunca çalıştırılırsa toplam kaç watt-saat elektrik enerjisi tüketir?",
+"shape": {
+"type": "table",
+"title": "Cihazların Saatlik Elektrik Tüketimi",
+"headers": [
+"Cihaz",
+"Tüketim (watt-saat)"
+],
+"rows": [
+[
+"Televizyon",
+"90"
+],
+[
+"Süpürge",
+"150"
+],
+[
+"Ampul",
+"20"
+]
+]
+},
+"options": {
+"A": "40 watt-saat",
+"B": "22 watt-saat",
+"C": "60 watt-saat",
+"D": "70 watt-saat"
+},
+"answer": "A",
+"explanation": "20 × 2 = 40 watt-saat.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_tasarruf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "I. Elektrik akımının geçmesi için devrenin kapalı olması gerekir.\nII. Anahtar açıkken ampul ışık verir.\nIII. Pil, devreye elektrik enerjisi sağlar.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Devre sembolleri ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.",
+"B": "Devre elemanları sembollerle gösterilemez.",
+"C": "Devre elemanları sembollerle gösterilir.",
+"D": "Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı artar."
+},
+"answer": "C",
+"explanation": "“Devre elemanları sembollerle gösterilir.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Ampul, elektrik enerjisini ışık enerjisine dönüştürür.\nII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nIII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Devrede ampulün görevi nedir?",
+"shape": null,
+"options": {
+"A": "Elektrik enerjisini ışığa dönüştürmek",
+"B": "Elektrik enerjisi üretmek",
+"C": "Akımı saklamak",
+"D": "Devreyi kapatmak"
+},
+"answer": "A",
+"explanation": "Ampul, elektrik enerjisini ışık enerjisine dönüştürür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrik Devre Elemanları ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Seri bağlı devrede pil sayısı artırılırsa ampulün parlaklığı azalır.",
+"B": "Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.",
+"C": "Ampulün yanması için devrenin açık olması gerekir.",
+"D": "Seri bağlı devrede pil sayısı azaltılırsa ampulün parlaklığı artar."
+},
+"answer": "B",
+"explanation": "“Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Elektrik kazalarından korunmak için ıslak elle prize dokunulabilir.\nII. Basit bir devrede pil, ampul, anahtar ve kablolar bulunur.\nIII. Anahtar açıkken devre kapalıdır ve akım geçer.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Anahtar kapatıldığında ampul neden yanar?",
+"shape": null,
+"options": {
+"A": "Anahtar elektrik ürettiği için",
+"B": "Pil yenilendiği için",
+"C": "Ampul büyüdüğü için",
+"D": "Devre tamamlanıp elektrik akımı geçtiği için"
+},
+"answer": "D",
+"explanation": "Anahtar kapatıldığında devre tamamlanır ve ampul yanar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Plastik kaşık elektriği ileten bir iletkendir.\nII. Ampulün yanması için devrenin kapalı olması gerekir.\nIII. Anahtar açıkken devre kapalıdır ve akım geçer.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Aynı pille seri bağlanmış özdeş ampullerin sayısı azaltılırsa her bir ampulün parlaklığı nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Artar",
+"B": "Ampuller söner",
+"C": "Değişmez",
+"D": "Azalır"
+},
+"answer": "A",
+"explanation": "Seri bağlı özdeş ampullerin sayısı azaltılırsa her ampulün parlaklığı artar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Plastik cetvel elektriği iletmez.\nII. Kauçuk elektriği iyi ileten bir iletkendir.\nIII. Ampulün parlaklığı kabloların renginin değişmesine bağlıdır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrikle ilgili güvenlik için hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Prizlere metal cisim sokulabilir",
+"B": "Islak elle prize dokunulmamalıdır",
+"C": "Elektrikli aletler suya yakın kullanılabilir",
+"D": "Hasarlı kablolar kullanılabilir"
+},
+"answer": "B",
+"explanation": "Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Plastik kaşık elektriği ileten bir iletkendir.\nII. Kullanılmayan elektrikli cihazlar hep açık bırakılmalıdır.\nIII. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nVerilenlere göre kapalı anahtar sembolü hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e4",
+"label": "N"
+},
+{
+"kind": "e2",
+"label": "M"
+},
+{
+"kind": "e3",
+"label": "R"
+},
+{
+"kind": "e1",
+"label": "L"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "R",
+"C": "L",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Kapalı anahtar sembolü R ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Yandaki şekilde bir devre elemanının sembolü P harfiyle gösterilmiştir.\nBuna göre P ile gösterilen sembol aşağıdakilerden hangisini temsil eder?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e5",
+"label": "P"
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Kapalı anahtar",
+"B": "Pil",
+"C": "Ampul",
+"D": "Kablo"
+},
+"answer": "D",
+"explanation": "P sembolü kablo sembolüdür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Şekilde bazı devre elemanlarının sembolleri gösterilmiştir.\nBuna göre şekilde kaç tane açık anahtar sembolü vardır?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e4",
+"label": "P"
+},
+{
+"kind": "e3",
+"label": "L"
+},
+{
+"kind": "e5",
+"label": "K"
+},
+{
+"kind": "e5",
+"label": "T"
+},
+{
+"kind": "e4",
+"label": "R"
+},
+{
+"kind": "e4",
+"label": "M"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "D",
+"explanation": "Şekilde 3 tane açık anahtar sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde basit bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede kaç tane ampul kullanılmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 3,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "C",
+"explanation": "Şemada 3 tane ampul sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_say_pil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede pil, ampul ve anahtar sembolleri toplam kaç tanedir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 2,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "2 pil + 2 ampul + 1 anahtar = 5.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_toplam"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Şekilde bir elektrik devresinin şeması verilmiştir.\nVerilenlere göre ampul ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Anahtar açık olduğu için ampul yanar.",
+"B": "Ampul sayısı fazla olduğu için ampul yanmaz.",
+"C": "Anahtar kapalı olduğu için devre tamamlanmıştır, ampul yanar.",
+"D": "Anahtarın durumu ampulün yanmasını etkilemez."
+},
+"answer": "C",
+"explanation": "Anahtar kapalı olduğu için devre tamamlanmıştır, ampul yanar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_yanar"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekildeki elektrik devresinde ampul ışık vermemektedir.\nBu bilgilere göre bunun nedeni aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 0,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Anahtar kapalı olduğu için.",
+"B": "Devrede pil olmadığı için.",
+"C": "Kablonun rengi uygun olmadığı için.",
+"D": "Devredeki ampul sayısı az olduğu için."
+},
+"answer": "B",
+"explanation": "Devrede pil olmadığı için.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Şekildeki devrede anahtar kapalıdır ve ampul ışık vermektedir.\nVerilenlere göre bu devreye bir ampul daha eklenirse ampulün parlaklığı nasıl değişir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 3,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Azalır.",
+"B": "Ampul söner.",
+"C": "Artar.",
+"D": "Değişmez."
+},
+"answer": "A",
+"explanation": "Ampul parlaklığı pil sayısı arttıkça artar, ampul sayısı arttıkça azalır; bu değişiklikte parlaklık azalır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_degis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Verilen şekilde iki devrenin şeması verilmiştir. P ve S devrelerindeki ampullerin parlaklıkları birbirinden farklıdır.\nBu bilgilere göre bu farkın nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "P"
+},
+{
+"npil": 1,
+"namp": 1,
+"acik": false,
+"label": "S"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Pil sayısı",
+"B": "Kablo uzunluğu",
+"C": "Anahtarın şekli",
+"D": "Ampul sayısı"
+},
+"answer": "A",
+"explanation": "İki devre arasındaki tek fark pil sayısıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Yandaki şekilde dört elektrik devresinin şeması verilmiştir.\nBu bilgilere göre kaç devredeki ampul ışık verir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 0,
+"namp": 2,
+"acik": false,
+"label": "R"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": true,
+"label": "T"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": true,
+"label": "S"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Anahtarı kapalı ve pili olan devrelerde ampul yanar; bunların sayısı 1'dür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_yanan"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Şekildeki basit elektrik devresinde elektrik enerjisini ışık enerjisine dönüştüren devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "fen",
+"sub_type": "devre",
+"etiketler": {
+"pil": "S",
+"anahtar": "L",
+"ampul": "T",
+"kablo": "R"
+},
+"acik": "evet",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "T",
+"D": "R"
+},
+"answer": "C",
+"explanation": "Ampul, elektrik enerjisini ışık enerjisine dönüştürür. Şekilde bu eleman T harfiyle gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik tasarrufu",
+"passage": "Bir ailenin evinde kullanılan bazı elektrikli cihazların bir saatte tükettiği elektrik enerjisi tabloda verilmiştir.",
+"question": "Süpürge cihazı 3 saat boyunca çalıştırılırsa toplam kaç watt-saat elektrik enerjisi tüketir?",
+"shape": {
+"type": "table",
+"title": "Cihazların Saatlik Elektrik Tüketimi",
+"headers": [
+"Cihaz",
+"Tüketim (watt-saat)"
+],
+"rows": [
+[
+"Ütü",
+"200"
+],
+[
+"Ampul",
+"20"
+],
+[
+"Süpürge",
+"150"
+]
+]
+},
+"options": {
+"A": "600 watt-saat",
+"B": "610 watt-saat",
+"C": "450 watt-saat",
+"D": "153 watt-saat"
+},
+"answer": "C",
+"explanation": "150 × 3 = 450 watt-saat.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_yn2_tasarruf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Anahtar açıkken ampul ışık verir.\nIII. Devrenin açık olduğu durumda elektrik akımı geçer.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Devreye bağlı pil sayısı arttıkça ampul daha parlak yanar.\nII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı artar.\nIII. Devre elemanları sembollerle gösterilir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Devre şemasında semboller neden kullanılır?",
+"shape": null,
+"options": {
+"A": "Devreyi gizlemek için",
+"B": "Devre elemanlarını kısa ve ortak biçimde göstermek için",
+"C": "Pilin ömrünü uzatmak için",
+"D": "Akımı artırmak için"
+},
+"answer": "B",
+"explanation": "Devre şemasında semboller, elemanları ortak ve kısa biçimde göstermek için kullanılır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Plastik cetvel elektriği iletmez.\nII. Devre şemasında semboller, akımı artırmak için kullanılır.\nIII. Anahtar, devrede elektrik enerjisi üretir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Devre elemanlarının sembollerle çizilmiş gösterimine ne ad verilir?",
+"shape": null,
+"options": {
+"A": "Harita",
+"B": "Akış çizelgesi",
+"C": "Grafik tablosu",
+"D": "Devre şeması"
+},
+"answer": "D",
+"explanation": "Devre elemanlarının sembollerle gösterildiği çizime devre şeması denir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Anahtar kapatıldığında devre açılır ve ampul yanar.\nII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı artar.\nIII. Kauçuk elektriği iletmeyen bir yalıtkandır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Pil sayısının ampul parlaklığına etkisi incelenirken hangisi sabit tutulmalıdır?",
+"shape": null,
+"options": {
+"A": "Pil sayısı ve parlaklık",
+"B": "Ampul çeşidi ve sayısı",
+"C": "Ampulün parlaklığı",
+"D": "Pil sayısı"
+},
+"answer": "B",
+"explanation": "Pil sayısının etkisi incelenirken ampul çeşidi ve sayısı sabit tutulmalıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Pil sayısının etkisi incelenirken pil sayısı sabit tutulmalıdır.\nII. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nIII. Aynı pile seri bağlı ampul sayısı arttıkça her bir ampulün parlaklığı azalır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Anahtar açıkken devre açıktır ve akım geçmez.\nII. Prize metal cisim sokmak elektrik çarpmasına yol açabileceği için tehlikelidir.\nIII. Plastik kaşık elektriği ileten bir iletkendir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "I ve II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Verilen şekilde dört devre elemanının sembolü harflerle gösterilmiştir.\nBuna göre kapalı anahtar sembolü hangi harfle gösterilmiştir?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e3",
+"label": "L"
+},
+{
+"kind": "e2",
+"label": "T"
+},
+{
+"kind": "e4",
+"label": "N"
+},
+{
+"kind": "e1",
+"label": "S"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "T",
+"C": "S",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Kapalı anahtar sembolü L ile gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Yandaki şekilde bir devre elemanının sembolü N harfiyle gösterilmiştir.\nBu bilgilere göre N ile gösterilen sembol aşağıdakilerden hangisini temsil eder?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e5",
+"label": "N"
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Kablo",
+"B": "Pil",
+"C": "Ampul",
+"D": "Kapalı anahtar"
+},
+"answer": "A",
+"explanation": "N sembolü kablo sembolüdür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre elemanları",
+"passage": "",
+"question": "Şekilde bazı devre elemanlarının sembolleri gösterilmiştir.\nBu bilgilere göre şekilde kaç tane ampul sembolü vardır?",
+"shape": {
+"type": "elk",
+"sub_type": "sembol",
+"panels": [
+{
+"kind": "e5",
+"label": "R"
+},
+{
+"kind": "e2",
+"label": "P"
+},
+{
+"kind": "e4",
+"label": "K"
+},
+{
+"kind": "e1",
+"label": "L"
+},
+{
+"kind": "e1",
+"label": "S"
+},
+{
+"kind": "e1",
+"label": "M"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Şekilde 1 tane ampul sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sembol_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekilde basit bir elektrik devresinin şeması verilmiştir.\nBuna göre bu devrede kaç tane ampul kullanılmıştır?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 3,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "3",
+"D": "4"
+},
+"answer": "C",
+"explanation": "Şemada 3 tane ampul sembolü vardır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_say_pil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Yandaki şekilde bir elektrik devresinin şeması verilmiştir.\nVerilenlere göre bu devrede pil, ampul ve anahtar sembolleri toplam kaç tanedir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 1,
+"namp": 1,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "8"
+},
+"answer": "B",
+"explanation": "1 pil + 1 ampul + 1 anahtar = 3.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_toplam"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekilde bir elektrik devresinin şeması verilmiştir.\nBuna göre ampul ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 2,
+"namp": 2,
+"acik": true,
+"show_names": false
+},
+"options": {
+"A": "Pil sayısı fazla olduğu için ampul yanar.",
+"B": "Anahtarın durumu ampulün yanmasını etkilemez.",
+"C": "Anahtar kapalı olduğu için ampul yanmaz.",
+"D": "Anahtar açık olduğu için devreden akım geçmez, ampul yanmaz."
+},
+"answer": "D",
+"explanation": "Anahtar açık olduğu için devreden akım geçmez, ampul yanmaz.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_yanar"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekildeki elektrik devresinde ampul ışık vermemektedir.\nVerilenlere göre bunun nedeni aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "elk",
+"sub_type": "sema",
+"npil": 0,
+"namp": 2,
+"acik": false,
+"show_names": false
+},
+"options": {
+"A": "Kablonun rengi uygun olmadığı için.",
+"B": "Devrede pil olmadığı için.",
+"C": "Devredeki ampul sayısı az olduğu için.",
+"D": "Anahtar kapalı olduğu için."
+},
+"answer": "B",
+"explanation": "Devrede pil olmadığı için.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_sema_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ampul parlaklığı",
+"passage": "",
+"question": "Verilen şekilde iki devrenin şeması verilmiştir. M ve K devrelerindeki ampullerin parlaklıkları birbirinden farklıdır.\nBuna göre bu farkın nedeni aşağıdakilerden hangisidir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 2,
+"namp": 3,
+"acik": false,
+"label": "M"
+},
+{
+"npil": 2,
+"namp": 1,
+"acik": false,
+"label": "K"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Kablo uzunluğu",
+"B": "Pil sayısı",
+"C": "Ampul sayısı",
+"D": "Anahtarın şekli"
+},
+"answer": "C",
+"explanation": "İki devre arasındaki tek fark ampul sayısıdır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_neden"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre şeması",
+"passage": "",
+"question": "Verilen şekilde dört elektrik devresinin şeması verilmiştir.\nVerilenlere göre kaç devredeki ampul ışık verir?",
+"shape": {
+"type": "elk",
+"sub_type": "kart",
+"per_row": 2,
+"panels": [
+{
+"npil": 0,
+"namp": 2,
+"acik": false,
+"label": "N"
+},
+{
+"npil": 1,
+"namp": 1,
+"acik": true,
+"label": "R"
+},
+{
+"npil": 1,
+"namp": 2,
+"acik": false,
+"label": "T"
+},
+{
+"npil": 3,
+"namp": 2,
+"acik": true,
+"label": "L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "B",
+"explanation": "Anahtarı kapalı ve pili olan devrelerde ampul yanar; bunların sayısı 1'dür.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 3,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_el_kart_yanan"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Devre Elemanları",
+"passage": "",
+"question": "Verilen şekildeki basit elektrik devresinde elektrik enerjisini ışık enerjisine dönüştüren devre elemanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "fen",
+"sub_type": "devre",
+"etiketler": {
+"pil": "R",
+"anahtar": "K",
+"ampul": "L",
+"kablo": "P"
+},
+"acik": "evet",
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "L",
+"C": "P",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Ampul, elektrik enerjisini ışık enerjisine dönüştürür. Şekilde bu eleman L harfiyle gösterilmiştir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_devre2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik",
+"passage": "",
+"question": "I. Pil, devreye elektrik enerjisi sağlar.\nII. Devrenin açık olduğu durumda elektrik akımı geçer.\nIII. Anahtar açıkken ampul ışık verir.\n“Elektrik” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Devre elemanları sembollerle gösterilir.\nII. Seri bağlı ampul sayısı arttıkça ampullerin parlaklığı azalır.\nIII. Devreye bağlı pil sayısı arttıkça ampul daha sönük yanar.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_ff_elek3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Elektrik devresinde bağlantı kablolarının görevi nedir?",
+"shape": null,
+"options": {
+"A": "Devre elemanlarını birbirine bağlayıp akımın geçmesini sağlamak",
+"B": "Işık yaymak",
+"C": "Devreyi açıp kapatmak",
+"D": "Elektrik enerjisi üretmek"
+},
+"answer": "A",
+"explanation": "Bağlantı kabloları devre elemanlarını birbirine bağlar ve akımın geçmesini sağlar.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Elektrik kazalarından korunmak için ıslak elle prize dokunulmamalıdır.\nII. Plastik cetvel elektriği iletmez.\nIII. Devre şemasında semboller, akımı artırmak için kullanılır.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "Aşağıdakilerden hangisi elektriği ileten bir maddedir?",
+"shape": null,
+"options": {
+"A": "Plastik kaşık",
+"B": "Cam bardak",
+"C": "Bakır tel",
+"D": "Kuru tahta"
+},
+"answer": "C",
+"explanation": "Bakır tel elektriği ileten bir iletkendir.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 2,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Elektrik Devre Elemanları",
+"passage": "",
+"question": "I. Kullanılmayan elektrikli cihazlar hep açık bırakılmalıdır.\nII. Bakır tel elektriği ileten bir iletkendir.\nIII. Elektrik tasarrufu için eski tip akkor ampul tercih edilmelidir.\nYukarıda “Elektrik Devre Elemanları” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Elektrik",
+"topics": "Elektrik devreleri, Ohm yasası giriş, Güvenli kullanım",
+"d": 4,
+"ts": 1795161913,
+"src": "local",
+"fam": "_bkf4_1_onc"
+}
+]
+}

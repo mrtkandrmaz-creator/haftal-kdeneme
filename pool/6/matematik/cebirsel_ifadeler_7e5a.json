@@ -1,0 +1,7217 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Bir örüntünün ilk üç adımında kullanılan çubuk sayıları sırasıyla 5, 11 ve 17 olarak belirlenmiştir. Örüntü aynı kuralla devam ettiğine göre 9. adımda kaç çubuk kullanılır?",
+"shape": null,
+"options": {
+"A": "45",
+"B": "47",
+"C": "53",
+"D": "54"
+},
+"answer": "C",
+"explanation": "Her adımda 6 artar: 5 + (9−1)×6 = 53.",
+"kz": [
+"MAT.5.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_pattern"
+},
+{
+"subject": "Matematik",
+"topic": "Denklemler",
+"passage": "",
+"question": "8x – 14 = 26 denkleminde x kaçtır?",
+"shape": null,
+"options": {
+"A": "4",
+"B": "5",
+"C": "10",
+"D": "12"
+},
+"answer": "B",
+"explanation": "8x = 40 → x = 5.",
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_eq1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 8
+},
+"R": {
+"c": 18
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "18",
+"D": "26"
+},
+"answer": "A",
+"explanation": "x + 8 = 18 → x = 18 − 8 = 10.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 5
+},
+"R": {
+"c": 15
+},
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "10",
+"D": "15"
+},
+"answer": "A",
+"explanation": "5x = 15 → x = 15 ÷ 5 = 3.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"14"
+],
+[
+"3",
+"19"
+],
+[
+"4",
+"24"
+]
+]
+},
+"options": {
+"A": "49",
+"B": "50",
+"C": "54",
+"D": "59"
+},
+"answer": "C",
+"explanation": "Her adımda 5 kibrit artıyor; kural 5×adım + 4. 10. adım: 5×10 + 4 = 54.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 4 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"5x + 9"
+],
+[
+"L",
+"4x + 4"
+],
+[
+"M",
+"2x + 7"
+],
+[
+"N",
+"x + 5"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "D",
+"explanation": "x yerine 4 yazılırsa: K: 29, L: 20, M: 15, N: 9. En küçük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 4 kalem ve 4 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"4 TL"
+]
+]
+},
+"options": {
+"A": "16x + 4",
+"B": "4x + 4",
+"C": "4x + 16",
+"D": "8x + 16"
+},
+"answer": "C",
+"explanation": "4 kalem 4x TL, 4 defter 4 × 4 = 16 TL; toplam 4x + 16 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"11"
+],
+[
+"2",
+"17"
+],
+[
+"3",
+"23"
+],
+[
+"4",
+"29"
+]
+]
+},
+"options": {
+"A": "6n + 5",
+"B": "6n − 5",
+"C": "6n + 6",
+"D": "7n + 5"
+},
+"answer": "A",
+"explanation": "Terimler her adımda 6 artıyor; n = 1 için 11. Kural 6n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 7 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"2",
+"17"
+],
+[
+"5",
+"35"
+],
+[
+"1",
+"11"
+]
+]
+},
+"options": {
+"A": "42",
+"B": "47",
+"C": "52",
+"D": "54"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 5 eklenir. 7 için 6 × 7 + 5 = 47.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Bir örüntünün ilk üç adımı sırasıyla 5, 8 ve 11 çubukla oluşturulmuştur. Örüntü aynı kuralla sürerse 12. adımda kaç çubuk gerekir?",
+"shape": null,
+"options": {
+"A": "35",
+"B": "38",
+"C": "39",
+"D": "41"
+},
+"answer": "B",
+"explanation": "Her adımda 3 artar: 5 + (12−1)×3 = 38.",
+"kz": [
+"MAT.5.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_pattern"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 2
+},
+"R": {
+"c": 6
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "8"
+},
+"answer": "A",
+"explanation": "x + 2 = 6 → x = 6 − 2 = 4.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 2
+},
+"R": {
+"c": 14
+},
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "12",
+"D": "14"
+},
+"answer": "A",
+"explanation": "2x = 14 → x = 14 ÷ 2 = 7.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"11"
+],
+[
+"3",
+"14"
+],
+[
+"4",
+"17"
+]
+]
+},
+"options": {
+"A": "27",
+"B": "29",
+"C": "32",
+"D": "35"
+},
+"answer": "C",
+"explanation": "Her adımda 3 kibrit artıyor; kural 3×adım + 5. 9. adım: 3×9 + 5 = 32.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 6 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"4x + 1"
+],
+[
+"L",
+"4x + 7"
+],
+[
+"K",
+"4x + 5"
+],
+[
+"M",
+"3x + 1"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "D",
+"explanation": "x yerine 6 yazılırsa: K: 29, L: 31, M: 19, N: 25. En büyük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 5 kalem ve 1 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"5 TL"
+]
+]
+},
+"options": {
+"A": "6x",
+"B": "6x + 5",
+"C": "5x + 5",
+"D": "5x + 6"
+},
+"answer": "C",
+"explanation": "5 kalem 5x TL, 1 defter 1 × 5 = 5 TL; toplam 5x + 5 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"11"
+],
+[
+"2",
+"16"
+],
+[
+"3",
+"21"
+],
+[
+"4",
+"26"
+]
+]
+},
+"options": {
+"A": "5n − 6",
+"B": "5n + 7",
+"C": "5n + 6",
+"D": "6n + 6"
+},
+"answer": "C",
+"explanation": "Terimler her adımda 5 artıyor; n = 1 için 11. Kural 5n + 6.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 13 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"5",
+"24"
+],
+[
+"8",
+"36"
+],
+[
+"1",
+"8"
+]
+]
+},
+"options": {
+"A": "52",
+"B": "56",
+"C": "60",
+"D": "69"
+},
+"answer": "B",
+"explanation": "Kural: girdi 4 ile çarpılıp 4 eklenir. 13 için 4 × 13 + 4 = 56.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 5
+},
+"R": {
+"c": 12
+},
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "12",
+"D": "17"
+},
+"answer": "A",
+"explanation": "x + 5 = 12 → x = 12 − 5 = 7.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 4
+},
+"R": {
+"c": 24
+},
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "7",
+"C": "20",
+"D": "24"
+},
+"answer": "A",
+"explanation": "4x = 24 → x = 24 ÷ 4 = 6.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"11"
+],
+[
+"2",
+"15"
+],
+[
+"3",
+"19"
+],
+[
+"4",
+"23"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "39",
+"C": "43",
+"D": "47"
+},
+"answer": "C",
+"explanation": "Her adımda 4 kibrit artıyor; kural 4×adım + 7. 9. adım: 4×9 + 7 = 43.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 4 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"M",
+"4x + 1"
+],
+[
+"K",
+"2x + 4"
+],
+[
+"L",
+"5x + 5"
+],
+[
+"N",
+"x + 7"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "K",
+"D": "M"
+},
+"answer": "A",
+"explanation": "x yerine 4 yazılırsa: K: 12, L: 25, M: 17, N: 11. En küçük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 2 kalem ve 1 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"6 TL"
+]
+]
+},
+"options": {
+"A": "2x + 7",
+"B": "3x + 6",
+"C": "3x",
+"D": "2x + 6"
+},
+"answer": "D",
+"explanation": "2 kalem 2x TL, 1 defter 1 × 6 = 6 TL; toplam 2x + 6 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"7"
+],
+[
+"2",
+"9"
+],
+[
+"3",
+"11"
+],
+[
+"4",
+"13"
+]
+]
+},
+"options": {
+"A": "2n − 5",
+"B": "2n + 5",
+"C": "2n + 6",
+"D": "3n + 5"
+},
+"answer": "B",
+"explanation": "Terimler her adımda 2 artıyor; n = 1 için 7. Kural 2n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 5 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"4",
+"16"
+],
+[
+"2",
+"4"
+],
+[
+"8",
+"40"
+]
+]
+},
+"options": {
+"A": "14",
+"B": "22",
+"C": "27",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 8 çıkarılır. 5 için 6 × 5 − 8 = 22.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 4
+},
+"R": {
+"c": 16
+},
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "16",
+"D": "20"
+},
+"answer": "A",
+"explanation": "x + 4 = 16 → x = 16 − 4 = 12.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 3
+},
+"R": {
+"c": 21
+},
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "18",
+"D": "21"
+},
+"answer": "A",
+"explanation": "3x = 21 → x = 21 ÷ 3 = 7.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"7"
+],
+[
+"2",
+"10"
+],
+[
+"3",
+"13"
+],
+[
+"4",
+"16"
+]
+]
+},
+"options": {
+"A": "30",
+"B": "31",
+"C": "34",
+"D": "37"
+},
+"answer": "C",
+"explanation": "Her adımda 3 kibrit artıyor; kural 3×adım + 4. 10. adım: 3×10 + 4 = 34.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 6 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"M",
+"4x + 6"
+],
+[
+"N",
+"5x + 8"
+],
+[
+"K",
+"x + 5"
+],
+[
+"L",
+"x + 2"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "C",
+"explanation": "x yerine 6 yazılırsa: K: 11, L: 8, M: 30, N: 38. En küçük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 2 kalem ve 1 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"4 TL"
+]
+]
+},
+"options": {
+"A": "2x + 5",
+"B": "2x + 4",
+"C": "3x + 4",
+"D": "3x"
+},
+"answer": "B",
+"explanation": "2 kalem 2x TL, 1 defter 1 × 4 = 4 TL; toplam 2x + 4 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"13"
+],
+[
+"3",
+"17"
+],
+[
+"4",
+"21"
+]
+]
+},
+"options": {
+"A": "5n + 5",
+"B": "4n + 6",
+"C": "4n − 5",
+"D": "4n + 5"
+},
+"answer": "D",
+"explanation": "Terimler her adımda 4 artıyor; n = 1 için 9. Kural 4n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 11 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"4",
+"15"
+],
+[
+"5",
+"21"
+],
+[
+"2",
+"3"
+]
+]
+},
+"options": {
+"A": "48",
+"B": "57",
+"C": "66",
+"D": "68"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 9 çıkarılır. 11 için 6 × 11 − 9 = 57.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 7
+},
+"R": {
+"c": 11
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "11",
+"D": "18"
+},
+"answer": "A",
+"explanation": "x + 7 = 11 → x = 11 − 7 = 4.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 4
+},
+"R": {
+"c": 28
+},
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "24",
+"D": "28"
+},
+"answer": "A",
+"explanation": "4x = 28 → x = 28 ÷ 4 = 7.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"6"
+],
+[
+"2",
+"10"
+],
+[
+"3",
+"14"
+],
+[
+"4",
+"18"
+]
+]
+},
+"options": {
+"A": "38",
+"B": "40",
+"C": "42",
+"D": "46"
+},
+"answer": "C",
+"explanation": "Her adımda 4 kibrit artıyor; kural 4×adım + 2. 10. adım: 4×10 + 2 = 42.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 5 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"x + 2"
+],
+[
+"M",
+"4x + 3"
+],
+[
+"L",
+"4x + 8"
+],
+[
+"N",
+"4x + 2"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "B",
+"explanation": "x yerine 5 yazılırsa: K: 7, L: 28, M: 23, N: 22. En büyük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 2 kalem ve 1 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"8 TL"
+]
+]
+},
+"options": {
+"A": "2x + 9",
+"B": "3x + 8",
+"C": "2x + 8",
+"D": "3x"
+},
+"answer": "C",
+"explanation": "2 kalem 2x TL, 1 defter 1 × 8 = 8 TL; toplam 2x + 8 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"13"
+],
+[
+"3",
+"17"
+],
+[
+"4",
+"21"
+]
+]
+},
+"options": {
+"A": "4n − 5",
+"B": "4n + 5",
+"C": "5n + 5",
+"D": "4n + 6"
+},
+"answer": "B",
+"explanation": "Terimler her adımda 4 artıyor; n = 1 için 9. Kural 4n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 11 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"2",
+"10"
+],
+[
+"3",
+"12"
+],
+[
+"4",
+"14"
+]
+]
+},
+"options": {
+"A": "22",
+"B": "28",
+"C": "34",
+"D": "39"
+},
+"answer": "B",
+"explanation": "Kural: girdi 2 ile çarpılıp 6 eklenir. 11 için 2 × 11 + 6 = 28.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 9
+},
+"R": {
+"c": 11
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "11",
+"D": "20"
+},
+"answer": "A",
+"explanation": "x + 9 = 11 → x = 11 − 9 = 2.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 3
+},
+"R": {
+"c": 12
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "9",
+"D": "12"
+},
+"answer": "A",
+"explanation": "3x = 12 → x = 12 ÷ 3 = 4.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 15. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"11"
+],
+[
+"3",
+"14"
+],
+[
+"4",
+"17"
+]
+]
+},
+"options": {
+"A": "45",
+"B": "47",
+"C": "50",
+"D": "53"
+},
+"answer": "C",
+"explanation": "Her adımda 3 kibrit artıyor; kural 3×adım + 5. 15. adım: 3×15 + 5 = 50.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 6 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"5x + 8"
+],
+[
+"K",
+"5x"
+],
+[
+"M",
+"4x + 8"
+],
+[
+"L",
+"x + 2"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "N",
+"D": "K"
+},
+"answer": "B",
+"explanation": "x yerine 6 yazılırsa: K: 30, L: 8, M: 32, N: 38. En küçük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 4 kalem ve 3 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"8 TL"
+]
+]
+},
+"options": {
+"A": "4x + 8",
+"B": "4x + 24",
+"C": "7x + 24",
+"D": "12x + 8"
+},
+"answer": "B",
+"explanation": "4 kalem 4x TL, 3 defter 3 × 8 = 24 TL; toplam 4x + 24 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"10"
+],
+[
+"3",
+"12"
+],
+[
+"4",
+"14"
+]
+]
+},
+"options": {
+"A": "2n − 6",
+"B": "2n + 6",
+"C": "3n + 6",
+"D": "2n + 7"
+},
+"answer": "B",
+"explanation": "Terimler her adımda 2 artıyor; n = 1 için 8. Kural 2n + 6.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 13 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"3",
+"12"
+],
+[
+"8",
+"22"
+]
+]
+},
+"options": {
+"A": "26",
+"B": "32",
+"C": "38",
+"D": "45"
+},
+"answer": "B",
+"explanation": "Kural: girdi 2 ile çarpılıp 6 eklenir. 13 için 2 × 13 + 6 = 32.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 3
+},
+"R": {
+"c": 7
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "7",
+"D": "10"
+},
+"answer": "A",
+"explanation": "x + 3 = 7 → x = 7 − 3 = 4.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 5
+},
+"R": {
+"c": 20
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "15",
+"D": "20"
+},
+"answer": "A",
+"explanation": "5x = 20 → x = 20 ÷ 5 = 4.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"13"
+],
+[
+"3",
+"17"
+],
+[
+"4",
+"21"
+]
+]
+},
+"options": {
+"A": "40",
+"B": "41",
+"C": "45",
+"D": "49"
+},
+"answer": "C",
+"explanation": "Her adımda 4 kibrit artıyor; kural 4×adım + 5. 10. adım: 4×10 + 5 = 45.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 2 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"M",
+"4x + 3"
+],
+[
+"K",
+"4x + 8"
+],
+[
+"N",
+"2x + 4"
+],
+[
+"L",
+"3x + 6"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "C",
+"explanation": "x yerine 2 yazılırsa: K: 16, L: 12, M: 11, N: 8. En büyük değer K ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 3 kalem ve 2 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"5 TL"
+]
+]
+},
+"options": {
+"A": "6x + 5",
+"B": "5x + 10",
+"C": "3x + 5",
+"D": "3x + 10"
+},
+"answer": "D",
+"explanation": "3 kalem 3x TL, 2 defter 2 × 5 = 10 TL; toplam 3x + 10 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"10"
+],
+[
+"2",
+"15"
+],
+[
+"3",
+"20"
+],
+[
+"4",
+"25"
+]
+]
+},
+"options": {
+"A": "5n + 5",
+"B": "6n + 5",
+"C": "5n + 6",
+"D": "5n − 5"
+},
+"answer": "A",
+"explanation": "Terimler her adımda 5 artıyor; n = 1 için 10. Kural 5n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 11 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"7",
+"32"
+],
+[
+"6",
+"28"
+],
+[
+"2",
+"12"
+]
+]
+},
+"options": {
+"A": "44",
+"B": "48",
+"C": "52",
+"D": "59"
+},
+"answer": "B",
+"explanation": "Kural: girdi 4 ile çarpılıp 4 eklenir. 11 için 4 × 11 + 4 = 48.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 2
+},
+"R": {
+"c": 12
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "12",
+"D": "14"
+},
+"answer": "A",
+"explanation": "x + 2 = 12 → x = 12 − 2 = 10.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 5
+},
+"R": {
+"c": 15
+},
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "10",
+"D": "15"
+},
+"answer": "A",
+"explanation": "5x = 15 → x = 15 ÷ 5 = 3.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"7"
+],
+[
+"2",
+"13"
+],
+[
+"3",
+"19"
+],
+[
+"4",
+"25"
+]
+]
+},
+"options": {
+"A": "55",
+"B": "60",
+"C": "61",
+"D": "67"
+},
+"answer": "C",
+"explanation": "Her adımda 6 kibrit artıyor; kural 6×adım + 1. 10. adım: 6×10 + 1 = 61.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 6 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"2x + 3"
+],
+[
+"L",
+"x + 6"
+],
+[
+"M",
+"5x + 8"
+],
+[
+"K",
+"3x"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "A",
+"explanation": "x yerine 6 yazılırsa: K: 18, L: 12, M: 38, N: 15. En büyük değer M ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 3 kalem ve 4 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"8 TL"
+]
+]
+},
+"options": {
+"A": "3x + 8",
+"B": "12x + 8",
+"C": "7x + 32",
+"D": "3x + 32"
+},
+"answer": "D",
+"explanation": "3 kalem 3x TL, 4 defter 4 × 8 = 32 TL; toplam 3x + 32 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"13"
+],
+[
+"3",
+"17"
+],
+[
+"4",
+"21"
+]
+]
+},
+"options": {
+"A": "4n − 5",
+"B": "4n + 6",
+"C": "5n + 5",
+"D": "4n + 5"
+},
+"answer": "D",
+"explanation": "Terimler her adımda 4 artıyor; n = 1 için 9. Kural 4n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 6 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"1",
+"13"
+],
+[
+"7",
+"49"
+],
+[
+"3",
+"25"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "43",
+"C": "49",
+"D": "50"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 7 eklenir. 6 için 6 × 6 + 7 = 43.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 9
+},
+"R": {
+"c": 11
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "11",
+"D": "20"
+},
+"answer": "A",
+"explanation": "x + 9 = 11 → x = 11 − 9 = 2.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların hepsi birbirine eşit ağırlıktadır. Bir kutunun ağırlığı (x) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 4
+},
+"R": {
+"c": 32
+},
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "28",
+"D": "32"
+},
+"answer": "A",
+"explanation": "4x = 32 → x = 32 ÷ 4 = 8.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t2"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 12. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"7"
+],
+[
+"2",
+"11"
+],
+[
+"3",
+"15"
+],
+[
+"4",
+"19"
+]
+]
+},
+"options": {
+"A": "47",
+"B": "48",
+"C": "51",
+"D": "55"
+},
+"answer": "C",
+"explanation": "Her adımda 4 kibrit artıyor; kural 4×adım + 3. 12. adım: 4×12 + 3 = 51.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 6 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"x + 2"
+],
+[
+"L",
+"x + 4"
+],
+[
+"M",
+"2x + 5"
+],
+[
+"N",
+"3x + 9"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "C",
+"explanation": "x yerine 6 yazılırsa: K: 8, L: 10, M: 17, N: 27. En büyük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 3 kalem ve 3 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"8 TL"
+]
+]
+},
+"options": {
+"A": "6x + 24",
+"B": "3x + 24",
+"C": "9x + 8",
+"D": "3x + 8"
+},
+"answer": "B",
+"explanation": "3 kalem 3x TL, 3 defter 3 × 8 = 24 TL; toplam 3x + 24 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"12"
+],
+[
+"2",
+"18"
+],
+[
+"3",
+"24"
+],
+[
+"4",
+"30"
+]
+]
+},
+"options": {
+"A": "6n + 7",
+"B": "7n + 6",
+"C": "6n − 6",
+"D": "6n + 6"
+},
+"answer": "D",
+"explanation": "Terimler her adımda 6 artıyor; n = 1 için 12. Kural 6n + 6.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 9 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"3",
+"9"
+],
+[
+"4",
+"11"
+],
+[
+"7",
+"17"
+]
+]
+},
+"options": {
+"A": "18",
+"B": "21",
+"C": "24",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Kural: girdi 2 ile çarpılıp 3 eklenir. 9 için 2 × 9 + 3 = 21.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 4
+},
+"R": {
+"c": 14
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "14",
+"D": "18"
+},
+"answer": "A",
+"explanation": "x + 4 = 14 → x = 14 − 4 = 10.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"13"
+],
+[
+"2",
+"19"
+],
+[
+"3",
+"25"
+],
+[
+"4",
+"31"
+]
+]
+},
+"options": {
+"A": "60",
+"B": "61",
+"C": "67",
+"D": "73"
+},
+"answer": "C",
+"explanation": "Her adımda 6 kibrit artıyor; kural 6×adım + 7. 10. adım: 6×10 + 7 = 67.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 6 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"4x"
+],
+[
+"L",
+"3x + 8"
+],
+[
+"K",
+"4x + 1"
+],
+[
+"M",
+"x + 5"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "L",
+"D": "M"
+},
+"answer": "C",
+"explanation": "x yerine 6 yazılırsa: K: 25, L: 26, M: 11, N: 24. En büyük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 5 kalem ve 3 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"6 TL"
+]
+]
+},
+"options": {
+"A": "5x + 6",
+"B": "15x + 6",
+"C": "5x + 18",
+"D": "8x + 18"
+},
+"answer": "C",
+"explanation": "5 kalem 5x TL, 3 defter 3 × 6 = 18 TL; toplam 5x + 18 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"11"
+],
+[
+"3",
+"14"
+],
+[
+"4",
+"17"
+]
+]
+},
+"options": {
+"A": "4n + 5",
+"B": "3n − 5",
+"C": "3n + 5",
+"D": "3n + 6"
+},
+"answer": "C",
+"explanation": "Terimler her adımda 3 artıyor; n = 1 için 8. Kural 3n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 12 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"8",
+"36"
+],
+[
+"4",
+"16"
+],
+[
+"3",
+"11"
+]
+]
+},
+"options": {
+"A": "52",
+"B": "56",
+"C": "60",
+"D": "68"
+},
+"answer": "B",
+"explanation": "Kural: girdi 5 ile çarpılıp 4 çıkarılır. 12 için 5 × 12 − 4 = 56.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 7
+},
+"R": {
+"c": 12
+},
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "12",
+"D": "19"
+},
+"answer": "A",
+"explanation": "x + 7 = 12 → x = 12 − 7 = 5.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 8. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"10"
+],
+[
+"2",
+"14"
+],
+[
+"3",
+"18"
+],
+[
+"4",
+"22"
+]
+]
+},
+"options": {
+"A": "32",
+"B": "34",
+"C": "38",
+"D": "42"
+},
+"answer": "C",
+"explanation": "Her adımda 4 kibrit artıyor; kural 4×adım + 6. 8. adım: 4×8 + 6 = 38.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 5 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"3x + 5"
+],
+[
+"K",
+"x + 6"
+],
+[
+"L",
+"x + 3"
+],
+[
+"M",
+"3x + 2"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "D",
+"explanation": "x yerine 5 yazılırsa: K: 11, L: 8, M: 17, N: 20. En küçük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 3 kalem ve 2 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"5 TL"
+]
+]
+},
+"options": {
+"A": "3x + 5",
+"B": "5x + 10",
+"C": "3x + 10",
+"D": "6x + 5"
+},
+"answer": "C",
+"explanation": "3 kalem 3x TL, 2 defter 2 × 5 = 10 TL; toplam 3x + 10 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"7"
+],
+[
+"2",
+"9"
+],
+[
+"3",
+"11"
+],
+[
+"4",
+"13"
+]
+]
+},
+"options": {
+"A": "2n + 5",
+"B": "3n + 5",
+"C": "2n − 5",
+"D": "2n + 6"
+},
+"answer": "A",
+"explanation": "Terimler her adımda 2 artıyor; n = 1 için 7. Kural 2n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 11 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"3",
+"14"
+],
+[
+"7",
+"34"
+],
+[
+"8",
+"39"
+]
+]
+},
+"options": {
+"A": "53",
+"B": "54",
+"C": "55",
+"D": "65"
+},
+"answer": "B",
+"explanation": "Kural: girdi 5 ile çarpılıp 1 çıkarılır. 11 için 5 × 11 − 1 = 54.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 3
+},
+"R": {
+"c": 11
+},
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "11",
+"D": "14"
+},
+"answer": "A",
+"explanation": "x + 3 = 11 → x = 11 − 3 = 8.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"10"
+],
+[
+"3",
+"12"
+],
+[
+"4",
+"14"
+]
+]
+},
+"options": {
+"A": "18",
+"B": "22",
+"C": "24",
+"D": "26"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 6. 9. adım: 2×9 + 6 = 24.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 4 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"3x + 3"
+],
+[
+"N",
+"x"
+],
+[
+"L",
+"3x"
+],
+[
+"M",
+"5x + 1"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "C",
+"explanation": "x yerine 4 yazılırsa: K: 15, L: 12, M: 21, N: 4. En büyük değer M ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 3 kalem ve 3 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"6 TL"
+]
+]
+},
+"options": {
+"A": "3x + 18",
+"B": "9x + 6",
+"C": "6x + 18",
+"D": "3x + 6"
+},
+"answer": "A",
+"explanation": "3 kalem 3x TL, 3 defter 3 × 6 = 18 TL; toplam 3x + 18 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"10"
+],
+[
+"2",
+"15"
+],
+[
+"3",
+"20"
+],
+[
+"4",
+"25"
+]
+]
+},
+"options": {
+"A": "5n + 5",
+"B": "6n + 5",
+"C": "5n + 6",
+"D": "5n − 5"
+},
+"answer": "A",
+"explanation": "Terimler her adımda 5 artıyor; n = 1 için 10. Kural 5n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 9 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"4",
+"21"
+],
+[
+"5",
+"27"
+],
+[
+"3",
+"15"
+]
+]
+},
+"options": {
+"A": "48",
+"B": "51",
+"C": "54",
+"D": "60"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 3 çıkarılır. 9 için 6 × 9 − 3 = 51.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 5
+},
+"R": {
+"c": 13
+},
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "13",
+"D": "18"
+},
+"answer": "A",
+"explanation": "x + 5 = 13 → x = 13 − 5 = 8.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 12. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"4"
+],
+[
+"2",
+"6"
+],
+[
+"3",
+"8"
+],
+[
+"4",
+"10"
+]
+]
+},
+"options": {
+"A": "24",
+"B": "26",
+"C": "28",
+"D": "38"
+},
+"answer": "B",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 2. 12. adım: 2×12 + 2 = 26.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"M",
+"2x"
+],
+[
+"N",
+"3x + 2"
+],
+[
+"L",
+"3x + 6"
+],
+[
+"K",
+"5x + 7"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "B",
+"explanation": "x yerine 3 yazılırsa: K: 22, L: 15, M: 6, N: 11. En büyük değer K ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 5 kalem ve 2 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"5 TL"
+]
+]
+},
+"options": {
+"A": "10x + 5",
+"B": "5x + 5",
+"C": "5x + 10",
+"D": "7x + 10"
+},
+"answer": "C",
+"explanation": "5 kalem 5x TL, 2 defter 2 × 5 = 10 TL; toplam 5x + 10 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"10"
+],
+[
+"3",
+"12"
+],
+[
+"4",
+"14"
+]
+]
+},
+"options": {
+"A": "3n + 6",
+"B": "2n + 7",
+"C": "2n + 6",
+"D": "2n − 6"
+},
+"answer": "C",
+"explanation": "Terimler her adımda 2 artıyor; n = 1 için 8. Kural 2n + 6.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 10 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"7",
+"20"
+],
+[
+"5",
+"16"
+],
+[
+"6",
+"18"
+]
+]
+},
+"options": {
+"A": "20",
+"B": "26",
+"C": "32",
+"D": "36"
+},
+"answer": "B",
+"explanation": "Kural: girdi 2 ile çarpılıp 6 eklenir. 10 için 2 × 10 + 6 = 26.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 3
+},
+"R": {
+"c": 9
+},
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "7",
+"C": "9",
+"D": "12"
+},
+"answer": "A",
+"explanation": "x + 3 = 9 → x = 9 − 3 = 6.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"13"
+],
+[
+"3",
+"18"
+],
+[
+"4",
+"23"
+]
+]
+},
+"options": {
+"A": "43",
+"B": "45",
+"C": "48",
+"D": "53"
+},
+"answer": "C",
+"explanation": "Her adımda 5 kibrit artıyor; kural 5×adım + 3. 9. adım: 5×9 + 3 = 48.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 5 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"5x + 9"
+],
+[
+"M",
+"3x + 3"
+],
+[
+"L",
+"x + 2"
+],
+[
+"K",
+"4x + 3"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "A",
+"explanation": "x yerine 5 yazılırsa: K: 23, L: 7, M: 18, N: 34. En küçük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 3 kalem ve 4 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"10 TL"
+]
+]
+},
+"options": {
+"A": "3x + 40",
+"B": "7x + 40",
+"C": "3x + 10",
+"D": "12x + 10"
+},
+"answer": "A",
+"explanation": "3 kalem 3x TL, 4 defter 4 × 10 = 40 TL; toplam 3x + 40 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"10"
+],
+[
+"2",
+"14"
+],
+[
+"3",
+"18"
+],
+[
+"4",
+"22"
+]
+]
+},
+"options": {
+"A": "4n + 6",
+"B": "4n − 6",
+"C": "4n + 7",
+"D": "5n + 6"
+},
+"answer": "A",
+"explanation": "Terimler her adımda 4 artıyor; n = 1 için 10. Kural 4n + 6.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 7 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"3",
+"22"
+],
+[
+"8",
+"47"
+],
+[
+"2",
+"17"
+]
+]
+},
+"options": {
+"A": "19",
+"B": "35",
+"C": "42",
+"D": "49"
+},
+"answer": "C",
+"explanation": "Kural: girdi 5 ile çarpılıp 7 eklenir. 7 için 5 × 7 + 7 = 42.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 3
+},
+"R": {
+"c": 13
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "13",
+"D": "16"
+},
+"answer": "A",
+"explanation": "x + 3 = 13 → x = 13 − 3 = 10.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 12. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"11"
+],
+[
+"3",
+"13"
+],
+[
+"4",
+"15"
+]
+]
+},
+"options": {
+"A": "24",
+"B": "29",
+"C": "31",
+"D": "33"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 7. 12. adım: 2×12 + 7 = 31.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 2 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"M",
+"5x + 9"
+],
+[
+"L",
+"4x + 8"
+],
+[
+"K",
+"3x + 8"
+],
+[
+"N",
+"2x + 9"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "D",
+"explanation": "x yerine 2 yazılırsa: K: 14, L: 16, M: 19, N: 13. En küçük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda bir kırtasiyedeki ürünlerin fiyatları verilmiştir. 4 kalem ve 3 defter için ödenecek toplam tutarı gösteren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat"
+],
+"rows": [
+[
+"Kalem",
+"x TL"
+],
+[
+"Defter",
+"6 TL"
+]
+]
+},
+"options": {
+"A": "4x + 6",
+"B": "12x + 6",
+"C": "7x + 18",
+"D": "4x + 18"
+},
+"answer": "D",
+"explanation": "4 kalem 4x TL, 3 defter 3 × 6 = 18 TL; toplam 4x + 18 TL.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_yaz"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"13"
+],
+[
+"3",
+"17"
+],
+[
+"4",
+"21"
+]
+]
+},
+"options": {
+"A": "4n − 5",
+"B": "4n + 6",
+"C": "4n + 5",
+"D": "5n + 5"
+},
+"answer": "C",
+"explanation": "Terimler her adımda 4 artıyor; n = 1 için 9. Kural 4n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 9 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"7",
+"40"
+],
+[
+"1",
+"4"
+],
+[
+"8",
+"46"
+]
+]
+},
+"options": {
+"A": "50",
+"B": "52",
+"C": "54",
+"D": "61"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 2 çıkarılır. 9 için 6 × 9 − 2 = 52.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 7
+},
+"R": {
+"c": 10
+},
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "10",
+"D": "17"
+},
+"answer": "A",
+"explanation": "x + 7 = 10 → x = 10 − 7 = 3.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"6"
+],
+[
+"2",
+"8"
+],
+[
+"3",
+"10"
+],
+[
+"4",
+"12"
+]
+]
+},
+"options": {
+"A": "18",
+"B": "20",
+"C": "22",
+"D": "24"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 4. 9. adım: 2×9 + 4 = 22.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"2x + 7"
+],
+[
+"N",
+"x + 4"
+],
+[
+"M",
+"3x + 6"
+],
+[
+"L",
+"x + 6"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "N",
+"D": "K"
+},
+"answer": "B",
+"explanation": "x yerine 3 yazılırsa: K: 13, L: 9, M: 15, N: 7. En büyük değer M ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"7"
+],
+[
+"2",
+"9"
+],
+[
+"3",
+"11"
+],
+[
+"4",
+"13"
+]
+]
+},
+"options": {
+"A": "2n + 6",
+"B": "2n + 5",
+"C": "3n + 5",
+"D": "2n − 5"
+},
+"answer": "B",
+"explanation": "Terimler her adımda 2 artıyor; n = 1 için 7. Kural 2n + 5.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak şu soruyu yanıtlayınız.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 10 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"6",
+"34"
+],
+[
+"1",
+"9"
+],
+[
+"3",
+"19"
+]
+]
+},
+"options": {
+"A": "50",
+"B": "54",
+"C": "58",
+"D": "64"
+},
+"answer": "B",
+"explanation": "Kural: girdi 5 ile çarpılıp 4 eklenir. 10 için 5 × 10 + 4 = 54.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 6
+},
+"R": {
+"c": 13
+},
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "13",
+"D": "19"
+},
+"answer": "A",
+"explanation": "x + 6 = 13 → x = 13 − 6 = 7.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 12. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"6"
+],
+[
+"2",
+"9"
+],
+[
+"3",
+"12"
+],
+[
+"4",
+"15"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "39",
+"C": "42",
+"D": "51"
+},
+"answer": "B",
+"explanation": "Her adımda 3 kibrit artıyor; kural 3×adım + 3. 12. adım: 3×12 + 3 = 39.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"3x + 3"
+],
+[
+"M",
+"3x + 2"
+],
+[
+"L",
+"5x + 4"
+],
+[
+"K",
+"3x"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "C",
+"explanation": "x yerine 3 yazılırsa: K: 9, L: 19, M: 11, N: 12. En küçük değer K ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"10"
+],
+[
+"2",
+"14"
+],
+[
+"3",
+"18"
+],
+[
+"4",
+"22"
+]
+]
+},
+"options": {
+"A": "4n + 6",
+"B": "4n + 7",
+"C": "4n − 6",
+"D": "5n + 6"
+},
+"answer": "A",
+"explanation": "Terimler her adımda 4 artıyor; n = 1 için 10. Kural 4n + 6.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 10 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"8",
+"31"
+],
+[
+"3",
+"11"
+],
+[
+"2",
+"7"
+]
+]
+},
+"options": {
+"A": "38",
+"B": "39",
+"C": "40",
+"D": "49"
+},
+"answer": "B",
+"explanation": "Kural: girdi 4 ile çarpılıp 1 çıkarılır. 10 için 4 × 10 − 1 = 39.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 9
+},
+"R": {
+"c": 15
+},
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "7",
+"C": "15",
+"D": "24"
+},
+"answer": "A",
+"explanation": "x + 9 = 15 → x = 15 − 9 = 6.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"14"
+],
+[
+"3",
+"19"
+],
+[
+"4",
+"24"
+]
+]
+},
+"options": {
+"A": "49",
+"B": "50",
+"C": "54",
+"D": "59"
+},
+"answer": "C",
+"explanation": "Her adımda 5 kibrit artıyor; kural 5×adım + 4. 10. adım: 5×10 + 4 = 54.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 5 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"x + 1"
+],
+[
+"M",
+"x + 3"
+],
+[
+"K",
+"2x + 7"
+],
+[
+"L",
+"4x + 4"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "C",
+"explanation": "x yerine 5 yazılırsa: K: 17, L: 24, M: 8, N: 6. En küçük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda bir sayı örüntüsünün ilk dört terimi sıra numaralarıyla verilmiştir. Bu örüntünün n. terimini veren cebirsel ifade aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Sayı örüntüsü",
+"headers": [
+"Sıra (n)",
+"Sayı"
+],
+"rows": [
+[
+"1",
+"6"
+],
+[
+"2",
+"12"
+],
+[
+"3",
+"18"
+],
+[
+"4",
+"24"
+]
+]
+},
+"options": {
+"A": "6n + 1",
+"B": "6n",
+"C": "7n",
+"D": "8n + 6"
+},
+"answer": "B",
+"explanation": "Terimler her adımda 6 artıyor; n = 1 için 6. Kural 6n.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_oruntu_kural"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 12 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"2",
+"9"
+],
+[
+"3",
+"13"
+],
+[
+"4",
+"17"
+]
+]
+},
+"options": {
+"A": "48",
+"B": "49",
+"C": "50",
+"D": "61"
+},
+"answer": "B",
+"explanation": "Kural: girdi 4 ile çarpılıp 1 eklenir. 12 için 4 × 12 + 1 = 49.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 6
+},
+"R": {
+"c": 8
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "8",
+"D": "14"
+},
+"answer": "A",
+"explanation": "x + 6 = 8 → x = 8 − 6 = 2.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"10"
+],
+[
+"2",
+"15"
+],
+[
+"3",
+"20"
+],
+[
+"4",
+"25"
+]
+]
+},
+"options": {
+"A": "50",
+"B": "55",
+"C": "60",
+"D": "65"
+},
+"answer": "B",
+"explanation": "Her adımda 5 kibrit artıyor; kural 5×adım + 5. 10. adım: 5×10 + 5 = 55.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"N",
+"x + 5"
+],
+[
+"K",
+"5x + 4"
+],
+[
+"L",
+"3x + 1"
+],
+[
+"M",
+"4x + 1"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "K",
+"D": "L"
+},
+"answer": "C",
+"explanation": "x yerine 3 yazılırsa: K: 19, L: 10, M: 13, N: 8. En büyük değer K ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 12 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"1",
+"11"
+],
+[
+"3",
+"23"
+],
+[
+"2",
+"17"
+]
+]
+},
+"options": {
+"A": "72",
+"B": "77",
+"C": "82",
+"D": "89"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 5 eklenir. 12 için 6 × 12 + 5 = 77.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 8
+},
+"R": {
+"c": 19
+},
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "19",
+"D": "27"
+},
+"answer": "A",
+"explanation": "x + 8 = 19 → x = 19 − 8 = 11.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"13"
+],
+[
+"2",
+"19"
+],
+[
+"3",
+"25"
+],
+[
+"4",
+"31"
+]
+]
+},
+"options": {
+"A": "60",
+"B": "61",
+"C": "67",
+"D": "73"
+},
+"answer": "C",
+"explanation": "Her adımda 6 kibrit artıyor; kural 6×adım + 7. 10. adım: 6×10 + 7 = 67.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"3x + 7"
+],
+[
+"N",
+"x + 4"
+],
+[
+"L",
+"x + 8"
+],
+[
+"M",
+"5x + 4"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "A",
+"explanation": "x yerine 3 yazılırsa: K: 16, L: 11, M: 19, N: 7. En büyük değer M ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 12 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"4",
+"10"
+],
+[
+"8",
+"26"
+],
+[
+"6",
+"18"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "42",
+"C": "48",
+"D": "54"
+},
+"answer": "B",
+"explanation": "Kural: girdi 4 ile çarpılıp 6 çıkarılır. 12 için 4 × 12 − 6 = 42.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 7
+},
+"R": {
+"c": 9
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "9",
+"D": "16"
+},
+"answer": "A",
+"explanation": "x + 7 = 9 → x = 9 − 7 = 2.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"5"
+],
+[
+"2",
+"7"
+],
+[
+"3",
+"9"
+],
+[
+"4",
+"11"
+]
+]
+},
+"options": {
+"A": "20",
+"B": "21",
+"C": "23",
+"D": "25"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 3. 10. adım: 2×10 + 3 = 23.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 4 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"4x + 7"
+],
+[
+"N",
+"5x + 2"
+],
+[
+"L",
+"5x + 9"
+],
+[
+"M",
+"3x + 8"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "M"
+},
+"answer": "D",
+"explanation": "x yerine 4 yazılırsa: K: 23, L: 29, M: 20, N: 22. En küçük değer M ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 7 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"8",
+"25"
+],
+[
+"5",
+"13"
+],
+[
+"6",
+"17"
+]
+]
+},
+"options": {
+"A": "14",
+"B": "18",
+"C": "21",
+"D": "28"
+},
+"answer": "C",
+"explanation": "Kural: girdi 4 ile çarpılıp 7 çıkarılır. 7 için 4 × 7 − 7 = 21.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 2
+},
+"R": {
+"c": 14
+},
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "16"
+},
+"answer": "A",
+"explanation": "x + 2 = 14 → x = 14 − 2 = 12.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"11"
+],
+[
+"3",
+"13"
+],
+[
+"4",
+"15"
+]
+]
+},
+"options": {
+"A": "18",
+"B": "23",
+"C": "25",
+"D": "27"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 7. 9. adım: 2×9 + 7 = 25.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"L",
+"x + 6"
+],
+[
+"M",
+"4x + 5"
+],
+[
+"N",
+"5x + 7"
+],
+[
+"K",
+"3x + 9"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "x yerine 3 yazılırsa: K: 18, L: 9, M: 17, N: 22. En küçük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 10 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"6",
+"14"
+],
+[
+"3",
+"8"
+],
+[
+"2",
+"6"
+]
+]
+},
+"options": {
+"A": "20",
+"B": "22",
+"C": "24",
+"D": "32"
+},
+"answer": "B",
+"explanation": "Kural: girdi 2 ile çarpılıp 2 eklenir. 10 için 2 × 10 + 2 = 22.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 3
+},
+"R": {
+"c": 12
+},
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "10",
+"C": "12",
+"D": "15"
+},
+"answer": "A",
+"explanation": "x + 3 = 12 → x = 12 − 3 = 9.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 8. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"12"
+],
+[
+"2",
+"17"
+],
+[
+"3",
+"22"
+],
+[
+"4",
+"27"
+]
+]
+},
+"options": {
+"A": "40",
+"B": "42",
+"C": "47",
+"D": "52"
+},
+"answer": "C",
+"explanation": "Her adımda 5 kibrit artıyor; kural 5×adım + 7. 8. adım: 5×8 + 7 = 47.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"2x + 7"
+],
+[
+"M",
+"4x + 5"
+],
+[
+"L",
+"3x + 2"
+],
+[
+"N",
+"5x + 6"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "L",
+"D": "M"
+},
+"answer": "B",
+"explanation": "x yerine 3 yazılırsa: K: 13, L: 11, M: 17, N: 21. En büyük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 9 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"4",
+"6"
+],
+[
+"7",
+"12"
+],
+[
+"3",
+"4"
+]
+]
+},
+"options": {
+"A": "14",
+"B": "16",
+"C": "18",
+"D": "25"
+},
+"answer": "B",
+"explanation": "Kural: girdi 2 ile çarpılıp 2 çıkarılır. 9 için 2 × 9 − 2 = 16.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 9
+},
+"R": {
+"c": 19
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "19",
+"D": "28"
+},
+"answer": "A",
+"explanation": "x + 9 = 19 → x = 19 − 9 = 10.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"7"
+],
+[
+"2",
+"12"
+],
+[
+"3",
+"17"
+],
+[
+"4",
+"22"
+]
+]
+},
+"options": {
+"A": "47",
+"B": "50",
+"C": "52",
+"D": "57"
+},
+"answer": "C",
+"explanation": "Her adımda 5 kibrit artıyor; kural 5×adım + 2. 10. adım: 5×10 + 2 = 52.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"L",
+"5x + 8"
+],
+[
+"N",
+"5x + 5"
+],
+[
+"M",
+"2x"
+],
+[
+"K",
+"2x + 3"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "B",
+"explanation": "x yerine 3 yazılırsa: K: 9, L: 23, M: 6, N: 20. En büyük değer L ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 11 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"3",
+"6"
+],
+[
+"5",
+"12"
+],
+[
+"6",
+"15"
+]
+]
+},
+"options": {
+"A": "27",
+"B": "30",
+"C": "33",
+"D": "41"
+},
+"answer": "B",
+"explanation": "Kural: girdi 3 ile çarpılıp 3 çıkarılır. 11 için 3 × 11 − 3 = 30.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 2
+},
+"R": {
+"c": 14
+},
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "16"
+},
+"answer": "A",
+"explanation": "x + 2 = 14 → x = 14 − 2 = 12.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"3"
+],
+[
+"2",
+"5"
+],
+[
+"3",
+"7"
+],
+[
+"4",
+"9"
+]
+]
+},
+"options": {
+"A": "17",
+"B": "18",
+"C": "19",
+"D": "21"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 1. 9. adım: 2×9 + 1 = 19.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 5 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"M",
+"x + 9"
+],
+[
+"K",
+"5x + 5"
+],
+[
+"L",
+"4x + 3"
+],
+[
+"N",
+"x + 5"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "D",
+"explanation": "x yerine 5 yazılırsa: K: 30, L: 23, M: 14, N: 10. En küçük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 12 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"1",
+"2"
+],
+[
+"7",
+"38"
+],
+[
+"3",
+"14"
+]
+]
+},
+"options": {
+"A": "64",
+"B": "68",
+"C": "72",
+"D": "80"
+},
+"answer": "B",
+"explanation": "Kural: girdi 6 ile çarpılıp 4 çıkarılır. 12 için 6 × 12 − 4 = 68.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 6
+},
+"R": {
+"c": 14
+},
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "14",
+"D": "20"
+},
+"answer": "A",
+"explanation": "x + 6 = 14 → x = 14 − 6 = 8.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 12. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"10"
+],
+[
+"2",
+"15"
+],
+[
+"3",
+"20"
+],
+[
+"4",
+"25"
+]
+]
+},
+"options": {
+"A": "60",
+"B": "65",
+"C": "70",
+"D": "77"
+},
+"answer": "B",
+"explanation": "Her adımda 5 kibrit artıyor; kural 5×adım + 5. 12. adım: 5×12 + 5 = 65.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 5 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"L",
+"2x"
+],
+[
+"N",
+"5x + 8"
+],
+[
+"K",
+"4x + 8"
+],
+[
+"M",
+"2x + 3"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "B",
+"explanation": "x yerine 5 yazılırsa: K: 28, L: 10, M: 13, N: 33. En büyük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 14 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"3",
+"10"
+],
+[
+"4",
+"14"
+],
+[
+"7",
+"26"
+]
+]
+},
+"options": {
+"A": "52",
+"B": "54",
+"C": "56",
+"D": "68"
+},
+"answer": "B",
+"explanation": "Kural: girdi 4 ile çarpılıp 2 çıkarılır. 14 için 4 × 14 − 2 = 54.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 4
+},
+"R": {
+"c": 9
+},
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "9",
+"D": "13"
+},
+"answer": "A",
+"explanation": "x + 4 = 9 → x = 9 − 4 = 5.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"9"
+],
+[
+"2",
+"11"
+],
+[
+"3",
+"13"
+],
+[
+"4",
+"15"
+]
+]
+},
+"options": {
+"A": "18",
+"B": "23",
+"C": "25",
+"D": "27"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 7. 9. adım: 2×9 + 7 = 25.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 2 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"M",
+"x"
+],
+[
+"N",
+"2x + 1"
+],
+[
+"L",
+"x + 5"
+],
+[
+"K",
+"3x + 9"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "C",
+"explanation": "x yerine 2 yazılırsa: K: 15, L: 7, M: 2, N: 5. En büyük değer K ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 8 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"5",
+"28"
+],
+[
+"6",
+"32"
+],
+[
+"7",
+"36"
+]
+]
+},
+"options": {
+"A": "20",
+"B": "32",
+"C": "40",
+"D": "48"
+},
+"answer": "C",
+"explanation": "Kural: girdi 4 ile çarpılıp 8 eklenir. 8 için 4 × 8 + 8 = 40.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 5
+},
+"R": {
+"c": 15
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "15",
+"D": "20"
+},
+"answer": "A",
+"explanation": "x + 5 = 15 → x = 15 − 5 = 10.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 9. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"13"
+],
+[
+"2",
+"19"
+],
+[
+"3",
+"25"
+],
+[
+"4",
+"31"
+]
+]
+},
+"options": {
+"A": "54",
+"B": "55",
+"C": "61",
+"D": "67"
+},
+"answer": "C",
+"explanation": "Her adımda 6 kibrit artıyor; kural 6×adım + 7. 9. adım: 6×9 + 7 = 61.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 6 için değeri en büyük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"2x + 5"
+],
+[
+"N",
+"4x + 4"
+],
+[
+"L",
+"2x + 2"
+],
+[
+"M",
+"2x + 1"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "x yerine 6 yazılırsa: K: 17, L: 14, M: 13, N: 28. En büyük değer N ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 13 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"6",
+"5"
+],
+[
+"5",
+"3"
+],
+[
+"4",
+"1"
+]
+]
+},
+"options": {
+"A": "12",
+"B": "19",
+"C": "26",
+"D": "32"
+},
+"answer": "B",
+"explanation": "Kural: girdi 2 ile çarpılıp 7 çıkarılır. 13 için 2 × 13 − 7 = 19.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 8
+},
+"R": {
+"c": 19
+},
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "19",
+"D": "27"
+},
+"answer": "A",
+"explanation": "x + 8 = 19 → x = 19 − 8 = 11.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 15. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"5"
+],
+[
+"2",
+"7"
+],
+[
+"3",
+"9"
+],
+[
+"4",
+"11"
+]
+]
+},
+"options": {
+"A": "30",
+"B": "31",
+"C": "33",
+"D": "35"
+},
+"answer": "C",
+"explanation": "Her adımda 2 kibrit artıyor; kural 2×adım + 3. 15. adım: 2×15 + 3 = 33.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 3 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"K",
+"4x + 5"
+],
+[
+"L",
+"3x + 5"
+],
+[
+"M",
+"x + 7"
+],
+[
+"N",
+"4x + 9"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "K",
+"D": "M"
+},
+"answer": "D",
+"explanation": "x yerine 3 yazılırsa: K: 17, L: 14, M: 10, N: 21. En küçük değer M ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 6 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"8",
+"25"
+],
+[
+"3",
+"10"
+],
+[
+"5",
+"16"
+]
+]
+},
+"options": {
+"A": "18",
+"B": "19",
+"C": "20",
+"D": "25"
+},
+"answer": "B",
+"explanation": "Kural: girdi 3 ile çarpılıp 1 eklenir. 6 için 3 × 6 + 1 = 19.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+},
+{
+"subject": "Matematik",
+"topic": "Eşitlik",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki eşit kollu terazi dengededir. Turuncu kutuların her biri x ağırlığındadır. x kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "terazi",
+"L": {
+"x": 1,
+"c": 7
+},
+"R": {
+"c": 9
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "9",
+"D": "16"
+},
+"answer": "A",
+"explanation": "x + 7 = 9 → x = 9 − 7 = 2.",
+"kz": [
+"MAT.6.2.1"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_t1"
+},
+{
+"subject": "Matematik",
+"topic": "Örüntüler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda bir kibrit çöpü örüntüsünün ilk dört adımındaki kibrit sayıları verilmiştir. Bu örüntü aynı kuralla devam ederse 10. adımda kaç kibrit çöpü gerekir?",
+"shape": {
+"type": "table",
+"title": "Örüntü",
+"headers": [
+"Adım",
+"Kibrit sayısı"
+],
+"rows": [
+[
+"1",
+"4"
+],
+[
+"2",
+"7"
+],
+[
+"3",
+"10"
+],
+[
+"4",
+"13"
+]
+]
+},
+"options": {
+"A": "28",
+"B": "30",
+"C": "31",
+"D": "34"
+},
+"answer": "C",
+"explanation": "Her adımda 3 kibrit artıyor; kural 3×adım + 1. 10. adım: 3×10 + 1 = 31.",
+"kz": [
+"MAT.6.2.2"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_oruntu_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda dört cebirsel ifade harflerle gösterilmiştir. x = 5 için değeri en küçük olan ifade hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Cebirsel ifadeler",
+"headers": [
+"Harf",
+"İfade"
+],
+"rows": [
+[
+"L",
+"5x + 2"
+],
+[
+"N",
+"3x + 9"
+],
+[
+"K",
+"2x + 6"
+],
+[
+"M",
+"4x + 6"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "N",
+"D": "K"
+},
+"answer": "D",
+"explanation": "x yerine 5 yazılırsa: K: 16, L: 27, M: 26, N: 24. En küçük değer K ifadesindedir.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_deger"
+},
+{
+"subject": "Matematik",
+"topic": "Cebirsel ifade",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nBir makine girdi sayısıyla aynı kuralı her seferinde uygulamaktadır. Tabloda makinenin üç girdisine karşılık çıktıları verilmiştir. Bu makineye girdi olarak 11 verilirse çıktı kaç olur?",
+"shape": {
+"type": "table",
+"title": "Makinenin girdi–çıktı tablosu",
+"headers": [
+"Girdi",
+"Çıktı"
+],
+"rows": [
+[
+"8",
+"30"
+],
+[
+"7",
+"26"
+],
+[
+"4",
+"14"
+]
+]
+},
+"options": {
+"A": "40",
+"B": "42",
+"C": "44",
+"D": "53"
+},
+"answer": "B",
+"explanation": "Kural: girdi 4 ile çarpılıp 2 çıkarılır. 11 için 4 × 11 − 2 = 42.",
+"kz": [
+"MAT.6.2.3"
+],
+"unit": "Cebirsel İfadeler",
+"topics": "Değişken, Cebirsel ifade, Eşitlik, Örüntüler",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_ce_makine"
+}
+]
+}

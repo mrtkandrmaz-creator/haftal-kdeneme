@@ -1,0 +1,3491 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre K harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"R",
+"K",
+"L",
+"N"
+],
+"ad": [
+"Böbrek",
+"",
+"İdrar kesesi",
+"İdrar kanalı"
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Böbrek",
+"B": "Kalp",
+"C": "İdrar borusu",
+"D": "Akciğer"
+},
+"answer": "C",
+"explanation": "Okların sırasına göre K harfi İdrar borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde solunum sisteminde havanın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nHavayı akciğerlere ileten borunun adı şekilde hangi harfle gösterilmiştir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"M",
+"N",
+"K",
+"S"
+],
+"ad": [
+"Burun",
+"Soluk borusu",
+"Bronşlar",
+"Akciğer"
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "K",
+"D": "S"
+},
+"answer": "B",
+"explanation": "Havayı akciğerlere ileten borunun adı → Soluk borusu; şekilde Soluk borusu N harfiyle gösterilmiştir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nR harfiyle gösterilen yapı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "K",
+"l": "L",
+"m": "R",
+"n": "S",
+"show_names": false
+},
+"options": {
+"A": "Akciğer",
+"B": "Atardamar",
+"C": "Kan hücresi",
+"D": "Toplardamar"
+},
+"answer": "D",
+"explanation": "Dokulardan kalbe kan getiren damarlar toplardamarlardır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÇalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBuna göre koşarken ile uyurken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Koşarken"
+],
+"values": [
+12,
+16,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "28 kez",
+"B": "18 kez",
+"C": "38 kez",
+"D": "48 kez"
+},
+"answer": "A",
+"explanation": "40 − 12 = 28.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%5"
+]
+]
+},
+"options": {
+"A": "%4",
+"B": "%5",
+"C": "%6",
+"D": "%7"
+},
+"answer": "B",
+"explanation": "5 − 0 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Kalbe kan getiren damarlar hangisidir?",
+"shape": null,
+"options": {
+"A": "Atardamarlar",
+"B": "Kılcal damarlar",
+"C": "Toplardamarlar",
+"D": "Bronşlar"
+},
+"answer": "C",
+"explanation": "Kalbe dönen kan toplardamarlarla taşınır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Soluk verirken akciğerlerden dışarı atılan gaz hangisidir?",
+"shape": null,
+"options": {
+"A": "Yalnız azot",
+"B": "Hidrojen",
+"C": "Karbondioksit (ve su buharı)",
+"D": "Yalnız oksijen"
+},
+"answer": "C",
+"explanation": "Verilen havada karbondioksit oranı fazladır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_solunum_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Boşaltım Sistemi",
+"passage": "",
+"question": "Boşaltım sistemi hangi organların birleşiminden oluşur?",
+"shape": null,
+"options": {
+"A": "Böbrek, idrar borusu, idrar kesesi, idrar kanalı",
+"B": "Mide, bağırsak, karaciğer",
+"C": "Kalp, atardamar, toplardamar",
+"D": "Burun, soluk borusu, akciğer"
+},
+"answer": "A",
+"explanation": "Bu organlar idrarın oluşup atılmasını sağlar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_bosaltim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Besinlerin sindirilmiş hâlde kana geçmesine ne ad verilir?",
+"shape": null,
+"options": {
+"A": "Boşaltım",
+"B": "Solunum",
+"C": "Dolaşım",
+"D": "Emilim"
+},
+"answer": "D",
+"explanation": "Emilim ince bağırsakta gerçekleşir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre P harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"M",
+"P",
+"S",
+"N"
+],
+"ad": [
+"",
+"",
+"İdrar kesesi",
+"İdrar kanalı"
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "İdrar kanalı",
+"B": "İdrar borusu",
+"C": "Mide",
+"D": "Kalp"
+},
+"answer": "B",
+"explanation": "Okların sırasına göre P harfi İdrar borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde solunum sisteminde havanın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nGaz alışverişinin (oksijen–karbondioksit) gerçekleştiği organ şekilde hangi harfle gösterilmiştir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"K",
+"M",
+"L",
+"S"
+],
+"ad": [
+"Burun",
+"Soluk borusu",
+"Bronşlar",
+"Akciğer"
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "S",
+"C": "M",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Gaz alışverişinin (oksijen–karbondioksit) gerçekleştiği → Akciğer; şekilde Akciğer S harfiyle gösterilmiştir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nR harfiyle gösterilen yapı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "N",
+"l": "R",
+"m": "M",
+"n": "L",
+"show_names": false
+},
+"options": {
+"A": "Toplardamar",
+"B": "Kan hücresi",
+"C": "Atardamar",
+"D": "Kılcal damar"
+},
+"answer": "C",
+"explanation": "Kalpten dokulara kan götüren damarlar atardamarlardır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak soruya cevap veriniz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nBu bilgilere göre koşarken ile uyurken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Yürürken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+60,
+90,
+110,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "70 vuru",
+"B": "80 vuru",
+"C": "100 vuru",
+"D": "90 vuru"
+},
+"answer": "B",
+"explanation": "140 − 60 = 80.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%16"
+],
+[
+"Karbondioksit",
+"%0",
+"%5"
+]
+]
+},
+"options": {
+"A": "%6",
+"B": "%7",
+"C": "%4",
+"D": "%5"
+},
+"answer": "D",
+"explanation": "5 − 0 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Kanın kalpten dokulara taşınmasını sağlayan damarlar hangisidir?",
+"shape": null,
+"options": {
+"A": "Kılcal damarlar",
+"B": "Toplardamarlar",
+"C": "Atardamarlar",
+"D": "Soluk borusu"
+},
+"answer": "C",
+"explanation": "Kalpten çıkan damarlara atardamar denir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Soluk alırken diyaframın durumu nasıldır?",
+"shape": null,
+"options": {
+"A": "Değişmez",
+"B": "Kubbeleşir (yukarı çıkar)",
+"C": "Düzleşir (aşağı iner)",
+"D": "Tamamen kasılmaz"
+},
+"answer": "C",
+"explanation": "Soluk alırken diyafram düzleşir, göğüs boşluğu genişler.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_solunum_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Boşaltım Sistemi",
+"passage": "",
+"question": "Böbreklerin vücuttaki temel görevi nedir?",
+"shape": null,
+"options": {
+"A": "Kandaki zararlı atıkları süzmek",
+"B": "Besinleri sindirmek",
+"C": "Gaz alışverişi yapmak",
+"D": "Kanı vücuda pompalamak"
+},
+"answer": "A",
+"explanation": "Böbrekler kanı süzerek idrarı oluşturur.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_bosaltim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Karaciğerin sindirim sistemindeki görevi nedir?",
+"shape": null,
+"options": {
+"A": "Suyu geri emmek",
+"B": "Besinleri emmek",
+"C": "Yağların sindirimine yardım eden safrayı üretmek",
+"D": "Besini mideye taşımak"
+},
+"answer": "C",
+"explanation": "Safra yağların sindirimini kolaylaştırır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBu bilgilere göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"S",
+"M",
+"R",
+"P",
+"L"
+],
+"ad": [
+"",
+"",
+"",
+"İnce bağırsak",
+""
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Soluk borusu",
+"B": "Karaciğer",
+"C": "Ağız",
+"D": "Mide"
+},
+"answer": "D",
+"explanation": "Okların sırasına göre R harfi Mide organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde solunum sisteminde havanın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nSoluk borusunun akciğerlere giden iki kola ayrılan bölümü şekilde hangi harfle gösterilmiştir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"S",
+"N",
+"K",
+"P"
+],
+"ad": [
+"Burun",
+"Soluk borusu",
+"Bronşlar",
+"Akciğer"
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "K",
+"C": "S",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Soluk borusunun akciğerlere giden iki kola ayrılan bölümü → Bronşlar; şekilde Bronşlar K harfiyle gösterilmiştir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nT harfiyle gösterilen yapı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "R",
+"l": "T",
+"m": "P",
+"n": "L",
+"show_names": false
+},
+"options": {
+"A": "Atardamar",
+"B": "Kılcal damar",
+"C": "Akciğer",
+"D": "Kan hücresi"
+},
+"answer": "A",
+"explanation": "Kalpten dokulara kan götüren damarlar atardamarlardır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nVerilenlere göre merdiven çıkarken ile uyurken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Yürürken",
+"Merdiven çıkarken"
+],
+"values": [
+60,
+72,
+90,
+110
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "60 vuru",
+"B": "50 vuru",
+"C": "70 vuru",
+"D": "40 vuru"
+},
+"answer": "B",
+"explanation": "110 − 60 = 50.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%4"
+]
+]
+},
+"options": {
+"A": "%3",
+"B": "%6",
+"C": "%4",
+"D": "%5"
+},
+"answer": "C",
+"explanation": "4 − 0 = 4",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Kanın sıvı kısmına ne ad verilir?",
+"shape": null,
+"options": {
+"A": "Akyuvar",
+"B": "Kan plazması",
+"C": "Alyuvar",
+"D": "Kan pulcuğu"
+},
+"answer": "B",
+"explanation": "Plazma, kan hücrelerini taşıyan sıvı kısımdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Solunum sistemini korumak için hangisi yapılmalıdır?",
+"shape": null,
+"options": {
+"A": "Sigara dumanı olan ortamda bulunmak",
+"B": "Temiz havada egzersiz yapmak",
+"C": "Ağızdan soluk almaya çalışmak",
+"D": "Kapalı ortamda kalmak"
+},
+"answer": "B",
+"explanation": "Temiz hava akciğer sağlığını korur.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_solunum_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Boşaltım Sistemi",
+"passage": "",
+"question": "Ter aşağıdakilerden hangi yolla atılır?",
+"shape": null,
+"options": {
+"A": "Akciğer",
+"B": "Mide",
+"C": "Karaciğer",
+"D": "Deri"
+},
+"answer": "D",
+"explanation": "Deri, ter bezleriyle su ve tuz atar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_bosaltim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Safra nerede depolanır?",
+"shape": null,
+"options": {
+"A": "Yemek borusunda",
+"B": "Midede",
+"C": "Safra kesesinde",
+"D": "Kalın bağırsakta"
+},
+"answer": "C",
+"explanation": "Karaciğerde üretilen safra safra kesesinde depolanır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"N",
+"R",
+"S",
+"L"
+],
+"ad": [
+"Böbrek",
+"",
+"İdrar kesesi",
+"İdrar kanalı"
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Mide",
+"B": "Akciğer",
+"C": "İdrar kesesi",
+"D": "İdrar borusu"
+},
+"answer": "D",
+"explanation": "Okların sırasına göre R harfi İdrar borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekilde boşaltım sisteminde idrarın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nİdrarın vücuttan atılmadan önce biriktiği organ şekilde hangi harfle gösterilmiştir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"N",
+"S",
+"M",
+"P"
+],
+"ad": [
+"Böbrek",
+"İdrar borusu",
+"İdrar kesesi",
+"İdrar kanalı"
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "N",
+"C": "P",
+"D": "M"
+},
+"answer": "D",
+"explanation": "İdrarın vücuttan atılmadan önce biriktiği → İdrar kesesi; şekilde İdrar kesesi M harfiyle gösterilmiştir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nN harfiyle gösterilen yapı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "K",
+"l": "M",
+"m": "N",
+"n": "L",
+"show_names": false
+},
+"options": {
+"A": "Kılcal damar",
+"B": "Toplardamar",
+"C": "Akciğer",
+"D": "Atardamar"
+},
+"answer": "B",
+"explanation": "Dokulardan kalbe kan getiren damarlar toplardamarlardır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nBuna göre koşarken ile uyurken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+60,
+72,
+110,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "100 vuru",
+"B": "70 vuru",
+"C": "90 vuru",
+"D": "80 vuru"
+},
+"answer": "D",
+"explanation": "140 − 60 = 80.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nVerilenlere göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%16"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%5",
+"B": "%2",
+"C": "%4",
+"D": "%3"
+},
+"answer": "D",
+"explanation": "3 − 0 = 3",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Vücuda giren mikroplarla savaşan kan hücresi hangisidir?",
+"shape": null,
+"options": {
+"A": "Akyuvar",
+"B": "Kan pulcuğu",
+"C": "Alyuvar",
+"D": "Kılcal damar"
+},
+"answer": "A",
+"explanation": "Akyuvarlar savunmada görevlidir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Burundan soluk almanın yararı nedir?",
+"shape": null,
+"options": {
+"A": "Gaz alışverişi hızlanır",
+"B": "Hava kurur",
+"C": "Hava süzülür, ısınır ve nemlenir",
+"D": "Hava soğur"
+},
+"answer": "C",
+"explanation": "Burundaki kıllar ve mukus havayı temizler.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_solunum_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Boşaltım Sistemi",
+"passage": "",
+"question": "Böbreklerde süzülen kandan geriye ne kalır?",
+"shape": null,
+"options": {
+"A": "Temizlenmiş kan",
+"B": "Besin",
+"C": "Hava",
+"D": "İdrar"
+},
+"answer": "A",
+"explanation": "Böbrekler atıkları kandan ayırır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_bosaltim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Kimyasal sindirim aşağıdakilerden hangisinde başlar?",
+"shape": null,
+"options": {
+"A": "Kalın bağırsakta",
+"B": "Ağızda (tükürükle)",
+"C": "İdrar kesesinde",
+"D": "Yemek borusunda"
+},
+"answer": "B",
+"explanation": "Tükürük içindeki enzim nişastayı sindirmeye başlar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre S harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"L",
+"T",
+"S",
+"M"
+],
+"ad": [
+"",
+"",
+"",
+"İdrar kanalı"
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "İdrar borusu",
+"B": "Akciğer",
+"C": "Böbrek",
+"D": "İdrar kesesi"
+},
+"answer": "D",
+"explanation": "Okların sırasına göre S harfi İdrar kesesi organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde solunum sisteminde havanın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nGaz alışverişinin (oksijen–karbondioksit) gerçekleştiği organ şekilde hangi harfle gösterilmiştir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"K",
+"N",
+"M",
+"R"
+],
+"ad": [
+"Burun",
+"Soluk borusu",
+"Bronşlar",
+"Akciğer"
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "R",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Gaz alışverişinin (oksijen–karbondioksit) gerçekleştiği → Akciğer; şekilde Akciğer R harfiyle gösterilmiştir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nKan ile hücreler arasında besin ve oksijen alışverişi, şekilde hangi harfle gösterilen yapıda gerçekleşir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "M",
+"l": "S",
+"m": "T",
+"n": "L",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "T",
+"C": "M",
+"D": "L"
+},
+"answer": "D",
+"explanation": "Madde alışverişi kılcal damarlarda gerçekleşir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nGörselde verilen bilgilere göre soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nVerilenlere göre koşarken ile dinlenirken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Dinlenirken",
+"Yürürken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+72,
+90,
+110,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "58 vuru",
+"B": "78 vuru",
+"C": "68 vuru",
+"D": "88 vuru"
+},
+"answer": "C",
+"explanation": "140 − 72 = 68.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre oksijen oranı soluk verirken kaç puan azalmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%16"
+],
+[
+"Karbondioksit",
+"%0",
+"%5"
+]
+]
+},
+"options": {
+"A": "%4",
+"B": "%5",
+"C": "%6",
+"D": "%7"
+},
+"answer": "B",
+"explanation": "21 − 16 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Egzersiz sırasında nabız sayısı nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Artar",
+"B": "Sıfırlanır",
+"C": "Azalır",
+"D": "Değişmez"
+},
+"answer": "A",
+"explanation": "Kaslar daha çok oksijen istediğinden kalp daha hızlı atar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Akciğerlerde gaz alışverişinin yapıldığı küçük keseciklere ne ad verilir?",
+"shape": null,
+"options": {
+"A": "Akciğer kesecikleri (alveoller)",
+"B": "Bronşlar",
+"C": "Soluk borusu",
+"D": "Diyafram"
+},
+"answer": "A",
+"explanation": "Gaz alışverişi alveollerde olur.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_solunum_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Boşaltım Sistemi",
+"passage": "",
+"question": "Böbrek sağlığı için aşağıdakilerden hangisi önerilir?",
+"shape": null,
+"options": {
+"A": "İdrarı uzun süre tutmak",
+"B": "Tuzlu yiyecekleri çoğaltmak",
+"C": "Hiç su içmemek",
+"D": "Yeterli su içmek"
+},
+"answer": "D",
+"explanation": "Yeterli su, böbreklerin atıkları atmasına yardım eder.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_bosaltim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Mide özsuyu hangi besini sindirmeye yardım eder?",
+"shape": null,
+"options": {
+"A": "Suyu",
+"B": "Mineralleri",
+"C": "Vitaminleri",
+"D": "Proteinleri"
+},
+"answer": "D",
+"explanation": "Mide asidi ve enzimler proteinleri parçalar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde solunum sisteminde havanın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre S harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"K",
+"S",
+"R",
+"N"
+],
+"ad": [
+"Burun",
+"",
+"Bronşlar",
+""
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Bronşlar",
+"B": "Kalp",
+"C": "Soluk borusu",
+"D": "Mide"
+},
+"answer": "C",
+"explanation": "Okların sırasına göre S harfi Soluk borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde solunum sisteminde havanın izlediği yol organ adlarıyla birlikte gösterilmiştir.\nHavayı akciğerlere ileten borunun adı şekilde hangi harfle gösterilmiştir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"M",
+"P",
+"K",
+"N"
+],
+"ad": [
+"Burun",
+"Soluk borusu",
+"Bronşlar",
+"Akciğer"
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Havayı akciğerlere ileten borunun adı → Soluk borusu; şekilde Soluk borusu P harfiyle gösterilmiştir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nP harfiyle gösterilen yapı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "T",
+"l": "P",
+"m": "N",
+"n": "K",
+"show_names": false
+},
+"options": {
+"A": "Kılcal damar",
+"B": "Atardamar",
+"C": "Kan hücresi",
+"D": "Akciğer"
+},
+"answer": "B",
+"explanation": "Kalpten dokulara kan götüren damarlar atardamarlardır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak sorulanı bulunuz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nBuna göre koşarken ile uyurken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Yürürken",
+"Koşarken"
+],
+"values": [
+60,
+72,
+90,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "90 vuru",
+"B": "80 vuru",
+"C": "100 vuru",
+"D": "70 vuru"
+},
+"answer": "B",
+"explanation": "140 − 60 = 80.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBu bilgilere göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%16"
+],
+[
+"Karbondioksit",
+"%0",
+"%5"
+]
+]
+},
+"options": {
+"A": "%5",
+"B": "%6",
+"C": "%7",
+"D": "%4"
+},
+"answer": "A",
+"explanation": "5 − 0 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Kanamayı durdurmaya yardımcı olan kan hücresi hangisidir?",
+"shape": null,
+"options": {
+"A": "Akyuvarlar",
+"B": "Alyuvarlar",
+"C": "Kan pulcukları",
+"D": "Plazma"
+},
+"answer": "C",
+"explanation": "Kan pulcukları (trombositler) pıhtılaşmayı sağlar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Soluk alırken göğüs kafesi nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Değişmez",
+"B": "Kapanır",
+"C": "Daralır",
+"D": "Genişler"
+},
+"answer": "D",
+"explanation": "Kaburga kasları ve diyafram göğüs boşluğunu genişletir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_solunum_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Boşaltım Sistemi",
+"passage": "",
+"question": "İdrar kesesinin görevi nedir?",
+"shape": null,
+"options": {
+"A": "Kanı süzmek",
+"B": "Besini sindirmek",
+"C": "İdrarı geçici olarak biriktirmek",
+"D": "Gaz alışverişi yapmak"
+},
+"answer": "C",
+"explanation": "İdrar, kesede dolana kadar depolanır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_bosaltim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Pankreasın sindirimdeki görevi nedir?",
+"shape": null,
+"options": {
+"A": "Kanı pompalamak",
+"B": "Atıkları süzmek",
+"C": "Besinleri emmek",
+"D": "Sindirim enzimleri salgılamak"
+},
+"answer": "D",
+"explanation": "Pankreas özsuyu besinleri parçalar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre N harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"L",
+"K",
+"N",
+"T",
+"R"
+],
+"ad": [
+"",
+"",
+"",
+"",
+"Kalın bağırsak"
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Soluk borusu",
+"B": "Karaciğer",
+"C": "Pankreas",
+"D": "Mide"
+},
+"answer": "D",
+"explanation": "Okların sırasına göre N harfi Mide organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde sindirim sisteminde besinin izlediği yol organ adlarıyla birlikte gösterilmiştir.\nBesinlerin sindirilmiş hâlde kana geçtiği (emildiği) organ şekilde hangi harfle gösterilmiştir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"M",
+"P",
+"K",
+"S",
+"L"
+],
+"ad": [
+"Ağız",
+"Yemek borusu",
+"Mide",
+"İnce bağırsak",
+"Kalın bağırsak"
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "M",
+"D": "P"
+},
+"answer": "A",
+"explanation": "Besinlerin sindirilmiş hâlde kana geçtiği (emildiği) → İnce bağırsak; şekilde İnce bağırsak S harfiyle gösterilmiştir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nL harfiyle gösterilen yapı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "N",
+"l": "S",
+"m": "L",
+"n": "T",
+"show_names": false
+},
+"options": {
+"A": "Toplardamar",
+"B": "Atardamar",
+"C": "Akciğer",
+"D": "Kan hücresi"
+},
+"answer": "A",
+"explanation": "Dokulardan kalbe kan getiren damarlar toplardamarlardır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nVerilenlere göre koşarken ile uyurken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+12,
+16,
+30,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "48 kez",
+"B": "18 kez",
+"C": "38 kez",
+"D": "28 kez"
+},
+"answer": "D",
+"explanation": "40 − 12 = 28.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%4",
+"B": "%5",
+"C": "%3",
+"D": "%2"
+},
+"answer": "C",
+"explanation": "3 − 0 = 3",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Nabız aşağıdakilerden hangisinin sayısını gösterir?",
+"shape": null,
+"options": {
+"A": "Soluk sayısını",
+"B": "Kalbin dakikadaki atış sayısını",
+"C": "İdrar miktarını",
+"D": "Kan hücresi sayısını"
+},
+"answer": "B",
+"explanation": "Nabız, kalbin atışlarının atardamarda hissedilmesidir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Boşaltım Sistemi",
+"passage": "",
+"question": "Vücuttan atık maddelerin su ve tuzla birlikte atılmasını sağlayan sistem hangisidir?",
+"shape": null,
+"options": {
+"A": "Boşaltım sistemi",
+"B": "Destek ve hareket sistemi",
+"C": "Sindirim sistemi",
+"D": "Dolaşım sistemi"
+},
+"answer": "A",
+"explanation": "Boşaltım sistemi atıkları idrar ve ter ile uzaklaştırır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_bosaltim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Sindirim sistemi sağlığı için hangisi önerilir?",
+"shape": null,
+"options": {
+"A": "Çiğnemeden yutmak",
+"B": "Öğün atlamak",
+"C": "Çok yağlı beslenmek",
+"D": "Yemekleri iyice çiğnemek"
+},
+"answer": "D",
+"explanation": "İyi çiğneme sindirimi kolaylaştırır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBu bilgilere göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"N",
+"R",
+"P",
+"K",
+"S"
+],
+"ad": [
+"Ağız",
+"",
+"",
+"İnce bağırsak",
+""
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Soluk borusu",
+"B": "Kalın bağırsak",
+"C": "Yemek borusu",
+"D": "Mide"
+},
+"answer": "C",
+"explanation": "Okların sırasına göre R harfi Yemek borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nKan ile hücreler arasında besin ve oksijen alışverişi, şekilde hangi harfle gösterilen yapıda gerçekleşir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "S",
+"l": "T",
+"m": "N",
+"n": "M",
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "T",
+"C": "M",
+"D": "S"
+},
+"answer": "C",
+"explanation": "Madde alışverişi kılcal damarlarda gerçekleşir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekilde verilenleri dikkate alarak soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nBuna göre koşarken ile uyurken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Yürürken",
+"Koşarken"
+],
+"values": [
+60,
+72,
+90,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "70 vuru",
+"B": "80 vuru",
+"C": "90 vuru",
+"D": "100 vuru"
+},
+"answer": "B",
+"explanation": "140 − 60 = 80.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÇalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%17"
+],
+[
+"Karbondioksit",
+"%0",
+"%5"
+]
+]
+},
+"options": {
+"A": "%5",
+"B": "%6",
+"C": "%7",
+"D": "%4"
+},
+"answer": "A",
+"explanation": "5 − 0 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Kalbin görevi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Besinleri sindirmek",
+"B": "Atıkları süzmek",
+"C": "Kanı damarlar yoluyla vücuda pompalamak",
+"D": "Havayı akciğerlere iletmek"
+},
+"answer": "C",
+"explanation": "Kalp kasılarak kanı pompalar.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sindirim Sistemi",
+"passage": "",
+"question": "Yemek borusunda besin nasıl ilerler?",
+"shape": null,
+"options": {
+"A": "Kalbin pompalamasıyla",
+"B": "Diyaframın itmesiyle",
+"C": "Yer çekimiyle serbest düşerek",
+"D": "Kasların dalga gibi kasılmasıyla"
+},
+"answer": "D",
+"explanation": "Peristaltik hareket besini mideye iletir.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_sindirim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre R harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"L",
+"R",
+"K",
+"N"
+],
+"ad": [
+"Böbrek",
+"",
+"İdrar kesesi",
+"İdrar kanalı"
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Böbrek",
+"B": "İdrar borusu",
+"C": "Mide",
+"D": "Karaciğer"
+},
+"answer": "B",
+"explanation": "Okların sırasına göre R harfi İdrar borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde kalp ile doku arasındaki kan dolaşımı gösterilmiştir.\nK harfiyle gösterilen yapı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "kalp",
+"k": "S",
+"l": "L",
+"m": "K",
+"n": "M",
+"show_names": false
+},
+"options": {
+"A": "Toplardamar",
+"B": "Akciğer",
+"C": "Kılcal damar",
+"D": "Atardamar"
+},
+"answer": "A",
+"explanation": "Dokulardan kalbe kan getiren damarlar toplardamarlardır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_kalp"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBuna göre koşarken ile uyurken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Yürürken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+12,
+22,
+30,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "18 kez",
+"B": "38 kez",
+"C": "28 kez",
+"D": "48 kez"
+},
+"answer": "C",
+"explanation": "40 − 12 = 28.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%5",
+"B": "%4",
+"C": "%2",
+"D": "%3"
+},
+"answer": "D",
+"explanation": "3 − 0 = 3",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Kanın oksijen taşıyan yapısı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Alyuvar",
+"B": "Kan plazması",
+"C": "Akyuvar",
+"D": "Kan pulcuğu"
+},
+"answer": "A",
+"explanation": "Alyuvarlardaki hemoglobin oksijen taşır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre P harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"K",
+"P",
+"T",
+"L"
+],
+"ad": [
+"Böbrek",
+"",
+"İdrar kesesi",
+""
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "İdrar borusu",
+"B": "Karaciğer",
+"C": "İdrar kanalı",
+"D": "İdrar kesesi"
+},
+"answer": "A",
+"explanation": "Okların sırasına göre P harfi İdrar borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBu bilgilere göre koşarken ile uyurken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Yürürken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+12,
+22,
+30,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "38 kez",
+"B": "48 kez",
+"C": "18 kez",
+"D": "28 kez"
+},
+"answer": "D",
+"explanation": "40 − 12 = 28.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak soruya cevap veriniz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%17"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%4",
+"B": "%2",
+"C": "%3",
+"D": "%5"
+},
+"answer": "C",
+"explanation": "3 − 0 = 3",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dolaşım Sistemi",
+"passage": "",
+"question": "Kan dolaşımını düzenli tutmak için aşağıdakilerden hangisi önerilir?",
+"shape": null,
+"options": {
+"A": "Düzenli spor yapmak",
+"B": "Hareketsiz kalmak",
+"C": "Tuzlu beslenmeyi artırmak",
+"D": "Sigara kullanmak"
+},
+"answer": "A",
+"explanation": "Düzenli egzersiz kalp ve damar sağlığını korur.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_fact_dolasim_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBu bilgilere göre S harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"P",
+"S",
+"R",
+"K",
+"T"
+],
+"ad": [
+"Ağız",
+"",
+"Mide",
+"İnce bağırsak",
+"Kalın bağırsak"
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Soluk borusu",
+"B": "Böbrek",
+"C": "Yemek borusu",
+"D": "Ağız"
+},
+"answer": "C",
+"explanation": "Okların sırasına göre S harfi Yemek borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBuna göre koşarken ile dinlenirken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Dinlenirken",
+"Yürürken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+16,
+22,
+30,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "34 kez",
+"B": "44 kez",
+"C": "24 kez",
+"D": "14 kez"
+},
+"answer": "C",
+"explanation": "40 − 16 = 24.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nGörselde verilen bilgilere göre sorulanı bulunuz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nVerilenlere göre oksijen oranı soluk verirken kaç puan azalmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%17"
+],
+[
+"Karbondioksit",
+"%0",
+"%4"
+]
+]
+},
+"options": {
+"A": "%3",
+"B": "%6",
+"C": "%5",
+"D": "%4"
+},
+"answer": "D",
+"explanation": "21 − 17 = 4",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre T harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"R",
+"T",
+"S",
+"K",
+"N"
+],
+"ad": [
+"",
+"",
+"",
+"",
+""
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Kalın bağırsak",
+"B": "Soluk borusu",
+"C": "Pankreas",
+"D": "Yemek borusu"
+},
+"answer": "D",
+"explanation": "Okların sırasına göre T harfi Yemek borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÇalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nVerilenlere göre koşarken ile uyurken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Yürürken",
+"Koşarken"
+],
+"values": [
+60,
+90,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "90 vuru",
+"B": "80 vuru",
+"C": "100 vuru",
+"D": "70 vuru"
+},
+"answer": "B",
+"explanation": "140 − 60 = 80.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nVerilenlere göre oksijen oranı soluk verirken kaç puan azalmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%16"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%4",
+"B": "%7",
+"C": "%5",
+"D": "%6"
+},
+"answer": "C",
+"explanation": "21 − 16 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre M harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"S",
+"L",
+"M",
+"K",
+"T"
+],
+"ad": [
+"",
+"Yemek borusu",
+"",
+"",
+"Kalın bağırsak"
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Pankreas",
+"B": "Soluk borusu",
+"C": "Ağız",
+"D": "Mide"
+},
+"answer": "D",
+"explanation": "Okların sırasına göre M harfi Mide organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nBuna göre koşarken ile dinlenirken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Dinlenirken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+72,
+110,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "78 vuru",
+"B": "58 vuru",
+"C": "88 vuru",
+"D": "68 vuru"
+},
+"answer": "D",
+"explanation": "140 − 72 = 68.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak sorulanı bulunuz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBu bilgilere göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%5"
+]
+]
+},
+"options": {
+"A": "%7",
+"B": "%5",
+"C": "%6",
+"D": "%4"
+},
+"answer": "B",
+"explanation": "5 − 0 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde solunum sisteminde havanın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre N harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"T",
+"N",
+"P",
+"L"
+],
+"ad": [
+"Burun",
+"",
+"",
+"Akciğer"
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Akciğer",
+"B": "Soluk borusu",
+"C": "Kalp",
+"D": "Yemek borusu"
+},
+"answer": "B",
+"explanation": "Okların sırasına göre N harfi Soluk borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBuna göre merdiven çıkarken ile uyurken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Yürürken",
+"Merdiven çıkarken"
+],
+"values": [
+12,
+22,
+30
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "18 kez",
+"B": "8 kez",
+"C": "38 kez",
+"D": "28 kez"
+},
+"answer": "A",
+"explanation": "30 − 12 = 18.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%17"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%3",
+"B": "%2",
+"C": "%4",
+"D": "%5"
+},
+"answer": "A",
+"explanation": "3 − 0 = 3",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBu bilgilere göre M harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"P",
+"M",
+"K",
+"N"
+],
+"ad": [
+"Böbrek",
+"",
+"İdrar kesesi",
+""
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "İdrar borusu",
+"B": "Karaciğer",
+"C": "İdrar kesesi",
+"D": "Kalp"
+},
+"answer": "A",
+"explanation": "Okların sırasına göre M harfi İdrar borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBu bilgilere göre koşarken ile dinlenirken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Dinlenirken",
+"Yürürken",
+"Koşarken"
+],
+"values": [
+16,
+22,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "14 kez",
+"B": "34 kez",
+"C": "24 kez",
+"D": "44 kez"
+},
+"answer": "C",
+"explanation": "40 − 16 = 24.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nGörselde verilen bilgilere göre soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBu bilgilere göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%4"
+]
+]
+},
+"options": {
+"A": "%3",
+"B": "%6",
+"C": "%5",
+"D": "%4"
+},
+"answer": "D",
+"explanation": "4 − 0 = 4",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde boşaltım sisteminde idrarın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nVerilenlere göre M harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"K",
+"S",
+"M",
+"P"
+],
+"ad": [
+"Böbrek",
+"",
+"",
+"İdrar kanalı"
+],
+"title": "İdrarın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Akciğer",
+"B": "Karaciğer",
+"C": "İdrar kesesi",
+"D": "Mide"
+},
+"answer": "C",
+"explanation": "Okların sırasına göre M harfi İdrar kesesi organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nGörselde verilen bilgilere göre sorulanı bulunuz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBuna göre koşarken ile dinlenirken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Dinlenirken",
+"Yürürken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+16,
+22,
+30,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "24 kez",
+"B": "44 kez",
+"C": "14 kez",
+"D": "34 kez"
+},
+"answer": "A",
+"explanation": "40 − 16 = 24.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBuna göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%17"
+],
+[
+"Karbondioksit",
+"%0",
+"%4"
+]
+]
+},
+"options": {
+"A": "%4",
+"B": "%3",
+"C": "%5",
+"D": "%6"
+},
+"answer": "A",
+"explanation": "4 − 0 = 4",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre L harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"N",
+"T",
+"L",
+"P",
+"M"
+],
+"ad": [
+"Ağız",
+"",
+"",
+"",
+"Kalın bağırsak"
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Karaciğer",
+"B": "İnce bağırsak",
+"C": "Soluk borusu",
+"D": "Mide"
+},
+"answer": "D",
+"explanation": "Okların sırasına göre L harfi Mide organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nVerilenlere göre merdiven çıkarken ile uyurken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Yürürken",
+"Merdiven çıkarken"
+],
+"values": [
+12,
+16,
+22,
+30
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "28 kez",
+"B": "38 kez",
+"C": "18 kez",
+"D": "8 kez"
+},
+"answer": "C",
+"explanation": "30 − 12 = 18.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÇalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBu bilgilere göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%17"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%4",
+"B": "%5",
+"C": "%3",
+"D": "%2"
+},
+"answer": "C",
+"explanation": "3 − 0 = 3",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde solunum sisteminde havanın izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre S harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"P",
+"S",
+"T",
+"K"
+],
+"ad": [
+"Burun",
+"",
+"Bronşlar",
+"Akciğer"
+],
+"title": "Havanın izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "Akciğer",
+"B": "Soluk borusu",
+"C": "Bronşlar",
+"D": "Kalp"
+},
+"answer": "B",
+"explanation": "Okların sırasına göre S harfi Soluk borusu organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekilde verilenleri dikkate alarak sorulanı bulunuz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık nabız sayısı gösterilmiştir.\nBu bilgilere göre koşarken ile uyurken nabız sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Yürürken",
+"Koşarken"
+],
+"values": [
+60,
+72,
+90,
+140
+],
+"title": "Bir kişinin 1 dakikadaki nabız sayısı",
+"ylabel": "Nabız (vuru/dakika)",
+"show_names": false
+},
+"options": {
+"A": "70 vuru",
+"B": "100 vuru",
+"C": "90 vuru",
+"D": "80 vuru"
+},
+"answer": "D",
+"explanation": "140 − 60 = 80.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBu bilgilere göre oksijen oranı soluk verirken kaç puan azalmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%6",
+"B": "%5",
+"C": "%7",
+"D": "%8"
+},
+"answer": "A",
+"explanation": "21 − 15 = 6",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Vücudumuzdaki Sistemler",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde sindirim sisteminde besinin izlediği yol oklarla gösterilmiştir. Harflerle gösterilen organlardan bazılarının adı yazılmıştır.\nBuna göre S harfiyle gösterilen organ aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "zincir",
+"harf": [
+"K",
+"N",
+"S",
+"R",
+"L"
+],
+"ad": [
+"Ağız",
+"",
+"",
+"İnce bağırsak",
+"Kalın bağırsak"
+],
+"title": "Besinin izlediği yol",
+"show_names": false
+},
+"options": {
+"A": "İnce bağırsak",
+"B": "Mide",
+"C": "Ağız",
+"D": "Yemek borusu"
+},
+"answer": "B",
+"explanation": "Okların sırasına göre S harfi Mide organıdır.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 2,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_sin_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nBuna göre koşarken ile yürürken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Yürürken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+22,
+30,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "18 kez",
+"B": "38 kez",
+"C": "8 kez",
+"D": "28 kez"
+},
+"answer": "A",
+"explanation": "40 − 22 = 18.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nVerilenlere göre karbondioksit oranı soluk verirken kaç puan artmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%15"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%3",
+"B": "%5",
+"C": "%2",
+"D": "%4"
+},
+"answer": "A",
+"explanation": "3 − 0 = 3",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum ve Dolaşım Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nGrafikte bir kişinin farklı durumlardaki 1 dakikalık soluk sayısı gösterilmiştir.\nVerilenlere göre koşarken ile uyurken soluk sayısı arasındaki fark kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Uyurken",
+"Dinlenirken",
+"Merdiven çıkarken",
+"Koşarken"
+],
+"values": [
+12,
+16,
+30,
+40
+],
+"title": "Bir kişinin 1 dakikadaki soluk sayısı",
+"ylabel": "Soluk (kez/dakika)",
+"show_names": false
+},
+"options": {
+"A": "38 kez",
+"B": "48 kez",
+"C": "18 kez",
+"D": "28 kez"
+},
+"answer": "D",
+"explanation": "40 − 12 = 28.",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_nabiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Solunum Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nTabloda soluk alınan ve soluk verilen havadaki oksijen ve karbondioksit oranları verilmiştir.\nBu bilgilere göre oksijen oranı soluk verirken kaç puan azalmıştır?",
+"shape": {
+"type": "table",
+"title": "Soluk alınan ve verilen havadaki gaz oranları (yaklaşık, %)",
+"headers": [
+"Gaz",
+"Alınan hava",
+"Verilen hava"
+],
+"rows": [
+[
+"Oksijen",
+"%21",
+"%16"
+],
+[
+"Karbondioksit",
+"%0",
+"%3"
+]
+]
+},
+"options": {
+"A": "%7",
+"B": "%4",
+"C": "%6",
+"D": "%5"
+},
+"answer": "D",
+"explanation": "21 − 16 = 5",
+"unit": "Vücudumuzdaki Sistemler",
+"topics": "Sindirim, Dolaşım, Solunum, Boşaltım",
+"d": 3,
+"ts": 1795161899,
+"src": "local",
+"fam": "_ff6_gaz"
+}
+]
+}

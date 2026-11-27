@@ -1,0 +1,8838 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "5 kg şeker 30 TL olduğuna göre aynı fiyattan 8 kg şeker kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "54 TL",
+"B": "60 TL",
+"C": "40 TL",
+"D": "48 TL"
+},
+"answer": "D",
+"explanation": "1 kg = 30 ÷ 5 = 6 TL; 8 kg = 8×6 = 48 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:1",
+"B": "3:1",
+"C": "1:3",
+"D": "1:2"
+},
+"answer": "A",
+"explanation": "Kırmızı 2, mavi 4. Oran en sade biçimde 2:1 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 56 litre olduğuna göre elma suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "56 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "21",
+"B": "28",
+"C": "35",
+"D": "42"
+},
+"answer": "C",
+"explanation": "Toplam 8 parça; bir parça 56 ÷ 8 = 7 litre. Elma suyu: 5 × 7 = 35 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"2",
+"16"
+],
+[
+"3",
+"24"
+],
+[
+"5",
+"40"
+],
+[
+"15",
+"?"
+]
+]
+},
+"options": {
+"A": "112",
+"B": "120",
+"C": "128",
+"D": "136"
+},
+"answer": "B",
+"explanation": "Oran sabit: 16 ÷ 2 = 8; ? = 15 × 8 = 120.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Deneme: Oranları karşılaştırma\nAşağıdaki görsele göre soruyu çözünüz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"8 kız, 7 erkek"
+],
+[
+"N",
+"3 kız, 2 erkek"
+],
+[
+"L",
+"4 kız, 2 erkek"
+],
+[
+"M",
+"6 kız, 6 erkek"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Oranlar: K: 8/7, L: 2/1, M: 1/1, N: 3/2. En büyük oran L sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Bakalım: Tarifte orantı\nAşağıdaki görsele göre soruya cevap veriniz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 12 bardak süt kullanılırsa kaç bardak un gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"un",
+"2"
+],
+[
+"süt",
+"3"
+]
+]
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "10",
+"D": "20"
+},
+"answer": "B",
+"explanation": "Oran 2:3; her bölüm 4 katına çıkar. Cevap 8.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 3
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/3",
+"B": "1/4",
+"C": "3/4",
+"D": "3/1"
+},
+"answer": "A",
+"explanation": "Kırmızı 3, mavi 9; oran 3/9 = 1/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde toplam 24 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "24 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3 L",
+"B": "8 L",
+"C": "24 L",
+"D": "16 L"
+},
+"answer": "D",
+"explanation": "Toplam 3 parça; her parça 24 ÷ 3 = 8 L. mavi boya (M): 16 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Su miktarı (L)",
+"Yağ miktarı (mL)"
+],
+"rows": [
+[
+"2",
+"10"
+],
+[
+"6",
+"30"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "35",
+"B": "40",
+"C": "45",
+"D": "50"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 5 katıdır. ? = 8 × 5 = 40.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "3 kg şeker 45 TL olduğu bilindiğine göre aynı fiyattan 7 kg şeker kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "105 TL",
+"B": "21 TL",
+"C": "49 TL",
+"D": "120 TL"
+},
+"answer": "A",
+"explanation": "1 kg = 45 ÷ 3 = 15 TL; 7 kg = 7×15 = 105 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 5
+},
+{
+"c": "M",
+"n": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1:2",
+"B": "1:3",
+"C": "2:1",
+"D": "3:1"
+},
+"answer": "A",
+"explanation": "Kırmızı 5, mavi 10. Oran en sade biçimde 1:2 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 28 litre olduğuna göre kum kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "14",
+"C": "21",
+"D": "28"
+},
+"answer": "C",
+"explanation": "Toplam 4 parça; bir parça 28 ÷ 4 = 7 litre. Kum: 3 × 7 = 21 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"1",
+"3"
+],
+[
+"4",
+"12"
+],
+[
+"5",
+"15"
+],
+[
+"12",
+"?"
+]
+]
+},
+"options": {
+"A": "33",
+"B": "36",
+"C": "39",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Oran sabit: 3 ÷ 1 = 3; ? = 12 × 3 = 36.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Değerlendirme: Oranları karşılaştırma\nAşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"M",
+"5 kız, 9 erkek"
+],
+[
+"L",
+"8 kız, 2 erkek"
+],
+[
+"N",
+"4 kız, 3 erkek"
+],
+[
+"K",
+"7 kız, 4 erkek"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "N",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Oranlar: K: 7/4, L: 4/1, M: 5/9, N: 4/3. En küçük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Hatırlayalım: Tarifte orantı\nÖğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 4 kaşık şeker kullanılırsa kaç kaşık su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kaşık)"
+],
+"rows": [
+[
+"şeker",
+"2"
+],
+[
+"su",
+"3"
+]
+]
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "8",
+"D": "10"
+},
+"answer": "B",
+"explanation": "Oran 2:3; her bölüm 2 katına çıkar. Cevap 6.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/2",
+"B": "3/5",
+"C": "2/3",
+"D": "2/5"
+},
+"answer": "C",
+"explanation": "Kırmızı 2, mavi 3; oran 2/3 = 2/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde toplam 14 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre kırmızı boya (K) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "14 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6 L",
+"B": "2 L",
+"C": "10 L",
+"D": "4 L"
+},
+"answer": "D",
+"explanation": "Toplam 7 parça; her parça 14 ÷ 7 = 2 L. kırmızı boya (K): 4 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Haritadaki uzunluk (cm)",
+"Gerçek uzunluk (km)"
+],
+"rows": [
+[
+"2",
+"4"
+],
+[
+"4",
+"8"
+],
+[
+"5",
+"?"
+]
+]
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 2 katıdır. ? = 5 × 2 = 10.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "2 kg portakal 30 TL olduğu bilindiğine göre aynı fiyattan 5 kg portakal kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "90 TL",
+"B": "10 TL",
+"C": "33 TL",
+"D": "75 TL"
+},
+"answer": "D",
+"explanation": "1 kg = 30 ÷ 2 = 15 TL; 5 kg = 5×15 = 75 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:5",
+"B": "5:2",
+"C": "3:2",
+"D": "2:3"
+},
+"answer": "D",
+"explanation": "Kırmızı 4, mavi 6. Oran en sade biçimde 2:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde bir karışımın kırmızı (K) ve mavi (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 30 litre olduğuna göre kırmızı kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "30 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "15",
+"C": "18",
+"D": "24"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; bir parça 30 ÷ 5 = 6 litre. Kırmızı: 3 × 6 = 18 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Süre (saat)",
+"Yol (km)"
+],
+"rows": [
+[
+"1",
+"4"
+],
+[
+"6",
+"24"
+],
+[
+"7",
+"28"
+],
+[
+"9",
+"?"
+]
+]
+},
+"options": {
+"A": "32",
+"B": "36",
+"C": "40",
+"D": "44"
+},
+"answer": "B",
+"explanation": "Oran sabit: 4 ÷ 1 = 4; ? = 9 × 4 = 36.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Deneme: Oranları karşılaştırma\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"9 kız, 8 erkek"
+],
+[
+"M",
+"4 kız, 7 erkek"
+],
+[
+"N",
+"6 kız, 5 erkek"
+],
+[
+"L",
+"2 kız, 7 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "L",
+"D": "M"
+},
+"answer": "C",
+"explanation": "Oranlar: K: 9/8, L: 2/7, M: 4/7, N: 6/5. En küçük oran L sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Sıra sende: Tarifte orantı\nŞekle göre şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 12 bardak limon suyu kullanılırsa kaç bardak su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"limon suyu",
+"2"
+],
+[
+"su",
+"5"
+]
+]
+},
+"options": {
+"A": "29",
+"B": "30",
+"C": "32",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Oran 2:5; her bölüm 6 katına çıkar. Cevap 30.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/8",
+"B": "3/5",
+"C": "3/8",
+"D": "5/3"
+},
+"answer": "B",
+"explanation": "Kırmızı 6, mavi 10; oran 6/10 = 3/5.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nŞekilde toplam 40 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre kırmızı boya (K) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "40 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1 L",
+"B": "8 L",
+"C": "32 L",
+"D": "16 L"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; her parça 40 ÷ 5 = 8 L. kırmızı boya (K): 8 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Çalışma süresi (saat)",
+"Üretilen parça (adet)"
+],
+"rows": [
+[
+"1",
+"2"
+],
+[
+"2",
+"4"
+],
+[
+"5",
+"?"
+]
+]
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 2 katıdır. ? = 5 × 2 = 10.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "2 kg elma 24 TL olduğuna göre aynı fiyattan 9 kg elma kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "96 TL",
+"B": "18 TL",
+"C": "31 TL",
+"D": "108 TL"
+},
+"answer": "D",
+"explanation": "1 kg = 24 ÷ 2 = 12 TL; 9 kg = 9×12 = 108 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:3",
+"B": "2:5",
+"C": "3:2",
+"D": "5:2"
+},
+"answer": "A",
+"explanation": "Kırmızı 6, mavi 9. Oran en sade biçimde 2:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde bir karışımın kırmızı (K) ve mavi (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 16 litre olduğuna göre mavi kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "16 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "8",
+"C": "10",
+"D": "12"
+},
+"answer": "C",
+"explanation": "Toplam 8 parça; bir parça 16 ÷ 8 = 2 litre. Mavi: 5 × 2 = 10 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Süre (saat)",
+"Yol (km)"
+],
+"rows": [
+[
+"6",
+"24"
+],
+[
+"7",
+"28"
+],
+[
+"8",
+"32"
+],
+[
+"10",
+"?"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "40",
+"C": "44",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Oran sabit: 24 ÷ 6 = 4; ? = 10 × 4 = 40.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Değerlendirme: Oranları karşılaştırma\nGörselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"L",
+"7 kız, 9 erkek"
+],
+[
+"K",
+"2 kız, 5 erkek"
+],
+[
+"N",
+"5 kız, 5 erkek"
+],
+[
+"M",
+"9 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Oranlar: K: 2/5, L: 7/9, M: 9/2, N: 1/1. En küçük oran K sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Soru: Tarifte orantı\nŞekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 2 kutu kırmızı boya kullanılırsa kaç kutu beyaz boya gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kutu)"
+],
+"rows": [
+[
+"kırmızı boya",
+"1"
+],
+[
+"beyaz boya",
+"4"
+]
+]
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "10"
+},
+"answer": "B",
+"explanation": "Oran 1:4; her bölüm 2 katına çıkar. Cevap 8.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "2/5",
+"C": "3/2",
+"D": "3/5"
+},
+"answer": "A",
+"explanation": "Kırmızı 4, mavi 6; oran 4/6 = 2/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nŞekilde toplam 10 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre kırmızı boya (K) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "10 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5 L",
+"B": "2 L",
+"C": "6 L",
+"D": "4 L"
+},
+"answer": "D",
+"explanation": "Toplam 5 parça; her parça 10 ÷ 5 = 2 L. kırmızı boya (K): 4 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Çalışma süresi (saat)",
+"Üretilen parça (adet)"
+],
+"rows": [
+[
+"2",
+"14"
+],
+[
+"4",
+"28"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "49",
+"B": "56",
+"C": "63",
+"D": "70"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 7 katıdır. ? = 8 × 7 = 56.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "2 kg elma 18 TL olduğu bilindiğine göre aynı fiyattan 5 kg elma kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "45 TL",
+"B": "54 TL",
+"C": "36 TL",
+"D": "10 TL"
+},
+"answer": "A",
+"explanation": "1 kg = 18 ÷ 2 = 9 TL; 5 kg = 5×9 = 45 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1:3",
+"B": "3:1",
+"C": "2:3",
+"D": "2:2"
+},
+"answer": "A",
+"explanation": "Kırmızı 2, mavi 4. Oran en sade biçimde 1:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 28 litre olduğuna göre kum kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "14",
+"C": "16",
+"D": "20"
+},
+"answer": "C",
+"explanation": "Toplam 7 parça; bir parça 28 ÷ 7 = 4 litre. Kum: 4 × 4 = 16 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"4",
+"20"
+],
+[
+"7",
+"35"
+],
+[
+"8",
+"40"
+],
+[
+"13",
+"?"
+]
+]
+},
+"options": {
+"A": "60",
+"B": "65",
+"C": "70",
+"D": "75"
+},
+"answer": "B",
+"explanation": "Oran sabit: 20 ÷ 4 = 5; ? = 13 × 5 = 65.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Uygulama: Oranları karşılaştırma\nAşağıdaki görsele göre sorulanı bulunuz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"3 kız, 2 erkek"
+],
+[
+"M",
+"6 kız, 7 erkek"
+],
+[
+"N",
+"4 kız, 6 erkek"
+],
+[
+"L",
+"7 kız, 6 erkek"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "C",
+"explanation": "Oranlar: K: 3/2, L: 7/6, M: 6/7, N: 2/3. En büyük oran K sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Etkinlik: Tarifte orantı\nVerilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 4 kaşık şeker kullanılırsa kaç kaşık su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kaşık)"
+],
+"rows": [
+[
+"şeker",
+"2"
+],
+[
+"su",
+"3"
+]
+]
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "8",
+"D": "10"
+},
+"answer": "B",
+"explanation": "Oran 2:3; her bölüm 2 katına çıkar. Cevap 6.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 1
+},
+{
+"c": "M",
+"n": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/1",
+"B": "3/4",
+"C": "1/3",
+"D": "1/4"
+},
+"answer": "C",
+"explanation": "Kırmızı 1, mavi 3; oran 1/3 = 1/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde toplam 30 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "30 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6 L",
+"B": "24 L",
+"C": "30 L",
+"D": "18 L"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; her parça 30 ÷ 5 = 6 L. mavi boya (M): 24 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Defter sayısı",
+"Ödenen tutar (TL)"
+],
+"rows": [
+[
+"3",
+"18"
+],
+[
+"5",
+"30"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "42",
+"B": "48",
+"C": "54",
+"D": "60"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 6 katıdır. ? = 8 × 6 = 48.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "6 kg fındık 90 TL olduğu bilindiğine göre aynı fiyattan 11 kg fındık kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "165 TL",
+"B": "95 TL",
+"C": "66 TL",
+"D": "180 TL"
+},
+"answer": "A",
+"explanation": "1 kg = 90 ÷ 6 = 15 TL; 11 kg = 11×15 = 165 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3:1",
+"B": "1:2",
+"C": "1:3",
+"D": "2:1"
+},
+"answer": "D",
+"explanation": "Kırmızı 4, mavi 8. Oran en sade biçimde 2:1 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 20 litre olduğuna göre kum kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "20 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "16"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; bir parça 20 ÷ 5 = 4 litre. Kum: 3 × 4 = 12 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"16"
+],
+[
+"3",
+"24"
+],
+[
+"13",
+"?"
+]
+]
+},
+"options": {
+"A": "96",
+"B": "104",
+"C": "112",
+"D": "120"
+},
+"answer": "B",
+"explanation": "Oran sabit: 8 ÷ 1 = 8; ? = 13 × 8 = 104.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Hatırlayalım: Oranları karşılaştırma\nAşağıdaki görsele göre soruya cevap veriniz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"7 kız, 2 erkek"
+],
+[
+"M",
+"2 kız, 2 erkek"
+],
+[
+"L",
+"4 kız, 2 erkek"
+],
+[
+"N",
+"3 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "N",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Oranlar: K: 7/2, L: 2/1, M: 1/1, N: 3/2. En büyük oran K sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Pekiştirme: Tarifte orantı\nDers sırasında incelenen şekle bakarak soruya cevap veriniz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 6 kutu kırmızı boya kullanılırsa kaç kutu beyaz boya gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kutu)"
+],
+"rows": [
+[
+"kırmızı boya",
+"1"
+],
+[
+"beyaz boya",
+"3"
+]
+]
+},
+"options": {
+"A": "17",
+"B": "18",
+"C": "19",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Oran 1:3; her bölüm 6 katına çıkar. Cevap 18.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 1
+},
+{
+"c": "M",
+"n": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "1/4",
+"C": "3/1",
+"D": "1/3"
+},
+"answer": "D",
+"explanation": "Kırmızı 1, mavi 3; oran 1/3 = 1/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde toplam 30 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "30 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6 L",
+"B": "24 L",
+"C": "30 L",
+"D": "18 L"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; her parça 30 ÷ 5 = 6 L. mavi boya (M): 24 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Su miktarı (L)",
+"Yağ miktarı (mL)"
+],
+"rows": [
+[
+"2",
+"4"
+],
+[
+"4",
+"8"
+],
+[
+"5",
+"?"
+]
+]
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 2 katıdır. ? = 5 × 2 = 10.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "6 kg portakal 36 TL olduğuna göre aynı fiyattan 11 kg portakal kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "60 TL",
+"B": "66 TL",
+"C": "41 TL",
+"D": "72 TL"
+},
+"answer": "B",
+"explanation": "1 kg = 36 ÷ 6 = 6 TL; 11 kg = 11×6 = 66 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:5",
+"B": "3:3",
+"C": "2:4",
+"D": "5:2"
+},
+"answer": "A",
+"explanation": "Kırmızı 6, mavi 9. Oran en sade biçimde 2:5 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 10 litre olduğuna göre çimento kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "10 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "8"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; bir parça 10 ÷ 5 = 2 litre. Çimento: 3 × 2 = 6 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"1",
+"3"
+],
+[
+"4",
+"12"
+],
+[
+"5",
+"15"
+],
+[
+"14",
+"?"
+]
+]
+},
+"options": {
+"A": "39",
+"B": "42",
+"C": "45",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Oran sabit: 3 ÷ 1 = 3; ? = 14 × 3 = 42.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Bakalım: Oranları karşılaştırma\nAşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"M",
+"9 kız, 3 erkek"
+],
+[
+"N",
+"6 kız, 3 erkek"
+],
+[
+"K",
+"9 kız, 4 erkek"
+],
+[
+"L",
+"4 kız, 8 erkek"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "K",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Oranlar: K: 9/4, L: 1/2, M: 3/1, N: 2/1. En büyük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Pekiştirme: Tarifte orantı\nAşağıdaki görselde verilen bilgiler doğrultusunda aşağıdaki soruyu cevaplayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 8 bardak süt kullanılırsa kaç bardak un gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"un",
+"3"
+],
+[
+"süt",
+"4"
+]
+]
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "9",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Oran 3:4; her bölüm 2 katına çıkar. Cevap 6.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 3
+},
+{
+"c": "M",
+"n": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/7",
+"B": "3/7",
+"C": "3/4",
+"D": "4/3"
+},
+"answer": "C",
+"explanation": "Kırmızı 3, mavi 4; oran 3/4 = 3/4.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde toplam 14 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "14 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12 L",
+"B": "2 L",
+"C": "10 L",
+"D": "4 L"
+},
+"answer": "C",
+"explanation": "Toplam 7 parça; her parça 14 ÷ 7 = 2 L. mavi boya (M): 10 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Su miktarı (L)",
+"Yağ miktarı (mL)"
+],
+"rows": [
+[
+"1",
+"6"
+],
+[
+"3",
+"18"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "42",
+"B": "48",
+"C": "54",
+"D": "60"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 6 katıdır. ? = 8 × 6 = 48.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran-orantı",
+"passage": "",
+"question": "2 kg fındık 12 TL olduğuna göre aynı fiyattan 9 kg fındık kaç TL’dir?",
+"shape": null,
+"options": {
+"A": "60 TL",
+"B": "54 TL",
+"C": "48 TL",
+"D": "24 TL"
+},
+"answer": "B",
+"explanation": "1 kg = 12 ÷ 2 = 6 TL; 9 kg = 9×6 = 54 TL.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_prop"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 9
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3:3",
+"B": "3:5",
+"C": "5:3",
+"D": "4:2"
+},
+"answer": "B",
+"explanation": "Kırmızı 9, mavi 6. Oran en sade biçimde 3:5 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 28 litre olduğuna göre kum kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "14",
+"C": "21",
+"D": "28"
+},
+"answer": "C",
+"explanation": "Toplam 4 parça; bir parça 28 ÷ 4 = 7 litre. Kum: 3 × 7 = 21 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Süre (saat)",
+"Yol (km)"
+],
+"rows": [
+[
+"2",
+"12"
+],
+[
+"3",
+"18"
+],
+[
+"6",
+"36"
+],
+[
+"9",
+"?"
+]
+]
+},
+"options": {
+"A": "48",
+"B": "54",
+"C": "60",
+"D": "66"
+},
+"answer": "B",
+"explanation": "Oran sabit: 12 ÷ 2 = 6; ? = 9 × 6 = 54.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Bakalım: Oranları karşılaştırma\nYandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"N",
+"6 kız, 4 erkek"
+],
+[
+"M",
+"4 kız, 9 erkek"
+],
+[
+"K",
+"7 kız, 3 erkek"
+],
+[
+"L",
+"2 kız, 6 erkek"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Oranlar: K: 7/3, L: 1/3, M: 4/9, N: 3/2. En büyük oran K sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Pekiştirme: Tarifte orantı\nYandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 15 bardak su kullanılırsa kaç bardak limon suyu gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"limon suyu",
+"3"
+],
+[
+"su",
+"5"
+]
+]
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "12",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Oran 3:5; her bölüm 3 katına çıkar. Cevap 9.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 9
+},
+{
+"c": "M",
+"n": 15
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/3",
+"B": "5/8",
+"C": "3/8",
+"D": "3/5"
+},
+"answer": "D",
+"explanation": "Kırmızı 9, mavi 15; oran 9/15 = 3/5.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde toplam 35 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "35 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "7 L",
+"B": "28 L",
+"C": "35 L",
+"D": "21 L"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; her parça 35 ÷ 5 = 7 L. mavi boya (M): 28 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Su miktarı (L)",
+"Yağ miktarı (mL)"
+],
+"rows": [
+[
+"1",
+"2"
+],
+[
+"3",
+"6"
+],
+[
+"5",
+"?"
+]
+]
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 2 katıdır. ? = 5 × 2 = 10.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3:1",
+"B": "2:3",
+"C": "2:2",
+"D": "1:3"
+},
+"answer": "D",
+"explanation": "Kırmızı 2, mavi 4. Oran en sade biçimde 1:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 15 litre olduğuna göre portakal suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "15 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "7",
+"C": "9",
+"D": "12"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; bir parça 15 ÷ 5 = 3 litre. Portakal suyu: 3 × 3 = 9 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"3",
+"12"
+],
+[
+"5",
+"20"
+],
+[
+"8",
+"32"
+],
+[
+"10",
+"?"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "40",
+"C": "44",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Oran sabit: 12 ÷ 3 = 4; ? = 10 × 4 = 40.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Çalışma: Oranları karşılaştırma\nŞekle göre aşağıdaki soruyu cevaplayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"L",
+"4 kız, 9 erkek"
+],
+[
+"M",
+"8 kız, 2 erkek"
+],
+[
+"N",
+"4 kız, 5 erkek"
+],
+[
+"K",
+"6 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "C",
+"explanation": "Oranlar: K: 3/1, L: 4/9, M: 4/1, N: 4/5. En büyük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Bakalım: Tarifte orantı\nÇalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 24 bardak süt kullanılırsa kaç bardak un gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"un",
+"3"
+],
+[
+"süt",
+"4"
+]
+]
+},
+"options": {
+"A": "17",
+"B": "18",
+"C": "21",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Oran 3:4; her bölüm 6 katına çıkar. Cevap 18.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/8",
+"B": "5/8",
+"C": "3/5",
+"D": "5/3"
+},
+"answer": "C",
+"explanation": "Kırmızı 6, mavi 10; oran 6/10 = 3/5.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde toplam 28 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "20 L",
+"B": "24 L",
+"C": "8 L",
+"D": "4 L"
+},
+"answer": "A",
+"explanation": "Toplam 7 parça; her parça 28 ÷ 7 = 4 L. mavi boya (M): 20 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Haritadaki uzunluk (cm)",
+"Gerçek uzunluk (km)"
+],
+"rows": [
+[
+"2",
+"10"
+],
+[
+"3",
+"15"
+],
+[
+"6",
+"?"
+]
+]
+},
+"options": {
+"A": "25",
+"B": "30",
+"C": "35",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 5 katıdır. ? = 6 × 5 = 30.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:3",
+"B": "1:3",
+"C": "2:2",
+"D": "3:1"
+},
+"answer": "B",
+"explanation": "Kırmızı 4, mavi 8. Oran en sade biçimde 1:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde bir karışımın kırmızı (K) ve mavi (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 40 litre olduğuna göre kırmızı kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "40 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "15",
+"C": "20",
+"D": "25"
+},
+"answer": "B",
+"explanation": "Toplam 8 parça; bir parça 40 ÷ 8 = 5 litre. Kırmızı: 3 × 5 = 15 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Süre (saat)",
+"Yol (km)"
+],
+"rows": [
+[
+"1",
+"12"
+],
+[
+"5",
+"60"
+],
+[
+"8",
+"96"
+],
+[
+"12",
+"?"
+]
+]
+},
+"options": {
+"A": "132",
+"B": "144",
+"C": "156",
+"D": "168"
+},
+"answer": "B",
+"explanation": "Oran sabit: 12 ÷ 1 = 12; ? = 12 × 12 = 144.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Konu: Oranları karşılaştırma\nVerilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"6 kız, 4 erkek"
+],
+[
+"L",
+"2 kız, 6 erkek"
+],
+[
+"N",
+"7 kız, 9 erkek"
+],
+[
+"M",
+"9 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Oranlar: K: 3/2, L: 1/3, M: 9/2, N: 7/9. En büyük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Etkinlik: Tarifte orantı\nGörselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 8 kutu kırmızı boya kullanılırsa kaç kutu beyaz boya gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kutu)"
+],
+"rows": [
+[
+"kırmızı boya",
+"2"
+],
+[
+"beyaz boya",
+"5"
+]
+]
+},
+"options": {
+"A": "19",
+"B": "20",
+"C": "22",
+"D": "28"
+},
+"answer": "B",
+"explanation": "Oran 2:5; her bölüm 4 katına çıkar. Cevap 20.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 1
+},
+{
+"c": "M",
+"n": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/3",
+"B": "1/4",
+"C": "3/1",
+"D": "3/4"
+},
+"answer": "A",
+"explanation": "Kırmızı 1, mavi 3; oran 1/3 = 1/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde toplam 28 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16 L",
+"B": "4 L",
+"C": "20 L",
+"D": "12 L"
+},
+"answer": "A",
+"explanation": "Toplam 7 parça; her parça 28 ÷ 7 = 4 L. mavi boya (M): 16 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Su miktarı (L)",
+"Yağ miktarı (mL)"
+],
+"rows": [
+[
+"3",
+"12"
+],
+[
+"4",
+"16"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "28",
+"B": "32",
+"C": "36",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 4 katıdır. ? = 8 × 4 = 32.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:5",
+"B": "2:3",
+"C": "3:2",
+"D": "5:2"
+},
+"answer": "B",
+"explanation": "Kırmızı 6, mavi 9. Oran en sade biçimde 2:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 32 litre olduğuna göre çimento kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "32 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "12",
+"C": "16",
+"D": "20"
+},
+"answer": "B",
+"explanation": "Toplam 8 parça; bir parça 32 ÷ 8 = 4 litre. Çimento: 3 × 4 = 12 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Süre (saat)",
+"Yol (km)"
+],
+"rows": [
+[
+"2",
+"8"
+],
+[
+"3",
+"12"
+],
+[
+"4",
+"16"
+],
+[
+"10",
+"?"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "40",
+"C": "44",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Oran sabit: 8 ÷ 2 = 4; ? = 10 × 4 = 40.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Deneme: Oranları karşılaştırma\nYandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"4 kız, 6 erkek"
+],
+[
+"N",
+"7 kız, 8 erkek"
+],
+[
+"M",
+"2 kız, 7 erkek"
+],
+[
+"L",
+"8 kız, 6 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "C",
+"explanation": "Oranlar: K: 2/3, L: 4/3, M: 2/7, N: 7/8. En küçük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Sıra sende: Tarifte orantı\nYandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 6 bardak un kullanılırsa kaç bardak süt gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"un",
+"1"
+],
+[
+"süt",
+"4"
+]
+]
+},
+"options": {
+"A": "23",
+"B": "24",
+"C": "25",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Oran 1:4; her bölüm 6 katına çıkar. Cevap 24.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "1/2",
+"C": "1/3",
+"D": "2/1"
+},
+"answer": "B",
+"explanation": "Kırmızı 2, mavi 4; oran 2/4 = 1/2.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde toplam 15 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "15 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5 L",
+"B": "15 L",
+"C": "3 L",
+"D": "10 L"
+},
+"answer": "D",
+"explanation": "Toplam 3 parça; her parça 15 ÷ 3 = 5 L. mavi boya (M): 10 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Haritadaki uzunluk (cm)",
+"Gerçek uzunluk (km)"
+],
+"rows": [
+[
+"1",
+"5"
+],
+[
+"3",
+"15"
+],
+[
+"6",
+"?"
+]
+]
+},
+"options": {
+"A": "25",
+"B": "30",
+"C": "35",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 5 katıdır. ? = 6 × 5 = 30.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 3
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3:1",
+"B": "1:2",
+"C": "1:3",
+"D": "2:1"
+},
+"answer": "B",
+"explanation": "Kırmızı 3, mavi 6. Oran en sade biçimde 1:2 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 15 litre olduğuna göre elma suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "15 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "6",
+"C": "7",
+"D": "9"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; bir parça 15 ÷ 5 = 3 litre. Elma suyu: 2 × 3 = 6 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Süre (saat)",
+"Yol (km)"
+],
+"rows": [
+[
+"3",
+"15"
+],
+[
+"4",
+"20"
+],
+[
+"5",
+"25"
+],
+[
+"15",
+"?"
+]
+]
+},
+"options": {
+"A": "70",
+"B": "75",
+"C": "80",
+"D": "85"
+},
+"answer": "B",
+"explanation": "Oran sabit: 15 ÷ 3 = 5; ? = 15 × 5 = 75.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Pekiştirme: Oranları karşılaştırma\nŞekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"N",
+"6 kız, 9 erkek"
+],
+[
+"K",
+"8 kız, 5 erkek"
+],
+[
+"L",
+"8 kız, 9 erkek"
+],
+[
+"M",
+"3 kız, 4 erkek"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Oranlar: K: 8/5, L: 8/9, M: 3/4, N: 2/3. En küçük oran N sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Deneme: Tarifte orantı\nÖğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 8 bardak süt kullanılırsa kaç bardak un gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"un",
+"3"
+],
+[
+"süt",
+"4"
+]
+]
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "9",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Oran 3:4; her bölüm 2 katına çıkar. Cevap 6.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 3
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/2",
+"B": "2/1",
+"C": "2/3",
+"D": "1/3"
+},
+"answer": "A",
+"explanation": "Kırmızı 3, mavi 6; oran 3/6 = 1/2.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde toplam 49 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "49 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "28 L",
+"B": "21 L",
+"C": "35 L",
+"D": "7 L"
+},
+"answer": "A",
+"explanation": "Toplam 7 parça; her parça 49 ÷ 7 = 7 L. mavi boya (M): 28 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Defter sayısı",
+"Ödenen tutar (TL)"
+],
+"rows": [
+[
+"3",
+"27"
+],
+[
+"4",
+"36"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "63",
+"B": "72",
+"C": "81",
+"D": "90"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 9 katıdır. ? = 8 × 9 = 72.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4:4",
+"B": "3:5",
+"C": "3:7",
+"D": "7:3"
+},
+"answer": "C",
+"explanation": "Kırmızı 6, mavi 8. Oran en sade biçimde 3:7 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 28 litre olduğuna göre elma suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "14",
+"C": "16",
+"D": "20"
+},
+"answer": "C",
+"explanation": "Toplam 7 parça; bir parça 28 ÷ 7 = 4 litre. Elma suyu: 4 × 4 = 16 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"3",
+"24"
+],
+[
+"4",
+"32"
+],
+[
+"6",
+"48"
+],
+[
+"12",
+"?"
+]
+]
+},
+"options": {
+"A": "88",
+"B": "96",
+"C": "104",
+"D": "112"
+},
+"answer": "B",
+"explanation": "Oran sabit: 24 ÷ 3 = 8; ? = 12 × 8 = 96.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Çalışma: Oranları karşılaştırma\nDers sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"M",
+"8 kız, 2 erkek"
+],
+[
+"L",
+"3 kız, 2 erkek"
+],
+[
+"K",
+"2 kız, 8 erkek"
+],
+[
+"N",
+"8 kız, 5 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "C",
+"explanation": "Oranlar: K: 1/4, L: 3/2, M: 4/1, N: 8/5. En büyük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Değerlendirme: Tarifte orantı\nÇalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 6 kutu kırmızı boya kullanılırsa kaç kutu beyaz boya gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kutu)"
+],
+"rows": [
+[
+"kırmızı boya",
+"1"
+],
+[
+"beyaz boya",
+"4"
+]
+]
+},
+"options": {
+"A": "23",
+"B": "24",
+"C": "25",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Oran 1:4; her bölüm 6 katına çıkar. Cevap 24.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "2/1",
+"C": "1/2",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "Kırmızı 2, mavi 4; oran 2/4 = 1/2.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde toplam 20 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "20 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4 L",
+"B": "12 L",
+"C": "16 L",
+"D": "20 L"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; her parça 20 ÷ 5 = 4 L. mavi boya (M): 16 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Çalışma süresi (saat)",
+"Üretilen parça (adet)"
+],
+"rows": [
+[
+"3",
+"6"
+],
+[
+"4",
+"8"
+],
+[
+"6",
+"?"
+]
+]
+},
+"options": {
+"A": "10",
+"B": "12",
+"C": "14",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 2 katıdır. ? = 6 × 2 = 12.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 8
+},
+{
+"c": "M",
+"n": 12
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5:2",
+"B": "3:2",
+"C": "2:5",
+"D": "2:3"
+},
+"answer": "D",
+"explanation": "Kırmızı 8, mavi 12. Oran en sade biçimde 2:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 42 litre olduğuna göre portakal suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "42 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "18",
+"C": "21",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Toplam 7 parça; bir parça 42 ÷ 7 = 6 litre. Portakal suyu: 3 × 6 = 18 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"3",
+"36"
+],
+[
+"5",
+"60"
+],
+[
+"6",
+"72"
+],
+[
+"13",
+"?"
+]
+]
+},
+"options": {
+"A": "144",
+"B": "156",
+"C": "168",
+"D": "180"
+},
+"answer": "B",
+"explanation": "Oran sabit: 36 ÷ 3 = 12; ? = 13 × 12 = 156.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Soru: Oranları karşılaştırma\nŞekle göre şu soruyu yanıtlayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"6 kız, 4 erkek"
+],
+[
+"M",
+"3 kız, 6 erkek"
+],
+[
+"N",
+"4 kız, 9 erkek"
+],
+[
+"L",
+"2 kız, 6 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Oranlar: K: 3/2, L: 1/3, M: 1/2, N: 4/9. En büyük oran K sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Konu: Tarifte orantı\nDers sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 12 kaşık su kullanılırsa kaç kaşık şeker gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kaşık)"
+],
+"rows": [
+[
+"şeker",
+"1"
+],
+[
+"su",
+"3"
+]
+]
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Oran 1:3; her bölüm 4 katına çıkar. Cevap 4.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "2/5",
+"C": "3/2",
+"D": "3/5"
+},
+"answer": "A",
+"explanation": "Kırmızı 2, mavi 3; oran 2/3 = 2/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde toplam 20 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre kırmızı boya (K) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "20 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16 L",
+"B": "8 L",
+"C": "4 L",
+"D": "1 L"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; her parça 20 ÷ 5 = 4 L. kırmızı boya (K): 4 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Çalışma süresi (saat)",
+"Üretilen parça (adet)"
+],
+"rows": [
+[
+"3",
+"21"
+],
+[
+"6",
+"42"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "49",
+"B": "56",
+"C": "63",
+"D": "70"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 7 katıdır. ? = 8 × 7 = 56.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 9
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3:2",
+"B": "2:3",
+"C": "3:5",
+"D": "5:3"
+},
+"answer": "B",
+"explanation": "Kırmızı 9, mavi 6. Oran en sade biçimde 2:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde bir karışımın kırmızı (K) ve mavi (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 30 litre olduğuna göre mavi kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "30 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "12",
+"C": "15",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; bir parça 30 ÷ 5 = 6 litre. Mavi: 2 × 6 = 12 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"1",
+"3"
+],
+[
+"4",
+"12"
+],
+[
+"6",
+"18"
+],
+[
+"15",
+"?"
+]
+]
+},
+"options": {
+"A": "42",
+"B": "45",
+"C": "48",
+"D": "51"
+},
+"answer": "B",
+"explanation": "Oran sabit: 3 ÷ 1 = 3; ? = 15 × 3 = 45.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Uygulama: Oranları karşılaştırma\nDers sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"5 kız, 4 erkek"
+],
+[
+"N",
+"8 kız, 2 erkek"
+],
+[
+"M",
+"8 kız, 4 erkek"
+],
+[
+"L",
+"3 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Oranlar: K: 5/4, L: 3/2, M: 2/1, N: 4/1. En küçük oran K sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Hatırlayalım: Tarifte orantı\nAşağıdaki görsele göre soruyu çözünüz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 18 bardak limon suyu kullanılırsa kaç bardak su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"limon suyu",
+"3"
+],
+[
+"su",
+"5"
+]
+]
+},
+"options": {
+"A": "29",
+"B": "30",
+"C": "33",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Oran 3:5; her bölüm 6 katına çıkar. Cevap 30.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/3",
+"B": "3/7",
+"C": "4/7",
+"D": "3/4"
+},
+"answer": "D",
+"explanation": "Kırmızı 6, mavi 8; oran 6/8 = 3/4.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde toplam 25 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "25 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "15 L",
+"B": "5 L",
+"C": "25 L",
+"D": "20 L"
+},
+"answer": "D",
+"explanation": "Toplam 5 parça; her parça 25 ÷ 5 = 5 L. mavi boya (M): 20 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Su miktarı (L)",
+"Yağ miktarı (mL)"
+],
+"rows": [
+[
+"1",
+"8"
+],
+[
+"2",
+"16"
+],
+[
+"3",
+"?"
+]
+]
+},
+"options": {
+"A": "16",
+"B": "24",
+"C": "32",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 8 katıdır. ? = 3 × 8 = 24.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 9
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:3",
+"B": "3:2",
+"C": "3:5",
+"D": "5:3"
+},
+"answer": "A",
+"explanation": "Kırmızı 9, mavi 6. Oran en sade biçimde 2:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde bir karışımın kırmızı (K) ve mavi (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 10 litre olduğuna göre kırmızı kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "10 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "A",
+"explanation": "Toplam 5 parça; bir parça 10 ÷ 5 = 2 litre. Kırmızı: 1 × 2 = 2 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Süre (saat)",
+"Yol (km)"
+],
+"rows": [
+[
+"1",
+"12"
+],
+[
+"6",
+"72"
+],
+[
+"8",
+"96"
+],
+[
+"12",
+"?"
+]
+]
+},
+"options": {
+"A": "132",
+"B": "144",
+"C": "156",
+"D": "168"
+},
+"answer": "B",
+"explanation": "Oran sabit: 12 ÷ 1 = 12; ? = 12 × 12 = 144.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Bakalım: Oranları karşılaştırma\nŞekle göre şu soruyu yanıtlayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"N",
+"6 kız, 4 erkek"
+],
+[
+"L",
+"8 kız, 2 erkek"
+],
+[
+"M",
+"8 kız, 6 erkek"
+],
+[
+"K",
+"5 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "D",
+"explanation": "Oranlar: K: 5/2, L: 4/1, M: 4/3, N: 3/2. En büyük oran L sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Değerlendirme: Tarifte orantı\nÇalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 5 bardak limon suyu kullanılırsa kaç bardak su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"limon suyu",
+"1"
+],
+[
+"su",
+"3"
+]
+]
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "16",
+"D": "20"
+},
+"answer": "B",
+"explanation": "Oran 1:3; her bölüm 5 katına çıkar. Cevap 15.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 3
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "1/3",
+"C": "3/1",
+"D": "1/4"
+},
+"answer": "B",
+"explanation": "Kırmızı 3, mavi 9; oran 3/9 = 1/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde toplam 40 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "40 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "40 L",
+"B": "8 L",
+"C": "24 L",
+"D": "32 L"
+},
+"answer": "D",
+"explanation": "Toplam 5 parça; her parça 40 ÷ 5 = 8 L. mavi boya (M): 32 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Çalışma süresi (saat)",
+"Üretilen parça (adet)"
+],
+"rows": [
+[
+"2",
+"12"
+],
+[
+"3",
+"18"
+],
+[
+"5",
+"?"
+]
+]
+},
+"options": {
+"A": "24",
+"B": "30",
+"C": "36",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 6 katıdır. ? = 5 × 6 = 30.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5:2",
+"B": "2:4",
+"C": "2:5",
+"D": "3:3"
+},
+"answer": "C",
+"explanation": "Kırmızı 4, mavi 6. Oran en sade biçimde 2:5 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde bir karışımın kırmızı (K) ve mavi (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 25 litre olduğuna göre mavi kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "25 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "15",
+"C": "20",
+"D": "25"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; bir parça 25 ÷ 5 = 5 litre. Mavi: 4 × 5 = 20 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"5",
+"60"
+],
+[
+"7",
+"84"
+],
+[
+"8",
+"96"
+],
+[
+"15",
+"?"
+]
+]
+},
+"options": {
+"A": "168",
+"B": "180",
+"C": "192",
+"D": "204"
+},
+"answer": "B",
+"explanation": "Oran sabit: 60 ÷ 5 = 12; ? = 15 × 12 = 180.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Sıra sende: Oranları karşılaştırma\nVerilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"L",
+"8 kız, 3 erkek"
+],
+[
+"K",
+"5 kız, 8 erkek"
+],
+[
+"M",
+"2 kız, 2 erkek"
+],
+[
+"N",
+"5 kız, 4 erkek"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Oranlar: K: 5/8, L: 8/3, M: 1/1, N: 5/4. En büyük oran L sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Çalışma: Tarifte orantı\nÖğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 15 kaşık su kullanılırsa kaç kaşık şeker gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kaşık)"
+],
+"rows": [
+[
+"şeker",
+"2"
+],
+[
+"su",
+"5"
+]
+]
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "8",
+"D": "21"
+},
+"answer": "B",
+"explanation": "Oran 2:5; her bölüm 3 katına çıkar. Cevap 6.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/9",
+"B": "5/9",
+"C": "4/5",
+"D": "5/4"
+},
+"answer": "C",
+"explanation": "Kırmızı 4, mavi 5; oran 4/5 = 4/5.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nŞekilde toplam 14 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre kırmızı boya (K) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "14 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10 L",
+"B": "6 L",
+"C": "2 L",
+"D": "4 L"
+},
+"answer": "D",
+"explanation": "Toplam 7 parça; her parça 14 ÷ 7 = 2 L. kırmızı boya (K): 4 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Su miktarı (L)",
+"Yağ miktarı (mL)"
+],
+"rows": [
+[
+"5",
+"35"
+],
+[
+"6",
+"42"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "49",
+"B": "56",
+"C": "63",
+"D": "70"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 7 katıdır. ? = 8 × 7 = 56.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1:3",
+"B": "3:1",
+"C": "2:3",
+"D": "2:2"
+},
+"answer": "A",
+"explanation": "Kırmızı 4, mavi 8. Oran en sade biçimde 1:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 15 litre olduğuna göre kum kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "15 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "9",
+"C": "12",
+"D": "15"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; bir parça 15 ÷ 5 = 3 litre. Kum: 4 × 3 = 12 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"1",
+"12"
+],
+[
+"6",
+"72"
+],
+[
+"8",
+"96"
+],
+[
+"13",
+"?"
+]
+]
+},
+"options": {
+"A": "144",
+"B": "156",
+"C": "168",
+"D": "180"
+},
+"answer": "B",
+"explanation": "Oran sabit: 12 ÷ 1 = 12; ? = 13 × 12 = 156.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Hatırlayalım: Oranları karşılaştırma\nAşağıdaki görselde verilen bilgiler doğrultusunda şu soruyu yanıtlayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"M",
+"9 kız, 9 erkek"
+],
+[
+"N",
+"9 kız, 5 erkek"
+],
+[
+"L",
+"8 kız, 2 erkek"
+],
+[
+"K",
+"7 kız, 5 erkek"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Oranlar: K: 7/5, L: 4/1, M: 1/1, N: 9/5. En büyük oran L sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Hatırlayalım: Tarifte orantı\nYandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 2 kaşık şeker kullanılırsa kaç kaşık su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kaşık)"
+],
+"rows": [
+[
+"şeker",
+"1"
+],
+[
+"su",
+"3"
+]
+]
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Oran 1:3; her bölüm 2 katına çıkar. Cevap 6.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 3
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/3",
+"B": "1/2",
+"C": "2/1",
+"D": "2/3"
+},
+"answer": "B",
+"explanation": "Kırmızı 3, mavi 6; oran 3/6 = 1/2.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde toplam 15 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "15 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10 L",
+"B": "3 L",
+"C": "5 L",
+"D": "15 L"
+},
+"answer": "A",
+"explanation": "Toplam 3 parça; her parça 15 ÷ 3 = 5 L. mavi boya (M): 10 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Defter sayısı",
+"Ödenen tutar (TL)"
+],
+"rows": [
+[
+"4",
+"36"
+],
+[
+"5",
+"45"
+],
+[
+"8",
+"?"
+]
+]
+},
+"options": {
+"A": "63",
+"B": "72",
+"C": "81",
+"D": "90"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 9 katıdır. ? = 8 × 9 = 72.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1:2",
+"B": "3:1",
+"C": "2:1",
+"D": "1:3"
+},
+"answer": "A",
+"explanation": "Kırmızı 2, mavi 4. Oran en sade biçimde 1:2 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde bir karışımın kırmızı (K) ve mavi (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 21 litre olduğuna göre kırmızı kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "21 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "6",
+"C": "9",
+"D": "10"
+},
+"answer": "B",
+"explanation": "Toplam 7 parça; bir parça 21 ÷ 7 = 3 litre. Kırmızı: 2 × 3 = 6 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"3",
+"36"
+],
+[
+"7",
+"84"
+],
+[
+"8",
+"96"
+],
+[
+"11",
+"?"
+]
+]
+},
+"options": {
+"A": "120",
+"B": "132",
+"C": "144",
+"D": "156"
+},
+"answer": "B",
+"explanation": "Oran sabit: 36 ÷ 3 = 12; ? = 11 × 12 = 132.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Çalışma: Oranları karşılaştırma\nYandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"4 kız, 7 erkek"
+],
+[
+"N",
+"5 kız, 4 erkek"
+],
+[
+"M",
+"3 kız, 9 erkek"
+],
+[
+"L",
+"2 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "N",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Oranlar: K: 4/7, L: 1/1, M: 1/3, N: 5/4. En küçük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Konu: Tarifte orantı\nAşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 8 bardak un kullanılırsa kaç bardak süt gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"un",
+"2"
+],
+[
+"süt",
+"5"
+]
+]
+},
+"options": {
+"A": "19",
+"B": "20",
+"C": "22",
+"D": "28"
+},
+"answer": "B",
+"explanation": "Oran 2:5; her bölüm 4 katına çıkar. Cevap 20.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 1
+},
+{
+"c": "M",
+"n": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/4",
+"B": "3/1",
+"C": "1/3",
+"D": "3/4"
+},
+"answer": "C",
+"explanation": "Kırmızı 1, mavi 3; oran 1/3 = 1/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde toplam 6 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "6 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3 L",
+"B": "2 L",
+"C": "6 L",
+"D": "4 L"
+},
+"answer": "D",
+"explanation": "Toplam 3 parça; her parça 6 ÷ 3 = 2 L. mavi boya (M): 4 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda doğru orantılı iki nicelik verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki nicelik",
+"headers": [
+"Çalışma süresi (saat)",
+"Üretilen parça (adet)"
+],
+"rows": [
+[
+"2",
+"16"
+],
+[
+"4",
+"32"
+],
+[
+"6",
+"?"
+]
+]
+},
+"options": {
+"A": "40",
+"B": "48",
+"C": "56",
+"D": "64"
+},
+"answer": "B",
+"explanation": "Her satırda ikinci sayı birincinin 8 katıdır. ? = 6 × 8 = 48.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4:3",
+"B": "3:4",
+"C": "7:3",
+"D": "3:7"
+},
+"answer": "A",
+"explanation": "Kırmızı 6, mavi 8. Oran en sade biçimde 4:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 64 litre olduğuna göre kum kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "64 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "32",
+"C": "40",
+"D": "48"
+},
+"answer": "C",
+"explanation": "Toplam 8 parça; bir parça 64 ÷ 8 = 8 litre. Kum: 5 × 8 = 40 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"3",
+"24"
+],
+[
+"4",
+"32"
+],
+[
+"5",
+"40"
+],
+[
+"15",
+"?"
+]
+]
+},
+"options": {
+"A": "112",
+"B": "120",
+"C": "128",
+"D": "136"
+},
+"answer": "B",
+"explanation": "Oran sabit: 24 ÷ 3 = 8; ? = 15 × 8 = 120.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Çalışma: Oranları karşılaştırma\nGörselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"N",
+"4 kız, 6 erkek"
+],
+[
+"K",
+"5 kız, 9 erkek"
+],
+[
+"L",
+"3 kız, 7 erkek"
+],
+[
+"M",
+"8 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Oranlar: K: 5/9, L: 3/7, M: 4/1, N: 2/3. En küçük oran L sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Bakalım: Tarifte orantı\nÖğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 18 kutu kırmızı boya kullanılırsa kaç kutu beyaz boya gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kutu)"
+],
+"rows": [
+[
+"kırmızı boya",
+"3"
+],
+[
+"beyaz boya",
+"4"
+]
+]
+},
+"options": {
+"A": "23",
+"B": "24",
+"C": "27",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Oran 3:4; her bölüm 6 katına çıkar. Cevap 24.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 2
+},
+{
+"c": "M",
+"n": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/7",
+"B": "2/5",
+"C": "2/7",
+"D": "5/2"
+},
+"answer": "B",
+"explanation": "Kırmızı 2, mavi 5; oran 2/5 = 2/5.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekilde toplam 15 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre kırmızı boya (K) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "15 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3 L",
+"B": "12 L",
+"C": "6 L",
+"D": "1 L"
+},
+"answer": "A",
+"explanation": "Toplam 5 parça; her parça 15 ÷ 5 = 3 L. kırmızı boya (K): 3 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının tüm bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 5
+},
+{
+"c": "M",
+"n": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1:3",
+"B": "2:2",
+"C": "3:1",
+"D": "2:3"
+},
+"answer": "A",
+"explanation": "Kırmızı 5, mavi 10. Oran en sade biçimde 1:3 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 35 litre olduğuna göre çimento kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "35 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "10",
+"C": "15",
+"D": "17"
+},
+"answer": "B",
+"explanation": "Toplam 7 parça; bir parça 35 ÷ 7 = 5 litre. Çimento: 2 × 5 = 10 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"3",
+"9"
+],
+[
+"5",
+"15"
+],
+[
+"6",
+"18"
+],
+[
+"11",
+"?"
+]
+]
+},
+"options": {
+"A": "30",
+"B": "33",
+"C": "36",
+"D": "39"
+},
+"answer": "B",
+"explanation": "Oran sabit: 9 ÷ 3 = 3; ? = 11 × 3 = 33.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Pekiştirme: Oranları karşılaştırma\nAşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"7 kız, 7 erkek"
+],
+[
+"N",
+"4 kız, 7 erkek"
+],
+[
+"M",
+"7 kız, 3 erkek"
+],
+[
+"L",
+"7 kız, 4 erkek"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Oranlar: K: 1/1, L: 7/4, M: 7/3, N: 4/7. En büyük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Değerlendirme: Tarifte orantı\nVerilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 12 kaşık su kullanılırsa kaç kaşık şeker gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kaşık)"
+],
+"rows": [
+[
+"şeker",
+"3"
+],
+[
+"su",
+"4"
+]
+]
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "12",
+"D": "21"
+},
+"answer": "B",
+"explanation": "Oran 3:4; her bölüm 3 katına çıkar. Cevap 9.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 8
+},
+{
+"c": "M",
+"n": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/5",
+"B": "5/9",
+"C": "5/4",
+"D": "4/9"
+},
+"answer": "A",
+"explanation": "Kırmızı 8, mavi 10; oran 8/10 = 4/5.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde toplam 18 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "18 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3 L",
+"B": "12 L",
+"C": "18 L",
+"D": "6 L"
+},
+"answer": "B",
+"explanation": "Toplam 3 parça; her parça 18 ÷ 3 = 6 L. mavi boya (M): 12 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3:2",
+"B": "5:2",
+"C": "2:5",
+"D": "2:3"
+},
+"answer": "A",
+"explanation": "Kırmızı 6, mavi 9. Oran en sade biçimde 3:2 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 20 litre olduğuna göre elma suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "20 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "16"
+},
+"answer": "C",
+"explanation": "Toplam 5 parça; bir parça 20 ÷ 5 = 4 litre. Elma suyu: 3 × 4 = 12 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"3",
+"12"
+],
+[
+"5",
+"20"
+],
+[
+"6",
+"24"
+],
+[
+"14",
+"?"
+]
+]
+},
+"options": {
+"A": "52",
+"B": "56",
+"C": "60",
+"D": "64"
+},
+"answer": "B",
+"explanation": "Oran sabit: 12 ÷ 3 = 4; ? = 14 × 4 = 56.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Deneme: Oranları karşılaştırma\nAşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"M",
+"5 kız, 7 erkek"
+],
+[
+"K",
+"9 kız, 6 erkek"
+],
+[
+"N",
+"7 kız, 2 erkek"
+],
+[
+"L",
+"5 kız, 2 erkek"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Oranlar: K: 3/2, L: 5/2, M: 5/7, N: 7/2. En büyük oran N sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Uygulama: Tarifte orantı\nAşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 3 bardak limon suyu kullanılırsa kaç bardak su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"limon suyu",
+"1"
+],
+[
+"su",
+"4"
+]
+]
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "15"
+},
+"answer": "B",
+"explanation": "Oran 1:4; her bölüm 3 katına çıkar. Cevap 12.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/2",
+"B": "3/5",
+"C": "2/5",
+"D": "2/3"
+},
+"answer": "D",
+"explanation": "Kırmızı 6, mavi 9; oran 6/9 = 2/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde toplam 21 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "21 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "9 L",
+"B": "3 L",
+"C": "12 L",
+"D": "15 L"
+},
+"answer": "C",
+"explanation": "Toplam 7 parça; her parça 21 ÷ 7 = 3 L. mavi boya (M): 12 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2:5",
+"B": "5:2",
+"C": "2:7",
+"D": "7:2"
+},
+"answer": "B",
+"explanation": "Kırmızı 4, mavi 10. Oran en sade biçimde 5:2 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 45 litre olduğuna göre portakal suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "45 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "18",
+"C": "22",
+"D": "27"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; bir parça 45 ÷ 5 = 9 litre. Portakal suyu: 2 × 9 = 18 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"5",
+"40"
+],
+[
+"6",
+"48"
+],
+[
+"7",
+"56"
+],
+[
+"14",
+"?"
+]
+]
+},
+"options": {
+"A": "104",
+"B": "112",
+"C": "120",
+"D": "128"
+},
+"answer": "B",
+"explanation": "Oran sabit: 40 ÷ 5 = 8; ? = 14 × 8 = 112.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Pekiştirme: Oranları karşılaştırma\nŞekle göre sorulanı bulunuz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en büyük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"8 kız, 6 erkek"
+],
+[
+"L",
+"5 kız, 9 erkek"
+],
+[
+"M",
+"5 kız, 6 erkek"
+],
+[
+"N",
+"9 kız, 8 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "N",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Oranlar: K: 4/3, L: 5/9, M: 5/6, N: 9/8. En büyük oran K sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Konu: Tarifte orantı\nVerilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 25 bardak su kullanılırsa kaç bardak limon suyu gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"limon suyu",
+"2"
+],
+[
+"su",
+"5"
+]
+]
+},
+"options": {
+"A": "9",
+"B": "10",
+"C": "12",
+"D": "35"
+},
+"answer": "B",
+"explanation": "Oran 2:5; her bölüm 5 katına çıkar. Cevap 10.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "3/2",
+"C": "2/5",
+"D": "3/5"
+},
+"answer": "A",
+"explanation": "Kırmızı 4, mavi 6; oran 4/6 = 2/3.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde toplam 32 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre kırmızı boya (K) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "32 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1 L",
+"B": "8 L",
+"C": "24 L",
+"D": "16 L"
+},
+"answer": "B",
+"explanation": "Toplam 4 parça; her parça 32 ÷ 4 = 8 L. kırmızı boya (K): 8 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 6
+},
+{
+"c": "M",
+"n": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5:2",
+"B": "2:3",
+"C": "3:2",
+"D": "2:5"
+},
+"answer": "C",
+"explanation": "Kırmızı 6, mavi 9. Oran en sade biçimde 3:2 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde bir karışımın portakal suyu (K) ve elma suyu (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 40 litre olduğuna göre portakal suyu kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "40 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "16",
+"C": "20",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Toplam 5 parça; bir parça 40 ÷ 5 = 8 litre. Portakal suyu: 2 × 8 = 16 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Defter sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"1",
+"4"
+],
+[
+"5",
+"20"
+],
+[
+"8",
+"32"
+],
+[
+"10",
+"?"
+]
+]
+},
+"options": {
+"A": "36",
+"B": "40",
+"C": "44",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Oran sabit: 4 ÷ 1 = 4; ? = 10 × 4 = 40.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Deneme: Oranları karşılaştırma\nŞekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"K",
+"8 kız, 4 erkek"
+],
+[
+"M",
+"5 kız, 5 erkek"
+],
+[
+"L",
+"9 kız, 5 erkek"
+],
+[
+"N",
+"9 kız, 4 erkek"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Oranlar: K: 2/1, L: 9/5, M: 1/1, N: 9/4. En küçük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Deneme: Tarifte orantı\nÇalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 9 bardak un kullanılırsa kaç bardak süt gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (bardak)"
+],
+"rows": [
+[
+"un",
+"3"
+],
+[
+"süt",
+"5"
+]
+]
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "18",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Oran 3:5; her bölüm 3 katına çıkar. Cevap 15.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde bir torbadaki kırmızı ve mavi bilyeler gösterilmiştir. Kırmızı bilyelerin sayısının mavi bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 9
+},
+{
+"c": "M",
+"n": 12
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/7",
+"B": "3/7",
+"C": "3/4",
+"D": "4/3"
+},
+"answer": "C",
+"explanation": "Kırmızı 9, mavi 12; oran 9/12 = 3/4.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde toplam 56 L olan bir karışımın kırmızı boya (K) ve mavi boya (M) oranı gösterilmiştir. Bu karışımda kaç litre mavi boya (M) vardır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "56 L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8 L",
+"B": "16 L",
+"C": "40 L",
+"D": "48 L"
+},
+"answer": "C",
+"explanation": "Toplam 7 parça; her parça 56 ÷ 7 = 8 L. mavi boya (M): 40 L.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karisim"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde bir kutudaki kırmızı ve mavi bilyeler gösterilmiştir. Mavi bilyelerin sayısının kırmızı bilyelerin sayısına oranı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "oran",
+"gr": [
+{
+"c": "K",
+"n": 4
+},
+{
+"c": "M",
+"n": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3:1",
+"B": "1:3",
+"C": "2:1",
+"D": "1:2"
+},
+"answer": "C",
+"explanation": "Kırmızı 4, mavi 8. Oran en sade biçimde 2:1 olur.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_say"
+},
+{
+"subject": "Matematik",
+"topic": "Oran",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde bir karışımın çimento (K) ve kum (M) bölümleri eş parçalarla gösterilmiştir. Karışım toplam 64 litre olduğuna göre kum kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "K",
+"w": 1
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+},
+{
+"l": "M",
+"w": 1,
+"q": true
+}
+],
+"brace": "64 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "32",
+"C": "40",
+"D": "48"
+},
+"answer": "C",
+"explanation": "Toplam 8 parça; bir parça 64 ÷ 8 = 8 litre. Kum: 5 × 8 = 40 litre.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_bar"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda doğru orantılı iki çokluğun değerleri verilmiştir. Tablodaki ? yerine hangi sayı gelmelidir?",
+"shape": {
+"type": "table",
+"title": "Doğru orantılı iki çokluk",
+"headers": [
+"Kalem sayısı",
+"Ödenecek tutar (TL)"
+],
+"rows": [
+[
+"1",
+"3"
+],
+[
+"3",
+"9"
+],
+[
+"7",
+"21"
+],
+[
+"14",
+"?"
+]
+]
+},
+"options": {
+"A": "39",
+"B": "42",
+"C": "45",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Oran sabit: 3 ÷ 1 = 3; ? = 14 × 3 = 42.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Oran kavramı",
+"passage": "",
+"question": "Bakalım: Oranları karşılaştırma\nVerilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nTabloda dört sınıfın kız ve erkek öğrenci sayıları verilmiştir. Kız öğrenci sayısının erkek öğrenci sayısına oranı en küçük olan sınıf hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Sınıflar",
+"headers": [
+"Harf",
+"Öğrenci sayısı"
+],
+"rows": [
+[
+"L",
+"7 kız, 6 erkek"
+],
+[
+"M",
+"3 kız, 3 erkek"
+],
+[
+"N",
+"4 kız, 3 erkek"
+],
+[
+"K",
+"9 kız, 6 erkek"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Oranlar: K: 3/2, L: 7/6, M: 1/1, N: 4/3. En küçük oran M sınıfındadır.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_karsilastir"
+},
+{
+"subject": "Matematik",
+"topic": "Orantı",
+"passage": "",
+"question": "Etkinlik: Tarifte orantı\nŞekle göre şu soruyu yanıtlayınız.\nTabloda bir tarifin malzeme miktarları verilmiştir. Aynı oranı koruyarak 9 kaşık şeker kullanılırsa kaç kaşık su gerekir?",
+"shape": {
+"type": "table",
+"title": "Tarif",
+"headers": [
+"Malzeme",
+"Miktar (kaşık)"
+],
+"rows": [
+[
+"şeker",
+"3"
+],
+[
+"su",
+"4"
+]
+]
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "15",
+"D": "21"
+},
+"answer": "B",
+"explanation": "Oran 3:4; her bölüm 3 katına çıkar. Cevap 12.",
+"unit": "Oran",
+"topics": "Oran kavramı, Orantı giriş",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_or_tarif"
+}
+]
+}

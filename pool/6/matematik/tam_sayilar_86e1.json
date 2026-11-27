@@ -1,0 +1,8625 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu çözünüz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. P noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -4
+},
+{
+"h": "M",
+"v": 2
+},
+{
+"h": "R",
+"v": -3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−5",
+"B": "−3",
+"C": "−4",
+"D": "4"
+},
+"answer": "C",
+"explanation": "P noktası sayı doğrusunda −4 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak şu soruyu yanıtlayınız.\nSayı doğrusunda K noktası 4 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+3) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 4
+}
+],
+"hop": {
+"from": 4,
+"to": 7,
+"lab": "+3"
+},
+"show_names": false
+},
+"options": {
+"A": "−7",
+"B": "7",
+"C": "8",
+"D": "1"
+},
+"answer": "B",
+"explanation": "4 + 3 = 7.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "C",
+"explanation": "|5 − (−5)| = 10 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 4
+},
+{
+"h": "L",
+"v": -6
+},
+{
+"h": "M",
+"v": 8
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−4",
+"B": "0",
+"C": "4",
+"D": "5"
+},
+"answer": "C",
+"explanation": "K noktası 4 sayısını gösterir; mutlak değeri 4 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en uzak olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": 6
+},
+{
+"h": "N",
+"v": 5
+},
+{
+"h": "K",
+"v": -7
+},
+{
+"h": "R",
+"v": 8
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "K",
+"C": "S",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: S = 6, N = 5, K = −7, R = 8. Sıfıra en uzak olan tam sayıyı R gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Belirlenemez",
+"B": "İkisi de aynı",
+"C": "K şehri",
+"D": "L şehri"
+},
+"answer": "D",
+"explanation": "Sıcaklıklar K = 5 °C, L = −10 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Konu: Sayı doğrusunda karşıt sayı\nŞekle göre şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. S noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "N",
+"v": 7
+},
+{
+"h": "R",
+"v": -5
+},
+{
+"h": "M",
+"v": -6
+},
+{
+"h": "S",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "M",
+"C": "N",
+"D": "R"
+},
+"answer": "C",
+"explanation": "S noktası −7 değerindedir; karşıtı 7 olup N noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Uygulama: Mutlak değer karşılaştırma\nYandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en büyük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": -1
+},
+{
+"h": "T",
+"v": 5
+},
+{
+"h": "K",
+"v": 6
+},
+{
+"h": "M",
+"v": 2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "S",
+"C": "T",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−1| = 1, |5| = 5, |6| = 6, |2| = 2. En büyük: K.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Sıra sende: Kâr ve zarar toplamı\nDers sırasında incelenen şekle bakarak soruya cevap veriniz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−30"
+],
+[
+"Salı",
+"+10"
+],
+[
+"Çarşamba",
+"+20"
+],
+[
+"Perşembe",
+"+30"
+],
+[
+"Cuma",
+"+40"
+]
+]
+},
+"options": {
+"A": "130 TL",
+"B": "60 TL",
+"C": "80 TL",
+"D": "70 TL"
+},
+"answer": "D",
+"explanation": "Değerler toplanır: −30 +10 +20 +30 +40 = 70 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Uygulama: Sıcaklık farkı\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Van ile Ardahan arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Van",
+"3"
+],
+[
+"Konya",
+"−1"
+],
+[
+"Ardahan",
+"1"
+],
+[
+"Erzurum",
+"−6"
+]
+]
+},
+"options": {
+"A": "2 °C",
+"B": "7 °C",
+"C": "6 °C",
+"D": "4 °C"
+},
+"answer": "A",
+"explanation": "3 ile 1 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 2 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. L noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "N",
+"v": 6
+},
+{
+"h": "T",
+"v": -4
+},
+{
+"h": "L",
+"v": -6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "−7",
+"C": "−5",
+"D": "−6"
+},
+"answer": "D",
+"explanation": "L noktası sayı doğrusunda −6 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda K noktası 0 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−2) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 0
+}
+],
+"hop": {
+"from": 0,
+"to": -2,
+"lab": "−2"
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "−1",
+"C": "−2",
+"D": "−3"
+},
+"answer": "C",
+"explanation": "0 − 2 = −2.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "C",
+"explanation": "|5 − (−7)| = 12 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "L",
+"v": 8
+},
+{
+"h": "M",
+"v": -1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "4",
+"C": "−3",
+"D": "3"
+},
+"answer": "D",
+"explanation": "K noktası −3 sayısını gösterir; mutlak değeri 3 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En küçük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": -3
+},
+{
+"h": "R",
+"v": 4
+},
+{
+"h": "L",
+"v": -5
+},
+{
+"h": "T",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "T",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Noktaların değerleri: S = −3, R = 4, L = −5, T = 0. En küçük tam sayıyı L gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 20
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"show_names": false
+},
+"options": {
+"A": "K şehri",
+"B": "İkisi de aynı",
+"C": "Belirlenemez",
+"D": "L şehri"
+},
+"answer": "D",
+"explanation": "Sıcaklıklar K = 20 °C, L = 0 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma: Sayı doğrusunda karşıt sayı\nGörselde verilen bilgilere göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. N noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "N",
+"v": -7
+},
+{
+"h": "K",
+"v": 3
+},
+{
+"h": "M",
+"v": 7
+},
+{
+"h": "L",
+"v": -4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "L",
+"D": "K"
+},
+"answer": "B",
+"explanation": "N noktası −7 değerindedir; karşıtı 7 olup M noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Uygulama: Mutlak değer karşılaştırma\nGörselde verilen bilgilere göre sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": -8
+},
+{
+"h": "M",
+"v": 3
+},
+{
+"h": "P",
+"v": 5
+},
+{
+"h": "N",
+"v": 1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "N",
+"C": "S",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−8| = 8, |3| = 3, |5| = 5, |1| = 1. En küçük: N.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Bakalım: Kâr ve zarar toplamı\nŞekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+10"
+],
+[
+"Salı",
+"−30"
+],
+[
+"Çarşamba",
+"−25"
+],
+[
+"Perşembe",
+"+15"
+],
+[
+"Cuma",
+"+45"
+]
+]
+},
+"options": {
+"A": "5 TL",
+"B": "125 TL",
+"C": "15 TL",
+"D": "25 TL"
+},
+"answer": "C",
+"explanation": "Değerler toplanır: +10 −30 −25 +15 +45 = 15 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Uygulama: Sıcaklık farkı\nYandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Ardahan ile Erzurum arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Bolu",
+"7"
+],
+[
+"Ardahan",
+"3"
+],
+[
+"Erzurum",
+"−7"
+],
+[
+"Ankara",
+"−8"
+]
+]
+},
+"options": {
+"A": "12 °C",
+"B": "8 °C",
+"C": "10 °C",
+"D": "4 °C"
+},
+"answer": "C",
+"explanation": "3 ile −7 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 10 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. M noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": -1
+},
+{
+"h": "M",
+"v": -3
+},
+{
+"h": "L",
+"v": 1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "−2",
+"C": "−4",
+"D": "−3"
+},
+"answer": "D",
+"explanation": "M noktası sayı doğrusunda −3 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nSayı doğrusunda K noktası −6 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+6) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -6
+}
+],
+"hop": {
+"from": -6,
+"to": 0,
+"lab": "+6"
+},
+"show_names": false
+},
+"options": {
+"A": "−1",
+"B": "1",
+"C": "0",
+"D": "−12"
+},
+"answer": "C",
+"explanation": "−6 + 6 = 0.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -4
+},
+{
+"h": "L",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "11",
+"D": "12"
+},
+"answer": "A",
+"explanation": "|−4 − (−7)| = 3 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -6
+},
+{
+"h": "L",
+"v": 3
+},
+{
+"h": "M",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "6",
+"C": "0",
+"D": "−6"
+},
+"answer": "B",
+"explanation": "K noktası −6 sayısını gösterir; mutlak değeri 6 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En küçük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": 5
+},
+{
+"h": "T",
+"v": 4
+},
+{
+"h": "K",
+"v": -6
+},
+{
+"h": "M",
+"v": 3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "T",
+"D": "P"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: P = 5, T = 4, K = −6, M = 3. En küçük tam sayıyı K gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 10
+},
+{
+"h": "L",
+"v": 20
+}
+],
+"show_names": false
+},
+"options": {
+"A": "35 °C",
+"B": "10 °C",
+"C": "15 °C",
+"D": "5 °C"
+},
+"answer": "B",
+"explanation": "10 °C ile 20 °C arasındaki fark 10 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Hatırlayalım: Sayı doğrusunda karşıt sayı\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. N noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -6
+},
+{
+"h": "N",
+"v": -7
+},
+{
+"h": "T",
+"v": -3
+},
+{
+"h": "K",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "N",
+"C": "T",
+"D": "K"
+},
+"answer": "D",
+"explanation": "N noktası −7 değerindedir; karşıtı 7 olup K noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Konu: Mutlak değer karşılaştırma\nGörselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 1
+},
+{
+"h": "R",
+"v": 4
+},
+{
+"h": "S",
+"v": 3
+},
+{
+"h": "M",
+"v": -8
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "S",
+"C": "R",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |1| = 1, |4| = 4, |3| = 3, |−8| = 8. En küçük: K.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Etkinlik: Kâr ve zarar toplamı\nÖğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−45"
+],
+[
+"Salı",
+"+35"
+],
+[
+"Çarşamba",
+"+20"
+],
+[
+"Perşembe",
+"+40"
+],
+[
+"Cuma",
+"+25"
+]
+]
+},
+"options": {
+"A": "165 TL",
+"B": "65 TL",
+"C": "85 TL",
+"D": "75 TL"
+},
+"answer": "D",
+"explanation": "Değerler toplanır: −45 +35 +20 +40 +25 = 75 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Soru: Sıcaklık farkı\nÖğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Erzurum ile Kars arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Bolu",
+"4"
+],
+[
+"Ankara",
+"−8"
+],
+[
+"Kars",
+"6"
+],
+[
+"Erzurum",
+"−7"
+]
+]
+},
+"options": {
+"A": "11 °C",
+"B": "15 °C",
+"C": "13 °C",
+"D": "1 °C"
+},
+"answer": "C",
+"explanation": "−7 ile 6 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 13 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. T noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 3
+},
+{
+"h": "M",
+"v": 4
+},
+{
+"h": "S",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−3",
+"B": "2",
+"C": "4",
+"D": "3"
+},
+"answer": "D",
+"explanation": "T noktası sayı doğrusunda 3 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nSayı doğrusunda K noktası −4 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+2) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -4
+}
+],
+"hop": {
+"from": -4,
+"to": -2,
+"lab": "+2"
+},
+"show_names": false
+},
+"options": {
+"A": "−1",
+"B": "2",
+"C": "−2",
+"D": "−6"
+},
+"answer": "C",
+"explanation": "−4 + 2 = −2.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "L",
+"v": 5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "C",
+"explanation": "|−5 − (5)| = 10 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 2
+},
+{
+"h": "L",
+"v": -1
+},
+{
+"h": "M",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "3",
+"C": "−2",
+"D": "2"
+},
+"answer": "D",
+"explanation": "K noktası 2 sayısını gösterir; mutlak değeri 2 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en yakın olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 3
+},
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": 0
+},
+{
+"h": "P",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "T",
+"C": "L",
+"D": "P"
+},
+"answer": "C",
+"explanation": "Noktaların değerleri: T = 3, K = 5, L = 0, P = −2. Sıfıra en yakın olan tam sayıyı L gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 15
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Belirlenemez",
+"B": "K şehri",
+"C": "L şehri",
+"D": "İkisi de aynı"
+},
+"answer": "C",
+"explanation": "Sıcaklıklar K = 15 °C, L = 0 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Değerlendirme: Sayı doğrusunda karşıt sayı\nGörselde verilen bilgilere göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. R noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": 5
+},
+{
+"h": "N",
+"v": -5
+},
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "T",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "T",
+"C": "N",
+"D": "K"
+},
+"answer": "C",
+"explanation": "R noktası 5 değerindedir; karşıtı −5 olup N noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Sıra sende: Mutlak değer karşılaştırma\nYandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -2
+},
+{
+"h": "L",
+"v": -7
+},
+{
+"h": "R",
+"v": -8
+},
+{
+"h": "N",
+"v": 3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "P",
+"C": "L",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−2| = 2, |−7| = 7, |−8| = 8, |3| = 3. En küçük: P.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Uygulama: Kâr ve zarar toplamı\nVerilen şekilden yararlanarak soruya cevap veriniz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−10"
+],
+[
+"Salı",
+"+45"
+],
+[
+"Çarşamba",
+"+35"
+],
+[
+"Perşembe",
+"+15"
+],
+[
+"Cuma",
+"−25"
+]
+]
+},
+"options": {
+"A": "50 TL",
+"B": "60 TL",
+"C": "130 TL",
+"D": "70 TL"
+},
+"answer": "B",
+"explanation": "Değerler toplanır: −10 +45 +35 +15 −25 = 60 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Tekrar: Sıcaklık farkı\nGörselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Erzurum ile Bolu arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Erzurum",
+"−2"
+],
+[
+"Kars",
+"−12"
+],
+[
+"Bolu",
+"−13"
+],
+[
+"Ardahan",
+"3"
+]
+]
+},
+"options": {
+"A": "9 °C",
+"B": "13 °C",
+"C": "15 °C",
+"D": "11 °C"
+},
+"answer": "D",
+"explanation": "−2 ile −13 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 11 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. P noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -2
+},
+{
+"h": "T",
+"v": 6
+},
+{
+"h": "K",
+"v": 5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "−3",
+"C": "−2",
+"D": "−1"
+},
+"answer": "C",
+"explanation": "P noktası sayı doğrusunda −2 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda K noktası −5 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+6) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -5
+}
+],
+"hop": {
+"from": -5,
+"to": 1,
+"lab": "+6"
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "−11",
+"C": "−1",
+"D": "1"
+},
+"answer": "D",
+"explanation": "−5 + 6 = 1.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 2
+},
+{
+"h": "L",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "9",
+"D": "10"
+},
+"answer": "A",
+"explanation": "|2 − (7)| = 5 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 1
+},
+{
+"h": "L",
+"v": -8
+},
+{
+"h": "M",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "−1",
+"C": "1",
+"D": "0"
+},
+"answer": "C",
+"explanation": "K noktası 1 sayısını gösterir; mutlak değeri 1 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En küçük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": -6
+},
+{
+"h": "K",
+"v": -2
+},
+{
+"h": "P",
+"v": -7
+},
+{
+"h": "T",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "P",
+"C": "K",
+"D": "S"
+},
+"answer": "B",
+"explanation": "Noktaların değerleri: S = −6, K = −2, P = −7, T = 6. En küçük tam sayıyı P gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "20 °C",
+"B": "25 °C",
+"C": "15 °C",
+"D": "10 °C"
+},
+"answer": "C",
+"explanation": "5 °C ile −10 °C arasındaki fark 15 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Uygulama: Sayı doğrusunda karşıt sayı\nGörselde verilen bilgilere göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. L noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -4
+},
+{
+"h": "N",
+"v": 5
+},
+{
+"h": "T",
+"v": 2
+},
+{
+"h": "L",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "T",
+"D": "L"
+},
+"answer": "B",
+"explanation": "L noktası 4 değerindedir; karşıtı −4 olup K noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Deneme: Mutlak değer karşılaştırma\nGörselde verilen bilgilere göre şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en büyük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": 1
+},
+{
+"h": "T",
+"v": -5
+},
+{
+"h": "K",
+"v": 3
+},
+{
+"h": "R",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "R",
+"C": "K",
+"D": "P"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |1| = 1, |−5| = 5, |3| = 3, |−7| = 7. En büyük: R.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Pekiştirme: Kâr ve zarar toplamı\nŞekle göre şu soruyu yanıtlayınız.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+20"
+],
+[
+"Salı",
+"−45"
+],
+[
+"Çarşamba",
+"+30"
+],
+[
+"Perşembe",
+"+45"
+],
+[
+"Cuma",
+"−20"
+]
+]
+},
+"options": {
+"A": "30 TL",
+"B": "40 TL",
+"C": "160 TL",
+"D": "20 TL"
+},
+"answer": "A",
+"explanation": "Değerler toplanır: +20 −45 +30 +45 −20 = 30 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Tekrar: Sıcaklık farkı\nVerilen şekilden yararlanarak soruyu çözünüz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Kars ile Sivas arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Sivas",
+"6"
+],
+[
+"Konya",
+"2"
+],
+[
+"Bolu",
+"−11"
+],
+[
+"Kars",
+"1"
+]
+]
+},
+"options": {
+"A": "10 °C",
+"B": "7 °C",
+"C": "5 °C",
+"D": "3 °C"
+},
+"answer": "C",
+"explanation": "1 ile 6 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 5 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. M noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": -6
+},
+{
+"h": "R",
+"v": -3
+},
+{
+"h": "L",
+"v": 2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−6",
+"B": "−7",
+"C": "−5",
+"D": "6"
+},
+"answer": "A",
+"explanation": "M noktası sayı doğrusunda −6 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nSayı doğrusunda K noktası −5 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+2) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -5
+}
+],
+"hop": {
+"from": -5,
+"to": -3,
+"lab": "+2"
+},
+"show_names": false
+},
+"options": {
+"A": "−7",
+"B": "3",
+"C": "−2",
+"D": "−3"
+},
+"answer": "D",
+"explanation": "−5 + 2 = −3.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -4
+},
+{
+"h": "L",
+"v": -1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "A",
+"explanation": "|−4 − (−1)| = 3 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 3
+},
+{
+"h": "L",
+"v": -8
+},
+{
+"h": "M",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "−3",
+"C": "4",
+"D": "0"
+},
+"answer": "A",
+"explanation": "K noktası 3 sayısını gösterir; mutlak değeri 3 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En küçük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 4
+},
+{
+"h": "N",
+"v": 0
+},
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "R",
+"v": 1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "T",
+"C": "R",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: T = 4, N = 0, K = −3, R = 1. En küçük tam sayıyı K gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": -10
+},
+{
+"h": "L",
+"v": 15
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10 °C",
+"B": "25 °C",
+"C": "20 °C",
+"D": "30 °C"
+},
+"answer": "B",
+"explanation": "−10 °C ile 15 °C arasındaki fark 25 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Bakalım: Sayı doğrusunda karşıt sayı\nGörselde verilen bilgilere göre soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. N noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": -3
+},
+{
+"h": "M",
+"v": 5
+},
+{
+"h": "N",
+"v": 3
+},
+{
+"h": "P",
+"v": -4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "R",
+"C": "P",
+"D": "M"
+},
+"answer": "B",
+"explanation": "N noktası 3 değerindedir; karşıtı −3 olup R noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Değerlendirme: Mutlak değer karşılaştırma\nDers sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": -7
+},
+{
+"h": "N",
+"v": 6
+},
+{
+"h": "T",
+"v": -3
+},
+{
+"h": "K",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "T",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−7| = 7, |6| = 6, |−3| = 3, |0| = 0. En küçük: K.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Bakalım: Kâr ve zarar toplamı\nAşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−35"
+],
+[
+"Salı",
+"+30"
+],
+[
+"Çarşamba",
+"+35"
+],
+[
+"Perşembe",
+"−45"
+],
+[
+"Cuma",
+"+25"
+]
+]
+},
+"options": {
+"A": "20 TL",
+"B": "10 TL",
+"C": "170 TL",
+"D": "0 TL"
+},
+"answer": "B",
+"explanation": "Değerler toplanır: −35 +30 +35 −45 +25 = 10 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Sıra sende: Sıcaklık farkı\nÇalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Erzurum ile Kars arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Erzurum",
+"−8"
+],
+[
+"Kars",
+"1"
+],
+[
+"Bolu",
+"4"
+],
+[
+"Ankara",
+"−6"
+]
+]
+},
+"options": {
+"A": "7 °C",
+"B": "11 °C",
+"C": "9 °C",
+"D": "14 °C"
+},
+"answer": "C",
+"explanation": "−8 ile 1 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 9 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. T noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": 5
+},
+{
+"h": "T",
+"v": 4
+},
+{
+"h": "M",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "−4",
+"C": "3",
+"D": "5"
+},
+"answer": "A",
+"explanation": "T noktası sayı doğrusunda 4 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda K noktası −2 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+2) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -2
+}
+],
+"hop": {
+"from": -2,
+"to": 0,
+"lab": "+2"
+},
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "−1",
+"C": "1",
+"D": "−4"
+},
+"answer": "A",
+"explanation": "−2 + 2 = 0.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "L",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "C",
+"explanation": "|−5 − (7)| = 12 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 2
+},
+{
+"h": "L",
+"v": -3
+},
+{
+"h": "M",
+"v": 3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "−2",
+"D": "0"
+},
+"answer": "A",
+"explanation": "K noktası 2 sayısını gösterir; mutlak değeri 2 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En büyük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 4
+},
+{
+"h": "M",
+"v": -5
+},
+{
+"h": "L",
+"v": 6
+},
+{
+"h": "P",
+"v": -4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "P"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: K = 4, M = −5, L = 6, P = −4. En büyük tam sayıyı L gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 0
+},
+{
+"h": "L",
+"v": 20
+}
+],
+"show_names": false
+},
+"options": {
+"A": "25 °C",
+"B": "20 °C",
+"C": "15 °C",
+"D": "30 °C"
+},
+"answer": "B",
+"explanation": "0 °C ile 20 °C arasındaki fark 20 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Deneme: Sayı doğrusunda karşıt sayı\nAşağıdaki görsele göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. N noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": 4
+},
+{
+"h": "T",
+"v": 7
+},
+{
+"h": "N",
+"v": -4
+},
+{
+"h": "M",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "M",
+"C": "N",
+"D": "P"
+},
+"answer": "D",
+"explanation": "N noktası −4 değerindedir; karşıtı 4 olup P noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Deneme: Mutlak değer karşılaştırma\nÖğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en büyük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": -8
+},
+{
+"h": "K",
+"v": -7
+},
+{
+"h": "N",
+"v": -3
+},
+{
+"h": "L",
+"v": -6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−8| = 8, |−7| = 7, |−3| = 3, |−6| = 6. En büyük: R.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Etkinlik: Kâr ve zarar toplamı\nAşağıdaki görsele göre sorulanı bulunuz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+25"
+],
+[
+"Salı",
+"−35"
+],
+[
+"Çarşamba",
+"+20"
+],
+[
+"Perşembe",
+"+35"
+],
+[
+"Cuma",
+"+10"
+]
+]
+},
+"options": {
+"A": "125 TL",
+"B": "45 TL",
+"C": "55 TL",
+"D": "65 TL"
+},
+"answer": "C",
+"explanation": "Değerler toplanır: +25 −35 +20 +35 +10 = 55 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Uygulama: Sıcaklık farkı\nVerilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Ardahan ile Erzurum arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Ardahan",
+"−4"
+],
+[
+"Bolu",
+"0"
+],
+[
+"Van",
+"−12"
+],
+[
+"Erzurum",
+"8"
+]
+]
+},
+"options": {
+"A": "4 °C",
+"B": "12 °C",
+"C": "10 °C",
+"D": "14 °C"
+},
+"answer": "B",
+"explanation": "−4 ile 8 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 12 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. P noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "P",
+"v": -1
+},
+{
+"h": "M",
+"v": -3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "−1",
+"C": "−2",
+"D": "1"
+},
+"answer": "B",
+"explanation": "P noktası sayı doğrusunda −1 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda K noktası −2 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−6) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -2
+}
+],
+"hop": {
+"from": -2,
+"to": -8,
+"lab": "−6"
+},
+"show_names": false
+},
+"options": {
+"A": "−7",
+"B": "8",
+"C": "−8",
+"D": "4"
+},
+"answer": "C",
+"explanation": "−2 − 6 = −8.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "|−3 − (0)| = 3 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -2
+},
+{
+"h": "L",
+"v": 1
+},
+{
+"h": "M",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−2",
+"B": "0",
+"C": "3",
+"D": "2"
+},
+"answer": "D",
+"explanation": "K noktası −2 sayısını gösterir; mutlak değeri 2 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en yakın olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": 7
+},
+{
+"h": "M",
+"v": -1
+},
+{
+"h": "K",
+"v": -7
+},
+{
+"h": "P",
+"v": -8
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "P",
+"C": "M",
+"D": "K"
+},
+"answer": "C",
+"explanation": "Noktaların değerleri: L = 7, M = −1, K = −7, P = −8. Sıfıra en yakın olan tam sayıyı M gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"show_names": false
+},
+"options": {
+"A": "K şehri",
+"B": "Belirlenemez",
+"C": "İkisi de aynı",
+"D": "L şehri"
+},
+"answer": "A",
+"explanation": "Sıcaklıklar K = −5 °C, L = 0 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Etkinlik: Sayı doğrusunda karşıt sayı\nAşağıdaki görselde verilen bilgiler doğrultusunda soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. R noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": 1
+},
+{
+"h": "R",
+"v": -4
+},
+{
+"h": "S",
+"v": -7
+},
+{
+"h": "M",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "M",
+"D": "R"
+},
+"answer": "C",
+"explanation": "R noktası −4 değerindedir; karşıtı 4 olup M noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Sıra sende: Mutlak değer karşılaştırma\nVerilen şekilden yararlanarak sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": 4
+},
+{
+"h": "R",
+"v": 1
+},
+{
+"h": "L",
+"v": -3
+},
+{
+"h": "P",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "S",
+"C": "P",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |4| = 4, |1| = 1, |−3| = 3, |−5| = 5. En küçük: R.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Hatırlayalım: Kâr ve zarar toplamı\nÖğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+40"
+],
+[
+"Salı",
+"−35"
+],
+[
+"Çarşamba",
+"−40"
+],
+[
+"Perşembe",
+"+35"
+],
+[
+"Cuma",
+"+10"
+]
+]
+},
+"options": {
+"A": "20 TL",
+"B": "10 TL",
+"C": "160 TL",
+"D": "0 TL"
+},
+"answer": "B",
+"explanation": "Değerler toplanır: +40 −35 −40 +35 +10 = 10 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Değerlendirme: Sıcaklık farkı\nVerilen şekilden yararlanarak soruya cevap veriniz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Erzurum ile Bolu arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Bolu",
+"2"
+],
+[
+"Erzurum",
+"−5"
+],
+[
+"Ankara",
+"3"
+],
+[
+"Kars",
+"−10"
+]
+]
+},
+"options": {
+"A": "3 °C",
+"B": "5 °C",
+"C": "7 °C",
+"D": "9 °C"
+},
+"answer": "C",
+"explanation": "−5 ile 2 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 7 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. K noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": 4
+},
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "M",
+"v": 1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "−5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "K noktası sayı doğrusunda 5 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nSayı doğrusunda K noktası 3 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+4) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 3
+}
+],
+"hop": {
+"from": 3,
+"to": 7,
+"lab": "+4"
+},
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "−1",
+"C": "7",
+"D": "−7"
+},
+"answer": "C",
+"explanation": "3 + 4 = 7.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "|−3 − (0)| = 3 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -6
+},
+{
+"h": "M",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "−5",
+"C": "6",
+"D": "0"
+},
+"answer": "A",
+"explanation": "K noktası 5 sayısını gösterir; mutlak değeri 5 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en uzak olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": -7
+},
+{
+"h": "S",
+"v": 5
+},
+{
+"h": "N",
+"v": -2
+},
+{
+"h": "P",
+"v": -3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "P",
+"C": "N",
+"D": "S"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: R = −7, S = 5, N = −2, P = −3. Sıfıra en uzak olan tam sayıyı R gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 10
+},
+{
+"h": "L",
+"v": 15
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Belirlenemez",
+"B": "İkisi de aynı",
+"C": "K şehri",
+"D": "L şehri"
+},
+"answer": "C",
+"explanation": "Sıcaklıklar K = 10 °C, L = 15 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Pekiştirme: Sayı doğrusunda karşıt sayı\nAşağıdaki görselde verilen bilgiler doğrultusunda aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. T noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 4
+},
+{
+"h": "L",
+"v": 6
+},
+{
+"h": "M",
+"v": -1
+},
+{
+"h": "P",
+"v": -4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "P",
+"C": "M",
+"D": "T"
+},
+"answer": "B",
+"explanation": "T noktası 4 değerindedir; karşıtı −4 olup P noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Hatırlayalım: Mutlak değer karşılaştırma\nDers sırasında incelenen şekle bakarak şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en büyük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": 5
+},
+{
+"h": "T",
+"v": 2
+},
+{
+"h": "L",
+"v": -7
+},
+{
+"h": "S",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "P",
+"C": "T",
+"D": "L"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |5| = 5, |2| = 2, |−7| = 7, |0| = 0. En büyük: L.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Bakalım: Kâr ve zarar toplamı\nŞekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+10"
+],
+[
+"Salı",
+"−35"
+],
+[
+"Çarşamba",
+"+15"
+],
+[
+"Perşembe",
+"+40"
+],
+[
+"Cuma",
+"+45"
+]
+]
+},
+"options": {
+"A": "145 TL",
+"B": "65 TL",
+"C": "75 TL",
+"D": "85 TL"
+},
+"answer": "C",
+"explanation": "Değerler toplanır: +10 −35 +15 +40 +45 = 75 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Hatırlayalım: Sıcaklık farkı\nDers sırasında incelenen şekle bakarak soruya cevap veriniz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Erzurum ile Bolu arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Sivas",
+"4"
+],
+[
+"Ankara",
+"7"
+],
+[
+"Bolu",
+"3"
+],
+[
+"Erzurum",
+"−6"
+]
+]
+},
+"options": {
+"A": "11 °C",
+"B": "3 °C",
+"C": "7 °C",
+"D": "9 °C"
+},
+"answer": "D",
+"explanation": "−6 ile 3 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 9 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. K noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": -6
+},
+{
+"h": "R",
+"v": -4
+},
+{
+"h": "K",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−6",
+"B": "7",
+"C": "−8",
+"D": "−7"
+},
+"answer": "D",
+"explanation": "K noktası sayı doğrusunda −7 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nSayı doğrusunda K noktası −1 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−4) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -1
+}
+],
+"hop": {
+"from": -1,
+"to": -5,
+"lab": "−4"
+},
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "−4",
+"C": "3",
+"D": "−5"
+},
+"answer": "D",
+"explanation": "−1 − 4 = −5.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "C",
+"explanation": "|5 − (−5)| = 10 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 8
+},
+{
+"h": "L",
+"v": 4
+},
+{
+"h": "M",
+"v": 2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "−8",
+"C": "8",
+"D": "9"
+},
+"answer": "C",
+"explanation": "K noktası 8 sayısını gösterir; mutlak değeri 8 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en yakın olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -1
+},
+{
+"h": "M",
+"v": 7
+},
+{
+"h": "N",
+"v": 4
+},
+{
+"h": "S",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "S",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: P = −1, M = 7, N = 4, S = −2. Sıfıra en yakın olan tam sayıyı P gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 0
+},
+{
+"h": "L",
+"v": 20
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30 °C",
+"B": "20 °C",
+"C": "25 °C",
+"D": "15 °C"
+},
+"answer": "B",
+"explanation": "0 °C ile 20 °C arasındaki fark 20 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Hatırlayalım: Sayı doğrusunda karşıt sayı\nŞekilde verilenleri dikkate alarak soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. R noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": 5
+},
+{
+"h": "L",
+"v": 2
+},
+{
+"h": "P",
+"v": 6
+},
+{
+"h": "R",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "R",
+"D": "P"
+},
+"answer": "A",
+"explanation": "R noktası −5 değerindedir; karşıtı 5 olup S noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Değerlendirme: Mutlak değer karşılaştırma\nÇalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en büyük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": 7
+},
+{
+"h": "N",
+"v": -3
+},
+{
+"h": "P",
+"v": -2
+},
+{
+"h": "T",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "S",
+"C": "T",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |7| = 7, |−3| = 3, |−2| = 2, |−5| = 5. En büyük: S.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Çalışma: Kâr ve zarar toplamı\nDers sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+25"
+],
+[
+"Salı",
+"−15"
+],
+[
+"Çarşamba",
+"−25"
+],
+[
+"Perşembe",
+"+35"
+],
+[
+"Cuma",
+"+15"
+]
+]
+},
+"options": {
+"A": "25 TL",
+"B": "115 TL",
+"C": "45 TL",
+"D": "35 TL"
+},
+"answer": "D",
+"explanation": "Değerler toplanır: +25 −15 −25 +35 +15 = 35 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Değerlendirme: Sıcaklık farkı\nÖğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Ardahan ile Sivas arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Bolu",
+"−9"
+],
+[
+"Ankara",
+"5"
+],
+[
+"Sivas",
+"4"
+],
+[
+"Ardahan",
+"−8"
+]
+]
+},
+"options": {
+"A": "14 °C",
+"B": "10 °C",
+"C": "12 °C",
+"D": "4 °C"
+},
+"answer": "C",
+"explanation": "−8 ile 4 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 12 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. S noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": 1
+},
+{
+"h": "S",
+"v": -7
+},
+{
+"h": "R",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−8",
+"B": "−6",
+"C": "7",
+"D": "−7"
+},
+"answer": "D",
+"explanation": "S noktası sayı doğrusunda −7 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nSayı doğrusunda K noktası 4 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−6) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 4
+}
+],
+"hop": {
+"from": 4,
+"to": -2,
+"lab": "−6"
+},
+"show_names": false
+},
+"options": {
+"A": "−1",
+"B": "2",
+"C": "10",
+"D": "−2"
+},
+"answer": "D",
+"explanation": "4 − 6 = −2.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -6
+},
+{
+"h": "L",
+"v": -3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "9",
+"D": "10"
+},
+"answer": "A",
+"explanation": "|−6 − (−3)| = 3 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 6
+},
+{
+"h": "L",
+"v": -4
+},
+{
+"h": "M",
+"v": 1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−6",
+"B": "7",
+"C": "0",
+"D": "6"
+},
+"answer": "D",
+"explanation": "K noktası 6 sayısını gösterir; mutlak değeri 6 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En büyük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": -7
+},
+{
+"h": "R",
+"v": 4
+},
+{
+"h": "N",
+"v": 0
+},
+{
+"h": "K",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "R",
+"C": "N",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: M = −7, R = 4, N = 0, K = 7. En büyük tam sayıyı K gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 0
+},
+{
+"h": "L",
+"v": 15
+}
+],
+"show_names": false
+},
+"options": {
+"A": "25 °C",
+"B": "15 °C",
+"C": "10 °C",
+"D": "20 °C"
+},
+"answer": "B",
+"explanation": "0 °C ile 15 °C arasındaki fark 15 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Pekiştirme: Sayı doğrusunda karşıt sayı\nÇalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. N noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 7
+},
+{
+"h": "N",
+"v": -2
+},
+{
+"h": "S",
+"v": 2
+},
+{
+"h": "M",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "S",
+"D": "N"
+},
+"answer": "C",
+"explanation": "N noktası −2 değerindedir; karşıtı 2 olup S noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Pekiştirme: Mutlak değer karşılaştırma\nYandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": 0
+},
+{
+"h": "T",
+"v": 6
+},
+{
+"h": "M",
+"v": 5
+},
+{
+"h": "L",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "R",
+"C": "T",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |0| = 0, |6| = 6, |5| = 5, |−7| = 7. En küçük: R.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Uygulama: Kâr ve zarar toplamı\nGörselde verilen bilgilere göre soruyu çözünüz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+20"
+],
+[
+"Salı",
+"+30"
+],
+[
+"Çarşamba",
+"+40"
+],
+[
+"Perşembe",
+"−25"
+],
+[
+"Cuma",
+"−35"
+]
+]
+},
+"options": {
+"A": "40 TL",
+"B": "150 TL",
+"C": "30 TL",
+"D": "20 TL"
+},
+"answer": "C",
+"explanation": "Değerler toplanır: +20 +30 +40 −25 −35 = 30 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Sıra sende: Sıcaklık farkı\nAşağıdaki görselde verilen bilgiler doğrultusunda soruya cevap veriniz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Sivas ile Konya arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Erzurum",
+"−7"
+],
+[
+"Konya",
+"3"
+],
+[
+"Sivas",
+"9"
+],
+[
+"Bolu",
+"−11"
+]
+]
+},
+"options": {
+"A": "12 °C",
+"B": "8 °C",
+"C": "4 °C",
+"D": "6 °C"
+},
+"answer": "D",
+"explanation": "9 ile 3 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 6 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. R noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "S",
+"v": -5
+},
+{
+"h": "R",
+"v": 2
+},
+{
+"h": "K",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "−2",
+"C": "1",
+"D": "3"
+},
+"answer": "A",
+"explanation": "R noktası sayı doğrusunda 2 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nSayı doğrusunda K noktası 3 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−4) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 3
+}
+],
+"hop": {
+"from": 3,
+"to": -1,
+"lab": "−4"
+},
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "−1",
+"C": "0",
+"D": "7"
+},
+"answer": "B",
+"explanation": "3 − 4 = −1.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 7
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "7",
+"C": "8",
+"D": "9"
+},
+"answer": "B",
+"explanation": "|7 − (0)| = 7 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "L",
+"v": -6
+},
+{
+"h": "M",
+"v": 1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "3",
+"C": "4",
+"D": "−3"
+},
+"answer": "B",
+"explanation": "K noktası −3 sayısını gösterir; mutlak değeri 3 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en yakın olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -1
+},
+{
+"h": "K",
+"v": 8
+},
+{
+"h": "M",
+"v": 4
+},
+{
+"h": "R",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "M",
+"C": "K",
+"D": "R"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: P = −1, K = 8, M = 4, R = 6. Sıfıra en yakın olan tam sayıyı P gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 20
+},
+{
+"h": "L",
+"v": 15
+}
+],
+"show_names": false
+},
+"options": {
+"A": "L şehri",
+"B": "Belirlenemez",
+"C": "K şehri",
+"D": "İkisi de aynı"
+},
+"answer": "A",
+"explanation": "Sıcaklıklar K = 20 °C, L = 15 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Sıra sende: Sayı doğrusunda karşıt sayı\nŞekle göre sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. P noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": 2
+},
+{
+"h": "M",
+"v": 5
+},
+{
+"h": "K",
+"v": 3
+},
+{
+"h": "P",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "R",
+"D": "P"
+},
+"answer": "B",
+"explanation": "P noktası −5 değerindedir; karşıtı 5 olup M noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Bakalım: Mutlak değer karşılaştırma\nVerilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en büyük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -4
+},
+{
+"h": "M",
+"v": 1
+},
+{
+"h": "L",
+"v": -8
+},
+{
+"h": "T",
+"v": 2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "K",
+"C": "M",
+"D": "L"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−4| = 4, |1| = 1, |−8| = 8, |2| = 2. En büyük: L.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Bakalım: Kâr ve zarar toplamı\nDers sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+25"
+],
+[
+"Salı",
+"+45"
+],
+[
+"Çarşamba",
+"−35"
+],
+[
+"Perşembe",
+"−15"
+],
+[
+"Cuma",
+"+30"
+]
+]
+},
+"options": {
+"A": "150 TL",
+"B": "40 TL",
+"C": "60 TL",
+"D": "50 TL"
+},
+"answer": "D",
+"explanation": "Değerler toplanır: +25 +45 −35 −15 +30 = 50 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Konu: Sıcaklık farkı\nAşağıdaki görsele göre sorulanı bulunuz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Erzurum ile Kars arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Kars",
+"5"
+],
+[
+"Ardahan",
+"−10"
+],
+[
+"Erzurum",
+"−4"
+],
+[
+"Ankara",
+"8"
+]
+]
+},
+"options": {
+"A": "7 °C",
+"B": "9 °C",
+"C": "11 °C",
+"D": "1 °C"
+},
+"answer": "B",
+"explanation": "−4 ile 5 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 9 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. N noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 0
+},
+{
+"h": "P",
+"v": -7
+},
+{
+"h": "N",
+"v": 5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "5",
+"C": "4",
+"D": "−5"
+},
+"answer": "B",
+"explanation": "N noktası sayı doğrusunda 5 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda K noktası −5 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−2) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -5
+}
+],
+"hop": {
+"from": -5,
+"to": -7,
+"lab": "−2"
+},
+"show_names": false
+},
+"options": {
+"A": "−6",
+"B": "7",
+"C": "−7",
+"D": "−3"
+},
+"answer": "C",
+"explanation": "−5 − 2 = −7.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "L",
+"v": 2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "C",
+"explanation": "|−3 − (2)| = 5 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -6
+},
+{
+"h": "L",
+"v": -8
+},
+{
+"h": "M",
+"v": 2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "−6",
+"C": "6",
+"D": "7"
+},
+"answer": "C",
+"explanation": "K noktası −6 sayısını gösterir; mutlak değeri 6 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en yakın olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": -4
+},
+{
+"h": "R",
+"v": -7
+},
+{
+"h": "T",
+"v": 2
+},
+{
+"h": "P",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "R",
+"C": "L",
+"D": "T"
+},
+"answer": "D",
+"explanation": "Noktaların değerleri: L = −4, R = −7, T = 2, P = 4. Sıfıra en yakın olan tam sayıyı T gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "L",
+"v": 20
+}
+],
+"show_names": false
+},
+"options": {
+"A": "K şehri",
+"B": "L şehri",
+"C": "İkisi de aynı",
+"D": "Belirlenemez"
+},
+"answer": "A",
+"explanation": "Sıcaklıklar K = −5 °C, L = 20 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Konu: Sayı doğrusunda karşıt sayı\nYandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. K noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": -6
+},
+{
+"h": "T",
+"v": 6
+},
+{
+"h": "L",
+"v": 5
+},
+{
+"h": "K",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "T",
+"C": "K",
+"D": "M"
+},
+"answer": "A",
+"explanation": "K noktası −5 değerindedir; karşıtı 5 olup L noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Konu: Mutlak değer karşılaştırma\nDers sırasında incelenen şekle bakarak soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": 2
+},
+{
+"h": "R",
+"v": -8
+},
+{
+"h": "T",
+"v": 6
+},
+{
+"h": "N",
+"v": -4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "R",
+"D": "T"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |2| = 2, |−8| = 8, |6| = 6, |−4| = 4. En küçük: M.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Konu: Kâr ve zarar toplamı\nÖğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+45"
+],
+[
+"Salı",
+"+35"
+],
+[
+"Çarşamba",
+"+20"
+],
+[
+"Perşembe",
+"−40"
+],
+[
+"Cuma",
+"+15"
+]
+]
+},
+"options": {
+"A": "65 TL",
+"B": "75 TL",
+"C": "155 TL",
+"D": "85 TL"
+},
+"answer": "B",
+"explanation": "Değerler toplanır: +45 +35 +20 −40 +15 = 75 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Uygulama: Sıcaklık farkı\nGörselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Van ile Konya arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Ardahan",
+"−4"
+],
+[
+"Bolu",
+"−12"
+],
+[
+"Van",
+"6"
+],
+[
+"Konya",
+"−7"
+]
+]
+},
+"options": {
+"A": "1 °C",
+"B": "11 °C",
+"C": "15 °C",
+"D": "13 °C"
+},
+"answer": "D",
+"explanation": "6 ile −7 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 13 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. P noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": 4
+},
+{
+"h": "S",
+"v": -6
+},
+{
+"h": "P",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−1",
+"B": "−2",
+"C": "2",
+"D": "−3"
+},
+"answer": "B",
+"explanation": "P noktası sayı doğrusunda −2 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nSayı doğrusunda K noktası −1 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+6) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -1
+}
+],
+"hop": {
+"from": -1,
+"to": 5,
+"lab": "+6"
+},
+"show_names": false
+},
+"options": {
+"A": "−7",
+"B": "6",
+"C": "5",
+"D": "−5"
+},
+"answer": "C",
+"explanation": "−1 + 6 = 5.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "C",
+"explanation": "|5 − (−7)| = 12 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 6
+},
+{
+"h": "L",
+"v": 0
+},
+{
+"h": "M",
+"v": 3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−6",
+"B": "6",
+"C": "0",
+"D": "7"
+},
+"answer": "B",
+"explanation": "K noktası 6 sayısını gösterir; mutlak değeri 6 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En büyük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -8
+},
+{
+"h": "T",
+"v": -5
+},
+{
+"h": "N",
+"v": -4
+},
+{
+"h": "P",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "T",
+"C": "N",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: K = −8, T = −5, N = −4, P = −2. En büyük tam sayıyı P gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 20
+},
+{
+"h": "L",
+"v": -10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "35 °C",
+"B": "15 °C",
+"C": "30 °C",
+"D": "25 °C"
+},
+"answer": "C",
+"explanation": "20 °C ile −10 °C arasındaki fark 30 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Sıra sende: Sayı doğrusunda karşıt sayı\nGörselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. K noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 6
+},
+{
+"h": "N",
+"v": -3
+},
+{
+"h": "S",
+"v": 7
+},
+{
+"h": "K",
+"v": 3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "T",
+"C": "N",
+"D": "K"
+},
+"answer": "C",
+"explanation": "K noktası 3 değerindedir; karşıtı −3 olup N noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Değerlendirme: Mutlak değer karşılaştırma\nGörselde verilen bilgilere göre soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 8
+},
+{
+"h": "N",
+"v": 5
+},
+{
+"h": "R",
+"v": 2
+},
+{
+"h": "P",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "P",
+"C": "K",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |8| = 8, |5| = 5, |2| = 2, |−7| = 7. En küçük: R.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Tekrar: Kâr ve zarar toplamı\nVerilen şekilden yararlanarak sorulanı bulunuz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+15"
+],
+[
+"Salı",
+"−40"
+],
+[
+"Çarşamba",
+"+20"
+],
+[
+"Perşembe",
+"+25"
+],
+[
+"Cuma",
+"+10"
+]
+]
+},
+"options": {
+"A": "110 TL",
+"B": "20 TL",
+"C": "30 TL",
+"D": "40 TL"
+},
+"answer": "C",
+"explanation": "Değerler toplanır: +15 −40 +20 +25 +10 = 30 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Değerlendirme: Sıcaklık farkı\nÇalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Ankara ile Konya arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Konya",
+"−12"
+],
+[
+"Bolu",
+"4"
+],
+[
+"Ankara",
+"−11"
+],
+[
+"Kars",
+"0"
+]
+]
+},
+"options": {
+"A": "1 °C",
+"B": "3 °C",
+"C": "5 °C",
+"D": "23 °C"
+},
+"answer": "A",
+"explanation": "−11 ile −12 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 1 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. P noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -1
+},
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "N",
+"v": 3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "−2",
+"C": "1",
+"D": "−1"
+},
+"answer": "D",
+"explanation": "P noktası sayı doğrusunda −1 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nSayı doğrusunda K noktası 5 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+3) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+}
+],
+"hop": {
+"from": 5,
+"to": 8,
+"lab": "+3"
+},
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "−8",
+"C": "8",
+"D": "2"
+},
+"answer": "C",
+"explanation": "5 + 3 = 8.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -2
+},
+{
+"h": "L",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "7",
+"C": "8",
+"D": "9"
+},
+"answer": "C",
+"explanation": "|−2 − (6)| = 8 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 3
+},
+{
+"h": "L",
+"v": 2
+},
+{
+"h": "M",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−3",
+"B": "4",
+"C": "0",
+"D": "3"
+},
+"answer": "D",
+"explanation": "K noktası 3 sayısını gösterir; mutlak değeri 3 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en uzak olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "M",
+"v": -4
+},
+{
+"h": "L",
+"v": 4
+},
+{
+"h": "T",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "T",
+"C": "M",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: K = 5, M = −4, L = 4, T = 0. Sıfıra en uzak olan tam sayıyı K gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "L",
+"v": 20
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30 °C",
+"B": "20 °C",
+"C": "35 °C",
+"D": "25 °C"
+},
+"answer": "D",
+"explanation": "−5 °C ile 20 °C arasındaki fark 25 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Konu: Sayı doğrusunda karşıt sayı\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. N noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": -7
+},
+{
+"h": "K",
+"v": 3
+},
+{
+"h": "N",
+"v": 5
+},
+{
+"h": "M",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "C",
+"explanation": "N noktası 5 değerindedir; karşıtı −5 olup M noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Uygulama: Mutlak değer karşılaştırma\nŞekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -4
+},
+{
+"h": "P",
+"v": -5
+},
+{
+"h": "T",
+"v": -2
+},
+{
+"h": "L",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "L",
+"C": "P",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−4| = 4, |−5| = 5, |−2| = 2, |−7| = 7. En küçük: T.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Soru: Kâr ve zarar toplamı\nGörselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−25"
+],
+[
+"Salı",
+"−20"
+],
+[
+"Çarşamba",
+"+25"
+],
+[
+"Perşembe",
+"+20"
+],
+[
+"Cuma",
+"+15"
+]
+]
+},
+"options": {
+"A": "15 TL",
+"B": "5 TL",
+"C": "105 TL",
+"D": "25 TL"
+},
+"answer": "A",
+"explanation": "Değerler toplanır: −25 −20 +25 +20 +15 = 15 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Pekiştirme: Sıcaklık farkı\nAşağıdaki görselde verilen bilgiler doğrultusunda soruya cevap veriniz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Van ile Ankara arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Ankara",
+"−13"
+],
+[
+"Bolu",
+"−9"
+],
+[
+"Van",
+"9"
+],
+[
+"Konya",
+"2"
+]
+]
+},
+"options": {
+"A": "22 °C",
+"B": "24 °C",
+"C": "4 °C",
+"D": "20 °C"
+},
+"answer": "A",
+"explanation": "9 ile −13 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 22 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. M noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": -6
+},
+{
+"h": "P",
+"v": -1
+},
+{
+"h": "K",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−6",
+"B": "−5",
+"C": "6",
+"D": "−7"
+},
+"answer": "A",
+"explanation": "M noktası sayı doğrusunda −6 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nSayı doğrusunda K noktası 0 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+5) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 0
+}
+],
+"hop": {
+"from": 0,
+"to": 5,
+"lab": "+5"
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "−5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "0 + 5 = 5.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -4
+},
+{
+"h": "L",
+"v": 1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "C",
+"explanation": "|−4 − (1)| = 5 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": 1
+},
+{
+"h": "M",
+"v": -8
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "0",
+"C": "−5",
+"D": "6"
+},
+"answer": "A",
+"explanation": "K noktası 5 sayısını gösterir; mutlak değeri 5 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En büyük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": -6
+},
+{
+"h": "N",
+"v": -3
+},
+{
+"h": "P",
+"v": 1
+},
+{
+"h": "K",
+"v": -7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "N",
+"D": "P"
+},
+"answer": "D",
+"explanation": "Noktaların değerleri: M = −6, N = −3, P = 1, K = −7. En büyük tam sayıyı P gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. İki şehir arasındaki sıcaklık farkı kaç °C'dir?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5 °C",
+"B": "15 °C",
+"C": "10 °C",
+"D": "0 °C"
+},
+"answer": "A",
+"explanation": "−5 °C ile 0 °C arasındaki fark 5 °C'dir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Sıra sende: Sayı doğrusunda karşıt sayı\nÇalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. M noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": 2
+},
+{
+"h": "N",
+"v": 6
+},
+{
+"h": "K",
+"v": 7
+},
+{
+"h": "M",
+"v": -6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "B",
+"explanation": "M noktası −6 değerindedir; karşıtı 6 olup N noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Deneme: Mutlak değer karşılaştırma\nŞekilde verilenleri dikkate alarak sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en büyük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": -4
+},
+{
+"h": "P",
+"v": -8
+},
+{
+"h": "S",
+"v": -2
+},
+{
+"h": "K",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "P",
+"C": "S",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |−4| = 4, |−8| = 8, |−2| = 2, |−5| = 5. En büyük: P.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Uygulama: Kâr ve zarar toplamı\nYandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−25"
+],
+[
+"Salı",
+"+30"
+],
+[
+"Çarşamba",
+"+35"
+],
+[
+"Perşembe",
+"−40"
+],
+[
+"Cuma",
+"+15"
+]
+]
+},
+"options": {
+"A": "15 TL",
+"B": "25 TL",
+"C": "145 TL",
+"D": "5 TL"
+},
+"answer": "A",
+"explanation": "Değerler toplanır: −25 +30 +35 −40 +15 = 15 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Bakalım: Sıcaklık farkı\nDers sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Konya ile Kars arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Van",
+"−11"
+],
+[
+"Konya",
+"−3"
+],
+[
+"Ankara",
+"8"
+],
+[
+"Kars",
+"−7"
+]
+]
+},
+"options": {
+"A": "10 °C",
+"B": "2 °C",
+"C": "6 °C",
+"D": "4 °C"
+},
+"answer": "D",
+"explanation": "−3 ile −7 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 4 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. K noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "N",
+"v": 6
+},
+{
+"h": "K",
+"v": -4
+},
+{
+"h": "S",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−4",
+"B": "−3",
+"C": "4",
+"D": "−5"
+},
+"answer": "A",
+"explanation": "K noktası sayı doğrusunda −4 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nSayı doğrusunda K noktası 5 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−5) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+}
+],
+"hop": {
+"from": 5,
+"to": 0,
+"lab": "−5"
+},
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "10",
+"D": "−1"
+},
+"answer": "A",
+"explanation": "5 − 5 = 0.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 2
+},
+{
+"h": "L",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "8",
+"D": "9"
+},
+"answer": "A",
+"explanation": "|2 − (6)| = 4 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 8
+},
+{
+"h": "L",
+"v": -3
+},
+{
+"h": "M",
+"v": 0
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "−8",
+"C": "9",
+"D": "8"
+},
+"answer": "D",
+"explanation": "K noktası 8 sayısını gösterir; mutlak değeri 8 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en uzak olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": 7
+},
+{
+"h": "K",
+"v": -2
+},
+{
+"h": "S",
+"v": 0
+},
+{
+"h": "N",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Noktaların değerleri: M = 7, K = −2, S = 0, N = 4. Sıfıra en uzak olan tam sayıyı M gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 20
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Belirlenemez",
+"B": "İkisi de aynı",
+"C": "K şehri",
+"D": "L şehri"
+},
+"answer": "D",
+"explanation": "Sıcaklıklar K = 20 °C, L = 0 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Deneme: Sayı doğrusunda karşıt sayı\nÖğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. K noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": 2
+},
+{
+"h": "M",
+"v": 5
+},
+{
+"h": "K",
+"v": -7
+},
+{
+"h": "R",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "K noktası −7 değerindedir; karşıtı 7 olup R noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Etkinlik: Mutlak değer karşılaştırma\nÖğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 7
+},
+{
+"h": "S",
+"v": -1
+},
+{
+"h": "N",
+"v": 6
+},
+{
+"h": "P",
+"v": -8
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "T",
+"C": "N",
+"D": "S"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |7| = 7, |−1| = 1, |6| = 6, |−8| = 8. En küçük: S.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Deneme: Kâr ve zarar toplamı\nVerilen şekilden yararlanarak soruyu çözünüz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−25"
+],
+[
+"Salı",
+"+45"
+],
+[
+"Çarşamba",
+"+10"
+],
+[
+"Perşembe",
+"−15"
+],
+[
+"Cuma",
+"+15"
+]
+]
+},
+"options": {
+"A": "40 TL",
+"B": "110 TL",
+"C": "30 TL",
+"D": "20 TL"
+},
+"answer": "C",
+"explanation": "Değerler toplanır: −25 +45 +10 −15 +15 = 30 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Tekrar: Sıcaklık farkı\nÖğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Van ile Ardahan arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Kars",
+"−13"
+],
+[
+"Ardahan",
+"−14"
+],
+[
+"Van",
+"−10"
+],
+[
+"Konya",
+"−9"
+]
+]
+},
+"options": {
+"A": "4 °C",
+"B": "2 °C",
+"C": "24 °C",
+"D": "6 °C"
+},
+"answer": "A",
+"explanation": "−10 ile −14 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 4 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. L noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": -7
+},
+{
+"h": "M",
+"v": 1
+},
+{
+"h": "N",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−8",
+"B": "−6",
+"C": "−7",
+"D": "7"
+},
+"answer": "C",
+"explanation": "L noktası sayı doğrusunda −7 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nSayı doğrusunda K noktası −2 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (−6) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -2
+}
+],
+"hop": {
+"from": -2,
+"to": -8,
+"lab": "−6"
+},
+"show_names": false
+},
+"options": {
+"A": "−8",
+"B": "−7",
+"C": "4",
+"D": "8"
+},
+"answer": "A",
+"explanation": "−2 − 6 = −8.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "C",
+"explanation": "|5 − (−2)| = 7 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 8
+},
+{
+"h": "L",
+"v": -7
+},
+{
+"h": "M",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "−8",
+"C": "0",
+"D": "8"
+},
+"answer": "D",
+"explanation": "K noktası 8 sayısını gösterir; mutlak değeri 8 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en yakın olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": 2
+},
+{
+"h": "M",
+"v": 8
+},
+{
+"h": "R",
+"v": 6
+},
+{
+"h": "L",
+"v": 5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "P",
+"D": "R"
+},
+"answer": "C",
+"explanation": "Noktaların değerleri: P = 2, M = 8, R = 6, L = 5. Sıfıra en yakın olan tam sayıyı P gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": -10
+},
+{
+"h": "L",
+"v": 0
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Belirlenemez",
+"B": "L şehri",
+"C": "K şehri",
+"D": "İkisi de aynı"
+},
+"answer": "C",
+"explanation": "Sıcaklıklar K = −10 °C, L = 0 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Uygulama: Sayı doğrusunda karşıt sayı\nVerilen şekilden yararlanarak şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. R noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": -4
+},
+{
+"h": "P",
+"v": 3
+},
+{
+"h": "N",
+"v": 2
+},
+{
+"h": "L",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "R",
+"C": "P",
+"D": "L"
+},
+"answer": "D",
+"explanation": "R noktası −4 değerindedir; karşıtı 4 olup L noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Çalışma: Mutlak değer karşılaştırma\nÖğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 8
+},
+{
+"h": "N",
+"v": -6
+},
+{
+"h": "K",
+"v": -3
+},
+{
+"h": "P",
+"v": -4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "P",
+"C": "N",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |8| = 8, |−6| = 6, |−3| = 3, |−4| = 4. En küçük: K.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Değerlendirme: Kâr ve zarar toplamı\nŞekle göre sorulanı bulunuz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"−40"
+],
+[
+"Salı",
+"+45"
+],
+[
+"Çarşamba",
+"+30"
+],
+[
+"Perşembe",
+"+40"
+],
+[
+"Cuma",
+"−35"
+]
+]
+},
+"options": {
+"A": "30 TL",
+"B": "40 TL",
+"C": "190 TL",
+"D": "50 TL"
+},
+"answer": "B",
+"explanation": "Değerler toplanır: −40 +45 +30 +40 −35 = 40 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Çalışma: Sıcaklık farkı\nYandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Konya ile Ardahan arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Ardahan",
+"8"
+],
+[
+"Kars",
+"−14"
+],
+[
+"Erzurum",
+"2"
+],
+[
+"Konya",
+"−6"
+]
+]
+},
+"options": {
+"A": "16 °C",
+"B": "12 °C",
+"C": "14 °C",
+"D": "2 °C"
+},
+"answer": "C",
+"explanation": "−6 ile 8 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 14 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. L noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": -3
+},
+{
+"h": "T",
+"v": 7
+},
+{
+"h": "R",
+"v": -1
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−4",
+"B": "3",
+"C": "−3",
+"D": "−2"
+},
+"answer": "C",
+"explanation": "L noktası sayı doğrusunda −3 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nSayı doğrusunda K noktası 0 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+7) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 0
+}
+],
+"hop": {
+"from": 0,
+"to": 7,
+"lab": "+7"
+},
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "8",
+"C": "−7",
+"D": "7"
+},
+"answer": "D",
+"explanation": "0 + 7 = 7.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 7
+},
+{
+"h": "L",
+"v": -5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "C",
+"explanation": "|7 − (−5)| = 12 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nSayı doğrusunda K, L ve M noktaları gösterilmiştir. K noktasının gösterdiği tam sayının mutlak değeri kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -5
+},
+{
+"h": "L",
+"v": -1
+},
+{
+"h": "M",
+"v": -3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "5",
+"C": "6",
+"D": "−5"
+},
+"answer": "B",
+"explanation": "K noktası −5 sayısını gösterir; mutlak değeri 5 olur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Sıfıra en yakın olan tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": 4
+},
+{
+"h": "K",
+"v": 6
+},
+{
+"h": "R",
+"v": 2
+},
+{
+"h": "M",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "R",
+"C": "L",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Noktaların değerleri: L = 4, K = 6, R = 2, M = 7. Sıfıra en yakın olan tam sayıyı R gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": -10
+},
+{
+"h": "L",
+"v": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Belirlenemez",
+"B": "K şehri",
+"C": "İkisi de aynı",
+"D": "L şehri"
+},
+"answer": "B",
+"explanation": "Sıcaklıklar K = −10 °C, L = 10 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Uygulama: Sayı doğrusunda karşıt sayı\nŞekilde verilenleri dikkate alarak soruya cevap veriniz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. P noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "M",
+"v": 6
+},
+{
+"h": "R",
+"v": 2
+},
+{
+"h": "S",
+"v": 3
+},
+{
+"h": "P",
+"v": -2
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "P",
+"C": "R",
+"D": "S"
+},
+"answer": "C",
+"explanation": "P noktası −2 değerindedir; karşıtı 2 olup R noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Sıra sende: Mutlak değer karşılaştırma\nÇalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 8
+},
+{
+"h": "K",
+"v": 1
+},
+{
+"h": "M",
+"v": 2
+},
+{
+"h": "L",
+"v": 5
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "T",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |8| = 8, |1| = 1, |2| = 2, |5| = 5. En küçük: K.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Etkinlik: Kâr ve zarar toplamı\nGörselde verilen bilgilere göre soruyu çözünüz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+45"
+],
+[
+"Salı",
+"+15"
+],
+[
+"Çarşamba",
+"+35"
+],
+[
+"Perşembe",
+"−40"
+],
+[
+"Cuma",
+"+25"
+]
+]
+},
+"options": {
+"A": "80 TL",
+"B": "90 TL",
+"C": "70 TL",
+"D": "160 TL"
+},
+"answer": "A",
+"explanation": "Değerler toplanır: +45 +15 +35 −40 +25 = 80 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Bakalım: Sıcaklık farkı\nŞekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Sivas ile Bolu arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Konya",
+"8"
+],
+[
+"Sivas",
+"1"
+],
+[
+"Ankara",
+"4"
+],
+[
+"Bolu",
+"−6"
+]
+]
+},
+"options": {
+"A": "9 °C",
+"B": "12 °C",
+"C": "7 °C",
+"D": "5 °C"
+},
+"answer": "C",
+"explanation": "1 ile −6 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 7 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. S noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "T",
+"v": 0
+},
+{
+"h": "P",
+"v": 3
+},
+{
+"h": "S",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "−7",
+"B": "7",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "S noktası sayı doğrusunda 7 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama-çıkarma",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nSayı doğrusunda K noktası −5 sayısını göstermektedir. K noktasından başlayarak şekildeki ok yönünde ilerlenirse (+5) hangi tam sayıya ulaşılır?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": -5
+}
+],
+"hop": {
+"from": -5,
+"to": 0,
+"lab": "+5"
+},
+"show_names": false
+},
+"options": {
+"A": "−10",
+"B": "0",
+"C": "−1",
+"D": "1"
+},
+"answer": "B",
+"explanation": "−5 + 5 = 0.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_hop"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nSayı doğrusunda K ve L noktaları gösterilmiştir. Bu iki nokta arasındaki uzaklık kaç birimdir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "K",
+"v": 5
+},
+{
+"h": "L",
+"v": 7
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "12",
+"D": "13"
+},
+"answer": "A",
+"explanation": "|5 − (7)| = 2 birimdir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_uzak"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. En büyük tam sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "L",
+"v": -6
+},
+{
+"h": "S",
+"v": 4
+},
+{
+"h": "R",
+"v": -1
+},
+{
+"h": "T",
+"v": 6
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "R",
+"C": "S",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Noktaların değerleri: L = −6, S = 4, R = −1, T = 6. En büyük tam sayıyı T gösterir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sirala"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki K ve L termometreleri iki farklı şehrin sıcaklığını göstermektedir. Hangi şehir daha soğuktur?",
+"shape": {
+"type": "m6",
+"sub_type": "termo",
+"lo": -10,
+"hi": 20,
+"items": [
+{
+"h": "K",
+"v": 15
+},
+{
+"h": "L",
+"v": -10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Belirlenemez",
+"B": "L şehri",
+"C": "K şehri",
+"D": "İkisi de aynı"
+},
+"answer": "B",
+"explanation": "Sıcaklıklar K = 15 °C, L = −10 °C; daha düşük olan daha soğuktur.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_termo"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Deneme: Sayı doğrusunda karşıt sayı\nYandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. L noktasının gösterdiği sayının karşıtı (toplama işlemine göre tersi) hangi noktayla gösterilmiştir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "N",
+"v": -4
+},
+{
+"h": "K",
+"v": -7
+},
+{
+"h": "L",
+"v": 4
+},
+{
+"h": "S",
+"v": 3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "S"
+},
+"answer": "C",
+"explanation": "L noktası 4 değerindedir; karşıtı −4 olup N noktasıdır.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_karsit"
+},
+{
+"subject": "Matematik",
+"topic": "Mutlak değer",
+"passage": "",
+"question": "Soru: Mutlak değer karşılaştırma\nDers sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nSayı doğrusunda dört nokta harflerle gösterilmiştir. Mutlak değeri en küçük olan sayıyı gösteren nokta hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "R",
+"v": 1
+},
+{
+"h": "K",
+"v": -2
+},
+{
+"h": "T",
+"v": -8
+},
+{
+"h": "N",
+"v": 4
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "T",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Mutlak değer, sayının sıfıra uzaklığıdır: |1| = 1, |−2| = 2, |−8| = 8, |4| = 4. En küçük: R.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_mutlak_en"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla toplama",
+"passage": "",
+"question": "Tekrar: Kâr ve zarar toplamı\nÇalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nTabloda bir kantinin beş günlük kâr ve zarar durumu verilmiştir. Bu beş günün sonunda kantinin toplam durumu kaç TL’dir? (Kâr artı, zarar eksi sayılır.)",
+"shape": {
+"type": "table",
+"title": "Bir kantinin günlük kâr (+) ve zararı (−) (TL)",
+"headers": [
+"Gün",
+"Kâr/Zarar (TL)"
+],
+"rows": [
+[
+"Pazartesi",
+"+35"
+],
+[
+"Salı",
+"+45"
+],
+[
+"Çarşamba",
+"+30"
+],
+[
+"Perşembe",
+"−15"
+],
+[
+"Cuma",
+"−40"
+]
+]
+},
+"options": {
+"A": "55 TL",
+"B": "65 TL",
+"C": "165 TL",
+"D": "45 TL"
+},
+"answer": "A",
+"explanation": "Değerler toplanır: +35 +45 +30 −15 −40 = 55 TL.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_bilanco"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılarla çıkarma",
+"passage": "",
+"question": "Soru: Sıcaklık farkı\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört şehrin bir sabahki sıcaklıkları verilmiştir. Erzurum ile Ankara arasındaki sıcaklık farkı kaç °C’dir?",
+"shape": {
+"type": "table",
+"title": "Bir sabahın sıcaklıkları (°C)",
+"headers": [
+"Şehir",
+"Sıcaklık (°C)"
+],
+"rows": [
+[
+"Ankara",
+"5"
+],
+[
+"Bolu",
+"−10"
+],
+[
+"Erzurum",
+"1"
+],
+[
+"Kars",
+"−6"
+]
+]
+},
+"options": {
+"A": "4 °C",
+"B": "2 °C",
+"C": "6 °C",
+"D": "9 °C"
+},
+"answer": "A",
+"explanation": "1 ile 5 arasındaki fark, sayı doğrusunda aradaki uzaklıktır: 4 °C.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_sicaklik_fark"
+},
+{
+"subject": "Matematik",
+"topic": "Tam sayılar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nSayı doğrusunda üç nokta harflerle gösterilmiştir. P noktası hangi tam sayıyı gösterir?",
+"shape": {
+"type": "m6",
+"sub_type": "tsayi",
+"lo": -8,
+"hi": 8,
+"pts": [
+{
+"h": "P",
+"v": -1
+},
+{
+"h": "T",
+"v": -2
+},
+{
+"h": "R",
+"v": -3
+}
+],
+"hop": null,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "0",
+"C": "−1",
+"D": "−2"
+},
+"answer": "C",
+"explanation": "P noktası sayı doğrusunda −1 değerindedir.",
+"unit": "Tam Sayılar",
+"topics": "Tam sayılarla toplama-çıkarma, Mutlak değer",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_ts_oku"
+}
+]
+}

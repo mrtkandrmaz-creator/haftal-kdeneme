@@ -1,0 +1,7278 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 0’dan büyük olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1",
+"B": "1/2",
+"C": "1/3",
+"D": "2/3"
+},
+"answer": "A",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 6; olasılık = 1.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Bir kutuda 1’den 8’e kadar numaralanmış 8 özdeş kart vardır. Kutudan rastgele çekilen bir kartın numarasının 5’ten büyük olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "0",
+"B": "3/8",
+"C": "5/8",
+"D": "1/2"
+},
+"answer": "B",
+"explanation": "1’den 8’e kadar 5’ten büyük olan 3 kart vardır; toplam 8 kart → 3/8.",
+"kz": [
+"MAT.5.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_kart"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 2 kırmızı düğme, 8 yeşil düğme ve 7 mavi düğme vardır. Rastgele seçilen birinin kırmızı düğme olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/17",
+"B": "3/17",
+"C": "2/15",
+"D": "15/17"
+},
+"answer": "A",
+"explanation": "Toplam 17; kırmızı olan 2 tane → 2/17.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Aşağıdaki olaylardan hangisinin olasılığı 0 olan (imkânsız) bir olaydır?",
+"shape": null,
+"options": {
+"A": "Üst yüze gelen sayı 7’den küçüktür.",
+"B": "Üst yüze gelen sayı çifttir.",
+"C": "Üst yüze gelen sayı asaldır.",
+"D": "Üst yüze gelen sayı 10’dan büyüktür."
+},
+"answer": "D",
+"explanation": "Zarda 1, 2, 3, 4, 5, 6 vardır. “Üst yüze gelen sayı 10’dan büyüktür.” olayının olasılığı 0 (imkânsız).",
+"kz": [
+"MAT.5.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probdeg"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 12 sarı düğme, 8 mavi düğme, 3 kırmızı düğme ve 10 yeşil düğme vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "mavi",
+"B": "yeşil",
+"C": "sarı",
+"D": "kırmızı"
+},
+"answer": "C",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan sarı (12 tane, toplam 33).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+17,
+15,
+12,
+16,
+20
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "16",
+"C": "17",
+"D": "18"
+},
+"answer": "B",
+"explanation": "(17 + 15 + 12 + 16 + 20) ÷ 5 = 80 ÷ 5 = 16.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 16 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+17,
+14,
+14,
+15
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 16)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "20",
+"C": "21",
+"D": "22"
+},
+"answer": "B",
+"explanation": "Toplam 16 × 5 = 80; ilk 4 gün 60; 5. gün 80 − 60 = 20.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+20,
+25,
+29,
+25,
+22,
+29
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "25",
+"C": "26",
+"D": "27"
+},
+"answer": "B",
+"explanation": "150 ÷ 6 = 25 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Çizgi grafiği",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nÇizgi grafiğinde bir mağazanın aylara göre satış adedi gösterilmiştir. Hangi iki ay arasında satış sayısındaki değişim (artış ya da azalış) en fazladır?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+31,
+47,
+31,
+58,
+15,
+31
+],
+"title": "Bir mağazanın aylık satış adedi",
+"ylabel": "Satış (adet)",
+"show_names": false
+},
+"options": {
+"A": "Mayıs – Haziran",
+"B": "Nisan – Mayıs",
+"C": "Mart – Nisan",
+"D": "Şubat – Mart"
+},
+"answer": "B",
+"explanation": "Ardışık aylar arasındaki farklar: 16, 16, 27, 43, 16. En büyük fark Nisan – Mayıs arasındadır (43).",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_art"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Fen dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Matematik",
+"Fen",
+"Türkçe",
+"Sosyal"
+],
+"values": [
+40,
+25,
+15,
+20
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "72°",
+"C": "90°",
+"D": "108°"
+},
+"answer": "C",
+"explanation": "360° × %25 = 90°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nDaire grafiğinde 120 öğrencinin kulüp tercihleri yüzde olarak gösterilmiştir. C kulübü'ni seçen öğrenci sayısı, B kulübü'ni seçenlerden kaç fazladır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"A kulübü",
+"B kulübü",
+"C kulübü",
+"D kulübü"
+],
+"values": [
+15,
+25,
+50,
+10
+],
+"title": "120 öğrencinin kulüp tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "28 öğrenci",
+"B": "34 öğrenci",
+"C": "32 öğrenci",
+"D": "30 öğrenci"
+},
+"answer": "D",
+"explanation": "C kulübü: 120 × %50 = 60; B kulübü: 30; fark = 30.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_say"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda Bir çarktan çıkan rengin 28 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"5"
+],
+[
+"mor",
+"13"
+],
+[
+"beyaz",
+"10"
+]
+]
+},
+"options": {
+"A": "5/41",
+"B": "23/28",
+"C": "13/28",
+"D": "5/28"
+},
+"answer": "D",
+"explanation": "Toplam 28 denemede sarı 5 kez çıkmıştır; tahmin 5/28 = 5/28.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 7 olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/6",
+"B": "0",
+"C": "2/3",
+"D": "1/3"
+},
+"answer": "B",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 0; olasılık = 0.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 3 limonlu şeker, 5 çilekli şeker ve 4 vişneli şeker vardır. Rastgele seçilen birinin limonlu şeker olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "3/4",
+"B": "1/3",
+"C": "1/4",
+"D": "5/12"
+},
+"answer": "C",
+"explanation": "Toplam 12; limonlu olan 3 tane → 1/4.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Aşağıdaki olaylardan hangisinin olasılığı 1/2 olan bir olaydır?",
+"shape": null,
+"options": {
+"A": "Üst yüze gelen sayı çifttir.",
+"B": "Üst yüze gelen sayı 7’dir.",
+"C": "Üst yüze gelen sayı 1’dir.",
+"D": "Üst yüze gelen sayı 10’dan büyüktür."
+},
+"answer": "A",
+"explanation": "Zarda 1, 2, 3, 4, 5, 6 vardır. “Üst yüze gelen sayı çifttir.” olayının olasılığı 1/2.",
+"kz": [
+"MAT.5.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probdeg"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 10 siyah top, 2 kırmızı top, 1 beyaz top ve 7 turuncu top vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "kırmızı",
+"B": "turuncu",
+"C": "siyah",
+"D": "beyaz"
+},
+"answer": "D",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan beyaz (1 tane, toplam 20).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+6,
+10,
+18,
+10
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "B",
+"explanation": "(6 + 10 + 18 + 10) ÷ 4 = 44 ÷ 4 = 11.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 12 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+6,
+12,
+7,
+20
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 12)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "16",
+"D": "17"
+},
+"answer": "B",
+"explanation": "Toplam 12 × 5 = 60; ilk 4 gün 45; 5. gün 60 − 45 = 15.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+39,
+22,
+20,
+31
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "28",
+"C": "29",
+"D": "30"
+},
+"answer": "B",
+"explanation": "112 ÷ 4 = 28 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Çizgi grafiği",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nÇizgi grafiğinde bir mağazanın aylara göre satış adedi gösterilmiştir. Hangi iki ay arasında satış sayısındaki değişim (artış ya da azalış) en fazladır?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+27,
+60,
+41,
+40,
+19,
+40
+],
+"title": "Bir mağazanın aylık satış adedi",
+"ylabel": "Satış (adet)",
+"show_names": false
+},
+"options": {
+"A": "Şubat – Mart",
+"B": "Ocak – Şubat",
+"C": "Mart – Nisan",
+"D": "Nisan – Mayıs"
+},
+"answer": "B",
+"explanation": "Ardışık aylar arasındaki farklar: 33, 19, 1, 21, 21. En büyük fark Ocak – Şubat arasındadır (33).",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_art"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Kırmızı dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+10,
+30,
+40,
+20
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "10°",
+"B": "18°",
+"C": "36°",
+"D": "54°"
+},
+"answer": "C",
+"explanation": "360° × %10 = 36°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nDaire grafiğinde 60 öğrencinin kulüp tercihleri yüzde olarak gösterilmiştir. B kulübü'ni seçen öğrenci sayısı, C kulübü'ni seçenlerden kaç fazladır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"A kulübü",
+"B kulübü",
+"C kulübü",
+"D kulübü"
+],
+"values": [
+30,
+20,
+10,
+40
+],
+"title": "60 öğrencinin kulüp tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "6 öğrenci",
+"B": "4 öğrenci",
+"C": "10 öğrenci",
+"D": "8 öğrenci"
+},
+"answer": "A",
+"explanation": "B kulübü: 60 × %20 = 12; C kulübü: 6; fark = 6.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_say"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda Bir çarktan çıkan rengin 37 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede beyaz gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"14"
+],
+[
+"mor",
+"14"
+],
+[
+"beyaz",
+"9"
+]
+]
+},
+"options": {
+"A": "28/37",
+"B": "3/17",
+"C": "9/37",
+"D": "14/37"
+},
+"answer": "C",
+"explanation": "Toplam 37 denemede beyaz 9 kez çıkmıştır; tahmin 9/37 = 9/37.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının çift sayı olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/2",
+"B": "1/3",
+"C": "1",
+"D": "5/6"
+},
+"answer": "A",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 3; olasılık = 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Çantada 2 kırmızı kalem, 5 mavi kalem ve 3 yeşil kalem vardır. Rastgele seçilen birinin mavi kalem olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "3/5",
+"B": "1",
+"C": "1/2",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "Toplam 10; mavi olan 5 tane → 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kutuda 7 sarı bilye, 4 kırmızı bilye, 10 mavi bilye ve 8 yeşil bilye vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "kırmızı",
+"B": "sarı",
+"C": "mavi",
+"D": "yeşil"
+},
+"answer": "C",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan mavi (10 tane, toplam 29).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+16,
+4,
+7,
+17
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "B",
+"explanation": "(16 + 4 + 7 + 17) ÷ 4 = 44 ÷ 4 = 11.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+16,
+14,
+14,
+9
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "17",
+"C": "18",
+"D": "19"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 53; 5. gün 70 − 53 = 17.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+11,
+38,
+21,
+37,
+32,
+29
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "28",
+"C": "29",
+"D": "30"
+},
+"answer": "B",
+"explanation": "168 ÷ 6 = 28 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Çizgi grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nÇizgi grafiğinde bir mağazanın aylara göre satış adedi gösterilmiştir. Hangi iki ay arasında satış sayısındaki değişim (artış ya da azalış) en fazladır?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+42,
+53,
+17,
+12,
+46,
+11
+],
+"title": "Bir mağazanın aylık satış adedi",
+"ylabel": "Satış (adet)",
+"show_names": false
+},
+"options": {
+"A": "Mart – Nisan",
+"B": "Şubat – Mart",
+"C": "Ocak – Şubat",
+"D": "Nisan – Mayıs"
+},
+"answer": "B",
+"explanation": "Ardışık aylar arasındaki farklar: 11, 36, 5, 34, 35. En büyük fark Şubat – Mart arasındadır (36).",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_art"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Yüzme dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+50,
+15,
+10,
+25
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "10°",
+"B": "18°",
+"C": "36°",
+"D": "54°"
+},
+"answer": "C",
+"explanation": "360° × %10 = 36°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nDaire grafiğinde 200 öğrencinin kulüp tercihleri yüzde olarak gösterilmiştir. C kulübü'ni seçen öğrenci sayısı, D kulübü'ni seçenlerden kaç fazladır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"A kulübü",
+"B kulübü",
+"C kulübü",
+"D kulübü"
+],
+"values": [
+10,
+45,
+25,
+20
+],
+"title": "200 öğrencinin kulüp tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "14 öğrenci",
+"B": "10 öğrenci",
+"C": "8 öğrenci",
+"D": "12 öğrenci"
+},
+"answer": "B",
+"explanation": "C kulübü: 200 × %25 = 50; D kulübü: 40; fark = 10.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_say"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda Bir çarktan çıkan rengin 22 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede beyaz gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"8"
+],
+[
+"mor",
+"4"
+],
+[
+"beyaz",
+"10"
+]
+]
+},
+"options": {
+"A": "4/11",
+"B": "6/11",
+"C": "5/11",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "Toplam 22 denemede beyaz 10 kez çıkmıştır; tahmin 10/22 = 5/11.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 1 veya 2 olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/3",
+"B": "5/6",
+"C": "1/3",
+"D": "1"
+},
+"answer": "C",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 2; olasılık = 1/3.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Sepette 3 portakal, 8 armut ve 5 muz vardır. Rastgele seçilen birinin armut olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "9/16",
+"B": "1",
+"C": "1/3",
+"D": "1/2"
+},
+"answer": "D",
+"explanation": "Toplam 16; armut olan 8 tane → 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 3 çilekli şeker, 11 vişneli şeker, 7 limonlu şeker ve 4 portakallı şeker vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "limonlu",
+"B": "vişneli",
+"C": "çilekli",
+"D": "portakallı"
+},
+"answer": "C",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan çilekli (3 tane, toplam 25).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+11,
+20,
+14,
+7
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "15"
+},
+"answer": "B",
+"explanation": "(11 + 20 + 14 + 7) ÷ 4 = 52 ÷ 4 = 13.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+15,
+20,
+7,
+13
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "16",
+"D": "17"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 55; 5. gün 70 − 55 = 15.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nÇizgi grafiğinde bir ilin 5 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs"
+],
+"values": [
+27,
+38,
+29,
+40,
+31
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "32",
+"B": "33",
+"C": "34",
+"D": "35"
+},
+"answer": "B",
+"explanation": "165 ÷ 5 = 33 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Çizgi grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nÇizgi grafiğinde bir mağazanın aylara göre satış adedi gösterilmiştir. Hangi iki ay arasında satış sayısındaki değişim (artış ya da azalış) en fazladır?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+47,
+35,
+36,
+59,
+34,
+13
+],
+"title": "Bir mağazanın aylık satış adedi",
+"ylabel": "Satış (adet)",
+"show_names": false
+},
+"options": {
+"A": "Nisan – Mayıs",
+"B": "Mayıs – Haziran",
+"C": "Şubat – Mart",
+"D": "Ocak – Şubat"
+},
+"answer": "A",
+"explanation": "Ardışık aylar arasındaki farklar: 12, 1, 23, 25, 21. En büyük fark Nisan – Mayıs arasındadır (25).",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_art"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Sosyal dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Matematik",
+"Fen",
+"Türkçe",
+"Sosyal"
+],
+"values": [
+10,
+40,
+20,
+30
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "90°",
+"C": "108°",
+"D": "126°"
+},
+"answer": "C",
+"explanation": "360° × %30 = 108°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nDaire grafiğinde 60 öğrencinin kulüp tercihleri yüzde olarak gösterilmiştir. D kulübü'ni seçen öğrenci sayısı, A kulübü'ni seçenlerden kaç fazladır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"A kulübü",
+"B kulübü",
+"C kulübü",
+"D kulübü"
+],
+"values": [
+25,
+30,
+15,
+30
+],
+"title": "60 öğrencinin kulüp tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "3 öğrenci",
+"B": "1 öğrenci",
+"C": "5 öğrenci",
+"D": "7 öğrenci"
+},
+"answer": "A",
+"explanation": "D kulübü: 60 × %30 = 18; A kulübü: 15; fark = 3.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_say"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda Bir çarktan çıkan rengin 27 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mor gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"14"
+],
+[
+"mor",
+"10"
+],
+[
+"beyaz",
+"3"
+]
+]
+},
+"options": {
+"A": "1/3",
+"B": "1/9",
+"C": "17/27",
+"D": "10/27"
+},
+"answer": "D",
+"explanation": "Toplam 27 denemede mor 10 kez çıkmıştır; tahmin 10/27 = 10/27.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 3’ten büyük olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/6",
+"B": "1/3",
+"C": "5/6",
+"D": "1/2"
+},
+"answer": "D",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 3; olasılık = 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Çantada 8 mor kalem, 7 kırmızı kalem ve 6 mavi kalem vardır. Rastgele seçilen birinin kırmızı kalem olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "8/21",
+"B": "2/3",
+"C": "1/3",
+"D": "1/2"
+},
+"answer": "C",
+"explanation": "Toplam 21; kırmızı olan 7 tane → 1/3.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 7 portakallı şeker, 6 limonlu şeker, 9 çilekli şeker ve 3 vişneli şeker vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "limonlu",
+"B": "vişneli",
+"C": "portakallı",
+"D": "çilekli"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan vişneli (3 tane, toplam 25).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+14,
+16,
+14,
+10,
+6
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "14"
+},
+"answer": "B",
+"explanation": "(14 + 16 + 14 + 10 + 6) ÷ 5 = 60 ÷ 5 = 12.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 15 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+17,
+9,
+12,
+17
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 15)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "20",
+"C": "21",
+"D": "22"
+},
+"answer": "B",
+"explanation": "Toplam 15 × 5 = 75; ilk 4 gün 55; 5. gün 75 − 55 = 20.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+10,
+20,
+11,
+14,
+12,
+17
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "14",
+"C": "15",
+"D": "16"
+},
+"answer": "B",
+"explanation": "84 ÷ 6 = 14 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Yüzme dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+35,
+30,
+10,
+25
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "10°",
+"B": "18°",
+"C": "36°",
+"D": "54°"
+},
+"answer": "C",
+"explanation": "360° × %10 = 36°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nDaire grafiğinde 40 öğrencinin kulüp tercihleri yüzde olarak gösterilmiştir. A kulübü'ni seçen öğrenci sayısı, D kulübü'ni seçenlerden kaç fazladır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"A kulübü",
+"B kulübü",
+"C kulübü",
+"D kulübü"
+],
+"values": [
+30,
+15,
+30,
+25
+],
+"title": "40 öğrencinin kulüp tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "1 öğrenci",
+"B": "4 öğrenci",
+"C": "2 öğrenci",
+"D": "6 öğrenci"
+},
+"answer": "C",
+"explanation": "A kulübü: 40 × %30 = 12; D kulübü: 10; fark = 2.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_say"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda Bir çarktan çıkan rengin 11 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"5"
+],
+[
+"mor",
+"3"
+],
+[
+"beyaz",
+"3"
+]
+]
+},
+"options": {
+"A": "5/11",
+"B": "6/11",
+"C": "3/11",
+"D": "5/14"
+},
+"answer": "A",
+"explanation": "Toplam 11 denemede sarı 5 kez çıkmıştır; tahmin 5/11 = 5/11.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 7’den küçük olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1",
+"B": "2/3",
+"C": "1/6",
+"D": "1/2"
+},
+"answer": "A",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 6; olasılık = 1.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 5 vişneli şeker, 7 portakallı şeker ve 2 limonlu şeker vardır. Rastgele seçilen birinin vişneli şeker olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "3/7",
+"B": "5/9",
+"C": "9/14",
+"D": "5/14"
+},
+"answer": "D",
+"explanation": "Toplam 14; vişneli olan 5 tane → 5/14.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kutuda 12 yeşil bilye, 6 mavi bilye, 5 sarı bilye ve 3 kırmızı bilye vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "kırmızı",
+"B": "sarı",
+"C": "yeşil",
+"D": "mavi"
+},
+"answer": "A",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan kırmızı (3 tane, toplam 26).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+14,
+7,
+13,
+6,
+20
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "14"
+},
+"answer": "B",
+"explanation": "(14 + 7 + 13 + 6 + 20) ÷ 5 = 60 ÷ 5 = 12.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 15 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+17,
+10,
+19,
+19
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 15)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "10",
+"C": "11",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Toplam 15 × 5 = 75; ilk 4 gün 65; 5. gün 75 − 65 = 10.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+40,
+18,
+22,
+40
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "29",
+"B": "30",
+"C": "31",
+"D": "32"
+},
+"answer": "B",
+"explanation": "120 ÷ 4 = 30 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Mavi dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+15,
+50,
+10,
+25
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "162°",
+"C": "180°",
+"D": "198°"
+},
+"answer": "C",
+"explanation": "360° × %50 = 180°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nDaire grafiğinde 40 öğrencinin kulüp tercihleri yüzde olarak gösterilmiştir. C kulübü'ni seçen öğrenci sayısı, B kulübü'ni seçenlerden kaç fazladır?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"A kulübü",
+"B kulübü",
+"C kulübü",
+"D kulübü"
+],
+"values": [
+10,
+30,
+40,
+20
+],
+"title": "40 öğrencinin kulüp tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "4 öğrenci",
+"B": "6 öğrenci",
+"C": "8 öğrenci",
+"D": "2 öğrenci"
+},
+"answer": "A",
+"explanation": "C kulübü: 40 × %40 = 16; B kulübü: 12; fark = 4.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_say"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda Bir torbadan çekilen bilyenin rengi 16 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mavi gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"6"
+],
+[
+"mavi",
+"7"
+],
+[
+"yeşil",
+"3"
+]
+]
+},
+"options": {
+"A": "7/19",
+"B": "7/16",
+"C": "3/16",
+"D": "9/16"
+},
+"answer": "B",
+"explanation": "Toplam 16 denemede mavi 7 kez çıkmıştır; tahmin 7/16 = 7/16.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının asal sayı olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/3",
+"B": "5/6",
+"C": "1/2",
+"D": "1"
+},
+"answer": "C",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 3; olasılık = 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Çantada 2 yeşil kalem, 6 mavi kalem ve 7 mor kalem vardır. Rastgele seçilen birinin mavi kalem olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/3",
+"B": "7/15",
+"C": "2/5",
+"D": "3/5"
+},
+"answer": "C",
+"explanation": "Toplam 15; mavi olan 6 tane → 2/5.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 6 çilekli şeker, 8 limonlu şeker, 9 portakallı şeker ve 7 vişneli şeker vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "portakallı",
+"B": "çilekli",
+"C": "vişneli",
+"D": "limonlu"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan çilekli (6 tane, toplam 30).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+20,
+20,
+16,
+12
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "17",
+"C": "18",
+"D": "19"
+},
+"answer": "B",
+"explanation": "(20 + 20 + 16 + 12) ÷ 4 = 68 ÷ 4 = 17.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+13,
+14,
+15,
+9
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "19",
+"C": "20",
+"D": "21"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 51; 5. gün 70 − 51 = 19.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nÇizgi grafiğinde bir ilin 5 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs"
+],
+"values": [
+20,
+30,
+31,
+19,
+40
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "28",
+"C": "29",
+"D": "30"
+},
+"answer": "B",
+"explanation": "140 ÷ 5 = 28 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Futbol dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+25,
+10,
+20,
+45
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "72°",
+"C": "90°",
+"D": "108°"
+},
+"answer": "C",
+"explanation": "360° × %25 = 90°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda Bir torbadan çekilen bilyenin rengi 30 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mavi gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"9"
+],
+[
+"mavi",
+"10"
+],
+[
+"yeşil",
+"11"
+]
+]
+},
+"options": {
+"A": "10/41",
+"B": "1/3",
+"C": "2/3",
+"D": "11/30"
+},
+"answer": "B",
+"explanation": "Toplam 30 denemede mavi 10 kez çıkmıştır; tahmin 10/30 = 1/3.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 5’ten küçük olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "0",
+"B": "2/3",
+"C": "1",
+"D": "1/3"
+},
+"answer": "B",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 4; olasılık = 2/3.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 3 kırmızı top, 1 siyah top ve 2 turuncu top vardır. Rastgele seçilen birinin kırmızı top olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/2",
+"B": "2/3",
+"C": "1",
+"D": "1/3"
+},
+"answer": "A",
+"explanation": "Toplam 6; kırmızı olan 3 tane → 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 6 kırmızı top, 1 beyaz top, 10 turuncu top ve 11 siyah top vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "beyaz",
+"B": "siyah",
+"C": "turuncu",
+"D": "kırmızı"
+},
+"answer": "A",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan beyaz (1 tane, toplam 28).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+11,
+11,
+6,
+7,
+10
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "B",
+"explanation": "(11 + 11 + 6 + 7 + 10) ÷ 5 = 45 ÷ 5 = 9.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+18,
+14,
+8,
+19
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 59; 5. gün 70 − 59 = 11.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+31,
+17,
+28,
+24
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "25",
+"C": "26",
+"D": "27"
+},
+"answer": "B",
+"explanation": "100 ÷ 4 = 25 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Sarı dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+30,
+15,
+25,
+30
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "90°",
+"C": "108°",
+"D": "126°"
+},
+"answer": "C",
+"explanation": "360° × %30 = 108°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda Bir çarktan çıkan rengin 21 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mor gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"3"
+],
+[
+"mor",
+"9"
+],
+[
+"beyaz",
+"9"
+]
+]
+},
+"options": {
+"A": "4/7",
+"B": "3/7",
+"C": "9/28",
+"D": "3/10"
+},
+"answer": "B",
+"explanation": "Toplam 21 denemede mor 9 kez çıkmıştır; tahmin 9/21 = 3/7.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Hilesiz bir zar atılıyor. Üst yüze gelen sayının 6’nın çarpanı olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/2",
+"B": "5/6",
+"C": "2/3",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "Zarın yüzlerinde 1, 2, 3, 4, 5, 6 vardır (6 eş olası durum). İstenen durum sayısı 4; olasılık = 2/3.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_zar"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Sepette 3 muz, 1 armut ve 4 elma vardır. Rastgele seçilen birinin elma olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1",
+"B": "1/3",
+"C": "5/8",
+"D": "1/2"
+},
+"answer": "D",
+"explanation": "Toplam 8; elma olan 4 tane → 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 1 siyah top, 3 kırmızı top, 9 turuncu top ve 11 beyaz top vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "kırmızı",
+"B": "siyah",
+"C": "beyaz",
+"D": "turuncu"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan siyah (1 tane, toplam 24).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+15,
+15,
+16,
+12,
+17
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "16",
+"D": "17"
+},
+"answer": "B",
+"explanation": "(15 + 15 + 16 + 12 + 17) ÷ 5 = 75 ÷ 5 = 15.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 9 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+8,
+7,
+10,
+14
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 9)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Toplam 9 × 5 = 45; ilk 4 gün 39; 5. gün 45 − 39 = 6.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+25,
+16,
+14,
+36,
+24,
+23
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "23",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "138 ÷ 6 = 23 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Matematik dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Matematik",
+"Fen",
+"Türkçe",
+"Sosyal"
+],
+"values": [
+25,
+30,
+30,
+15
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "72°",
+"C": "90°",
+"D": "108°"
+},
+"answer": "C",
+"explanation": "360° × %25 = 90°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda Bir çarktan çıkan rengin 33 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"13"
+],
+[
+"mor",
+"7"
+],
+[
+"beyaz",
+"13"
+]
+]
+},
+"options": {
+"A": "20/33",
+"B": "7/33",
+"C": "13/33",
+"D": "13/40"
+},
+"answer": "C",
+"explanation": "Toplam 33 denemede sarı 13 kez çıkmıştır; tahmin 13/33 = 13/33.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 2 kırmızı düğme, 8 mavi düğme ve 1 sarı düğme vardır. Rastgele seçilen birinin kırmızı düğme olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/11",
+"B": "9/11",
+"C": "3/11",
+"D": "2/9"
+},
+"answer": "A",
+"explanation": "Toplam 11; kırmızı olan 2 tane → 2/11.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 3 vişneli şeker, 2 çilekli şeker, 11 portakallı şeker ve 5 limonlu şeker vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "vişneli",
+"B": "çilekli",
+"C": "portakallı",
+"D": "limonlu"
+},
+"answer": "C",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan portakallı (11 tane, toplam 21).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+15,
+7,
+10,
+16,
+12
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "14"
+},
+"answer": "B",
+"explanation": "(15 + 7 + 10 + 16 + 12) ÷ 5 = 60 ÷ 5 = 12.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 12 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+12,
+14,
+10,
+12
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 12)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Toplam 12 × 5 = 60; ilk 4 gün 48; 5. gün 60 − 48 = 12.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nÇizgi grafiğinde bir ilin 5 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs"
+],
+"values": [
+27,
+35,
+33,
+21,
+29
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "29",
+"C": "30",
+"D": "31"
+},
+"answer": "B",
+"explanation": "145 ÷ 5 = 29 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Tenis dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+20,
+10,
+40,
+30
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "90°",
+"C": "108°",
+"D": "126°"
+},
+"answer": "C",
+"explanation": "360° × %30 = 108°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda Bir çarktan çıkan rengin 24 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede beyaz gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"5"
+],
+[
+"mor",
+"6"
+],
+[
+"beyaz",
+"13"
+]
+]
+},
+"options": {
+"A": "13/29",
+"B": "13/24",
+"C": "11/24",
+"D": "5/24"
+},
+"answer": "B",
+"explanation": "Toplam 24 denemede beyaz 13 kez çıkmıştır; tahmin 13/24 = 13/24.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 3 mavi düğme, 6 kırmızı düğme ve 4 yeşil düğme vardır. Rastgele seçilen birinin yeşil düğme olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "9/13",
+"B": "5/13",
+"C": "4/9",
+"D": "4/13"
+},
+"answer": "D",
+"explanation": "Toplam 13; yeşil olan 4 tane → 4/13.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 8 portakallı şeker, 3 vişneli şeker, 7 çilekli şeker ve 5 limonlu şeker vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "portakallı",
+"B": "çilekli",
+"C": "limonlu",
+"D": "vişneli"
+},
+"answer": "D",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan vişneli (3 tane, toplam 23).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+13,
+9,
+10,
+16
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "14"
+},
+"answer": "B",
+"explanation": "(13 + 9 + 10 + 16) ÷ 4 = 48 ÷ 4 = 12.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+17,
+9,
+11,
+17
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "16",
+"C": "17",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 54; 5. gün 70 − 54 = 16.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+39,
+20,
+12,
+17
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "21",
+"B": "22",
+"C": "23",
+"D": "24"
+},
+"answer": "B",
+"explanation": "88 ÷ 4 = 22 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Futbol dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+30,
+30,
+15,
+25
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "90°",
+"C": "108°",
+"D": "126°"
+},
+"answer": "C",
+"explanation": "360° × %30 = 108°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda Bir çarktan çıkan rengin 12 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"3"
+],
+[
+"mor",
+"3"
+],
+[
+"beyaz",
+"6"
+]
+]
+},
+"options": {
+"A": "1/4",
+"B": "3/10",
+"C": "1/5",
+"D": "3/4"
+},
+"answer": "A",
+"explanation": "Toplam 12 denemede sarı 3 kez çıkmıştır; tahmin 3/12 = 1/4.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 1 turuncu top, 2 kırmızı top ve 7 beyaz top vardır. Rastgele seçilen birinin beyaz top olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "7/3",
+"B": "7/10",
+"C": "4/5",
+"D": "3/10"
+},
+"answer": "B",
+"explanation": "Toplam 10; beyaz olan 7 tane → 7/10.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Sepette 5 armut, 9 portakal, 3 elma ve 12 muz vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "portakal",
+"B": "elma",
+"C": "armut",
+"D": "muz"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan elma (3 tane, toplam 29).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+5,
+7,
+12,
+8
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "10"
+},
+"answer": "B",
+"explanation": "(5 + 7 + 12 + 8) ÷ 4 = 32 ÷ 4 = 8.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 12 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+8,
+11,
+13,
+15
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 12)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "15"
+},
+"answer": "B",
+"explanation": "Toplam 12 × 5 = 60; ilk 4 gün 47; 5. gün 60 − 47 = 13.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+20,
+29,
+29,
+13,
+27,
+20
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "23",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "138 ÷ 6 = 23 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Yeşil dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+25,
+20,
+40,
+15
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "126°",
+"C": "144°",
+"D": "162°"
+},
+"answer": "C",
+"explanation": "360° × %40 = 144°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda Bir torbadan çekilen bilyenin rengi 20 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mavi gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"6"
+],
+[
+"mavi",
+"10"
+],
+[
+"yeşil",
+"4"
+]
+]
+},
+"options": {
+"A": "10/31",
+"B": "5/12",
+"C": "1/5",
+"D": "1/2"
+},
+"answer": "D",
+"explanation": "Toplam 20 denemede mavi 10 kez çıkmıştır; tahmin 10/20 = 1/2.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kutuda 6 mavi bilye, 7 yeşil bilye ve 2 sarı bilye vardır. Rastgele seçilen birinin mavi bilye olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/3",
+"B": "3/5",
+"C": "2/5",
+"D": "7/15"
+},
+"answer": "C",
+"explanation": "Toplam 15; mavi olan 6 tane → 2/5.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 11 beyaz top, 4 kırmızı top, 9 siyah top ve 2 turuncu top vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "siyah",
+"B": "turuncu",
+"C": "kırmızı",
+"D": "beyaz"
+},
+"answer": "D",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan beyaz (11 tane, toplam 26).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+8,
+7,
+8,
+9
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "10"
+},
+"answer": "B",
+"explanation": "(8 + 7 + 8 + 9) ÷ 4 = 32 ÷ 4 = 8.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 15 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+9,
+18,
+13,
+19
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 15)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "16",
+"C": "17",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Toplam 15 × 5 = 75; ilk 4 gün 59; 5. gün 75 − 59 = 16.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+11,
+30,
+19,
+20,
+30,
+40
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "25",
+"C": "26",
+"D": "27"
+},
+"answer": "B",
+"explanation": "150 ÷ 6 = 25 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Kırmızı dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+25,
+20,
+15,
+40
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "72°",
+"C": "90°",
+"D": "108°"
+},
+"answer": "C",
+"explanation": "360° × %25 = 90°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda Bir çarktan çıkan rengin 32 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"13"
+],
+[
+"mor",
+"8"
+],
+[
+"beyaz",
+"11"
+]
+]
+},
+"options": {
+"A": "19/32",
+"B": "13/32",
+"C": "13/40",
+"D": "1/4"
+},
+"answer": "B",
+"explanation": "Toplam 32 denemede sarı 13 kez çıkmıştır; tahmin 13/32 = 13/32.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 1 kırmızı top, 8 turuncu top ve 7 siyah top vardır. Rastgele seçilen birinin kırmızı top olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/8",
+"B": "1/16",
+"C": "1/15",
+"D": "15/16"
+},
+"answer": "B",
+"explanation": "Toplam 16; kırmızı olan 1 tane → 1/16.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 1 kırmızı düğme, 6 mavi düğme, 10 sarı düğme ve 5 yeşil düğme vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "mavi",
+"B": "yeşil",
+"C": "sarı",
+"D": "kırmızı"
+},
+"answer": "C",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan sarı (10 tane, toplam 22).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+18,
+16,
+14,
+9,
+18
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "16",
+"D": "17"
+},
+"answer": "B",
+"explanation": "(18 + 16 + 14 + 9 + 18) ÷ 5 = 75 ÷ 5 = 15.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+14,
+20,
+15,
+15
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 64; 5. gün 70 − 64 = 6.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+30,
+37,
+36,
+21
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "30",
+"B": "31",
+"C": "32",
+"D": "33"
+},
+"answer": "B",
+"explanation": "124 ÷ 4 = 31 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Sosyal dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Matematik",
+"Fen",
+"Türkçe",
+"Sosyal"
+],
+"values": [
+25,
+20,
+45,
+10
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "10°",
+"B": "18°",
+"C": "36°",
+"D": "54°"
+},
+"answer": "C",
+"explanation": "360° × %10 = 36°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda Bir torbadan çekilen bilyenin rengi 19 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede kırmızı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"6"
+],
+[
+"mavi",
+"5"
+],
+[
+"yeşil",
+"8"
+]
+]
+},
+"options": {
+"A": "1/4",
+"B": "13/19",
+"C": "5/19",
+"D": "6/19"
+},
+"answer": "D",
+"explanation": "Toplam 19 denemede kırmızı 6 kez çıkmıştır; tahmin 6/19 = 6/19.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 7 beyaz top, 3 siyah top ve 5 kırmızı top vardır. Rastgele seçilen birinin kırmızı top olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/2",
+"B": "1/3",
+"C": "2/5",
+"D": "2/3"
+},
+"answer": "B",
+"explanation": "Toplam 15; kırmızı olan 5 tane → 1/3.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 6 beyaz top, 3 turuncu top, 1 siyah top ve 9 kırmızı top vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "beyaz",
+"B": "kırmızı",
+"C": "siyah",
+"D": "turuncu"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan kırmızı (9 tane, toplam 19).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+13,
+18,
+12,
+9
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "15"
+},
+"answer": "B",
+"explanation": "(13 + 18 + 12 + 9) ÷ 4 = 52 ÷ 4 = 13.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 7 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+6,
+6,
+9,
+6
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 7)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "10"
+},
+"answer": "B",
+"explanation": "Toplam 7 × 5 = 35; ilk 4 gün 27; 5. gün 35 − 27 = 8.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nÇizgi grafiğinde bir ilin 5 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs"
+],
+"values": [
+34,
+28,
+14,
+33,
+16
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "25",
+"C": "26",
+"D": "27"
+},
+"answer": "B",
+"explanation": "125 ÷ 5 = 25 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Tenis dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+40,
+20,
+25,
+15
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "15°",
+"B": "36°",
+"C": "54°",
+"D": "72°"
+},
+"answer": "C",
+"explanation": "360° × %15 = 54°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda Bir torbadan çekilen bilyenin rengi 30 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mavi gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"6"
+],
+[
+"mavi",
+"13"
+],
+[
+"yeşil",
+"11"
+]
+]
+},
+"options": {
+"A": "11/30",
+"B": "17/30",
+"C": "13/41",
+"D": "13/30"
+},
+"answer": "D",
+"explanation": "Toplam 30 denemede mavi 13 kez çıkmıştır; tahmin 13/30 = 13/30.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 5 limonlu şeker, 3 portakallı şeker ve 7 çilekli şeker vardır. Rastgele seçilen birinin portakallı şeker olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/4",
+"B": "4/15",
+"C": "1/5",
+"D": "4/5"
+},
+"answer": "C",
+"explanation": "Toplam 15; portakallı olan 3 tane → 1/5.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Çantada 11 yeşil kalem, 2 mor kalem, 1 mavi kalem ve 9 kırmızı kalem vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "yeşil",
+"B": "mor",
+"C": "kırmızı",
+"D": "mavi"
+},
+"answer": "A",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan yeşil (11 tane, toplam 23).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+9,
+15,
+16,
+12
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "15"
+},
+"answer": "B",
+"explanation": "(9 + 15 + 16 + 12) ÷ 4 = 52 ÷ 4 = 13.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 11 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+6,
+14,
+8,
+14
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 11)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "15"
+},
+"answer": "B",
+"explanation": "Toplam 11 × 5 = 55; ilk 4 gün 42; 5. gün 55 − 42 = 13.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+37,
+10,
+15,
+14,
+22,
+40
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "23",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "138 ÷ 6 = 23 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Sarı dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+20,
+10,
+40,
+30
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "90°",
+"C": "108°",
+"D": "126°"
+},
+"answer": "C",
+"explanation": "360° × %30 = 108°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda Bir torbadan çekilen bilyenin rengi 20 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mavi gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"4"
+],
+[
+"mavi",
+"12"
+],
+[
+"yeşil",
+"4"
+]
+]
+},
+"options": {
+"A": "3/5",
+"B": "1/5",
+"C": "2/5",
+"D": "1/2"
+},
+"answer": "A",
+"explanation": "Toplam 20 denemede mavi 12 kez çıkmıştır; tahmin 12/20 = 3/5.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 8 yeşil düğme, 6 mavi düğme ve 1 sarı düğme vardır. Rastgele seçilen birinin sarı düğme olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/14",
+"B": "1/15",
+"C": "14/15",
+"D": "2/15"
+},
+"answer": "B",
+"explanation": "Toplam 15; sarı olan 1 tane → 1/15.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Sepette 10 armut, 4 elma, 6 muz ve 9 portakal vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "muz",
+"B": "armut",
+"C": "elma",
+"D": "portakal"
+},
+"answer": "C",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan elma (4 tane, toplam 29).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+10,
+14,
+11,
+18,
+17
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "14",
+"C": "15",
+"D": "16"
+},
+"answer": "B",
+"explanation": "(10 + 14 + 11 + 18 + 17) ÷ 5 = 70 ÷ 5 = 14.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+15,
+18,
+15,
+10
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 58; 5. gün 70 − 58 = 12.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 5 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs"
+],
+"values": [
+15,
+14,
+35,
+37,
+14
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "23",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "115 ÷ 5 = 23 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Yüzme dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+20,
+25,
+45,
+10
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "45°",
+"B": "144°",
+"C": "162°",
+"D": "180°"
+},
+"answer": "C",
+"explanation": "360° × %45 = 162°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda Bir çarktan çıkan rengin 25 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"9"
+],
+[
+"mor",
+"10"
+],
+[
+"beyaz",
+"6"
+]
+]
+},
+"options": {
+"A": "2/5",
+"B": "9/35",
+"C": "9/25",
+"D": "16/25"
+},
+"answer": "C",
+"explanation": "Toplam 25 denemede sarı 9 kez çıkmıştır; tahmin 9/25 = 9/25.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Sepette 8 elma, 5 portakal ve 1 muz vardır. Rastgele seçilen birinin elma olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "9/14",
+"B": "4/7",
+"C": "4/3",
+"D": "3/7"
+},
+"answer": "B",
+"explanation": "Toplam 14; elma olan 8 tane → 4/7.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 5 kırmızı top, 2 siyah top, 6 beyaz top ve 10 turuncu top vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "beyaz",
+"B": "siyah",
+"C": "kırmızı",
+"D": "turuncu"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan siyah (2 tane, toplam 23).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+11,
+6,
+13,
+14
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "B",
+"explanation": "(11 + 6 + 13 + 14) ÷ 4 = 44 ÷ 4 = 11.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 13 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+16,
+11,
+7,
+15
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 13)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "16",
+"C": "17",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Toplam 13 × 5 = 65; ilk 4 gün 49; 5. gün 65 − 49 = 16.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+20,
+32,
+24,
+19,
+39,
+16
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "25",
+"C": "26",
+"D": "27"
+},
+"answer": "B",
+"explanation": "150 ÷ 6 = 25 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Kırmızı dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+20,
+10,
+30,
+40
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "54°",
+"C": "72°",
+"D": "90°"
+},
+"answer": "C",
+"explanation": "360° × %20 = 72°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda Bir çarktan çıkan rengin 26 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"5"
+],
+[
+"mor",
+"14"
+],
+[
+"beyaz",
+"7"
+]
+]
+},
+"options": {
+"A": "7/13",
+"B": "21/26",
+"C": "5/26",
+"D": "1/8"
+},
+"answer": "C",
+"explanation": "Toplam 26 denemede sarı 5 kez çıkmıştır; tahmin 5/26 = 5/26.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 4 mavi düğme, 5 yeşil düğme ve 3 kırmızı düğme vardır. Rastgele seçilen birinin yeşil düğme olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "7/12",
+"B": "1/2",
+"C": "5/12",
+"D": "5/7"
+},
+"answer": "C",
+"explanation": "Toplam 12; yeşil olan 5 tane → 5/12.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 1 portakallı şeker, 12 vişneli şeker, 7 limonlu şeker ve 11 çilekli şeker vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "limonlu",
+"B": "vişneli",
+"C": "çilekli",
+"D": "portakallı"
+},
+"answer": "D",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan portakallı (1 tane, toplam 31).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu çözünüz.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+9,
+19,
+18,
+18
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "16",
+"C": "17",
+"D": "18"
+},
+"answer": "B",
+"explanation": "(9 + 19 + 18 + 18) ÷ 4 = 64 ÷ 4 = 16.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 14 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+19,
+14,
+9,
+8
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 14)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "20",
+"C": "21",
+"D": "22"
+},
+"answer": "B",
+"explanation": "Toplam 14 × 5 = 70; ilk 4 gün 50; 5. gün 70 − 50 = 20.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+34,
+19,
+33,
+14
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "25",
+"C": "26",
+"D": "27"
+},
+"answer": "B",
+"explanation": "100 ÷ 4 = 25 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Tenis dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Futbol",
+"Voleybol",
+"Yüzme",
+"Tenis"
+],
+"values": [
+30,
+40,
+10,
+20
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "54°",
+"C": "72°",
+"D": "90°"
+},
+"answer": "C",
+"explanation": "360° × %20 = 72°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda Bir çarktan çıkan rengin 15 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mor gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"4"
+],
+[
+"mor",
+"7"
+],
+[
+"beyaz",
+"4"
+]
+]
+},
+"options": {
+"A": "7/15",
+"B": "4/15",
+"C": "7/19",
+"D": "8/15"
+},
+"answer": "A",
+"explanation": "Toplam 15 denemede mor 7 kez çıkmıştır; tahmin 7/15 = 7/15.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 8 portakallı şeker, 2 çilekli şeker ve 1 limonlu şeker vardır. Rastgele seçilen birinin limonlu şeker olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1/11",
+"B": "10/11",
+"C": "1/10",
+"D": "2/11"
+},
+"answer": "A",
+"explanation": "Toplam 11; limonlu olan 1 tane → 1/11.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Torbada 5 siyah top, 7 beyaz top, 12 kırmızı top ve 4 turuncu top vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "beyaz",
+"B": "kırmızı",
+"C": "siyah",
+"D": "turuncu"
+},
+"answer": "D",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan turuncu (4 tane, toplam 28).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+12,
+17,
+12,
+20,
+14
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "16",
+"D": "17"
+},
+"answer": "B",
+"explanation": "(12 + 17 + 12 + 20 + 14) ÷ 5 = 75 ÷ 5 = 15.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 12 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+18,
+6,
+11,
+19
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 12)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Toplam 12 × 5 = 60; ilk 4 gün 54; 5. gün 60 − 54 = 6.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nÇizgi grafiğinde bir ilin 5 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs"
+],
+"values": [
+30,
+11,
+14,
+16,
+19
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "18",
+"C": "19",
+"D": "20"
+},
+"answer": "B",
+"explanation": "90 ÷ 5 = 18 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Sosyal dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Matematik",
+"Fen",
+"Türkçe",
+"Sosyal"
+],
+"values": [
+25,
+15,
+20,
+40
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "126°",
+"C": "144°",
+"D": "162°"
+},
+"answer": "C",
+"explanation": "360° × %40 = 144°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda Bir torbadan çekilen bilyenin rengi 28 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mavi gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"13"
+],
+[
+"mavi",
+"9"
+],
+[
+"yeşil",
+"6"
+]
+]
+},
+"options": {
+"A": "3/14",
+"B": "9/28",
+"C": "19/28",
+"D": "9/34"
+},
+"answer": "B",
+"explanation": "Toplam 28 denemede mavi 9 kez çıkmıştır; tahmin 9/28 = 9/28.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Sepette 5 muz, 3 elma ve 8 armut vardır. Rastgele seçilen birinin muz olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "3/8",
+"B": "11/16",
+"C": "5/11",
+"D": "5/16"
+},
+"answer": "D",
+"explanation": "Toplam 16; muz olan 5 tane → 5/16.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Sepette 12 armut, 9 muz, 11 portakal ve 2 elma vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "muz",
+"B": "armut",
+"C": "portakal",
+"D": "elma"
+},
+"answer": "D",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan elma (2 tane, toplam 34).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+10,
+9,
+18,
+10,
+13
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "13",
+"D": "14"
+},
+"answer": "B",
+"explanation": "(10 + 9 + 18 + 10 + 13) ÷ 5 = 60 ÷ 5 = 12.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 12 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+13,
+9,
+6,
+16
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 12)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "16",
+"C": "17",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Toplam 12 × 5 = 60; ilk 4 gün 44; 5. gün 60 − 44 = 16.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+16,
+11,
+37,
+12
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "19",
+"C": "20",
+"D": "21"
+},
+"answer": "B",
+"explanation": "76 ÷ 4 = 19 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Kırmızı dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+25,
+45,
+20,
+10
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "72°",
+"C": "90°",
+"D": "108°"
+},
+"answer": "C",
+"explanation": "360° × %25 = 90°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda Bir torbadan çekilen bilyenin rengi 24 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede yeşil gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"9"
+],
+[
+"mavi",
+"6"
+],
+[
+"yeşil",
+"9"
+]
+]
+},
+"options": {
+"A": "9/28",
+"B": "3/11",
+"C": "5/8",
+"D": "3/8"
+},
+"answer": "D",
+"explanation": "Toplam 24 denemede yeşil 9 kez çıkmıştır; tahmin 9/24 = 3/8.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kutuda 1 kırmızı bilye, 8 yeşil bilye ve 7 sarı bilye vardır. Rastgele seçilen birinin sarı bilye olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "7/16",
+"B": "7/9",
+"C": "1/2",
+"D": "9/16"
+},
+"answer": "A",
+"explanation": "Toplam 16; sarı olan 7 tane → 7/16.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kutuda 4 sarı bilye, 8 mavi bilye, 12 kırmızı bilye ve 9 yeşil bilye vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "mavi",
+"B": "kırmızı",
+"C": "sarı",
+"D": "yeşil"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan kırmızı (12 tane, toplam 33).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+14,
+15,
+6,
+20,
+20
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "15",
+"C": "16",
+"D": "17"
+},
+"answer": "B",
+"explanation": "(14 + 15 + 6 + 20 + 20) ÷ 5 = 75 ÷ 5 = 15.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 10 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+13,
+6,
+9,
+8
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 10)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "14",
+"C": "15",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Toplam 10 × 5 = 50; ilk 4 gün 36; 5. gün 50 − 36 = 14.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+36,
+33,
+33,
+38
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "34",
+"B": "35",
+"C": "36",
+"D": "37"
+},
+"answer": "B",
+"explanation": "140 ÷ 4 = 35 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Yeşil dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+45,
+20,
+25,
+10
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "72°",
+"C": "90°",
+"D": "108°"
+},
+"answer": "C",
+"explanation": "360° × %25 = 90°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda Bir çarktan çıkan rengin 20 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"4"
+],
+[
+"mor",
+"12"
+],
+[
+"beyaz",
+"4"
+]
+]
+},
+"options": {
+"A": "1/5",
+"B": "1/8",
+"C": "4/5",
+"D": "3/5"
+},
+"answer": "A",
+"explanation": "Toplam 20 denemede sarı 4 kez çıkmıştır; tahmin 4/20 = 1/5.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Çantada 3 kırmızı kalem, 6 yeşil kalem ve 7 mor kalem vardır. Rastgele seçilen birinin yeşil kalem olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "3/8",
+"B": "7/16",
+"C": "3/5",
+"D": "5/8"
+},
+"answer": "A",
+"explanation": "Toplam 16; yeşil olan 6 tane → 3/8.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kutuda 8 mavi bilye, 2 yeşil bilye, 11 sarı bilye ve 12 kırmızı bilye vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "yeşil",
+"B": "mavi",
+"C": "sarı",
+"D": "kırmızı"
+},
+"answer": "A",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan yeşil (2 tane, toplam 33).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+19,
+13,
+6,
+9,
+18
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "15"
+},
+"answer": "B",
+"explanation": "(19 + 13 + 6 + 9 + 18) ÷ 5 = 65 ÷ 5 = 13.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 12 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+11,
+10,
+14,
+6
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 12)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "19",
+"C": "20",
+"D": "21"
+},
+"answer": "B",
+"explanation": "Toplam 12 × 5 = 60; ilk 4 gün 41; 5. gün 60 − 41 = 19.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nÇizgi grafiğinde bir ilin 5 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs"
+],
+"values": [
+14,
+24,
+17,
+15,
+20
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "18",
+"C": "19",
+"D": "20"
+},
+"answer": "B",
+"explanation": "90 ÷ 5 = 18 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Matematik dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Matematik",
+"Fen",
+"Türkçe",
+"Sosyal"
+],
+"values": [
+30,
+30,
+15,
+25
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "90°",
+"C": "108°",
+"D": "126°"
+},
+"answer": "C",
+"explanation": "360° × %30 = 108°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda Bir torbadan çekilen bilyenin rengi 31 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede mavi gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"14"
+],
+[
+"mavi",
+"7"
+],
+[
+"yeşil",
+"10"
+]
+]
+},
+"options": {
+"A": "10/31",
+"B": "24/31",
+"C": "7/31",
+"D": "7/41"
+},
+"answer": "C",
+"explanation": "Toplam 31 denemede mavi 7 kez çıkmıştır; tahmin 7/31 = 7/31.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Çantada 8 kırmızı kalem, 7 mavi kalem ve 3 mor kalem vardır. Rastgele seçilen birinin mavi kalem olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "4/9",
+"B": "11/18",
+"C": "7/18",
+"D": "7/11"
+},
+"answer": "C",
+"explanation": "Toplam 18; mavi olan 7 tane → 7/18.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kutuda 1 mavi bilye, 10 kırmızı bilye, 8 sarı bilye ve 9 yeşil bilye vardır. Rastgele seçilen birinin hangi türden olma olasılığı en düşüktür?",
+"shape": null,
+"options": {
+"A": "kırmızı",
+"B": "yeşil",
+"C": "sarı",
+"D": "mavi"
+},
+"answer": "D",
+"explanation": "Olasılık, sayıyla orantılıdır; en az olan mavi (1 tane, toplam 28).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nSütun grafiğinde bir öğrencinin 5 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe",
+"Cuma"
+],
+"values": [
+12,
+20,
+13,
+7,
+13
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "14",
+"D": "15"
+},
+"answer": "B",
+"explanation": "(12 + 20 + 13 + 7 + 13) ÷ 5 = 65 ÷ 5 = 13.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 12 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+13,
+11,
+14,
+11
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 12)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "B",
+"explanation": "Toplam 12 × 5 = 60; ilk 4 gün 49; 5. gün 60 − 49 = 11.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nÇizgi grafiğinde bir ilin 6 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan",
+"Mayıs",
+"Haziran"
+],
+"values": [
+32,
+12,
+38,
+22,
+31,
+39
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "29",
+"C": "30",
+"D": "31"
+},
+"answer": "B",
+"explanation": "174 ÷ 6 = 29 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Türkçe dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Matematik",
+"Fen",
+"Türkçe",
+"Sosyal"
+],
+"values": [
+25,
+20,
+40,
+15
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "126°",
+"C": "144°",
+"D": "162°"
+},
+"answer": "C",
+"explanation": "360° × %40 = 144°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda Bir torbadan çekilen bilyenin rengi 33 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede kırmızı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"kırmızı",
+"14"
+],
+[
+"mavi",
+"9"
+],
+[
+"yeşil",
+"10"
+]
+]
+},
+"options": {
+"A": "3/11",
+"B": "14/33",
+"C": "1/3",
+"D": "19/33"
+},
+"answer": "B",
+"explanation": "Toplam 33 denemede kırmızı 14 kez çıkmıştır; tahmin 14/33 = 14/33.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Poşette 1 limonlu şeker, 3 portakallı şeker ve 8 vişneli şeker vardır. Rastgele seçilen birinin vişneli şeker olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "2/3",
+"B": "1/3",
+"C": "3/4",
+"D": "2/1"
+},
+"answer": "A",
+"explanation": "Toplam 12; vişneli olan 8 tane → 2/3.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Çantada 2 kırmızı kalem, 5 mavi kalem, 11 mor kalem ve 6 yeşil kalem vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "kırmızı",
+"B": "yeşil",
+"C": "mor",
+"D": "mavi"
+},
+"answer": "C",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan mor (11 tane, toplam 24).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+5,
+6,
+17,
+16
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "11",
+"C": "12",
+"D": "13"
+},
+"answer": "B",
+"explanation": "(5 + 6 + 17 + 16) ÷ 4 = 44 ÷ 4 = 11.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak şu soruyu yanıtlayınız.\nSütun grafiğinde bir öğrencinin ilk 4 günde çözdüğü soru sayısı gösterilmiştir. 5 günlük ortalaması 15 soru olduğuna göre 5. gün kaç soru çözmüştür?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+18,
+19,
+14,
+6
+],
+"title": "Bir öğrencinin ilk 4 günde çözdüğü soru sayısı (5 günlük ortalama: 15)",
+"ylabel": "Soru sayısı",
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "18",
+"C": "19",
+"D": "20"
+},
+"answer": "B",
+"explanation": "Toplam 15 × 5 = 75; ilk 4 gün 57; 5. gün 75 − 57 = 18.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 4,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nÇizgi grafiğinde bir ilin 4 aylık yağış miktarı gösterilmiştir. Bu aylardaki aylık ortalama yağış miktarı kaç mm'dir?",
+"shape": {
+"type": "line_chart",
+"labels": [
+"Ocak",
+"Şubat",
+"Mart",
+"Nisan"
+],
+"values": [
+14,
+35,
+40,
+23
+],
+"title": "Bir ilin aylık yağış miktarı (mm)",
+"ylabel": "Yağış (mm)",
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "28",
+"C": "29",
+"D": "30"
+},
+"answer": "B",
+"explanation": "112 ÷ 4 = 28 mm.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_cizgi_ort"
+},
+{
+"subject": "Matematik",
+"topic": "Daire grafiği",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nDaire grafiğinde sınıftaki öğrencilerin tercihleri yüzde olarak gösterilmiştir. Sarı dilimine karşılık gelen merkez açı kaç derecedir?",
+"shape": {
+"type": "pie_chart",
+"labels": [
+"Kırmızı",
+"Mavi",
+"Yeşil",
+"Sarı"
+],
+"values": [
+10,
+20,
+30,
+40
+],
+"title": "Sınıftaki öğrencilerin tercihleri (%)",
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "126°",
+"C": "144°",
+"D": "162°"
+},
+"answer": "C",
+"explanation": "360° × %40 = 144°.",
+"kz": [
+"MAT.6.5.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_pie_aci"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık giriş",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda Bir çarktan çıkan rengin 26 denemede nasıl dağıldığı gösterilmiştir. Bu sonuçlara dayanarak bir sonraki denemede sarı gelmesi için yapılan gözleme dayalı olasılık tahmini kaçtır?",
+"shape": {
+"type": "table",
+"title": "Deneme sonuçları",
+"headers": [
+"Renk",
+"Çıkma sayısı"
+],
+"rows": [
+[
+"sarı",
+"12"
+],
+[
+"mor",
+"6"
+],
+[
+"beyaz",
+"8"
+]
+]
+},
+"options": {
+"A": "6/13",
+"B": "7/13",
+"C": "3/13",
+"D": "3/8"
+},
+"answer": "A",
+"explanation": "Toplam 26 denemede sarı 12 kez çıkmıştır; tahmin 12/26 = 6/13.",
+"kz": [
+"MAT.6.6.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 3,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_olasilik_gozlem"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 7 sarı düğme, 1 mavi düğme ve 6 kırmızı düğme vardır. Rastgele seçilen birinin sarı düğme olma olasılığı kaçtır? (Sonuç en sade biçimdedir.)",
+"shape": null,
+"options": {
+"A": "1",
+"B": "1/2",
+"C": "4/7",
+"D": "1/3"
+},
+"answer": "B",
+"explanation": "Toplam 14; sarı olan 7 tane → 1/2.",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_prob_bilye"
+},
+{
+"subject": "Matematik",
+"topic": "Olasılık",
+"passage": "",
+"question": "Kavanozda 12 mavi düğme, 1 kırmızı düğme, 9 yeşil düğme ve 6 sarı düğme vardır. Rastgele seçilen birinin hangi türden olma olasılığı en yüksektir?",
+"shape": null,
+"options": {
+"A": "yeşil",
+"B": "mavi",
+"C": "kırmızı",
+"D": "sarı"
+},
+"answer": "B",
+"explanation": "Olasılık, sayıyla orantılıdır; en çok olan mavi (12 tane, toplam 28).",
+"kz": [
+"MAT.5.6.2"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf_probmost"
+},
+{
+"subject": "Matematik",
+"topic": "Aritmetik ortalama",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nSütun grafiğinde bir öğrencinin 4 gün boyunca her gün okuduğu sayfa sayısı gösterilmiştir. Öğrencinin günlük okuduğu sayfa sayısının aritmetik ortalaması kaçtır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Pazartesi",
+"Salı",
+"Çarşamba",
+"Perşembe"
+],
+"values": [
+5,
+16,
+4,
+11
+],
+"title": "Bir öğrencinin günlük okuduğu sayfa sayısı",
+"ylabel": "Sayfa sayısı",
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "B",
+"explanation": "(5 + 16 + 4 + 11) ÷ 4 = 36 ÷ 4 = 9.",
+"kz": [
+"MAT.6.5.1"
+],
+"unit": "Veri Analizi",
+"topics": "Aritmetik ortalama, Çizgi ve daire grafiği, Olasılık giriş",
+"d": 2,
+"ts": 1795208328,
+"src": "local",
+"fam": "_mf6_va_ort"
+}
+]
+}

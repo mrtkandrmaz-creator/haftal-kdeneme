@@ -1,0 +1,6330 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "Bir öğrenci, harflerle adlandırdığı dört canlıyı önce çıplak gözle, sonra gerekiyorsa mikroskopla inceliyor. Canlılardan biri amip, paramesyum, öglena ya da bakteri gibi bir mikroskobik canlıdır; diğerleri gözle görülebilen canlılardır. Gözlem sonuçlarını tabloya kaydediyor.",
+"question": "Tabloya bakıldığında hangi harfle gösterilen canlı mikroskobik canlıdır?",
+"shape": {
+"type": "table",
+"title": "Gözlem sonuçları",
+"headers": [
+"Canlı",
+"Gözle görülebiliyor mu?",
+"Mikroskop gerekiyor mu?"
+],
+"rows": [
+[
+"K",
+"Evet",
+"Hayır"
+],
+[
+"P",
+"Evet",
+"Hayır"
+],
+[
+"R",
+"Evet",
+"Hayır"
+],
+[
+"M",
+"Hayır",
+"Evet"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "R",
+"C": "P",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Gözle görülemeyen ve incelenmesi için mikroskop gereken tek canlı M harfiyle gösterilendir; bu nedenle mikroskobik canlıdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn_mikro"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Mikroskobik canlılar ve mantarlar",
+"passage": "Defne, aynı ekmeklerden alınan dilimleri farklı ortamlarda bekletip bir hafta sonra küf oluşan alanı ölçüyor.",
+"question": "Tabloya göre nemli ve ılık ile kuru ve ılık için ölçülen değerler arasındaki fark kaç cm²'dir?",
+"shape": {
+"type": "table",
+"title": "Küf oluşumu",
+"headers": [
+"Bekletilen ortam",
+"Küf alanı (cm²)"
+],
+"rows": [
+[
+"nemli ve ılık",
+"52"
+],
+[
+"nemli ve soğuk",
+"19"
+],
+[
+"kuru ve ılık",
+"28"
+],
+[
+"kuru ve soğuk",
+"51"
+]
+]
+},
+"options": {
+"A": "22 cm²",
+"B": "24 cm²",
+"C": "25 cm²",
+"D": "29 cm²"
+},
+"answer": "B",
+"explanation": "52 − 28 = 24 cm².",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn2_kuf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "Bir öğrenci göl suyundan aldığı damlayı mikroskopta inceliyor. Yeşil renkli, kamçısıyla hareket eden ve fotosentez yapabilen tek hücreli bir canlı görüyor.",
+"question": "Öğrencinin gördüğü canlı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Paramesyum",
+"B": "Bakteri",
+"C": "Öglena",
+"D": "Amip"
+},
+"answer": "C",
+"explanation": "Yeşil renkli, kamçılı ve fotosentez yapabilen mikroskobik canlı öglenadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn2_sen_canli"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. K ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microscope",
+"labels": {
+"ocular": "M",
+"knob": "T",
+"arm": "P",
+"objective": "R",
+"stage": "K"
+},
+"show_names": false
+},
+"options": {
+"A": "Göz merceği",
+"B": "Işık kaynağı",
+"C": "Tabla",
+"D": "Objektif"
+},
+"answer": "C",
+"explanation": "K harfi tabla kısmını gösterir; bu kısım: incelenecek örneğin (lamın) üzerine konulduğu kısım.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mik_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. İncelenecek örneğin (lamın) üzerine konulduğu kısım hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microscope",
+"labels": {
+"knob": "L",
+"stage": "N",
+"base": "M",
+"objective": "S"
+},
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "D",
+"explanation": "İncelenecek örneğin (lamın) üzerine konulduğu kısım tabladır ve şekilde N ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mik_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci mikroskopla incelediği canlıyı şekildeki gibi çizmiştir. R ile gösterilen canlı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m4"
+],
+"labels": [
+"R"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Bakteri",
+"B": "Öglena",
+"C": "Paramesyum",
+"D": "Amip"
+},
+"answer": "A",
+"explanation": "Şekildeki canlının özellikleri bakteri ile uyuşur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Mikroskopla incelenen ve şekilde gösterilen K canlısı için şu bilgiler verilmiştir:\nVücudunun şekli sürekli değişir; yalancı ayaklarıyla hareket eder.\nBuna göre K canlısı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m1"
+],
+"labels": [
+"K"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Paramesyum",
+"B": "Amip",
+"C": "Öglena",
+"D": "Bakteri"
+},
+"answer": "B",
+"explanation": "Verilen özellikler ve şekil amip canlısına aittir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ipucu"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Yalancı ayaklarıyla hareket eden canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"öglena",
+"amip",
+"paramesyum",
+"bakteri"
+],
+"labels": [
+"K",
+"P",
+"L",
+"S"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "L",
+"C": "S",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Yalancı ayaklarıyla hareket eden canlı amipdır ve P ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_harf_oz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Paramesyum hangi harfle gösterilen canlıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"paramesyum",
+"öglena",
+"bakteri",
+"amip"
+],
+"labels": [
+"P",
+"R",
+"S",
+"L"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "S",
+"C": "L",
+"D": "P"
+},
+"answer": "D",
+"explanation": "Paramesyum şekilde P harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_harf_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı gösterilmiştir. Bu canlılardan yalnızca biri yeşil renklidir ve kamçısı vardır.\nBuna göre yeşil renkli canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"amip",
+"paramesyum",
+"bakteri",
+"öglena"
+],
+"labels": [
+"S",
+"P",
+"L",
+"N"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "P",
+"C": "S",
+"D": "N"
+},
+"answer": "D",
+"explanation": "Yeşil renkli ve kamçılı canlı öglenadır; N ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_yesil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde mikroskopla incelenen canlılar harflerle gösterilmiştir.\nBuna göre bu canlıların ortak özelliği aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"amip",
+"öglena",
+"paramesyum"
+],
+"labels": [
+"T",
+"L",
+"N"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "Hepsi yeşil renklidir ve fotosentez yapar.",
+"B": "Hepsi mikroskop yardımıyla görülebilen canlılardır.",
+"C": "Hepsi gözle rahatça görülebilir.",
+"D": "Hepsi kamçısıyla hareket eder."
+},
+"answer": "B",
+"explanation": "Şekildeki canlıların hepsi mikroskobik canlıdır; mikroskop olmadan görülemez.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ortak"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. T ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"labels": {
+"cap": "T",
+"gill": "S",
+"ring": "K",
+"stem": "L"
+},
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "Halka",
+"B": "Şapka",
+"C": "Lamel",
+"D": "Sap"
+},
+"answer": "B",
+"explanation": "T harfi mantarın şapka kısmını gösterir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. Mantarın şapka kısmı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"labels": {
+"cap": "S",
+"gill": "L",
+"ring": "M",
+"stem": "N"
+},
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "S",
+"D": "M"
+},
+"answer": "C",
+"explanation": "Şapka şekilde S ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci ormanda şekildeki canlıyı görmüştür. Bu canlı sınıflandırmada hangi grupta yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "Bitkiler",
+"B": "Mikroskobik canlılar",
+"C": "Mantarlar",
+"D": "Hayvanlar"
+},
+"answer": "C",
+"explanation": "Şapkalı mantarlar, mantar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_grup"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci doğada şekildeki gibi bir şapkalı mantar bulmuştur. Mantarın yenilebilir olup olmadığını bilmemektedir.\nBu öğrencinin aşağıdakilerden hangisini yapması en doğrudur?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"poison": false,
+"show_names": false
+},
+"options": {
+"A": "Biraz tadına bakıp acı değilse yemelidir.",
+"B": "Pişirirse her mantar zehirsiz olacağı için yemelidir.",
+"C": "Rengi parlaksa zehirli, soluksa zehirsiz olduğunu düşünüp yemelidir.",
+"D": "Zehirli olup olmadığını bilemeyeceği için mantarı yememelidir."
+},
+"answer": "D",
+"explanation": "Bazı mantarlar zehirlidir ve zehirli olanları görünüşle ayırt etmek güvenli değildir; bilinmeyen mantarlar yenmemelidir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_zehir"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde canlıların sınıflandırılması gösterilmiştir. K ile gösterilen grubun adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"K",
+"Bitkiler",
+"Hayvanlar"
+],
+"leaves": [
+[
+"Bakteri",
+"Amip"
+],
+[
+"Gül",
+"Papatya"
+],
+[
+"Balık",
+"Kedi"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Mikroskobik canlılar",
+"B": "Hayvanlar",
+"C": "Mantarlar",
+"D": "Bitkiler"
+},
+"answer": "A",
+"explanation": "K grubunda bakteri, amip bulunur; bu canlılar mikroskobik canlılar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_bos"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlıların sınıflandırılması gösterilmiştir. ? işareti ile gösterilen yere hayvanlar grubuna ait bir canlı yazılacaktır.\nBuna göre ? yerine aşağıdakilerden hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"Bitkiler",
+"Hayvanlar",
+"Mikroskobik canlılar"
+],
+"leaves": [
+[
+"Lale",
+"Gül"
+],
+[
+"Kuş",
+"?"
+],
+[
+"Öglena",
+"Paramesyum"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Lale",
+"B": "Gül",
+"C": "Papatya",
+"D": "Kedi"
+},
+"answer": "D",
+"explanation": "Kedi, hayvanlar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_eksik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir öğrenci canlıları gruplara ayırmıştır; ancak bir canlıyı yanlış gruba yerleştirmiştir.\nBuna göre yanlış gruba yerleştirilen canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"Bitkiler",
+"Mikroskobik canlılar",
+"Hayvanlar"
+],
+"leaves": [
+[
+"P: Lale",
+"T: Amip"
+],
+[
+"R: Paramesyum",
+"K: Amip"
+],
+[
+"L: Kedi",
+"N: Kelebek"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "K",
+"C": "T",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Amip, mikroskobik canlılar grubundadır; ancak bitkiler grubuna yazılmıştır. Bu canlı T ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_yanlis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde bazı canlılar harflerle gösterilmiştir. Bu canlılardan hangisi mikroskobik canlı grubunda yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "ağaç",
+"label": "T"
+},
+{
+"kind": "bakteri",
+"label": "L"
+},
+{
+"kind": "papatya",
+"label": "R"
+},
+{
+"kind": "zehirli mantar",
+"label": "M"
+},
+{
+"kind": "kedi",
+"label": "K"
+},
+{
+"kind": "çam",
+"label": "S"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "D",
+"explanation": "Bakteri mikroskobik canlı grubunda yer alır; şekilde L ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılardan kaç tanesi hayvan grubundadır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "amip",
+"label": "P"
+},
+{
+"kind": "mantar",
+"label": "M"
+},
+{
+"kind": "gül",
+"label": "K"
+},
+{
+"kind": "bakteri",
+"label": "T"
+},
+{
+"kind": "çam",
+"label": "R"
+},
+{
+"kind": "balık",
+"label": "S"
+},
+{
+"kind": "kedi",
+"label": "L"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "2",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Şekilde 2 hayvan vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde harflerle gösterilen canlılar bitki, hayvan, mantar ve mikroskobik canlı gruplarına ayrılacaktır.\nVerilenlere göre bu canlılar kaç farklı gruba aittir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "bakteri",
+"label": "R"
+},
+{
+"kind": "zehirli mantar",
+"label": "N"
+},
+{
+"kind": "balık",
+"label": "K"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "5"
+},
+"answer": "C",
+"explanation": "Şekildeki canlılar 3 farklı gruba aittir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_cesit"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde harflerle gösterilen canlılardan hangisi, mikroskop kullanılmadan incelenemez?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "amip",
+"label": "N"
+},
+{
+"kind": "kelebek",
+"label": "S"
+},
+{
+"kind": "balık",
+"label": "L"
+},
+{
+"kind": "çam",
+"label": "K"
+},
+{
+"kind": "kuş",
+"label": "R"
+},
+{
+"kind": "zehirli mantar",
+"label": "P"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "R",
+"C": "N",
+"D": "S"
+},
+"answer": "C",
+"explanation": "Mikroskobik canlılar çıplak gözle görülemez; N ile gösterilen amip mikroskobik canlıdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_mikroskop"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde harflerle gösterilen canlılardan hangi ikisi hayvan grubundadır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kelebek",
+"label": "R"
+},
+{
+"kind": "lale",
+"label": "M"
+},
+{
+"kind": "bakteri",
+"label": "K"
+},
+{
+"kind": "ağaç",
+"label": "P"
+},
+{
+"kind": "balık",
+"label": "N"
+},
+{
+"kind": "mantar",
+"label": "L"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "K ve M",
+"B": "L ve N",
+"C": "N ve R",
+"D": "M ve P"
+},
+"answer": "C",
+"explanation": "Hayvan grubundaki canlılar şekilde N ve R harfleriyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. Bu kısımlardan M ve L ile gösterilenlerin adları aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microscope",
+"labels": {
+"base": "K",
+"objective": "T",
+"arm": "M",
+"ocular": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "M: Göz merceği, L: Kol",
+"B": "M: Ayak, L: Göz merceği",
+"C": "M: Kol, L: Göz merceği",
+"D": "M: Objektif, L: Göz merceği"
+},
+"answer": "C",
+"explanation": "Doğru eşleştirme: M: Kol, L: Göz merceği.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mik_esles"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Mikroskopla incelenen ve şekilde gösterilen K canlısı, hareketini şekilde görülen yapıyla sağlamaktadır.\nBuna göre K canlısı hareketini hangi yapıyla sağlar?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m1"
+],
+"labels": [
+"K"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Kamçı",
+"B": "Yalancı ayak",
+"C": "Kirpik",
+"D": "Yüzgeç"
+},
+"answer": "B",
+"explanation": "Şekildeki canlı amipdır ve yalancı ayak ile hareket eder.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_hareket"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla görülen bir canlı gösterilmiştir.\nBu bilgilere göre bu canlı çıplak gözle görülebilir mi?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m4"
+],
+"labels": [
+"K"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Hayır, mikroskop kullanmak gerekir.",
+"B": "Evet, çıplak gözle rahatça görülür.",
+"C": "Evet, büyüteçle bile görülemez ama çıplak gözle görülür.",
+"D": "Hayır, hiçbir araçla görülemez."
+},
+"answer": "A",
+"explanation": "Mikroskobik canlılar çok küçüktür; çıplak gözle değil, mikroskopla görülür.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_gozle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Yeşil renkli ve kamçılı olan canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"öglena",
+"paramesyum",
+"amip",
+"bakteri"
+],
+"labels": [
+"P",
+"T",
+"L",
+"R"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "T",
+"C": "R",
+"D": "P"
+},
+"answer": "D",
+"explanation": "Bu özellikler öglena canlısına aittir; şekilde P ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ozellik2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen üç canlı harflerle gösterilmiştir.\nBuna göre bu canlıların hareket yapıları ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"öglena",
+"amip",
+"paramesyum"
+],
+"labels": [
+"L",
+"K",
+"T"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "K canlısı kirpik, T canlısı yalancı ayak ile hareket eder.",
+"B": "K canlısı kamçı, T canlısı kirpik ile hareket eder.",
+"C": "K canlısı yalancı ayak, T canlısı kamçı ile hareket eder.",
+"D": "K canlısı yalancı ayak, T canlısı kirpik ile hareket eder."
+},
+"answer": "D",
+"explanation": "K canlısı yalancı ayak, T canlısı kirpik ile hareket eder.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_karsilastir"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekildeki gibi şapkalı mantarlar doğada kendiliğinden yetişir. Bu mantarların bir kısmı yenilebilir, bir kısmı ise zehirlidir.\nBu bilgilere göre doğada bulunan bir mantarla ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "Yağda kızartılan mantar zehirli olsa da zararsız olur.",
+"B": "Zehirli olup olmadığı bilinmiyorsa yenmemelidir.",
+"C": "Hepsi yenilebilir olduğu için toplanıp yenebilir.",
+"D": "Şapkası renkliyse zehirsiz olduğu kesindir."
+},
+"answer": "B",
+"explanation": "Bazı mantarlar zehirlidir ve zehirli mantarlar renk ya da görünüşle güvenle ayırt edilemez; bilinmeyen mantarlar yenmemelidir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_zehir2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlıların sınıflandırılması gösterilmiştir. K ve L ile gösterilen grupların adları aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"Bitkiler",
+"L",
+"K"
+],
+"leaves": [
+[
+"Papatya",
+"Lale"
+],
+[
+"Şapkalı mantar"
+],
+[
+"Kedi",
+"Kuş"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "K: Hayvanlar, L: Bitkiler",
+"B": "K: Bitkiler, L: Mantarlar",
+"C": "K: Mikroskobik canlılar, L: Mantarlar",
+"D": "K: Hayvanlar, L: Mantarlar"
+},
+"answer": "D",
+"explanation": "K grubundaki canlılar hayvanlar, L grubundakiler mantarlar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_iki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde harflerle gösterilen canlılardan üçü aynı gruptadır.\nBuna göre diğerlerinden farklı gruba ait olan canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kelebek",
+"label": "N"
+},
+{
+"kind": "amip",
+"label": "P"
+},
+{
+"kind": "balık",
+"label": "T"
+},
+{
+"kind": "kedi",
+"label": "K"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "N",
+"C": "K",
+"D": "T"
+},
+"answer": "A",
+"explanation": "Diğer üç canlı hayvanlar grubunda; P ile gösterilen canlı ise mikroskobik canlılar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_farkli"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde harflerle gösterilen canlılar aynı gruptadır.\nBuna göre bu canlıların ait olduğu grup aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kuş",
+"label": "P"
+},
+{
+"kind": "kedi",
+"label": "L"
+},
+{
+"kind": "kelebek",
+"label": "S"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "Mikroskobik canlılar",
+"B": "Hayvanlar",
+"C": "Bitkiler",
+"D": "Mantarlar"
+},
+"answer": "B",
+"explanation": "Şekildeki canlıların hepsi hayvanlar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_hepsi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bazı canlılar harflerle gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kuş",
+"label": "N"
+},
+{
+"kind": "bakteri",
+"label": "R"
+},
+{
+"kind": "zehirli mantar",
+"label": "M"
+}
+],
+"per_row": 3,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "N: Hayvan, R: Mikroskobik canlı, M: Mantar",
+"B": "N: Mantar, R: Hayvan, M: Mikroskobik canlı",
+"C": "N: Mikroskobik canlı, R: Hayvan, M: Mantar",
+"D": "N: Hayvan, R: Mantar, M: Mikroskobik canlı"
+},
+"answer": "A",
+"explanation": "Doğru eşleştirme: N: Hayvan, R: Mikroskobik canlı, M: Mantar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_esles"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılardan kaç tanesini görebilmek için mikroskop kullanmak gerekir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "gül",
+"label": "S"
+},
+{
+"kind": "bakteri",
+"label": "P"
+},
+{
+"kind": "kelebek",
+"label": "L"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "3",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Mikroskobik canlılar mikroskop gerektirir; şekilde 1 tane vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_gozle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekildeki canlılardan hangileri bitkiler grubunda yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "ağaç",
+"label": "R"
+},
+{
+"kind": "kuş",
+"label": "S"
+},
+{
+"kind": "gül",
+"label": "K"
+},
+{
+"kind": "bakteri",
+"label": "L"
+},
+{
+"kind": "mantar",
+"label": "P"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "R ve K",
+"B": "P ve K",
+"C": "R ve P",
+"D": "P ve L"
+},
+"answer": "A",
+"explanation": "Bitkiler grubundaki canlılar R ve K harfleriyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_grup_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopta incelenmek üzere hazırlanan bir örnek gösterilmiştir. L ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "slide",
+"labels": {
+"lam": "L",
+"lamel": "R",
+"drop": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "Lamel",
+"B": "Damla",
+"C": "Lam",
+"D": "Objektif"
+},
+"answer": "C",
+"explanation": "L harfi lam kısmını gösterir: incelenecek örneğin üzerine konulduğu ince cam.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_sl_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci mikroskopla incelediği üç canlıyı harflerle adlandırıp tabloya kaydetmiştir.\nTabloya göre T canlısı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Gözlem tablosu",
+"headers": [
+"Canlı",
+"Hareket yapısı",
+"Çıplak gözle görülür mü?"
+],
+"rows": [
+[
+"P",
+"Kirpik",
+"Hayır"
+],
+[
+"T",
+"Yalancı ayak",
+"Hayır"
+],
+[
+"S",
+"Kamçı",
+"Hayır"
+]
+]
+},
+"options": {
+"A": "Bakteri",
+"B": "Amip",
+"C": "Paramesyum",
+"D": "Öglena"
+},
+"answer": "B",
+"explanation": "Hareketini yalancı ayak ile sağlayan canlı amipdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_tab_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci dört canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nBu bilgilere göre mikroskopla incelenmesi gereken ve yer değiştirebilen canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gözlem tablosu",
+"headers": [
+"Canlı",
+"Çıplak gözle görülür mü?",
+"Yer değiştirebilir mi?"
+],
+"rows": [
+[
+"P",
+"Evet",
+"Hayır"
+],
+[
+"N",
+"Hayır",
+"Evet"
+],
+[
+"L",
+"Evet",
+"Hayır"
+],
+[
+"T",
+"Evet",
+"Evet"
+]
+]
+},
+"options": {
+"A": "T",
+"B": "N",
+"C": "P",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Çıplak gözle görülemeyen ve yer değiştirebilen canlı N ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_tab_olcut"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci okul bahçesinde saydığı canlıları gruplara ayırıp sayılarını grafikte göstermiştir.\nBuna göre en çok bulunan canlı grubu hangisidir?",
+"shape": {
+"type": "bar_chart",
+"title": "Bahçede sayılan canlılar",
+"labels": [
+"Bitki",
+"Hayvan",
+"Mantar",
+"Mikroskobik canlı"
+],
+"values": [
+10,
+7,
+11,
+5
+],
+"show_names": false
+},
+"options": {
+"A": "Mantar",
+"B": "Mikroskobik canlı",
+"C": "Bitki",
+"D": "Hayvan"
+},
+"answer": "A",
+"explanation": "Grafikte en yüksek sütun mantar grubuna aittir (11).",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_gr_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlılar \"Çıplak gözle görülebilir mi?\" ölçütüne göre iki gruba ayrılmıştır.\nBuna göre K ile gösterilen yere aşağıdakilerden hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Çıplak gözle görülebilir mi?",
+"kids": [
+"Hayır",
+"Evet"
+],
+"leaves": [
+[
+"Bakteri"
+],
+[
+"Kedi",
+"K"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Papatya",
+"B": "Amip",
+"C": "Öglena",
+"D": "Paramesyum"
+},
+"answer": "A",
+"explanation": "Papatya bu ölçüte göre K'nin bulunduğu gruba uyar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_olcut"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde iki canlı gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "ağaç",
+"label": "K"
+},
+{
+"kind": "mantar",
+"label": "L"
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "K: Bitki, L: Mantar",
+"B": "K: Bitki, L: Hayvan",
+"C": "K: Hayvan, L: Mantar",
+"D": "K: Bitki, L: Mikroskobik canlı"
+},
+"answer": "A",
+"explanation": "Doğru eşleştirme: K: Bitki, L: Mantar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_ikili"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Hayvanlar bulundukları yerden başka bir yere kendileri gidebilirken bitkiler ve mantarlar bulundukları yerde yetişir.\nBuna göre şekildeki canlılardan kaç tanesi kendi başına yer değiştirebilir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kelebek",
+"label": "P"
+},
+{
+"kind": "ağaç",
+"label": "K"
+},
+{
+"kind": "mantar",
+"label": "M"
+},
+{
+"kind": "çam",
+"label": "N"
+},
+{
+"kind": "balık",
+"label": "L"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "A",
+"explanation": "Şekilde 2 hayvan vardır; yalnızca hayvanlar yer değiştirebilir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_yer"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekildeki M ve P bir grupta, N ve T ise başka bir grupta toplanmıştır.\nBu iki grubu ayırmak için aşağıdaki ölçütlerden hangisi kullanılmıştır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "lale",
+"label": "M"
+},
+{
+"kind": "gül",
+"label": "P"
+},
+{
+"kind": "balık",
+"label": "N"
+},
+{
+"kind": "kelebek",
+"label": "T"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "Kendi başına yer değiştirebilme",
+"B": "Gözle görülemeyecek kadar küçük olma",
+"C": "Çıplak gözle görülebilme",
+"D": "Mikroskop gerektirme"
+},
+"answer": "A",
+"explanation": "Bir grupta bitkiler (yer değiştirmez), diğerinde hayvanlar (yer değiştirir) vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_olcut"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki Venn şemasında Hayvanlar ve Mikroskobik canlılar kümelerinin bölgeleri harflerle gösterilmiştir. Her bölgeye yalnızca o bölgeye özgü özellikler yazılır.\n“Hücrelerden oluşur” özelliği şemada hangi harfle gösterilen bölgeye yazılmalıdır?",
+"shape": {
+"type": "f6",
+"sub_type": "venn2",
+"ta": "Hayvanlar",
+"tb": "Mikroskobik canlılar",
+"harf": {
+"sol": "L",
+"orta": "N",
+"sag": "T",
+"dis": "S"
+},
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "S",
+"C": "L",
+"D": "T"
+},
+"answer": "A",
+"explanation": "Bu özellik hem hayvanlar hem mikroskobik canlılar için ortaktır; kesişim bölgesi N harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_venn_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekildeki Venn şemasında Hayvanlar ve Mikroskobik canlılar kümelerinin bölgeleri harflerle gösterilmiştir. Her bölgeye yalnızca o bölgeye özgü özellikler yazılır.\nT ile gösterilen bölgeye aşağıdaki özelliklerden hangisi yazılabilir?",
+"shape": {
+"type": "f6",
+"sub_type": "venn2",
+"ta": "Hayvanlar",
+"tb": "Mikroskobik canlılar",
+"harf": {
+"sol": "T",
+"orta": "N",
+"sag": "S",
+"dis": "M"
+},
+"show_names": false
+},
+"options": {
+"A": "Hücrelerden oluşur",
+"B": "Çıplak gözle görülebilir",
+"C": "Mikroskopla incelenmesi gerekir",
+"D": "Yer değiştirebilen türleri vardır"
+},
+"answer": "B",
+"explanation": "T bölgesi yalnız hayvanlar için geçerli özellikleri gösterir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_venn_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nBir öğrenci bitki, hayvan ve mantar örneklerini harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre M canlısı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir",
+"Yer değiştirebilir",
+"Hücrelerden oluşur"
+],
+"rows": [
+[
+"N",
+"Yok",
+"Yok",
+"Var"
+],
+[
+"K",
+"Var",
+"Yok",
+"Var"
+],
+[
+"M",
+"Yok",
+"Var",
+"Var"
+]
+]
+},
+"options": {
+"A": "Mantar",
+"B": "Mikroskobik canlı (bakteri)",
+"C": "Bitki",
+"D": "Hayvan"
+},
+"answer": "D",
+"explanation": "M canlısı besinini kendisi üretmiyor ve yer değiştirebiliyor: hayvan.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_ozellik_tab"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nBir öğrenci beş canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre “Yer değiştirebilir” özelliğine sahip kaç canlı vardır?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir",
+"Yer değiştirebilir",
+"Hücrelerden oluşur"
+],
+"rows": [
+[
+"K",
+"Yok",
+"Yok",
+"Var"
+],
+[
+"R",
+"Yok",
+"Var",
+"Var"
+],
+[
+"S",
+"Yok",
+"Var",
+"Var"
+],
+[
+"P",
+"Yok",
+"Yok",
+"Var"
+],
+[
+"T",
+"Var",
+"Yok",
+"Var"
+]
+]
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Tabloda bu özellik için “Var” yazan 2 satır vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_ozellik_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki Venn şemasında “Yer değiştirebilir” ve “Besinini kendisi üretir” kümeleri verilmiştir. Hiçbir kümeye girmeyen canlılar dikdörtgenin içinde, dairelerin dışında yer alır.\nÖglena şemada hangi harfle gösterilen bölgeye yazılmalıdır?",
+"shape": {
+"type": "f6",
+"sub_type": "venn2",
+"ta": "Yer değiştirebilir",
+"tb": "Besinini kendisi üretir",
+"harf": {
+"sol": "P",
+"orta": "L",
+"sag": "T",
+"dis": "R"
+},
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "R",
+"C": "T",
+"D": "P"
+},
+"answer": "A",
+"explanation": "Öglena için “Yer değiştirebilir” özelliği var, “Besinini kendisi üretir” özelliği var; bu bölge L harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_venn_canli_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nBir öğrenci dört canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre L canlısı aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir",
+"Yer değiştirebilir",
+"Çıplak gözle görülür"
+],
+"rows": [
+[
+"R",
+"Yok",
+"Yok",
+"Var"
+],
+[
+"L",
+"Var",
+"Var",
+"Yok"
+],
+[
+"N",
+"Yok",
+"Var",
+"Var"
+],
+[
+"S",
+"Var",
+"Yok",
+"Var"
+]
+]
+},
+"options": {
+"A": "Amip",
+"B": "Öglena",
+"C": "Hayvan",
+"D": "Mantar"
+},
+"answer": "B",
+"explanation": "Tablodaki özelliklere göre L canlısı öglena grubuna uyar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_ozellik_tab2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nBir öğrenci mikroskopta incelediği su damlasındaki canlıları şekildeki gibi çizmiştir.\nVerilenlere göre görüntüde kaç tane amip vardır?",
+"shape": {
+"type": "f6",
+"sub_type": "mikroalan",
+"items": [
+[
+"amip",
+1.01,
+-1.85,
+75
+],
+[
+"amip",
+1.8,
+0.58,
+75
+],
+[
+"amip",
+0.19,
+-0.85,
+25
+],
+[
+"amip",
+-2.01,
+-0.7,
+0
+],
+[
+"amip",
+0.98,
+1.42,
+170
+],
+[
+"öglena",
+-1.68,
+1.04,
+0
+]
+],
+"tur": [
+"amip",
+"öglena"
+],
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
+},
+"answer": "B",
+"explanation": "Şekildeki amip çizimlerini sayarsak 5 tane bulunur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mikro_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir.\nVerilenlere göre bu görüntüde kaç tane amip vardır?",
+"shape": {
+"type": "bio",
+"sub_type": "field",
+"items": [
+[
+"m4",
+-2.7,
+2.3,
+0.55,
+-10
+],
+[
+"m1",
+1.8,
+-3.1,
+0.55,
+-10
+],
+[
+"m1",
+0.2,
+2.9,
+0.55,
+-20
+],
+[
+"m4",
+2.8,
+1.9,
+0.55,
+-20
+]
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Görüntüde 2 tane amip görülür.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_alan_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir. Amip, paramesyum, öglena ve bakteriden biri bu görüntüde yoktur.\nBu bilgilere göre görüntüde bulunmayan canlı hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "field",
+"items": [
+[
+"m3",
+2.8,
+1.9,
+0.5,
+-10
+],
+[
+"m2",
+-1.7,
+-3.0,
+0.5,
+0
+],
+[
+"m2",
+0.1,
+-0.1,
+0.5,
+30
+],
+[
+"m1",
+0.2,
+2.9,
+0.55,
+-10
+],
+[
+"m3",
+-3.0,
+-0.8,
+0.5,
+-10
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Bakteri",
+"B": "Paramesyum",
+"C": "Amip",
+"D": "Öglena"
+},
+"answer": "A",
+"explanation": "Görüntüde amip, paramesyum, öglena vardır; bakteri yoktur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_alan_yok"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir öğrenci canlıları kutulara ayırmıştır. K kutusundaki canlılar aynı gruptadır.\nBuna göre K kutusuna aşağıdaki başlıklardan hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "K",
+"items": [
+{
+"kind": "lale"
+},
+{
+"kind": "ağaç"
+}
+]
+},
+{
+"title": "L",
+"items": [
+{
+"kind": "paramesyum"
+},
+{
+"kind": "amip"
+}
+]
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "Mikroskobik canlılar",
+"B": "Bitkiler",
+"C": "Mantarlar",
+"D": "Hayvanlar"
+},
+"answer": "B",
+"explanation": "K kutusundaki canlıların hepsi bitkiler grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_baslik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlılar iki kutuya yerleştirilmiş ve numaralandırılmıştır. Kutulardan birine yanlış gruptan bir canlı konulmuştur.\nBuna göre yanlış yerleştirilen canlı hangi numarayla gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "Hayvanlar",
+"items": [
+{
+"kind": "kuş",
+"label": "4"
+},
+{
+"kind": "kedi",
+"label": "8"
+},
+{
+"kind": "bakteri",
+"label": "3"
+}
+]
+},
+{
+"title": "Mikroskobik canlılar",
+"items": [
+{
+"kind": "paramesyum",
+"label": "1"
+},
+{
+"kind": "amip",
+"label": "7"
+}
+]
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "3",
+"C": "4",
+"D": "8"
+},
+"answer": "B",
+"explanation": "3 numaralı canlı mikroskobik canlılar grubundadır; ancak hayvanlar kutusuna konmuştur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_yanlis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde K kutusunda aynı gruba ait canlılar bulunmaktadır.\nBu bilgilere göre bu canlıların ortak özelliği aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "K",
+"items": [
+{
+"kind": "balık"
+},
+{
+"kind": "kuş"
+},
+{
+"kind": "kedi"
+}
+]
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Hepsi kökleriyle toprağa tutunur.",
+"B": "Mikroskop olmadan görülemezler.",
+"C": "Besinlerini güneş ışığıyla kendileri üretirler.",
+"D": "Besinlerini dışarıdan hazır olarak alırlar."
+},
+"answer": "D",
+"explanation": "K kutusundaki canlılar hayvanlar grubundadır: besinlerini dışarıdan hazır olarak alırlar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_ortak"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde canlılar gruplarına göre kutulara yerleştirilmiştir.\nVerilenlere göre yeni bulunan meşe ağacı hangi kutuya konmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "K",
+"items": [
+{
+"kind": "kuş"
+},
+{
+"kind": "balık"
+}
+]
+},
+{
+"title": "L",
+"items": [
+{
+"kind": "gül"
+},
+{
+"kind": "lale"
+}
+]
+},
+{
+"title": "M",
+"items": [
+{
+"kind": "zehirli mantar"
+},
+{
+"kind": "mantar"
+}
+]
+},
+{
+"title": "N",
+"items": [
+{
+"kind": "amip"
+},
+{
+"kind": "öglena"
+}
+]
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Meşe ağacı, bitkiler grubundadır; bu gruptaki canlılar L kutusundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_hangi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlıların sınıflandırılması gösterilmiştir.\nBuna göre amip hangi harfle gösterilen grubun altına yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"R",
+"S",
+"N",
+"M"
+],
+"leaves": [
+[
+"Bakteri",
+"Paramesyum"
+],
+[
+"Çam ağacı",
+"Gül"
+],
+[
+"Zehirli mantar"
+],
+[
+"Balık",
+"Kelebek"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "S",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Amip, mikroskobik canlılar grubundadır; bu grubun şemadaki harfi R'dir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_yeni"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlıların sınıflandırılması gösterilmiştir.\nBuna göre en çok canlının bulunduğu grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"P",
+"T",
+"K",
+"L"
+],
+"leaves": [
+[
+"Zehirli mantar"
+],
+[
+"Kelebek"
+],
+[
+"Papatya",
+"Meşe ağacı"
+],
+[
+"Paramesyum",
+"Bakteri",
+"Amip"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "L",
+"C": "P",
+"D": "K"
+},
+"answer": "B",
+"explanation": "L grubunda 3 canlı vardır; diğer gruplarda daha azdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. Sapın çevresinde bulunan halka biçimli yapı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"labels": {
+"cap": "P",
+"gill": "N",
+"ring": "L",
+"stem": "M"
+},
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "P",
+"C": "L",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Sapın çevresinde bulunan halka biçimli yapı mantarın halka kısmıdır; şekilde L ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_gorev"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde iki şapkalı mantar gösterilmiştir. Bir öğrenci bu mantarların görünüşlerine bakarak hangisinin zehirli olduğunu bulmak istemektedir.\nBuna göre aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "mantar",
+"label": "K"
+},
+{
+"kind": "zehirli mantar",
+"label": "L"
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "Evet, şapkasında beyaz benek olmayan mantar zehirlidir.",
+"B": "Hayır, mantarların zehirli olup olmadığı yalnızca görünüşlerine bakılarak kesin söylenemez.",
+"C": "Evet, her zaman renkli şapkalı olan mantar zehirlidir.",
+"D": "Evet, her zaman soluk renkli şapkalı olan mantar zehirlidir."
+},
+"answer": "B",
+"explanation": "Zehirli mantarlar görünüşle güvenle ayırt edilemez; bilinmeyen mantarlar yenmemelidir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_iki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılar aynı gruptadır.\nBuna göre aşağıdaki canlılardan hangisi bu canlılarla aynı grupta yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "çam",
+"label": "K"
+},
+{
+"kind": "gül",
+"label": "M"
+},
+{
+"kind": "lale",
+"label": "R"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "Paramesyum",
+"B": "Balık",
+"C": "Papatya",
+"D": "Kuş"
+},
+"answer": "C",
+"explanation": "Şekildeki canlılar bitkiler grubundadır; papatya de aynı gruptadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_ayni"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci dört canlının özelliklerini harflerle adlandırarak tabloya yazmıştır.\nVerilenlere göre Besinini kendisi üretebilen ve yer değiştirerek hareket edebilen canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir mi?",
+"Yer değiştirerek hareket eder mi?"
+],
+"rows": [
+[
+"P",
+"Evet",
+"Hayır"
+],
+[
+"M",
+"Hayır",
+"Hayır"
+],
+[
+"R",
+"Hayır",
+"Evet"
+],
+[
+"K",
+"Evet",
+"Evet"
+]
+]
+},
+"options": {
+"A": "P",
+"B": "K",
+"C": "M",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Tabloda bu özellikleri taşıyan tek canlı K harfiyle gösterilendir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_tablo_ozellik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci bitki, hayvan ve mantar gruplarından birer canlıyı harflerle adlandırarak özelliklerini tabloya yazmıştır.\nVerilenlere göre L ile gösterilen canlı hangi gruptadır?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir mi?",
+"Yer değiştirerek hareket eder mi?"
+],
+"rows": [
+[
+"L",
+"Evet",
+"Hayır"
+],
+[
+"N",
+"Hayır",
+"Hayır"
+],
+[
+"S",
+"Hayır",
+"Evet"
+]
+]
+},
+"options": {
+"A": "Hayvan",
+"B": "Bitki",
+"C": "Mantar",
+"D": "Mikroskobik canlı"
+},
+"answer": "B",
+"explanation": "Tablodaki özellikler bitki grubuna uyar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_tablo_grup"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci amip, paramesyum ve öglenayı mikroskopla incelemiş, harflerle adlandırdığı canlıların özelliklerini tabloya yazmıştır.\nBu bilgilere göre M ile gösterilen canlı hangisidir?",
+"shape": {
+"type": "table",
+"title": "Mikroskobik canlılar",
+"headers": [
+"Canlı",
+"Hareket yapısı",
+"Rengi"
+],
+"rows": [
+[
+"L",
+"Kirpik",
+"Renksiz"
+],
+[
+"S",
+"Yalancı ayak",
+"Renksiz"
+],
+[
+"M",
+"Kamçı",
+"Yeşil"
+]
+]
+},
+"options": {
+"A": "Bakteri",
+"B": "Öglena",
+"C": "Paramesyum",
+"D": "Amip"
+},
+"answer": "B",
+"explanation": "Tablodaki kamçı ve yeşil özellikleri öglena canlısına aittir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_tablo_mikro"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Verilen şekilde Ay'ın Dünya çevresindeki dört konumu harflerle gösterilmiştir. Ay, Dünya çevresindeki turunu oklarla gösterilen yönde yaklaşık 29,5 günde tamamlar.\nBuna göre Ay T konumundayken yaklaşık 7 gün sonra hangi evrede olur?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "T"
+},
+{
+"i": 2,
+"label": "P"
+},
+{
+"i": 4,
+"label": "R"
+},
+{
+"i": 6,
+"label": "L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Dolunay",
+"B": "Yeni Ay",
+"C": "Son Dördün",
+"D": "İlk Dördün"
+},
+"answer": "D",
+"explanation": "7 günde Ay çeyrek tur atar ve bir sonraki evreye, yani İlk Dördün evresine geçer.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_uz_yor_sonra"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "Bir öğrenci, harflerle adlandırdığı dört canlıyı önce çıplak gözle, sonra gerekiyorsa mikroskopla inceliyor. Canlılardan biri amip, paramesyum, öglena ya da bakteri gibi bir mikroskobik canlıdır; diğerleri gözle görülebilen canlılardır. Gözlem sonuçlarını tabloya kaydediyor.",
+"question": "Tablodaki verilere göre hangi harfle gösterilen canlı mikroskobik canlıdır?",
+"shape": {
+"type": "table",
+"title": "Gözlem sonuçları",
+"headers": [
+"Canlı",
+"Gözle görülebiliyor mu?",
+"Mikroskop gerekiyor mu?"
+],
+"rows": [
+[
+"M",
+"Evet",
+"Hayır"
+],
+[
+"L",
+"Evet",
+"Hayır"
+],
+[
+"N",
+"Evet",
+"Hayır"
+],
+[
+"P",
+"Hayır",
+"Evet"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "P",
+"C": "M",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Gözle görülemeyen ve incelenmesi için mikroskop gereken tek canlı P harfiyle gösterilendir; bu nedenle mikroskobik canlıdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn_mikro"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Mikroskobik canlılar ve mantarlar",
+"passage": "Defne, aynı ekmeklerden alınan dilimleri farklı ortamlarda bekletip bir hafta sonra küf oluşan alanı ölçüyor.",
+"question": "Tabloya göre nemli ve ılık ile nemli ve soğuk için ölçülen değerler arasındaki fark kaç cm²'dir?",
+"shape": {
+"type": "table",
+"title": "Küf oluşumu",
+"headers": [
+"Bekletilen ortam",
+"Küf alanı (cm²)"
+],
+"rows": [
+[
+"nemli ve ılık",
+"28"
+],
+[
+"nemli ve soğuk",
+"52"
+],
+[
+"kuru ve ılık",
+"39"
+],
+[
+"kuru ve soğuk",
+"8"
+]
+]
+},
+"options": {
+"A": "22 cm²",
+"B": "24 cm²",
+"C": "25 cm²",
+"D": "29 cm²"
+},
+"answer": "B",
+"explanation": "52 − 28 = 24 cm².",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn2_kuf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "Orman gezisinde Nehir, toprakta şapkalı bir mantar görüyor. Mantarın yenilebilir olup olmadığını bilmiyor.",
+"question": "Nehir'in bu durumda yapması gereken aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Mantarı toplamadan bir yetişkine ve uzmana danışması",
+"B": "Renkli mantarları yenilebilir sayması",
+"C": "Mantarın tadına bakarak denemesi",
+"D": "Mantarı çiğ yemesi"
+},
+"answer": "A",
+"explanation": "Zehirli mantarlar ölümcül olabilir; yenilebilirliğini yalnızca uzmanlar belirler.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn2_sen_canli"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. M ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microscope",
+"labels": {
+"base": "S",
+"objective": "M",
+"knob": "L",
+"stage": "N"
+},
+"show_names": false
+},
+"options": {
+"A": "Objektif",
+"B": "Işık kaynağı",
+"C": "Göz merceği",
+"D": "Tabla"
+},
+"answer": "A",
+"explanation": "M harfi objektif kısmını gösterir; bu kısım: incelenecek örneğe en yakın olan, görüntüyü büyüten mercek.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mik_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. Mikroskobu taşırken tutulan kısım hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microscope",
+"labels": {
+"arm": "K",
+"light": "L",
+"stage": "M",
+"knob": "S"
+},
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "S",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Mikroskobu taşırken tutulan kısım koldır ve şekilde K ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mik_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci mikroskopla incelediği canlıyı şekildeki gibi çizmiştir. T ile gösterilen canlı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m1"
+],
+"labels": [
+"T"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Amip",
+"B": "Bakteri",
+"C": "Paramesyum",
+"D": "Öglena"
+},
+"answer": "A",
+"explanation": "Şekildeki canlının özellikleri amip ile uyuşur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Kirpikleriyle hareket eden canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"amip",
+"bakteri",
+"paramesyum",
+"öglena"
+],
+"labels": [
+"P",
+"R",
+"N",
+"L"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "R",
+"C": "N",
+"D": "L"
+},
+"answer": "C",
+"explanation": "Kirpikleriyle hareket eden canlı paramesyumdır ve N ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_harf_oz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Amip hangi harfle gösterilen canlıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"paramesyum",
+"amip",
+"bakteri",
+"öglena"
+],
+"labels": [
+"N",
+"R",
+"M",
+"K"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Amip şekilde R harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_harf_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde mikroskopla incelenen dört canlı gösterilmiştir. Bu canlılardan yalnızca biri yeşil renklidir ve kamçısı vardır.\nBuna göre yeşil renkli canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"paramesyum",
+"öglena",
+"amip",
+"bakteri"
+],
+"labels": [
+"M",
+"R",
+"T",
+"K"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "R",
+"C": "K",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Yeşil renkli ve kamçılı canlı öglenadır; R ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_yesil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen canlılar harflerle gösterilmiştir.\nBuna göre bu canlıların ortak özelliği aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"amip",
+"bakteri",
+"paramesyum"
+],
+"labels": [
+"M",
+"L",
+"N"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "Hepsi mikroskop yardımıyla görülebilen canlılardır.",
+"B": "Hepsi gözle rahatça görülebilir.",
+"C": "Hepsi kamçısıyla hareket eder.",
+"D": "Hepsi yeşil renklidir ve fotosentez yapar."
+},
+"answer": "A",
+"explanation": "Şekildeki canlıların hepsi mikroskobik canlıdır; mikroskop olmadan görülemez.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ortak"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. M ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"labels": {
+"cap": "T",
+"gill": "N",
+"ring": "S",
+"stem": "M"
+},
+"poison": false,
+"show_names": false
+},
+"options": {
+"A": "Halka",
+"B": "Şapka",
+"C": "Sap",
+"D": "Lamel"
+},
+"answer": "C",
+"explanation": "M harfi mantarın sap kısmını gösterir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlıların sınıflandırılması gösterilmiştir. K ile gösterilen grubun adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"K",
+"Mantarlar",
+"Hayvanlar"
+],
+"leaves": [
+[
+"Papatya",
+"Meşe ağacı"
+],
+[
+"Şapkalı mantar"
+],
+[
+"Kedi",
+"Balık"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Mantarlar",
+"B": "Bitkiler",
+"C": "Mikroskobik canlılar",
+"D": "Hayvanlar"
+},
+"answer": "B",
+"explanation": "K grubunda papatya, meşe ağacı bulunur; bu canlılar bitkiler grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_bos"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde canlıların sınıflandırılması gösterilmiştir. ? işareti ile gösterilen yere mikroskobik canlılar grubuna ait bir canlı yazılacaktır.\nBuna göre ? yerine aşağıdakilerden hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"Hayvanlar",
+"Mikroskobik canlılar",
+"Bitkiler"
+],
+"leaves": [
+[
+"Balık",
+"Kelebek"
+],
+[
+"Bakteri",
+"?"
+],
+[
+"Meşe ağacı",
+"Gül"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Meşe ağacı",
+"B": "Gül",
+"C": "Lale",
+"D": "Öglena"
+},
+"answer": "D",
+"explanation": "Öglena, mikroskobik canlılar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_eksik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde bir öğrenci canlıları gruplara ayırmıştır; ancak bir canlıyı yanlış gruba yerleştirmiştir.\nBu bilgilere göre yanlış gruba yerleştirilen canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"Hayvanlar",
+"Bitkiler",
+"Mikroskobik canlılar"
+],
+"leaves": [
+[
+"T: Kuş",
+"P: Kedi"
+],
+[
+"L: Gül",
+"N: Meşe ağacı"
+],
+[
+"S: Öglena",
+"M: Meşe ağacı"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "T",
+"D": "S"
+},
+"answer": "A",
+"explanation": "Meşe ağacı, bitkiler grubundadır; ancak mikroskobik canlılar grubuna yazılmıştır. Bu canlı M ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_yanlis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bazı canlılar harflerle gösterilmiştir. Bu canlılardan hangisi mantar grubunda yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "mantar",
+"label": "P"
+},
+{
+"kind": "kedi",
+"label": "M"
+},
+{
+"kind": "ağaç",
+"label": "S"
+},
+{
+"kind": "kuş",
+"label": "R"
+},
+{
+"kind": "amip",
+"label": "N"
+},
+{
+"kind": "kelebek",
+"label": "T"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "S",
+"C": "T",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Şapkalı mantar mantar grubunda yer alır; şekilde P ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılardan kaç tanesi bitki grubundadır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kedi",
+"label": "K"
+},
+{
+"kind": "çam",
+"label": "T"
+},
+{
+"kind": "mantar",
+"label": "N"
+},
+{
+"kind": "öglena",
+"label": "S"
+},
+{
+"kind": "kelebek",
+"label": "R"
+},
+{
+"kind": "paramesyum",
+"label": "P"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "6"
+},
+"answer": "A",
+"explanation": "Şekilde 1 bitki vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılar bitki, hayvan, mantar ve mikroskobik canlı gruplarına ayrılacaktır.\nBuna göre bu canlılar kaç farklı gruba aittir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "paramesyum",
+"label": "M"
+},
+{
+"kind": "mantar",
+"label": "K"
+},
+{
+"kind": "papatya",
+"label": "P"
+},
+{
+"kind": "kelebek",
+"label": "T"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "C",
+"explanation": "Şekildeki canlılar 4 farklı gruba aittir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_cesit"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde harflerle gösterilen canlılardan hangisi, mikroskop kullanılmadan incelenemez?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "lale",
+"label": "N"
+},
+{
+"kind": "balık",
+"label": "K"
+},
+{
+"kind": "kedi",
+"label": "L"
+},
+{
+"kind": "mantar",
+"label": "M"
+},
+{
+"kind": "bakteri",
+"label": "R"
+},
+{
+"kind": "çam",
+"label": "S"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "S",
+"C": "K",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Mikroskobik canlılar çıplak gözle görülemez; R ile gösterilen bakteri mikroskobik canlıdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_mikroskop"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılardan hangi ikisi hayvan grubundadır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "amip",
+"label": "R"
+},
+{
+"kind": "mantar",
+"label": "P"
+},
+{
+"kind": "kedi",
+"label": "L"
+},
+{
+"kind": "papatya",
+"label": "S"
+},
+{
+"kind": "ağaç",
+"label": "K"
+},
+{
+"kind": "balık",
+"label": "T"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "S ve T",
+"B": "K ve T",
+"C": "K ve P",
+"D": "L ve T"
+},
+"answer": "D",
+"explanation": "Hayvan grubundaki canlılar şekilde L ve T harfleriyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde mikroskopla görülen bir canlı gösterilmiştir.\nBuna göre bu canlı çıplak gözle görülebilir mi?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m2"
+],
+"labels": [
+"K"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Evet, çıplak gözle rahatça görülür.",
+"B": "Hayır, hiçbir araçla görülemez.",
+"C": "Hayır, mikroskop kullanmak gerekir.",
+"D": "Evet, büyüteçle bile görülemez ama çıplak gözle görülür."
+},
+"answer": "C",
+"explanation": "Mikroskobik canlılar çok küçüktür; çıplak gözle değil, mikroskopla görülür.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_gozle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Vücut şeklini sürekli değiştiren canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"paramesyum",
+"öglena",
+"bakteri",
+"amip"
+],
+"labels": [
+"L",
+"R",
+"K",
+"N"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "R"
+},
+"answer": "A",
+"explanation": "Bu özellikler amip canlısına aittir; şekilde N ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ozellik2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde mikroskopla incelenen üç canlı harflerle gösterilmiştir.\nBuna göre bu canlıların hareket yapıları ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"öglena",
+"amip",
+"paramesyum"
+],
+"labels": [
+"T",
+"S",
+"P"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "T canlısı kamçı, P canlısı yalancı ayak ile hareket eder.",
+"B": "T canlısı yalancı ayak, P canlısı kirpik ile hareket eder.",
+"C": "T canlısı kirpik, P canlısı kamçı ile hareket eder.",
+"D": "T canlısı kamçı, P canlısı kirpik ile hareket eder."
+},
+"answer": "D",
+"explanation": "T canlısı kamçı, P canlısı kirpik ile hareket eder.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_karsilastir"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci, şekildeki gibi bir mantarı arkadaşıyla birlikte ormanda bulmuştur. Arkadaşı, \"Rengi çok güzel, kesin yenilebilir.\" demiştir.\nBuna göre öğrencinin yapması gereken aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "Mantarın bir parçasını yiyip denemelidir.",
+"B": "Rengine bakarak karar vermeden mantarı yememelidir.",
+"C": "Mantarı evde herkese tattırmalıdır.",
+"D": "Arkadaşına güvenip mantarı pişirerek yemelidir."
+},
+"answer": "B",
+"explanation": "Bazı mantarlar zehirlidir ve zehirli mantarlar renk ya da görünüşle güvenle ayırt edilemez; bilinmeyen mantarlar yenmemelidir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_zehir2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde canlıların sınıflandırılması gösterilmiştir. K ve L ile gösterilen grupların adları aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"K",
+"L",
+"Mikroskobik canlılar"
+],
+"leaves": [
+[
+"Balık",
+"Kedi"
+],
+[
+"Zehirli mantar"
+],
+[
+"Bakteri",
+"Öglena"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "K: Hayvanlar, L: Bitkiler",
+"B": "K: Hayvanlar, L: Mantarlar",
+"C": "K: Bitkiler, L: Mantarlar",
+"D": "K: Mantarlar, L: Hayvanlar"
+},
+"answer": "B",
+"explanation": "K grubundaki canlılar hayvanlar, L grubundakiler mantarlar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_iki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılardan üçü aynı gruptadır.\nBuna göre diğerlerinden farklı gruba ait olan canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "paramesyum",
+"label": "T"
+},
+{
+"kind": "kedi",
+"label": "K"
+},
+{
+"kind": "kelebek",
+"label": "L"
+},
+{
+"kind": "balık",
+"label": "P"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "P",
+"C": "K",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Diğer üç canlı hayvanlar grubunda; T ile gösterilen canlı ise mikroskobik canlılar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_farkli"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılar aynı gruptadır.\nBuna göre bu canlıların ait olduğu grup aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "gül",
+"label": "N"
+},
+{
+"kind": "çam",
+"label": "P"
+},
+{
+"kind": "lale",
+"label": "T"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "Mantarlar",
+"B": "Mikroskobik canlılar",
+"C": "Bitkiler",
+"D": "Hayvanlar"
+},
+"answer": "C",
+"explanation": "Şekildeki canlıların hepsi bitkiler grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_hepsi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde bazı canlılar harflerle gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "zehirli mantar",
+"label": "P"
+},
+{
+"kind": "lale",
+"label": "N"
+},
+{
+"kind": "kuş",
+"label": "S"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "P: Bitki, N: Mantar, S: Hayvan",
+"B": "P: Mantar, N: Bitki, S: Hayvan",
+"C": "P: Hayvan, N: Mantar, S: Bitki",
+"D": "P: Bitki, N: Hayvan, S: Mantar"
+},
+"answer": "B",
+"explanation": "Doğru eşleştirme: P: Mantar, N: Bitki, S: Hayvan.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_esles"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde harflerle gösterilen canlılardan kaç tanesini görebilmek için mikroskop kullanmak gerekir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kelebek",
+"label": "R"
+},
+{
+"kind": "paramesyum",
+"label": "T"
+},
+{
+"kind": "ağaç",
+"label": "S"
+},
+{
+"kind": "öglena",
+"label": "M"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "2",
+"C": "3",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Mikroskobik canlılar mikroskop gerektirir; şekilde 2 tane vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_gozle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekildeki canlılardan hangileri bitkiler grubunda yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "paramesyum",
+"label": "K"
+},
+{
+"kind": "balık",
+"label": "T"
+},
+{
+"kind": "papatya",
+"label": "R"
+},
+{
+"kind": "zehirli mantar",
+"label": "M"
+},
+{
+"kind": "çam",
+"label": "N"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "R ve N",
+"B": "T ve R",
+"C": "M ve R",
+"D": "K ve M"
+},
+"answer": "A",
+"explanation": "Bitkiler grubundaki canlılar R ve N harfleriyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_grup_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde mikroskopta incelenmek üzere hazırlanan bir örnek gösterilmiştir. R ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "slide",
+"labels": {
+"lam": "R",
+"lamel": "T",
+"drop": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "Damla",
+"B": "Lamel",
+"C": "Objektif",
+"D": "Lam"
+},
+"answer": "D",
+"explanation": "R harfi lam kısmını gösterir: incelenecek örneğin üzerine konulduğu ince cam.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_sl_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde canlılar \"Çıplak gözle görülebilir mi?\" ölçütüne göre iki gruba ayrılmıştır.\nBuna göre K ile gösterilen yere aşağıdakilerden hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Çıplak gözle görülebilir mi?",
+"kids": [
+"Hayır",
+"Evet"
+],
+"leaves": [
+[
+"Öglena"
+],
+[
+"Kedi",
+"K"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Paramesyum",
+"B": "Meşe ağacı",
+"C": "Amip",
+"D": "Bakteri"
+},
+"answer": "B",
+"explanation": "Meşe ağacı bu ölçüte göre K'nin bulunduğu gruba uyar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_olcut"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde iki canlı gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "mantar",
+"label": "K"
+},
+{
+"kind": "kelebek",
+"label": "L"
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "K: Mantar, L: Bitki",
+"B": "K: Mantar, L: Mikroskobik canlı",
+"C": "K: Mantar, L: Hayvan",
+"D": "K: Mikroskobik canlı, L: Hayvan"
+},
+"answer": "C",
+"explanation": "Doğru eşleştirme: K: Mantar, L: Hayvan.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_ikili"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekildeki K ve N bir grupta, L ve R ise başka bir grupta toplanmıştır.\nBu iki grubu ayırmak için aşağıdaki ölçütlerden hangisi kullanılmıştır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "papatya",
+"label": "K"
+},
+{
+"kind": "çam",
+"label": "N"
+},
+{
+"kind": "kedi",
+"label": "L"
+},
+{
+"kind": "kuş",
+"label": "R"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "Kendi başına yer değiştirebilme",
+"B": "Gözle görülemeyecek kadar küçük olma",
+"C": "Mikroskop gerektirme",
+"D": "Çıplak gözle görülebilme"
+},
+"answer": "A",
+"explanation": "Bir grupta bitkiler (yer değiştirmez), diğerinde hayvanlar (yer değiştirir) vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_olcut"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki Venn şemasında Bitkiler ve Hayvanlar kümelerinin bölgeleri harflerle gösterilmiştir. Her bölgeye yalnızca o bölgeye özgü özellikler yazılır.\n“Üreyerek soyunu sürdürür” özelliği şemada hangi harfle gösterilen bölgeye yazılmalıdır?",
+"shape": {
+"type": "f6",
+"sub_type": "venn2",
+"ta": "Bitkiler",
+"tb": "Hayvanlar",
+"harf": {
+"sol": "R",
+"orta": "N",
+"sag": "T",
+"dis": "K"
+},
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "T",
+"C": "K",
+"D": "R"
+},
+"answer": "A",
+"explanation": "Bu özellik hem bitkiler hem hayvanlar için ortaktır; kesişim bölgesi N harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_venn_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nBir öğrenci bitki, hayvan ve mantar örneklerini harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre L canlısı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir",
+"Yer değiştirebilir",
+"Hücrelerden oluşur"
+],
+"rows": [
+[
+"L",
+"Var",
+"Yok",
+"Var"
+],
+[
+"M",
+"Yok",
+"Var",
+"Var"
+],
+[
+"K",
+"Yok",
+"Yok",
+"Var"
+]
+]
+},
+"options": {
+"A": "Mantar",
+"B": "Bitki",
+"C": "Mikroskobik canlı (bakteri)",
+"D": "Hayvan"
+},
+"answer": "B",
+"explanation": "L canlısı besinini kendisi üretmiyor; bunun yanında yer değiştiremez, kendi besinini üretir: bitki.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_ozellik_tab"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nBir öğrenci beş canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre “Yer değiştirebilir” özelliğine sahip kaç canlı vardır?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir",
+"Yer değiştirebilir",
+"Hücrelerden oluşur"
+],
+"rows": [
+[
+"T",
+"Var",
+"Yok",
+"Var"
+],
+[
+"S",
+"Yok",
+"Yok",
+"Var"
+],
+[
+"R",
+"Var",
+"Yok",
+"Var"
+],
+[
+"P",
+"Yok",
+"Var",
+"Var"
+],
+[
+"M",
+"Var",
+"Yok",
+"Var"
+]
+]
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "B",
+"explanation": "Tabloda bu özellik için “Var” yazan 1 satır vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_ozellik_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki Venn şemasında “Yer değiştirebilir” ve “Besinini kendisi üretir” kümeleri verilmiştir. Hiçbir kümeye girmeyen canlılar dikdörtgenin içinde, dairelerin dışında yer alır.\nÖglena şemada hangi harfle gösterilen bölgeye yazılmalıdır?",
+"shape": {
+"type": "f6",
+"sub_type": "venn2",
+"ta": "Yer değiştirebilir",
+"tb": "Besinini kendisi üretir",
+"harf": {
+"sol": "T",
+"orta": "R",
+"sag": "P",
+"dis": "M"
+},
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "T",
+"C": "P",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Öglena için “Yer değiştirebilir” özelliği var, “Besinini kendisi üretir” özelliği var; bu bölge R harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_venn_canli_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nBir öğrenci dört canlıyı harflerle adlandırıp özelliklerini tabloya yazmıştır.\nTabloya göre K canlısı aşağıdakilerden hangisi olabilir?",
+"shape": {
+"type": "table",
+"title": "Canlıların özellikleri",
+"headers": [
+"Canlı",
+"Besinini kendisi üretir",
+"Yer değiştirebilir",
+"Çıplak gözle görülür"
+],
+"rows": [
+[
+"N",
+"Yok",
+"Var",
+"Var"
+],
+[
+"K",
+"Var",
+"Yok",
+"Var"
+],
+[
+"R",
+"Yok",
+"Yok",
+"Var"
+],
+[
+"S",
+"Yok",
+"Var",
+"Yok"
+]
+]
+},
+"options": {
+"A": "Hayvan",
+"B": "Öglena",
+"C": "Bitki",
+"D": "Mantar"
+},
+"answer": "C",
+"explanation": "Tablodaki özelliklere göre K canlısı bitki grubuna uyar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_ozellik_tab2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nBir öğrenci mikroskopta incelediği su damlasındaki canlıları şekildeki gibi çizmiştir.\nBu bilgilere göre görüntüde kaç tane öglena vardır?",
+"shape": {
+"type": "f6",
+"sub_type": "mikroalan",
+"items": [
+[
+"öglena",
+2.09,
+0.92,
+75
+],
+[
+"öglena",
+1.05,
+0.47,
+75
+],
+[
+"öglena",
+0.62,
+-0.59,
+140
+],
+[
+"paramesyum",
+1.33,
+-1.81,
+140
+],
+[
+"paramesyum",
+0.98,
+1.85,
+75
+],
+[
+"öglena",
+-0.51,
+-0.22,
+140
+],
+[
+"paramesyum",
+-1.63,
+0.3,
+75
+],
+[
+"paramesyum",
+-1.47,
+-1.71,
+110
+],
+[
+"öglena",
+0.01,
+0.79,
+170
+],
+[
+"paramesyum",
+-0.26,
+2.18,
+110
+]
+],
+"tur": [
+"paramesyum",
+"öglena"
+],
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "6",
+"D": "7"
+},
+"answer": "B",
+"explanation": "Şekildeki öglena çizimlerini sayarsak 5 tane bulunur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mikro_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskoptan bakıldığında görülen görüntü verilmiştir.\nBu bilgilere göre bu görüntüde kaç tane amip vardır?",
+"shape": {
+"type": "bio",
+"sub_type": "field",
+"items": [
+[
+"m2",
+-2.7,
+2.3,
+0.5,
+10
+],
+[
+"m4",
+2.8,
+1.9,
+0.55,
+-20
+],
+[
+"m2",
+-3.0,
+-0.8,
+0.5,
+-10
+],
+[
+"m1",
+3.0,
+-1.0,
+0.55,
+-20
+],
+[
+"m1",
+0.1,
+-0.1,
+0.55,
+10
+],
+[
+"m2",
+0.2,
+2.9,
+0.5,
+20
+]
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Görüntüde 2 tane amip görülür.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_alan_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde bir öğrenci canlıları kutulara ayırmıştır. M kutusundaki canlılar aynı gruptadır.\nVerilenlere göre M kutusuna aşağıdaki başlıklardan hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "K",
+"items": [
+{
+"kind": "ağaç"
+},
+{
+"kind": "gül"
+},
+{
+"kind": "çam"
+}
+]
+},
+{
+"title": "L",
+"items": [
+{
+"kind": "zehirli mantar"
+},
+{
+"kind": "mantar"
+}
+]
+},
+{
+"title": "M",
+"items": [
+{
+"kind": "amip"
+},
+{
+"kind": "paramesyum"
+},
+{
+"kind": "öglena"
+}
+]
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "Mantarlar",
+"B": "Bitkiler",
+"C": "Hayvanlar",
+"D": "Mikroskobik canlılar"
+},
+"answer": "D",
+"explanation": "M kutusundaki canlıların hepsi mikroskobik canlılar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_baslik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde canlılar iki kutuya yerleştirilmiş ve numaralandırılmıştır. Kutulardan birine yanlış gruptan bir canlı konulmuştur.\nBuna göre yanlış yerleştirilen canlı hangi numarayla gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "Hayvanlar",
+"items": [
+{
+"kind": "gül",
+"label": "1"
+},
+{
+"kind": "kelebek",
+"label": "8"
+},
+{
+"kind": "balık",
+"label": "3"
+}
+]
+},
+{
+"title": "Bitkiler",
+"items": [
+{
+"kind": "lale",
+"label": "5"
+},
+{
+"kind": "papatya",
+"label": "4"
+}
+]
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "3",
+"C": "5",
+"D": "8"
+},
+"answer": "A",
+"explanation": "1 numaralı canlı bitkiler grubundadır; ancak hayvanlar kutusuna konmuştur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_yanlis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde K kutusunda aynı gruba ait canlılar bulunmaktadır.\nBuna göre bu canlıların ortak özelliği aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "K",
+"items": [
+{
+"kind": "bakteri"
+},
+{
+"kind": "amip"
+},
+{
+"kind": "paramesyum"
+}
+]
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Çıplak gözle görülemez, mikroskopla görülürler.",
+"B": "Hepsi şapkalı mantar gibi toprakta yetişir.",
+"C": "Hepsi kökleriyle toprağa tutunur.",
+"D": "Hepsi çıplak gözle rahatça görülür."
+},
+"answer": "A",
+"explanation": "K kutusundaki canlılar mikroskobik canlılar grubundadır: çıplak gözle görülemez, mikroskopla görülürler.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_ortak"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlılar gruplarına göre kutulara yerleştirilmiştir.\nBu bilgilere göre yeni bulunan meşe ağacı hangi kutuya konmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "groups",
+"boxes": [
+{
+"title": "K",
+"items": [
+{
+"kind": "zehirli mantar"
+},
+{
+"kind": "mantar"
+}
+]
+},
+{
+"title": "L",
+"items": [
+{
+"kind": "gül"
+},
+{
+"kind": "çam"
+}
+]
+},
+{
+"title": "M",
+"items": [
+{
+"kind": "amip"
+},
+{
+"kind": "bakteri"
+}
+]
+},
+{
+"title": "N",
+"items": [
+{
+"kind": "kelebek"
+},
+{
+"kind": "balık"
+}
+]
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Meşe ağacı, bitkiler grubundadır; bu gruptaki canlılar L kutusundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_grup_hangi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde canlıların sınıflandırılması gösterilmiştir.\nBuna göre lale hangi harfle gösterilen grubun altına yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"R",
+"P",
+"L",
+"N"
+],
+"leaves": [
+[
+"Şapkalı mantar"
+],
+[
+"Öglena",
+"Paramesyum"
+],
+[
+"Kelebek",
+"Balık"
+],
+[
+"Meşe ağacı",
+"Papatya"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "L",
+"C": "P",
+"D": "N"
+},
+"answer": "D",
+"explanation": "Lale, bitkiler grubundadır; bu grubun şemadaki harfi N'dir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_yeni"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde canlıların sınıflandırılması gösterilmiştir.\nVerilenlere göre en çok canlının bulunduğu grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"R",
+"N",
+"L",
+"K"
+],
+"leaves": [
+[
+"Kelebek",
+"Kedi",
+"Balık"
+],
+[
+"Meşe ağacı"
+],
+[
+"Zehirli mantar",
+"Şapkalı mantar"
+],
+[
+"Amip",
+"Paramesyum"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "N",
+"C": "K",
+"D": "L"
+},
+"answer": "A",
+"explanation": "R grubunda 3 canlı vardır; diğer gruplarda daha azdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. Şapkanın altında bulunan ince, yaprak biçimli yapılar hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"labels": {
+"cap": "M",
+"gill": "T",
+"ring": "N",
+"stem": "R"
+},
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "N",
+"C": "T",
+"D": "M"
+},
+"answer": "C",
+"explanation": "Şapkanın altında bulunan ince, yaprak biçimli yapılar mantarın lamel kısmıdır; şekilde T ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_gorev"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde iki şapkalı mantar gösterilmiştir. Bir öğrenci bu mantarların görünüşlerine bakarak hangisinin zehirli olduğunu bulmak istemektedir.\nBuna göre aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "zehirli mantar",
+"label": "K"
+},
+{
+"kind": "mantar",
+"label": "L"
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "Evet, her zaman renkli şapkalı olan mantar zehirlidir.",
+"B": "Hayır, mantarların zehirli olup olmadığı yalnızca görünüşlerine bakılarak kesin söylenemez.",
+"C": "Evet, her zaman soluk renkli şapkalı olan mantar zehirlidir.",
+"D": "Evet, şapkasında beyaz benek olmayan mantar zehirlidir."
+},
+"answer": "B",
+"explanation": "Zehirli mantarlar görünüşle güvenle ayırt edilemez; bilinmeyen mantarlar yenmemelidir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_iki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Şekilde Ay'ın Dünya çevresindeki dört konumu harflerle gösterilmiştir. Ay, Dünya çevresindeki turunu oklarla gösterilen yönde yaklaşık 29,5 günde tamamlar.\nBuna göre Ay T konumundayken yaklaşık 7 gün sonra hangi evrede olur?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "M"
+},
+{
+"i": 2,
+"label": "T"
+},
+{
+"i": 4,
+"label": "N"
+},
+{
+"i": 6,
+"label": "L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Yeni Ay",
+"B": "Dolunay",
+"C": "Son Dördün",
+"D": "İlk Dördün"
+},
+"answer": "B",
+"explanation": "7 günde Ay çeyrek tur atar ve bir sonraki evreye, yani Dolunay evresine geçer.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_uz_yor_sonra"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "Bir öğrenci, harflerle adlandırdığı dört canlıyı önce çıplak gözle, sonra gerekiyorsa mikroskopla inceliyor. Canlılardan biri amip, paramesyum, öglena ya da bakteri gibi bir mikroskobik canlıdır; diğerleri gözle görülebilen canlılardır. Gözlem sonuçlarını tabloya kaydediyor.",
+"question": "Verilen tabloya göre hangi harfle gösterilen canlı mikroskobik canlıdır?",
+"shape": {
+"type": "table",
+"title": "Gözlem sonuçları",
+"headers": [
+"Canlı",
+"Gözle görülebiliyor mu?",
+"Mikroskop gerekiyor mu?"
+],
+"rows": [
+[
+"K",
+"Evet",
+"Hayır"
+],
+[
+"M",
+"Evet",
+"Hayır"
+],
+[
+"N",
+"Hayır",
+"Evet"
+],
+[
+"P",
+"Evet",
+"Hayır"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "P",
+"D": "N"
+},
+"answer": "D",
+"explanation": "Gözle görülemeyen ve incelenmesi için mikroskop gereken tek canlı N harfiyle gösterilendir; bu nedenle mikroskobik canlıdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn_mikro"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Mikroskobik canlılar ve mantarlar",
+"passage": "Defne, aynı ekmeklerden alınan dilimleri farklı ortamlarda bekletip bir hafta sonra küf oluşan alanı ölçüyor.",
+"question": "Tabloya göre nemli ve soğuk ile kuru ve soğuk için ölçülen değerler arasındaki fark kaç cm²'dir?",
+"shape": {
+"type": "table",
+"title": "Küf oluşumu",
+"headers": [
+"Bekletilen ortam",
+"Küf alanı (cm²)"
+],
+"rows": [
+[
+"nemli ve ılık",
+"58"
+],
+[
+"nemli ve soğuk",
+"12"
+],
+[
+"kuru ve ılık",
+"52"
+],
+[
+"kuru ve soğuk",
+"45"
+]
+]
+},
+"options": {
+"A": "31 cm²",
+"B": "33 cm²",
+"C": "34 cm²",
+"D": "38 cm²"
+},
+"answer": "B",
+"explanation": "45 − 12 = 33 cm².",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn2_kuf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "Bir öğrenci nemli bir ekmeğin üzerinde yeşilimsi tüycük benzeri bir oluşum fark ediyor.",
+"question": "Bu oluşumu meydana getiren canlı hangi canlı grubundandır?",
+"shape": null,
+"options": {
+"A": "Mantarlar",
+"B": "Bitkiler",
+"C": "Taşlar",
+"D": "Hayvanlar"
+},
+"answer": "A",
+"explanation": "Ekmek küfü bir mantar türüdür.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_yn2_sen_canli"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. M ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microscope",
+"labels": {
+"base": "S",
+"stage": "L",
+"ocular": "N",
+"knob": "M"
+},
+"show_names": false
+},
+"options": {
+"A": "Objektif",
+"B": "Göz merceği",
+"C": "Ayar vidası",
+"D": "Tabla"
+},
+"answer": "C",
+"explanation": "M harfi ayar vidası kısmını gösterir; bu kısım: görüntünün netleştirilmesini sağlayan kısım.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mik_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir mikroskobun bazı kısımları harflerle gösterilmiştir. Görüntünün netleştirilmesini sağlayan kısım hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microscope",
+"labels": {
+"base": "T",
+"ocular": "K",
+"stage": "S",
+"light": "L",
+"knob": "R"
+},
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "T",
+"C": "R",
+"D": "S"
+},
+"answer": "C",
+"explanation": "Görüntünün netleştirilmesini sağlayan kısım ayar vidasıdır ve şekilde R ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mik_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir öğrenci mikroskopla incelediği canlıyı şekildeki gibi çizmiştir. K ile gösterilen canlı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m2"
+],
+"labels": [
+"K"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Paramesyum",
+"B": "Öglena",
+"C": "Amip",
+"D": "Bakteri"
+},
+"answer": "A",
+"explanation": "Şekildeki canlının özellikleri paramesyum ile uyuşur.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Yalancı ayaklarıyla hareket eden canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"bakteri",
+"paramesyum",
+"öglena",
+"amip"
+],
+"labels": [
+"L",
+"K",
+"R",
+"M"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "R",
+"C": "L",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Yalancı ayaklarıyla hareket eden canlı amipdır ve M ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_harf_oz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Öglena hangi harfle gösterilen canlıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"paramesyum",
+"öglena",
+"amip",
+"bakteri"
+],
+"labels": [
+"R",
+"M",
+"L",
+"T"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "R",
+"C": "T",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Öglena şekilde M harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_harf_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde mikroskopla incelenen dört canlı gösterilmiştir. Bu canlılardan yalnızca biri yeşil renklidir ve kamçısı vardır.\nBu bilgilere göre yeşil renkli canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"paramesyum",
+"öglena",
+"bakteri",
+"amip"
+],
+"labels": [
+"R",
+"M",
+"S",
+"K"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "S",
+"C": "R",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Yeşil renkli ve kamçılı canlı öglenadır; M ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_yesil"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen canlılar harflerle gösterilmiştir.\nBu bilgilere göre bu canlıların ortak özelliği aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"paramesyum",
+"amip",
+"öglena",
+"bakteri"
+],
+"labels": [
+"R",
+"L",
+"P",
+"N"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "Hepsi yeşil renklidir ve fotosentez yapar.",
+"B": "Hepsi gözle rahatça görülebilir.",
+"C": "Hepsi kamçısıyla hareket eder.",
+"D": "Hepsi mikroskop yardımıyla görülebilen canlılardır."
+},
+"answer": "D",
+"explanation": "Şekildeki canlıların hepsi mikroskobik canlıdır; mikroskop olmadan görülemez.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ortak"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde bir şapkalı mantarın kısımları harflerle gösterilmiştir. P ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"labels": {
+"cap": "N",
+"gill": "K",
+"ring": "T",
+"stem": "P"
+},
+"poison": true,
+"show_names": false
+},
+"options": {
+"A": "Halka",
+"B": "Lamel",
+"C": "Şapka",
+"D": "Sap"
+},
+"answer": "D",
+"explanation": "P harfi mantarın sap kısmını gösterir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde canlıların sınıflandırılması gösterilmiştir. K ile gösterilen grubun adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"K",
+"Mikroskobik canlılar",
+"Bitkiler"
+],
+"leaves": [
+[
+"Kelebek",
+"Kuş"
+],
+[
+"Bakteri",
+"Paramesyum"
+],
+[
+"Meşe ağacı",
+"Lale"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Mikroskobik canlılar",
+"B": "Mantarlar",
+"C": "Hayvanlar",
+"D": "Bitkiler"
+},
+"answer": "C",
+"explanation": "K grubunda kelebek, kuş bulunur; bu canlılar hayvanlar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_bos"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde canlıların sınıflandırılması gösterilmiştir. ? işareti ile gösterilen yere hayvanlar grubuna ait bir canlı yazılacaktır.\nBu bilgilere göre ? yerine aşağıdakilerden hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"Mikroskobik canlılar",
+"Hayvanlar",
+"Mantarlar"
+],
+"leaves": [
+[
+"Amip",
+"Bakteri"
+],
+[
+"Kelebek",
+"?"
+],
+[
+"Şapkalı mantar"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Amip",
+"B": "Şapkalı mantar",
+"C": "Balık",
+"D": "Paramesyum"
+},
+"answer": "C",
+"explanation": "Balık, hayvanlar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_eksik"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde bir öğrenci canlıları gruplara ayırmıştır; ancak bir canlıyı yanlış gruba yerleştirmiştir.\nVerilenlere göre yanlış gruba yerleştirilen canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"Mikroskobik canlılar",
+"Bitkiler",
+"Hayvanlar"
+],
+"leaves": [
+[
+"S: Paramesyum",
+"R: Öglena"
+],
+[
+"L: Lale",
+"K: Meşe ağacı"
+],
+[
+"M: Kuş",
+"T: Öglena"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "T",
+"C": "R",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Öglena, mikroskobik canlılar grubundadır; ancak hayvanlar grubuna yazılmıştır. Bu canlı T ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_yanlis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde bazı canlılar harflerle gösterilmiştir. Bu canlılardan hangisi mikroskobik canlı grubunda yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "balık",
+"label": "S"
+},
+{
+"kind": "öglena",
+"label": "T"
+},
+{
+"kind": "kelebek",
+"label": "N"
+},
+{
+"kind": "gül",
+"label": "M"
+},
+{
+"kind": "mantar",
+"label": "L"
+},
+{
+"kind": "lale",
+"label": "P"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "L",
+"C": "P",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Öglena mikroskobik canlı grubunda yer alır; şekilde T ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde harflerle gösterilen canlılardan kaç tanesi hayvan grubundadır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "zehirli mantar",
+"label": "S"
+},
+{
+"kind": "bakteri",
+"label": "L"
+},
+{
+"kind": "çam",
+"label": "K"
+},
+{
+"kind": "balık",
+"label": "R"
+},
+{
+"kind": "kelebek",
+"label": "P"
+},
+{
+"kind": "kedi",
+"label": "N"
+},
+{
+"kind": "amip",
+"label": "M"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "3",
+"D": "6"
+},
+"answer": "C",
+"explanation": "Şekilde 3 hayvan vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde harflerle gösterilen canlılar bitki, hayvan, mantar ve mikroskobik canlı gruplarına ayrılacaktır.\nVerilenlere göre bu canlılar kaç farklı gruba aittir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "zehirli mantar",
+"label": "R"
+},
+{
+"kind": "balık",
+"label": "S"
+},
+{
+"kind": "öglena",
+"label": "N"
+},
+{
+"kind": "papatya",
+"label": "K"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "D",
+"explanation": "Şekildeki canlılar 4 farklı gruba aittir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_cesit"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılardan hangisi, mikroskop kullanılmadan incelenemez?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "ağaç",
+"label": "P"
+},
+{
+"kind": "gül",
+"label": "R"
+},
+{
+"kind": "kuş",
+"label": "S"
+},
+{
+"kind": "öglena",
+"label": "K"
+},
+{
+"kind": "zehirli mantar",
+"label": "M"
+},
+{
+"kind": "kedi",
+"label": "T"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "K",
+"C": "M",
+"D": "S"
+},
+"answer": "B",
+"explanation": "Mikroskobik canlılar çıplak gözle görülemez; K ile gösterilen öglena mikroskobik canlıdır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_mikroskop"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde harflerle gösterilen canlılardan hangi ikisi bitki grubundadır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "kelebek",
+"label": "M"
+},
+{
+"kind": "kedi",
+"label": "T"
+},
+{
+"kind": "mantar",
+"label": "S"
+},
+{
+"kind": "gül",
+"label": "L"
+},
+{
+"kind": "bakteri",
+"label": "P"
+},
+{
+"kind": "çam",
+"label": "K"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "K ve S",
+"B": "K ve T",
+"C": "K ve M",
+"D": "K ve L"
+},
+"answer": "D",
+"explanation": "Bitki grubundaki canlılar şekilde K ve L harfleriyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde mikroskopla görülen bir canlı gösterilmiştir.\nBuna göre bu canlı çıplak gözle görülebilir mi?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"m4"
+],
+"labels": [
+"K"
+],
+"caption": "Mikroskopla görülen canlı",
+"show_names": false
+},
+"options": {
+"A": "Evet, çıplak gözle rahatça görülür.",
+"B": "Evet, büyüteçle bile görülemez ama çıplak gözle görülür.",
+"C": "Hayır, mikroskop kullanmak gerekir.",
+"D": "Hayır, hiçbir araçla görülemez."
+},
+"answer": "C",
+"explanation": "Mikroskobik canlılar çok küçüktür; çıplak gözle değil, mikroskopla görülür.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_gozle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde mikroskopla incelenen dört canlı harflerle gösterilmiştir. Çubuk ya da yuvarlak biçimli, çok küçük olan canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"amip",
+"öglena",
+"bakteri",
+"paramesyum"
+],
+"labels": [
+"K",
+"S",
+"R",
+"L"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "L",
+"C": "K",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Bu özellikler bakteri canlısına aittir; şekilde R ile gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_ozellik2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde mikroskopla incelenen üç canlı harflerle gösterilmiştir.\nBuna göre bu canlıların hareket yapıları ile ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": {
+"type": "bio",
+"sub_type": "microbe",
+"kinds": [
+"öglena",
+"amip",
+"paramesyum"
+],
+"labels": [
+"S",
+"K",
+"P"
+],
+"caption": "Mikroskopla görülen canlılar",
+"show_names": false
+},
+"options": {
+"A": "P canlısı yalancı ayak, K canlısı kirpik ile hareket eder.",
+"B": "P canlısı kirpik, K canlısı kamçı ile hareket eder.",
+"C": "P canlısı kirpik, K canlısı yalancı ayak ile hareket eder.",
+"D": "P canlısı kamçı, K canlısı yalancı ayak ile hareket eder."
+},
+"answer": "C",
+"explanation": "P canlısı kirpik, K canlısı yalancı ayak ile hareket eder.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mk_karsilastir"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Bir çocuk bahçede şekildeki gibi bir mantar görmüş ve yemek istemiştir. Yenilebilen mantarları yetiştirenler bile bu işi uzmanlardan öğrenir.\nBuna göre çocuğun aşağıdakilerden hangisini yapması gerekir?",
+"shape": {
+"type": "bio",
+"sub_type": "mushroom",
+"poison": false,
+"show_names": false
+},
+"options": {
+"A": "Mantarı yemeden önce bir yetişkine ve uzmana danışmalıdır.",
+"B": "Mantarı çiğ olarak yemelidir.",
+"C": "Mantarı küçük kardeşine tattırmalıdır.",
+"D": "Hemen yiyip tadına bakmalıdır."
+},
+"answer": "A",
+"explanation": "Bazı mantarlar zehirlidir ve zehirli mantarlar renk ya da görünüşle güvenle ayırt edilemez; bilinmeyen mantarlar yenmemelidir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_mn_zehir2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde canlıların sınıflandırılması gösterilmiştir. K ve L ile gösterilen grupların adları aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Canlılar",
+"kids": [
+"K",
+"Bitkiler",
+"L"
+],
+"leaves": [
+[
+"Zehirli mantar"
+],
+[
+"Çam ağacı",
+"Meşe ağacı"
+],
+[
+"Kelebek",
+"Kedi"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "K: Hayvanlar, L: Mantarlar",
+"B": "K: Mantarlar, L: Hayvanlar",
+"C": "K: Mantarlar, L: Mikroskobik canlılar",
+"D": "K: Mikroskobik canlılar, L: Hayvanlar"
+},
+"answer": "B",
+"explanation": "K grubundaki canlılar mantarlar, L grubundakiler hayvanlar grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_iki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekilde harflerle gösterilen canlılardan üçü aynı gruptadır.\nBu bilgilere göre diğerlerinden farklı gruba ait olan canlı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "öglena",
+"label": "S"
+},
+{
+"kind": "amip",
+"label": "P"
+},
+{
+"kind": "lale",
+"label": "N"
+},
+{
+"kind": "bakteri",
+"label": "R"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "R",
+"C": "N",
+"D": "P"
+},
+"answer": "C",
+"explanation": "Diğer üç canlı mikroskobik canlılar grubunda; N ile gösterilen canlı ise bitkiler grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_farkli"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde harflerle gösterilen canlılar aynı gruptadır.\nBu bilgilere göre bu canlıların ait olduğu grup aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "lale",
+"label": "K"
+},
+{
+"kind": "ağaç",
+"label": "L"
+},
+{
+"kind": "çam",
+"label": "P"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "Bitkiler",
+"B": "Mikroskobik canlılar",
+"C": "Hayvanlar",
+"D": "Mantarlar"
+},
+"answer": "A",
+"explanation": "Şekildeki canlıların hepsi bitkiler grubundadır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_hepsi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde bazı canlılar harflerle gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "zehirli mantar",
+"label": "K"
+},
+{
+"kind": "lale",
+"label": "T"
+},
+{
+"kind": "paramesyum",
+"label": "M"
+}
+],
+"per_row": 3,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "K: Mantar, T: Bitki, M: Mikroskobik canlı",
+"B": "K: Mikroskobik canlı, T: Mantar, M: Bitki",
+"C": "K: Bitki, T: Mikroskobik canlı, M: Mantar",
+"D": "K: Bitki, T: Mantar, M: Mikroskobik canlı"
+},
+"answer": "A",
+"explanation": "Doğru eşleştirme: K: Mantar, T: Bitki, M: Mikroskobik canlı.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_esles"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Yandaki şekilde harflerle gösterilen canlılardan kaç tanesini görebilmek için mikroskop kullanmak gerekir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "gül",
+"label": "S"
+},
+{
+"kind": "paramesyum",
+"label": "K"
+},
+{
+"kind": "kuş",
+"label": "N"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Mikroskobik canlılar mikroskop gerektirir; şekilde 1 tane vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_gozle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekildeki canlılardan hangileri hayvanlar grubunda yer alır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "mantar",
+"label": "L"
+},
+{
+"kind": "bakteri",
+"label": "N"
+},
+{
+"kind": "kuş",
+"label": "R"
+},
+{
+"kind": "ağaç",
+"label": "M"
+},
+{
+"kind": "kedi",
+"label": "T"
+}
+],
+"per_row": 4,
+"caption": "Mikroskopla görülen canlılar büyütülerek çizilmiştir.",
+"show_names": false
+},
+"options": {
+"A": "L ve M",
+"B": "N ve T",
+"C": "M ve T",
+"D": "R ve T"
+},
+"answer": "D",
+"explanation": "Hayvanlar grubundaki canlılar R ve T harfleriyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_grup_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde mikroskopta incelenmek üzere hazırlanan bir örnek gösterilmiştir. R ile gösterilen kısmın adı aşağıdakilerden hangisidir?",
+"shape": {
+"type": "bio",
+"sub_type": "slide",
+"labels": {
+"lam": "R",
+"lamel": "T",
+"drop": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "Damla",
+"B": "Objektif",
+"C": "Lam",
+"D": "Lamel"
+},
+"answer": "C",
+"explanation": "R harfi lam kısmını gösterir: incelenecek örneğin üzerine konulduğu ince cam.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_sl_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde canlılar \"Çıplak gözle görülebilir mi?\" ölçütüne göre iki gruba ayrılmıştır.\nBu bilgilere göre K ile gösterilen yere aşağıdakilerden hangisi yazılmalıdır?",
+"shape": {
+"type": "bio",
+"sub_type": "tree",
+"root": "Çıplak gözle görülebilir mi?",
+"kids": [
+"Hayır",
+"Evet"
+],
+"leaves": [
+[
+"Amip",
+"K"
+],
+[
+"Kuş"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Bakteri",
+"B": "Çam ağacı",
+"C": "Kelebek",
+"D": "Meşe ağacı"
+},
+"answer": "A",
+"explanation": "Bakteri bu ölçüte göre K'nin bulunduğu gruba uyar.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 5,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_agac_olcut"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde iki canlı gösterilmiştir.\nBu canlıların ait olduğu gruplar aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "mantar",
+"label": "K"
+},
+{
+"kind": "kedi",
+"label": "L"
+}
+],
+"per_row": 2,
+"show_names": false
+},
+"options": {
+"A": "K: Bitki, L: Hayvan",
+"B": "K: Mantar, L: Hayvan",
+"C": "K: Hayvan, L: Mantar",
+"D": "K: Mikroskobik canlı, L: Hayvan"
+},
+"answer": "B",
+"explanation": "Doğru eşleştirme: K: Mantar, L: Hayvan.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_ikili"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekildeki T ve N bir grupta, S ve L ise başka bir grupta toplanmıştır.\nBu iki grubu ayırmak için aşağıdaki ölçütlerden hangisi kullanılmıştır?",
+"shape": {
+"type": "bio",
+"sub_type": "cards",
+"items": [
+{
+"kind": "lale",
+"label": "T"
+},
+{
+"kind": "papatya",
+"label": "N"
+},
+{
+"kind": "kedi",
+"label": "S"
+},
+{
+"kind": "kuş",
+"label": "L"
+}
+],
+"per_row": 4,
+"show_names": false
+},
+"options": {
+"A": "Mikroskop gerektirme",
+"B": "Çıplak gözle görülebilme",
+"C": "Kendi başına yer değiştirebilme",
+"D": "Gözle görülemeyecek kadar küçük olma"
+},
+"answer": "C",
+"explanation": "Bir grupta bitkiler (yer değiştirmez), diğerinde hayvanlar (yer değiştirir) vardır.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 4,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_kart_olcut"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki Venn şemasında Hayvanlar ve Mikroskobik canlılar kümelerinin bölgeleri harflerle gösterilmiştir. Her bölgeye yalnızca o bölgeye özgü özellikler yazılır.\n“Duyu organlarıyla çevresini algılar” özelliği şemada hangi harfle gösterilen bölgeye yazılmalıdır?",
+"shape": {
+"type": "f6",
+"sub_type": "venn2",
+"ta": "Hayvanlar",
+"tb": "Mikroskobik canlılar",
+"harf": {
+"sol": "K",
+"orta": "R",
+"sag": "N",
+"dis": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "P",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Bu özellik yalnız hayvanlar aittir; yalnız sol kümede yer alan bölge K harfiyle gösterilmiştir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 2,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_venn_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Canlılar dünyası",
+"passage": "",
+"question": "Verilen şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nŞekildeki Venn şemasında Hayvanlar ve Mikroskobik canlılar kümelerinin bölgeleri harflerle gösterilmiştir. Her bölgeye yalnızca o bölgeye özgü özellikler yazılır.\nP ile gösterilen bölgeye aşağıdaki özelliklerden hangisi yazılabilir?",
+"shape": {
+"type": "f6",
+"sub_type": "venn2",
+"ta": "Hayvanlar",
+"tb": "Mikroskobik canlılar",
+"harf": {
+"sol": "T",
+"orta": "P",
+"sag": "K",
+"dis": "R"
+},
+"show_names": false
+},
+"options": {
+"A": "Çıplak gözle görülebilir",
+"B": "Duyu organlarıyla çevresini algılar",
+"C": "Çıplak gözle görülemez",
+"D": "Yer değiştirebilen türleri vardır"
+},
+"answer": "D",
+"explanation": "P bölgesi hem hayvanlar hem mikroskobik canlılar için geçerli özellikleri gösterir.",
+"unit": "Canlılar Dünyası",
+"topics": "Hücre, Sınıflandırma, Ekosistem",
+"d": 3,
+"ts": 1795161925,
+"src": "local",
+"fam": "_ff_cd_venn_ad"
+}
+]
+}

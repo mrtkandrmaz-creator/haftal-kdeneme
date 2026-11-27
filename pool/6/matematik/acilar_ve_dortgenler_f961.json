@@ -1,0 +1,7034 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"N",
+"Dikdörtgen"
+],
+[
+"L",
+"Eşkenar dörtgen"
+],
+[
+"K",
+"Yamuk"
+],
+[
+"M",
+"Paralelkenar"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "K",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(FAE) = 75° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"F": "d1_l",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "E",
+"label": "75°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "15°",
+"B": "75°",
+"C": "85°",
+"D": "105°"
+},
+"answer": "B",
+"explanation": "Bu iki açı yöndeş açılar olduğundan birbirine eşittir. x = 75°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"C": "d1_r",
+"G": "d2_r",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "E",
+"label": "α"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "İç ters açılar",
+"B": "Dış ters açılar",
+"C": "İç karşı durumlu açılar",
+"D": "Yöndeş açılar"
+},
+"answer": "D",
+"explanation": "α ve β açılarının konumları yöndeş açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki ABCD paralelkenarında m(ABC) = 120° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "120°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde d1 // d2 ve k kesendir. Şekilde gösterilen iki açının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"C": "d1_r",
+"H": "k_down",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "E",
+"label": "(x + 25)°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "H",
+"label": "(2x + 5)°"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "20",
+"C": "25",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Bu açılar dış ters açılar olduğundan x + 25 = 2x + 5 → x = 20.",
+"kz": [
+"MAT.6.3.2"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_denklem"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 55° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "55°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 55° = 125°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "80°",
+"B": "90°",
+"C": "100°",
+"D": "280°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 75° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "75°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "47°",
+"B": "75°",
+"C": "105°",
+"D": "115°"
+},
+"answer": "C",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 105°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki ABCD paralelkenarında A ve B açılarının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "(x + 1)°",
+"B": "(3x + 19)°"
+},
+"show_names": false
+},
+"options": {
+"A": "35",
+"B": "40",
+"C": "45",
+"D": "50"
+},
+"answer": "B",
+"explanation": "Komşu açılar toplamı 180°: (x + 1) + (3x + 19) = 180 → 4x = 160 → x = 40.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk_cebir"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = 140° olduğuna göre m(EBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "140°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "130°",
+"C": "140°",
+"D": "150°"
+},
+"answer": "C",
+"explanation": "Dış ters aç açılarda ölçüler eşittir → x = 140°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde d1 // d2 ve k kesendir. m(CAG) = x ve m(FBH) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "G",
+"label": "x"
+},
+{
+"v": "B",
+"a": "F",
+"b": "H",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "İç ters açılardır",
+"B": "Karşı durumlu (iç) açılardır",
+"C": "Dış ters açılardır",
+"D": "Yöndeş açılardır"
+},
+"answer": "C",
+"explanation": "Bu iki açı dış ters  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 110° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "110°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"K",
+"Eşkenar dörtgen"
+],
+[
+"N",
+"Yamuk"
+],
+[
+"L",
+"Paralelkenar"
+],
+[
+"M",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda K harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(FAB) = 40° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"F": "d1_l",
+"D": "d2_l",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "40°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "140°",
+"C": "150°",
+"D": "160°"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç karşı durumlu açılar olduğundan toplamları 180°'dir. x = 140°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"H": "k_down",
+"F": "d1_l",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "α"
+},
+{
+"v": "B",
+"a": "D",
+"b": "H",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Yöndeş açılar",
+"B": "İç ters açılar",
+"C": "İç karşı durumlu açılar",
+"D": "Dış ters açılar"
+},
+"answer": "A",
+"explanation": "α ve β açılarının konumları yöndeş açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki ABCD paralelkenarında m(ABC) = 110° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "110°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde d1 // d2 ve k kesendir. Şekilde gösterilen iki açının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"F": "d1_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "(2x + 7)°"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "(x + 28)°"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "21",
+"C": "26",
+"D": "31"
+},
+"answer": "B",
+"explanation": "Bu açılar iç ters açılar olduğundan 2x + 7 = x + 28 → x = 21.",
+"kz": [
+"MAT.6.3.2"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_denklem"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 60° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 60° = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "45°",
+"B": "135°",
+"C": "145°",
+"D": "225°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 135°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 75° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "75°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "47°",
+"B": "75°",
+"C": "105°",
+"D": "115°"
+},
+"answer": "C",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 105°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki ABCD paralelkenarında A ve B açılarının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "(2x + 13)°",
+"B": "(3x + 22)°"
+},
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "29",
+"C": "34",
+"D": "39"
+},
+"answer": "B",
+"explanation": "Komşu açılar toplamı 180°: (2x + 13) + (3x + 22) = 180 → 5x = 145 → x = 29.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk_cebir"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = 140° olduğuna göre m(EBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "140°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "130°",
+"C": "140°",
+"D": "150°"
+},
+"answer": "C",
+"explanation": "Dış ters aç açılarda ölçüler eşittir → x = 140°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAB) = x ve m(EBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Karşı durumlu (iç) açılardır",
+"B": "İç ters açılardır",
+"C": "Yöndeş açılardır",
+"D": "Dış ters açılardır"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç ters  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki ABCD paralelkenarında m(DAB) = 70° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "70°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "70°",
+"B": "100°",
+"C": "110°",
+"D": "120°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 110°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"N",
+"Paralelkenar"
+],
+[
+"M",
+"Yamuk"
+],
+[
+"L",
+"Eşkenar dörtgen"
+],
+[
+"K",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "C",
+"explanation": "Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen dikdörtgen dörtgenidir; tabloda K harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde d1 // d2 ve k kesendir. m(FAE) = 65° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"F": "d1_l",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "E",
+"label": "65°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "25°",
+"B": "65°",
+"C": "75°",
+"D": "115°"
+},
+"answer": "B",
+"explanation": "Bu iki açı yöndeş açılar olduğundan birbirine eşittir. x = 65°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"F": "d1_l",
+"D": "d2_l",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "α"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Yöndeş açılar",
+"B": "İç ters açılar",
+"C": "İç karşı durumlu açılar",
+"D": "Dış ters açılar"
+},
+"answer": "C",
+"explanation": "α ve β açılarının konumları iç karşı durumlu açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki ABCD paralelkenarında m(ABC) = 60° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "60°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. Şekilde gösterilen iki açının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"C": "d1_r",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "(3x)°"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "(x + 16)°"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "41",
+"C": "46",
+"D": "51"
+},
+"answer": "B",
+"explanation": "Bu açılar iç karşı durumlu açılar olduğundan (3x) + (x + 16) = 180 → 4x = 164 → x = 41.",
+"kz": [
+"MAT.6.3.2"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_denklem"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 100° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "100°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "20°",
+"B": "80°",
+"C": "90°",
+"D": "100°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 100° = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "70°",
+"B": "80°",
+"C": "110°",
+"D": "290°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 55° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "55°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "37°",
+"B": "55°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "C",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 125°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki ABCD paralelkenarında A ve B açılarının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "(3x + 23)°",
+"B": "(3x + 37)°"
+},
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "20",
+"C": "25",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Komşu açılar toplamı 180°: (3x + 23) + (3x + 37) = 180 → 6x = 120 → x = 20.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk_cebir"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(DAB) = 65° olduğuna göre m(EBA) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "B",
+"label": "65°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "55°",
+"B": "65°",
+"C": "75°",
+"D": "115°"
+},
+"answer": "B",
+"explanation": "İç ters aç açılarda ölçüler eşittir → x = 65°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAB) = x ve m(FBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "F",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Karşı durumlu (iç) açılardır",
+"B": "İç ters açılardır",
+"C": "Dış ters açılardır",
+"D": "Yöndeş açılardır"
+},
+"answer": "A",
+"explanation": "Bu iki açı karşı durumlu (iç)  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 130° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "130°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "50°",
+"C": "60°",
+"D": "130°"
+},
+"answer": "B",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 50°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Eşkenar dörtgen"
+],
+[
+"N",
+"Dikdörtgen"
+],
+[
+"K",
+"Paralelkenar"
+],
+[
+"M",
+"Yamuk"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen dikdörtgen dörtgenidir; tabloda N harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 70° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"C": "d1_r",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "70°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç ters açılar olduğundan birbirine eşittir. x = 70°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"F": "d1_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "α"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "İç karşı durumlu açılar",
+"B": "İç ters açılar",
+"C": "Dış ters açılar",
+"D": "Yöndeş açılar"
+},
+"answer": "B",
+"explanation": "α ve β açılarının konumları iç ters açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekildeki ABCD paralelkenarında m(ABC) = 70° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "70°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "70°",
+"B": "110°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 110°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. Şekilde gösterilen iki açının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"C": "d1_r",
+"H": "k_down",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "(3x + 7)°"
+},
+{
+"v": "B",
+"a": "G",
+"b": "H",
+"label": "(2x + 23)°"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "16",
+"C": "21",
+"D": "26"
+},
+"answer": "B",
+"explanation": "Bu açılar yöndeş açılar olduğundan 3x + 7 = 2x + 23 → x = 16.",
+"kz": [
+"MAT.6.3.2"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_denklem"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 105° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "105°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "25°",
+"B": "75°",
+"C": "85°",
+"D": "105°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 105° = 75°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "85°",
+"B": "95°",
+"C": "105°",
+"D": "265°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 95°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 120° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "120°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki ABCD paralelkenarında A ve B açılarının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "(2x + 8)°",
+"B": "(x + 55)°"
+},
+"show_names": false
+},
+"options": {
+"A": "34",
+"B": "39",
+"C": "44",
+"D": "49"
+},
+"answer": "B",
+"explanation": "Komşu açılar toplamı 180°: (2x + 8) + (x + 55) = 180 → 3x = 117 → x = 39.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk_cebir"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. m(DAB) = 130° olduğuna göre m(FBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "B",
+"label": "130°"
+},
+{
+"v": "B",
+"a": "F",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "Yöndeş aç açılarda ölçüler eşittir → x = 130°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = x ve m(EBH) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Yöndeş açılardır",
+"B": "Karşı durumlu (iç) açılardır",
+"C": "Dış ters açılardır",
+"D": "İç ters açılardır"
+},
+"answer": "C",
+"explanation": "Bu iki açı dış ters  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki ABCD paralelkenarında m(DAB) = 100° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "100°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "70°",
+"B": "80°",
+"C": "90°",
+"D": "100°"
+},
+"answer": "B",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Paralelkenar"
+],
+[
+"N",
+"Yamuk"
+],
+[
+"K",
+"Dikdörtgen"
+],
+[
+"M",
+"Eşkenar dörtgen"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda M harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 115° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"C": "d1_r",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "115°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "65°",
+"B": "115°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç ters açılar olduğundan birbirine eşittir. x = 115°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"F": "d1_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "α"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "İç karşı durumlu açılar",
+"B": "Dış ters açılar",
+"C": "Yöndeş açılar",
+"D": "İç ters açılar"
+},
+"answer": "D",
+"explanation": "α ve β açılarının konumları iç ters açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki ABCD paralelkenarında m(ABC) = 60° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "60°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. Şekilde gösterilen iki açının ölçüleri x cinsinden verilmiştir. Buna göre x kaçtır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"C": "d1_r",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "(x + 25)°"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "(x + 17)°"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "64",
+"B": "69",
+"C": "74",
+"D": "79"
+},
+"answer": "B",
+"explanation": "Bu açılar iç karşı durumlu açılar olduğundan (x + 25) + (x + 17) = 180 → 2x = 138 → x = 69.",
+"kz": [
+"MAT.6.3.2"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 4,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_denklem"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 70° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "70°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "110°",
+"D": "120°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 70° = 110°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "70°",
+"B": "80°",
+"C": "110°",
+"D": "290°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 50° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "50°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "35°",
+"B": "50°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(CAG) = 110° olduğuna göre m(FBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "G",
+"label": "110°"
+},
+{
+"v": "B",
+"a": "F",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "70°",
+"B": "100°",
+"C": "110°",
+"D": "120°"
+},
+"answer": "C",
+"explanation": "Dış ters aç açılarda ölçüler eşittir → x = 110°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(DAB) = x ve m(EBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Dış ters açılardır",
+"B": "İç ters açılardır",
+"C": "Karşı durumlu (iç) açılardır",
+"D": "Yöndeş açılardır"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç ters  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"K",
+"Dikdörtgen"
+],
+[
+"L",
+"Yamuk"
+],
+[
+"N",
+"Paralelkenar"
+],
+[
+"M",
+"Eşkenar dörtgen"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen dikdörtgen dörtgenidir; tabloda K harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. m(FAB) = 70° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"H": "k_down",
+"F": "d1_l",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "70°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Bu iki açı yöndeş açılar olduğundan birbirine eşittir. x = 70°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"C": "d1_r",
+"G": "d2_r",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "E",
+"label": "α"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "İç ters açılar",
+"B": "İç karşı durumlu açılar",
+"C": "Dış ters açılar",
+"D": "Yöndeş açılar"
+},
+"answer": "D",
+"explanation": "α ve β açılarının konumları yöndeş açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki ABCD paralelkenarında m(ABC) = 50° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "50°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "130°",
+"C": "140°",
+"D": "150°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 120° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "120°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "40°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 120° = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "85°",
+"B": "95°",
+"C": "105°",
+"D": "265°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(BCD) = 95°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 100° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "100°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "80°",
+"C": "90°",
+"D": "100°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAB) = 125° olduğuna göre m(EBA) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "B",
+"label": "125°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "55°",
+"B": "115°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "C",
+"explanation": "İç ters aç açılarda ölçüler eşittir → x = 125°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = x ve m(EBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Yöndeş açılardır",
+"B": "Dış ters açılardır",
+"C": "Karşı durumlu (iç) açılardır",
+"D": "İç ters açılardır"
+},
+"answer": "C",
+"explanation": "Bu iki açı karşı durumlu (iç)  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"M",
+"Dikdörtgen"
+],
+[
+"N",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Paralelkenar"
+],
+[
+"K",
+"Yamuk"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen dikdörtgen dörtgenidir; tabloda M harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 50° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"C": "d1_r",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "50°"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "130°",
+"C": "140°",
+"D": "150°"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç karşı durumlu açılar olduğundan toplamları 180°'dir. x = 130°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"C": "d1_r",
+"H": "k_down",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "E",
+"label": "α"
+},
+{
+"v": "B",
+"a": "D",
+"b": "H",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "İç ters açılar",
+"B": "Yöndeş açılar",
+"C": "İç karşı durumlu açılar",
+"D": "Dış ters açılar"
+},
+"answer": "D",
+"explanation": "α ve β açılarının konumları dış ters açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki ABCD paralelkenarında m(ABC) = 65° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "65°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "65°",
+"B": "115°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 115°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 100° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "100°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "20°",
+"B": "80°",
+"C": "90°",
+"D": "100°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 100° = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "60°",
+"B": "70°",
+"C": "120°",
+"D": "300°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 110° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "110°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "65°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = x ve m(EBH) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Karşı durumlu (iç) açılardır",
+"B": "Dış ters açılardır",
+"C": "Yöndeş açılardır",
+"D": "İç ters açılardır"
+},
+"answer": "B",
+"explanation": "Bu iki açı dış ters  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"K",
+"Yamuk"
+],
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Paralelkenar"
+],
+[
+"N",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen dikdörtgen dörtgenidir; tabloda N harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(FAB) = 55° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"F": "d1_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "55°"
+},
+{
+"v": "B",
+"a": "G",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "65°",
+"D": "125°"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç ters açılar olduğundan birbirine eşittir. x = 55°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. α ve β ile gösterilen açılar aşağıdakilerden hangisi olarak adlandırılır?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"C": "d1_r",
+"H": "k_down",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "E",
+"label": "α"
+},
+{
+"v": "B",
+"a": "D",
+"b": "H",
+"label": "β"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Dış ters açılar",
+"B": "Yöndeş açılar",
+"C": "İç ters açılar",
+"D": "İç karşı durumlu açılar"
+},
+"answer": "A",
+"explanation": "α ve β açılarının konumları dış ters açılar tanımına uyar.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_ad"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki ABCD paralelkenarında m(ABC) = 60° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "60°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 55° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "55°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 55° = 125°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "75°",
+"B": "85°",
+"C": "105°",
+"D": "285°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 75°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 60° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "60°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Eşkenar dörtgen"
+],
+[
+"M",
+"Dikdörtgen"
+],
+[
+"N",
+"Yamuk"
+],
+[
+"K",
+"Paralelkenar"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "C",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(FAB) = 130° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"F": "d1_l",
+"D": "d2_l",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "130°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "50°",
+"C": "60°",
+"D": "130°"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç karşı durumlu açılar olduğundan toplamları 180°'dir. x = 50°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki ABCD paralelkenarında m(ABC) = 110° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "110°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 80° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "80°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "10°",
+"B": "80°",
+"C": "100°",
+"D": "110°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 80° = 100°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "70°",
+"B": "80°",
+"C": "110°",
+"D": "290°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 60° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "40°",
+"B": "60°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"N",
+"Yamuk"
+],
+[
+"K",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Paralelkenar"
+],
+[
+"M",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda N harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 40° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"G": "d2_r",
+"C": "d1_r",
+"H": "k_down",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "40°"
+},
+{
+"v": "B",
+"a": "G",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "40°",
+"C": "50°",
+"D": "140°"
+},
+"answer": "B",
+"explanation": "Bu iki açı yöndeş açılar olduğundan birbirine eşittir. x = 40°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki ABCD paralelkenarında m(ABC) = 65° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "65°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "65°",
+"B": "115°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 115°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 55° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "55°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 55° = 125°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "45°",
+"B": "135°",
+"C": "145°",
+"D": "225°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 135°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 100° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "100°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "80°",
+"C": "90°",
+"D": "100°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"N",
+"Paralelkenar"
+],
+[
+"K",
+"Dikdörtgen"
+],
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Yamuk"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(CAE) = 75° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"E": "k_up",
+"C": "d1_r",
+"H": "k_down",
+"D": "d2_l",
+"A": "d1_k",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "E",
+"label": "75°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "15°",
+"B": "75°",
+"C": "85°",
+"D": "105°"
+},
+"answer": "B",
+"explanation": "Bu iki açı dış ters açılar olduğundan birbirine eşittir. x = 75°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki ABCD paralelkenarında m(ABC) = 75° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "75°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "75°",
+"B": "105°",
+"C": "115°",
+"D": "125°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 105°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 75° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "75°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "15°",
+"B": "75°",
+"C": "105°",
+"D": "115°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 75° = 105°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "80°",
+"B": "100°",
+"C": "110°",
+"D": "260°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(DAB) = 100°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 120° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "120°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"K",
+"Yamuk"
+],
+[
+"N",
+"Dikdörtgen"
+],
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Paralelkenar"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "N",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda K harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(FAB) = 65° olduğuna göre x ile gösterilen açının ölçüsü kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"F": "d1_l",
+"D": "d2_l",
+"B": "d2_k"
+},
+"arcs": [
+{
+"v": "A",
+"a": "F",
+"b": "B",
+"label": "65°"
+},
+{
+"v": "B",
+"a": "D",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "65°",
+"B": "115°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç karşı durumlu açılar olduğundan toplamları 180°'dir. x = 115°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki ABCD paralelkenarında m(ABC) = 70° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "70°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "70°",
+"B": "110°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 110°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 60° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 60° = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "60°",
+"B": "70°",
+"C": "120°",
+"D": "300°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 110° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "110°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "65°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Yamuk"
+],
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"K",
+"Paralelkenar"
+],
+[
+"N",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "K",
+"D": "L"
+},
+"answer": "D",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki ABCD paralelkenarında m(ABC) = 50° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "50°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "130°",
+"C": "140°",
+"D": "150°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 70° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "70°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "110°",
+"D": "120°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 70° = 110°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "75°",
+"B": "105°",
+"C": "115°",
+"D": "255°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 105°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 100° olduğuna göre m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "100°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "80°",
+"C": "90°",
+"D": "100°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(ABC) = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_esken"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"K",
+"Yamuk"
+],
+[
+"M",
+"Paralelkenar"
+],
+[
+"L",
+"Dikdörtgen"
+],
+[
+"N",
+"Eşkenar dörtgen"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Köşegenleri her zaman birbirine eşit uzunlukta olan ve birbirini ortalayan dörtgen dikdörtgen dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki ABCD paralelkenarında m(ABC) = 110° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "110°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 110° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "110°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "30°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 110° = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "80°",
+"B": "90°",
+"C": "100°",
+"D": "270°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 90°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Yamuk"
+],
+[
+"K",
+"Paralelkenar"
+],
+[
+"N",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "N",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda M harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki ABCD paralelkenarında m(ABC) = 110° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "110°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 70° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "70°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "20°",
+"B": "70°",
+"C": "110°",
+"D": "120°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 70° = 110°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "70°",
+"B": "80°",
+"C": "110°",
+"D": "290°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"N",
+"Yamuk"
+],
+[
+"L",
+"Eşkenar dörtgen"
+],
+[
+"M",
+"Dikdörtgen"
+],
+[
+"K",
+"Paralelkenar"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki ABCD paralelkenarında m(ABC) = 50° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "50°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "130°",
+"C": "140°",
+"D": "150°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 60° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 60° = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "80°",
+"B": "90°",
+"C": "100°",
+"D": "280°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"M",
+"Yamuk"
+],
+[
+"L",
+"Paralelkenar"
+],
+[
+"N",
+"Eşkenar dörtgen"
+],
+[
+"K",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "D",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda N harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekildeki ABCD paralelkenarında m(ABC) = 75° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "75°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "75°",
+"B": "105°",
+"C": "115°",
+"D": "125°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 105°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 110° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "110°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "30°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 110° = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "75°",
+"B": "85°",
+"C": "95°",
+"D": "275°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 85°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"M",
+"Dikdörtgen"
+],
+[
+"L",
+"Paralelkenar"
+],
+[
+"N",
+"Yamuk"
+],
+[
+"K",
+"Eşkenar dörtgen"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "C",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda N harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki ABCD paralelkenarında m(ABC) = 80° olduğuna göre m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "80°",
+"A": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "80°",
+"B": "100°",
+"C": "110°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Komşu açıların toplamı 180°'dir: m(DAB) = 100°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_pk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 65° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "65°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "25°",
+"B": "65°",
+"C": "115°",
+"D": "125°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 65° = 115°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "70°",
+"B": "80°",
+"C": "110°",
+"D": "290°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 70°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Yamuk"
+],
+[
+"N",
+"Eşkenar dörtgen"
+],
+[
+"K",
+"Dikdörtgen"
+],
+[
+"M",
+"Paralelkenar"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda N harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 80° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "80°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "10°",
+"B": "80°",
+"C": "100°",
+"D": "110°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 80° = 100°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "75°",
+"B": "85°",
+"C": "105°",
+"D": "285°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 75°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Yamuk"
+],
+[
+"K",
+"Paralelkenar"
+],
+[
+"M",
+"Dikdörtgen"
+],
+[
+"N",
+"Eşkenar dörtgen"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 65° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "65°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "25°",
+"B": "65°",
+"C": "115°",
+"D": "125°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 65° = 115°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "60°",
+"B": "120°",
+"C": "130°",
+"D": "240°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(CDA) = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"M",
+"Yamuk"
+],
+[
+"N",
+"Paralelkenar"
+],
+[
+"K",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "N",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda K harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 120° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "120°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "40°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 120° = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "50°",
+"B": "60°",
+"C": "130°",
+"D": "310°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 50°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"N",
+"Paralelkenar"
+],
+[
+"L",
+"Dikdörtgen"
+],
+[
+"K",
+"Yamuk"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda M harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 65° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "65°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "25°",
+"B": "65°",
+"C": "115°",
+"D": "125°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 65° = 115°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "75°",
+"B": "85°",
+"C": "105°",
+"D": "285°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(DAB) = 75°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Eşkenar dörtgen"
+],
+[
+"K",
+"Dikdörtgen"
+],
+[
+"M",
+"Yamuk"
+],
+[
+"N",
+"Paralelkenar"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda M harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 65° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "65°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "25°",
+"B": "65°",
+"C": "115°",
+"D": "125°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 65° = 115°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(DAB) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "55°",
+"B": "125°",
+"C": "135°",
+"D": "235°"
+},
+"answer": "B",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(DAB) = 125°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"N",
+"Yamuk"
+],
+[
+"K",
+"Paralelkenar"
+],
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"L",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda N harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 60° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 60° = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki ABCD dörtgeninde üç iç açının ölçüsü verilmiştir. m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "50°",
+"B": "60°",
+"C": "130°",
+"D": "310°"
+},
+"answer": "A",
+"explanation": "Dörtgenin iç açılarının toplamı 360°'dir: m(ABC) = 50°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 2,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_genel"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"K",
+"Paralelkenar"
+],
+[
+"L",
+"Dikdörtgen"
+],
+[
+"N",
+"Yamuk"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "N",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda M harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 120° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "120°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "40°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 120° = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini her zaman dik ortalayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"K",
+"Yamuk"
+],
+[
+"M",
+"Paralelkenar"
+],
+[
+"L",
+"Eşkenar dörtgen"
+],
+[
+"N",
+"Dikdörtgen"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "K",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Köşegenleri birbirini her zaman dik ortalayan dörtgen eşkenar dörtgen dörtgenidir; tabloda L harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(DAB) = 55° olduğuna göre m(CDA) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "55°",
+"D": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "C",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(CDA) = 180° − 55° = 125°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Dikdörtgen"
+],
+[
+"K",
+"Eşkenar dörtgen"
+],
+[
+"M",
+"Yamuk"
+],
+[
+"N",
+"Paralelkenar"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda M harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki ABCD yamuğunda [AB] // [DC] dir. m(ABC) = 120° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "general",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"B": "120°",
+"C": "?"
+},
+"show_names": false,
+"ticks": false
+},
+"options": {
+"A": "40°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Paralel kenarlar arasında aynı yandaki iç açıların toplamı 180°'dir: m(BCD) = 180° − 120° = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_dg_yamuk"
+},
+{
+"subject": "Matematik",
+"topic": "Köşegenler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda dört dörtgenin adı harflerle gösterilmiştir. Köşegenleri birbirini ortalamayan dörtgen hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Dörtgenler",
+"headers": [
+"Harf",
+"Dörtgen"
+],
+"rows": [
+[
+"L",
+"Paralelkenar"
+],
+[
+"M",
+"Eşkenar dörtgen"
+],
+[
+"N",
+"Dikdörtgen"
+],
+[
+"K",
+"Yamuk"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "N",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Köşegenleri birbirini ortalamayan dörtgen yamuk dörtgenidir; tabloda K harfiyle gösterilmiştir.",
+"kz": [
+"MAT.6.3.3"
+],
+"unit": "Açılar ve Dörtgenler",
+"topics": "Paralel doğrular ve kesen, Dörtgenlerin açıları, Köşegenler",
+"d": 3,
+"ts": 1795208329,
+"src": "local",
+"fam": "_mf6_kose_tablo"
+}
+]
+}

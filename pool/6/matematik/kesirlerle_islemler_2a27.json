@@ -1,0 +1,11447 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Kesirlerle işlemler",
+"passage": "",
+"question": "4/5 – 1/2 işleminin sonucu aşağıdakilerden hangisidir? (Kesirler en sade biçimde yazılmıştır.)",
+"shape": null,
+"options": {
+"A": "5/7",
+"B": "2/5",
+"C": "3/10",
+"D": "1/2"
+},
+"answer": "C",
+"explanation": "4/5 – 1/2 = 3/10.",
+"kz": [
+"MAT.5.1.3",
+"MAT.5.1.4"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_fracops"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"M",
+"5 pizza, 4 kişi"
+],
+[
+"L",
+"3 pizza, 9 kişi"
+],
+[
+"K",
+"4 pizza, 7 kişi"
+],
+[
+"N",
+"3 pizza, 6 kişi"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "K",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 4/7, L: 1/3, M: 5/4, N: 1/2. En çok M grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde bir dikdörtgen 3 satır ve 4 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 2/4'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 2,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "5/12",
+"B": "4/7",
+"C": "1/3",
+"D": "1/6"
+},
+"answer": "C",
+"explanation": "2/3 × 2/4 = 4/12 = 1/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 2
+},
+{
+"name": "L",
+"d": 3,
+"k": 2
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/5",
+"B": "2/3",
+"C": "4/3",
+"D": "5/3"
+},
+"answer": "D",
+"explanation": "K = 2/2, L = 2/3; sonuç 5/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki çubuk modelde toplam 125 biletlik bir bütünün 5 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "125 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "25",
+"B": "62",
+"C": "100",
+"D": "105"
+},
+"answer": "C",
+"explanation": "Bir parça 125 ÷ 5 = 25; kullanılmayan 4 parça: 4 × 25 = 100.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde bir bütünün 7/8'sinin 21 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "7/8 = 21",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "21",
+"B": "24",
+"C": "27",
+"D": "29"
+},
+"answer": "B",
+"explanation": "7 parça 21 ise bir parça 3; tamamı 8 × 3 = 24.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/4",
+"B": "5/12",
+"C": "5/8",
+"D": "7/8"
+},
+"answer": "D",
+"explanation": "2/4 + 3/8 = 7/8 = 7/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/9",
+"B": "7/6",
+"C": "1/6",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "2/3 − 3/6 = 1/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde birim kare 4 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/4 kesrini, sarı şeritler 3/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 4,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "2/4",
+"C": "5/8",
+"D": "6/16"
+},
+"answer": "D",
+"explanation": "2/4 × 3/4 = 6/16. Turuncu bölgede 6 küçük kare, toplamda 16 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki çubuk modelinde toplam 36 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "36 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "38 litre",
+"B": "18 litre",
+"C": "32 litre",
+"D": "9 litre"
+},
+"answer": "B",
+"explanation": "Her parça 36 ÷ 4 = 9; boyasız 2 parça → 18 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"7 pizza, 6 kişi"
+],
+[
+"M",
+"4 pizza, 7 kişi"
+],
+[
+"K",
+"4 pizza, 4 kişi"
+],
+[
+"L",
+"5 pizza, 9 kişi"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "L",
+"D": "K"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/1, L: 5/9, M: 4/7, N: 7/6. En az L grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nŞekilde bir dikdörtgen 4 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 2/4'ünü, sarı renk sütunların 2/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 6,
+"a": 2,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "1/12",
+"B": "5/24",
+"C": "1/6",
+"D": "2/5"
+},
+"answer": "C",
+"explanation": "2/4 × 2/6 = 4/24 = 1/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 9,
+"k": 7
+},
+{
+"name": "L",
+"d": 3,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/2",
+"B": "8/9",
+"C": "2/3",
+"D": "4/9"
+},
+"answer": "D",
+"explanation": "K = 7/9, L = 1/3; sonuç 4/9.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki çubuk modelde toplam 132 biletlik bir bütünün 6 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "132 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "66",
+"C": "110",
+"D": "116"
+},
+"answer": "C",
+"explanation": "Bir parça 132 ÷ 6 = 22; kullanılmayan 5 parça: 5 × 22 = 110.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki çubuk modelde bir bütünün 3/6'sinin 27 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/6 = 27",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "45",
+"C": "54",
+"D": "63"
+},
+"answer": "C",
+"explanation": "3 parça 27 ise bir parça 9; tamamı 6 × 9 = 54.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/1",
+"B": "1/1",
+"C": "4/3",
+"D": "2/3"
+},
+"answer": "C",
+"explanation": "2/3 + 4/6 = 4/3 = 4/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/6",
+"B": "1/3",
+"C": "1/6",
+"D": "1/2"
+},
+"answer": "D",
+"explanation": "2/3 − 1/6 = 1/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde birim kare 6 eş yatay ve 3 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 3/6 kesrini, sarı şeritler 1/3 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 6,
+"cols": 3,
+"a": 3,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "4/9",
+"B": "3/18",
+"C": "3/6",
+"D": "1/3"
+},
+"answer": "B",
+"explanation": "3/6 × 1/3 = 3/18. Turuncu bölgede 3 küçük kare, toplamda 18 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki çubuk modelinde toplam 130 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "130 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "39 litre",
+"B": "120 litre",
+"C": "91 litre",
+"D": "13 litre"
+},
+"answer": "C",
+"explanation": "Her parça 130 ÷ 10 = 13; boyasız 7 parça → 91 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"L",
+"1 pizza, 8 kişi"
+],
+[
+"K",
+"3 pizza, 4 kişi"
+],
+[
+"N",
+"2 pizza, 9 kişi"
+],
+[
+"M",
+"7 pizza, 8 kişi"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 3/4, L: 1/8, M: 7/8, N: 2/9. En az L grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde bir dikdörtgen 4 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 2/4'ünü, sarı renk sütunların 4/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 5,
+"a": 2,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "8/9",
+"B": "2/5",
+"C": "2/3",
+"D": "1/10"
+},
+"answer": "B",
+"explanation": "2/4 × 4/5 = 8/20 = 2/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 2
+},
+{
+"name": "L",
+"d": 4,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/8",
+"B": "1/6",
+"C": "1/2",
+"D": "3/4"
+},
+"answer": "D",
+"explanation": "K = 2/2, L = 1/4; sonuç 3/4.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki çubuk modelde toplam 152 sorulik bir bütünün 8 eş parçaya bölündüğü ve 7 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sorutir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "152 soru"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "27",
+"C": "76",
+"D": "133"
+},
+"answer": "A",
+"explanation": "Bir parça 152 ÷ 8 = 19; kullanılmayan 1 parça: 1 × 19 = 19.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekildeki çubuk modelde bir bütünün 2/6'sinin 22 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "2/6 = 22",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "55",
+"C": "66",
+"D": "77"
+},
+"answer": "C",
+"explanation": "2 parça 22 ise bir parça 11; tamamı 6 × 11 = 66.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/6",
+"B": "1/2",
+"C": "3/8",
+"D": "3/2"
+},
+"answer": "A",
+"explanation": "1/2 + 2/6 = 5/6 = 5/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/4",
+"B": "1/2",
+"C": "3/8",
+"D": "9/8"
+},
+"answer": "C",
+"explanation": "3/4 − 3/8 = 3/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekilde birim kare 6 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 4/6 kesrini, sarı şeritler 1/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 6,
+"cols": 4,
+"a": 4,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "1/4",
+"B": "4/24",
+"C": "4/6",
+"D": "5/10"
+},
+"answer": "B",
+"explanation": "4/6 × 1/4 = 4/24. Turuncu bölgede 4 küçük kare, toplamda 24 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki çubuk modelinde toplam 140 sayfa olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç sayfadır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "140 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "14 sayfa",
+"B": "28 sayfa",
+"C": "112 sayfa",
+"D": "130 sayfa"
+},
+"answer": "B",
+"explanation": "Her parça 140 ÷ 10 = 14; boyasız 2 parça → 28 sayfa.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"M",
+"3 pizza, 2 kişi"
+],
+[
+"L",
+"6 pizza, 5 kişi"
+],
+[
+"K",
+"3 pizza, 7 kişi"
+],
+[
+"N",
+"2 pizza, 3 kişi"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "B",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 3/7, L: 6/5, M: 3/2, N: 2/3. En az K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde bir dikdörtgen 4 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 3/4'ünü, sarı renk sütunların 5/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 6,
+"a": 3,
+"b": 5,
+"show_names": false
+},
+"options": {
+"A": "3/2",
+"B": "1/8",
+"C": "4/5",
+"D": "5/8"
+},
+"answer": "D",
+"explanation": "3/4 × 5/6 = 15/24 = 5/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 9,
+"k": 6
+},
+{
+"name": "L",
+"d": 3,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "7/12",
+"B": "7/9",
+"C": "5/12",
+"D": "1/3"
+},
+"answer": "D",
+"explanation": "K = 6/9, L = 1/3; sonuç 1/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki çubuk modelde toplam 108 sorulik bir bütünün 6 eş parçaya bölündüğü ve 3 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sorutir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "108 soru"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "48",
+"B": "54",
+"C": "60",
+"D": "105"
+},
+"answer": "B",
+"explanation": "Bir parça 108 ÷ 6 = 18; kullanılmayan 3 parça: 3 × 18 = 54.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki çubuk modelde bir bütünün 3/5'sinin 9 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/5 = 9",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "12",
+"C": "15",
+"D": "18"
+},
+"answer": "C",
+"explanation": "3 parça 9 ise bir parça 3; tamamı 5 × 3 = 15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6/5",
+"B": "4/5",
+"C": "12/5",
+"D": "8/5"
+},
+"answer": "D",
+"explanation": "4/5 + 8/10 = 8/5 = 8/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/6",
+"B": "4/9",
+"C": "1/1",
+"D": "1/3"
+},
+"answer": "D",
+"explanation": "2/3 − 2/6 = 1/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde birim kare 5 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 4/5 kesrini, sarı şeritler 4/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 5,
+"a": 4,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "4/5",
+"B": "16/25",
+"C": "8/10",
+"D": "16/10"
+},
+"answer": "B",
+"explanation": "4/5 × 4/5 = 16/25. Turuncu bölgede 16 küçük kare, toplamda 25 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki çubuk modelinde toplam 120 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "120 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "110 litre",
+"B": "84 litre",
+"C": "36 litre",
+"D": "12 litre"
+},
+"answer": "B",
+"explanation": "Her parça 120 ÷ 10 = 12; boyasız 7 parça → 84 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"M",
+"5 pizza, 9 kişi"
+],
+[
+"N",
+"4 pizza, 4 kişi"
+],
+[
+"L",
+"5 pizza, 4 kişi"
+],
+[
+"K",
+"2 pizza, 8 kişi"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/4, L: 5/4, M: 5/9, N: 1/1. En az K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde bir dikdörtgen 2 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 1/2'ünü, sarı renk sütunların 4/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 2,
+"cols": 5,
+"a": 1,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "5/7",
+"B": "1/10",
+"C": "4/7",
+"D": "2/5"
+},
+"answer": "D",
+"explanation": "1/2 × 4/5 = 4/10 = 2/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 5,
+"k": 3
+},
+{
+"name": "L",
+"d": 10,
+"k": 7
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "4/15",
+"C": "13/10",
+"D": "1/5"
+},
+"answer": "C",
+"explanation": "K = 3/5, L = 7/10; sonuç 13/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki çubuk modelde toplam 240 biletlik bir bütünün 10 eş parçaya bölündüğü ve 9 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "240 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "34",
+"C": "120",
+"D": "216"
+},
+"answer": "A",
+"explanation": "Bir parça 240 ÷ 10 = 24; kullanılmayan 1 parça: 1 × 24 = 24.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki çubuk modelde bir bütünün 3/6'sinin 18 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/6 = 18",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "30",
+"C": "36",
+"D": "42"
+},
+"answer": "C",
+"explanation": "3 parça 18 ise bir parça 6; tamamı 6 × 6 = 36.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/2",
+"B": "3/2",
+"C": "5/6",
+"D": "3/8"
+},
+"answer": "C",
+"explanation": "1/2 + 2/6 = 5/6 = 5/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/6",
+"B": "5/6",
+"C": "1/3",
+"D": "1/2"
+},
+"answer": "D",
+"explanation": "2/3 − 1/6 = 1/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde birim kare 5 eş yatay ve 3 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 3/5 kesrini, sarı şeritler 2/3 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 3,
+"a": 3,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "6/15",
+"B": "5/8",
+"C": "3/5",
+"D": "2/3"
+},
+"answer": "A",
+"explanation": "3/5 × 2/3 = 6/15. Turuncu bölgede 6 küçük kare, toplamda 15 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çubuk modelinde toplam 108 sayfa olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç sayfadır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "108 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "102 sayfa",
+"B": "54 sayfa",
+"C": "18 sayfa",
+"D": "111 sayfa"
+},
+"answer": "B",
+"explanation": "Her parça 108 ÷ 6 = 18; boyasız 3 parça → 54 sayfa.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"K",
+"2 pizza, 4 kişi"
+],
+[
+"M",
+"6 pizza, 8 kişi"
+],
+[
+"N",
+"4 pizza, 4 kişi"
+],
+[
+"L",
+"6 pizza, 4 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/2, L: 3/2, M: 3/4, N: 1/1. En az K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde bir dikdörtgen 3 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 1/3'ünü, sarı renk sütunların 2/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 5,
+"a": 1,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "3/8",
+"B": "1/15",
+"C": "1/4",
+"D": "2/15"
+},
+"answer": "D",
+"explanation": "1/3 × 2/5 = 2/15 = 2/15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 3,
+"k": 2
+},
+{
+"name": "L",
+"d": 9,
+"k": 2
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/9",
+"B": "1/3",
+"C": "4/27",
+"D": "5/9"
+},
+"answer": "A",
+"explanation": "K = 2/3, L = 2/9; sonuç 4/9.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde toplam 60 biletlik bir bütünün 6 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "60 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "30",
+"C": "50",
+"D": "56"
+},
+"answer": "C",
+"explanation": "Bir parça 60 ÷ 6 = 10; kullanılmayan 5 parça: 5 × 10 = 50.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çubuk modelde bir bütünün 3/4'sinin 36 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/4 = 36",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "40",
+"C": "48",
+"D": "60"
+},
+"answer": "C",
+"explanation": "3 parça 36 ise bir parça 12; tamamı 4 × 12 = 48.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "9/8",
+"B": "1/2",
+"C": "3/2",
+"D": "3/4"
+},
+"answer": "A",
+"explanation": "3/4 + 3/8 = 9/8 = 9/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8/9",
+"B": "1/3",
+"C": "4/9",
+"D": "1/6"
+},
+"answer": "C",
+"explanation": "2/3 − 2/9 = 4/9.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde birim kare 5 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 1/5 kesrini, sarı şeritler 3/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 4,
+"a": 1,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "4/9",
+"B": "3/20",
+"C": "1/5",
+"D": "3/4"
+},
+"answer": "B",
+"explanation": "1/5 × 3/4 = 3/20. Turuncu bölgede 3 küçük kare, toplamda 20 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki çubuk modelinde toplam 85 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "85 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "51 litre",
+"B": "34 litre",
+"C": "80 litre",
+"D": "17 litre"
+},
+"answer": "A",
+"explanation": "Her parça 85 ÷ 5 = 17; boyasız 3 parça → 51 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"K",
+"6 pizza, 8 kişi"
+],
+[
+"M",
+"7 pizza, 9 kişi"
+],
+[
+"N",
+"2 pizza, 4 kişi"
+],
+[
+"L",
+"1 pizza, 8 kişi"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 3/4, L: 1/8, M: 7/9, N: 1/2. En çok M grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde bir dikdörtgen 4 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 2/4'ünü, sarı renk sütunların 4/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 5,
+"a": 2,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "2/5",
+"C": "1/10",
+"D": "8/9"
+},
+"answer": "B",
+"explanation": "2/4 × 4/5 = 8/20 = 2/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 2
+},
+{
+"name": "L",
+"d": 6,
+"k": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "1/2",
+"C": "1/4",
+"D": "5/3"
+},
+"answer": "D",
+"explanation": "K = 2/2, L = 4/6; sonuç 5/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki çubuk modelde toplam 80 sayfalik bir bütünün 5 eş parçaya bölündüğü ve 3 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sayfatir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "80 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "32",
+"B": "37",
+"C": "40",
+"D": "48"
+},
+"answer": "A",
+"explanation": "Bir parça 80 ÷ 5 = 16; kullanılmayan 2 parça: 2 × 16 = 32.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nŞekildeki çubuk modelde bir bütünün 5/8'sinin 40 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "5/8 = 40",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "40",
+"B": "56",
+"C": "64",
+"D": "72"
+},
+"answer": "C",
+"explanation": "5 parça 40 ise bir parça 8; tamamı 8 × 8 = 64.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "5/9",
+"C": "5/6",
+"D": "5/3"
+},
+"answer": "A",
+"explanation": "1/3 + 4/6 = 1/1 = 1/1.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "7/8",
+"B": "1/3",
+"C": "5/8",
+"D": "1/2"
+},
+"answer": "C",
+"explanation": "3/4 − 1/8 = 5/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde birim kare 4 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 3/4 kesrini, sarı şeritler 1/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 5,
+"a": 3,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "3/20",
+"C": "4/9",
+"D": "1/5"
+},
+"answer": "B",
+"explanation": "3/4 × 1/5 = 3/20. Turuncu bölgede 3 küçük kare, toplamda 20 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki çubuk modelinde toplam 55 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "55 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "33 litre",
+"B": "11 litre",
+"C": "22 litre",
+"D": "50 litre"
+},
+"answer": "A",
+"explanation": "Her parça 55 ÷ 5 = 11; boyasız 3 parça → 33 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"M",
+"4 pizza, 8 kişi"
+],
+[
+"K",
+"2 pizza, 6 kişi"
+],
+[
+"L",
+"7 pizza, 9 kişi"
+],
+[
+"N",
+"7 pizza, 3 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/3, L: 7/9, M: 1/2, N: 7/3. En az K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde bir dikdörtgen 4 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 2/4'ünü, sarı renk sütunların 2/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 6,
+"a": 2,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "5/24",
+"B": "1/12",
+"C": "2/5",
+"D": "1/6"
+},
+"answer": "D",
+"explanation": "2/4 × 2/6 = 4/24 = 1/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 1
+},
+{
+"name": "L",
+"d": 3,
+"k": 2
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/5",
+"B": "1/1",
+"C": "7/6",
+"D": "1/5"
+},
+"answer": "C",
+"explanation": "K = 1/2, L = 2/3; sonuç 7/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki çubuk modelde toplam 60 biletlik bir bütünün 6 eş parçaya bölündüğü ve 3 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "60 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "30",
+"C": "36",
+"D": "57"
+},
+"answer": "B",
+"explanation": "Bir parça 60 ÷ 6 = 10; kullanılmayan 3 parça: 3 × 10 = 30.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde bir bütünün 3/8'sinin 9 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/8 = 9",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "21",
+"C": "24",
+"D": "27"
+},
+"answer": "C",
+"explanation": "3 parça 9 ise bir parça 3; tamamı 8 × 3 = 24.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "2/1",
+"C": "2/3",
+"D": "7/5"
+},
+"answer": "D",
+"explanation": "4/5 + 6/10 = 7/5 = 7/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/10",
+"B": "2/5",
+"C": "9/10",
+"D": "1/5"
+},
+"answer": "A",
+"explanation": "3/5 − 3/10 = 3/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde birim kare 3 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/3 kesrini, sarı şeritler 3/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "5/7",
+"C": "2/3",
+"D": "6/12"
+},
+"answer": "D",
+"explanation": "2/3 × 3/4 = 6/12. Turuncu bölgede 6 küçük kare, toplamda 12 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki çubuk modelinde toplam 200 sayfa olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç sayfadır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "200 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "150 sayfa",
+"B": "25 sayfa",
+"C": "50 sayfa",
+"D": "192 sayfa"
+},
+"answer": "C",
+"explanation": "Her parça 200 ÷ 8 = 25; boyasız 2 parça → 50 sayfa.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"4 pizza, 5 kişi"
+],
+[
+"L",
+"7 pizza, 7 kişi"
+],
+[
+"K",
+"7 pizza, 4 kişi"
+],
+[
+"M",
+"6 pizza, 3 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 7/4, L: 1/1, M: 2/1, N: 4/5. En çok M grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde bir dikdörtgen 3 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 4/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 5,
+"a": 2,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "2/15",
+"B": "8/15",
+"C": "1/1",
+"D": "3/4"
+},
+"answer": "B",
+"explanation": "2/3 × 4/5 = 8/15 = 8/15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 1
+},
+{
+"name": "L",
+"d": 3,
+"k": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/5",
+"B": "3/2",
+"C": "4/5",
+"D": "4/3"
+},
+"answer": "B",
+"explanation": "K = 1/2, L = 3/3; sonuç 3/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekildeki çubuk modelde toplam 190 sayfalik bir bütünün 10 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sayfatir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "190 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "95",
+"C": "171",
+"D": "181"
+},
+"answer": "C",
+"explanation": "Bir parça 190 ÷ 10 = 19; kullanılmayan 9 parça: 9 × 19 = 171.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki çubuk modelde bir bütünün 3/6'sinin 15 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/6 = 15",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "25",
+"C": "30",
+"D": "35"
+},
+"answer": "C",
+"explanation": "3 parça 15 ise bir parça 5; tamamı 6 × 5 = 30.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "11/15",
+"B": "11/10",
+"C": "3/2",
+"D": "11/5"
+},
+"answer": "C",
+"explanation": "4/5 + 7/10 = 3/2 = 3/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/8",
+"B": "5/8",
+"C": "1/4",
+"D": "1/8"
+},
+"answer": "A",
+"explanation": "2/4 − 1/8 = 3/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde birim kare 3 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/3 kesrini, sarı şeritler 3/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 5,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "5/8",
+"B": "2/3",
+"C": "6/15",
+"D": "3/5"
+},
+"answer": "C",
+"explanation": "2/3 × 3/5 = 6/15. Turuncu bölgede 6 küçük kare, toplamda 15 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki çubuk modelinde toplam 28 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30 litre",
+"B": "14 litre",
+"C": "24 litre",
+"D": "7 litre"
+},
+"answer": "B",
+"explanation": "Her parça 28 ÷ 4 = 7; boyasız 2 parça → 14 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"M",
+"7 pizza, 9 kişi"
+],
+[
+"L",
+"1 pizza, 8 kişi"
+],
+[
+"N",
+"5 pizza, 7 kişi"
+],
+[
+"K",
+"1 pizza, 4 kişi"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/4, L: 1/8, M: 7/9, N: 5/7. En az L grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde bir dikdörtgen 3 satır ve 4 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 3/4'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "1/2",
+"B": "5/7",
+"C": "6/7",
+"D": "1/6"
+},
+"answer": "A",
+"explanation": "2/3 × 3/4 = 6/12 = 1/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 3,
+"k": 2
+},
+{
+"name": "L",
+"d": 9,
+"k": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8/27",
+"B": "1/2",
+"C": "1/6",
+"D": "2/9"
+},
+"answer": "D",
+"explanation": "K = 2/3, L = 4/9; sonuç 2/9.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çubuk modelde toplam 28 biletlik bir bütünün 4 eş parçaya bölündüğü ve 2 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "28 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "14",
+"C": "18",
+"D": "26"
+},
+"answer": "B",
+"explanation": "Bir parça 28 ÷ 4 = 7; kullanılmayan 2 parça: 2 × 7 = 14.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çubuk modelde bir bütünün 6/8'sinin 54 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "6/8 = 54",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "54",
+"B": "63",
+"C": "72",
+"D": "81"
+},
+"answer": "C",
+"explanation": "6 parça 54 ise bir parça 9; tamamı 8 × 9 = 72.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/2",
+"B": "1/2",
+"C": "3/8",
+"D": "5/6"
+},
+"answer": "D",
+"explanation": "1/2 + 2/6 = 5/6 = 5/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. I. şeridin boyalı kısmı, II. şeridin boyalı kısmından bütünün kaçta kaçı kadar fazladır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/5",
+"B": "3/2",
+"C": "11/15",
+"D": "1/10"
+},
+"answer": "D",
+"explanation": "4/5 − 7/10 = 1/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_cikar"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde birim kare 4 eş yatay ve 3 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 3/4 kesrini, sarı şeritler 2/3 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 3,
+"a": 3,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "6/12",
+"C": "3/4",
+"D": "5/7"
+},
+"answer": "B",
+"explanation": "3/4 × 2/3 = 6/12. Turuncu bölgede 6 küçük kare, toplamda 12 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki çubuk modelinde toplam 24 km olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç km'dir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "24 km"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "26 km",
+"B": "6 km",
+"C": "20 km",
+"D": "12 km"
+},
+"answer": "D",
+"explanation": "Her parça 24 ÷ 4 = 6; boyasız 2 parça → 12 km.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"2 pizza, 3 kişi"
+],
+[
+"L",
+"6 pizza, 7 kişi"
+],
+[
+"M",
+"6 pizza, 3 kişi"
+],
+[
+"K",
+"4 pizza, 7 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 4/7, L: 6/7, M: 2/1, N: 2/3. En az K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde bir dikdörtgen 5 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 4/5'ünü, sarı renk sütunların 2/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 6,
+"a": 4,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "4/15",
+"B": "6/11",
+"C": "8/11",
+"D": "2/15"
+},
+"answer": "A",
+"explanation": "4/5 × 2/6 = 8/30 = 4/15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 3,
+"k": 3
+},
+{
+"name": "L",
+"d": 4,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "3/4",
+"C": "4/7",
+"D": "2/7"
+},
+"answer": "B",
+"explanation": "K = 3/3, L = 1/4; sonuç 3/4.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki çubuk modelde toplam 60 biletlik bir bütünün 4 eş parçaya bölündüğü ve 3 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "60 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "19",
+"C": "30",
+"D": "45"
+},
+"answer": "A",
+"explanation": "Bir parça 60 ÷ 4 = 15; kullanılmayan 1 parça: 1 × 15 = 15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki çubuk modelde bir bütünün 6/8'sinin 42 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "6/8 = 42",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "42",
+"B": "49",
+"C": "56",
+"D": "63"
+},
+"answer": "C",
+"explanation": "6 parça 42 ise bir parça 7; tamamı 8 × 7 = 56.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "3/4",
+"C": "1/3",
+"D": "1/2"
+},
+"answer": "B",
+"explanation": "1/2 + 1/4 = 3/4 = 3/4.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde birim kare 6 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 4/6 kesrini, sarı şeritler 3/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 6,
+"cols": 5,
+"a": 4,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "4/6",
+"B": "7/11",
+"C": "12/30",
+"D": "3/5"
+},
+"answer": "C",
+"explanation": "4/6 × 3/5 = 12/30. Turuncu bölgede 12 küçük kare, toplamda 30 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelinde toplam 100 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "100 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "50 litre",
+"B": "105 litre",
+"C": "10 litre",
+"D": "90 litre"
+},
+"answer": "A",
+"explanation": "Her parça 100 ÷ 10 = 10; boyasız 5 parça → 50 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"K",
+"4 pizza, 5 kişi"
+],
+[
+"M",
+"4 pizza, 6 kişi"
+],
+[
+"L",
+"3 pizza, 6 kişi"
+],
+[
+"N",
+"2 pizza, 2 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "D",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 4/5, L: 1/2, M: 2/3, N: 1/1. En çok N grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde bir dikdörtgen 3 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 4/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 5,
+"a": 2,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "8/15",
+"B": "1/1",
+"C": "2/15",
+"D": "3/4"
+},
+"answer": "A",
+"explanation": "2/3 × 4/5 = 8/15 = 8/15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 1
+},
+{
+"name": "L",
+"d": 4,
+"k": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/3",
+"B": "5/4",
+"C": "2/3",
+"D": "1/2"
+},
+"answer": "B",
+"explanation": "K = 1/2, L = 3/4; sonuç 5/4.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki çubuk modelde toplam 230 sayfalik bir bütünün 10 eş parçaya bölündüğü ve 8 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sayfatir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "230 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "46",
+"B": "56",
+"C": "115",
+"D": "184"
+},
+"answer": "A",
+"explanation": "Bir parça 230 ÷ 10 = 23; kullanılmayan 2 parça: 2 × 23 = 46.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki çubuk modelde bir bütünün 5/8'sinin 50 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "5/8 = 50",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "50",
+"B": "70",
+"C": "80",
+"D": "90"
+},
+"answer": "C",
+"explanation": "5 parça 50 ise bir parça 10; tamamı 8 × 10 = 80.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/4",
+"B": "1/1",
+"C": "2/3",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "1/2 + 1/6 = 2/3 = 2/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde birim kare 5 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 1/5 kesrini, sarı şeritler 3/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 4,
+"a": 1,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "1/5",
+"C": "3/20",
+"D": "4/9"
+},
+"answer": "C",
+"explanation": "1/5 × 3/4 = 3/20. Turuncu bölgede 3 küçük kare, toplamda 20 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki çubuk modelinde toplam 132 sayfa olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç sayfadır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "132 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "22 sayfa",
+"B": "44 sayfa",
+"C": "88 sayfa",
+"D": "126 sayfa"
+},
+"answer": "C",
+"explanation": "Her parça 132 ÷ 6 = 22; boyasız 4 parça → 88 sayfa.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"6 pizza, 8 kişi"
+],
+[
+"K",
+"1 pizza, 6 kişi"
+],
+[
+"L",
+"3 pizza, 9 kişi"
+],
+[
+"M",
+"1 pizza, 8 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/6, L: 1/3, M: 1/8, N: 3/4. En az M grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nŞekilde bir dikdörtgen 2 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 1/2'ünü, sarı renk sütunların 3/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 2,
+"cols": 5,
+"a": 1,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "1/10",
+"B": "3/10",
+"C": "3/7",
+"D": "4/7"
+},
+"answer": "B",
+"explanation": "1/2 × 3/5 = 3/10 = 3/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 3,
+"k": 2
+},
+{
+"name": "L",
+"d": 4,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/12",
+"B": "3/4",
+"C": "3/7",
+"D": "1/7"
+},
+"answer": "A",
+"explanation": "K = 2/3, L = 1/4; sonuç 5/12.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde toplam 110 biletlik bir bütünün 10 eş parçaya bölündüğü ve 8 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "110 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "32",
+"C": "55",
+"D": "88"
+},
+"answer": "A",
+"explanation": "Bir parça 110 ÷ 10 = 11; kullanılmayan 2 parça: 2 × 11 = 22.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki çubuk modelde bir bütünün 3/6'sinin 18 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/6 = 18",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "30",
+"C": "36",
+"D": "42"
+},
+"answer": "C",
+"explanation": "3 parça 18 ise bir parça 6; tamamı 6 × 6 = 36.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/3",
+"B": "1/2",
+"C": "1/1",
+"D": "9/10"
+},
+"answer": "D",
+"explanation": "4/5 + 1/10 = 9/10 = 9/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde birim kare 6 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/6 kesrini, sarı şeritler 2/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 6,
+"cols": 5,
+"a": 2,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "4/30",
+"B": "4/11",
+"C": "2/6",
+"D": "2/5"
+},
+"answer": "A",
+"explanation": "2/6 × 2/5 = 4/30. Turuncu bölgede 4 küçük kare, toplamda 30 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki çubuk modelinde toplam 168 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "168 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "126 litre",
+"B": "21 litre",
+"C": "42 litre",
+"D": "160 litre"
+},
+"answer": "A",
+"explanation": "Her parça 168 ÷ 8 = 21; boyasız 6 parça → 126 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"2 pizza, 7 kişi"
+],
+[
+"L",
+"1 pizza, 3 kişi"
+],
+[
+"K",
+"7 pizza, 6 kişi"
+],
+[
+"M",
+"6 pizza, 3 kişi"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 7/6, L: 1/3, M: 2/1, N: 2/7. En az N grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde bir dikdörtgen 3 satır ve 4 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 1/4'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 2,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "1/4",
+"B": "2/7",
+"C": "1/6",
+"D": "3/7"
+},
+"answer": "C",
+"explanation": "2/3 × 1/4 = 2/12 = 1/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 3,
+"k": 1
+},
+{
+"name": "L",
+"d": 6,
+"k": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/3",
+"B": "4/9",
+"C": "7/6",
+"D": "2/3"
+},
+"answer": "C",
+"explanation": "K = 1/3, L = 5/6; sonuç 7/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekildeki çubuk modelde toplam 80 biletlik bir bütünün 10 eş parçaya bölündüğü ve 7 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "80 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "34",
+"C": "40",
+"D": "56"
+},
+"answer": "A",
+"explanation": "Bir parça 80 ÷ 10 = 8; kullanılmayan 3 parça: 3 × 8 = 24.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekildeki çubuk modelde bir bütünün 3/8'sinin 18 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "3/8 = 18",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "42",
+"C": "48",
+"D": "54"
+},
+"answer": "C",
+"explanation": "3 parça 18 ise bir parça 6; tamamı 8 × 6 = 48.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/5",
+"B": "2/5",
+"C": "1/1",
+"D": "6/5"
+},
+"answer": "C",
+"explanation": "4/5 + 2/10 = 1/1 = 1/1.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde birim kare 5 eş yatay ve 3 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 4/5 kesrini, sarı şeritler 1/3 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 3,
+"a": 4,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "1/3",
+"B": "4/15",
+"C": "4/5",
+"D": "5/8"
+},
+"answer": "B",
+"explanation": "4/5 × 1/3 = 4/15. Turuncu bölgede 4 küçük kare, toplamda 15 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelinde toplam 48 sayfa olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç sayfadır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "48 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30 sayfa",
+"B": "6 sayfa",
+"C": "40 sayfa",
+"D": "18 sayfa"
+},
+"answer": "D",
+"explanation": "Her parça 48 ÷ 8 = 6; boyasız 3 parça → 18 sayfa.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"1 pizza, 8 kişi"
+],
+[
+"K",
+"7 pizza, 7 kişi"
+],
+[
+"M",
+"2 pizza, 6 kişi"
+],
+[
+"L",
+"2 pizza, 8 kişi"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/1, L: 1/4, M: 1/3, N: 1/8. En az N grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde bir dikdörtgen 3 satır ve 4 sütuna bölünmüştür. Mavi renk satırların 1/3'ünü, sarı renk sütunların 2/4'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 1,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "1/6",
+"B": "2/7",
+"C": "3/7",
+"D": "1/12"
+},
+"answer": "A",
+"explanation": "1/3 × 2/4 = 2/12 = 1/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 4,
+"k": 4
+},
+{
+"name": "L",
+"d": 2,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/2",
+"B": "5/6",
+"C": "1/1",
+"D": "5/4"
+},
+"answer": "A",
+"explanation": "K = 4/4, L = 1/2; sonuç 1/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki çubuk modelde toplam 40 sorulik bir bütünün 4 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sorutir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "40 soru"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "20",
+"C": "30",
+"D": "34"
+},
+"answer": "C",
+"explanation": "Bir parça 40 ÷ 4 = 10; kullanılmayan 3 parça: 3 × 10 = 30.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki çubuk modelde bir bütünün 5/8'sinin 45 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "5/8 = 45",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "45",
+"B": "63",
+"C": "72",
+"D": "81"
+},
+"answer": "C",
+"explanation": "5 parça 45 ise bir parça 9; tamamı 8 × 9 = 72.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/1",
+"B": "4/3",
+"C": "2/3",
+"D": "1/1"
+},
+"answer": "B",
+"explanation": "2/3 + 4/6 = 4/3 = 4/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde birim kare 4 eş yatay ve 3 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 1/4 kesrini, sarı şeritler 1/3 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 3,
+"a": 1,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "1/12",
+"B": "2/7",
+"C": "1/4",
+"D": "1/3"
+},
+"answer": "A",
+"explanation": "1/4 × 1/3 = 1/12. Turuncu bölgede 1 küçük kare, toplamda 12 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelinde toplam 138 km olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç km'dir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "138 km"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "115 km",
+"B": "139 km",
+"C": "132 km",
+"D": "23 km"
+},
+"answer": "A",
+"explanation": "Her parça 138 ÷ 6 = 23; boyasız 5 parça → 115 km.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak şu soruyu yanıtlayınız.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"K",
+"6 pizza, 8 kişi"
+],
+[
+"L",
+"5 pizza, 8 kişi"
+],
+[
+"M",
+"6 pizza, 3 kişi"
+],
+[
+"N",
+"4 pizza, 3 kişi"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 3/4, L: 5/8, M: 2/1, N: 4/3. En çok M grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekilde bir dikdörtgen 5 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 2/5'ünü, sarı renk sütunların 2/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 6,
+"a": 2,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "1/6",
+"B": "1/15",
+"C": "4/11",
+"D": "2/15"
+},
+"answer": "D",
+"explanation": "2/5 × 2/6 = 4/30 = 2/15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 4,
+"k": 3
+},
+{
+"name": "L",
+"d": 8,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/6",
+"B": "7/8",
+"C": "1/8",
+"D": "1/3"
+},
+"answer": "B",
+"explanation": "K = 3/4, L = 1/8; sonuç 7/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki çubuk modelde toplam 60 biletlik bir bütünün 6 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "60 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "30",
+"C": "50",
+"D": "56"
+},
+"answer": "C",
+"explanation": "Bir parça 60 ÷ 6 = 10; kullanılmayan 5 parça: 5 × 10 = 50.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde bir bütünün 5/6'sinin 30 olduğu gösterilmiştir. Bütünün tamamı kaçtır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "5/6 = 30",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "?"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30",
+"B": "36",
+"C": "42",
+"D": "60"
+},
+"answer": "B",
+"explanation": "5 parça 30 ise bir parça 6; tamamı 6 × 6 = 36.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_tum"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/2",
+"B": "1/1",
+"C": "3/4",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "1/2 + 1/4 = 3/4 = 3/4.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde birim kare 6 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 5/6 kesrini, sarı şeritler 3/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 6,
+"cols": 4,
+"a": 5,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "8/10",
+"B": "15/24",
+"C": "5/6",
+"D": "3/4"
+},
+"answer": "B",
+"explanation": "5/6 × 3/4 = 15/24. Turuncu bölgede 15 küçük kare, toplamda 24 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki çubuk modelinde toplam 40 litre olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç litredir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "40 litre"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "42 litre",
+"B": "20 litre",
+"C": "36 litre",
+"D": "10 litre"
+},
+"answer": "B",
+"explanation": "Her parça 40 ÷ 4 = 10; boyasız 2 parça → 20 litre.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"M",
+"7 pizza, 5 kişi"
+],
+[
+"N",
+"4 pizza, 7 kişi"
+],
+[
+"L",
+"6 pizza, 7 kişi"
+],
+[
+"K",
+"5 pizza, 3 kişi"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 5/3, L: 6/7, M: 7/5, N: 4/7. En çok K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde bir dikdörtgen 3 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 1/3'ünü, sarı renk sütunların 4/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 5,
+"a": 1,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "4/15",
+"B": "1/2",
+"C": "5/8",
+"D": "1/15"
+},
+"answer": "A",
+"explanation": "1/3 × 4/5 = 4/15 = 4/15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 1
+},
+{
+"name": "L",
+"d": 3,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/5",
+"B": "2/3",
+"C": "1/6",
+"D": "5/6"
+},
+"answer": "D",
+"explanation": "K = 1/2, L = 1/3; sonuç 5/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekildeki çubuk modelde toplam 170 biletlik bir bütünün 10 eş parçaya bölündüğü ve 4 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "170 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "68",
+"B": "85",
+"C": "102",
+"D": "112"
+},
+"answer": "C",
+"explanation": "Bir parça 170 ÷ 10 = 17; kullanılmayan 6 parça: 6 × 17 = 102.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "7/6",
+"C": "1/1",
+"D": "2/1"
+},
+"answer": "B",
+"explanation": "1/3 + 5/6 = 7/6 = 7/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde birim kare 4 eş yatay ve 3 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/4 kesrini, sarı şeritler 2/3 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 3,
+"a": 2,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "4/7",
+"B": "2/3",
+"C": "4/12",
+"D": "2/4"
+},
+"answer": "C",
+"explanation": "2/4 × 2/3 = 4/12. Turuncu bölgede 4 küçük kare, toplamda 12 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki çubuk modelinde toplam 114 sayfa olan bir bütünün boyalı kısmı kullanılmıştır. Kullanılmayan (boyasız) kısım kaç sayfadır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "114 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "108 sayfa",
+"B": "38 sayfa",
+"C": "19 sayfa",
+"D": "76 sayfa"
+},
+"answer": "B",
+"explanation": "Her parça 114 ÷ 6 = 19; boyasız 2 parça → 38 sayfa.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_problem"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"L",
+"1 pizza, 7 kişi"
+],
+[
+"M",
+"7 pizza, 9 kişi"
+],
+[
+"K",
+"7 pizza, 3 kişi"
+],
+[
+"N",
+"3 pizza, 8 kişi"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 7/3, L: 1/7, M: 7/9, N: 3/8. En çok K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde bir dikdörtgen 3 satır ve 4 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 3/4'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "6/7",
+"B": "1/6",
+"C": "5/7",
+"D": "1/2"
+},
+"answer": "D",
+"explanation": "2/3 × 3/4 = 6/12 = 1/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 2
+},
+{
+"name": "L",
+"d": 4,
+"k": 2
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "1/2",
+"C": "2/3",
+"D": "1/3"
+},
+"answer": "B",
+"explanation": "K = 2/2, L = 2/4; sonuç 1/2.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki çubuk modelde toplam 90 biletlik bir bütünün 6 eş parçaya bölündüğü ve 5 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "90 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "21",
+"C": "45",
+"D": "75"
+},
+"answer": "A",
+"explanation": "Bir parça 90 ÷ 6 = 15; kullanılmayan 1 parça: 1 × 15 = 15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "5/6",
+"B": "3/8",
+"C": "3/2",
+"D": "1/2"
+},
+"answer": "A",
+"explanation": "1/2 + 2/6 = 5/6 = 5/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde birim kare 4 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/4 kesrini, sarı şeritler 3/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 5,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "3/5",
+"B": "5/9",
+"C": "2/4",
+"D": "6/20"
+},
+"answer": "D",
+"explanation": "2/4 × 3/5 = 6/20. Turuncu bölgede 6 küçük kare, toplamda 20 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"7 pizza, 5 kişi"
+],
+[
+"L",
+"1 pizza, 4 kişi"
+],
+[
+"K",
+"3 pizza, 4 kişi"
+],
+[
+"M",
+"4 pizza, 2 kişi"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "D",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 3/4, L: 1/4, M: 2/1, N: 7/5. En az L grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nŞekilde bir dikdörtgen 5 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 4/5'ünü, sarı renk sütunların 3/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 6,
+"a": 4,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "7/11",
+"B": "12/11",
+"C": "2/15",
+"D": "2/5"
+},
+"answer": "D",
+"explanation": "4/5 × 3/6 = 12/30 = 2/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 10,
+"k": 7
+},
+{
+"name": "L",
+"d": 5,
+"k": 2
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/5",
+"B": "3/10",
+"C": "9/25",
+"D": "1/3"
+},
+"answer": "B",
+"explanation": "K = 7/10, L = 2/5; sonuç 3/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki çubuk modelde toplam 132 sorulik bir bütünün 6 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sorutir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "132 soru"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "66",
+"C": "110",
+"D": "116"
+},
+"answer": "C",
+"explanation": "Bir parça 132 ÷ 6 = 22; kullanılmayan 5 parça: 5 × 22 = 110.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "3/1",
+"C": "1/1",
+"D": "4/3"
+},
+"answer": "D",
+"explanation": "1/2 + 5/6 = 4/3 = 4/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde birim kare 4 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 3/4 kesrini, sarı şeritler 2/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 4,
+"a": 3,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "6/16",
+"B": "5/8",
+"C": "3/4",
+"D": "2/4"
+},
+"answer": "A",
+"explanation": "3/4 × 2/4 = 6/16. Turuncu bölgede 6 küçük kare, toplamda 16 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"L",
+"3 pizza, 6 kişi"
+],
+[
+"K",
+"1 pizza, 6 kişi"
+],
+[
+"N",
+"2 pizza, 3 kişi"
+],
+[
+"M",
+"1 pizza, 7 kişi"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "L",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 1/6, L: 1/2, M: 1/7, N: 2/3. En az M grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekilde bir dikdörtgen 4 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 3/4'ünü, sarı renk sütunların 1/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 6,
+"a": 3,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "2/5",
+"B": "1/8",
+"C": "1/6",
+"D": "3/10"
+},
+"answer": "B",
+"explanation": "3/4 × 1/6 = 3/24 = 1/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 4,
+"k": 2
+},
+{
+"name": "L",
+"d": 3,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/7",
+"B": "1/1",
+"C": "1/6",
+"D": "1/7"
+},
+"answer": "C",
+"explanation": "K = 2/4, L = 1/3; sonuç 1/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekildeki çubuk modelde toplam 144 biletlik bir bütünün 8 eş parçaya bölündüğü ve 4 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "144 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "64",
+"B": "72",
+"C": "80",
+"D": "140"
+},
+"answer": "B",
+"explanation": "Bir parça 144 ÷ 8 = 18; kullanılmayan 4 parça: 4 × 18 = 72.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/1",
+"B": "1/2",
+"C": "2/3",
+"D": "1/1"
+},
+"answer": "D",
+"explanation": "1/2 + 3/6 = 1/1 = 1/1.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde birim kare 4 eş yatay ve 6 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 3/4 kesrini, sarı şeritler 5/6 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 6,
+"a": 3,
+"b": 5,
+"show_names": false
+},
+"options": {
+"A": "8/10",
+"B": "3/4",
+"C": "5/6",
+"D": "15/24"
+},
+"answer": "D",
+"explanation": "3/4 × 5/6 = 15/24. Turuncu bölgede 15 küçük kare, toplamda 24 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"6 pizza, 8 kişi"
+],
+[
+"M",
+"7 pizza, 6 kişi"
+],
+[
+"K",
+"5 pizza, 9 kişi"
+],
+[
+"L",
+"6 pizza, 4 kişi"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "C",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 5/9, L: 3/2, M: 7/6, N: 3/4. En çok L grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde bir dikdörtgen 3 satır ve 4 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 2/4'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 2,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "1/6",
+"B": "4/7",
+"C": "5/12",
+"D": "1/3"
+},
+"answer": "D",
+"explanation": "2/3 × 2/4 = 4/12 = 1/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 2
+},
+{
+"name": "L",
+"d": 3,
+"k": 3
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "5/3",
+"C": "1/5",
+"D": "2/1"
+},
+"answer": "D",
+"explanation": "K = 2/2, L = 3/3; sonuç 2/1.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde toplam 120 biletlik bir bütünün 5 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç bilettir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "120 bilet"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "60",
+"C": "96",
+"D": "101"
+},
+"answer": "C",
+"explanation": "Bir parça 120 ÷ 5 = 24; kullanılmayan 4 parça: 4 × 24 = 96.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/9",
+"B": "5/6",
+"C": "2/3",
+"D": "4/3"
+},
+"answer": "B",
+"explanation": "1/3 + 3/6 = 5/6 = 5/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde birim kare 3 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/3 kesrini, sarı şeritler 3/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "5/7",
+"B": "3/4",
+"C": "2/3",
+"D": "6/12"
+},
+"answer": "D",
+"explanation": "2/3 × 3/4 = 6/12. Turuncu bölgede 6 küçük kare, toplamda 12 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"L",
+"7 pizza, 6 kişi"
+],
+[
+"M",
+"2 pizza, 2 kişi"
+],
+[
+"K",
+"5 pizza, 3 kişi"
+],
+[
+"N",
+"2 pizza, 5 kişi"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "D",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 5/3, L: 7/6, M: 1/1, N: 2/5. En çok K grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde bir dikdörtgen 4 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 2/4'ünü, sarı renk sütunların 1/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 5,
+"a": 2,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "1/10",
+"B": "1/3",
+"C": "2/9",
+"D": "3/20"
+},
+"answer": "A",
+"explanation": "2/4 × 1/5 = 2/20 = 1/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 4,
+"k": 3
+},
+{
+"name": "L",
+"d": 6,
+"k": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "7/10",
+"B": "7/12",
+"C": "17/12",
+"D": "1/10"
+},
+"answer": "C",
+"explanation": "K = 3/4, L = 4/6; sonuç 17/12.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde toplam 20 sayfalik bir bütünün 4 eş parçaya bölündüğü ve 2 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sayfatir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "20 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "10",
+"C": "14",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Bir parça 20 ÷ 4 = 5; kullanılmayan 2 parça: 2 × 5 = 10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/2",
+"B": "1/1",
+"C": "1/3",
+"D": "2/3"
+},
+"answer": "D",
+"explanation": "1/3 + 2/6 = 2/3 = 2/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde birim kare 3 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 2/3 kesrini, sarı şeritler 3/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 5,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "3/5",
+"B": "2/3",
+"C": "5/8",
+"D": "6/15"
+},
+"answer": "D",
+"explanation": "2/3 × 3/5 = 6/15. Turuncu bölgede 6 küçük kare, toplamda 15 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"K",
+"5 pizza, 8 kişi"
+],
+[
+"L",
+"5 pizza, 3 kişi"
+],
+[
+"N",
+"4 pizza, 9 kişi"
+],
+[
+"M",
+"5 pizza, 6 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 5/8, L: 5/3, M: 5/6, N: 4/9. En çok L grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde bir dikdörtgen 3 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 2/3'ünü, sarı renk sütunların 1/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 5,
+"a": 2,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "1/5",
+"B": "3/8",
+"C": "2/15",
+"D": "1/4"
+},
+"answer": "C",
+"explanation": "2/3 × 1/5 = 2/15 = 2/15.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 1
+},
+{
+"name": "L",
+"d": 3,
+"k": 2
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "3/5",
+"C": "7/6",
+"D": "1/5"
+},
+"answer": "C",
+"explanation": "K = 1/2, L = 2/3; sonuç 7/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki çubuk modelde toplam 120 sorulik bir bütünün 6 eş parçaya bölündüğü ve 1 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sorutir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "120 soru"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "60",
+"C": "100",
+"D": "106"
+},
+"answer": "C",
+"explanation": "Bir parça 120 ÷ 6 = 20; kullanılmayan 5 parça: 5 × 20 = 100.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "3/1",
+"C": "13/9",
+"D": "3/4"
+},
+"answer": "C",
+"explanation": "2/3 + 7/9 = 13/9 = 13/9.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde birim kare 3 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 1/3 kesrini, sarı şeritler 1/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 1,
+"b": 1,
+"show_names": false
+},
+"options": {
+"A": "2/7",
+"B": "1/4",
+"C": "1/12",
+"D": "1/3"
+},
+"answer": "C",
+"explanation": "1/3 × 1/4 = 1/12. Turuncu bölgede 1 küçük kare, toplamda 12 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"1 pizza, 5 kişi"
+],
+[
+"L",
+"7 pizza, 8 kişi"
+],
+[
+"K",
+"2 pizza, 5 kişi"
+],
+[
+"M",
+"5 pizza, 5 kişi"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "M",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 2/5, L: 7/8, M: 1/1, N: 1/5. En az N grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde bir dikdörtgen 5 satır ve 6 sütuna bölünmüştür. Mavi renk satırların 2/5'ünü, sarı renk sütunların 3/6'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 5,
+"cols": 6,
+"a": 2,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "1/5",
+"B": "1/15",
+"C": "5/11",
+"D": "6/11"
+},
+"answer": "A",
+"explanation": "2/5 × 3/6 = 6/30 = 1/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 4,
+"k": 2
+},
+{
+"name": "L",
+"d": 8,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/4",
+"B": "3/32",
+"C": "3/8",
+"D": "1/12"
+},
+"answer": "C",
+"explanation": "K = 2/4, L = 1/8; sonuç 3/8.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki çubuk modelde toplam 84 sorulik bir bütünün 6 eş parçaya bölündüğü ve 2 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sorutir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "84 soru"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "42",
+"C": "56",
+"D": "62"
+},
+"answer": "C",
+"explanation": "Bir parça 84 ÷ 6 = 14; kullanılmayan 4 parça: 4 × 14 = 56.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "2/3",
+"B": "1/3",
+"C": "1/1",
+"D": "1/4"
+},
+"answer": "A",
+"explanation": "1/2 + 1/6 = 2/3 = 2/3.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde birim kare 6 eş yatay ve 5 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 4/6 kesrini, sarı şeritler 3/5 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 6,
+"cols": 5,
+"a": 4,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "4/6",
+"B": "7/11",
+"C": "3/5",
+"D": "12/30"
+},
+"answer": "D",
+"explanation": "4/6 × 3/5 = 12/30. Turuncu bölgede 12 küçük kare, toplamda 30 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en az olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"2 pizza, 3 kişi"
+],
+[
+"M",
+"2 pizza, 5 kişi"
+],
+[
+"K",
+"6 pizza, 4 kişi"
+],
+[
+"L",
+"2 pizza, 2 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "D",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 3/2, L: 1/1, M: 2/5, N: 2/3. En az M grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde bir dikdörtgen 3 satır ve 4 sütuna bölünmüştür. Mavi renk satırların 1/3'ünü, sarı renk sütunların 3/4'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 3,
+"cols": 4,
+"a": 1,
+"b": 3,
+"show_names": false
+},
+"options": {
+"A": "4/7",
+"B": "1/4",
+"C": "3/7",
+"D": "1/12"
+},
+"answer": "B",
+"explanation": "1/3 × 3/4 = 3/12 = 1/4.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların toplamı en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 2,
+"k": 1
+},
+{
+"name": "L",
+"d": 3,
+"k": 2
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/1",
+"B": "7/6",
+"C": "3/5",
+"D": "1/5"
+},
+"answer": "B",
+"explanation": "K = 1/2, L = 2/3; sonuç 7/6.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki çubuk modelde toplam 152 sorulik bir bütünün 8 eş parçaya bölündüğü ve 2 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sorutir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "152 soru"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "38",
+"B": "76",
+"C": "114",
+"D": "122"
+},
+"answer": "C",
+"explanation": "Bir parça 152 ÷ 8 = 19; kullanılmayan 6 parça: 6 × 19 = 114.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "1/6",
+"B": "4/9",
+"C": "2/9",
+"D": "2/3"
+},
+"answer": "B",
+"explanation": "1/3 + 1/9 = 4/9 = 4/9.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekilde birim kare 6 eş yatay ve 4 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 4/6 kesrini, sarı şeritler 2/4 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 6,
+"cols": 4,
+"a": 4,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "4/6",
+"B": "6/10",
+"C": "2/4",
+"D": "8/24"
+},
+"answer": "D",
+"explanation": "4/6 × 2/4 = 8/24. Turuncu bölgede 8 küçük kare, toplamda 24 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir ve bölme",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda dört grubun pizza ve kişi sayıları verilmiştir. Pizzalar her grupta kendi içinde eşit paylaşıldığına göre kişi başına düşen pizza miktarı en çok olan grup hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Gruplar",
+"headers": [
+"Harf",
+"Paylaşım"
+],
+"rows": [
+[
+"N",
+"7 pizza, 8 kişi"
+],
+[
+"K",
+"5 pizza, 9 kişi"
+],
+[
+"M",
+"3 pizza, 2 kişi"
+],
+[
+"L",
+"6 pizza, 3 kişi"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Kişi başına düşen miktar pizza sayısı ÷ kişi sayısıdır: K: 5/9, L: 2/1, M: 3/2, N: 7/8. En çok L grubunda.",
+"kz": [
+"MAT.6.1.6"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kesir_bol"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle çarpma",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde bir dikdörtgen 2 satır ve 5 sütuna bölünmüştür. Mavi renk satırların 1/2'ünü, sarı renk sütunların 4/5'sini göstermektedir. İki rengin kesiştiği turuncu bölge dikdörtgenin kaçta kaçıdır? (en sade biçimde)",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 2,
+"cols": 5,
+"a": 1,
+"b": 4,
+"show_names": false
+},
+"options": {
+"A": "1/10",
+"B": "2/5",
+"C": "5/7",
+"D": "4/7"
+},
+"answer": "B",
+"explanation": "1/2 × 4/5 = 4/10 = 2/5.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesirlerle toplama-çıkarma",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde eş bölmelere ayrılmış iki şeritte boyalı kısımlar gösterilmiştir. K ve L şeritlerinde boyalı kısımların farkı (büyük − küçük) en sade biçimde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "serit2",
+"rows": [
+{
+"name": "K",
+"d": 10,
+"k": 3
+},
+{
+"name": "L",
+"d": 5,
+"k": 1
+}
+],
+"show_names": false
+},
+"options": {
+"A": "4/25",
+"B": "1/10",
+"C": "2/15",
+"D": "4/15"
+},
+"answer": "B",
+"explanation": "K = 3/10, L = 1/5; sonuç 1/10.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_serit"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir problemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki çubuk modelde toplam 180 sayfalik bir bütünün 10 eş parçaya bölündüğü ve 8 parçasının (boyalı) kullanıldığı gösterilmiştir. Kullanılmayan kısım kaç sayfatir?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+],
+"brace": "180 sayfa"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "46",
+"C": "90",
+"D": "144"
+},
+"answer": "A",
+"explanation": "Bir parça 180 ÷ 10 = 18; kullanılmayan 2 parça: 2 × 18 = 36.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_bar_kalan"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde birbirine eş iki şerit farklı sayıda eş parçaya bölünmüştür ve boyalı kısımlar gösterilmiştir. Boyalı kısımların toplamı bütünün kaçta kaçıdır?",
+"shape": {
+"type": "kes",
+"sub_type": "bar",
+"rows": [
+{
+"name": "I",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+},
+{
+"name": "II",
+"segs": [
+{
+"l": "",
+"w": 1,
+"q": false
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+},
+{
+"l": "",
+"w": 1,
+"q": true
+}
+]
+}
+],
+"show_names": false
+},
+"options": {
+"A": "3/4",
+"B": "1/2",
+"C": "1/3",
+"D": "1/1"
+},
+"answer": "A",
+"explanation": "1/2 + 1/4 = 3/4 = 3/4.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_topla"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir işlemleri",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde birim kare 4 eş yatay ve 3 eş dikey şeride bölünmüştür. Mavi şeritler bütünün 1/4 kesrini, sarı şeritler 2/3 kesrini göstermektedir. Turuncu bölge (iki rengin kesiştiği yer) bütünün kaçta kaçıdır?",
+"shape": {
+"type": "m6",
+"sub_type": "alanm",
+"rows": 4,
+"cols": 3,
+"a": 1,
+"b": 2,
+"show_names": false
+},
+"options": {
+"A": "2/12",
+"B": "1/4",
+"C": "2/3",
+"D": "3/7"
+},
+"answer": "A",
+"explanation": "1/4 × 2/3 = 2/12. Turuncu bölgede 2 küçük kare, toplamda 12 küçük kare vardır.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Kesirlerle İşlemler",
+"topics": "Kesir işlemleri, Kesir problemleri, Kesir ve bölme",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_kf_alan"
+}
+]
+}

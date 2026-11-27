@@ -1,0 +1,9268 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK",
+"passage": "",
+"question": "18 ve 16 sayılarının en küçük ortak katı (EKOK) kaçtır?",
+"shape": null,
+"options": {
+"A": "34",
+"B": "144",
+"C": "162",
+"D": "288"
+},
+"answer": "B",
+"explanation": "18 = …, 16 = … asal çarpanlarından EKOK = 144.",
+"kz": [
+"MAT.5.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf_gcdlcm"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında 140 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "140",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "70",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "20"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 10.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nVenn şemasında 16 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+8,
+16
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(16, 20) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nVenn şemasında 20 ve 28 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "20 sayısının çarpanları",
+"tb": "28 sayısının çarpanları",
+"a": [
+5,
+10,
+20
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+7,
+14,
+28
+],
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4 → 3 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 6 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 12,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "12",
+"C": "16",
+"D": "18"
+},
+"answer": "B",
+"explanation": "4 ve 6'nin ortak katlarından en küçüğü EKOK(4, 6) = 12 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 10 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"1254"
+],
+[
+"L",
+"2080"
+],
+[
+"N",
+"6087"
+],
+[
+"K",
+"7843"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "C",
+"explanation": "2080 sayısı 10 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 36 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"7"
+],
+[
+"L",
+"17"
+],
+[
+"K",
+"25"
+],
+[
+"N",
+"6"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "M"
+},
+"answer": "A",
+"explanation": "36 sayısı 6 ile tam bölünür; bu yüzden 6, 36 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK",
+"passage": "",
+"question": "18 ve 10 sayılarının EKOK’u kaçtır?",
+"shape": null,
+"options": {
+"A": "2",
+"B": "18",
+"C": "90",
+"D": "108"
+},
+"answer": "C",
+"explanation": "18 = …, 10 = … asal çarpanlarından EKOK = 90.",
+"kz": [
+"MAT.5.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf_gcdlcm"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında 20 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "20",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 4.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "42",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "82",
+"B": "84",
+"C": "86",
+"D": "168"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 3 × 7 = 84.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nVenn şemasında 18 ve 27 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "18 sayısının çarpanları",
+"tb": "27 sayısının çarpanları",
+"a": [
+2,
+6,
+18
+],
+"ab": [
+1,
+3,
+9
+],
+"b": [
+27
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "9",
+"C": "11",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 3, 9. En büyüğü 9 olduğundan EBOB(18, 27) = 9.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nVenn şemasında 36 ve 48 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "36 sayısının çarpanları",
+"tb": "48 sayısının çarpanları",
+"a": [
+9,
+18,
+36
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+8,
+16,
+24,
+48
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 4, 6, 12 → 6 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 10 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 30,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "30",
+"C": "36",
+"D": "40"
+},
+"answer": "B",
+"explanation": "6 ve 10'nin ortak katlarından en küçüğü EKOK(6, 10) = 30 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 3 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"1817"
+],
+[
+"M",
+"2925"
+],
+[
+"N",
+"1130"
+],
+[
+"K",
+"5288"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "D",
+"explanation": "2925 sayısı 3 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 24 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"95"
+],
+[
+"K",
+"72"
+],
+[
+"L",
+"70"
+],
+[
+"N",
+"145"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "D",
+"explanation": "72 = 24 × 3 olduğundan 24 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK",
+"passage": "",
+"question": "20 ve 8 sayılarının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": null,
+"options": {
+"A": "4",
+"B": "8",
+"C": "28",
+"D": "40"
+},
+"answer": "A",
+"explanation": "20 = …, 8 = … asal çarpanlarından EBOB = 4.",
+"kz": [
+"MAT.5.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf_gcdlcm"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında 30 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "30",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 6.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "40",
+"B": "42",
+"C": "44",
+"D": "84"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 3 × 7 = 42.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nVenn şemasında 20 ve 28 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "20 sayısının çarpanları",
+"tb": "28 sayısının çarpanları",
+"a": [
+5,
+10,
+20
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+7,
+14,
+28
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(20, 28) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 4, 6, 12 → 6 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 5, B her 6 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 30,
+"rows": [
+{
+"name": "A",
+"step": 5
+},
+{
+"name": "B",
+"step": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "25",
+"B": "30",
+"C": "35",
+"D": "36"
+},
+"answer": "B",
+"explanation": "5 ve 6'nin ortak katlarından en küçüğü EKOK(5, 6) = 30 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 2 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"1487"
+],
+[
+"N",
+"6860"
+],
+[
+"M",
+"2793"
+],
+[
+"L",
+"8247"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "C",
+"explanation": "6860 sayısı 2 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 18 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"34"
+],
+[
+"K",
+"70"
+],
+[
+"M",
+"110"
+],
+[
+"N",
+"90"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "B",
+"explanation": "90 = 18 × 5 olduğundan 18 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK",
+"passage": "",
+"question": "8 ile 18 sayılarının en büyük ortak böleni kaçtır?",
+"shape": null,
+"options": {
+"A": "2",
+"B": "18",
+"C": "26",
+"D": "144"
+},
+"answer": "A",
+"explanation": "8 = …, 18 = … asal çarpanlarından EBOB = 2.",
+"kz": [
+"MAT.5.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf_gcdlcm"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nŞekildeki çarpan ağacında 12 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "12",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "3"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 4.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "2"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "8",
+"C": "10",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 2 = 8.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nVenn şemasında 12 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "12 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+3,
+6,
+12
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(12, 20) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nVenn şemasında 18 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "18 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+9,
+18
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+5,
+10,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 6 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 10 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 20,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "20",
+"C": "24",
+"D": "30"
+},
+"answer": "B",
+"explanation": "4 ve 10'nin ortak katlarından en küçüğü EKOK(4, 10) = 20 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu cevaplayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 6 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"5809"
+],
+[
+"N",
+"5808"
+],
+[
+"K",
+"677"
+],
+[
+"M",
+"7047"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "D",
+"explanation": "5808 sayısı 6 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 60 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"359"
+],
+[
+"N",
+"120"
+],
+[
+"M",
+"241"
+],
+[
+"L",
+"298"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "C",
+"explanation": "120 = 60 × 2 olduğundan 60 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK",
+"passage": "",
+"question": "18 ile 6 sayılarının en küçük ortak katı kaçtır?",
+"shape": null,
+"options": {
+"A": "18",
+"B": "24",
+"C": "36",
+"D": "108"
+},
+"answer": "A",
+"explanation": "18 = …, 6 = … asal çarpanlarından EKOK = 18.",
+"kz": [
+"MAT.5.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf_gcdlcm"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki çarpan ağacında 84 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "84",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "21",
+"C": "23",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 21.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "8",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "3"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "24",
+"C": "26",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 2 × 3 = 24.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nVenn şemasında 20 ve 28 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "20 sayısının çarpanları",
+"tb": "28 sayısının çarpanları",
+"a": [
+5,
+10,
+20
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+7,
+14,
+28
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(20, 28) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nVenn şemasında 36 ve 48 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "36 sayısının çarpanları",
+"tb": "48 sayısının çarpanları",
+"a": [
+9,
+18,
+36
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+8,
+16,
+24,
+48
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 4, 6, 12 → 6 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 9, B her 12 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 36,
+"rows": [
+{
+"name": "A",
+"step": 9
+},
+{
+"name": "B",
+"step": 12
+}
+],
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "36",
+"C": "45",
+"D": "48"
+},
+"answer": "B",
+"explanation": "9 ve 12'nin ortak katlarından en küçüğü EKOK(9, 12) = 36 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 4 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"7990"
+],
+[
+"M",
+"732"
+],
+[
+"N",
+"9598"
+],
+[
+"L",
+"3959"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "732 sayısı 4 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 60 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"300"
+],
+[
+"L",
+"238"
+],
+[
+"N",
+"303"
+],
+[
+"M",
+"182"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "N",
+"D": "M"
+},
+"answer": "B",
+"explanation": "300 = 60 × 5 olduğundan 60 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK",
+"passage": "",
+"question": "16 ve 45 sayılarının EBOB’u kaçtır?",
+"shape": null,
+"options": {
+"A": "1",
+"B": "2",
+"C": "61",
+"D": "720"
+},
+"answer": "A",
+"explanation": "16 = …, 45 = … asal çarpanlarından EBOB = 1.",
+"kz": [
+"MAT.5.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf_gcdlcm"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında 50 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "50",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "10",
+"C": "12",
+"D": "20"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 10.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "3"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 3 = 12.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nVenn şemasında 16 ve 24 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "24 sayısının çarpanları",
+"a": [
+16
+],
+"ab": [
+1,
+2,
+4,
+8
+],
+"b": [
+3,
+6,
+12,
+24
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "8",
+"C": "10",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4, 8. En büyüğü 8 olduğundan EBOB(16, 24) = 8.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nVenn şemasında 18 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "18 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+9,
+18
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+5,
+10,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 6 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 9 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 18,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "18",
+"C": "24",
+"D": "27"
+},
+"answer": "B",
+"explanation": "6 ve 9'nin ortak katlarından en küçüğü EKOK(6, 9) = 18 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 3 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"7773"
+],
+[
+"N",
+"193"
+],
+[
+"M",
+"9383"
+],
+[
+"K",
+"370"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "M"
+},
+"answer": "C",
+"explanation": "7773 sayısı 3 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 54 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"272"
+],
+[
+"M",
+"327"
+],
+[
+"L",
+"163"
+],
+[
+"N",
+"216"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "C",
+"explanation": "216 = 54 × 4 olduğundan 54 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki çarpan ağacında 30 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "30",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 6.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "25",
+"ch": [
+{
+"v": "5"
+},
+{
+"v": "5"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "223",
+"B": "225",
+"C": "227",
+"D": "450"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 3 × 5 × 5 = 225.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nVenn şemasında 36 ve 48 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "36 sayısının çarpanları",
+"tb": "48 sayısının çarpanları",
+"a": [
+9,
+18,
+36
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+8,
+16,
+24,
+48
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 4, 6, 12. En büyüğü 12 olduğundan EBOB(36, 48) = 12.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nVenn şemasında 14 ve 21 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "14 sayısının çarpanları",
+"tb": "21 sayısının çarpanları",
+"a": [
+2,
+14
+],
+"ab": [
+1,
+7
+],
+"b": [
+3,
+21
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 7 → 2 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 9 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 18,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "18",
+"C": "24",
+"D": "27"
+},
+"answer": "B",
+"explanation": "6 ve 9'nin ortak katlarından en küçüğü EKOK(6, 9) = 18 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 10 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"2568"
+],
+[
+"M",
+"4192"
+],
+[
+"N",
+"3500"
+],
+[
+"L",
+"6868"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "C",
+"explanation": "3500 sayısı 10 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 42 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"124"
+],
+[
+"N",
+"87"
+],
+[
+"K",
+"167"
+],
+[
+"L",
+"126"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "126 = 42 × 3 olduğundan 42 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında 30 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "30",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 6.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "34",
+"B": "36",
+"C": "38",
+"D": "72"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 3 × 3 = 36.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nVenn şemasında 16 ve 24 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "24 sayısının çarpanları",
+"a": [
+16
+],
+"ab": [
+1,
+2,
+4,
+8
+],
+"b": [
+3,
+6,
+12,
+24
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "8",
+"C": "10",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4, 8. En büyüğü 8 olduğundan EBOB(16, 24) = 8.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nVenn şemasında 12 ve 18 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "12 sayısının çarpanları",
+"tb": "18 sayısının çarpanları",
+"a": [
+4,
+12
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+9,
+18
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 6 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 5 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 20,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "20",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "4 ve 5'nin ortak katlarından en küçüğü EKOK(4, 5) = 20 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 9 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"6174"
+],
+[
+"L",
+"8860"
+],
+[
+"N",
+"483"
+],
+[
+"M",
+"1031"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "D",
+"explanation": "6174 sayısı 9 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 60 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"303"
+],
+[
+"K",
+"120"
+],
+[
+"M",
+"243"
+],
+[
+"L",
+"239"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "L",
+"D": "M"
+},
+"answer": "A",
+"explanation": "120 = 60 × 2 olduğundan 60 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında 84 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "84",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "6",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 12.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "187",
+"B": "189",
+"C": "191",
+"D": "378"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 3 × 3 × 7 = 189.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nVenn şemasında 16 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+8,
+16
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(16, 20) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nVenn şemasında 16 ve 24 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "24 sayısının çarpanları",
+"a": [
+16
+],
+"ab": [
+1,
+2,
+4,
+8
+],
+"b": [
+3,
+6,
+12,
+24
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4, 8 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 8 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 24,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "24",
+"C": "30",
+"D": "32"
+},
+"answer": "B",
+"explanation": "6 ve 8'nin ortak katlarından en küçüğü EKOK(6, 8) = 24 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 4 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"2047"
+],
+[
+"K",
+"1100"
+],
+[
+"M",
+"6990"
+],
+[
+"N",
+"6182"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "D",
+"explanation": "1100 sayısı 4 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 30 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"21"
+],
+[
+"L",
+"29"
+],
+[
+"K",
+"3"
+],
+[
+"N",
+"23"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "K",
+"D": "L"
+},
+"answer": "C",
+"explanation": "30 sayısı 3 ile tam bölünür; bu yüzden 3, 30 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında 105 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "105",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "15",
+"C": "17",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 15.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "42",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "82",
+"B": "84",
+"C": "86",
+"D": "168"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 3 × 7 = 84.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 4, 6, 12. En büyüğü 12 olduğundan EBOB(24, 36) = 12.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nVenn şemasında 16 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+8,
+16
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4 → 3 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 5 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 20,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "20",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "4 ve 5'nin ortak katlarından en küçüğü EKOK(4, 5) = 20 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 6 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"2580"
+],
+[
+"M",
+"3320"
+],
+[
+"K",
+"2146"
+],
+[
+"L",
+"8899"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "M",
+"D": "N"
+},
+"answer": "D",
+"explanation": "2580 sayısı 6 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 60 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"179"
+],
+[
+"L",
+"239"
+],
+[
+"K",
+"360"
+],
+[
+"N",
+"121"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "B",
+"explanation": "360 = 60 × 6 olduğundan 60 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki çarpan ağacında 18 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "18",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "3"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 6.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "6",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "40",
+"B": "42",
+"C": "44",
+"D": "84"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 3 × 7 = 42.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nVenn şemasında 12 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "12 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+3,
+6,
+12
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(12, 20) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nVenn şemasında 18 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "18 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+9,
+18
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+5,
+10,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 6 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 9, B her 12 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 36,
+"rows": [
+{
+"name": "A",
+"step": 9
+},
+{
+"name": "B",
+"step": 12
+}
+],
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "36",
+"C": "45",
+"D": "48"
+},
+"answer": "B",
+"explanation": "9 ve 12'nin ortak katlarından en küçüğü EKOK(9, 12) = 36 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 3 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"5303"
+],
+[
+"M",
+"8166"
+],
+[
+"K",
+"8723"
+],
+[
+"N",
+"1193"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "C",
+"explanation": "8166 sayısı 3 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 36 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"146"
+],
+[
+"M",
+"180"
+],
+[
+"K",
+"145"
+],
+[
+"N",
+"71"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "L",
+"D": "N"
+},
+"answer": "B",
+"explanation": "180 = 36 × 5 olduğundan 36 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki çarpan ağacında 294 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "294",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "40",
+"B": "42",
+"C": "44",
+"D": "84"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 42.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "79",
+"B": "81",
+"C": "83",
+"D": "162"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 3 × 3 × 3 = 81.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nVenn şemasında 28 ve 42 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "28 sayısının çarpanları",
+"tb": "42 sayısının çarpanları",
+"a": [
+4,
+28
+],
+"ab": [
+1,
+2,
+7,
+14
+],
+"b": [
+3,
+6,
+21,
+42
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "14",
+"C": "16",
+"D": "28"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 7, 14. En büyüğü 14 olduğundan EBOB(28, 42) = 14.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu çözünüz.\nVenn şemasında 28 ve 42 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "28 sayısının çarpanları",
+"tb": "42 sayısının çarpanları",
+"a": [
+4,
+28
+],
+"ab": [
+1,
+2,
+7,
+14
+],
+"b": [
+3,
+6,
+21,
+42
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 7, 14 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 9, B her 12 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 36,
+"rows": [
+{
+"name": "A",
+"step": 9
+},
+{
+"name": "B",
+"step": 12
+}
+],
+"show_names": false
+},
+"options": {
+"A": "27",
+"B": "36",
+"C": "45",
+"D": "48"
+},
+"answer": "B",
+"explanation": "9 ve 12'nin ortak katlarından en küçüğü EKOK(9, 12) = 36 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 6 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"1225"
+],
+[
+"L",
+"4800"
+],
+[
+"K",
+"1063"
+],
+[
+"M",
+"3753"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "B",
+"explanation": "4800 sayısı 6 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 24 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"17"
+],
+[
+"M",
+"16"
+],
+[
+"N",
+"4"
+],
+[
+"K",
+"25"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "A",
+"explanation": "24 sayısı 4 ile tam bölünür; bu yüzden 4, 24 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında 210 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "210",
+"ch": [
+{
+"v": "30",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "15",
+"C": "17",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 15.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "6",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "3"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "18",
+"C": "20",
+"D": "36"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 3 × 3 = 18.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 4, 6, 12. En büyüğü 12 olduğundan EBOB(24, 36) = 12.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 4, 6, 12 → 6 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 9 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 18,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "18",
+"C": "24",
+"D": "27"
+},
+"answer": "B",
+"explanation": "6 ve 9'nin ortak katlarından en küçüğü EKOK(6, 9) = 18 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 4 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"2497"
+],
+[
+"N",
+"1249"
+],
+[
+"K",
+"8936"
+],
+[
+"L",
+"4959"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "B",
+"explanation": "8936 sayısı 4 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 18 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"16"
+],
+[
+"M",
+"23"
+],
+[
+"K",
+"3"
+],
+[
+"L",
+"15"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "N",
+"D": "L"
+},
+"answer": "A",
+"explanation": "18 sayısı 3 ile tam bölünür; bu yüzden 3, 18 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki çarpan ağacında 135 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "135",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "15",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "9",
+"C": "11",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 9.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "2"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "8",
+"C": "10",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 2 = 8.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nVenn şemasında 12 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "12 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+3,
+6,
+12
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(12, 20) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 4, 6, 12 → 6 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 8 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 24,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "24",
+"C": "30",
+"D": "32"
+},
+"answer": "B",
+"explanation": "6 ve 8'nin ortak katlarından en küçüğü EKOK(6, 8) = 24 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 4 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"8191"
+],
+[
+"L",
+"911"
+],
+[
+"K",
+"4789"
+],
+[
+"N",
+"6800"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "A",
+"explanation": "6800 sayısı 4 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 72 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"359"
+],
+[
+"N",
+"215"
+],
+[
+"L",
+"431"
+],
+[
+"M",
+"144"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "K",
+"D": "M"
+},
+"answer": "D",
+"explanation": "144 = 72 × 2 olduğundan 72 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında 28 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "28",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "14",
+"C": "16",
+"D": "28"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 14.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "61",
+"B": "63",
+"C": "65",
+"D": "126"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 3 × 7 = 63.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nVenn şemasında 12 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "12 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+3,
+6,
+12
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "4",
+"C": "6",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4. En büyüğü 4 olduğundan EBOB(12, 20) = 4.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nVenn şemasında 12 ve 20 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "12 sayısının çarpanları",
+"tb": "20 sayısının çarpanları",
+"a": [
+3,
+6,
+12
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+5,
+10,
+20
+],
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4 → 3 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 6 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 12,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "12",
+"C": "16",
+"D": "18"
+},
+"answer": "B",
+"explanation": "4 ve 6'nin ortak katlarından en küçüğü EKOK(4, 6) = 12 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 5 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"4888"
+],
+[
+"M",
+"4341"
+],
+[
+"L",
+"9552"
+],
+[
+"K",
+"3075"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "D",
+"explanation": "3075 sayısı 5 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 48 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"286"
+],
+[
+"M",
+"142"
+],
+[
+"N",
+"240"
+],
+[
+"L",
+"195"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "D",
+"explanation": "240 = 48 × 5 olduğundan 48 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında 54 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "54",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 6.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "6",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 3 = 12.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak şu soruyu yanıtlayınız.\nVenn şemasında 30 ve 45 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "30 sayısının çarpanları",
+"tb": "45 sayısının çarpanları",
+"a": [
+2,
+6,
+10,
+30
+],
+"ab": [
+1,
+3,
+5,
+15
+],
+"b": [
+9,
+45
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "15",
+"C": "17",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 3, 5, 15. En büyüğü 15 olduğundan EBOB(30, 45) = 15.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nVenn şemasında 36 ve 48 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "36 sayısının çarpanları",
+"tb": "48 sayısının çarpanları",
+"a": [
+9,
+18,
+36
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+8,
+16,
+24,
+48
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 4, 6, 12 → 6 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 3, B her 5 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 15,
+"rows": [
+{
+"name": "A",
+"step": 3
+},
+{
+"name": "B",
+"step": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "15",
+"C": "18",
+"D": "20"
+},
+"answer": "B",
+"explanation": "3 ve 5'nin ortak katlarından en küçüğü EKOK(3, 5) = 15 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 2 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"1946"
+],
+[
+"N",
+"8297"
+],
+[
+"M",
+"4619"
+],
+[
+"L",
+"3763"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "B",
+"explanation": "1946 sayısı 2 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 18 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"106"
+],
+[
+"K",
+"52"
+],
+[
+"N",
+"107"
+],
+[
+"L",
+"54"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "C",
+"explanation": "54 = 18 × 3 olduğundan 18 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında 210 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "210",
+"ch": [
+{
+"v": "30",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 6.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "63",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "124",
+"B": "126",
+"C": "128",
+"D": "252"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 3 × 3 × 7 = 126.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nVenn şemasında 28 ve 42 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "28 sayısının çarpanları",
+"tb": "42 sayısının çarpanları",
+"a": [
+4,
+28
+],
+"ab": [
+1,
+2,
+7,
+14
+],
+"b": [
+3,
+6,
+21,
+42
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "14",
+"C": "16",
+"D": "28"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 7, 14. En büyüğü 14 olduğundan EBOB(28, 42) = 14.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nVenn şemasında 16 ve 24 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "24 sayısının çarpanları",
+"a": [
+16
+],
+"ab": [
+1,
+2,
+4,
+8
+],
+"b": [
+3,
+6,
+12,
+24
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4, 8 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 5 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 20,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "20",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "4 ve 5'nin ortak katlarından en küçüğü EKOK(4, 5) = 20 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 9 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"5033"
+],
+[
+"K",
+"8289"
+],
+[
+"L",
+"1082"
+],
+[
+"N",
+"5537"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "B",
+"explanation": "8289 sayısı 9 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 42 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"18"
+],
+[
+"L",
+"28"
+],
+[
+"M",
+"6"
+],
+[
+"N",
+"10"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "L",
+"D": "M"
+},
+"answer": "D",
+"explanation": "42 sayısı 6 ile tam bölünür; bu yüzden 6, 42 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda şu soruyu yanıtlayınız.\nŞekildeki çarpan ağacında 90 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "90",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "45",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "5"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "9",
+"C": "11",
+"D": "18"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 9.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "8",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "2"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "16",
+"C": "18",
+"D": "32"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 2 × 2 = 16.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nVenn şemasında 16 ve 24 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "24 sayısının çarpanları",
+"a": [
+16
+],
+"ab": [
+1,
+2,
+4,
+8
+],
+"b": [
+3,
+6,
+12,
+24
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "8",
+"C": "10",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4, 8. En büyüğü 8 olduğundan EBOB(16, 24) = 8.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nVenn şemasında 36 ve 48 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "36 sayısının çarpanları",
+"tb": "48 sayısının çarpanları",
+"a": [
+9,
+18,
+36
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+8,
+16,
+24,
+48
+],
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 4, 6, 12 → 6 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 6 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 12,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "12",
+"C": "16",
+"D": "18"
+},
+"answer": "B",
+"explanation": "4 ve 6'nin ortak katlarından en küçüğü EKOK(4, 6) = 12 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 5 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"1402"
+],
+[
+"K",
+"8995"
+],
+[
+"L",
+"4409"
+],
+[
+"N",
+"3853"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "D",
+"explanation": "8995 sayısı 5 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 18 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"6"
+],
+[
+"M",
+"17"
+],
+[
+"K",
+"24"
+],
+[
+"N",
+"11"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "L",
+"D": "K"
+},
+"answer": "C",
+"explanation": "18 sayısı 6 ile tam bölünür; bu yüzden 6, 18 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki çarpan ağacında 210 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "210",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "35",
+"ch": [
+{
+"v": "5"
+},
+{
+"v": "7"
+}
+]
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "103",
+"B": "105",
+"C": "107",
+"D": "210"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 105.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "63",
+"ch": [
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "187",
+"B": "189",
+"C": "191",
+"D": "378"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 3 × 3 × 7 = 189.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nVenn şemasında 20 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "20 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+4,
+20
+],
+"ab": [
+1,
+2,
+5,
+10
+],
+"b": [
+3,
+6,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "10",
+"C": "12",
+"D": "20"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 5, 10. En büyüğü 10 olduğundan EBOB(20, 30) = 10.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nVenn şemasında 18 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "18 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+9,
+18
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+5,
+10,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 6 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 8, B her 12 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 24,
+"rows": [
+{
+"name": "A",
+"step": 8
+},
+{
+"name": "B",
+"step": 12
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "24",
+"C": "32",
+"D": "36"
+},
+"answer": "B",
+"explanation": "8 ve 12'nin ortak katlarından en küçüğü EKOK(8, 12) = 24 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 9 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"7597"
+],
+[
+"L",
+"3318"
+],
+[
+"K",
+"5396"
+],
+[
+"N",
+"6813"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "L",
+"D": "M"
+},
+"answer": "B",
+"explanation": "6813 sayısı 9 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 24 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"70"
+],
+[
+"K",
+"120"
+],
+[
+"L",
+"99"
+],
+[
+"M",
+"145"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "M",
+"D": "L"
+},
+"answer": "B",
+"explanation": "120 = 24 × 5 olduğundan 24 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında 98 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "98",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "7"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "47",
+"B": "49",
+"C": "51",
+"D": "98"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 49.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "6",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "35",
+"ch": [
+{
+"v": "5"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "208",
+"B": "210",
+"C": "212",
+"D": "420"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 3 × 5 × 7 = 210.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nVenn şemasında 28 ve 42 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "28 sayısının çarpanları",
+"tb": "42 sayısının çarpanları",
+"a": [
+4,
+28
+],
+"ab": [
+1,
+2,
+7,
+14
+],
+"b": [
+3,
+6,
+21,
+42
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "14",
+"C": "16",
+"D": "28"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 7, 14. En büyüğü 14 olduğundan EBOB(28, 42) = 14.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu cevaplayınız.\nVenn şemasında 14 ve 21 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "14 sayısının çarpanları",
+"tb": "21 sayısının çarpanları",
+"a": [
+2,
+14
+],
+"ab": [
+1,
+7
+],
+"b": [
+3,
+21
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 7 → 2 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 5 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 20,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "20",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "4 ve 5'nin ortak katlarından en küçüğü EKOK(4, 5) = 20 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 10 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"1593"
+],
+[
+"N",
+"300"
+],
+[
+"K",
+"8061"
+],
+[
+"L",
+"5814"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "300 sayısı 10 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 24 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"120"
+],
+[
+"L",
+"70"
+],
+[
+"M",
+"74"
+],
+[
+"K",
+"97"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "L",
+"C": "K",
+"D": "N"
+},
+"answer": "D",
+"explanation": "120 = 24 × 5 olduğundan 24 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında 315 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "315",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "15",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "103",
+"B": "105",
+"C": "107",
+"D": "210"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 105.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "35",
+"ch": [
+{
+"v": "5"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "103",
+"B": "105",
+"C": "107",
+"D": "210"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 5 × 7 = 105.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 4, 6, 12. En büyüğü 12 olduğundan EBOB(24, 36) = 12.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruyu çözünüz.\nVenn şemasında 20 ve 28 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "20 sayısının çarpanları",
+"tb": "28 sayısının çarpanları",
+"a": [
+5,
+10,
+20
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+7,
+14,
+28
+],
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4 → 3 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 10 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 30,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 10
+}
+],
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "30",
+"C": "36",
+"D": "40"
+},
+"answer": "B",
+"explanation": "6 ve 10'nin ortak katlarından en küçüğü EKOK(6, 10) = 30 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu çözünüz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 6 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"5934"
+],
+[
+"M",
+"3973"
+],
+[
+"L",
+"3286"
+],
+[
+"N",
+"867"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "N",
+"D": "K"
+},
+"answer": "D",
+"explanation": "5934 sayısı 6 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 72 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"2"
+],
+[
+"N",
+"13"
+],
+[
+"K",
+"28"
+],
+[
+"L",
+"29"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "M",
+"D": "K"
+},
+"answer": "C",
+"explanation": "72 sayısı 2 ile tam bölünür; bu yüzden 2, 72 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında 126 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "126",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "21",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 6.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "25",
+"ch": [
+{
+"v": "5"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "173",
+"B": "175",
+"C": "177",
+"D": "350"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 5 × 5 × 7 = 175.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nVenn şemasında 36 ve 48 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "36 sayısının çarpanları",
+"tb": "48 sayısının çarpanları",
+"a": [
+9,
+18,
+36
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+8,
+16,
+24,
+48
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 4, 6, 12. En büyüğü 12 olduğundan EBOB(36, 48) = 12.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nVenn şemasında 20 ve 28 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "20 sayısının çarpanları",
+"tb": "28 sayısının çarpanları",
+"a": [
+5,
+10,
+20
+],
+"ab": [
+1,
+2,
+4
+],
+"b": [
+7,
+14,
+28
+],
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4 → 3 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 9 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 18,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 9
+}
+],
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "18",
+"C": "24",
+"D": "27"
+},
+"answer": "B",
+"explanation": "6 ve 9'nin ortak katlarından en küçüğü EKOK(6, 9) = 18 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 6 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"4546"
+],
+[
+"L",
+"5066"
+],
+[
+"M",
+"8898"
+],
+[
+"K",
+"8471"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "L",
+"D": "K"
+},
+"answer": "A",
+"explanation": "8898 sayısı 6 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 60 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"360"
+],
+[
+"N",
+"303"
+],
+[
+"M",
+"241"
+],
+[
+"L",
+"179"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "C",
+"explanation": "360 = 60 × 6 olduğundan 60 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekildeki çarpan ağacında 42 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "42",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "21",
+"C": "23",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 21.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "6",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "35",
+"ch": [
+{
+"v": "5"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "208",
+"B": "210",
+"C": "212",
+"D": "420"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 3 × 5 × 7 = 210.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nVenn şemasında 18 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "18 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+9,
+18
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+5,
+10,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 6. En büyüğü 6 olduğundan EBOB(18, 30) = 6.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu cevaplayınız.\nVenn şemasında 20 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "20 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+4,
+20
+],
+"ab": [
+1,
+2,
+5,
+10
+],
+"b": [
+3,
+6,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 5, 10 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 5 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 20,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 5
+}
+],
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "20",
+"C": "24",
+"D": "25"
+},
+"answer": "B",
+"explanation": "4 ve 5'nin ortak katlarından en küçüğü EKOK(4, 5) = 20 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 10 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"5377"
+],
+[
+"K",
+"2380"
+],
+[
+"N",
+"3736"
+],
+[
+"M",
+"9437"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "L",
+"D": "K"
+},
+"answer": "D",
+"explanation": "2380 sayısı 10 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 48 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"195"
+],
+[
+"N",
+"144"
+],
+[
+"K",
+"289"
+],
+[
+"M",
+"194"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "144 = 48 × 3 olduğundan 48 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki çarpan ağacında 210 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "210",
+"ch": [
+{
+"v": "30",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "15",
+"C": "17",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 15.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "75",
+"ch": [
+{
+"v": "15",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "5"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "373",
+"B": "375",
+"C": "377",
+"D": "750"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 5 × 5 × 5 = 375.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 4, 6, 12. En büyüğü 12 olduğundan EBOB(24, 36) = 12.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nVenn şemasında 14 ve 21 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "14 sayısının çarpanları",
+"tb": "21 sayısının çarpanları",
+"a": [
+2,
+14
+],
+"ab": [
+1,
+7
+],
+"b": [
+3,
+21
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 7 → 2 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 3, B her 4 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 12,
+"rows": [
+{
+"name": "A",
+"step": 3
+},
+{
+"name": "B",
+"step": 4
+}
+],
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "12",
+"C": "15",
+"D": "16"
+},
+"answer": "B",
+"explanation": "3 ve 4'nin ortak katlarından en küçüğü EKOK(3, 4) = 12 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 10 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"8220"
+],
+[
+"M",
+"1956"
+],
+[
+"K",
+"7775"
+],
+[
+"N",
+"2437"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "8220 sayısı 10 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 60 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"118"
+],
+[
+"M",
+"238"
+],
+[
+"K",
+"120"
+],
+[
+"N",
+"359"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "A",
+"explanation": "120 = 60 × 2 olduğundan 60 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nŞekildeki çarpan ağacında 105 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "105",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "15",
+"C": "17",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 15.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "9",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "3"
+}
+]
+},
+{
+"v": "3"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "25",
+"B": "27",
+"C": "29",
+"D": "54"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 3 × 3 = 27.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nVenn şemasında 24 ve 36 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "36 sayısının çarpanları",
+"a": [
+8,
+24
+],
+"ab": [
+1,
+2,
+3,
+4,
+6,
+12
+],
+"b": [
+9,
+18,
+36
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 4, 6, 12. En büyüğü 12 olduğundan EBOB(24, 36) = 12.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nVenn şemasında 16 ve 24 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "24 sayısının çarpanları",
+"a": [
+16
+],
+"ab": [
+1,
+2,
+4,
+8
+],
+"b": [
+3,
+6,
+12,
+24
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 4, 8 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 6 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 12,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "12",
+"C": "16",
+"D": "18"
+},
+"answer": "B",
+"explanation": "4 ve 6'nin ortak katlarından en küçüğü EKOK(4, 6) = 12 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 5 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"K",
+"2755"
+],
+[
+"L",
+"4279"
+],
+[
+"M",
+"6826"
+],
+[
+"N",
+"8712"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "K",
+"D": "M"
+},
+"answer": "C",
+"explanation": "2755 sayısı 5 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 72 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"22"
+],
+[
+"N",
+"29"
+],
+[
+"K",
+"24"
+],
+[
+"M",
+"13"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "M",
+"C": "N",
+"D": "L"
+},
+"answer": "A",
+"explanation": "72 sayısı 24 ile tam bölünür; bu yüzden 24, 72 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nŞekildeki çarpan ağacında 30 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "30",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "15",
+"C": "17",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 15.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "8",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+}
+]
+},
+{
+"v": "3"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "22",
+"B": "24",
+"C": "26",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 2 × 3 = 24.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nVenn şemasında 16 ve 24 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "16 sayısının çarpanları",
+"tb": "24 sayısının çarpanları",
+"a": [
+16
+],
+"ab": [
+1,
+2,
+4,
+8
+],
+"b": [
+3,
+6,
+12,
+24
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "8",
+"C": "10",
+"D": "16"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 4, 8. En büyüğü 8 olduğundan EBOB(16, 24) = 8.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nVenn şemasında 12 ve 18 sayılarının çarpanları gösterilmiştir. Bu iki sayının kaç tane ortak böleni vardır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "12 sayısının çarpanları",
+"tb": "18 sayısının çarpanları",
+"a": [
+4,
+12
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+9,
+18
+],
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "Ortada gösterilen ortak çarpanlar: 1, 2, 3, 6 → 4 tane.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ortak"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 6, B her 8 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 24,
+"rows": [
+{
+"name": "A",
+"step": 6
+},
+{
+"name": "B",
+"step": 8
+}
+],
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "24",
+"C": "30",
+"D": "32"
+},
+"answer": "B",
+"explanation": "6 ve 8'nin ortak katlarından en küçüğü EKOK(6, 8) = 24 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 3 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"N",
+"8138"
+],
+[
+"L",
+"7858"
+],
+[
+"M",
+"1523"
+],
+[
+"K",
+"4608"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "A",
+"explanation": "4608 sayısı 3 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 36 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"3"
+],
+[
+"K",
+"23"
+],
+[
+"N",
+"27"
+],
+[
+"L",
+"28"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "K",
+"D": "L"
+},
+"answer": "B",
+"explanation": "36 sayısı 3 ile tam bölünür; bu yüzden 3, 36 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda soruya cevap veriniz.\nŞekildeki çarpan ağacında 196 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "196",
+"ch": [
+{
+"v": "?",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "26",
+"B": "28",
+"C": "30",
+"D": "56"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 28.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "6",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "3"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "12",
+"C": "14",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 2 × 2 × 3 = 12.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nVenn şemasında 14 ve 21 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "14 sayısının çarpanları",
+"tb": "21 sayısının çarpanları",
+"a": [
+2,
+14
+],
+"ab": [
+1,
+7
+],
+"b": [
+3,
+21
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "7",
+"C": "9",
+"D": "14"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 7. En büyüğü 7 olduğundan EBOB(14, 21) = 7.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 6 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 12,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "12",
+"C": "16",
+"D": "18"
+},
+"answer": "B",
+"explanation": "4 ve 6'nin ortak katlarından en küçüğü EKOK(4, 6) = 12 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Aşağıdaki görselde verilen bilgiler doğrultusunda sorulanı bulunuz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 9 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"1722"
+],
+[
+"N",
+"147"
+],
+[
+"M",
+"4134"
+],
+[
+"K",
+"8667"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "D",
+"explanation": "8667 sayısı 9 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 36 sayısının bir çarpanıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"L",
+"21"
+],
+[
+"N",
+"25"
+],
+[
+"K",
+"14"
+],
+[
+"M",
+"12"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "N",
+"D": "L"
+},
+"answer": "A",
+"explanation": "36 sayısı 12 ile tam bölünür; bu yüzden 12, 36 sayısının çarpanıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki çarpan ağacında 84 sayısı asal çarpanlarına ayrılmıştır. ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "84",
+"ch": [
+{
+"v": "4",
+"ch": [
+{
+"v": "2"
+},
+{
+"v": "2"
+}
+]
+},
+{
+"v": "?",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "7"
+}
+]
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "21",
+"C": "23",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Her sayı, altındaki iki sayının çarpımına eşittir. ? = 21.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_eksik"
+},
+{
+"subject": "Matematik",
+"topic": "Asal sayılar",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki çarpan ağacında bir doğal sayı asal çarpanlarına ayrılmıştır. Ağacın en üstündeki ? ile gösterilen sayı kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "agac",
+"root": {
+"v": "?",
+"ch": [
+{
+"v": "15",
+"ch": [
+{
+"v": "3"
+},
+{
+"v": "5"
+}
+]
+},
+{
+"v": "7"
+}
+]
+},
+"show_names": false
+},
+"options": {
+"A": "103",
+"B": "105",
+"C": "107",
+"D": "210"
+},
+"answer": "B",
+"explanation": "Asal çarpanların çarpımı: 3 × 5 × 7 = 105.",
+"kz": [
+"MAT.6.1.3"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_agac_n"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre aşağıdaki soruyu çözünüz.\nVenn şemasında 24 ve 30 sayılarının çarpanları gösterilmiştir. Bu iki sayının en büyük ortak böleni (EBOB) kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "venn",
+"ta": "24 sayısının çarpanları",
+"tb": "30 sayısının çarpanları",
+"a": [
+4,
+8,
+12,
+24
+],
+"ab": [
+1,
+2,
+3,
+6
+],
+"b": [
+5,
+10,
+15,
+30
+],
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "6",
+"C": "8",
+"D": "12"
+},
+"answer": "B",
+"explanation": "Ortak çarpanlar: 1, 2, 3, 6. En büyüğü 6 olduğundan EBOB(24, 30) = 6.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ebob"
+},
+{
+"subject": "Matematik",
+"topic": "EBOB-EKOK giriş",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde A ve B hareketlerinin tekrar ettiği zamanlar gösterilmiştir: A her 4, B her 6 birimde bir tekrar etmektedir. Başlangıçtan sonra ikisi ilk kez aynı anda kaçıncı birimde tekrar eder?",
+"shape": {
+"type": "m6",
+"sub_type": "ritim",
+"max": 12,
+"rows": [
+{
+"name": "A",
+"step": 4
+},
+{
+"name": "B",
+"step": 6
+}
+],
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "12",
+"C": "16",
+"D": "18"
+},
+"answer": "B",
+"explanation": "4 ve 6'nin ortak katlarından en küçüğü EKOK(4, 6) = 12 olur.",
+"kz": [
+"MAT.6.1.4"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 3,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_dn_ekok"
+},
+{
+"subject": "Matematik",
+"topic": "Bölünebilme kuralları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda dört doğal sayı harflerle gösterilmiştir. Bu sayılardan hangisi 9 ile tam bölünür?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"430"
+],
+[
+"K",
+"6916"
+],
+[
+"L",
+"8901"
+],
+[
+"N",
+"5583"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "L",
+"D": "M"
+},
+"answer": "C",
+"explanation": "8901 sayısı 9 ile tam bölünür; diğer üç sayı bölünmez.",
+"kz": [
+"MAT.6.1.2"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_bol_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Çarpanlar ve katlar",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nTabloda dört sayı harflerle gösterilmiştir. Bu sayılardan hangisi 54 sayısının katıdır?",
+"shape": {
+"type": "table",
+"title": "Sayılar",
+"headers": [
+"Harf",
+"Sayı"
+],
+"rows": [
+[
+"M",
+"322"
+],
+[
+"K",
+"111"
+],
+[
+"N",
+"107"
+],
+[
+"L",
+"270"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "M",
+"D": "L"
+},
+"answer": "D",
+"explanation": "270 = 54 × 5 olduğundan 54 sayısının katıdır.",
+"kz": [
+"MAT.6.1.1"
+],
+"unit": "Doğal Sayılarla İşlemler",
+"topics": "Çarpanlar ve katlar, Asal sayılar, EBOB-EKOK giriş, Bölünebilme kuralları",
+"d": 2,
+"ts": 1795208325,
+"src": "local",
+"fam": "_mf6_carpan_tablo"
+}
+]
+}

@@ -1,0 +1,7192 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "Uzunluk ölçme",
+"passage": "",
+"question": "Okan defterine çizdiği doğru parçasının üzerine başlangıç ve bitiş noktaları dâhil olmak üzere 5 cm aralıklarla 11 nokta işaretleyebiliyor.\nOkan’ın çizdiği doğru parçasının uzunluğu kaç milimetredir?",
+"shape": null,
+"options": {
+"A": "50",
+"B": "55",
+"C": "500",
+"D": "550"
+},
+"answer": "C",
+"explanation": "11 nokta arasında 10 aralık vardır: 10×5 = 50 cm = 500 mm.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenlerde açı",
+"passage": "",
+"question": "Verilen şekildeki ABC üçgeni ikizkenar üçgen (|AB| = |AC|), ACD üçgeni ise eşkenar üçgendir. m(ABC) = 50° olduğuna göre m(BCD) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "two_triangles",
+"names": [
+"A",
+"B",
+"C",
+"D"
+],
+"alpha": 80,
+"angles": {
+"B": "50°",
+"BCD": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "60°",
+"C": "110°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "|AB| = |AC| olduğundan m(ACB) = m(ABC) = 50°. ACD eşkenar olduğundan m(ACD) = 60°. m(BCD) = 50 + 60 = 110°.",
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_twotri"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en uzun olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"M",
+"37 mm"
+],
+[
+"N",
+"11 m"
+],
+[
+"L",
+"4 dm"
+],
+[
+"K",
+"13 dm"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "K",
+"C": "M",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Uzunluklar milimetreye çevrilince K: 1300 mm, L: 400 mm, M: 37 mm, N: 11000 mm olur; en uzun N şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 10,
+"h": 4,
+"lb": "10 cm",
+"lh": "4 cm",
+"ox": 0.75,
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "20",
+"C": "30",
+"D": "40"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (10 × 4) ÷ 2 = 20 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 12,
+"h": 8,
+"lb": "12 cm",
+"lh": "8 cm",
+"ls": "10 cm",
+"offr": 0.75,
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "48",
+"C": "96",
+"D": "120"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 12 × 8 = 96 cm² (yan kenar 10 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki paralelkenarın alanı 64 cm², taban uzunluğu 8 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 8,
+"h": 8,
+"lb": "8 cm",
+"lh": "h = ?",
+"offr": 0.3,
+"in": "Alan = 64 cm²",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "10"
+},
+"answer": "B",
+"explanation": "64 = 8 × h → h = 8.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 12,
+"h": 7,
+"lb": "12 cm",
+"lh": "7 cm",
+"lt": "4 cm",
+"show_names": false
+},
+"options": {
+"A": "84",
+"B": "108",
+"C": "120",
+"D": "132"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 12 × 7 = 84; üçgen: (12 × 4) ÷ 2 = 24; toplam 108 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 5 cm",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "30",
+"C": "35",
+"D": "45"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 5 = 30 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 6 cm",
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "18",
+"C": "24",
+"D": "36"
+},
+"answer": "B",
+"explanation": "Çevre = π × çap = 3 × 6 = 18 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki çemberin çevresi 18 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 18 cm",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "6",
+"D": "9"
+},
+"answer": "A",
+"explanation": "18 = 2 × 3 × r → r = 18 ÷ 6 = 3 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekildeki daire diliminin merkez açısı 60° ve yarıçapı 4 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 60,
+"lt": "60°",
+"lr": "r = 4 cm",
+"show_names": false
+},
+"options": {
+"A": "4",
+"B": "5",
+"C": "8",
+"D": "24"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 4 = 24 cm; yay = 24 × 60/360 = 4 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 18,
+"h": 13,
+"lb": "18 cm",
+"lh": "13 cm",
+"ox": 0.5,
+"ls": "17 cm",
+"show_names": false
+},
+"options": {
+"A": "31 cm²",
+"B": "117 cm²",
+"C": "153 cm²",
+"D": "234 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (18 × 13) ÷ 2 = 117 cm². Eğik kenar (17 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 14,
+"h": 3,
+"lb": "14 cm",
+"lh": "3 cm",
+"off": 1.6,
+"ls": "5 cm",
+"show_names": false
+},
+"options": {
+"A": "17 cm²",
+"B": "38 cm²",
+"C": "42 cm²",
+"D": "70 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 14 × 3 = 42 cm². Eğik kenar (5 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekilde alanı 60 cm² ve taban uzunluğu 10 cm olan bir paralelkenarın yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 10,
+"h": 6,
+"lb": "10 cm",
+"lh": "h = ?",
+"off": 1.3,
+"in": "Alan = 60 cm²",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "12"
+},
+"answer": "B",
+"explanation": "60 = 10 × h → h = 60 ÷ 10 = 6.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 10,
+"h": 8,
+"lb": "10 cm",
+"lh": "8 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "80 cm²",
+"B": "110 cm²",
+"C": "120 cm²",
+"D": "140 cm²"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 10 × 8 = 80; üçgen: (10 × 6) ÷ 2 = 30; toplam 110 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 14 cm",
+"show_names": false
+},
+"options": {
+"A": "42 cm",
+"B": "84 cm",
+"C": "168 cm",
+"D": "588 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 14 = 84 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 16 cm",
+"show_names": false
+},
+"options": {
+"A": "32",
+"B": "48",
+"C": "96",
+"D": "256"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 16 = 48 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde çevre uzunluğu 12 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "1 cm",
+"B": "2 cm",
+"C": "3 cm",
+"D": "4 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 12 → r = 2 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 12 cm",
+"theta": 120,
+"lt": "120°",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "27",
+"C": "36",
+"D": "72"
+},
+"answer": "A",
+"explanation": "Çevre = 6 × 12 = 72 cm; yay = 72 × 120/360 = 24 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 70° olduğuna göre m(EBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "70°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Yöndeş aç açılarda ölçüler eşittir → x = 70°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = x ve m(EBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Yöndeş açılardır",
+"B": "Dış ters açılardır",
+"C": "İç ters açılardır",
+"D": "Karşı durumlu (iç) açılardır"
+},
+"answer": "D",
+"explanation": "Bu iki açı karşı durumlu (iç)  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 50° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "50°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre",
+"passage": "",
+"question": "Çevre uzunluğu 64 cm olan karenin bir kenarının uzunluğu kaç santimetredir?",
+"shape": null,
+"options": {
+"A": "8",
+"B": "16",
+"C": "20",
+"D": "64"
+},
+"answer": "B",
+"explanation": "64 ÷ 4 = 16.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en kısa olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"M",
+"14 m"
+],
+[
+"K",
+"12 dm"
+],
+[
+"L",
+"7 mm"
+],
+[
+"N",
+"10 m"
+]
+]
+},
+"options": {
+"A": "L",
+"B": "M",
+"C": "K",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Uzunluklar milimetreye çevrilince K: 1200 mm, L: 7 mm, M: 14000 mm, N: 10000 mm olur; en kısa L şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 16,
+"h": 10,
+"lb": "16 cm",
+"lh": "10 cm",
+"ox": 0.75,
+"show_names": false
+},
+"options": {
+"A": "26",
+"B": "80",
+"C": "96",
+"D": "160"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (16 × 10) ÷ 2 = 80 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 14,
+"h": 3,
+"lb": "14 cm",
+"lh": "3 cm",
+"ls": "5 cm",
+"offr": 1.3333333333333333,
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "21",
+"C": "42",
+"D": "70"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 14 × 3 = 42 cm² (yan kenar 5 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki üçgenin alanı 32 cm², taban uzunluğu 16 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 16,
+"h": 4,
+"lb": "16 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 32 cm²",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "32 = 16 × h ÷ 2 → h = 4.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 12,
+"h": 6,
+"lb": "12 cm",
+"lh": "6 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "72",
+"B": "108",
+"C": "120",
+"D": "144"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 12 × 6 = 72; üçgen: (12 × 6) ÷ 2 = 36; toplam 108 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 15 cm",
+"show_names": false
+},
+"options": {
+"A": "45",
+"B": "90",
+"C": "105",
+"D": "135"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 15 = 90 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "48",
+"C": "72",
+"D": "144"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 12 = 36 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki çemberin çevresi 30 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 30 cm",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "10",
+"D": "15"
+},
+"answer": "A",
+"explanation": "30 = 2 × 3 × r → r = 30 ÷ 6 = 5 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki daire diliminin merkez açısı 60° ve yarıçapı 8 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 60,
+"lt": "60°",
+"lr": "r = 8 cm",
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "16",
+"D": "48"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 8 = 48 cm; yay = 48 × 60/360 = 8 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 18,
+"h": 12,
+"lb": "18 cm",
+"lh": "12 cm",
+"ox": 0.25,
+"ls": "14 cm",
+"show_names": false
+},
+"options": {
+"A": "30 cm²",
+"B": "108 cm²",
+"C": "126 cm²",
+"D": "216 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (18 × 12) ÷ 2 = 108 cm². Eğik kenar (14 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 7,
+"h": 10,
+"lb": "7 cm",
+"lh": "10 cm",
+"off": 1.0,
+"ls": "12 cm",
+"show_names": false
+},
+"options": {
+"A": "17 cm²",
+"B": "38 cm²",
+"C": "70 cm²",
+"D": "84 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 7 × 10 = 70 cm². Eğik kenar (12 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde alanı 24 cm² ve taban uzunluğu 6 cm olan bir paralelkenarın yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 6,
+"h": 4,
+"lb": "6 cm",
+"lh": "h = ?",
+"off": 1.3,
+"in": "Alan = 24 cm²",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "8"
+},
+"answer": "B",
+"explanation": "24 = 6 × h → h = 24 ÷ 6 = 4.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 12,
+"h": 3,
+"lb": "12 cm",
+"lh": "3 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "36 cm²",
+"B": "72 cm²",
+"C": "84 cm²",
+"D": "108 cm²"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 12 × 3 = 36; üçgen: (12 × 6) ÷ 2 = 36; toplam 72 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 16 cm",
+"show_names": false
+},
+"options": {
+"A": "48 cm",
+"B": "96 cm",
+"C": "192 cm",
+"D": "768 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 16 = 96 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 20 cm",
+"show_names": false
+},
+"options": {
+"A": "40",
+"B": "60",
+"C": "120",
+"D": "400"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 20 = 60 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde çevre uzunluğu 84 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 84 cm",
+"show_names": false
+},
+"options": {
+"A": "13 cm",
+"B": "14 cm",
+"C": "15 cm",
+"D": "28 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 84 → r = 14 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 14 cm",
+"theta": 120,
+"lt": "120°",
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "31",
+"C": "42",
+"D": "84"
+},
+"answer": "A",
+"explanation": "Çevre = 6 × 14 = 84 cm; yay = 84 × 120/360 = 28 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 110° olduğuna göre m(EBA) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "110°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "70°",
+"C": "80°",
+"D": "110°"
+},
+"answer": "B",
+"explanation": "Karşı durumlu (iç) aç açılarda ölçüler toplamı 180°'dir → x = 70°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = x ve m(FBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "F",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Karşı durumlu (iç) açılardır",
+"B": "İç ters açılardır",
+"C": "Yöndeş açılardır",
+"D": "Dış ters açılardır"
+},
+"answer": "B",
+"explanation": "Bu iki açı iç ters  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki ABCD paralelkenarında m(DAB) = 50° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "50°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve alan",
+"passage": "",
+"question": "Kenar uzunlukları 6 cm ve 9 cm olan bir dikdörtgenin alanı, bir kenarının uzunluğu 3 cm olan karenin alanından kaç santimetrekare fazladır?",
+"shape": null,
+"options": {
+"A": "45",
+"B": "47",
+"C": "51",
+"D": "63"
+},
+"answer": "A",
+"explanation": "6×9 = 54; 3×3 = 9; fark = 45.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en kısa olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"N",
+"13 m"
+],
+[
+"L",
+"9 dm"
+],
+[
+"M",
+"66 cm"
+],
+[
+"K",
+"3 m"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "K",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Uzunluklar milimetreye çevrilince K: 3000 mm, L: 900 mm, M: 660 mm, N: 13000 mm olur; en kısa M şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 14,
+"h": 3,
+"lb": "14 cm",
+"lh": "3 cm",
+"ox": 0.75,
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "21",
+"C": "35",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (14 × 3) ÷ 2 = 21 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 9,
+"h": 8,
+"lb": "9 cm",
+"lh": "8 cm",
+"ls": "10 cm",
+"offr": 0.75,
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "36",
+"C": "72",
+"D": "90"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 9 × 8 = 72 cm² (yan kenar 10 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki paralelkenarın alanı 40 cm², taban uzunluğu 10 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 10,
+"h": 4,
+"lb": "10 cm",
+"lh": "h = ?",
+"offr": 0.3,
+"in": "Alan = 40 cm²",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "40 = 10 × h → h = 4.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 8,
+"h": 6,
+"lb": "8 cm",
+"lh": "6 cm",
+"lt": "4 cm",
+"show_names": false
+},
+"options": {
+"A": "48",
+"B": "64",
+"C": "72",
+"D": "80"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 8 × 6 = 48; üçgen: (8 × 4) ÷ 2 = 16; toplam 64 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 3 cm",
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "18",
+"C": "21",
+"D": "27"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 3 = 18 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 20 cm",
+"show_names": false
+},
+"options": {
+"A": "60",
+"B": "80",
+"C": "120",
+"D": "400"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 20 = 60 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki çemberin çevresi 48 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 48 cm",
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "16",
+"D": "24"
+},
+"answer": "A",
+"explanation": "48 = 2 × 3 × r → r = 48 ÷ 6 = 8 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekildeki daire diliminin merkez açısı 90° ve yarıçapı 8 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 90,
+"lt": "90°",
+"lr": "r = 8 cm",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "20",
+"C": "24",
+"D": "48"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 8 = 48 cm; yay = 48 × 90/360 = 12 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 16,
+"h": 4,
+"lb": "16 cm",
+"lh": "4 cm",
+"ox": 0.5,
+"ls": "8 cm",
+"show_names": false
+},
+"options": {
+"A": "20 cm²",
+"B": "32 cm²",
+"C": "40 cm²",
+"D": "64 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (16 × 4) ÷ 2 = 32 cm². Eğik kenar (8 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 14,
+"h": 7,
+"lb": "14 cm",
+"lh": "7 cm",
+"off": 1.0,
+"ls": "11 cm",
+"show_names": false
+},
+"options": {
+"A": "21 cm²",
+"B": "50 cm²",
+"C": "98 cm²",
+"D": "154 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 14 × 7 = 98 cm². Eğik kenar (11 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nŞekilde alanı 40 cm² ve taban uzunluğu 8 cm olan bir üçgenin yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 8,
+"h": 10,
+"lb": "8 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 40 cm²",
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "10",
+"C": "11",
+"D": "20"
+},
+"answer": "B",
+"explanation": "40 = (8 × h) ÷ 2 → h = 80 ÷ 8 = 10.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 6,
+"h": 4,
+"lb": "6 cm",
+"lh": "4 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "24 cm²",
+"B": "42 cm²",
+"C": "48 cm²",
+"D": "60 cm²"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 6 × 4 = 24; üçgen: (6 × 6) ÷ 2 = 18; toplam 42 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "36 cm",
+"B": "72 cm",
+"C": "144 cm",
+"D": "432 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 12 = 72 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 10 cm",
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "30",
+"C": "60",
+"D": "100"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 10 = 30 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde çevre uzunluğu 90 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 90 cm",
+"show_names": false
+},
+"options": {
+"A": "14 cm",
+"B": "15 cm",
+"C": "16 cm",
+"D": "30 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 90 → r = 15 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 6 cm",
+"theta": 90,
+"lt": "90°",
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "12",
+"C": "18",
+"D": "36"
+},
+"answer": "A",
+"explanation": "Çevre = 6 × 6 = 36 cm; yay = 36 × 90/360 = 9 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 125° olduğuna göre m(EBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "125°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "55°",
+"B": "115°",
+"C": "125°",
+"D": "135°"
+},
+"answer": "C",
+"explanation": "Yöndeş aç açılarda ölçüler eşittir → x = 125°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = x ve m(FBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "x"
+},
+{
+"v": "B",
+"a": "F",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "İç ters açılardır",
+"B": "Karşı durumlu (iç) açılardır",
+"C": "Dış ters açılardır",
+"D": "Yöndeş açılardır"
+},
+"answer": "D",
+"explanation": "Bu iki açı yöndeş  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 120° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "120°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 60°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve alan",
+"passage": "",
+"question": "Şekildeki ABCD dikdörtgeninde |AB| = 9 cm ve |BC| = 6 cm’dir.\nBu bilgilere göre bu dikdörtgenin çevresi kaç santimetredir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rectangle",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"sides": {
+"AB": "9 cm",
+"BC": "6 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "15",
+"B": "30",
+"C": "36",
+"D": "54"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × (9 + 6) = 30 cm.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en uzun olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"N",
+"38 mm"
+],
+[
+"M",
+"5 m"
+],
+[
+"L",
+"56 cm"
+],
+[
+"K",
+"79 mm"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "M",
+"C": "L",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Uzunluklar milimetreye çevrilince K: 79 mm, L: 560 mm, M: 5000 mm, N: 38 mm olur; en uzun M şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 14,
+"h": 6,
+"lb": "14 cm",
+"lh": "6 cm",
+"ox": 0.4,
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "42",
+"C": "56",
+"D": "84"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (14 × 6) ÷ 2 = 42 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 8,
+"h": 4,
+"lb": "8 cm",
+"lh": "4 cm",
+"ls": "5 cm",
+"offr": 0.75,
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "16",
+"C": "32",
+"D": "40"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 8 × 4 = 32 cm² (yan kenar 5 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki üçgenin alanı 16 cm², taban uzunluğu 8 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 8,
+"h": 4,
+"lb": "8 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 16 cm²",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "6"
+},
+"answer": "B",
+"explanation": "16 = 8 × h ÷ 2 → h = 4.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 8,
+"h": 6,
+"lb": "8 cm",
+"lh": "6 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "48",
+"B": "72",
+"C": "80",
+"D": "96"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 8 × 6 = 48; üçgen: (8 × 6) ÷ 2 = 24; toplam 72 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 3 cm",
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "18",
+"C": "21",
+"D": "27"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 3 = 18 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 20 cm",
+"show_names": false
+},
+"options": {
+"A": "60",
+"B": "80",
+"C": "120",
+"D": "400"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 20 = 60 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki çemberin çevresi 72 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 72 cm",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "13",
+"C": "24",
+"D": "36"
+},
+"answer": "A",
+"explanation": "72 = 2 × 3 × r → r = 72 ÷ 6 = 12 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekildeki daire diliminin merkez açısı 90° ve yarıçapı 24 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 90,
+"lt": "90°",
+"lr": "r = 24 cm",
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "60",
+"C": "72",
+"D": "144"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 24 = 144 cm; yay = 144 × 90/360 = 36 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 18,
+"h": 13,
+"lb": "18 cm",
+"lh": "13 cm",
+"ox": 0.5,
+"ls": "15 cm",
+"show_names": false
+},
+"options": {
+"A": "31 cm²",
+"B": "117 cm²",
+"C": "135 cm²",
+"D": "234 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (18 × 13) ÷ 2 = 117 cm². Eğik kenar (15 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 6,
+"h": 11,
+"lb": "6 cm",
+"lh": "11 cm",
+"off": 1.6,
+"ls": "13 cm",
+"show_names": false
+},
+"options": {
+"A": "17 cm²",
+"B": "38 cm²",
+"C": "66 cm²",
+"D": "78 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 6 × 11 = 66 cm². Eğik kenar (13 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde alanı 98 cm² ve taban uzunluğu 14 cm olan bir paralelkenarın yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 14,
+"h": 7,
+"lb": "14 cm",
+"lh": "h = ?",
+"off": 1.3,
+"in": "Alan = 98 cm²",
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "7",
+"C": "8",
+"D": "14"
+},
+"answer": "B",
+"explanation": "98 = 14 × h → h = 98 ÷ 14 = 7.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 8,
+"h": 6,
+"lb": "8 cm",
+"lh": "6 cm",
+"lt": "4 cm",
+"show_names": false
+},
+"options": {
+"A": "48 cm²",
+"B": "64 cm²",
+"C": "72 cm²",
+"D": "80 cm²"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 8 × 6 = 48; üçgen: (8 × 4) ÷ 2 = 16; toplam 64 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 10 cm",
+"show_names": false
+},
+"options": {
+"A": "30 cm",
+"B": "60 cm",
+"C": "120 cm",
+"D": "300 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 10 = 60 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 18 cm",
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "54",
+"C": "108",
+"D": "324"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 18 = 54 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde çevre uzunluğu 36 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 36 cm",
+"show_names": false
+},
+"options": {
+"A": "5 cm",
+"B": "6 cm",
+"C": "7 cm",
+"D": "12 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 36 → r = 6 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 14 cm",
+"theta": 90,
+"lt": "90°",
+"show_names": false
+},
+"options": {
+"A": "21",
+"B": "24",
+"C": "42",
+"D": "84"
+},
+"answer": "A",
+"explanation": "Çevre = 6 × 14 = 84 cm; yay = 84 × 90/360 = 21 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = 55° olduğuna göre m(EBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "55°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "45°",
+"B": "55°",
+"C": "65°",
+"D": "125°"
+},
+"answer": "B",
+"explanation": "Dış ters aç açılarda ölçüler eşittir → x = 55°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = x ve m(FBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "x"
+},
+{
+"v": "B",
+"a": "F",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Karşı durumlu (iç) açılardır",
+"B": "Dış ters açılardır",
+"C": "Yöndeş açılardır",
+"D": "İç ters açılardır"
+},
+"answer": "C",
+"explanation": "Bu iki açı yöndeş  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 60° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "110°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve alan",
+"passage": "",
+"question": "Verilen şekildeki ABCD dikdörtgeninde |AB| = 9 cm ve |BC| = 4 cm’dir.\nVerilenlere göre bu dikdörtgenin çevresi kaç santimetredir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rectangle",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"sides": {
+"AB": "9 cm",
+"BC": "4 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "13",
+"B": "24",
+"C": "26",
+"D": "36"
+},
+"answer": "C",
+"explanation": "Çevre = 2 × (9 + 4) = 26 cm.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en kısa olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"M",
+"13 m"
+],
+[
+"L",
+"70 mm"
+],
+[
+"K",
+"82 cm"
+],
+[
+"N",
+"17 cm"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "L",
+"D": "N"
+},
+"answer": "C",
+"explanation": "Uzunluklar milimetreye çevrilince K: 820 mm, L: 70 mm, M: 13000 mm, N: 170 mm olur; en kısa L şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 14,
+"h": 5,
+"lb": "14 cm",
+"lh": "5 cm",
+"ox": 0.25,
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "35",
+"C": "49",
+"D": "70"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (14 × 5) ÷ 2 = 35 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 6,
+"h": 3,
+"lb": "6 cm",
+"lh": "3 cm",
+"ls": "5 cm",
+"offr": 1.3333333333333333,
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "18",
+"C": "22",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Alan = taban × yükseklik = 6 × 3 = 18 cm² (yan kenar 5 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki paralelkenarın alanı 30 cm², taban uzunluğu 10 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 10,
+"h": 4,
+"lb": "10 cm",
+"lh": "h = ?",
+"offr": 0.3,
+"in": "Alan = 30 cm²",
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "30 = 10 × h → h = 3.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 12,
+"h": 3,
+"lb": "12 cm",
+"lh": "3 cm",
+"lt": "2 cm",
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "48",
+"C": "50",
+"D": "60"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 12 × 3 = 36; üçgen: (12 × 2) ÷ 2 = 12; toplam 48 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 8 cm",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "48",
+"C": "56",
+"D": "72"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 8 = 48 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 16 cm",
+"show_names": false
+},
+"options": {
+"A": "48",
+"B": "64",
+"C": "96",
+"D": "256"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 16 = 48 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki çemberin çevresi 12 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "6"
+},
+"answer": "A",
+"explanation": "12 = 2 × 3 × r → r = 12 ÷ 6 = 2 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki daire diliminin merkez açısı 90° ve yarıçapı 12 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 90,
+"lt": "90°",
+"lr": "r = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "30",
+"C": "36",
+"D": "72"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 12 = 72 cm; yay = 72 × 90/360 = 18 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 12,
+"h": 12,
+"lb": "12 cm",
+"lh": "12 cm",
+"ox": 0.25,
+"ls": "16 cm",
+"show_names": false
+},
+"options": {
+"A": "24 cm²",
+"B": "72 cm²",
+"C": "96 cm²",
+"D": "144 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (12 × 12) ÷ 2 = 72 cm². Eğik kenar (16 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 17,
+"h": 7,
+"lb": "17 cm",
+"lh": "7 cm",
+"off": 1.0,
+"ls": "12 cm",
+"show_names": false
+},
+"options": {
+"A": "24 cm²",
+"B": "58 cm²",
+"C": "119 cm²",
+"D": "204 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 17 × 7 = 119 cm². Eğik kenar (12 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde alanı 16 cm² ve taban uzunluğu 8 cm olan bir üçgenin yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 8,
+"h": 4,
+"lb": "8 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 16 cm²",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "5",
+"D": "8"
+},
+"answer": "B",
+"explanation": "16 = (8 × h) ÷ 2 → h = 32 ÷ 8 = 4.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 10,
+"h": 7,
+"lb": "10 cm",
+"lh": "7 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "70 cm²",
+"B": "100 cm²",
+"C": "110 cm²",
+"D": "130 cm²"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 10 × 7 = 70; üçgen: (10 × 6) ÷ 2 = 30; toplam 100 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 4 cm",
+"show_names": false
+},
+"options": {
+"A": "8 cm",
+"B": "12 cm",
+"C": "24 cm",
+"D": "48 cm"
+},
+"answer": "C",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 4 = 24 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 14 cm",
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "42",
+"C": "84",
+"D": "196"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 14 = 42 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde çevre uzunluğu 66 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 66 cm",
+"show_names": false
+},
+"options": {
+"A": "10 cm",
+"B": "11 cm",
+"C": "12 cm",
+"D": "22 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 66 → r = 11 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 7 cm",
+"theta": 180,
+"lt": "180°",
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "21",
+"C": "24",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Çevre = 6 × 7 = 42 cm; yay = 42 × 180/360 = 21 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = 40° olduğuna göre m(FBA) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "40°"
+},
+{
+"v": "B",
+"a": "F",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "40°",
+"C": "50°",
+"D": "140°"
+},
+"answer": "B",
+"explanation": "Yöndeş aç açılarda ölçüler eşittir → x = 40°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = x ve m(EBH) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Yöndeş açılardır",
+"B": "İç ters açılardır",
+"C": "Karşı durumlu (iç) açılardır",
+"D": "Dış ters açılardır"
+},
+"answer": "A",
+"explanation": "Bu iki açı yöndeş  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 70° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "70°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "70°",
+"B": "100°",
+"C": "110°",
+"D": "120°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 110°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve alan",
+"passage": "",
+"question": "Verilen şekildeki ABCD dikdörtgeninde |AB| = 7 cm ve |BC| = 12 cm’dir.\nBuna göre bu dikdörtgenin çevresi kaç cm’dir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rectangle",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"sides": {
+"AB": "7 cm",
+"BC": "12 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "36",
+"C": "38",
+"D": "84"
+},
+"answer": "C",
+"explanation": "Çevre = 2 × (7 + 12) = 38 cm.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en uzun olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"K",
+"7 m"
+],
+[
+"M",
+"7 mm"
+],
+[
+"L",
+"44 cm"
+],
+[
+"N",
+"10 m"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "N",
+"C": "L",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Uzunluklar milimetreye çevrilince K: 7000 mm, L: 440 mm, M: 7 mm, N: 10000 mm olur; en uzun N şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 14,
+"h": 3,
+"lb": "14 cm",
+"lh": "3 cm",
+"ox": 0.4,
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "21",
+"C": "35",
+"D": "42"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (14 × 3) ÷ 2 = 21 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 13,
+"h": 4,
+"lb": "13 cm",
+"lh": "4 cm",
+"ls": "5 cm",
+"offr": 0.75,
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "26",
+"C": "52",
+"D": "65"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 13 × 4 = 52 cm² (yan kenar 5 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki üçgenin alanı 18 cm², taban uzunluğu 12 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 12,
+"h": 4,
+"lb": "12 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 18 cm²",
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "4",
+"D": "5"
+},
+"answer": "B",
+"explanation": "18 = 12 × h ÷ 2 → h = 3.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 6,
+"h": 8,
+"lb": "6 cm",
+"lh": "8 cm",
+"lt": "4 cm",
+"show_names": false
+},
+"options": {
+"A": "48",
+"B": "60",
+"C": "66",
+"D": "72"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 6 × 8 = 48; üçgen: (6 × 4) ÷ 2 = 12; toplam 60 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "72",
+"C": "84",
+"D": "108"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 12 = 72 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 20 cm",
+"show_names": false
+},
+"options": {
+"A": "60",
+"B": "80",
+"C": "120",
+"D": "400"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 20 = 60 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki çemberin çevresi 18 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 18 cm",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "4",
+"C": "6",
+"D": "9"
+},
+"answer": "A",
+"explanation": "18 = 2 × 3 × r → r = 18 ÷ 6 = 3 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki daire diliminin merkez açısı 90° ve yarıçapı 16 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 90,
+"lt": "90°",
+"lr": "r = 16 cm",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "40",
+"C": "48",
+"D": "96"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 16 = 96 cm; yay = 96 × 90/360 = 24 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 6,
+"h": 10,
+"lb": "6 cm",
+"lh": "10 cm",
+"ox": 0.25,
+"ls": "13 cm",
+"show_names": false
+},
+"options": {
+"A": "16 cm²",
+"B": "30 cm²",
+"C": "39 cm²",
+"D": "60 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (6 × 10) ÷ 2 = 30 cm². Eğik kenar (13 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 16,
+"h": 10,
+"lb": "16 cm",
+"lh": "10 cm",
+"off": 1.0,
+"ls": "12 cm",
+"show_names": false
+},
+"options": {
+"A": "26 cm²",
+"B": "56 cm²",
+"C": "160 cm²",
+"D": "192 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 16 × 10 = 160 cm². Eğik kenar (12 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde alanı 128 cm² ve taban uzunluğu 16 cm olan bir paralelkenarın yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 16,
+"h": 8,
+"lb": "16 cm",
+"lh": "h = ?",
+"off": 1.3,
+"in": "Alan = 128 cm²",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "16"
+},
+"answer": "B",
+"explanation": "128 = 16 × h → h = 128 ÷ 16 = 8.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 6,
+"h": 5,
+"lb": "6 cm",
+"lh": "5 cm",
+"lt": "2 cm",
+"show_names": false
+},
+"options": {
+"A": "6 cm²",
+"B": "30 cm²",
+"C": "36 cm²",
+"D": "42 cm²"
+},
+"answer": "C",
+"explanation": "Dikdörtgen: 6 × 5 = 30; üçgen: (6 × 2) ÷ 2 = 6; toplam 36 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 13 cm",
+"show_names": false
+},
+"options": {
+"A": "39 cm",
+"B": "78 cm",
+"C": "156 cm",
+"D": "507 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 13 = 78 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 10 cm",
+"show_names": false
+},
+"options": {
+"A": "20",
+"B": "30",
+"C": "60",
+"D": "100"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 10 = 30 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde çevre uzunluğu 60 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 60 cm",
+"show_names": false
+},
+"options": {
+"A": "9 cm",
+"B": "10 cm",
+"C": "11 cm",
+"D": "20 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 60 → r = 10 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 8 cm",
+"theta": 270,
+"lt": "270°",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "36",
+"C": "39",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Çevre = 6 × 8 = 48 cm; yay = 48 × 270/360 = 36 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = 130° olduğuna göre m(FBA) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "130°"
+},
+{
+"v": "B",
+"a": "F",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "Yöndeş aç açılarda ölçüler eşittir → x = 130°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = x ve m(EBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Dış ters açılardır",
+"B": "Karşı durumlu (iç) açılardır",
+"C": "Yöndeş açılardır",
+"D": "İç ters açılardır"
+},
+"answer": "B",
+"explanation": "Bu iki açı karşı durumlu (iç)  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 60° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "60°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "60°",
+"B": "110°",
+"C": "120°",
+"D": "130°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 120°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve alan",
+"passage": "",
+"question": "Şekildeki ABCD dikdörtgeninde |AB| = 15 cm ve |BC| = 11 cm’dir.\nBuna göre bu dikdörtgenin çevresi kaç santimetredir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rectangle",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"sides": {
+"AB": "15 cm",
+"BC": "11 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "26",
+"B": "50",
+"C": "52",
+"D": "165"
+},
+"answer": "C",
+"explanation": "Çevre = 2 × (15 + 11) = 52 cm.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en uzun olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"L",
+"26 cm"
+],
+[
+"K",
+"15 dm"
+],
+[
+"N",
+"64 mm"
+],
+[
+"M",
+"63 mm"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "M",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Uzunluklar milimetreye çevrilince K: 1500 mm, L: 260 mm, M: 63 mm, N: 64 mm olur; en uzun K şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 10,
+"h": 7,
+"lb": "10 cm",
+"lh": "7 cm",
+"ox": 0.25,
+"show_names": false
+},
+"options": {
+"A": "17",
+"B": "35",
+"C": "45",
+"D": "70"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (10 × 7) ÷ 2 = 35 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 13,
+"h": 6,
+"lb": "13 cm",
+"lh": "6 cm",
+"ls": "10 cm",
+"offr": 1.3333333333333333,
+"show_names": false
+},
+"options": {
+"A": "19",
+"B": "39",
+"C": "78",
+"D": "130"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 13 × 6 = 78 cm² (yan kenar 10 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki üçgenin alanı 32 cm², taban uzunluğu 8 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 8,
+"h": 8,
+"lb": "8 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 32 cm²",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "10"
+},
+"answer": "B",
+"explanation": "32 = 8 × h ÷ 2 → h = 8.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 6,
+"h": 4,
+"lb": "6 cm",
+"lh": "4 cm",
+"lt": "4 cm",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "36",
+"C": "42",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 6 × 4 = 24; üçgen: (6 × 4) ÷ 2 = 12; toplam 36 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 13 cm",
+"show_names": false
+},
+"options": {
+"A": "39",
+"B": "78",
+"C": "91",
+"D": "117"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 13 = 78 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 8 cm",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "32",
+"C": "48",
+"D": "64"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 8 = 24 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki çemberin çevresi 42 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 42 cm",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "14",
+"D": "21"
+},
+"answer": "A",
+"explanation": "42 = 2 × 3 × r → r = 42 ÷ 6 = 7 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki daire diliminin merkez açısı 90° ve yarıçapı 2 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 90,
+"lt": "90°",
+"lr": "r = 2 cm",
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "5",
+"C": "6",
+"D": "12"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 2 = 12 cm; yay = 12 × 90/360 = 3 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 10,
+"h": 6,
+"lb": "10 cm",
+"lh": "6 cm",
+"ox": 0.25,
+"ls": "8 cm",
+"show_names": false
+},
+"options": {
+"A": "16 cm²",
+"B": "30 cm²",
+"C": "40 cm²",
+"D": "60 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (10 × 6) ÷ 2 = 30 cm². Eğik kenar (8 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 13,
+"h": 10,
+"lb": "13 cm",
+"lh": "10 cm",
+"off": 1.0,
+"ls": "15 cm",
+"show_names": false
+},
+"options": {
+"A": "23 cm²",
+"B": "56 cm²",
+"C": "130 cm²",
+"D": "195 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 13 × 10 = 130 cm². Eğik kenar (15 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde alanı 42 cm² ve taban uzunluğu 14 cm olan bir üçgenin yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 14,
+"h": 6,
+"lb": "14 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 42 cm²",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "12"
+},
+"answer": "B",
+"explanation": "42 = (14 × h) ÷ 2 → h = 84 ÷ 14 = 6.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 8,
+"h": 8,
+"lb": "8 cm",
+"lh": "8 cm",
+"lt": "2 cm",
+"show_names": false
+},
+"options": {
+"A": "8 cm²",
+"B": "64 cm²",
+"C": "72 cm²",
+"D": "80 cm²"
+},
+"answer": "C",
+"explanation": "Dikdörtgen: 8 × 8 = 64; üçgen: (8 × 2) ÷ 2 = 8; toplam 72 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 14 cm",
+"show_names": false
+},
+"options": {
+"A": "42 cm",
+"B": "84 cm",
+"C": "168 cm",
+"D": "588 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 14 = 84 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "36",
+"C": "72",
+"D": "144"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 12 = 36 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde çevre uzunluğu 60 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 60 cm",
+"show_names": false
+},
+"options": {
+"A": "9 cm",
+"B": "10 cm",
+"C": "11 cm",
+"D": "20 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 60 → r = 10 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 10 cm",
+"theta": 270,
+"lt": "270°",
+"show_names": false
+},
+"options": {
+"A": "30",
+"B": "45",
+"C": "48",
+"D": "60"
+},
+"answer": "B",
+"explanation": "Çevre = 6 × 10 = 60 cm; yay = 60 × 270/360 = 45 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = 40° olduğuna göre m(FBA) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "40°"
+},
+{
+"v": "B",
+"a": "F",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "40°",
+"C": "50°",
+"D": "140°"
+},
+"answer": "B",
+"explanation": "İç ters aç açılarda ölçüler eşittir → x = 40°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAG) = x ve m(EBH) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "G",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "H",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Karşı durumlu (iç) açılardır",
+"B": "Yöndeş açılardır",
+"C": "Dış ters açılardır",
+"D": "İç ters açılardır"
+},
+"answer": "C",
+"explanation": "Bu iki açı dış ters  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki ABCD paralelkenarında m(DAB) = 50° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "50°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve alan",
+"passage": "",
+"question": "Şekildeki ABCD dikdörtgeninde |AB| = 14 cm ve |BC| = 11 cm’dir.\nVerilenlere göre bu dikdörtgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rectangle",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"sides": {
+"AB": "14 cm",
+"BC": "11 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "25",
+"C": "143",
+"D": "154"
+},
+"answer": "D",
+"explanation": "Alan = 14 × 11 = 154 cm².",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en uzun olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"L",
+"7 m"
+],
+[
+"K",
+"81 cm"
+],
+[
+"M",
+"19 mm"
+],
+[
+"N",
+"77 mm"
+]
+]
+},
+"options": {
+"A": "K",
+"B": "L",
+"C": "N",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Uzunluklar milimetreye çevrilince K: 810 mm, L: 7000 mm, M: 19 mm, N: 77 mm olur; en uzun L şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 18,
+"h": 6,
+"lb": "18 cm",
+"lh": "6 cm",
+"ox": 0.4,
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "54",
+"C": "72",
+"D": "108"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (18 × 6) ÷ 2 = 54 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 10,
+"h": 8,
+"lb": "10 cm",
+"lh": "8 cm",
+"ls": "10 cm",
+"offr": 0.75,
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "40",
+"C": "80",
+"D": "100"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 10 × 8 = 80 cm² (yan kenar 10 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekildeki paralelkenarın alanı 108 cm², taban uzunluğu 12 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 12,
+"h": 9,
+"lb": "12 cm",
+"lh": "h = ?",
+"offr": 0.3,
+"in": "Alan = 108 cm²",
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "B",
+"explanation": "108 = 12 × h → h = 9.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 10,
+"h": 7,
+"lb": "10 cm",
+"lh": "7 cm",
+"lt": "2 cm",
+"show_names": false
+},
+"options": {
+"A": "70",
+"B": "80",
+"C": "82",
+"D": "90"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 10 × 7 = 70; üçgen: (10 × 2) ÷ 2 = 10; toplam 80 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 8 cm",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "48",
+"C": "56",
+"D": "72"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 8 = 48 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 8 cm",
+"show_names": false
+},
+"options": {
+"A": "24",
+"B": "32",
+"C": "48",
+"D": "64"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 8 = 24 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki çemberin çevresi 30 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 30 cm",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "10",
+"D": "15"
+},
+"answer": "A",
+"explanation": "30 = 2 × 3 × r → r = 30 ÷ 6 = 5 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki daire diliminin merkez açısı 90° ve yarıçapı 24 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 90,
+"lt": "90°",
+"lr": "r = 24 cm",
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "60",
+"C": "72",
+"D": "144"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 24 = 144 cm; yay = 144 × 90/360 = 36 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 8,
+"h": 13,
+"lb": "8 cm",
+"lh": "13 cm",
+"ox": 0.5,
+"ls": "18 cm",
+"show_names": false
+},
+"options": {
+"A": "21 cm²",
+"B": "52 cm²",
+"C": "72 cm²",
+"D": "104 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (8 × 13) ÷ 2 = 52 cm². Eğik kenar (18 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 14,
+"h": 12,
+"lb": "14 cm",
+"lh": "12 cm",
+"off": 1.6,
+"ls": "16 cm",
+"show_names": false
+},
+"options": {
+"A": "26 cm²",
+"B": "60 cm²",
+"C": "168 cm²",
+"D": "224 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 14 × 12 = 168 cm². Eğik kenar (16 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde alanı 96 cm² ve taban uzunluğu 12 cm olan bir paralelkenarın yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 12,
+"h": 8,
+"lb": "12 cm",
+"lh": "h = ?",
+"off": 1.3,
+"in": "Alan = 96 cm²",
+"show_names": false
+},
+"options": {
+"A": "7",
+"B": "8",
+"C": "9",
+"D": "16"
+},
+"answer": "B",
+"explanation": "96 = 12 × h → h = 96 ÷ 12 = 8.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 8,
+"h": 8,
+"lb": "8 cm",
+"lh": "8 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "64 cm²",
+"B": "88 cm²",
+"C": "96 cm²",
+"D": "112 cm²"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 8 × 8 = 64; üçgen: (8 × 6) ÷ 2 = 24; toplam 88 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 18 cm",
+"show_names": false
+},
+"options": {
+"A": "54 cm",
+"B": "108 cm",
+"C": "216 cm",
+"D": "972 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 18 = 108 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 20 cm",
+"show_names": false
+},
+"options": {
+"A": "40",
+"B": "60",
+"C": "120",
+"D": "400"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 20 = 60 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde çevre uzunluğu 18 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 18 cm",
+"show_names": false
+},
+"options": {
+"A": "2 cm",
+"B": "3 cm",
+"C": "4 cm",
+"D": "6 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 18 → r = 3 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 4 cm",
+"theta": 270,
+"lt": "270°",
+"show_names": false
+},
+"options": {
+"A": "12",
+"B": "18",
+"C": "21",
+"D": "24"
+},
+"answer": "B",
+"explanation": "Çevre = 6 × 4 = 24 cm; yay = 24 × 270/360 = 18 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(CAG) = 55° olduğuna göre m(FBH) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "G",
+"label": "55°"
+},
+{
+"v": "B",
+"a": "F",
+"b": "H",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "45°",
+"B": "55°",
+"C": "65°",
+"D": "125°"
+},
+"answer": "B",
+"explanation": "Dış ters aç açılarda ölçüler eşittir → x = 55°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde d1 // d2 ve k kesendir. m(CAB) = x ve m(EBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "B",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Dış ters açılardır",
+"B": "İç ters açılardır",
+"C": "Yöndeş açılardır",
+"D": "Karşı durumlu (iç) açılardır"
+},
+"answer": "D",
+"explanation": "Bu iki açı karşı durumlu (iç)  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki ABCD eşkenar dörtgeninde m(DAB) = 100° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rhombus",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "100°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "70°",
+"B": "80°",
+"C": "90°",
+"D": "100°"
+},
+"answer": "B",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 80°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre",
+"passage": "",
+"question": "Çevre uzunluğu 56 cm olan karenin bir kenarının uzunluğu kaç cm’dir?",
+"shape": null,
+"options": {
+"A": "7",
+"B": "14",
+"C": "18",
+"D": "56"
+},
+"answer": "B",
+"explanation": "56 ÷ 4 = 14.",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en kısa olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"L",
+"77 cm"
+],
+[
+"N",
+"3 dm"
+],
+[
+"M",
+"3 m"
+],
+[
+"K",
+"9 m"
+]
+]
+},
+"options": {
+"A": "N",
+"B": "L",
+"C": "M",
+"D": "K"
+},
+"answer": "A",
+"explanation": "Uzunluklar milimetreye çevrilince K: 9000 mm, L: 770 mm, M: 3000 mm, N: 300 mm olur; en kısa N şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 18,
+"h": 10,
+"lb": "18 cm",
+"lh": "10 cm",
+"ox": 0.75,
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "90",
+"C": "108",
+"D": "180"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (18 × 10) ÷ 2 = 90 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 15,
+"h": 6,
+"lb": "15 cm",
+"lh": "6 cm",
+"ls": "10 cm",
+"offr": 1.3333333333333333,
+"show_names": false
+},
+"options": {
+"A": "21",
+"B": "45",
+"C": "90",
+"D": "150"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 15 × 6 = 90 cm² (yan kenar 10 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki üçgenin alanı 36 cm², taban uzunluğu 12 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 12,
+"h": 6,
+"lb": "12 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 36 cm²",
+"show_names": false
+},
+"options": {
+"A": "5",
+"B": "6",
+"C": "7",
+"D": "8"
+},
+"answer": "B",
+"explanation": "36 = 12 × h ÷ 2 → h = 6.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 6,
+"h": 6,
+"lb": "6 cm",
+"lh": "6 cm",
+"lt": "2 cm",
+"show_names": false
+},
+"options": {
+"A": "36",
+"B": "42",
+"C": "44",
+"D": "48"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 6 × 6 = 36; üçgen: (6 × 2) ÷ 2 = 6; toplam 42 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 7 cm",
+"show_names": false
+},
+"options": {
+"A": "21",
+"B": "42",
+"C": "49",
+"D": "63"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 7 = 42 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 14 cm",
+"show_names": false
+},
+"options": {
+"A": "42",
+"B": "56",
+"C": "84",
+"D": "196"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 14 = 42 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki çemberin çevresi 66 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 66 cm",
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "12",
+"C": "22",
+"D": "33"
+},
+"answer": "A",
+"explanation": "66 = 2 × 3 × r → r = 66 ÷ 6 = 11 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çember ve merkez açı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki daire diliminin merkez açısı 90° ve yarıçapı 12 cm'dir. π = 3 alındığında bu dilimin yay uzunluğu kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"theta": 90,
+"lt": "90°",
+"lr": "r = 12 cm",
+"show_names": false
+},
+"options": {
+"A": "18",
+"B": "30",
+"C": "36",
+"D": "72"
+},
+"answer": "A",
+"explanation": "Çember uzunluğu 2 × 3 × 12 = 72 cm; yay = 72 × 90/360 = 18 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde bir üçgenin taban uzunluğu, yüksekliği ve bir kenar uzunluğu verilmiştir. Bu üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 16,
+"h": 7,
+"lb": "16 cm",
+"lh": "7 cm",
+"ox": 0.35,
+"ls": "10 cm",
+"show_names": false
+},
+"options": {
+"A": "23 cm²",
+"B": "56 cm²",
+"C": "80 cm²",
+"D": "112 cm²"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (16 × 7) ÷ 2 = 56 cm². Eğik kenar (10 cm) alan hesabında kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde bir paralelkenarın taban uzunluğu, yüksekliği ve eğik kenar uzunluğu verilmiştir. Bu paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 6,
+"h": 7,
+"lb": "6 cm",
+"lh": "7 cm",
+"off": 1.3,
+"ls": "11 cm",
+"show_names": false
+},
+"options": {
+"A": "13 cm²",
+"B": "34 cm²",
+"C": "42 cm²",
+"D": "66 cm²"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 6 × 7 = 42 cm². Eğik kenar (11 cm) alanda kullanılmaz.",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde alanı 21 cm² ve taban uzunluğu 6 cm olan bir üçgenin yüksekliği (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 6,
+"h": 7,
+"lb": "6 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 21 cm²",
+"show_names": false
+},
+"options": {
+"A": "6",
+"B": "7",
+"C": "8",
+"D": "14"
+},
+"answer": "B",
+"explanation": "21 = (6 × h) ÷ 2 → h = 42 ÷ 6 = 7.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Alan problemleri",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekildeki bileşik şekil bir dikdörtgen ile bir üçgenden oluşmaktadır. Şeklin toplam alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 12,
+"h": 8,
+"lb": "12 cm",
+"lh": "8 cm",
+"lt": "6 cm",
+"show_names": false
+},
+"options": {
+"A": "96 cm²",
+"B": "132 cm²",
+"C": "144 cm²",
+"D": "168 cm²"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 12 × 8 = 96; üçgen: (12 × 6) ÷ 2 = 36; toplam 132 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde yarıçapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 18 cm",
+"show_names": false
+},
+"options": {
+"A": "54 cm",
+"B": "108 cm",
+"C": "216 cm",
+"D": "972 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 18 = 108 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde çapı verilen çemberin çevre uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "d = 14 cm",
+"show_names": false
+},
+"options": {
+"A": "28",
+"B": "42",
+"C": "84",
+"D": "196"
+},
+"answer": "B",
+"explanation": "Çevre = π × d = 3 × 14 = 42 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_cap"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde çevre uzunluğu 84 cm olan bir çember verilmiştir. Bu çemberin yarıçapı (r) kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 84 cm",
+"show_names": false
+},
+"options": {
+"A": "13 cm",
+"B": "14 cm",
+"C": "15 cm",
+"D": "28 cm"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × 3 × r = 6r = 84 → r = 14 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin uzunluğu",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde merkez açısı ve yarıçapı verilen daire diliminin yay uzunluğu kaç santimetredir? (π = 3 alınız.)",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "dilim",
+"lr": "r = 7 cm",
+"theta": 120,
+"lt": "120°",
+"show_names": false
+},
+"options": {
+"A": "14",
+"B": "17",
+"C": "21",
+"D": "42"
+},
+"answer": "A",
+"explanation": "Çevre = 6 × 7 = 42 cm; yay = 42 × 120/360 = 14 cm.",
+"kz": [
+"MAT.6.4.6"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 4,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_yay"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde d1 // d2 ve k kesendir. m(DAB) = 40° olduğuna göre m(EBA) = x kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "D",
+"b": "B",
+"label": "40°"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "x"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "40°",
+"C": "50°",
+"D": "140°"
+},
+"answer": "B",
+"explanation": "İç ters aç açılarda ölçüler eşittir → x = 40°.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_olcu"
+},
+{
+"subject": "Matematik",
+"topic": "Paralel doğrular ve kesen",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde d1 // d2 ve k kesendir. m(CAG) = x ve m(EBA) = y açıları birbirine göre hangi ilişkidedir?",
+"shape": {
+"type": "geo",
+"sub_type": "parallel",
+"layout": "transversal",
+"labels": [
+"d1",
+"d2",
+"k"
+],
+"points": {
+"A": "d1_k",
+"B": "d2_k",
+"C": "d1_r",
+"D": "d1_l",
+"E": "d2_r",
+"F": "d2_l",
+"G": "k_up",
+"H": "k_down"
+},
+"arcs": [
+{
+"v": "A",
+"a": "C",
+"b": "G",
+"label": "x"
+},
+{
+"v": "B",
+"a": "E",
+"b": "A",
+"label": "y"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Dış ters açılardır",
+"B": "Yöndeş açılardır",
+"C": "Karşı durumlu (iç) açılardır",
+"D": "İç ters açılardır"
+},
+"answer": "B",
+"explanation": "Bu iki açı yöndeş  konumundadır.",
+"kz": [
+"MAT.6.3.1"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_pl_iliski"
+},
+{
+"subject": "Matematik",
+"topic": "Dörtgenlerin açıları",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki ABCD paralelkenarında m(DAB) = 50° olduğuna göre x ile gösterilen m(ABC) kaç derecedir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "parallelogram",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"angles": {
+"A": "50°",
+"B": "?"
+},
+"show_names": false
+},
+"options": {
+"A": "50°",
+"B": "120°",
+"C": "130°",
+"D": "140°"
+},
+"answer": "C",
+"explanation": "Ardışık açıların toplamı 180°'dir → x = 130°.",
+"kz": [
+"MAT.6.3.4"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_dg_paralelkenar"
+},
+{
+"subject": "Matematik",
+"topic": "Çevre ve alan",
+"passage": "",
+"question": "Verilen şekildeki ABCD dikdörtgeninde |AB| = 13 cm ve |BC| = 8 cm’dir.\nBu bilgilere göre bu dikdörtgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "geo",
+"sub_type": "quad",
+"kind": "rectangle",
+"labels": [
+"A",
+"B",
+"C",
+"D"
+],
+"sides": {
+"AB": "13 cm",
+"BC": "8 cm"
+},
+"show_names": false
+},
+"options": {
+"A": "10",
+"B": "42",
+"C": "104",
+"D": "117"
+},
+"answer": "C",
+"explanation": "Alan = 13 × 8 = 104 cm².",
+"kz": [
+"MAT.5.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf_geo"
+},
+{
+"subject": "Matematik",
+"topic": "Uzunluk birimleri",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda dört şeridin uzunluğu farklı birimlerle verilmiştir. Bu şeritlerden en uzun olanı hangi harfle gösterilmiştir?",
+"shape": {
+"type": "table",
+"title": "Şeritlerin uzunlukları",
+"headers": [
+"Harf",
+"Uzunluk"
+],
+"rows": [
+[
+"N",
+"45 mm"
+],
+[
+"L",
+"68 cm"
+],
+[
+"K",
+"13 dm"
+],
+[
+"M",
+"66 mm"
+]
+]
+},
+"options": {
+"A": "M",
+"B": "N",
+"C": "K",
+"D": "L"
+},
+"answer": "C",
+"explanation": "Uzunluklar milimetreye çevrilince K: 1300 mm, L: 680 mm, M: 66 mm, N: 45 mm olur; en uzun K şeridi.",
+"kz": [
+"MAT.6.1.8"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_uzun_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Üçgenin alanı",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki üçgenin taban uzunluğu ve bu tabana ait yüksekliği verilmiştir. Üçgenin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 6,
+"h": 5,
+"lb": "6 cm",
+"lh": "5 cm",
+"ox": 0.25,
+"show_names": false
+},
+"options": {
+"A": "11",
+"B": "15",
+"C": "21",
+"D": "30"
+},
+"answer": "B",
+"explanation": "Alan = (taban × yükseklik) ÷ 2 = (6 × 5) ÷ 2 = 15 cm².",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ucgen"
+},
+{
+"subject": "Matematik",
+"topic": "Paralelkenarın alanı",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki paralelkenarın taban uzunluğu, bu tabana ait yüksekliği ve yan kenarı verilmiştir. Paralelkenarın alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "paralel",
+"b": 8,
+"h": 8,
+"lb": "8 cm",
+"lh": "8 cm",
+"ls": "10 cm",
+"offr": 0.75,
+"show_names": false
+},
+"options": {
+"A": "16",
+"B": "32",
+"C": "64",
+"D": "80"
+},
+"answer": "C",
+"explanation": "Alan = taban × yükseklik = 8 × 8 = 64 cm² (yan kenar 10 cm alan hesabında kullanılmaz).",
+"kz": [
+"MAT.6.4.2"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_paralel"
+},
+{
+"subject": "Matematik",
+"topic": "Alan bağıntıları",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki üçgenin alanı 27 cm², taban uzunluğu 6 cm'dir. Taban uzunluğuna ait yükseklik (h) kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "ucgen",
+"b": 6,
+"h": 9,
+"lb": "6 cm",
+"lh": "h = ?",
+"ox": 0.4,
+"in": "Alan = 27 cm²",
+"show_names": false
+},
+"options": {
+"A": "8",
+"B": "9",
+"C": "10",
+"D": "11"
+},
+"answer": "B",
+"explanation": "27 = 6 × h ÷ 2 → h = 9.",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_ters"
+},
+{
+"subject": "Matematik",
+"topic": "Bileşik şekillerin alanı",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki bileşik şekil, bir dikdörtgen ile onun üzerindeki bir üçgenden oluşmaktadır. Şeklin alanı kaç santimetrekaredir?",
+"shape": {
+"type": "m6",
+"sub_type": "alan",
+"kind": "bilesik",
+"b": 12,
+"h": 4,
+"lb": "12 cm",
+"lh": "4 cm",
+"lt": "4 cm",
+"show_names": false
+},
+"options": {
+"A": "48",
+"B": "72",
+"C": "84",
+"D": "96"
+},
+"answer": "B",
+"explanation": "Dikdörtgen: 12 × 4 = 48; üçgen: (12 × 4) ÷ 2 = 24; toplam 72 cm².",
+"kz": [
+"MAT.6.4.3"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_al_bilesik"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki çemberin yarıçapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = 15 cm",
+"show_names": false
+},
+"options": {
+"A": "45",
+"B": "90",
+"C": "105",
+"D": "135"
+},
+"answer": "B",
+"explanation": "Çevre = 2 × π × r = 2 × 3 × 15 = 90 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 1,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_r"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki çemberin çapı verilmiştir. π = 3 alındığında bu çemberin çevresi kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "cap",
+"lr": "çap = 16 cm",
+"show_names": false
+},
+"options": {
+"A": "48",
+"B": "64",
+"C": "96",
+"D": "256"
+},
+"answer": "A",
+"explanation": "Çevre = π × çap = 3 × 16 = 48 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 2,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_d"
+},
+{
+"subject": "Matematik",
+"topic": "Çemberin çevresi",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki çemberin çevresi 54 cm'dir. π = 3 alındığında bu çemberin yarıçapı kaç santimetredir?",
+"shape": {
+"type": "m6",
+"sub_type": "cember",
+"mode": "r",
+"lr": "r = ?",
+"note": "Çevre = 54 cm",
+"show_names": false
+},
+"options": {
+"A": "9",
+"B": "10",
+"C": "18",
+"D": "27"
+},
+"answer": "A",
+"explanation": "54 = 2 × 3 × r → r = 54 ÷ 6 = 9 cm.",
+"kz": [
+"MAT.6.4.5"
+],
+"unit": "Alan ve Çevre",
+"topics": "Üçgen, paralelkenar alanı, Çember uzunluğu, Uzunluk birimleri",
+"d": 3,
+"ts": 1795208327,
+"src": "local",
+"fam": "_mf6_cm_ters"
+}
+]
+}

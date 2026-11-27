@@ -1,0 +1,4192 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın son dördün evresinden 3 hafta önce gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İlk dördün",
+"B": "Yeni ay",
+"C": "Son dördün",
+"D": "Dolunay"
+},
+"answer": "B",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Deniz, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"shape": null,
+"options": {
+"A": "Dolunay – Yeni ay – Son dördün",
+"B": "Son dördün – Dolunay – Yeni ay",
+"C": "Dolunay – Son dördün – Yeni ay",
+"D": "Yeni ay – Son dördün – Dolunay"
+},
+"answer": "C",
+"explanation": "Evre sırası: İlk dördün – Dolunay – Son dördün – Yeni ay…",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_seq"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Yeni ay evresinden yaklaşık 1 hafta (çeyrek tur) sonra Ay hangi evrededir?",
+"shape": null,
+"options": {
+"A": "Dolunay",
+"B": "İlk dördün",
+"C": "Son dördün",
+"D": "Yeni ay"
+},
+"answer": "B",
+"explanation": "Yeni ay evresinden sonra ilk dördün evresi gelir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_quarter"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "“Ay, Dünya ile Güneş'in arasındadır.” bilgisi Ay'ın hangi evresine aittir?",
+"shape": null,
+"options": {
+"A": "Son dördün",
+"B": "Yeni ay",
+"C": "Dolunay",
+"D": "İlk dördün"
+},
+"answer": "B",
+"explanation": "Ay, Dünya ile Güneş'in arasındadır. → yeni ay evresi.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_props"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay’ın evreleri",
+"passage": "Ayşe, bir ay boyunca her akşam gökyüzünü gözlemliyor ve Ay’ın evresini defterine kaydediyor. Evreler yaklaşık 7 gün arayla aynı sırayla değişmektedir. Defterindeki ilk üç kayıt aşağıdaki tabloda verilmiştir.",
+"question": "Evrelerin değişim sırası aynı şekilde sürdüğüne göre Ayşe’nin 30. gün gözlemleyeceği Ay evresi hangisidir?",
+"shape": null,
+"options": {
+"A": "Yeni Ay",
+"B": "Dolunay",
+"C": "Son Dördün",
+"D": "İlk Dördün"
+},
+"answer": "B",
+"explanation": "Evreler her 7 günde bir sırayla değişir: Yeni Ay → İlk Dördün → Dolunay → Son Dördün → Yeni Ay. 16. günden sonra 2 evre ilerlenir; 30. günde Ay, Dolunay evresindedir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_yn_ay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Güneş ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Güneş, kendi ışığını yayan bir yıldızdır.",
+"B": "Ay, kendi ışığını yayan bir yıldızdır.",
+"C": "Güneş, Dünya’nın doğal uydusudur.",
+"D": "Ay, Güneş’ten daha büyüktür."
+},
+"answer": "A",
+"explanation": "“Güneş, kendi ışığını yayan bir yıldızdır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "Can, gün boyunca gökyüzünü izliyor ve gündüzün geceye dönüştüğünü görüyor.",
+"question": "Gece ile gündüzün oluşmasının nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ay'ın Dünya etrafında dolanması",
+"B": "Dünya'nın Güneş etrafında dolanması",
+"C": "Dünya'nın kendi ekseni etrafında dönmesi",
+"D": "Güneş'in Dünya etrafında dönmesi"
+},
+"answer": "C",
+"explanation": "Dünya kendi etrafında döndükçe yüzeyin Güneş'e dönük kısmı gündüz, dönük olmayan kısmı gece yaşar.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_yn2_sen_gunes"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, Dünya’nın doğal uydusudur.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Ay’ın evreleri ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.",
+"B": "Ay’ın evreleri her gün tekrarlanır.",
+"C": "Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.",
+"D": "Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur."
+},
+"answer": "D",
+"explanation": "“Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nII. Ay’ın evreleri her gün tekrarlanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Şekilde Ay'ın Dünya çevresindeki sekiz konumu harflerle gösterilmiştir. Güneş ışınları soldan gelmektedir.\nBu bilgilere göre Ay, Dünya'dan bakıldığında sağ yarısının aydınlık göründüğü ve büyüyen evrede olduğu (ilk dördün) evrede iken hangi harfle gösterilen konumdadır?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "P"
+},
+{
+"i": 1,
+"label": "M"
+},
+{
+"i": 2,
+"label": "R"
+},
+{
+"i": 3,
+"label": "T"
+},
+{
+"i": 4,
+"label": "S"
+},
+{
+"i": 5,
+"label": "L"
+},
+{
+"i": 6,
+"label": "K"
+},
+{
+"i": 7,
+"label": "N"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "T",
+"C": "R",
+"D": "K"
+},
+"answer": "C",
+"explanation": "Bu evre şekilde R konumuna karşılık gelir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_yor_konum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Şekilde Ay'ın Dünya çevresindeki dört konumu harflerle, Dünya'dan görünüşleri ise A, B, C ve D ile gösterilmiştir. Güneş ışınları soldan gelmektedir.\nBuna göre Ay L konumundayken Dünya'dan nasıl görülür?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "M"
+},
+{
+"i": 2,
+"label": "P"
+},
+{
+"i": 4,
+"label": "T"
+},
+{
+"i": 6,
+"label": "L"
+}
+],
+"strip": [
+{
+"phase": 2,
+"label": "A"
+},
+{
+"phase": 4,
+"label": "B"
+},
+{
+"phase": 0,
+"label": "C"
+},
+{
+"phase": 6,
+"label": "D"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "A",
+"B": "B",
+"C": "C",
+"D": "D"
+},
+"answer": "D",
+"explanation": "L konumundaki Ay, Dünya'dan Son Dördün evresinde ve D ile gösterilen görünüşte görülür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_strip"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Gece ve gündüz",
+"passage": "",
+"question": "Şekilde Dünya'nın Güneş'ten ışık alan ve almayan yarısı gösterilmiştir. Dünya, oklarla gösterilen yönde kendi ekseni etrafında döner. Üzerindeki noktalar harflerle belirtilmiştir.\nVerilenlere göre hangi harfle gösterilen noktada gündüzdür?",
+"shape": {
+"type": "uzy",
+"sub_type": "gece",
+"points": [
+{
+"a": 0,
+"label": "S"
+},
+{
+"a": 135,
+"label": "L"
+},
+{
+"a": 315,
+"label": "M"
+},
+{
+"a": 45,
+"label": "R"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "S",
+"C": "L",
+"D": "R"
+},
+"answer": "C",
+"explanation": "Güneş'e dönük yarıda bulunan L noktasında gündüzdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gec_gunduz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay'ın büyüklükleri",
+"passage": "",
+"question": "Yandaki şekilde Güneş, Dünya ve Ay'ın büyüklükleri karşılaştırmalı olarak gösterilmiştir (ölçekli değildir).\nBuna göre en küçük gök cismi hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "buyukluk",
+"panels": [
+{
+"kind": "g3",
+"label": "N"
+},
+{
+"kind": "g2",
+"label": "L"
+},
+{
+"kind": "g1",
+"label": "K"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "Hepsi aynı büyüklüktedir",
+"D": "N"
+},
+"answer": "D",
+"explanation": "Şekildeki en küçük gök cismi N ile gösterilendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_buy_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in yapısı ve bölümleri harflerle gösterilmiştir.\nVerilenlere göre ışık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "T",
+"c2": "M",
+"c3": "K"
+},
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "K",
+"C": "T",
+"D": "Hiçbiri"
+},
+"answer": "A",
+"explanation": "Işık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası şekilde M ile gösterilmiştir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Verilen şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre R ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "L",
+"c2": "R",
+"c3": "N"
+},
+"show_names": false
+},
+"options": {
+"A": "Atmosfer",
+"B": "Manto",
+"C": "Yüzey",
+"D": "Çekirdek"
+},
+"answer": "C",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: R yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in çekirdek, yüzey ve atmosfer bölümleri harflerle gösterilmiştir.\nBu bilgilere göre bu bölümler içten dışa doğru hangi seçenekte sıralanmıştır?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "L",
+"c2": "P",
+"c3": "N"
+},
+"show_names": false
+},
+"options": {
+"A": "P > L > N",
+"B": "L > N > P",
+"C": "L > P > N",
+"D": "N > L > P"
+},
+"answer": "C",
+"explanation": "Merkezden dışa doğru çekirdek, yüzey, atmosfer sıralanır; içten dışa sıra L > P > N.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Aşağıdakilerden hangisi uzay araştırmalarında insanı uzaya götüren araçlardan biridir?",
+"shape": null,
+"options": {
+"A": "Planör",
+"B": "Denizaltı",
+"C": "Zeplin",
+"D": "Uzay mekiği"
+},
+"answer": "D",
+"explanation": "Uzay mekikleri ve roketler insanları uzaya taşır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Ay tutulması sırasında Ay’ın bir kısmı ya da tamamı neyin gölgesine girer?",
+"shape": null,
+"options": {
+"A": "Mars’ın",
+"B": "Dünya’nın",
+"C": "Güneş’in",
+"D": "Venüs’ün"
+},
+"answer": "B",
+"explanation": "Ay tutulmasında Ay, Dünya’nın gölgesine girer.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_ve_ay_tutulmasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görselde verilen bilgiler doğrultusunda şu soruyu yanıtlayınız.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Ay",
+"Dünya",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Mevsimlerin oluşması",
+"D": "Ay tutulması"
+},
+"answer": "D",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBuna göre Ay hangi harfle gösterilen konumdayken Güneş tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"ust": "S",
+"sag": "R",
+"alt": "P",
+"sol": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "R",
+"C": "P",
+"D": "T"
+},
+"answer": "D",
+"explanation": "Güneş tutulması için Ay, Güneş ile Dünya’nın arasında olmalıdır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde Güneş’ten uzaklaşma sırasına göre dizilmiş dört gezegenden üçünün adı yazılmıştır.\nBuna göre K ile gösterilen gezegen aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "gezsira",
+"items": [
+[
+"Venüs",
+"#fcd34d"
+],
+[
+"Dünya",
+"#60a5fa"
+],
+[
+"K",
+"#f87171"
+],
+[
+"Jüpiter",
+"#fdba74"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Merkür",
+"B": "Satürn",
+"C": "Mars",
+"D": "Neptün"
+},
+"answer": "C",
+"explanation": "Gezegenler Güneş’ten uzaklaşma sırasıyla: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün. K, Venüs ile Jüpiter arasındaki gezegendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_gez_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın ilk dördün evresinden 2 hafta önce gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İlk dördün",
+"B": "Son dördün",
+"C": "Dolunay",
+"D": "Yeni ay"
+},
+"answer": "B",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Cenk, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"shape": null,
+"options": {
+"A": "Yeni ay – Son dördün – Dolunay",
+"B": "Son dördün – Dolunay – Yeni ay",
+"C": "Dolunay – Son dördün – Yeni ay",
+"D": "Dolunay – Yeni ay – Son dördün"
+},
+"answer": "C",
+"explanation": "Evre sırası: İlk dördün – Dolunay – Son dördün – Yeni ay…",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_seq"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Dolunay evresinden yaklaşık 1 hafta (çeyrek tur) sonra Ay hangi evrededir?",
+"shape": null,
+"options": {
+"A": "Son dördün",
+"B": "İlk dördün",
+"C": "Yeni ay",
+"D": "Dolunay"
+},
+"answer": "A",
+"explanation": "Dolunay evresinden sonra son dördün evresi gelir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_quarter"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Güneş ile Dünya’nın büyüklükleri ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Güneş, Dünya’nın etrafında dolanır.",
+"B": "Ay, Güneş’ten daha büyüktür.",
+"C": "Güneş, Dünya’nın doğal uydusudur.",
+"D": "Güneş, Dünya’dan çok daha büyüktür."
+},
+"answer": "D",
+"explanation": "“Güneş, Dünya’dan çok daha büyüktür.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "Bir öğretmen öğrencilerden gökcisimlerini büyüklüklerine göre sıralamalarını istiyor.",
+"question": "Güneş, Dünya ve Ay'ın büyükten küçüğe doğru sıralaması aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Güneş > Ay > Dünya",
+"B": "Ay > Dünya > Güneş",
+"C": "Dünya > Güneş > Ay",
+"D": "Güneş > Dünya > Ay"
+},
+"answer": "D",
+"explanation": "Güneş en büyük, Ay en küçüktür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_yn2_sen_gunes"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Ay’ın hareketleri ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.",
+"B": "Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.",
+"C": "Ay’ın evreleri her gün tekrarlanır.",
+"D": "Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez."
+},
+"answer": "A",
+"explanation": "“Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\nIII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "I ve II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Verilen şekilde Ay'ın Dünya çevresindeki sekiz konumu harflerle gösterilmiştir. Güneş ışınları soldan gelmektedir.\nBu bilgilere göre Ay, Dünya'dan bakıldığında hiç görülmediği (yeni ay) evrede iken hangi harfle gösterilen konumdadır?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "R"
+},
+{
+"i": 1,
+"label": "N"
+},
+{
+"i": 2,
+"label": "L"
+},
+{
+"i": 3,
+"label": "T"
+},
+{
+"i": 4,
+"label": "P"
+},
+{
+"i": 5,
+"label": "K"
+},
+{
+"i": 6,
+"label": "M"
+},
+{
+"i": 7,
+"label": "S"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "R",
+"C": "P",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Bu evre şekilde R konumuna karşılık gelir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_yor_konum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Verilen şekilde Ay'ın Dünya çevresindeki dört konumu harflerle, Dünya'dan görünüşleri ise A, B, C ve D ile gösterilmiştir. Güneş ışınları soldan gelmektedir.\nVerilenlere göre Ay S konumundayken Dünya'dan nasıl görülür?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "S"
+},
+{
+"i": 2,
+"label": "N"
+},
+{
+"i": 4,
+"label": "T"
+},
+{
+"i": 6,
+"label": "L"
+}
+],
+"strip": [
+{
+"phase": 4,
+"label": "A"
+},
+{
+"phase": 6,
+"label": "B"
+},
+{
+"phase": 2,
+"label": "C"
+},
+{
+"phase": 0,
+"label": "D"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "D",
+"B": "C",
+"C": "A",
+"D": "B"
+},
+"answer": "A",
+"explanation": "S konumundaki Ay, Dünya'dan Yeni Ay evresinde ve D ile gösterilen görünüşte görülür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_strip"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Gece ve gündüz",
+"passage": "",
+"question": "Yandaki şekilde Dünya'nın Güneş'ten ışık alan ve almayan yarısı gösterilmiştir. Dünya, oklarla gösterilen yönde kendi ekseni etrafında döner. Üzerindeki noktalar harflerle belirtilmiştir.\nBuna göre hangi harfle gösterilen noktada gündüzdür?",
+"shape": {
+"type": "uzy",
+"sub_type": "gece",
+"points": [
+{
+"a": 0,
+"label": "S"
+},
+{
+"a": 45,
+"label": "M"
+},
+{
+"a": 225,
+"label": "K"
+},
+{
+"a": 315,
+"label": "P"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "M",
+"C": "K",
+"D": "P"
+},
+"answer": "C",
+"explanation": "Güneş'e dönük yarıda bulunan K noktasında gündüzdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gec_gunduz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay'ın büyüklükleri",
+"passage": "",
+"question": "Verilen şekilde Güneş, Dünya ve Ay'ın büyüklükleri karşılaştırmalı olarak gösterilmiştir (ölçekli değildir).\nBuna göre en küçük gök cismi hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "buyukluk",
+"panels": [
+{
+"kind": "g2",
+"label": "M"
+},
+{
+"kind": "g3",
+"label": "N"
+},
+{
+"kind": "g1",
+"label": "T"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "N",
+"C": "Hepsi aynı büyüklüktedir",
+"D": "M"
+},
+"answer": "B",
+"explanation": "Şekildeki en küçük gök cismi N ile gösterilendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_buy_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in yapısı ve bölümleri harflerle gösterilmiştir.\nBu bilgilere göre ışık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "P",
+"c2": "K",
+"c3": "M"
+},
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "P",
+"C": "M",
+"D": "Hiçbiri"
+},
+"answer": "A",
+"explanation": "Işık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası şekilde K ile gösterilmiştir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre T ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "T",
+"c2": "M",
+"c3": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "Çekirdek",
+"B": "Manto",
+"C": "Yüzey",
+"D": "Atmosfer"
+},
+"answer": "A",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: T çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Yandaki şekilde Güneş'in çekirdek, yüzey ve atmosfer bölümleri harflerle gösterilmiştir.\nBuna göre bu bölümler dıştan içe doğru hangi seçenekte sıralanmıştır?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "P",
+"c2": "T",
+"c3": "S"
+},
+"show_names": false
+},
+"options": {
+"A": "T > S > P",
+"B": "S > T > P",
+"C": "P > S > T",
+"D": "T > P > S"
+},
+"answer": "B",
+"explanation": "Merkezden dışa doğru çekirdek, yüzey, atmosfer sıralanır; dıştan içe sıra S > T > P.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Aşağıdaki gezegenlerden hangisi iç (kayaç) gezegenlerden biridir?",
+"shape": null,
+"options": {
+"A": "Neptün",
+"B": "Satürn",
+"C": "Mars",
+"D": "Uranüs"
+},
+"answer": "C",
+"explanation": "Merkür, Venüs, Dünya ve Mars kayaç yapılı iç gezegenlerdir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Aşağıdakilerden hangisi tutulmaların oluşmasında etkili olan ışık özelliğidir?",
+"shape": null,
+"options": {
+"A": "Işığın doğrusal yayılması",
+"B": "Işığın kırılması",
+"C": "Işığın soğurulması",
+"D": "Işığın dağılması"
+},
+"answer": "A",
+"explanation": "Işık doğrusal yayıldığı için engel arkasında gölge oluşur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_ve_ay_tutulmasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nGörselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Ay",
+"Dünya",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Mevsimlerin oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Ay tutulması",
+"D": "Gece ile gündüzün oluşması"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBuna göre Ay hangi harfle gösterilen konumdayken Güneş tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"sol": "S",
+"alt": "R",
+"sag": "K",
+"ust": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "S",
+"C": "T",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Güneş tutulması için Ay, Güneş ile Dünya’nın arasında olmalıdır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde Güneş’ten uzaklaşma sırasına göre dizilmiş dört gezegenden üçünün adı yazılmıştır.\nBuna göre K ile gösterilen gezegen aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "gezsira",
+"items": [
+[
+"Dünya",
+"#60a5fa"
+],
+[
+"Mars",
+"#f87171"
+],
+[
+"K",
+"#fdba74"
+],
+[
+"Satürn",
+"#fde68a"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Venüs",
+"B": "Neptün",
+"C": "Jüpiter",
+"D": "Uranüs"
+},
+"answer": "C",
+"explanation": "Gezegenler Güneş’ten uzaklaşma sırasıyla: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün. K, Dünya ile Satürn arasındaki gezegendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_gez_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın ilk dördün evresinden 3 hafta sonra gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İlk dördün",
+"B": "Yeni ay",
+"C": "Dolunay",
+"D": "Son dördün"
+},
+"answer": "B",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Elif, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğuna göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"shape": null,
+"options": {
+"A": "Yeni ay – Son dördün – Dolunay",
+"B": "Dolunay – Son dördün – Yeni ay",
+"C": "Dolunay – Yeni ay – Son dördün",
+"D": "Son dördün – Dolunay – Yeni ay"
+},
+"answer": "B",
+"explanation": "Evre sırası: İlk dördün – Dolunay – Son dördün – Yeni ay…",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_seq"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın dolunay evresinden çeyrek tur (yaklaşık 1 hafta) sonra gerçekleşen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İlk dördün",
+"B": "Son dördün",
+"C": "Yeni ay",
+"D": "Dolunay"
+},
+"answer": "B",
+"explanation": "Dolunay evresinden sonra son dördün evresi gelir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_quarter"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Ay’ın hareketi ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ay, Dünya’nın etrafında dolanır.",
+"B": "Ay, kendi ışığını yayan bir yıldızdır.",
+"C": "Güneş, Dünya’nın etrafında dolanır.",
+"D": "Dünya, Ay’dan daha küçüktür."
+},
+"answer": "A",
+"explanation": "“Ay, Dünya’nın etrafında dolanır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "Elif, bir fenerle (Güneş) ve iki küreyle (Dünya ve Ay) model yapıyor. Fener sabit, Ay'ı temsil eden küre ise Dünya'yı temsil eden kürenin çevresinde döndürülüyor.",
+"question": "Elif'in Ay'ı temsil eden küreyi diğer kürenin çevresinde döndürmesi hangi hareketi gösterir?",
+"shape": null,
+"options": {
+"A": "Dünya'nın Güneş etrafındaki dolanma hareketini",
+"B": "Ay'ın Dünya etrafındaki dolanma hareketini",
+"C": "Ay'ın kendi ekseni etrafındaki dönme hareketini",
+"D": "Güneş'in kendi etrafında dönmesini"
+},
+"answer": "B",
+"explanation": "Ay'ın Dünya çevresindeki turuna dolanma denir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_yn2_sen_gunes"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\nII. Güneş, kendi ışığını yayan bir yıldızdır.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Evrelerin tekrarı ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.",
+"B": "Ay’ın evreleri yaklaşık bir ayda tekrarlanır.",
+"C": "Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.",
+"D": "Ay’ın evreleri her gün tekrarlanır."
+},
+"answer": "B",
+"explanation": "“Ay’ın evreleri yaklaşık bir ayda tekrarlanır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri her gün tekrarlanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Yandaki şekilde Ay'ın Dünya çevresindeki sekiz konumu harflerle gösterilmiştir. Güneş ışınları soldan gelmektedir.\nBuna göre Ay, Dünya'dan bakıldığında tamamının aydınlık göründüğü (dolunay) evrede iken hangi harfle gösterilen konumdadır?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "S"
+},
+{
+"i": 1,
+"label": "L"
+},
+{
+"i": 2,
+"label": "M"
+},
+{
+"i": 3,
+"label": "P"
+},
+{
+"i": 4,
+"label": "R"
+},
+{
+"i": 5,
+"label": "N"
+},
+{
+"i": 6,
+"label": "K"
+},
+{
+"i": 7,
+"label": "T"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "P",
+"C": "N",
+"D": "R"
+},
+"answer": "D",
+"explanation": "Bu evre şekilde R konumuna karşılık gelir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_yor_konum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Yandaki şekilde Ay'ın Dünya çevresindeki dört konumu harflerle, Dünya'dan görünüşleri ise A, B, C ve D ile gösterilmiştir. Güneş ışınları soldan gelmektedir.\nBuna göre Ay S konumundayken Dünya'dan nasıl görülür?",
+"shape": {
+"type": "uzy",
+"sub_type": "yorunge",
+"moons": [
+{
+"i": 0,
+"label": "S"
+},
+{
+"i": 2,
+"label": "R"
+},
+{
+"i": 4,
+"label": "P"
+},
+{
+"i": 6,
+"label": "N"
+}
+],
+"strip": [
+{
+"phase": 2,
+"label": "A"
+},
+{
+"phase": 0,
+"label": "B"
+},
+{
+"phase": 6,
+"label": "C"
+},
+{
+"phase": 4,
+"label": "D"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "B",
+"B": "C",
+"C": "D",
+"D": "A"
+},
+"answer": "A",
+"explanation": "S konumundaki Ay, Dünya'dan Yeni Ay evresinde ve B ile gösterilen görünüşte görülür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_strip"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Gece ve gündüz",
+"passage": "",
+"question": "Verilen şekilde Dünya'nın Güneş'ten ışık alan ve almayan yarısı gösterilmiştir. Dünya, oklarla gösterilen yönde kendi ekseni etrafında döner. Üzerindeki noktalar harflerle belirtilmiştir.\nBu bilgilere göre hangi harfle gösterilen noktada gündüzdür?",
+"shape": {
+"type": "uzy",
+"sub_type": "gece",
+"points": [
+{
+"a": 45,
+"label": "P"
+},
+{
+"a": 225,
+"label": "M"
+},
+{
+"a": 315,
+"label": "N"
+},
+{
+"a": 0,
+"label": "L"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "M",
+"B": "P",
+"C": "N",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Güneş'e dönük yarıda bulunan M noktasında gündüzdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gec_gunduz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay'ın büyüklükleri",
+"passage": "",
+"question": "Şekilde Güneş, Dünya ve Ay'ın büyüklükleri karşılaştırmalı olarak gösterilmiştir (ölçekli değildir).\nBuna göre en büyük gök cismi hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "buyukluk",
+"panels": [
+{
+"kind": "g2",
+"label": "S"
+},
+{
+"kind": "g1",
+"label": "R"
+},
+{
+"kind": "g3",
+"label": "K"
+}
+],
+"show_names": false
+},
+"options": {
+"A": "Hepsi aynı büyüklüktedir",
+"B": "R",
+"C": "S",
+"D": "K"
+},
+"answer": "B",
+"explanation": "Şekildeki en büyük gök cismi R ile gösterilendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_buy_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in yapısı ve bölümleri harflerle gösterilmiştir.\nBuna göre ışık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "N",
+"c2": "S",
+"c3": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "N",
+"C": "Hiçbiri",
+"D": "T"
+},
+"answer": "A",
+"explanation": "Işık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası şekilde S ile gösterilmiştir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre N ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "R",
+"c2": "T",
+"c3": "N"
+},
+"show_names": false
+},
+"options": {
+"A": "Manto",
+"B": "Atmosfer",
+"C": "Yüzey",
+"D": "Çekirdek"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: N atmosfer bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Verilen şekilde Güneş'in çekirdek, yüzey ve atmosfer bölümleri harflerle gösterilmiştir.\nBuna göre bu bölümler içten dışa doğru hangi seçenekte sıralanmıştır?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "N",
+"c2": "R",
+"c3": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "R > N > P",
+"B": "N > P > R",
+"C": "P > R > N",
+"D": "N > R > P"
+},
+"answer": "D",
+"explanation": "Merkezden dışa doğru çekirdek, yüzey, atmosfer sıralanır; içten dışa sıra N > R > P.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Uzay araştırmalarının insanlığa katkısı olarak aşağıdakilerden hangisi söylenebilir?",
+"shape": null,
+"options": {
+"A": "Dünya’nın dönüşü hızlandırılmıştır",
+"B": "Haberleşme ve hava tahmini uyduları geliştirilmiştir",
+"C": "Güneş’in ısısı azaltılmıştır",
+"D": "Ay’ın yörüngesi değiştirilmiştir"
+},
+"answer": "B",
+"explanation": "Uydu teknolojileri haberleşme ve hava tahmininde kullanılır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Güneş tutulması sırasında Ay’ın gölgesi nereye düşer?",
+"shape": null,
+"options": {
+"A": "Dünya’nın bir bölgesine",
+"B": "Güneş’e",
+"C": "Mars’a",
+"D": "Ay’ın kendisine"
+},
+"answer": "A",
+"explanation": "Ay’ın gölgesi Dünya’nın küçük bir bölgesine düşer; orada Güneş tutulması görülür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_ve_ay_tutulmasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Dünya",
+"Ay"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Mevsimlerin oluşması",
+"D": "Ay tutulması"
+},
+"answer": "D",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBuna göre Ay hangi harfle gösterilen konumdayken Güneş tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"alt": "P",
+"sag": "M",
+"sol": "N",
+"ust": "R"
+},
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "P",
+"C": "R",
+"D": "M"
+},
+"answer": "A",
+"explanation": "Güneş tutulması için Ay, Güneş ile Dünya’nın arasında olmalıdır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde Güneş’ten uzaklaşma sırasına göre dizilmiş dört gezegenden üçünün adı yazılmıştır.\nBuna göre K ile gösterilen gezegen aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "gezsira",
+"items": [
+[
+"Jüpiter",
+"#fdba74"
+],
+[
+"Satürn",
+"#fde68a"
+],
+[
+"K",
+"#99f6e4"
+],
+[
+"Neptün",
+"#818cf8"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Venüs",
+"B": "Merkür",
+"C": "Uranüs",
+"D": "Dünya"
+},
+"answer": "C",
+"explanation": "Gezegenler Güneş’ten uzaklaşma sırasıyla: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün. K, Jüpiter ile Neptün arasındaki gezegendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_gez_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın dolunay evresinden 1 hafta önce gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Yeni ay",
+"B": "Dolunay",
+"C": "Son dördün",
+"D": "İlk dördün"
+},
+"answer": "D",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ayşe, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt ilk dördün evresi olduğu bilindiğine göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"shape": null,
+"options": {
+"A": "Son dördün – Dolunay – Yeni ay",
+"B": "Dolunay – Son dördün – Yeni ay",
+"C": "Yeni ay – Son dördün – Dolunay",
+"D": "Dolunay – Yeni ay – Son dördün"
+},
+"answer": "B",
+"explanation": "Evre sırası: İlk dördün – Dolunay – Son dördün – Yeni ay…",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_seq"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın yeni ay evresinden çeyrek tur (yaklaşık 1 hafta) sonra gerçekleşen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İlk dördün",
+"B": "Dolunay",
+"C": "Son dördün",
+"D": "Yeni ay"
+},
+"answer": "A",
+"explanation": "Yeni ay evresinden sonra ilk dördün evresi gelir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_quarter"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Ay’ın Dünya ile ilişkisi ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ay, Güneş’ten daha büyüktür.",
+"B": "Ay, Dünya’nın doğal uydusudur.",
+"C": "Güneş, Dünya’nın doğal uydusudur.",
+"D": "Güneş, Dünya’nın etrafında dolanır."
+},
+"answer": "B",
+"explanation": "“Ay, Dünya’nın doğal uydusudur.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "Bir gözlemci Ay'ın Dünya'dan hep aynı yüzünü gördüğünü fark ediyor.",
+"question": "Bu durumun nedeni aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Dünya'nın Ay çevresinde dolanması",
+"B": "Güneş ışığının Ay'ı yalnızca bir yüzünden aydınlatması",
+"C": "Ay'ın kendi etrafında hiç dönmemesi",
+"D": "Ay'ın kendi etrafındaki dönme süresi ile Dünya çevresindeki dolanma süresinin yaklaşık eşit olması"
+},
+"answer": "D",
+"explanation": "Ay, kendi ekseni etrafında bir tur dönerken Dünya çevresinde de yaklaşık bir tur atar; bu yüzden hep aynı yüzü görünür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_yn2_sen_gunes"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’dan çok daha büyüktür.\nIII. Güneş, Dünya’nın doğal uydusudur.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Yandaki şekilde Güneş'in yapısı ve bölümleri harflerle gösterilmiştir.\nBuna göre ışık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "N",
+"c2": "T",
+"c3": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "Hiçbiri",
+"B": "N",
+"C": "T",
+"D": "P"
+},
+"answer": "C",
+"explanation": "Işık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası şekilde T ile gösterilmiştir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Verilen şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBu bilgilere göre K ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "K",
+"c2": "S",
+"c3": "R"
+},
+"show_names": false
+},
+"options": {
+"A": "Yüzey",
+"B": "Çekirdek",
+"C": "Manto",
+"D": "Atmosfer"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: K çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Aşağıdaki gezegenlerden hangisi gaz yapılı dış gezegenlerden biridir?",
+"shape": null,
+"options": {
+"A": "Satürn",
+"B": "Merkür",
+"C": "Dünya",
+"D": "Venüs"
+},
+"answer": "A",
+"explanation": "Jüpiter, Satürn, Uranüs ve Neptün gaz yapılı dış gezegenlerdir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nDers sırasında incelenen şekle bakarak soruya cevap veriniz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Ay",
+"Dünya"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Güneş tutulması",
+"D": "Mevsimlerin oluşması"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBu bilgilere göre Ay hangi harfle gösterilen konumdayken Ay tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"alt": "K",
+"sag": "T",
+"sol": "R",
+"ust": "N"
+},
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "T",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Ay tutulması için Dünya, Güneş ile Ay’ın arasında olmalıdır; Ay, Dünya’nın gölgesine girer.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde Güneş’ten uzaklaşma sırasına göre dizilmiş dört gezegenden üçünün adı yazılmıştır.\nBuna göre K ile gösterilen gezegen aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "gezsira",
+"items": [
+[
+"Mars",
+"#f87171"
+],
+[
+"K",
+"#fdba74"
+],
+[
+"Satürn",
+"#fde68a"
+],
+[
+"Uranüs",
+"#99f6e4"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Venüs",
+"B": "Merkür",
+"C": "Dünya",
+"D": "Jüpiter"
+},
+"answer": "D",
+"explanation": "Gezegenler Güneş’ten uzaklaşma sırasıyla: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün. K, Mars ile Uranüs arasındaki gezegendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_gez_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın yeni ay evresinden 3 hafta sonra gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İlk dördün",
+"B": "Son dördün",
+"C": "Dolunay",
+"D": "Yeni ay"
+},
+"answer": "B",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Mert, fen projesi için Ay'ı her hafta gözlemleyerek defterine kaydedecektir. İlk kayıt dolunay evresi olduğuna göre sonraki üç kayıt aşağıdakilerden hangisinde doğru sıralanmıştır?",
+"shape": null,
+"options": {
+"A": "Son dördün – İlk dördün – Yeni ay",
+"B": "İlk dördün – Yeni ay – Son dördün",
+"C": "Yeni ay – Son dördün – İlk dördün",
+"D": "Son dördün – Yeni ay – İlk dördün"
+},
+"answer": "D",
+"explanation": "Evre sırası: Dolunay – Son dördün – Yeni ay – İlk dördün…",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_seq"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "Ay’ın ışığı ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Güneş, Dünya’nın etrafında dolanır.",
+"B": "Dünya, Ay’dan daha küçüktür.",
+"C": "Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.",
+"D": "Ay, kendi ışığını yayan bir yıldızdır."
+},
+"answer": "C",
+"explanation": "“Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nIII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Verilen şekilde Güneş'in yapısı ve bölümleri harflerle gösterilmiştir.\nBuna göre ışık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası hangi harfle gösterilmiştir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "L",
+"c2": "N",
+"c3": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "N",
+"C": "Hiçbiri",
+"D": "T"
+},
+"answer": "B",
+"explanation": "Işık ve ısının uzaya yayıldığı yüzey (ışık küre) tabakası şekilde N ile gösterilmiştir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_harf"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre P ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "T",
+"c2": "P",
+"c3": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "Atmosfer",
+"B": "Manto",
+"C": "Çekirdek",
+"D": "Yüzey"
+},
+"answer": "D",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: P yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Uzay araştırmalarında uzaydaki cisimleri uzaktan incelemek için aşağıdakilerden hangisi kullanılır?",
+"shape": null,
+"options": {
+"A": "Dinamometre",
+"B": "Teleskop",
+"C": "Barometre",
+"D": "Termometre"
+},
+"answer": "B",
+"explanation": "Teleskoplar uzak gök cisimlerini yakından görmeyi sağlar.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÇalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Dünya",
+"Ay",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Güneş tutulması",
+"D": "Mevsimlerin oluşması"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nVerilenlere göre Ay hangi harfle gösterilen konumdayken Ay tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"sag": "P",
+"sol": "M",
+"ust": "R",
+"alt": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "R",
+"C": "M",
+"D": "T"
+},
+"answer": "A",
+"explanation": "Ay tutulması için Dünya, Güneş ile Ay’ın arasında olmalıdır; Ay, Dünya’nın gölgesine girer.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde Güneş’ten uzaklaşma sırasına göre dizilmiş dört gezegenden üçünün adı yazılmıştır.\nBu bilgilere göre K ile gösterilen gezegen aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "gezsira",
+"items": [
+[
+"Merkür",
+"#a8a29e"
+],
+[
+"Venüs",
+"#fcd34d"
+],
+[
+"K",
+"#60a5fa"
+],
+[
+"Mars",
+"#f87171"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Jüpiter",
+"B": "Satürn",
+"C": "Neptün",
+"D": "Dünya"
+},
+"answer": "D",
+"explanation": "Gezegenler Güneş’ten uzaklaşma sırasıyla: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün. K, Merkür ile Mars arasındaki gezegendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_gez_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın son dördün evresinden 1 hafta sonra gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Dolunay",
+"B": "Son dördün",
+"C": "Yeni ay",
+"D": "İlk dördün"
+},
+"answer": "C",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Güneş, Dünya’dan çok daha büyüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nIII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre M ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "M",
+"c2": "S",
+"c3": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "Yüzey",
+"B": "Manto",
+"C": "Çekirdek",
+"D": "Atmosfer"
+},
+"answer": "C",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: M çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Güneş sisteminde ışık ve ısı kaynağı olan gök cismi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Jüpiter",
+"B": "Ay",
+"C": "Dünya",
+"D": "Güneş"
+},
+"answer": "D",
+"explanation": "Güneş kendi ışığını yayan bir yıldızdır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÇalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Ay",
+"Dünya",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Ay tutulması",
+"B": "Gece ile gündüzün oluşması",
+"C": "Ay’ın ilk dördün evresi",
+"D": "Mevsimlerin oluşması"
+},
+"answer": "A",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBuna göre Ay hangi harfle gösterilen konumdayken Güneş tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"ust": "P",
+"sol": "S",
+"sag": "R",
+"alt": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "R",
+"C": "P",
+"D": "L"
+},
+"answer": "A",
+"explanation": "Güneş tutulması için Ay, Güneş ile Dünya’nın arasında olmalıdır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde Güneş’ten uzaklaşma sırasına göre dizilmiş dört gezegenden üçünün adı yazılmıştır.\nBuna göre K ile gösterilen gezegen aşağıdakilerden hangisidir?",
+"shape": {
+"type": "f6",
+"sub_type": "gezsira",
+"items": [
+[
+"Dünya",
+"#60a5fa"
+],
+[
+"Mars",
+"#f87171"
+],
+[
+"K",
+"#fdba74"
+],
+[
+"Satürn",
+"#fde68a"
+]
+],
+"show_names": false
+},
+"options": {
+"A": "Merkür",
+"B": "Neptün",
+"C": "Jüpiter",
+"D": "Venüs"
+},
+"answer": "C",
+"explanation": "Gezegenler Güneş’ten uzaklaşma sırasıyla: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün. K, Dünya ile Satürn arasındaki gezegendir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_gez_sira"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın dolunay evresinden 1 hafta sonra gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "İlk dördün",
+"B": "Dolunay",
+"C": "Son dördün",
+"D": "Yeni ay"
+},
+"answer": "C",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Güneş, kendi ışığını yayan bir yıldızdır.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Yandaki şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBu bilgilere göre P ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "L",
+"c2": "K",
+"c3": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "Yüzey",
+"B": "Atmosfer",
+"C": "Çekirdek",
+"D": "Manto"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: P atmosfer bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Aşağıdakilerden hangisi Güneş’e en yakın gezegendir?",
+"shape": null,
+"options": {
+"A": "Merkür",
+"B": "Jüpiter",
+"C": "Mars",
+"D": "Venüs"
+},
+"answer": "A",
+"explanation": "Güneş’e en yakın gezegen Merkür’dür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÖğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBu bilgilere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Ay",
+"Dünya",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Ay tutulması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Mevsimlerin oluşması",
+"D": "Gece ile gündüzün oluşması"
+},
+"answer": "A",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBuna göre Ay hangi harfle gösterilen konumdayken Güneş tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"sol": "S",
+"ust": "M",
+"alt": "R",
+"sag": "P"
+},
+"show_names": false
+},
+"options": {
+"A": "P",
+"B": "S",
+"C": "M",
+"D": "R"
+},
+"answer": "B",
+"explanation": "Güneş tutulması için Ay, Güneş ile Dünya’nın arasında olmalıdır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Ay'ın evreleri",
+"passage": "",
+"question": "Ay'ın yeni ay evresinden 1 hafta önce gözlemlenen evre aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Dolunay",
+"B": "İlk dördün",
+"C": "Son dördün",
+"D": "Yeni ay"
+},
+"answer": "C",
+"explanation": "Ay'ın ana evreleri sırasıyla Yeni ay, İlk dördün, Dolunay, Son dördün biçimindedir ve her biri yaklaşık 1 hafta arayla gözlenir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_shift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri her gün tekrarlanır.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Yandaki şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre P ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "P",
+"c2": "T",
+"c3": "R"
+},
+"show_names": false
+},
+"options": {
+"A": "Atmosfer",
+"B": "Çekirdek",
+"C": "Manto",
+"D": "Yüzey"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: P çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Aşağıdakilerden hangisi Güneş sistemindeki en büyük gezegendir?",
+"shape": null,
+"options": {
+"A": "Satürn",
+"B": "Dünya",
+"C": "Mars",
+"D": "Jüpiter"
+},
+"answer": "D",
+"explanation": "Güneş sisteminin en büyük gezegeni Jüpiter’dir.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nYandaki görseli inceleyen bir öğrenci aşağıdaki soruyu cevaplayınız.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Dünya",
+"Ay",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Mevsimlerin oluşması",
+"B": "Güneş tutulması",
+"C": "Gece ile gündüzün oluşması",
+"D": "Ay’ın ilk dördün evresi"
+},
+"answer": "B",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nBuna göre Ay hangi harfle gösterilen konumdayken Ay tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"sol": "L",
+"ust": "K",
+"alt": "P",
+"sag": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "K",
+"C": "P",
+"D": "T"
+},
+"answer": "D",
+"explanation": "Ay tutulması için Dünya, Güneş ile Ay’ın arasında olmalıdır; Ay, Dünya’nın gölgesine girer.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, Dünya’nın etrafında dolanır.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nII. Ay’ın evreleri her gün tekrarlanır.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBu bilgilere göre T ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "L",
+"c2": "T",
+"c3": "N"
+},
+"show_names": false
+},
+"options": {
+"A": "Manto",
+"B": "Çekirdek",
+"C": "Atmosfer",
+"D": "Yüzey"
+},
+"answer": "D",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: T yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş Sistemi",
+"passage": "",
+"question": "Dünya’nın doğal uydusu aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Ay",
+"B": "Güneş",
+"C": "Mars",
+"D": "Venüs"
+},
+"answer": "A",
+"explanation": "Dünya’nın tek doğal uydusu Ay’dır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 2,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_fact_gunes_sistemi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBu bilgilere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Ay",
+"Dünya"
+],
+"show_names": false
+},
+"options": {
+"A": "Ay’ın ilk dördün evresi",
+"B": "Mevsimlerin oluşması",
+"C": "Güneş tutulması",
+"D": "Gece ile gündüzün oluşması"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde Ay’ın Dünya çevresindeki yörüngesinde dört farklı konumu harflerle gösterilmiştir.\nVerilenlere göre Ay hangi harfle gösterilen konumdayken Güneş tutulması gözlenir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "yorunge",
+"let": {
+"sol": "R",
+"alt": "P",
+"sag": "K",
+"ust": "S"
+},
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "R",
+"C": "S",
+"D": "P"
+},
+"answer": "B",
+"explanation": "Güneş tutulması için Ay, Güneş ile Dünya’nın arasında olmalıdır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_yorunge"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Ay, Dünya’nın doğal uydusudur.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri yaklaşık bir ayda tekrarlanır.\nII. Ay, kendi etrafında dönerken Dünya’nın etrafında da dolanır.\nIII. Ay’ın evreleri, Dünya’nın Ay üzerine düşen gölgesi yüzünden oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre R ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "N",
+"c2": "R",
+"c3": "S"
+},
+"show_names": false
+},
+"options": {
+"A": "Manto",
+"B": "Yüzey",
+"C": "Çekirdek",
+"D": "Atmosfer"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: R yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nGörselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Dünya",
+"Ay"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay tutulması",
+"C": "Ay’ın ilk dördün evresi",
+"D": "Mevsimlerin oluşması"
+},
+"answer": "B",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Güneş, Dünya’dan çok daha büyüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay’ın evreleri her gün tekrarlanır.\nII. Ay, yalnızca Dünya’nın etrafında dolanır, kendi etrafında dönmez.\nIII. Ay’ın evreleri, Dünya’dan bakıldığında Ay’ın aydınlık kısmının farklı görünmesiyle oluşur.\n“Güneş, Dünya ve Ay” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve II"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_ay2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nVerilenlere göre M ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "R",
+"c2": "M",
+"c3": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "Çekirdek",
+"B": "Atmosfer",
+"C": "Manto",
+"D": "Yüzey"
+},
+"answer": "D",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: M yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBu bilgilere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Ay",
+"Dünya",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay tutulması",
+"C": "Ay’ın ilk dördün evresi",
+"D": "Mevsimlerin oluşması"
+},
+"answer": "B",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, Güneş’ten daha büyüktür.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Ay, Dünya’nın doğal uydusudur.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre K ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "K",
+"c2": "R",
+"c3": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "Yüzey",
+"B": "Çekirdek",
+"C": "Atmosfer",
+"D": "Manto"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: K çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÖğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Ay",
+"Dünya"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Güneş tutulması",
+"D": "Mevsimlerin oluşması"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, kendi ışığını yayan bir yıldızdır.\nII. Ay, Dünya’nın etrafında dolanır.\nIII. Güneş, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre S ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "S",
+"c2": "K",
+"c3": "M"
+},
+"show_names": false
+},
+"options": {
+"A": "Atmosfer",
+"B": "Yüzey",
+"C": "Çekirdek",
+"D": "Manto"
+},
+"answer": "C",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: S çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Dünya",
+"Ay",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Mevsimlerin oluşması",
+"D": "Güneş tutulması"
+},
+"answer": "D",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Dünya, Ay’dan daha küçüktür.\nIII. Ay, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve II"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Verilen şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nVerilenlere göre S ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "M",
+"c2": "S",
+"c3": "K"
+},
+"show_names": false
+},
+"options": {
+"A": "Çekirdek",
+"B": "Manto",
+"C": "Yüzey",
+"D": "Atmosfer"
+},
+"answer": "C",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: S yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nYandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Dünya",
+"Ay",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Güneş tutulması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Gece ile gündüzün oluşması",
+"D": "Mevsimlerin oluşması"
+},
+"answer": "A",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, kendi ışığını yayan bir yıldızdır.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Güneş, Dünya’nın doğal uydusudur.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nBuna göre L ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "L",
+"c2": "K",
+"c3": "N"
+},
+"show_names": false
+},
+"options": {
+"A": "Manto",
+"B": "Yüzey",
+"C": "Çekirdek",
+"D": "Atmosfer"
+},
+"answer": "C",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: L çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak soruyu çözünüz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Dünya",
+"Ay",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Güneş tutulması",
+"B": "Mevsimlerin oluşması",
+"C": "Ay’ın ilk dördün evresi",
+"D": "Gece ile gündüzün oluşması"
+},
+"answer": "A",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, Dünya’nın doğal uydusudur.\nII. Güneş, Dünya’nın etrafında dolanır.\nIII. Dünya, Ay’dan daha küçüktür.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nVerilenlere göre L ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "K",
+"c2": "L",
+"c3": "R"
+},
+"show_names": false
+},
+"options": {
+"A": "Atmosfer",
+"B": "Çekirdek",
+"C": "Manto",
+"D": "Yüzey"
+},
+"answer": "D",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: L yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görselde verilen bilgiler doğrultusunda aşağıdaki soruyu cevaplayınız.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Dünya",
+"Ay",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Mevsimlerin oluşması",
+"C": "Güneş tutulması",
+"D": "Ay’ın ilk dördün evresi"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Ay, Dünya’nın etrafında dolanır.\nII. Ay, kendi ışığını yayan bir yıldızdır.\nIII. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Yandaki şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nVerilenlere göre K ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "M",
+"c2": "K",
+"c3": "L"
+},
+"show_names": false
+},
+"options": {
+"A": "Çekirdek",
+"B": "Atmosfer",
+"C": "Manto",
+"D": "Yüzey"
+},
+"answer": "D",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: K yüzey bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Dünya",
+"Ay",
+"Güneş"
+],
+"show_names": false
+},
+"options": {
+"A": "Mevsimlerin oluşması",
+"B": "Ay’ın ilk dördün evresi",
+"C": "Güneş tutulması",
+"D": "Gece ile gündüzün oluşması"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, Dünya’nın doğal uydusudur.\nII. Ay, kendi ışığını yayan bir yıldızdır.\nIII. Ay, kendi ışığını yaymaz; Güneş’ten gelen ışığı yansıtır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nVerilenlere göre R ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "R",
+"c2": "S",
+"c3": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "Atmosfer",
+"B": "Çekirdek",
+"C": "Yüzey",
+"D": "Manto"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: R çekirdek bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nÇalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nVerilenlere göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Dünya",
+"Ay"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Mevsimlerin oluşması",
+"C": "Ay’ın ilk dördün evresi",
+"D": "Ay tutulması"
+},
+"answer": "D",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, Dünya’dan çok daha büyüktür.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nVerilenlere göre S ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "N",
+"c2": "L",
+"c3": "S"
+},
+"show_names": false
+},
+"options": {
+"A": "Yüzey",
+"B": "Atmosfer",
+"C": "Çekirdek",
+"D": "Manto"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: S atmosfer bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görselde verilen bilgiler doğrultusunda soruya cevap veriniz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Dünya",
+"Ay"
+],
+"show_names": false
+},
+"options": {
+"A": "Mevsimlerin oluşması",
+"B": "Gece ile gündüzün oluşması",
+"C": "Ay tutulması",
+"D": "Ay’ın ilk dördün evresi"
+},
+"answer": "C",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Dünya, Ay’dan daha küçüktür.\nII. Ay, Güneş’ten daha büyüktür.\nIII. Güneş, kendi ışığını yayan bir yıldızdır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş'in yapısı",
+"passage": "",
+"question": "Şekilde Güneş'in bölümleri harflerle gösterilmiştir.\nVerilenlere göre T ile gösterilen bölüm aşağıdakilerden hangisidir?",
+"shape": {
+"type": "uzy",
+"sub_type": "gunes",
+"labels": {
+"c1": "N",
+"c2": "S",
+"c3": "T"
+},
+"show_names": false
+},
+"options": {
+"A": "Yüzey",
+"B": "Atmosfer",
+"C": "Çekirdek",
+"D": "Manto"
+},
+"answer": "B",
+"explanation": "Merkezdeki bölüm çekirdek, ortadaki yüzey, dıştaki atmosferdir: T atmosfer bölümüdür.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_uz_gys_ad"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş ve Ay Tutulması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde Güneş, Ay ve Dünya’nın bir andaki konumları aynı doğrultuda gösterilmiştir.\nBuna göre bu anda Dünya’daki uygun bir gözlemci aşağıdakilerden hangisini gözlemleyebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "tutulma",
+"mod": "dizilis",
+"sira": [
+"Güneş",
+"Ay",
+"Dünya"
+],
+"show_names": false
+},
+"options": {
+"A": "Gece ile gündüzün oluşması",
+"B": "Güneş tutulması",
+"C": "Mevsimlerin oluşması",
+"D": "Ay’ın ilk dördün evresi"
+},
+"answer": "B",
+"explanation": "Ay, Güneş ile Dünya’nın arasındayken Güneş tutulması; Dünya, Güneş ile Ay’ın arasındayken Ay tutulması olur.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 3,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff6_tut_dizilis"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Güneş, Dünya ve Ay",
+"passage": "",
+"question": "I. Güneş, Dünya’nın etrafında dolanır.\nII. Güneş, Dünya’nın doğal uydusudur.\nIII. Ay, Dünya’nın etrafında dolanır.\n“Güneş, Dünya ve Ay” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Güneş Sistemi ve Tutulmalar",
+"topics": "Gezegenler, Ay-Güneş tutulması, Uzay araştırmaları",
+"d": 4,
+"ts": 1795161898,
+"src": "local",
+"fam": "_ff_gokcismi_onc"
+}
+]
+}

@@ -1,0 +1,2072 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nBuna göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+0.7,
+1.4
+],
+"f": [
+4,
+2
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "K sesi, L sesinden daha incedir (tizdir).",
+"B": "K ve L seslerinin şiddeti eşittir.",
+"C": "K sesi, L sesinden daha şiddetlidir.",
+"D": "L sesi, K sesinden daha incedir (tizdir)."
+},
+"answer": "A",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nVerilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 3 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nVerilenlere göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "3 s",
+"show_names": false
+},
+"options": {
+"A": "680 m",
+"B": "510 m",
+"C": "1020 m",
+"D": "340 m"
+},
+"answer": "B",
+"explanation": "Ses gidiş–dönüşte 340 × 3 = 1020 m yol alır; uzaklık bunun yarısıdır: 510 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekildeki öğrenci şimşeği gördükten 5 saniye sonra gök gürültüsünü duymuştur. Sesin havadaki hızı şekilde verilmiştir.\nIşığın yayılma süresi ihmal edilirse öğrenci şimşeğin çaktığı yerden kaç metre uzaktadır?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"mod": "simsek",
+"v": "340 m/s",
+"t": "5 s",
+"show_names": false
+},
+"options": {
+"A": "3400 m",
+"B": "850 m",
+"C": "1700 m",
+"D": "2040 m"
+},
+"answer": "C",
+"explanation": "Uzaklık = ses hızı × süre = 340 × 5 = 1700 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_simsek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBu bilgilere göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çelik",
+"Su"
+],
+"values": [
+5000,
+1500
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "3600 m/s",
+"B": "3400 m/s",
+"C": "6500 m/s",
+"D": "3500 m/s"
+},
+"answer": "D",
+"explanation": "5000 − 1500 = 3500 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nGrafikte sesin üç farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nSes, çelik ortamında 2 saniyede kaç metre yol alır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Tahta",
+"Çelik",
+"Su"
+],
+"values": [
+3800,
+5000,
+1500
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "15000 m",
+"B": "2500 m",
+"C": "5000 m",
+"D": "10000 m"
+},
+"answer": "D",
+"explanation": "5000 × 2 = 10000 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde düz aynaya gelen bir ışının normalle yaptığı açı 55° olarak verilmiştir.\nBuna göre gelen ışın ile yansıyan ışın arasındaki açı kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 55,
+"lab": "55°",
+"mod": "gel",
+"show_names": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "110°",
+"D": "125°"
+},
+"answer": "C",
+"explanation": "Yansıma açısı da 55° olduğundan gelen ve yansıyan ışın arasındaki açı 55° + 55° = 110°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde bir cismin düz aynaya olan uzaklığı 30 cm olarak verilmiştir.\nBuna göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 3.0,
+"lab": "30 cm",
+"show_names": false
+},
+"options": {
+"A": "30 cm",
+"B": "40 cm",
+"C": "60 cm",
+"D": "90 cm"
+},
+"answer": "C",
+"explanation": "Görüntü de aynanın arkasında 30 cm uzaklıktadır; toplam uzaklık 30 + 30 = 60 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Sesin frekansının birimi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Joule (J)",
+"B": "Hertz (Hz)",
+"C": "Desibel (dB)",
+"D": "Kilogram (kg)"
+},
+"answer": "B",
+"explanation": "Frekans, bir saniyedeki titreşim sayısıdır; birimi Hz'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Işığın yansımasında aşağıdakilerden hangisi her zaman doğrudur?",
+"shape": null,
+"options": {
+"A": "Işın yüzeye dik gelirse yansımaz.",
+"B": "Gelme açısı yansıma açısından büyüktür.",
+"C": "Yansıma açısı gelme açısından küçüktür.",
+"D": "Gelme açısı yansıma açısına eşittir."
+},
+"answer": "D",
+"explanation": "Yansıma kanunu: gelme açısı = yansıma açısı.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nBuna göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+0.7,
+1.4
+],
+"f": [
+3,
+5
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "K sesi, L sesinden daha incedir (tizdir).",
+"B": "L sesi, K sesinden daha kalındır (pestir).",
+"C": "K ve L seslerinin şiddeti eşittir.",
+"D": "L sesi, K sesinden daha incedir (tizdir)."
+},
+"answer": "D",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 3 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "3 s",
+"show_names": false
+},
+"options": {
+"A": "340 m",
+"B": "1020 m",
+"C": "510 m",
+"D": "680 m"
+},
+"answer": "C",
+"explanation": "Ses gidiş–dönüşte 340 × 3 = 1020 m yol alır; uzaklık bunun yarısıdır: 510 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekildeki öğrenci şimşeği gördükten 6 saniye sonra gök gürültüsünü duymuştur. Sesin havadaki hızı şekilde verilmiştir.\nIşığın yayılma süresi ihmal edilirse öğrenci şimşeğin çaktığı yerden kaç metre uzaktadır?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"mod": "simsek",
+"v": "340 m/s",
+"t": "6 s",
+"show_names": false
+},
+"options": {
+"A": "4080 m",
+"B": "2040 m",
+"C": "2380 m",
+"D": "1020 m"
+},
+"answer": "B",
+"explanation": "Uzaklık = ses hızı × süre = 340 × 6 = 2040 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_simsek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Su",
+"Hava"
+],
+"values": [
+1500,
+340
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "1840 m/s",
+"B": "1060 m/s",
+"C": "1260 m/s",
+"D": "1160 m/s"
+},
+"answer": "D",
+"explanation": "1500 − 340 = 1160 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nGrafikte sesin üç farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nVerilenlere göre en hızlı ve en yavaş ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Tahta",
+"Hava",
+"Su"
+],
+"values": [
+3800,
+340,
+1500
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "2960 m/s",
+"B": "3960 m/s",
+"C": "5640 m/s",
+"D": "3460 m/s"
+},
+"answer": "D",
+"explanation": "3800 − 340 = 3460 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde düz aynaya gelen ışının ayna yüzeyiyle yaptığı açı 30° olarak verilmiştir.\nBuna göre ışığın yansıma açısı (yansıyan ışının normalle yaptığı açı) kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 60,
+"lab": "30°",
+"mod": "yuz",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "70°",
+"D": "120°"
+},
+"answer": "B",
+"explanation": "Gelme açısı normalle ölçülür: 90° − 30° = 60°. Yansıma açısı da 60°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde bir cismin düz aynaya olan uzaklığı 40 cm olarak verilmiştir.\nBuna göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 4.0,
+"lab": "40 cm",
+"show_names": false
+},
+"options": {
+"A": "40 cm",
+"B": "50 cm",
+"C": "80 cm",
+"D": "120 cm"
+},
+"answer": "C",
+"explanation": "Görüntü de aynanın arkasında 40 cm uzaklıktadır; toplam uzaklık 40 + 40 = 80 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Gürültü kirliliğini azaltmak için aşağıdakilerden hangisi yapılır?",
+"shape": null,
+"options": {
+"A": "Yerleşim yerlerinin çevresine ağaç dikmek",
+"B": "Korna çalmayı artırmak",
+"C": "Müziği daha yüksek açmak",
+"D": "Yolları daha geniş yapmak"
+},
+"answer": "A",
+"explanation": "Ağaçlar ve ses bariyerleri sesi soğurur.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Aşağıdakilerden hangisinde düzgün yansıma görülür?",
+"shape": null,
+"options": {
+"A": "Kuru toprakta",
+"B": "Buruşmuş alüminyum folyoda",
+"C": "Sakin göl yüzeyinde",
+"D": "Kumaş yüzeyde"
+},
+"answer": "C",
+"explanation": "Parlak ve düzgün yüzeylerde düzgün yansıma olur.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nBuna göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+1.4,
+1.0
+],
+"f": [
+4,
+2
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "K ve L seslerinin şiddeti eşittir.",
+"B": "K sesi, L sesinden daha incedir (tizdir).",
+"C": "K sesi, L sesinden daha kalındır (pestir).",
+"D": "L sesi, K sesinden daha şiddetlidir."
+},
+"answer": "B",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 3 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nVerilenlere göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "3 s",
+"show_names": false
+},
+"options": {
+"A": "340 m",
+"B": "680 m",
+"C": "1020 m",
+"D": "510 m"
+},
+"answer": "D",
+"explanation": "Ses gidiş–dönüşte 340 × 3 = 1020 m yol alır; uzaklık bunun yarısıdır: 510 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekildeki öğrenci şimşeği gördükten 2 saniye sonra gök gürültüsünü duymuştur. Sesin havadaki hızı şekilde verilmiştir.\nIşığın yayılma süresi ihmal edilirse öğrenci şimşeğin çaktığı yerden kaç metre uzaktadır?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"mod": "simsek",
+"v": "340 m/s",
+"t": "2 s",
+"show_names": false
+},
+"options": {
+"A": "340 m",
+"B": "680 m",
+"C": "1020 m",
+"D": "1360 m"
+},
+"answer": "B",
+"explanation": "Uzaklık = ses hızı × süre = 340 × 2 = 680 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_simsek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Su",
+"Hava"
+],
+"values": [
+1500,
+340
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "1160 m/s",
+"B": "1260 m/s",
+"C": "1060 m/s",
+"D": "1840 m/s"
+},
+"answer": "A",
+"explanation": "1500 − 340 = 1160 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nGrafikte sesin üç farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre en hızlı ve en yavaş ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Tahta",
+"Hava",
+"Su"
+],
+"values": [
+3800,
+340,
+1500
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "2960 m/s",
+"B": "3960 m/s",
+"C": "5640 m/s",
+"D": "3460 m/s"
+},
+"answer": "D",
+"explanation": "3800 − 340 = 3460 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekilde düz aynaya gelen bir ışının normalle yaptığı açı 45° olarak verilmiştir.\nBu bilgilere göre yansıyan ışın ile normal arasındaki açı kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 45,
+"lab": "45°",
+"mod": "gel",
+"show_names": false
+},
+"options": {
+"A": "45°",
+"B": "55°",
+"C": "90°",
+"D": "135°"
+},
+"answer": "A",
+"explanation": "Işığın yansımasında gelme açısı yansıma açısına eşittir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde bir cismin düz aynaya olan uzaklığı 30 cm olarak verilmiştir.\nVerilenlere göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 3.0,
+"lab": "30 cm",
+"show_names": false
+},
+"options": {
+"A": "30 cm",
+"B": "40 cm",
+"C": "60 cm",
+"D": "90 cm"
+},
+"answer": "C",
+"explanation": "Görüntü de aynanın arkasında 30 cm uzaklıktadır; toplam uzaklık 30 + 30 = 60 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Bir telin gerginliği artırılırsa çıkan ses nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Daha kalın (pes) olur",
+"B": "Hiç değişmez",
+"C": "Ses kesilir",
+"D": "Daha ince (tiz) olur"
+},
+"answer": "D",
+"explanation": "Gerginlik artınca frekans artar ve ses incelir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Yağmurlu havada ıslak asfaltın parlak görünmesinin nedeni nedir?",
+"shape": null,
+"options": {
+"A": "Işığın kırılması",
+"B": "Işığın tamamen soğurulması",
+"C": "Asfaltın ışık yayması",
+"D": "Yüzeyde düzgün yansıma olması"
+},
+"answer": "D",
+"explanation": "Su filmi yüzeyi düzleştirir; yansıma düzgün olur.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nBu bilgilere göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+0.7,
+1.4
+],
+"f": [
+2,
+2
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "K sesi, L sesinden daha incedir (tizdir).",
+"B": "K ve L seslerinin şiddeti eşittir.",
+"C": "L sesi, K sesinden daha incedir (tizdir).",
+"D": "L sesi, K sesinden daha şiddetlidir."
+},
+"answer": "D",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 4 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "4 s",
+"show_names": false
+},
+"options": {
+"A": "680 m",
+"B": "850 m",
+"C": "1360 m",
+"D": "510 m"
+},
+"answer": "A",
+"explanation": "Ses gidiş–dönüşte 340 × 4 = 1360 m yol alır; uzaklık bunun yarısıdır: 680 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekildeki öğrenci şimşeği gördükten 3 saniye sonra gök gürültüsünü duymuştur. Sesin havadaki hızı şekilde verilmiştir.\nIşığın yayılma süresi ihmal edilirse öğrenci şimşeğin çaktığı yerden kaç metre uzaktadır?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"mod": "simsek",
+"v": "340 m/s",
+"t": "3 s",
+"show_names": false
+},
+"options": {
+"A": "1360 m",
+"B": "510 m",
+"C": "2040 m",
+"D": "1020 m"
+},
+"answer": "D",
+"explanation": "Uzaklık = ses hızı × süre = 340 × 3 = 1020 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_simsek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çelik",
+"Hava"
+],
+"values": [
+5000,
+340
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "4560 m/s",
+"B": "4760 m/s",
+"C": "5340 m/s",
+"D": "4660 m/s"
+},
+"answer": "D",
+"explanation": "5000 − 340 = 4660 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nGrafikte sesin üç farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nSes, su ortamında 2 saniyede kaç metre yol alır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Tahta",
+"Hava",
+"Su"
+],
+"values": [
+3800,
+340,
+1500
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "4500 m",
+"B": "3000 m",
+"C": "750 m",
+"D": "1500 m"
+},
+"answer": "B",
+"explanation": "1500 × 2 = 3000 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde düz aynaya gelen bir ışının normalle yaptığı açı 30° olarak verilmiştir.\nBuna göre gelen ışın ile yansıyan ışın arasındaki açı kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 30,
+"lab": "30°",
+"mod": "gel",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "150°"
+},
+"answer": "B",
+"explanation": "Yansıma açısı da 30° olduğundan gelen ve yansıyan ışın arasındaki açı 30° + 30° = 60°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde bir cismin düz aynaya olan uzaklığı 20 cm olarak verilmiştir.\nBuna göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 2.0,
+"lab": "20 cm",
+"show_names": false
+},
+"options": {
+"A": "20 cm",
+"B": "30 cm",
+"C": "40 cm",
+"D": "60 cm"
+},
+"answer": "C",
+"explanation": "Görüntü de aynanın arkasında 20 cm uzaklıktadır; toplam uzaklık 20 + 20 = 40 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Aşağıdakilerden hangisi sesin şiddetini artırmak için yapılabilir?",
+"shape": null,
+"options": {
+"A": "Titreşen cismin frekansını azaltmak",
+"B": "Sesi boşlukta yaymak",
+"C": "Titreşen cismin genliğini artırmak",
+"D": "Ses kaynağından uzaklaşmak"
+},
+"answer": "C",
+"explanation": "Titreşimin genliği büyüdükçe ses şiddeti artar.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Bir cismi görebilmemiz için aşağıdakilerden hangisi gerekir?",
+"shape": null,
+"options": {
+"A": "Cismin ışığı tamamen soğurması",
+"B": "Cismin yansıttığı ışığın gözümüze ulaşması",
+"C": "Gözümüzden ışık çıkması",
+"D": "Cismin karanlıkta olması"
+},
+"answer": "B",
+"explanation": "Işık cisimden yansıyıp gözümüze gelir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nVerilenlere göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+1.0,
+1.0
+],
+"f": [
+4,
+2
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "K sesi, L sesinden daha kalındır (pestir).",
+"B": "K ve L seslerinin şiddeti eşittir.",
+"C": "K ve L seslerinin ince–kalınlığı (frekansı) aynıdır.",
+"D": "L sesi, K sesinden daha incedir (tizdir)."
+},
+"answer": "B",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 4 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "4 s",
+"show_names": false
+},
+"options": {
+"A": "680 m",
+"B": "850 m",
+"C": "1360 m",
+"D": "510 m"
+},
+"answer": "A",
+"explanation": "Ses gidiş–dönüşte 340 × 4 = 1360 m yol alır; uzaklık bunun yarısıdır: 680 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nVerilenlere göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Su",
+"Hava"
+],
+"values": [
+1500,
+340
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "1840 m/s",
+"B": "1160 m/s",
+"C": "1260 m/s",
+"D": "1060 m/s"
+},
+"answer": "B",
+"explanation": "1500 − 340 = 1160 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nGrafikte sesin üç farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nSes, çelik ortamında 2 saniyede kaç metre yol alır?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Hava",
+"Su",
+"Çelik"
+],
+"values": [
+340,
+1500,
+5000
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "2500 m",
+"B": "5000 m",
+"C": "15000 m",
+"D": "10000 m"
+},
+"answer": "D",
+"explanation": "5000 × 2 = 10000 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz3"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekilde düz aynaya gelen bir ışının normalle yaptığı açı 60° olarak verilmiştir.\nVerilenlere göre gelen ışın ile yansıyan ışın arasındaki açı kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 60,
+"lab": "60°",
+"mod": "gel",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "150°"
+},
+"answer": "C",
+"explanation": "Yansıma açısı da 60° olduğundan gelen ve yansıyan ışın arasındaki açı 60° + 60° = 120°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu çözünüz.\nŞekilde bir cismin düz aynaya olan uzaklığı 10 cm olarak verilmiştir.\nBu bilgilere göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 1.0,
+"lab": "10 cm",
+"show_names": false
+},
+"options": {
+"A": "10 cm",
+"B": "20 cm",
+"C": "30 cm",
+"D": "40 cm"
+},
+"answer": "B",
+"explanation": "Görüntü de aynanın arkasında 10 cm uzaklıktadır; toplam uzaklık 10 + 10 = 20 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Ses yalıtımı için aşağıdakilerden hangisi kullanılır?",
+"shape": null,
+"options": {
+"A": "Metal levha",
+"B": "Sünger ve kalın halı",
+"C": "Ayna",
+"D": "Cam bardak"
+},
+"answer": "B",
+"explanation": "Süngerimsi ve kalın maddeler sesi soğurur.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Periskopta görüntüyü iletmek için hangi araç kullanılır?",
+"shape": null,
+"options": {
+"A": "Prizmalar yerine yalnız lensler",
+"B": "Opak perde",
+"C": "Düz aynalar",
+"D": "Siyah levhalar"
+},
+"answer": "C",
+"explanation": "Periskopta iki düz ayna ışığı yansıtır.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nBu bilgilere göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+0.7,
+1.4
+],
+"f": [
+3,
+5
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "K sesi, L sesinden daha kalındır (pestir).",
+"B": "K sesi, L sesinden daha şiddetlidir.",
+"C": "K ve L seslerinin ince–kalınlığı (frekansı) aynıdır.",
+"D": "L sesi, K sesinden daha kalındır (pestir)."
+},
+"answer": "A",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 5 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBu bilgilere göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "5 s",
+"show_names": false
+},
+"options": {
+"A": "1700 m",
+"B": "680 m",
+"C": "850 m",
+"D": "1020 m"
+},
+"answer": "C",
+"explanation": "Ses gidiş–dönüşte 340 × 5 = 1700 m yol alır; uzaklık bunun yarısıdır: 850 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBu bilgilere göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çelik",
+"Su"
+],
+"values": [
+5000,
+1500
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "3400 m/s",
+"B": "3600 m/s",
+"C": "6500 m/s",
+"D": "3500 m/s"
+},
+"answer": "D",
+"explanation": "5000 − 1500 = 3500 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde düz aynaya gelen ışının ayna yüzeyiyle yaptığı açı 70° olarak verilmiştir.\nBu bilgilere göre ışığın yansıma açısı (yansıyan ışının normalle yaptığı açı) kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 20,
+"lab": "70°",
+"mod": "yuz",
+"show_names": false
+},
+"options": {
+"A": "20°",
+"B": "40°",
+"C": "70°",
+"D": "160°"
+},
+"answer": "A",
+"explanation": "Gelme açısı normalle ölçülür: 90° − 70° = 20°. Yansıma açısı da 20°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre şu soruyu yanıtlayınız.\nŞekilde bir cismin düz aynaya olan uzaklığı 25 cm olarak verilmiştir.\nBuna göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 2.5,
+"lab": "25 cm",
+"show_names": false
+},
+"options": {
+"A": "25 cm",
+"B": "35 cm",
+"C": "50 cm",
+"D": "75 cm"
+},
+"answer": "C",
+"explanation": "Görüntü de aynanın arkasında 25 cm uzaklıktadır; toplam uzaklık 25 + 25 = 50 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Aşağıdaki ortamların hangisinde ses en hızlı yayılır?",
+"shape": null,
+"options": {
+"A": "Boşluk",
+"B": "Hava",
+"C": "Çelik",
+"D": "Su"
+},
+"answer": "C",
+"explanation": "Ses katılarda sıvılara, sıvılarda gazlara göre daha hızlı yayılır.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Araç farlarında çukur yansıtıcı kullanılmasının amacı nedir?",
+"shape": null,
+"options": {
+"A": "Işığı kırmak",
+"B": "Işığı demet hâlinde ileriye yöneltmek",
+"C": "Işığı soğurmak",
+"D": "Işığı dağıtmak"
+},
+"answer": "B",
+"explanation": "Yansıtıcılar ışınları belirli yönde toplar.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nVerilenlere göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+1.0,
+1.0
+],
+"f": [
+5,
+3
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "L sesi, K sesinden daha kalındır (pestir).",
+"B": "K sesi, L sesinden daha şiddetlidir.",
+"C": "K sesi, L sesinden daha kalındır (pestir).",
+"D": "L sesi, K sesinden daha incedir (tizdir)."
+},
+"answer": "A",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 3 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "3 s",
+"show_names": false
+},
+"options": {
+"A": "1020 m",
+"B": "340 m",
+"C": "680 m",
+"D": "510 m"
+},
+"answer": "D",
+"explanation": "Ses gidiş–dönüşte 340 × 3 = 1020 m yol alır; uzaklık bunun yarısıdır: 510 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çelik",
+"Su"
+],
+"values": [
+5000,
+1500
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "6500 m/s",
+"B": "3600 m/s",
+"C": "3400 m/s",
+"D": "3500 m/s"
+},
+"answer": "D",
+"explanation": "5000 − 1500 = 3500 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde düz aynaya gelen bir ışının normalle yaptığı açı 30° olarak verilmiştir.\nBuna göre yansıyan ışın ile normal arasındaki açı kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 30,
+"lab": "30°",
+"mod": "gel",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "150°"
+},
+"answer": "A",
+"explanation": "Işığın yansımasında gelme açısı yansıma açısına eşittir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde bir cismin düz aynaya olan uzaklığı 15 cm olarak verilmiştir.\nBuna göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 1.5,
+"lab": "15 cm",
+"show_names": false
+},
+"options": {
+"A": "15 cm",
+"B": "25 cm",
+"C": "30 cm",
+"D": "45 cm"
+},
+"answer": "C",
+"explanation": "Görüntü de aynanın arkasında 15 cm uzaklıktadır; toplam uzaklık 15 + 15 = 30 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Gitar telinin kalınlığı azaltıldığında çıkan sesin ince–kalınlığı nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Daha kalın (pes) olur",
+"B": "Değişmez",
+"C": "Daha ince (tiz) olur",
+"D": "Şiddeti kesinlikle artar"
+},
+"answer": "C",
+"explanation": "İnce teller daha hızlı titreşir; frekans artar, ses incelir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Düz aynadaki görüntü için hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Görüntü, cisimden daha küçüktür.",
+"B": "Görüntü, cisimle aynı büyüklüktedir.",
+"C": "Görüntü, cisimden daha büyüktür.",
+"D": "Görüntü ayna yüzeyinde oluşur."
+},
+"answer": "B",
+"explanation": "Düz aynada görüntü cisimle aynı boyda ve aynadan aynı uzaklıktadır.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde aynı ortamda yayılan iki sesin dalga görüntüsü aynı ölçekle çizilmiştir.\nBuna göre aşağıdakilerden hangisi söylenebilir?",
+"shape": {
+"type": "f6",
+"sub_type": "dalga",
+"a": [
+0.7,
+1.4
+],
+"f": [
+2,
+2
+],
+"lab": [
+"K",
+"L"
+],
+"show_names": false
+},
+"options": {
+"A": "L sesi, K sesinden daha şiddetlidir.",
+"B": "K sesi, L sesinden daha kalındır (pestir).",
+"C": "K ve L seslerinin şiddeti eşittir.",
+"D": "K sesi, L sesinden daha incedir (tizdir)."
+},
+"answer": "A",
+"explanation": "Dalganın yüksekliği (genlik) şiddeti, aynı sürede çizilen dalga sayısı (frekans) ses inceliğini belirler.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_dalga"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 3 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "3 s",
+"show_names": false
+},
+"options": {
+"A": "1020 m",
+"B": "680 m",
+"C": "340 m",
+"D": "510 m"
+},
+"answer": "D",
+"explanation": "Ses gidiş–dönüşte 340 × 3 = 1020 m yol alır; uzaklık bunun yarısıdır: 510 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Yayılması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nGrafikte sesin iki farklı ortamdaki yaklaşık yayılma hızı gösterilmiştir.\nBuna göre bu iki ortamdaki ses hızları arasındaki fark kaç m/s’dir?",
+"shape": {
+"type": "bar_chart",
+"labels": [
+"Çelik",
+"Hava"
+],
+"values": [
+5000,
+340
+],
+"title": "Sesin farklı ortamlardaki yaklaşık hızı",
+"ylabel": "Hız (m/s)",
+"show_names": false
+},
+"options": {
+"A": "4760 m/s",
+"B": "5340 m/s",
+"C": "4660 m/s",
+"D": "4560 m/s"
+},
+"answer": "C",
+"explanation": "5000 − 340 = 4660 m/s.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_ses_hiz"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre sorulanı bulunuz.\nŞekilde düz aynaya gelen bir ışının normalle yaptığı açı 60° olarak verilmiştir.\nBuna göre gelen ışın ile yansıyan ışın arasındaki açı kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 60,
+"lab": "60°",
+"mod": "gel",
+"show_names": false
+},
+"options": {
+"A": "30°",
+"B": "60°",
+"C": "120°",
+"D": "150°"
+},
+"answer": "C",
+"explanation": "Yansıma açısı da 60° olduğundan gelen ve yansıyan ışın arasındaki açı 60° + 60° = 120°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre sorulanı bulunuz.\nŞekilde bir cismin düz aynaya olan uzaklığı 20 cm olarak verilmiştir.\nBuna göre cisim ile aynadaki görüntüsü arasındaki uzaklık kaç cm’dir?",
+"shape": {
+"type": "f6",
+"sub_type": "gorunum",
+"u": 2.0,
+"lab": "20 cm",
+"show_names": false
+},
+"options": {
+"A": "20 cm",
+"B": "30 cm",
+"C": "40 cm",
+"D": "60 cm"
+},
+"answer": "C",
+"explanation": "Görüntü de aynanın arkasında 20 cm uzaklıktadır; toplam uzaklık 20 + 20 = 40 cm.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_gorunum"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Ses şiddetinin birimi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Newton (N)",
+"B": "Hertz (Hz)",
+"C": "Metre/saniye (m/s)",
+"D": "Desibel (dB)"
+},
+"answer": "D",
+"explanation": "Ses şiddeti desibel ile ölçülür.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Aşağıdakilerden hangisi ışığı iyi yansıtan bir yüzeydir?",
+"shape": null,
+"options": {
+"A": "Siyah kadife",
+"B": "Kalın yün kumaş",
+"C": "Cilalı metal levha",
+"D": "Kuru toprak"
+},
+"answer": "C",
+"explanation": "Parlak ve düz yüzeyler ışığı düzgün yansıtır.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruya cevap veriniz.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 4 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "4 s",
+"show_names": false
+},
+"options": {
+"A": "680 m",
+"B": "1360 m",
+"C": "850 m",
+"D": "510 m"
+},
+"answer": "A",
+"explanation": "Ses gidiş–dönüşte 340 × 4 = 1360 m yol alır; uzaklık bunun yarısıdır: 680 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nAşağıdaki görsele göre soruyu çözünüz.\nŞekilde düz aynaya gelen bir ışının normalle yaptığı açı 55° olarak verilmiştir.\nBu bilgilere göre yansıyan ışın ile normal arasındaki açı kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 55,
+"lab": "55°",
+"mod": "gel",
+"show_names": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "110°",
+"D": "125°"
+},
+"answer": "B",
+"explanation": "Işığın yansımasında gelme açısı yansıma açısına eşittir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Sesin duyulabilmesi için hangisi gerekli değildir?",
+"shape": null,
+"options": {
+"A": "Ses kaynağı",
+"B": "Boşluk ortamı",
+"C": "Yayıldığı ortam",
+"D": "Alıcı (kulak)"
+},
+"answer": "B",
+"explanation": "Ses boşlukta yayılmaz; maddesel ortam gerekir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Pürüzlü bir yüzeye gelen ışınların her yöne yansıması olayına ne denir?",
+"shape": null,
+"options": {
+"A": "Dağınık yansıma",
+"B": "Düzgün yansıma",
+"C": "Kırılma",
+"D": "Soğurulma"
+},
+"answer": "A",
+"explanation": "Pürüzlü yüzeylerde ışınlar farklı yönlere yansır.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Yankı ve Ses",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki öğrenci bir dağa doğru bağırıyor ve yankıyı 5 saniye sonra duyuyor. Sesin havadaki hızı şekilde verilmiştir.\nBuna göre öğrenci ile dağ arasındaki uzaklık kaç metredir?",
+"shape": {
+"type": "f6",
+"sub_type": "yanki",
+"v": "340 m/s",
+"t": "5 s",
+"show_names": false
+},
+"options": {
+"A": "1020 m",
+"B": "680 m",
+"C": "1700 m",
+"D": "850 m"
+},
+"answer": "D",
+"explanation": "Ses gidiş–dönüşte 340 × 5 = 1700 m yol alır; uzaklık bunun yarısıdır: 850 m.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 4,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yanki"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Konu: 6. sınıf Fen\nŞekle göre soruyu çözünüz.\nŞekilde düz aynaya gelen ışının ayna yüzeyiyle yaptığı açı 55° olarak verilmiştir.\nBuna göre ışığın yansıma açısı (yansıyan ışının normalle yaptığı açı) kaç derecedir?",
+"shape": {
+"type": "f6",
+"sub_type": "yansima",
+"gel": 35,
+"lab": "55°",
+"mod": "yuz",
+"show_names": false
+},
+"options": {
+"A": "35°",
+"B": "55°",
+"C": "70°",
+"D": "145°"
+},
+"answer": "A",
+"explanation": "Gelme açısı normalle ölçülür: 90° − 55° = 35°. Yansıma açısı da 35°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 3,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_yansima"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Yankının oluşması için ses dalgasının neye çarpması gerekir?",
+"shape": null,
+"options": {
+"A": "Sesi yansıtan bir yüzeye",
+"B": "Sünger yüzeye",
+"C": "Boşluğa",
+"D": "Işık ışınına"
+},
+"answer": "A",
+"explanation": "Ses yansıtıcı bir yüzeye çarpıp geri döner.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Işığın Yansıması",
+"passage": "",
+"question": "Işık düz aynaya dik gelirse yansıyan ışın nasıl ilerler?",
+"shape": null,
+"options": {
+"A": "Aynaya paralel gider",
+"B": "Aynı yolu izleyerek geri döner",
+"C": "Aynadan geçer",
+"D": "Kaybolur"
+},
+"answer": "B",
+"explanation": "Gelme açısı 0° olduğundan yansıma açısı da 0°'dir.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_isigin_yansimasi"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sesin Özellikleri",
+"passage": "",
+"question": "Ses hangi ortamda yayılamaz?",
+"shape": null,
+"options": {
+"A": "Boşlukta",
+"B": "Demirde",
+"C": "Havada",
+"D": "Suda"
+},
+"answer": "A",
+"explanation": "Ses yayılmak için maddesel ortama ihtiyaç duyar; boşlukta yayılamaz.",
+"unit": "Ses ve Işık",
+"topics": "Sesin özellikleri, Işığın yansıması, Mercekler",
+"d": 2,
+"ts": 1795161909,
+"src": "local",
+"fam": "_ff6_fact_sesin_ozellikleri"
+}
+]
+}

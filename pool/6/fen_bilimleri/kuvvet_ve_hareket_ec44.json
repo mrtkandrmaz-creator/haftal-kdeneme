@@ -1,0 +1,4783 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve ağırlık",
+"passage": "",
+"question": "Bir kutunun kütlesi Dünya ve Ay'da ayrı ayrı ölçülüyor. Dünya 1 kg'lık kütleye 10 N'luk çekim kuvveti uygular; Ay'da bu kuvvet Dünya'dakinin 1/6'sı kadardır.\nKütlesi 24 kg olan kutunun ağırlığı Dünya'da ve Ay'da ayrı ayrı dinamometreyle ölçüldüğünde okunan değerler aşağıdakilerden hangisinde doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Dünya'da 240 N, Ay'da 50 N",
+"B": "Dünya'da 240 N, Ay'da 240 N",
+"C": "Dünya'da 24 N, Ay'da 4 N",
+"D": "Dünya'da 240 N, Ay'da 40 N"
+},
+"answer": "D",
+"explanation": "Dünya'da 24×10 = 240 N; Ay'da 240 ÷ 6 = 40 N. (Kütle her yerde aynıdır.)",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_weight"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "",
+"question": "Bir yaya 4 N'luk bir cisim asıldığında yay 12 cm uzuyor.\nAynı yaya 8 N'luk bir cisim asılırsa yaydaki uzama kaç cm olur? (Yay esnekliğini yitirmez.)",
+"shape": null,
+"options": {
+"A": "11 cm",
+"B": "16 cm",
+"C": "24 cm",
+"D": "27 cm"
+},
+"answer": "C",
+"explanation": "4 N için 12 cm uzuyorsa 1 N için 3 cm; 8 N için 8×3 = 24 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_spring"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Aynı tuğla farklı yüzeylerde dinamometreyle yatay doğrultuda sabit hızla çekiliyor. Sabit hızla çekilirken dinamometrenin gösterdiği değer, tuğlaya etki eden sürtünme kuvvetine eşittir.",
+"question": "Tabloya göre sürtünme kuvvetinin en büyük olduğu yüzey ile en küçük olduğu yüzeydeki sürtünme kuvvetleri arasındaki fark kaç N'dur?",
+"shape": {
+"type": "table",
+"title": "Sabit hızla çekme kuvveti",
+"headers": [
+"Yüzey",
+"Dinamometre (N)"
+],
+"rows": [
+[
+"sırlı fayans",
+"3"
+],
+[
+"cam",
+"2"
+],
+[
+"zımpara",
+"14"
+],
+[
+"ahşap parke",
+"5"
+]
+]
+},
+"options": {
+"A": "12 N",
+"B": "14 N",
+"C": "16 N",
+"D": "10 N"
+},
+"answer": "A",
+"explanation": "En büyük 14 N (zımpara), en küçük 2 N (cam): 14 − 2 = 12 N.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_fric"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Ece, aynı yaya farklı kütleler asarak yayın uzamasını ölçüyor. Yay, bu kütlelerde esnekliğini yitirmemiştir. Ölçüm sonuçları tabloda verilmiştir.",
+"question": "Tablodaki değişim aynı şekilde sürdüğüne göre yaya 250 g’lık bir kütle asılırsa yayın uzaması kaç cm olur?",
+"shape": {
+"type": "table",
+"title": "Yaya asılan kütle ve yayın uzaması",
+"headers": [
+"Asılan kütle (g)",
+"Yayın uzaması (cm)"
+],
+"rows": [
+[
+"50",
+"2"
+],
+[
+"100",
+"4"
+],
+[
+"150",
+"6"
+],
+[
+"200",
+"8"
+]
+]
+},
+"options": {
+"A": "8 cm",
+"B": "10 cm",
+"C": "12 cm",
+"D": "14 cm"
+},
+"answer": "B",
+"explanation": "Her 50 g için uzama 2 cm artmaktadır. 250 g için 5 × 2 = 10 cm olur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Eylül, aynı oyuncak arabayı aynı rampadan her denemede aynı yükseklikten bırakıyor ve araba rampadan indikten sonra durana kadar aldığı yolu ölçüyor. Denemeler farklı yüzeylerde yapılmıştır.",
+"question": "Tablodaki verilere göre arabaya etki eden sürtünme kuvveti hangi yüzeyde diğer üç yüzeydekinden daha büyüktür?",
+"shape": {
+"type": "table",
+"title": "Arabanın durana kadar aldığı yol",
+"headers": [
+"Yüzey",
+"Durma yolu (cm)"
+],
+"rows": [
+[
+"kum",
+"24"
+],
+[
+"ahşap parke",
+"10"
+],
+[
+"cam",
+"6"
+],
+[
+"halı",
+"18"
+]
+]
+},
+"options": {
+"A": "kum",
+"B": "cam",
+"C": "ahşap parke",
+"D": "halı"
+},
+"answer": "B",
+"explanation": "Araba aynı hızla geldiğinden daha kısa yolda duran yüzeyde sürtünme daha büyüktür. En kısa yol 6 cm, en uzun yol 24 cm’dir; en büyük sürtünme cam yüzeyindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn_stop"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "Kuvvetin ölçülmesi ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.",
+"B": "Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.",
+"C": "Kuvvet termometre ile ölçülür.",
+"D": "Kuvvet dinamometre ile ölçülür."
+},
+"answer": "D",
+"explanation": "“Kuvvet dinamometre ile ölçülür.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.",
+"question": "Tabloya göre “2 cisim” değerine karşılık gelen ölçüm ile “1 cisim” değerine karşılık gelen ölçüm arasındaki fark kaç cm'dir?",
+"shape": {
+"type": "table",
+"title": "Yayın uzaması",
+"headers": [
+"Asılan cisim sayısı",
+"Yayın boyundaki uzama (cm)"
+],
+"rows": [
+[
+"1 cisim",
+"3"
+],
+[
+"2 cisim",
+"6"
+],
+[
+"3 cisim",
+"9"
+],
+[
+"4 cisim",
+"12"
+]
+]
+},
+"options": {
+"A": "1 cm",
+"B": "3 cm",
+"C": "4 cm",
+"D": "8 cm"
+},
+"answer": "B",
+"explanation": "6 − 3 = 3 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.",
+"question": "Tabloya göre halı ile kum için ölçülen değerler arasındaki fark kaç cm'dir?",
+"shape": {
+"type": "table",
+"title": "Arabanın aldığı yol",
+"headers": [
+"Zemin",
+"Arabanın yaptığı yol (cm)"
+],
+"rows": [
+[
+"cam",
+"41"
+],
+[
+"ahşap",
+"22"
+],
+[
+"halı",
+"31"
+],
+[
+"kum",
+"38"
+],
+[
+"zımpara",
+"46"
+]
+]
+},
+"options": {
+"A": "5 cm",
+"B": "7 cm",
+"C": "8 cm",
+"D": "12 cm"
+},
+"answer": "B",
+"explanation": "38 − 31 = 7 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yuzey"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Bir sporcu spor ayakkabısını alırken tabanı girintili çıkıntılı olanı tercih ediyor.",
+"question": "Bu tercihin nedeni aşağıdakilerden hangisi olabilir?",
+"shape": null,
+"options": {
+"A": "Zeminle sürtünmeyi azaltmak",
+"B": "Ayakkabının ağırlığını azaltmak",
+"C": "Zeminle ayakkabı arasındaki sürtünmeyi artırarak kaymayı önlemek",
+"D": "Ayakkabının kütlesini artırmak"
+},
+"answer": "C",
+"explanation": "Girintili taban sürtünmeyi artırır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_sen_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kütle ve ağırlık",
+"passage": "Dünya'da 1 kg kütleli bir cisme 10 N'luk çekim kuvveti etki eder. Ahmet, bir cismi dinamometreye asıyor; dinamometrenin gösterdiği değer şekilde verilmiştir.",
+"question": "Şekildeki dinamometreye göre asılan cismin kütlesi kaç kg'dır?",
+"shape": {
+"type": "dynamometer",
+"value": 20,
+"max_value": 50,
+"unit": "N",
+"step": 10,
+"show_names": false
+},
+"options": {
+"A": "1 kg",
+"B": "2 kg",
+"C": "3 kg",
+"D": "20 kg"
+},
+"answer": "B",
+"explanation": "Ağırlık 20 N; 1 kg için 10 N olduğundan kütle 20 ÷ 10 = 2 kg.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_dina_kutle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve ağırlık",
+"passage": "Bir uzay aracındaki cismin Dünya'daki ağırlığı dinamometreyle ölçülmüş ve şekildeki değer okunmuştur. Ay'daki yer çekimi kuvveti Dünya'dakinin yaklaşık 1/6'sı kadardır.",
+"question": "Bu cisim Ay'a götürülüp dinamometreyle ölçülürse dinamometre kaç N gösterir?",
+"shape": null,
+"options": {
+"A": "180 N",
+"B": "60 N",
+"C": "40 N",
+"D": "30 N"
+},
+"answer": "D",
+"explanation": "Ay'da ağırlık Dünya'dakinin 1/6'sıdır: 180 ÷ 6 = 30 N.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_dina_ay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dinamometre modeli",
+"passage": "Şekildeki dinamometre, asılan cisim nedeniyle yayında uzama gösteriyor. Bu dinamometrenin yayı her 10 N'luk kuvvet için 4 cm uzamaktadır.",
+"question": "Şekilde gösterilen kuvvet uygulandığında dinamometrenin yayı kaç cm uzar?",
+"shape": {
+"type": "dynamometer",
+"value": 30,
+"max_value": 60,
+"unit": "N",
+"step": 10,
+"show_names": false
+},
+"options": {
+"A": "8 cm",
+"B": "12 cm",
+"C": "16 cm",
+"D": "30 cm"
+},
+"answer": "B",
+"explanation": "30 ÷ 10 = 3 birim kuvvet; her biri 4 cm: 3 × 4 = 12 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_dina_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Bir kutu, yatay bir zeminde dinamometreyle sabit hızla çekiliyor. Dinamometrenin gösterdiği değer şekilde verilmiştir. Sabit hızla çekilen cisme etki eden sürtünme kuvveti, çekme kuvvetine eşittir.",
+"question": "Bu kutuya zeminin uyguladığı sürtünme kuvveti kaç N'dur?",
+"shape": {
+"type": "dynamometer",
+"value": 6,
+"max_value": 10,
+"unit": "N",
+"step": 1,
+"show_names": false
+},
+"options": {
+"A": "6 N",
+"B": "8 N",
+"C": "11 N",
+"D": "12 N"
+},
+"answer": "A",
+"explanation": "Sabit hızla çekilirken sürtünme kuvveti, dinamometrenin gösterdiği çekme kuvvetine eşittir: 6 N.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_dina_surtunme"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "I. Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.\nII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\nIII. Sürtünme kuvveti her zaman hareket yönündedir.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Ağırlık ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.",
+"B": "Ağırlığın birimi kilogram (kg)’dır.",
+"C": "Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır.",
+"D": "Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir."
+},
+"answer": "A",
+"explanation": "“Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nIII. Ağırlığın birimi kilogram (kg)’dır.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kuvvet cisimlerin neyini değiştirebilir?",
+"shape": null,
+"options": {
+"A": "Hızını, yönünü veya şeklini",
+"B": "Yalnızca kütlesini",
+"C": "Yalnızca rengini",
+"D": "Yalnızca türünü"
+},
+"answer": "A",
+"explanation": "Kuvvet, cisimlerin hızını, yönünü ve şeklini değiştirebilir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Aşağıdakilerden hangisi Kuvvetin Ölçülmesi ve Sürtünme ünitesine ait doğru bir bilgidir?",
+"shape": null,
+"options": {
+"A": "Yer çekimi kuvveti temas gerektirmeden etki eder.",
+"B": "Makine parçalarındaki sürtünme kumlayarak azaltılır.",
+"C": "Ellerimizi birbirine sürttüğümüzde ısınmamızın nedeni ışığın doğrusal yayılmasıdır.",
+"D": "Hareket hâlindeki bir cisme uygulanan kuvvet o cismin kütlesini artırır."
+},
+"answer": "A",
+"explanation": "“Yer çekimi kuvveti temas gerektirmeden etki eder.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Havaya atılan cisimlerin yere düşmesinin nedeni yer çekimi kuvvetidir.\nII. Kuvvetin birimi gram’dır.\nIII. Hamura uygulanan kuvvet hamurun kütlesini azaltır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Dinamometrenin çalışma ilkesi hangi parçaya dayanır?",
+"shape": null,
+"options": {
+"A": "Bir ampulün parlamasına",
+"B": "Esnek bir yayın uzamasına",
+"C": "Bir mıknatısın dönmesine",
+"D": "Bir suyun buharlaşmasına"
+},
+"answer": "B",
+"explanation": "Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Kütlenin birimi kilogramdır.\nII. Basit bir dinamometre modeli bir ampul ve pil ile yapılabilir.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Havaya atılan bir taş yere geri düşer. Bunun nedeni nedir?",
+"shape": null,
+"options": {
+"A": "Rüzgâr kuvveti",
+"B": "Yer çekimi kuvveti",
+"C": "Mıknatıs kuvveti",
+"D": "Sürtünme kuvveti"
+},
+"answer": "B",
+"explanation": "Havaya atılan cisimlerin yere düşmesinin nedeni yer çekimi kuvvetidir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Havaya atılan cisimlerin yere düşmesinin nedeni mıknatıs kuvvetidir.\nII. Dinamometre ile ölçülen kuvvetin birimi newton’dur.\nIII. Ağırlığın birimi litre’dir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Aşağıdakilerden hangisinde sürtünme kuvveti en fazladır?",
+"shape": null,
+"options": {
+"A": "Buz üzerinde",
+"B": "Pürüzlü yüzeyde",
+"C": "Cilalı pürüzsüz camda",
+"D": "Yağlanmış zeminde"
+},
+"answer": "B",
+"explanation": "Pürüzlü yüzeylerde sürtünme kuvveti, pürüzsüz yüzeylere göre daha fazladır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlık bir kuvvet olduğu için birimi newton’dur.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismin kütlesini artırır.\nIII. Makine parçalarındaki sürtünme yağlayarak azaltılır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde dört farklı durumda cisimlere kuvvet uygulanmaktadır.\nBuna göre hangi harfle gösterilen durumda uygulanan kuvvet hareketli cismi yavaşlatıp durdurmuştur?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "kutu_it",
+"label": "M"
+},
+{
+"kind": "hamur",
+"label": "T"
+},
+{
+"kind": "yon",
+"label": "R"
+},
+{
+"kind": "fren",
+"label": "L"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "T",
+"C": "R",
+"D": "M"
+},
+"answer": "A",
+"explanation": "L ile gösterilen durumda kuvvet hareketli cismi yavaşlatıp durdurmuştur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde cisimlere kuvvet uygulanan 6 durum gösterilmiştir.\nBu bilgilere göre kaç tanesinde uygulanan kuvvet durgun cismi hareket ettirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yon",
+"label": "T"
+},
+{
+"kind": "fren",
+"label": "N"
+},
+{
+"kind": "yay_sik",
+"label": "M"
+},
+{
+"kind": "hamur",
+"label": "P"
+},
+{
+"kind": "kutu_it",
+"label": "S"
+},
+{
+"kind": "top_vur",
+"label": "R"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "4"
+},
+"answer": "C",
+"explanation": "Şekilde 2 durumda kuvvet durgun cismi hareket ettirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde cisimlere kuvvet uygulanan dört durum gösterilmiştir.\nBu bilgilere göre hangi iki durumda uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "hamur",
+"label": "S"
+},
+{
+"kind": "yay_sik",
+"label": "L"
+},
+{
+"kind": "fren",
+"label": "T"
+},
+{
+"kind": "top_vur",
+"label": "P"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "L ve P",
+"B": "L ve S",
+"C": "P ve S",
+"D": "P ve T"
+},
+"answer": "B",
+"explanation": "Bu etkiyi gösteren durumlar L ve S ile gösterilenlerdir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde aynı kutu, farklı yüzeylerde dinamometreyle sabit hızla çekilmektedir. Dinamometrenin gösterdiği değerler şekilde verilmiştir.\nBuna göre hangi yüzeyde sürtünme kuvveti en fazla olur?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "parke",
+"value": 4,
+"label": "R",
+"max": 10
+},
+{
+"surface": "buz",
+"value": 2,
+"label": "S",
+"max": 10
+},
+{
+"surface": "halı",
+"value": 6,
+"label": "K",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "R",
+"B": "S",
+"C": "K",
+"D": "Hepsinde sürtünme kuvveti eşittir"
+},
+"answer": "C",
+"explanation": "Sabit hızla çekilirken dinamometre değeri sürtünme kuvvetine eşittir; en fazla değer K yüzeyindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilirken dinamometrenin gösterdiği değerler verilmiştir. Yüzeyler: R düzeneğinde buz, T düzeneğinde halı, L düzeneğinde parke zemin.\nBuna göre hangi düzenekteki yüzey en pürüzsüztür?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "buz",
+"value": 1,
+"label": "R",
+"max": 10
+},
+{
+"surface": "halı",
+"value": 5,
+"label": "T",
+"max": 10
+},
+{
+"surface": "parke",
+"value": 3,
+"label": "L",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "L",
+"C": "R",
+"D": "Hepsi aynı derecede pürüzlüdür"
+},
+"answer": "C",
+"explanation": "Sürtünme kuvveti yüzey pürüzlendikçe artar; en pürüzsüz yüzey R düzeneğindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilmektedir. Sabit hızla çekilirken dinamometrenin gösterdiği değer sürtünme kuvvetine eşittir.\nBuna göre K düzeneğindeki sürtünme kuvveti kaç N'dur?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "parke",
+"value": 4,
+"label": "K",
+"max": 10
+},
+{
+"surface": "halı",
+"value": 6,
+"label": "M",
+"max": 10
+},
+{
+"surface": "buz",
+"value": 1,
+"label": "T",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "6",
+"D": "10"
+},
+"answer": "B",
+"explanation": "K düzeneğinde dinamometre 4 N gösterir; sürtünme kuvveti 4 N'dur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_oku"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Dünya'da 1 kg kütleli bir cisme 10 N'luk çekim kuvveti etki eder. Şekilde dört dinamometreye kütleleri yazılı cisimler asılmıştır; dinamometrelerden biri yanlış değer göstermektedir.\nVerilenlere göre hangi harfle gösterilen dinamometre yanlış değer göstermektedir?",
+"shape": {
+"type": "kuv",
+"sub_type": "dina",
+"panels": [
+{
+"value": 20,
+"mass": "2 kg",
+"label": "N",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 30,
+"mass": "5 kg",
+"label": "T",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 30,
+"mass": "3 kg",
+"label": "P",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 40,
+"mass": "4 kg",
+"label": "K",
+"max": 50,
+"step": 10,
+"show": true
+}
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "P",
+"C": "K",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Kütle × 10 = ağırlık olmalıdır; T dinamometresinde 5 kg için 50 N okunması gerekirken 30 N okunmuştur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_dina_hatali"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde dört dinamometreye kütleleri yazılı cisimler asılmış ve dinamometrelerin gösterdiği değerler okunmuştur.\nBuna göre ağırlığı en küçük olan cisim hangi harfle gösterilen dinamometreye asılmıştır?",
+"shape": {
+"type": "kuv",
+"sub_type": "dina",
+"panels": [
+{
+"value": 30,
+"mass": "3 kg",
+"label": "M",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 40,
+"mass": "4 kg",
+"label": "T",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 10,
+"mass": "1 kg",
+"label": "S",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 20,
+"mass": "2 kg",
+"label": "P",
+"max": 50,
+"step": 10,
+"show": true
+}
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "S",
+"C": "M",
+"D": "P"
+},
+"answer": "B",
+"explanation": "Ağırlık kütle ile doğru orantılıdır; en küçük kütle S ile gösterilendedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_dina_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılmış ve yayın boyu ölçülmüştür. N düzeneğinde yayın boyu ? ile gösterilmiştir.\nBu bilgilere göre ? yerine kaç cm yazılmalıdır?",
+"shape": {
+"type": "kuv",
+"sub_type": "yay",
+"panels": [
+{
+"n": 0,
+"len": 8,
+"label": "T",
+"show": true
+},
+{
+"n": 1,
+"len": 12,
+"label": "L",
+"show": true
+},
+{
+"n": 2,
+"len": 16,
+"label": "R",
+"show": true
+},
+{
+"n": 5,
+"len": 28,
+"label": "N",
+"show": false
+}
+],
+"unit": 0.32,
+"show_names": false
+},
+"options": {
+"A": "20 cm",
+"B": "28 cm",
+"C": "29 cm",
+"D": "31 cm"
+},
+"answer": "B",
+"explanation": "Her 100 g'lık cisim yayı 4 cm uzatır: 8 + 5 × 4 = 28 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yay_boy"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılarak ilk üç düzenekteki yay boyları ölçülmüştür. S düzeneğinde yayın boyu 20 cm olmuştur.\nBuna göre S düzeneğinde yaya kaç tane 100 g'lık cisim asılmıştır?",
+"shape": {
+"type": "kuv",
+"sub_type": "yay",
+"panels": [
+{
+"n": 0,
+"len": 12,
+"label": "R",
+"show": true
+},
+{
+"n": 1,
+"len": 14,
+"label": "T",
+"show": true
+},
+{
+"n": 2,
+"len": 16,
+"label": "P",
+"show": true
+},
+{
+"n": 0,
+"len": 20,
+"label": "S",
+"show": true,
+"hidden": true
+}
+],
+"unit": 0.32,
+"show_names": false
+},
+"options": {
+"A": "1",
+"B": "2",
+"C": "4",
+"D": "6"
+},
+"answer": "C",
+"explanation": "Her cisim yayı 2 cm uzatır: (20 − 12) ÷ 2 = 4.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 5,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yay_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve ağırlık",
+"passage": "",
+"question": "Dünya'da 1 kg'lık kütleye 10 N'luk çekim kuvveti etki eder; Ay'da bu kuvvet Dünya'dakinin 1/6'sı kadardır.\nKütlesi 60 kg olan bir cismin ağırlığı Dünya'da ve Ay'da dinamometreyle ayrı ayrı ölçülmüştür. Okunan değerler hangi seçenekte doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Dünya'da 600 N, Ay'da 100 N",
+"B": "Dünya'da 100 N, Ay'da 600 N",
+"C": "Dünya'da 600 N, Ay'da 60 N",
+"D": "Dünya'da 600 N, Ay'da 600 N"
+},
+"answer": "A",
+"explanation": "Dünya'da 60×10 = 600 N; Ay'da 600 ÷ 6 = 100 N. (Kütle her yerde aynıdır.)",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_weight"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "",
+"question": "Bir yaya 2 N'luk bir cisim asıldığında yay 6 cm uzamaktadır.\nAynı yaya 4 N'luk bir cisim asılırsa yay kaç cm uzar? (Yay esnekliğini yitirmemektedir.)",
+"shape": null,
+"options": {
+"A": "7 cm",
+"B": "8 cm",
+"C": "12 cm",
+"D": "15 cm"
+},
+"answer": "C",
+"explanation": "2 N için 6 cm uzuyorsa 1 N için 3 cm; 4 N için 4×3 = 12 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_spring"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Aynı tuğla farklı yüzeylerde dinamometreyle yatay doğrultuda sabit hızla çekiliyor. Sabit hızla çekilirken dinamometrenin gösterdiği değer, tuğlaya etki eden sürtünme kuvvetine eşittir.",
+"question": "Tabloya göre sürtünme kuvvetinin en fazla ve en az olduğu iki yüzeyin sürtünme kuvvetleri farkı kaç N'dur?",
+"shape": {
+"type": "table",
+"title": "Sabit hızla çekme kuvveti",
+"headers": [
+"Yüzey",
+"Dinamometre (N)"
+],
+"rows": [
+[
+"zımpara",
+"14"
+],
+[
+"çim",
+"11"
+],
+[
+"cam",
+"2"
+],
+[
+"halı",
+"9"
+]
+]
+},
+"options": {
+"A": "14 N",
+"B": "10 N",
+"C": "16 N",
+"D": "12 N"
+},
+"answer": "D",
+"explanation": "En büyük 14 N (zımpara), en küçük 2 N (cam): 14 − 2 = 12 N.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_fric"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Ece, aynı yaya farklı kütleler asarak yayın uzamasını ölçüyor. Yay, bu kütlelerde esnekliğini yitirmemiştir. Ölçüm sonuçları tabloda verilmiştir.",
+"question": "Tabloya bakıldığında aşağıdaki çıkarımlardan hangisi yapılabilir?",
+"shape": {
+"type": "table",
+"title": "Yaya asılan kütle ve yayın uzaması",
+"headers": [
+"Asılan kütle (g)",
+"Yayın uzaması (cm)"
+],
+"rows": [
+[
+"50",
+"3"
+],
+[
+"100",
+"6"
+],
+[
+"150",
+"9"
+],
+[
+"200",
+"12"
+]
+]
+},
+"options": {
+"A": "Yayın uzaması asılan kütleden bağımsızdır.",
+"B": "Yaya asılan kütle arttıkça yayın uzaması artar.",
+"C": "Yaya asılan kütle arttıkça yayın uzaması azalır.",
+"D": "Yaya asılan kütle iki katına çıkınca yayın uzaması yarıya iner."
+},
+"answer": "B",
+"explanation": "Kütle 50 g’dan 200 g’a çıktıkça uzama 3 cm’den 12 cm’ye çıkmıştır; kütle arttıkça uzama artar.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Eylül, aynı oyuncak arabayı aynı rampadan her denemede aynı yükseklikten bırakıyor ve araba rampadan indikten sonra durana kadar aldığı yolu ölçüyor. Denemeler farklı yüzeylerde yapılmıştır.",
+"question": "Tabloya bakıldığında arabaya etki eden sürtünme kuvveti hangi yüzeyde diğer üç yüzeydekinden daha küçüktür?",
+"shape": {
+"type": "table",
+"title": "Arabanın durana kadar aldığı yol",
+"headers": [
+"Yüzey",
+"Durma yolu (cm)"
+],
+"rows": [
+[
+"sırlı fayans",
+"8"
+],
+[
+"ahşap parke",
+"9"
+],
+[
+"zımpara",
+"30"
+],
+[
+"halı",
+"19"
+]
+]
+},
+"options": {
+"A": "zımpara",
+"B": "sırlı fayans",
+"C": "halı",
+"D": "ahşap parke"
+},
+"answer": "A",
+"explanation": "Araba aynı hızla geldiğinden daha kısa yolda duran yüzeyde sürtünme daha büyüktür. En kısa yol 8 cm, en uzun yol 30 cm’dir; en küçük sürtünme zımpara yüzeyindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn_stop"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "Kuvvetin birimi ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.",
+"B": "Kuvvetin birimi kilogram (kg)’dır.",
+"C": "Kuvvetin birimi newton (N)’dur.",
+"D": "Yer çekimi kuvveti cisimleri yukarı doğru iter."
+},
+"answer": "C",
+"explanation": "“Kuvvetin birimi newton (N)’dur.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.",
+"question": "Bu deneyde değiştirilen (bağımsız) değişken aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Yayın uzaması",
+"headers": [
+"Asılan cisim sayısı",
+"Yayın boyundaki uzama (cm)"
+],
+"rows": [
+[
+"1 cisim",
+"2"
+],
+[
+"2 cisim",
+"4"
+],
+[
+"3 cisim",
+"6"
+],
+[
+"4 cisim",
+"8"
+]
+]
+},
+"options": {
+"A": "Asılan cisimlerin özdeş olması",
+"B": "Odadaki ışığın rengi",
+"C": "Yaya asılan cisimlerin adedi",
+"D": "Yayın boyundaki uzama miktarı"
+},
+"answer": "C",
+"explanation": "Deneyde her seferinde değiştirilen şey: yaya asılan cisimlerin adedi.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.",
+"question": "Tabloya göre ahşap ile halı için ölçülen değerler arasındaki fark kaç cm'dir?",
+"shape": {
+"type": "table",
+"title": "Arabanın aldığı yol",
+"headers": [
+"Zemin",
+"Arabanın yaptığı yol (cm)"
+],
+"rows": [
+[
+"cam",
+"13"
+],
+[
+"ahşap",
+"41"
+],
+[
+"halı",
+"46"
+],
+[
+"kum",
+"6"
+],
+[
+"zımpara",
+"40"
+]
+]
+},
+"options": {
+"A": "3 cm",
+"B": "5 cm",
+"C": "6 cm",
+"D": "10 cm"
+},
+"answer": "B",
+"explanation": "46 − 41 = 5 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yuzey"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Bir cisme dışarıdan kuvvet uygulanınca cismin durumu değişiyor.",
+"question": "Aşağıdakilerden hangisi kuvvetin cisimler üzerindeki etkilerinden biri değildir?",
+"shape": null,
+"options": {
+"A": "Hareketli cismin yönünü değiştirmek",
+"B": "Duran cismi harekete geçirmek",
+"C": "Cismin şeklini değiştirmek",
+"D": "Cismin kütlesini değiştirmek"
+},
+"answer": "D",
+"explanation": "Kuvvet hareket durumunu ve şekli değiştirir; kütleyi değiştirmez.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_sen_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kütle ve ağırlık",
+"passage": "Dünya'da 1 kg kütleli bir cisme 10 N'luk çekim kuvveti etki eder. Ahmet, bir cismi dinamometreye asıyor; dinamometrenin gösterdiği değer şekilde verilmiştir.",
+"question": "Verilen şekildeki dinamometreye göre asılan cismin kütlesi kaç kg'dır?",
+"shape": {
+"type": "dynamometer",
+"value": 70,
+"max_value": 100,
+"unit": "N",
+"step": 10,
+"show_names": false
+},
+"options": {
+"A": "7 kg",
+"B": "8 kg",
+"C": "6 kg",
+"D": "70 kg"
+},
+"answer": "A",
+"explanation": "Ağırlık 70 N; 1 kg için 10 N olduğundan kütle 70 ÷ 10 = 7 kg.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_dina_kutle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dinamometre modeli",
+"passage": "Şekildeki dinamometre, asılan cisim nedeniyle yayında uzama gösteriyor. Bu dinamometrenin yayı her 10 N'luk kuvvet için 4 cm uzamaktadır.",
+"question": "Verilen şekilde gösterilen kuvvet uygulandığında dinamometrenin yayı kaç cm uzar?",
+"shape": {
+"type": "dynamometer",
+"value": 20,
+"max_value": 60,
+"unit": "N",
+"step": 10,
+"show_names": false
+},
+"options": {
+"A": "4 cm",
+"B": "8 cm",
+"C": "12 cm",
+"D": "20 cm"
+},
+"answer": "B",
+"explanation": "20 ÷ 10 = 2 birim kuvvet; her biri 4 cm: 2 × 4 = 8 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_dina_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "I. Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.\nII. Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kütle ve konum ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Bir cismin ağırlığı Dünya’da ve Ay’da aynıdır.",
+"B": "Bir cismin kütlesi Dünya’da ve Ay’da aynıdır.",
+"C": "Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır.",
+"D": "Ağırlığın birimi kilogram (kg)’dır."
+},
+"answer": "B",
+"explanation": "“Bir cismin kütlesi Dünya’da ve Ay’da aynıdır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Bir cismin kütlesi Dünya’da ve Ay’da aynıdır.\nII. Bir cismin ağırlığı Dünya’da ve Ay’da aynıdır.\nIII. Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Aşağıdakilerden hangisi temas gerektirmeden etki eden bir kuvvettir?",
+"shape": null,
+"options": {
+"A": "Çekme kuvveti",
+"B": "Sürtünme kuvveti",
+"C": "İtme kuvveti",
+"D": "Yer çekimi kuvveti"
+},
+"answer": "D",
+"explanation": "Yer çekimi kuvveti temas gerektirmeden etki eder.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kuvvetin Ölçülmesi ve Sürtünme ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.",
+"B": "Pürüzsüz yüzeylerde sürtünme kuvveti, pürüzlü yüzeylere göre daha fazladır.",
+"C": "Kuvvetin birimi newton’dur.",
+"D": "Sürtünme kuvveti harekete aynı yönde etki eder."
+},
+"answer": "C",
+"explanation": "“Kuvvetin birimi newton’dur.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Kuvvet dinamometre ile ölçülür.\nII. Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.\nIII. Ellerimizi birbirine sürttüğümüzde ısınmamızın nedeni ışığın doğrusal yayılmasıdır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Dinamometreye uygulanan kuvvet arttıkça yayın uzaması nasıl değişir?",
+"shape": null,
+"options": {
+"A": "Önce azalır sonra değişmez",
+"B": "Değişmez",
+"C": "Azalır",
+"D": "Artar"
+},
+"answer": "D",
+"explanation": "Dinamometreye uygulanan kuvvet arttıkça yayın uzaması artar.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ölçümden önce dinamometrenin yayı sonuna kadar gerilmelidir.\nII. Dinamometre ile ölçülen kuvvetin birimi litredir.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Bir cismin Ay’daki ağırlığı Dünya’dakine göre nasıldır?",
+"shape": null,
+"options": {
+"A": "Sıfırdır",
+"B": "Aynıdır",
+"C": "Daha azdır",
+"D": "Daha fazladır"
+},
+"answer": "C",
+"explanation": "Bir cismin Ay’daki ağırlığı Dünya’dakinden daha azdır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Sürtünme sayesinde lastik tekerlekler yolda kaymadan ilerler.\nII. Bir cismin Ay’daki ağırlığı Dünya’dakinden daha fazladır.\nIII. Basit bir dinamometre modeli bir ampul ve pil ile yapılabilir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Sürtünme kuvveti hareket yönüne göre nasıl etki eder?",
+"shape": null,
+"options": {
+"A": "Hareket yönüne dik yukarı",
+"B": "Harekete zıt yönde",
+"C": "Hiçbir yöne",
+"D": "Hareketle aynı yönde"
+},
+"answer": "B",
+"explanation": "Sürtünme kuvveti harekete zıt yönde etki eder.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Sürtünme kuvveti harekete zıt yönde etki eder.\nII. Sürtünme kuvveti, temas eden yüzeylerin hareketini kolaylaştıran ve hızlandıran kuvvettir.\nIII. Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde dört farklı durumda cisimlere kuvvet uygulanmaktadır.\nVerilenlere göre hangi harfle gösterilen durumda uygulanan kuvvet durgun cismi hareket ettirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yon",
+"label": "L"
+},
+{
+"kind": "hamur",
+"label": "N"
+},
+{
+"kind": "kutu_it",
+"label": "T"
+},
+{
+"kind": "fren",
+"label": "P"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "N",
+"B": "P",
+"C": "T",
+"D": "L"
+},
+"answer": "C",
+"explanation": "T ile gösterilen durumda kuvvet durgun cismi hareket ettirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde cisimlere kuvvet uygulanan 5 durum gösterilmiştir.\nBuna göre kaç tanesinde uygulanan kuvvet durgun cismi hareket ettirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "fren",
+"label": "L"
+},
+{
+"kind": "top_vur",
+"label": "K"
+},
+{
+"kind": "yay_sik",
+"label": "M"
+},
+{
+"kind": "yay_uz",
+"label": "P"
+},
+{
+"kind": "hamur",
+"label": "T"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "B",
+"explanation": "Şekilde 1 durumda kuvvet durgun cismi hareket ettirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde cisimlere kuvvet uygulanan dört durum gösterilmiştir.\nBuna göre hangi iki durumda uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yon",
+"label": "N"
+},
+{
+"kind": "yay_uz",
+"label": "S"
+},
+{
+"kind": "hamur",
+"label": "L"
+},
+{
+"kind": "kutu_it",
+"label": "T"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "N ve T",
+"B": "S ve T",
+"C": "L ve S",
+"D": "L ve N"
+},
+"answer": "C",
+"explanation": "Bu etkiyi gösteren durumlar L ve S ile gösterilenlerdir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde aynı kutu, farklı yüzeylerde dinamometreyle sabit hızla çekilmektedir. Dinamometrenin gösterdiği değerler şekilde verilmiştir.\nBuna göre hangi yüzeyde sürtünme kuvveti en fazla olur?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "zımpara",
+"value": 7,
+"label": "P",
+"max": 10
+},
+{
+"surface": "parke",
+"value": 3,
+"label": "S",
+"max": 10
+},
+{
+"surface": "halı",
+"value": 5,
+"label": "M",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Hepsinde sürtünme kuvveti eşittir",
+"B": "M",
+"C": "P",
+"D": "S"
+},
+"answer": "C",
+"explanation": "Sabit hızla çekilirken dinamometre değeri sürtünme kuvvetine eşittir; en fazla değer P yüzeyindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilirken dinamometrenin gösterdiği değerler verilmiştir. Yüzeyler: N düzeneğinde halı, S düzeneğinde zımpara, M düzeneğinde buz.\nVerilenlere göre hangi düzenekteki yüzey en pürüzsüztür?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "halı",
+"value": 5,
+"label": "N",
+"max": 10
+},
+{
+"surface": "zımpara",
+"value": 7,
+"label": "S",
+"max": 10
+},
+{
+"surface": "buz",
+"value": 1,
+"label": "M",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "N",
+"C": "M",
+"D": "Hepsi aynı derecede pürüzlüdür"
+},
+"answer": "C",
+"explanation": "Sürtünme kuvveti yüzey pürüzlendikçe artar; en pürüzsüz yüzey M düzeneğindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilmektedir. Sabit hızla çekilirken dinamometrenin gösterdiği değer sürtünme kuvvetine eşittir.\nBuna göre L düzeneğindeki sürtünme kuvveti kaç N'dur?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "buz",
+"value": 1,
+"label": "K",
+"max": 10
+},
+{
+"surface": "zımpara",
+"value": 8,
+"label": "T",
+"max": 10
+},
+{
+"surface": "halı",
+"value": 6,
+"label": "L",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "6",
+"C": "8",
+"D": "10"
+},
+"answer": "B",
+"explanation": "L düzeneğinde dinamometre 6 N gösterir; sürtünme kuvveti 6 N'dur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_oku"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde dört dinamometreye kütleleri yazılı cisimler asılmış ve dinamometrelerin gösterdiği değerler okunmuştur.\nBuna göre ağırlığı en küçük olan cisim hangi harfle gösterilen dinamometreye asılmıştır?",
+"shape": {
+"type": "kuv",
+"sub_type": "dina",
+"panels": [
+{
+"value": 10,
+"mass": "1 kg",
+"label": "T",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 30,
+"mass": "3 kg",
+"label": "L",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 50,
+"mass": "5 kg",
+"label": "S",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 40,
+"mass": "4 kg",
+"label": "N",
+"max": 50,
+"step": 10,
+"show": true
+}
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "S",
+"C": "L",
+"D": "N"
+},
+"answer": "A",
+"explanation": "Ağırlık kütle ile doğru orantılıdır; en küçük kütle T ile gösterilendedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_dina_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılmış ve yayın boyu ölçülmüştür. T düzeneğinde yayın boyu ? ile gösterilmiştir.\nBuna göre ? yerine kaç cm yazılmalıdır?",
+"shape": {
+"type": "kuv",
+"sub_type": "yay",
+"panels": [
+{
+"n": 0,
+"len": 8,
+"label": "M",
+"show": true
+},
+{
+"n": 1,
+"len": 10,
+"label": "K",
+"show": true
+},
+{
+"n": 2,
+"len": 12,
+"label": "R",
+"show": true
+},
+{
+"n": 4,
+"len": 16,
+"label": "T",
+"show": false
+}
+],
+"unit": 0.32,
+"show_names": false
+},
+"options": {
+"A": "11 cm",
+"B": "13 cm",
+"C": "16 cm",
+"D": "21 cm"
+},
+"answer": "C",
+"explanation": "Her 100 g'lık cisim yayı 2 cm uzatır: 8 + 4 × 2 = 16 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yay_boy"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılarak ilk üç düzenekteki yay boyları ölçülmüştür. N düzeneğinde yayın boyu 18 cm olmuştur.\nBuna göre N düzeneğinde yaya kaç tane 100 g'lık cisim asılmıştır?",
+"shape": {
+"type": "kuv",
+"sub_type": "yay",
+"panels": [
+{
+"n": 0,
+"len": 12,
+"label": "K",
+"show": true
+},
+{
+"n": 1,
+"len": 15,
+"label": "L",
+"show": true
+},
+{
+"n": 2,
+"len": 18,
+"label": "T",
+"show": true
+},
+{
+"n": 0,
+"len": 18,
+"label": "N",
+"show": true,
+"hidden": true
+}
+],
+"unit": 0.32,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "3",
+"C": "5",
+"D": "8"
+},
+"answer": "A",
+"explanation": "Her cisim yayı 3 cm uzatır: (18 − 12) ÷ 3 = 2.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 5,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yay_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve ağırlık",
+"passage": "",
+"question": "Bir astronot, kütlesi 24 kg olan bir çantayı hem Dünya'da hem Ay'da dinamometreyle tartıyor. Dünya 1 kg'lık kütleye 10 N'luk çekim kuvveti uygular; Ay'daki çekim kuvveti Dünya'dakinin 1/6'sı kadardır.\nÇantanın ağırlığı için okunan değerler hangi seçenekte doğru verilmiştir?",
+"shape": null,
+"options": {
+"A": "Dünya'da 24 N, Ay'da 4 N",
+"B": "Dünya'da 240 N, Ay'da 240 N",
+"C": "Dünya'da 240 N, Ay'da 24 N",
+"D": "Dünya'da 240 N, Ay'da 40 N"
+},
+"answer": "D",
+"explanation": "Dünya'da 24×10 = 240 N; Ay'da 240 ÷ 6 = 40 N. (Kütle her yerde aynıdır.)",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_weight"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Aynı tuğla farklı yüzeylerde dinamometreyle yatay doğrultuda sabit hızla çekiliyor. Sabit hızla çekilirken dinamometrenin gösterdiği değer, tuğlaya etki eden sürtünme kuvvetine eşittir.",
+"question": "Tablodaki ölçümlere göre en büyük ve en küçük sürtünme kuvvetleri arasındaki fark kaç N'dur?",
+"shape": {
+"type": "table",
+"title": "Sabit hızla çekme kuvveti",
+"headers": [
+"Yüzey",
+"Dinamometre (N)"
+],
+"rows": [
+[
+"cam",
+"2"
+],
+[
+"ahşap parke",
+"5"
+],
+[
+"sırlı fayans",
+"3"
+],
+[
+"halı",
+"9"
+]
+]
+},
+"options": {
+"A": "5 N",
+"B": "7 N",
+"C": "11 N",
+"D": "9 N"
+},
+"answer": "B",
+"explanation": "En büyük 9 N (halı), en küçük 2 N (cam): 9 − 2 = 7 N.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_fric"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Ece, aynı yaya farklı kütleler asarak yayın uzamasını ölçüyor. Yay, bu kütlelerde esnekliğini yitirmemiştir. Ölçüm sonuçları tabloda verilmiştir.",
+"question": "Verilen tabloya göre aşağıdaki çıkarımlardan hangisi yapılabilir?",
+"shape": {
+"type": "table",
+"title": "Yaya asılan kütle ve yayın uzaması",
+"headers": [
+"Asılan kütle (g)",
+"Yayın uzaması (cm)"
+],
+"rows": [
+[
+"50",
+"3"
+],
+[
+"100",
+"6"
+],
+[
+"150",
+"9"
+],
+[
+"200",
+"12"
+]
+]
+},
+"options": {
+"A": "Yaya asılan kütle arttıkça yayın uzaması artar.",
+"B": "Yaya asılan kütle iki katına çıkınca yayın uzaması yarıya iner.",
+"C": "Yayın uzaması asılan kütleden bağımsızdır.",
+"D": "Yaya asılan kütle arttıkça yayın uzaması azalır."
+},
+"answer": "A",
+"explanation": "Kütle 50 g’dan 200 g’a çıktıkça uzama 3 cm’den 12 cm’ye çıkmıştır; kütle arttıkça uzama artar.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Eylül, aynı oyuncak arabayı aynı rampadan her denemede aynı yükseklikten bırakıyor ve araba rampadan indikten sonra durana kadar aldığı yolu ölçüyor. Denemeler farklı yüzeylerde yapılmıştır.",
+"question": "Verilen tabloya göre arabaya etki eden sürtünme kuvveti hangi yüzeyde diğer üç yüzeydekinden daha büyüktür?",
+"shape": {
+"type": "table",
+"title": "Arabanın durana kadar aldığı yol",
+"headers": [
+"Yüzey",
+"Durma yolu (cm)"
+],
+"rows": [
+[
+"cam",
+"7"
+],
+[
+"ahşap parke",
+"10"
+],
+[
+"zımpara",
+"31"
+],
+[
+"kum",
+"26"
+]
+]
+},
+"options": {
+"A": "kum",
+"B": "zımpara",
+"C": "ahşap parke",
+"D": "cam"
+},
+"answer": "D",
+"explanation": "Araba aynı hızla geldiğinden daha kısa yolda duran yüzeyde sürtünme daha büyüktür. En kısa yol 7 cm, en uzun yol 31 cm’dir; en büyük sürtünme cam yüzeyindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn_stop"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "Dinamometredeki yay ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Yer çekimi kuvveti cisimleri yukarı doğru iter.",
+"B": "Sürtünme kuvveti her zaman hareket yönündedir.",
+"C": "Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.",
+"D": "Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar."
+},
+"answer": "D",
+"explanation": "“Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.",
+"question": "Deney aynı koşullarda sürdürülürse 5 cisim için ölçülecek sonuç kaç cm olur?",
+"shape": {
+"type": "table",
+"title": "Yayın uzaması",
+"headers": [
+"Asılan cisim sayısı",
+"Yayın boyundaki uzama (cm)"
+],
+"rows": [
+[
+"1 cisim",
+"3"
+],
+[
+"2 cisim",
+"6"
+],
+[
+"3 cisim",
+"9"
+],
+[
+"4 cisim",
+"12"
+]
+]
+},
+"options": {
+"A": "14 cm",
+"B": "15 cm",
+"C": "17 cm",
+"D": "18 cm"
+},
+"answer": "B",
+"explanation": "Her adımda değişim 3 cm; sıradaki değer 12 + 3 = 15 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.",
+"question": "Tabloya göre kum ile halı için ölçülen değerler arasındaki fark kaç cm'dir?",
+"shape": {
+"type": "table",
+"title": "Arabanın aldığı yol",
+"headers": [
+"Zemin",
+"Arabanın yaptığı yol (cm)"
+],
+"rows": [
+[
+"cam",
+"25"
+],
+[
+"ahşap",
+"34"
+],
+[
+"halı",
+"22"
+],
+[
+"kum",
+"5"
+],
+[
+"zımpara",
+"51"
+]
+]
+},
+"options": {
+"A": "15 cm",
+"B": "17 cm",
+"C": "18 cm",
+"D": "22 cm"
+},
+"answer": "B",
+"explanation": "22 − 5 = 17 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yuzey"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Kayakçıların kayaklarının alt yüzeyi pürüzsüz ve kaygan yapılır.",
+"question": "Bunun amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Sürtünme kuvvetini artırmak",
+"B": "Kayak ile kar arasındaki sürtünme kuvvetini azaltmak",
+"C": "Kayakçının kütlesini artırmak",
+"D": "Kayakçıyı yavaşlatmak"
+},
+"answer": "B",
+"explanation": "Pürüzsüz yüzey sürtünmeyi azaltır, kayma kolaylaşır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_sen_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Dinamometre modeli",
+"passage": "Şekildeki dinamometre, asılan cisim nedeniyle yayında uzama gösteriyor. Bu dinamometrenin yayı her 10 N'luk kuvvet için 5 cm uzamaktadır.",
+"question": "Yandaki şekilde gösterilen kuvvet uygulandığında dinamometrenin yayı kaç cm uzar?",
+"shape": {
+"type": "dynamometer",
+"value": 50,
+"max_value": 60,
+"unit": "N",
+"step": 10,
+"show_names": false
+},
+"options": {
+"A": "20 cm",
+"B": "25 cm",
+"C": "30 cm",
+"D": "50 cm"
+},
+"answer": "B",
+"explanation": "50 ÷ 10 = 5 birim kuvvet; her biri 5 cm: 5 × 5 = 25 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_dina_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "I. Kuvvet dinamometre ile ölçülür.\nII. Kuvvetin birimi kilogram (kg)’dır.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça daha fazla uzar.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Ağırlığın birimi ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ağırlığın birimi newton (N)’dur.",
+"B": "Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.",
+"C": "Bir cismin ağırlığı Dünya’da ve Ay’da aynıdır.",
+"D": "Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır."
+},
+"answer": "A",
+"explanation": "“Ağırlığın birimi newton (N)’dur.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Kütle, bir cismin içerdiği madde miktarıdır.\nIII. Ağırlığın birimi kilogram (kg)’dır.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kuvvetin birimi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Newton",
+"B": "Metre",
+"C": "Litre",
+"D": "Gram"
+},
+"answer": "A",
+"explanation": "Kuvvetin birimi newton’dur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kuvvetin Ölçülmesi ve Sürtünme ünitesiyle ilgili aşağıdaki bilgilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Hamura uygulanan kuvvet hamurun şeklini değiştirir.",
+"B": "Kuvvet termometre ile ölçülür.",
+"C": "Dinamometreye uygulanan kuvvet arttıkça yayın uzaması azalır.",
+"D": "Dinamometrenin ölçeği cismin kütlesini değiştirir."
+},
+"answer": "A",
+"explanation": "“Hamura uygulanan kuvvet hamurun şeklini değiştirir.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Sürtünme kuvveti, temas eden yüzeylerin hareketini kolaylaştıran ve hızlandıran kuvvettir.\nII. Ağırlık, bir cisme etki eden yer çekimi kuvvetidir.\nIII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismin kütlesini artırır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Dinamometrenin üzerindeki bölmeli ölçek ne işe yarar?",
+"shape": null,
+"options": {
+"A": "Cismin kütlesini değiştirir",
+"B": "Yayı ısıtır",
+"C": "Cismin rengini belirler",
+"D": "Kuvvetin büyüklüğünü okumayı sağlar"
+},
+"answer": "D",
+"explanation": "Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Kütle bir kuvvettir; ağırlık ise madde miktarının ölçüsüdür.\nII. Dinamometre ile ölçüm yapılırken kuvvet yayın doğrultusunda uygulanmalıdır.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Yer çekimi kuvvetinin yönü nasıldır?",
+"shape": null,
+"options": {
+"A": "Cisimleri yukarı doğru iter",
+"B": "Cisimleri yana doğru iter",
+"C": "Yalnızca suyu çeker",
+"D": "Cisimleri Dünya’nın merkezine doğru çeker"
+},
+"answer": "D",
+"explanation": "Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Yer çekimi kuvveti cisimleri Dünya’dan uzaklaştırır.\nII. Kuvvet dinamometre ile ölçülür.\nIII. Sürtünme sayesinde lastik tekerlekler yolda kaymadan ilerler.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Ellerimizi birbirine sürttüğümüzde ısınmasının nedeni nedir?",
+"shape": null,
+"options": {
+"A": "Işığın doğrusal yayılması",
+"B": "Sürtünme kuvveti",
+"C": "Yer çekimi kuvveti",
+"D": "Ay’ın dolanması"
+},
+"answer": "B",
+"explanation": "Ellerimizi birbirine sürttüğümüzde sürtünme kuvveti nedeniyle ısınırız.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Buz pistinde sürtünme kuvveti halıdakinden daha fazladır.\nII. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nIII. Kuvvetin birimi gram’dır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde dört farklı durumda cisimlere kuvvet uygulanmaktadır.\nBuna göre hangi harfle gösterilen durumda uygulanan kuvvet durgun cismi hareket ettirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yay_sik",
+"label": "P"
+},
+{
+"kind": "yon",
+"label": "K"
+},
+{
+"kind": "top_vur",
+"label": "N"
+},
+{
+"kind": "fren",
+"label": "T"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "K",
+"B": "P",
+"C": "T",
+"D": "N"
+},
+"answer": "D",
+"explanation": "N ile gösterilen durumda kuvvet durgun cismi hareket ettirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde cisimlere kuvvet uygulanan 5 durum gösterilmiştir.\nBuna göre kaç tanesinde uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "fren",
+"label": "K"
+},
+{
+"kind": "kutu_it",
+"label": "P"
+},
+{
+"kind": "yay_sik",
+"label": "M"
+},
+{
+"kind": "hamur",
+"label": "S"
+},
+{
+"kind": "yay_uz",
+"label": "T"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "D",
+"explanation": "Şekilde 3 durumda kuvvet cismin şeklini değiştirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde cisimlere kuvvet uygulanan dört durum gösterilmiştir.\nBuna göre hangi iki durumda uygulanan kuvvet durgun cismi hareket ettirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "top_vur",
+"label": "T"
+},
+{
+"kind": "kutu_it",
+"label": "N"
+},
+{
+"kind": "fren",
+"label": "M"
+},
+{
+"kind": "yay_uz",
+"label": "R"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "N ve T",
+"B": "R ve T",
+"C": "M ve R",
+"D": "N ve R"
+},
+"answer": "A",
+"explanation": "Bu etkiyi gösteren durumlar N ve T ile gösterilenlerdir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde aynı kutu, farklı yüzeylerde dinamometreyle sabit hızla çekilmektedir. Dinamometrenin gösterdiği değerler şekilde verilmiştir.\nBuna göre hangi yüzeyde sürtünme kuvveti en fazla olur?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "halı",
+"value": 5,
+"label": "S",
+"max": 10
+},
+{
+"surface": "buz",
+"value": 2,
+"label": "K",
+"max": 10
+},
+{
+"surface": "parke",
+"value": 3,
+"label": "N",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "Hepsinde sürtünme kuvveti eşittir",
+"B": "S",
+"C": "K",
+"D": "N"
+},
+"answer": "B",
+"explanation": "Sabit hızla çekilirken dinamometre değeri sürtünme kuvvetine eşittir; en fazla değer S yüzeyindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilirken dinamometrenin gösterdiği değerler verilmiştir. Yüzeyler: R düzeneğinde parke zemin, P düzeneğinde halı, T düzeneğinde zımpara.\nVerilenlere göre hangi düzenekteki yüzey en pürüzsüztür?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "parke",
+"value": 4,
+"label": "R",
+"max": 10
+},
+{
+"surface": "halı",
+"value": 5,
+"label": "P",
+"max": 10
+},
+{
+"surface": "zımpara",
+"value": 8,
+"label": "T",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "R",
+"C": "Hepsi aynı derecede pürüzlüdür",
+"D": "P"
+},
+"answer": "B",
+"explanation": "Sürtünme kuvveti yüzey pürüzlendikçe artar; en pürüzsüz yüzey R düzeneğindedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_isim"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde aynı kutu, farklı yüzeylerde sabit hızla çekilmektedir. Sabit hızla çekilirken dinamometrenin gösterdiği değer sürtünme kuvvetine eşittir.\nBuna göre T düzeneğindeki sürtünme kuvveti kaç N'dur?",
+"shape": {
+"type": "kuv",
+"sub_type": "yuzey",
+"panels": [
+{
+"surface": "parke",
+"value": 3,
+"label": "T",
+"max": 10
+},
+{
+"surface": "halı",
+"value": 5,
+"label": "K",
+"max": 10
+},
+{
+"surface": "buz",
+"value": 2,
+"label": "M",
+"max": 10
+}
+],
+"per_row": 1,
+"show_names": false
+},
+"options": {
+"A": "3",
+"B": "5",
+"C": "6",
+"D": "8"
+},
+"answer": "A",
+"explanation": "T düzeneğinde dinamometre 3 N gösterir; sürtünme kuvveti 3 N'dur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yuzey_oku"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde dört dinamometreye kütleleri yazılı cisimler asılmış ve dinamometrelerin gösterdiği değerler okunmuştur.\nVerilenlere göre ağırlığı en küçük olan cisim hangi harfle gösterilen dinamometreye asılmıştır?",
+"shape": {
+"type": "kuv",
+"sub_type": "dina",
+"panels": [
+{
+"value": 30,
+"mass": "3 kg",
+"label": "N",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 10,
+"mass": "1 kg",
+"label": "S",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 50,
+"mass": "5 kg",
+"label": "M",
+"max": 50,
+"step": 10,
+"show": true
+},
+{
+"value": 40,
+"mass": "4 kg",
+"label": "T",
+"max": 50,
+"step": 10,
+"show": true
+}
+],
+"show_names": false
+},
+"options": {
+"A": "T",
+"B": "N",
+"C": "S",
+"D": "M"
+},
+"answer": "C",
+"explanation": "Ağırlık kütle ile doğru orantılıdır; en küçük kütle S ile gösterilendedir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_dina_en"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılmış ve yayın boyu ölçülmüştür. M düzeneğinde yayın boyu ? ile gösterilmiştir.\nBu bilgilere göre ? yerine kaç cm yazılmalıdır?",
+"shape": {
+"type": "kuv",
+"sub_type": "yay",
+"panels": [
+{
+"n": 0,
+"len": 10,
+"label": "P",
+"show": true
+},
+{
+"n": 1,
+"len": 12,
+"label": "N",
+"show": true
+},
+{
+"n": 2,
+"len": 14,
+"label": "S",
+"show": true
+},
+{
+"n": 5,
+"len": 20,
+"label": "M",
+"show": false
+}
+],
+"unit": 0.32,
+"show_names": false
+},
+"options": {
+"A": "16 cm",
+"B": "20 cm",
+"C": "21 cm",
+"D": "30 cm"
+},
+"answer": "B",
+"explanation": "Her 100 g'lık cisim yayı 2 cm uzatır: 10 + 5 × 2 = 20 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yay_boy"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde aynı yaya özdeş 100 g'lık cisimler art arda asılarak ilk üç düzenekteki yay boyları ölçülmüştür. R düzeneğinde yayın boyu 18 cm olmuştur.\nVerilenlere göre R düzeneğinde yaya kaç tane 100 g'lık cisim asılmıştır?",
+"shape": {
+"type": "kuv",
+"sub_type": "yay",
+"panels": [
+{
+"n": 0,
+"len": 12,
+"label": "S",
+"show": true
+},
+{
+"n": 1,
+"len": 15,
+"label": "T",
+"show": true
+},
+{
+"n": 2,
+"len": 18,
+"label": "L",
+"show": true
+},
+{
+"n": 0,
+"len": 18,
+"label": "R",
+"show": true,
+"hidden": true
+}
+],
+"unit": 0.32,
+"show_names": false
+},
+"options": {
+"A": "2",
+"B": "4",
+"C": "7",
+"D": "8"
+},
+"answer": "A",
+"explanation": "Her cisim yayı 3 cm uzatır: (18 − 12) ÷ 3 = 2.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 5,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_yay_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Aynı tuğla farklı yüzeylerde dinamometreyle yatay doğrultuda sabit hızla çekiliyor. Sabit hızla çekilirken dinamometrenin gösterdiği değer, tuğlaya etki eden sürtünme kuvvetine eşittir.",
+"question": "Verilen tabloya göre sürtünme kuvvetinin en çok ve en az olduğu yüzeylerdeki değerlerin farkı kaç N'dur?",
+"shape": {
+"type": "table",
+"title": "Sabit hızla çekme kuvveti",
+"headers": [
+"Yüzey",
+"Dinamometre (N)"
+],
+"rows": [
+[
+"çim",
+"11"
+],
+[
+"zımpara",
+"14"
+],
+[
+"ahşap parke",
+"5"
+],
+[
+"cam",
+"2"
+]
+]
+},
+"options": {
+"A": "16 N",
+"B": "12 N",
+"C": "14 N",
+"D": "10 N"
+},
+"answer": "B",
+"explanation": "En büyük 14 N (zımpara), en küçük 2 N (cam): 14 − 2 = 12 N.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_fric"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Ece, aynı yaya farklı kütleler asarak yayın uzamasını ölçüyor. Yay, bu kütlelerde esnekliğini yitirmemiştir. Ölçüm sonuçları tabloda verilmiştir.",
+"question": "Tablodaki verilere göre aşağıdaki çıkarımlardan hangisi yapılabilir?",
+"shape": {
+"type": "table",
+"title": "Yaya asılan kütle ve yayın uzaması",
+"headers": [
+"Asılan kütle (g)",
+"Yayın uzaması (cm)"
+],
+"rows": [
+[
+"50",
+"2"
+],
+[
+"100",
+"4"
+],
+[
+"150",
+"6"
+],
+[
+"200",
+"8"
+]
+]
+},
+"options": {
+"A": "Yaya asılan kütle iki katına çıkınca yayın uzaması yarıya iner.",
+"B": "Yaya asılan kütle arttıkça yayın uzaması azalır.",
+"C": "Yayın uzaması asılan kütleden bağımsızdır.",
+"D": "Yaya asılan kütle arttıkça yayın uzaması artar."
+},
+"answer": "D",
+"explanation": "Kütle 50 g’dan 200 g’a çıktıkça uzama 2 cm’den 8 cm’ye çıkmıştır; kütle arttıkça uzama artar.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "Yer çekimi kuvveti ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.",
+"B": "Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.",
+"C": "Yer çekimi kuvveti cisimleri yukarı doğru iter.",
+"D": "Kuvvetin birimi kilogram (kg)’dır."
+},
+"answer": "B",
+"explanation": "“Yer çekimi kuvveti cisimleri Dünya’nın merkezine doğru çeker.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.\nI. 2 cisim için ölçülen sonuç, 1 cisim için ölçülenden büyüktür.\nII. En büyük ölçüm 3 cisim için elde edilmiştir.\nIII. Değiştirilen değişken arttıkça ölçülen değer azalmaktadır.",
+"question": "Tabloya göre aşağıdaki yargılardan hangileri doğrudur?",
+"shape": {
+"type": "table",
+"title": "Yayın uzaması",
+"headers": [
+"Asılan cisim sayısı",
+"Yayın boyundaki uzama (cm)"
+],
+"rows": [
+[
+"1 cisim",
+"3"
+],
+[
+"2 cisim",
+"6"
+],
+[
+"3 cisim",
+"9"
+],
+[
+"4 cisim",
+"12"
+]
+]
+},
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "Yalnız III"
+},
+"answer": "A",
+"explanation": "Her yargı tablodaki değerlerle ayrı ayrı denetlenir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.",
+"question": "Tabloya göre zımpara ile kum için ölçülen değerler arasındaki fark kaç cm'dir?",
+"shape": {
+"type": "table",
+"title": "Arabanın aldığı yol",
+"headers": [
+"Zemin",
+"Arabanın yaptığı yol (cm)"
+],
+"rows": [
+[
+"cam",
+"55"
+],
+[
+"ahşap",
+"11"
+],
+[
+"halı",
+"22"
+],
+[
+"kum",
+"53"
+],
+[
+"zımpara",
+"46"
+]
+]
+},
+"options": {
+"A": "5 cm",
+"B": "7 cm",
+"C": "8 cm",
+"D": "12 cm"
+},
+"answer": "B",
+"explanation": "53 − 46 = 7 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yuzey"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Karlı yollarda giden araçların tekerleklerine zincir takılıyor.",
+"question": "Zincir takmanın amacı aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Tekerlekle yol arasındaki sürtünme kuvvetini artırmak",
+"B": "Aracın kütlesini azaltmak",
+"C": "Sürtünme kuvvetini azaltmak",
+"D": "Aracın ağırlığını sıfırlamak"
+},
+"answer": "A",
+"explanation": "Zincir yüzeyi pürüzlü yapar ve sürtünmeyi artırır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_sen_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "I. Kuvvetin birimi newton (N)’dur.\nII. Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.\nIII. Sürtünme kuvveti hareket yönüne zıt yöndedir.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kütle ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.",
+"B": "Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır.",
+"C": "Bir cismin ağırlığı Dünya’da ve Ay’da aynıdır.",
+"D": "Kütle, bir cismin içerdiği madde miktarıdır."
+},
+"answer": "D",
+"explanation": "“Kütle, bir cismin içerdiği madde miktarıdır.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlığın birimi newton (N)’dur.\nII. Ağırlığın birimi kilogram (kg)’dır.\nIII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kuvvet hangi araçla ölçülür?",
+"shape": null,
+"options": {
+"A": "Cetvel",
+"B": "Dinamometre",
+"C": "Pusula",
+"D": "Termometre"
+},
+"answer": "B",
+"explanation": "Kuvvet dinamometre ile ölçülür.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kuvvetin Ölçülmesi ve Sürtünme konusunda verilen bilgilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Basit bir dinamometre modeli bir ampul ve pil ile yapılabilir.",
+"B": "Buz pistinde sürtünme kuvveti halıdakinden daha fazladır.",
+"C": "Hamura uygulanan kuvvet hamurun kütlesini azaltır.",
+"D": "Kuvvet, cisimlerin hızını, yönünü ve şeklini değiştirebilir."
+},
+"answer": "D",
+"explanation": "“Kuvvet, cisimlerin hızını, yönünü ve şeklini değiştirebilir.” ifadesi doğrudur; diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_dogru"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.\nII. Kuvvetin yalnızca büyüklüğü vardır, yönü yoktur.\nIII. Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Dinamometre ile ölçüm yapmadan önce neye dikkat edilmelidir?",
+"shape": null,
+"options": {
+"A": "Yayın sıfır işaretinde olduğuna",
+"B": "Dinamometrenin ıslak olduğuna",
+"C": "Yayın en uzun hâlde olduğuna",
+"D": "Yayın sıkıştırıldığına"
+},
+"answer": "A",
+"explanation": "Ölçümden önce dinamometrenin yayının sıfır işaretinde olduğu kontrol edilir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Sürtünme kuvveti harekete aynı yönde etki eder.\nII. Dinamometre, esnek bir yayın uzamasından yararlanarak kuvveti ölçer.\nIII. Buz pistinde sürtünme kuvveti halıdakinden daha fazladır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Kütlenin birimi aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "Litre",
+"B": "Metre",
+"C": "Kilogram",
+"D": "Newton"
+},
+"answer": "C",
+"explanation": "Kütlenin birimi kilogramdır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nII. Ölçümden önce dinamometrenin yayı sonuna kadar gerilmelidir.\nIII. Dinamometre ile ölçülen kuvvetin birimi litredir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Sürtünme kuvveti ile ilgili hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Birbirine temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir",
+"B": "Cisimleri hızlandıran bir kuvvettir",
+"C": "Cisimleri Dünya’dan uzaklaştırır",
+"D": "Yalnızca havada oluşur"
+},
+"answer": "A",
+"explanation": "Sürtünme kuvveti, temas eden yüzeyler arasında hareketi zorlaştıran kuvvettir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Kuvvet, cisimlerin yalnızca rengini değiştirebilir.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismi durdurabilir.\nIII. Sürtünme kuvveti harekete zıt yönde etki eder.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde dört farklı durumda cisimlere kuvvet uygulanmaktadır.\nVerilenlere göre hangi harfle gösterilen durumda uygulanan kuvvet hareketli cismi yavaşlatıp durdurmuştur?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yay_sik",
+"label": "S"
+},
+{
+"kind": "yon",
+"label": "K"
+},
+{
+"kind": "fren",
+"label": "R"
+},
+{
+"kind": "top_vur",
+"label": "L"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "R",
+"C": "K",
+"D": "S"
+},
+"answer": "B",
+"explanation": "R ile gösterilen durumda kuvvet hareketli cismi yavaşlatıp durdurmuştur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde cisimlere kuvvet uygulanan 5 durum gösterilmiştir.\nVerilenlere göre kaç tanesinde uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yay_sik",
+"label": "S"
+},
+{
+"kind": "fren",
+"label": "M"
+},
+{
+"kind": "kutu_it",
+"label": "N"
+},
+{
+"kind": "yay_uz",
+"label": "P"
+},
+{
+"kind": "top_vur",
+"label": "K"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "2",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Şekilde 2 durumda kuvvet cismin şeklini değiştirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Verilen şekilde cisimlere kuvvet uygulanan dört durum gösterilmiştir.\nVerilenlere göre hangi iki durumda uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "fren",
+"label": "L"
+},
+{
+"kind": "yay_uz",
+"label": "S"
+},
+{
+"kind": "yay_sik",
+"label": "R"
+},
+{
+"kind": "yon",
+"label": "N"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "N ve R",
+"B": "N ve S",
+"C": "L ve R",
+"D": "R ve S"
+},
+"answer": "D",
+"explanation": "Bu etkiyi gösteren durumlar R ve S ile gösterilenlerdir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "Sürtünme kuvvetinin yönü ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Sürtünme kuvveti hareket yönüne zıt yöndedir.",
+"B": "Kuvvetin birimi kilogram (kg)’dır.",
+"C": "Sürtünme kuvveti her zaman hareket yönündedir.",
+"D": "Yer çekimi kuvveti cisimleri yukarı doğru iter."
+},
+"answer": "A",
+"explanation": "“Sürtünme kuvveti hareket yönüne zıt yöndedir.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.",
+"question": "Deneyin güvenilir olması için aşağıdakilerden hangisi her denemede aynı tutulmalıdır?",
+"shape": null,
+"options": {
+"A": "Deneyi yapan kişinin adı",
+"B": "Deneyde kullanılan yay",
+"C": "Yayın boyundaki uzama miktarı",
+"D": "Yaya asılan cisimlerin adedi"
+},
+"answer": "B",
+"explanation": "Yalnızca bir değişken değiştirilir; diğer koşullar sabit tutulur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.",
+"question": "Tabloya göre kum ile cam için ölçülen değerler arasındaki fark kaç cm'dir?",
+"shape": {
+"type": "table",
+"title": "Arabanın aldığı yol",
+"headers": [
+"Zemin",
+"Arabanın yaptığı yol (cm)"
+],
+"rows": [
+[
+"cam",
+"37"
+],
+[
+"ahşap",
+"18"
+],
+[
+"halı",
+"29"
+],
+[
+"kum",
+"5"
+],
+[
+"zımpara",
+"10"
+]
+]
+},
+"options": {
+"A": "30 cm",
+"B": "32 cm",
+"C": "33 cm",
+"D": "37 cm"
+},
+"answer": "B",
+"explanation": "37 − 5 = 32 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yuzey"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "I. Kuvvetin birimi newton (N)’dur.\nII. Yer çekimi kuvveti cisimleri yukarı doğru iter.\nIII. Dinamometredeki yay, uygulanan kuvvet arttıkça kısalır.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlık, Dünya’nın cisme uyguladığı çekim kuvvetidir.\nII. Ağırlığın birimi newton (N)’dur.\nIII. Kütle, Dünya’nın cisme uyguladığı çekim kuvvetidir.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Hareket hâlindeki bir cisme uygulanan kuvvet o cisme ne yapabilir?",
+"shape": null,
+"options": {
+"A": "Cismin sıcaklığını sabitler",
+"B": "Cismin rengini değiştirir",
+"C": "Cismin kütlesini artırır",
+"D": "Cismi durdurabilir"
+},
+"answer": "D",
+"explanation": "Hareket hâlindeki bir cisme uygulanan kuvvet o cismi durdurabilir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlık, bir cismin kapladığı hacimdir.\nII. Kuvvet termometre ile ölçülür.\nIII. Hamura uygulanan kuvvet hamurun şeklini değiştirir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve II",
+"D": "I, II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Basit bir dinamometre modeli yapmak için aşağıdakilerden hangisi kullanılabilir?",
+"shape": null,
+"options": {
+"A": "Esnek bir yay ve cetvel",
+"B": "Yalnızca bir mıknatıs",
+"C": "Bir ampul ve pil",
+"D": "Bir termometre"
+},
+"answer": "A",
+"explanation": "Basit bir dinamometre modeli esnek bir yay ve cetvel ile yapılabilir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Kuvvetin birimi newton’dur.\nII. Dinamometreye uygulanan kuvvet arttıkça yayın uzaması artar.\nIII. Yer çekimi kuvveti cisimleri Dünya’dan uzaklaştırır.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "I ve II",
+"D": "I ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Ağırlık ve kütle ile ilgili hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Ağırlık bir kuvvettir, kütle ise madde miktarıdır",
+"B": "Kütle bir kuvvettir, ağırlık madde miktarıdır",
+"C": "Ağırlık yalnızca sıvılarda olur",
+"D": "Ağırlık ve kütle aynı kavramdır"
+},
+"answer": "A",
+"explanation": "Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlık, bir cismin kapladığı hacimdir.\nII. Pürüzlü yüzeylerde sürtünme kuvveti, pürüzsüz yüzeylere göre daha fazladır.\nIII. Ağırlık bir kuvvettir; kütle ise madde miktarının ölçüsüdür.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Makine parçalarındaki sürtünmeyi azaltmak için ne kullanılır?",
+"shape": null,
+"options": {
+"A": "Yüzeyi zımparalama",
+"B": "Yağlama",
+"C": "Pürüzlendirme",
+"D": "Kumlama"
+},
+"answer": "B",
+"explanation": "Makine parçalarındaki sürtünme yağlayarak azaltılır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Kuvvet, cisimlerin hızını, yönünü ve şeklini değiştirebilir.\nII. Ellerimizi birbirine sürttüğümüzde ısınmamızın nedeni ışığın doğrusal yayılmasıdır.\nIII. Yer çekimi kuvveti temas gerektirmeden etki eder.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde dört farklı durumda cisimlere kuvvet uygulanmaktadır.\nBu bilgilere göre hangi harfle gösterilen durumda uygulanan kuvvet hareketli cismin yönünü değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "fren",
+"label": "T"
+},
+{
+"kind": "hamur",
+"label": "R"
+},
+{
+"kind": "yon",
+"label": "S"
+},
+{
+"kind": "kutu_it",
+"label": "L"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "L",
+"B": "R",
+"C": "T",
+"D": "S"
+},
+"answer": "D",
+"explanation": "S ile gösterilen durumda kuvvet hareketli cismin yönünü değiştirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde cisimlere kuvvet uygulanan 5 durum gösterilmiştir.\nVerilenlere göre kaç tanesinde uygulanan kuvvet durgun cismi hareket ettirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yon",
+"label": "K"
+},
+{
+"kind": "fren",
+"label": "P"
+},
+{
+"kind": "kutu_it",
+"label": "L"
+},
+{
+"kind": "hamur",
+"label": "S"
+},
+{
+"kind": "yay_sik",
+"label": "T"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "3",
+"D": "4"
+},
+"answer": "B",
+"explanation": "Şekilde 1 durumda kuvvet durgun cismi hareket ettirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde cisimlere kuvvet uygulanan dört durum gösterilmiştir.\nVerilenlere göre hangi iki durumda uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "hamur",
+"label": "N"
+},
+{
+"kind": "fren",
+"label": "M"
+},
+{
+"kind": "yon",
+"label": "T"
+},
+{
+"kind": "yay_sik",
+"label": "K"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "N ve T",
+"B": "M ve N",
+"C": "K ve T",
+"D": "K ve N"
+},
+"answer": "D",
+"explanation": "Bu etkiyi gösteren durumlar K ve N ile gösterilenlerdir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_cift"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "Yüzey pürüzlülüğü ve sürtünme ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.",
+"B": "Yüzey pürüzlü olduğunda sürtünme kuvveti artar.",
+"C": "Sürtünme kuvveti her zaman hareket yönündedir.",
+"D": "Yer çekimi kuvveti cisimleri yukarı doğru iter."
+},
+"answer": "B",
+"explanation": "“Yüzey pürüzlü olduğunda sürtünme kuvveti artar.” ifadesi doğrudur; diğer seçeneklerdeki bilgiler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin ölçülmesi",
+"passage": "Kerem, bir yaya özdeş cisimler asarak yayın uzamasını ölçüyor. Her denemede aynı yayı kullanıyor ve yay esnekliğini yitirmiyor.",
+"question": "Bu deneyde ölçülen (gözlenen) değişken aşağıdakilerden hangisidir?",
+"shape": {
+"type": "table",
+"title": "Yayın uzaması",
+"headers": [
+"Asılan cisim sayısı",
+"Yayın boyundaki uzama (cm)"
+],
+"rows": [
+[
+"1 cisim",
+"2"
+],
+[
+"2 cisim",
+"4"
+],
+[
+"3 cisim",
+"6"
+],
+[
+"4 cisim",
+"8"
+]
+]
+},
+"options": {
+"A": "Yayın boyundaki uzama miktarı",
+"B": "Yaya asılan cisimlerin adedi",
+"C": "Odadaki ışığın rengi",
+"D": "Asılan cisimlerin özdeş olması"
+},
+"answer": "A",
+"explanation": "Değiştirilen değişkenin etkisiyle ölçülen şey: yayın boyundaki uzama miktarı.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yay"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Sürtünme kuvveti",
+"passage": "Mert, aynı oyuncak arabayı aynı yükseklikteki bir rampadan bırakıp farklı zeminlerde ne kadar yol aldığını ölçüyor.",
+"question": "Tabloya göre zımpara ile halı için ölçülen değerler arasındaki fark kaç cm'dir?",
+"shape": {
+"type": "table",
+"title": "Arabanın aldığı yol",
+"headers": [
+"Zemin",
+"Arabanın yaptığı yol (cm)"
+],
+"rows": [
+[
+"cam",
+"47"
+],
+[
+"ahşap",
+"35"
+],
+[
+"halı",
+"49"
+],
+[
+"kum",
+"21"
+],
+[
+"zımpara",
+"9"
+]
+]
+},
+"options": {
+"A": "38 cm",
+"B": "40 cm",
+"C": "41 cm",
+"D": "45 cm"
+},
+"answer": "B",
+"explanation": "49 − 9 = 40 cm.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_yn2_yuzey"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet",
+"passage": "",
+"question": "I. Sürtünme kuvveti hareket yönüne zıt yöndedir.\nII. Yüzey pürüzsüzleştikçe sürtünme kuvveti artar.\nIII. Kuvvet termometre ile ölçülür.\n“Kuvvet” konusunda numaralanmış ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız I",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: I. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kuvvet_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Bir cismin kütlesi Ay’da Dünya’dakinden daha azdır.\nII. Ağırlığın birimi newton (N)’dur.\nIII. Ağırlığın birimi kilogram (kg)’dır.\n“Kuvvetin Ölçülmesi ve Sürtünme” hakkında yazılan yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kutle_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Bir cisme uygulanan kuvvetle ilgili aşağıdakilerden hangisi doğrudur?",
+"shape": null,
+"options": {
+"A": "Kuvvet yalnızca cisimleri durdurur",
+"B": "Kuvvetin büyüklüğü ve yönü vardır",
+"C": "Kuvvetin yalnızca büyüklüğü vardır",
+"D": "Kuvvetin yönü yoktur"
+},
+"answer": "B",
+"explanation": "Kuvvetin hem büyüklüğü hem yönü vardır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Hamura uygulanan kuvvet hamurun kütlesini azaltır.\nII. Hareket hâlindeki bir cisme uygulanan kuvvet o cismi durdurabilir.\nIII. Kuvvet, cisimlerin yalnızca rengini değiştirebilir.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_0_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Dinamometre ile ölçülen kuvvetin birimi hangisidir?",
+"shape": null,
+"options": {
+"A": "Litre",
+"B": "Kilogram",
+"C": "Metre",
+"D": "Newton"
+},
+"answer": "D",
+"explanation": "Dinamometre ile ölçülen kuvvetin birimi newton’dur.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Ağırlığın birimi litre’dir.\nII. Sürtünme kuvveti harekete zıt yönde etki eder.\nIII. Dinamometrenin ölçeği kuvvetin büyüklüğünü okumayı sağlar.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: II, III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_1_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Bir cismin ağırlığı hangi araçla ölçülür?",
+"shape": null,
+"options": {
+"A": "Pusula",
+"B": "Cetvel",
+"C": "Termometre",
+"D": "Dinamometre"
+},
+"answer": "D",
+"explanation": "Bir cismin ağırlığı dinamometre ile ölçülür.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Kütle bir kuvvettir; ağırlık ise madde miktarının ölçüsüdür.\nII. Sürtünme yüzünden lastik tekerlekler yolda hiçbir zaman kaymadan ilerleyemez.\nIII. Ağırlık bir kuvvet olduğu için birimi newton’dur.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız III",
+"B": "I ve II",
+"C": "I ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: III. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_2_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "Aşağıdakilerden hangisi sürtünmenin zararlı etkisidir?",
+"shape": null,
+"options": {
+"A": "Araç lastiklerinin zamanla aşınması",
+"B": "Kibritin yanması",
+"C": "Arabanın yolda durabilmesi",
+"D": "Yürürken ayağımızın kaymaması"
+},
+"answer": "A",
+"explanation": "Araç lastiklerinin zamanla aşınması sürtünmenin zararlı bir etkisidir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 2,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvetin Ölçülmesi ve Sürtünme",
+"passage": "",
+"question": "I. Dinamometrenin ölçeği cismin kütlesini değiştirir.\nII. Makine parçalarındaki sürtünme yağlayarak azaltılır.\nIII. Sürtünme kuvveti temas gerektirmeden etki eder.\nYukarıda “Kuvvetin Ölçülmesi ve Sürtünme” ile ilgili verilen bilgilerden hangileri doğrudur?",
+"shape": null,
+"options": {
+"A": "Yalnız II",
+"B": "I ve II",
+"C": "II ve III",
+"D": "I, II ve III"
+},
+"answer": "A",
+"explanation": "Doğru ifadeler: II. Diğer ifadeler yanlıştır.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_bkf1_3_onc"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde dört farklı durumda cisimlere kuvvet uygulanmaktadır.\nBu bilgilere göre hangi harfle gösterilen durumda uygulanan kuvvet durgun cismi hareket ettirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yon",
+"label": "R"
+},
+{
+"kind": "top_vur",
+"label": "K"
+},
+{
+"kind": "fren",
+"label": "M"
+},
+{
+"kind": "yay_uz",
+"label": "S"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "S",
+"B": "K",
+"C": "M",
+"D": "R"
+},
+"answer": "B",
+"explanation": "K ile gösterilen durumda kuvvet durgun cismi hareket ettirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_tek"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Yandaki şekilde cisimlere kuvvet uygulanan 6 durum gösterilmiştir.\nBu bilgilere göre kaç tanesinde uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yay_sik",
+"label": "R"
+},
+{
+"kind": "fren",
+"label": "T"
+},
+{
+"kind": "hamur",
+"label": "M"
+},
+{
+"kind": "yay_uz",
+"label": "N"
+},
+{
+"kind": "top_vur",
+"label": "P"
+},
+{
+"kind": "yon",
+"label": "L"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "0",
+"B": "1",
+"C": "2",
+"D": "3"
+},
+"answer": "D",
+"explanation": "Şekilde 3 durumda kuvvet cismin şeklini değiştirmiştir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 3,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_say"
+},
+{
+"subject": "Fen Bilimleri",
+"topic": "Kuvvet ve sürtünme",
+"passage": "",
+"question": "Şekilde cisimlere kuvvet uygulanan dört durum gösterilmiştir.\nBu bilgilere göre hangi iki durumda uygulanan kuvvet cismin şeklini değiştirmiştir?",
+"shape": {
+"type": "kuv",
+"sub_type": "etki",
+"items": [
+{
+"kind": "yay_uz",
+"label": "M"
+},
+{
+"kind": "fren",
+"label": "L"
+},
+{
+"kind": "hamur",
+"label": "R"
+},
+{
+"kind": "yon",
+"label": "P"
+}
+],
+"per_row": 3,
+"show_names": false
+},
+"options": {
+"A": "M ve P",
+"B": "P ve R",
+"C": "M ve R",
+"D": "L ve R"
+},
+"answer": "C",
+"explanation": "Bu etkiyi gösteren durumlar M ve R ile gösterilenlerdir.",
+"unit": "Kuvvet ve Hareket",
+"topics": "Sürat, Hareket grafikleri, Bileşke kuvvet",
+"d": 4,
+"ts": 1795161904,
+"src": "local",
+"fam": "_ff_kv_etki_cift"
+}
+]
+}

@@ -1,0 +1,5801 @@
+{
+"v": 1,
+"qs": [
+{
+"subject": "Matematik",
+"topic": "İşlem önceliği",
+"passage": "",
+"question": "9 × (11 – 6) işleminin sonucu aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "35",
+"B": "45",
+"C": "55",
+"D": "93"
+},
+"answer": "B",
+"explanation": "Önce parantez, sonra çarpma/bölme, en son toplama/çıkarma yapılır: 9 × (11 – 6) = 45.",
+"kz": [
+"MAT.5.2.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_order"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzdeler",
+"passage": "",
+"question": "Verilenlerden hangisinin değeri diğer üçünden farklıdır?",
+"shape": null,
+"options": {
+"A": "3/4",
+"B": "0,75",
+"C": "1/2",
+"D": "%75"
+},
+"answer": "C",
+"explanation": "%75 = 3/4 = 0,75; farklı olan 1/2.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_percent_odd"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzdeler",
+"passage": "",
+"question": "Okulda toplam 28 öğrenci bulunmaktadır. Öğrencilerin %50’i spor kulübüne kayıtlıdır.\nSpor kulübüne kayıtlı öğrenci sayısı kaçtır?",
+"shape": null,
+"options": {
+"A": "2",
+"B": "14",
+"C": "28",
+"D": "64"
+},
+"answer": "B",
+"explanation": "28 × 50/100 = 14.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_percent_of"
+},
+{
+"subject": "Matematik",
+"topic": "Tablo yorumlama",
+"passage": "Bir kırtasiyedeki A ve B markalarına ait elma, armut ve portakal ürünlerinin birer adedinin Türk lirası cinsinden satış fiyatları tabloda verilmiştir.",
+"question": "140 TL’si olan Can, bu kırtasiyeden A veya B marka birer adet elma, armut ve portakal satın alacaktır.\nI. Üç ürünü B markasından alırsa 35 TL para üstü alır.\nII. Üç ürüne ödeyeceği en az tutar 80 TL olur.\nIII. İlk iki ürünü B markasından, üçüncü ürünü A markasından alırsa 80 TL öder.\nBuna göre yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": {
+"type": "table",
+"title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)",
+"headers": [
+"Marka",
+"Elma",
+"Armut",
+"Portakal"
+],
+"rows": [
+[
+"A Marka",
+"10",
+"45",
+"15"
+],
+[
+"B Marka",
+"40",
+"25",
+"40"
+]
+]
+},
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "I ve III"
+},
+"answer": "D",
+"explanation": "Doğru ifadeler: I, III.",
+"kz": [
+"MAT.5.1.2",
+"MAT.5.2.4",
+"MAT.5.4.4",
+"MAT.5.5.1",
+"MAT.5.6.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 4,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_market"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde problemleri",
+"passage": "",
+"question": "Etiket fiyatı 240 TL olan bir ürüne %30 indirim uygulanıyor. İndirimli fiyat kaç TL olur?",
+"shape": null,
+"options": {
+"A": "210 TL",
+"B": "168 TL",
+"C": "178 TL",
+"D": "72 TL"
+},
+"answer": "B",
+"explanation": "İndirim = 240×30/100 = 72; 240 − 72 = 168 TL.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_discount"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 40,
+"show_names": false
+},
+"options": {
+"A": "%60",
+"B": "%40",
+"C": "%50",
+"D": "%4"
+},
+"answer": "B",
+"explanation": "100 kareden 40 tanesi boyalı olduğu için %40'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 78,
+"show_names": false
+},
+"options": {
+"A": "0,08",
+"B": "0,22",
+"C": "0,78",
+"D": "7,80"
+},
+"answer": "C",
+"explanation": "78/100 = 0,78.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kitap kılıfı ile bir cetvel birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Cetvel",
+"4,50"
+],
+[
+"Kitap kılıfı",
+"5,50"
+],
+[
+"Defter",
+"12,50"
+]
+]
+},
+"options": {
+"A": "10,50 TL",
+"B": "9,50 TL",
+"C": "11,00 TL",
+"D": "10,00 TL"
+},
+"answer": "D",
+"explanation": "5,50 + 4,50 = 10,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 16,
+"show_names": false
+},
+"options": {
+"A": "%84",
+"B": "%16",
+"C": "%79",
+"D": "%89"
+},
+"answer": "A",
+"explanation": "100 karenin 16 tanesi boyalı, 84 tanesi boyasızdır → %84.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 24,
+"show_names": false
+},
+"options": {
+"A": "0,024",
+"B": "0,24",
+"C": "0,76",
+"D": "2,4"
+},
+"answer": "B",
+"explanation": "100 karenin 24 tanesi boyalı: 24/100 = 0,24.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Kesir, ondalık, yüzde",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı en sade (sadeleşmiş) kesir olarak aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 85,
+"show_names": false
+},
+"options": {
+"A": "20/17",
+"B": "17/20",
+"C": "85/100",
+"D": "15/100"
+},
+"answer": "B",
+"explanation": "85/100 sadeleştirilince 17/20 olur.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_kesir"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Domates ile Bal birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Ekmek",
+"7,50"
+],
+[
+"Domates",
+"22,25"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Bal",
+"120,00"
+]
+]
+},
+"options": {
+"A": "141,00",
+"B": "142,25",
+"C": "143,25",
+"D": "152,25"
+},
+"answer": "B",
+"explanation": "22,25 + 120,00 = 142,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliği",
+"passage": "",
+"question": "8 × (15 – 6) işleminin sonucu kaçtır?",
+"shape": null,
+"options": {
+"A": "62",
+"B": "72",
+"C": "82",
+"D": "114"
+},
+"answer": "B",
+"explanation": "Önce parantez, sonra çarpma/bölme, en son toplama/çıkarma yapılır: 8 × (15 – 6) = 72.",
+"kz": [
+"MAT.5.2.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_order"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzdeler",
+"passage": "",
+"question": "Seçeneklerden üçü aynı değeri ifade eder. Değeri farklı olan hangisidir?",
+"shape": null,
+"options": {
+"A": "1/2",
+"B": "0,8",
+"C": "%80",
+"D": "4/5"
+},
+"answer": "A",
+"explanation": "%80 = 4/5 = 0,8; farklı olan 1/2.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_percent_odd"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzdeler",
+"passage": "",
+"question": "Bir okulda 210 öğrenci vardır. Bu öğrencilerin %10’i spor kulübüne üyedir.\nBuna göre spor kulübüne üye kaç öğrenci vardır?",
+"shape": null,
+"options": {
+"A": "21",
+"B": "42",
+"C": "189",
+"D": "231"
+},
+"answer": "A",
+"explanation": "210 × 10/100 = 21.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_percent_of"
+},
+{
+"subject": "Matematik",
+"topic": "Tablo yorumlama",
+"passage": "Bir kırtasiyedeki A ve B markalarına ait kalem, silgi ve kalemtıraş ürünlerinin birer adedinin Türk lirası cinsinden satış fiyatları tabloda verilmiştir.",
+"question": "140 TL’si olan Can, bu kırtasiyeden A veya B marka birer adet kalem, silgi ve kalemtıraş satın alacaktır.\nI. İlk iki ürünü A markasından, üçüncü ürünü B markasından alırsa 65 TL öder.\nII. Üç ürünü B markasından alırsa 30 TL para üstü alır.\nIII. Üç ürünü A markasından alırsa 85 TL para üstü alır.\nBuna göre yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": {
+"type": "table",
+"title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)",
+"headers": [
+"Marka",
+"Kalem",
+"Silgi",
+"Kalemtıraş"
+],
+"rows": [
+[
+"A Marka",
+"10",
+"35",
+"10"
+],
+[
+"B Marka",
+"55",
+"45",
+"20"
+]
+]
+},
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "C",
+"explanation": "Doğru ifadeler: I, III.",
+"kz": [
+"MAT.5.1.2",
+"MAT.5.2.4",
+"MAT.5.4.4",
+"MAT.5.5.1",
+"MAT.5.6.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 4,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_market"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 94,
+"show_names": false
+},
+"options": {
+"A": "%94",
+"B": "%6",
+"C": "%9",
+"D": "%104"
+},
+"answer": "A",
+"explanation": "100 kareden 94 tanesi boyalı olduğu için %94'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 78,
+"show_names": false
+},
+"options": {
+"A": "0,08",
+"B": "0,22",
+"C": "0,78",
+"D": "7,80"
+},
+"answer": "C",
+"explanation": "78/100 = 0,78.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kitap kılıfı ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Cetvel",
+"4,50"
+],
+[
+"Defter",
+"12,50"
+],
+[
+"Kitap kılıfı",
+"5,50"
+]
+]
+},
+"options": {
+"A": "18,00 TL",
+"B": "17,50 TL",
+"C": "18,50 TL",
+"D": "19,00 TL"
+},
+"answer": "A",
+"explanation": "5,50 + 12,50 = 18,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 44,
+"show_names": false
+},
+"options": {
+"A": "%39",
+"B": "%56",
+"C": "%44",
+"D": "%49"
+},
+"answer": "C",
+"explanation": "100 karenin 44 tanesi boyalı, 56 tanesi boyasızdır → %44.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 56,
+"show_names": false
+},
+"options": {
+"A": "0,056",
+"B": "0,44",
+"C": "0,56",
+"D": "5,6"
+},
+"answer": "C",
+"explanation": "100 karenin 56 tanesi boyalı: 56/100 = 0,56.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Çay ile Zeytin birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Peynir",
+"96,50"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Çay",
+"84,75"
+]
+]
+},
+"options": {
+"A": "147,75",
+"B": "149,00",
+"C": "150,00",
+"D": "159,00"
+},
+"answer": "B",
+"explanation": "84,75 + 64,25 = 149,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliği",
+"passage": "",
+"question": "5 × (14 – 9) işlemi yapıldığında sonuç kaç olur?",
+"shape": null,
+"options": {
+"A": "15",
+"B": "25",
+"C": "35",
+"D": "61"
+},
+"answer": "B",
+"explanation": "Önce parantez, sonra çarpma/bölme, en son toplama/çıkarma yapılır: 5 × (14 – 9) = 25.",
+"kz": [
+"MAT.5.2.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_order"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzdeler",
+"passage": "",
+"question": "Aşağıdakilerden hangisinin değeri diğerlerinden farklıdır?",
+"shape": null,
+"options": {
+"A": "%20",
+"B": "0,2",
+"C": "1/6",
+"D": "1/5"
+},
+"answer": "C",
+"explanation": "%20 = 1/5 = 0,2; farklı olan 1/6.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_percent_odd"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzdeler",
+"passage": "",
+"question": "Bir okulda 60 öğrenci vardır. Öğrencilerin %75’i spor kulübüne kayıtlıdır.\nBuna göre spor kulübüne kayıtlı kaç öğrenci vardır?",
+"shape": null,
+"options": {
+"A": "15",
+"B": "45",
+"C": "105",
+"D": "120"
+},
+"answer": "B",
+"explanation": "60 × 75/100 = 45.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_percent_of"
+},
+{
+"subject": "Matematik",
+"topic": "Tablo yorumlama",
+"passage": "Bir kırtasiyedeki A ve B markalarına ait ekmek, süt ve peynir ürünlerinin birer adedinin Türk lirası cinsinden satış fiyatları tabloda verilmiştir.",
+"question": "140 TL’si olan Can, bu kırtasiyeden A veya B marka birer adet ekmek, süt ve peynir satın alacaktır.\nI. Üç ürünü B markasından alırsa 105 TL para üstü alır.\nII. Üç ürünü A markasından alırsa 10 TL para üstü alır.\nIII. Üç ürüne ödeyeceği en az tutar 50 TL olur.\nBuna göre yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": {
+"type": "table",
+"title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)",
+"headers": [
+"Marka",
+"Ekmek",
+"Süt",
+"Peynir"
+],
+"rows": [
+[
+"A Marka",
+"55",
+"50",
+"25"
+],
+[
+"B Marka",
+"10",
+"10",
+"25"
+]
+]
+},
+"options": {
+"A": "Yalnız I",
+"B": "Yalnız II",
+"C": "Yalnız III",
+"D": "II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: II.",
+"kz": [
+"MAT.5.1.2",
+"MAT.5.2.4",
+"MAT.5.4.4",
+"MAT.5.5.1",
+"MAT.5.6.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 4,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_market"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 23,
+"show_names": false
+},
+"options": {
+"A": "%2",
+"B": "%33",
+"C": "%23",
+"D": "%77"
+},
+"answer": "C",
+"explanation": "100 kareden 23 tanesi boyalı olduğu için %23'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 9,
+"show_names": false
+},
+"options": {
+"A": "0,009",
+"B": "0,09",
+"C": "0,90",
+"D": "0,91"
+},
+"answer": "B",
+"explanation": "9/100 = 0,09.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir boya kalemi seti ile bir makas birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Makas",
+"6,25"
+],
+[
+"Defter",
+"12,50"
+]
+]
+},
+"options": {
+"A": "26,00 TL",
+"B": "25,50 TL",
+"C": "24,50 TL",
+"D": "25,00 TL"
+},
+"answer": "D",
+"explanation": "18,75 + 6,25 = 25,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 79,
+"show_names": false
+},
+"options": {
+"A": "%84",
+"B": "%21",
+"C": "%74",
+"D": "%79"
+},
+"answer": "D",
+"explanation": "100 karenin 79 tanesi boyalı, 21 tanesi boyasızdır → %79.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 75,
+"show_names": false
+},
+"options": {
+"A": "0,075",
+"B": "0,25",
+"C": "0,75",
+"D": "7,5"
+},
+"answer": "C",
+"explanation": "100 karenin 75 tanesi boyalı: 75/100 = 0,75.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Bal ile Domates birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Bal",
+"120,00"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Domates",
+"22,25"
+]
+]
+},
+"options": {
+"A": "141,00",
+"B": "142,25",
+"C": "143,25",
+"D": "152,25"
+},
+"answer": "B",
+"explanation": "120,00 + 22,25 = 142,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliği",
+"passage": "",
+"question": "8 × 4 + 10 × 3 işleminin sonucu aşağıdakilerden hangisidir?",
+"shape": null,
+"options": {
+"A": "52",
+"B": "62",
+"C": "72",
+"D": "126"
+},
+"answer": "B",
+"explanation": "Önce parantez, sonra çarpma/bölme, en son toplama/çıkarma yapılır: 8 × 4 + 10 × 3 = 62.",
+"kz": [
+"MAT.5.2.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_order"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzdeler",
+"passage": "",
+"question": "Aşağıdaki gösterimlerden hangisi diğerlerinden farklı bir değeri ifade eder?",
+"shape": null,
+"options": {
+"A": "0,25",
+"B": "2/7",
+"C": "1/4",
+"D": "%25"
+},
+"answer": "B",
+"explanation": "%25 = 1/4 = 0,25; farklı olan 2/7.",
+"kz": [
+"MAT.5.1.3"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_percent_odd"
+},
+{
+"subject": "Matematik",
+"topic": "Tablo yorumlama",
+"passage": "Bir kırtasiyedeki A ve B markalarına ait defter, cetvel ve pergel ürünlerinin birer adedinin Türk lirası cinsinden satış fiyatları tabloda verilmiştir.",
+"question": "130 TL’si olan Can, bu kırtasiyeden A veya B marka birer adet defter, cetvel ve pergel satın alacaktır.\nI. Üç ürüne ödeyeceği en az tutar 115 TL olur.\nII. Üç ürünü A markasından alırsa 30 TL para üstü alır.\nIII. Üç ürünü B markasından alırsa parası yetmez.\nBuna göre yukarıdaki ifadelerden hangileri doğrudur?",
+"shape": {
+"type": "table",
+"title": "A ve B Markalarında 1 Adet Ürünün Satış Fiyatı (TL)",
+"headers": [
+"Marka",
+"Defter",
+"Cetvel",
+"Pergel"
+],
+"rows": [
+[
+"A Marka",
+"45",
+"40",
+"20"
+],
+[
+"B Marka",
+"55",
+"45",
+"50"
+]
+]
+},
+"options": {
+"A": "Yalnız II",
+"B": "Yalnız III",
+"C": "I ve III",
+"D": "II ve III"
+},
+"answer": "B",
+"explanation": "Doğru ifadeler: III.",
+"kz": [
+"MAT.5.1.2",
+"MAT.5.2.4",
+"MAT.5.4.4",
+"MAT.5.5.1",
+"MAT.5.6.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 4,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_market"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 23,
+"show_names": false
+},
+"options": {
+"A": "%2",
+"B": "%33",
+"C": "%23",
+"D": "%77"
+},
+"answer": "C",
+"explanation": "100 kareden 23 tanesi boyalı olduğu için %23'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 7,
+"show_names": false
+},
+"options": {
+"A": "0,007",
+"B": "0,07",
+"C": "0,70",
+"D": "0,93"
+},
+"answer": "B",
+"explanation": "7/100 = 0,07.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir kalem birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Kalem",
+"3,75"
+],
+[
+"Cetvel",
+"4,50"
+]
+]
+},
+"options": {
+"A": "16,75 TL",
+"B": "17,25 TL",
+"C": "15,75 TL",
+"D": "16,25 TL"
+},
+"answer": "D",
+"explanation": "12,50 + 3,75 = 16,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 77,
+"show_names": false
+},
+"options": {
+"A": "%77",
+"B": "%28",
+"C": "%23",
+"D": "%18"
+},
+"answer": "C",
+"explanation": "100 karenin 77 tanesi boyalı, 23 tanesi boyasızdır → %23.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 22,
+"show_names": false
+},
+"options": {
+"A": "0,022",
+"B": "0,22",
+"C": "0,78",
+"D": "2,2"
+},
+"answer": "B",
+"explanation": "100 karenin 22 tanesi boyalı: 22/100 = 0,22.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Yoğurt ile Ekmek birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Çay",
+"84,75"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Domates",
+"22,25"
+],
+[
+"Ekmek",
+"7,50"
+]
+]
+},
+"options": {
+"A": "41,75",
+"B": "43,00",
+"C": "44,00",
+"D": "53,00"
+},
+"answer": "B",
+"explanation": "35,50 + 7,50 = 43,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliği",
+"passage": "",
+"question": "54 : 6 + 7 × 12 işlemi yapıldığında sonuç kaç olur?",
+"shape": null,
+"options": {
+"A": "83",
+"B": "93",
+"C": "103",
+"D": "192"
+},
+"answer": "B",
+"explanation": "Önce parantez, sonra çarpma/bölme, en son toplama/çıkarma yapılır: 54 : 6 + 7 × 12 = 93.",
+"kz": [
+"MAT.5.2.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_order"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 56,
+"show_names": false
+},
+"options": {
+"A": "%44",
+"B": "%56",
+"C": "%66",
+"D": "%5"
+},
+"answer": "B",
+"explanation": "100 kareden 56 tanesi boyalı olduğu için %56'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 78,
+"show_names": false
+},
+"options": {
+"A": "0,08",
+"B": "0,22",
+"C": "0,78",
+"D": "7,80"
+},
+"answer": "C",
+"explanation": "78/100 = 0,78.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kalem ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Cetvel",
+"4,50"
+],
+[
+"Kalem",
+"3,75"
+]
+]
+},
+"options": {
+"A": "16,25 TL",
+"B": "17,25 TL",
+"C": "15,75 TL",
+"D": "16,75 TL"
+},
+"answer": "A",
+"explanation": "3,75 + 12,50 = 16,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 70,
+"show_names": false
+},
+"options": {
+"A": "%35",
+"B": "%70",
+"C": "%30",
+"D": "%25"
+},
+"answer": "C",
+"explanation": "100 karenin 70 tanesi boyalı, 30 tanesi boyasızdır → %30.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 49,
+"show_names": false
+},
+"options": {
+"A": "0,049",
+"B": "0,49",
+"C": "0,51",
+"D": "4,9"
+},
+"answer": "B",
+"explanation": "100 karenin 49 tanesi boyalı: 49/100 = 0,49.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Peynir ile Bal birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Ekmek",
+"7,50"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Bal",
+"120,00"
+],
+[
+"Peynir",
+"96,50"
+]
+]
+},
+"options": {
+"A": "215,25",
+"B": "216,50",
+"C": "217,50",
+"D": "226,50"
+},
+"answer": "B",
+"explanation": "96,50 + 120,00 = 216,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "İşlem önceliği",
+"passage": "",
+"question": "10 × 12 + 9 × 3 işleminin sonucu kaçtır?",
+"shape": null,
+"options": {
+"A": "137",
+"B": "147",
+"C": "157",
+"D": "387"
+},
+"answer": "B",
+"explanation": "Önce parantez, sonra çarpma/bölme, en son toplama/çıkarma yapılır: 10 × 12 + 9 × 3 = 147.",
+"kz": [
+"MAT.5.2.2"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 3,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf_order"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 7,
+"show_names": false
+},
+"options": {
+"A": "%7",
+"B": "%8",
+"C": "%17",
+"D": "%93"
+},
+"answer": "A",
+"explanation": "100 kareden 7 tanesi boyalı olduğu için %7'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 7,
+"show_names": false
+},
+"options": {
+"A": "0,007",
+"B": "0,07",
+"C": "0,70",
+"D": "0,93"
+},
+"answer": "B",
+"explanation": "7/100 = 0,07.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir boya kalemi seti ile bir kalem birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Kalem",
+"3,75"
+],
+[
+"Kitap kılıfı",
+"5,50"
+]
+]
+},
+"options": {
+"A": "23,50 TL",
+"B": "22,00 TL",
+"C": "22,50 TL",
+"D": "23,00 TL"
+},
+"answer": "C",
+"explanation": "18,75 + 3,75 = 22,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 41,
+"show_names": false
+},
+"options": {
+"A": "%54",
+"B": "%64",
+"C": "%59",
+"D": "%41"
+},
+"answer": "C",
+"explanation": "100 karenin 41 tanesi boyalı, 59 tanesi boyasızdır → %59.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 22,
+"show_names": false
+},
+"options": {
+"A": "0,022",
+"B": "0,22",
+"C": "0,78",
+"D": "2,2"
+},
+"answer": "B",
+"explanation": "100 karenin 22 tanesi boyalı: 22/100 = 0,22.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Domates ile Zeytin birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Peynir",
+"96,50"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Domates",
+"22,25"
+],
+[
+"Zeytin",
+"64,25"
+]
+]
+},
+"options": {
+"A": "85,25",
+"B": "86,50",
+"C": "87,50",
+"D": "96,50"
+},
+"answer": "B",
+"explanation": "22,25 + 64,25 = 86,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 12,
+"show_names": false
+},
+"options": {
+"A": "%22",
+"B": "%1",
+"C": "%12",
+"D": "%88"
+},
+"answer": "C",
+"explanation": "100 kareden 12 tanesi boyalı olduğu için %12'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 85,
+"show_names": false
+},
+"options": {
+"A": "0,09",
+"B": "0,15",
+"C": "0,85",
+"D": "8,50"
+},
+"answer": "C",
+"explanation": "85/100 = 0,85.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir makas birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Makas",
+"6,25"
+],
+[
+"Silgi",
+"2,25"
+]
+]
+},
+"options": {
+"A": "18,75 TL",
+"B": "19,75 TL",
+"C": "19,25 TL",
+"D": "18,25 TL"
+},
+"answer": "A",
+"explanation": "12,50 + 6,25 = 18,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 59,
+"show_names": false
+},
+"options": {
+"A": "%46",
+"B": "%36",
+"C": "%59",
+"D": "%41"
+},
+"answer": "D",
+"explanation": "100 karenin 59 tanesi boyalı, 41 tanesi boyasızdır → %41.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 38,
+"show_names": false
+},
+"options": {
+"A": "0,038",
+"B": "0,38",
+"C": "0,62",
+"D": "3,8"
+},
+"answer": "B",
+"explanation": "100 karenin 38 tanesi boyalı: 38/100 = 0,38.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Bal ile Ekmek birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Bal",
+"120,00"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Ekmek",
+"7,50"
+]
+]
+},
+"options": {
+"A": "126,25",
+"B": "127,50",
+"C": "128,50",
+"D": "137,50"
+},
+"answer": "B",
+"explanation": "120,00 + 7,50 = 127,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 80,
+"show_names": false
+},
+"options": {
+"A": "%20",
+"B": "%8",
+"C": "%80",
+"D": "%90"
+},
+"answer": "C",
+"explanation": "100 kareden 80 tanesi boyalı olduğu için %80'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 23,
+"show_names": false
+},
+"options": {
+"A": "0,02",
+"B": "0,23",
+"C": "0,77",
+"D": "2,30"
+},
+"answer": "B",
+"explanation": "23/100 = 0,23.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir silgi ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Kitap kılıfı",
+"5,50"
+],
+[
+"Silgi",
+"2,25"
+]
+]
+},
+"options": {
+"A": "15,75 TL",
+"B": "15,25 TL",
+"C": "14,75 TL",
+"D": "14,25 TL"
+},
+"answer": "C",
+"explanation": "2,25 + 12,50 = 14,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 55,
+"show_names": false
+},
+"options": {
+"A": "%50",
+"B": "%55",
+"C": "%40",
+"D": "%45"
+},
+"answer": "D",
+"explanation": "100 karenin 55 tanesi boyalı, 45 tanesi boyasızdır → %45.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 43,
+"show_names": false
+},
+"options": {
+"A": "0,043",
+"B": "0,43",
+"C": "0,57",
+"D": "4,3"
+},
+"answer": "B",
+"explanation": "100 karenin 43 tanesi boyalı: 43/100 = 0,43.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Çay ile Süt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Çay",
+"84,75"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Bal",
+"120,00"
+]
+]
+},
+"options": {
+"A": "112,25",
+"B": "113,50",
+"C": "114,50",
+"D": "123,50"
+},
+"answer": "B",
+"explanation": "84,75 + 28,75 = 113,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 94,
+"show_names": false
+},
+"options": {
+"A": "%94",
+"B": "%6",
+"C": "%9",
+"D": "%104"
+},
+"answer": "A",
+"explanation": "100 kareden 94 tanesi boyalı olduğu için %94'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü ondalık gösterimle kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 94,
+"show_names": false
+},
+"options": {
+"A": "0,06",
+"B": "0,09",
+"C": "0,94",
+"D": "9,40"
+},
+"answer": "C",
+"explanation": "94/100 = 0,94.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kitap kılıfı ile bir kalem birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Kalem",
+"3,75"
+],
+[
+"Cetvel",
+"4,50"
+],
+[
+"Kitap kılıfı",
+"5,50"
+]
+]
+},
+"options": {
+"A": "8,75 TL",
+"B": "10,25 TL",
+"C": "9,25 TL",
+"D": "9,75 TL"
+},
+"answer": "C",
+"explanation": "5,50 + 3,75 = 9,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 56,
+"show_names": false
+},
+"options": {
+"A": "%56",
+"B": "%44",
+"C": "%51",
+"D": "%61"
+},
+"answer": "A",
+"explanation": "100 karenin 56 tanesi boyalı, 44 tanesi boyasızdır → %56.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 35,
+"show_names": false
+},
+"options": {
+"A": "0,035",
+"B": "0,35",
+"C": "0,65",
+"D": "3,5"
+},
+"answer": "B",
+"explanation": "100 karenin 35 tanesi boyalı: 35/100 = 0,35.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Ekmek ile Bal birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Ekmek",
+"7,50"
+],
+[
+"Bal",
+"120,00"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Çay",
+"84,75"
+]
+]
+},
+"options": {
+"A": "126,25",
+"B": "127,50",
+"C": "128,50",
+"D": "137,50"
+},
+"answer": "B",
+"explanation": "7,50 + 120,00 = 127,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 62,
+"show_names": false
+},
+"options": {
+"A": "%6",
+"B": "%72",
+"C": "%38",
+"D": "%62"
+},
+"answer": "D",
+"explanation": "100 kareden 62 tanesi boyalı olduğu için %62'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kitap kılıfı ile bir silgi birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Cetvel",
+"4,50"
+],
+[
+"Silgi",
+"2,25"
+],
+[
+"Kitap kılıfı",
+"5,50"
+]
+]
+},
+"options": {
+"A": "8,75 TL",
+"B": "7,75 TL",
+"C": "7,25 TL",
+"D": "8,25 TL"
+},
+"answer": "B",
+"explanation": "5,50 + 2,25 = 7,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 75,
+"show_names": false
+},
+"options": {
+"A": "%75",
+"B": "%25",
+"C": "%80",
+"D": "%70"
+},
+"answer": "A",
+"explanation": "100 karenin 75 tanesi boyalı, 25 tanesi boyasızdır → %75.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 81,
+"show_names": false
+},
+"options": {
+"A": "0,081",
+"B": "0,19",
+"C": "0,81",
+"D": "8,1"
+},
+"answer": "C",
+"explanation": "100 karenin 81 tanesi boyalı: 81/100 = 0,81.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Ekmek ile Süt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Süt",
+"28,75"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Ekmek",
+"7,50"
+]
+]
+},
+"options": {
+"A": "35,00",
+"B": "36,25",
+"C": "37,25",
+"D": "46,25"
+},
+"answer": "B",
+"explanation": "7,50 + 28,75 = 36,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 35,
+"show_names": false
+},
+"options": {
+"A": "%3",
+"B": "%35",
+"C": "%45",
+"D": "%65"
+},
+"answer": "B",
+"explanation": "100 kareden 35 tanesi boyalı olduğu için %35'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir cetvel ile bir kalem birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Cetvel",
+"4,50"
+],
+[
+"Kalem",
+"3,75"
+],
+[
+"Silgi",
+"2,25"
+]
+]
+},
+"options": {
+"A": "8,25 TL",
+"B": "9,25 TL",
+"C": "8,75 TL",
+"D": "7,75 TL"
+},
+"answer": "A",
+"explanation": "4,50 + 3,75 = 8,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 23,
+"show_names": false
+},
+"options": {
+"A": "%28",
+"B": "%23",
+"C": "%77",
+"D": "%18"
+},
+"answer": "B",
+"explanation": "100 karenin 23 tanesi boyalı, 77 tanesi boyasızdır → %23.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 92,
+"show_names": false
+},
+"options": {
+"A": "0,08",
+"B": "0,092",
+"C": "0,92",
+"D": "9,2"
+},
+"answer": "C",
+"explanation": "100 karenin 92 tanesi boyalı: 92/100 = 0,92.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu cevaplayınız.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Çay ile Domates birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Çay",
+"84,75"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Domates",
+"22,25"
+]
+]
+},
+"options": {
+"A": "105,75",
+"B": "107,00",
+"C": "108,00",
+"D": "117,00"
+},
+"answer": "B",
+"explanation": "84,75 + 22,25 = 107,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 75,
+"show_names": false
+},
+"options": {
+"A": "%75",
+"B": "%85",
+"C": "%25",
+"D": "%7"
+},
+"answer": "A",
+"explanation": "100 kareden 75 tanesi boyalı olduğu için %75'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir boya kalemi seti ile bir kalem birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Kalem",
+"3,75"
+],
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Defter",
+"12,50"
+]
+]
+},
+"options": {
+"A": "23,00 TL",
+"B": "22,00 TL",
+"C": "23,50 TL",
+"D": "22,50 TL"
+},
+"answer": "D",
+"explanation": "18,75 + 3,75 = 22,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 22,
+"show_names": false
+},
+"options": {
+"A": "%17",
+"B": "%78",
+"C": "%27",
+"D": "%22"
+},
+"answer": "D",
+"explanation": "100 karenin 22 tanesi boyalı, 78 tanesi boyasızdır → %22.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 51,
+"show_names": false
+},
+"options": {
+"A": "0,051",
+"B": "0,49",
+"C": "0,51",
+"D": "5,1"
+},
+"answer": "C",
+"explanation": "100 karenin 51 tanesi boyalı: 51/100 = 0,51.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Ekmek ile Peynir birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Ekmek",
+"7,50"
+]
+]
+},
+"options": {
+"A": "102,75",
+"B": "104,00",
+"C": "105,00",
+"D": "114,00"
+},
+"answer": "B",
+"explanation": "7,50 + 96,50 = 104,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 45,
+"show_names": false
+},
+"options": {
+"A": "%55",
+"B": "%40",
+"C": "%45",
+"D": "%4"
+},
+"answer": "C",
+"explanation": "100 kareden 45 tanesi boyalı olduğu için %45'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruya cevap veriniz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kitap kılıfı ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Silgi",
+"2,25"
+],
+[
+"Defter",
+"12,50"
+],
+[
+"Kitap kılıfı",
+"5,50"
+]
+]
+},
+"options": {
+"A": "18,00 TL",
+"B": "19,00 TL",
+"C": "18,50 TL",
+"D": "17,50 TL"
+},
+"answer": "A",
+"explanation": "5,50 + 12,50 = 18,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak aşağıdaki soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 14,
+"show_names": false
+},
+"options": {
+"A": "%19",
+"B": "%9",
+"C": "%14",
+"D": "%86"
+},
+"answer": "C",
+"explanation": "100 karenin 14 tanesi boyalı, 86 tanesi boyasızdır → %14.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 77,
+"show_names": false
+},
+"options": {
+"A": "0,077",
+"B": "0,23",
+"C": "0,77",
+"D": "7,7"
+},
+"answer": "C",
+"explanation": "100 karenin 77 tanesi boyalı: 77/100 = 0,77.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Süt ile Çay birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Zeytin",
+"64,25"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Çay",
+"84,75"
+]
+]
+},
+"options": {
+"A": "112,25",
+"B": "113,50",
+"C": "114,50",
+"D": "123,50"
+},
+"answer": "B",
+"explanation": "28,75 + 84,75 = 113,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 80,
+"show_names": false
+},
+"options": {
+"A": "%8",
+"B": "%80",
+"C": "%20",
+"D": "%90"
+},
+"answer": "B",
+"explanation": "100 kareden 80 tanesi boyalı olduğu için %80'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir silgi birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Silgi",
+"2,25"
+],
+[
+"Boya kalemi seti",
+"18,75"
+]
+]
+},
+"options": {
+"A": "14,75 TL",
+"B": "15,75 TL",
+"C": "14,25 TL",
+"D": "15,25 TL"
+},
+"answer": "A",
+"explanation": "12,50 + 2,25 = 14,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 58,
+"show_names": false
+},
+"options": {
+"A": "%58",
+"B": "%63",
+"C": "%53",
+"D": "%42"
+},
+"answer": "A",
+"explanation": "100 karenin 58 tanesi boyalı, 42 tanesi boyasızdır → %58.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterim",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmının ondalık gösterimi aşağıdakilerden hangisidir?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 69,
+"show_names": false
+},
+"options": {
+"A": "0,069",
+"B": "0,31",
+"C": "0,69",
+"D": "6,9"
+},
+"answer": "C",
+"explanation": "100 karenin 69 tanesi boyalı: 69/100 = 0,69.",
+"kz": [
+"MAT.6.1.5"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_ond"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Peynir ile Süt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Süt",
+"28,75"
+],
+[
+"Ekmek",
+"7,50"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Bal",
+"120,00"
+]
+]
+},
+"options": {
+"A": "124,00",
+"B": "125,25",
+"C": "126,25",
+"D": "135,25"
+},
+"answer": "B",
+"explanation": "96,50 + 28,75 = 125,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 18,
+"show_names": false
+},
+"options": {
+"A": "%1",
+"B": "%82",
+"C": "%18",
+"D": "%28"
+},
+"answer": "C",
+"explanation": "100 kareden 18 tanesi boyalı olduğu için %18'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir makas ile bir kalem birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Kalem",
+"3,75"
+],
+[
+"Silgi",
+"2,25"
+],
+[
+"Makas",
+"6,25"
+]
+]
+},
+"options": {
+"A": "11,00 TL",
+"B": "10,00 TL",
+"C": "9,50 TL",
+"D": "10,50 TL"
+},
+"answer": "B",
+"explanation": "6,25 + 3,75 = 10,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 9,
+"show_names": false
+},
+"options": {
+"A": "%86",
+"B": "%9",
+"C": "%96",
+"D": "%91"
+},
+"answer": "D",
+"explanation": "100 karenin 9 tanesi boyalı, 91 tanesi boyasızdır → %91.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Peynir ile Bal birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Çay",
+"84,75"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Bal",
+"120,00"
+]
+]
+},
+"options": {
+"A": "215,25",
+"B": "216,50",
+"C": "217,50",
+"D": "226,50"
+},
+"answer": "B",
+"explanation": "96,50 + 120,00 = 216,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 23,
+"show_names": false
+},
+"options": {
+"A": "%2",
+"B": "%23",
+"C": "%33",
+"D": "%77"
+},
+"answer": "B",
+"explanation": "100 kareden 23 tanesi boyalı olduğu için %23'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir kitap kılıfı birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Kalem",
+"3,75"
+],
+[
+"Kitap kılıfı",
+"5,50"
+]
+]
+},
+"options": {
+"A": "19,00 TL",
+"B": "18,00 TL",
+"C": "17,50 TL",
+"D": "18,50 TL"
+},
+"answer": "B",
+"explanation": "12,50 + 5,50 = 18,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 76,
+"show_names": false
+},
+"options": {
+"A": "%29",
+"B": "%76",
+"C": "%24",
+"D": "%19"
+},
+"answer": "C",
+"explanation": "100 karenin 76 tanesi boyalı, 24 tanesi boyasızdır → %24.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Şekle göre sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Zeytin ile Yoğurt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Zeytin",
+"64,25"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Ekmek",
+"7,50"
+],
+[
+"Çay",
+"84,75"
+]
+]
+},
+"options": {
+"A": "98,50",
+"B": "99,75",
+"C": "100,75",
+"D": "109,75"
+},
+"answer": "B",
+"explanation": "64,25 + 35,50 = 99,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 45,
+"show_names": false
+},
+"options": {
+"A": "%55",
+"B": "%4",
+"C": "%45",
+"D": "%40"
+},
+"answer": "C",
+"explanation": "100 kareden 45 tanesi boyalı olduğu için %45'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir cetvel ile bir silgi birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Cetvel",
+"4,50"
+],
+[
+"Silgi",
+"2,25"
+],
+[
+"Kalem",
+"3,75"
+]
+]
+},
+"options": {
+"A": "6,25 TL",
+"B": "7,25 TL",
+"C": "6,75 TL",
+"D": "7,75 TL"
+},
+"answer": "C",
+"explanation": "4,50 + 2,25 = 6,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 71,
+"show_names": false
+},
+"options": {
+"A": "%34",
+"B": "%24",
+"C": "%71",
+"D": "%29"
+},
+"answer": "D",
+"explanation": "100 karenin 71 tanesi boyalı, 29 tanesi boyasızdır → %29.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Süt ile Peynir birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Peynir",
+"96,50"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Ekmek",
+"7,50"
+]
+]
+},
+"options": {
+"A": "124,00",
+"B": "125,25",
+"C": "126,25",
+"D": "135,25"
+},
+"answer": "B",
+"explanation": "28,75 + 96,50 = 125,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 94,
+"show_names": false
+},
+"options": {
+"A": "%94",
+"B": "%9",
+"C": "%6",
+"D": "%104"
+},
+"answer": "A",
+"explanation": "100 kareden 94 tanesi boyalı olduğu için %94'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir cetvel ile bir kitap kılıfı birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Makas",
+"6,25"
+],
+[
+"Kitap kılıfı",
+"5,50"
+],
+[
+"Cetvel",
+"4,50"
+]
+]
+},
+"options": {
+"A": "11,00 TL",
+"B": "9,50 TL",
+"C": "10,50 TL",
+"D": "10,00 TL"
+},
+"answer": "D",
+"explanation": "4,50 + 5,50 = 10,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 75,
+"show_names": false
+},
+"options": {
+"A": "%80",
+"B": "%25",
+"C": "%75",
+"D": "%70"
+},
+"answer": "C",
+"explanation": "100 karenin 75 tanesi boyalı, 25 tanesi boyasızdır → %75.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Süt ile Ekmek birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Süt",
+"28,75"
+],
+[
+"Çay",
+"84,75"
+],
+[
+"Ekmek",
+"7,50"
+],
+[
+"Domates",
+"22,25"
+]
+]
+},
+"options": {
+"A": "35,00",
+"B": "36,25",
+"C": "37,25",
+"D": "46,25"
+},
+"answer": "B",
+"explanation": "28,75 + 7,50 = 36,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu cevaplayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 7,
+"show_names": false
+},
+"options": {
+"A": "%7",
+"B": "%17",
+"C": "%93",
+"D": "%8"
+},
+"answer": "A",
+"explanation": "100 kareden 7 tanesi boyalı olduğu için %7'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir boya kalemi seti ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Kitap kılıfı",
+"5,50"
+],
+[
+"Defter",
+"12,50"
+]
+]
+},
+"options": {
+"A": "31,25 TL",
+"B": "31,75 TL",
+"C": "32,25 TL",
+"D": "30,75 TL"
+},
+"answer": "A",
+"explanation": "18,75 + 12,50 = 31,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 89,
+"show_names": false
+},
+"options": {
+"A": "%84",
+"B": "%11",
+"C": "%94",
+"D": "%89"
+},
+"answer": "D",
+"explanation": "100 karenin 89 tanesi boyalı, 11 tanesi boyasızdır → %89.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Yoğurt ile Ekmek birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Ekmek",
+"7,50"
+],
+[
+"Çay",
+"84,75"
+]
+]
+},
+"options": {
+"A": "41,75",
+"B": "43,00",
+"C": "44,00",
+"D": "53,00"
+},
+"answer": "B",
+"explanation": "35,50 + 7,50 = 43,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 23,
+"show_names": false
+},
+"options": {
+"A": "%77",
+"B": "%23",
+"C": "%2",
+"D": "%33"
+},
+"answer": "B",
+"explanation": "100 kareden 23 tanesi boyalı olduğu için %23'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak sorulanı bulunuz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir makas birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Makas",
+"6,25"
+],
+[
+"Boya kalemi seti",
+"18,75"
+]
+]
+},
+"options": {
+"A": "19,25 TL",
+"B": "18,75 TL",
+"C": "19,75 TL",
+"D": "18,25 TL"
+},
+"answer": "B",
+"explanation": "12,50 + 6,25 = 18,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 17,
+"show_names": false
+},
+"options": {
+"A": "%17",
+"B": "%83",
+"C": "%22",
+"D": "%12"
+},
+"answer": "A",
+"explanation": "100 karenin 17 tanesi boyalı, 83 tanesi boyasızdır → %17.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre şu soruyu yanıtlayınız.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Domates ile Süt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Zeytin",
+"64,25"
+],
+[
+"Ekmek",
+"7,50"
+],
+[
+"Domates",
+"22,25"
+],
+[
+"Süt",
+"28,75"
+]
+]
+},
+"options": {
+"A": "49,75",
+"B": "51,00",
+"C": "52,00",
+"D": "61,00"
+},
+"answer": "B",
+"explanation": "22,25 + 28,75 = 51,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak aşağıdaki soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 35,
+"show_names": false
+},
+"options": {
+"A": "%65",
+"B": "%45",
+"C": "%3",
+"D": "%35"
+},
+"answer": "D",
+"explanation": "100 kareden 35 tanesi boyalı olduğu için %35'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruya cevap veriniz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kitap kılıfı ile bir makas birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Makas",
+"6,25"
+],
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Kitap kılıfı",
+"5,50"
+]
+]
+},
+"options": {
+"A": "12,25 TL",
+"B": "11,25 TL",
+"C": "11,75 TL",
+"D": "12,75 TL"
+},
+"answer": "C",
+"explanation": "5,50 + 6,25 = 11,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 22,
+"show_names": false
+},
+"options": {
+"A": "%73",
+"B": "%22",
+"C": "%83",
+"D": "%78"
+},
+"answer": "D",
+"explanation": "100 karenin 22 tanesi boyalı, 78 tanesi boyasızdır → %78.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Süt ile Ekmek birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Bal",
+"120,00"
+],
+[
+"Çay",
+"84,75"
+],
+[
+"Ekmek",
+"7,50"
+],
+[
+"Süt",
+"28,75"
+]
+]
+},
+"options": {
+"A": "35,00",
+"B": "36,25",
+"C": "37,25",
+"D": "46,25"
+},
+"answer": "B",
+"explanation": "28,75 + 7,50 = 36,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre aşağıdaki soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 45,
+"show_names": false
+},
+"options": {
+"A": "%4",
+"B": "%40",
+"C": "%45",
+"D": "%55"
+},
+"answer": "C",
+"explanation": "100 kareden 45 tanesi boyalı olduğu için %45'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir kalem ile bir makas birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Makas",
+"6,25"
+],
+[
+"Kalem",
+"3,75"
+],
+[
+"Cetvel",
+"4,50"
+]
+]
+},
+"options": {
+"A": "10,50 TL",
+"B": "11,00 TL",
+"C": "9,50 TL",
+"D": "10,00 TL"
+},
+"answer": "D",
+"explanation": "3,75 + 6,25 = 10,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu cevaplayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 63,
+"show_names": false
+},
+"options": {
+"A": "%63",
+"B": "%37",
+"C": "%68",
+"D": "%58"
+},
+"answer": "A",
+"explanation": "100 karenin 63 tanesi boyalı, 37 tanesi boyasızdır → %63.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Şekle göre soruya cevap veriniz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Çay ile Süt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Süt",
+"28,75"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Çay",
+"84,75"
+],
+[
+"Ekmek",
+"7,50"
+]
+]
+},
+"options": {
+"A": "112,25",
+"B": "113,50",
+"C": "114,50",
+"D": "123,50"
+},
+"answer": "B",
+"explanation": "84,75 + 28,75 = 113,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 18,
+"show_names": false
+},
+"options": {
+"A": "%82",
+"B": "%28",
+"C": "%18",
+"D": "%1"
+},
+"answer": "C",
+"explanation": "100 kareden 18 tanesi boyalı olduğu için %18'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruya cevap veriniz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir cetvel ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Kalem",
+"3,75"
+],
+[
+"Defter",
+"12,50"
+],
+[
+"Cetvel",
+"4,50"
+]
+]
+},
+"options": {
+"A": "17,00 TL",
+"B": "17,50 TL",
+"C": "18,00 TL",
+"D": "16,50 TL"
+},
+"answer": "A",
+"explanation": "4,50 + 12,50 = 17,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 69,
+"show_names": false
+},
+"options": {
+"A": "%69",
+"B": "%74",
+"C": "%64",
+"D": "%31"
+},
+"answer": "A",
+"explanation": "100 karenin 69 tanesi boyalı, 31 tanesi boyasızdır → %69.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Yandaki görseli inceleyen bir öğrenci soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Ekmek ile Bal birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Ekmek",
+"7,50"
+],
+[
+"Domates",
+"22,25"
+],
+[
+"Bal",
+"120,00"
+],
+[
+"Peynir",
+"96,50"
+]
+]
+},
+"options": {
+"A": "126,25",
+"B": "127,50",
+"C": "128,50",
+"D": "137,50"
+},
+"answer": "B",
+"explanation": "7,50 + 120,00 = 127,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 80,
+"show_names": false
+},
+"options": {
+"A": "%90",
+"B": "%20",
+"C": "%80",
+"D": "%8"
+},
+"answer": "C",
+"explanation": "100 kareden 80 tanesi boyalı olduğu için %80'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir cetvel birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Cetvel",
+"4,50"
+],
+[
+"Defter",
+"12,50"
+]
+]
+},
+"options": {
+"A": "17,00 TL",
+"B": "18,00 TL",
+"C": "17,50 TL",
+"D": "16,50 TL"
+},
+"answer": "A",
+"explanation": "12,50 + 4,50 = 17,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 14,
+"show_names": false
+},
+"options": {
+"A": "%9",
+"B": "%14",
+"C": "%19",
+"D": "%86"
+},
+"answer": "B",
+"explanation": "100 karenin 14 tanesi boyalı, 86 tanesi boyasızdır → %14.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak şu soruyu yanıtlayınız.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Zeytin ile Çay birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Süt",
+"28,75"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Bal",
+"120,00"
+],
+[
+"Çay",
+"84,75"
+]
+]
+},
+"options": {
+"A": "147,75",
+"B": "149,00",
+"C": "150,00",
+"D": "159,00"
+},
+"answer": "B",
+"explanation": "64,25 + 84,75 = 149,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Görselde verilen bilgilere göre aşağıdaki soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 7,
+"show_names": false
+},
+"options": {
+"A": "%93",
+"B": "%8",
+"C": "%7",
+"D": "%17"
+},
+"answer": "C",
+"explanation": "100 kareden 7 tanesi boyalı olduğu için %7'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre sorulanı bulunuz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir boya kalemi seti ile bir kalem birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Cetvel",
+"4,50"
+],
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Kalem",
+"3,75"
+]
+]
+},
+"options": {
+"A": "22,50 TL",
+"B": "23,50 TL",
+"C": "22,00 TL",
+"D": "23,00 TL"
+},
+"answer": "A",
+"explanation": "18,75 + 3,75 = 22,50 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre aşağıdaki soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 58,
+"show_names": false
+},
+"options": {
+"A": "%58",
+"B": "%53",
+"C": "%42",
+"D": "%63"
+},
+"answer": "A",
+"explanation": "100 karenin 58 tanesi boyalı, 42 tanesi boyasızdır → %58.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruya cevap veriniz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Çay ile Peynir birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Çay",
+"84,75"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Bal",
+"120,00"
+]
+]
+},
+"options": {
+"A": "180,00",
+"B": "181,25",
+"C": "182,25",
+"D": "191,25"
+},
+"answer": "B",
+"explanation": "84,75 + 96,50 = 181,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekle göre şu soruyu yanıtlayınız.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 94,
+"show_names": false
+},
+"options": {
+"A": "%6",
+"B": "%9",
+"C": "%94",
+"D": "%104"
+},
+"answer": "C",
+"explanation": "100 kareden 94 tanesi boyalı olduğu için %94'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir makas ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Kitap kılıfı",
+"5,50"
+],
+[
+"Makas",
+"6,25"
+],
+[
+"Defter",
+"12,50"
+]
+]
+},
+"options": {
+"A": "19,25 TL",
+"B": "18,75 TL",
+"C": "18,25 TL",
+"D": "19,75 TL"
+},
+"answer": "B",
+"explanation": "6,25 + 12,50 = 18,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 59,
+"show_names": false
+},
+"options": {
+"A": "%54",
+"B": "%59",
+"C": "%64",
+"D": "%41"
+},
+"answer": "B",
+"explanation": "100 karenin 59 tanesi boyalı, 41 tanesi boyasızdır → %59.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Çay ile Peynir birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Çay",
+"84,75"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Peynir",
+"96,50"
+],
+[
+"Ekmek",
+"7,50"
+]
+]
+},
+"options": {
+"A": "180,00",
+"B": "181,25",
+"C": "182,25",
+"D": "191,25"
+},
+"answer": "B",
+"explanation": "84,75 + 96,50 = 181,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 80,
+"show_names": false
+},
+"options": {
+"A": "%90",
+"B": "%8",
+"C": "%80",
+"D": "%20"
+},
+"answer": "C",
+"explanation": "100 kareden 80 tanesi boyalı olduğu için %80'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre soruya cevap veriniz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir silgi birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Silgi",
+"2,25"
+],
+[
+"Defter",
+"12,50"
+]
+]
+},
+"options": {
+"A": "15,25 TL",
+"B": "14,75 TL",
+"C": "14,25 TL",
+"D": "15,75 TL"
+},
+"answer": "B",
+"explanation": "12,50 + 2,25 = 14,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak sorulanı bulunuz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 86,
+"show_names": false
+},
+"options": {
+"A": "%91",
+"B": "%14",
+"C": "%81",
+"D": "%86"
+},
+"answer": "D",
+"explanation": "100 karenin 86 tanesi boyalı, 14 tanesi boyasızdır → %86.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Öğretmenin tahtaya çizdiği şekle göre sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Peynir ile Süt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Çay",
+"84,75"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Peynir",
+"96,50"
+]
+]
+},
+"options": {
+"A": "124,00",
+"B": "125,25",
+"C": "126,25",
+"D": "135,25"
+},
+"answer": "B",
+"explanation": "96,50 + 28,75 = 125,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Şekilde verilenleri dikkate alarak soruyu çözünüz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 75,
+"show_names": false
+},
+"options": {
+"A": "%25",
+"B": "%85",
+"C": "%7",
+"D": "%75"
+},
+"answer": "D",
+"explanation": "100 kareden 75 tanesi boyalı olduğu için %75'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre şu soruyu yanıtlayınız.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir defter ile bir silgi birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Cetvel",
+"4,50"
+],
+[
+"Silgi",
+"2,25"
+]
+]
+},
+"options": {
+"A": "14,75 TL",
+"B": "14,25 TL",
+"C": "15,25 TL",
+"D": "15,75 TL"
+},
+"answer": "A",
+"explanation": "12,50 + 2,25 = 14,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 72,
+"show_names": false
+},
+"options": {
+"A": "%28",
+"B": "%33",
+"C": "%72",
+"D": "%23"
+},
+"answer": "A",
+"explanation": "100 karenin 72 tanesi boyalı, 28 tanesi boyasızdır → %28.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Görselde verilen bilgilere göre soruyu çözünüz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Domates ile Süt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Ekmek",
+"7,50"
+],
+[
+"Süt",
+"28,75"
+],
+[
+"Domates",
+"22,25"
+],
+[
+"Bal",
+"120,00"
+]
+]
+},
+"options": {
+"A": "49,75",
+"B": "51,00",
+"C": "52,00",
+"D": "61,00"
+},
+"answer": "B",
+"explanation": "22,25 + 28,75 = 51,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 23,
+"show_names": false
+},
+"options": {
+"A": "%23",
+"B": "%77",
+"C": "%33",
+"D": "%2"
+},
+"answer": "A",
+"explanation": "100 kareden 23 tanesi boyalı olduğu için %23'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak soruyu çözünüz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir boya kalemi seti ile bir defter birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Defter",
+"12,50"
+],
+[
+"Boya kalemi seti",
+"18,75"
+],
+[
+"Silgi",
+"2,25"
+]
+]
+},
+"options": {
+"A": "32,25 TL",
+"B": "30,75 TL",
+"C": "31,25 TL",
+"D": "31,75 TL"
+},
+"answer": "C",
+"explanation": "18,75 + 12,50 = 31,25 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak aşağıdaki soruyu çözünüz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyalı kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 39,
+"show_names": false
+},
+"options": {
+"A": "%39",
+"B": "%34",
+"C": "%61",
+"D": "%44"
+},
+"answer": "A",
+"explanation": "100 karenin 39 tanesi boyalı, 61 tanesi boyasızdır → %39.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Ders sırasında incelenen şekle bakarak sorulanı bulunuz.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Ekmek ile Yoğurt birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Zeytin",
+"64,25"
+],
+[
+"Yoğurt",
+"35,50"
+],
+[
+"Ekmek",
+"7,50"
+],
+[
+"Süt",
+"28,75"
+]
+]
+},
+"options": {
+"A": "41,75",
+"B": "43,00",
+"C": "44,00",
+"D": "53,00"
+},
+"answer": "B",
+"explanation": "7,50 + 35,50 = 43,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekildeki 100 eş kareden oluşan büyük karenin boyalı bölümü yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 18,
+"show_names": false
+},
+"options": {
+"A": "%1",
+"B": "%82",
+"C": "%28",
+"D": "%18"
+},
+"answer": "D",
+"explanation": "100 kareden 18 tanesi boyalı olduğu için %18'tür.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık gösterimlerle işlemler",
+"passage": "",
+"question": "Aşağıdaki görsele göre sorulanı bulunuz.\nTabloda bir kırtasiyedeki bazı ürünlerin fiyatları verilmiştir. Bir makas ile bir kitap kılıfı birlikte kaç TL tutar?",
+"shape": {
+"type": "table",
+"title": "Kırtasiye fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Makas",
+"6,25"
+],
+[
+"Kitap kılıfı",
+"5,50"
+],
+[
+"Silgi",
+"2,25"
+]
+]
+},
+"options": {
+"A": "12,25 TL",
+"B": "12,75 TL",
+"C": "11,25 TL",
+"D": "11,75 TL"
+},
+"answer": "D",
+"explanation": "6,25 + 5,50 = 11,75 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+},
+{
+"subject": "Matematik",
+"topic": "Yüzde",
+"passage": "",
+"question": "Verilen şekilden yararlanarak soruya cevap veriniz.\nŞekilde 100 eş kareye bölünmüş ızgaranın boyasız kısmı yüzde kaçtır?",
+"shape": {
+"type": "m6",
+"sub_type": "yuzluk",
+"n": 54,
+"show_names": false
+},
+"options": {
+"A": "%41",
+"B": "%54",
+"C": "%51",
+"D": "%46"
+},
+"answer": "D",
+"explanation": "100 karenin 54 tanesi boyalı, 46 tanesi boyasızdır → %46.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 1,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_yuzde"
+},
+{
+"subject": "Matematik",
+"topic": "Ondalık sayılarla işlemler",
+"passage": "",
+"question": "Çalışma kâğıdındaki şekle bakarak şu soruyu yanıtlayınız.\nTabloda bir marketteki ürünlerin fiyatları verilmiştir. Çay ile Zeytin birlikte alınırsa toplam kaç TL ödenir?",
+"shape": {
+"type": "table",
+"title": "Market fiyat listesi",
+"headers": [
+"Ürün",
+"Fiyat (TL)"
+],
+"rows": [
+[
+"Peynir",
+"96,50"
+],
+[
+"Zeytin",
+"64,25"
+],
+[
+"Bal",
+"120,00"
+],
+[
+"Çay",
+"84,75"
+]
+]
+},
+"options": {
+"A": "147,75",
+"B": "149,00",
+"C": "150,00",
+"D": "159,00"
+},
+"answer": "B",
+"explanation": "84,75 + 64,25 = 149,00 TL.",
+"kz": [
+"MAT.6.1.7"
+],
+"unit": "Ondalık Gösterim",
+"topics": "Ondalık sayılarla işlemler, Yüzde",
+"d": 2,
+"ts": 1795208326,
+"src": "local",
+"fam": "_mf6_od_tablo"
+}
+]
+}
