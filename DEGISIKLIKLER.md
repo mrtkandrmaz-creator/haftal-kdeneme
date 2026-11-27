@@ -285,3 +285,18 @@ Bu belge, son günlerde yapılan tüm iyileştirmeleri özetler. Matematik ve Fe
 - Family Life: `_en_fl_progress` (Present Progressive, fotoğraf), `_en_fl_pp_sp` (her gün/şimdi tablosu, PP vs SP), `_en_fl_hobby`, `_en_fl_chores_tab` (görev çizelgesi), `_en_fl_bar` (hobi grafiği). Görselli oran %32 → %51 (604 soru).
 - Hata yakalandı: yeni `_EN_NUM` adı eski bir listeyi ezecekti (dosyada aynı ad vardı) → `_EN_NUMW`. Yeni kalıp adlarının benzersizliği tarandı.
 - Kalan en düşük: Personal Life %47.
+
+## LGS 2024–2026 soru tarzı incelemesi ve eklenenler (2026-11-27)
+Kaynaklar: MEB LGS örnek soru kitapçıkları ve 2026 merkezi sınav raporu (meb.gov.tr), bilimsenligi.com 2026 LGS analizi ve MEB örnek soru analizi, DHA/Sabah/Cumhuriyet/Türkiye Gazetesi sınav yorumları. Resmî soru/zorluk dağılımı yayımlanmış olanlar sınırlı; çıkarımlar uzman yorumlarına dayanır.
+
+**LGS'de öne çıkan tarzlar:** tablo/grafik/şema/harita okuma (daire↔sütun grafiği dönüşümü, sayı doğrusunda tahmin, kareli zeminde olasılık); deney düzeneği + hipotez ("hangi hipotezi destekler", değişken kontrolü); çok adımlı günlük bağlam problemleri (döşeme, paketleme, üretim); olumsuz kök (NOT / CANNOT / "söylenemez"); çok öncüllü mantık soruları; kaynak/metin tabanlı çıkarım; İngilizce'de diyalog tamamlama + tarif/grafik tarama.
+
+**Havuz taraması (5. sınıf) – eksik çıkanlar:** İngilizce'de olumsuz kök 0 ve zorluk-4+ soru %1; Fen'de hipotez/kontrollü deney ~6 soru; Matematik'te çok adımlı tablolu problem az; zorluk-5 Sosyal/Türkçe/Din'de yok.
+
+**Eklenen kalıplar (hepsi zorluk 4, tablolu/şekilli):**
+- Fen: `_ff_hip_karsilastir` (hangi iki düzenek karşılaştırılmalı – tek değişken farklı), `_ff_hip_sonuc` (sonuçlar hangi hipotezi destekler); 4 senaryo (ampul parlaklığı, ısı iletimi, sürtünme, gölge boyu); sonuç yönleri fiziksel yöne uygun (ör. ampul sayısı arttıkça parlaklık azalır).
+- İngilizce: `_en_neg_*` (6 tablo senaryosunda "Which sentence is NOT true according to the table?"), `_en_hop_club`, `_en_hop_room` (iki tabloyu birleştirerek iki adımlı okuma). İngilizce zorluk-4 oranı %1 → %13 (%2'ye yakın değil, 4. seviye hâlâ düşük).
+- Matematik: `_mf5_cok_koli` (koli × kutu × kalem, tablodan iki sınıf toplamı), `_mf5_cok_bahce` (çevre × birim fiyat ya da iki alanın farkı).
+- `tools/build_local_pool.py`: `…deney düzenekleri/deneyi` tabloları ve `NOT true` doc'ları içerik hash'iyle dedupe edilir (aynı kök, farklı içerik tek soruya düşmesin).
+- Hata yakalandı: `Işığın Yayılması` ünitesi için anahtar sözcük Türkçe büyük I yüzünden eşleşmiyordu → "gölge oluşumu".
+Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve infografik okuma kalıpları; daire↔sütun grafiği dönüşümü için seçenekte grafik çizimi gerekir (şu an şıklar yalnızca metin).

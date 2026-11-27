@@ -85,9 +85,9 @@ def _mask(q):
         t += "|" + re.sub(r"\s+", " ", ps.lower())[:400]
     ttl = str(sh.get("title") or "")
     cont = ""
-    if ttl in _CONTENT_TITLES:  # içeriği (sözcükler) asıl farkı oluşturan eşleştirme/davranış tabloları: satır içeriği de anahtara girer
+    if ttl in _CONTENT_TITLES or ttl.endswith(("deney düzenekleri", "deneyi")) or (sh.get("type") == "doc" and "NOT true" in str(q.get("question") or "")):  # içeriği (sözcükler) asıl farkı oluşturan eşleştirme/davranış tabloları: satır içeriği de anahtara girer
         import hashlib as _h1
-        cont = "|" + _h1.md5(json.dumps(sh.get("rows"), ensure_ascii=False).encode()).hexdigest()[:12]
+        cont = "|" + _h1.md5(json.dumps(sh.get("rows") if sh.get("type") != "doc" else sh.get("blocks"), ensure_ascii=False).encode()).hexdigest()[:12]
     return re.sub(r"\s+", " ", t.lower()).strip() + "|" + str(sh.get("type") or "") + "|" + re.sub(r"\d+", "0", ttl) + cont
 
 

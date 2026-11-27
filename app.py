@@ -19231,6 +19231,74 @@ for _f, _kw, _d in ((_en_cl_objects, ("classroom life", "classroom objects", "th
     _EF_GENS.append((_f, _kw))
     _DIFF_OF[_f.__name__] = _d
 
+# ---- LGS tarzı (2024-2026) İngilizce: olumsuz kök (NOT true) ve iki adımlı tablo okuma
+_NEG_SC = [
+    ("Clubs", ("clubs", "school life"), "SCHOOL CLUBS", ["Club", "Day"], lambda: random.sample(_EN_CLUBS, 4), lambda: random.sample(_EN_DAYS5, 4), "The {a} meets on {b}.", "stars"),
+    ("School places and rules", ("school places", "school life"), "OUR SCHOOL", ["Place", "Floor"], lambda: random.sample(["Library", "Canteen", "Gym", "Art room", "Music room", "Science lab"], 4),
+     lambda: random.sample(["ground floor", "1st floor", "2nd floor", "3rd floor"], 4), "The {a} is on the {b}.", "books"),
+    ("Countries", ("countries", "school life"), "NEW FRIENDS", ["Name", "Country"], lambda: random.sample(["Maria", "Hans", "Pierre", "Kenji", "Ali", "John", "Anna"], 4),
+     lambda: random.sample(["Spain", "Germany", "France", "Japan", "Türkiye", "England", "Italy"], 4), "{a} is from {b}.", "balloons"),
+    ("Hobbies and activities", ("family life", "hobbies and activities"), "OUR HOBBIES", ["Name", "Hobby"], lambda: random.sample(["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep"], 4),
+     lambda: random.sample(["swimming", "reading", "painting", "dancing", "cooking", "riding a bike"], 4), "{a} likes {b}.", "stars"),
+    ("School subjects", ("classroom life", "school subjects"), "FAVOURITE SUBJECTS", ["Name", "Favourite subject"], lambda: random.sample(["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep"], 4),
+     lambda: random.sample(["Maths", "Science", "English", "Music", "Art", "History"], 4), "{a}'s favourite subject is {b}.", "books"),
+    ("Days of the week", ("classroom life", "days of the week"), "WEEKLY LESSONS", ["Lesson", "Day"], lambda: random.sample(["Maths", "Science", "English", "Music", "Art", "P.E."], 4),
+     lambda: random.sample(_EN_DAYS5, 4), "We have {a} on {b}.", "books"),
+]
+
+
+def _mk_neg(sc):
+    topic, kw, title, hd, pa, pb, tpl, deco = sc
+
+    def f(subject):
+        A, B = pa(), pb()
+        sh = _en_doc(title, [["grid", hd, [[a, b[0].upper() + b[1:]] for a, b in zip(A, B)]]], deco=deco)
+        k = random.randrange(4)
+        j = random.choice([x for x in range(4) if x != k])
+        sent = [tpl.format(a=A[i], b=B[i]) for i in range(4)]
+        fals = tpl.format(a=A[k], b=B[j])
+        true = [sent[i] for i in range(4) if i != k]
+        ex = f"Tabloda {A[k]} için {B[k]} yazıyor; \"{fals}\" cümlesi tabloyla uyuşmuyor, diğer üç cümle doğru."
+        return _en_pick(topic, "Which sentence is NOT true according to the table?", fals, true, ex, shape=sh)
+    f.__name__ = "_en_neg_" + {"Clubs": "clubs", "School places and rules": "places", "Countries": "countries", "Hobbies and activities": "hobbies", "School subjects": "subjects", "Days of the week": "days"}[topic]
+    globals()[f.__name__] = f
+    return f, kw
+
+
+def _en_hop_club(subject):
+    cl = random.sample(_EN_CLUBS, 4)
+    ds = random.sample(_EN_DAYS5, 4)
+    ns = random.sample(["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"], 4)
+    sh = _en_doc("SCHOOL CLUBS", [["grid", ["Club", "Day"], [[c, d] for c, d in zip(cl, ds)]], ["grid", ["Name", "Club"], [[n, c] for n, c in zip(ns, random.sample(cl, 4))]]], deco="stars")
+    mem = {r[0]: r[1] for r in sh["blocks"][1][2]}
+    day = dict(zip(cl, ds))
+    k = random.choice(ns)
+    if random.random() < .5:
+        return _en_pick("Clubs", f"On which day does {k}'s club meet?", day[mem[k]], [d for d in _EN_DAYS5 if d != day[mem[k]]], f"{k} → {mem[k]} kulübü → {day[mem[k]]}.", shape=sh)
+    tgt = random.choice(cl)
+    who = [n for n in ns if mem[n] == tgt][0]
+    return _en_pick("Clubs", f"Which student goes to the club that meets on {day[tgt]}?", who, [n for n in ns if n != who], f"{day[tgt]} günü {tgt} toplanıyor; bu kulübe giden öğrenci {who}.", shape=sh)
+
+
+def _en_hop_room(subject):
+    ls = random.sample(["Maths", "Science", "English", "Music", "Art", "P.E."], 4)
+    rm = random.sample(["Room 101", "Room 102", "Room 201", "Room 202", "Room 301"], 4)
+    fl = {"Room 101": "1st floor", "Room 102": "1st floor", "Room 201": "2nd floor", "Room 202": "2nd floor", "Room 301": "3rd floor"}
+    sh = _en_doc("TODAY'S LESSONS", [["grid", ["Lesson", "Room"], [[l, r] for l, r in zip(ls, rm)]], ["grid", ["Room", "Floor"], [[r, fl[r]] for r in sorted(set(rm))]]], deco="books")
+    k = random.randrange(4)
+    ans = fl[rm[k]]
+    return _en_pick("Classroom objects" if False else "Telling the time" if False else "Days of the week", f"On which floor is the {ls[k]} lesson?", f"On the {ans}", [f"On the {x}" for x in ("ground floor", "1st floor", "2nd floor", "3rd floor") if x != ans],
+                    f"{ls[k]} dersi {rm[k]}'da; {rm[k]} {ans}'ta.", shape=sh)
+
+
+for _sc in _NEG_SC:
+    _f, _kw = _mk_neg(_sc)
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 4
+for _f, _kw in ((_en_hop_club, ("clubs", "school life")), (_en_hop_room, ("classroom life", "days of the week"))):
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 4
+
 _NAMES = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
 _FEM = {"Ayşe", "Elif", "Zeynep"}
 
@@ -30189,6 +30257,95 @@ for _f, _d in ((_ff_dh_eklem_tur, 3), (_ff_dh_kas_tab, 3), (_ff_dh_hareket_bar, 
     _DIFF_OF[_f.__name__] = _d
     _F5_VARY.add(_f.__name__)
 
+# ---- LGS tarzı (2024-2026): kontrollü deney, hipotez-sonuç ilişkisi (Fen, 5. sınıf düzeyi)
+_HIP_SC = [
+    {"kw": ("elektrik devre elemanları",), "topic": "Ampul parlaklığını etkileyen değişkenler", "ana": "Ampul parlaklığı", "ben": "bir ampulün parlaklığına",
+     "vars": [("Pil sayısı", ["1 pil", "2 pil"], "pil sayısı arttıkça ampul parlaklığı artar.", 1), ("Ampul sayısı", ["1 ampul", "2 ampul"], "ampul sayısı arttıkça her ampulün parlaklığı azalır.", -1)],
+     "met": "Parlaklık (birim)", "lo": [2, 3, 4], "hi": [6, 8, 9]},
+    {"kw": ("madde ve değişim",), "topic": "Isı iletimi", "ana": "Isı iletimi", "ben": "bir çubuğun ucundaki mumun erime süresine",
+     "vars": [("Çubuk maddesi", ["metal", "tahta"], "çubuk maddesi metal olduğunda mum daha kısa sürede erir.", 1), ("Çubuk uzunluğu", ["10 cm", "20 cm"], "çubuk uzadıkça mumun erime süresi artar.", 1),
+              ("Isıtma şiddeti", ["küçük alev", "büyük alev"], "alev büyüdükçe mumun erime süresi kısalır.", -1)],
+     "met": "Mumun erime süresi (dk)", "lo": [2, 3, 4], "hi": [8, 9, 10]},
+    {"kw": ("kuvvetin ölçülmesi ve sürtünme",), "topic": "Sürtünme kuvveti ve etkileri", "ana": "Sürtünme kuvveti", "ben": "bir cismi çekmek için gereken kuvvete",
+     "vars": [("Yüzey türü", ["cam", "halı"], "yüzey pürüzlü olduğunda sürtünme kuvveti artar.", 1), ("Cismin kütlesi", ["200 g", "400 g"], "cismin kütlesi arttıkça sürtünme kuvveti artar.", 1)],
+     "met": "Gereken kuvvet (N)", "lo": [1, 2, 3], "hi": [4, 5, 6]},
+    {"kw": ("gölge oluşumu",), "topic": "Gölge oluşumu ve tam gölge", "ana": "Gölge boyu", "ben": "bir cismin gölge boyuna",
+     "vars": [("Işık kaynağı–cisim uzaklığı", ["20 cm", "40 cm"], "ışık kaynağına yaklaştıkça gölge boyu büyür.", -1), ("Cismin boyu", ["5 cm", "10 cm"], "cismin boyu arttıkça gölge boyu büyür.", 1)],
+     "met": "Gölge boyu (cm)", "lo": [6, 8, 10], "hi": [14, 16, 18]},
+]
+_HIP_KW_ALL = tuple(k for sc in _HIP_SC for k in sc["kw"])
+
+
+def _hip_rows(sc):
+    vs = sc["vars"]
+    n = len(vs)
+    order = list(range(n))
+    random.shuffle(order)
+    v, w = order[0], order[1]
+    x = order[2] if n > 2 else None
+    base = [random.randrange(2) for _ in range(n)]
+
+    def flip(b, idx):
+        b = list(b)
+        for i in idx:
+            b[i] = 1 - b[i]
+        return b
+    R = [base, flip(base, [v]), flip(base, [v, w]), flip(base, [w] + ([x] if x is not None else []))]
+    return v, R
+
+
+def _ff_hip_karsilastir(subject):
+    sc = random.choice(_HIP_SC)
+    v, R = _hip_rows(sc)
+    vs = sc["vars"]
+    perm = list(range(4))
+    random.shuffle(perm)  # satır sırasını karıştır: R[perm[k]] k. satırda
+    lab = ["K", "L", "M", "N"]
+    pos = {perm[k]: k for k in range(4)}  # R indeksi -> satır konumu
+    rows = [[lab[k]] + [vs[j][1][R[perm[k]][j]] for j in range(len(vs))] for k in range(4)]
+    sh = _yn_tbl(f"{sc['ana']} deney düzenekleri", ["Düzenek"] + [x[0] for x in vs], rows)
+
+    def pair(a, b):
+        i, j = sorted((pos[a], pos[b]))
+        return f"{lab[i]} ve {lab[j]}"
+    cor = pair(0, 1)
+    wr = [pair(0, 2), pair(1, 2), pair(0, 3), pair(1, 3)]
+    wr = [w_ for w_ in dict.fromkeys(wr) if w_ != cor]
+    o = _yn_opts(cor, wr[:3])
+    q = f"Bir öğrenci {sc['ben']} etki eden \"{vs[v][0]}\" değişkeninin etkisini araştırmak istiyor ve tabloda verilen dört düzeneği hazırlıyor.\nBuna göre bu etkiyi doğru biçimde test etmek için hangi iki düzenek karşılaştırılmalıdır?"
+    ex = f"Yalnızca \"{vs[v][0]}\" farklı, diğer değişkenler aynı olmalıdır. Bu koşulu {cor} düzenekleri sağlar."
+    return _mf_raw(subject, sc["topic"], q, o, ex, shape=sh) if o else None
+
+
+def _ff_hip_sonuc(subject):
+    sc = random.choice(_HIP_SC)
+    v, R = _hip_rows(sc)
+    vs = sc["vars"]
+    a, b = R[0], R[1]
+    lo, hi = random.choice(sc["lo"]), random.choice(sc["hi"])
+    # değişken değeri 0 ya da 1 olan düzenekte sonuç: yön = metin yönü kadar; yönü sabit tutmak için "hi" ikinci değere atanır
+    dr = vs[v][3]  # 2. değerin ölçümü artırıp artırmadığı (fiziksel yön)
+    a_val, b_val = (a[v], b[v])
+    ra, rb = (lo, hi) if (dr > 0) == (b_val > a_val) else (hi, lo)
+    sh = _yn_tbl(f"{sc['ana']} deneyi", ["Düzenek"] + [x[0] for x in vs] + [sc["met"]], [["K"] + [vs[j][1][a[j]] for j in range(len(vs))] + [str(ra)], ["L"] + [vs[j][1][b[j]] for j in range(len(vs))] + [str(rb)]])
+    hip = vs[v][2]
+    wrong = [x[2] for k, x in enumerate(vs) if k != v]
+    # yönü doğrulamak: sonuç yönüyle hipotezin yönü uyuşmayabilir; bu yüzden hipotezi yön içermeden "etkiler" biçiminde soruyoruz
+    cor = f"{vs[v][0]} {sc['ana'].lower()} üzerinde etkilidir."
+    wr = [f"{x[0]} {sc['ana'].lower()} üzerinde etkilidir." for k, x in enumerate(vs) if k != v]
+    wr += [f"{sc['ana']} deneyin yapıldığı saate bağlıdır.", f"{vs[v][0]} {sc['ana'].lower()} üzerinde etkili değildir."]
+    wr = list(dict.fromkeys(wr))
+    o = _yn_opts(cor, wr[:3]) if len(wr) >= 3 else None
+    q = f"Bir öğrenci {sc['ben']} etki eden bir değişkeni incelemek için iki düzenek hazırlamış ve ölçüm sonuçlarını tabloya yazmıştır.\nBuna göre bu deneyin sonuçları aşağıdaki hipotezlerden hangisini desteklemektedir?"
+    ex = f"Düzenekler yalnızca \"{vs[v][0]}\" bakımından farklıdır ve sonuçlar farklı çıkmıştır; bu durum bu değişkenin {sc['ana'].lower()} üzerinde etkili olduğunu gösterir."
+    return _mf_raw(subject, sc["topic"], q, o, ex, shape=sh) if o else None
+
+
+for _f, _d in ((_ff_hip_karsilastir, 4), (_ff_hip_sonuc, 4)):
+    _f.ITEM = "Kontrollü deney ve hipotez"
+    _FF_GENS.append((_f, _HIP_KW_ALL))
+    _DIFF_OF[_f.__name__] = _d
+
 # ---- Maarif FB.5.3.1-2 (Canlıların Yapısına Yolculuk): hücre ve yapı düzeyleri
 _HC_T = "Hücre"
 _HC_I1 = "Bitki ve hayvan hücresi"
@@ -37556,6 +37713,54 @@ _M5E_FAMS = [(_mf5_eq_koru_tab, ("cebirsel düşünme",), 2, "MAT.5.2.1"), (_mf5
              (_mf5_eq_eksik_sayi, ("cebirsel düşünme",), 3, "MAT.5.2.1"), (_mf5_in_pergel_tab, ("çember",), 2, "MAT.5.3.2"), (_mf5_in_cetvel_tab, ("doğru parça", "doğru", "ışın"), 2, "MAT.5.3.2"),
              (_mf5_in_halka_tab, ("çember",), 3, "MAT.5.3.2")]
 for _f, _kw, _d, _cd in _M5E_FAMS:
+    _MF_GENS.append((_m5_lead2(_f), _kw, (5,)))
+    _DIFF_OF[_f.__name__] = _d
+    _MF_ITEMCODE[_f.__name__] = [_cd]
+
+
+# ---- LGS tarzı (2024-2026) Matematik: çok adımlı, tablolu "günlük bağlam" problemleri (5. sınıf düzeyi)
+def _mf5_cok_koli(subject):
+    cl = random.sample(["5-A", "5-B", "5-C", "5-D", "5-E"], 3)
+    ko = random.sample([3, 4, 5, 6, 7, 8, 9], 3)
+    a = random.choice([4, 6, 8, 10])
+    b = random.choice([10, 12, 20, 25])
+    i, j = random.sample(range(3), 2)
+    ans = (ko[i] + ko[j]) * a * b
+    wr = [ko[i] * a * b, (ko[i] + ko[j]) * a, (ko[i] + ko[j]) * b, (ko[i] + ko[j] + ko[3 - i - j]) * a * b, abs(ko[i] - ko[j]) * a * b, (ko[i] + ko[j]) * (a + b)]
+    wr = [w for w in dict.fromkeys(wr) if w != ans and w > 0]
+    o = _mf_opts(ans, wr, str)
+    sh = _yn_tbl("Sınıfların aldığı koliler", ["Sınıf", "Koli sayısı"], [[cl[k], str(ko[k])] for k in range(3)])
+    q = f"Bir okulda sınıflar kırtasiye alıyor. Her kolide {a} kutu, her kutuda {b} kalem vardır. Sınıfların aldığı koli sayıları tabloda verilmiştir.\nBuna göre {cl[i]} ve {cl[j]} sınıflarının aldığı toplam kalem sayısı kaçtır?"
+    return _mf_raw(subject, "Dört işlem problemleri", q, o, f"Koli sayısı: {ko[i]} + {ko[j]} = {ko[i] + ko[j]}; kalem sayısı: {ko[i] + ko[j]} × {a} × {b} = {ans}.", shape=sh) if o else None
+
+
+def _mf5_cok_bahce(subject):
+    nm = random.sample(["A", "B", "C"], 2)
+    k1, u1 = random.randint(5, 12), random.randint(13, 24)
+    k2, u2 = random.randint(5, 12), random.randint(13, 24)
+    if k1 * u1 == k2 * u2:
+        return None
+    sh = _yn_tbl("Dikdörtgen biçimli bahçeler", ["Bahçe", "Kısa kenar (m)", "Uzun kenar (m)"], [[nm[0], str(k1), str(u1)], [nm[1], str(k2), str(u2)]])
+    if random.random() < .5:
+        fy = random.choice([5, 8, 10, 12, 15])
+        c = 2 * (k1 + u1)
+        ans = c * fy
+        wr = [(k1 + u1) * fy, k1 * u1 * fy, c, c + fy, 2 * (k1 + u1 + 1) * fy]
+        q = f"Tabloda dikdörtgen biçimli iki bahçenin kenar uzunlukları verilmiştir. {nm[0]} bahçesinin çevresi tel örgüyle çevrilecektir. Tel örgünün metresi {fy} TL'dir.\nBuna göre {nm[0]} bahçesi için kaç TL tel örgü ücreti ödenir?"
+        ex = f"Çevre = 2 × ({k1} + {u1}) = {c} m; ücret = {c} × {fy} = {ans} TL."
+        o = _mf_opts(ans, [w for w in dict.fromkeys(wr) if w != ans and w > 0], lambda v: f"{v} TL")
+    else:
+        a1, a2 = k1 * u1, k2 * u2
+        hi, lo = (nm[0], nm[1]) if a1 > a2 else (nm[1], nm[0])
+        ans = abs(a1 - a2)
+        wr = [a1 + a2, abs(2 * (k1 + u1) - 2 * (k2 + u2)), ans + 10, ans + 20, abs(k1 - k2) * abs(u1 - u2)]
+        q = f"Tabloda dikdörtgen biçimli iki bahçenin kenar uzunlukları verilmiştir.\nBuna göre {hi} bahçesinin alanı {lo} bahçesinin alanından kaç metrekare fazladır?"
+        ex = f"Alanlar: {a1} m² ve {a2} m²; fark = {ans} m²."
+        o = _mf_opts(ans, [w for w in dict.fromkeys(wr) if w != ans and w > 0], lambda v: f"{v} m²")
+    return _mf_raw(subject, "Alan problemleri", q, o, ex, shape=sh) if o else None
+
+
+for _f, _kw, _d, _cd in ((_mf5_cok_koli, ("dört işlem",), 4, "MAT.5.1.2"), (_mf5_cok_bahce, ("çevre", "alan"), 4, "MAT.5.4.1")):
     _MF_GENS.append((_m5_lead2(_f), _kw, (5,)))
     _DIFF_OF[_f.__name__] = _d
     _MF_ITEMCODE[_f.__name__] = [_cd]
