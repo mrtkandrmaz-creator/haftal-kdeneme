@@ -305,3 +305,4 @@ Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve 
 - Önceden bu üç derste zorluk-5 (LGS Seçici) kalıbı yoktu. Mevcut 13 eşleştirme/davranış tablosunun zor sürümü eklendi (`*_5`, `_mk_swap5`, `_mk_behav5`): 5 satırlı tabloda iki satırın eşleştirmesi yanlış (hangi iki satır?) ya da 5 davranıştan tam ikisi ölçüte uyuyor (hangileri?). Şıklar harf çiftleri ("K ve M"), her satır tek tek değerlendirilmeden çözülemez.
 - Havuz yeniden kuruldu: Sosyal 4238, Türkçe 5202, Din 3707; run_checks 14/14.
 - Sınır: zorluk yalnızca çok aşamalı kontrolle artıyor; metin okuma/çıkarım tipi zorluk-5 (uzun paragraf, harita-infografik) hâlâ yok.
+- (devam) Türkçe: `_tf_par_oncul` — paragraftan I-II-III yargı çıkarımı (yalnız biri parçaya uygun; zorluk 5). Sosyal Bilgiler: krokide 2 ve 3 adımlı rota (`_sf_ss_yol`, `_sf_ss_yol3`; zorluk 5, şıklar harf, metindeki yönler şekildeki pusulayla uyumlu). Havuz: Sosyal 4360, Türkçe 5260; run_checks 14/14.

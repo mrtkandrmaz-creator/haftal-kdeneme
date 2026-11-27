@@ -18783,6 +18783,25 @@ _TF_GENS += [(_tf_par_ana, ("ana fikir", "okuma", "paragraf")), (_tf_par_cikarim
 _DIFF_OF.update({"_tf_par_ana": 4, "_tf_par_cikarim": 4, "_tf_par_konu": 2})
 
 
+def _tf_par_oncul(subject):
+    """Zorluk 5: parçadan hangi yargı(lar) çıkarılabilir — üç öncül (I, II, III), yalnız biri parçaya uygun."""
+    p, _k, _a, _w, c, ws = _tr_par_pick()
+    st = [c] + list(random.sample(list(ws), 2))
+    random.shuffle(st)
+    ai_ = st.index(c)
+    rom = ["I", "II", "III"]
+    o = _yn_opts(f"Yalnız {rom[ai_]}", [f"Yalnız {rom[j]}" for j in range(3) if j != ai_] + [f"{rom[(ai_ + 1) % 3]} ve {rom[(ai_ + 2) % 3]}"])
+    if not o:
+        return None
+    q = "Aşağıdaki yargılardan hangisi ya da hangileri bu parçadan çıkarılabilir?\n" + "\n".join(f"{rom[j]}. {st[j]}" for j in range(3))
+    return _mf_raw(subject, "Çıkarım", q, o, f"Parçaya uygun olan yargı {rom[ai_]}: {c} Diğer yargılar parçada yer almaz ya da parçayla çelişir.", passage=p)
+
+
+_tf_par_oncul.ITEM = "Metnin yüzey anlamı"
+_TF_GENS.append((_tf_par_oncul, ("okuma", "paragraf", "sebep", "neden", "yüzey anlam")))
+_DIFF_OF["_tf_par_oncul"] = 5
+
+
 # ================================================================ 5. SINIF DİN KÜLTÜRÜ VE AHLAK BİLGİSİ — kodla kurulan, doğru-cevaplı kalıplar
 _DIN = "Din Kültürü ve Ahlak Bilgisi"
 _DF_GENS = []
@@ -28335,6 +28354,49 @@ for _f, _d, _it in _SS_FAMS:
     _SF_GENS.append((_vy_wrap(_f), _SS_KWM[_it]))
     _DIFF_OF[_f.__name__] = _d
 
+
+
+def _sf_ss_yol(subject, steps=2):
+    """Zorluk 5: krokide çok adımlı yol — başlangıç yerinden verilen yönlerde birer kare gidilirse hangi yere varılır."""
+    for _t in range(80):
+        ys = _ss_kroki(random.choice([6, 7]))
+        a = random.choice(ys)
+        c, r = a["c"], a["r"]
+        mv = []
+        ok = True
+        for _s in range(steps):
+            dx, dy = random.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
+            if mv and (dx, dy) == (-mv[-1][0], -mv[-1][1]):
+                ok = False
+                break
+            c, r = c + dx, r + dy
+            mv.append((dx, dy))
+        if not ok or not (0 <= c < 3 and 0 <= r < 3):
+            continue
+        b = next((y for y in ys if (y["c"], y["r"]) == (c, r)), None)
+        if not b or b is a:
+            continue
+        # ara duraklar krokide boş olabilir; hedef dolu olmalı
+        oth = [y["h"] for y in ys if y is not b]
+        if len(oth) < 3:
+            continue
+        o = (sorted(random.sample(oth, 3) + [b["h"]]), b["h"])
+        txt = ", sonra ".join(f"1 kare {_SS_DIR[(dx, -dy)]}" for dx, dy in mv) + " yönünde"
+        q = (f"Bir mahallenin krokisi ve yön okları şekilde verilmiştir. {a['ad']} yerinden çıkan bir öğrenci önce {txt} gitmiştir.\n"
+             f"Buna göre öğrenci hangi harfle gösterilen yere ulaşmıştır?")
+        ex = f"{a['ad']} yerinden başlanıp sırasıyla {', '.join(_SS_DIR[(dx, -dy)] for dx, dy in mv)} yönünde birer kare ilerlenince {b['ad']} yerine, yani {b['h']} harfiyle gösterilen yere ulaşılır."
+        return _mf_raw(subject, "Göreceli konum", q, o, ex, shape=_ss_sh(ys))
+    return None
+
+
+def _sf_ss_yol3(subject):
+    return _sf_ss_yol(subject, 3)
+
+
+for _f, _d in ((_sf_ss_yol, 5), (_sf_ss_yol3, 5)):
+    _f.ITEM = _SS_I["bir"]
+    _SF_GENS.append((_vy_wrap(_f), _SS_KWM["bir"]))
+    _DIFF_OF[_f.__name__] = _d
 
 
 # ---- Din Kültürü / İngilizce / Türkçe: şekilli aileler
