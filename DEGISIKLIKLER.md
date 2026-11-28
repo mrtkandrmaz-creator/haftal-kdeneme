@@ -311,3 +311,8 @@ Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve 
 - Modül bazında (app.py içindeki MODULES metinleri) ölü kod taraması: kullanılmayan işlev, sabit, import, yinelenen tanım.
 - Silinenler: kullanılmayan 3 işlev (`_pool_shard_name`, `_s6w`, `_pin_hash`), 65 adet `X if False else Y` ölü dalı (Y'ye indirildi), `and False` / `or True` kalıpları, boş `for … pass` döngüleri. app.py 43 953 → ~43 880 satır.
 - Dikkat: ilk denemede ölü sanılan `_rot/_regular/_poly/_par_draw` (eski `_geo` takma adı `_geo_basic` kullanıyor), `_alan_sh/_od6` (altıncı sınıf kalıpları) ve `_mf_ca_halı` (Türkçe karakterli ad) geri konuldu; run_checks 14/14. Aynı adla yeniden tanımlanan eski sürümler (`_geo`, `_bio_icon`, `_mf6_*`) kayıt listelerinde kullanıldığı için bilerek silinmedi.
+
+## İngilizce zorluk-4 genişletmesi (2026-11-28)
+- Neighbourhood, World, Nature, Universe ve Personal Life ünitelerinde zorluk-4 soru yok denecek kadar azdı (World/Neighbourhood 0, Nature 10). 17 yeni tablolu kalıp: "NOT true" (`_en_neg_recreation/food/habitat/season/continent/clothes/body`), sayı karşılaştırmalı tablo (`_en_neg_height`: taller than, `_en_neg_speed`: faster than) ve iki tablolu okuma (`_en_hop_prices/clothes/habitat/places`). Çeldirici/yanlış cümle çiftleri tablodan türetilir; gerçek dünyada da doğru sayılabilecek eşleştirmeler (ör. kar yağışında atkı, parkta kitap okuma, ormanda ayı) bilerek elendi.
+- İngilizce 5. sınıf: 3 667 → 4 303 soru; zorluk 4–5 payı %13 → %27; görselli oran: Personal Life %47 → %63, Nature %75 → %84, Neighbourhood %80 → %85. run_checks 14/14.
+- Sınır: bu sorular çoktan seçmeli tablo okuma düzeyinde; LGS'nin diyalog tamamlama/uzun okuma tarzı henüz yok.

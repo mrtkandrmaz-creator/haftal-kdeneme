@@ -19316,6 +19316,122 @@ for _f, _kw in ((_en_hop_club, ("clubs", "school life")), (_en_hop_room, ("class
     _EF_GENS.append((_f, _kw))
     _DIFF_OF[_f.__name__] = 4
 
+# ---- LGS tarzı İngilizce (devam): diğer üniteler için NOT true / karşılaştırma / iki tablolu okuma
+_N5 = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
+_NEG2 = [
+    ("neg_recreation", "Places for recreation", ("places for recreation",), "PLACES IN OUR CITY", ["Place", "Activity"],
+     [("museum", "see old things"), ("cinema", "watch a film"), ("swimming pool", "swim"), ("library", "borrow books"), ("zoo", "see animals"), ("stadium", "watch a match")], "You can {b} at the {a}.", "stars"),
+    ("neg_food", "Food types", ("food types",), "FOOD GROUPS", ["Food", "Group"],
+     [("apple", "fruit"), ("banana", "fruit"), ("carrot", "vegetable"), ("potato", "vegetable"), ("milk", "drink"), ("orange juice", "drink"), ("chicken", "meat"), ("beef", "meat")], "{A} is a kind of {b}.", "balloons"),
+    ("neg_habitat", "Habitats", ("habitats", "wild animals"), "WHERE DO ANIMALS LIVE?", ["Habitat", "Animal"],
+     [("desert", "camel"), ("ocean", "dolphin"), ("Arctic", "polar bear"), ("jungle", "monkey"), ("pond", "frog")], "A {b} lives in the {a}.", "stars"),
+    ("neg_season", "Seasons", ("seasons",), "SEASONS AND MONTHS", ["Season", "Month"],
+     [("winter", "January"), ("spring", "April"), ("summer", "July"), ("autumn", "October"), ("summer", "August"), ("winter", "December")], "{B} is in {a}.", "stars"),
+    ("neg_continent", "Continents and climate", ("continents and climate",), "CONTINENTS", ["Continent", "Country"],
+     [("Europe", "France"), ("Asia", "Japan"), ("Africa", "Kenya"), ("North America", "Canada"), ("South America", "Brazil"), ("Europe", "Spain")], "{b} is in {a}.", "balloons"),
+    ("neg_clothes", "Clothes", ("clothes",), "WHAT DO WE WEAR?", ["Clothes", "Body part"],
+     [("a hat", "head"), ("gloves", "hands"), ("socks", "feet"), ("a scarf", "neck"), ("glasses", "eyes"), ("a belt", "waist")], "We wear {a} on our {b}.", "stars"),
+    ("neg_body", "Body parts and appearance", ("body parts and appearance",), "OUR BODY", ["Body part", "We use it to..."],
+     [("eyes", "see"), ("ears", "hear"), ("nose", "smell"), ("tongue", "taste"), ("legs", "walk")], "We use our {a} to {b}.", "stars"),
+]
+
+
+def _mk_neg2(sc):
+    name, topic, kw, title, hd, pairs, tpl, deco = sc
+
+    def f(subject):
+        for _ in range(30):
+            ps = random.sample(pairs, 4)
+            if len({p[1] for p in ps}) < 3 or len({p[0] for p in ps}) < 4:
+                continue
+            A = [p[0] for p in ps]
+            B = [p[1] for p in ps]
+            k = random.randrange(4)
+            js = [j for j in range(4) if B[j] != B[k]]
+            if not js:
+                continue
+            j = random.choice(js)
+            fm = lambda a, b: tpl.format(a=a, b=b, A=a[0].upper() + a[1:], B=b)
+            fals = fm(A[k], B[j])
+            true = [fm(A[i], B[i]) for i in range(4) if i != k]
+            if fals in true or len(set(true)) < 3:
+                continue
+            sh = _en_doc(title, [["grid", hd, [[a, b[0].upper() + b[1:] if hd[1] != "We use it to..." else b] for a, b in zip(A, B)]]], deco=deco)
+            ex = f"Tabloda {A[k]} için {B[k]} yazıyor; \"{fals}\" cümlesi tabloyla uyuşmuyor, diğer üç cümle doğru."
+            return _en_pick(topic, "Which sentence is NOT true according to the table?", fals, true, ex, shape=sh)
+        return None
+    f.__name__ = "_en_" + name
+    globals()[f.__name__] = f
+    return f, kw
+
+
+def _mk_cmp(name, topic, kw, title, col, unit, items, adj, deco):
+    def f(subject):
+        for _ in range(30):
+            its = random.sample(items, 4)
+            if len({v for _n, v in its}) < 4:
+                continue
+            prs = [(a, b) for i, a in enumerate(its) for b in its[i + 1:]]
+            random.shuffle(prs)
+            pr = [(a, b) if a[1] > b[1] else (b, a) for a, b in prs[:4]]
+            true = [f"The {x[0]} is {adj} than the {y[0]}." for x, y in pr[:3]]
+            fx, fy = pr[3]
+            fals = f"The {fy[0]} is {adj} than the {fx[0]}."
+            sh = _en_doc(title, [["grid", [col, unit], [[n[0].upper() + n[1:], str(v)] for n, v in its]]], deco=deco)
+            ex = f"Tabloya göre {fx[0]} ({fx[1]}) {fy[0]} ({fy[1]}) değerinden büyüktür; \"{fals}\" cümlesi bunun tersini söylüyor, diğer üç cümle doğru."
+            return _en_pick(topic, "Which sentence is NOT true according to the table?", fals, true, ex, shape=sh)
+        return None
+    f.__name__ = "_en_" + name
+    globals()[f.__name__] = f
+    return f, kw
+
+
+def _mk_hop(name, topic, kw, title1, hd1, title2, hd2, pairs2, pool1, qfun, deco):
+    """İki tablolu okuma: 1. tablo kişi→A, 2. tablo A→B; soru kişiden B'ye."""
+    def f(subject):
+        ps = random.sample(pairs2, 4)
+        ns = random.sample(_N5, 4)
+        for _t in range(20):
+            pick = [random.choice(ps) for _ in ns]
+            if len({p[0] for p in pick}) >= 3:
+                break
+        else:
+            return None
+        sh = _en_doc(title1, [["grid", hd1, [[n, p[0]] for n, p in zip(ns, pick)]], ["grid", hd2, [[p[0], p[1]] for p in ps]]], deco=deco)
+        i = random.randrange(4)
+        q, ans, wr, ex = qfun(ns[i], pick[i], ps)
+        return _en_pick(topic, q, ans, wr, ex, shape=sh)
+    f.__name__ = "_en_" + name
+    globals()[f.__name__] = f
+    return f, kw
+
+
+_HOPS = [
+    _mk_hop("hop_prices", "Ordering in a restaurant", ("ordering in a restaurant",), "AT THE RESTAURANT", ["Name", "Order"], "MENU", ["Food", "Price"],
+            [("a hamburger", "£6"), ("a pizza", "£8"), ("a salad", "£5"), ("soup", "£4"), ("pasta", "£7")], None,
+            lambda n, p, ps: (f"How much is {n}'s order?", p[1], [x[1] for x in ps if x[1] != p[1]], f"{n} → {p[0]}; menüde {p[0]} {p[1]}."), "balloons"),
+    _mk_hop("hop_clothes", "Clothes", ("clothes",), "OUR CLOTHES", ["Name", "Clothes"], "WHERE DO WE WEAR THEM?", ["Clothes", "Body part"],
+            [("a hat", "head"), ("gloves", "hands"), ("socks", "feet"), ("a scarf", "neck"), ("glasses", "eyes")], None,
+            lambda n, p, ps: (f"Which part of the body does {n} wear his/her clothes on?", f"On the {p[1]}", [f"On the {x[1]}" for x in ps if x[1] != p[1]], f"{n} → {p[0]}; tabloya göre {p[0]} {p[1]} üzerine giyilir."), "stars"),
+    _mk_hop("hop_habitat", "Habitats", ("habitats", "wild animals"), "FAVOURITE ANIMALS", ["Name", "Animal"], "ANIMAL HOMES", ["Animal", "Habitat"],
+            [("camel", "desert"), ("dolphin", "ocean"), ("polar bear", "Arctic"), ("frog", "pond"), ("monkey", "jungle")], None,
+            lambda n, p, ps: (f"Where does {n}'s favourite animal live?", f"In the {p[1]}", [f"In the {x[1]}" for x in ps if x[1] != p[1]], f"{n} → {p[0]}; {p[0]} {p[1]} bölgesinde yaşar."), "stars"),
+    _mk_hop("hop_places", "Places for recreation", ("places for recreation",), "AFTER SCHOOL", ["Name", "Place"], "WHAT CAN WE DO THERE?", ["Place", "Activity"],
+            [("museum", "see old things"), ("cinema", "watch a film"), ("swimming pool", "swim"), ("library", "borrow books"), ("zoo", "see animals")], None,
+            lambda n, p, ps: (f"What does {n} do after school?", p[1][0].upper() + p[1][1:], [x[1][0].upper() + x[1][1:] for x in ps if x[1] != p[1]], f"{n} → {p[0]}; orada {p[1]}."), "balloons"),
+]
+_CMPS = [
+    _mk_cmp("neg_height", "Comparatives", ("possessive 's",), "TALL BUILDINGS", "Building", "Height (m)", [("tower", 120), ("hotel", 80), ("hospital", 45), ("school", 25), ("bank", 35), ("library", 20)], "taller", "stars"),
+    _mk_cmp("neg_speed", "Comparatives and superlatives", ("comparatives and superlatives",), "ANIMAL SPEEDS", "Animal", "Speed (km/h)", [("cheetah", 110), ("horse", 70), ("rabbit", 55), ("dog", 45), ("elephant", 40), ("pig", 17)], "faster", "stars"),
+]
+for _sc in _NEG2:
+    _f, _kw = _mk_neg2(_sc)
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 4
+for _f, _kw in _HOPS + _CMPS:
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 4
+
 _NAMES = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
 _FEM = {"Ayşe", "Elif", "Zeynep"}
 
