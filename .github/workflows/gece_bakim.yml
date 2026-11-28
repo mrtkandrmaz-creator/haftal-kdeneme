@@ -1,0 +1,39 @@
+name: Gece bakımı
+
+on:
+  schedule:
+    - cron: "0 1 * * *"   # her gün 04:00 (TR)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gece-bakim
+  cancel-in-progress: false
+
+jobs:
+  bakim:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install groq google-genai matplotlib numpy pandas altair reportlab requests pypdf
+      - name: Bakım (test, tarama, ölü kod, MEB müfredatı)
+        id: bakim
+        run: python tools/bakim.py
+        continue-on-error: true
+      - name: Raporu kaydet
+        run: |
+          git config user.name "denemematik-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add BAKIM_RAPORU.md
+          git diff --cached --quiet || (git commit -m "Gece bakım raporu" && git pull --rebase && git push)
+      - name: Başarısızsa iş akışını kırmızı bırak
+        if: steps.bakim.outcome == 'failure'
+        run: exit 1

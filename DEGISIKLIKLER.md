@@ -328,3 +328,8 @@ Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve 
 - `pool/bank_checks.json`: 74 madde "bad" listesinden "ok" listesine alındı (953 ok / 0 bad). Bu maddeler artık soru üretiminde kullanılıyor.
 - Fen, Sosyal, Türkçe, Din, İngilizce 5. sınıf havuzları yeniden kuruldu.
 - Öğretmen incelemesi için `bilgi_bankasi_ogretmen_incelemesi.xlsx` (981 madde) hazırlandı.
+
+## Otomatik gece bakımı (2026-11-28)
+- `.github/workflows/gece_bakim.yml` her gün 04:00 (TR) `tools/bakim.py` çalıştırır: regresyon testleri, tutarlılık ve şekil taraması, ölü kod raporu, resmî MEB programlarının (mufredat.meb.gov.tr) yerleşik müfredatla kazanım kodu karşılaştırması. Sonuç `BAKIM_RAPORU.md` olarak depoya yazılır; test/tarama kalırsa iş akışı kırmızı olur (GitHub e-postası).
+- Kod otomatik silinmez, müfredat otomatik değiştirilmez (yalnız raporlanır): yanlış alarmlı silme daha önce NameError üretmişti.
+- Gece havuz yenileme (`yerel_havuz.yml`) ve bilgi bankası doğrulaması (`build_pool.yml`) zaten çalışıyor.
