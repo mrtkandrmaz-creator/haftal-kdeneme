@@ -333,3 +333,15 @@ Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve 
 - `.github/workflows/gece_bakim.yml` her gün 04:00 (TR) `tools/bakim.py` çalıştırır: regresyon testleri, tutarlılık ve şekil taraması, ölü kod raporu, resmî MEB programlarının (mufredat.meb.gov.tr) yerleşik müfredatla kazanım kodu karşılaştırması. Sonuç `BAKIM_RAPORU.md` olarak depoya yazılır; test/tarama kalırsa iş akışı kırmızı olur (GitHub e-postası).
 - Kod otomatik silinmez, müfredat otomatik değiştirilmez (yalnız raporlanır): yanlış alarmlı silme daha önce NameError üretmişti.
 - Gece havuz yenileme (`yerel_havuz.yml`) ve bilgi bankası doğrulaması (`build_pool.yml`) zaten çalışıyor.
+
+## Eksik soru tipleri ve gelişim raporu (2026-11-28)
+**İngilizce (LGS tarzı, hepsi kodla üretilir, zorluk 3–4):**
+- 12 çok turlu diyalog tamamlama ailesi (`_en_dia2_*`): tanışma, saat, yol sorma, içecek/fiyat, izin (can), kıyafet, şimdiki zaman, have got, be going to, yaşam alanı, karşılaştırma. Boşluğun cevabı **sonraki replikten** çıkarılır; yanlış şıklar bağlamla çelişir. Diyalog `passage` alanında, soru kökü senaryoya özgü.
+- 7 karışık diyalog sıralama ailesi (`_en_ord_*`): dört cümle I–IV olarak karışık verilir, şıklar sıra dizileridir (ör. "III - I - II - IV"). Her zincirde tek anlamlı sıra vardır.
+- 1 uzun okuma ailesi (`_en_read_not`): 6 cümlelik özgün metin, "Which one is NOT true?". Yanlış ifade metinle doğrudan çelişir (tek evcil hayvan, yalnızca bir gün vb.), belirsiz bırakılmadı.
+- Neden havuzda az çıkıyordu: havuz kurucusu yineleme anahtarını sorunun ilk 70 karakterinden alıyor; diyalogu soru metnine koymak soruları "aynı" saydırıyordu. Çözüm: satırlar `passage`'a, soru kökü senaryoya özgü. (Kural: ortak açılışlı uzun metinli yeni aileler içeriği `passage`'a koymalı.)
+- İngilizce 5. sınıf havuzu 4295 → 4962; zorluk 4–5 payı %29 → %33. Diyalog ağırlıklı ünite: School Life, Life in the World; Personal Life/Nature/Universe'de diyalog az (konu gereği).
+**Gelişim raporu:**
+- Rapor ekranı zaten çok kapsamlıydı (trend, ders karşılaştırma, ısı haritası, zayıf kazanım, hedef net, yanlış nedenleri, veli PDF'i, haftalık plan). Eksik olan kazanım düzeyinde ilerleme: yeni **Kazanım karnesi** (`coach.mastery`, Performans → Kazanım Analizi sekmesi): her kazanım için Ustalaştı / Gelişiyor / Zayıf / Yeni durumu, son 3 sınav başarısı ve ilk sınavlara göre değişim.
+- Yeni test `tools/tests/test_gelisim.py` (run_checks 15/15).
+- Sınır: Streamlit bu ortamda çalıştırılamadığı için ekran görünümü denenmedi (mantık testli, tablo mevcut `theme.html_table` ile çiziliyor). Planın "yaprak test" düğmesi hâlâ zayıf kazanımı önceden seçmiyor; yalnızca yaprak test sayfasını açıyor.

@@ -19529,6 +19529,190 @@ _NAMES = ["Ali", "Ayşe", "Mert", "Elif", "Cem", "Zeynep", "Emre", "Deniz"]
 _FEM = {"Ayşe", "Elif", "Zeynep"}
 
 
+# ---- LGS tarzı İngilizce: çok turlu diyalog tamamlama, karışık diyalog sıralama, uzun okuma (NOT true)
+_DIA_SC = [
+    # (ad, konu, kw, satırlar [(kişi, metin)], boşluk satırı, doğru, yanlışlar, yuva sözlükleri)
+    ("intro", "Introductions", ("countries", "school life"),
+     [("A", "Hello! I’m {n1}. What’s your name?"), ("B", "___"), ("A", "Nice to meet you, {n2}.")],
+     1, "My name is {n2}.", ["I’m {age} years old.", "I’m from {c}.", "It’s {d}.", "I’m fine, thanks."], {"n1": _N5, "n2": _N5, "age": ["nine", "ten", "eleven"], "c": ["Turkey", "Spain", "Japan"], "d": ["Monday", "Friday"]}),
+    ("time", "Telling the time", ("telling the time", "classroom life"),
+     [("A", "What time is it, {n1}?"), ("B", "___"), ("A", "Oh no! The lesson starts at {t2}. We are late.")],
+     1, "It’s {t1}.", ["It’s sunny today.", "It’s Monday.", "I’m ten years old.", "It’s my pencil."], {"n1": _N5, "t1": ["ten past eight", "quarter past eight", "twenty past eight"], "t2": ["eight"]}),
+    ("where", "Places in the city", ("places for recreation", "neighbourhood"),
+     [("A", "Excuse me, where is the {pl}?"), ("B", "___"), ("A", "Thank you very much.")],
+     1, "It’s next to the {nx}.", ["Yes, it is.", "I’m ten years old.", "It’s ten o’clock.", "My name is Ali."], {"pl": ["library", "bank", "museum", "post office", "cinema"], "nx": ["school", "park", "market", "hospital"]}),
+    ("drink", "Ordering in a restaurant", ("ordering in a restaurant",),
+     [("A", "Good evening. What would you like to drink?"), ("B", "___"), ("A", "Here you are.")],
+     1, "I’d like {dr}, please.", ["I’m fine, thanks.", "It’s half past two.", "She is my sister.", "I can swim."], {"dr": ["some orange juice", "a glass of water", "some tea", "some lemonade"]}),
+    ("perm", "Can for permission", ("can for permission",),
+     [("A", "Can I {ac} in the {pl}?"), ("B", "___"), ("A", "OK, sorry.")],
+     1, "No, you can’t.", ["Yes, you can.", "I can swim.", "It’s cold today.", "Yes, I am."], {"ac": ["eat", "run", "shout"], "pl": ["library", "classroom"]}),
+    ("wear", "Clothes", ("clothes", "personal life"),
+     [("A", "It’s very {w} today. What should I wear?"), ("B", "___"), ("A", "OK, thanks!")],
+     1, "{wr}", None, {"w": ["cold"]}),
+    ("pp", "Present Progressive", ("present progressive", "family life"),
+     [("A", "Where is {n1}? I can’t see {h2}."), ("B", "___"), ("A", "OK. Let’s call {h2} for dinner.")],
+     1, "{h3} is {ing} in the garden.", ["{h3} plays football every day.", "{h3} played yesterday.", "{h3} will go to school.", "{h3} are playing."], {"n1": _N5}),
+    ("havegot", "Have got", ("have got",),
+     [("A", "Have you got a {pet}?"), ("B", "___"), ("A", "What’s its name?")],
+     1, "Yes, I have. It’s a {pet}.", ["No, I haven’t.", "Yes, I am.", "No, I don’t.", "Yes, it is."], {"pet": ["cat", "dog", "rabbit", "bird"]}),
+    ("goingto", "Be going to", ("be going to", "seasons", "universe"),
+     [("A", "What are you going to do this summer?"), ("B", "___"), ("A", "That sounds great!")],
+     1, "I’m going to {pl}.", ["I went to the park yesterday.", "I’m studying now.", "I do my homework every day.", "I’m fine, thank you."], {"pl": ["visit my grandparents", "swim in the sea", "go camping", "stay at my uncle’s house"]}),
+    ("price", "Ordering in a restaurant", ("ordering in a restaurant",),
+     [("A", "How much is the {it}?"), ("B", "___"), ("A", "OK, I’ll take it.")],
+     1, "It’s {p} pounds.", ["It’s ten o’clock.", "I’m fine, thanks.", "It’s my sister.", "Yes, I do."], {"it": ["sandwich", "pizza", "salad", "soup"], "p": ["five", "six", "eight", "ten"]}),
+    ("habitat", "Habitats", ("habitats", "wild animals"),
+     [("A", "Where do {an} live?"), ("B", "___"), ("A", "Oh, I see. Thanks!")],
+     1, "They live {hb}.", None, {}),
+    ("comp", "Comparatives", ("comparatives and superlatives",),
+     [("A", "Which is faster, a {a} or a {b}?"), ("B", "___"), ("A", "Really? That’s amazing!")],
+     1, "A {a} is faster than a {b}.", ["A {b} is faster than a {a}.", "A {a} is more fast than a {b}.", "A {a} is the fastest than a {b}."], {}),
+]
+_DIA_LAB = {"intro": "introducing yourself", "time": "telling the time", "where": "asking for directions", "drink": "ordering a drink", "perm": "asking for permission", "wear": "choosing clothes",
+            "pp": "what someone is doing", "havegot": "pets", "goingto": "summer plans", "price": "shopping", "habitat": "animal homes", "comp": "animal speeds"}
+_ORD_LAB = {"greet": "meeting a new friend", "cafe": "ordering food", "time": "telling the time", "way": "asking the way", "bday": "a birthday", "shop": "shopping for clothes", "book": "borrowing a book"}
+_DIA_WEAR = [("cold", "Wear your coat.", ["Wear your shorts.", "Wear your swimsuit.", "Wear your sandals."]), ("hot", "Wear your T-shirt.", ["Wear your coat.", "Wear your gloves.", "Wear your scarf."])]
+_DIA_HAB = [("camels", "in the desert", ["in the ocean", "in the Arctic", "in the sky"]), ("polar bears", "in the Arctic", ["in the desert", "in the jungle", "in the pond"]),
+            ("fish", "in the water", ["in the desert", "in the trees", "in the sky"]), ("monkeys", "in the jungle", ["in the ocean", "in the Arctic", "in the desert"]),
+            ("frogs", "near the pond", ["in the desert", "in the Arctic", "in the sky"])]
+_DIA_FAST = [("cheetah", "turtle"), ("horse", "snail"), ("rabbit", "turtle"), ("dog", "snail"), ("lion", "pig")]
+
+
+def _mk_dia2(sc):
+    nm, topic, kw, lines, blank, corr, wrongs, slots = sc
+
+    def f(subject):
+        v = {k: random.choice(x) for k, x in slots.items()}
+        if "n1" in v and "n2" in v:
+            if v["n1"] == v["n2"]:
+                return None
+        if nm == "wear":
+            w, c, wr = random.choice(_DIA_WEAR)
+            lines2 = [(p, t.replace("{w}", w)) for p, t in lines]
+            ws = list(wr)
+        elif nm == "habitat":
+            an, c, wr = random.choice(_DIA_HAB)
+            v["an"] = an
+            v["hb"] = c
+            lines2 = lines
+            ws = [f"They live {x}." for x in wr]
+            c = f"They live {c}."
+        elif nm == "comp":
+            a, b = random.choice(_DIA_FAST)
+            v["a"], v["b"] = a, b
+            lines2, c, ws = lines, corr, list(wrongs)
+        else:
+            lines2, c, ws = lines, corr, list(wrongs)
+        if nm == "pp":
+            he = "She" if v["n1"] in _FEM else "He"
+            v["h"] = he.lower()
+            v["h2"] = "her" if he == "She" else "him"
+            v["h3"] = he
+            v["ing"] = random.choice(["playing", "reading a book", "riding a bike"])
+        sub = lambda s: s.format(**v) if "{" in s else s
+        try:
+            txt = [(p, sub(t)) for p, t in lines2]
+            c = sub(c)
+            ws = [sub(w) for w in ws]
+        except KeyError:
+            return None
+        dlg = "\n".join(f"{p}: {t if t != '___' else '________'}" for p, t in txt)
+        q = f"Which reply best completes the dialogue about {_DIA_LAB[nm]}?"
+        return _en_pick(topic, q, c, ws, f"Boşluktan sonraki cümleye bakarak uygun cevap: “{c}”.", passage=dlg)
+    f.__name__ = "_en_dia2_" + nm
+    return f, kw
+
+
+# Karışık diyalog sıralama: her zincirde yalnızca tek anlamlı sıra vardır (açılış ve kapanış belli)
+_ORD_CH = [
+    ("greet", "Dialogues", ("countries", "school life"), ["Hello! I’m {n1}.", "Hi, {n1}! I’m {n2}. Nice to meet you.", "Nice to meet you, too.", "See you tomorrow. Goodbye!"]),
+    ("cafe", "Ordering in a restaurant", ("ordering in a restaurant",), ["Good morning. What would you like?", "A sandwich and some juice, please.", "Here you are.", "Thank you very much."]),
+    ("time", "Telling the time", ("telling the time", "classroom life"), ["Excuse me, what time is it?", "It’s half past three.", "Thank you very much.", "You’re welcome."]),
+    ("way", "Places in the city", ("places for recreation", "neighbourhood"), ["Excuse me, where is the library?", "It’s next to the bank.", "Thank you.", "You’re welcome."]),
+    ("bday", "Dialogues", ("family members", "family life", "personal life"), ["Happy birthday, {n1}!", "Thank you!", "How old are you now?", "I’m eleven."]),
+    ("shop", "Clothes", ("clothes", "personal life"), ["Can I help you?", "Yes, I want a T-shirt, please.", "What colour do you want?", "Blue, please."]),
+    ("book", "Can for permission", ("can for permission",), ["Can I borrow this book, please?", "Of course. What’s your name?", "My name is {n1}.", "OK. Here is your book."]),
+]
+_ROMAN4 = ["I", "II", "III", "IV"]
+
+
+def _mk_ord(ch):
+    nm, topic, kw, seq = ch
+
+    def f(subject):
+        n1, n2 = random.sample(_N5, 2)
+        s = [x.format(n1=n1, n2=n2) for x in seq]
+        perm = list(range(4))
+        for _t in range(20):
+            random.shuffle(perm)
+            if perm != [0, 1, 2, 3]:
+                break
+        else:
+            return None
+        # perm[k] = k. gösterilen cümlenin, doğru sıradaki indeksi
+        shown = [s[perm[k]] for k in range(4)]
+        order = [_ROMAN4[shown.index(x)] for x in s]
+        corr = " - ".join(order)
+        alts = set()
+        ps = [[_ROMAN4[i] for i in p] for p in __import__("itertools").permutations(range(4))]
+        random.shuffle(ps)
+        for p in ps:
+            t = " - ".join(p)
+            if t != corr and p[0] != order[0] and len(alts) < 3:
+                alts.add(t)
+        if len(alts) < 3:
+            return None
+        q = f"Put the sentences in the correct order to make a meaningful dialogue about {_ORD_LAB[nm]}."
+        return _en_pick(topic, q, corr, list(alts), "Önce selamlaşma/soru gelir, ardından cevap; teşekkür ve kapanış sona gelir: " + " → ".join(s) + ".", passage="\n".join(f"{_ROMAN4[k]}. {shown[k]}" for k in range(4)))
+    f.__name__ = "_en_ord_" + nm
+    return f, kw
+
+
+# Uzun okuma: 6 cümlelik özgün metin + "Which one is NOT true?"
+_RD_CITY = ["Ankara", "Izmir", "Bursa", "Konya", "Antalya"]
+_RD_SUBJ = ["Maths", "Science", "English", "Art", "Music"]
+_RD_FOOD = ["pizza", "soup", "pasta", "salad", "rice"]
+_RD_SPORT = ["football", "basketball", "tennis", "volleyball"]
+
+
+def _en_read_not(subject):
+    nm, sib = random.sample(_N5, 2)
+    he = "She" if nm in _FEM else "He"
+    hs = "her" if he == "She" else "his"
+    age = random.randint(9, 12)
+    city = random.choice(_RD_CITY)
+    sj = random.choice(_RD_SUBJ)
+    fd = random.choice(_RD_FOOD)
+    sp = random.choice(_RD_SPORT)
+    day = random.choice(["Tuesday", "Wednesday", "Thursday"])
+    pet = random.choice(["cat", "dog", "rabbit"])
+    passage = (f"{nm} is {age} years old and {he.lower()} lives in {city}. {he} has got one pet, a {pet}, and a brother called {sib}. "
+               f"{hs.capitalize()} favourite lesson is {sj}. {he} plays {sp} only on {day}s. {he} likes {fd} very much, but {he.lower()} doesn’t like fish.")
+    true = [f"{nm} lives in {city}.", f"{nm} has got a {pet}.", f"{nm}’s favourite lesson is {sj}.", f"{nm} plays {sp} on {day}s.", f"{nm} likes {fd}.", f"{nm} doesn’t like fish.", f"{nm} has got a brother."]
+    alt_city = random.choice([c for c in _RD_CITY if c != city])
+    alt_sj = random.choice([s for s in _RD_SUBJ if s != sj])
+    alt_pet = random.choice([p for p in ["cat", "dog", "rabbit", "bird"] if p != pet])
+    alt_day = random.choice([d for d in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] if d != day])
+    false = random.choice([f"{nm} lives in {alt_city}.", f"{nm} has got a {alt_pet}.", f"{nm}’s favourite lesson is {alt_sj}.", f"{nm} plays {sp} on {alt_day}s.", f"{nm} likes fish."])
+    tr = random.sample([t for t in true if not (t == f"{nm} doesn’t like fish." and "likes fish" in false)], 3)
+    return _en_pick("Reading", "Which one is NOT true according to the text?", false, tr, f"Metne göre doğru değil: “{false}”.", passage=passage)
+
+
+_en_read_not.__name__ = "_en_read_not"
+for _sc in _DIA_SC:
+    _f, _kw = _mk_dia2(_sc)
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 3
+for _ch in _ORD_CH:
+    _f, _kw = _mk_ord(_ch)
+    _EF_GENS.append((_f, _kw))
+    _DIFF_OF[_f.__name__] = 4
+_EF_GENS.append((_en_read_not, ("reading", "family life", "personal life", "school life")))
+_DIFF_OF["_en_read_not"] = 4
+
+
+
 def _en_q(topic, q, c, wrongs, ex):
     return _fact_q(_ENG, topic, q, c, wrongs, ex)
 
@@ -39671,6 +39855,38 @@ def weak_topics(hist=None, last=10, limit=12):
     return sorted([r for r in rows if r[2] < 75] or rows, key=lambda r: (r[2], -r[3]))[:limit]
 
 
+def mastery(hist=None, min_q=3):
+    """Kazanım karnesi: her (ders, kazanım) için genel/erken/son başarı, değişim ve durum.
+    Durum: 'Yeni' (<min_q soru), 'Ustalaştı' (son ≥%85 ve ≥5 soru), 'Gelişiyor' (son ≥%60), 'Zayıf'.
+    Son = ilgili kazanımın geçtiği son 3 sınav; erken = ilk yarısı. Değişim = son − erken (en az 2 sınavda görüldüyse)."""
+    hist = store.history() if hist is None else hist
+    seq = {}
+    for h in hist:
+        for sj, tps in (h.get("topics") or {}).items():
+            for t, v in tps.items():
+                if t and t != "Genel" and v and v[1]:
+                    seq.setdefault((sj, t), []).append((float(v[0]), float(v[1])))
+    rank = {"Zayıf": 0, "Gelişiyor": 1, "Yeni": 2, "Ustalaştı": 3}
+    pct = lambda xs: 100 * sum(a for a, _ in xs) / max(1.0, sum(b for _, b in xs))
+    rows = []
+    for (sj, t), xs in seq.items():
+        n = sum(b for _, b in xs)
+        recent = pct(xs[-3:])
+        half = len(xs) // 2
+        early = pct(xs[:half]) if len(xs) >= 4 else (pct(xs[:1]) if len(xs) >= 2 else None)
+        change = (recent - early) if (early is not None and len(xs) >= 2) else None
+        if n < min_q:
+            st = "Yeni"
+        elif recent >= 85 and n >= 5:
+            st = "Ustalaştı"
+        elif recent >= 60:
+            st = "Gelişiyor"
+        else:
+            st = "Zayıf"
+        rows.append({"subject": sj, "topic": t, "n": int(n), "exams": len(xs), "overall": pct(xs), "recent": recent, "change": change, "status": st})
+    return sorted(rows, key=lambda r: (rank[r["status"]], r["recent"], -r["n"]))
+
+
 def subject_stats(hist=None, last=10):
     hist = (store.history() if hist is None else hist)[-last:]
     d = {}
@@ -43045,6 +43261,15 @@ def reports():
                     x = agg.setdefault((s, tp), [0, 0])
                     x[0] += a
                     x[1] += b
+        from core import coach as _co
+        _ms = _co.mastery(H)
+        if _ms:
+            _ic = {"Zayıf": "🔴 Zayıf", "Gelişiyor": "🟠 Gelişiyor", "Yeni": "⚪ Yeni", "Ustalaştı": "🟢 Ustalaştı"}
+            _cn = {k: sum(1 for r in _ms if r["status"] == k) for k in _ic}
+            st.markdown("**🧩 Kazanım karnesi** — " + " • ".join(f"{_ic[k]}: {v}" for k, v in _cn.items()))
+            theme.html_table(["Ders", "Kazanım / Konu", "Durum", "Son başarı", "Değişim", "Soru"],
+                             [(r["subject"], r["topic"], _ic[r["status"]], f"%{r['recent']:.0f}", _d(r["change"]) if r["change"] is not None else "—", r["n"]) for r in _ms[:40]], num_cols=(3, 4, 5))
+            st.caption("Durum: son 3 sınavdaki başarıya göre. Ustalaştı ≥%85 (en az 5 soru) • Gelişiyor ≥%60 • Zayıf <%60 • Yeni <3 soru. Değişim: ilk sınavlara göre puan farkı.")
         rows = sorted([(s, tp, 100 * a / b, b) for (s, tp), (a, b) in agg.items() if b], key=lambda r: r[2])
         st.markdown("**En zayıf kazanımlar (tüm sınavlar)**")
         theme.html_table(["Ders", "Kazanım / Konu", "Başarı", "Soru"], [(f"{cur.SUBJECT_ICONS.get(s, '')} {s}", tp, f"{theme.bar(p)}<small><b>%{p:.0f}</b></small>", n) for s, tp, p, n in rows[:15]], num_cols=(3,))
