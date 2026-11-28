@@ -316,3 +316,9 @@ Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve 
 - Neighbourhood, World, Nature, Universe ve Personal Life ünitelerinde zorluk-4 soru yok denecek kadar azdı (World/Neighbourhood 0, Nature 10). 17 yeni tablolu kalıp: "NOT true" (`_en_neg_recreation/food/habitat/season/continent/clothes/body`), sayı karşılaştırmalı tablo (`_en_neg_height`: taller than, `_en_neg_speed`: faster than) ve iki tablolu okuma (`_en_hop_prices/clothes/habitat/places`). Çeldirici/yanlış cümle çiftleri tablodan türetilir; gerçek dünyada da doğru sayılabilecek eşleştirmeler (ör. kar yağışında atkı, parkta kitap okuma, ormanda ayı) bilerek elendi.
 - İngilizce 5. sınıf: 3 667 → 4 303 soru; zorluk 4–5 payı %13 → %27; görselli oran: Personal Life %47 → %63, Nature %75 → %84, Neighbourhood %80 → %85. run_checks 14/14.
 - Sınır: bu sorular çoktan seçmeli tablo okuma düzeyinde; LGS'nin diyalog tamamlama/uzun okuma tarzı henüz yok.
+
+## Cevap harfi dengesi (2) — Matematik (2026-11-28)
+- Sabit harfli kalıp (60 sorudan ≥%60 aynı harf): 46 → 12. Matematik havuzunda A 4966 / B 5233 / C 4520 / D 3965.
+- Öncül kümeleri (Yalnız II, I ve III, I, II ve III, Hiçbiri) artık LGS'deki gibi sıralı (`_roman_order_key`); doğru şıkkın yeri içerikten geliyor (önce sıralanmamış ve hep A'ydı).
+- Ondalık, birimli ve binlik boşluklu sayısal şıklarda (2,5 TL, 60°, 13 617 000) doğrunun sırası rastgele (`_parse_numopts`, `_rank_rand`); eksik çeldirici doğrunun karşı yanından üretilir, açı şıkları ≤180° kalır.
+- Kalan 12 kalıp: çeldiricileri içeriği gereği sabit (ör. ondalık dönüşümü 0,4/4,0/40,0). run_checks 14/14.

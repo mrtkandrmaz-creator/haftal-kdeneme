@@ -10311,6 +10311,83 @@ def oyss_prompt(grade_label, subject, items, difficulty, avoid):
 _NOSHUF = re.compile(r"hepsi|yukarıdakilerin|yalnız|yalnızca|ve [IV]+|[IV]+ ve|I, II|hiçbiri|all of|none of|beide|alle", re.I)
 
 
+def _rank_rand(c0, wr0, cap=None):
+    """Doğru değer c0 ve üç yanlış (hepsi pozitif tamsayı birimi): doğrunun sıralı konumunu rastgele seçip eksik çeldiricileri doğrunun karşı yanından üretir.
+    Dönüş: sıralı 4 değer ya da None."""
+    wr0 = sorted(wr0)
+    lo0 = [w for w in wr0 if w < c0][::-1]
+    hi0 = [w for w in wr0 if w > c0]
+    r0 = random.choice([0, 1, 2, 3])
+    U0 = cap if cap else (100 if max(wr0 + [c0]) <= 100 else max(wr0 + [c0]) * 1.5)
+    have = set(wr0) | {c0}
+    dif = sorted({abs(w - c0) for w in wr0})
+
+    def _mir(want_lo):
+        out_ = []
+        for k_ in (1, 2, 3):
+            for d_ in dif:
+                m = c0 - k_ * d_ if want_lo else c0 + k_ * d_
+                if m > 0 and m not in have and len(str(m)) == len(str(c0)) and m <= U0:
+                    out_.append(m)
+                    have.add(m)
+        return out_
+    if len(lo0) < r0:
+        lo0 = lo0 + sorted(_mir(True), reverse=True)
+    if len(hi0) < 3 - r0:
+        hi0 = hi0 + sorted(_mir(False))
+    if len(lo0) >= r0 and len(hi0) >= 3 - r0:
+        return sorted(lo0[:r0] + hi0[:3 - r0] + [c0])
+    return None
+
+
+_NUMFMT = re.compile(r"^(\d{1,3}(?: \d{3})+|\d+)(?:,(\d{1,2}))?(\s*(?:°|cm²|cm|m²|m|km|dm|mm|kg|g|TL|lira|L|ml|%|gün|saat|dakika|dk|sn|yaş|tane|kişi|öğrenci|adet|derece)?)$")
+
+
+def _parse_numopts(opts):
+    """Tüm şıklar aynı birimli, aynı ondalık basamaklı pozitif sayıysa (ör. 2,5 TL, 60°, 13 617 000) (ölçekli tamsayılar, biçimleyici) döndürür."""
+    P = {}
+    for k, v in opts.items():
+        m = _NUMFMT.match(str(v).strip())
+        if not m:
+            return None
+        P[k] = m.groups()
+    if len({(p[1] is None, len(p[1] or ""), p[2].strip()) for p in P.values()}) != 1:
+        return None
+    dec = len(next(iter(P.values()))[1] or "")
+    unit = next(iter(P.values()))[2]
+    sp = any(" " in p[0] for p in P.values())
+    ints = {k: int(p[0].replace(" ", "")) * 10 ** dec + int((p[1] or "0")) for k, p in P.items()}
+    if min(ints.values()) <= 0:
+        return None
+
+    def fmt(n):
+        ip, fp = divmod(n, 10 ** dec) if dec else (n, 0)
+        t = f"{ip:,}".replace(",", " ") if sp else str(ip)
+        if dec:
+            t += "," + str(fp).zfill(dec)
+        return t + unit
+    return ints, fmt, unit
+
+
+_ROM_V = {"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5}
+_ROM_SET = re.compile(r"^(?:Yalnız\s+)?(I{1,3}|IV|V)(?:\s*(?:,|ve)\s*(I{1,3}|IV|V))*$")
+
+
+def _roman_order_key(opts):
+    """Şıkların hepsi öncül kümesiyse (Yalnız II / I ve III / I, II ve III / Hiçbiri) sıralama anahtarı; değilse None."""
+    key = {}
+    for k, v in opts.items():
+        t = str(v).strip().rstrip(".")
+        if re.fullmatch(r"(?i)hiçbiri|hepsi|yukarıdakilerin hiçbiri|yukarıdakilerin hepsi", t):
+            key[k] = (9, (0,))
+            continue
+        if not _ROM_SET.match(t):
+            return None
+        rs = tuple(sorted(_ROM_V[x] for x in re.findall(r"\b(IV|V|I{1,3})\b", t)))
+        key[k] = (len(rs), rs)
+    return key if len(set(key.values())) == 4 else None
+
+
 _ANG1 = re.compile(r"∠\s*([A-ZÇĞİÖŞÜ]{1,3})(?=\s*(?:=|<|>|≠|kaç))")
 _MPAR = re.compile(r"m\s*\(\s*(?:∠\s*)?([A-ZÇĞİÖŞÜ]{1,3})\s*\)")
 _SIDE_EQ = re.compile(r"(?<![\w|(\[])([A-Z]{2})\s*=\s*([A-Z]{2})(?![\w|)\]])")
@@ -11267,9 +11344,25 @@ def _norm_q(q, subject):
                     opts = dict(zip("ABCD", [str(v) for v in vs]))
                     ans = [k for k, v in opts.items() if v == str(c0)][0]
                     _correct = str(c0)
+            else:  # ondalık / birimli / binlik boşluklu sayılar (2,5 TL, 60°, 13 617 000): aynı yöntemle doğrunun sırası rastgele
+                pn = _parse_numopts(opts)
+                if pn:
+                    ints, fmt, unit = pn
+                    c1 = ints[ans]
+                    cap = 180 if unit == "°" and max(ints.values()) <= 180 else None
+                    vs = _rank_rand(c1, [v for k, v in ints.items() if k != ans], cap)
+                    if vs:
+                        opts = dict(zip("ABCD", [fmt(v) for v in vs]))
+                        _correct = fmt(c1)
+                        ans = [k for k, v in opts.items() if v == _correct][0]
         except Exception:
             pass
         opts = dict(zip("ABCD", [v for _k, v in sorted(opts.items(), key=lambda kv: _optnum(kv[1]))]))
+        ans = [k for k, v in opts.items() if v == _correct][0]
+    elif _roman_order_key(opts) is not None:  # öncül kümeleri LGS'deki gibi sıralı: Yalnız I, Yalnız II, I ve II, ... (doğru şıkkın yeri içerikten gelir)
+        _kk = _roman_order_key(opts)
+        _correct = opts[ans]
+        opts = dict(zip("ABCD", [v for _k, v in sorted(opts.items(), key=lambda kv: _kk[kv[0]])]))
         ans = [k for k, v in opts.items() if v == _correct][0]
     elif not any(_NOSHUF.search(v) for v in opts.values()):  # şık konumu dengesi: doğru cevap dağılımı
         vals = list(opts.values())
