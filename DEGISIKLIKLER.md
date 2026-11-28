@@ -322,3 +322,9 @@ Kalan: zorluk-5 (çok aşamalı muhakeme) Sosyal/Türkçe/Din'de yok; harita ve 
 - Öncül kümeleri (Yalnız II, I ve III, I, II ve III, Hiçbiri) artık LGS'deki gibi sıralı (`_roman_order_key`); doğru şıkkın yeri içerikten geliyor (önce sıralanmamış ve hep A'ydı).
 - Ondalık, birimli ve binlik boşluklu sayısal şıklarda (2,5 TL, 60°, 13 617 000) doğrunun sırası rastgele (`_parse_numopts`, `_rank_rand`); eksik çeldirici doğrunun karşı yanından üretilir, açı şıkları ≤180° kalır.
 - Kalan 12 kalıp: çeldiricileri içeriği gereği sabit (ör. ondalık dönüşümü 0,4/4,0/40,0). run_checks 14/14.
+
+## Bilgi bankası incelemesi (2026-11-28)
+- Gece doğrulamasının reddettiği 74 madde tek tek incelendi: 73'ü doğru bilgi (yanlış alarm), 1'inde bozuk çeldirici vardı (Fen "Donma": "Süblimleşme yoğuşma" → "Yoğuşma").
+- `pool/bank_checks.json`: 74 madde "bad" listesinden "ok" listesine alındı (953 ok / 0 bad). Bu maddeler artık soru üretiminde kullanılıyor.
+- Fen, Sosyal, Türkçe, Din, İngilizce 5. sınıf havuzları yeniden kuruldu.
+- Öğretmen incelemesi için `bilgi_bankasi_ogretmen_incelemesi.xlsx` (981 madde) hazırlandı.
